@@ -59,6 +59,7 @@ class ProcessACS(Task):
             # Handle metadata rows
             if not line_no or line_no == '.':
                 parent = None
+                parent_table_title = None
                 if start_pos and start_pos != '.':
                     table_description = table_title
                 else:
@@ -81,19 +82,23 @@ class ProcessACS(Task):
 
             if 'tables' not in obj:
                 obj['tables'] = {}
-            obj['tables'][source_table] = {
-                "column": column_id,
-                "description": '{table} {column} in {universe}'.format(
-                    table=table_description,
-                    column=table_title,
-                    universe=universe)
-            }
 
+            column_name = table_title
             if parent:
                 obj['relationships'] = [{
                     "type": "parent",
                     "link": parent
                 }]
+                if parent and not parent.lower().startswith('total'):
+                    column_name = '{} {}'.format(parent_table_title, table_title)
+
+            obj['tables'][source_table] = {
+                "column": column_id,
+                "description": '{table} {column} in {universe}'.format(
+                    table=table_description,
+                    column=column_name,
+                    universe=universe)
+            }
 
             with open(json_file_path, 'w') as fhandle:
                 json.dump(obj, fhandle, indent=4)
@@ -101,6 +106,7 @@ class ProcessACS(Task):
             # set parent
             if table_title.endswith(':'):
                 parent = column_id
+                parent_table_title = table_title
 
 
 class AllACS(Task):
