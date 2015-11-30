@@ -7,21 +7,23 @@ tasks to download and create metadata
 '''
 
 #import requests
-import datetime
+#import datetime
 #import json
 #import csv
-#import os
-from luigi import Task, Parameter, DateParameter
-from tasks.util import DefaultPostgresTarget, LoadPostgresDumpFromURL
+import json
+import os
+from luigi import Parameter, WrapperTask, LocalTarget
+from tasks.util import LoadPostgresFromURL, MetadataTask, DefaultPostgresTarget
+#from tasks.us.census.tiger import Tiger
 
 
 # STEPS:
 #
-# 1. load ACS dump into postgres
+# 1. load ACS SQL into postgres
 # 2. extract usable metadata from the imported tables, persist as json
 #
 
-class DownloadACS(Task):
+class DownloadACS(WrapperTask):
 
     # http://censusreporter.tumblr.com/post/73727555158/easier-access-to-acs-data
     url_template = 'https://s3.amazonaws.com/census-backup/acs/{year}/' \
@@ -36,37 +38,121 @@ class DownloadACS(Task):
             sample=self.sample
         )
         url = self.url_template.format(year=self.year, sample=self.sample)
-        return LoadPostgresDumpFromURL(url=url, table=table)
-
-    #def __init__(self, *args, **kwargs):
-    #    url = self.url_template.format(year=kwargs['year'], sample=kwargs['sample'])
-    #    super(DownloadACS, self).__init__(*args, url=url, **kwargs)
+        return LoadPostgresFromURL(url=url, table=table)
 
 
-#class DownloadTask(Task):
-#    url = Parameter()
-#    name = Parameter()
-#    date_checked = DateParameter(default=datetime.date.today())
-#
-#    def run(self):
-#        out = self.output().open('w')
-#        out.write(requests.get(self.url).content)
-#        out.close()
-#
-#    def output(self):
-#        return LocalTarget('tmp/{}.csv'.format(self.name))
-
-
-
-
-
-class ProcessACS(Task):
+class DumpACS(WrapperTask):
+    '''
+    Dump a table in postgres compressed format
+    '''
+    #TODO
     year = Parameter()
     sample = Parameter()
 
     def requires(self):
-        return DownloadACS(year=self.year, sample=self.sample)
+        pass
 
+
+class ACSColumn(MetadataTask):
+
+    column_id = Parameter()
+    column_title = Parameter()
+    table_title = Parameter()
+
+    @property
+    def name(self):
+        return '{table}: {column}'.format(table=self.table_title,
+                                          column=self.column_title)
+
+    def run(self):
+        data = {
+            'name': self.name
+        }
+        with self.output().open('w') as outfile:
+            json.dump(data, outfile, indent=2)
+
+    def output(self):
+        return LocalTarget(os.path.join('columns', self.path, self.column_id) + '.json')
+
+
+class ACSTable(MetadataTask):
+
+    source = Parameter()
+    seqnum = Parameter()
+    denominators = Parameter()
+    table_titles = Parameter()
+    column_titles = Parameter()
+    column_ids = Parameter()
+    indents = Parameter()
+    parent_column_ids = Parameter()
+
+    def requires(self):
+        for i, column_id in enumerate(self.column_ids):
+            yield ACSColumn(column_id=column_id, column_title=self.column_titles[i],
+                            table_title=self.table_titles[i])
+
+    def run(self):
+        data = {
+            'columns': [column_id for column_id in self.column_ids]
+        }
+        with self.output().open('w') as outfile:
+            json.dump(data, outfile, indent=2)
+
+    def output(self):
+        return LocalTarget(os.path.join('tables', self.path, self.source, self.seqnum) + '.json')
+
+
+class ProcessACS(WrapperTask):
+    year = Parameter()
+    sample = Parameter()
+
+    def requires(self):
+        yield DownloadACS(year=self.year, sample=self.sample)
+        cursor = self.cursor()
+        cursor.execute(
+            ' SELECT isc.table_name as seqnum, ARRAY_AGG(table_title) as table_titles,'
+            '   ARRAY_AGG(denominator_column_id) as denominators,'
+            '   ARRAY_AGG(column_id) as column_ids, ARRAY_AGG(column_title) AS column_titles,'
+            '   ARRAY_AGG(indent) as indents, ARRAY_AGG(parent_column_id) AS parent_column_ids'
+            ' FROM {schema}.census_table_metadata ctm'
+            ' JOIN {schema}.census_column_metadata ccm USING (table_id)'
+            ' JOIN information_schema.columns isc ON isc.column_name = LOWER(ccm.column_id)'
+            ' WHERE isc.table_schema = \'{schema}\''
+            '  AND isc.table_name LIKE \'seq%\''
+            ' GROUP BY isc.table_name'
+            ' ORDER BY isc.table_name'
+            ' LIMIT 10'.format(schema=self.schema))
+        for seqnum, table_titles, denominators, column_ids, column_titles, indents, parent_column_ids in cursor:
+            yield ACSTable(seqnum=seqnum, source=self.schema,
+                           table_titles=table_titles,
+                           denominators=denominators, column_titles=column_titles,
+                           column_ids=column_ids, indents=indents,
+                           parent_column_ids=parent_column_ids)
+
+    def cursor(self):
+        if not hasattr(self, '_connection'):
+            target = DefaultPostgresTarget(table='foo', update_id='bar')
+            self._connection = target.connect()
+        return self._connection.cursor()
+
+    @property
+    def schema(self):
+        return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
+
+
+class AllACS(WrapperTask):
+
+    def requires(self):
+        #for year in xrange(2010, 2014):
+        #    for sample in ('1yr', '3yr', '5yr'):
+        for year in xrange(2010, 2011):
+            for sample in ('1yr',):
+                #return ProcessACS(year=year, sample=sample)
+                yield ProcessACS(year=year, sample=sample)
+
+
+#if __name__ == '__main__':
+#    run()
 #     RESOLUTIONS_LOOKUP = {
 #         '010': 'United States',
 #         '020': 'Region',
@@ -132,112 +218,4 @@ class ProcessACS(Task):
 #     }
 #     RESOLUTIONS['3yr'] = RESOLUTIONS['1yr']
 #     RESOLUTIONS['5yr'].extend(RESOLUTIONS['1yr'])
-# 
-#     @property
-#     def name(self):
-#         return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
-# 
-#     def requires(self):
-#         return DownloadTask(name=self.name,
-#             url='http://www2.census.gov/{name}/summaryfile/Sequence_Number_and_Table_Number_Lookup.txt'.format(name=self.name))
-# 
-#     def run(self):
-# 
-#         # Make sure output folders exist
-#         for p in ('columns', 'tables'):
-#             try:
-#                 os.makedirs('{}/acs'.format(p))
-#             except OSError:
-#                 pass
-# 
-#         for i, line in enumerate(csv.reader(self.input().open())):
-# 
-#             # Skip header
-#             if i == 0:
-#                 continue
-# 
-#             _, table_id, seqnum, line_no, start_pos, _, _, table_title, \
-#                     subject_area = [_.strip() for _ in line]
-# 
-#             # Handle metadata rows
-#             if not line_no or line_no == '.':
-#                 parent = None
-#                 parent_table_title = None
-#                 if start_pos and start_pos != '.':
-#                     table_description = table_title
-#                 else:
-#                     universe = table_title
-#                 continue
-# 
-#             seqnum = '{:04d}'.format(int(seqnum))
-#             try:
-#                 column_id = 'census_acs_{}{:03d}'.format(table_id, int(line_no)).lower()
-#             except ValueError:
-#                 column_id = 'census_acs_{}{:03.1f}'.format(table_id, float(line_no)).lower()
-#             source_table = '{}.seq{}'.format(self.name, seqnum)
-# 
-#             column_file_path = 'colums/acs/{}.json'.format(column_id)
-#             table_file_path = 'tables/acs/{}.json'.format(seqnum)
-# 
-#             try:
-#                 with open(column_file_path, 'r') as fhandle:
-#                     column_obj = json.load(fhandle)
-#             except IOError:
-#                 column_obj = {}
-# 
-#             try:
-#                 with open(table_file_path, 'r') as fhandle:
-#                     table_obj = json.load(fhandle)
-#             except IOError:
-#                 table_obj = {}
-# 
-#             if 'columns' not in table_obj:
-#                 column_obj['columns'] = {}
-# 
-#             if 'tables' not in column_obj:
-#                 column_obj['tables'] = {}
-# 
-#             column_name = table_title
-#             if parent:
-#                 column_obj['relationships'] = [{
-#                     "type": "parent",
-#                     "link": parent
-#                 }, {
-#                     "type": "margin of error",
-#                     "link": "{}_moe".format(column_id)
-#                 }]
-#                 if parent and not parent.lower().startswith('total'):
-#                     column_name = '{} {}'.format(parent_table_title, table_title)
-# 
-#             column_obj['description'] ='{table} {column} in {universe}'.format(
-#                 table=table_description,
-#                 column=column_name,
-#                 universe=universe
-# 
-#             table_obj['columns'][column_id] = {
-#                 "column": column_id,
-#                 #"resolutions": self.RESOLUTIONS[self.sample],
-#                 #"dates": [self.year]
-#             }
-# 
-#             with open(json_file_path, 'w') as fhandle:
-#                 json.dump(obj, fhandle, indent=4)
-# 
-#             # set parent
-#             if table_title.endswith(':'):
-#                 parent = column_id
-#                 parent_table_title = table_title
 
-
-class AllACS(Task):
-
-    date_checked = DateParameter(default=datetime.date.today())
-    def requires(self):
-        for year in xrange(2010, 2014):
-            for sample in ('1yr', '3yr', '5yr'):
-                #return ProcessACS(year=year, sample=sample)
-                yield ProcessACS(year=year, sample=sample)
-
-
-#if __name__ == '__main__':
-#    run()
