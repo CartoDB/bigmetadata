@@ -57,17 +57,25 @@ class ACSColumn(MetadataTask):
 
     column_id = Parameter()
     column_title = Parameter()
+    column_parent_path = Parameter()
+    parent_column_id = Parameter()
     table_title = Parameter()
+    universe = Parameter()
 
     @property
     def name(self):
-        return '{table}: {column}'.format(table=self.table_title,
-                                          column=self.column_title)
+        return '"{table}": "{column_parent_path}" "{column}" in "{universe}"'.format(
+            table=self.table_title, column_parent_path=self.column_parent_path,
+            column=self.column_title, universe=self.universe)
 
     def run(self):
         data = {
-            'name': self.name
+            'name': self.name,
         }
+        if self.parent_column_id:
+            data['relationships'] = {
+                'parent': os.path.join(self.path, self.parent_column_id)
+            }
         with self.output().open('w') as outfile:
             json.dump(data, outfile, indent=2)
 
@@ -85,15 +93,28 @@ class ACSTable(MetadataTask):
     column_ids = Parameter()
     indents = Parameter()
     parent_column_ids = Parameter()
+    universes = Parameter()
 
     def requires(self):
+        column_parent_path = []
         for i, column_id in enumerate(self.column_ids):
-            yield ACSColumn(column_id=column_id, column_title=self.column_titles[i],
-                            table_title=self.table_titles[i])
+            indent = self.indents[i] - 1
+            column_title = self.column_titles[i]
+            if indent >= 0:
+
+                while len(column_parent_path) < indent:
+                    column_parent_path.append(None)
+
+                column_parent_path = column_parent_path[0:indent]
+                column_parent_path.append(column_title)
+            yield ACSColumn(column_id=column_id, column_title=column_title,
+                            column_parent_path=column_parent_path[:-1],
+                            parent_column_id=self.parent_column_ids[i],
+                            table_title=self.table_titles[i], universe=self.universes[i])
 
     def run(self):
         data = {
-            'columns': [column_id for column_id in self.column_ids]
+            'columns': [os.path.join(self.path, column_id) for column_id in self.column_ids]
         }
         with self.output().open('w') as outfile:
             json.dump(data, outfile, indent=2)
@@ -113,7 +134,8 @@ class ProcessACS(WrapperTask):
             ' SELECT isc.table_name as seqnum, ARRAY_AGG(table_title) as table_titles,'
             '   ARRAY_AGG(denominator_column_id) as denominators,'
             '   ARRAY_AGG(column_id) as column_ids, ARRAY_AGG(column_title) AS column_titles,'
-            '   ARRAY_AGG(indent) as indents, ARRAY_AGG(parent_column_id) AS parent_column_ids'
+            '   ARRAY_AGG(indent) as indents, ARRAY_AGG(parent_column_id) AS parent_column_ids,'
+            '   ARRAY_AGG(universe) as universes'
             ' FROM {schema}.census_table_metadata ctm'
             ' JOIN {schema}.census_column_metadata ccm USING (table_id)'
             ' JOIN information_schema.columns isc ON isc.column_name = LOWER(ccm.column_id)'
@@ -121,10 +143,11 @@ class ProcessACS(WrapperTask):
             '  AND isc.table_name LIKE \'seq%\''
             ' GROUP BY isc.table_name'
             ' ORDER BY isc.table_name'
-            ' LIMIT 10'.format(schema=self.schema))
-        for seqnum, table_titles, denominators, column_ids, column_titles, indents, parent_column_ids in cursor:
+            ' '.format(schema=self.schema))
+        for seqnum, table_titles, denominators, column_ids, column_titles, indents, \
+                             parent_column_ids, universes in cursor:
             yield ACSTable(seqnum=seqnum, source=self.schema,
-                           table_titles=table_titles,
+                           table_titles=table_titles, universes=universes,
                            denominators=denominators, column_titles=column_titles,
                            column_ids=column_ids, indents=indents,
                            parent_column_ids=parent_column_ids)
