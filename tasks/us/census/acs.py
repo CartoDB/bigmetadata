@@ -129,7 +129,8 @@ class ProcessACS(WrapperTask):
 
     def requires(self):
         yield DownloadACS(year=self.year, sample=self.sample)
-        cursor = self.cursor()
+        target = DefaultPostgresTarget(table='foo', update_id='bar')
+        cursor = target.connect().cursor()
         cursor.execute(
             ' SELECT isc.table_name as seqnum, ARRAY_AGG(table_title) as table_titles,'
             '   ARRAY_AGG(denominator_column_id) as denominators,'
@@ -152,11 +153,11 @@ class ProcessACS(WrapperTask):
                            column_ids=column_ids, indents=indents,
                            parent_column_ids=parent_column_ids)
 
-    def cursor(self):
-        if not hasattr(self, '_connection'):
-            target = DefaultPostgresTarget(table='foo', update_id='bar')
-            self._connection = target.connect()
-        return self._connection.cursor()
+    #def cursor(self):
+    #    if not hasattr(self, '_connection'):
+    #        target = DefaultPostgresTarget(table='foo', update_id='bar')
+    #        self._connection = target.connect()
+    #    return self._connection.cursor()
 
     @property
     def schema(self):
