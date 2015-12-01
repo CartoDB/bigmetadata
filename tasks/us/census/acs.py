@@ -12,8 +12,9 @@ tasks to download and create metadata
 #import csv
 import json
 import os
-from luigi import Parameter, WrapperTask, LocalTarget
-from tasks.util import LoadPostgresFromURL, MetadataTask, DefaultPostgresTarget
+from luigi import Parameter, Task, WrapperTask, LocalTarget
+from tasks.util import (LoadPostgresFromURL, DefaultPostgresTarget,
+                        MetadataPathMixin)
 #from tasks.us.census.tiger import Tiger
 
 
@@ -53,14 +54,15 @@ class DumpACS(WrapperTask):
         pass
 
 
-class ACSColumn(MetadataTask):
+class ACSColumn(MetadataPathMixin, object):
 
-    column_id = Parameter()
-    column_title = Parameter()
-    column_parent_path = Parameter()
-    parent_column_id = Parameter()
-    table_title = Parameter()
-    universe = Parameter()
+    def __init__(self, **kwargs):
+        self.column_id = kwargs['column_id']
+        self.column_title = kwargs['column_title']
+        self.column_parent_path = kwargs['column_parent_path']
+        self.parent_column_id = kwargs['parent_column_id']
+        self.table_title = kwargs['table_title']
+        self.universe = kwargs['universe']
 
     @property
     def name(self):
@@ -69,6 +71,8 @@ class ACSColumn(MetadataTask):
             column=self.column_title, universe=self.universe)
 
     def run(self):
+        if self.output().exists():
+            return
         data = {
             'name': self.name,
         }
@@ -83,22 +87,26 @@ class ACSColumn(MetadataTask):
         return LocalTarget(os.path.join('columns', self.path, self.column_id) + '.json')
 
 
-class ACSTable(MetadataTask):
+class ACSTable(MetadataPathMixin, object):
 
-    source = Parameter()
-    seqnum = Parameter()
-    denominators = Parameter()
-    table_titles = Parameter()
-    column_titles = Parameter()
-    column_ids = Parameter()
-    indents = Parameter()
-    parent_column_ids = Parameter()
-    universes = Parameter()
+    def __init__(self, **kwargs):
+        self.source = kwargs['source']
+        self.seqnum = kwargs['seqnum']
+        self.denominators = kwargs['denominators']
+        self.table_titles = kwargs['table_titles']
+        self.column_titles = kwargs['column_titles']
+        self.column_ids = kwargs['column_ids']
+        self.indents = kwargs['indents']
+        self.parent_column_ids = kwargs['parent_column_ids']
+        self.universes = kwargs['universes']
 
-    def requires(self):
+    def run(self):
+        if self.output().exists():
+            return
+
         column_parent_path = []
         for i, column_id in enumerate(self.column_ids):
-            indent = self.indents[i] - 1
+            indent = (self.indents[i] or 0) - 1
             column_title = self.column_titles[i]
             if indent >= 0:
 
@@ -107,12 +115,11 @@ class ACSTable(MetadataTask):
 
                 column_parent_path = column_parent_path[0:indent]
                 column_parent_path.append(column_title)
-            yield ACSColumn(column_id=column_id, column_title=column_title,
-                            column_parent_path=column_parent_path[:-1],
-                            parent_column_id=self.parent_column_ids[i],
-                            table_title=self.table_titles[i], universe=self.universes[i])
+            ACSColumn(column_id=column_id, column_title=column_title,
+                      column_parent_path=column_parent_path[:-1],
+                      parent_column_id=self.parent_column_ids[i],
+                      table_title=self.table_titles[i], universe=self.universes[i]).run()
 
-    def run(self):
         data = {
             'columns': [os.path.join(self.path, column_id) for column_id in self.column_ids]
         }
@@ -123,12 +130,14 @@ class ACSTable(MetadataTask):
         return LocalTarget(os.path.join('tables', self.path, self.source, self.seqnum) + '.json')
 
 
-class ProcessACS(WrapperTask):
+class ProcessACS(Task):
     year = Parameter()
     sample = Parameter()
 
     def requires(self):
         yield DownloadACS(year=self.year, sample=self.sample)
+
+    def run(self):
         target = DefaultPostgresTarget(table='foo', update_id='bar')
         cursor = target.connect().cursor()
         cursor.execute(
@@ -147,11 +156,11 @@ class ProcessACS(WrapperTask):
             ' '.format(schema=self.schema))
         for seqnum, table_titles, denominators, column_ids, column_titles, indents, \
                              parent_column_ids, universes in cursor:
-            yield ACSTable(seqnum=seqnum, source=self.schema,
-                           table_titles=table_titles, universes=universes,
-                           denominators=denominators, column_titles=column_titles,
-                           column_ids=column_ids, indents=indents,
-                           parent_column_ids=parent_column_ids)
+            ACSTable(seqnum=seqnum, source=self.schema,
+                     table_titles=table_titles, universes=universes,
+                     denominators=denominators, column_titles=column_titles,
+                     column_ids=column_ids, indents=indents,
+                     parent_column_ids=parent_column_ids).run()
 
     #def cursor(self):
     #    if not hasattr(self, '_connection'):
@@ -167,11 +176,8 @@ class ProcessACS(WrapperTask):
 class AllACS(WrapperTask):
 
     def requires(self):
-        #for year in xrange(2010, 2014):
-        #    for sample in ('1yr', '3yr', '5yr'):
-        for year in xrange(2010, 2011):
-            for sample in ('1yr',):
-                #return ProcessACS(year=year, sample=sample)
+        for year in xrange(2010, 2014):
+            for sample in ('1yr', '3yr', '5yr'):
                 yield ProcessACS(year=year, sample=sample)
 
 

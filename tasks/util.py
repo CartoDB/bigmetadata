@@ -37,7 +37,21 @@ class LoadPostgresFromURL(Task):
             update_id=self.table
         )
 
-class MetadataTask(Task):
+
+class MetadataPathMixin():
+    '''
+    Mixin to provide metadata path
+    '''
+
+    @property
+    def path(self):
+        '''
+        Path to this task, suitable for the current OS.
+        '''
+        return os.path.join(*type(self).__module__.split('.')[1:])
+
+
+class MetadataTask(MetadataPathMixin, Task):
     '''
     A task that generates metadata.  This will ensure that the tables/columns
     folders exist before starting.
@@ -53,9 +67,3 @@ class MetadataTask(Task):
 
         super(MetadataTask, self).__init__(*args, **kwargs)
 
-    @property
-    def path(self):
-        '''
-        Path to this task, suitable for the current OS.
-        '''
-        return os.path.join(*type(self).__module__.split('.')[1:])
