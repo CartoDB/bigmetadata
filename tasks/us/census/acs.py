@@ -63,7 +63,8 @@ class DumpACS(WrapperTask):
 
 class ACSColumn(MetadataPathMixin, object):
 
-    def __init__(self, **kwargs):
+    def __init__(self, force=False, **kwargs):
+        self.force = False
         self.column_id = kwargs['column_id']
         self.column_title = kwargs['column_title']
         self.column_parent_path = kwargs['column_parent_path']
@@ -78,8 +79,9 @@ class ACSColumn(MetadataPathMixin, object):
             column=self.column_title, universe=self.universe)
 
     def run(self):
-        if self.output().exists():
+        if self.output().exists() and not self.force:
             return
+
         data = {
             'name': self.name,
         }
@@ -96,7 +98,8 @@ class ACSColumn(MetadataPathMixin, object):
 
 class ACSTable(MetadataPathMixin, object):
 
-    def __init__(self, **kwargs):
+    def __init__(self, force=False, **kwargs):
+        self.force = force
         self.source = kwargs['source']
         self.seqnum = kwargs['seqnum']
         self.denominators = kwargs['denominators']
@@ -108,7 +111,7 @@ class ACSTable(MetadataPathMixin, object):
         self.universes = kwargs['universes']
 
     def run(self):
-        if self.output().exists():
+        if self.output().exists() and not self.force:
             return
 
         column_parent_path = []
@@ -168,12 +171,6 @@ class ProcessACS(Task):
                      column_ids=column_ids, indents=indents,
                      parent_column_ids=parent_column_ids).run()
 
-    #def cursor(self):
-    #    if not hasattr(self, '_connection'):
-    #        target = DefaultPostgresTarget(table='foo', update_id='bar')
-    #        self._connection = target.connect()
-    #    return self._connection.cursor()
-
     @property
     def schema(self):
         return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
@@ -182,8 +179,10 @@ class ProcessACS(Task):
 class AllACS(WrapperTask):
 
     def requires(self):
-        for year in xrange(2010, 2014):
-            for sample in ('1yr', '3yr', '5yr'):
+        #for year in xrange(2010, 2014):
+        #    for sample in ('1yr', '3yr', '5yr'):
+        for year in xrange(2013, 2014):
+            for sample in ('5yr',):
                 yield ProcessACS(year=year, sample=sample)
 
 
