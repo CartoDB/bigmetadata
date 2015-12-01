@@ -1,5 +1,10 @@
 #!/bin/bash
 
 source env/bin/activate
-PGDATABASE=census PGUSER=$(whoami) PYTHONPATH=$PWD luigi --module tasks.us.census.acs AllACS --local-scheduler \
-  #--parallel-scheduling --workers=8
+
+if [ -f .env ]; then
+  source .env
+fi
+
+PYTHONPATH=$PWD luigi --module tasks.us.census.acs AllACS --local-scheduler \
+   --parallel-scheduling --workers=8 > logs/luigi.log 2>logs/luigi.err

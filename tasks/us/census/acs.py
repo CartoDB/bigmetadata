@@ -13,8 +13,8 @@ tasks to download and create metadata
 import json
 import os
 from luigi import Parameter, Task, WrapperTask, LocalTarget
-from tasks.util import (LoadPostgresFromURL, DefaultPostgresTarget,
-                        MetadataPathMixin)
+from tasks.util import (LoadPostgresFromURL, MetadataPathMixin, pg_cursor)
+from psycopg2 import ProgrammingError
 #from tasks.us.census.tiger import Tiger
 
 
@@ -34,6 +34,13 @@ class DownloadACS(WrapperTask):
     sample = Parameter()
 
     def requires(self):
+        cursor = pg_cursor()
+        try:
+            cursor.execute('CREATE ROLE census')
+            cursor.connection.commit()
+        except ProgrammingError:
+            cursor.connection.rollback()
+        #cursor.execute('GRANT ALL TO census')
         table = 'acs{year}_{sample}.census_table_metadata'.format(
             year=self.year,
             sample=self.sample
@@ -138,8 +145,7 @@ class ProcessACS(Task):
         yield DownloadACS(year=self.year, sample=self.sample)
 
     def run(self):
-        target = DefaultPostgresTarget(table='foo', update_id='bar')
-        cursor = target.connect().cursor()
+        cursor = pg_cursor()
         cursor.execute(
             ' SELECT isc.table_name as seqnum, ARRAY_AGG(table_title) as table_titles,'
             '   ARRAY_AGG(denominator_column_id) as denominators,'

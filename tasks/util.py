@@ -7,6 +7,14 @@ import subprocess
 from luigi import Task, Parameter
 from luigi.postgres import PostgresTarget
 
+def pg_cursor():
+    '''
+    Obtain a cursor on a fresh connection to postgres.
+    '''
+    target = DefaultPostgresTarget(table='foo', update_id='bar')
+    return target.connect().cursor()
+
+
 class DefaultPostgresTarget(PostgresTarget):
     '''
     PostgresTarget which by default uses command-line specified login.
