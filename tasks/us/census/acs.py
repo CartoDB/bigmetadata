@@ -13,7 +13,7 @@ tasks to download and create metadata
 import json
 import os
 from luigi import Parameter, Task, WrapperTask, LocalTarget
-from tasks.util import (LoadPostgresFromURL, MetadataPathMixin, pg_cursor)
+from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor)
 from psycopg2 import ProgrammingError
 #from tasks.us.census.tiger import Tiger
 
@@ -61,7 +61,7 @@ class DumpACS(WrapperTask):
         pass
 
 
-class ACSColumn(MetadataPathMixin, object):
+class ACSColumn(LocalTarget):
 
     def __init__(self, force=False, **kwargs):
         self.force = False
@@ -71,6 +71,8 @@ class ACSColumn(MetadataPathMixin, object):
         self.parent_column_id = kwargs['parent_column_id']
         self.table_title = kwargs['table_title']
         self.universe = kwargs['universe']
+        super(ACSColumn, self).__init__(
+            path=os.path.join('columns', classpath(self), self.column_id) + '.json')
 
     @property
     def name(self):
@@ -78,25 +80,19 @@ class ACSColumn(MetadataPathMixin, object):
             table=self.table_title, column_parent_path=self.column_parent_path,
             column=self.column_title, universe=self.universe)
 
-    def run(self):
-        if self.output().exists() and not self.force:
-            return
-
+    def generate(self):
         data = {
             'name': self.name,
         }
         if self.parent_column_id:
             data['relationships'] = {
-                'parent': os.path.join(self.path, self.parent_column_id)
+                'parent': os.path.join(classpath(self), self.parent_column_id)
             }
-        with self.output().open('w') as outfile:
+        with self.open('w') as outfile:
             json.dump(data, outfile, indent=2)
 
-    def output(self):
-        return LocalTarget(os.path.join('columns', self.path, self.column_id) + '.json')
 
-
-class ACSTable(MetadataPathMixin, object):
+class ACSTable(LocalTarget):
 
     def __init__(self, force=False, **kwargs):
         self.force = force
@@ -109,11 +105,10 @@ class ACSTable(MetadataPathMixin, object):
         self.indents = kwargs['indents']
         self.parent_column_ids = kwargs['parent_column_ids']
         self.universes = kwargs['universes']
+        return super(ACSTable, self).__init__(
+            path=os.path.join('tables', classpath(self), self.source, self.seqnum) + '.json')
 
-    def run(self):
-        if self.output().exists() and not self.force:
-            return
-
+    def generate(self):
         column_parent_path = []
         for i, column_id in enumerate(self.column_ids):
             indent = (self.indents[i] or 0) - 1
@@ -125,19 +120,19 @@ class ACSTable(MetadataPathMixin, object):
 
                 column_parent_path = column_parent_path[0:indent]
                 column_parent_path.append(column_title)
-            ACSColumn(column_id=column_id, column_title=column_title,
-                      column_parent_path=column_parent_path[:-1],
-                      parent_column_id=self.parent_column_ids[i],
-                      table_title=self.table_titles[i], universe=self.universes[i]).run()
+            col = ACSColumn(column_id=column_id, column_title=column_title,
+                            column_parent_path=column_parent_path[:-1],
+                            parent_column_id=self.parent_column_ids[i],
+                            table_title=self.table_titles[i], universe=self.universes[i])
+            if not col.exists():
+                col.generate()
 
         data = {
-            'columns': [os.path.join(self.path, column_id) for column_id in self.column_ids]
+            'columns': [os.path.join(classpath(self), column_id) for column_id in self.column_ids]
         }
-        with self.output().open('w') as outfile:
+        with self.open('w') as outfile:
             json.dump(data, outfile, indent=2)
 
-    def output(self):
-        return LocalTarget(os.path.join('tables', self.path, self.source, self.seqnum) + '.json')
 
 
 class ProcessACS(Task):
@@ -147,7 +142,15 @@ class ProcessACS(Task):
     def requires(self):
         yield DownloadACS(year=self.year, sample=self.sample)
 
+    @property
+    def schema(self):
+        return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
+
     def run(self):
+        for output in self.output():
+            output.generate()
+
+    def output(self):
         cursor = pg_cursor()
         cursor.execute(
             ' SELECT isc.table_name as seqnum, ARRAY_AGG(table_title) as table_titles,'
@@ -165,15 +168,11 @@ class ProcessACS(Task):
             ' '.format(schema=self.schema))
         for seqnum, table_titles, denominators, column_ids, column_titles, indents, \
                              parent_column_ids, universes in cursor:
-            ACSTable(seqnum=seqnum, source=self.schema,
-                     table_titles=table_titles, universes=universes,
-                     denominators=denominators, column_titles=column_titles,
-                     column_ids=column_ids, indents=indents,
-                     parent_column_ids=parent_column_ids).run()
-
-    @property
-    def schema(self):
-        return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
+            yield ACSTable(seqnum=seqnum, source=self.schema,
+                           table_titles=table_titles, universes=universes,
+                           denominators=denominators, column_titles=column_titles,
+                           column_ids=column_ids, indents=indents,
+                           parent_column_ids=parent_column_ids)
 
 
 class AllACS(WrapperTask):
@@ -182,7 +181,7 @@ class AllACS(WrapperTask):
         #for year in xrange(2010, 2014):
         #    for sample in ('1yr', '3yr', '5yr'):
         for year in xrange(2013, 2014):
-            for sample in ('5yr',):
+            for sample in ('1yr',):
                 yield ProcessACS(year=year, sample=sample)
 
 

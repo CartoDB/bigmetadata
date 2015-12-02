@@ -36,7 +36,8 @@ class LoadPostgresFromURL(Task):
     #gunzip = Parameter() # TODO
 
     def run(self):
-        subprocess.check_call('curl {url} | gunzip -c | psql'.format(url=self.url), shell=True)
+        subprocess.check_call('curl {url} | gunzip -c | '
+                              'grep -v default_tablespace | psql'.format(url=self.url), shell=True)
         self.output().touch()
 
     def output(self):
@@ -46,32 +47,8 @@ class LoadPostgresFromURL(Task):
         )
 
 
-class MetadataPathMixin():
+def classpath(obj):
     '''
-    Mixin to provide metadata path
+    Path to this task, suitable for the current OS.
     '''
-
-    @property
-    def path(self):
-        '''
-        Path to this task, suitable for the current OS.
-        '''
-        return os.path.join(*type(self).__module__.split('.')[1:])
-
-
-class MetadataTask(MetadataPathMixin, Task):
-    '''
-    A task that generates metadata.  This will ensure that the tables/columns
-    folders exist before starting.
-    '''
-
-    def __init__(self, *args, **kwargs):
-        # Make sure output folders exist
-        for folder in ('columns', 'tables'):
-            try:
-                os.makedirs(os.path.join(folder, self.path))
-            except OSError:
-                pass
-
-        super(MetadataTask, self).__init__(*args, **kwargs)
-
+    return os.path.join(*type(obj).__module__.split('.')[1:])
