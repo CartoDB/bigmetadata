@@ -15,7 +15,7 @@ import os
 from luigi import Parameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor)
 from psycopg2 import ProgrammingError
-#from tasks.us.census.tiger import Tiger
+from tasks.us.census.tiger import Tiger
 
 
 # STEPS:
@@ -141,6 +141,7 @@ class ProcessACS(Task):
 
     def requires(self):
         yield DownloadACS(year=self.year, sample=self.sample)
+        yield Tiger()
 
     @property
     def schema(self):
@@ -149,6 +150,19 @@ class ProcessACS(Task):
     def run(self):
         for output in self.output():
             output.generate()
+
+    def complete(self):
+        '''
+        We can't run output() without hitting an ACS table that may not exist
+        yet.  This wraps the default complete() to return `False` in those
+        instances.
+        '''
+        try:
+            return super(ProcessACS, self).complete()
+        except ProgrammingError:
+            import pdb
+            pdb.set_trace()
+            return False
 
     def output(self):
         cursor = pg_cursor()
@@ -178,11 +192,12 @@ class ProcessACS(Task):
 class AllACS(WrapperTask):
 
     def requires(self):
-        #for year in xrange(2010, 2014):
-        #    for sample in ('1yr', '3yr', '5yr'):
-        for year in xrange(2013, 2014):
-            for sample in ('1yr',):
+        for year in xrange(2010, 2014):
+            for sample in ('1yr', '3yr', '5yr'):
                 yield ProcessACS(year=year, sample=sample)
+        #for year in xrange(2010, 2011):
+        #    for sample in ('1yr',):
+        #        yield ProcessACS(year=year, sample=sample)
 
 
 #if __name__ == '__main__':
