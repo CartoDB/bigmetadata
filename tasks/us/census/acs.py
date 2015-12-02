@@ -160,8 +160,6 @@ class ProcessACS(Task):
         try:
             return super(ProcessACS, self).complete()
         except ProgrammingError:
-            import pdb
-            pdb.set_trace()
             return False
 
     def output(self):
