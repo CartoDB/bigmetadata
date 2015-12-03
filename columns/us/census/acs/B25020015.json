@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25020012"
+  }, 
+  "name": "\"Tenure by Rooms\": \"('Renter occupied:',)\" \"3 rooms\" in \"Occupied Housing Units\""
+}

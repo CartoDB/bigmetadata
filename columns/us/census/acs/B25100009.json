@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25100008"
+  }, 
+  "name": "\"Mortgage Status by Ratio of Value to Household Income in the Past 12 Months\": \"('Not mortgaged:',)\" \"Less than 2.0\" in \"Owner-occupied Housing Units\""
+}

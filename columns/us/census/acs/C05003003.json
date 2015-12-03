@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05003002"
+  }, 
+  "name": "\"Sex by Age by Nativity\": \"('Male:',)\" \"Under 18 years:\" in \"Total Population\""
+}

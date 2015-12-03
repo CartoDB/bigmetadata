@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05002005"
+  }, 
+  "name": "\"Place of Birth by Nativity\": \"('Native:', 'Born outside the United States:')\" \"U.S. Island Areas or born abroad of American parent(s)\" in \"Total Population\""
+}

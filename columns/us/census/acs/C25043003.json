@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25043002"
+  }, 
+  "name": "\"Tenure by Telephone Service Available\": \"('Owner occupied:',)\" \"With telephone service available\" in \"Occupied Housing Units\""
+}

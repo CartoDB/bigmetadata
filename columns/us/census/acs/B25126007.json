@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25126003"
+  }, 
+  "name": "\"Tenure by Age of Householder by Year Structure Built\": \"('Owner occupied:', 'Householder 15 to 34 years:')\" \"Built 1980 to 1989\" in \"Occupied Housing Units\""
+}

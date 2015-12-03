@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25027010"
+  }, 
+  "name": "\"Mortgage Status by Age of Householder\": \"('Housing units without a mortgage:',)\" \"Householder 60 to 64 years\" in \"Owner-occupied Housing Units\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25045002"
+  }, 
+  "name": "\"Tenure by Vehicles Available by Age of Householder\": \"('Owner occupied:',)\" \"No vehicle available:\" in \"Occupied Housing Units\""
+}

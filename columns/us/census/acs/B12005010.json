@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B12005008"
+  }, 
+  "name": "\"Marital Status by Nativity\": \"('Separated:',)\" \"Foreign born\" in \"Population 15 Years and Over\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25115003"
+  }, 
+  "name": "\"Tenure by Household Type\": \"('Owner occupied:', 'Family households:')\" \"Married-couple family\" in \"Occupied Housing Units\""
+}

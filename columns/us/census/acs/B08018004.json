@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08018002"
+  }, 
+  "name": "\"Place of Work for Workers 16 Years and Over--not Metropolitan or Micropolitan Statistical Area Level\": \"('Worked in a Metropolitan Statistical Area:',)\" \"Worked outside any principal city\" in \"Workers 16 Years and Over Not Living in a Metropolitan or Micropolitan Statistical Area\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25080001"
+  }, 
+  "name": "\"Aggregate Value (Dollars) by Units in Structure\": \"()\" \"Mobile home and all other types of units (dollars)\" in \"Owner-occupied Housing Units\""
+}

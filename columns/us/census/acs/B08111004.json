@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08111003"
+  }, 
+  "name": "\"Means of Transportation to Work by Citizenship Status\": \"(None, 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"Workers 16 Years and Over\""
+}

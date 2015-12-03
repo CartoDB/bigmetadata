@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B06002001"
+  }, 
+  "name": "\"Median Age by Place of Birth in the United States\": \"('Total:',)\" \"Foreign born\" in \"Total Population in the United States\""
+}

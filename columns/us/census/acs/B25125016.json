@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25125010"
+  }, 
+  "name": "\"Tenure by Age of Householder by Units in Structure\": \"('Owner occupied:', 'Householder 35 to 64 years:')\" \"Mobile home, boat, RV, van, etc.\" in \"Occupied Housing Units\""
+}

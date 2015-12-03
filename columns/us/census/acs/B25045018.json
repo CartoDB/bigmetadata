@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25045016"
+  }, 
+  "name": "\"Tenure by Vehicles Available by Age of Householder\": \"('Renter occupied:', '1 or more vehicles available:')\" \"Householder 35 to 64 years\" in \"Occupied Housing Units\""
+}

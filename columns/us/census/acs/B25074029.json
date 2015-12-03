@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25074023"
+  }, 
+  "name": "\"Household Income by Gross Rent as a Percentage of Household Income in the Past 12 Months\": \"('$35,000 to $49,999:',)\" \"Not computed\" in \"Renter-occupied Housing Units\""
+}

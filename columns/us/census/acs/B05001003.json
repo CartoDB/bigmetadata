@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05001001"
+  }, 
+  "name": "\"Citizenship Status in the United States\": \"()\" \"U.S. citizen, born in Puerto Rico or U.S. Island Areas\" in \"Total Population in the United States\""
+}

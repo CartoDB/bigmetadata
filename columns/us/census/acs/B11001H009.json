@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11001H007"
+  }, 
+  "name": "\"Household Type (Including Living Alone) (White Alone, Not Hispanic or Latino)\": \"('Nonfamily households:',)\" \"Householder not living alone\" in \"Households With a Householder Who Is White Alone, Not Hispanic or Latino\""
+}

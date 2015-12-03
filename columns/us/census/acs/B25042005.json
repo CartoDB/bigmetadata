@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25042002"
+  }, 
+  "name": "\"Tenure by Bedrooms\": \"('Owner occupied:',)\" \"2 bedrooms\" in \"Occupied Housing Units\""
+}

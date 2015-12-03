@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25023001"
+  }, 
+  "name": "\"Aggregate Number of Rooms by Vacancy Status\": \"()\" \"For rent\" in \"Vacant Housing Units\""
+}

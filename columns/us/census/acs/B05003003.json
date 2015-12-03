@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003002"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status\": \"('Male:',)\" \"Under 18 years:\" in \"Total Population\""
+}

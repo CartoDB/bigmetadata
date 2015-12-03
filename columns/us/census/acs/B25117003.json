@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25117002"
+  }, 
+  "name": "\"Tenure by House Heating Fuel\": \"('Owner occupied:',)\" \"Utility gas\" in \"Occupied Housing Units\""
+}

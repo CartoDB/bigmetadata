@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C18103002"
+  }, 
+  "name": "\"Sex by Age by Vision Difficulty\": \"('Male:',)\" \"Under 18 years:\" in \"Civilian Noninstitutionalized Population\""
+}

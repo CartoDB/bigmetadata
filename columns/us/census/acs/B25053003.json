@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25053002"
+  }, 
+  "name": "\"Tenure by Kitchen Facilities\": \"('Owner occupied:',)\" \"Complete kitchen facilities\" in \"Occupied Housing Units\""
+}

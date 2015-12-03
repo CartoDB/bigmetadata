@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28005003"
+  }, 
+  "name": "\"Age by Presence of a Computer and Types of Internet Subscription in Household\": \"['Under 18 years:', 'Has a computer:']\" \"Without an Internet subscription\" in \"Population in Households\""
+}

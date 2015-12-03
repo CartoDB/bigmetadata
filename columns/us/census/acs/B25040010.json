@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25040001"
+  }, 
+  "name": "\"House Heating Fuel\": \"()\" \"No fuel used\" in \"Occupied Housing Units\""
+}

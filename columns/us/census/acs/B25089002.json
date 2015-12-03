@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25089001"
+  }, 
+  "name": "\"Aggregate Selected Monthly Owner Costs (Dollars) by Mortgage Status\": \"()\" \"Housing units with a mortgage (dollars)\" in \"Owner-occupied Housing Units\""
+}

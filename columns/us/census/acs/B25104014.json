@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25104001"
+  }, 
+  "name": "\"Monthly Housing Costs\": \"()\" \"$2,000 or more\" in \"Occupied Housing Units\""
+}

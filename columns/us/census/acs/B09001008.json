@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B09001002"
+  }, 
+  "name": "\"Population Under 18 Years by Age\": \"('In households:',)\" \"12 to 14 years\" in \"Population Under 18 Years\""
+}

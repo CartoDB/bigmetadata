@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27020003"
+  }, 
+  "name": "\"Health Insurance Coverage Status and Type by Citizenship Status\": \"('Native Born:', 'With health insurance coverage')\" \"With public coverage\" in \"Civilian Noninstitutionalized Population\""
+}

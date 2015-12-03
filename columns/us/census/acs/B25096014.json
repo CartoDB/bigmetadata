@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25096010"
+  }, 
+  "name": "\"Mortgage Status by Value\": \"('Not mortgaged:',)\" \"$150,000 to $199,999\" in \"Owner-occupied Housing Units\""
+}

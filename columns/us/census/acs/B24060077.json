@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B24060075"
+  }, 
+  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Self-employed in own incorporated business workers:', 'Management, business, science, and arts occupations:', 'Management, business, and financial occupations:')\" \"Business and financial operations occupations\" in \"Civilian Employed Population 16 Years and Over\""
+}

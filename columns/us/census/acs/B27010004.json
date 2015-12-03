@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27010003"
+  }, 
+  "name": "\"Types of Health Insurance Coverage by Age\": \"('Under 18 years:', 'With one type of health insurance coverage:')\" \"With employer-based health insurance only\" in \"Civilian Noninstitutionalized Population\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25002001"
+  }, 
+  "name": "\"Occupancy Status\": \"()\" \"Vacant\" in \"Housing Units\""
+}

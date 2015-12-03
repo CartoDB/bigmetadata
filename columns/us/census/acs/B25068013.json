@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25068012"
+  }, 
+  "name": "\"Bedrooms by Gross Rent\": \"('1 bedroom:', 'With cash rent:')\" \"Less than $200\" in \"Renter-occupied Housing Units\""
+}

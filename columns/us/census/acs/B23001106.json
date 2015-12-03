@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B23001104"
+  }, 
+  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over\": \"('Female:', '22 to 24 years:', 'In labor force:')\" \"Civilian:\" in \"Population 16 Years and Over\""
+}

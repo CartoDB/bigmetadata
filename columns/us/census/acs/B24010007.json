@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B24010005"
+  }, 
+  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Management, business, science, and arts occupations:', 'Management, business, and financial occupations:', 'Management occupations:')\" \"Advertising, marketing, promotions, public relations, and sales managers\" in \"Civilian Employed Population 16 Years and Over\""
+}

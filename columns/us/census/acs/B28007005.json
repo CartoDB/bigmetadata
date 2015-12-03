@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28007004"
+  }, 
+  "name": "\"Labor Force Status by Presence of a Computer and Types of Internet Subscription in Household\": \"['In the civilian labor force:', 'Employed:', 'Has a computer:']\" \"With dial-up Internet subscription alone\" in \"Civilian Household Population 16 Years and Over\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05007003"
+  }, 
+  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Europe :', 'Entered 2000 or later:')\" \"Not a U.S. citizen\" in \"Foreign-born Population\""
+}

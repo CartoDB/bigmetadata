@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003B016"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status (Black or African American Alone)\": \"('Female:', 'Under 18 years:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"People Who Are White Alone\""
+}

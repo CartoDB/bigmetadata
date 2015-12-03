@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25115005"
+  }, 
+  "name": "\"Tenure by Household Type\": \"('Owner occupied:', 'Family households:', 'Other family:')\" \"Male householder, no wife present\" in \"Occupied Housing Units\""
+}

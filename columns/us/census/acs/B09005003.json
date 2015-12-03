@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B09005002"
+  }, 
+  "name": "\"Household Type for Children Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)\": \"('In family households:',)\" \"In married-couple family\" in \"Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)\""
+}

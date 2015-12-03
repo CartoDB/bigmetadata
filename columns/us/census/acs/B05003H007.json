@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003H005"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status (White Alone, Not Hispanic or Latino)\": \"('Male:', 'Under 18 years:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"White Alone, Not Hispanic or Latino Population\""
+}

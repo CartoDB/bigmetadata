@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C23022003"
+  }, 
+  "name": "\"Sex by Full-time Work Status in the Past 12 Months for the Population 16 to 64 Years\": \"('Male:', 'Worked in the past 12 months:')\" \"Worked less than full-time, year-round\" in \"Population 16 to 64 Years\""
+}

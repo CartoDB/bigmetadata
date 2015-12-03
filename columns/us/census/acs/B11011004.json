@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11011003"
+  }, 
+  "name": "\"Household Type by Units in Structure\": \"('Family households:', 'Married-couple family:')\" \"1-unit structures\" in \"Households\""
+}

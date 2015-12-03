@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08202018"
+  }, 
+  "name": "\"Household Size by Number of Workers in Household\": \"('4-or-more-person household:',)\" \"1 worker\" in \"Households\""
+}

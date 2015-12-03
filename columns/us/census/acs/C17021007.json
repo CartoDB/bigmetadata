@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C17021005"
+  }, 
+  "name": "\"Poverty Status of Individuals in the Past 12 Months by Living Arrangement\": \"('Income in the past 12 months below poverty level:', 'In family households:', 'In other families:')\" \"Female householder, no husband present\" in \"Population for Whom Poverty Status Is Determined\""
+}

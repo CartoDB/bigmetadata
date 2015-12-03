@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C27001F008"
+  }, 
+  "name": "\"Health Insurance Coverage Status by Age (Some Other Race Alone)\": \"('65 years and over:',)\" \"No health insurance coverage\" in \"SOME OTHER RACE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+}

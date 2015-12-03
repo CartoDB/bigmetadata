@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25124010"
+  }, 
+  "name": "\"Tenure by Household Size by Units in Structure\": \"('Owner occupied:', '2-person household:')\" \"2 to 4\" in \"Occupied Housing Units\""
+}

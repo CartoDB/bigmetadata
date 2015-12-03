@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25103001"
+  }, 
+  "name": "\"Mortgage Status by Median Real Estate Taxes Paid (Dollars)\": \"('Total:',)\" \"Median real estate taxes paid for units without a mortgage\" in \"Owner-occupied Housing Units\""
+}

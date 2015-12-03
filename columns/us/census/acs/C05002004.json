@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05002002"
+  }, 
+  "name": "\"Place of Birth by Nativity\": \"('Native:',)\" \"Born in other state in the United States\" in \"Total Population\""
+}

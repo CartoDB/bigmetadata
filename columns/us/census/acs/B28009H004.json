@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28009H002"
+  }, 
+  "name": "\"Presence of a Computer and Type of Internet Subscription in Household (White Alone, Not Hispanic or Latino)\": \"['Has a computer:']\" \"With a broadband Internet subscription\" in \"White Alone, Not Hispanic or Latino Household Population\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C27008009"
+  }, 
+  "name": "\"Tricare/Military Health Coverage by Sex by Age\": \"('Male:', '65 years and over:')\" \"No TRICARE/military health coverage\" in \"Civilian Noninstitutionalized Population\""
+}

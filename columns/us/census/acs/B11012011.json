@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11012010"
+  }, 
+  "name": "\"Household Type by Tenure\": \"('Family households:', 'Other family:', 'Female householder, no husband present:')\" \"Owner-occupied housing units\" in \"Households\""
+}

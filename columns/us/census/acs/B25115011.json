@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25115007"
+  }, 
+  "name": "\"Tenure by Household Type and Presence and Age of Own Children\": \"('Owner occupied:', 'Family households:', 'Other family:')\" \"Female householder, no husband present:\" in \"Occupied Housing Units\""
+}

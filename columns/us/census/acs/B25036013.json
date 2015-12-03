@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25036012"
+  }, 
+  "name": "\"Tenure by Year Structure Built\": \"('Renter occupied:',)\" \"Built 2005 or later\" in \"Occupied Housing Units\""
+}

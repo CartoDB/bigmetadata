@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25101003"
+  }, 
+  "name": "\"Mortgage Status by Monthly Housing Costs as a Percentage of Household Income in the Past 12 Months\": \"('With a mortgage:', 'Less than $20,000:')\" \"Less than 20 percent\" in \"Owner-occupied Housing Units\""
+}

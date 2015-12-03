@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11011016"
+  }, 
+  "name": "\"Household Type by Units in Structure\": \"('Nonfamily households:',)\" \"Mobile homes and all other types of units\" in \"Households\""
+}

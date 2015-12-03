@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25044009"
+  }, 
+  "name": "\"Tenure by Vehicles Available\": \"('Renter occupied:',)\" \"5 or more vehicles available\" in \"Occupied Housing Units\""
+}

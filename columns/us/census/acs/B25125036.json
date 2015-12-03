@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25125032"
+  }, 
+  "name": "\"Tenure by Age of Householder by Units in Structure\": \"('Renter occupied:', 'Householder 35 to 64 years:')\" \"20 to 49\" in \"Occupied Housing Units\""
+}

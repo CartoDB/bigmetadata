@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B22002022"
+  }, 
+  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years by Household Type for Households\": \"('Household did not receive Food Stamps/SNAP in the past 12 months:', 'No children under 18 years:')\" \"Other family:\" in \"Households\""
+}

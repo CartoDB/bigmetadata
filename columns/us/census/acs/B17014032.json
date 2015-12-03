@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B17014031"
+  }, 
+  "name": "\"Poverty Status in the Past 12 Months of Families by Household Type by Number of Workers in Family\": \"('Income in the past 12 months at or above poverty level:', 'Other families:', 'Female householder, no husband present:')\" \"No workers\" in \"Families\""
+}

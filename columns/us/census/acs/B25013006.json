@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25013002"
+  }, 
+  "name": "\"Tenure by Educational Attainment of Householder\": \"('Owner-occupied housing units:',)\" \"Bachelor's degree or higher\" in \"Occupied Housing Units\""
+}

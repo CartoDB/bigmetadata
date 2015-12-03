@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25116013"
+  }, 
+  "name": "\"Tenure by Household Size by Age of Householder\": \"('Renter occupied:', '2-or-more person household:')\" \"Householder 65 years and over\" in \"Occupied Housing Units\""
+}

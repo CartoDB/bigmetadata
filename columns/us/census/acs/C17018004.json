@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C17018002"
+  }, 
+  "name": "\"Poverty Status in the Past 12 Months of Families by Educational Attainment of Householder\": \"('Income in the past 12 months below poverty level:',)\" \"High school graduate (includes equivalency)\" in \"Families\""
+}

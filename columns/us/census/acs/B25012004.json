@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25012003"
+  }, 
+  "name": "\"Tenure by Families and Presence of Own Children\": \"('Owner-occupied housing units:', 'With related children under 18:')\" \"With own children under 18:\" in \"Occupied Housing Units\""
+}

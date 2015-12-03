@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27011004"
+  }, 
+  "name": "\"Health Insurance Coverage Status and Type by Employment Status by Age\": \"('In labor force:', 'Employed:', '18 to 64 years:')\" \"No health insurance coverage\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+}

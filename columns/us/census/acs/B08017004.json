@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08017003"
+  }, 
+  "name": "\"Place of Work for Workers 16 Years and Over--Micropolitan Statistical Area Level\": \"('Living in a principal city:', 'Worked in Micropolitan Statistical Area of residence:')\" \"Worked in a principal city\" in \"Workers 16 Years and Over Living in a Micropolitan Statistical Area\""
+}

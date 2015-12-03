@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25015016"
+  }, 
+  "name": "\"Tenure by Age of Householder by Occupants Per Room\": \"('Renter occupied:', 'Householder 35 to 64 years:')\" \"1.00 or less occupants per room\" in \"Occupied Housing Units\""
+}

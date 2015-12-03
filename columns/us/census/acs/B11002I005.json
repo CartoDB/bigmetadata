@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11002I003"
+  }, 
+  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Hispanic or Latino)\": \"('In family households:', 'In married-couple family:')\" \"Nonrelatives\" in \"Population in Households With a Householder Who Is Hispanic or Latino\""
+}

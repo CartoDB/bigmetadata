@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25106002"
+  }, 
+  "name": "\"Tenure by Housing Costs as a Percentage of Household Income in the Past 12 Months\": \"('Owner-occupied housing units:',)\" \"Zero or negative income\" in \"Occupied Housing Units\""
+}

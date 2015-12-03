@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B14003003"
+  }, 
+  "name": "\"Sex by School Enrollment by Type of School by Age for the Population 3 Years and Over\": \"('Male:', 'Enrolled in public school:')\" \"35 years and over\" in \"Population 3 Years and Over\""
+}

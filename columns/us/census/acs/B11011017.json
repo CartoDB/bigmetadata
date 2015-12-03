@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11011016"
+  }, 
+  "name": "\"Household Type by Units in Structure\": \"('Nonfamily households:',)\" \"1-unit structures\" in \"Households\""
+}

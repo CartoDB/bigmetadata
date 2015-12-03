@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25117002"
+  }, 
+  "name": "\"Tenure by House Heating Fuel\": \"('Owner occupied:',)\" \"Bottled, tank, or LP gas\" in \"Occupied Housing Units\""
+}

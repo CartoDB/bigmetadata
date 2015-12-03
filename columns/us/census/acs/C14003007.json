@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C14003002"
+  }, 
+  "name": "\"School Enrollment by Type of School by Age for the Population 3 Years and Over\": \"('Enrolled in public school:',)\" \"18 and 19 years\" in \"Population 3 Years and Over\""
+}

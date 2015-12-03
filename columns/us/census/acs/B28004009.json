@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28004006"
+  }, 
+  "name": "\"Household Income in the Last 12 Months (In 2014 Inflation-adjusted Dollars) by Presence and Type of Internet Subscription in Household\": \"['$10,000 to $19,999:']\" \"Without an Internet subscription\" in \"Households\""
+}

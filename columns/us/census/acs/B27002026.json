@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27002024"
+  }, 
+  "name": "\"Private Health Insurance Status by Sex by Age\": \"('Male:', '65 to 74 years:')\" \"No private health insurance\" in \"Civilian Noninstitutionalized Population\""
+}

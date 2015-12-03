@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25010001"
+  }, 
+  "name": "\"Average Household Size of Occupied Housing Units by Tenure\": \"()\" \"Owner occupied\" in \"Occupied Housing Units\""
+}

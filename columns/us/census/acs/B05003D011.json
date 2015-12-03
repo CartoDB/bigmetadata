@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003D010"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status (Asian Alone)\": \"('Male:', '18 years and over:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"People Who Are Asian Alone\""
+}

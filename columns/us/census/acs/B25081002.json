@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25081001"
+  }, 
+  "name": "\"Mortgage Status\": \"()\" \"Housing units with a mortgage, contract to purchase, or similar debt:\" in \"Owner-occupied Housing Units\""
+}

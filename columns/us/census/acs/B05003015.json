@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003014"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status\": \"('Female:', 'Under 18 years:')\" \"Native\" in \"Total Population\""
+}

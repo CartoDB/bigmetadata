@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C18102012"
+  }, 
+  "name": "\"Sex by Age by Hearing Difficulty\": \"('Female:',)\" \"Under 18 years:\" in \"Civilian Noninstitutionalized Population\""
+}

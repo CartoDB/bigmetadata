@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B99234002"
+  }, 
+  "name": "\"Imputation of Weeks Worked in the Past 12 Months for the Population 16 Years and Over\": \"('Worked in the past 12 months:', None)\" \"Not imputed\" in \"Population 16 Years and Over\""
+}

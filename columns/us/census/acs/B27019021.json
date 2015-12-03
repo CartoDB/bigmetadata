@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27019019"
+  }, 
+  "name": "\"Health Insurance Coverage Status and Type by Age by Educational Attainment\": \"('25 to 64 years:', \"Bachelor's degree or higher:\", 'With health insurance coverage')\" \"With public coverage\" in \"Civilian Noninstitutionalized Population 25 Years and Over\""
+}

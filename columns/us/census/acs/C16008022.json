@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C16008021"
+  }, 
+  "name": "\"Citizenship Status by Age by Language Spoken at Home Ability to Speak English for the Population 5 Years and Over\": \"['Not a citizen:', '18 years and over:', 'Speak other languages']\" \"Speak English \"very well\"\" in \"Population 5 Years and Over\""
+}

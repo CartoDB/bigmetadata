@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28007016"
+  }, 
+  "name": "\"Labor Force Status by Presence of a Computer and Types of Internet Subscription in Household\": \"['Not in labor force:', None, 'Has a computer:']\" \"With a broadband Internet subscription\" in \"Civilian Household Population 16 Years and Over\""
+}

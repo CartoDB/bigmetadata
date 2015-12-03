@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B02003047"
+  }, 
+  "name": "\"Detailed Race\": \"('Population of two or more races:', 'Population of four races:')\" \"White; Black or African American; American Indian and Alaska Native; Asian\" in \"Total Population\""
+}

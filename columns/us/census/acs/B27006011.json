@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27006009"
+  }, 
+  "name": "\"Medicare Coverage by Sex by Age\": \"('Male:', '18 to 24 years:')\" \"No Medicare coverage\" in \"Civilian Noninstitutionalized Population\""
+}

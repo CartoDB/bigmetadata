@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C11001A002"
+  }, 
+  "name": "\"Household Type (White Alone)\": \"('Family households:',)\" \"Other family\" in \"Households With a Householder Who Is White Alone\""
+}

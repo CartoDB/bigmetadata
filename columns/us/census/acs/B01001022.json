@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B01001002"
+  }, 
+  "name": "\"Sex by Age\": \"('Male:',)\" \"70 to 74 years\" in \"Total Population\""
+}

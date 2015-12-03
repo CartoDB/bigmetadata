@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28005015"
+  }, 
+  "name": "\"Age by Presence of a Computer and Types of Internet Subscription in Household\": \"['65 years and over:', 'Has a computer:']\" \"With dial-up Internet subscription alone\" in \"Population in Households\""
+}

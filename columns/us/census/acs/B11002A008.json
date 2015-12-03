@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11002A006"
+  }, 
+  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (White Alone)\": \"('In family households:', 'In male householder, no wife present, family:')\" \"Nonrelatives\" in \"Population in Households With a Householder Who Is White Alone\""
+}

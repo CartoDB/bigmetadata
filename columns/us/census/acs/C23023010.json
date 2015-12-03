@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C23023009"
+  }, 
+  "name": "\"Sex by Disability Status by Full-time Work Status in the Past 12 Months for the Population 16 to 64 Years\": \"('Male:', 'No disability:', 'Worked in the past 12 months:')\" \"Worked full-time, year-round\" in \"Population 16 to 64 Years\""
+}

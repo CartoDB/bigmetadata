@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C14002006"
+  }, 
+  "name": "\"School Enrollment by Level of School by Type of School for the Population 3 Years and Over\": \"('Enrolled in school:', 'Enrolled in kindergarten:')\" \"Public school\" in \"Population 3 Years and Over\""
+}

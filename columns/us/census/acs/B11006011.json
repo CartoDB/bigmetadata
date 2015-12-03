@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11006010"
+  }, 
+  "name": "\"Households by Presence of People 60 Years and Over by Household Type\": \"('Households with no people 60 years and over:', 'Family households:')\" \"Married-couple family\" in \"Households\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25007002"
+  }, 
+  "name": "\"Tenure by Age of Householder\": \"('Owner occupied:',)\" \"Householder 15 to 24 years\" in \"Occupied Housing Units\""
+}

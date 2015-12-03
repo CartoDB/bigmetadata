@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25116001"
+  }, 
+  "name": "\"Tenure by Household Size by Age of Householder\": \"()\" \"Renter occupied:\" in \"Occupied Housing Units\""
+}

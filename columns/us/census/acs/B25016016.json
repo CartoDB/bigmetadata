@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25016011"
+  }, 
+  "name": "\"Tenure by Plumbing Facilities by Occupants Per Room\": \"('Renter occupied:',)\" \"Lacking complete plumbing facilities:\" in \"Occupied Housing Units\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11009002"
+  }, 
+  "name": "\"Unmarried-partner Households by Sex of Partner\": \"('Unmarried-partner households:',)\" \"Female householder and female partner\" in \"Households\""
+}

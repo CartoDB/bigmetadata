@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11001G007"
+  }, 
+  "name": "\"Household Type (Including Living Alone) (Two or More Races)\": \"('Nonfamily households:',)\" \"Householder living alone\" in \"Households With a Householder Who Is Two or More Races\""
+}

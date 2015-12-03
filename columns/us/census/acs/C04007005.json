@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C04007001"
+  }, 
+  "name": "\"Ancestry\": \"()\" \"Ancestry not specified\" in \"Total Population\""
+}

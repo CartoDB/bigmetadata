@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25082001"
+  }, 
+  "name": "\"Aggregate Value (Dollars) by Mortgage Status\": \"()\" \"Housing units with a mortgage (dollars)\" in \"Owner-occupied Housing Units\""
+}

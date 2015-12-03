@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C08014001"
+  }, 
+  "name": "\"Sex of Workers by Vehicles Available\": \"('Female:',)\" \"1 vehicle available\" in \"Workers 16 Years and Over in Households\""
+}

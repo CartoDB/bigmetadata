@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B17021011"
+  }, 
+  "name": "\"Poverty Status of Individuals in the Past 12 Months by Living Arrangement\": \"('Income in the past 12 months below poverty level:', 'In non-family households and other living arrangement:', 'Householder:', None)\" \"Living alone\" in \"Population for Whom Poverty Status Is Determined\""
+}

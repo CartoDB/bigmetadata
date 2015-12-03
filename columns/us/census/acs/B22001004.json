@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B22001002"
+  }, 
+  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of People 60 Years and Over for Households\": \"('Household received Food Stamps/SNAP in the past 12 months:',)\" \"No people in household 60 years or over\" in \"Households\""
+}

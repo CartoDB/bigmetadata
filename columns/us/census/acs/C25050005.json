@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25050001"
+  }, 
+  "name": "\"Plumbing Facilities by Occupants Per Room\": \"()\" \"Lacking complete plumbing facilities:\" in \"Occupied Housing Units\""
+}

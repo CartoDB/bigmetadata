@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B01001026"
+  }, 
+  "name": "\"Sex by Age\": \"('Female:',)\" \"70 to 74 years\" in \"Total Population\""
+}

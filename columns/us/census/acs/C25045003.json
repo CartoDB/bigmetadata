@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25045002"
+  }, 
+  "name": "\"Tenure by Vehicles Available\": \"('Owner occupied:',)\" \"No vehicle available\" in \"Occupied Housing Units\""
+}

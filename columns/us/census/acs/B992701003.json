@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B992701001"
+  }, 
+  "name": "\"Imputation of Health Insurance Coverage\": \"()\" \"No health insurance items imputed\" in \"Civilian Noninstitutionalized Population\""
+}

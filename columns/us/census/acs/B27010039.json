@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27010035"
+  }, 
+  "name": "\"Types of Health Insurance Coverage by Age\": \"('35 to 64 years:', 'With one type of health insurance coverage:')\" \"With Medicaid/means-tested public coverage only\" in \"Civilian Noninstitutionalized Population\""
+}

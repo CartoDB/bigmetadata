@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003G016"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status (Two or More Races)\": \"('Female:', 'Under 18 years:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"People Who Are Two or More Races\""
+}

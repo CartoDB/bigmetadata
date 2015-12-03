@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28009I002"
+  }, 
+  "name": "\"Presence of a Computer and Type of Internet Subscription in Household (Hispanic or Latino)\": \"['Has a computer:']\" \"With dial-up Internet subscription alone\" in \"Hispanic or Latino Household Population\""
+}

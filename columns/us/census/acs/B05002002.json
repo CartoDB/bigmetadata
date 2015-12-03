@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05002001"
+  }, 
+  "name": "\"Place of Birth by Citizenship Status\": \"()\" \"Native:\" in \"Total Population\""
+}

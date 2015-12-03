@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11001I004"
+  }, 
+  "name": "\"Household Type (Including Living Alone) (Hispanic or Latino)\": \"('Family households:', 'Other family:')\" \"Male householder, no wife present\" in \"Households With a Householder Who Is Hispanic or Latino\""
+}

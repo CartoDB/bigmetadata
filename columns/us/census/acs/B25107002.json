@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25107001"
+  }, 
+  "name": "\"Median Value by Year Structure Built\": \"('Total:',)\" \"Built 2005 or later\" in \"Owner-occupied Housing Units\""
+}

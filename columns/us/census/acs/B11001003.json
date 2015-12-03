@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11001002"
+  }, 
+  "name": "\"Household Type (Including Living Alone)\": \"('Family households:',)\" \"Married-couple family\" in \"Households\""
+}

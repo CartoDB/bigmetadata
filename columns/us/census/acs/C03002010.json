@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C03002009"
+  }, 
+  "name": "\"Hispanic or Latino Origin by Race\": \"('Not Hispanic or Latino:', 'Two or more races:')\" \"Two races including Some other race\" in \"Total Population\""
+}

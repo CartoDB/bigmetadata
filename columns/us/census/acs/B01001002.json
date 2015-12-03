@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B01001001"
+  }, 
+  "name": "\"Sex by Age\": \"()\" \"Male:\" in \"Total Population\""
+}

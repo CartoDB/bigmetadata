@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B18102003"
+  }, 
+  "name": "\"Sex by Age by Hearing Difficulty\": \"('Male:', 'Under 5 years:')\" \"With a hearing difficulty\" in \"Civilian Noninstitutionalized Population\""
+}

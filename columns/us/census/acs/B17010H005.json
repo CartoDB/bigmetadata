@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B17010H004"
+  }, 
+  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children (White Alone, Not Hispanic or Latino Householder)\": \"('Income in the past 12 months below poverty level:', 'Married-couple family:', 'With related children under 18 years:')\" \"Under 5 years only\" in \"Families With a Householder Who Is White Alone, Not Hispanic or Latino\""
+}

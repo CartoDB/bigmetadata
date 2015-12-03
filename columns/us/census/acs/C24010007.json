@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C24010003"
+  }, 
+  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Management, business, science, and arts occupations:')\" \"Computer, engineering, and science occupations:\" in \"Civilian Employed Population 16 Years and Over\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11016009"
+  }, 
+  "name": "\"Household Type by Household Size\": \"('Nonfamily households:',)\" \"7-or-more person household\" in \"Households\""
+}

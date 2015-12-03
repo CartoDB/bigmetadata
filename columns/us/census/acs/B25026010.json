@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25026009"
+  }, 
+  "name": "\"Total Population in Occupied Housing Units by Tenure by Year Householder Moved Into Unit\": \"('Renter occupied:',)\" \"Moved in 2005 or later\" in \"Total Population in Occupied Housing Units\""
+}

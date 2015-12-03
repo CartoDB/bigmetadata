@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B99052002"
+  }, 
+  "name": "\"Imputation of Year of Entry\": \"('Native:',)\" \"Not imputed\" in \"Population Born Outside the United States\""
+}

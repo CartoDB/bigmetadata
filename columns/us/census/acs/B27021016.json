@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27021015"
+  }, 
+  "name": "\"Health Insurance Coverage Status and Type by Living Arrangement\": \"('In family households:', 'In other families:', 'Male householder, no wife present:')\" \"All relatives:\" in \"Civilian Noninstitutionalized Population\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05002009"
+  }, 
+  "name": "\"Place of Birth by Citizenship Status\": \"('Native:', 'Born outside the United States:')\" \"Born abroad of American parent(s)\" in \"Total Population\""
+}

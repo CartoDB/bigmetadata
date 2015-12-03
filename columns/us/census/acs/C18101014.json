@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C18101013"
+  }, 
+  "name": "\"Sex by Age by Disability Status\": \"('Female:', 'Under 18 years:')\" \"With a disability\" in \"Civilian Noninstitutionalized Population\""
+}

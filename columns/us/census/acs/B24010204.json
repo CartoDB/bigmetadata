@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B24010203"
+  }, 
+  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:', 'Arts, design, entertainment, sports, and media occupations:')\" \"Art and design workers\" in \"Civilian Employed Population 16 Years and Over\""
+}

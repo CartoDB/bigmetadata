@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05008028"
+  }, 
+  "name": "\"Sex by Place of Birth by Year of Entry for the Foreign-born Population\": \"('Female:', 'Europe:')\" \"Entered U.S. 2000 or later\" in \"Foreign-born Population\""
+}

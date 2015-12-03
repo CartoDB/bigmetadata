@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003001"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status\": \"()\" \"Female:\" in \"Total Population\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25029002"
+  }, 
+  "name": "\"Tenure by Year Householder Moved Into Unit\": \"('Owner occupied:',)\" \"Moved in 2000 to 2007\" in \"Occupied Housing Units\""
+}

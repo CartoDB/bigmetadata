@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C09008001"
+  }, 
+  "name": "\"Presence of Unmarried Partner of Householder for Children Under 18 Years in Households\": \"()\" \"No unmarried partner of householder present\" in \"Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)\""
+}

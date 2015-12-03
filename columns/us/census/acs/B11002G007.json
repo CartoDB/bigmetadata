@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11002G006"
+  }, 
+  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Two or More Races)\": \"('In family households:', 'In male householder, no wife present, family:')\" \"Relatives\" in \"Population in Households With a Householder Who Is Two or More Races\""
+}

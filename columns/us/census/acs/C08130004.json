@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C08130002"
+  }, 
+  "name": "\"Means of Transportation to Work by Place of Work--State and County Level\": \"('Worked at home', 'Worked in state of residence:')\" \"Worked outside county of residence\" in \"Workers 16 Years and Over\""
+}

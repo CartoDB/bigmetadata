@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05005PR004"
+  }, 
+  "name": "\"Year of Entry by Citizenship Status in Puerto Rico\": \"('Entered 2000 or later:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"Population Born Outside Puerto Rico\""
+}

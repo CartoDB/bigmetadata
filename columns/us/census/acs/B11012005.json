@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11012003"
+  }, 
+  "name": "\"Household Type by Tenure\": \"('Family households:', 'Married-couple family:')\" \"Renter-occupied housing units\" in \"Households\""
+}

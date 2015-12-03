@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25097001"
+  }, 
+  "name": "\"Mortgage Status by Median Value (Dollars)\": \"('Total:',)\" \"Median value for units without a mortgage\" in \"Owner-occupied Housing Units\""
+}

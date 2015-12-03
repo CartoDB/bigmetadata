@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11001A004"
+  }, 
+  "name": "\"Household Type (Including Living Alone) (White Alone)\": \"('Family households:', 'Other family:')\" \"Male householder, no wife present\" in \"Households With a Householder Who Is White Alone\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11010009"
+  }, 
+  "name": "\"Nonfamily Households by Sex of Householder by Living Alone by Age of Householder\": \"('Female householder:',)\" \"Not living alone:\" in \"Nonfamily Households\""
+}

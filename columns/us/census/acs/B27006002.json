@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27006001"
+  }, 
+  "name": "\"Medicare Coverage by Sex by Age\": \"()\" \"Male:\" in \"Civilian Noninstitutionalized Population\""
+}

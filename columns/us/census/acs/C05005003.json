@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05005002"
+  }, 
+  "name": "\"Year of Entry by Nativity in the United States\": \"('Entered U.S. 2000 or later:',)\" \"Native\" in \"Population Born Outside the United States\""
+}

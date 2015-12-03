@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27003046"
+  }, 
+  "name": "\"Public Health Insurance Status by Sex by Age\": \"('Female:', '45 to 54 years:')\" \"No public coverage\" in \"Civilian Noninstitutionalized Population\""
+}

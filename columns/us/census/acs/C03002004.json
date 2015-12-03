@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C03002002"
+  }, 
+  "name": "\"Hispanic or Latino Origin by Race\": \"('Not Hispanic or Latino:',)\" \"Black or African American alone\" in \"Total Population\""
+}

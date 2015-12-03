@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05004010"
+  }, 
+  "name": "\"Median Age by Citizenship Status by Sex\": \"('Foreign born:', 'Naturalized U.S. citizen:')\" \"Male\" in \"Total Population\""
+}

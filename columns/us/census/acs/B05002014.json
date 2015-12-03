@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05002013"
+  }, 
+  "name": "\"Place of Birth by Citizenship Status\": \"('Foreign born:',)\" \"Naturalized U.S. citizen\" in \"Total Population\""
+}

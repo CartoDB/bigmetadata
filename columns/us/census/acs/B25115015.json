@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25115001"
+  }, 
+  "name": "\"Tenure by Household Type and Presence and Age of Own Children\": \"()\" \"Renter occupied:\" in \"Occupied Housing Units\""
+}

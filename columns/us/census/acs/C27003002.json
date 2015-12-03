@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C27003001"
+  }, 
+  "name": "\"Public Health Insurance Status by Sex by Age\": \"()\" \"Male:\" in \"Civilian Noninstitutionalized Population\""
+}

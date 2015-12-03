@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B10002002"
+  }, 
+  "name": "\"Grandchildren Under 18 Years Living With a Grandparent Householder by Grandparent Responsibility and Presence of Parent\": \"('Grandparent householder responsible for own grandchildren under 18 years:',)\" \"Parent present\" in \"Grandchildren Under 18 Living With Grandparent Householder\""
+}

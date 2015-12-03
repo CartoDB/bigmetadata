@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25121077"
+  }, 
+  "name": "\"Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Value\": \"('Renter occupied', '$75,000 to $99,999:')\" \"Value $20,000 to $29,999\" in \"Owner-occupied Housing Units\""
+}

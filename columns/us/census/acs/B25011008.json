@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25011003"
+  }, 
+  "name": "\"Tenure by Household Type (Including Living Alone) and Age of Householder\": \"('Owner occupied:', 'Family households:')\" \"Other family:\" in \"Occupied Housing Units\""
+}

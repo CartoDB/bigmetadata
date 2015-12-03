@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08201001"
+  }, 
+  "name": "\"Household Size by Vehicles Available\": \"('Worked at home:',)\" \"No vehicle available\" in \"Households\""
+}

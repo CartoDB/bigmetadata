@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B09017012"
+  }, 
+  "name": "\"Relationship by Household Type (Including Living Alone) for the Population 65 Years and Over\": \"('In households:', 'In nonfamily households:', 'Householder:')\" \"Female:\" in \"Population 65 Years and Over\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05005014"
+  }, 
+  "name": "\"Year of Entry by Citizenship Status in the United States\": \"('Entered 1980 to 1989:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"Population Born Outside the United States\""
+}

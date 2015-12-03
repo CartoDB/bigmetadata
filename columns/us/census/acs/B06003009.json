@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B06003007"
+  }, 
+  "name": "\"Place of Birth by Sex in the United States\": \"('Born in other state in the United States:',)\" \"Female\" in \"Total Population in the United States\""
+}

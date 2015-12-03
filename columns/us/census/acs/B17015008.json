@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B17015007"
+  }, 
+  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Social Security Income by Supplemental Security Income (SSI) and Cash Public Assistance Income\": \"('Income in the past 12 months below poverty level:', 'Married-couple family:', 'Without Social Security income in the past 12 months:')\" \"With SSI and/or cash public assistance income in the past 12 months\" in \"Families\""
+}

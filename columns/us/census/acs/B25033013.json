@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25033008"
+  }, 
+  "name": "\"Total Population in Occupied Housing Units by Tenure by Units in Structure\": \"('Renter occupied:',)\" \"Boat, RV, van, etc.\" in \"Total Population in Occupied Housing Units\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25023001"
+  }, 
+  "name": "\"Aggregate Number of Rooms by Vacancy Status\": \"()\" \"For seasonal, recreational, or occasional use\" in \"Vacant Housing Units\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05005019"
+  }, 
+  "name": "\"Year of Entry by Citizenship Status in the United States\": \"('Entered before 1980:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"Population Born Outside the United States\""
+}

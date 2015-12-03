@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27005001"
+  }, 
+  "name": "\"Direct-purchase Health Insurance by Sex by Age\": \"()\" \"Male:\" in \"Civilian Noninstitutionalized Population\""
+}

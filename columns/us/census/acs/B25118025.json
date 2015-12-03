@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25118014"
+  }, 
+  "name": "\"Tenure by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('Renter occupied:',)\" \"$150,000 or more\" in \"Occupied Housing Units\""
+}

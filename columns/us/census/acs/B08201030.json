@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08201025"
+  }, 
+  "name": "\"Household Size by Vehicles Available\": \"('4-or-more-person household:',)\" \"4 or more vehicles available\" in \"Households\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05002005"
+  }, 
+  "name": "\"Place of Birth by Nativity\": \"('Native:', 'Born outside the United States:')\" \"Puerto Rico\" in \"Total Population\""
+}

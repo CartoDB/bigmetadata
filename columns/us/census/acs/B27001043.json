@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27001030"
+  }, 
+  "name": "\"Health Insurance Coverage Status by Sex by Age\": \"('Female:',)\" \"35 to 44 years:\" in \"Civilian Noninstitutionalized Population\""
+}

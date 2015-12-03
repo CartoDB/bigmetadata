@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B22008001"
+  }, 
+  "name": "\"Median Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Receipt of Food Stamps/SNAP in the Past 12 Months\": \"()\" \"Household did not receive Food Stamps/SNAP in the past 12 months\" in \"Households\""
+}

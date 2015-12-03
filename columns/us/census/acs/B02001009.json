@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B02001008"
+  }, 
+  "name": "\"Race\": \"('Two or more races:',)\" \"Two races including Some other race\" in \"Total Population\""
+}

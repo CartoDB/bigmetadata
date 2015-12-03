@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B24010208"
+  }, 
+  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Healthcare practitioners and technical occupations:', 'Health diagnosing and treating practitioners and other technical occupations:')\" \"Nurses, all other\" in \"Civilian Employed Population 16 Years and Over\""
+}

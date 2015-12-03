@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05003I006"
+  }, 
+  "name": "\"Sex by Age by Nativity (Hispanic or Latino)\": \"('Male:', '18 years and over:')\" \"Foreign born\" in \"Hispanic or Latino Population\""
+}

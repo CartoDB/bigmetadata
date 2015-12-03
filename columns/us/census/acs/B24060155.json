@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B24060154"
+  }, 
+  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Local, state, and federal government workers:', 'Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:')\" \"Community and social service occupations\" in \"Civilian Employed Population 16 Years and Over\""
+}

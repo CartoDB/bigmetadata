@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11011007"
+  }, 
+  "name": "\"Household Type by Units in Structure\": \"('Family households:', 'Other family:')\" \"Male householder, no wife present:\" in \"Households\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B09019032"
+  }, 
+  "name": "\"Household Type (Including Living Alone) by Relationship\": \"('In households:', 'In nonfamily households:', 'Nonrelatives:')\" \"Roomer or boarder\" in \"Total Population\""
+}

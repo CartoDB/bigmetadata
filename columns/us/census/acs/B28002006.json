@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28002004"
+  }, 
+  "name": "\"Presence and Types of Internet Subscriptions in Household\": \"['With an Internet subscription:', 'DSL:']\" \"Without mobile broadband\" in \"Households\""
+}

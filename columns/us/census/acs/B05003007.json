@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003005"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status\": \"('Male:', 'Under 18 years:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"Total Population\""
+}

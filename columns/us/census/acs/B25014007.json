@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25014002"
+  }, 
+  "name": "\"Tenure by Occupants Per Room\": \"('Owner occupied:',)\" \"2.01 or more occupants per room\" in \"Occupied Housing Units\""
+}

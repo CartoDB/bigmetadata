@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B06002PR001"
+  }, 
+  "name": "\"Median Age by Place of Birth in Puerto Rico\": \"('Total:',)\" \"Born in the United States\" in \"Total Population in Puerto Rico\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C11016007"
+  }, 
+  "name": "\"Household Type by Household Size\": \"('Nonfamily households:',)\" \"1-person household\" in \"Households\""
+}

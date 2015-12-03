@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B99257001"
+  }, 
+  "name": "\"Imputation of Year Householder Moved Into Unit\": \"()\" \"Not imputed\" in \"Occupied Housing Units\""
+}

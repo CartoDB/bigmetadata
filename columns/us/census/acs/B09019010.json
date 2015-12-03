@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B09019008"
+  }, 
+  "name": "\"Household Type (Including Living Alone) by Relationship\": \"('In households:', 'In family households:', 'Child:')\" \"Adopted child\" in \"Total Population\""
+}

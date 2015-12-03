@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25081002"
+  }, 
+  "name": "\"Mortgage Status\": \"('Housing units with a mortgage, contract to purchase, or similar debt:',)\" \"Both second mortgage and home equity loan\" in \"Owner-occupied Housing Units\""
+}

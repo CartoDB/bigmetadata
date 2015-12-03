@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25120002"
+  }, 
+  "name": "\"Aggregate Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Tenure and Mortgage Status\": \"('Owner occupied :',)\" \"Housing units with a mortgage\" in \"Occupied Housing Units\""
+}

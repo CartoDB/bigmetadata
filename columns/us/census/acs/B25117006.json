@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25117002"
+  }, 
+  "name": "\"Tenure by House Heating Fuel\": \"('Owner occupied:',)\" \"Fuel oil, kerosene, etc.\" in \"Occupied Housing Units\""
+}

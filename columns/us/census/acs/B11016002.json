@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11016001"
+  }, 
+  "name": "\"Household Type by Household Size\": \"()\" \"Family households:\" in \"Households\""
+}

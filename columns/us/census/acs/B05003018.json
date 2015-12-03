@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003016"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status\": \"('Female:', 'Under 18 years:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"Total Population\""
+}

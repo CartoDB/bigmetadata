@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27009003"
+  }, 
+  "name": "\"VA Health Care by Sex by Age\": \"('Male:', 'Under 6 years:')\" \"No VA Health Care\" in \"Civilian Noninstitutionalized Population\""
+}

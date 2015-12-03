@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25033002"
+  }, 
+  "name": "\"Total Population in Occupied Housing Units by Tenure by Units in Structure\": \"('Owner occupied:',)\" \"2 or more\" in \"Total Population in Occupied Housing Units\""
+}

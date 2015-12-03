@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08203007"
+  }, 
+  "name": "\"Number of Workers in Household by Vehicles Available\": \"('No workers:',)\" \"3 vehicles available\" in \"Households\""
+}

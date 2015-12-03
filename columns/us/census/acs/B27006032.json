@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27006031"
+  }, 
+  "name": "\"Medicare Coverage by Sex by Age\": \"('Female:', 'Under 6 years:')\" \"With Medicare coverage\" in \"Civilian Noninstitutionalized Population\""
+}

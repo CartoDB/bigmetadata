@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25043003"
+  }, 
+  "name": "\"Tenure by Telephone Service Available by Age of Householder\": \"('Owner occupied:', 'With telephone service available:')\" \"Householder 35 to 64 years\" in \"Occupied Housing Units\""
+}

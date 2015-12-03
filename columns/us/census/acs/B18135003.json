@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B18135002"
+  }, 
+  "name": "\"Age by Disability Status by Health Insurance Coverage Status\": \"('Under 18 years:',)\" \"With a disability:\" in \"Civilian Noninstitutionalized Population\""
+}

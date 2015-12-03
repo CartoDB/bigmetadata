@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B17017032"
+  }, 
+  "name": "\"Poverty Status in the Past 12 Months by Household Type by Age of Householder\": \"('Income in the past 12 months at or above poverty level:', 'Family households:')\" \"Other family:\" in \"Households\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B99072003"
+  }, 
+  "name": "\"Imputation of Residence 1 Year Ago for the Population 1 Year and Over\": \"('Different house:', 'Imputed:')\" \"All geographic parts imputed\" in \"Population 1 Year and Over\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25040001"
+  }, 
+  "name": "\"House Heating Fuel\": \"()\" \"Fuel oil, kerosene, etc.\" in \"Occupied Housing Units\""
+}

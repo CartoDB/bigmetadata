@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28006003"
+  }, 
+  "name": "\"Educational Attainment by Presence of a Computer and Types of Internet Subscription in Household\": \"['Less than high school graduate or equivalency:', 'Has a computer:']\" \"With a broadband Internet subscription\" in \"Household Population 25 Years and Over\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B06003010"
+  }, 
+  "name": "\"Place of Birth by Sex in the United States\": \"('Native; born outside the United States:',)\" \"Male\" in \"Total Population in the United States\""
+}

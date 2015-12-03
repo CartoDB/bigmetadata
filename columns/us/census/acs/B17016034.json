@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B17016031"
+  }, 
+  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Work Experience of Householder and Spouse\": \"('Income in the past 12 months at or above poverty level:', 'Married-couple family:', 'Householder worked part-time or part-year in the past 12 months:')\" \"Spouse did not work in the past 12 months\" in \"Families\""
+}

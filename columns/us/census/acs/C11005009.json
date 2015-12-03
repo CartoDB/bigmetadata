@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C11005001"
+  }, 
+  "name": "\"Households by Presence of People Under 18 Years by Household Type\": \"()\" \"Households with no people under 18 years:\" in \"Households\""
+}

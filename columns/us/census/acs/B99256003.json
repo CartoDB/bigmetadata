@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B99256001"
+  }, 
+  "name": "\"Imputation of Year Structure Built\": \"()\" \"Not imputed\" in \"Housing Units\""
+}

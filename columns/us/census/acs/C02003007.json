@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C02003002"
+  }, 
+  "name": "\"Detailed Race\": \"('Population of one race:',)\" \"Native Hawaiian and Other Pacific Islander\" in \"Total Population\""
+}

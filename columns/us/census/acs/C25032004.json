@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25032002"
+  }, 
+  "name": "\"Tenure by Units in Structure\": \"('Owner-occupied housing units:',)\" \"2 to 9 units\" in \"Occupied Housing Units\""
+}

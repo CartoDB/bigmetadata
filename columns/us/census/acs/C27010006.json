@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C27010002"
+  }, 
+  "name": "\"Types of Health Insurance Coverage by Age\": \"('Under 18 years:',)\" \"No health insurance coverage\" in \"Civilian Noninstitutionalized Population\""
+}

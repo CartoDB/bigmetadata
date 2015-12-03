@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11002009"
+  }, 
+  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households\": \"('In family households:', 'In female householder, no husband present, family:')\" \"Nonrelatives\" in \"Population in Households\""
+}

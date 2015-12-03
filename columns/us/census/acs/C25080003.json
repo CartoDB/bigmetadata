@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25080001"
+  }, 
+  "name": "\"Aggregate Value (Dollars) by Units in Structure\": \"()\" \"2 to 4 (dollars)\" in \"Owner-occupied Housing Units\""
+}

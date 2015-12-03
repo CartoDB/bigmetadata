@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B19130012"
+  }, 
+  "name": "\"Aggregate Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Family Type by Age of Householder\": \"('Other family (dollars):', 'Male householder, no wife present (dollars):')\" \"Householder 65 to 74 years (dollars)\" in \"Families\""
+}

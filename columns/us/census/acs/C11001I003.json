@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C11001I002"
+  }, 
+  "name": "\"Household Type (Hispanic or Latino)\": \"('Family households:',)\" \"Married-couple family\" in \"Households With a Householder Who Is Hispanic or Latino\""
+}

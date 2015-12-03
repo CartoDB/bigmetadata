@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B12002018"
+  }, 
+  "name": "\"Sex by Marital Status by Age for the Population 15 Years and Over\": \"('Male:', 'Now married:')\" \"Married, spouse absent:\" in \"Population 15 Years and Over\""
+}

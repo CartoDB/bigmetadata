@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B28009C002"
+  }, 
+  "name": "\"Presence of a Computer and Type of Internet Subscription in Household (American Indian and Alaska Native Alone)\": \"['Has a computer:']\" \"With a broadband Internet subscription\" in \"American Indian and Alaska Native Alone Household Population\""
+}

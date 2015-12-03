@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B99051002"
+  }, 
+  "name": "\"Imputation of Citizenship Status\": \"('Native:',)\" \"Not imputed\" in \"Total Population\""
+}

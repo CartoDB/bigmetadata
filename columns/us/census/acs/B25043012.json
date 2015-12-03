@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25043011"
+  }, 
+  "name": "\"Tenure by Telephone Service Available by Age of Householder\": \"('Renter occupied:',)\" \"With telephone service available:\" in \"Occupied Housing Units\""
+}

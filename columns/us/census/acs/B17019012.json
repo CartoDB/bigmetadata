@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B17019010"
+  }, 
+  "name": "\"Poverty Status in the Past 12 Months of Families by Household Type by Tenure\": \"('Income in the past 12 months below poverty level:', 'Other families:', 'Female householder, no husband present:')\" \"Renter occupied\" in \"Families\""
+}

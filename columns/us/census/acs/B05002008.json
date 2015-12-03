@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05002004"
+  }, 
+  "name": "\"Place of Birth by Citizenship Status\": \"('Native:', 'Born in other state in the United States:')\" \"West\" in \"Total Population\""
+}

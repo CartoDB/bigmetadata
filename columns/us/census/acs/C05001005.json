@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05001001"
+  }, 
+  "name": "\"Citizenship Status in the United States\": \"()\" \"Not a U.S. citizen\" in \"Total Population in the United States\""
+}

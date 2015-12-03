@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11001B007"
+  }, 
+  "name": "\"Household Type (Including Living Alone) (Black or African American Alone)\": \"('Nonfamily households:',)\" \"Householder not living alone\" in \"Households With a Householder Who Is Black or African American Alone\""
+}

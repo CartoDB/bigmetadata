@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08007012"
+  }, 
+  "name": "\"Sex of Workers by Place of Work--State and County Level\": \"('Female:', 'Worked in state of residence:')\" \"Worked outside county of residence\" in \"Workers 16 Years and Over\""
+}

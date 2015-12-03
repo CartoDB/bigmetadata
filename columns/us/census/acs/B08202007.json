@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B08202006"
+  }, 
+  "name": "\"Household Size by Number of Workers in Household\": \"('1-person household:',)\" \"No workers\" in \"Households\""
+}

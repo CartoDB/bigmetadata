@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11015001"
+  }, 
+  "name": "\"Households by Presence of Nonrelatives\": \"()\" \"Households with one or more nonrelatives\" in \"Households\""
+}

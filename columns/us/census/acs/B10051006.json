@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B10051002"
+  }, 
+  "name": "\"Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren by Presence of Parent of Grandchildren and Age of Grandparent\": \"('Grandparent responsible for own grandchildren under 18 years:',)\" \"Other grandparents:\" in \"Grandparents Living With Own Grandchildren Under 18 Years\""
+}

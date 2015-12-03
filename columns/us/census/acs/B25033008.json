@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25033001"
+  }, 
+  "name": "\"Total Population in Occupied Housing Units by Tenure by Units in Structure\": \"()\" \"Renter occupied:\" in \"Total Population in Occupied Housing Units\""
+}

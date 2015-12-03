@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25004001"
+  }, 
+  "name": "\"Vacancy Status\": \"()\" \"All other vacant units\" in \"Vacant Housing Units\""
+}

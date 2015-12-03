@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25102001"
+  }, 
+  "name": "\"Mortgage Status by Real Estate Taxes Paid\": \"()\" \"Not mortgaged:\" in \"Owner-occupied Housing Units\""
+}

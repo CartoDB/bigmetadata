@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B05003I002"
+  }, 
+  "name": "\"Sex by Age by Citizenship Status (Hispanic or Latino)\": \"('Male:',)\" \"Under 18 years:\" in \"Hispanic or Latino Population\""
+}

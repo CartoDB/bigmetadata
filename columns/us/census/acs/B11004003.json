@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11004002"
+  }, 
+  "name": "\"Family Type by Presence and Age of Related Children Under 18 Years\": \"('Married-couple family:',)\" \"With related children under 18 years:\" in \"Families\""
+}

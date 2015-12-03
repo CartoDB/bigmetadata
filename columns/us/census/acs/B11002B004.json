@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11002B003"
+  }, 
+  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Black or African American Alone)\": \"('In family households:', 'In married-couple family:')\" \"Relatives\" in \"Population in Households With a Householder Who Is Black or African American Alone\""
+}

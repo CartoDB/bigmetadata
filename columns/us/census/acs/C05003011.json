@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05003010"
+  }, 
+  "name": "\"Sex by Age by Nativity\": \"('Female:', 'Under 18 years:')\" \"Native\" in \"Total Population\""
+}

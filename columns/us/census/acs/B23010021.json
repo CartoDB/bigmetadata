@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B23010020"
+  }, 
+  "name": "\"Presence of Own Children Under 18 Years in Married-couple Families by Work Experience of Householder and Spouse\": \"('No own children under 18 years:', 'Householder worked less than full-time, year-round in the past 12 months:')\" \"Spouse worked full-time, year-round in the past 12 months\" in \"Married-couple Families\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05008014"
+  }, 
+  "name": "\"Sex by Place of Birth by Year of Entry for the Foreign-born Population\": \"('Male:', 'Latin America:', 'Entered U.S. before 1990')\" \"Mexico:\" in \"Foreign-born Population\""
+}

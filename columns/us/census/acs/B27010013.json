@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B27010010"
+  }, 
+  "name": "\"Types of Health Insurance Coverage by Age\": \"('Under 18 years:', 'With two or more types of health insurance coverage:')\" \"With Medicare and Medicaid/means-tested public coverage\" in \"Civilian Noninstitutionalized Population\""
+}

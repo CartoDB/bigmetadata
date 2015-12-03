@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25102009"
+  }, 
+  "name": "\"Mortgage Status by Real Estate Taxes Paid\": \"('Not mortgaged:',)\" \"Less than $800\" in \"Owner-occupied Housing Units\""
+}

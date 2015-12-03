@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B09018002"
+  }, 
+  "name": "\"Relationship to Householder for Children Under 18 Years in Households\": \"('Own child:',)\" \"Adopted child\" in \"Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)\""
+}

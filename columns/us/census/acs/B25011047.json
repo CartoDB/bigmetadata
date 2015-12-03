@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25011046"
+  }, 
+  "name": "\"Tenure by Household Type (Including Living Alone) and Age of Householder\": \"('Renter occupied:', 'Nonfamily households:', 'Householder not living alone:')\" \"Householder 15 to 34 years\" in \"Occupied Housing Units\""
+}

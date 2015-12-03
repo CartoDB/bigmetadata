@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25111001"
+  }, 
+  "name": "\"Median Gross Rent by Year Structure Built\": \"('Total:',)\" \"Built 1939 or earlier\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+}

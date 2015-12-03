@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25102002"
+  }, 
+  "name": "\"Mortgage Status by Real Estate Taxes Paid\": \"('With a mortgage:',)\" \"$1,500 to $1,999\" in \"Owner-occupied Housing Units\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C05007033"
+  }, 
+  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Latin America:', None, 'Mexico:', 'Entered U.S. before 1980:')\" \"Naturalized U.S. citizen\" in \"Foreign-born Population\""
+}

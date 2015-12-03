@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25028002"
+  }, 
+  "name": "\"Tenure by Year Structure Built\": \"('Owner occupied:',)\" \"Built 1990 to 1999\" in \"Occupied Housing Units\""
+}

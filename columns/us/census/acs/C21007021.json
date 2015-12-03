@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C21007019"
+  }, 
+  "name": "\"Age by Veteran Status by Poverty Status in the Past 12 Months by Disability Status for the Civilian Population 18 Years and Over\": \"('65 years and over:', 'Veteran:', 'Income in the past 12 months below poverty level:')\" \"No disability\" in \"Civilian Population 18 Years and Over for Whom Poverty Status Is Determined\""
+}

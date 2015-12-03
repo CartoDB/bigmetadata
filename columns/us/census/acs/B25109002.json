@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25109001"
+  }, 
+  "name": "\"Median Value by Year Householder Moved Into Unit\": \"('Total:',)\" \"Moved in 2005 or later\" in \"Owner-occupied Housing Units\""
+}

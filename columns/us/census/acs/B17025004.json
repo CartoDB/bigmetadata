@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B17025003"
+  }, 
+  "name": "\"Poverty Status in the Past 12 Months by Nativity\": \"('Income in the past 12 months below poverty level:', 'Native:')\" \"Born in the United States\" in \"Population for Whom Poverty Status Is Determined\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C27004003"
+  }, 
+  "name": "\"Employer-based Health Insurance by Sex by Age\": \"('Male:', 'Under 18 years:')\" \"With employer-based health insurance\" in \"Civilian Noninstitutionalized Population\""
+}

@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C25117002"
+  }, 
+  "name": "\"Tenure by House Heating Fuel\": \"('Owner occupied:',)\" \"Electricity\" in \"Occupied Housing Units\""
+}

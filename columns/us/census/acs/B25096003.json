@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B25096002"
+  }, 
+  "name": "\"Mortgage Status by Value\": \"('With a mortgage:',)\" \"Less than $50,000\" in \"Owner-occupied Housing Units\""
+}

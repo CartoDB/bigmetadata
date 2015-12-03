@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/C27001I002"
+  }, 
+  "name": "\"Health Insurance Coverage Status by Age (Hispanic or Latino)\": \"('Under 18 years:',)\" \"No health insurance coverage\" in \"HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+}

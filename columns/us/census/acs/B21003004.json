@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B21003002"
+  }, 
+  "name": "\"Veteran Status by Educational Attainment for the Civilian Population 25 Years and Over\": \"('Veteran:',)\" \"High school graduate (includes equivalency)\" in \"Civilian Population 25 Years and Over\""
+}

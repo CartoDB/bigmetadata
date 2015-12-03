@@ -1,0 +1,6 @@
+{
+  "relationships": {
+    "parent": "us/census/acs/B11007007"
+  }, 
+  "name": "\"Households by Presence of People 65 Years and Over, Household Size and Household Type\": \"('Households with no people 65 years and over:',)\" \"1-person households\" in \"Households\""
+}
