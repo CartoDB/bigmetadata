@@ -12,10 +12,10 @@ tasks to download and create metadata
 #import csv
 import json
 import os
-from luigi import Parameter, Task, WrapperTask, LocalTarget
+from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor)
 from psycopg2 import ProgrammingError
-from tasks.us.census.tiger import Tiger
+from tasks.us.census.tiger import Tiger, SUMLEVELS, load_sumlevels
 
 
 # STEPS:
@@ -63,7 +63,7 @@ class DumpACS(WrapperTask):
 
 class ACSColumn(LocalTarget):
 
-    def __init__(self, force=False, **kwargs):
+    def __init__(self, **kwargs):
         self.force = False
         self.column_id = kwargs['column_id']
         self.column_title = kwargs['column_title']
@@ -105,10 +105,10 @@ class ACSTable(LocalTarget):
         self.indents = kwargs['indents']
         self.parent_column_ids = kwargs['parent_column_ids']
         self.universes = kwargs['universes']
-        return super(ACSTable, self).__init__(
+        super(ACSTable, self).__init__(
             path=os.path.join('tables', classpath(self), self.source, self.seqnum) + '.json')
 
-    def generate(self):
+    def generate(self, resolutions):
         column_parent_path = []
         for i, column_id in enumerate(self.column_ids):
             indent = (self.indents[i] or 0) - 1
@@ -128,16 +128,17 @@ class ACSTable(LocalTarget):
                 col.generate()
 
         data = {
-            'columns': [os.path.join(classpath(self), column_id) for column_id in self.column_ids]
+            'columns': [os.path.join(classpath(self), column_id) for column_id in self.column_ids],
+            'resolutions': resolutions
         }
         with self.open('w') as outfile:
             json.dump(data, outfile, indent=2)
 
 
-
 class ProcessACS(Task):
     year = Parameter()
     sample = Parameter()
+    force = BooleanParameter(default=False)
 
     def requires(self):
         yield DownloadACS(year=self.year, sample=self.sample)
@@ -148,8 +149,15 @@ class ProcessACS(Task):
         return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
 
     def run(self):
+        cursor = pg_cursor()
+        cursor.execute('SELECT DISTINCT SUBSTR(geoid, 1, 3) as sumlevel '
+                       'FROM {schema}.seq0001'.format(schema=self.schema))
+        sumlevels = cursor.fetchall()
+        resolutions = [os.path.join(
+            'columns', classpath(load_sumlevels), SUMLEVELS[sl[0]]['slug']) for sl in sumlevels if sl[0] in SUMLEVELS]
         for output in self.output():
-            output.generate()
+            output.generate(resolutions=resolutions)
+        self.force = False
 
     def complete(self):
         '''
@@ -157,6 +165,8 @@ class ProcessACS(Task):
         yet.  This wraps the default complete() to return `False` in those
         instances.
         '''
+        if self.force:
+            return False
         try:
             return super(ProcessACS, self).complete()
         except ProgrammingError:

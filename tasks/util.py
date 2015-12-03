@@ -51,4 +51,4 @@ def classpath(obj):
     '''
     Path to this task, suitable for the current OS.
     '''
-    return os.path.join(*type(obj).__module__.split('.')[1:])
+    return os.path.join(*obj.__module__.split('.')[1:])
