@@ -1,0 +1,8 @@
+{
+  "bigmetadata": {
+    "build": ".",
+    "volumes": [
+      ".:/bigmetadata"
+    ]
+  }
+}
