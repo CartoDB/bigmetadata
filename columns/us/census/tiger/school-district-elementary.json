@@ -1,0 +1,17 @@
+{
+  "relationships": {
+    "ancestors": [
+      "columns/us/census/tiger/nation", 
+      "columns/us/census/tiger/region", 
+      "columns/us/census/tiger/division", 
+      "columns/us/census/tiger/state"
+    ], 
+    "parent": "columns/us/census/tiger/state"
+  }, 
+  "extra": {
+    "source": "U.S. Census Bureau: Geographic Terms and Concepts", 
+    "summary_level": "950"
+  }, 
+  "name": "School District (Elementary)", 
+  "description": "School Districts are geographic entities within which state, county, local officials, the Bureau of Indian Affairs, or the U.S. Department of Defense provide public educational services for the area\u2019s residents. The Census Bureau obtains the boundaries, names, local education agency codes, and school district levels for school districts from state and local school officials for the primary purpose of providing the U.S. Department of Education with estimates of the number of children \u201cat risk\u201d within each school district, county, and state. This information serves as the basis for the Department of Education to determine the annual allocation of Title I funding to states and school districts.\r\n\r\nThe Census Bureau tabulates data for three types of school districts: elementary, secondary, and unified. Each school district is assigned a five-digit code that is unique within state. School district codes are the local education agency number assigned by the Department of Education and are not necessarily in alphabetical order by school district name.\r\n\r\nThe elementary school districts provide education to the lower grade/age levels and the secondary school districts provide education to the upper grade/age levels. Unified school districts provide education to children of all school ages in their service areas. In general, where there is a unified school district, no elementary or secondary school district exists; and where there is an elementary school district, the secondary school district may or may not exist.\r\n\r\nThe Census Bureau\u2019s representation of school districts in various data products is based both on the grade range that a school district operates and also the grade range for which the school district is financially responsible. For example, a school district is defined as an elementary school district if its operational grade range is less than the full kindergarten through 12 or prekindergarten through 12 grade range (for example, K\u20136 or pre-K\u20138). These elementary school districts do not provide direct educational services for grades 7\u201312, 9\u201312, or similar ranges. Some elementary school districts are financially responsible for the education of all school-aged children within their service areas and rely on other school districts to provide service for those grade ranges that are not operated by these elementary school districts. In these situations, in order to allocate all school-aged children to these school districts, the secondary school district code field is blank. For elementary school districts where the operational grade range and financially responsible grade range are the same, the secondary school district code field will contain a secondary school district code. There are no situations where an elementary school district does not exist and a secondary school district exists in Census Bureau records."
+}

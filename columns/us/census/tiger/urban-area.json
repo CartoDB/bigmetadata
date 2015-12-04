@@ -1,0 +1,17 @@
+{
+  "relationships": {
+    "ancestors": [
+      "columns/us/census/tiger/nation", 
+      "columns/us/census/tiger/region", 
+      "columns/us/census/tiger/division", 
+      "columns/us/census/tiger/state"
+    ], 
+    "parent": "columns/us/census/tiger/state"
+  }, 
+  "extra": {
+    "source": "U.S. Census Bureau: Geographic Terms and Concepts", 
+    "summary_level": "400"
+  }, 
+  "name": "Urban Area", 
+  "description": "UGAs are legally defined entities in Oregon and Washington that the Census Bureau includes in the MAF/TIGER database in agreement with the states. UGAs, which are defined around incorporated places, are used to regulate urban growth. UGA boundaries, which need not follow visible features, are delineated cooperatively by state and local officials and then confirmed in state law. UGAs are a pilot project first defined only in Oregon for Census 2000. Each UGA is identified by a five-digit numeric census code, usually the same as the five-digit Federal Information Processing Series (FIPS) code associated with the incorporated place for which the UGA is named."
+}

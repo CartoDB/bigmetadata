@@ -1,0 +1,17 @@
+{
+  "relationships": {
+    "ancestors": [
+      "columns/us/census/tiger/nation", 
+      "columns/us/census/tiger/region", 
+      "columns/us/census/tiger/division", 
+      "columns/us/census/tiger/state"
+    ], 
+    "parent": "columns/us/census/tiger/state"
+  }, 
+  "extra": {
+    "source": "U.S. Census Bureau: Geographic Terms and Concepts", 
+    "summary_level": "620"
+  }, 
+  "name": "State House District", 
+  "description": "State Legislative Districts (SLDs) are the areas from which members are elected to state legislatures. The Census Bureau first reported data for SLDs as part of the 2000 Public Law (P.L.) 94-171 Redistricting Data File.\r\n\r\nCurrent SLDs (2010 Election Cycle)\u2014States participating in Phase 1 of the 2010 Census Redistricting Data Program voluntarily provided the Census Bureau with the 2006 election cycle boundaries, codes, and, in some cases, names for their SLDs. All 50 states, plus the District of Columbia and Puerto Rico, participated in Phase 1, State Legislative District Project (SLDP) of the 2010 Census Redistricting Data Program. States subsequently provided legal changes to those plans through the Redistricting Data Office and/or corrections as part of Phase 2 of the 2010 Census Redistricting Data Program, as needed.\r\n\r\nThe SLDs embody the upper (senate\u2014SLDU) and lower (house\u2014SLDL) chambers of the state legislature. Nebraska has a unicameral legislature and the District of Columbia has a single council, both of which the Census Bureau treats as upper-chamber legislative areas for the purpose of data presentation. A unique three-character census code, identified by state participants, is assigned to each SLD within a state. In Connecticut, Hawaii, Illinois, Louisiana, Maine, Massachusetts, New Jersey, Ohio, and Puerto Rico, state officials did not define the SLDs to cover all of the state or state equivalent area (usually bodies of water). In these areas with no SLDs defined, the code \u201cZZZ\u201d has been assigned, which is treated within state as a single SLD for purposes of data presentation. Maryland also has areas with no SLDs defined; in Maryland, these areas are coded with an initial \u201cZ\u201d by county or equivalent and treated as a unique SLD by county or equivalent. In Nebraska and the District of Columbia, the Census Bureau assigned the code 999 to represent a single SLDL where legally none exist."
+}

@@ -1,0 +1,14 @@
+{
+  "relationships": {
+    "ancestors": [
+      "columns/us/census/tiger/nation"
+    ], 
+    "parent": "columns/us/census/tiger/nation"
+  }, 
+  "extra": {
+    "source": "U.S. Census Bureau: Geographic Terms and Concepts", 
+    "summary_level": "300"
+  }, 
+  "name": "Metropolitan Statistical Area (MSA)/Consolidated Metropolitan Statistical Area (CMSA)", 
+  "description": "Metropolitan statistical areas are CBSAs associated with at least one urbanized area that has a population of at least 50,000. The metropolitan statistical area comprises the central county or counties or equivalent entities containing the core, plus adjacent outlying counties having a high degree of social and economic integration with the central county or counties as measured through commuting."
+}

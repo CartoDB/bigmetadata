@@ -1,0 +1,14 @@
+{
+  "relationships": {
+    "ancestors": [
+      "columns/us/census/tiger/nation"
+    ], 
+    "parent": "columns/us/census/tiger/nation"
+  }, 
+  "extra": {
+    "source": "U.S. Census Bureau: Geographic Terms and Concepts", 
+    "summary_level": "350"
+  }, 
+  "name": "New England City and Town Area (NECTA)", 
+  "description": "NECTAs are an alternative set of geographic entities, similar in concept to the county-based CBSAs defined nationwide, that OMB defines in New England based on county subdivisions\u2014usually cities and towns. NECTAs are defined using the same criteria as county-based CBSAs, and, similar to CBSAs, NECTAs are categorized as metropolitan or micropolitan."
+}

@@ -1,0 +1,20 @@
+{
+  "relationships": {
+    "ancestors": [
+      "columns/us/census/tiger/nation", 
+      "columns/us/census/tiger/region", 
+      "columns/us/census/tiger/division", 
+      "columns/us/census/tiger/state", 
+      "columns/us/census/tiger/county", 
+      "columns/us/census/tiger/census-tract", 
+      "columns/us/census/tiger/block-group"
+    ], 
+    "parent": "columns/us/census/tiger/block-group"
+  }, 
+  "extra": {
+    "source": "U.S. Census Bureau: Geographic Terms and Concepts", 
+    "summary_level": "101"
+  }, 
+  "name": "Block", 
+  "description": "Census blocks are statistical areas bounded by visible features, such as streets, roads, streams, and railroad tracks, and by nonvisible boundaries, such as selected property lines and city, township, school district, and county limits and short line-of-sight extensions of streets and roads. Generally, census blocks are small in area; for example, a block in a city bounded on all sides by streets. Census blocks in suburban and rural areas may be large, irregular, and bounded by a variety of features, such as roads, streams, and transmission lines. In remote areas, census blocks may encompass hundreds of square miles. Census blocks cover the entire territory of the United States, Puerto Rico, and the Island Areas. Census blocks nest within all other tabulated census geographic entities and are the basis for all tabulated data."
+}

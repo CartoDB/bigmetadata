@@ -1,0 +1,18 @@
+{
+  "relationships": {
+    "ancestors": [
+      "columns/us/census/tiger/nation", 
+      "columns/us/census/tiger/region", 
+      "columns/us/census/tiger/division", 
+      "columns/us/census/tiger/state", 
+      "columns/us/census/tiger/county"
+    ], 
+    "parent": "columns/us/census/tiger/county"
+  }, 
+  "extra": {
+    "source": "U.S. Census Bureau: Geographic Terms and Concepts", 
+    "summary_level": "700"
+  }, 
+  "name": "Voting Tabulation District (VTD)", 
+  "description": "VTDs refer to the generic name for geographic entities, such as precincts, wards, and election districts, established by state governments for the purpose of conducting elections. States voluntarily participating in Phase 2 of the 2010 Census Redistricting Data Program provided the Census Bureau with boundaries, codes, and names for their VTDs. Each VTD is identified by a one-to-six-character alphanumeric census code that is unique within county. The code \u201cZZZZZZ\u201d identifies a portion of counties (usually bodies of water) for which no VTDs were identified. For the 2010 Census, only Rhode Island did not participate in Phase 2 (the Voting District/Block Boundary Suggestion Project) of the 2010 Census Redistricting Data Program. Kentucky chose not to provide VTDs as part of their participation in Phase 2, and the states of Montana and Oregon provided VTDs for some counties. Therefore, for 2010 Census data products, no VTDs exist in select counties in Montana and Oregon or for the states of Rhode Island and Kentucky in their entirety. Participating states often submitted VTDs conforming to the feature network in the MAF/TIGER database rather than the complete legal boundary of the VTD. If requested by the participating state, the Census Bureau identified the VTDs that represent an actual voting district with an \u201cA\u201d in the voting district indicator field. Where a participating state indicated that the VTD has been modified to follow existing features, the VTD is a pseudo-VTD, and the voting district indicator contains \u201cP.\u201d"
+}
