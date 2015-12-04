@@ -15,9 +15,9 @@ variables in a `.env` file in the the root bigmetadata directory:
 
     ### .env
 
-    export PGPASSWORD=<mypassword>
-    export PGHOST=<myhost>
-    export PGUSER=<myuser>
-    export PGPORT=<myport>
-    export PGOPTIONS="-c default_tablespace=<mytablespace>"
+    PGPASSWORD=<mypassword>
+    PGHOST=<myhost>
+    PGUSER=<myuser>
+    PGPORT=<myport>
+    PGOPTIONS="-c default_tablespace=<mytablespace>"
 
