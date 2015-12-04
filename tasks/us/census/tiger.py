@@ -6,8 +6,9 @@ Tiger
 
 import json
 import os
-from tasks.util import LoadPostgresFromURL, classpath
+from tasks.util import LoadPostgresFromURL, classpath, pg_cursor
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
+from psycopg2 import ProgrammingError
 
 
 class TigerSumLevel(LocalTarget):
@@ -16,8 +17,8 @@ class TigerSumLevel(LocalTarget):
         self.sumlevel = sumlevel
         self.data = SUMLEVELS[sumlevel]
         super(TigerSumLevel, self).__init__(
-            path = os.path.join('columns', classpath(self),
-                                self.data['slug']) + '.json')
+            path=os.path.join('columns', classpath(self),
+                              self.data['slug']) + '.json')
 
     def generate(self):
         relationships = {}
@@ -39,15 +40,28 @@ class TigerSumLevel(LocalTarget):
             json.dump(obj, outfile, indent=2)
 
 
-class DownloadTiger(WrapperTask):
+class DownloadTiger(LoadPostgresFromURL):
 
     url_template = 'https://s3.amazonaws.com/census-backup/tiger/{year}/tiger{year}_backup.sql.gz'
     year = Parameter()
 
-    def requires(self):
+    @property
+    def schema(self):
+        return 'tiger{year}'.format(year=self.year)
+
+    def identifier(self):
+        return self.schema + '.census_names'
+
+    def run(self):
+        cursor = pg_cursor()
+        try:
+            cursor.execute('DROP SCHEMA {schema} CASCADE'.format(schema=self.schema))
+            cursor.connection.commit()
+        except ProgrammingError:
+            cursor.connection.rollback()
         url = self.url_template.format(year=self.year)
-        table = 'tiger{year}.census_names'.format(year=self.year)
-        return LoadPostgresFromURL(url=url, table=table)
+        self.load_from_url(url)
+        self.output().touch()
 
 
 class ProcessTiger(Task):
