@@ -5,6 +5,11 @@ source env/bin/activate
 if [ -f .env ]; then
   source .env
 fi
+export PGPASSWORD=$PGPASSWORD
+export PGHOST=$PGHOST
+export PGUSER=$PGUSER
+export PGPORT=$PGPORT
+export PGOPTIONS=$PGOPTIONS
 
 export PYTHONPATH=$PWD:/bigmetadata
 luigi --module tasks.us.census.acs AllACS --local-scheduler \
