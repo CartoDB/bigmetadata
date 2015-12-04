@@ -24,7 +24,7 @@ from tasks.us.census.tiger import Tiger, SUMLEVELS, load_sumlevels
 # 2. extract usable metadata from the imported tables, persist as json
 #
 
-class DownloadACS(WrapperTask):
+class DownloadACS(LoadPostgresFromURL):
 
     # http://censusreporter.tumblr.com/post/73727555158/easier-access-to-acs-data
     url_template = 'https://s3.amazonaws.com/census-backup/acs/{year}/' \
@@ -33,20 +33,29 @@ class DownloadACS(WrapperTask):
     year = Parameter()
     sample = Parameter()
 
-    def requires(self):
+    @property
+    def schema(self):
+        return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
+
+    def identifier(self):
+        return self.schema + '.census_table_metadata'
+
+    def run(self):
         cursor = pg_cursor()
         try:
             cursor.execute('CREATE ROLE census')
             cursor.connection.commit()
         except ProgrammingError:
             cursor.connection.rollback()
-        #cursor.execute('GRANT ALL TO census')
-        table = 'acs{year}_{sample}.census_table_metadata'.format(
-            year=self.year,
-            sample=self.sample
-        )
+        try:
+            cursor.execute('DROP SCHEMA {schema} CASCADE'.format(schema=self.schema))
+            cursor.connection.commit()
+        except ProgrammingError:
+            cursor.connection.rollback()
         url = self.url_template.format(year=self.year, sample=self.sample)
-        return LoadPostgresFromURL(url=url, table=table)
+        self.load_from_url(url)
+        self.output().touch()
+        #return LoadPostgresFromURL(url=url, table=table)
 
 
 class DumpACS(WrapperTask):

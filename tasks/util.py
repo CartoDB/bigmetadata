@@ -31,20 +31,25 @@ class DefaultPostgresTarget(PostgresTarget):
 
 class LoadPostgresFromURL(Task):
 
-    url = Parameter()
-    table = Parameter()
+    #table = Parameter()
     #gunzip = Parameter() # TODO
 
-    def run(self):
+    def load_from_url(self, url):
+        '''
+        Load psql at a URL into the database.
+
+        Ignores tablespaces assigned in the SQL.
+        '''
         subprocess.check_call('curl {url} | gunzip -c | '
-                              'grep -v default_tablespace | psql'.format(url=self.url), shell=True)
+                              'grep -v default_tablespace | psql'.format(url=url), shell=True)
         self.output().touch()
 
     def output(self):
-        return DefaultPostgresTarget(
-            table=self.table,
-            update_id=self.table
-        )
+        id_ = self.identifier()
+        return DefaultPostgresTarget(table=id_, update_id=id_)
+
+    def identifier(self):
+        raise NotImplementedError()
 
 
 def classpath(obj):
