@@ -3,6 +3,10 @@
     "build": ".",
     "volumes": [
       ".:/bigmetadata"
+    ],
+    "env_file": ".env",
+    "external_links": [
+      "docker4data"
     ]
   }
 }
