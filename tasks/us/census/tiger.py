@@ -6,7 +6,9 @@ Tiger
 
 import json
 import os
-from tasks.util import LoadPostgresFromURL, classpath, pg_cursor
+import subprocess
+from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
+                        DefaultPostgresTarget)
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
 from psycopg2 import ProgrammingError
 
@@ -38,6 +40,128 @@ class TigerSumLevel(LocalTarget):
             obj['relationships'] = relationships
         with self.open('w') as outfile:
             json.dump(obj, outfile, indent=2)
+
+
+class DownloadTigerGeography(Task):
+
+    year = Parameter()
+    geography = Parameter()
+    force = BooleanParameter() # TODO
+
+    url_format = 'ftp://ftp2.census.gov/geo/tiger/TIGER{year}/{geography}/'
+
+    @property
+    def url(self):
+        return self.url_format.format(year=self.year, geography=self.geography)
+
+    @property
+    def directory(self):
+        return os.path.join('tmp', classpath(self), self.year)
+
+    def run(self):
+        subprocess.check_call('wget --recursive --continue --accept=*.zip '
+                              '--no-parent --cut-dirs=3 --no-host-directories '
+                              '--directory-prefix={directory} '
+                              '{url}'.format(directory=self.directory, url=self.url), shell=True)
+
+    def output(self):
+        filenames = subprocess.check_output('wget --recursive --accept=*.zip --reject *.zip '
+                                            '--no-parent --cut-dirs=3 --no-host-directories '
+                                            '{url} 2>&1 | grep Rejecting'.format(url=self.url), shell=True)
+        for fname in filenames.split('\n'):
+            if not fname:
+                continue
+            path = os.path.join(self.directory, self.geography,
+                                fname.replace("Rejecting '", '').replace("'.", ''))
+            yield LocalTarget(path)
+
+
+class UnzipTigerGeography(Task):
+    '''
+    Unzip tiger geography
+    '''
+
+    year = Parameter()
+    geography = Parameter()
+    force = BooleanParameter() # TODO
+
+    def requires(self):
+        return DownloadTigerGeography(year=self.year, geography=self.geography)
+
+    def run(self):
+        for infile in self.input():
+            subprocess.check_call("unzip -n -q -d $(dirname {zippath}) '{zippath}'".format(
+                zippath=infile.path), shell=True)
+
+    def output(self):
+        for infile in self.input():
+            yield LocalTarget(infile.path.replace('.zip', '.shp'))
+
+
+class TigerGeographyShapefileToSQL(Task):
+    '''
+    Take downloaded shapefiles and turn them into a SQL dump.
+    '''
+
+    year = Parameter()
+    geography = Parameter()
+    force = BooleanParameter()
+
+    @property
+    def table(self):
+        return str(self.geography).lower()
+
+    @property
+    def schema(self):
+        return os.path.join(classpath(self), self.year)
+
+    @property
+    def qualified_table(self):
+        return '"{schema}"."{table}"'.format(schema=self.schema, table=self.table)
+
+    def complete(self):
+        if self.force == True:
+            return False
+        return super(TigerGeographyShapefileToSQL, self).complete()
+
+    def requires(self):
+        return UnzipTigerGeography(year=self.year, geography=self.geography)
+
+    def run(self):
+        cursor = pg_cursor()
+        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(schema=self.schema))
+        cursor.execute('DROP TABLE IF EXISTS {qualified_table}'.format(
+            qualified_table=self.qualified_table))
+        cursor.connection.commit()
+
+        shapefiles = self.input()
+        subprocess.check_call(
+            'shp2pgsql -D -W "latin1" -s 4326 -c {shp_path} '
+            '{qualified_table} | psql'.format(
+                shp_path=shapefiles.next().path,
+                qualified_table=self.qualified_table),
+            shell=True)
+
+        subprocess.check_call(
+            'export PG_USE_COPY=yes PGCLIENTENCODING=latin1; '
+            'echo \'{shapefiles}\' | xargs -P 16 -I shpfile_path '
+            'ogr2ogr -f PostgreSQL PG:dbname=census -append -nlt MultiPolygon '
+            '-nln {qualified_table} shpfile_path '.format(
+                shapefiles='\n'.join([shp.path for shp in shapefiles]),
+                qualified_table=self.qualified_table),
+            shell=True)
+
+        # Spatial index
+        cursor.execute('CREATE INDEX ON {qualified_table} USING GIST (geom)'.format(
+            qualified_table=self.qualified_table))
+
+        self.output().touch()
+
+        self.force = False
+
+    def output(self):
+        return DefaultPostgresTarget(table=self.qualified_table,
+                                     update_id=self.qualified_table)
 
 
 class DownloadTiger(LoadPostgresFromURL):

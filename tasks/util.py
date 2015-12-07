@@ -31,9 +31,6 @@ class DefaultPostgresTarget(PostgresTarget):
 
 class LoadPostgresFromURL(Task):
 
-    #table = Parameter()
-    #gunzip = Parameter() # TODO
-
     def load_from_url(self, url):
         '''
         Load psql at a URL into the database.
