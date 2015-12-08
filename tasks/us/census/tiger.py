@@ -188,6 +188,90 @@ class DownloadTiger(LoadPostgresFromURL):
         self.output().touch()
 
 
+class ShorelineClipTiger(Task):
+    '''
+    Clip the provided geography to shoreline.
+    '''
+
+    # MTFCC meanings:
+    # http://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2009/TGRSHP09AF.pdf
+
+    year = Parameter()
+    geography = Parameter()
+    force = BooleanParameter()
+
+    @property
+    def schema(self):
+        return os.path.join(classpath(self), self.year)
+
+    @property
+    def name(self):
+        return str(self.geography).lower() + '_shoreline_clipped'
+
+    @property
+    def negative_shape(self):
+        return self.input()['water'].table
+
+    @property
+    def positive_shape(self):
+        return '"tiger{year}"."{geography}"'.format(
+            #year=self.year,
+            year=2012,
+            geography=str(self.geography).lower())
+
+    @property
+    def qualified_table(self):
+        return '"{}"."{}"'.format(self.schema, self.name)
+
+    def requires(self):
+        return {
+            'tiger': ProcessTiger(year=self.year),
+            'water': TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year)
+        }
+
+    def complete(self):
+        if self.force:
+            return False
+        return super(ShorelineClipTiger, self).complete()
+
+    def run(self):
+        cursor = pg_cursor()
+        cursor.execute('DROP TABLE IF EXISTS {qualified_table}'.format(
+            qualified_table=self.qualified_table))
+
+        # copy positive table
+        cursor.execute('CREATE TABLE {qualified_table} AS '
+                       'SELECT * FROM {positive_shape}'.format(
+                           qualified_table=self.qualified_table,
+                           positive_shape=self.positive_shape
+                       ))
+
+        # update geometries in positive table
+        cursor.execute('CREATE INDEX ON {qualified_table} USING GIST '
+                       '(the_geom)'.format(qualified_table=self.qualified_table))
+        cursor.execute('UPDATE {qualified_table} pos '
+                       'SET the_geom = ST_DIFFERENCE(pos.the_geom, neg.geom) '
+                       'FROM {negative_shape} neg '
+                       'WHERE pos.the_geom && neg.geom '
+                       'AND neg.mtfcc IN ( \'H2040\', \'H2053\', \'H2051\', \'H3010\' )'.format(
+                           qualified_table=self.qualified_table,
+                           negative_shape=self.negative_shape
+                       ))
+        cursor.connection.commit()
+        try:
+            self.output().touch()
+        except:
+            if self.force:
+                pass
+            else:
+                raise
+        self.force = False
+
+    def output(self):
+        return DefaultPostgresTarget(table=self.qualified_table,
+                                     update_id=self.qualified_table)
+
+
 class ProcessTiger(Task):
 
     force = BooleanParameter(default=False)
