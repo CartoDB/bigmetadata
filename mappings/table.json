@@ -1,0 +1,9 @@
+{
+    "table": {
+        "properties": {
+            "columns": {
+                "type": "string"
+            }
+        }
+    }
+}

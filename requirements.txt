@@ -2,3 +2,5 @@ requests==2.8.1
 luigi==2.0.0
 pylint
 psycopg2
+elasticsearch
+#pip install git+https://github.com/ljwolf/cenpy@static

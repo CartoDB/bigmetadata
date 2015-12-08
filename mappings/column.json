@@ -1,0 +1,21 @@
+{
+    "column": {
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "parent": {
+                "type": "string"
+            },
+            "ancestors": {
+                "type": "string"
+            },
+            "extra": {
+                "type": "object"
+            }
+        }
+    }
+}

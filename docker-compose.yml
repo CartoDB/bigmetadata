@@ -1,12 +1,43 @@
+# Thanks to
+# https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
 {
+  "kibana": {
+    "build": "kibana/",
+    "volumes": [
+      "./kibana/config/kibana.yml:/opt/kibana/config/kibana.yml"
+    ],
+    "ports": [
+      "5601:5601"
+    ],
+    "links": [
+      "elasticsearch"
+    ],
+  },
+  "elasticsearch": {
+    "image": "elasticsearch:latest",
+    "command": "elasticsearch -Des.network.host=0.0.0.0",
+    "ports": [
+      "9200:9200",
+      "9300:9300"
+    ]
+  },
   "bigmetadata": {
+    "working_dir": "/bigmetadata",
     "build": ".",
+    "links": [
+      "elasticsearch"
+    ],
     "volumes": [
       ".:/bigmetadata"
     ],
+    "environment": {
+      "PYTHONPATH": "/bigmetadata",
+      "ES_HOST": "elasticsearch",
+      "ES_PORT": "9200"
+    },
     "env_file": ".env",
-    "external_links": [
-      "docker4data"
-    ]
+#    "external_links": [
+#      "docker4data"
+#    ]
   }
 }
