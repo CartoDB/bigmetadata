@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04005001", 
     "parent": "us/census/acs/B04005073"
   }, 
-  "name": "\"People Reporting Multiple Ancestry\": \"('Subsaharan African:',)\" \"Cape Verdean\" in \"People Reporting Multiple Ancestries\""
+  "name": "Cape Verdean and Subsaharan African in People Reporting Multiple Ancestries", 
+  "extra": {
+    "table": "People Reporting Multiple Ancestry", 
+    "universe": "People Reporting Multiple Ancestries", 
+    "ancestors": [
+      "Subsaharan African:"
+    ], 
+    "title": "Cape Verdean"
+  }
 }

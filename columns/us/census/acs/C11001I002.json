@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C11001I001", 
     "parent": "us/census/acs/C11001I001"
   }, 
-  "name": "\"Household Type (Hispanic or Latino)\": \"()\" \"Family households:\" in \"Households With a Householder Who Is Hispanic or Latino\""
+  "name": "Family households: in Households With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Household Type (Hispanic or Latino)", 
+    "universe": "Households With a Householder Who Is Hispanic or Latino", 
+    "title": "Family households:"
+  }
 }

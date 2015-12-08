@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05002001", 
     "parent": "us/census/acs/B05002013"
   }, 
-  "name": "\"Place of Birth by Citizenship Status\": \"('Foreign born:',)\" \"Naturalized U.S. citizen\" in \"Total Population\""
+  "name": "Naturalized U.S. citizen and Foreign born in Total Population", 
+  "extra": {
+    "table": "Place of Birth by Citizenship Status", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

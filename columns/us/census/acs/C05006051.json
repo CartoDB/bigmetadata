@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05006001", 
     "parent": "us/census/acs/C05006049"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population\": \"('Oceania:',)\" \"Oceania, n.e.c.\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Oceania, n.e.c. and Oceania in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Oceania:"
+    ], 
+    "title": "Oceania, n.e.c."
+  }
 }

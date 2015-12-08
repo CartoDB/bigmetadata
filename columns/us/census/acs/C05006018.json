@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05006001", 
     "parent": "us/census/acs/C05006017"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population\": \"('Europe:', 'Eastern Europe:')\" \"Poland\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Poland and Europe and Eastern Europe in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Europe:", 
+      "Eastern Europe:"
+    ], 
+    "title": "Poland"
+  }
 }

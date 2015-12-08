@@ -1,3 +1,14 @@
 {
-  "name": "\"Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Workplace Geography\": \"('Worked at home:',)\" \"Total:\" in \"Workers 16 Years and Over With Earnings\""
+  "relationships": {
+    "denominator": "us/census/acs/C08519001"
+  }, 
+  "name": "Total: within Worked at home in Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Workplace Geography", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "Total:"
+  }
 }

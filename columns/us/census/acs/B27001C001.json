@@ -1,3 +1,14 @@
 {
-  "name": "\"Health Insurance Coverage Status by Age (American Indian and Alaska Native Alone)\": \"('65 years and over:',)\" \"Total:\" in \"AMERICAN INDIAN AND ALASKA NATIVE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "relationships": {
+    "denominator": "us/census/acs/B27001C001"
+  }, 
+  "name": "Total: and 65 years and over in AMERICAN INDIAN AND ALASKA NATIVE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (American Indian and Alaska Native Alone)", 
+    "universe": "AMERICAN INDIAN AND ALASKA NATIVE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

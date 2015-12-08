@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99182001", 
     "parent": "us/census/acs/B99182001"
   }, 
-  "name": "\"Imputation of Hearing Difficulty for the Civilian Noninstitutionalized Population\": \"()\" \"Not imputed\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Not imputed in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Imputation of Hearing Difficulty for the Civilian Noninstitutionalized Population", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Not imputed"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99232001", 
     "parent": "us/census/acs/B99232001"
   }, 
-  "name": "\"Imputation of Work Status in the Past 12 Months for the Population 16 Years and Over\": \"()\" \"Imputed\" in \"Population 16 Years and Over\""
+  "name": "Imputed in Population 16 Years and Over", 
+  "extra": {
+    "table": "Imputation of Work Status in the Past 12 Months for the Population 16 Years and Over", 
+    "universe": "Population 16 Years and Over", 
+    "title": "Imputed"
+  }
 }

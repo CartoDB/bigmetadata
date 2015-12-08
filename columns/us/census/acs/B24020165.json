@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020164"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Management, business, and financial occupations:', 'Business and financial operations occupations:')\" \"Human resources workers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Human resources workers and Female and Management, business, science, and arts occupations and Management, business, and financial occupations and Business and financial operations occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Management, business, and financial occupations:", 
+      "Business and financial operations occupations:"
+    ], 
+    "title": "Human resources workers"
+  }
 }

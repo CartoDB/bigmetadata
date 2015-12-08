@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25116001", 
     "parent": "us/census/acs/C25116002"
   }, 
-  "name": "\"Tenure by Household Size by Age of Householder\": \"('Owner occupied:',)\" \"2-or-more person household:\" in \"Occupied Housing Units\""
+  "name": "2-or-more person household: and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Size by Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "2-or-more person household:"
+  }
 }

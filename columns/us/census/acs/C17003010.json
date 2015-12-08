@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17003001", 
     "parent": "us/census/acs/C17003007"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Individuals by Educational Attainment\": \"('Income in the past 12 months at or above poverty level:',)\" \"Some college, associate's degree\" in \"Population 25 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "Some college, associate's degree and Income in the past 12 months at or above poverty level in Population 25 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Individuals by Educational Attainment", 
+    "universe": "Population 25 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:"
+    ], 
+    "title": "Some college, associate's degree"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25024001", 
     "parent": "us/census/acs/B25024001"
   }, 
-  "name": "\"Units in Structure\": \"()\" \"3 or 4\" in \"Housing Units\""
+  "name": "3 or 4 in Housing Units", 
+  "extra": {
+    "table": "Units in Structure", 
+    "universe": "Housing Units", 
+    "title": "3 or 4"
+  }
 }

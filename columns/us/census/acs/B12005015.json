@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12005001", 
     "parent": "us/census/acs/B12005014"
   }, 
-  "name": "\"Marital Status by Nativity\": \"('Divorced:',)\" \"Native\" in \"Population 15 Years and Over\""
+  "name": "Native and Divorced in Population 15 Years and Over", 
+  "extra": {
+    "table": "Marital Status by Nativity", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Divorced:"
+    ], 
+    "title": "Native"
+  }
 }

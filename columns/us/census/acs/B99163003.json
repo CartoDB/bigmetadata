@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99163001", 
     "parent": "us/census/acs/B99163001"
   }, 
-  "name": "\"Imputation of Ability to Speak English for the Population 5 Years and Over\": \"()\" \"Speak other languages:\" in \"Population 5 Years and Over\""
+  "name": "Speak other languages: in Population 5 Years and Over", 
+  "extra": {
+    "table": "Imputation of Ability to Speak English for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "title": "Speak other languages:"
+  }
 }

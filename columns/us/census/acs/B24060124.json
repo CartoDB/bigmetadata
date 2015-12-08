@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24060001", 
     "parent": "us/census/acs/B24060123"
   }, 
-  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Private not-for-profit wage and salary workers:', 'Management, business, science, and arts occupations:', 'Healthcare practitioners and technical occupations:')\" \"Health diagnosing and treating practitioners and other technical occupations\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Health diagnosing and treating practitioners and other technical occupations and Private not-for-profit wage and salary workers and Management, business, science, and arts occupations and Healthcare practitioners and technical occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Private not-for-profit wage and salary workers:", 
+      "Management, business, science, and arts occupations:", 
+      "Healthcare practitioners and technical occupations:"
+    ], 
+    "title": "Health diagnosing and treating practitioners and other technical occupations"
+  }
 }

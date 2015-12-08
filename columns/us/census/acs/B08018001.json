@@ -1,3 +1,11 @@
 {
-  "name": "\"Place of Work for Workers 16 Years and Over--not Metropolitan or Micropolitan Statistical Area Level\": \"()\" \"Total:\" in \"Workers 16 Years and Over Not Living in a Metropolitan or Micropolitan Statistical Area\""
+  "relationships": {
+    "denominator": "us/census/acs/B08018001"
+  }, 
+  "name": "Workers 16 Years and Over Not Living in a Metropolitan or Micropolitan Statistical Area", 
+  "extra": {
+    "table": "Place of Work for Workers 16 Years and Over--not Metropolitan or Micropolitan Statistical Area Level", 
+    "universe": "Workers 16 Years and Over Not Living in a Metropolitan or Micropolitan Statistical Area", 
+    "title": "Total:"
+  }
 }

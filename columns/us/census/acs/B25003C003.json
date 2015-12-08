@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25003C001", 
     "parent": "us/census/acs/B25003C001"
   }, 
-  "name": "\"Tenure (American Indian and Alaska Native Alone Householder)\": \"()\" \"Renter occupied\" in \"Occupied Housing Units With a Householder Who Is American Indian and Alaska Native Alone\""
+  "name": "Renter occupied in Occupied Housing Units With a Householder Who Is American Indian and Alaska Native Alone", 
+  "extra": {
+    "table": "Tenure (American Indian and Alaska Native Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is American Indian and Alaska Native Alone", 
+    "title": "Renter occupied"
+  }
 }

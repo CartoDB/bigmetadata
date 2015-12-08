@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08511001", 
     "parent": "us/census/acs/C08511003"
   }, 
-  "name": "\"Means of Transportation to Work by Citizenship Status for Workplace Geography\": \"('Worked at home:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"Workers 16 Years and Over\""
+  "name": "Naturalized U.S. citizen within Worked at home within Foreign born in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Citizenship Status for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

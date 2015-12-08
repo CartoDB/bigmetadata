@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17001D001", 
     "parent": "us/census/acs/B17001D032"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age (Asian Alone)\": \"('Income in the past 12 months at or above poverty level:', 'Male:')\" \"65 to 74 years\" in \"Asian Alone Population for Whom Poverty Status Is Determined\""
+  "name": "65 to 74 years and Income in the past 12 months at or above poverty level and Male in Asian Alone Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age (Asian Alone)", 
+    "universe": "Asian Alone Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Male:"
+    ], 
+    "title": "65 to 74 years"
+  }
 }

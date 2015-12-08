@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex of Workers by Place of Work--Place Level\": \"('Female:',)\" \"Total:\" in \"Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08008001"
+  }, 
+  "name": "Total: and Female in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Place of Work--Place Level", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

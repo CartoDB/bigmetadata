@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B19326001"
   }, 
-  "name": "\"Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Work Experience in the Past 12 Months for the Population 15 Years and Over With Income\": \"('Total (dollars):',)\" \"Total (dollars)\" in \"Population 15 Years and Over With Income in the Past 12 Months\""
+  "name": "Total (dollars) and Total (dollars) in Population 15 Years and Over With Income in the Past 12 Months", 
+  "extra": {
+    "table": "Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Work Experience in the Past 12 Months for the Population 15 Years and Over With Income", 
+    "universe": "Population 15 Years and Over With Income in the Past 12 Months", 
+    "ancestors": [
+      "Total (dollars):"
+    ], 
+    "title": "Total (dollars)"
+  }
 }

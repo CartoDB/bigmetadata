@@ -1,3 +1,15 @@
 {
-  "name": "\"Households by Presence of People Under 18 Years by Household Type\": \"('Other family:', 'Female householder, no husband present:')\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B11005001"
+  }, 
+  "name": "Total: and Other family and Female householder, no husband present in Households", 
+  "extra": {
+    "table": "Households by Presence of People Under 18 Years by Household Type", 
+    "universe": "Households", 
+    "ancestors": [
+      "Other family:", 
+      "Female householder, no husband present:"
+    ], 
+    "title": "Total:"
+  }
 }

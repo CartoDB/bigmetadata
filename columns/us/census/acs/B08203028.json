@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08203001", 
     "parent": "us/census/acs/B08203025"
   }, 
-  "name": "\"Number of Workers in Household by Vehicles Available\": \"('3 or more workers:',)\" \"2 vehicles available\" in \"Households\""
+  "name": "2 vehicles available and 3 or more workers in Households", 
+  "extra": {
+    "table": "Number of Workers in Household by Vehicles Available", 
+    "universe": "Households", 
+    "ancestors": [
+      "3 or more workers:"
+    ], 
+    "title": "2 vehicles available"
+  }
 }

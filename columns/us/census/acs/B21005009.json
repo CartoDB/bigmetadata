@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21005001", 
     "parent": "us/census/acs/B21005008"
   }, 
-  "name": "\"Age by Veteran Status by Employment Status for the Civilian Population 18 to 64 Years\": \"('18 to 34 years:', 'Nonveteran:')\" \"In labor force:\" in \"Civilian Population 18 to 64 Years\""
+  "name": "In labor force: and 18 to 34 years and Nonveteran in Civilian Population 18 to 64 Years", 
+  "extra": {
+    "table": "Age by Veteran Status by Employment Status for the Civilian Population 18 to 64 Years", 
+    "universe": "Civilian Population 18 to 64 Years", 
+    "ancestors": [
+      "18 to 34 years:", 
+      "Nonveteran:"
+    ], 
+    "title": "In labor force:"
+  }
 }

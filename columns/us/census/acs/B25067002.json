@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25067001"
   }, 
-  "name": "\"Aggregate Gross Rent (Dollars) by Meals Included in Rent\": \"()\" \"Meals included in rent\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "name": "Meals included in rent in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Aggregate Gross Rent (Dollars) by Meals Included in Rent", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "title": "Meals included in rent"
+  }
 }

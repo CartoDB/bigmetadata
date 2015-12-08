@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001G001", 
     "parent": "us/census/acs/B11001G007"
   }, 
-  "name": "\"Household Type (Including Living Alone) (Two or More Races)\": \"('Nonfamily households:',)\" \"Householder not living alone\" in \"Households With a Householder Who Is Two or More Races\""
+  "name": "Householder not living alone and Nonfamily households in Households With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (Two or More Races)", 
+    "universe": "Households With a Householder Who Is Two or More Races", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Householder not living alone"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010B001", 
     "parent": "us/census/acs/B24010B034"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Black or African American Alone)\": \"('Male:', 'Production, transportation, and material moving occupations:')\" \"Transportation occupations\" in \"Civilian Employed Black or African American Alone Population 16 Years and Over\""
+  "name": "Transportation occupations and Male and Production, transportation, and material moving occupations in Civilian Employed Black or African American Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Black or African American Alone)", 
+    "universe": "Civilian Employed Black or African American Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Production, transportation, and material moving occupations:"
+    ], 
+    "title": "Transportation occupations"
+  }
 }

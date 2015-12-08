@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25118001", 
     "parent": "us/census/acs/B25118014"
   }, 
-  "name": "\"Tenure by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('Renter occupied:',)\" \"$35,000 to $49,999\" in \"Occupied Housing Units\""
+  "name": "$35,000 to $49,999 and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "$35,000 to $49,999"
+  }
 }

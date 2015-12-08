@@ -1,3 +1,9 @@
 {
-  "name": "\"Aggregate Number of Rooms by Vacancy Status\": \"()\" \"Aggregate number of rooms:\" in \"Vacant Housing Units\""
+  "relationships": {}, 
+  "name": "Aggregate number of rooms: in Vacant Housing Units", 
+  "extra": {
+    "table": "Aggregate Number of Rooms by Vacancy Status", 
+    "universe": "Vacant Housing Units", 
+    "title": "Aggregate number of rooms:"
+  }
 }

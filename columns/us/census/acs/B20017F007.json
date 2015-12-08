@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B20017F001"
   }, 
-  "name": "\"Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Work Experience in the Past 12 Months for the Population 16 Years and Over With Earnings in the Past 12 Months (Some Other Race Alone)\": \"('Total:',)\" \"Other\" in \"Some Other Race Alone Population 16 Years and Over With Earnings in the Past 12 Months\""
+  "name": "Other and Total in Some Other Race Alone Population 16 Years and Over With Earnings in the Past 12 Months", 
+  "extra": {
+    "table": "Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Work Experience in the Past 12 Months for the Population 16 Years and Over With Earnings in the Past 12 Months (Some Other Race Alone)", 
+    "universe": "Some Other Race Alone Population 16 Years and Over With Earnings in the Past 12 Months", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Other"
+  }
 }

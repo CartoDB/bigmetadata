@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25023001"
   }, 
-  "name": "\"Aggregate Number of Rooms by Vacancy Status\": \"()\" \"Sold, not occupied\" in \"Vacant Housing Units\""
+  "name": "Sold, not occupied in Vacant Housing Units", 
+  "extra": {
+    "table": "Aggregate Number of Rooms by Vacancy Status", 
+    "universe": "Vacant Housing Units", 
+    "title": "Sold, not occupied"
+  }
 }

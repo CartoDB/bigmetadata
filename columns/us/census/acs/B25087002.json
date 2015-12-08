@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25087001", 
     "parent": "us/census/acs/B25087001"
   }, 
-  "name": "\"Mortgage Status and Selected Monthly Owner Costs\": \"()\" \"Housing units with a mortgage:\" in \"Owner-occupied Housing Units\""
+  "name": "Housing units with a mortgage: in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status and Selected Monthly Owner Costs", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Housing units with a mortgage:"
+  }
 }

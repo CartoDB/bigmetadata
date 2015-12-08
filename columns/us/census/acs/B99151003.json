@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99151001", 
     "parent": "us/census/acs/B99151001"
   }, 
-  "name": "\"Imputation of Educational Attainment for the Population 25 Years and Over\": \"()\" \"Not imputed\" in \"Population 25 Years and Over\""
+  "name": "Not imputed in Population 25 Years and Over", 
+  "extra": {
+    "table": "Imputation of Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "title": "Not imputed"
+  }
 }

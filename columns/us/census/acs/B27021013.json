@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27021001", 
     "parent": "us/census/acs/B27021009"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Living Arrangement\": \"('In family households:', 'In married couple families:', 'Non-relatives:')\" \"No health insurance coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No health insurance coverage and In family households and In married couple families and Non-relatives in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Living Arrangement", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "In family households:", 
+      "In married couple families:", 
+      "Non-relatives:"
+    ], 
+    "title": "No health insurance coverage"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003I001", 
     "parent": "us/census/acs/B05003I019"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Hispanic or Latino)\": \"('Female:', '18 years and over:')\" \"Native\" in \"Hispanic or Latino Population\""
+  "name": "Native and Female and 18 years and over in Hispanic or Latino Population", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population", 
+    "ancestors": [
+      "Female:", 
+      "18 years and over:"
+    ], 
+    "title": "Native"
+  }
 }

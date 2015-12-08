@@ -1,3 +1,11 @@
 {
-  "name": "\"Price Asked\": \"()\" \"Total:\" in \"Vacant-for-sale-only and Sold, Not Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25085001"
+  }, 
+  "name": "Vacant-for-sale-only and Sold, Not Occupied Housing Units", 
+  "extra": {
+    "table": "Price Asked", 
+    "universe": "Vacant-for-sale-only and Sold, Not Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

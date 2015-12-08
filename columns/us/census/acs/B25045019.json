@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25045001", 
     "parent": "us/census/acs/B25045016"
   }, 
-  "name": "\"Tenure by Vehicles Available by Age of Householder\": \"('Renter occupied:', '1 or more vehicles available:')\" \"Householder 65 years and over\" in \"Occupied Housing Units\""
+  "name": "Householder 65 years and over and Renter occupied and 1 or more vehicles available in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Vehicles Available by Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "1 or more vehicles available:"
+    ], 
+    "title": "Householder 65 years and over"
+  }
 }

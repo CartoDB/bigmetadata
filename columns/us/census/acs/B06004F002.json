@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06004F001", 
     "parent": "us/census/acs/B06004F001"
   }, 
-  "name": "\"Place of Birth (Some Other Race Alone) in the United States\": \"()\" \"Born in state of residence\" in \"Some Other Race Alone Population in the United States\""
+  "name": "Born in state of residence in Some Other Race Alone Population in the United States", 
+  "extra": {
+    "table": "Place of Birth (Some Other Race Alone) in the United States", 
+    "universe": "Some Other Race Alone Population in the United States", 
+    "title": "Born in state of residence"
+  }
 }

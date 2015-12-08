@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05003001", 
     "parent": "us/census/acs/C05003009"
   }, 
-  "name": "\"Sex by Age by Nativity\": \"('Female:',)\" \"Under 18 years:\" in \"Total Population\""
+  "name": "Under 18 years: and Female in Total Population", 
+  "extra": {
+    "table": "Sex by Age by Nativity", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Under 18 years:"
+  }
 }

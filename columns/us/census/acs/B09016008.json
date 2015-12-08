@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09016001", 
     "parent": "us/census/acs/B09016003"
   }, 
-  "name": "\"Household Type (Including Living Alone) by Relationship\": \"('In households:', 'In family households:')\" \"Child\" in \"Total Population\""
+  "name": "Child and In households and In family households in Total Population", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) by Relationship", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "In households:", 
+      "In family households:"
+    ], 
+    "title": "Child"
+  }
 }

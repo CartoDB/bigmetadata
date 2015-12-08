@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11012001", 
     "parent": "us/census/acs/B11012006"
   }, 
-  "name": "\"Household Type by Tenure\": \"('Family households:', 'Other family:')\" \"Female householder, no husband present:\" in \"Households\""
+  "name": "Female householder, no husband present: and Family households and Other family in Households", 
+  "extra": {
+    "table": "Household Type by Tenure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:", 
+      "Other family:"
+    ], 
+    "title": "Female householder, no husband present:"
+  }
 }

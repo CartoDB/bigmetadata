@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010H001", 
     "parent": "us/census/acs/B24010H019"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone, Not Hispanic or Latino)\": \"('Male:', 'Service occupations:')\" \"Protective service occupations:\" in \"Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over\""
+  "name": "Protective service occupations: and Male and Service occupations in Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Service occupations:"
+    ], 
+    "title": "Protective service occupations:"
+  }
 }

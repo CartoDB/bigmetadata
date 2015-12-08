@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010D001", 
     "parent": "us/census/acs/B24010D043"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Asian Alone)\": \"('Female:', 'Management, business, science, and arts occupations:', 'Computer, engineering, and science occupations:')\" \"Architecture and engineering occupations\" in \"Civilian Employed Asian Alone Population 16 Years and Over\""
+  "name": "Architecture and engineering occupations and Female and Management, business, science, and arts occupations and Computer, engineering, and science occupations in Civilian Employed Asian Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Asian Alone)", 
+    "universe": "Civilian Employed Asian Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Computer, engineering, and science occupations:"
+    ], 
+    "title": "Architecture and engineering occupations"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001001", 
     "parent": "us/census/acs/B01001026"
   }, 
-  "name": "\"Sex by Age\": \"('Female:',)\" \"15 to 17 years\" in \"Total Population\""
+  "name": "15 to 17 years and Female in Total Population", 
+  "extra": {
+    "table": "Sex by Age", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "15 to 17 years"
+  }
 }

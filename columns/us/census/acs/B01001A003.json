@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001A001", 
     "parent": "us/census/acs/B01001A002"
   }, 
-  "name": "\"Sex by Age (White Alone)\": \"('Male:',)\" \"Under 5 years\" in \"People Who Are White Alone\""
+  "name": "Under 5 years and Male in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age (White Alone)", 
+    "universe": "People Who Are White Alone", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Under 5 years"
+  }
 }

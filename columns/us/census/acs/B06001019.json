@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06001001", 
     "parent": "us/census/acs/B06001013"
   }, 
-  "name": "\"Place of Birth by Age in the United States\": \"('Born in state of residence:',)\" \"45 to 54 years\" in \"Total Population in the United States\""
+  "name": "45 to 54 years and Born in state of residence in Total Population in the United States", 
+  "extra": {
+    "table": "Place of Birth by Age in the United States", 
+    "universe": "Total Population in the United States", 
+    "ancestors": [
+      "Born in state of residence:"
+    ], 
+    "title": "45 to 54 years"
+  }
 }

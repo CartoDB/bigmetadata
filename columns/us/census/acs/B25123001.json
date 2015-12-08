@@ -1,3 +1,15 @@
 {
-  "name": "\"Tenure by Selected Physical and Financial Conditions\": \"(None, '$75,000 or more:')\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25123001"
+  }, 
+  "name": "Total: and $75,000 or more in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Selected Physical and Financial Conditions", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      null, 
+      "$75,000 or more:"
+    ], 
+    "title": "Total:"
+  }
 }

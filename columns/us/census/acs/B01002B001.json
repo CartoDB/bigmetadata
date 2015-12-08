@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Sex (Black or African American Alone)\": \"()\" \"Total:\" in \"People Who Are White Alone\""
+  "relationships": {}, 
+  "name": "People Who Are White Alone", 
+  "extra": {
+    "table": "Median Age by Sex (Black or African American Alone)", 
+    "universe": "People Who Are White Alone", 
+    "title": "Total:"
+  }
 }

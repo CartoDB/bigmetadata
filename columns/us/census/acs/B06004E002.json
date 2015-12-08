@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06004E001", 
     "parent": "us/census/acs/B06004E001"
   }, 
-  "name": "\"Place of Birth (Native Hawaiian and Other Pacific Islander Alone) in the United States\": \"()\" \"Born in state of residence\" in \"Native Hawaiian and Other Pacific Islander Alone Population in the United States\""
+  "name": "Born in state of residence in Native Hawaiian and Other Pacific Islander Alone Population in the United States", 
+  "extra": {
+    "table": "Place of Birth (Native Hawaiian and Other Pacific Islander Alone) in the United States", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population in the United States", 
+    "title": "Born in state of residence"
+  }
 }

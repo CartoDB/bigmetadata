@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18101F001", 
     "parent": "us/census/acs/B18101F002"
   }, 
-  "name": "\"Age by Disability Status (Some Other Race Alone)\": \"('Under 18 years:',)\" \"With a disability\" in \"Some Other Race Alone Civilian Noninstitutionalized Population\""
+  "name": "With a disability and Under 18 years in Some Other Race Alone Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status (Some Other Race Alone)", 
+    "universe": "Some Other Race Alone Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Under 18 years:"
+    ], 
+    "title": "With a disability"
+  }
 }

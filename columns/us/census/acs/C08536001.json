@@ -1,3 +1,9 @@
 {
-  "name": "\"Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work for Workplace Geography\": \"()\" \"Aggregate travel time to work (in minutes):\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "relationships": {}, 
+  "name": "Aggregate travel time to work (in minutes): in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "title": "Aggregate travel time to work (in minutes):"
+  }
 }

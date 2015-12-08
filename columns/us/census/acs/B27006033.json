@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27006001", 
     "parent": "us/census/acs/B27006031"
   }, 
-  "name": "\"Medicare Coverage by Sex by Age\": \"('Female:', 'Under 6 years:')\" \"No Medicare coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No Medicare coverage and Female and Under 6 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Medicare Coverage by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "Under 6 years:"
+    ], 
+    "title": "No Medicare coverage"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Aggregate Selected Monthly Owner Costs (Dollars) by Mortgage Status\": \"()\" \"Aggregate selected monthly owner costs (dollars):\" in \"Owner-occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Aggregate selected monthly owner costs (dollars): in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Selected Monthly Owner Costs (Dollars) by Mortgage Status", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Aggregate selected monthly owner costs (dollars):"
+  }
 }

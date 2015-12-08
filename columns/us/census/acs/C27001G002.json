@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27001G001", 
     "parent": "us/census/acs/C27001G001"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Two or More Races)\": \"()\" \"Under 18 years:\" in \"TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "Under 18 years: in TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Two or More Races)", 
+    "universe": "TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "title": "Under 18 years:"
+  }
 }

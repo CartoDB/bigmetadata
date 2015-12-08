@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05006001", 
     "parent": "us/census/acs/C05006001"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population\": \"()\" \"Oceania:\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Oceania: in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "title": "Oceania:"
+  }
 }

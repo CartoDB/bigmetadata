@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C14005001", 
     "parent": "us/census/acs/C14005014"
   }, 
-  "name": "\"Sex by School Enrollment by Educational Attainment by Employment Status for the Population 16 to 19 Years\": \"('Female:', 'Not enrolled in school:', 'High school graduate:')\" \"In the labor force (employed or unemployed)\" in \"Population 16 to 19 Years\""
+  "name": "In the labor force (employed or unemployed) and Female and Not enrolled in school and High school graduate in Population 16 to 19 Years", 
+  "extra": {
+    "table": "Sex by School Enrollment by Educational Attainment by Employment Status for the Population 16 to 19 Years", 
+    "universe": "Population 16 to 19 Years", 
+    "ancestors": [
+      "Female:", 
+      "Not enrolled in school:", 
+      "High school graduate:"
+    ], 
+    "title": "In the labor force (employed or unemployed)"
+  }
 }

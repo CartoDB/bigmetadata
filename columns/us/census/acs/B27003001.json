@@ -1,3 +1,15 @@
 {
-  "name": "\"Public Health Insurance Status by Sex by Age\": \"('Female:', '65 years and over:')\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B27003001"
+  }, 
+  "name": "Total: and Female and 65 years and over in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Public Health Insurance Status by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

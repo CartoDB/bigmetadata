@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27015001", 
     "parent": "us/census/acs/B27015008"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('$25,000 to $49,999:', 'With health insurance coverage')\" \"With private health insurance\" in \"Civilian Population Living in Households\""
+  "name": "With private health insurance and $25,000 to $49,999 and With health insurance coverage in Civilian Population Living in Households", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Civilian Population Living in Households", 
+    "ancestors": [
+      "$25,000 to $49,999:", 
+      "With health insurance coverage"
+    ], 
+    "title": "With private health insurance"
+  }
 }

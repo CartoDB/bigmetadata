@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08534001", 
     "parent": "us/census/acs/C08534001"
   }, 
-  "name": "\"Means of Transportation to Work by Travel Time to Work for Workplace Geography\": \"()\" \"Drove alone:\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "Drove alone: in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "title": "Drove alone:"
+  }
 }

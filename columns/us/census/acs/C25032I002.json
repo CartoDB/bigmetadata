@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25032I001", 
     "parent": "us/census/acs/C25032I001"
   }, 
-  "name": "\"Units in Structure (Hispanic or Latino Householder)\": \"()\" \"1, detached or attached\" in \"Occupied Housing Units With a Householder Who Is Hispanic or Latino\""
+  "name": "1, detached or attached in Occupied Housing Units With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Units in Structure (Hispanic or Latino Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Hispanic or Latino", 
+    "title": "1, detached or attached"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003A001", 
     "parent": "us/census/acs/B05003A021"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (White Alone)\": \"('Female:', '18 years and over:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"People Who Are White Alone\""
+  "name": "Naturalized U.S. citizen and Female and 18 years and over and Foreign born in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (White Alone)", 
+    "universe": "People Who Are White Alone", 
+    "ancestors": [
+      "Female:", 
+      "18 years and over:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

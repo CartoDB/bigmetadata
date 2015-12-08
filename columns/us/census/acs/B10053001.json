@@ -1,3 +1,14 @@
 {
-  "name": "\"Nativity by Grandparents Responsible for Own Grandchildren Under 18 Years by Age of Grandparent\": \"('No disability:',)\" \"Total:\" in \"Grandparents Living With Own Grandchildren Under 18 Years\""
+  "relationships": {
+    "denominator": "us/census/acs/B10053001"
+  }, 
+  "name": "Total: and No disability in Grandparents Living With Own Grandchildren Under 18 Years", 
+  "extra": {
+    "table": "Nativity by Grandparents Responsible for Own Grandchildren Under 18 Years by Age of Grandparent", 
+    "universe": "Grandparents Living With Own Grandchildren Under 18 Years", 
+    "ancestors": [
+      "No disability:"
+    ], 
+    "title": "Total:"
+  }
 }

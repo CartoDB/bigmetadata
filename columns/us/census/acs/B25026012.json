@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25026001", 
     "parent": "us/census/acs/B25026009"
   }, 
-  "name": "\"Total Population in Occupied Housing Units by Tenure by Year Householder Moved Into Unit\": \"('Renter occupied:',)\" \"Moved in 1990 to 1999\" in \"Total Population in Occupied Housing Units\""
+  "name": "Moved in 1990 to 1999 and Renter occupied in Total Population in Occupied Housing Units", 
+  "extra": {
+    "table": "Total Population in Occupied Housing Units by Tenure by Year Householder Moved Into Unit", 
+    "universe": "Total Population in Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Moved in 1990 to 1999"
+  }
 }

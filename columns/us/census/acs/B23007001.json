@@ -1,3 +1,14 @@
 {
-  "name": "\"Presence of Own Children Under 18 Years by Family Type by Employment Status\": \"(\"Bachelor's degree or higher:\",)\" \"Total:\" in \"Families\""
+  "relationships": {
+    "denominator": "us/census/acs/B23007001"
+  }, 
+  "name": "Total: and Bachelor's degree or higher in Families", 
+  "extra": {
+    "table": "Presence of Own Children Under 18 Years by Family Type by Employment Status", 
+    "universe": "Families", 
+    "ancestors": [
+      "Bachelor's degree or higher:"
+    ], 
+    "title": "Total:"
+  }
 }

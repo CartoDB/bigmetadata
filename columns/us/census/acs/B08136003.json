@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B08136002"
   }, 
-  "name": "\"Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work\": \"('Car, truck, or van:',)\" \"Drove alone\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "Drove alone and Car, truck, or van in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Car, truck, or van:"
+    ], 
+    "title": "Drove alone"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25053001", 
     "parent": "us/census/acs/B25053001"
   }, 
-  "name": "\"Tenure by Kitchen Facilities\": \"()\" \"Owner occupied:\" in \"Occupied Housing Units\""
+  "name": "Owner occupied: in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Kitchen Facilities", 
+    "universe": "Occupied Housing Units", 
+    "title": "Owner occupied:"
+  }
 }

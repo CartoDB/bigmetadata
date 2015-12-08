@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99171001", 
     "parent": "us/census/acs/B99171001"
   }, 
-  "name": "\"Imputation of Poverty Status in the Past 12 Months for Unrelated Individuals\": \"()\" \"25 to less than 50 percent of total income for individual imputed\" in \"Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "25 to less than 50 percent of total income for individual imputed in Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Imputation of Poverty Status in the Past 12 Months for Unrelated Individuals", 
+    "universe": "Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined", 
+    "title": "25 to less than 50 percent of total income for individual imputed"
+  }
 }

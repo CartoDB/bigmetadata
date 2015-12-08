@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07009001", 
     "parent": "us/census/acs/B07009013"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Educational Attainment for Current Residence in the United States\": \"('Moved within same county:',)\" \"Less than high school graduate\" in \"Population 25 Years and Over in the United States\""
+  "name": "Less than high school graduate and Moved within same county in Population 25 Years and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Educational Attainment for Current Residence in the United States", 
+    "universe": "Population 25 Years and Over in the United States", 
+    "ancestors": [
+      "Moved within same county:"
+    ], 
+    "title": "Less than high school graduate"
+  }
 }

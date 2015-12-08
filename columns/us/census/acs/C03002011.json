@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C03002001", 
     "parent": "us/census/acs/C03002009"
   }, 
-  "name": "\"Hispanic or Latino Origin by Race\": \"('Not Hispanic or Latino:', 'Two or more races:')\" \"Two races excluding Some other race, and three or more races\" in \"Total Population\""
+  "name": "Two races excluding Some other race, and three or more races and Not Hispanic or Latino and Two or more races in Total Population", 
+  "extra": {
+    "table": "Hispanic or Latino Origin by Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Not Hispanic or Latino:", 
+      "Two or more races:"
+    ], 
+    "title": "Two races excluding Some other race, and three or more races"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27007001", 
     "parent": "us/census/acs/B27007030"
   }, 
-  "name": "\"Medicaid/Means-tested Public Coverage by Sex by Age\": \"('Female:',)\" \"55 to 64 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "55 to 64 years: and Female in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Medicaid/Means-tested Public Coverage by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "55 to 64 years:"
+  }
 }

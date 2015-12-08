@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B20005001", 
     "parent": "us/census/acs/B20005002"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over\": \"('Male:',)\" \"Worked full-time, year-round in the past 12 months:\" in \"Population 16 Years and Over\""
+  "name": "Worked full-time, year-round in the past 12 months: and Male in Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over", 
+    "universe": "Population 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Worked full-time, year-round in the past 12 months:"
+  }
 }

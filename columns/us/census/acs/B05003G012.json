@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003G001", 
     "parent": "us/census/acs/B05003G010"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Two or More Races)\": \"('Male:', '18 years and over:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"People Who Are Two or More Races\""
+  "name": "Not a U.S. citizen and Male and 18 years and over and Foreign born in People Who Are Two or More Races", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Two or More Races)", 
+    "universe": "People Who Are Two or More Races", 
+    "ancestors": [
+      "Male:", 
+      "18 years and over:", 
+      "Foreign born:"
+    ], 
+    "title": "Not a U.S. citizen"
+  }
 }

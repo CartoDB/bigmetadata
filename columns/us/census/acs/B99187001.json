@@ -1,3 +1,11 @@
 {
-  "name": "\"Age by Imputation of Independent Living Difficulty for the Civilian Noninstitutionalized Population 15 Years and Over\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population 15 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B99187001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population 15 Years and Over", 
+  "extra": {
+    "table": "Age by Imputation of Independent Living Difficulty for the Civilian Noninstitutionalized Population 15 Years and Over", 
+    "universe": "Civilian Noninstitutionalized Population 15 Years and Over", 
+    "title": "Total:"
+  }
 }

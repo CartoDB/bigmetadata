@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05011001", 
     "parent": "us/census/acs/B05011001"
   }, 
-  "name": "\"Period of Naturalization\": \"()\" \"Not a U.S. citizen\" in \"Foreign-born Population\""
+  "name": "Not a U.S. citizen in Foreign-born Population", 
+  "extra": {
+    "table": "Period of Naturalization", 
+    "universe": "Foreign-born Population", 
+    "title": "Not a U.S. citizen"
+  }
 }

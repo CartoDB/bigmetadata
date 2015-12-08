@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C23007001", 
     "parent": "us/census/acs/C23007029"
   }, 
-  "name": "\"Presence of Own Children Under 18 Years by Family Type by Employment Status\": \"('No children under 18 years:', 'Other family:', 'Female householder, no husband present:')\" \"In labor force\" in \"Families\""
+  "name": "In labor force and No children under 18 years and Other family and Female householder, no husband present in Families", 
+  "extra": {
+    "table": "Presence of Own Children Under 18 Years by Family Type by Employment Status", 
+    "universe": "Families", 
+    "ancestors": [
+      "No children under 18 years:", 
+      "Other family:", 
+      "Female householder, no husband present:"
+    ], 
+    "title": "In labor force"
+  }
 }

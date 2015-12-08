@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001I001", 
     "parent": "us/census/acs/B27001I001"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Hispanic or Latino)\": \"()\" \"6 to 17 years:\" in \"HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "6 to 17 years: in HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Hispanic or Latino)", 
+    "universe": "HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "title": "6 to 17 years:"
+  }
 }

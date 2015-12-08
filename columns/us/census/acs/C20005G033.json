@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C20005G001", 
     "parent": "us/census/acs/C20005G031"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Two or More Races)\": \"('Female:', 'Other:')\" \"With earnings:\" in \"Two or More Races Population 16 Years and Over\""
+  "name": "With earnings: and Female and Other in Two or More Races Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Two or More Races)", 
+    "universe": "Two or More Races Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Other:"
+    ], 
+    "title": "With earnings:"
+  }
 }

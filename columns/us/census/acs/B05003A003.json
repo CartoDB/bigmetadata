@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003A001", 
     "parent": "us/census/acs/B05003A002"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (White Alone)\": \"('Male:',)\" \"Under 18 years:\" in \"People Who Are White Alone\""
+  "name": "Under 18 years: and Male in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (White Alone)", 
+    "universe": "People Who Are White Alone", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Under 18 years:"
+  }
 }

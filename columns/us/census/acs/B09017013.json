@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09017001", 
     "parent": "us/census/acs/B09017012"
   }, 
-  "name": "\"Relationship by Household Type (Including Living Alone) for the Population 65 Years and Over\": \"('In households:', 'In nonfamily households:', 'Householder:')\" \"Male:\" in \"Population 65 Years and Over\""
+  "name": "Male: and In households and In nonfamily households and Householder in Population 65 Years and Over", 
+  "extra": {
+    "table": "Relationship by Household Type (Including Living Alone) for the Population 65 Years and Over", 
+    "universe": "Population 65 Years and Over", 
+    "ancestors": [
+      "In households:", 
+      "In nonfamily households:", 
+      "Householder:"
+    ], 
+    "title": "Male:"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25073001", 
     "parent": "us/census/acs/B25073001"
   }, 
-  "name": "\"Units in Structure by Gross Rent as a Percentage of Household Income in the Past 12 Months\": \"()\" \"2 to 4:\" in \"Renter-occupied Housing Units\""
+  "name": "2 to 4: in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Units in Structure by Gross Rent as a Percentage of Household Income in the Past 12 Months", 
+    "universe": "Renter-occupied Housing Units", 
+    "title": "2 to 4:"
+  }
 }

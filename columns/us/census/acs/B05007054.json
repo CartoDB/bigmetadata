@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05007001", 
     "parent": "us/census/acs/B05007053"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Latin America:', 'Central America:', 'Mexico:', 'Entered before 1980:')\" \"Naturalized U.S. citizen\" in \"Foreign-born Population\""
+  "name": "Naturalized U.S. citizen and Latin America and Central America and Mexico and Entered before 1980 in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Latin America:", 
+      "Central America:", 
+      "Mexico:", 
+      "Entered before 1980:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

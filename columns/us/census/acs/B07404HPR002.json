@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07404HPR001", 
     "parent": "us/census/acs/B07404HPR001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year (White Alone, Not Hispanic or Latino) for Residence 1 Year Ago in Puerto Rico\": \"()\" \"Same house\" in \"White Alone, Not Hispanic or Latino Population 1 Year and Over\""
+  "name": "Same house in White Alone, Not Hispanic or Latino Population 1 Year and Over", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (White Alone, Not Hispanic or Latino) for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "White Alone, Not Hispanic or Latino Population 1 Year and Over", 
+    "title": "Same house"
+  }
 }

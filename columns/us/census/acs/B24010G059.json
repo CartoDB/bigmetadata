@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010G001", 
     "parent": "us/census/acs/B24010G057"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Two or More Races)\": \"('Female:', 'Service occupations:', 'Protective service occupations:')\" \"Law enforcement workers including supervisors\" in \"Civilian Employed Two or More Races Population 16 Years and Over\""
+  "name": "Law enforcement workers including supervisors and Female and Service occupations and Protective service occupations in Civilian Employed Two or More Races Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Two or More Races)", 
+    "universe": "Civilian Employed Two or More Races Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:", 
+      "Protective service occupations:"
+    ], 
+    "title": "Law enforcement workers including supervisors"
+  }
 }

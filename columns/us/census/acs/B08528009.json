@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08528001", 
     "parent": "us/census/acs/B08528001"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker for Workplace Geography\": \"(None,)\" \"Self-employed in own not incorporated business workers\" in \"Workers 16 Years and Over\""
+  "name": "Self-employed in own not incorporated business workers within  in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null
+    ], 
+    "title": "Self-employed in own not incorporated business workers"
+  }
 }

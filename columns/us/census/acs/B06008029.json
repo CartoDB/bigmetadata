@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06008001", 
     "parent": "us/census/acs/B06008025"
   }, 
-  "name": "\"Place of Birth by Marital Status in the United States\": \"('Foreign born:',)\" \"Separated\" in \"Population 15 Years and Over in the United States\""
+  "name": "Separated and Foreign born in Population 15 Years and Over in the United States", 
+  "extra": {
+    "table": "Place of Birth by Marital Status in the United States", 
+    "universe": "Population 15 Years and Over in the United States", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Separated"
+  }
 }

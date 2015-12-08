@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27012001", 
     "parent": "us/census/acs/C27012032"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Work Experience by Age\": \"('Did not work:',)\" \"18 to 64 years:\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "18 to 64 years: and Did not work in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Work Experience by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "Did not work:"
+    ], 
+    "title": "18 to 64 years:"
+  }
 }

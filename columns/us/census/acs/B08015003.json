@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B08015001"
   }, 
-  "name": "\"Aggregate Number of Vehicles (Car, Truck, or Van) Used in Commuting by Workers 16 Years and Over by Sex\": \"()\" \"Female\" in \"Workers Whose Means of Transportation Is Car, Truck, or Van\""
+  "name": "Female in Workers Whose Means of Transportation Is Car, Truck, or Van", 
+  "extra": {
+    "table": "Aggregate Number of Vehicles (Car, Truck, or Van) Used in Commuting by Workers 16 Years and Over by Sex", 
+    "universe": "Workers Whose Means of Transportation Is Car, Truck, or Van", 
+    "title": "Female"
+  }
 }

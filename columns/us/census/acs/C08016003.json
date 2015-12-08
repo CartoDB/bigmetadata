@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08016001", 
     "parent": "us/census/acs/C08016002"
   }, 
-  "name": "\"Place of Work for Workers 16 Years and Over--Metropolitan Statistical Area Level\": \"('Worked in Metropolitan Statistical Area of residence:',)\" \"Worked in a principal city\" in \"Workers 16 Years and Over Living in a Metropolitan Statistical Area\""
+  "name": "Worked in a principal city and Worked in Metropolitan Statistical Area of residence in Workers 16 Years and Over Living in a Metropolitan Statistical Area", 
+  "extra": {
+    "table": "Place of Work for Workers 16 Years and Over--Metropolitan Statistical Area Level", 
+    "universe": "Workers 16 Years and Over Living in a Metropolitan Statistical Area", 
+    "ancestors": [
+      "Worked in Metropolitan Statistical Area of residence:"
+    ], 
+    "title": "Worked in a principal city"
+  }
 }

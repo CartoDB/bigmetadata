@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002A001", 
     "parent": "us/census/acs/B15002A002"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (White Alone)\": \"('Male:',)\" \"Some college, no degree\" in \"White Alone Population 25 Years and Over\""
+  "name": "Some college, no degree and Male in White Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (White Alone)", 
+    "universe": "White Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Some college, no degree"
+  }
 }

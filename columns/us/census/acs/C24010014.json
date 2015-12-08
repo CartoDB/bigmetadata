@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24010001", 
     "parent": "us/census/acs/C24010011"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:')\" \"Education, training, and library occupations\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Education, training, and library occupations and Male and Management, business, science, and arts occupations and Education, legal, community service, arts, and media occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:", 
+      "Education, legal, community service, arts, and media occupations:"
+    ], 
+    "title": "Education, training, and library occupations"
+  }
 }

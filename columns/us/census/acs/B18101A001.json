@@ -1,3 +1,15 @@
 {
-  "name": "\"Age by Disability Status (White Alone)\": \"('Female:', '65 years and over:')\" \"Total:\" in \"White Alone Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B18101A001"
+  }, 
+  "name": "Total: and Female and 65 years and over in White Alone Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status (White Alone)", 
+    "universe": "White Alone Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

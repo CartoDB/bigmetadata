@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B20001001", 
     "parent": "us/census/acs/B20001002"
   }, 
-  "name": "\"Sex by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over With Earnings in the Past 12 Months\": \"('Male:',)\" \"$20,000 to $22,499\" in \"Population 16 Years and Over With Earnings\""
+  "name": "$20,000 to $22,499 and Male in Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Sex by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over With Earnings in the Past 12 Months", 
+    "universe": "Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "$20,000 to $22,499"
+  }
 }

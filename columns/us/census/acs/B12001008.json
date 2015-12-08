@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12001001", 
     "parent": "us/census/acs/B12001006"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over\": \"('Male:', 'Now married:', 'Married, spouse absent:')\" \"Other\" in \"Population 15 Years and Over\""
+  "name": "Other and Male and Now married and Married, spouse absent in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Now married:", 
+      "Married, spouse absent:"
+    ], 
+    "title": "Other"
+  }
 }

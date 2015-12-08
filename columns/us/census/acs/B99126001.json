@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Year Last Married for the Population 15 Years and Over\": \"()\" \"Total:\" in \"Population 15 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B99126001"
+  }, 
+  "name": "Population 15 Years and Over", 
+  "extra": {
+    "table": "Imputation of Year Last Married for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "title": "Total:"
+  }
 }

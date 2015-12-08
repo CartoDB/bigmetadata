@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18106001", 
     "parent": "us/census/acs/B18106002"
   }, 
-  "name": "\"Sex by Age by Self-care Difficulty\": \"('Male:',)\" \"18 to 34 years:\" in \"Civilian Noninstitutionalized Population 5 Years and Over\""
+  "name": "18 to 34 years: and Male in Civilian Noninstitutionalized Population 5 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Self-care Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population 5 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "18 to 34 years:"
+  }
 }

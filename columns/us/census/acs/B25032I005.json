@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25032I001", 
     "parent": "us/census/acs/B25032I001"
   }, 
-  "name": "\"Units in Structure (Hispanic or Latino Householder)\": \"()\" \"3 or 4\" in \"Occupied Housing Units With a Householder Who Is Hispanic or Latino\""
+  "name": "3 or 4 in Occupied Housing Units With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Units in Structure (Hispanic or Latino Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Hispanic or Latino", 
+    "title": "3 or 4"
+  }
 }

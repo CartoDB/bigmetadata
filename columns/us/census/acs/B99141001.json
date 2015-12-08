@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of School Enrollment for the Population 3 Years and Over\": \"()\" \"Total:\" in \"Population 3 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B99141001"
+  }, 
+  "name": "Population 3 Years and Over", 
+  "extra": {
+    "table": "Imputation of School Enrollment for the Population 3 Years and Over", 
+    "universe": "Population 3 Years and Over", 
+    "title": "Total:"
+  }
 }

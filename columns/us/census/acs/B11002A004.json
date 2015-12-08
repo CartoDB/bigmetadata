@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002A001", 
     "parent": "us/census/acs/B11002A003"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (White Alone)\": \"('In family households:', 'In married-couple family:')\" \"Relatives\" in \"Population in Households With a Householder Who Is White Alone\""
+  "name": "Relatives and In family households and In married-couple family in Population in Households With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (White Alone)", 
+    "universe": "Population in Households With a Householder Who Is White Alone", 
+    "ancestors": [
+      "In family households:", 
+      "In married-couple family:"
+    ], 
+    "title": "Relatives"
+  }
 }

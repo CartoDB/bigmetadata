@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08141001", 
     "parent": "us/census/acs/B08141016"
   }, 
-  "name": "\"Means of Transportation to Work by Vehicles Available\": \"('Public transportation (excluding taxicab):',)\" \"1 vehicle available\" in \"Workers 16 Years and Over in Households\""
+  "name": "1 vehicle available and Public transportation (excluding taxicab) in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Vehicles Available", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "1 vehicle available"
+  }
 }

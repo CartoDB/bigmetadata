@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08201001", 
     "parent": "us/census/acs/B08201001"
   }, 
-  "name": "\"Household Size by Vehicles Available\": \"('Worked at home:',)\" \"4 or more vehicles available\" in \"Households\""
+  "name": "4 or more vehicles available and Worked at home in Households", 
+  "extra": {
+    "table": "Household Size by Vehicles Available", 
+    "universe": "Households", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "4 or more vehicles available"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21001I001", 
     "parent": "us/census/acs/B21001I018"
   }, 
-  "name": "\"Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Hispanic or Latino)\": \"('Female:',)\" \"18 to 34 years:\" in \"Hispanic or Latino Civilian Population 18 Years and Over\""
+  "name": "18 to 34 years: and Female in Hispanic or Latino Civilian Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Civilian Population 18 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "18 to 34 years:"
+  }
 }

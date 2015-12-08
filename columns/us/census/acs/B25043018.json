@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25043001", 
     "parent": "us/census/acs/B25043016"
   }, 
-  "name": "\"Tenure by Telephone Service Available by Age of Householder\": \"('Renter occupied:', 'No telephone service available:')\" \"Householder 35 to 64 years\" in \"Occupied Housing Units\""
+  "name": "Householder 35 to 64 years and Renter occupied and No telephone service available in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Telephone Service Available by Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "No telephone service available:"
+    ], 
+    "title": "Householder 35 to 64 years"
+  }
 }

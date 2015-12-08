@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08130001", 
     "parent": "us/census/acs/B08130002"
   }, 
-  "name": "\"Means of Transportation to Work by Place of Work--State and County Level\": \"(None, 'Worked in state of residence:')\" \"Worked outside county of residence\" in \"Workers 16 Years and Over\""
+  "name": "Worked outside county of residence and Worked in state of residence in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Place of Work--State and County Level", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null, 
+      "Worked in state of residence:"
+    ], 
+    "title": "Worked outside county of residence"
+  }
 }

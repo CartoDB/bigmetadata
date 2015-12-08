@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12502001", 
     "parent": "us/census/acs/B12502007"
   }, 
-  "name": "\"Marriages Ending in Widowhood in the Last Year by Sex by Marital Status for the Population 15 Years and Over\": \"('Female:',)\" \"Never married\" in \"Population 15 Years and Over\""
+  "name": "Never married and Female in Population 15 Years and Over", 
+  "extra": {
+    "table": "Marriages Ending in Widowhood in the Last Year by Sex by Marital Status for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Never married"
+  }
 }

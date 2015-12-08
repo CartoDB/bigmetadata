@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24050001", 
     "parent": "us/census/acs/B24050055"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Management, business, science, and arts occupations:',)\" \"Finance and insurance, and real estate and rental and leasing:\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Finance and insurance, and real estate and rental and leasing: and Management, business, science, and arts occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Management, business, science, and arts occupations:"
+    ], 
+    "title": "Finance and insurance, and real estate and rental and leasing:"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27005001", 
     "parent": "us/census/acs/B27005052"
   }, 
-  "name": "\"Direct-purchase Health Insurance by Sex by Age\": \"('Female:', '65 to 74 years:')\" \"With direct-purchase health insurance\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With direct-purchase health insurance and Female and 65 to 74 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Direct-purchase Health Insurance by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "65 to 74 years:"
+    ], 
+    "title": "With direct-purchase health insurance"
+  }
 }

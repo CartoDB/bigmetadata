@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25104001", 
     "parent": "us/census/acs/B25104001"
   }, 
-  "name": "\"Monthly Housing Costs\": \"()\" \"$100 to $199\" in \"Occupied Housing Units\""
+  "name": "$100 to $199 in Occupied Housing Units", 
+  "extra": {
+    "table": "Monthly Housing Costs", 
+    "universe": "Occupied Housing Units", 
+    "title": "$100 to $199"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25028001", 
     "parent": "us/census/acs/B25028002"
   }, 
-  "name": "\"Tenure by Year Structure Built\": \"('Owner occupied:',)\" \"Built 1940 to 1949\" in \"Occupied Housing Units\""
+  "name": "Built 1940 to 1949 and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Structure Built", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "Built 1940 to 1949"
+  }
 }

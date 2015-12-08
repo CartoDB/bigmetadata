@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18101H001", 
     "parent": "us/census/acs/B18101H002"
   }, 
-  "name": "\"Age by Disability Status (White Alone, Not Hispanic or Latino)\": \"('Under 18 years:',)\" \"With a disability\" in \"White Alone, Not Hispanic or Latino Civilian Noninstitutionalized Population\""
+  "name": "With a disability and Under 18 years in White Alone, Not Hispanic or Latino Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Under 18 years:"
+    ], 
+    "title": "With a disability"
+  }
 }

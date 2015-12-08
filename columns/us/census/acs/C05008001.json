@@ -1,3 +1,15 @@
 {
-  "name": "\"Sex by Place of Birth by Year of Entry for the Foreign-born Population\": \"('Female:', 'Other areas:')\" \"Total:\" in \"Foreign-born Population\""
+  "relationships": {
+    "denominator": "us/census/acs/C05008001"
+  }, 
+  "name": "Total: and Female and Other areas in Foreign-born Population", 
+  "extra": {
+    "table": "Sex by Place of Birth by Year of Entry for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Female:", 
+      "Other areas:"
+    ], 
+    "title": "Total:"
+  }
 }

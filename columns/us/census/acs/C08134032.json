@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08134001", 
     "parent": "us/census/acs/C08134031"
   }, 
-  "name": "\"Means of Transportation to Work by Travel Time to Work\": \"('Public transportation (excluding taxicab):',)\" \"Less than 10 minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "Less than 10 minutes and Public transportation (excluding taxicab) in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Less than 10 minutes"
+  }
 }

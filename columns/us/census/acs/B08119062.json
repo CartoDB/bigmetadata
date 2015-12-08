@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08119001", 
     "parent": "us/census/acs/B08119055"
   }, 
-  "name": "\"Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('Worked at home:',)\" \"$65,000 to $74,999\" in \"Workers 16 Years and Over With Earnings\""
+  "name": "$65,000 to $74,999 and Worked at home in Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "$65,000 to $74,999"
+  }
 }

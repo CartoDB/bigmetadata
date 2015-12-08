@@ -1,3 +1,15 @@
 {
-  "name": "\"Tenure by Age of Householder by Year Structure Built\": \"('Renter occupied:', 'Householder 65 years and over:')\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25126001"
+  }, 
+  "name": "Total: and Renter occupied and Householder 65 years and over in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Age of Householder by Year Structure Built", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "Householder 65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

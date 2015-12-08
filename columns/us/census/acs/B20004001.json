@@ -1,3 +1,12 @@
 {
-  "name": "\"Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Educational Attainment for the Population 25 Years and Over\": \"('Female:',)\" \"Total:\" in \"Population 25 Years and Over With Earnings\""
+  "relationships": {}, 
+  "name": "Total: and Female in Population 25 Years and Over With Earnings", 
+  "extra": {
+    "table": "Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over With Earnings", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

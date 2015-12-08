@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010268"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Natural resources, construction, and maintenance occupations:', 'Construction and extraction occupations:')\" \"Construction trades workers except carpenters, electricians, painters, plumbers, and construction laborers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Construction trades workers except carpenters, electricians, painters, plumbers, and construction laborers and Female and Natural resources, construction, and maintenance occupations and Construction and extraction occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Natural resources, construction, and maintenance occupations:", 
+      "Construction and extraction occupations:"
+    ], 
+    "title": "Construction trades workers except carpenters, electricians, painters, plumbers, and construction laborers"
+  }
 }

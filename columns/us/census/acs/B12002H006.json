@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002H001", 
     "parent": "us/census/acs/B12002H002"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (White Alone, Not Hispanic or Latino)\": \"('Male:',)\" \"Widowed\" in \"White Alone, Not Hispanic or Latino Population 15 Years and Over\""
+  "name": "Widowed and Male in White Alone, Not Hispanic or Latino Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population 15 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Widowed"
+  }
 }

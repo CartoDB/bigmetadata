@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Sex (White Alone, Not Hispanic or Latino)\": \"()\" \"Total:\" in \"White Alone, Not Hispanic or Latino Population\""
+  "relationships": {}, 
+  "name": "White Alone, Not Hispanic or Latino Population", 
+  "extra": {
+    "table": "Median Age by Sex (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population", 
+    "title": "Total:"
+  }
 }

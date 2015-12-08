@@ -1,3 +1,14 @@
 {
-  "name": "\"Place of Birth by Poverty Status in the Past 12 Months in the United States\": \"('Total:',)\" \"Total:\" in \"Population in the United States for Whom Poverty Status Is Determined\""
+  "relationships": {
+    "denominator": "us/census/acs/B06012001"
+  }, 
+  "name": "Total: and Total in Population in the United States for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Place of Birth by Poverty Status in the Past 12 Months in the United States", 
+    "universe": "Population in the United States for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Total:"
+  }
 }

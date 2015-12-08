@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05007001", 
     "parent": "us/census/acs/C05007013"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Asia:',)\" \"Entered U.S. 2000 or later\" in \"Foreign-born Population\""
+  "name": "Entered U.S. 2000 or later and Asia in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Asia:"
+    ], 
+    "title": "Entered U.S. 2000 or later"
+  }
 }

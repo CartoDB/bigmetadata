@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09016001", 
     "parent": "us/census/acs/B09016001"
   }, 
-  "name": "\"Household Type (Including Living Alone) by Relationship\": \"()\" \"In group quarters\" in \"Total Population\""
+  "name": "In group quarters in Total Population", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) by Relationship", 
+    "universe": "Total Population", 
+    "title": "In group quarters"
+  }
 }

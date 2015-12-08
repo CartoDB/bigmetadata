@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08513001", 
     "parent": "us/census/acs/B08513033"
   }, 
-  "name": "\"Means of Transportation to Work by Language Spoken at Home and Ability to Speak English for Workplace Geography\": \"('Walked:',)\" \"Speak Spanish:\" in \"Workers 16 Years and Over\""
+  "name": "Speak Spanish: within Walked in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Language Spoken at Home and Ability to Speak English for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Walked:"
+    ], 
+    "title": "Speak Spanish:"
+  }
 }

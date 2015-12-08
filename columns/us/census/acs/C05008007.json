@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05008001", 
     "parent": "us/census/acs/C05008002"
   }, 
-  "name": "\"Sex by Place of Birth by Year of Entry for the Foreign-born Population\": \"('Male:',)\" \"Asia:\" in \"Foreign-born Population\""
+  "name": "Asia: and Male in Foreign-born Population", 
+  "extra": {
+    "table": "Sex by Place of Birth by Year of Entry for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Asia:"
+  }
 }

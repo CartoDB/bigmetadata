@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18101I001", 
     "parent": "us/census/acs/B18101I002"
   }, 
-  "name": "\"Age by Disability Status (Hispanic or Latino)\": \"('Under 18 years:',)\" \"With a disability\" in \"Hispanic or Latino Civilian Noninstitutionalized Population\""
+  "name": "With a disability and Under 18 years in Hispanic or Latino Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Under 18 years:"
+    ], 
+    "title": "With a disability"
+  }
 }

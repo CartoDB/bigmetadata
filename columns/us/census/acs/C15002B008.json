@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15002B001", 
     "parent": "us/census/acs/C15002B007"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Black or African American Alone)\": \"('Female:',)\" \"Less than high school diploma\" in \"Black or African American Alone Population 25 Years and Over\""
+  "name": "Less than high school diploma and Female in Black or African American Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Black or African American Alone)", 
+    "universe": "Black or African American Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Less than high school diploma"
+  }
 }

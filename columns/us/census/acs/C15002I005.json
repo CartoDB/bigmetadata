@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15002I001", 
     "parent": "us/census/acs/C15002I002"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Hispanic or Latino)\": \"('Male:',)\" \"Some college or associate's degree\" in \"Hispanic or Latino Population 25 Years and Over\""
+  "name": "Some college or associate's degree and Male in Hispanic or Latino Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 25 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Some college or associate's degree"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04007001", 
     "parent": "us/census/acs/B04007005"
   }, 
-  "name": "\"Ancestry\": \"('Ancestry not specified:',)\" \"Ancestry not reported\" in \"Total Population\""
+  "name": "Ancestry not reported and Ancestry not specified in Total Population", 
+  "extra": {
+    "table": "Ancestry", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Ancestry not specified:"
+    ], 
+    "title": "Ancestry not reported"
+  }
 }

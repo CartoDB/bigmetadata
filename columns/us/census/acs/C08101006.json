@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08101001", 
     "parent": "us/census/acs/C08101001"
   }, 
-  "name": "\"Means of Transportation to Work by Age\": \"('Worked at home:',)\" \"55 to 59 years\" in \"Workers 16 Years and Over\""
+  "name": "55 to 59 years and Worked at home in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Age", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "55 to 59 years"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Place of Work for Workers 16 Years and Over--Micropolitan Statistical Area Level\": \"()\" \"Total:\" in \"Workers 16 Years and Over Living in a Micropolitan Statistical Area\""
+  "relationships": {
+    "denominator": "us/census/acs/B08017001"
+  }, 
+  "name": "Workers 16 Years and Over Living in a Micropolitan Statistical Area", 
+  "extra": {
+    "table": "Place of Work for Workers 16 Years and Over--Micropolitan Statistical Area Level", 
+    "universe": "Workers 16 Years and Over Living in a Micropolitan Statistical Area", 
+    "title": "Total:"
+  }
 }

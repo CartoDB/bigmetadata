@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25127001", 
     "parent": "us/census/acs/B25127046"
   }, 
-  "name": "\"Tenure by Year Structure Built by Units in Structure\": \"('Renter occupied:', 'Built 1980 to 1999:')\" \"20 to 49\" in \"Occupied Housing Units\""
+  "name": "20 to 49 and Renter occupied and Built 1980 to 1999 in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Structure Built by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "Built 1980 to 1999:"
+    ], 
+    "title": "20 to 49"
+  }
 }

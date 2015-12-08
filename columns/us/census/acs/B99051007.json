@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99051001", 
     "parent": "us/census/acs/B99051005"
   }, 
-  "name": "\"Imputation of Citizenship Status\": \"('Foreign born:',)\" \"Not imputed\" in \"Total Population\""
+  "name": "Not imputed and Foreign born in Total Population", 
+  "extra": {
+    "table": "Imputation of Citizenship Status", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Not imputed"
+  }
 }

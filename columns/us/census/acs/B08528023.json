@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08528001", 
     "parent": "us/census/acs/B08528022"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker for Workplace Geography\": \"('Car, truck, or van - carpooled:', 'Private for-profit wage and salary workers:')\" \"Employee of private company workers\" in \"Workers 16 Years and Over\""
+  "name": "Employee of private company workers within Car, truck, or van - carpooled within Private for-profit wage and salary workers in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - carpooled:", 
+      "Private for-profit wage and salary workers:"
+    ], 
+    "title": "Employee of private company workers"
+  }
 }

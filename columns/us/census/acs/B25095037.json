@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25095001", 
     "parent": "us/census/acs/B25095001"
   }, 
-  "name": "\"Household Income by Selected Monthly Owner Costs as a Percentage of Household Income in the Past 12 Months\": \"()\" \"$75,000 to $99,999:\" in \"Owner-occupied Housing Units\""
+  "name": "$75,000 to $99,999: in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Household Income by Selected Monthly Owner Costs as a Percentage of Household Income in the Past 12 Months", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "$75,000 to $99,999:"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003I001", 
     "parent": "us/census/acs/B05003I016"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Hispanic or Latino)\": \"('Female:', 'Under 18 years:', 'Foreign born:')\" \"Not a U.S. citizen\" in \"Hispanic or Latino Population\""
+  "name": "Not a U.S. citizen and Female and Under 18 years and Foreign born in Hispanic or Latino Population", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population", 
+    "ancestors": [
+      "Female:", 
+      "Under 18 years:", 
+      "Foreign born:"
+    ], 
+    "title": "Not a U.S. citizen"
+  }
 }

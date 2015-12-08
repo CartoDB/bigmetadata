@@ -1,3 +1,11 @@
 {
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (American Indian and Alaska Native Alone)\": \"()\" \"Total:\" in \"American Indian and Alaska Native Alone Population 15 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B12002C001"
+  }, 
+  "name": "American Indian and Alaska Native Alone Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population 15 Years and Over", 
+    "title": "Total:"
+  }
 }

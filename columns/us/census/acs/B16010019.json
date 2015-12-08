@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16010001", 
     "parent": "us/census/acs/B16010016"
   }, 
-  "name": "\"Educational Attainment and Employment Status by Language Spoken at Home for the Population 25 Years and Over\": \"('High school graduate (includes equivalency):', 'In labor force:')\" \"Speak other Indo-European languages\" in \"Population 25 Years and Over\""
+  "name": "Speak other Indo-European languages and High school graduate (includes equivalency) and In labor force in Population 25 Years and Over", 
+  "extra": {
+    "table": "Educational Attainment and Employment Status by Language Spoken at Home for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "High school graduate (includes equivalency):", 
+      "In labor force:"
+    ], 
+    "title": "Speak other Indo-European languages"
+  }
 }

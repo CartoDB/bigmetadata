@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05009001", 
     "parent": "us/census/acs/B05009017"
   }, 
-  "name": "\"Age and Nativity of Own Children Under 18 Years in Families and Subfamilies by Number and Nativity of Parents\": \"('6 to 17 years:', 'Living with two parents:', None)\" \"Child is foreign born\" in \"Own Children Under 18 Years Living in Families or Subfamilies\""
+  "name": "Child is foreign born and 6 to 17 years and Living with two parents in Own Children Under 18 Years Living in Families or Subfamilies", 
+  "extra": {
+    "table": "Age and Nativity of Own Children Under 18 Years in Families and Subfamilies by Number and Nativity of Parents", 
+    "universe": "Own Children Under 18 Years Living in Families or Subfamilies", 
+    "ancestors": [
+      "6 to 17 years:", 
+      "Living with two parents:", 
+      null
+    ], 
+    "title": "Child is foreign born"
+  }
 }

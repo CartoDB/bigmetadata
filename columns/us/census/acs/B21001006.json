@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21001001", 
     "parent": "us/census/acs/B21001004"
   }, 
-  "name": "\"Sex by Age by Veteran Status for the Civilian Population 18 Years and Over\": \"('Male:', None)\" \"Nonveteran\" in \"Civilian Population 18 Years and Over\""
+  "name": "Nonveteran and Male in Civilian Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Veteran Status for the Civilian Population 18 Years and Over", 
+    "universe": "Civilian Population 18 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      null
+    ], 
+    "title": "Nonveteran"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08526001", 
     "parent": "us/census/acs/B08526076"
   }, 
-  "name": "\"Means of Transportation to Work by Industry for Workplace Geography\": \"('Taxicab, motorcycle, bicycle, or other means:',)\" \"Professional, scientific, and management, and administrative and waste management services\" in \"Workers 16 Years and Over\""
+  "name": "Professional, scientific, and management, and administrative and waste management services within Taxicab, motorcycle, bicycle, or other means in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, or other means:"
+    ], 
+    "title": "Professional, scientific, and management, and administrative and waste management services"
+  }
 }

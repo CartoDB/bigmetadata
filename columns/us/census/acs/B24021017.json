@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24021001", 
     "parent": "us/census/acs/B24021015"
   }, 
-  "name": "\"Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Management, business, science, and arts occupations:', 'Healthcare practitioners and technical occupations:')\" \"Health technologists and technicians\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Health technologists and technicians and Management, business, science, and arts occupations and Healthcare practitioners and technical occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Management, business, science, and arts occupations:", 
+      "Healthcare practitioners and technical occupations:"
+    ], 
+    "title": "Health technologists and technicians"
+  }
 }

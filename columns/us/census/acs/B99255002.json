@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99255001", 
     "parent": "us/census/acs/B99255001"
   }, 
-  "name": "\"Imputation of Units in Structure\": \"()\" \"Imputed\" in \"Housing Units\""
+  "name": "Imputed in Housing Units", 
+  "extra": {
+    "table": "Imputation of Units in Structure", 
+    "universe": "Housing Units", 
+    "title": "Imputed"
+  }
 }

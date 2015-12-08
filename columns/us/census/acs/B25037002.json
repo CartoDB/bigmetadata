@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Year Structure Built by Tenure\": \"()\" \"Owner occupied\" in \"Occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Median Year Structure Built by Tenure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Owner occupied"
+  }
 }

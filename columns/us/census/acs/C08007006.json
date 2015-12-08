@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08007001", 
     "parent": "us/census/acs/C08007004"
   }, 
-  "name": "\"Sex of Workers by Place of Work--State and County Level\": \"('Male:',)\" \"Worked outside county of residence\" in \"Workers 16 Years and Over\""
+  "name": "Worked outside county of residence and Male in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Place of Work--State and County Level", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Worked outside county of residence"
+  }
 }

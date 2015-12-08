@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B22005A001", 
     "parent": "us/census/acs/B22005A001"
   }, 
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (White Alone)\": \"()\" \"Household received Food Stamps/SNAP in the past 12 months\" in \"Households With a Householder Who Is White Alone\""
+  "name": "Household received Food Stamps/SNAP in the past 12 months in Households With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (White Alone)", 
+    "universe": "Households With a Householder Who Is White Alone", 
+    "title": "Household received Food Stamps/SNAP in the past 12 months"
+  }
 }

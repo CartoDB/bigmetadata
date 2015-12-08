@@ -1,3 +1,11 @@
 {
-  "name": "\"Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren by Length of Time Responsible for Own Grandchildren for the Population 30 Years and Over\": \"()\" \"Total:\" in \"Population 30 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B10050001"
+  }, 
+  "name": "Population 30 Years and Over", 
+  "extra": {
+    "table": "Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren by Length of Time Responsible for Own Grandchildren for the Population 30 Years and Over", 
+    "universe": "Population 30 Years and Over", 
+    "title": "Total:"
+  }
 }

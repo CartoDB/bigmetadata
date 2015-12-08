@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08541001", 
     "parent": "us/census/acs/C08541016"
   }, 
-  "name": "\"Means of Transportation to Work by Vehicles Available for Workplace Geography\": \"('Public transportation (excluding taxicab):',)\" \"3 or more vehicles available\" in \"Workers 16 Years and Over in Households\""
+  "name": "3 or more vehicles available within Public transportation (excluding taxicab) in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Vehicles Available for Workplace Geography", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "3 or more vehicles available"
+  }
 }

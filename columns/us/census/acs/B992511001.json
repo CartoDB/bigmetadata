@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of House Heating Fuel\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B992511001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of House Heating Fuel", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

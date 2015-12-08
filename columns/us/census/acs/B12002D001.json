@@ -1,3 +1,11 @@
 {
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (Asian Alone)\": \"()\" \"Total:\" in \"Asian Alone Population 15 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B12002D001"
+  }, 
+  "name": "Asian Alone Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (Asian Alone)", 
+    "universe": "Asian Alone Population 15 Years and Over", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25014001", 
     "parent": "us/census/acs/B25014002"
   }, 
-  "name": "\"Tenure by Occupants Per Room\": \"('Owner occupied:',)\" \"2.01 or more occupants per room\" in \"Occupied Housing Units\""
+  "name": "2.01 or more occupants per room and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Occupants Per Room", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "2.01 or more occupants per room"
+  }
 }

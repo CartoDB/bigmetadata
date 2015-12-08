@@ -1,3 +1,14 @@
 {
-  "name": "\"Educational Attainment and Employment Status by Language Spoken at Home for the Population 25 Years and Over\": \"('Income in the past 12 months at or above poverty level:',)\" \"Total:\" in \"Population 25 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B16010001"
+  }, 
+  "name": "Total: and Income in the past 12 months at or above poverty level in Population 25 Years and Over", 
+  "extra": {
+    "table": "Educational Attainment and Employment Status by Language Spoken at Home for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:"
+    ], 
+    "title": "Total:"
+  }
 }

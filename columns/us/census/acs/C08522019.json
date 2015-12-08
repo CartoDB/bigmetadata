@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08522001", 
     "parent": "us/census/acs/C08522017"
   }, 
-  "name": "\"Means of Transportation to Work by Poverty Status in the Past 12 Months for Workplace Geography\": \"('Taxicab, motorcycle, bicycle, walked, or other means:',)\" \"100 to 149 percent of the poverty level\" in \"Workers 16 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "100 to 149 percent of the poverty level within Taxicab, motorcycle, bicycle, walked, or other means in Workers 16 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Means of Transportation to Work by Poverty Status in the Past 12 Months for Workplace Geography", 
+    "universe": "Workers 16 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, walked, or other means:"
+    ], 
+    "title": "100 to 149 percent of the poverty level"
+  }
 }

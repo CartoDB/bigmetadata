@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992706001", 
     "parent": "us/census/acs/B992706001"
   }, 
-  "name": "\"Imputation of Medicare Coverage\": \"()\" \"Not imputed\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Not imputed in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Imputation of Medicare Coverage", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Not imputed"
+  }
 }

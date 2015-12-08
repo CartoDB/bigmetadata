@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27002001", 
     "parent": "us/census/acs/B27002002"
   }, 
-  "name": "\"Private Health Insurance Status by Sex by Age\": \"('Male:',)\" \"Under 6 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Under 6 years: and Male in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Private Health Insurance Status by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Under 6 years:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25115001", 
     "parent": "us/census/acs/C25115002"
   }, 
-  "name": "\"Tenure by Household Type\": \"('Owner occupied:',)\" \"Nonfamily households\" in \"Occupied Housing Units\""
+  "name": "Nonfamily households and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Type", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "Nonfamily households"
+  }
 }

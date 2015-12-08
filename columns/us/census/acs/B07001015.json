@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07001001", 
     "parent": "us/census/acs/B07001001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Age for Current Residence in the United States\": \"(None,)\" \"70 to 74 years\" in \"Population 1 Year and Over in the United States\""
+  "name": "70 to 74 years and  in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Age for Current Residence in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      null
+    ], 
+    "title": "70 to 74 years"
+  }
 }

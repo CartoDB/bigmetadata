@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09016001", 
     "parent": "us/census/acs/B09016021"
   }, 
-  "name": "\"Household Type (Including Living Alone) by Relationship\": \"('In households:', 'In nonfamily households:', 'Householder:', 'Male:')\" \"Living alone\" in \"Total Population\""
+  "name": "Living alone and In households and In nonfamily households and Householder and Male in Total Population", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) by Relationship", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "In households:", 
+      "In nonfamily households:", 
+      "Householder:", 
+      "Male:"
+    ], 
+    "title": "Living alone"
+  }
 }

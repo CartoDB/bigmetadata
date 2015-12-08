@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14003001", 
     "parent": "us/census/acs/B14003040"
   }, 
-  "name": "\"Sex by School Enrollment by Type of School by Age for the Population 3 Years and Over\": \"('Female:', 'Enrolled in private school:')\" \"18 and 19 years\" in \"Population 3 Years and Over\""
+  "name": "18 and 19 years and Female and Enrolled in private school in Population 3 Years and Over", 
+  "extra": {
+    "table": "Sex by School Enrollment by Type of School by Age for the Population 3 Years and Over", 
+    "universe": "Population 3 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Enrolled in private school:"
+    ], 
+    "title": "18 and 19 years"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04005001", 
     "parent": "us/census/acs/B04005006"
   }, 
-  "name": "\"People Reporting Multiple Ancestry\": \"('Arab:',)\" \"Palestinian\" in \"People Reporting Multiple Ancestries\""
+  "name": "Palestinian and Arab in People Reporting Multiple Ancestries", 
+  "extra": {
+    "table": "People Reporting Multiple Ancestry", 
+    "universe": "People Reporting Multiple Ancestries", 
+    "ancestors": [
+      "Arab:"
+    ], 
+    "title": "Palestinian"
+  }
 }

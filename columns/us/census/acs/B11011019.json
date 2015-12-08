@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11011001", 
     "parent": "us/census/acs/B11011016"
   }, 
-  "name": "\"Household Type by Units in Structure\": \"('Nonfamily households:',)\" \"Mobile homes and all other types of units\" in \"Households\""
+  "name": "Mobile homes and all other types of units and Nonfamily households in Households", 
+  "extra": {
+    "table": "Household Type by Units in Structure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Mobile homes and all other types of units"
+  }
 }

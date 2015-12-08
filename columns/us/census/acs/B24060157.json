@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24060001", 
     "parent": "us/census/acs/B24060154"
   }, 
-  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Local, state, and federal government workers:', 'Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:')\" \"Education, training, and library occupations\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Education, training, and library occupations and Local, state, and federal government workers and Management, business, science, and arts occupations and Education, legal, community service, arts, and media occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Local, state, and federal government workers:", 
+      "Management, business, science, and arts occupations:", 
+      "Education, legal, community service, arts, and media occupations:"
+    ], 
+    "title": "Education, training, and library occupations"
+  }
 }

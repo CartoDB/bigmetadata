@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19001B001", 
     "parent": "us/census/acs/B19001B001"
   }, 
-  "name": "\"Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Black or African American Alone Householder)\": \"()\" \"$25,000 to $29,999\" in \"Households With a Householder Who Is Black or African American Alone\""
+  "name": "$25,000 to $29,999 in Households With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Black or African American Alone Householder)", 
+    "universe": "Households With a Householder Who Is Black or African American Alone", 
+    "title": "$25,000 to $29,999"
+  }
 }

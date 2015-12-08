@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27013001", 
     "parent": "us/census/acs/C27013020"
   }, 
-  "name": "\"Private Health Insurance by Work Experience by Age\": \"('Did not work:', '65 years and over:')\" \"With private health insurance\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "With private health insurance and Did not work and 65 years and over in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Private Health Insurance by Work Experience by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "Did not work:", 
+      "65 years and over:"
+    ], 
+    "title": "With private health insurance"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002H001", 
     "parent": "us/census/acs/B11002H006"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (White Alone, Not Hispanic or Latino)\": \"('In family households:', 'In male householder, no wife present, family:')\" \"Nonrelatives\" in \"Population in Households With a Householder Who Is White Alone, Not Hispanic or Latino\""
+  "name": "Nonrelatives and In family households and In male householder, no wife present, family in Population in Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (White Alone, Not Hispanic or Latino)", 
+    "universe": "Population in Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+    "ancestors": [
+      "In family households:", 
+      "In male householder, no wife present, family:"
+    ], 
+    "title": "Nonrelatives"
+  }
 }

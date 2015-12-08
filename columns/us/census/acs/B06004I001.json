@@ -1,3 +1,11 @@
 {
-  "name": "\"Place of Birth (Hispanic or Latino) in the United States\": \"()\" \"Total:\" in \"Hispanic or Latino Population in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B06004I001"
+  }, 
+  "name": "Hispanic or Latino Population in the United States", 
+  "extra": {
+    "table": "Place of Birth (Hispanic or Latino) in the United States", 
+    "universe": "Hispanic or Latino Population in the United States", 
+    "title": "Total:"
+  }
 }

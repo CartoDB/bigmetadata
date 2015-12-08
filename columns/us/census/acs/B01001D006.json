@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001D001", 
     "parent": "us/census/acs/B01001D002"
   }, 
-  "name": "\"Sex by Age (Asian Alone)\": \"('Male:',)\" \"15 to 17 years\" in \"People Who Are Asian Alone\""
+  "name": "15 to 17 years and Male in People Who Are Asian Alone", 
+  "extra": {
+    "table": "Sex by Age (Asian Alone)", 
+    "universe": "People Who Are Asian Alone", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "15 to 17 years"
+  }
 }

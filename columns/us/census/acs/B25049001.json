@@ -1,3 +1,11 @@
 {
-  "name": "\"Tenure by Plumbing Facilities\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25049001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Plumbing Facilities", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

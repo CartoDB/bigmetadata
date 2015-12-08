@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B17011001"
   }, 
-  "name": "\"Aggregate Income Deficit (Dollars) in the Past 12 Months for Families by Family Type\": \"()\" \"Other family:\" in \"Families With Income in the Past 12 Months Below the Poverty Level\""
+  "name": "Other family: in Families With Income in the Past 12 Months Below the Poverty Level", 
+  "extra": {
+    "table": "Aggregate Income Deficit (Dollars) in the Past 12 Months for Families by Family Type", 
+    "universe": "Families With Income in the Past 12 Months Below the Poverty Level", 
+    "title": "Other family:"
+  }
 }

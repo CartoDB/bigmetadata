@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/C25023001"
   }, 
-  "name": "\"Aggregate Number of Rooms by Vacancy Status\": \"()\" \"All other vacant units\" in \"Vacant Housing Units\""
+  "name": "All other vacant units in Vacant Housing Units", 
+  "extra": {
+    "table": "Aggregate Number of Rooms by Vacancy Status", 
+    "universe": "Vacant Housing Units", 
+    "title": "All other vacant units"
+  }
 }

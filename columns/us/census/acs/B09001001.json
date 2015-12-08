@@ -1,3 +1,11 @@
 {
-  "name": "\"Population Under 18 Years by Age\": \"()\" \"Total:\" in \"Population Under 18 Years\""
+  "relationships": {
+    "denominator": "us/census/acs/B09001001"
+  }, 
+  "name": "Population Under 18 Years", 
+  "extra": {
+    "table": "Population Under 18 Years by Age", 
+    "universe": "Population Under 18 Years", 
+    "title": "Total:"
+  }
 }

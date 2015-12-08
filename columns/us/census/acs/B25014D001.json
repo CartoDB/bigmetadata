@@ -1,3 +1,11 @@
 {
-  "name": "\"Occupants Per Room (Asian Alone Householder)\": \"()\" \"Total:\" in \"Occupied Housing Units With a Householder Who Is Asian Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/B25014D001"
+  }, 
+  "name": "Occupied Housing Units With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Occupants Per Room (Asian Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Asian Alone", 
+    "title": "Total:"
+  }
 }

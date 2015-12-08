@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18135001", 
     "parent": "us/census/acs/B18135020"
   }, 
-  "name": "\"Age by Disability Status by Health Insurance Coverage Status\": \"('18 to 64 years:', 'No disability:', 'With health insurance coverage:')\" \"With public health coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With public health coverage and 18 to 64 years and No disability and With health insurance coverage in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status by Health Insurance Coverage Status", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "18 to 64 years:", 
+      "No disability:", 
+      "With health insurance coverage:"
+    ], 
+    "title": "With public health coverage"
+  }
 }

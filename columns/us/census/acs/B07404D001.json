@@ -1,3 +1,11 @@
 {
-  "name": "\"Geographical Mobility in the Past Year (Asian Alone) for Residence 1 Year Ago in the United States\": \"()\" \"Total living in area 1 year ago:\" in \"Asian Alone Population 1 Year and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B07404D001"
+  }, 
+  "name": "Total living in area 1 year ago: in Asian Alone Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Asian Alone) for Residence 1 Year Ago in the United States", 
+    "universe": "Asian Alone Population 1 Year and Over in the United States", 
+    "title": "Total living in area 1 year ago:"
+  }
 }

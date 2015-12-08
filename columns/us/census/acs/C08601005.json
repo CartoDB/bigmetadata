@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08601001", 
     "parent": "us/census/acs/C08601004"
   }, 
-  "name": "\"Means of Transportation to Work for Workplace Geography\": \"('Car, truck, or van:', 'Carpooled:')\" \"In 2-person carpool\" in \"Workers 16 Years and Over\""
+  "name": "In 2-person carpool within Car, truck, or van within Carpooled in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van:", 
+      "Carpooled:"
+    ], 
+    "title": "In 2-person carpool"
+  }
 }

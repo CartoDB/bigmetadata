@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06012001", 
     "parent": "us/census/acs/B06012017"
   }, 
-  "name": "\"Place of Birth by Poverty Status in the Past 12 Months in the United States\": \"('Foreign born:',)\" \"At or above 150 percent of the poverty level\" in \"Population in the United States for Whom Poverty Status Is Determined\""
+  "name": "At or above 150 percent of the poverty level and Foreign born in Population in the United States for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Place of Birth by Poverty Status in the Past 12 Months in the United States", 
+    "universe": "Population in the United States for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "At or above 150 percent of the poverty level"
+  }
 }

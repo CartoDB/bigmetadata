@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05007001", 
     "parent": "us/census/acs/B05007012"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Europe :', 'Entered before 1980:')\" \"Naturalized U.S. citizen\" in \"Foreign-born Population\""
+  "name": "Naturalized U.S. citizen and Europe  and Entered before 1980 in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Europe :", 
+      "Entered before 1980:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Occupants Per Room (Hispanic or Latino Householder)\": \"()\" \"Total:\" in \"Occupied Housing Units With a Householder Who Is Hispanic or Latino\""
+  "relationships": {
+    "denominator": "us/census/acs/B25014I001"
+  }, 
+  "name": "Occupied Housing Units With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Occupants Per Room (Hispanic or Latino Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Hispanic or Latino", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16005001", 
     "parent": "us/census/acs/B16005024"
   }, 
-  "name": "\"Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over\": \"('Foreign born:',)\" \"Speak Spanish:\" in \"Population 5 Years and Over\""
+  "name": "Speak Spanish: and Foreign born in Population 5 Years and Over", 
+  "extra": {
+    "table": "Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Speak Spanish:"
+  }
 }

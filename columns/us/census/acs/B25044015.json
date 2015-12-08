@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25044001", 
     "parent": "us/census/acs/B25044009"
   }, 
-  "name": "\"Tenure by Vehicles Available\": \"('Renter occupied:',)\" \"5 or more vehicles available\" in \"Occupied Housing Units\""
+  "name": "5 or more vehicles available and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Vehicles Available", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "5 or more vehicles available"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24060001", 
     "parent": "us/census/acs/B24060147"
   }, 
-  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Local, state, and federal government workers:', 'Management, business, science, and arts occupations:', 'Management, business, and financial occupations:')\" \"Business and financial operations occupations\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Business and financial operations occupations and Local, state, and federal government workers and Management, business, science, and arts occupations and Management, business, and financial occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Local, state, and federal government workers:", 
+      "Management, business, science, and arts occupations:", 
+      "Management, business, and financial occupations:"
+    ], 
+    "title": "Business and financial operations occupations"
+  }
 }

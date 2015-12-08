@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002001", 
     "parent": "us/census/acs/B12002173"
   }, 
-  "name": "\"Sex by Marital Status by Age for the Population 15 Years and Over\": \"('Female:', 'Divorced:')\" \"15 to 17 years\" in \"Population 15 Years and Over\""
+  "name": "15 to 17 years and Female and Divorced in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status by Age for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Divorced:"
+    ], 
+    "title": "15 to 17 years"
+  }
 }

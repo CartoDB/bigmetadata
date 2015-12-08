@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25124001", 
     "parent": "us/census/acs/B25124017"
   }, 
-  "name": "\"Tenure by Household Size by Units in Structure\": \"('Owner occupied:', '3-person household:')\" \"2 to 4\" in \"Occupied Housing Units\""
+  "name": "2 to 4 and Owner occupied and 3-person household in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Size by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:", 
+      "3-person household:"
+    ], 
+    "title": "2 to 4"
+  }
 }

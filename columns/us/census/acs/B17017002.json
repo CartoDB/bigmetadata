@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17017001", 
     "parent": "us/census/acs/B17017001"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Household Type by Age of Householder\": \"()\" \"Income in the past 12 months below poverty level:\" in \"Households\""
+  "name": "Income in the past 12 months below poverty level: in Households", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Household Type by Age of Householder", 
+    "universe": "Households", 
+    "title": "Income in the past 12 months below poverty level:"
+  }
 }

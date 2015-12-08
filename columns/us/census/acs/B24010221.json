@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010220"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Service occupations:', 'Protective service occupations:')\" \"First-line supervisors of law enforcement workers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "First-line supervisors of law enforcement workers and Female and Service occupations and Protective service occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:", 
+      "Protective service occupations:"
+    ], 
+    "title": "First-line supervisors of law enforcement workers"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002D001", 
     "parent": "us/census/acs/B12002D002"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (Asian Alone)\": \"('Male:',)\" \"Now married (except separated)\" in \"Asian Alone Population 15 Years and Over\""
+  "name": "Now married (except separated) and Male in Asian Alone Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (Asian Alone)", 
+    "universe": "Asian Alone Population 15 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Now married (except separated)"
+  }
 }

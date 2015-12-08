@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003G001", 
     "parent": "us/census/acs/B05003G016"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Two or More Races)\": \"('Female:', 'Under 18 years:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"People Who Are Two or More Races\""
+  "name": "Naturalized U.S. citizen and Female and Under 18 years and Foreign born in People Who Are Two or More Races", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Two or More Races)", 
+    "universe": "People Who Are Two or More Races", 
+    "ancestors": [
+      "Female:", 
+      "Under 18 years:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

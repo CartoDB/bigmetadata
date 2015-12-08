@@ -1,3 +1,15 @@
 {
-  "name": "\"Health Insurance Coverage Status by Age (White Alone)\": \"('Female:', '65 years and over:')\" \"Total:\" in \"WHITE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "relationships": {
+    "denominator": "us/census/acs/B27001A001"
+  }, 
+  "name": "Total: and Female and 65 years and over in WHITE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (White Alone)", 
+    "universe": "WHITE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "Female:", 
+      "65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

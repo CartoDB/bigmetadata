@@ -1,3 +1,11 @@
 {
-  "name": "\"Geographical Mobility in the Past Year (White Alone, Not Hispanic or Latino) for Residence 1 Year Ago in the United States\": \"()\" \"Total living in area 1 year ago:\" in \"White Alone, Not Hispanic or Latino Population 1 Year and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B07404H001"
+  }, 
+  "name": "Total living in area 1 year ago: in White Alone, Not Hispanic or Latino Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (White Alone, Not Hispanic or Latino) for Residence 1 Year Ago in the United States", 
+    "universe": "White Alone, Not Hispanic or Latino Population 1 Year and Over in the United States", 
+    "title": "Total living in area 1 year ago:"
+  }
 }

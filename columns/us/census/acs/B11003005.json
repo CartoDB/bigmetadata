@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11003001", 
     "parent": "us/census/acs/B11003003"
   }, 
-  "name": "\"Family Type by Presence and Age of Own Children Under 18 Years\": \"('Married-couple family:', 'With own children under 18 years:')\" \"Under 6 years and 6 to 17 years\" in \"Families\""
+  "name": "Under 6 years and 6 to 17 years and Married-couple family and With own children under 18 years in Families", 
+  "extra": {
+    "table": "Family Type by Presence and Age of Own Children Under 18 Years", 
+    "universe": "Families", 
+    "ancestors": [
+      "Married-couple family:", 
+      "With own children under 18 years:"
+    ], 
+    "title": "Under 6 years and 6 to 17 years"
+  }
 }

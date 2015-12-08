@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010H001", 
     "parent": "us/census/acs/B24010H003"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone, Not Hispanic or Latino)\": \"('Male:', 'Management, business, science, and arts occupations:')\" \"Computer, engineering, and science occupations:\" in \"Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over\""
+  "name": "Computer, engineering, and science occupations: and Male and Management, business, science, and arts occupations in Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:"
+    ], 
+    "title": "Computer, engineering, and science occupations:"
+  }
 }

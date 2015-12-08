@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23001001", 
     "parent": "us/census/acs/B23001099"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over\": \"('Female:', '20 and 21 years:', 'In labor force:', 'Civilian:')\" \"Unemployed\" in \"Population 16 Years and Over\""
+  "name": "Unemployed and Female and 20 and 21 years and In labor force and Civilian in Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over", 
+    "universe": "Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "20 and 21 years:", 
+      "In labor force:", 
+      "Civilian:"
+    ], 
+    "title": "Unemployed"
+  }
 }

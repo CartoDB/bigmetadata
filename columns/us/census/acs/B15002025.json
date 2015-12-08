@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002001", 
     "parent": "us/census/acs/B15002019"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over\": \"('Female:',)\" \"10th grade\" in \"Population 25 Years and Over\""
+  "name": "10th grade and Female in Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "10th grade"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04006001", 
     "parent": "us/census/acs/B04006001"
   }, 
-  "name": "\"People Reporting Ancestry\": \"()\" \"Afghan\" in \"Total Population\""
+  "name": "Afghan in Total Population", 
+  "extra": {
+    "table": "People Reporting Ancestry", 
+    "universe": "Total Population", 
+    "title": "Afghan"
+  }
 }

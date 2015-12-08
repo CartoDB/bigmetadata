@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B07002PR001"
   }, 
-  "name": "\"Median Age by Geographical Mobility in the Past Year for Current Residence in Puerto Rico\": \"('Total:',)\" \"Moved from different municipio\" in \"Population 1 Year and Over in Puerto Rico\""
+  "name": "Moved from different municipio and Total in Population 1 Year and Over in Puerto Rico", 
+  "extra": {
+    "table": "Median Age by Geographical Mobility in the Past Year for Current Residence in Puerto Rico", 
+    "universe": "Population 1 Year and Over in Puerto Rico", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Moved from different municipio"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Plumbing Facilities for Occupied Housing Units\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25048001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Plumbing Facilities for Occupied Housing Units", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

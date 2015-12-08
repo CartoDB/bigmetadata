@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11011001", 
     "parent": "us/census/acs/B11011003"
   }, 
-  "name": "\"Household Type by Units in Structure\": \"('Family households:', 'Married-couple family:')\" \"Mobile homes and all other types of units\" in \"Households\""
+  "name": "Mobile homes and all other types of units and Family households and Married-couple family in Households", 
+  "extra": {
+    "table": "Household Type by Units in Structure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:", 
+      "Married-couple family:"
+    ], 
+    "title": "Mobile homes and all other types of units"
+  }
 }

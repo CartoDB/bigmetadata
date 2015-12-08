@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020216"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Service occupations:', 'Healthcare support occupations:')\" \"Occupational and physical therapist assistants and aides\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Occupational and physical therapist assistants and aides and Female and Service occupations and Healthcare support occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:", 
+      "Healthcare support occupations:"
+    ], 
+    "title": "Occupational and physical therapist assistants and aides"
+  }
 }

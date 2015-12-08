@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C19037001", 
     "parent": "us/census/acs/C19037035"
   }, 
-  "name": "\"Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('Householder 65 years and over:',)\" \"$200,000 or more\" in \"Households\""
+  "name": "$200,000 or more and Householder 65 years and over in Households", 
+  "extra": {
+    "table": "Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Households", 
+    "ancestors": [
+      "Householder 65 years and over:"
+    ], 
+    "title": "$200,000 or more"
+  }
 }

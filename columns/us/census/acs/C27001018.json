@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27001001", 
     "parent": "us/census/acs/C27001016"
   }, 
-  "name": "\"Health Insurance Coverage Status by Sex by Age\": \"('Female:', '18 to 64 years:')\" \"No health insurance coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No health insurance coverage and Female and 18 to 64 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "18 to 64 years:"
+    ], 
+    "title": "No health insurance coverage"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15011001", 
     "parent": "us/census/acs/B15011002"
   }, 
-  "name": "\"Sex by Age by Field of Bachelor's Degree for First Major for the Population 25 Years and Over\": \"('Male:',)\" \"65 years and over:\" in \"POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT\""
+  "name": "65 years and over: and Male in POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT", 
+  "extra": {
+    "table": "Sex by Age by Field of Bachelor's Degree for First Major for the Population 25 Years and Over", 
+    "universe": "POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "65 years and over:"
+  }
 }

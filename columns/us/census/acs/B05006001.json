@@ -1,3 +1,11 @@
 {
-  "name": "\"Place of Birth for the Foreign-born Population in the United States\": \"()\" \"Total:\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "relationships": {
+    "denominator": "us/census/acs/B05006001"
+  }, 
+  "name": "Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in the United States", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "title": "Total:"
+  }
 }

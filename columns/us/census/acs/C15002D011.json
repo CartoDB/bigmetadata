@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15002D001", 
     "parent": "us/census/acs/C15002D007"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Asian Alone)\": \"('Female:',)\" \"Bachelor's degree or higher\" in \"Asian Alone Population 25 Years and Over\""
+  "name": "Bachelor's degree or higher and Female in Asian Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Asian Alone)", 
+    "universe": "Asian Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Bachelor's degree or higher"
+  }
 }

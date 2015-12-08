@@ -1,3 +1,11 @@
 {
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Black or African American Alone)\": \"()\" \"Total:\" in \"Population in Households With a Householder Who Is Black or African American Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/B11002B001"
+  }, 
+  "name": "Population in Households With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (Black or African American Alone)", 
+    "universe": "Population in Households With a Householder Who Is Black or African American Alone", 
+    "title": "Total:"
+  }
 }

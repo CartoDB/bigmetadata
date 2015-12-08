@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08111001", 
     "parent": "us/census/acs/C08111008"
   }, 
-  "name": "\"Means of Transportation to Work by Citizenship Status\": \"('Car, truck, or van - drove alone:', 'Foreign-born:')\" \"Naturalized U.S. citizen\" in \"Workers 16 Years and Over\""
+  "name": "Naturalized U.S. citizen and Car, truck, or van - drove alone and Foreign-born in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Citizenship Status", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:", 
+      "Foreign-born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

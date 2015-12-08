@@ -1,3 +1,9 @@
 {
-  "name": "\"Shares of Aggregate Household Income by Quintile\": \"()\" \"Lowest Quintile\" in \"Households\""
+  "relationships": {}, 
+  "name": "Lowest Quintile in Households", 
+  "extra": {
+    "table": "Shares of Aggregate Household Income by Quintile", 
+    "universe": "Households", 
+    "title": "Lowest Quintile"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06001PR001", 
     "parent": "us/census/acs/C06001PR019"
   }, 
-  "name": "\"Place of Birth by Age in Puerto Rico\": \"('Born in the United States:',)\" \"5 to 17 years\" in \"Total Population in Puerto Rico\""
+  "name": "5 to 17 years and Born in the United States in Total Population in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Age in Puerto Rico", 
+    "universe": "Total Population in Puerto Rico", 
+    "ancestors": [
+      "Born in the United States:"
+    ], 
+    "title": "5 to 17 years"
+  }
 }

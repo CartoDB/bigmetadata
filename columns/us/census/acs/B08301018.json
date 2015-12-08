@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08301001", 
     "parent": "us/census/acs/B08301001"
   }, 
-  "name": "\"Means of Transportation to Work\": \"()\" \"Bicycle\" in \"Workers 16 Years and Over\""
+  "name": "Bicycle in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "title": "Bicycle"
+  }
 }

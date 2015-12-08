@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05005PR001", 
     "parent": "us/census/acs/C05005PR008"
   }, 
-  "name": "\"Year of Entry by Nativity in Puerto Rico\": \"('Entered 1980 to 1989:',)\" \"Foreign born\" in \"Population Born Outside Puerto Rico\""
+  "name": "Foreign born and Entered 1980 to 1989 in Population Born Outside Puerto Rico", 
+  "extra": {
+    "table": "Year of Entry by Nativity in Puerto Rico", 
+    "universe": "Population Born Outside Puerto Rico", 
+    "ancestors": [
+      "Entered 1980 to 1989:"
+    ], 
+    "title": "Foreign born"
+  }
 }

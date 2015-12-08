@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Grade Enrolled for the Population 3 Years and Over Enrolled in School\": \"()\" \"Total:\" in \"Population 3 Years and Over Enrolled in School\""
+  "relationships": {
+    "denominator": "us/census/acs/B99142001"
+  }, 
+  "name": "Population 3 Years and Over Enrolled in School", 
+  "extra": {
+    "table": "Imputation of Grade Enrolled for the Population 3 Years and Over Enrolled in School", 
+    "universe": "Population 3 Years and Over Enrolled in School", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B03002001", 
     "parent": "us/census/acs/B03002012"
   }, 
-  "name": "\"Hispanic or Latino Origin by Race\": \"('Hispanic or Latino:',)\" \"American Indian and Alaska Native alone\" in \"Total Population\""
+  "name": "American Indian and Alaska Native alone and Hispanic or Latino in Total Population", 
+  "extra": {
+    "table": "Hispanic or Latino Origin by Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Hispanic or Latino:"
+    ], 
+    "title": "American Indian and Alaska Native alone"
+  }
 }

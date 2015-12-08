@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25068001", 
     "parent": "us/census/acs/C25068001"
   }, 
-  "name": "\"Bedrooms by Gross Rent\": \"()\" \"2 bedrooms:\" in \"Renter-occupied Housing Units\""
+  "name": "2 bedrooms: in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Bedrooms by Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "title": "2 bedrooms:"
+  }
 }

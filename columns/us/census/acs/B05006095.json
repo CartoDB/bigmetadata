@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05006001", 
     "parent": "us/census/acs/B05006092"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population in the United States\": \"('Africa:', 'Eastern Africa:')\" \"Kenya\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Kenya and Africa and Eastern Africa in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in the United States", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Africa:", 
+      "Eastern Africa:"
+    ], 
+    "title": "Kenya"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B03002001", 
     "parent": "us/census/acs/B03002002"
   }, 
-  "name": "\"Hispanic or Latino Origin by Race\": \"('Not Hispanic or Latino:',)\" \"Some other race alone\" in \"Total Population\""
+  "name": "Some other race alone and Not Hispanic or Latino in Total Population", 
+  "extra": {
+    "table": "Hispanic or Latino Origin by Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Not Hispanic or Latino:"
+    ], 
+    "title": "Some other race alone"
+  }
 }

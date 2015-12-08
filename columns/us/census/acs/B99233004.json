@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99233001", 
     "parent": "us/census/acs/B99233002"
   }, 
-  "name": "\"Imputation of Usual Hours Worked Per Week in the Past 12 Months for the Population 16 Years and Over\": \"('Worked in the past 12 months:', None)\" \"Not imputed\" in \"Population 16 Years and Over\""
+  "name": "Not imputed and Worked in the past 12 months in Population 16 Years and Over", 
+  "extra": {
+    "table": "Imputation of Usual Hours Worked Per Week in the Past 12 Months for the Population 16 Years and Over", 
+    "universe": "Population 16 Years and Over", 
+    "ancestors": [
+      "Worked in the past 12 months:", 
+      null
+    ], 
+    "title": "Not imputed"
+  }
 }

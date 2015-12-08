@@ -1,3 +1,11 @@
 {
-  "name": "\"Gross Rent\": \"()\" \"Total:\" in \"Renter-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25063001"
+  }, 
+  "name": "Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "title": "Total:"
+  }
 }

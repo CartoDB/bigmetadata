@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010B001", 
     "parent": "us/census/acs/B24010B007"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Black or African American Alone)\": \"('Male:', 'Management, business, science, and arts occupations:', 'Computer, engineering, and science occupations:')\" \"Architecture and engineering occupations\" in \"Civilian Employed Black or African American Alone Population 16 Years and Over\""
+  "name": "Architecture and engineering occupations and Male and Management, business, science, and arts occupations and Computer, engineering, and science occupations in Civilian Employed Black or African American Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Black or African American Alone)", 
+    "universe": "Civilian Employed Black or African American Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:", 
+      "Computer, engineering, and science occupations:"
+    ], 
+    "title": "Architecture and engineering occupations"
+  }
 }

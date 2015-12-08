@@ -1,3 +1,15 @@
 {
-  "name": "\"Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Black or African American Alone)\": \"('Foreign born:', 'Speak another language')\" \"Total:\" in \"Black or African American Alone Population 5 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B16005B001"
+  }, 
+  "name": "Total: and Foreign born and Speak another language in Black or African American Alone Population 5 Years and Over", 
+  "extra": {
+    "table": "Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Black or African American Alone)", 
+    "universe": "Black or African American Alone Population 5 Years and Over", 
+    "ancestors": [
+      "Foreign born:", 
+      "Speak another language"
+    ], 
+    "title": "Total:"
+  }
 }

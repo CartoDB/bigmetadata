@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08406001", 
     "parent": "us/census/acs/B08406018"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work for Workplace Geography\": \"('Male:',)\" \"Taxicab, motorcycle, or other means\" in \"Workers 16 Years and Over\""
+  "name": "Taxicab, motorcycle, or other means within Male in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Taxicab, motorcycle, or other means"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27016001", 
     "parent": "us/census/acs/B27016039"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Ratio of Income to Poverty Level in the Past 12 Months by Age\": \"('0.50 to .99 of poverty threshold:', '65 years and over:')\" \"With health insurance coverage\" in \"Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined\""
+  "name": "With health insurance coverage and 0.50 to .99 of poverty threshold and 65 years and over in Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Ratio of Income to Poverty Level in the Past 12 Months by Age", 
+    "universe": "Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "0.50 to .99 of poverty threshold:", 
+      "65 years and over:"
+    ], 
+    "title": "With health insurance coverage"
+  }
 }

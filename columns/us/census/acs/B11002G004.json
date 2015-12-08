@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002G001", 
     "parent": "us/census/acs/B11002G003"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Two or More Races)\": \"('In family households:', 'In married-couple family:')\" \"Relatives\" in \"Population in Households With a Householder Who Is Two or More Races\""
+  "name": "Relatives and In family households and In married-couple family in Population in Households With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (Two or More Races)", 
+    "universe": "Population in Households With a Householder Who Is Two or More Races", 
+    "ancestors": [
+      "In family households:", 
+      "In married-couple family:"
+    ], 
+    "title": "Relatives"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21003001", 
     "parent": "us/census/acs/B21003002"
   }, 
-  "name": "\"Veteran Status by Educational Attainment for the Civilian Population 25 Years and Over\": \"('Veteran:',)\" \"Some college or associate's degree\" in \"Civilian Population 25 Years and Over\""
+  "name": "Some college or associate's degree and Veteran in Civilian Population 25 Years and Over", 
+  "extra": {
+    "table": "Veteran Status by Educational Attainment for the Civilian Population 25 Years and Over", 
+    "universe": "Civilian Population 25 Years and Over", 
+    "ancestors": [
+      "Veteran:"
+    ], 
+    "title": "Some college or associate's degree"
+  }
 }

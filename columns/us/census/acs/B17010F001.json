@@ -1,3 +1,11 @@
 {
-  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children (Some Other Race Alone Householder)\": \"()\" \"Total:\" in \"Families With a Householder Who Is Some Other Race Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/B17010F001"
+  }, 
+  "name": "Families With a Householder Who Is Some Other Race Alone", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children (Some Other Race Alone Householder)", 
+    "universe": "Families With a Householder Who Is Some Other Race Alone", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020293"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Production, transportation, and material moving occupations:', 'Transportation occupations:')\" \"Bus drivers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Bus drivers and Female and Production, transportation, and material moving occupations and Transportation occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Production, transportation, and material moving occupations:", 
+      "Transportation occupations:"
+    ], 
+    "title": "Bus drivers"
+  }
 }

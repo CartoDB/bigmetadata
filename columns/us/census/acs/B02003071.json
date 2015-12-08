@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02003001", 
     "parent": "us/census/acs/B02003070"
   }, 
-  "name": "\"Detailed Race\": \"('Population of two or more races:', 'Population of six races:')\" \"White; Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some other race\" in \"Total Population\""
+  "name": "White; Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some other race and Population of two or more races and Population of six races in Total Population", 
+  "extra": {
+    "table": "Detailed Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Population of two or more races:", 
+      "Population of six races:"
+    ], 
+    "title": "White; Black or African American; American Indian and Alaska Native; Asian; Native Hawaiian and Other Pacific Islander; Some other race"
+  }
 }

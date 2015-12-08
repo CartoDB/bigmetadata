@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06001001", 
     "parent": "us/census/acs/B06001049"
   }, 
-  "name": "\"Place of Birth by Age in the United States\": \"('Foreign born:',)\" \"65 to 74 years\" in \"Total Population in the United States\""
+  "name": "65 to 74 years and Foreign born in Total Population in the United States", 
+  "extra": {
+    "table": "Place of Birth by Age in the United States", 
+    "universe": "Total Population in the United States", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "65 to 74 years"
+  }
 }

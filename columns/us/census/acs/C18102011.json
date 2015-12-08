@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C18102001", 
     "parent": "us/census/acs/C18102009"
   }, 
-  "name": "\"Sex by Age by Hearing Difficulty\": \"('Male:', '65 years and over:')\" \"No hearing difficulty\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No hearing difficulty and Male and 65 years and over in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Sex by Age by Hearing Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:", 
+      "65 years and over:"
+    ], 
+    "title": "No hearing difficulty"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99052001", 
     "parent": "us/census/acs/B99052001"
   }, 
-  "name": "\"Imputation of Year of Entry\": \"()\" \"Native:\" in \"Population Born Outside the United States\""
+  "name": "Native: in Population Born Outside the United States", 
+  "extra": {
+    "table": "Imputation of Year of Entry", 
+    "universe": "Population Born Outside the United States", 
+    "title": "Native:"
+  }
 }

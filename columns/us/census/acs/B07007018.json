@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07007001", 
     "parent": "us/census/acs/B07007016"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Citizenship Status for Current Residence in the United States\": \"('Moved from different county within same state:',)\" \"Foreign born:\" in \"Population 1 Year and Over in the United States\""
+  "name": "Foreign born: and Moved from different county within same state in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Citizenship Status for Current Residence in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved from different county within same state:"
+    ], 
+    "title": "Foreign born:"
+  }
 }

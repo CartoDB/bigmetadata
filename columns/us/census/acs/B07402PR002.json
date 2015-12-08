@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B07402PR001"
   }, 
-  "name": "\"Median Age by Geographical Mobility in the Past Year for Residence 1 Year Ago in Puerto Rico\": \"('Total living in area 1 year ago:',)\" \"Same house\" in \"Population 1 Year and Over\""
+  "name": "Same house and Total living in area 1 year ago in Population 1 Year and Over", 
+  "extra": {
+    "table": "Median Age by Geographical Mobility in the Past Year for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "Population 1 Year and Over", 
+    "ancestors": [
+      "Total living in area 1 year ago:"
+    ], 
+    "title": "Same house"
+  }
 }

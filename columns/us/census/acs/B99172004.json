@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99172001", 
     "parent": "us/census/acs/B99172001"
   }, 
-  "name": "\"Imputation of Poverty Status in the Past 12 Months for Families\": \"()\" \"More than 0 to less than 10 percent of total income for family imputed\" in \"Families\""
+  "name": "More than 0 to less than 10 percent of total income for family imputed in Families", 
+  "extra": {
+    "table": "Imputation of Poverty Status in the Past 12 Months for Families", 
+    "universe": "Families", 
+    "title": "More than 0 to less than 10 percent of total income for family imputed"
+  }
 }

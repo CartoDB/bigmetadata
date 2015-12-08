@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05006001", 
     "parent": "us/census/acs/B05006056"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population in the United States\": \"('Asia:', 'South Central Asia:')\" \"India\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "India and Asia and South Central Asia in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in the United States", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Asia:", 
+      "South Central Asia:"
+    ], 
+    "title": "India"
+  }
 }

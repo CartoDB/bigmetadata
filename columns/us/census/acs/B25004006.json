@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25004001", 
     "parent": "us/census/acs/B25004001"
   }, 
-  "name": "\"Vacancy Status\": \"()\" \"For seasonal, recreational, or occasional use\" in \"Vacant Housing Units\""
+  "name": "For seasonal, recreational, or occasional use in Vacant Housing Units", 
+  "extra": {
+    "table": "Vacancy Status", 
+    "universe": "Vacant Housing Units", 
+    "title": "For seasonal, recreational, or occasional use"
+  }
 }

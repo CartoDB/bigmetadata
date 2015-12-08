@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11006001", 
     "parent": "us/census/acs/B11006009"
   }, 
-  "name": "\"Households by Presence of People 60 Years and Over by Household Type\": \"('Households with no people 60 years and over:',)\" \"Family households:\" in \"Households\""
+  "name": "Family households: and Households with no people 60 years and over in Households", 
+  "extra": {
+    "table": "Households by Presence of People 60 Years and Over by Household Type", 
+    "universe": "Households", 
+    "ancestors": [
+      "Households with no people 60 years and over:"
+    ], 
+    "title": "Family households:"
+  }
 }

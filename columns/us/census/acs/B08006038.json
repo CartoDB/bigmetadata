@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08006001", 
     "parent": "us/census/acs/B08006036"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work\": \"('Female:', 'Car, truck, or van:')\" \"Carpooled:\" in \"Workers 16 Years and Over\""
+  "name": "Carpooled: and Female and Car, truck, or van in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Car, truck, or van:"
+    ], 
+    "title": "Carpooled:"
+  }
 }

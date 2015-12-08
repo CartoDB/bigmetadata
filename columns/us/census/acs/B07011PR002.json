@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B07011PR001"
   }, 
-  "name": "\"Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Geographical Mobility in the Past Year for Current Residence in Puerto Rico\": \"('Total:',)\" \"Same house 1 year ago\" in \"Population 15 Years and Over in Puerto Rico With Income\""
+  "name": "Same house 1 year ago and Total in Population 15 Years and Over in Puerto Rico With Income", 
+  "extra": {
+    "table": "Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Geographical Mobility in the Past Year for Current Residence in Puerto Rico", 
+    "universe": "Population 15 Years and Over in Puerto Rico With Income", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Same house 1 year ago"
+  }
 }

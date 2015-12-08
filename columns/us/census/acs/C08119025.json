@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08119001", 
     "parent": "us/census/acs/C08119019"
   }, 
-  "name": "\"Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('Car, truck, or van - carpooled:',)\" \"$50,000 to $64,999\" in \"Workers 16 Years and Over With Earnings\""
+  "name": "$50,000 to $64,999 and Car, truck, or van - carpooled in Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Car, truck, or van - carpooled:"
+    ], 
+    "title": "$50,000 to $64,999"
+  }
 }

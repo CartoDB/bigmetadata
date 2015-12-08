@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Number of Rooms by Tenure\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Median Number of Rooms by Tenure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

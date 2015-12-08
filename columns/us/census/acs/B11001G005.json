@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001G001", 
     "parent": "us/census/acs/B11001G004"
   }, 
-  "name": "\"Household Type (Including Living Alone) (Two or More Races)\": \"('Family households:', 'Other family:')\" \"Male householder, no wife present\" in \"Households With a Householder Who Is Two or More Races\""
+  "name": "Male householder, no wife present and Family households and Other family in Households With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (Two or More Races)", 
+    "universe": "Households With a Householder Who Is Two or More Races", 
+    "ancestors": [
+      "Family households:", 
+      "Other family:"
+    ], 
+    "title": "Male householder, no wife present"
+  }
 }

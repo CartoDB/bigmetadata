@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19037D001", 
     "parent": "us/census/acs/B19037D019"
   }, 
-  "name": "\"Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Asian Alone Householder)\": \"('Householder 25 to 44 years:',)\" \"$30,000 to $34,999\" in \"Households With a Householder Who Is Asian Alone\""
+  "name": "$30,000 to $34,999 and Householder 25 to 44 years in Households With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Asian Alone Householder)", 
+    "universe": "Households With a Householder Who Is Asian Alone", 
+    "ancestors": [
+      "Householder 25 to 44 years:"
+    ], 
+    "title": "$30,000 to $34,999"
+  }
 }

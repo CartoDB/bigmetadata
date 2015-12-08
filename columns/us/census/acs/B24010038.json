@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010036"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:', 'Community and social service occupations:')\" \"Religious workers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Religious workers and Male and Management, business, science, and arts occupations and Education, legal, community service, arts, and media occupations and Community and social service occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:", 
+      "Education, legal, community service, arts, and media occupations:", 
+      "Community and social service occupations:"
+    ], 
+    "title": "Religious workers"
+  }
 }

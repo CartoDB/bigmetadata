@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25032C001", 
     "parent": "us/census/acs/C25032C001"
   }, 
-  "name": "\"Units in Structure (American Indian and Alaska Native Alone Householder)\": \"()\" \"2 to 4 units\" in \"Occupied Housing Units With a Householder Who Is American Indian and Alaska Native Alone\""
+  "name": "2 to 4 units in Occupied Housing Units With a Householder Who Is American Indian and Alaska Native Alone", 
+  "extra": {
+    "table": "Units in Structure (American Indian and Alaska Native Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is American Indian and Alaska Native Alone", 
+    "title": "2 to 4 units"
+  }
 }

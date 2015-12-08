@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17017001", 
     "parent": "us/census/acs/B17017038"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Household Type by Age of Householder\": \"('Income in the past 12 months at or above poverty level:', 'Family households:', 'Other family:')\" \"Female householder, no husband present:\" in \"Households\""
+  "name": "Female householder, no husband present: and Income in the past 12 months at or above poverty level and Family households and Other family in Households", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Household Type by Age of Householder", 
+    "universe": "Households", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Family households:", 
+      "Other family:"
+    ], 
+    "title": "Female householder, no husband present:"
+  }
 }

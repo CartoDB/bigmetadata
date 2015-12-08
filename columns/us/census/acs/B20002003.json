@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex for the Population 16 Years and Over With Earnings in the Past 12 Months\": \"()\" \"Female\" in \"Population 16 Years and Over With Earnings\""
+  "relationships": {}, 
+  "name": "Female in Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex for the Population 16 Years and Over With Earnings in the Past 12 Months", 
+    "universe": "Population 16 Years and Over With Earnings", 
+    "title": "Female"
+  }
 }

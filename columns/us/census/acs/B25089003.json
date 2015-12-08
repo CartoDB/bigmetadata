@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25089001"
   }, 
-  "name": "\"Aggregate Selected Monthly Owner Costs (Dollars) by Mortgage Status\": \"()\" \"Housing units without a mortgage (dollars)\" in \"Owner-occupied Housing Units\""
+  "name": "Housing units without a mortgage (dollars) in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Selected Monthly Owner Costs (Dollars) by Mortgage Status", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Housing units without a mortgage (dollars)"
+  }
 }

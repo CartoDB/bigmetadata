@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25032D001", 
     "parent": "us/census/acs/C25032D001"
   }, 
-  "name": "\"Units in Structure (Asian Alone Householder)\": \"()\" \"Mobile home, boat, RV, van, etc.\" in \"Occupied Housing Units With a Householder Who Is Asian Alone\""
+  "name": "Mobile home, boat, RV, van, etc. in Occupied Housing Units With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Units in Structure (Asian Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Asian Alone", 
+    "title": "Mobile home, boat, RV, van, etc."
+  }
 }

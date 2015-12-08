@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25032001", 
     "parent": "us/census/acs/C25032002"
   }, 
-  "name": "\"Tenure by Units in Structure\": \"('Owner-occupied housing units:',)\" \"Mobile home and all other types of units\" in \"Occupied Housing Units\""
+  "name": "Mobile home and all other types of units and Owner-occupied housing units in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner-occupied housing units:"
+    ], 
+    "title": "Mobile home and all other types of units"
+  }
 }

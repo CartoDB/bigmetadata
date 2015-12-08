@@ -1,3 +1,15 @@
 {
-  "name": "\"Place of Birth by Language Spoken at Home and Ability to Speak English in the United States\": \"('Foreign born:', 'Speak other languages:')\" \"Total:\" in \"Population 5 Years and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/C06007001"
+  }, 
+  "name": "Total: and Foreign born and Speak other languages in Population 5 Years and Over in the United States", 
+  "extra": {
+    "table": "Place of Birth by Language Spoken at Home and Ability to Speak English in the United States", 
+    "universe": "Population 5 Years and Over in the United States", 
+    "ancestors": [
+      "Foreign born:", 
+      "Speak other languages:"
+    ], 
+    "title": "Total:"
+  }
 }

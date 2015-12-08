@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25075001", 
     "parent": "us/census/acs/C25075001"
   }, 
-  "name": "\"Value\": \"()\" \"Less than $50,000\" in \"Owner-occupied Housing Units\""
+  "name": "Less than $50,000 in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Value", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Less than $50,000"
+  }
 }

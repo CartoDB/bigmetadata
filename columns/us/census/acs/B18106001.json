@@ -1,3 +1,15 @@
 {
-  "name": "\"Sex by Age by Self-care Difficulty\": \"('Female:', '65 years and over:')\" \"Total:\" in \"Civilian Noninstitutionalized Population 5 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B18106001"
+  }, 
+  "name": "Total: and Female and 65 years and over in Civilian Noninstitutionalized Population 5 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Self-care Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population 5 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

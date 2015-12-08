@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08526001", 
     "parent": "us/census/acs/B08526061"
   }, 
-  "name": "\"Means of Transportation to Work by Industry for Workplace Geography\": \"('Walked:',)\" \"Retail trade\" in \"Workers 16 Years and Over\""
+  "name": "Retail trade within Walked in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Walked:"
+    ], 
+    "title": "Retail trade"
+  }
 }

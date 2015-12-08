@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Mortgage Status and Selected Monthly Owner Costs\": \"()\" \"Total:\" in \"Owner-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B992522001"
+  }, 
+  "name": "Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Mortgage Status and Selected Monthly Owner Costs", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Total:"
+  }
 }

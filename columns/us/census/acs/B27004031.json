@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27004001", 
     "parent": "us/census/acs/B27004030"
   }, 
-  "name": "\"Employer-based Health Insurance by Sex by Age\": \"('Female:',)\" \"Under 6 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Under 6 years: and Female in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Employer-based Health Insurance by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Under 6 years:"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010C001", 
     "parent": "us/census/acs/B24010C016"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (American Indian and Alaska Native Alone)\": \"('Male:', 'Management, business, science, and arts occupations:', 'Healthcare practitioners and technical occupations:')\" \"Health diagnosing and treating practitioners and other technical occupations\" in \"Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over\""
+  "name": "Health diagnosing and treating practitioners and other technical occupations and Male and Management, business, science, and arts occupations and Healthcare practitioners and technical occupations in Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:", 
+      "Healthcare practitioners and technical occupations:"
+    ], 
+    "title": "Health diagnosing and treating practitioners and other technical occupations"
+  }
 }

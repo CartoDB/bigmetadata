@@ -1,3 +1,9 @@
 {
-  "name": "\"Housing Unit Coverage Rate\": \"()\" \"Total\" in \"Housing Units\""
+  "relationships": {}, 
+  "name": "Total in Housing Units", 
+  "extra": {
+    "table": "Housing Unit Coverage Rate", 
+    "universe": "Housing Units", 
+    "title": "Total"
+  }
 }

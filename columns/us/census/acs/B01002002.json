@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Sex\": \"()\" \"Male\" in \"Total Population\""
+  "relationships": {}, 
+  "name": "Male in Total Population", 
+  "extra": {
+    "table": "Median Age by Sex", 
+    "universe": "Total Population", 
+    "title": "Male"
+  }
 }

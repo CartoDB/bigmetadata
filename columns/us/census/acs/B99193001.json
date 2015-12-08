@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Family Income in the Past 12 Months -- Percent of Income Imputed\": \"()\" \"Total:\" in \"Families\""
+  "relationships": {
+    "denominator": "us/census/acs/B99193001"
+  }, 
+  "name": "Families", 
+  "extra": {
+    "table": "Imputation of Family Income in the Past 12 Months -- Percent of Income Imputed", 
+    "universe": "Families", 
+    "title": "Total:"
+  }
 }

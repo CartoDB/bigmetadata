@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001H001", 
     "parent": "us/census/acs/B01001H002"
   }, 
-  "name": "\"Sex by Age (White Alone, Not Hispanic or Latino)\": \"('Male:',)\" \"Under 5 years\" in \"White Alone, Not Hispanic or Latino Population\""
+  "name": "Under 5 years and Male in White Alone, Not Hispanic or Latino Population", 
+  "extra": {
+    "table": "Sex by Age (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Under 5 years"
+  }
 }

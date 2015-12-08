@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Self-employed in own not incorporated business workers and unpaid family workers:',)\" \"Total:\" in \"Civilian Employed Population 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B24080001"
+  }, 
+  "name": "Total: and Self-employed in own not incorporated business workers and unpaid family workers in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Self-employed in own not incorporated business workers and unpaid family workers:"
+    ], 
+    "title": "Total:"
+  }
 }

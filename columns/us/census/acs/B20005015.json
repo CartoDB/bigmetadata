@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B20005001", 
     "parent": "us/census/acs/B20005005"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over\": \"('Male:', 'Worked full-time, year-round in the past 12 months:', 'With earnings:')\" \"$22,500 to $24,999\" in \"Population 16 Years and Over\""
+  "name": "$22,500 to $24,999 and Male and Worked full-time, year-round in the past 12 months and With earnings in Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over", 
+    "universe": "Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Worked full-time, year-round in the past 12 months:", 
+      "With earnings:"
+    ], 
+    "title": "$22,500 to $24,999"
+  }
 }

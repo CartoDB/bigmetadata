@@ -1,3 +1,16 @@
 {
-  "name": "\"Poverty Status in the Past 12 Months of Families by Number of Related Children Under 18 Years\": \"('Income in the past 12 months below poverty level:', None, None)\" \"5 or more children\" in \"Families\""
+  "relationships": {
+    "denominator": "us/census/acs/C17012001"
+  }, 
+  "name": "5 or more children and Income in the past 12 months below poverty level in Families", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Number of Related Children Under 18 Years", 
+    "universe": "Families", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      null, 
+      null
+    ], 
+    "title": "5 or more children"
+  }
 }

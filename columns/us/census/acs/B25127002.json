@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25127001", 
     "parent": "us/census/acs/B25127001"
   }, 
-  "name": "\"Tenure by Year Structure Built by Units in Structure\": \"()\" \"Owner occupied:\" in \"Occupied Housing Units\""
+  "name": "Owner occupied: in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Structure Built by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Owner occupied:"
+  }
 }

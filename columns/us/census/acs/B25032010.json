@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25032001", 
     "parent": "us/census/acs/B25032002"
   }, 
-  "name": "\"Tenure by Units in Structure\": \"('Owner-occupied housing units:',)\" \"50 or more\" in \"Occupied Housing Units\""
+  "name": "50 or more and Owner-occupied housing units in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner-occupied housing units:"
+    ], 
+    "title": "50 or more"
+  }
 }

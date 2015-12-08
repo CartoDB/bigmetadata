@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06001PR001", 
     "parent": "us/census/acs/B06001PR037"
   }, 
-  "name": "\"Place of Birth by Age in Puerto Rico\": \"('Native; born elsewhere:',)\" \"75 years and over\" in \"Total Population in Puerto Rico\""
+  "name": "75 years and over and Native; born elsewhere in Total Population in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Age in Puerto Rico", 
+    "universe": "Total Population in Puerto Rico", 
+    "ancestors": [
+      "Native; born elsewhere:"
+    ], 
+    "title": "75 years and over"
+  }
 }

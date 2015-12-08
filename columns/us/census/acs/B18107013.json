@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18107001", 
     "parent": "us/census/acs/B18107012"
   }, 
-  "name": "\"Sex by Age by Independent Living Difficulty\": \"('Male:', '75 years and over:')\" \"With an independent living difficulty\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "With an independent living difficulty and Male and 75 years and over in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Independent Living Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "75 years and over:"
+    ], 
+    "title": "With an independent living difficulty"
+  }
 }

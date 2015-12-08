@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002001", 
     "parent": "us/census/acs/B12002158"
   }, 
-  "name": "\"Sex by Marital Status by Age for the Population 15 Years and Over\": \"('Female:', 'Widowed:')\" \"60 to 64 years\" in \"Population 15 Years and Over\""
+  "name": "60 to 64 years and Female and Widowed in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status by Age for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Widowed:"
+    ], 
+    "title": "60 to 64 years"
+  }
 }

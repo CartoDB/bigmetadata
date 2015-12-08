@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27012001", 
     "parent": "us/census/acs/B27012042"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Work Experience by Sex by Age\": \"('Worked less than full-time, year-round:', 'Male:', '65 years and over:')\" \"No health insurance coverage\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "No health insurance coverage and Worked less than full-time, year-round and Male and 65 years and over in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Work Experience by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "Worked less than full-time, year-round:", 
+      "Male:", 
+      "65 years and over:"
+    ], 
+    "title": "No health insurance coverage"
+  }
 }

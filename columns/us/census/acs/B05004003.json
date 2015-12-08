@@ -1,3 +1,13 @@
 {
-  "name": "\"Median Age by Citizenship Status by Sex\": \"('Female:', '18 years and over:')\" \"Female\" in \"Total Population\""
+  "relationships": {}, 
+  "name": "Female and Female and 18 years and over in Total Population", 
+  "extra": {
+    "table": "Median Age by Citizenship Status by Sex", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Female:", 
+      "18 years and over:"
+    ], 
+    "title": "Female"
+  }
 }

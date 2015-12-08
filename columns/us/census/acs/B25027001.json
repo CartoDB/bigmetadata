@@ -1,3 +1,14 @@
 {
-  "name": "\"Mortgage Status by Age of Householder\": \"('Renter occupied:',)\" \"Total:\" in \"Owner-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25027001"
+  }, 
+  "name": "Total: and Renter occupied in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Age of Householder", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Total:"
+  }
 }

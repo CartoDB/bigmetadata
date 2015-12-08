@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25017001", 
     "parent": "us/census/acs/B25017001"
   }, 
-  "name": "\"Rooms\": \"()\" \"9 or more rooms\" in \"Housing Units\""
+  "name": "9 or more rooms in Housing Units", 
+  "extra": {
+    "table": "Rooms", 
+    "universe": "Housing Units", 
+    "title": "9 or more rooms"
+  }
 }

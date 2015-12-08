@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C18130001", 
     "parent": "us/census/acs/C18130016"
   }, 
-  "name": "\"Age by Disability Status by Poverty Status\": \"('65 years and over:',)\" \"With a disability:\" in \"Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined\""
+  "name": "With a disability: and 65 years and over in Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Age by Disability Status by Poverty Status", 
+    "universe": "Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "65 years and over:"
+    ], 
+    "title": "With a disability:"
+  }
 }

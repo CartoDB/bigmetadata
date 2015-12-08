@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15001001", 
     "parent": "us/census/acs/B15001003"
   }, 
-  "name": "\"Sex by Age by Educational Attainment for the Population 18 Years and Over\": \"('Male:', '18 to 24 years:')\" \"Bachelor's degree\" in \"Population 18 Years and Over\""
+  "name": "Bachelor's degree and Male and 18 to 24 years in Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Educational Attainment for the Population 18 Years and Over", 
+    "universe": "Population 18 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "18 to 24 years:"
+    ], 
+    "title": "Bachelor's degree"
+  }
 }

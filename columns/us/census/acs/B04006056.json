@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04006001", 
     "parent": "us/census/acs/B04006001"
   }, 
-  "name": "\"People Reporting Ancestry\": \"()\" \"Maltese\" in \"Total Population\""
+  "name": "Maltese in Total Population", 
+  "extra": {
+    "table": "People Reporting Ancestry", 
+    "universe": "Total Population", 
+    "title": "Maltese"
+  }
 }

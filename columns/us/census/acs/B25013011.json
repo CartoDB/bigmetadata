@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25013001", 
     "parent": "us/census/acs/B25013007"
   }, 
-  "name": "\"Tenure by Educational Attainment of Householder\": \"('Renter-occupied housing units:',)\" \"Bachelor's degree or higher\" in \"Occupied Housing Units\""
+  "name": "Bachelor's degree or higher and Renter-occupied housing units in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Educational Attainment of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter-occupied housing units:"
+    ], 
+    "title": "Bachelor's degree or higher"
+  }
 }

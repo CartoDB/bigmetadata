@@ -1,3 +1,14 @@
 {
-  "name": "\"Age of Householder\": \"('Householder 75 years and over:',)\" \"Total:\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "relationships": {
+    "denominator": "us/census/acs/C25055001"
+  }, 
+  "name": "Total: and Householder 75 years and over in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Age of Householder", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "ancestors": [
+      "Householder 75 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

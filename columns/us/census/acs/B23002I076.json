@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23002I001", 
     "parent": "us/census/acs/B23002I075"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (Hispanic or Latino)\": \"('Female:', '70 years and over:')\" \"In labor force:\" in \"Hispanic or Latino Population 16 Years and Over\""
+  "name": "In labor force: and Female and 70 years and over in Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "70 years and over:"
+    ], 
+    "title": "In labor force:"
+  }
 }

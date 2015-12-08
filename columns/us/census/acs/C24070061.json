@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24070001", 
     "parent": "us/census/acs/C24070057"
   }, 
-  "name": "\"Industry by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Local, state, and federal government workers:',)\" \"Wholesale trade\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Wholesale trade and Local, state, and federal government workers in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Local, state, and federal government workers:"
+    ], 
+    "title": "Wholesale trade"
+  }
 }

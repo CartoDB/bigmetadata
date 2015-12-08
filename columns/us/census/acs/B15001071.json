@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15001001", 
     "parent": "us/census/acs/B15001068"
   }, 
-  "name": "\"Sex by Age by Educational Attainment for the Population 18 Years and Over\": \"('Female:', '45 to 64 years:')\" \"High school graduate, GED, or alternative\" in \"Population 18 Years and Over\""
+  "name": "High school graduate, GED, or alternative and Female and 45 to 64 years in Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Educational Attainment for the Population 18 Years and Over", 
+    "universe": "Population 18 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "45 to 64 years:"
+    ], 
+    "title": "High school graduate, GED, or alternative"
+  }
 }

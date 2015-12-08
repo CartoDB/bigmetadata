@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C04002001", 
     "parent": "us/census/acs/C04002001"
   }, 
-  "name": "\"Second Ancestry Reported\": \"()\" \"Italian\" in \"Total Population\""
+  "name": "Italian in Total Population", 
+  "extra": {
+    "table": "Second Ancestry Reported", 
+    "universe": "Total Population", 
+    "title": "Italian"
+  }
 }

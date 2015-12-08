@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C20005I001", 
     "parent": "us/census/acs/C20005I005"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Hispanic or Latino)\": \"('Male:', 'Worked full-time, year-round in the past 12 months:', 'With earnings:')\" \"$20,000 to $29,999\" in \"Hispanic or Latino Population 16 Years and Over\""
+  "name": "$20,000 to $29,999 and Male and Worked full-time, year-round in the past 12 months and With earnings in Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Worked full-time, year-round in the past 12 months:", 
+      "With earnings:"
+    ], 
+    "title": "$20,000 to $29,999"
+  }
 }

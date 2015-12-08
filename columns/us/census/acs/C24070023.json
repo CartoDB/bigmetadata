@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24070001", 
     "parent": "us/census/acs/C24070015"
   }, 
-  "name": "\"Industry by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Employee of private company workers:',)\" \"Finance and insurance, and real estate and rental and leasing\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Finance and insurance, and real estate and rental and leasing and Employee of private company workers in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Employee of private company workers:"
+    ], 
+    "title": "Finance and insurance, and real estate and rental and leasing"
+  }
 }

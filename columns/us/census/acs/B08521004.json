@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B08521001"
   }, 
-  "name": "\"Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Means of Transportation to Work for Workplace Geography\": \"('Total:',)\" \"Public transportation (excluding taxicab)\" in \"Workers 16 Years and Over With Earnings\""
+  "name": "Public transportation (excluding taxicab) within Total in Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Public transportation (excluding taxicab)"
+  }
 }

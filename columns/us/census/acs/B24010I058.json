@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010I001", 
     "parent": "us/census/acs/B24010I057"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)\": \"('Female:', 'Service occupations:', 'Protective service occupations:')\" \"Fire fighting and prevention, and other protective service workers including supervisors\" in \"Civilian Employed Hispanic or Latino Population 16 Years and Over\""
+  "name": "Fire fighting and prevention, and other protective service workers including supervisors and Female and Service occupations and Protective service occupations in Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:", 
+      "Protective service occupations:"
+    ], 
+    "title": "Fire fighting and prevention, and other protective service workers including supervisors"
+  }
 }

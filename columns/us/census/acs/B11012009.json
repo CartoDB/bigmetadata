@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11012001", 
     "parent": "us/census/acs/B11012007"
   }, 
-  "name": "\"Household Type by Tenure\": \"('Family households:', 'Other family:', 'Male householder, no wife present:')\" \"Renter-occupied housing units\" in \"Households\""
+  "name": "Renter-occupied housing units and Family households and Other family and Male householder, no wife present in Households", 
+  "extra": {
+    "table": "Household Type by Tenure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:", 
+      "Other family:", 
+      "Male householder, no wife present:"
+    ], 
+    "title": "Renter-occupied housing units"
+  }
 }

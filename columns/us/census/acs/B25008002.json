@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25008001", 
     "parent": "us/census/acs/B25008001"
   }, 
-  "name": "\"Total Population in Occupied Housing Units by Tenure\": \"()\" \"Owner occupied\" in \"Total Population in Occupied Housing Units\""
+  "name": "Owner occupied in Total Population in Occupied Housing Units", 
+  "extra": {
+    "table": "Total Population in Occupied Housing Units by Tenure", 
+    "universe": "Total Population in Occupied Housing Units", 
+    "title": "Owner occupied"
+  }
 }

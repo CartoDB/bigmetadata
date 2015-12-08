@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C19037001", 
     "parent": "us/census/acs/C19037001"
   }, 
-  "name": "\"Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"()\" \"Householder 25 to 44 years:\" in \"Households\""
+  "name": "Householder 25 to 44 years: in Households", 
+  "extra": {
+    "table": "Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Households", 
+    "title": "Householder 25 to 44 years:"
+  }
 }

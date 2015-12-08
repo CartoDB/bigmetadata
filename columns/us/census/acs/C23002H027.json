@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C23002H001", 
     "parent": "us/census/acs/C23002H023"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (White Alone, Not Hispanic or Latino)\": \"('Female:', '65 years and over:')\" \"Not in labor force\" in \"White Alone, Not Hispanic or Latino Population 16 Years and Over\""
+  "name": "Not in labor force and Female and 65 years and over in White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "65 years and over:"
+    ], 
+    "title": "Not in labor force"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18135001", 
     "parent": "us/census/acs/B18135024"
   }, 
-  "name": "\"Age by Disability Status by Health Insurance Coverage Status\": \"('65 years and over:',)\" \"No disability:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No disability: and 65 years and over in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status by Health Insurance Coverage Status", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "65 years and over:"
+    ], 
+    "title": "No disability:"
+  }
 }

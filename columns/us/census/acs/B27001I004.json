@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001I001", 
     "parent": "us/census/acs/B27001I002"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Hispanic or Latino)\": \"('Under 6 years:',)\" \"No health insurance coverage\" in \"HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "No health insurance coverage and Under 6 years in HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Hispanic or Latino)", 
+    "universe": "HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "Under 6 years:"
+    ], 
+    "title": "No health insurance coverage"
+  }
 }

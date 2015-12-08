@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24060001", 
     "parent": "us/census/acs/B24060037"
   }, 
-  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Employee of private company workers:',)\" \"Service occupations:\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Service occupations: and Employee of private company workers in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Employee of private company workers:"
+    ], 
+    "title": "Service occupations:"
+  }
 }

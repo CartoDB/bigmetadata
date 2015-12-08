@@ -1,3 +1,11 @@
 {
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years by Household Type for Households\": \"()\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B22002001"
+  }, 
+  "name": "Households", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years by Household Type for Households", 
+    "universe": "Households", 
+    "title": "Total:"
+  }
 }

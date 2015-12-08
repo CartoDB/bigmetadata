@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07101001", 
     "parent": "us/census/acs/B07101048"
   }, 
-  "name": "\"Movers Between Regions in the United States\": \"('Current residence; West:', 'Movers to different state:', None)\" \"Midwest\" in \"Population 1 Year and Over in the United States\""
+  "name": "Midwest and Current residence; West and Movers to different state in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Movers Between Regions in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Current residence; West:", 
+      "Movers to different state:", 
+      null
+    ], 
+    "title": "Midwest"
+  }
 }

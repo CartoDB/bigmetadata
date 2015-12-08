@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07007PR001", 
     "parent": "us/census/acs/B07007PR023"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Citizenship Status for Current Residence in Puerto Rico\": \"('Moved from the United States:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"Population 1 Year and Over in Puerto Rico\""
+  "name": "Naturalized U.S. citizen and Moved from the United States and Foreign born in Population 1 Year and Over in Puerto Rico", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Citizenship Status for Current Residence in Puerto Rico", 
+    "universe": "Population 1 Year and Over in Puerto Rico", 
+    "ancestors": [
+      "Moved from the United States:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

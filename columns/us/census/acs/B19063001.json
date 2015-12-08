@@ -1,3 +1,9 @@
 {
-  "name": "\"Aggregate Self-employment Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Households\": \"()\" \"Aggregate self-employment income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"Households\""
+  "relationships": {}, 
+  "name": "Aggregate self-employment income in the past 12 months (in 2010 inflation-adjusted dollars) in Households", 
+  "extra": {
+    "table": "Aggregate Self-employment Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Households", 
+    "universe": "Households", 
+    "title": "Aggregate self-employment income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

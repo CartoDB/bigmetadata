@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001H001", 
     "parent": "us/census/acs/B11001H007"
   }, 
-  "name": "\"Household Type (Including Living Alone) (White Alone, Not Hispanic or Latino)\": \"('Nonfamily households:',)\" \"Householder living alone\" in \"Households With a Householder Who Is White Alone, Not Hispanic or Latino\""
+  "name": "Householder living alone and Nonfamily households in Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (White Alone, Not Hispanic or Latino)", 
+    "universe": "Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Householder living alone"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08124001", 
     "parent": "us/census/acs/C08124008"
   }, 
-  "name": "\"Means of Transportation to Work by Occupation\": \"('Car, truck, or van - drove alone:',)\" \"Military specific occupations\" in \"Workers 16 Years and Over\""
+  "name": "Military specific occupations and Car, truck, or van - drove alone in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Occupation", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:"
+    ], 
+    "title": "Military specific occupations"
+  }
 }

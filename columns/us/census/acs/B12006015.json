@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12006001", 
     "parent": "us/census/acs/B12006014"
   }, 
-  "name": "\"Marital Status by Sex by Labor Force Participation\": \"('Now married (except separated):', 'Male:')\" \"In labor force:\" in \"Population 16 Years and Over\""
+  "name": "In labor force: and Now married (except separated) and Male in Population 16 Years and Over", 
+  "extra": {
+    "table": "Marital Status by Sex by Labor Force Participation", 
+    "universe": "Population 16 Years and Over", 
+    "ancestors": [
+      "Now married (except separated):", 
+      "Male:"
+    ], 
+    "title": "In labor force:"
+  }
 }

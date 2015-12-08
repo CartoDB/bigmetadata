@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24011001", 
     "parent": "us/census/acs/B24011029"
   }, 
-  "name": "\"Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over\": \"('Natural resources, construction, and maintenance occupations:',)\" \"Construction and extraction occupations\" in \"Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Construction and extraction occupations and Natural resources, construction, and maintenance occupations in Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Natural resources, construction, and maintenance occupations:"
+    ], 
+    "title": "Construction and extraction occupations"
+  }
 }

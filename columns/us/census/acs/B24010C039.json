@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010C001", 
     "parent": "us/census/acs/B24010C038"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (American Indian and Alaska Native Alone)\": \"('Female:',)\" \"Management, business, science, and arts occupations:\" in \"Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over\""
+  "name": "Management, business, science, and arts occupations: and Female in Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Management, business, science, and arts occupations:"
+  }
 }

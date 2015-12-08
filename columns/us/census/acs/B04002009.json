@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04002001", 
     "parent": "us/census/acs/B04002006"
   }, 
-  "name": "\"Second Ancestry Reported\": \"('Arab:',)\" \"Jordanian\" in \"Total Population\""
+  "name": "Jordanian and Arab in Total Population", 
+  "extra": {
+    "table": "Second Ancestry Reported", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Arab:"
+    ], 
+    "title": "Jordanian"
+  }
 }

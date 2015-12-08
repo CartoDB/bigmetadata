@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99051001", 
     "parent": "us/census/acs/B99051002"
   }, 
-  "name": "\"Imputation of Citizenship Status\": \"('Native:',)\" \"Imputed\" in \"Total Population\""
+  "name": "Imputed and Native in Total Population", 
+  "extra": {
+    "table": "Imputation of Citizenship Status", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Native:"
+    ], 
+    "title": "Imputed"
+  }
 }

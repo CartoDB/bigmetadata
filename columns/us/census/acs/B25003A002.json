@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25003A001", 
     "parent": "us/census/acs/B25003A001"
   }, 
-  "name": "\"Tenure (White Alone Householder)\": \"()\" \"Owner occupied\" in \"Occupied Housing Units With a Householder Who Is White Alone\""
+  "name": "Owner occupied in Occupied Housing Units With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Tenure (White Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is White Alone", 
+    "title": "Owner occupied"
+  }
 }

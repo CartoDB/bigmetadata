@@ -1,3 +1,11 @@
 {
-  "name": "\"Relationship by Household Type (Including Living Alone) for the Population 65 Years and Over\": \"()\" \"Total:\" in \"Population 65 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B09020001"
+  }, 
+  "name": "Population 65 Years and Over", 
+  "extra": {
+    "table": "Relationship by Household Type (Including Living Alone) for the Population 65 Years and Over", 
+    "universe": "Population 65 Years and Over", 
+    "title": "Total:"
+  }
 }

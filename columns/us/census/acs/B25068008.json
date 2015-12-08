@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25068001", 
     "parent": "us/census/acs/B25068003"
   }, 
-  "name": "\"Bedrooms by Gross Rent\": \"('No bedroom:', 'With cash rent:')\" \"$750 to $999\" in \"Renter-occupied Housing Units\""
+  "name": "$750 to $999 and No bedroom and With cash rent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Bedrooms by Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "No bedroom:", 
+      "With cash rent:"
+    ], 
+    "title": "$750 to $999"
+  }
 }

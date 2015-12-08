@@ -2,5 +2,14 @@
   "relationships": {
     "parent": "us/census/acs/B08536004"
   }, 
-  "name": "\"Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work for Workplace Geography\": \"('Car, truck, or van:', 'Carpooled:')\" \"In 3-or-more-person carpool\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "In 3-or-more-person carpool within Car, truck, or van within Carpooled in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Car, truck, or van:", 
+      "Carpooled:"
+    ], 
+    "title": "In 3-or-more-person carpool"
+  }
 }

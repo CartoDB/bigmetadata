@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16001001", 
     "parent": "us/census/acs/B16001001"
   }, 
-  "name": "\"Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over\": \"()\" \"Vietnamese:\" in \"Population 5 Years and Over\""
+  "name": "Vietnamese: in Population 5 Years and Over", 
+  "extra": {
+    "table": "Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "title": "Vietnamese:"
+  }
 }

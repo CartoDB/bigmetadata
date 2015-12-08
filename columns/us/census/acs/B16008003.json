@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16008001", 
     "parent": "us/census/acs/B16008002"
   }, 
-  "name": "\"Citizenship Status by Age by Language Spoken at Home for the Population 5 Years and Over\": \"('Native population:',)\" \"5 to 17 years:\" in \"Population 5 Years and Over\""
+  "name": "5 to 17 years: and Native population in Population 5 Years and Over", 
+  "extra": {
+    "table": "Citizenship Status by Age by Language Spoken at Home for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "Native population:"
+    ], 
+    "title": "5 to 17 years:"
+  }
 }

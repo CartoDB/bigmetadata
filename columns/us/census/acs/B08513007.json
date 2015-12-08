@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08513001", 
     "parent": "us/census/acs/B08513006"
   }, 
-  "name": "\"Means of Transportation to Work by Language Spoken at Home and Ability to Speak English for Workplace Geography\": \"(None, 'Speak other languages:')\" \"Speak English \"very well\"\" in \"Workers 16 Years and Over\""
+  "name": "Speak English \"very well\" within Speak other languages in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Language Spoken at Home and Ability to Speak English for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null, 
+      "Speak other languages:"
+    ], 
+    "title": "Speak English \"very well\""
+  }
 }

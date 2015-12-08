@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010A001", 
     "parent": "us/census/acs/B24010A002"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone)\": \"('Male:',)\" \"Management, business, science, and arts occupations:\" in \"Civilian Employed White Alone Population 16 Years and Over\""
+  "name": "Management, business, science, and arts occupations: and Male in Civilian Employed White Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone)", 
+    "universe": "Civilian Employed White Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Management, business, science, and arts occupations:"
+  }
 }

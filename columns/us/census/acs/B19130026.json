@@ -2,5 +2,14 @@
   "relationships": {
     "parent": "us/census/acs/B19130021"
   }, 
-  "name": "\"Aggregate Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Family Type by Age of Householder\": \"('Other family (dollars):', 'Female householder, no husband present (dollars):')\" \"Householder 55 to 59 years (dollars)\" in \"Families\""
+  "name": "Householder 55 to 59 years (dollars) and Other family (dollars) and Female householder, no husband present (dollars) in Families", 
+  "extra": {
+    "table": "Aggregate Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Family Type by Age of Householder", 
+    "universe": "Families", 
+    "ancestors": [
+      "Other family (dollars):", 
+      "Female householder, no husband present (dollars):"
+    ], 
+    "title": "Householder 55 to 59 years (dollars)"
+  }
 }

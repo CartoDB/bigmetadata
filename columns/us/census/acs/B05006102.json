@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05006001", 
     "parent": "us/census/acs/B05006100"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population in the United States\": \"('Africa:', 'Northern Africa:')\" \"Morocco\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Morocco and Africa and Northern Africa in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in the United States", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Africa:", 
+      "Northern Africa:"
+    ], 
+    "title": "Morocco"
+  }
 }

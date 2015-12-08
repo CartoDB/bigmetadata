@@ -1,3 +1,14 @@
 {
-  "name": "\"Tenure by Educational Attainment of Householder\": \"('Renter-occupied housing units:',)\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25013001"
+  }, 
+  "name": "Total: and Renter-occupied housing units in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Educational Attainment of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter-occupied housing units:"
+    ], 
+    "title": "Total:"
+  }
 }

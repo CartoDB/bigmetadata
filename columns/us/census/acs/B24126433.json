@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24126001", 
     "parent": "us/census/acs/B24126001"
   }, 
-  "name": "\"Detailed Occupation for the Full-time, Year-round Civilian Employed Female Population 16 Years and Over\": \"()\" \"Milling and planing machine setters, operators, and tenders, metal and plastic\" in \"Full-time, Year-round Civilian Employed Female Population 16 Years and Over\""
+  "name": "Milling and planing machine setters, operators, and tenders, metal and plastic in Full-time, Year-round Civilian Employed Female Population 16 Years and Over", 
+  "extra": {
+    "table": "Detailed Occupation for the Full-time, Year-round Civilian Employed Female Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Female Population 16 Years and Over", 
+    "title": "Milling and planing machine setters, operators, and tenders, metal and plastic"
+  }
 }

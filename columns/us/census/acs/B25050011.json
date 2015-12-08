@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25050001", 
     "parent": "us/census/acs/B25050001"
   }, 
-  "name": "\"Plumbing Facilities by Occupants Per Room by Year Structure Built\": \"()\" \"Lacking complete plumbing facilities:\" in \"Occupied Housing Units\""
+  "name": "Lacking complete plumbing facilities: in Occupied Housing Units", 
+  "extra": {
+    "table": "Plumbing Facilities by Occupants Per Room by Year Structure Built", 
+    "universe": "Occupied Housing Units", 
+    "title": "Lacking complete plumbing facilities:"
+  }
 }

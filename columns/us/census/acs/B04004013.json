@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04004001", 
     "parent": "us/census/acs/B04004006"
   }, 
-  "name": "\"People Reporting Single Ancestry\": \"('Arab:',)\" \"Syrian\" in \"People Reporting Single Ancestry\""
+  "name": "Syrian and Arab in People Reporting Single Ancestry", 
+  "extra": {
+    "table": "People Reporting Single Ancestry", 
+    "universe": "People Reporting Single Ancestry", 
+    "ancestors": [
+      "Arab:"
+    ], 
+    "title": "Syrian"
+  }
 }

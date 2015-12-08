@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04002001", 
     "parent": "us/census/acs/B04002001"
   }, 
-  "name": "\"Second Ancestry Reported\": \"()\" \"Northern European\" in \"Total Population\""
+  "name": "Northern European in Total Population", 
+  "extra": {
+    "table": "Second Ancestry Reported", 
+    "universe": "Total Population", 
+    "title": "Northern European"
+  }
 }

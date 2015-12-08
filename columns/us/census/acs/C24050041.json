@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24050001", 
     "parent": "us/census/acs/C24050029"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Service occupations:',)\" \"Other services, except public administration\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Other services, except public administration and Service occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Service occupations:"
+    ], 
+    "title": "Other services, except public administration"
+  }
 }

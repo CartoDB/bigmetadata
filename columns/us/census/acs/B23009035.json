@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23009001", 
     "parent": "us/census/acs/B23009034"
   }, 
-  "name": "\"Presence of Own Children Under 18 Years by Family Type by Number of Workers in Family in the Past 12 Months\": \"('No children under 18 years:', 'Other family:', 'Male householder, no wife present:')\" \"No workers\" in \"Families\""
+  "name": "No workers and No children under 18 years and Other family and Male householder, no wife present in Families", 
+  "extra": {
+    "table": "Presence of Own Children Under 18 Years by Family Type by Number of Workers in Family in the Past 12 Months", 
+    "universe": "Families", 
+    "ancestors": [
+      "No children under 18 years:", 
+      "Other family:", 
+      "Male householder, no wife present:"
+    ], 
+    "title": "No workers"
+  }
 }

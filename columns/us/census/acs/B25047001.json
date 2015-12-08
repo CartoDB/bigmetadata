@@ -1,3 +1,11 @@
 {
-  "name": "\"Plumbing Facilities for All Housing Units\": \"()\" \"Total:\" in \"Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25047001"
+  }, 
+  "name": "Housing Units", 
+  "extra": {
+    "table": "Plumbing Facilities for All Housing Units", 
+    "universe": "Housing Units", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25013001", 
     "parent": "us/census/acs/B25013001"
   }, 
-  "name": "\"Tenure by Educational Attainment of Householder\": \"()\" \"Renter-occupied housing units:\" in \"Occupied Housing Units\""
+  "name": "Renter-occupied housing units: in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Educational Attainment of Householder", 
+    "universe": "Occupied Housing Units", 
+    "title": "Renter-occupied housing units:"
+  }
 }

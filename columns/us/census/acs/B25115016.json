@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25115001", 
     "parent": "us/census/acs/B25115015"
   }, 
-  "name": "\"Tenure by Household Type and Presence and Age of Own Children\": \"('Renter occupied:',)\" \"Family households:\" in \"Occupied Housing Units\""
+  "name": "Family households: and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Type and Presence and Age of Own Children", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Family households:"
+  }
 }

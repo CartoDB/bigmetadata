@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Educational Attainment for the Population 25 Years and Over\": \"()\" \"Total:\" in \"Population 25 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B99151001"
+  }, 
+  "name": "Population 25 Years and Over", 
+  "extra": {
+    "table": "Imputation of Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "title": "Total:"
+  }
 }

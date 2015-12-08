@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25129001", 
     "parent": "us/census/acs/B25129060"
   }, 
-  "name": "\"Tenure by Year Householder Moved Into Unit by Units in Structure\": \"('Renter occupied:', 'Moved in 1990 to 1999:')\" \"20 to 49\" in \"Occupied Housing Units\""
+  "name": "20 to 49 and Renter occupied and Moved in 1990 to 1999 in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Householder Moved Into Unit by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "Moved in 1990 to 1999:"
+    ], 
+    "title": "20 to 49"
+  }
 }

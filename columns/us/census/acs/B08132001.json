@@ -1,3 +1,11 @@
 {
-  "name": "\"Means of Transportation to Work by Time Leaving Home to Go to Work\": \"()\" \"Total:\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "relationships": {
+    "denominator": "us/census/acs/B08132001"
+  }, 
+  "name": "Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Time Leaving Home to Go to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "title": "Total:"
+  }
 }

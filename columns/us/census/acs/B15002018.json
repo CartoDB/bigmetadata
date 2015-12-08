@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002001", 
     "parent": "us/census/acs/B15002002"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over\": \"('Male:',)\" \"Doctorate degree\" in \"Population 25 Years and Over\""
+  "name": "Doctorate degree and Male in Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Doctorate degree"
+  }
 }

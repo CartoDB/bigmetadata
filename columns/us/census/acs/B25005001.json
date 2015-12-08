@@ -1,3 +1,11 @@
 {
-  "name": "\"Vacant - Current Residence Elsewhere\": \"()\" \"Total:\" in \"Vacant Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25005001"
+  }, 
+  "name": "Vacant Housing Units", 
+  "extra": {
+    "table": "Vacant - Current Residence Elsewhere", 
+    "universe": "Vacant Housing Units", 
+    "title": "Total:"
+  }
 }

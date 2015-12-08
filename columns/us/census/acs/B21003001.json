@@ -1,3 +1,11 @@
 {
-  "name": "\"Veteran Status by Educational Attainment for the Civilian Population 25 Years and Over\": \"()\" \"Total:\" in \"Civilian Population 25 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B21003001"
+  }, 
+  "name": "Civilian Population 25 Years and Over", 
+  "extra": {
+    "table": "Veteran Status by Educational Attainment for the Civilian Population 25 Years and Over", 
+    "universe": "Civilian Population 25 Years and Over", 
+    "title": "Total:"
+  }
 }

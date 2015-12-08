@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27011001", 
     "parent": "us/census/acs/B27011014"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Employment Status by Age\": \"('In labor force:', 'Unemployed:')\" \"18 to 64 years:\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "18 to 64 years: and In labor force and Unemployed in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Employment Status by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "In labor force:", 
+      "Unemployed:"
+    ], 
+    "title": "18 to 64 years:"
+  }
 }

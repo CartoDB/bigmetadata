@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21005001", 
     "parent": "us/census/acs/B21005026"
   }, 
-  "name": "\"Age by Veteran Status by Employment Status for the Civilian Population 18 to 64 Years\": \"('55 to 64 years:', 'Veteran:', 'In labor force:')\" \"Unemployed\" in \"Civilian Population 18 to 64 Years\""
+  "name": "Unemployed and 55 to 64 years and Veteran and In labor force in Civilian Population 18 to 64 Years", 
+  "extra": {
+    "table": "Age by Veteran Status by Employment Status for the Civilian Population 18 to 64 Years", 
+    "universe": "Civilian Population 18 to 64 Years", 
+    "ancestors": [
+      "55 to 64 years:", 
+      "Veteran:", 
+      "In labor force:"
+    ], 
+    "title": "Unemployed"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25012001", 
     "parent": "us/census/acs/B25012001"
   }, 
-  "name": "\"Tenure by Families and Presence of Own Children\": \"()\" \"Owner-occupied housing units:\" in \"Occupied Housing Units\""
+  "name": "Owner-occupied housing units: in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Families and Presence of Own Children", 
+    "universe": "Occupied Housing Units", 
+    "title": "Owner-occupied housing units:"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Medicaid/Means-tested Public Coverage\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B992707001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Imputation of Medicaid/Means-tested Public Coverage", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Total:"
+  }
 }

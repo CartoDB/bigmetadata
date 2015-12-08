@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12006001", 
     "parent": "us/census/acs/B12006001"
   }, 
-  "name": "\"Marital Status by Sex by Labor Force Participation\": \"()\" \"Widowed:\" in \"Population 16 Years and Over\""
+  "name": "Widowed: in Population 16 Years and Over", 
+  "extra": {
+    "table": "Marital Status by Sex by Labor Force Participation", 
+    "universe": "Population 16 Years and Over", 
+    "title": "Widowed:"
+  }
 }

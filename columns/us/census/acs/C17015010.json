@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17015001", 
     "parent": "us/census/acs/C17015009"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Social Security Income by Supplemental Security Income (SSI) and Public Assistance Income\": \"('Income in the past 12 months at or above poverty level:',)\" \"With Social Security income in the past 12 months:\" in \"Families\""
+  "name": "With Social Security income in the past 12 months: and Income in the past 12 months at or above poverty level in Families", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Social Security Income by Supplemental Security Income (SSI) and Public Assistance Income", 
+    "universe": "Families", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:"
+    ], 
+    "title": "With Social Security income in the past 12 months:"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05005001", 
     "parent": "us/census/acs/C05005001"
   }, 
-  "name": "\"Year of Entry by Nativity in the United States\": \"()\" \"Entered U.S. 1990 to 1999:\" in \"Population Born Outside the United States\""
+  "name": "Entered U.S. 1990 to 1999: in Population Born Outside the United States", 
+  "extra": {
+    "table": "Year of Entry by Nativity in the United States", 
+    "universe": "Population Born Outside the United States", 
+    "title": "Entered U.S. 1990 to 1999:"
+  }
 }

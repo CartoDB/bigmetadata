@@ -1,3 +1,12 @@
 {
-  "name": "\"Aggregate Number of Vehicles Available by Tenure\": \"('Renter occupied:',)\" \"Aggregate number of vehicles available:\" in \"Occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Aggregate number of vehicles available: and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Number of Vehicles Available by Tenure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Aggregate number of vehicles available:"
+  }
 }

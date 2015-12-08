@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15010001", 
     "parent": "us/census/acs/B15010011"
   }, 
-  "name": "\"Detailed Field of Bachelor's Degree for First Major for the Population 25 Years and Over\": \"('Education',)\" \"Communications\" in \"POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT\""
+  "name": "Communications and Education in POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT", 
+  "extra": {
+    "table": "Detailed Field of Bachelor's Degree for First Major for the Population 25 Years and Over", 
+    "universe": "POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT", 
+    "ancestors": [
+      "Education"
+    ], 
+    "title": "Communications"
+  }
 }

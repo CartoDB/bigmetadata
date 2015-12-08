@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11012001", 
     "parent": "us/census/acs/B11012003"
   }, 
-  "name": "\"Household Type by Tenure\": \"('Family households:', 'Married-couple family:')\" \"Renter-occupied housing units\" in \"Households\""
+  "name": "Renter-occupied housing units and Family households and Married-couple family in Households", 
+  "extra": {
+    "table": "Household Type by Tenure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:", 
+      "Married-couple family:"
+    ], 
+    "title": "Renter-occupied housing units"
+  }
 }

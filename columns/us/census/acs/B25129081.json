@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25129001", 
     "parent": "us/census/acs/B25129045"
   }, 
-  "name": "\"Tenure by Year Householder Moved Into Unit by Units in Structure\": \"('Renter occupied:',)\" \"Moved in 1969 or earlier:\" in \"Occupied Housing Units\""
+  "name": "Moved in 1969 or earlier: and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Householder Moved Into Unit by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Moved in 1969 or earlier:"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99254001", 
     "parent": "us/census/acs/B99254001"
   }, 
-  "name": "\"Imputation of Rooms\": \"()\" \"Not imputed\" in \"Housing Units\""
+  "name": "Not imputed in Housing Units", 
+  "extra": {
+    "table": "Imputation of Rooms", 
+    "universe": "Housing Units", 
+    "title": "Not imputed"
+  }
 }

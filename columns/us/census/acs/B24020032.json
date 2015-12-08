@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020031"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Male:', 'Management, business, science, and arts occupations:', 'Computer, engineering, and science occupations:', 'Life, physical, and social science occupations:')\" \"Life and physical scientists\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Life and physical scientists and Male and Management, business, science, and arts occupations and Computer, engineering, and science occupations and Life, physical, and social science occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:", 
+      "Computer, engineering, and science occupations:", 
+      "Life, physical, and social science occupations:"
+    ], 
+    "title": "Life and physical scientists"
+  }
 }

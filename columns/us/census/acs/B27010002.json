@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27010001", 
     "parent": "us/census/acs/B27010001"
   }, 
-  "name": "\"Types of Health Insurance Coverage by Age\": \"()\" \"Under 18 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Under 18 years: in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Types of Health Insurance Coverage by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Under 18 years:"
+  }
 }

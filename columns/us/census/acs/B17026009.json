@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17026001", 
     "parent": "us/census/acs/B17026001"
   }, 
-  "name": "\"Ratio of Income to Poverty Level of Families in the Past 12 Months\": \"()\" \"1.85 to 1.99\" in \"Families\""
+  "name": "1.85 to 1.99 in Families", 
+  "extra": {
+    "table": "Ratio of Income to Poverty Level of Families in the Past 12 Months", 
+    "universe": "Families", 
+    "title": "1.85 to 1.99"
+  }
 }

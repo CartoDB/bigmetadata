@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07101001", 
     "parent": "us/census/acs/B07101049"
   }, 
-  "name": "\"Movers Between Regions in the United States\": \"('Current residence; West:',)\" \"Movers to different state:\" in \"Population 1 Year and Over in the United States\""
+  "name": "Movers to different state: and Current residence; West in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Movers Between Regions in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Current residence; West:"
+    ], 
+    "title": "Movers to different state:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001001", 
     "parent": "us/census/acs/B01001002"
   }, 
-  "name": "\"Sex by Age\": \"('Male:',)\" \"75 to 79 years\" in \"Total Population\""
+  "name": "75 to 79 years and Male in Total Population", 
+  "extra": {
+    "table": "Sex by Age", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "75 to 79 years"
+  }
 }

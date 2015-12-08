@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24050001", 
     "parent": "us/census/acs/B24050001"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Service occupations:',)\" \"Manufacturing\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Manufacturing and Service occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Service occupations:"
+    ], 
+    "title": "Manufacturing"
+  }
 }

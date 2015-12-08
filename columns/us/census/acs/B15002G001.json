@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Two or More Races)\": \"('Female:',)\" \"Total:\" in \"Two or More Races Population 25 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B15002G001"
+  }, 
+  "name": "Total: and Female in Two or More Races Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Two or More Races)", 
+    "universe": "Two or More Races Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

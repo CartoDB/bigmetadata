@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08111001", 
     "parent": "us/census/acs/B08111003"
   }, 
-  "name": "\"Means of Transportation to Work by Citizenship Status\": \"(None, 'Foreign born:')\" \"Not a U.S. citizen\" in \"Workers 16 Years and Over\""
+  "name": "Not a U.S. citizen and Foreign born in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Citizenship Status", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null, 
+      "Foreign born:"
+    ], 
+    "title": "Not a U.S. citizen"
+  }
 }

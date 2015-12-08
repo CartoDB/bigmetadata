@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08126001", 
     "parent": "us/census/acs/C08126057"
   }, 
-  "name": "\"Means of Transportation to Work by Industry\": \"('Taxicab, motorcycle, bicycle, walked, or other means:',)\" \"Public administration\" in \"Workers 16 Years and Over\""
+  "name": "Public administration and Taxicab, motorcycle, bicycle, walked, or other means in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, walked, or other means:"
+    ], 
+    "title": "Public administration"
+  }
 }

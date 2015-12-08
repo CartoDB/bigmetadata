@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C18108001", 
     "parent": "us/census/acs/C18108002"
   }, 
-  "name": "\"Age by Number of Disabilities\": \"('Under 18 years:',)\" \"With two or more types of disability\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With two or more types of disability and Under 18 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Number of Disabilities", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Under 18 years:"
+    ], 
+    "title": "With two or more types of disability"
+  }
 }

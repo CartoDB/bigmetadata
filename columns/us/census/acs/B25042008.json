@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25042001", 
     "parent": "us/census/acs/B25042002"
   }, 
-  "name": "\"Tenure by Bedrooms\": \"('Owner occupied:',)\" \"5 or more bedrooms\" in \"Occupied Housing Units\""
+  "name": "5 or more bedrooms and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Bedrooms", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "5 or more bedrooms"
+  }
 }

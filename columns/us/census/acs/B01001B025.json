@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001B001", 
     "parent": "us/census/acs/B01001B017"
   }, 
-  "name": "\"Sex by Age (Black or African American Alone)\": \"('Female:',)\" \"30 to 34 years\" in \"People Who Are White Alone\""
+  "name": "30 to 34 years and Female in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age (Black or African American Alone)", 
+    "universe": "People Who Are White Alone", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "30 to 34 years"
+  }
 }

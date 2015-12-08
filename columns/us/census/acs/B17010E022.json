@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17010E001", 
     "parent": "us/census/acs/B17010E001"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children (Native Hawaiian and Other Pacific Islander Alone Householder)\": \"()\" \"Income in the past 12 months at or above poverty level:\" in \"Families With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone\""
+  "name": "Income in the past 12 months at or above poverty level: in Families With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children (Native Hawaiian and Other Pacific Islander Alone Householder)", 
+    "universe": "Families With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone", 
+    "title": "Income in the past 12 months at or above poverty level:"
+  }
 }

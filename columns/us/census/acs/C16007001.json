@@ -1,3 +1,11 @@
 {
-  "name": "\"Age by Language Spoken at Home for the Population 5 Years and Over\": \"()\" \"Total:\" in \"Population 5 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/C16007001"
+  }, 
+  "name": "Population 5 Years and Over", 
+  "extra": {
+    "table": "Age by Language Spoken at Home for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "title": "Total:"
+  }
 }

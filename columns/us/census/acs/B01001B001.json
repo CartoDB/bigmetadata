@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex by Age (Black or African American Alone)\": \"('Female:',)\" \"Total:\" in \"People Who Are White Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/B01001B001"
+  }, 
+  "name": "Total: and Female in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age (Black or African American Alone)", 
+    "universe": "People Who Are White Alone", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

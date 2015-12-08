@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C23023001", 
     "parent": "us/census/acs/C23023015"
   }, 
-  "name": "\"Sex by Disability Status by Full-time Work Status in the Past 12 Months for the Population 16 to 64 Years\": \"('Female:', 'With a disability:', 'Worked in the past 12 months:')\" \"Worked full-time, year-round\" in \"Population 16 to 64 Years\""
+  "name": "Worked full-time, year-round and Female and With a disability and Worked in the past 12 months in Population 16 to 64 Years", 
+  "extra": {
+    "table": "Sex by Disability Status by Full-time Work Status in the Past 12 Months for the Population 16 to 64 Years", 
+    "universe": "Population 16 to 64 Years", 
+    "ancestors": [
+      "Female:", 
+      "With a disability:", 
+      "Worked in the past 12 months:"
+    ], 
+    "title": "Worked full-time, year-round"
+  }
 }

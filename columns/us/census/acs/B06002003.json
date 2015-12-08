@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B06002001"
   }, 
-  "name": "\"Median Age by Place of Birth in the United States\": \"('Total:',)\" \"Born in other state of the United States\" in \"Total Population in the United States\""
+  "name": "Born in other state of the United States and Total in Total Population in the United States", 
+  "extra": {
+    "table": "Median Age by Place of Birth in the United States", 
+    "universe": "Total Population in the United States", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Born in other state of the United States"
+  }
 }

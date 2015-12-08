@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08541001", 
     "parent": "us/census/acs/B08541011"
   }, 
-  "name": "\"Means of Transportation to Work by Vehicles Available for Workplace Geography\": \"('Car, truck, or van - carpooled:',)\" \"No vehicle available\" in \"Workers 16 Years and Over in Households\""
+  "name": "No vehicle available within Car, truck, or van - carpooled in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Vehicles Available for Workplace Geography", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Car, truck, or van - carpooled:"
+    ], 
+    "title": "No vehicle available"
+  }
 }

@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex by Age (Two or More Races)\": \"('Female:',)\" \"Total:\" in \"People Who Are Two or More Races\""
+  "relationships": {
+    "denominator": "us/census/acs/B01001G001"
+  }, 
+  "name": "Total: and Female in People Who Are Two or More Races", 
+  "extra": {
+    "table": "Sex by Age (Two or More Races)", 
+    "universe": "People Who Are Two or More Races", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25012001", 
     "parent": "us/census/acs/B25012012"
   }, 
-  "name": "\"Tenure by Families and Presence of Own Children\": \"('Renter-occupied housing units:', 'With related children under 18:', 'With own children under 18:')\" \"6 to 17 years\" in \"Occupied Housing Units\""
+  "name": "6 to 17 years and Renter-occupied housing units and With related children under 18 and With own children under 18 in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Families and Presence of Own Children", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter-occupied housing units:", 
+      "With related children under 18:", 
+      "With own children under 18:"
+    ], 
+    "title": "6 to 17 years"
+  }
 }

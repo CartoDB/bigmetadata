@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25027001", 
     "parent": "us/census/acs/B25027010"
   }, 
-  "name": "\"Mortgage Status by Age of Householder\": \"('Housing units without a mortgage:',)\" \"Householder 55 to 59 years\" in \"Owner-occupied Housing Units\""
+  "name": "Householder 55 to 59 years and Housing units without a mortgage in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Age of Householder", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Housing units without a mortgage:"
+    ], 
+    "title": "Householder 55 to 59 years"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Upper Value Quartile (Dollars)\": \"()\" \"Upper value quartile (dollars)\" in \"Owner-occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Upper value quartile (dollars) in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Upper Value Quartile (Dollars)", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Upper value quartile (dollars)"
+  }
 }

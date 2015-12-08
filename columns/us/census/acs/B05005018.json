@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05005001", 
     "parent": "us/census/acs/B05005017"
   }, 
-  "name": "\"Year of Entry by Citizenship Status in the United States\": \"('Entered before 1980:',)\" \"Native\" in \"Population Born Outside the United States\""
+  "name": "Native and Entered before 1980 in Population Born Outside the United States", 
+  "extra": {
+    "table": "Year of Entry by Citizenship Status in the United States", 
+    "universe": "Population Born Outside the United States", 
+    "ancestors": [
+      "Entered before 1980:"
+    ], 
+    "title": "Native"
+  }
 }

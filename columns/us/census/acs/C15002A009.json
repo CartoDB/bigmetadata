@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15002A001", 
     "parent": "us/census/acs/C15002A007"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (White Alone)\": \"('Female:',)\" \"High school graduate, GED, or alternative\" in \"White Alone Population 25 Years and Over\""
+  "name": "High school graduate, GED, or alternative and Female in White Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (White Alone)", 
+    "universe": "White Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "High school graduate, GED, or alternative"
+  }
 }

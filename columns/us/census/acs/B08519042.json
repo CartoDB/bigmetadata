@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08519001", 
     "parent": "us/census/acs/B08519037"
   }, 
-  "name": "\"Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Workplace Geography\": \"('Walked:',)\" \"$35,000 to $49,999\" in \"Workers 16 Years and Over With Earnings\""
+  "name": "$35,000 to $49,999 within Walked in Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Workplace Geography", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Walked:"
+    ], 
+    "title": "$35,000 to $49,999"
+  }
 }

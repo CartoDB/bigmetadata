@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07004F001", 
     "parent": "us/census/acs/B07004F001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year (Some Other Race Alone) for Current Residence in the United States\": \"()\" \"Same house 1 year ago\" in \"Some Other Race Alone Population 1 Year and Over in the United States\""
+  "name": "Same house 1 year ago in Some Other Race Alone Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Some Other Race Alone) for Current Residence in the United States", 
+    "universe": "Some Other Race Alone Population 1 Year and Over in the United States", 
+    "title": "Same house 1 year ago"
+  }
 }

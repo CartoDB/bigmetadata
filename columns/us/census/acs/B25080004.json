@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25080001"
   }, 
-  "name": "\"Aggregate Value (Dollars) by Units in Structure\": \"()\" \"2 (dollars)\" in \"Owner-occupied Housing Units\""
+  "name": "2 (dollars) in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Value (Dollars) by Units in Structure", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "2 (dollars)"
+  }
 }

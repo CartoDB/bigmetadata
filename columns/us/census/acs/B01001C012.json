@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001C001", 
     "parent": "us/census/acs/B01001C002"
   }, 
-  "name": "\"Sex by Age (American Indian and Alaska Native Alone)\": \"('Male:',)\" \"45 to 54 years\" in \"People Who Are American Indian and Alaska Native Alone\""
+  "name": "45 to 54 years and Male in People Who Are American Indian and Alaska Native Alone", 
+  "extra": {
+    "table": "Sex by Age (American Indian and Alaska Native Alone)", 
+    "universe": "People Who Are American Indian and Alaska Native Alone", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "45 to 54 years"
+  }
 }

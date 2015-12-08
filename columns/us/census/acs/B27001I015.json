@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001I001", 
     "parent": "us/census/acs/B27001I014"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Hispanic or Latino)\": \"('35 to 44 years:',)\" \"With health insurance coverage\" in \"HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "With health insurance coverage and 35 to 44 years in HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Hispanic or Latino)", 
+    "universe": "HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "35 to 44 years:"
+    ], 
+    "title": "With health insurance coverage"
+  }
 }

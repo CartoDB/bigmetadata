@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18121001", 
     "parent": "us/census/acs/B18121020"
   }, 
-  "name": "\"Work Experience by Disability Status and Type\": \"('Did not work:',)\" \"No disability\" in \"Civilian Noninstitutionalized Population 18 to 64 Years\""
+  "name": "No disability and Did not work in Civilian Noninstitutionalized Population 18 to 64 Years", 
+  "extra": {
+    "table": "Work Experience by Disability Status and Type", 
+    "universe": "Civilian Noninstitutionalized Population 18 to 64 Years", 
+    "ancestors": [
+      "Did not work:"
+    ], 
+    "title": "No disability"
+  }
 }

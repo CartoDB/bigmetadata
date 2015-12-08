@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14001001", 
     "parent": "us/census/acs/B14001001"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over\": \"()\" \"Not enrolled in school\" in \"Population 3 Years and Over\""
+  "name": "Not enrolled in school in Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over", 
+    "universe": "Population 3 Years and Over", 
+    "title": "Not enrolled in school"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24123001", 
     "parent": "us/census/acs/B24123001"
   }, 
-  "name": "\"Detailed Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Female Population 16 Years and Over\": \"()\" \"Human resources managers\" in \"Full-time, Year-round Civilian Employed Female Population 16 Years and Over With Earnings\""
+  "name": "Human resources managers in Full-time, Year-round Civilian Employed Female Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Detailed Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Female Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Female Population 16 Years and Over With Earnings", 
+    "title": "Human resources managers"
+  }
 }

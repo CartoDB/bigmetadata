@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99072001", 
     "parent": "us/census/acs/B99072002"
   }, 
-  "name": "\"Imputation of Residence 1 Year Ago for the Population 1 Year and Over\": \"('Different house:',)\" \"Not imputed\" in \"Population 1 Year and Over\""
+  "name": "Not imputed and Different house in Population 1 Year and Over", 
+  "extra": {
+    "table": "Imputation of Residence 1 Year Ago for the Population 1 Year and Over", 
+    "universe": "Population 1 Year and Over", 
+    "ancestors": [
+      "Different house:"
+    ], 
+    "title": "Not imputed"
+  }
 }

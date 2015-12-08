@@ -1,3 +1,16 @@
 {
-  "name": "\"Age of Own Children Under 18 Years in Families and Subfamilies by Living Arrangements by Employment Status of Parents\": \"('No children under 18 years:', 'Other family:', 'Female householder, no husband present:')\" \"Total:\" in \"Own Children Under 18 Years in Families and Subfamilies\""
+  "relationships": {
+    "denominator": "us/census/acs/B23008001"
+  }, 
+  "name": "Total: and No children under 18 years and Other family and Female householder, no husband present in Own Children Under 18 Years in Families and Subfamilies", 
+  "extra": {
+    "table": "Age of Own Children Under 18 Years in Families and Subfamilies by Living Arrangements by Employment Status of Parents", 
+    "universe": "Own Children Under 18 Years in Families and Subfamilies", 
+    "ancestors": [
+      "No children under 18 years:", 
+      "Other family:", 
+      "Female householder, no husband present:"
+    ], 
+    "title": "Total:"
+  }
 }

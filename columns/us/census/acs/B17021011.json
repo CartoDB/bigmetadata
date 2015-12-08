@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17021001", 
     "parent": "us/census/acs/B17021007"
   }, 
-  "name": "\"Poverty Status of Individuals in the Past 12 Months by Living Arrangement\": \"('Income in the past 12 months below poverty level:', 'In family households:', 'In other families:')\" \"Female householder, no husband present:\" in \"Population for Whom Poverty Status Is Determined\""
+  "name": "Female householder, no husband present: and Income in the past 12 months below poverty level and In family households and In other families in Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status of Individuals in the Past 12 Months by Living Arrangement", 
+    "universe": "Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      "In family households:", 
+      "In other families:"
+    ], 
+    "title": "Female householder, no husband present:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24070001", 
     "parent": "us/census/acs/B24070082"
   }, 
-  "name": "\"Industry by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Private not-for-profit wage and salary workers:',)\" \"Arts, entertainment, and recreation, and accommodation and food services:\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Arts, entertainment, and recreation, and accommodation and food services: and Private not-for-profit wage and salary workers in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Private not-for-profit wage and salary workers:"
+    ], 
+    "title": "Arts, entertainment, and recreation, and accommodation and food services:"
+  }
 }

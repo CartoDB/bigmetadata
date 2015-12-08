@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001G001", 
     "parent": "us/census/acs/B27001G026"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Two or More Races)\": \"('75 years and over:',)\" \"No health insurance coverage\" in \"TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "No health insurance coverage and 75 years and over in TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Two or More Races)", 
+    "universe": "TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "75 years and over:"
+    ], 
+    "title": "No health insurance coverage"
+  }
 }

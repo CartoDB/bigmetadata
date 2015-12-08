@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08406001", 
     "parent": "us/census/acs/B08406042"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work for Workplace Geography\": \"('Female:', 'Public transportation (excluding taxicab):')\" \"Bus or trolley bus\" in \"Workers 16 Years and Over\""
+  "name": "Bus or trolley bus within Female within Public transportation (excluding taxicab) in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Bus or trolley bus"
+  }
 }

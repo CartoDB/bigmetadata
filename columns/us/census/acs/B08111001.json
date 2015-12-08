@@ -1,3 +1,15 @@
 {
-  "name": "\"Means of Transportation to Work by Citizenship Status\": \"(None, 'Speak Spanish:')\" \"Total:\" in \"Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08111001"
+  }, 
+  "name": "Total: and Speak Spanish in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Citizenship Status", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null, 
+      "Speak Spanish:"
+    ], 
+    "title": "Total:"
+  }
 }

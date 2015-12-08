@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27010001", 
     "parent": "us/census/acs/B27010042"
   }, 
-  "name": "\"Types of Health Insurance Coverage by Age\": \"('35 to 64 years:', 'With two or more types of health insurance coverage:')\" \"With Medicare and Medicaid/means-tested public coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With Medicare and Medicaid/means-tested public coverage and 35 to 64 years and With two or more types of health insurance coverage in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Types of Health Insurance Coverage by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "35 to 64 years:", 
+      "With two or more types of health insurance coverage:"
+    ], 
+    "title": "With Medicare and Medicaid/means-tested public coverage"
+  }
 }

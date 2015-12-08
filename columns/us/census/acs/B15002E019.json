@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002E001", 
     "parent": "us/census/acs/B15002E011"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Native Hawaiian and Other Pacific Islander Alone)\": \"('Female:',)\" \"Graduate degree\" in \"Native Hawaiian and Other Pacific Islander Alone Population 25 Years and Over\""
+  "name": "Graduate degree and Female in Native Hawaiian and Other Pacific Islander Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Graduate degree"
+  }
 }

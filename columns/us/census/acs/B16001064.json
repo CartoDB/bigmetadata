@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16001001", 
     "parent": "us/census/acs/B16001063"
   }, 
-  "name": "\"Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over\": \"('Other Indo-European languages:',)\" \"Speak English \"very well\"\" in \"Population 5 Years and Over\""
+  "name": "Speak English \"very well\" and Other Indo-European languages in Population 5 Years and Over", 
+  "extra": {
+    "table": "Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "Other Indo-European languages:"
+    ], 
+    "title": "Speak English \"very well\""
+  }
 }

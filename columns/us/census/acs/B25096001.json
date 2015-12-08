@@ -1,3 +1,14 @@
 {
-  "name": "\"Mortgage Status by Value\": \"('$100,000 or more:',)\" \"Total:\" in \"Owner-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25096001"
+  }, 
+  "name": "Total: and $100,000 or more in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Value", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "$100,000 or more:"
+    ], 
+    "title": "Total:"
+  }
 }

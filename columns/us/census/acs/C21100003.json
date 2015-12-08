@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C21100001", 
     "parent": "us/census/acs/C21100001"
   }, 
-  "name": "\"Service-connected Disability-rating Status for Civilian Veterans 18 Years and Over\": \"()\" \"Has a service-connected disability rating\" in \"Civilian Veterans 18 Years and Over\""
+  "name": "Has a service-connected disability rating in Civilian Veterans 18 Years and Over", 
+  "extra": {
+    "table": "Service-connected Disability-rating Status for Civilian Veterans 18 Years and Over", 
+    "universe": "Civilian Veterans 18 Years and Over", 
+    "title": "Has a service-connected disability rating"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08128001", 
     "parent": "us/census/acs/B08128021"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker\": \"('Car, truck, or van - carpooled:',)\" \"Local government workers\" in \"Workers 16 Years and Over\""
+  "name": "Local government workers and Car, truck, or van - carpooled in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - carpooled:"
+    ], 
+    "title": "Local government workers"
+  }
 }

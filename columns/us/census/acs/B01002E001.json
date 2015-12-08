@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Sex (Native Hawaiian and Other Pacific Islander Alone)\": \"()\" \"Total:\" in \"People Who Are Native Hawaiian and Other Pacific Islander Alone\""
+  "relationships": {}, 
+  "name": "People Who Are Native Hawaiian and Other Pacific Islander Alone", 
+  "extra": {
+    "table": "Median Age by Sex (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "People Who Are Native Hawaiian and Other Pacific Islander Alone", 
+    "title": "Total:"
+  }
 }

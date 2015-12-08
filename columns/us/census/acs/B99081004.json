@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99081001", 
     "parent": "us/census/acs/B99081002"
   }, 
-  "name": "\"Imputation of Place of Work\": \"('Imputed:',)\" \"All geographic parts imputed\" in \"Workers 16 Years and Over\""
+  "name": "All geographic parts imputed and Imputed in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Imputation of Place of Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Imputed:"
+    ], 
+    "title": "All geographic parts imputed"
+  }
 }

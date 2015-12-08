@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24060001", 
     "parent": "us/census/acs/B24060145"
   }, 
-  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Local, state, and federal government workers:',)\" \"Sales and office occupations:\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Sales and office occupations: and Local, state, and federal government workers in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Local, state, and federal government workers:"
+    ], 
+    "title": "Sales and office occupations:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27020001", 
     "parent": "us/census/acs/B27020007"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Citizenship Status\": \"('Foreign Born:',)\" \"Naturalized:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Naturalized: and Foreign Born in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Citizenship Status", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Foreign Born:"
+    ], 
+    "title": "Naturalized:"
+  }
 }

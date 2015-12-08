@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27002001", 
     "parent": "us/census/acs/C27002016"
   }, 
-  "name": "\"Private Health Insurance Status by Sex by Age\": \"('Female:', '18 to 64 years:')\" \"With private health insurance\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With private health insurance and Female and 18 to 64 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Private Health Insurance Status by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "18 to 64 years:"
+    ], 
+    "title": "With private health insurance"
+  }
 }

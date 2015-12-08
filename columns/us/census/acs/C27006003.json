@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27006001", 
     "parent": "us/census/acs/C27006002"
   }, 
-  "name": "\"Medicare Coverage by Sex by Age\": \"('Male:',)\" \"Under 18 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Under 18 years: and Male in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Medicare Coverage by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Under 18 years:"
+  }
 }

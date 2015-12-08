@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25012001", 
     "parent": "us/census/acs/B25012003"
   }, 
-  "name": "\"Tenure by Families and Presence of Own Children\": \"('Owner-occupied housing units:', 'With related children under 18:')\" \"No own children under 18\" in \"Occupied Housing Units\""
+  "name": "No own children under 18 and Owner-occupied housing units and With related children under 18 in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Families and Presence of Own Children", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner-occupied housing units:", 
+      "With related children under 18:"
+    ], 
+    "title": "No own children under 18"
+  }
 }

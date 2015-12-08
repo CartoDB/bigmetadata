@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25080001"
   }, 
-  "name": "\"Aggregate Value (Dollars) by Units in Structure\": \"()\" \"1, detached (dollars)\" in \"Owner-occupied Housing Units\""
+  "name": "1, detached (dollars) in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Value (Dollars) by Units in Structure", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "1, detached (dollars)"
+  }
 }

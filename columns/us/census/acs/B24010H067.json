@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010H001", 
     "parent": "us/census/acs/B24010H066"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone, Not Hispanic or Latino)\": \"('Female:', 'Natural resources, construction, and maintenance occupations:')\" \"Farming, fishing, and forestry occupations\" in \"Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over\""
+  "name": "Farming, fishing, and forestry occupations and Female and Natural resources, construction, and maintenance occupations in Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Natural resources, construction, and maintenance occupations:"
+    ], 
+    "title": "Farming, fishing, and forestry occupations"
+  }
 }

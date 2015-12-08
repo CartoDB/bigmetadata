@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Sex (Some Other Race Alone)\": \"()\" \"Total:\" in \"People Who Are Some Other Race Alone\""
+  "relationships": {}, 
+  "name": "People Who Are Some Other Race Alone", 
+  "extra": {
+    "table": "Median Age by Sex (Some Other Race Alone)", 
+    "universe": "People Who Are Some Other Race Alone", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24010001", 
     "parent": "us/census/acs/C24010055"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Service occupations:')\" \"Protective service occupations:\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Protective service occupations: and Female and Service occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:"
+    ], 
+    "title": "Protective service occupations:"
+  }
 }

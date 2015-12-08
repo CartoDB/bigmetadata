@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C14007E001", 
     "parent": "us/census/acs/C14007E001"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over (Native Hawaiian and Other Pacific Islander Alone)\": \"()\" \"Enrolled in school:\" in \"Native Hawaiian and Other Pacific Islander Alone Population 3 Years and Over\""
+  "name": "Enrolled in school: in Native Hawaiian and Other Pacific Islander Alone Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population 3 Years and Over", 
+    "title": "Enrolled in school:"
+  }
 }

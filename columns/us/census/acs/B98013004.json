@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B98013001", 
     "parent": "us/census/acs/B98013001"
   }, 
-  "name": "\"Total Population Coverage Rate by Weighting Race and Hispanic or Latino Groups\": \"('Female',)\" \"American Indian and Alaska Native\" in \"Total Population\""
+  "name": "American Indian and Alaska Native and Female in Total Population", 
+  "extra": {
+    "table": "Total Population Coverage Rate by Weighting Race and Hispanic or Latino Groups", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Female"
+    ], 
+    "title": "American Indian and Alaska Native"
+  }
 }

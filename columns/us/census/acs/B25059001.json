@@ -1,3 +1,9 @@
 {
-  "name": "\"Upper Contract Rent Quartile (Dollars)\": \"()\" \"Upper contract rent quartile\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "relationships": {}, 
+  "name": "Upper contract rent quartile in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Upper Contract Rent Quartile (Dollars)", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "title": "Upper contract rent quartile"
+  }
 }

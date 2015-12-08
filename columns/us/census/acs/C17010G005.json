@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17010G001", 
     "parent": "us/census/acs/C17010G002"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years (Two or More Races Householder)\": \"('Income in the past 12 months below poverty level:',)\" \"Other family:\" in \"Families With a Householder Who Is Two or More Races\""
+  "name": "Other family: and Income in the past 12 months below poverty level in Families With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years (Two or More Races Householder)", 
+    "universe": "Families With a Householder Who Is Two or More Races", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:"
+    ], 
+    "title": "Other family:"
+  }
 }

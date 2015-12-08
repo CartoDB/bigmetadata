@@ -1,3 +1,11 @@
 {
-  "name": "\"Place of Work for Workers 16 Years and Over--Metropolitan Statistical Area Level\": \"()\" \"Total:\" in \"Workers 16 Years and Over Living in a Metropolitan Statistical Area\""
+  "relationships": {
+    "denominator": "us/census/acs/B08016001"
+  }, 
+  "name": "Workers 16 Years and Over Living in a Metropolitan Statistical Area", 
+  "extra": {
+    "table": "Place of Work for Workers 16 Years and Over--Metropolitan Statistical Area Level", 
+    "universe": "Workers 16 Years and Over Living in a Metropolitan Statistical Area", 
+    "title": "Total:"
+  }
 }

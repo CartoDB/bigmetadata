@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25124001", 
     "parent": "us/census/acs/B25124039"
   }, 
-  "name": "\"Tenure by Household Size by Units in Structure\": \"('Renter occupied:', '1-person household:')\" \"5 to 19\" in \"Occupied Housing Units\""
+  "name": "5 to 19 and Renter occupied and 1-person household in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Size by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "1-person household:"
+    ], 
+    "title": "5 to 19"
+  }
 }

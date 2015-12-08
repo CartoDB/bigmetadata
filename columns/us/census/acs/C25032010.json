@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25032001", 
     "parent": "us/census/acs/C25032007"
   }, 
-  "name": "\"Tenure by Units in Structure\": \"('Renter-occupied housing units:',)\" \"10 or more units\" in \"Occupied Housing Units\""
+  "name": "10 or more units and Renter-occupied housing units in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter-occupied housing units:"
+    ], 
+    "title": "10 or more units"
+  }
 }

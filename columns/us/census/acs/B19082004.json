@@ -1,3 +1,9 @@
 {
-  "name": "\"Shares of Aggregate Household Income by Quintile\": \"()\" \"Fourth Quintile\" in \"Households\""
+  "relationships": {}, 
+  "name": "Fourth Quintile in Households", 
+  "extra": {
+    "table": "Shares of Aggregate Household Income by Quintile", 
+    "universe": "Households", 
+    "title": "Fourth Quintile"
+  }
 }

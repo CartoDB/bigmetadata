@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C11001H001", 
     "parent": "us/census/acs/C11001H002"
   }, 
-  "name": "\"Household Type (White Alone, Not Hispanic or Latino)\": \"('Family households:',)\" \"Other family\" in \"Households With a Householder Who Is White Alone, Not Hispanic or Latino\""
+  "name": "Other family and Family households in Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+  "extra": {
+    "table": "Household Type (White Alone, Not Hispanic or Latino)", 
+    "universe": "Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+    "ancestors": [
+      "Family households:"
+    ], 
+    "title": "Other family"
+  }
 }

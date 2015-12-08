@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08132001", 
     "parent": "us/census/acs/C08132045"
   }, 
-  "name": "\"Means of Transportation to Work by Time Leaving Home to Go to Work\": \"('Taxicab, motorcycle, bicycle, walked, or other means:',)\" \"8:00 a.m. to 8:29 a.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "8:00 a.m. to 8:29 a.m. and Taxicab, motorcycle, bicycle, walked, or other means in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Time Leaving Home to Go to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, walked, or other means:"
+    ], 
+    "title": "8:00 a.m. to 8:29 a.m."
+  }
 }

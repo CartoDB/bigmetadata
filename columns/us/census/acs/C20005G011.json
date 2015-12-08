@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C20005G001", 
     "parent": "us/census/acs/C20005G005"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Two or More Races)\": \"('Male:', 'Worked full-time, year-round in the past 12 months:', 'With earnings:')\" \"$75,000 or more\" in \"Two or More Races Population 16 Years and Over\""
+  "name": "$75,000 or more and Male and Worked full-time, year-round in the past 12 months and With earnings in Two or More Races Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Two or More Races)", 
+    "universe": "Two or More Races Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Worked full-time, year-round in the past 12 months:", 
+      "With earnings:"
+    ], 
+    "title": "$75,000 or more"
+  }
 }

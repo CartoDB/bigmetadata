@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002H001", 
     "parent": "us/census/acs/B12002H008"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (White Alone, Not Hispanic or Latino)\": \"('Female:',)\" \"Never married\" in \"White Alone, Not Hispanic or Latino Population 15 Years and Over\""
+  "name": "Never married and Female in White Alone, Not Hispanic or Latino Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population 15 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Never married"
+  }
 }

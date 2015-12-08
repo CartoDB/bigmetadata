@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25069001", 
     "parent": "us/census/acs/B25069001"
   }, 
-  "name": "\"Inclusion of Utilities in Rent\": \"()\" \"No extra payment for any utilities\" in \"Renter-occupied Housing Units\""
+  "name": "No extra payment for any utilities in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Inclusion of Utilities in Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "title": "No extra payment for any utilities"
+  }
 }

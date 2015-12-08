@@ -2,5 +2,14 @@
   "relationships": {
     "parent": "us/census/acs/B19126005"
   }, 
-  "name": "\"Median Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Family Type by Presence of Own Children Under 18 Years\": \"('Total:', 'Total')\" \"No own children under 18 years\" in \"Families\""
+  "name": "No own children under 18 years and Total and Total in Families", 
+  "extra": {
+    "table": "Median Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Family Type by Presence of Own Children Under 18 Years", 
+    "universe": "Families", 
+    "ancestors": [
+      "Total:", 
+      "Total"
+    ], 
+    "title": "No own children under 18 years"
+  }
 }

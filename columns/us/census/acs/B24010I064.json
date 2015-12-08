@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010I001", 
     "parent": "us/census/acs/B24010I063"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)\": \"('Female:', 'Sales and office occupations:')\" \"Sales and related occupations\" in \"Civilian Employed Hispanic or Latino Population 16 Years and Over\""
+  "name": "Sales and related occupations and Female and Sales and office occupations in Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Sales and office occupations:"
+    ], 
+    "title": "Sales and related occupations"
+  }
 }

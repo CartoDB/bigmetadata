@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06010001", 
     "parent": "us/census/acs/B06010023"
   }, 
-  "name": "\"Place of Birth by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) in the United States\": \"('Born in other state in the United States:',)\" \"With income:\" in \"Population 15 Years and Over in the United States\""
+  "name": "With income: and Born in other state in the United States in Population 15 Years and Over in the United States", 
+  "extra": {
+    "table": "Place of Birth by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) in the United States", 
+    "universe": "Population 15 Years and Over in the United States", 
+    "ancestors": [
+      "Born in other state in the United States:"
+    ], 
+    "title": "With income:"
+  }
 }

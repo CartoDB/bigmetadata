@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B20004001"
   }, 
-  "name": "\"Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Educational Attainment for the Population 25 Years and Over\": \"('Female:',)\" \"Some college or associate's degree\" in \"Population 25 Years and Over With Earnings\""
+  "name": "Some college or associate's degree and Female in Population 25 Years and Over With Earnings", 
+  "extra": {
+    "table": "Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over With Earnings", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Some college or associate's degree"
+  }
 }

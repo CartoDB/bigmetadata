@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24030001", 
     "parent": "us/census/acs/B24030204"
   }, 
-  "name": "\"Sex by Industry for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Other services, except public administration:')\" \"Private households\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Private households and Female and Other services, except public administration in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Other services, except public administration:"
+    ], 
+    "title": "Private households"
+  }
 }

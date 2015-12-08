@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08008001", 
     "parent": "us/census/acs/B08008001"
   }, 
-  "name": "\"Sex of Workers by Place of Work--Place Level\": \"('Female:',)\" \"Not living in a place\" in \"Workers 16 Years and Over\""
+  "name": "Not living in a place and Female in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Place of Work--Place Level", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Not living in a place"
+  }
 }

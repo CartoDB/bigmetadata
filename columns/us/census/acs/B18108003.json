@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18108001", 
     "parent": "us/census/acs/B18108002"
   }, 
-  "name": "\"Age by Number of Disabilities\": \"('Under 5 years:',)\" \"With either a vision or hearing difficulty but not both\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With either a vision or hearing difficulty but not both and Under 5 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Number of Disabilities", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Under 5 years:"
+    ], 
+    "title": "With either a vision or hearing difficulty but not both"
+  }
 }

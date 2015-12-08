@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11009001", 
     "parent": "us/census/acs/B11009002"
   }, 
-  "name": "\"Unmarried-partner Households by Sex of Partner\": \"('Unmarried-partner households:',)\" \"Male householder and female partner\" in \"Households\""
+  "name": "Male householder and female partner and Unmarried-partner households in Households", 
+  "extra": {
+    "table": "Unmarried-partner Households by Sex of Partner", 
+    "universe": "Households", 
+    "ancestors": [
+      "Unmarried-partner households:"
+    ], 
+    "title": "Male householder and female partner"
+  }
 }

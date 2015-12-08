@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25033001", 
     "parent": "us/census/acs/B25033002"
   }, 
-  "name": "\"Total Population in Occupied Housing Units by Tenure by Units in Structure\": \"('Owner occupied:',)\" \"1, detached or attached\" in \"Total Population in Occupied Housing Units\""
+  "name": "1, detached or attached and Owner occupied in Total Population in Occupied Housing Units", 
+  "extra": {
+    "table": "Total Population in Occupied Housing Units by Tenure by Units in Structure", 
+    "universe": "Total Population in Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "1, detached or attached"
+  }
 }

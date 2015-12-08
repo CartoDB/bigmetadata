@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17022001", 
     "parent": "us/census/acs/C17022007"
   }, 
-  "name": "\"Ratio of Income to Poverty Level in the Past 12 Months of Families by Family Type\": \"('1.30 to 1.49:',)\" \"Married-couple family\" in \"Families\""
+  "name": "Married-couple family and 1.30 to 1.49 in Families", 
+  "extra": {
+    "table": "Ratio of Income to Poverty Level in the Past 12 Months of Families by Family Type", 
+    "universe": "Families", 
+    "ancestors": [
+      "1.30 to 1.49:"
+    ], 
+    "title": "Married-couple family"
+  }
 }

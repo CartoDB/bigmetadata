@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17010A001", 
     "parent": "us/census/acs/C17010A006"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years (White Alone Householder)\": \"('Income in the past 12 months below poverty level:', 'Other family:', None)\" \"With related children under 18 years\" in \"Families With a Householder Who Is White Alone\""
+  "name": "With related children under 18 years and Income in the past 12 months below poverty level and Other family in Families With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years (White Alone Householder)", 
+    "universe": "Families With a Householder Who Is White Alone", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      "Other family:", 
+      null
+    ], 
+    "title": "With related children under 18 years"
+  }
 }

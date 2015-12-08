@@ -1,3 +1,14 @@
 {
-  "name": "\"Class of Worker by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over\": \"('Female:',)\" \"Total:\" in \"Civilian Employed Population 16 Years and Over With Earnings\""
+  "relationships": {
+    "denominator": "us/census/acs/B24081001"
+  }, 
+  "name": "Total: and Female in Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Class of Worker by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

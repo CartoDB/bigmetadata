@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07409PR001", 
     "parent": "us/census/acs/B07409PR019"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Educational Attainment for Residence 1 Year Ago in Puerto Rico\": \"('Moved to different municipio:',)\" \"Less than high school graduate\" in \"Population 25 Years and Over\""
+  "name": "Less than high school graduate and Moved to different municipio in Population 25 Years and Over", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Educational Attainment for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Moved to different municipio:"
+    ], 
+    "title": "Less than high school graduate"
+  }
 }

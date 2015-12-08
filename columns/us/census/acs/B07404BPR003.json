@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07404BPR001", 
     "parent": "us/census/acs/B07404BPR001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year (Black or African American Alone) for Residence 1 Year Ago in Puerto Rico\": \"()\" \"Moved within same municipio\" in \"Black or African American Alone Population 1 Year and Over\""
+  "name": "Moved within same municipio in Black or African American Alone Population 1 Year and Over", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Black or African American Alone) for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "Black or African American Alone Population 1 Year and Over", 
+    "title": "Moved within same municipio"
+  }
 }

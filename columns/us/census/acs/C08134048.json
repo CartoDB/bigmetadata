@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08134001", 
     "parent": "us/census/acs/C08134041"
   }, 
-  "name": "\"Means of Transportation to Work by Travel Time to Work\": \"('Taxicab, motorcycle, bicycle,  walked, or other means:',)\" \"35 to 44 minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "35 to 44 minutes and Taxicab, motorcycle, bicycle,  walked, or other means in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle,  walked, or other means:"
+    ], 
+    "title": "35 to 44 minutes"
+  }
 }

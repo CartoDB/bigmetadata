@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18131001", 
     "parent": "us/census/acs/B18131002"
   }, 
-  "name": "\"Age by Ratio of Income to Poverty Level in the Past 12 Months by Disability Status and Type\": \"('Under 5 years:',)\" \".50 to .99:\" in \"Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined\""
+  "name": ".50 to .99: and Under 5 years in Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Age by Ratio of Income to Poverty Level in the Past 12 Months by Disability Status and Type", 
+    "universe": "Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Under 5 years:"
+    ], 
+    "title": ".50 to .99:"
+  }
 }

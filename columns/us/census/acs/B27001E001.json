@@ -1,3 +1,11 @@
 {
-  "name": "\"Health Insurance Coverage Status by Age (Native Hawaiian and Other Pacific Islander Alone)\": \"()\" \"Total:\" in \"NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "relationships": {
+    "denominator": "us/census/acs/B27001E001"
+  }, 
+  "name": "NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "title": "Total:"
+  }
 }

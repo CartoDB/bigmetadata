@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010G001", 
     "parent": "us/census/acs/B24010G038"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Two or More Races)\": \"('Female:',)\" \"Management, business, science, and arts occupations:\" in \"Civilian Employed Two or More Races Population 16 Years and Over\""
+  "name": "Management, business, science, and arts occupations: and Female in Civilian Employed Two or More Races Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Two or More Races)", 
+    "universe": "Civilian Employed Two or More Races Population 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Management, business, science, and arts occupations:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21003001", 
     "parent": "us/census/acs/B21003007"
   }, 
-  "name": "\"Veteran Status by Educational Attainment for the Civilian Population 25 Years and Over\": \"('Nonveteran:',)\" \"High school graduate (includes equivalency)\" in \"Civilian Population 25 Years and Over\""
+  "name": "High school graduate (includes equivalency) and Nonveteran in Civilian Population 25 Years and Over", 
+  "extra": {
+    "table": "Veteran Status by Educational Attainment for the Civilian Population 25 Years and Over", 
+    "universe": "Civilian Population 25 Years and Over", 
+    "ancestors": [
+      "Nonveteran:"
+    ], 
+    "title": "High school graduate (includes equivalency)"
+  }
 }

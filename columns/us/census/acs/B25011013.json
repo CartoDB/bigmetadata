@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25011001", 
     "parent": "us/census/acs/B25011008"
   }, 
-  "name": "\"Tenure by Household Type (Including Living Alone) and Age of Householder\": \"('Owner occupied:', 'Family households:', 'Other family:')\" \"Female householder, no husband present:\" in \"Occupied Housing Units\""
+  "name": "Female householder, no husband present: and Owner occupied and Family households and Other family in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Type (Including Living Alone) and Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:", 
+      "Family households:", 
+      "Other family:"
+    ], 
+    "title": "Female householder, no husband present:"
+  }
 }

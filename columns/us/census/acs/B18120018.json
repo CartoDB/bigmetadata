@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18120001", 
     "parent": "us/census/acs/B18120013"
   }, 
-  "name": "\"Employment Status by Disability Status and Type\": \"('In the labor force:', 'Unemployed:', 'With a disability:')\" \"With a self-care difficulty\" in \"Civilian Noninstitutionalized Population 18 to 64 Years\""
+  "name": "With a self-care difficulty and In the labor force and Unemployed and With a disability in Civilian Noninstitutionalized Population 18 to 64 Years", 
+  "extra": {
+    "table": "Employment Status by Disability Status and Type", 
+    "universe": "Civilian Noninstitutionalized Population 18 to 64 Years", 
+    "ancestors": [
+      "In the labor force:", 
+      "Unemployed:", 
+      "With a disability:"
+    ], 
+    "title": "With a self-care difficulty"
+  }
 }

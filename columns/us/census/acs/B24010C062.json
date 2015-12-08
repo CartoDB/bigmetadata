@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010C001", 
     "parent": "us/census/acs/B24010C055"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (American Indian and Alaska Native Alone)\": \"('Female:', 'Service occupations:')\" \"Personal care and service occupations\" in \"Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over\""
+  "name": "Personal care and service occupations and Female and Service occupations in Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:"
+    ], 
+    "title": "Personal care and service occupations"
+  }
 }

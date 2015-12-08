@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25047001", 
     "parent": "us/census/acs/B25047001"
   }, 
-  "name": "\"Plumbing Facilities for All Housing Units\": \"()\" \"Lacking complete plumbing facilities\" in \"Housing Units\""
+  "name": "Lacking complete plumbing facilities in Housing Units", 
+  "extra": {
+    "table": "Plumbing Facilities for All Housing Units", 
+    "universe": "Housing Units", 
+    "title": "Lacking complete plumbing facilities"
+  }
 }

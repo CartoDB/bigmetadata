@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Some Other Race Alone)\": \"('Female:',)\" \"Total:\" in \"Some Other Race Alone Population 25 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B15002F001"
+  }, 
+  "name": "Total: and Female in Some Other Race Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Some Other Race Alone)", 
+    "universe": "Some Other Race Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

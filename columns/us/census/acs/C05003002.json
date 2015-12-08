@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05003001", 
     "parent": "us/census/acs/C05003001"
   }, 
-  "name": "\"Sex by Age by Nativity\": \"()\" \"Male:\" in \"Total Population\""
+  "name": "Male: in Total Population", 
+  "extra": {
+    "table": "Sex by Age by Nativity", 
+    "universe": "Total Population", 
+    "title": "Male:"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B03001001", 
     "parent": "us/census/acs/B03001016"
   }, 
-  "name": "\"Hispanic or Latino Origin by Specific Origin\": \"('Hispanic or Latino:', 'South American:')\" \"Argentinean\" in \"Total Population\""
+  "name": "Argentinean and Hispanic or Latino and South American in Total Population", 
+  "extra": {
+    "table": "Hispanic or Latino Origin by Specific Origin", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Hispanic or Latino:", 
+      "South American:"
+    ], 
+    "title": "Argentinean"
+  }
 }

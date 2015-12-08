@@ -1,3 +1,11 @@
 {
-  "name": "\"Poverty Status in the Past 12 Months of Families by Household Type by Number of Persons in Family\": \"()\" \"Total:\" in \"Families\""
+  "relationships": {
+    "denominator": "us/census/acs/B17013001"
+  }, 
+  "name": "Families", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Household Type by Number of Persons in Family", 
+    "universe": "Families", 
+    "title": "Total:"
+  }
 }

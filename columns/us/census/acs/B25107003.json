@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B25107001"
   }, 
-  "name": "\"Median Value by Year Structure Built\": \"('Total:',)\" \"Built 2000 to 2004\" in \"Owner-occupied Housing Units\""
+  "name": "Built 2000 to 2004 and Total in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Median Value by Year Structure Built", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Built 2000 to 2004"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07403001", 
     "parent": "us/census/acs/B07403004"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Sex for Residence 1 Year Ago in the United States\": \"('Same house:',)\" \"Female\" in \"Population 1 Year and Over in the United States\""
+  "name": "Female within Same house in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Sex for Residence 1 Year Ago in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Same house:"
+    ], 
+    "title": "Female"
+  }
 }

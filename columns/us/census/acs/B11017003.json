@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11017001", 
     "parent": "us/census/acs/B11017001"
   }, 
-  "name": "\"Multigenerational Households\": \"()\" \"All other households\" in \"Total Households\""
+  "name": "All other households in Total Households", 
+  "extra": {
+    "table": "Multigenerational Households", 
+    "universe": "Total Households", 
+    "title": "All other households"
+  }
 }

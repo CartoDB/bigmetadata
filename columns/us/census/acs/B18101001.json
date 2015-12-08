@@ -1,3 +1,11 @@
 {
-  "name": "\"Sex by Age by Disability Status\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B18101001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Sex by Age by Disability Status", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Total:"
+  }
 }

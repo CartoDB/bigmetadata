@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06003001", 
     "parent": "us/census/acs/C06003007"
   }, 
-  "name": "\"Place of Birth by Sex in the United States\": \"('Born in other state in the United States:',)\" \"Male\" in \"Total Population  in the United States\""
+  "name": "Male and Born in other state in the United States in Total Population  in the United States", 
+  "extra": {
+    "table": "Place of Birth by Sex in the United States", 
+    "universe": "Total Population  in the United States", 
+    "ancestors": [
+      "Born in other state in the United States:"
+    ], 
+    "title": "Male"
+  }
 }

@@ -1,3 +1,15 @@
 {
-  "name": "\"Means of Transportation to Work by Language Spoken at Home and Ability to Speak English\": \"('Worked at home:', 'Foreign-born:')\" \"Total:\" in \"Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08113001"
+  }, 
+  "name": "Total: and Worked at home and Foreign-born in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Language Spoken at Home and Ability to Speak English", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:", 
+      "Foreign-born:"
+    ], 
+    "title": "Total:"
+  }
 }

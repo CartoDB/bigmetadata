@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002D001", 
     "parent": "us/census/acs/B11002D002"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Asian Alone)\": \"('In family households:',)\" \"In married-couple family:\" in \"Population in Households With a Householder Who Is Asian Alone\""
+  "name": "In married-couple family: and In family households in Population in Households With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (Asian Alone)", 
+    "universe": "Population in Households With a Householder Who Is Asian Alone", 
+    "ancestors": [
+      "In family households:"
+    ], 
+    "title": "In married-couple family:"
+  }
 }

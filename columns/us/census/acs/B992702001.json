@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Private Health Insurance\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B992702001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Imputation of Private Health Insurance", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Total:"
+  }
 }

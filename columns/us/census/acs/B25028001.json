@@ -1,3 +1,14 @@
 {
-  "name": "\"Tenure by Year Structure Built\": \"('Housing units without a mortgage:',)\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25028001"
+  }, 
+  "name": "Total: and Housing units without a mortgage in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Structure Built", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Housing units without a mortgage:"
+    ], 
+    "title": "Total:"
+  }
 }

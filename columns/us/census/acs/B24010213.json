@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010208"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Healthcare practitioners and technical occupations:', 'Health diagnosing and treating practitioners and other technical occupations:')\" \"Other health diagnosing and treating practitioners and technical occupations\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Other health diagnosing and treating practitioners and technical occupations and Female and Management, business, science, and arts occupations and Healthcare practitioners and technical occupations and Health diagnosing and treating practitioners and other technical occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Healthcare practitioners and technical occupations:", 
+      "Health diagnosing and treating practitioners and other technical occupations:"
+    ], 
+    "title": "Other health diagnosing and treating practitioners and technical occupations"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25010001", 
     "parent": "us/census/acs/B25010001"
   }, 
-  "name": "\"Average Household Size of Occupied Housing Units by Tenure\": \"()\" \"Renter occupied\" in \"Occupied Housing Units\""
+  "name": "Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Average Household Size of Occupied Housing Units by Tenure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Renter occupied"
+  }
 }

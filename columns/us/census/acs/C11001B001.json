@@ -1,3 +1,14 @@
 {
-  "name": "\"Household Type (Black or African American Alone)\": \"('Nonfamily households:',)\" \"Total:\" in \"Households With a Householder Who Is Black or African American Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/C11001B001"
+  }, 
+  "name": "Total: and Nonfamily households in Households With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Household Type (Black or African American Alone)", 
+    "universe": "Households With a Householder Who Is Black or African American Alone", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Total:"
+  }
 }

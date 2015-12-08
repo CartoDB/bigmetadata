@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B98012001", 
     "parent": "us/census/acs/B98012001"
   }, 
-  "name": "\"Total Population Coverage Rate by Sex\": \"()\" \"Female\" in \"Total Population\""
+  "name": "Female in Total Population", 
+  "extra": {
+    "table": "Total Population Coverage Rate by Sex", 
+    "universe": "Total Population", 
+    "title": "Female"
+  }
 }

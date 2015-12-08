@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08011001", 
     "parent": "us/census/acs/B08011016"
   }, 
-  "name": "\"Sex of Workers by Time Leaving Home to Go to Work\": \"('Male:',)\" \"12:00 p.m. to 3:59 p.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "12:00 p.m. to 3:59 p.m. and Male in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Sex of Workers by Time Leaving Home to Go to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "12:00 p.m. to 3:59 p.m."
+  }
 }

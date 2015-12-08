@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14002001", 
     "parent": "us/census/acs/B14002001"
   }, 
-  "name": "\"Sex by School Enrollment by Level of School by Type of School for the Population 3 Years and Over\": \"()\" \"Female:\" in \"Population 3 Years and Over\""
+  "name": "Female: in Population 3 Years and Over", 
+  "extra": {
+    "table": "Sex by School Enrollment by Level of School by Type of School for the Population 3 Years and Over", 
+    "universe": "Population 3 Years and Over", 
+    "title": "Female:"
+  }
 }

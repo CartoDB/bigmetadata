@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17022001", 
     "parent": "us/census/acs/B17022062"
   }, 
-  "name": "\"Ratio of Income to Poverty Level in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children\": \"('1.85 and above:',)\" \"Married-couple family:\" in \"Families\""
+  "name": "Married-couple family: and 1.85 and above in Families", 
+  "extra": {
+    "table": "Ratio of Income to Poverty Level in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children", 
+    "universe": "Families", 
+    "ancestors": [
+      "1.85 and above:"
+    ], 
+    "title": "Married-couple family:"
+  }
 }

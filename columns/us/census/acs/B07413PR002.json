@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07413PR001", 
     "parent": "us/census/acs/B07413PR001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Tenure for Residence 1 Year Ago in Puerto Rico\": \"('Moved to the United States:',)\" \"Householder lived in owner-occupied housing units\" in \"Population 1 Year and Over in Households\""
+  "name": "Householder lived in owner-occupied housing units and Moved to the United States in Population 1 Year and Over in Households", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Tenure for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "Population 1 Year and Over in Households", 
+    "ancestors": [
+      "Moved to the United States:"
+    ], 
+    "title": "Householder lived in owner-occupied housing units"
+  }
 }

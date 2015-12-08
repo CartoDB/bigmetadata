@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25087001", 
     "parent": "us/census/acs/B25087002"
   }, 
-  "name": "\"Mortgage Status and Selected Monthly Owner Costs\": \"('Housing units with a mortgage:',)\" \"$200 to $299\" in \"Owner-occupied Housing Units\""
+  "name": "$200 to $299 and Housing units with a mortgage in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status and Selected Monthly Owner Costs", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Housing units with a mortgage:"
+    ], 
+    "title": "$200 to $299"
+  }
 }

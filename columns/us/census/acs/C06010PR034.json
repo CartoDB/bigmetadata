@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06010PR001", 
     "parent": "us/census/acs/C06010PR001"
   }, 
-  "name": "\"Place of Birth by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) in Puerto Rico\": \"()\" \"Native; born elsewhere:\" in \"Population 15 Years and Over in Puerto Rico\""
+  "name": "Native; born elsewhere: in Population 15 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) in Puerto Rico", 
+    "universe": "Population 15 Years and Over in Puerto Rico", 
+    "title": "Native; born elsewhere:"
+  }
 }

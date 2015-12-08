@@ -1,3 +1,11 @@
 {
-  "name": "\"Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Hispanic or Latino Householder)\": \"()\" \"Total:\" in \"Households With a Householder Who Is Hispanic or Latino\""
+  "relationships": {
+    "denominator": "us/census/acs/B19037I001"
+  }, 
+  "name": "Households With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Hispanic or Latino Householder)", 
+    "universe": "Households With a Householder Who Is Hispanic or Latino", 
+    "title": "Total:"
+  }
 }

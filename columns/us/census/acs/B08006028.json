@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08006001", 
     "parent": "us/census/acs/B08006025"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work\": \"('Male:', 'Public transportation (excluding taxicab):')\" \"Subway or elevated\" in \"Workers 16 Years and Over\""
+  "name": "Subway or elevated and Male and Public transportation (excluding taxicab) in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Subway or elevated"
+  }
 }

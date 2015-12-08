@@ -1,3 +1,14 @@
 {
-  "name": "\"Kitchen Facilities for All Housing Units\": \"('Lacking complete plumbing facilities:',)\" \"Total:\" in \"Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25051001"
+  }, 
+  "name": "Total: and Lacking complete plumbing facilities in Housing Units", 
+  "extra": {
+    "table": "Kitchen Facilities for All Housing Units", 
+    "universe": "Housing Units", 
+    "ancestors": [
+      "Lacking complete plumbing facilities:"
+    ], 
+    "title": "Total:"
+  }
 }

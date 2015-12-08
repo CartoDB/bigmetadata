@@ -2,5 +2,14 @@
   "relationships": {
     "parent": "us/census/acs/B24032036"
   }, 
-  "name": "\"Sex by Industry and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Transportation and warehousing, and utilities:')\" \"Utilities\" in \"Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Utilities and Female and Transportation and warehousing, and utilities in Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Sex by Industry and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Female:", 
+      "Transportation and warehousing, and utilities:"
+    ], 
+    "title": "Utilities"
+  }
 }

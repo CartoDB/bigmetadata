@@ -1,3 +1,14 @@
 {
-  "name": "\"Population in Subfamilies by Subfamily Type\": \"('In father-child subfamilies:',)\" \"Total:\" in \"Population in Subfamilies\""
+  "relationships": {
+    "denominator": "us/census/acs/C11014001"
+  }, 
+  "name": "Total: and In father-child subfamilies in Population in Subfamilies", 
+  "extra": {
+    "table": "Population in Subfamilies by Subfamily Type", 
+    "universe": "Population in Subfamilies", 
+    "ancestors": [
+      "In father-child subfamilies:"
+    ], 
+    "title": "Total:"
+  }
 }

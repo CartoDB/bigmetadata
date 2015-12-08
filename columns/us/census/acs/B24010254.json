@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010253"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Sales and office occupations:', 'Office and administrative support occupations:')\" \"First-line supervisors of office and administrative support workers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "First-line supervisors of office and administrative support workers and Female and Sales and office occupations and Office and administrative support occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Sales and office occupations:", 
+      "Office and administrative support occupations:"
+    ], 
+    "title": "First-line supervisors of office and administrative support workers"
+  }
 }

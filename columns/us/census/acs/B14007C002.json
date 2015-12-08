@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14007C001", 
     "parent": "us/census/acs/B14007C001"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over (American Indian and Alaska Native Alone)\": \"()\" \"Enrolled in school:\" in \"American Indian and Alaska Native Alone Population 3 Years and Over\""
+  "name": "Enrolled in school: in American Indian and Alaska Native Alone Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population 3 Years and Over", 
+    "title": "Enrolled in school:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24070001", 
     "parent": "us/census/acs/B24070055"
   }, 
-  "name": "\"Industry by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Self-employed in own incorporated business workers:',)\" \"Retail trade\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Retail trade and Self-employed in own incorporated business workers in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Self-employed in own incorporated business workers:"
+    ], 
+    "title": "Retail trade"
+  }
 }

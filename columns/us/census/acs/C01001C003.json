@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C01001C001", 
     "parent": "us/census/acs/C01001C002"
   }, 
-  "name": "\"Sex by Age (American Indian and Alaska Native Alone)\": \"('Male:',)\" \"Under 18 years\" in \"People Who Are American Indian and Alaska Native Alone\""
+  "name": "Under 18 years and Male in People Who Are American Indian and Alaska Native Alone", 
+  "extra": {
+    "table": "Sex by Age (American Indian and Alaska Native Alone)", 
+    "universe": "People Who Are American Indian and Alaska Native Alone", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Under 18 years"
+  }
 }

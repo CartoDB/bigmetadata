@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25129001", 
     "parent": "us/census/acs/B25129003"
   }, 
-  "name": "\"Tenure by Year Householder Moved Into Unit by Units in Structure\": \"('Owner occupied:', 'Moved in 2005 or later:')\" \"5 to 19\" in \"Occupied Housing Units\""
+  "name": "5 to 19 and Owner occupied and Moved in 2005 or later in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Householder Moved Into Unit by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:", 
+      "Moved in 2005 or later:"
+    ], 
+    "title": "5 to 19"
+  }
 }

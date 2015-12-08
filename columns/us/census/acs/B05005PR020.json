@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05005PR001", 
     "parent": "us/census/acs/B05005PR019"
   }, 
-  "name": "\"Year of Entry by Citizenship Status in Puerto Rico\": \"('Entered before 1980:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"Population Born Outside Puerto Rico\""
+  "name": "Naturalized U.S. citizen and Entered before 1980 and Foreign born in Population Born Outside Puerto Rico", 
+  "extra": {
+    "table": "Year of Entry by Citizenship Status in Puerto Rico", 
+    "universe": "Population Born Outside Puerto Rico", 
+    "ancestors": [
+      "Entered before 1980:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

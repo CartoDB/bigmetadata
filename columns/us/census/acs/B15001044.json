@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15001001", 
     "parent": "us/census/acs/B15001043"
   }, 
-  "name": "\"Sex by Age by Educational Attainment for the Population 18 Years and Over\": \"('Female:',)\" \"18 to 24 years:\" in \"Population 18 Years and Over\""
+  "name": "18 to 24 years: and Female in Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Educational Attainment for the Population 18 Years and Over", 
+    "universe": "Population 18 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "18 to 24 years:"
+  }
 }

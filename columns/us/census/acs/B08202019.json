@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08202001", 
     "parent": "us/census/acs/B08202018"
   }, 
-  "name": "\"Household Size by Number of Workers in Household\": \"('4-or-more-person household:',)\" \"No workers\" in \"Households\""
+  "name": "No workers and 4-or-more-person household in Households", 
+  "extra": {
+    "table": "Household Size by Number of Workers in Household", 
+    "universe": "Households", 
+    "ancestors": [
+      "4-or-more-person household:"
+    ], 
+    "title": "No workers"
+  }
 }

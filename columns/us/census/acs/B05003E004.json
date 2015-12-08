@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003E001", 
     "parent": "us/census/acs/B05003E003"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Native Hawaiian and Other Pacific Islander Alone)\": \"('Male:', 'Under 18 years:')\" \"Native\" in \"People Who Are Native Hawaiian and Other Pacific Islander Alone\""
+  "name": "Native and Male and Under 18 years in People Who Are Native Hawaiian and Other Pacific Islander Alone", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "People Who Are Native Hawaiian and Other Pacific Islander Alone", 
+    "ancestors": [
+      "Male:", 
+      "Under 18 years:"
+    ], 
+    "title": "Native"
+  }
 }

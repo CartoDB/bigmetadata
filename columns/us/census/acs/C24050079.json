@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24050001", 
     "parent": "us/census/acs/C24050071"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Production, transportation, and material moving occupations:',)\" \"Finance and insurance, and real estate and rental and leasing\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Finance and insurance, and real estate and rental and leasing and Production, transportation, and material moving occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Production, transportation, and material moving occupations:"
+    ], 
+    "title": "Finance and insurance, and real estate and rental and leasing"
+  }
 }

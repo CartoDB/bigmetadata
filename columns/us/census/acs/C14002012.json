@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C14002001", 
     "parent": "us/census/acs/C14002002"
   }, 
-  "name": "\"School Enrollment by Level of School by Type of School for the Population 3 Years and Over\": \"('Enrolled in school:',)\" \"Enrolled in grade 5 to grade 8:\" in \"Population 3 Years and Over\""
+  "name": "Enrolled in grade 5 to grade 8: and Enrolled in school in Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School by Type of School for the Population 3 Years and Over", 
+    "universe": "Population 3 Years and Over", 
+    "ancestors": [
+      "Enrolled in school:"
+    ], 
+    "title": "Enrolled in grade 5 to grade 8:"
+  }
 }

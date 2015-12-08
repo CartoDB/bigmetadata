@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04001001", 
     "parent": "us/census/acs/B04001094"
   }, 
-  "name": "\"First Ancestry Reported\": \"('West Indian (except Hispanic groups):',)\" \"Haitian\" in \"Total Population\""
+  "name": "Haitian and West Indian (except Hispanic groups) in Total Population", 
+  "extra": {
+    "table": "First Ancestry Reported", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "West Indian (except Hispanic groups):"
+    ], 
+    "title": "Haitian"
+  }
 }

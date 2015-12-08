@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25032F001", 
     "parent": "us/census/acs/B25032F001"
   }, 
-  "name": "\"Units in Structure (Some Other Race Alone Householder)\": \"()\" \"1, attached\" in \"Occupied Housing Units With a Householder Who Is Some Other Race Alone\""
+  "name": "1, attached in Occupied Housing Units With a Householder Who Is Some Other Race Alone", 
+  "extra": {
+    "table": "Units in Structure (Some Other Race Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Some Other Race Alone", 
+    "title": "1, attached"
+  }
 }

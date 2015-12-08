@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002C001", 
     "parent": "us/census/acs/B11002C001"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (American Indian and Alaska Native Alone)\": \"()\" \"In family households:\" in \"Population in Households With a Householder Who Is American Indian and Alaska Native Alone\""
+  "name": "In family households: in Population in Households With a Householder Who Is American Indian and Alaska Native Alone", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (American Indian and Alaska Native Alone)", 
+    "universe": "Population in Households With a Householder Who Is American Indian and Alaska Native Alone", 
+    "title": "In family households:"
+  }
 }

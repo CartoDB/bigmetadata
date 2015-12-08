@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Hispanic or Latino)\": \"('Female:',)\" \"Total:\" in \"Hispanic or Latino Population 25 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/C15002I001"
+  }, 
+  "name": "Total: and Female in Hispanic or Latino Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

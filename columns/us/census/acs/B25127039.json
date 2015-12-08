@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25127001", 
     "parent": "us/census/acs/B25127038"
   }, 
-  "name": "\"Tenure by Year Structure Built by Units in Structure\": \"('Renter occupied:',)\" \"Built 2000 or later:\" in \"Occupied Housing Units\""
+  "name": "Built 2000 or later: and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Structure Built by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Built 2000 or later:"
+  }
 }

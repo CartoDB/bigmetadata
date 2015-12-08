@@ -1,3 +1,14 @@
 {
-  "name": "\"Age by Language Spoken at Home for the Population 5 Years and Over in Households in Which No One 14 and Over Speaks English Only or Speaks a Language Other Than English at Home and Speaks English \"Very Well\"\": \"('Other languages:',)\" \"Total:\" in \"Population 5 Years and Over in Households in Which No One 14 and Over Speaks English Only or Speaks a Language Other Than English at Home and Speaks English \"Very Well\"\""
+  "relationships": {
+    "denominator": "us/census/acs/B16003001"
+  }, 
+  "name": "Total: and Other languages in Population 5 Years and Over in Households in Which No One 14 and Over Speaks English Only or Speaks a Language Other Than English at Home and Speaks English \"Very Well\"", 
+  "extra": {
+    "table": "Age by Language Spoken at Home for the Population 5 Years and Over in Households in Which No One 14 and Over Speaks English Only or Speaks a Language Other Than English at Home and Speaks English \"Very Well\"", 
+    "universe": "Population 5 Years and Over in Households in Which No One 14 and Over Speaks English Only or Speaks a Language Other Than English at Home and Speaks English \"Very Well\"", 
+    "ancestors": [
+      "Other languages:"
+    ], 
+    "title": "Total:"
+  }
 }

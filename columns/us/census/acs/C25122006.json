@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25122001", 
     "parent": "us/census/acs/C25122002"
   }, 
-  "name": "\"Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Gross Rent\": \"(None, 'Less than $10,000:')\" \"No cash rent\" in \"Renter-occupied Housing Units\""
+  "name": "No cash rent and Less than $10,000 in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      null, 
+      "Less than $10,000:"
+    ], 
+    "title": "No cash rent"
+  }
 }

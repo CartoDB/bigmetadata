@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C04004001", 
     "parent": "us/census/acs/C04004001"
   }, 
-  "name": "\"People Reporting Single Ancestry\": \"()\" \"English\" in \"People Reporting Single Ancestry\""
+  "name": "English in People Reporting Single Ancestry", 
+  "extra": {
+    "table": "People Reporting Single Ancestry", 
+    "universe": "People Reporting Single Ancestry", 
+    "title": "English"
+  }
 }

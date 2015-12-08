@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11011001", 
     "parent": "us/census/acs/B11011008"
   }, 
-  "name": "\"Household Type by Units in Structure\": \"('Family households:', 'Other family:', 'Male householder, no wife present:')\" \"Mobile homes and all other types of units\" in \"Households\""
+  "name": "Mobile homes and all other types of units and Family households and Other family and Male householder, no wife present in Households", 
+  "extra": {
+    "table": "Household Type by Units in Structure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:", 
+      "Other family:", 
+      "Male householder, no wife present:"
+    ], 
+    "title": "Mobile homes and all other types of units"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09018001", 
     "parent": "us/census/acs/B09018001"
   }, 
-  "name": "\"Relationship to Householder for Children Under 18 Years in Households\": \"()\" \"Grandchild\" in \"Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)\""
+  "name": "Grandchild in Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)", 
+  "extra": {
+    "table": "Relationship to Householder for Children Under 18 Years in Households", 
+    "universe": "Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)", 
+    "title": "Grandchild"
+  }
 }

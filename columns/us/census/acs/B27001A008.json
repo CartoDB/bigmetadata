@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001A001", 
     "parent": "us/census/acs/B27001A001"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (White Alone)\": \"()\" \"18 to 24 years:\" in \"WHITE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "18 to 24 years: in WHITE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (White Alone)", 
+    "universe": "WHITE ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "title": "18 to 24 years:"
+  }
 }

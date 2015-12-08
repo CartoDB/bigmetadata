@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C12002001", 
     "parent": "us/census/acs/C12002003"
   }, 
-  "name": "\"Sex by Marital Status by Age for the Population 15 Years and Over\": \"('Male:', 'Never married:')\" \"15 to 19 years\" in \"Population 15 Years and Over\""
+  "name": "15 to 19 years and Male and Never married in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status by Age for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Never married:"
+    ], 
+    "title": "15 to 19 years"
+  }
 }

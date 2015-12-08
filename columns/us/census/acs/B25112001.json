@@ -1,3 +1,12 @@
 {
-  "name": "\"Aggregate Gross Rent (Dollars) by Year Structure Built\": \"('Total:',)\" \"Aggregate gross rent (dollars):\" in \"Renter-occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Aggregate gross rent (dollars): and Total in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Gross Rent (Dollars) by Year Structure Built", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Aggregate gross rent (dollars):"
+  }
 }

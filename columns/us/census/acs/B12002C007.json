@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002C001", 
     "parent": "us/census/acs/B12002C002"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (American Indian and Alaska Native Alone)\": \"('Male:',)\" \"Divorced\" in \"American Indian and Alaska Native Alone Population 15 Years and Over\""
+  "name": "Divorced and Male in American Indian and Alaska Native Alone Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population 15 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Divorced"
+  }
 }

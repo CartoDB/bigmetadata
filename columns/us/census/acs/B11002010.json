@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002001", 
     "parent": "us/census/acs/B11002009"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households\": \"('In family households:', 'In female householder, no husband present, family:')\" \"Relatives\" in \"Population in Households\""
+  "name": "Relatives and In family households and In female householder, no husband present, family in Population in Households", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households", 
+    "universe": "Population in Households", 
+    "ancestors": [
+      "In family households:", 
+      "In female householder, no husband present, family:"
+    ], 
+    "title": "Relatives"
+  }
 }

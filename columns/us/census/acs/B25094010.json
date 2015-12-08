@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25094001", 
     "parent": "us/census/acs/B25094001"
   }, 
-  "name": "\"Selected Monthly Owner Costs\": \"()\" \"$800 to $899\" in \"Owner-occupied Housing Units\""
+  "name": "$800 to $899 in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Selected Monthly Owner Costs", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "$800 to $899"
+  }
 }

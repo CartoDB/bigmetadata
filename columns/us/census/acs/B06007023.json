@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06007001", 
     "parent": "us/census/acs/B06007022"
   }, 
-  "name": "\"Place of Birth by Language Spoken at Home and Ability to Speak English in the United States\": \"('Born in other state in the United States:', 'Speak other languages:')\" \"Speak English \"very well\"\" in \"Population 5 Years and Over in the United States\""
+  "name": "Speak English \"very well\" and Born in other state in the United States and Speak other languages in Population 5 Years and Over in the United States", 
+  "extra": {
+    "table": "Place of Birth by Language Spoken at Home and Ability to Speak English in the United States", 
+    "universe": "Population 5 Years and Over in the United States", 
+    "ancestors": [
+      "Born in other state in the United States:", 
+      "Speak other languages:"
+    ], 
+    "title": "Speak English \"very well\""
+  }
 }

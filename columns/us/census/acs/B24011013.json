@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24011001", 
     "parent": "us/census/acs/B24011010"
   }, 
-  "name": "\"Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over\": \"('Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:')\" \"Education, training, and library occupations\" in \"Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Education, training, and library occupations and Management, business, science, and arts occupations and Education, legal, community service, arts, and media occupations in Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Management, business, science, and arts occupations:", 
+      "Education, legal, community service, arts, and media occupations:"
+    ], 
+    "title": "Education, training, and library occupations"
+  }
 }

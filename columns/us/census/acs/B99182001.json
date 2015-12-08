@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Hearing Difficulty for the Civilian Noninstitutionalized Population\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B99182001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Imputation of Hearing Difficulty for the Civilian Noninstitutionalized Population", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25005001", 
     "parent": "us/census/acs/B25005002"
   }, 
-  "name": "\"Vacant - Current Residence Elsewhere\": \"()\" \"All other vacant units\" in \"Vacant Housing Units\""
+  "name": "All other vacant units in Vacant Housing Units", 
+  "extra": {
+    "table": "Vacant - Current Residence Elsewhere", 
+    "universe": "Vacant Housing Units", 
+    "title": "All other vacant units"
+  }
 }

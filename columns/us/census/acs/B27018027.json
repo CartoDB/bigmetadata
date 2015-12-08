@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27018001", 
     "parent": "us/census/acs/B27018026"
   }, 
-  "name": "\"Public Health Insurance by Ratio of Income to Poverty Level in the Past 12 Months by Age\": \"('1.00 to 1.49 of poverty threshold:', '18 to 64 years:')\" \"With public coverage\" in \"Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined\""
+  "name": "With public coverage and 1.00 to 1.49 of poverty threshold and 18 to 64 years in Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Public Health Insurance by Ratio of Income to Poverty Level in the Past 12 Months by Age", 
+    "universe": "Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "1.00 to 1.49 of poverty threshold:", 
+      "18 to 64 years:"
+    ], 
+    "title": "With public coverage"
+  }
 }

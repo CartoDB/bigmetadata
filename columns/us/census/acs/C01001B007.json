@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C01001B001", 
     "parent": "us/census/acs/C01001B006"
   }, 
-  "name": "\"Sex by Age (Black or African American Alone)\": \"('Female:',)\" \"Under 18 years\" in \"People Who Are White Alone\""
+  "name": "Under 18 years and Female in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age (Black or African American Alone)", 
+    "universe": "People Who Are White Alone", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Under 18 years"
+  }
 }

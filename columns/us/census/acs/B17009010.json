@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17009001", 
     "parent": "us/census/acs/B17009009"
   }, 
-  "name": "\"Poverty Status by Work Experience of Unrelated Individuals by Householder Status\": \"('Income in the past 12 months below the poverty level:', 'Did not work:')\" \"Nonfamily householder\" in \"Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "Nonfamily householder and Income in the past 12 months below the poverty level and Did not work in Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status by Work Experience of Unrelated Individuals by Householder Status", 
+    "universe": "Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months below the poverty level:", 
+      "Did not work:"
+    ], 
+    "title": "Nonfamily householder"
+  }
 }

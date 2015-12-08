@@ -1,3 +1,11 @@
 {
-  "name": "\"Means of Transportation to Work for Workplace Geography (Two or More Races)\": \"()\" \"Total:\" in \"Two or More Races Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08505G001"
+  }, 
+  "name": "Two or More Races Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work for Workplace Geography (Two or More Races)", 
+    "universe": "Two or More Races Workers 16 Years and Over", 
+    "title": "Total:"
+  }
 }

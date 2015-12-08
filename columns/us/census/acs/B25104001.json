@@ -1,3 +1,14 @@
 {
-  "name": "\"Monthly Housing Costs\": \"('Total:',)\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25104001"
+  }, 
+  "name": "Total: and Total in Occupied Housing Units", 
+  "extra": {
+    "table": "Monthly Housing Costs", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Total:"
+  }
 }

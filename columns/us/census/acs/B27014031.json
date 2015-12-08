@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27014001", 
     "parent": "us/census/acs/B27014029"
   }, 
-  "name": "\"Public Health Insurance by Work Experience by Sex by Age\": \"('Worked less than full-time, year-round:', 'Female:', '65 years and over:')\" \"No public coverage\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "No public coverage and Worked less than full-time, year-round and Female and 65 years and over in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Public Health Insurance by Work Experience by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "Worked less than full-time, year-round:", 
+      "Female:", 
+      "65 years and over:"
+    ], 
+    "title": "No public coverage"
+  }
 }

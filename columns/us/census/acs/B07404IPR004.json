@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07404IPR001", 
     "parent": "us/census/acs/B07404IPR001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year (Hispanic or Latino) for Residence 1 Year Ago in Puerto Rico\": \"()\" \"Moved to different municipio\" in \"Hispanic or Latino Population 1 Year and Over\""
+  "name": "Moved to different municipio in Hispanic or Latino Population 1 Year and Over", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Hispanic or Latino) for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "Hispanic or Latino Population 1 Year and Over", 
+    "title": "Moved to different municipio"
+  }
 }

@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B21004001"
   }, 
-  "name": "\"Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Veteran Status by Sex for the Civilian Population 18 Years and Over With Income\": \"()\" \"Veteran:\" in \"Civilian Population 18 Years and Over With Income in the Past 12 Months\""
+  "name": "Veteran: in Civilian Population 18 Years and Over With Income in the Past 12 Months", 
+  "extra": {
+    "table": "Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Veteran Status by Sex for the Civilian Population 18 Years and Over With Income", 
+    "universe": "Civilian Population 18 Years and Over With Income in the Past 12 Months", 
+    "title": "Veteran:"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001D001", 
     "parent": "us/census/acs/B27001D001"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Asian Alone)\": \"()\" \"55 to 64 years:\" in \"ASIAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "55 to 64 years: in ASIAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Asian Alone)", 
+    "universe": "ASIAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "title": "55 to 64 years:"
+  }
 }

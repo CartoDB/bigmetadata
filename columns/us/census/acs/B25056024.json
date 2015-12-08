@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25056001", 
     "parent": "us/census/acs/B25056001"
   }, 
-  "name": "\"Contract Rent\": \"()\" \"No cash rent\" in \"Renter-occupied Housing Units\""
+  "name": "No cash rent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Contract Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "title": "No cash rent"
+  }
 }

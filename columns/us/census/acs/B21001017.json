@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21001001", 
     "parent": "us/census/acs/B21001016"
   }, 
-  "name": "\"Sex by Age by Veteran Status for the Civilian Population 18 Years and Over\": \"('Male:', '65 to 74 years:')\" \"Veteran\" in \"Civilian Population 18 Years and Over\""
+  "name": "Veteran and Male and 65 to 74 years in Civilian Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Veteran Status for the Civilian Population 18 Years and Over", 
+    "universe": "Civilian Population 18 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "65 to 74 years:"
+    ], 
+    "title": "Veteran"
+  }
 }

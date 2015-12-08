@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010I001", 
     "parent": "us/census/acs/B24010I040"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)\": \"('Female:', 'Management, business, science, and arts occupations:', 'Management, business, and financial occupations:')\" \"Business and financial operations occupations\" in \"Civilian Employed Hispanic or Latino Population 16 Years and Over\""
+  "name": "Business and financial operations occupations and Female and Management, business, science, and arts occupations and Management, business, and financial occupations in Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Management, business, and financial occupations:"
+    ], 
+    "title": "Business and financial operations occupations"
+  }
 }

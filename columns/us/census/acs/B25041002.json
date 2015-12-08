@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25041001", 
     "parent": "us/census/acs/B25041001"
   }, 
-  "name": "\"Bedrooms\": \"()\" \"No bedroom\" in \"Housing Units\""
+  "name": "No bedroom in Housing Units", 
+  "extra": {
+    "table": "Bedrooms", 
+    "universe": "Housing Units", 
+    "title": "No bedroom"
+  }
 }

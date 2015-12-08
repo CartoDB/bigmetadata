@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24090001", 
     "parent": "us/census/acs/B24090012"
   }, 
-  "name": "\"Sex by Class of Worker for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:',)\" \"Unpaid family workers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Unpaid family workers and Female in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Class of Worker for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Unpaid family workers"
+  }
 }

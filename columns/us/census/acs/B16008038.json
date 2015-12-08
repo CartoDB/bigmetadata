@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16008001", 
     "parent": "us/census/acs/B16008036"
   }, 
-  "name": "\"Citizenship Status by Age by Language Spoken at Home for the Population 5 Years and Over\": \"('Foreign-born population:', 'Not a U.S. citizen:', '18 years and over:')\" \"Speak Spanish\" in \"Population 5 Years and Over\""
+  "name": "Speak Spanish and Foreign-born population and Not a U.S. citizen and 18 years and over in Population 5 Years and Over", 
+  "extra": {
+    "table": "Citizenship Status by Age by Language Spoken at Home for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "Foreign-born population:", 
+      "Not a U.S. citizen:", 
+      "18 years and over:"
+    ], 
+    "title": "Speak Spanish"
+  }
 }

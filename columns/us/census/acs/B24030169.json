@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24030001", 
     "parent": "us/census/acs/B24030152"
   }, 
-  "name": "\"Sex by Industry for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Retail trade:')\" \"Office supplies and stationery stores\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Office supplies and stationery stores and Female and Retail trade in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Retail trade:"
+    ], 
+    "title": "Office supplies and stationery stores"
+  }
 }

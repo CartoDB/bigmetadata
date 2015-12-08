@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18103001", 
     "parent": "us/census/acs/B18103001"
   }, 
-  "name": "\"Sex by Age by Vision Difficulty\": \"()\" \"Female:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Female: in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Sex by Age by Vision Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Female:"
+  }
 }

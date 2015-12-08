@@ -1,3 +1,14 @@
 {
-  "name": "\"Aggregate Income Deficit (Dollars) in the Past 12 Months for Families by Family Type\": \"('Income in the past 12 months at or above poverty level:', 'Other family:', 'Female householder, no husband present')\" \"Aggregate income deficit in the past 12 months:\" in \"Families With Income in the Past 12 Months Below the Poverty Level\""
+  "relationships": {}, 
+  "name": "Aggregate income deficit in the past 12 months: and Income in the past 12 months at or above poverty level and Other family and Female householder, no husband present in Families With Income in the Past 12 Months Below the Poverty Level", 
+  "extra": {
+    "table": "Aggregate Income Deficit (Dollars) in the Past 12 Months for Families by Family Type", 
+    "universe": "Families With Income in the Past 12 Months Below the Poverty Level", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Other family:", 
+      "Female householder, no husband present"
+    ], 
+    "title": "Aggregate income deficit in the past 12 months:"
+  }
 }

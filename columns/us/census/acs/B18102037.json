@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18102001", 
     "parent": "us/census/acs/B18102021"
   }, 
-  "name": "\"Sex by Age by Hearing Difficulty\": \"('Female:',)\" \"75 years and over:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "75 years and over: and Female in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Sex by Age by Hearing Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "75 years and over:"
+  }
 }

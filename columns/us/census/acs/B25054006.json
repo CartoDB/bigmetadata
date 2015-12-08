@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25054001", 
     "parent": "us/census/acs/B25054005"
   }, 
-  "name": "\"Kitchen Facilities by Meals Included in Rent\": \"('Lacking complete kitchen facilities:',)\" \"Meals included in rent\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "name": "Meals included in rent and Lacking complete kitchen facilities in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Kitchen Facilities by Meals Included in Rent", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "ancestors": [
+      "Lacking complete kitchen facilities:"
+    ], 
+    "title": "Meals included in rent"
+  }
 }

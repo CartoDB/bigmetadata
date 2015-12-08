@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18101E001", 
     "parent": "us/census/acs/B18101E008"
   }, 
-  "name": "\"Age by Disability Status (Native Hawaiian and Other Pacific Islander Alone)\": \"('65 years and over:',)\" \"No disability\" in \"Native Hawaiian and Other Pacific Islander Alone Civilian Noninstitutionalized Population\""
+  "name": "No disability and 65 years and over in Native Hawaiian and Other Pacific Islander Alone Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "65 years and over:"
+    ], 
+    "title": "No disability"
+  }
 }

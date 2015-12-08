@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001H001", 
     "parent": "us/census/acs/B01001H017"
   }, 
-  "name": "\"Sex by Age (White Alone, Not Hispanic or Latino)\": \"('Female:',)\" \"10 to 14 years\" in \"White Alone, Not Hispanic or Latino Population\""
+  "name": "10 to 14 years and Female in White Alone, Not Hispanic or Latino Population", 
+  "extra": {
+    "table": "Sex by Age (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "10 to 14 years"
+  }
 }

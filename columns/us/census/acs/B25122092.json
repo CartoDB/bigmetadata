@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25122001", 
     "parent": "us/census/acs/B25122088"
   }, 
-  "name": "\"Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Gross Rent\": \"(None, '$75,000 to $99,999:', 'With cash rent:')\" \"$300 to $399\" in \"Renter-occupied Housing Units\""
+  "name": "$300 to $399 and $75,000 to $99,999 and With cash rent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      null, 
+      "$75,000 to $99,999:", 
+      "With cash rent:"
+    ], 
+    "title": "$300 to $399"
+  }
 }

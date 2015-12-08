@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24022001", 
     "parent": "us/census/acs/B24022038"
   }, 
-  "name": "\"Sex by Occupation and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:',)\" \"Natural resources, construction, and maintenance occupations:\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Natural resources, construction, and maintenance occupations: and Female in Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Sex by Occupation and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Natural resources, construction, and maintenance occupations:"
+  }
 }

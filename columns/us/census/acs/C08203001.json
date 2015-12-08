@@ -1,3 +1,14 @@
 {
-  "name": "\"Number of Workers in Household by Vehicles Available\": \"('3 or more workers:',)\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/C08203001"
+  }, 
+  "name": "Total: and 3 or more workers in Households", 
+  "extra": {
+    "table": "Number of Workers in Household by Vehicles Available", 
+    "universe": "Households", 
+    "ancestors": [
+      "3 or more workers:"
+    ], 
+    "title": "Total:"
+  }
 }

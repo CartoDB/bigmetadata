@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24030001", 
     "parent": "us/census/acs/B24030027"
   }, 
-  "name": "\"Sex by Industry for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Wholesale trade:')\" \"Petroleum and petroleum products merchant wholesalers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Petroleum and petroleum products merchant wholesalers and Male and Wholesale trade in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Wholesale trade:"
+    ], 
+    "title": "Petroleum and petroleum products merchant wholesalers"
+  }
 }

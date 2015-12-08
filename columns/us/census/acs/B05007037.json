@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05007001", 
     "parent": "us/census/acs/B05007036"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Latin America:', 'Caribbean:', 'Entered 1980 to 1989:')\" \"Naturalized U.S. citizen\" in \"Foreign-born Population\""
+  "name": "Naturalized U.S. citizen and Latin America and Caribbean and Entered 1980 to 1989 in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Latin America:", 
+      "Caribbean:", 
+      "Entered 1980 to 1989:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

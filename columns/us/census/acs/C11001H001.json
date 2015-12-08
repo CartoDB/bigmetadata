@@ -1,3 +1,14 @@
 {
-  "name": "\"Household Type (White Alone, Not Hispanic or Latino)\": \"('Nonfamily households:',)\" \"Total:\" in \"Households With a Householder Who Is White Alone, Not Hispanic or Latino\""
+  "relationships": {
+    "denominator": "us/census/acs/C11001H001"
+  }, 
+  "name": "Total: and Nonfamily households in Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+  "extra": {
+    "table": "Household Type (White Alone, Not Hispanic or Latino)", 
+    "universe": "Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Total:"
+  }
 }

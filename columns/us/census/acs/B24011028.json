@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24011001", 
     "parent": "us/census/acs/B24011026"
   }, 
-  "name": "\"Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over\": \"('Sales and office occupations:',)\" \"Office and administrative support occupations\" in \"Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Office and administrative support occupations and Sales and office occupations in Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Sales and office occupations:"
+    ], 
+    "title": "Office and administrative support occupations"
+  }
 }

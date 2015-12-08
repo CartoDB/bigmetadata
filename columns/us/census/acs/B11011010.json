@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11011001", 
     "parent": "us/census/acs/B11011008"
   }, 
-  "name": "\"Household Type by Units in Structure\": \"('Family households:', 'Other family:', 'Male householder, no wife present:')\" \"2-or-more-unit structures\" in \"Households\""
+  "name": "2-or-more-unit structures and Family households and Other family and Male householder, no wife present in Households", 
+  "extra": {
+    "table": "Household Type by Units in Structure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:", 
+      "Other family:", 
+      "Male householder, no wife present:"
+    ], 
+    "title": "2-or-more-unit structures"
+  }
 }

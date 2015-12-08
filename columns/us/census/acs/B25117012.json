@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25117001", 
     "parent": "us/census/acs/B25117001"
   }, 
-  "name": "\"Tenure by House Heating Fuel\": \"()\" \"Renter occupied:\" in \"Occupied Housing Units\""
+  "name": "Renter occupied: in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by House Heating Fuel", 
+    "universe": "Occupied Housing Units", 
+    "title": "Renter occupied:"
+  }
 }

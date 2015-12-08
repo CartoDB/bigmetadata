@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25102001", 
     "parent": "us/census/acs/B25102002"
   }, 
-  "name": "\"Mortgage Status by Real Estate Taxes Paid\": \"('With a mortgage:',)\" \"$800 to $1,499\" in \"Owner-occupied Housing Units\""
+  "name": "$800 to $1,499 and With a mortgage in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Real Estate Taxes Paid", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "With a mortgage:"
+    ], 
+    "title": "$800 to $1,499"
+  }
 }

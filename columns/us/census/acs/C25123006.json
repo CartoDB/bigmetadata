@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25123001", 
     "parent": "us/census/acs/C25123005"
   }, 
-  "name": "\"Tenure by Selected Physical and Financial Conditions\": \"('Renter occupied:',)\" \"With none or one selected condition\" in \"Occupied Housing Units\""
+  "name": "With none or one selected condition and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Selected Physical and Financial Conditions", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "With none or one selected condition"
+  }
 }

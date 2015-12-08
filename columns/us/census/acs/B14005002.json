@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14005001", 
     "parent": "us/census/acs/B14005001"
   }, 
-  "name": "\"Sex by School Enrollment by Educational Attainment by Employment Status for the Population 16 to 19 Years\": \"()\" \"Male:\" in \"Population 16 to 19 Years\""
+  "name": "Male: in Population 16 to 19 Years", 
+  "extra": {
+    "table": "Sex by School Enrollment by Educational Attainment by Employment Status for the Population 16 to 19 Years", 
+    "universe": "Population 16 to 19 Years", 
+    "title": "Male:"
+  }
 }

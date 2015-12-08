@@ -1,3 +1,11 @@
 {
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age\": \"()\" \"Total:\" in \"Population for Whom Poverty Status Is Determined\""
+  "relationships": {
+    "denominator": "us/census/acs/B17001001"
+  }, 
+  "name": "Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age", 
+    "universe": "Population for Whom Poverty Status Is Determined", 
+    "title": "Total:"
+  }
 }

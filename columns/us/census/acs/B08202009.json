@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08202001", 
     "parent": "us/census/acs/B08202001"
   }, 
-  "name": "\"Household Size by Number of Workers in Household\": \"()\" \"2-person household:\" in \"Households\""
+  "name": "2-person household: in Households", 
+  "extra": {
+    "table": "Household Size by Number of Workers in Household", 
+    "universe": "Households", 
+    "title": "2-person household:"
+  }
 }

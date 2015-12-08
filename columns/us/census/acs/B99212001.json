@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Period of Military Service for Civilian Veterans 18 Years and Over\": \"()\" \"Total:\" in \"Civilian Veterans 18 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B99212001"
+  }, 
+  "name": "Civilian Veterans 18 Years and Over", 
+  "extra": {
+    "table": "Imputation of Period of Military Service for Civilian Veterans 18 Years and Over", 
+    "universe": "Civilian Veterans 18 Years and Over", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08505D001", 
     "parent": "us/census/acs/B08505D001"
   }, 
-  "name": "\"Means of Transportation to Work for Workplace Geography (Asian Alone)\": \"()\" \"Car, truck, or van - carpooled\" in \"Asian Alone Workers 16 Years and Over\""
+  "name": "Car, truck, or van - carpooled in Asian Alone Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work for Workplace Geography (Asian Alone)", 
+    "universe": "Asian Alone Workers 16 Years and Over", 
+    "title": "Car, truck, or van - carpooled"
+  }
 }

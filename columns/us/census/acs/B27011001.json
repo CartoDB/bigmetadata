@@ -1,3 +1,11 @@
 {
-  "name": "\"Health Insurance Coverage Status and Type by Employment Status by Age\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B27011001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Employment Status by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "title": "Total:"
+  }
 }

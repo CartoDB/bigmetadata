@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17024001", 
     "parent": "us/census/acs/C17024002"
   }, 
-  "name": "\"Age by Ratio of Income to Poverty Level in the Past 12 Months\": \"('Under 18 years:',)\" \"2.00 to 2.99\" in \"Population for Whom Poverty Status Is Determined\""
+  "name": "2.00 to 2.99 and Under 18 years in Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Age by Ratio of Income to Poverty Level in the Past 12 Months", 
+    "universe": "Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Under 18 years:"
+    ], 
+    "title": "2.00 to 2.99"
+  }
 }

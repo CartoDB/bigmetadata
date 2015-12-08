@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08501001", 
     "parent": "us/census/acs/B08501041"
   }, 
-  "name": "\"Means of Transportation to Work by Age for Workplace Geography\": \"('Taxicab, motorcycle, bicycle, or other means:',)\" \"65 years and over\" in \"Workers 16 Years and Over\""
+  "name": "65 years and over within Taxicab, motorcycle, bicycle, or other means in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Age for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, or other means:"
+    ], 
+    "title": "65 years and over"
+  }
 }

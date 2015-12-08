@@ -1,3 +1,11 @@
 {
-  "name": "\"Means of Transportation to Work for Workplace Geography (White Alone, Not Hispanic or Latino)\": \"()\" \"Total:\" in \"White Alone, Not Hispanic or Latino Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/C08505H001"
+  }, 
+  "name": "White Alone, Not Hispanic or Latino Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work for Workplace Geography (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Workers 16 Years and Over", 
+    "title": "Total:"
+  }
 }

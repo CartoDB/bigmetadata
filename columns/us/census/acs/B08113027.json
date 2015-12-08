@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08113001", 
     "parent": "us/census/acs/B08113025"
   }, 
-  "name": "\"Means of Transportation to Work by Language Spoken at Home and Ability to Speak English\": \"(None,)\" \"Speak Spanish:\" in \"Workers 16 Years and Over\""
+  "name": "Speak Spanish: and  in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Language Spoken at Home and Ability to Speak English", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null
+    ], 
+    "title": "Speak Spanish:"
+  }
 }

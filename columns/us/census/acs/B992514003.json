@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992514001", 
     "parent": "us/census/acs/B992514001"
   }, 
-  "name": "\"Imputation of Meals Included in Rent\": \"()\" \"Not imputed\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "name": "Not imputed in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Imputation of Meals Included in Rent", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "title": "Not imputed"
+  }
 }

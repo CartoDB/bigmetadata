@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C19001E001", 
     "parent": "us/census/acs/C19001E001"
   }, 
-  "name": "\"Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Native Hawaiian and Other Pacific Islander Alone Householder)\": \"()\" \"Less than $10,000\" in \"Households With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone\""
+  "name": "Less than $10,000 in Households With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone", 
+  "extra": {
+    "table": "Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Native Hawaiian and Other Pacific Islander Alone Householder)", 
+    "universe": "Households With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone", 
+    "title": "Less than $10,000"
+  }
 }

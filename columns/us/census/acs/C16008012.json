@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C16008001", 
     "parent": "us/census/acs/C16008009"
   }, 
-  "name": "\"Citizenship Status by Language Spoken at Home for the Population 5 Years and Over\": \"('Foreign-born population:', 'Naturalized citizen:')\" \"Speak other Indo-European languages\" in \"Population 5 Years and Over\""
+  "name": "Speak other Indo-European languages and Foreign-born population and Naturalized citizen in Population 5 Years and Over", 
+  "extra": {
+    "table": "Citizenship Status by Language Spoken at Home for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "Foreign-born population:", 
+      "Naturalized citizen:"
+    ], 
+    "title": "Speak other Indo-European languages"
+  }
 }

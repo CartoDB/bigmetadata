@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06001001", 
     "parent": "us/census/acs/C06001019"
   }, 
-  "name": "\"Place of Birth by Age in the United States\": \"('Born in other state in the United States:',)\" \"Under 5 years\" in \"Total Population in the United States\""
+  "name": "Under 5 years and Born in other state in the United States in Total Population in the United States", 
+  "extra": {
+    "table": "Place of Birth by Age in the United States", 
+    "universe": "Total Population in the United States", 
+    "ancestors": [
+      "Born in other state in the United States:"
+    ], 
+    "title": "Under 5 years"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Sex (Two or More Races)\": \"()\" \"Total:\" in \"People Who Are Two or More Races\""
+  "relationships": {}, 
+  "name": "People Who Are Two or More Races", 
+  "extra": {
+    "table": "Median Age by Sex (Two or More Races)", 
+    "universe": "People Who Are Two or More Races", 
+    "title": "Total:"
+  }
 }

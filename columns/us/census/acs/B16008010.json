@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16008001", 
     "parent": "us/census/acs/B16008009"
   }, 
-  "name": "\"Citizenship Status by Age by Language Spoken at Home for the Population 5 Years and Over\": \"('Native population:', '18 years and over:')\" \"Speak only English\" in \"Population 5 Years and Over\""
+  "name": "Speak only English and Native population and 18 years and over in Population 5 Years and Over", 
+  "extra": {
+    "table": "Citizenship Status by Age by Language Spoken at Home for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "Native population:", 
+      "18 years and over:"
+    ], 
+    "title": "Speak only English"
+  }
 }

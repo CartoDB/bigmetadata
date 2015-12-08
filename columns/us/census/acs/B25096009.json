@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25096001", 
     "parent": "us/census/acs/B25096002"
   }, 
-  "name": "\"Mortgage Status by Value\": \"('With a mortgage:',)\" \"$500,000 or more\" in \"Owner-occupied Housing Units\""
+  "name": "$500,000 or more and With a mortgage in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Value", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "With a mortgage:"
+    ], 
+    "title": "$500,000 or more"
+  }
 }

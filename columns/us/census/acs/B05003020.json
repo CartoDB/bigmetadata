@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003001", 
     "parent": "us/census/acs/B05003019"
   }, 
-  "name": "\"Sex by Age by Citizenship Status\": \"('Female:', '18 years and over:')\" \"Native\" in \"Total Population\""
+  "name": "Native and Female and 18 years and over in Total Population", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Female:", 
+      "18 years and over:"
+    ], 
+    "title": "Native"
+  }
 }

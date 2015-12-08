@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08406001", 
     "parent": "us/census/acs/B08406025"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work for Workplace Geography\": \"('Male:', 'Public transportation (excluding taxicab):')\" \"Ferryboat\" in \"Workers 16 Years and Over\""
+  "name": "Ferryboat within Male within Public transportation (excluding taxicab) in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Ferryboat"
+  }
 }

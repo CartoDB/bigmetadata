@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23002A001", 
     "parent": "us/census/acs/B23002A031"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (White Alone)\": \"('Male:', '65 to 69 years:')\" \"In labor force:\" in \"White Alone Population 16 Years and Over\""
+  "name": "In labor force: and Male and 65 to 69 years in White Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (White Alone)", 
+    "universe": "White Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "65 to 69 years:"
+    ], 
+    "title": "In labor force:"
+  }
 }

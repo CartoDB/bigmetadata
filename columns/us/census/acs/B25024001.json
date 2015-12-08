@@ -1,3 +1,11 @@
 {
-  "name": "\"Units in Structure\": \"()\" \"Total:\" in \"Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25024001"
+  }, 
+  "name": "Housing Units", 
+  "extra": {
+    "table": "Units in Structure", 
+    "universe": "Housing Units", 
+    "title": "Total:"
+  }
 }

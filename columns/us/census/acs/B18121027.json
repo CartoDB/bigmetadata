@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18121001", 
     "parent": "us/census/acs/B18121021"
   }, 
-  "name": "\"Work Experience by Disability Status and Type\": \"('Did not work:', 'With a disability:')\" \"With an independent living difficulty\" in \"Civilian Noninstitutionalized Population 18 to 64 Years\""
+  "name": "With an independent living difficulty and Did not work and With a disability in Civilian Noninstitutionalized Population 18 to 64 Years", 
+  "extra": {
+    "table": "Work Experience by Disability Status and Type", 
+    "universe": "Civilian Noninstitutionalized Population 18 to 64 Years", 
+    "ancestors": [
+      "Did not work:", 
+      "With a disability:"
+    ], 
+    "title": "With an independent living difficulty"
+  }
 }

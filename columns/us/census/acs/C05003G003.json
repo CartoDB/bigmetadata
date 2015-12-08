@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05003G001", 
     "parent": "us/census/acs/C05003G002"
   }, 
-  "name": "\"Sex by Age by Nativity (Two or More Races)\": \"('Male:',)\" \"Under 18 years:\" in \"People Who Are Two or More Races\""
+  "name": "Under 18 years: and Male in People Who Are Two or More Races", 
+  "extra": {
+    "table": "Sex by Age by Nativity (Two or More Races)", 
+    "universe": "People Who Are Two or More Races", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Under 18 years:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25097001", 
     "parent": "us/census/acs/B25097001"
   }, 
-  "name": "\"Mortgage Status by Median Value (Dollars)\": \"('Total:',)\" \"Median value for units without a mortgage\" in \"Owner-occupied Housing Units\""
+  "name": "Median value for units without a mortgage and Total in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Median Value (Dollars)", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Median value for units without a mortgage"
+  }
 }

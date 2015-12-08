@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Hispanic or Latino Householder)\": \"()\" \"Median family income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"Families With a Householder Who Is Hispanic or Latino\""
+  "relationships": {}, 
+  "name": "Median family income in the past 12 months (in 2010 inflation-adjusted dollars) in Families With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Median Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Hispanic or Latino Householder)", 
+    "universe": "Families With a Householder Who Is Hispanic or Latino", 
+    "title": "Median family income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

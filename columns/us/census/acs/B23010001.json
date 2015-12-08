@@ -1,3 +1,11 @@
 {
-  "name": "\"Presence of Own Children Under 18 Years in Married-couple Families by Work Experience of Householder and Spouse\": \"()\" \"Total:\" in \"Married-couple Families\""
+  "relationships": {
+    "denominator": "us/census/acs/B23010001"
+  }, 
+  "name": "Married-couple Families", 
+  "extra": {
+    "table": "Presence of Own Children Under 18 Years in Married-couple Families by Work Experience of Householder and Spouse", 
+    "universe": "Married-couple Families", 
+    "title": "Total:"
+  }
 }

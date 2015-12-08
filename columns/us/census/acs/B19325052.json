@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19325001", 
     "parent": "us/census/acs/B19325050"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 15 Years and Over\": \"('Female:', 'Worked full-time, year-round in the past 12 months:')\" \"With income:\" in \"Population 15 Years and Over\""
+  "name": "With income: and Female and Worked full-time, year-round in the past 12 months in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Worked full-time, year-round in the past 12 months:"
+    ], 
+    "title": "With income:"
+  }
 }

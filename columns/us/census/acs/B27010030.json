@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27010001", 
     "parent": "us/census/acs/B27010026"
   }, 
-  "name": "\"Types of Health Insurance Coverage by Age\": \"('18 to 34 years:', 'With two or more types of health insurance coverage:')\" \"Other private only combinations\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Other private only combinations and 18 to 34 years and With two or more types of health insurance coverage in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Types of Health Insurance Coverage by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "18 to 34 years:", 
+      "With two or more types of health insurance coverage:"
+    ], 
+    "title": "Other private only combinations"
+  }
 }

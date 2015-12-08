@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14006001", 
     "parent": "us/census/acs/B14006013"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by School Enrollment by Level of School for the Population 3 Years and Over\": \"('Income in the past 12 months at or above the poverty level:', 'Enrolled in school:')\" \"Enrolled in kindergarten\" in \"Population 3 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "Enrolled in kindergarten and Income in the past 12 months at or above the poverty level and Enrolled in school in Population 3 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by School Enrollment by Level of School for the Population 3 Years and Over", 
+    "universe": "Population 3 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above the poverty level:", 
+      "Enrolled in school:"
+    ], 
+    "title": "Enrolled in kindergarten"
+  }
 }

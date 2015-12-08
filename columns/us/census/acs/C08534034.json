@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08534001", 
     "parent": "us/census/acs/C08534031"
   }, 
-  "name": "\"Means of Transportation to Work by Travel Time to Work for Workplace Geography\": \"('Public transportation (excluding taxicab):',)\" \"15 to 19 minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "15 to 19 minutes within Public transportation (excluding taxicab) in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "15 to 19 minutes"
+  }
 }

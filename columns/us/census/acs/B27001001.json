@@ -1,3 +1,11 @@
 {
-  "name": "\"Health Insurance Coverage Status by Sex by Age\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B27001001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Total:"
+  }
 }

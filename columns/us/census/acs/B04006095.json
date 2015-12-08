@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04006001", 
     "parent": "us/census/acs/B04006094"
   }, 
-  "name": "\"People Reporting Ancestry\": \"('West Indian (except Hispanic groups):',)\" \"Bahamian\" in \"Total Population\""
+  "name": "Bahamian and West Indian (except Hispanic groups) in Total Population", 
+  "extra": {
+    "table": "People Reporting Ancestry", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "West Indian (except Hispanic groups):"
+    ], 
+    "title": "Bahamian"
+  }
 }

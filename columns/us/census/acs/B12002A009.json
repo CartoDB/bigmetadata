@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002A001", 
     "parent": "us/census/acs/B12002A008"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (White Alone)\": \"('Female:',)\" \"Never married\" in \"White Alone Population 15 Years and Over\""
+  "name": "Never married and Female in White Alone Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (White Alone)", 
+    "universe": "White Alone Population 15 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Never married"
+  }
 }

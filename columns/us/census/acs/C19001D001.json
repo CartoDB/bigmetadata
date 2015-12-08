@@ -1,3 +1,11 @@
 {
-  "name": "\"Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Asian Alone Householder)\": \"()\" \"Total:\" in \"Households With a Householder Who Is Asian Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/C19001D001"
+  }, 
+  "name": "Households With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Asian Alone Householder)", 
+    "universe": "Households With a Householder Who Is Asian Alone", 
+    "title": "Total:"
+  }
 }

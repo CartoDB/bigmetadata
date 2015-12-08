@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11007001", 
     "parent": "us/census/acs/B11007004"
   }, 
-  "name": "\"Households by Presence of People 65 Years and Over, Household Size and Household Type\": \"('Households with one or more people 65 years and over:', '2-or-more-person household:')\" \"Family households\" in \"Households\""
+  "name": "Family households and Households with one or more people 65 years and over and 2-or-more-person household in Households", 
+  "extra": {
+    "table": "Households by Presence of People 65 Years and Over, Household Size and Household Type", 
+    "universe": "Households", 
+    "ancestors": [
+      "Households with one or more people 65 years and over:", 
+      "2-or-more-person household:"
+    ], 
+    "title": "Family households"
+  }
 }

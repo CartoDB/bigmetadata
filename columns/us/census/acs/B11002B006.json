@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002B001", 
     "parent": "us/census/acs/B11002B002"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Black or African American Alone)\": \"('In family households:',)\" \"In male householder, no wife present, family:\" in \"Population in Households With a Householder Who Is Black or African American Alone\""
+  "name": "In male householder, no wife present, family: and In family households in Population in Households With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (Black or African American Alone)", 
+    "universe": "Population in Households With a Householder Who Is Black or African American Alone", 
+    "ancestors": [
+      "In family households:"
+    ], 
+    "title": "In male householder, no wife present, family:"
+  }
 }

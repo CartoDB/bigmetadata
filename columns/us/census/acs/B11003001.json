@@ -1,3 +1,11 @@
 {
-  "name": "\"Family Type by Presence and Age of Own Children Under 18 Years\": \"()\" \"Total:\" in \"Families\""
+  "relationships": {
+    "denominator": "us/census/acs/B11003001"
+  }, 
+  "name": "Families", 
+  "extra": {
+    "table": "Family Type by Presence and Age of Own Children Under 18 Years", 
+    "universe": "Families", 
+    "title": "Total:"
+  }
 }

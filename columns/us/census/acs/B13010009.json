@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B13010001", 
     "parent": "us/census/acs/B13010007"
   }, 
-  "name": "\"Women 15 to 50 Years Who Had a Birth in the Past 12 Months by Marital Status and Poverty Status in the Past 12 Months\": \"('Women who had a birth in the past 12 months:', 'Unmarried (never married, widowed and divorced):')\" \"100 to 199 percent of poverty level in the past 12 months\" in \"Women 15 to 50 Years for Whom Poverty Status Is Determined\""
+  "name": "100 to 199 percent of poverty level in the past 12 months and Women who had a birth in the past 12 months and Unmarried (never married, widowed and divorced) in Women 15 to 50 Years for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Women 15 to 50 Years Who Had a Birth in the Past 12 Months by Marital Status and Poverty Status in the Past 12 Months", 
+    "universe": "Women 15 to 50 Years for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Women who had a birth in the past 12 months:", 
+      "Unmarried (never married, widowed and divorced):"
+    ], 
+    "title": "100 to 199 percent of poverty level in the past 12 months"
+  }
 }

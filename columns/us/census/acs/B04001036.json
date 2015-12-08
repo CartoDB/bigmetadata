@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04001001", 
     "parent": "us/census/acs/B04001001"
   }, 
-  "name": "\"First Ancestry Reported\": \"()\" \"English\" in \"Total Population\""
+  "name": "English in Total Population", 
+  "extra": {
+    "table": "First Ancestry Reported", 
+    "universe": "Total Population", 
+    "title": "English"
+  }
 }

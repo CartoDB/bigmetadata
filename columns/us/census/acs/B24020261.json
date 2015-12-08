@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020253"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Sales and office occupations:', 'Office and administrative support occupations:')\" \"Secretaries and administrative assistants\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Secretaries and administrative assistants and Female and Sales and office occupations and Office and administrative support occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Sales and office occupations:", 
+      "Office and administrative support occupations:"
+    ], 
+    "title": "Secretaries and administrative assistants"
+  }
 }

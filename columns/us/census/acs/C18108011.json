@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C18108001", 
     "parent": "us/census/acs/C18108010"
   }, 
-  "name": "\"Age by Number of Disabilities\": \"('65 years and over:',)\" \"With one type of disability\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With one type of disability and 65 years and over in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Number of Disabilities", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "65 years and over:"
+    ], 
+    "title": "With one type of disability"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24090001", 
     "parent": "us/census/acs/B24090002"
   }, 
-  "name": "\"Sex by Class of Worker for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Male:',)\" \"Local government workers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Local government workers and Male in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Class of Worker for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Local government workers"
+  }
 }

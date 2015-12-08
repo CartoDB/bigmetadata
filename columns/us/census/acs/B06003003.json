@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06003001", 
     "parent": "us/census/acs/B06003001"
   }, 
-  "name": "\"Place of Birth by Sex in the United States\": \"('Total:',)\" \"Female\" in \"Total Population in the United States\""
+  "name": "Female and Total in Total Population in the United States", 
+  "extra": {
+    "table": "Place of Birth by Sex in the United States", 
+    "universe": "Total Population in the United States", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Female"
+  }
 }

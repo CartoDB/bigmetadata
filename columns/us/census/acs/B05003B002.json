@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003B001", 
     "parent": "us/census/acs/B05003B001"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Black or African American Alone)\": \"()\" \"Male:\" in \"People Who Are White Alone\""
+  "name": "Male: in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Black or African American Alone)", 
+    "universe": "People Who Are White Alone", 
+    "title": "Male:"
+  }
 }

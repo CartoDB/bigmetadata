@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08105I001", 
     "parent": "us/census/acs/B08105I001"
   }, 
-  "name": "\"Means of Transportation to Work (Hispanic or Latino)\": \"()\" \"Taxicab, motorcycle, bicycle, or other means\" in \"Hispanic or Latino Workers 16 Years and Over\""
+  "name": "Taxicab, motorcycle, bicycle, or other means in Hispanic or Latino Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Workers 16 Years and Over", 
+    "title": "Taxicab, motorcycle, bicycle, or other means"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Unweighted Group Quarters Population Sample\": \"()\" \"Final number of group quarters person interviews\" in \"Population in Group Quarters\""
+  "relationships": {}, 
+  "name": "Final number of group quarters person interviews in Population in Group Quarters", 
+  "extra": {
+    "table": "Unweighted Group Quarters Population Sample", 
+    "universe": "Population in Group Quarters", 
+    "title": "Final number of group quarters person interviews"
+  }
 }

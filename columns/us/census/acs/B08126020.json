@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08126001", 
     "parent": "us/census/acs/B08126016"
   }, 
-  "name": "\"Means of Transportation to Work by Industry\": \"('Car, truck, or van - drove alone:',)\" \"Wholesale trade\" in \"Workers 16 Years and Over\""
+  "name": "Wholesale trade and Car, truck, or van - drove alone in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:"
+    ], 
+    "title": "Wholesale trade"
+  }
 }

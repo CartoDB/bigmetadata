@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25032B001", 
     "parent": "us/census/acs/B25032B001"
   }, 
-  "name": "\"Units in Structure (Black or African American Alone Householder)\": \"()\" \"1, detached\" in \"Occupied Housing Units With a Householder Who Is Black or African American Alone\""
+  "name": "1, detached in Occupied Housing Units With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Units in Structure (Black or African American Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Black or African American Alone", 
+    "title": "1, detached"
+  }
 }

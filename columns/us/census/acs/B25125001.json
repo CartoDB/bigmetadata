@@ -1,3 +1,15 @@
 {
-  "name": "\"Tenure by Age of Householder by Units in Structure\": \"('Renter occupied:', '5-or-more person household:')\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25125001"
+  }, 
+  "name": "Total: and Renter occupied and 5-or-more person household in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Age of Householder by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "5-or-more person household:"
+    ], 
+    "title": "Total:"
+  }
 }

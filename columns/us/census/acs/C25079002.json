@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/C25079001"
   }, 
-  "name": "\"Aggregate Value (Dollars) by Age of Householder\": \"()\" \"Householder 15 to 64 years (dollars)\" in \"Owner-occupied Housing Units\""
+  "name": "Householder 15 to 64 years (dollars) in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Value (Dollars) by Age of Householder", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Householder 15 to 64 years (dollars)"
+  }
 }

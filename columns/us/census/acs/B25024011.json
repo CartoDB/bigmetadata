@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25024001", 
     "parent": "us/census/acs/B25024001"
   }, 
-  "name": "\"Units in Structure\": \"()\" \"Boat, RV, van, etc.\" in \"Housing Units\""
+  "name": "Boat, RV, van, etc. in Housing Units", 
+  "extra": {
+    "table": "Units in Structure", 
+    "universe": "Housing Units", 
+    "title": "Boat, RV, van, etc."
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24050001", 
     "parent": "us/census/acs/B24050090"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Sales and office occupations:', 'Transportation and warehousing, and utilities:')\" \"Transportation and warehousing\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Transportation and warehousing and Sales and office occupations and Transportation and warehousing, and utilities in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Sales and office occupations:", 
+      "Transportation and warehousing, and utilities:"
+    ], 
+    "title": "Transportation and warehousing"
+  }
 }

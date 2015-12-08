@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25066001"
   }, 
-  "name": "\"Aggregate Gross Rent (Dollars) by Units in Structure\": \"()\" \"Mobile home\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "name": "Mobile home in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Aggregate Gross Rent (Dollars) by Units in Structure", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "title": "Mobile home"
+  }
 }

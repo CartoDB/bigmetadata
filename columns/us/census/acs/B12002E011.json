@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002E001", 
     "parent": "us/census/acs/B12002E008"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (Native Hawaiian and Other Pacific Islander Alone)\": \"('Female:',)\" \"Separated\" in \"Native Hawaiian and Other Pacific Islander Alone Population 15 Years and Over\""
+  "name": "Separated and Female in Native Hawaiian and Other Pacific Islander Alone Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population 15 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Separated"
+  }
 }

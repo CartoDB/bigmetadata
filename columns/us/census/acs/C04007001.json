@@ -1,3 +1,14 @@
 {
-  "name": "\"Ancestry\": \"('Ancestry not specified:',)\" \"Total:\" in \"Total Population\""
+  "relationships": {
+    "denominator": "us/census/acs/C04007001"
+  }, 
+  "name": "Total: and Ancestry not specified in Total Population", 
+  "extra": {
+    "table": "Ancestry", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Ancestry not specified:"
+    ], 
+    "title": "Total:"
+  }
 }

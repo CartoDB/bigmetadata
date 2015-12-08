@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08122001", 
     "parent": "us/census/acs/C08122021"
   }, 
-  "name": "\"Means of Transportation to Work by Poverty Status in the Past 12 Months\": \"('Worked at home:',)\" \"100 to 149 percent of the poverty level\" in \"Workers 16 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "100 to 149 percent of the poverty level and Worked at home in Workers 16 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Means of Transportation to Work by Poverty Status in the Past 12 Months", 
+    "universe": "Workers 16 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "100 to 149 percent of the poverty level"
+  }
 }

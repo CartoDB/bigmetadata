@@ -1,3 +1,15 @@
 {
-  "name": "\"Sex of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent\": \"('Speak other language:', 'Speak English less than \\xe2\\x80\\x9cvery well\\xe2\\x80\\x9d:')\" \"Total:\" in \"Grandparents Living With Own Grandchildren Under 18 Years\""
+  "relationships": {
+    "denominator": "us/census/acs/B10056001"
+  }, 
+  "name": "Total: and Speak other language and Speak English less than \u201cvery well\u201d in Grandparents Living With Own Grandchildren Under 18 Years", 
+  "extra": {
+    "table": "Sex of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent", 
+    "universe": "Grandparents Living With Own Grandchildren Under 18 Years", 
+    "ancestors": [
+      "Speak other language:", 
+      "Speak English less than \u201cvery well\u201d:"
+    ], 
+    "title": "Total:"
+  }
 }

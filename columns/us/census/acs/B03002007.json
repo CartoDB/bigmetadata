@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B03002001", 
     "parent": "us/census/acs/B03002002"
   }, 
-  "name": "\"Hispanic or Latino Origin by Race\": \"('Not Hispanic or Latino:',)\" \"Native Hawaiian and Other Pacific Islander alone\" in \"Total Population\""
+  "name": "Native Hawaiian and Other Pacific Islander alone and Not Hispanic or Latino in Total Population", 
+  "extra": {
+    "table": "Hispanic or Latino Origin by Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Not Hispanic or Latino:"
+    ], 
+    "title": "Native Hawaiian and Other Pacific Islander alone"
+  }
 }

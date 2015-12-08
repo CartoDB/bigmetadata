@@ -1,3 +1,15 @@
 {
-  "name": "\"Family Type by Presence of Own Children Under 18 Years by Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('Other family (dollars):', 'Female householder, no husband present (dollars):')\" \"Total:\" in \"Families\""
+  "relationships": {
+    "denominator": "us/census/acs/B19131001"
+  }, 
+  "name": "Total: and Other family (dollars) and Female householder, no husband present (dollars) in Families", 
+  "extra": {
+    "table": "Family Type by Presence of Own Children Under 18 Years by Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Families", 
+    "ancestors": [
+      "Other family (dollars):", 
+      "Female householder, no husband present (dollars):"
+    ], 
+    "title": "Total:"
+  }
 }

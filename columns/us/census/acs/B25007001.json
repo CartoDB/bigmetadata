@@ -1,3 +1,11 @@
 {
-  "name": "\"Tenure by Age of Householder\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25007001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

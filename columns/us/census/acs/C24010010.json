@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24010001", 
     "parent": "us/census/acs/C24010007"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Management, business, science, and arts occupations:', 'Computer, engineering, and science occupations:')\" \"Life, physical, and social science occupations\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Life, physical, and social science occupations and Male and Management, business, science, and arts occupations and Computer, engineering, and science occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:", 
+      "Computer, engineering, and science occupations:"
+    ], 
+    "title": "Life, physical, and social science occupations"
+  }
 }

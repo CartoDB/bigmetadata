@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25066001"
   }, 
-  "name": "\"Aggregate Gross Rent (Dollars) by Units in Structure\": \"()\" \"20 to 49\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "name": "20 to 49 in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Aggregate Gross Rent (Dollars) by Units in Structure", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "title": "20 to 49"
+  }
 }

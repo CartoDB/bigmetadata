@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24030001", 
     "parent": "us/census/acs/B24030131"
   }, 
-  "name": "\"Sex by Industry for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Wholesale trade:')\" \"Apparel, fabrics, and notions merchant wholesalers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Apparel, fabrics, and notions merchant wholesalers and Female and Wholesale trade in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Wholesale trade:"
+    ], 
+    "title": "Apparel, fabrics, and notions merchant wholesalers"
+  }
 }

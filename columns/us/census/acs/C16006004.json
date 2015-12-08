@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C16006001", 
     "parent": "us/census/acs/C16006003"
   }, 
-  "name": "\"Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Hispanic or Latino)\": \"('Speak Spanish:',)\" \"Speak English \"very well\"\" in \"Hispanic or Latino Population 5 Years and Over\""
+  "name": "Speak English \"very well\" and Speak Spanish in Hispanic or Latino Population 5 Years and Over", 
+  "extra": {
+    "table": "Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 5 Years and Over", 
+    "ancestors": [
+      "Speak Spanish:"
+    ], 
+    "title": "Speak English \"very well\""
+  }
 }

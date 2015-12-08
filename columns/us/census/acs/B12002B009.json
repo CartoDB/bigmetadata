@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002B001", 
     "parent": "us/census/acs/B12002B008"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (Black or African American Alone)\": \"('Female:',)\" \"Never married\" in \"Black or African American Alone Population 15 Years and Over\""
+  "name": "Never married and Female in Black or African American Alone Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (Black or African American Alone)", 
+    "universe": "Black or African American Alone Population 15 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Never married"
+  }
 }

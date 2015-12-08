@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23001001", 
     "parent": "us/census/acs/B23001053"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over\": \"('Male:', '55 to 59 years:', 'In labor force:')\" \"In Armed Forces\" in \"Population 16 Years and Over\""
+  "name": "In Armed Forces and Male and 55 to 59 years and In labor force in Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over", 
+    "universe": "Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "55 to 59 years:", 
+      "In labor force:"
+    ], 
+    "title": "In Armed Forces"
+  }
 }

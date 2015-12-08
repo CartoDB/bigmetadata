@@ -1,3 +1,11 @@
 {
-  "name": "\"Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Hispanic or Latino)\": \"()\" \"Total:\" in \"Hispanic or Latino Population 5 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/C16006001"
+  }, 
+  "name": "Hispanic or Latino Population 5 Years and Over", 
+  "extra": {
+    "table": "Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 5 Years and Over", 
+    "title": "Total:"
+  }
 }

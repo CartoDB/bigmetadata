@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07012PR001", 
     "parent": "us/census/acs/B07012PR001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Poverty Status in the Past 12 Months for Current Residence in Puerto Rico\": \"()\" \"Moved from different municipio:\" in \"Population 1 Year and Over in Puerto Rico for Whom Poverty Status Is Determined\""
+  "name": "Moved from different municipio: in Population 1 Year and Over in Puerto Rico for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Poverty Status in the Past 12 Months for Current Residence in Puerto Rico", 
+    "universe": "Population 1 Year and Over in Puerto Rico for Whom Poverty Status Is Determined", 
+    "title": "Moved from different municipio:"
+  }
 }

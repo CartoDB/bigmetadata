@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24050001", 
     "parent": "us/census/acs/B24050047"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Management, business, science, and arts occupations:', 'Educational services, and health care and social assistance:')\" \"Health care and social assistance\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Health care and social assistance and Management, business, science, and arts occupations and Educational services, and health care and social assistance in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Management, business, science, and arts occupations:", 
+      "Educational services, and health care and social assistance:"
+    ], 
+    "title": "Health care and social assistance"
+  }
 }

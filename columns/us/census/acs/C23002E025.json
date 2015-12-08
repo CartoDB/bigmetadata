@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C23002E001", 
     "parent": "us/census/acs/C23002E019"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (Native Hawaiian and Other Pacific Islander Alone)\": \"('Female:', '65 years and over:', 'In labor force:', None)\" \"Employed\" in \"Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over\""
+  "name": "Employed and Female and 65 years and over and In labor force in Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "65 years and over:", 
+      "In labor force:", 
+      null
+    ], 
+    "title": "Employed"
+  }
 }

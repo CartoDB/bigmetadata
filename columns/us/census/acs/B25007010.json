@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25007001", 
     "parent": "us/census/acs/B25007002"
   }, 
-  "name": "\"Tenure by Age of Householder\": \"('Owner occupied:',)\" \"Householder 75 to 84 years\" in \"Occupied Housing Units\""
+  "name": "Householder 75 to 84 years and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "Householder 75 to 84 years"
+  }
 }

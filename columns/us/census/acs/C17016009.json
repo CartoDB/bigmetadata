@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17016001", 
     "parent": "us/census/acs/C17016006"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Work Experience of Householder\": \"('Income in the past 12 months at or above poverty level:',)\" \"Householder did not work in the past 12 months\" in \"Families\""
+  "name": "Householder did not work in the past 12 months and Income in the past 12 months at or above poverty level in Families", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Work Experience of Householder", 
+    "universe": "Families", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:"
+    ], 
+    "title": "Householder did not work in the past 12 months"
+  }
 }

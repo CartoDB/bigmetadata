@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08534001", 
     "parent": "us/census/acs/B08534051"
   }, 
-  "name": "\"Means of Transportation to Work by Travel Time to Work for Workplace Geography\": \"('Public transportation (excluding taxicab):', 'Streetcar or trolley car (carro publico in Puerto Rico), subway or elevated:', None)\" \"25 to 29 minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "25 to 29 minutes within Public transportation (excluding taxicab) within Streetcar or trolley car (carro publico in Puerto Rico), subway or elevated in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):", 
+      "Streetcar or trolley car (carro publico in Puerto Rico), subway or elevated:", 
+      null
+    ], 
+    "title": "25 to 29 minutes"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25121001", 
     "parent": "us/census/acs/B25121092"
   }, 
-  "name": "\"Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Value\": \"('Renter occupied', '$100,000 or more:')\" \"Value $50,000 to $59,999\" in \"Owner-occupied Housing Units\""
+  "name": "Value $50,000 to $59,999 and Renter occupied and $100,000 or more in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Value", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied", 
+      "$100,000 or more:"
+    ], 
+    "title": "Value $50,000 to $59,999"
+  }
 }

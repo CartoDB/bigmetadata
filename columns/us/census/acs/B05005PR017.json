@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05005PR001", 
     "parent": "us/census/acs/B05005PR001"
   }, 
-  "name": "\"Year of Entry by Citizenship Status in Puerto Rico\": \"()\" \"Entered before 1980:\" in \"Population Born Outside Puerto Rico\""
+  "name": "Entered before 1980: in Population Born Outside Puerto Rico", 
+  "extra": {
+    "table": "Year of Entry by Citizenship Status in Puerto Rico", 
+    "universe": "Population Born Outside Puerto Rico", 
+    "title": "Entered before 1980:"
+  }
 }

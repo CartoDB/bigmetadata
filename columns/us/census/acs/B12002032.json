@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002001", 
     "parent": "us/census/acs/B12002019"
   }, 
-  "name": "\"Sex by Marital Status by Age for the Population 15 Years and Over\": \"('Male:', 'Now married:', 'Married, spouse present:')\" \"75 to 84 years\" in \"Population 15 Years and Over\""
+  "name": "75 to 84 years and Male and Now married and Married, spouse present in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status by Age for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Now married:", 
+      "Married, spouse present:"
+    ], 
+    "title": "75 to 84 years"
+  }
 }

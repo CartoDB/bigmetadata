@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002001", 
     "parent": "us/census/acs/B11002003"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households\": \"('In family households:', 'In married-couple family:')\" \"Nonrelatives\" in \"Population in Households\""
+  "name": "Nonrelatives and In family households and In married-couple family in Population in Households", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households", 
+    "universe": "Population in Households", 
+    "ancestors": [
+      "In family households:", 
+      "In married-couple family:"
+    ], 
+    "title": "Nonrelatives"
+  }
 }

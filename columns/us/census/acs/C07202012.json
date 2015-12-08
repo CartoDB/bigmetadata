@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C07202001", 
     "parent": "us/census/acs/C07202001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year for Current Residence--Micropolitan Statistical Area Level in the United States\": \"()\" \"Abroad 1 year ago\" in \"Population 1 Year and Over Living in a Micropolitan Statistical Area in the United States\""
+  "name": "Abroad 1 year ago in Population 1 Year and Over Living in a Micropolitan Statistical Area in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year for Current Residence--Micropolitan Statistical Area Level in the United States", 
+    "universe": "Population 1 Year and Over Living in a Micropolitan Statistical Area in the United States", 
+    "title": "Abroad 1 year ago"
+  }
 }

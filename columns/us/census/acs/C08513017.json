@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08513001", 
     "parent": "us/census/acs/C08513016"
   }, 
-  "name": "\"Means of Transportation to Work by Language Spoken at Home and Ability to Speak English for Workplace Geography\": \"('Public transportation (excluding taxicab):',)\" \"Speak only English\" in \"Workers 16 Years and Over\""
+  "name": "Speak only English within Public transportation (excluding taxicab) in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Language Spoken at Home and Ability to Speak English for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Speak only English"
+  }
 }

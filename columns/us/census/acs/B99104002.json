@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99104001", 
     "parent": "us/census/acs/B99104001"
   }, 
-  "name": "\"Imputation of Length of Time Grandparent Responsible for Own Grandchildren Under 18 Years for the Population 30 Years and Over\": \"()\" \"Living with own grandchildren under 18 years:\" in \"Population 30 Years and Over\""
+  "name": "Living with own grandchildren under 18 years: in Population 30 Years and Over", 
+  "extra": {
+    "table": "Imputation of Length of Time Grandparent Responsible for Own Grandchildren Under 18 Years for the Population 30 Years and Over", 
+    "universe": "Population 30 Years and Over", 
+    "title": "Living with own grandchildren under 18 years:"
+  }
 }

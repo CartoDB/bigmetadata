@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06007PR001", 
     "parent": "us/census/acs/C06007PR001"
   }, 
-  "name": "\"Place of Birth by Language Spoken at Home and Ability to Speak English in Puerto Rico\": \"('Foreign born:',)\" \"Speak only English\" in \"Population 5 Years and Over in Puerto Rico\""
+  "name": "Speak only English and Foreign born in Population 5 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Language Spoken at Home and Ability to Speak English in Puerto Rico", 
+    "universe": "Population 5 Years and Over in Puerto Rico", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Speak only English"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24012001", 
     "parent": "us/census/acs/B24012016"
   }, 
-  "name": "\"Sex by Occupation and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Management, business, science, and arts occupations:', 'Healthcare practitioners and technical occupations:')\" \"Health diagnosing and treating practitioners and other technical occupations\" in \"Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Health diagnosing and treating practitioners and other technical occupations and Male and Management, business, science, and arts occupations and Healthcare practitioners and technical occupations in Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Sex by Occupation and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:", 
+      "Healthcare practitioners and technical occupations:"
+    ], 
+    "title": "Health diagnosing and treating practitioners and other technical occupations"
+  }
 }

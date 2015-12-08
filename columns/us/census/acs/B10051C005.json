@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B10051C001", 
     "parent": "us/census/acs/B10051C001"
   }, 
-  "name": "\"Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent (American Indian and Alaska Native Alone)\": \"()\" \"Grandparent not responsible for own grandchildren under 18 years:\" in \"Grandparents (American Indian and Alaska Native Alone) Living With Own Grandchildren Under 18 Years\""
+  "name": "Grandparent not responsible for own grandchildren under 18 years: in Grandparents (American Indian and Alaska Native Alone) Living With Own Grandchildren Under 18 Years", 
+  "extra": {
+    "table": "Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent (American Indian and Alaska Native Alone)", 
+    "universe": "Grandparents (American Indian and Alaska Native Alone) Living With Own Grandchildren Under 18 Years", 
+    "title": "Grandparent not responsible for own grandchildren under 18 years:"
+  }
 }

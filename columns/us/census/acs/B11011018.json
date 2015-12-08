@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11011001", 
     "parent": "us/census/acs/B11011016"
   }, 
-  "name": "\"Household Type by Units in Structure\": \"('Nonfamily households:',)\" \"2-or-more-unit structures\" in \"Households\""
+  "name": "2-or-more-unit structures and Nonfamily households in Households", 
+  "extra": {
+    "table": "Household Type by Units in Structure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "2-or-more-unit structures"
+  }
 }

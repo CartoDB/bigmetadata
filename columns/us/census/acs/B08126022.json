@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08126001", 
     "parent": "us/census/acs/B08126016"
   }, 
-  "name": "\"Means of Transportation to Work by Industry\": \"('Car, truck, or van - drove alone:',)\" \"Transportation and warehousing, and utilities\" in \"Workers 16 Years and Over\""
+  "name": "Transportation and warehousing, and utilities and Car, truck, or van - drove alone in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:"
+    ], 
+    "title": "Transportation and warehousing, and utilities"
+  }
 }

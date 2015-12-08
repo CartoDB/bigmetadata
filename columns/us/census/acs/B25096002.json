@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25096001", 
     "parent": "us/census/acs/B25096001"
   }, 
-  "name": "\"Mortgage Status by Value\": \"()\" \"With a mortgage:\" in \"Owner-occupied Housing Units\""
+  "name": "With a mortgage: in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Value", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "With a mortgage:"
+  }
 }

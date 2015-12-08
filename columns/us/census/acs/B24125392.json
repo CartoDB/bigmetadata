@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24125001", 
     "parent": "us/census/acs/B24125001"
   }, 
-  "name": "\"Detailed Occupation for the Full-time, Year-round Civilian Employed Male Population 16 Years and Over\": \"()\" \"Heavy vehicle and mobile equipment service technicians and mechanics\" in \"Full-time, Year-round Civilian Employed Male Population 16 Years and Over\""
+  "name": "Heavy vehicle and mobile equipment service technicians and mechanics in Full-time, Year-round Civilian Employed Male Population 16 Years and Over", 
+  "extra": {
+    "table": "Detailed Occupation for the Full-time, Year-round Civilian Employed Male Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Male Population 16 Years and Over", 
+    "title": "Heavy vehicle and mobile equipment service technicians and mechanics"
+  }
 }

@@ -2,5 +2,14 @@
   "relationships": {
     "parent": "us/census/acs/B24042043"
   }, 
-  "name": "\"Sex by Industry and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Professional, scientific, and management, and administrative and waste management services:')\" \"Professional, scientific, and technical services\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Professional, scientific, and technical services and Female and Professional, scientific, and management, and administrative and waste management services in Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Sex by Industry and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Female:", 
+      "Professional, scientific, and management, and administrative and waste management services:"
+    ], 
+    "title": "Professional, scientific, and technical services"
+  }
 }

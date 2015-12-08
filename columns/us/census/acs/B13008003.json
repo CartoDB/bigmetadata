@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B13008001", 
     "parent": "us/census/acs/B13008002"
   }, 
-  "name": "\"Women 15 to 50 Years Who Had a Birth in the Past 12 Months by Marital Status and Nativity\": \"('Women who had a birth in the past 12 months:',)\" \"Now married (including separated and spouse absent):\" in \"Women 15 to 50 Years\""
+  "name": "Now married (including separated and spouse absent): and Women who had a birth in the past 12 months in Women 15 to 50 Years", 
+  "extra": {
+    "table": "Women 15 to 50 Years Who Had a Birth in the Past 12 Months by Marital Status and Nativity", 
+    "universe": "Women 15 to 50 Years", 
+    "ancestors": [
+      "Women who had a birth in the past 12 months:"
+    ], 
+    "title": "Now married (including separated and spouse absent):"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17004001", 
     "parent": "us/census/acs/C17004006"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Individuals by Work Experience\": \"('Income in the past 12 months at or above poverty level:',)\" \"Worked part-time or part-year\" in \"Population 16 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "Worked part-time or part-year and Income in the past 12 months at or above poverty level in Population 16 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Individuals by Work Experience", 
+    "universe": "Population 16 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:"
+    ], 
+    "title": "Worked part-time or part-year"
+  }
 }

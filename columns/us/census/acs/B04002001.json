@@ -1,3 +1,11 @@
 {
-  "name": "\"Second Ancestry Reported\": \"()\" \"Total:\" in \"Total Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B04002001"
+  }, 
+  "name": "Total Population", 
+  "extra": {
+    "table": "Second Ancestry Reported", 
+    "universe": "Total Population", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17001I001", 
     "parent": "us/census/acs/B17001I032"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age (Hispanic or Latino)\": \"('Income in the past 12 months at or above poverty level:', 'Male:')\" \"45 to 54 years\" in \"Hispanic or Latino Population for Whom Poverty Status Is Determined\""
+  "name": "45 to 54 years and Income in the past 12 months at or above poverty level and Male in Hispanic or Latino Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Male:"
+    ], 
+    "title": "45 to 54 years"
+  }
 }

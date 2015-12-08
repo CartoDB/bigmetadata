@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C03001001", 
     "parent": "us/census/acs/C03001003"
   }, 
-  "name": "\"Hispanic or Latino Origin by Specific Origin\": \"('Hispanic or Latino:',)\" \"Central American\" in \"Total Population\""
+  "name": "Central American and Hispanic or Latino in Total Population", 
+  "extra": {
+    "table": "Hispanic or Latino Origin by Specific Origin", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Hispanic or Latino:"
+    ], 
+    "title": "Central American"
+  }
 }

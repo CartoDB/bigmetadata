@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08519001", 
     "parent": "us/census/acs/B08519019"
   }, 
-  "name": "\"Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Workplace Geography\": \"('Car, truck, or van - carpooled:',)\" \"$75,000 or more\" in \"Workers 16 Years and Over With Earnings\""
+  "name": "$75,000 or more within Car, truck, or van - carpooled in Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Workplace Geography", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Car, truck, or van - carpooled:"
+    ], 
+    "title": "$75,000 or more"
+  }
 }

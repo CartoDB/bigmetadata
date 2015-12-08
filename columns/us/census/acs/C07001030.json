@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C07001001", 
     "parent": "us/census/acs/C07001021"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Age for Current Residence in the United States\": \"('Moved within same county:',)\" \"75 years and over\" in \"Population 1 Year and Over in the United States\""
+  "name": "75 years and over and Moved within same county in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Age for Current Residence in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved within same county:"
+    ], 
+    "title": "75 years and over"
+  }
 }

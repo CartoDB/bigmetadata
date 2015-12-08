@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25014A001", 
     "parent": "us/census/acs/B25014A001"
   }, 
-  "name": "\"Occupants Per Room (White Alone Householder)\": \"()\" \"1.01 or more occupants per room\" in \"Occupied Housing Units With a Householder Who Is White Alone\""
+  "name": "1.01 or more occupants per room in Occupied Housing Units With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Occupants Per Room (White Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is White Alone", 
+    "title": "1.01 or more occupants per room"
+  }
 }

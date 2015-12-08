@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19325001", 
     "parent": "us/census/acs/B19325028"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 15 Years and Over\": \"('Male:', 'Other:', 'With income:')\" \"$1 to $2,499 or loss\" in \"Population 15 Years and Over\""
+  "name": "$1 to $2,499 or loss and Male and Other and With income in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Other:", 
+      "With income:"
+    ], 
+    "title": "$1 to $2,499 or loss"
+  }
 }

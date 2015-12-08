@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25095001", 
     "parent": "us/census/acs/C25095001"
   }, 
-  "name": "\"Household Income by Selected Monthly Owner Costs as a Percentage of Household Income in the Past 12 Months\": \"()\" \"Less than $10,000:\" in \"Owner-occupied Housing Units\""
+  "name": "Less than $10,000: in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Household Income by Selected Monthly Owner Costs as a Percentage of Household Income in the Past 12 Months", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Less than $10,000:"
+  }
 }

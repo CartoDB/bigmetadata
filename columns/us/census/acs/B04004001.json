@@ -1,3 +1,11 @@
 {
-  "name": "\"People Reporting Single Ancestry\": \"()\" \"Total:\" in \"People Reporting Single Ancestry\""
+  "relationships": {
+    "denominator": "us/census/acs/B04004001"
+  }, 
+  "name": "People Reporting Single Ancestry", 
+  "extra": {
+    "table": "People Reporting Single Ancestry", 
+    "universe": "People Reporting Single Ancestry", 
+    "title": "Total:"
+  }
 }

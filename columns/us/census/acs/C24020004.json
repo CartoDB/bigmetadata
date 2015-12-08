@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24020001", 
     "parent": "us/census/acs/C24020003"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Male:', 'Management, business, science, and arts occupations:')\" \"Management, business, and financial occupations:\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Management, business, and financial occupations: and Male and Management, business, science, and arts occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:"
+    ], 
+    "title": "Management, business, and financial occupations:"
+  }
 }

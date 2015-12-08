@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08522001", 
     "parent": "us/census/acs/C08522001"
   }, 
-  "name": "\"Means of Transportation to Work by Poverty Status in the Past 12 Months for Workplace Geography\": \"('Worked at home:',)\" \"At or above 150 percent of the poverty level\" in \"Workers 16 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "At or above 150 percent of the poverty level within Worked at home in Workers 16 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Means of Transportation to Work by Poverty Status in the Past 12 Months for Workplace Geography", 
+    "universe": "Workers 16 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "At or above 150 percent of the poverty level"
+  }
 }

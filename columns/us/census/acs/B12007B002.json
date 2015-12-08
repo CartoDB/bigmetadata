@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age at First Marriage (Black or African American Alone)\": \"()\" \"Female\" in \"Black or African American Alone Population 15 to 54 Years\""
+  "relationships": {}, 
+  "name": "Female in Black or African American Alone Population 15 to 54 Years", 
+  "extra": {
+    "table": "Median Age at First Marriage (Black or African American Alone)", 
+    "universe": "Black or African American Alone Population 15 to 54 Years", 
+    "title": "Female"
+  }
 }

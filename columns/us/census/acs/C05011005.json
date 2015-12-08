@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05011001", 
     "parent": "us/census/acs/C05011003"
   }, 
-  "name": "\"Period of Naturalization\": \"('Naturalized citizens:',)\" \"Naturalized 1985 to 1999\" in \"Foreign-born Population\""
+  "name": "Naturalized 1985 to 1999 and Naturalized citizens in Foreign-born Population", 
+  "extra": {
+    "table": "Period of Naturalization", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Naturalized citizens:"
+    ], 
+    "title": "Naturalized 1985 to 1999"
+  }
 }

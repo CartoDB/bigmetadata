@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18101C001", 
     "parent": "us/census/acs/B18101C001"
   }, 
-  "name": "\"Age by Disability Status (American Indian and Alaska Native Alone)\": \"()\" \"65 years and over:\" in \"American Indian and Alaska Native Alone Civilian Noninstitutionalized Population\""
+  "name": "65 years and over: in American Indian and Alaska Native Alone Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Civilian Noninstitutionalized Population", 
+    "title": "65 years and over:"
+  }
 }

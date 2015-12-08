@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08126001", 
     "parent": "us/census/acs/B08126091"
   }, 
-  "name": "\"Means of Transportation to Work by Industry\": \"('Worked at home:',)\" \"Finance and insurance, and real estate and rental and leasing\" in \"Workers 16 Years and Over\""
+  "name": "Finance and insurance, and real estate and rental and leasing and Worked at home in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "Finance and insurance, and real estate and rental and leasing"
+  }
 }

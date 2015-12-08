@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23010001", 
     "parent": "us/census/acs/B23010001"
   }, 
-  "name": "\"Presence of Own Children Under 18 Years in Married-couple Families by Work Experience of Householder and Spouse\": \"()\" \"With own children under 18 years:\" in \"Married-couple Families\""
+  "name": "With own children under 18 years: in Married-couple Families", 
+  "extra": {
+    "table": "Presence of Own Children Under 18 Years in Married-couple Families by Work Experience of Householder and Spouse", 
+    "universe": "Married-couple Families", 
+    "title": "With own children under 18 years:"
+  }
 }

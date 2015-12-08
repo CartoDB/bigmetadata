@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04004001", 
     "parent": "us/census/acs/B04004094"
   }, 
-  "name": "\"People Reporting Single Ancestry\": \"('West Indian (except Hispanic groups):',)\" \"U.S. Virgin Islander\" in \"People Reporting Single Ancestry\""
+  "name": "U.S. Virgin Islander and West Indian (except Hispanic groups) in People Reporting Single Ancestry", 
+  "extra": {
+    "table": "People Reporting Single Ancestry", 
+    "universe": "People Reporting Single Ancestry", 
+    "ancestors": [
+      "West Indian (except Hispanic groups):"
+    ], 
+    "title": "U.S. Virgin Islander"
+  }
 }

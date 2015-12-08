@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04006001", 
     "parent": "us/census/acs/B04006073"
   }, 
-  "name": "\"People Reporting Ancestry\": \"('Subsaharan African:',)\" \"Sierra Leonean\" in \"Total Population\""
+  "name": "Sierra Leonean and Subsaharan African in Total Population", 
+  "extra": {
+    "table": "People Reporting Ancestry", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Subsaharan African:"
+    ], 
+    "title": "Sierra Leonean"
+  }
 }

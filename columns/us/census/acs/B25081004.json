@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25081001", 
     "parent": "us/census/acs/B25081003"
   }, 
-  "name": "\"Mortgage Status\": \"('Housing units with a mortgage, contract to purchase, or similar debt:', 'With either a second mortgage or home equity loan, but not both:')\" \"Second mortgage only\" in \"Owner-occupied Housing Units\""
+  "name": "Second mortgage only and Housing units with a mortgage, contract to purchase, or similar debt and With either a second mortgage or home equity loan, but not both in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Housing units with a mortgage, contract to purchase, or similar debt:", 
+      "With either a second mortgage or home equity loan, but not both:"
+    ], 
+    "title": "Second mortgage only"
+  }
 }

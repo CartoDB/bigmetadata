@@ -1,3 +1,16 @@
 {
-  "name": "\"Means of Transportation to Work by Travel Time to Work\": \"(None, None, None)\" \"60 or more minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "relationships": {
+    "denominator": "us/census/acs/B08134001"
+  }, 
+  "name": "60 or more minutes and  in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      null, 
+      null, 
+      null
+    ], 
+    "title": "60 or more minutes"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08141001", 
     "parent": "us/census/acs/B08141026"
   }, 
-  "name": "\"Means of Transportation to Work by Vehicles Available\": \"('Taxicab, motorcycle, bicycle, or other means:',)\" \"1 vehicle available\" in \"Workers 16 Years and Over in Households\""
+  "name": "1 vehicle available and Taxicab, motorcycle, bicycle, or other means in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Vehicles Available", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, or other means:"
+    ], 
+    "title": "1 vehicle available"
+  }
 }

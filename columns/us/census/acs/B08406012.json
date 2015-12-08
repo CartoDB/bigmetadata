@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08406001", 
     "parent": "us/census/acs/B08406008"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work for Workplace Geography\": \"(None, 'Public transportation (excluding taxicab):')\" \"Railroad\" in \"Workers 16 Years and Over\""
+  "name": "Railroad within Public transportation (excluding taxicab) in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null, 
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Railroad"
+  }
 }

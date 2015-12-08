@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99021001", 
     "parent": "us/census/acs/B99021001"
   }, 
-  "name": "\"Imputation of Race\": \"()\" \"Not imputed\" in \"Total Population\""
+  "name": "Not imputed in Total Population", 
+  "extra": {
+    "table": "Imputation of Race", 
+    "universe": "Total Population", 
+    "title": "Not imputed"
+  }
 }

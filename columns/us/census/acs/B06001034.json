@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06001001", 
     "parent": "us/census/acs/B06001025"
   }, 
-  "name": "\"Place of Birth by Age in the United States\": \"('Born in other state in the United States:',)\" \"62 to 64 years\" in \"Total Population in the United States\""
+  "name": "62 to 64 years and Born in other state in the United States in Total Population in the United States", 
+  "extra": {
+    "table": "Place of Birth by Age in the United States", 
+    "universe": "Total Population in the United States", 
+    "ancestors": [
+      "Born in other state in the United States:"
+    ], 
+    "title": "62 to 64 years"
+  }
 }

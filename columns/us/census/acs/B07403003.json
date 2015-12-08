@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07403001", 
     "parent": "us/census/acs/B07403001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Sex for Residence 1 Year Ago in the United States\": \"('Total living in area 1 year ago:',)\" \"Female\" in \"Population 1 Year and Over in the United States\""
+  "name": "Female within Total living in area 1 year ago in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Sex for Residence 1 Year Ago in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Total living in area 1 year ago:"
+    ], 
+    "title": "Female"
+  }
 }

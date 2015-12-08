@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27009001", 
     "parent": "us/census/acs/B27009031"
   }, 
-  "name": "\"VA Health Care by Sex by Age\": \"('Female:', 'Under 6 years:')\" \"With VA Health Care\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With VA Health Care and Female and Under 6 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "VA Health Care by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "Under 6 years:"
+    ], 
+    "title": "With VA Health Care"
+  }
 }

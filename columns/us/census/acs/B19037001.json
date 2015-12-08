@@ -1,3 +1,11 @@
 {
-  "name": "\"Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"()\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B19037001"
+  }, 
+  "name": "Households", 
+  "extra": {
+    "table": "Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Households", 
+    "title": "Total:"
+  }
 }

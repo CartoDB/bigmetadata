@@ -1,3 +1,14 @@
 {
-  "name": "\"Selected Monthly Owner Costs\": \"('Householder 65 years and over:',)\" \"Total:\" in \"Owner-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25094001"
+  }, 
+  "name": "Total: and Householder 65 years and over in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Selected Monthly Owner Costs", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Householder 65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

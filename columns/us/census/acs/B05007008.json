@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05007001", 
     "parent": "us/census/acs/B05007006"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Europe :', 'Entered 1990 to 1999:')\" \"Not a U.S. citizen\" in \"Foreign-born Population\""
+  "name": "Not a U.S. citizen and Europe  and Entered 1990 to 1999 in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Europe :", 
+      "Entered 1990 to 1999:"
+    ], 
+    "title": "Not a U.S. citizen"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15010D001", 
     "parent": "us/census/acs/C15010D001"
   }, 
-  "name": "\"Field of Bachelor's Degree for First Major the Population 25 Years and Over (Asian Alone)\": \"()\" \"Science and Engineering\" in \"ASIAN ALONE POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT\""
+  "name": "Science and Engineering in ASIAN ALONE POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT", 
+  "extra": {
+    "table": "Field of Bachelor's Degree for First Major the Population 25 Years and Over (Asian Alone)", 
+    "universe": "ASIAN ALONE POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT", 
+    "title": "Science and Engineering"
+  }
 }

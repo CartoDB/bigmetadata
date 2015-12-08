@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25045001", 
     "parent": "us/census/acs/C25045002"
   }, 
-  "name": "\"Tenure by Vehicles Available\": \"('Owner occupied:',)\" \"No vehicle available\" in \"Occupied Housing Units\""
+  "name": "No vehicle available and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Vehicles Available", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "No vehicle available"
+  }
 }

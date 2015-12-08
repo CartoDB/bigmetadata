@@ -1,6 +1,19 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020172"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Computer, engineering, and science occupations:', 'Computer and mathematical occupations:', 'Computer occupations:')\" \"Miscellaneous computer occupations, including computer support specialists\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Miscellaneous computer occupations, including computer support specialists and Female and Management, business, science, and arts occupations and Computer, engineering, and science occupations and Computer and mathematical occupations and Computer occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Computer, engineering, and science occupations:", 
+      "Computer and mathematical occupations:", 
+      "Computer occupations:"
+    ], 
+    "title": "Miscellaneous computer occupations, including computer support specialists"
+  }
 }

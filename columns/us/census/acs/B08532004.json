@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08532001", 
     "parent": "us/census/acs/B08532001"
   }, 
-  "name": "\"Means of Transportation to Work by Time Arriving at Work From Home for Workplace Geography\": \"('Worked at home:',)\" \"5:30 a.m. to 5:59 a.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "5:30 a.m. to 5:59 a.m. within Worked at home in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Time Arriving at Work From Home for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "5:30 a.m. to 5:59 a.m."
+  }
 }

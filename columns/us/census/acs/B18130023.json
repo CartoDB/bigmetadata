@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18130001", 
     "parent": "us/census/acs/B18130001"
   }, 
-  "name": "\"Age by Disability Status by Poverty Status\": \"()\" \"35 to 64 years:\" in \"Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined\""
+  "name": "35 to 64 years: in Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Age by Disability Status by Poverty Status", 
+    "universe": "Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+    "title": "35 to 64 years:"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02003001", 
     "parent": "us/census/acs/B02003047"
   }, 
-  "name": "\"Detailed Race\": \"('Population of two or more races:', 'Population of four races:')\" \"Black or African American; Asian; Native Hawaiian and Other Pacific Islander; Some other race\" in \"Total Population\""
+  "name": "Black or African American; Asian; Native Hawaiian and Other Pacific Islander; Some other race and Population of two or more races and Population of four races in Total Population", 
+  "extra": {
+    "table": "Detailed Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Population of two or more races:", 
+      "Population of four races:"
+    ], 
+    "title": "Black or African American; Asian; Native Hawaiian and Other Pacific Islander; Some other race"
+  }
 }

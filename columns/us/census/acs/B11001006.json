@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001001", 
     "parent": "us/census/acs/B11001004"
   }, 
-  "name": "\"Household Type (Including Living Alone)\": \"('Family households:', 'Other family:')\" \"Female householder, no husband present\" in \"Households\""
+  "name": "Female householder, no husband present and Family households and Other family in Households", 
+  "extra": {
+    "table": "Household Type (Including Living Alone)", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:", 
+      "Other family:"
+    ], 
+    "title": "Female householder, no husband present"
+  }
 }

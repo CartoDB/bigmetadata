@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08124001", 
     "parent": "us/census/acs/B08124001"
   }, 
-  "name": "\"Means of Transportation to Work by Occupation\": \"()\" \"Car, truck, or van - drove alone:\" in \"Workers 16 Years and Over\""
+  "name": "Car, truck, or van - drove alone: in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Occupation", 
+    "universe": "Workers 16 Years and Over", 
+    "title": "Car, truck, or van - drove alone:"
+  }
 }

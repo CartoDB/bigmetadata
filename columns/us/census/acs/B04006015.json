@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04006001", 
     "parent": "us/census/acs/B04006006"
   }, 
-  "name": "\"People Reporting Ancestry\": \"('Arab:',)\" \"Other Arab\" in \"Total Population\""
+  "name": "Other Arab and Arab in Total Population", 
+  "extra": {
+    "table": "People Reporting Ancestry", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Arab:"
+    ], 
+    "title": "Other Arab"
+  }
 }

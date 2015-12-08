@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09002001", 
     "parent": "us/census/acs/B09002009"
   }, 
-  "name": "\"Own Children Under 18 Years by Family Type and Age\": \"('In other families:', 'Male householder, no wife present:')\" \"Under 3 years\" in \"Own Children Under 18 Years\""
+  "name": "Under 3 years and In other families and Male householder, no wife present in Own Children Under 18 Years", 
+  "extra": {
+    "table": "Own Children Under 18 Years by Family Type and Age", 
+    "universe": "Own Children Under 18 Years", 
+    "ancestors": [
+      "In other families:", 
+      "Male householder, no wife present:"
+    ], 
+    "title": "Under 3 years"
+  }
 }

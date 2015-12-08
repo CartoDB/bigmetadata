@@ -1,3 +1,11 @@
 {
-  "name": "\"Occupants Per Room (Two or More Races Householder)\": \"()\" \"Total:\" in \"Occupied Housing Units With a Householder Who Is Two or More Races\""
+  "relationships": {
+    "denominator": "us/census/acs/B25014G001"
+  }, 
+  "name": "Occupied Housing Units With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Occupants Per Room (Two or More Races Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Two or More Races", 
+    "title": "Total:"
+  }
 }

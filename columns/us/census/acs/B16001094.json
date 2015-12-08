@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16001001", 
     "parent": "us/census/acs/B16001093"
   }, 
-  "name": "\"Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over\": \"('Tagalog:',)\" \"Speak English \"very well\"\" in \"Population 5 Years and Over\""
+  "name": "Speak English \"very well\" and Tagalog in Population 5 Years and Over", 
+  "extra": {
+    "table": "Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "Tagalog:"
+    ], 
+    "title": "Speak English \"very well\""
+  }
 }

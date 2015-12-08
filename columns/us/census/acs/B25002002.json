@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25002001", 
     "parent": "us/census/acs/B25002001"
   }, 
-  "name": "\"Occupancy Status\": \"()\" \"Occupied\" in \"Housing Units\""
+  "name": "Occupied in Housing Units", 
+  "extra": {
+    "table": "Occupancy Status", 
+    "universe": "Housing Units", 
+    "title": "Occupied"
+  }
 }

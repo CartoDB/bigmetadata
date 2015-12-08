@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27012001", 
     "parent": "us/census/acs/B27012089"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Work Experience by Sex by Age\": \"('Did not work:', 'Female:', '65 years and over:', 'With health insurance coverage')\" \"With direct-purchase health insurance\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "With direct-purchase health insurance and Did not work and Female and 65 years and over and With health insurance coverage in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Work Experience by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "Did not work:", 
+      "Female:", 
+      "65 years and over:", 
+      "With health insurance coverage"
+    ], 
+    "title": "With direct-purchase health insurance"
+  }
 }

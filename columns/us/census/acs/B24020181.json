@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020178"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Computer, engineering, and science occupations:', 'Architecture and engineering occupations:')\" \"Drafters, engineering, and mapping technicians\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Drafters, engineering, and mapping technicians and Female and Management, business, science, and arts occupations and Computer, engineering, and science occupations and Architecture and engineering occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Computer, engineering, and science occupations:", 
+      "Architecture and engineering occupations:"
+    ], 
+    "title": "Drafters, engineering, and mapping technicians"
+  }
 }

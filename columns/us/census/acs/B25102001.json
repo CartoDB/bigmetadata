@@ -1,3 +1,14 @@
 {
-  "name": "\"Mortgage Status by Real Estate Taxes Paid\": \"('Not mortgaged:',)\" \"Total:\" in \"Owner-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25102001"
+  }, 
+  "name": "Total: and Not mortgaged in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Real Estate Taxes Paid", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Not mortgaged:"
+    ], 
+    "title": "Total:"
+  }
 }

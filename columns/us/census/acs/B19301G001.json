@@ -1,3 +1,13 @@
 {
-  "name": "\"Per Capita Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Two or More Races)\": \"('Female householder (dollars):', 'Not living alone (dollars):')\" \"Per capita income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"Two or More Races Population\""
+  "relationships": {}, 
+  "name": "Per capita income in the past 12 months (in 2010 inflation-adjusted dollars) and Female householder (dollars) and Not living alone (dollars) in Two or More Races Population", 
+  "extra": {
+    "table": "Per Capita Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Two or More Races)", 
+    "universe": "Two or More Races Population", 
+    "ancestors": [
+      "Female householder (dollars):", 
+      "Not living alone (dollars):"
+    ], 
+    "title": "Per capita income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

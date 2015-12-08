@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08137001", 
     "parent": "us/census/acs/B08137001"
   }, 
-  "name": "\"Means of Transportation to Work by Tenure\": \"()\" \"Walked:\" in \"Workers 16 Years and Over in Households\""
+  "name": "Walked: in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Tenure", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "title": "Walked:"
+  }
 }

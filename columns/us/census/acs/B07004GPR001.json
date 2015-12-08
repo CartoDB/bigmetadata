@@ -1,3 +1,11 @@
 {
-  "name": "\"Geographical Mobility in the Past Year (Two or More Races) for Current Residence in Puerto Rico\": \"()\" \"Total:\" in \"Two or More Races Population 1 Year and Over in Puerto Rico\""
+  "relationships": {
+    "denominator": "us/census/acs/B07004GPR001"
+  }, 
+  "name": "Two or More Races Population 1 Year and Over in Puerto Rico", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Two or More Races) for Current Residence in Puerto Rico", 
+    "universe": "Two or More Races Population 1 Year and Over in Puerto Rico", 
+    "title": "Total:"
+  }
 }

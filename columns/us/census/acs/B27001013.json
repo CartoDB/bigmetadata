@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001001", 
     "parent": "us/census/acs/B27001012"
   }, 
-  "name": "\"Health Insurance Coverage Status by Sex by Age\": \"('Male:', '25 to 34 years:')\" \"With health insurance coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With health insurance coverage and Male and 25 to 34 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:", 
+      "25 to 34 years:"
+    ], 
+    "title": "With health insurance coverage"
+  }
 }

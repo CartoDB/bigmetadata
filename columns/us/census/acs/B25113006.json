@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B25113001"
   }, 
-  "name": "\"Median Gross Rent by Year Householder Moved Into Unit\": \"('Total:',)\" \"Moved in 1970 to 1979\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "name": "Moved in 1970 to 1979 and Total in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Median Gross Rent by Year Householder Moved Into Unit", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Moved in 1970 to 1979"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001D001", 
     "parent": "us/census/acs/B11001D007"
   }, 
-  "name": "\"Household Type (Including Living Alone) (Asian Alone)\": \"('Nonfamily households:',)\" \"Householder not living alone\" in \"Households With a Householder Who Is Asian Alone\""
+  "name": "Householder not living alone and Nonfamily households in Households With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (Asian Alone)", 
+    "universe": "Households With a Householder Who Is Asian Alone", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Householder not living alone"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002I001", 
     "parent": "us/census/acs/B12002I002"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (Hispanic or Latino)\": \"('Male:',)\" \"Now married (except separated)\" in \"Hispanic or Latino Population 15 Years and Over\""
+  "name": "Now married (except separated) and Male in Hispanic or Latino Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 15 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Now married (except separated)"
+  }
 }

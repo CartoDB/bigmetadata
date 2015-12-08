@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08141001", 
     "parent": "us/census/acs/C08141011"
   }, 
-  "name": "\"Means of Transportation to Work by Vehicles Available\": \"('Car, truck, or van - carpooled:',)\" \"3 or more vehicles available\" in \"Workers 16 Years and Over in Households\""
+  "name": "3 or more vehicles available and Car, truck, or van - carpooled in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Vehicles Available", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Car, truck, or van - carpooled:"
+    ], 
+    "title": "3 or more vehicles available"
+  }
 }

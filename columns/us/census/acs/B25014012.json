@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25014001", 
     "parent": "us/census/acs/B25014008"
   }, 
-  "name": "\"Tenure by Occupants Per Room\": \"('Renter occupied:',)\" \"1.51 to 2.00 occupants per room\" in \"Occupied Housing Units\""
+  "name": "1.51 to 2.00 occupants per room and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Occupants Per Room", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "1.51 to 2.00 occupants per room"
+  }
 }

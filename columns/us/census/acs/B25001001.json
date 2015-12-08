@@ -1,3 +1,9 @@
 {
-  "name": "\"Housing Units\": \"()\" \"Total\" in \"Housing Units\""
+  "relationships": {}, 
+  "name": "Total in Housing Units", 
+  "extra": {
+    "table": "Housing Units", 
+    "universe": "Housing Units", 
+    "title": "Total"
+  }
 }

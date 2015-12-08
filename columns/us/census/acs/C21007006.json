@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C21007001", 
     "parent": "us/census/acs/C21007004"
   }, 
-  "name": "\"Age by Veteran Status by Poverty Status in the Past 12 Months by Disability Status for the Civilian Population 18 Years and Over\": \"('18 to 64 years:', 'Veteran:', 'Income in the past 12 months below poverty level:')\" \"No disability\" in \"Civilian Population 18 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "No disability and 18 to 64 years and Veteran and Income in the past 12 months below poverty level in Civilian Population 18 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Age by Veteran Status by Poverty Status in the Past 12 Months by Disability Status for the Civilian Population 18 Years and Over", 
+    "universe": "Civilian Population 18 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "18 to 64 years:", 
+      "Veteran:", 
+      "Income in the past 12 months below poverty level:"
+    ], 
+    "title": "No disability"
+  }
 }

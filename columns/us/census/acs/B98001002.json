@@ -1,3 +1,9 @@
 {
-  "name": "\"Unweighted Housing Unit Sample\": \"()\" \"Final number of housing unit interviews\" in \"Housing Units\""
+  "relationships": {}, 
+  "name": "Final number of housing unit interviews in Housing Units", 
+  "extra": {
+    "table": "Unweighted Housing Unit Sample", 
+    "universe": "Housing Units", 
+    "title": "Final number of housing unit interviews"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24041001", 
     "parent": "us/census/acs/B24041020"
   }, 
-  "name": "\"Industry by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Educational services, and health care and social assistance:',)\" \"Health care and social assistance\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Health care and social assistance and Educational services, and health care and social assistance in Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Industry by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Educational services, and health care and social assistance:"
+    ], 
+    "title": "Health care and social assistance"
+  }
 }

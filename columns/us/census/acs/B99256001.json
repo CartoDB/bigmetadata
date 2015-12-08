@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Year Structure Built\": \"()\" \"Total:\" in \"Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B99256001"
+  }, 
+  "name": "Housing Units", 
+  "extra": {
+    "table": "Imputation of Year Structure Built", 
+    "universe": "Housing Units", 
+    "title": "Total:"
+  }
 }

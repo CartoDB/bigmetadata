@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08014001", 
     "parent": "us/census/acs/B08014008"
   }, 
-  "name": "\"Sex of Workers by Vehicles Available\": \"('Male:',)\" \"2 vehicles available\" in \"Workers 16 Years and Over in Households\""
+  "name": "2 vehicles available and Male in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Sex of Workers by Vehicles Available", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "2 vehicles available"
+  }
 }

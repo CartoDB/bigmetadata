@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25126001", 
     "parent": "us/census/acs/B25126034"
   }, 
-  "name": "\"Tenure by Age of Householder by Year Structure Built\": \"('Renter occupied:', 'Householder 15 to 34 years:')\" \"Built 1970 to 1979\" in \"Occupied Housing Units\""
+  "name": "Built 1970 to 1979 and Renter occupied and Householder 15 to 34 years in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Age of Householder by Year Structure Built", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "Householder 15 to 34 years:"
+    ], 
+    "title": "Built 1970 to 1979"
+  }
 }

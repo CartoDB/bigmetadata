@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08534001", 
     "parent": "us/census/acs/C08534011"
   }, 
-  "name": "\"Means of Transportation to Work by Travel Time to Work for Workplace Geography\": \"('Drove alone:',)\" \"20 to 24 minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "20 to 24 minutes within Drove alone in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Drove alone:"
+    ], 
+    "title": "20 to 24 minutes"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25055001", 
     "parent": "us/census/acs/B25055001"
   }, 
-  "name": "\"Age of Householder by Meals Included in Rent\": \"()\" \"Householder 65 to 74 years:\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "name": "Householder 65 to 74 years: in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Age of Householder by Meals Included in Rent", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "title": "Householder 65 to 74 years:"
+  }
 }

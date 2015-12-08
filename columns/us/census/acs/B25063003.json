@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25063001", 
     "parent": "us/census/acs/B25063002"
   }, 
-  "name": "\"Gross Rent\": \"('With cash rent:',)\" \"Less than $100\" in \"Renter-occupied Housing Units\""
+  "name": "Less than $100 and With cash rent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "With cash rent:"
+    ], 
+    "title": "Less than $100"
+  }
 }

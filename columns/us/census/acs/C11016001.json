@@ -1,3 +1,14 @@
 {
-  "name": "\"Household Type by Household Size\": \"('Nonfamily households:',)\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/C11016001"
+  }, 
+  "name": "Total: and Nonfamily households in Households", 
+  "extra": {
+    "table": "Household Type by Household Size", 
+    "universe": "Households", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Total:"
+  }
 }

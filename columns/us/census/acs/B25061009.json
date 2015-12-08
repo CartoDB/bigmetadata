@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25061001", 
     "parent": "us/census/acs/B25061001"
   }, 
-  "name": "\"Rent Asked\": \"()\" \"$400 to $449\" in \"Vacant-for-rent and Rented, Not Occupied Housing Units\""
+  "name": "$400 to $449 in Vacant-for-rent and Rented, Not Occupied Housing Units", 
+  "extra": {
+    "table": "Rent Asked", 
+    "universe": "Vacant-for-rent and Rented, Not Occupied Housing Units", 
+    "title": "$400 to $449"
+  }
 }

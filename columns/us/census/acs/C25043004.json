@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25043001", 
     "parent": "us/census/acs/C25043002"
   }, 
-  "name": "\"Tenure by Telephone Service Available\": \"('Owner occupied:',)\" \"No telephone service available\" in \"Occupied Housing Units\""
+  "name": "No telephone service available and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Telephone Service Available", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "No telephone service available"
+  }
 }

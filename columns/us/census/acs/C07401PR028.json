@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C07401PR001", 
     "parent": "us/census/acs/C07401PR021"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Age for Residence 1 Year Ago in Puerto Rico\": \"('Moved within same municipio:',)\" \"55 to 64 years\" in \"Population 1 Year and Over\""
+  "name": "55 to 64 years and Moved within same municipio in Population 1 Year and Over", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Age for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "Population 1 Year and Over", 
+    "ancestors": [
+      "Moved within same municipio:"
+    ], 
+    "title": "55 to 64 years"
+  }
 }

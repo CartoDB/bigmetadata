@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Relationship\": \"()\" \"Total:\" in \"Population in Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B99092001"
+  }, 
+  "name": "Population in Households", 
+  "extra": {
+    "table": "Imputation of Relationship", 
+    "universe": "Population in Households", 
+    "title": "Total:"
+  }
 }

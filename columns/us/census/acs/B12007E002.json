@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age at First Marriage (Native Hawaiian and Other Pacific Islander Alone)\": \"()\" \"Female\" in \"Native Hawaiian and Other Pacific Islander Alone Population 15 to 54 Years\""
+  "relationships": {}, 
+  "name": "Female in Native Hawaiian and Other Pacific Islander Alone Population 15 to 54 Years", 
+  "extra": {
+    "table": "Median Age at First Marriage (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population 15 to 54 Years", 
+    "title": "Female"
+  }
 }

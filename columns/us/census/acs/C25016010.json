@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25016001", 
     "parent": "us/census/acs/C25016009"
   }, 
-  "name": "\"Tenure by Plumbing Facilities by Occupants Per Room\": \"('Renter occupied:',)\" \"Complete plumbing facilities:\" in \"Occupied Housing Units\""
+  "name": "Complete plumbing facilities: and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Plumbing Facilities by Occupants Per Room", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Complete plumbing facilities:"
+  }
 }

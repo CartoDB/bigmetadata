@@ -2,5 +2,14 @@
   "relationships": {
     "parent": "us/census/acs/B24042020"
   }, 
-  "name": "\"Sex by Industry and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Male:', 'Educational services, and health care and social assistance:')\" \"Educational services\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Educational services and Male and Educational services, and health care and social assistance in Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Sex by Industry and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Male:", 
+      "Educational services, and health care and social assistance:"
+    ], 
+    "title": "Educational services"
+  }
 }

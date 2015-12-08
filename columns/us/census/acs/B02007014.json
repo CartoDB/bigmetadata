@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02007001", 
     "parent": "us/census/acs/B02007001"
   }, 
-  "name": "\"Native Hawaiian and Other Pacific Islander Alone by Selected Groups\": \"()\" \"Other Pacific Islander, not specified (check box only)\" in \"Total Native Hawaiian and Other Pacific Islander Alone Population\""
+  "name": "Other Pacific Islander, not specified (check box only) in Total Native Hawaiian and Other Pacific Islander Alone Population", 
+  "extra": {
+    "table": "Native Hawaiian and Other Pacific Islander Alone by Selected Groups", 
+    "universe": "Total Native Hawaiian and Other Pacific Islander Alone Population", 
+    "title": "Other Pacific Islander, not specified (check box only)"
+  }
 }

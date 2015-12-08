@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08126001", 
     "parent": "us/census/acs/B08126061"
   }, 
-  "name": "\"Means of Transportation to Work by Industry\": \"('Walked:',)\" \"Other services (except public administration)\" in \"Workers 16 Years and Over\""
+  "name": "Other services (except public administration) and Walked in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Walked:"
+    ], 
+    "title": "Other services (except public administration)"
+  }
 }

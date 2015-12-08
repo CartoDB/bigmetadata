@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14007A001", 
     "parent": "us/census/acs/B14007A001"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over (White Alone)\": \"()\" \"Not enrolled in school\" in \"White Alone Population 3 Years and Over\""
+  "name": "Not enrolled in school in White Alone Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over (White Alone)", 
+    "universe": "White Alone Population 3 Years and Over", 
+    "title": "Not enrolled in school"
+  }
 }

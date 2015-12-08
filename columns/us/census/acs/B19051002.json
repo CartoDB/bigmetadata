@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19051001", 
     "parent": "us/census/acs/B19051001"
   }, 
-  "name": "\"Earnings in the Past 12 Months for Households\": \"()\" \"With earnings\" in \"Households\""
+  "name": "With earnings in Households", 
+  "extra": {
+    "table": "Earnings in the Past 12 Months for Households", 
+    "universe": "Households", 
+    "title": "With earnings"
+  }
 }

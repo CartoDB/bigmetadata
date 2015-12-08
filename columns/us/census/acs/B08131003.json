@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B08131002"
   }, 
-  "name": "\"Aggregate Travel Time to Work (In Minutes) of Workers by Place of Work--State and County Level\": \"('Worked in State of residence:',)\" \"Worked in county of residence\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "Worked in county of residence and Worked in State of residence in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Aggregate Travel Time to Work (In Minutes) of Workers by Place of Work--State and County Level", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Worked in State of residence:"
+    ], 
+    "title": "Worked in county of residence"
+  }
 }

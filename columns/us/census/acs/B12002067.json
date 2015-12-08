@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002001", 
     "parent": "us/census/acs/B12002065"
   }, 
-  "name": "\"Sex by Marital Status by Age for the Population 15 Years and Over\": \"('Male:', 'Widowed:')\" \"18 and 19 years\" in \"Population 15 Years and Over\""
+  "name": "18 and 19 years and Male and Widowed in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status by Age for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Widowed:"
+    ], 
+    "title": "18 and 19 years"
+  }
 }

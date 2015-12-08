@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27009001", 
     "parent": "us/census/acs/B27009001"
   }, 
-  "name": "\"VA Health Care by Sex by Age\": \"()\" \"Female:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Female: in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "VA Health Care by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Female:"
+  }
 }

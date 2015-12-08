@@ -1,3 +1,11 @@
 {
-  "name": "\"Household Type for Population in Households (Some Other Race Alone)\": \"()\" \"Total:\" in \"Population in Households With a Householder Who Is Some Other Race Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/C11002F001"
+  }, 
+  "name": "Population in Households With a Householder Who Is Some Other Race Alone", 
+  "extra": {
+    "table": "Household Type for Population in Households (Some Other Race Alone)", 
+    "universe": "Population in Households With a Householder Who Is Some Other Race Alone", 
+    "title": "Total:"
+  }
 }

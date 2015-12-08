@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25033001", 
     "parent": "us/census/acs/B25033008"
   }, 
-  "name": "\"Total Population in Occupied Housing Units by Tenure by Units in Structure\": \"('Renter occupied:',)\" \"5 or more\" in \"Total Population in Occupied Housing Units\""
+  "name": "5 or more and Renter occupied in Total Population in Occupied Housing Units", 
+  "extra": {
+    "table": "Total Population in Occupied Housing Units by Tenure by Units in Structure", 
+    "universe": "Total Population in Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "5 or more"
+  }
 }

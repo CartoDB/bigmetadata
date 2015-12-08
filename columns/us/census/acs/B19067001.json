@@ -1,3 +1,9 @@
 {
-  "name": "\"Aggregate Public Assistance Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Households\": \"()\" \"Aggregate public assistance income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"Households\""
+  "relationships": {}, 
+  "name": "Aggregate public assistance income in the past 12 months (in 2010 inflation-adjusted dollars) in Households", 
+  "extra": {
+    "table": "Aggregate Public Assistance Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Households", 
+    "universe": "Households", 
+    "title": "Aggregate public assistance income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

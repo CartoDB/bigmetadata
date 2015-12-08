@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08501001", 
     "parent": "us/census/acs/B08501017"
   }, 
-  "name": "\"Means of Transportation to Work by Age for Workplace Geography\": \"('Car, truck, or van - carpooled:',)\" \"55 to 59 years\" in \"Workers 16 Years and Over\""
+  "name": "55 to 59 years within Car, truck, or van - carpooled in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Age for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - carpooled:"
+    ], 
+    "title": "55 to 59 years"
+  }
 }

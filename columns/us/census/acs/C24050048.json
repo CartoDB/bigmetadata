@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24050001", 
     "parent": "us/census/acs/C24050043"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Sales and office occupations:',)\" \"Retail trade\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Retail trade and Sales and office occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Sales and office occupations:"
+    ], 
+    "title": "Retail trade"
+  }
 }

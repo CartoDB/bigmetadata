@@ -1,3 +1,11 @@
 {
-  "name": "\"Household Type (Including Living Alone) (American Indian and Alaska Native Alone)\": \"()\" \"Total:\" in \"Households With a Householder Who Is American Indian and Alaska Native Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/B11001C001"
+  }, 
+  "name": "Households With a Householder Who Is American Indian and Alaska Native Alone", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (American Indian and Alaska Native Alone)", 
+    "universe": "Households With a Householder Who Is American Indian and Alaska Native Alone", 
+    "title": "Total:"
+  }
 }

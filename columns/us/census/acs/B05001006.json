@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05001001", 
     "parent": "us/census/acs/B05001001"
   }, 
-  "name": "\"Citizenship Status in the United States\": \"()\" \"Not a U.S. citizen\" in \"Total Population in the United States\""
+  "name": "Not a U.S. citizen in Total Population in the United States", 
+  "extra": {
+    "table": "Citizenship Status in the United States", 
+    "universe": "Total Population in the United States", 
+    "title": "Not a U.S. citizen"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08128001", 
     "parent": "us/census/acs/B08128031"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker\": \"('Public transportation (excluding taxicab):',)\" \"Local government workers\" in \"Workers 16 Years and Over\""
+  "name": "Local government workers and Public transportation (excluding taxicab) in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Local government workers"
+  }
 }

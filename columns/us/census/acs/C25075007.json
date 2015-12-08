@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25075001", 
     "parent": "us/census/acs/C25075001"
   }, 
-  "name": "\"Value\": \"()\" \"$300,000 to $499,999\" in \"Owner-occupied Housing Units\""
+  "name": "$300,000 to $499,999 in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Value", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "$300,000 to $499,999"
+  }
 }

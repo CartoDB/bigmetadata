@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05007001", 
     "parent": "us/census/acs/C05007002"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Europe :',)\" \"Entered U.S. 1980 to 1989:\" in \"Foreign-born Population\""
+  "name": "Entered U.S. 1980 to 1989: and Europe  in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Europe :"
+    ], 
+    "title": "Entered U.S. 1980 to 1989:"
+  }
 }

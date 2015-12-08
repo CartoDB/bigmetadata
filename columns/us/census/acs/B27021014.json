@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27021001", 
     "parent": "us/census/acs/B27021002"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Living Arrangement\": \"('In family households:',)\" \"In other families:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "In other families: and In family households in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Living Arrangement", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "In family households:"
+    ], 
+    "title": "In other families:"
+  }
 }

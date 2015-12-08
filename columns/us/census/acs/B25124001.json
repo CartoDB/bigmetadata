@@ -1,3 +1,11 @@
 {
-  "name": "\"Tenure by Household Size by Units in Structure\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25124001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Size by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

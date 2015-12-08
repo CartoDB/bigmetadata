@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08128001", 
     "parent": "us/census/acs/C08128021"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker\": \"('Taxicab, motorcycle, bicycle, walked, or other means:',)\" \"Self-employed in own not incorporated business workers\" in \"Workers 16 Years and Over\""
+  "name": "Self-employed in own not incorporated business workers and Taxicab, motorcycle, bicycle, walked, or other means in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, walked, or other means:"
+    ], 
+    "title": "Self-employed in own not incorporated business workers"
+  }
 }

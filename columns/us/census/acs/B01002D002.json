@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Sex (Asian Alone)\": \"()\" \"Male\" in \"People Who Are Asian Alone\""
+  "relationships": {}, 
+  "name": "Male in People Who Are Asian Alone", 
+  "extra": {
+    "table": "Median Age by Sex (Asian Alone)", 
+    "universe": "People Who Are Asian Alone", 
+    "title": "Male"
+  }
 }

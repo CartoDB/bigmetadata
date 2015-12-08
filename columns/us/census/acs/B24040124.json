@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24040001", 
     "parent": "us/census/acs/B24040111"
   }, 
-  "name": "\"Sex by Industry for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Manufacturing:')\" \"Metal and metal products\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Metal and metal products and Female and Manufacturing in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Manufacturing:"
+    ], 
+    "title": "Metal and metal products"
+  }
 }

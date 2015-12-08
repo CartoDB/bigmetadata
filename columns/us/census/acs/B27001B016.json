@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001B001", 
     "parent": "us/census/acs/B27001B014"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Black or African American Alone)\": \"('35 to 44 years:',)\" \"No health insurance coverage\" in \"BLACK OR AFRICAN AMERICAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "No health insurance coverage and 35 to 44 years in BLACK OR AFRICAN AMERICAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Black or African American Alone)", 
+    "universe": "BLACK OR AFRICAN AMERICAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "35 to 44 years:"
+    ], 
+    "title": "No health insurance coverage"
+  }
 }

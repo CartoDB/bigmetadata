@@ -1,3 +1,14 @@
 {
-  "name": "\"Year Structure Built\": \"('Renter occupied:',)\" \"Total:\" in \"Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25034001"
+  }, 
+  "name": "Total: and Renter occupied in Housing Units", 
+  "extra": {
+    "table": "Year Structure Built", 
+    "universe": "Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Total:"
+  }
 }

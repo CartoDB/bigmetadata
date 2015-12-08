@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27006001", 
     "parent": "us/census/acs/B27006015"
   }, 
-  "name": "\"Medicare Coverage by Sex by Age\": \"('Male:', '35 to 44 years:')\" \"No Medicare coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No Medicare coverage and Male and 35 to 44 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Medicare Coverage by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:", 
+      "35 to 44 years:"
+    ], 
+    "title": "No Medicare coverage"
+  }
 }

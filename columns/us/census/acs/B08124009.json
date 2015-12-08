@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08124001", 
     "parent": "us/census/acs/B08124008"
   }, 
-  "name": "\"Means of Transportation to Work by Occupation\": \"('Car, truck, or van - drove alone:',)\" \"Management, business, science, and arts occupations\" in \"Workers 16 Years and Over\""
+  "name": "Management, business, science, and arts occupations and Car, truck, or van - drove alone in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Occupation", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:"
+    ], 
+    "title": "Management, business, science, and arts occupations"
+  }
 }

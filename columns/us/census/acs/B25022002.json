@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25022001"
   }, 
-  "name": "\"Aggregate Number of Rooms by Tenure\": \"()\" \"Owner occupied\" in \"Occupied Housing Units\""
+  "name": "Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Number of Rooms by Tenure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Owner occupied"
+  }
 }

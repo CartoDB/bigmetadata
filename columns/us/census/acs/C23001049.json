@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C23001001", 
     "parent": "us/census/acs/C23001048"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over\": \"('Female:',)\" \"16 to 19 years:\" in \"Population 16 Years and Over\""
+  "name": "16 to 19 years: and Female in Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over", 
+    "universe": "Population 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "16 to 19 years:"
+  }
 }

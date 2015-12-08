@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23002C001", 
     "parent": "us/census/acs/B23002C050"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (American Indian and Alaska Native Alone)\": \"('Female:', '20 to 24 years:', 'In labor force:')\" \"In Armed Forces\" in \"American Indian and Alaska Native Alone Population 16 Years and Over\""
+  "name": "In Armed Forces and Female and 20 to 24 years and In labor force in American Indian and Alaska Native Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "20 to 24 years:", 
+      "In labor force:"
+    ], 
+    "title": "In Armed Forces"
+  }
 }

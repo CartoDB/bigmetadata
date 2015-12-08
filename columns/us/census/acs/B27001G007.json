@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001G001", 
     "parent": "us/census/acs/B27001G005"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Two or More Races)\": \"('6 to 17 years:',)\" \"No health insurance coverage\" in \"TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "No health insurance coverage and 6 to 17 years in TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Two or More Races)", 
+    "universe": "TWO OR MORE RACES CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "6 to 17 years:"
+    ], 
+    "title": "No health insurance coverage"
+  }
 }

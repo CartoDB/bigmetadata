@@ -1,3 +1,11 @@
 {
-  "name": "\"Tenure by Year Structure Built\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25036001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Structure Built", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

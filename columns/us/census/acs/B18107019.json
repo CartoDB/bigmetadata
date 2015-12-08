@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18107001", 
     "parent": "us/census/acs/B18107015"
   }, 
-  "name": "\"Sex by Age by Independent Living Difficulty\": \"('Female:',)\" \"35 to 64 years:\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "35 to 64 years: and Female in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Independent Living Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "35 to 64 years:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16005C001", 
     "parent": "us/census/acs/B16005C002"
   }, 
-  "name": "\"Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (American Indian and Alaska Native Alone)\": \"('Native:',)\" \"Speak only English\" in \"American Indian and Alaska Native Alone Population 5 Years and Over\""
+  "name": "Speak only English and Native in American Indian and Alaska Native Alone Population 5 Years and Over", 
+  "extra": {
+    "table": "Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population 5 Years and Over", 
+    "ancestors": [
+      "Native:"
+    ], 
+    "title": "Speak only English"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Mortgage Status\": \"()\" \"Total:\" in \"Owner-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25081001"
+  }, 
+  "name": "Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Total:"
+  }
 }

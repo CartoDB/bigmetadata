@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05006001", 
     "parent": "us/census/acs/C05006034"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population\": \"('Asia:', 'South Eastern Asia:')\" \"Philippines\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Philippines and Asia and South Eastern Asia in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Asia:", 
+      "South Eastern Asia:"
+    ], 
+    "title": "Philippines"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27007001", 
     "parent": "us/census/acs/B27007001"
   }, 
-  "name": "\"Medicaid/Means-tested Public Coverage by Sex by Age\": \"()\" \"Male:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Male: in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Medicaid/Means-tested Public Coverage by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Male:"
+  }
 }

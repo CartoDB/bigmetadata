@@ -1,3 +1,11 @@
 {
-  "name": "\"Household Type (Including Living Alone) by Relationship\": \"()\" \"Total:\" in \"Total Population\""
+  "relationships": {
+    "denominator": "us/census/acs/C09016001"
+  }, 
+  "name": "Total Population", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) by Relationship", 
+    "universe": "Total Population", 
+    "title": "Total:"
+  }
 }

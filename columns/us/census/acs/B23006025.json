@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23006001", 
     "parent": "us/census/acs/B23006024"
   }, 
-  "name": "\"Educational Attainment by Employment Status for the Population 25 to 64 Years\": \"(\"Bachelor's degree or higher:\", 'In labor force:')\" \"In Armed Forces\" in \"Population 25 to 64 Years\""
+  "name": "In Armed Forces and Bachelor's degree or higher and In labor force in Population 25 to 64 Years", 
+  "extra": {
+    "table": "Educational Attainment by Employment Status for the Population 25 to 64 Years", 
+    "universe": "Population 25 to 64 Years", 
+    "ancestors": [
+      "Bachelor's degree or higher:", 
+      "In labor force:"
+    ], 
+    "title": "In Armed Forces"
+  }
 }

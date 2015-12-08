@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Sex (American Indian and Alaska Native)\": \"()\" \"Female\" in \"People Who Are American Indian and Alaska Native Alone\""
+  "relationships": {}, 
+  "name": "Female in People Who Are American Indian and Alaska Native Alone", 
+  "extra": {
+    "table": "Median Age by Sex (American Indian and Alaska Native)", 
+    "universe": "People Who Are American Indian and Alaska Native Alone", 
+    "title": "Female"
+  }
 }

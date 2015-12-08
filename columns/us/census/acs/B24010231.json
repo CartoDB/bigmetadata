@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010227"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Service occupations:', 'Food preparation and serving related occupations:')\" \"Food and beverage serving workers except waiters/waitresses\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Food and beverage serving workers except waiters/waitresses and Female and Service occupations and Food preparation and serving related occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:", 
+      "Food preparation and serving related occupations:"
+    ], 
+    "title": "Food and beverage serving workers except waiters/waitresses"
+  }
 }

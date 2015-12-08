@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19101E001", 
     "parent": "us/census/acs/B19101E001"
   }, 
-  "name": "\"Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Native Hawaiian and Other Pacific Islander Alone Householder)\": \"()\" \"$30,000 to $34,999\" in \"Families With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone\""
+  "name": "$30,000 to $34,999 in Families With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone", 
+  "extra": {
+    "table": "Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Native Hawaiian and Other Pacific Islander Alone Householder)", 
+    "universe": "Families With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone", 
+    "title": "$30,000 to $34,999"
+  }
 }

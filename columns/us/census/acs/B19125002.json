@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B19125001"
   }, 
-  "name": "\"Median Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Presence of Own Children Under 18 Years\": \"()\" \"With own children under 18 years\" in \"Families\""
+  "name": "With own children under 18 years in Families", 
+  "extra": {
+    "table": "Median Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Presence of Own Children Under 18 Years", 
+    "universe": "Families", 
+    "title": "With own children under 18 years"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25063001", 
     "parent": "us/census/acs/B25063002"
   }, 
-  "name": "\"Gross Rent\": \"('With cash rent:',)\" \"$400 to $449\" in \"Renter-occupied Housing Units\""
+  "name": "$400 to $449 and With cash rent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "With cash rent:"
+    ], 
+    "title": "$400 to $449"
+  }
 }

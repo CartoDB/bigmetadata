@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04006001", 
     "parent": "us/census/acs/B04006094"
   }, 
-  "name": "\"People Reporting Ancestry\": \"('West Indian (except Hispanic groups):',)\" \"Dutch West Indian\" in \"Total Population\""
+  "name": "Dutch West Indian and West Indian (except Hispanic groups) in Total Population", 
+  "extra": {
+    "table": "People Reporting Ancestry", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "West Indian (except Hispanic groups):"
+    ], 
+    "title": "Dutch West Indian"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08122001", 
     "parent": "us/census/acs/C08122001"
   }, 
-  "name": "\"Means of Transportation to Work by Poverty Status in the Past 12 Months\": \"()\" \"Taxicab, motorcycle, bicycle, walked, or other means:\" in \"Workers 16 Years and Over for Whom Poverty Status Is Determined\""
+  "name": "Taxicab, motorcycle, bicycle, walked, or other means: in Workers 16 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Means of Transportation to Work by Poverty Status in the Past 12 Months", 
+    "universe": "Workers 16 Years and Over for Whom Poverty Status Is Determined", 
+    "title": "Taxicab, motorcycle, bicycle, walked, or other means:"
+  }
 }

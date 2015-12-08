@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C14007G001", 
     "parent": "us/census/acs/C14007G001"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over (Two or More Races)\": \"()\" \"Enrolled in school:\" in \"Two or More Races Population 3 Years and Over\""
+  "name": "Enrolled in school: in Two or More Races Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over (Two or More Races)", 
+    "universe": "Two or More Races Population 3 Years and Over", 
+    "title": "Enrolled in school:"
+  }
 }

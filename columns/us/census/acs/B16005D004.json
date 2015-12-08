@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16005D001", 
     "parent": "us/census/acs/B16005D002"
   }, 
-  "name": "\"Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Asian Alone)\": \"('Native:',)\" \"Speak another language\" in \"Asian Alone Population 5 Years and Over\""
+  "name": "Speak another language and Native in Asian Alone Population 5 Years and Over", 
+  "extra": {
+    "table": "Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Asian Alone)", 
+    "universe": "Asian Alone Population 5 Years and Over", 
+    "ancestors": [
+      "Native:"
+    ], 
+    "title": "Speak another language"
+  }
 }

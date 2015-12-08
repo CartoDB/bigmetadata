@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08017001", 
     "parent": "us/census/acs/B08017014"
   }, 
-  "name": "\"Place of Work for Workers 16 Years and Over--Micropolitan Statistical Area Level\": \"('Living outside any principal city:', 'Worked in Micropolitan Statistical Area of residence:')\" \"Worked outside any principal city\" in \"Workers 16 Years and Over Living in a Micropolitan Statistical Area\""
+  "name": "Worked outside any principal city and Living outside any principal city and Worked in Micropolitan Statistical Area of residence in Workers 16 Years and Over Living in a Micropolitan Statistical Area", 
+  "extra": {
+    "table": "Place of Work for Workers 16 Years and Over--Micropolitan Statistical Area Level", 
+    "universe": "Workers 16 Years and Over Living in a Micropolitan Statistical Area", 
+    "ancestors": [
+      "Living outside any principal city:", 
+      "Worked in Micropolitan Statistical Area of residence:"
+    ], 
+    "title": "Worked outside any principal city"
+  }
 }

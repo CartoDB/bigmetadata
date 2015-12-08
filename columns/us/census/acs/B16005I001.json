@@ -1,3 +1,15 @@
 {
-  "name": "\"Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Hispanic or Latino)\": \"('Foreign born:', 'Speak another language')\" \"Total:\" in \"Hispanic or Latino Population 5 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B16005I001"
+  }, 
+  "name": "Total: and Foreign born and Speak another language in Hispanic or Latino Population 5 Years and Over", 
+  "extra": {
+    "table": "Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 5 Years and Over", 
+    "ancestors": [
+      "Foreign born:", 
+      "Speak another language"
+    ], 
+    "title": "Total:"
+  }
 }

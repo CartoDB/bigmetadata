@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010065"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Service occupations:', 'Healthcare support occupations:')\" \"Nursing, psychiatric, and home health aides\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Nursing, psychiatric, and home health aides and Male and Service occupations and Healthcare support occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Service occupations:", 
+      "Healthcare support occupations:"
+    ], 
+    "title": "Nursing, psychiatric, and home health aides"
+  }
 }

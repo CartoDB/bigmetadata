@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003G001", 
     "parent": "us/census/acs/B05003G019"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Two or More Races)\": \"('Female:', '18 years and over:')\" \"Foreign born:\" in \"People Who Are Two or More Races\""
+  "name": "Foreign born: and Female and 18 years and over in People Who Are Two or More Races", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Two or More Races)", 
+    "universe": "People Who Are Two or More Races", 
+    "ancestors": [
+      "Female:", 
+      "18 years and over:"
+    ], 
+    "title": "Foreign born:"
+  }
 }

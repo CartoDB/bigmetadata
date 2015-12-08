@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C18104001", 
     "parent": "us/census/acs/C18104002"
   }, 
-  "name": "\"Sex by Age by Cognitive Difficulty\": \"('Male:',)\" \"18 to 64 years:\" in \"Civilian Noninstitutionalized Population 5 Years and Over\""
+  "name": "18 to 64 years: and Male in Civilian Noninstitutionalized Population 5 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Cognitive Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population 5 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "18 to 64 years:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002C001", 
     "parent": "us/census/acs/B15002C002"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (American Indian and Alaska Native Alone)\": \"('Male:',)\" \"Graduate degree\" in \"American Indian and Alaska Native Alone Population 25 Years and Over\""
+  "name": "Graduate degree and Male in American Indian and Alaska Native Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Graduate degree"
+  }
 }

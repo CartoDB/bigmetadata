@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020069"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Male:', 'Service occupations:', 'Protective service occupations:')\" \"First-line supervisors of protective service workers, all other\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "First-line supervisors of protective service workers, all other and Male and Service occupations and Protective service occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Service occupations:", 
+      "Protective service occupations:"
+    ], 
+    "title": "First-line supervisors of protective service workers, all other"
+  }
 }

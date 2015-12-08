@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Two or More Races Householder)\": \"()\" \"Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"Nonfamily Households With a Householder Who Is Two or More Races\""
+  "relationships": {}, 
+  "name": "Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars) in Nonfamily Households With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Median Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Two or More Races Householder)", 
+    "universe": "Nonfamily Households With a Householder Who Is Two or More Races", 
+    "title": "Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

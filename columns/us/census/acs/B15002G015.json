@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002G001", 
     "parent": "us/census/acs/B15002G011"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Two or More Races)\": \"('Female:',)\" \"GED or alternative credential\" in \"Two or More Races Population 25 Years and Over\""
+  "name": "GED or alternative credential and Female in Two or More Races Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Two or More Races)", 
+    "universe": "Two or More Races Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "GED or alternative credential"
+  }
 }

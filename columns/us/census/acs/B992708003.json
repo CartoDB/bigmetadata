@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992708001", 
     "parent": "us/census/acs/B992708001"
   }, 
-  "name": "\"Imputation of Tricare/Military Health Coverage\": \"()\" \"Not imputed\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Not imputed in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Imputation of Tricare/Military Health Coverage", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Not imputed"
+  }
 }

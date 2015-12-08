@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010245"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Sales and office occupations:', 'Sales and related occupations:')\" \"Sales representatives, services\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Sales representatives, services and Female and Sales and office occupations and Sales and related occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Sales and office occupations:", 
+      "Sales and related occupations:"
+    ], 
+    "title": "Sales representatives, services"
+  }
 }

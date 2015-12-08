@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C14007F001", 
     "parent": "us/census/acs/C14007F002"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over (Some Other Race Alone)\": \"('Enrolled in school:',)\" \"Enrolled in grade 1 to grade 8\" in \"Some Other Race Alone Population 3 Years and Over\""
+  "name": "Enrolled in grade 1 to grade 8 and Enrolled in school in Some Other Race Alone Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over (Some Other Race Alone)", 
+    "universe": "Some Other Race Alone Population 3 Years and Over", 
+    "ancestors": [
+      "Enrolled in school:"
+    ], 
+    "title": "Enrolled in grade 1 to grade 8"
+  }
 }

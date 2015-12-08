@@ -1,3 +1,12 @@
 {
-  "name": "\"Aggregate Travel Time to Work (In Minutes) of Workers by Sex\": \"('Female:',)\" \"Aggregate travel time to work (in minutes):\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "relationships": {}, 
+  "name": "Aggregate travel time to work (in minutes): and Female in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Aggregate Travel Time to Work (In Minutes) of Workers by Sex", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Aggregate travel time to work (in minutes):"
+  }
 }

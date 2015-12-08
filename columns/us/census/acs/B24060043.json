@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24060001", 
     "parent": "us/census/acs/B24060042"
   }, 
-  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"(None, None, None)\" \"Computer and mathematical occupations\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Computer and mathematical occupations and  in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      null, 
+      null, 
+      null
+    ], 
+    "title": "Computer and mathematical occupations"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17010D001", 
     "parent": "us/census/acs/C17010D014"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years (Asian Alone Householder)\": \"('Income in the past 12 months at or above poverty level:', 'Other family:', 'Male householder, no wife present')\" \"With related children under 18 years\" in \"Families With a Householder Who Is Asian Alone\""
+  "name": "With related children under 18 years and Income in the past 12 months at or above poverty level and Other family and Male householder, no wife present in Families With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years (Asian Alone Householder)", 
+    "universe": "Families With a Householder Who Is Asian Alone", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Other family:", 
+      "Male householder, no wife present"
+    ], 
+    "title": "With related children under 18 years"
+  }
 }

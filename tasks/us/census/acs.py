@@ -55,7 +55,6 @@ class DownloadACS(LoadPostgresFromURL):
         url = self.url_template.format(year=self.year, sample=self.sample)
         self.load_from_url(url)
         self.output().touch()
-        #return LoadPostgresFromURL(url=url, table=table)
 
 
 class DumpACS(WrapperTask):
@@ -75,28 +74,50 @@ class ACSColumn(LocalTarget):
     def __init__(self, **kwargs):
         self.force = False
         self.column_id = kwargs['column_id']
-        self.column_title = kwargs['column_title']
+        self.column_title = kwargs['column_title'].decode('utf8')
         self.column_parent_path = kwargs['column_parent_path']
         self.parent_column_id = kwargs['parent_column_id']
-        self.table_title = kwargs['table_title']
-        self.universe = kwargs['universe']
+        self.table_title = kwargs['table_title'].decode('utf8')
+        self.universe = kwargs['universe'].decode('utf8')
+        self.denominator = kwargs['denominator']
+
         super(ACSColumn, self).__init__(
             path=os.path.join('columns', classpath(self), self.column_id) + '.json')
 
     @property
     def name(self):
-        return '"{table}": "{column_parent_path}" "{column}" in "{universe}"'.format(
-            table=self.table_title, column_parent_path=self.column_parent_path,
-            column=self.column_title, universe=self.universe)
+        '''
+        Attempt a human-readable name for this column
+        '''
+        if self.column_title == u'Total:' and not self.column_parent_path:
+            #name = self.table_title.split(' by ')[0] + u' in ' + self.universe
+            name = self.universe
+        else:
+            name = self.column_title
+            if self.column_parent_path:
+                path = [par.decode('utf8').replace(u':', u'') for par in self.column_parent_path if par]
+                name += u' within ' + u' within '.join(path)
+            name += u' in ' + self.universe
+        return name
 
     def generate(self):
         data = {
             'name': self.name,
-        }
-        if self.parent_column_id:
-            data['relationships'] = {
-                'parent': os.path.join(classpath(self), self.parent_column_id)
+            'extra': {
+                'title': self.column_title,
+                'table': self.table_title,
+                'universe': self.universe,
             }
+        }
+        if self.column_parent_path:
+            data['extra']['ancestors'] = self.column_parent_path
+        data['relationships'] = {}
+        if self.denominator:
+            data['relationships']['denominator'] = \
+                    os.path.join(classpath(self), self.denominator)
+        if self.parent_column_id:
+            data['relationships']['parent'] = \
+                    os.path.join(classpath(self), self.parent_column_id)
         with self.open('w') as outfile:
             json.dump(data, outfile, indent=2)
 
@@ -117,7 +138,7 @@ class ACSTable(LocalTarget):
         super(ACSTable, self).__init__(
             path=os.path.join('tables', classpath(self), self.source, self.seqnum) + '.json')
 
-    def generate(self, resolutions):
+    def generate(self, resolutions, force=False):
         column_parent_path = []
         for i, column_id in enumerate(self.column_ids):
             indent = (self.indents[i] or 0) - 1
@@ -132,8 +153,9 @@ class ACSTable(LocalTarget):
             col = ACSColumn(column_id=column_id, column_title=column_title,
                             column_parent_path=column_parent_path[:-1],
                             parent_column_id=self.parent_column_ids[i],
+                            denominator=self.denominators[i],
                             table_title=self.table_titles[i], universe=self.universes[i])
-            if not col.exists():
+            if not col.exists() or force:
                 col.generate()
 
         data = {
@@ -165,7 +187,7 @@ class ProcessACS(Task):
         resolutions = [os.path.join(
             'columns', classpath(load_sumlevels), SUMLEVELS[sl[0]]['slug']) for sl in sumlevels if sl[0] in SUMLEVELS]
         for output in self.output():
-            output.generate(resolutions=resolutions)
+            output.generate(resolutions=resolutions, force=self.force)
         self.force = False
 
     def complete(self):
@@ -183,6 +205,7 @@ class ProcessACS(Task):
 
     def output(self):
         cursor = pg_cursor()
+        # Grab all table and column info
         cursor.execute(
             ' SELECT isc.table_name as seqnum, ARRAY_AGG(table_title) as table_titles,'
             '   ARRAY_AGG(denominator_column_id) as denominators,'
@@ -197,8 +220,27 @@ class ProcessACS(Task):
             ' GROUP BY isc.table_name'
             ' ORDER BY isc.table_name'
             ' '.format(schema=self.schema))
+        tables = cursor.fetchall()
         for seqnum, table_titles, denominators, column_ids, column_titles, indents, \
-                             parent_column_ids, universes in cursor:
+                             parent_column_ids, universes in tables:
+            # Grab approximate margin of error for everything
+            cursor.execute(
+                ' SELECT data.*, moe.* '
+                ' FROM {schema}.{seqnum} as data, '
+                '      {schema}.{seqnum}_moe as moe '
+                ' WHERE data.geoid = moe.geoid '
+                '       AND data.geoid = \'01000US\''.format(schema=self.schema,
+                                                             seqnum=seqnum))
+            data_and_moe, = cursor.fetchall()
+            data, moe = data_and_moe[7:len(data_and_moe)/2], data_and_moe[(len(data_and_moe)/2)+7:]
+
+            # if data[0] and moe[0] != -1:
+            #     import pdb
+            #     pdb.set_trace()
+            # nationwide moe
+            # [(moe/data)*100 for data, moe in zip(data, moe)]
+            #
+
             yield ACSTable(seqnum=seqnum, source=self.schema,
                            table_titles=table_titles, universes=universes,
                            denominators=denominators, column_titles=column_titles,

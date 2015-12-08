@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08009001", 
     "parent": "us/census/acs/B08009012"
   }, 
-  "name": "\"Sex of Workers by Place of Work--Minor Civil Division Level for 12 Selected States (CT, ME, MA, MI, MN, NH, NJ, NY, PA, RI, VT, WI)\": \"('Female:', 'Living in the 12 selected states:')\" \"Worked in MCD of residence\" in \"Workers 16 Years and Over\""
+  "name": "Worked in MCD of residence and Female and Living in the 12 selected states in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Place of Work--Minor Civil Division Level for 12 Selected States (CT, ME, MA, MI, MN, NH, NJ, NY, PA, RI, VT, WI)", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Living in the 12 selected states:"
+    ], 
+    "title": "Worked in MCD of residence"
+  }
 }

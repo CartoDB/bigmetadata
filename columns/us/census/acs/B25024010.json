@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25024001", 
     "parent": "us/census/acs/B25024001"
   }, 
-  "name": "\"Units in Structure\": \"()\" \"Mobile home\" in \"Housing Units\""
+  "name": "Mobile home in Housing Units", 
+  "extra": {
+    "table": "Units in Structure", 
+    "universe": "Housing Units", 
+    "title": "Mobile home"
+  }
 }

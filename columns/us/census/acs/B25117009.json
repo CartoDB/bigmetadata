@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25117001", 
     "parent": "us/census/acs/B25117002"
   }, 
-  "name": "\"Tenure by House Heating Fuel\": \"('Owner occupied:',)\" \"Solar energy\" in \"Occupied Housing Units\""
+  "name": "Solar energy and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by House Heating Fuel", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "Solar energy"
+  }
 }

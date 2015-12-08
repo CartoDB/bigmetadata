@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010278"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Natural resources, construction, and maintenance occupations:', 'Installation, maintenance, and repair occupations:')\" \"Vehicle and mobile equipment mechanics, installers, and repairers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Vehicle and mobile equipment mechanics, installers, and repairers and Female and Natural resources, construction, and maintenance occupations and Installation, maintenance, and repair occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Natural resources, construction, and maintenance occupations:", 
+      "Installation, maintenance, and repair occupations:"
+    ], 
+    "title": "Vehicle and mobile equipment mechanics, installers, and repairers"
+  }
 }

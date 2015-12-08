@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992516001", 
     "parent": "us/census/acs/B992516001"
   }, 
-  "name": "\"Imputation of Rent Asked\": \"()\" \"Imputed\" in \"Vacant-for-rent and Rented, Not Occupied Housing Units\""
+  "name": "Imputed in Vacant-for-rent and Rented, Not Occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Rent Asked", 
+    "universe": "Vacant-for-rent and Rented, Not Occupied Housing Units", 
+    "title": "Imputed"
+  }
 }

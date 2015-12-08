@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08132001", 
     "parent": "us/census/acs/B08132016"
   }, 
-  "name": "\"Means of Transportation to Work by Time Leaving Home to Go to Work\": \"('Car, truck, or van - drove alone:',)\" \"4:00 p.m. to 11:59 p.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "4:00 p.m. to 11:59 p.m. and Car, truck, or van - drove alone in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Time Leaving Home to Go to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:"
+    ], 
+    "title": "4:00 p.m. to 11:59 p.m."
+  }
 }

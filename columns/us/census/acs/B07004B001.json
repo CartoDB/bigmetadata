@@ -1,3 +1,11 @@
 {
-  "name": "\"Geographical Mobility in the Past Year (Black or African American Alone) for Current Residence in the United States\": \"()\" \"Total:\" in \"Black or African American Alone Population 1 Year and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B07004B001"
+  }, 
+  "name": "Black or African American Alone Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Black or African American Alone) for Current Residence in the United States", 
+    "universe": "Black or African American Alone Population 1 Year and Over in the United States", 
+    "title": "Total:"
+  }
 }

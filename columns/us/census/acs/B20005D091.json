@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B20005D001", 
     "parent": "us/census/acs/B20005D075"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Asian Alone)\": \"('Female:', 'Other:', 'With earnings:')\" \"$50,000 to $54,999\" in \"Asian Alone Population 16 Years and Over\""
+  "name": "$50,000 to $54,999 and Female and Other and With earnings in Asian Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Asian Alone)", 
+    "universe": "Asian Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Other:", 
+      "With earnings:"
+    ], 
+    "title": "$50,000 to $54,999"
+  }
 }

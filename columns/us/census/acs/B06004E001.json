@@ -1,3 +1,11 @@
 {
-  "name": "\"Place of Birth (Native Hawaiian and Other Pacific Islander Alone) in the United States\": \"()\" \"Total:\" in \"Native Hawaiian and Other Pacific Islander Alone Population in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B06004E001"
+  }, 
+  "name": "Native Hawaiian and Other Pacific Islander Alone Population in the United States", 
+  "extra": {
+    "table": "Place of Birth (Native Hawaiian and Other Pacific Islander Alone) in the United States", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population in the United States", 
+    "title": "Total:"
+  }
 }

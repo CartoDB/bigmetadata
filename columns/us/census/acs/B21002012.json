@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21002001", 
     "parent": "us/census/acs/B21002001"
   }, 
-  "name": "\"Period of Military Service for Civilian Veterans 18 Years and Over\": \"()\" \"World War II, no Korean War, no Vietnam Era\" in \"Civilian Veterans 18 Years and Over\""
+  "name": "World War II, no Korean War, no Vietnam Era in Civilian Veterans 18 Years and Over", 
+  "extra": {
+    "table": "Period of Military Service for Civilian Veterans 18 Years and Over", 
+    "universe": "Civilian Veterans 18 Years and Over", 
+    "title": "World War II, no Korean War, no Vietnam Era"
+  }
 }

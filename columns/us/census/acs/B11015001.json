@@ -1,3 +1,11 @@
 {
-  "name": "\"Households by Presence of Nonrelatives\": \"()\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B11015001"
+  }, 
+  "name": "Households", 
+  "extra": {
+    "table": "Households by Presence of Nonrelatives", 
+    "universe": "Households", 
+    "title": "Total:"
+  }
 }

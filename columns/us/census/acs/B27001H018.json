@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001H001", 
     "parent": "us/census/acs/B27001H017"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (White Alone, Not Hispanic or Latino)\": \"('45 to 54 years:',)\" \"With health insurance coverage\" in \"WHITE ALONE, NOT HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "With health insurance coverage and 45 to 54 years in WHITE ALONE, NOT HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (White Alone, Not Hispanic or Latino)", 
+    "universe": "WHITE ALONE, NOT HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "45 to 54 years:"
+    ], 
+    "title": "With health insurance coverage"
+  }
 }

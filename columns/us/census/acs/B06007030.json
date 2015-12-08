@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06007001", 
     "parent": "us/census/acs/B06007025"
   }, 
-  "name": "\"Place of Birth by Language Spoken at Home and Ability to Speak English in the United States\": \"('Native; born outside the United States:',)\" \"Speak other languages:\" in \"Population 5 Years and Over in the United States\""
+  "name": "Speak other languages: and Native; born outside the United States in Population 5 Years and Over in the United States", 
+  "extra": {
+    "table": "Place of Birth by Language Spoken at Home and Ability to Speak English in the United States", 
+    "universe": "Population 5 Years and Over in the United States", 
+    "ancestors": [
+      "Native; born outside the United States:"
+    ], 
+    "title": "Speak other languages:"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07010001", 
     "parent": "us/census/acs/B07010058"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Current Residence in the United States\": \"('Moved from abroad:', 'With income:')\" \"$35,000 to $49,999\" in \"Population 15 Years and Over in the United States\""
+  "name": "$35,000 to $49,999 and Moved from abroad and With income in Population 15 Years and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for Current Residence in the United States", 
+    "universe": "Population 15 Years and Over in the United States", 
+    "ancestors": [
+      "Moved from abroad:", 
+      "With income:"
+    ], 
+    "title": "$35,000 to $49,999"
+  }
 }

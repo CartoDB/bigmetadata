@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25068001", 
     "parent": "us/census/acs/B25068011"
   }, 
-  "name": "\"Bedrooms by Gross Rent\": \"('1 bedroom:',)\" \"No cash rent\" in \"Renter-occupied Housing Units\""
+  "name": "No cash rent and 1 bedroom in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Bedrooms by Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "1 bedroom:"
+    ], 
+    "title": "No cash rent"
+  }
 }

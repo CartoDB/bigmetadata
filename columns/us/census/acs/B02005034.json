@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02005001", 
     "parent": "us/census/acs/B02005002"
   }, 
-  "name": "\"American Indian and Alaska Native Alone for Selected Tribal Groupings\": \"('American Indian tribes, specified:',)\" \"Yakama\" in \"People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported\""
+  "name": "Yakama and American Indian tribes, specified in People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported", 
+  "extra": {
+    "table": "American Indian and Alaska Native Alone for Selected Tribal Groupings", 
+    "universe": "People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported", 
+    "ancestors": [
+      "American Indian tribes, specified:"
+    ], 
+    "title": "Yakama"
+  }
 }

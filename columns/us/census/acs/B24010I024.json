@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010I001", 
     "parent": "us/census/acs/B24010I019"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)\": \"('Male:', 'Service occupations:')\" \"Food preparation and serving related occupations\" in \"Civilian Employed Hispanic or Latino Population 16 Years and Over\""
+  "name": "Food preparation and serving related occupations and Male and Service occupations in Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Service occupations:"
+    ], 
+    "title": "Food preparation and serving related occupations"
+  }
 }

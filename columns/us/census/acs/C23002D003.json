@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C23002D001", 
     "parent": "us/census/acs/C23002D002"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (Asian Alone)\": \"('Male:',)\" \"16 to 64 years:\" in \"Asian Alone Population 16 Years and Over\""
+  "name": "16 to 64 years: and Male in Asian Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (Asian Alone)", 
+    "universe": "Asian Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "16 to 64 years:"
+  }
 }

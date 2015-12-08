@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B03002001", 
     "parent": "us/census/acs/B03002012"
   }, 
-  "name": "\"Hispanic or Latino Origin by Race\": \"('Hispanic or Latino:',)\" \"Two or more races:\" in \"Total Population\""
+  "name": "Two or more races: and Hispanic or Latino in Total Population", 
+  "extra": {
+    "table": "Hispanic or Latino Origin by Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Hispanic or Latino:"
+    ], 
+    "title": "Two or more races:"
+  }
 }

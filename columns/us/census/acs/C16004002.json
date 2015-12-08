@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C16004001", 
     "parent": "us/census/acs/C16004001"
   }, 
-  "name": "\"Age by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over\": \"()\" \"5 to 17 years:\" in \"Population 5 Years and Over\""
+  "name": "5 to 17 years: in Population 5 Years and Over", 
+  "extra": {
+    "table": "Age by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "title": "5 to 17 years:"
+  }
 }

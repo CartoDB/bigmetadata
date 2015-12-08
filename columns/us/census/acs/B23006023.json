@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23006001", 
     "parent": "us/census/acs/B23006001"
   }, 
-  "name": "\"Educational Attainment by Employment Status for the Population 25 to 64 Years\": \"()\" \"Bachelor's degree or higher:\" in \"Population 25 to 64 Years\""
+  "name": "Bachelor's degree or higher: in Population 25 to 64 Years", 
+  "extra": {
+    "table": "Educational Attainment by Employment Status for the Population 25 to 64 Years", 
+    "universe": "Population 25 to 64 Years", 
+    "title": "Bachelor's degree or higher:"
+  }
 }

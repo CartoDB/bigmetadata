@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010B001", 
     "parent": "us/census/acs/B24010B021"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Black or African American Alone)\": \"('Male:', 'Service occupations:', 'Protective service occupations:')\" \"Fire fighting and prevention, and other protective service workers including supervisors\" in \"Civilian Employed Black or African American Alone Population 16 Years and Over\""
+  "name": "Fire fighting and prevention, and other protective service workers including supervisors and Male and Service occupations and Protective service occupations in Civilian Employed Black or African American Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Black or African American Alone)", 
+    "universe": "Civilian Employed Black or African American Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Service occupations:", 
+      "Protective service occupations:"
+    ], 
+    "title": "Fire fighting and prevention, and other protective service workers including supervisors"
+  }
 }

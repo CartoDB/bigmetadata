@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Work Experience in the Past 12 Months for the Population 16 Years and Over With Earnings in the Past 12 Months (Asian Alone)\": \"()\" \"Total:\" in \"Asian Alone Population 16 Years and Over With Earnings in the Past 12 Months\""
+  "relationships": {}, 
+  "name": "Asian Alone Population 16 Years and Over With Earnings in the Past 12 Months", 
+  "extra": {
+    "table": "Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex by Work Experience in the Past 12 Months for the Population 16 Years and Over With Earnings in the Past 12 Months (Asian Alone)", 
+    "universe": "Asian Alone Population 16 Years and Over With Earnings in the Past 12 Months", 
+    "title": "Total:"
+  }
 }

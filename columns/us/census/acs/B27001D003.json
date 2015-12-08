@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001D001", 
     "parent": "us/census/acs/B27001D002"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Asian Alone)\": \"('Under 6 years:',)\" \"With health insurance coverage\" in \"ASIAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "With health insurance coverage and Under 6 years in ASIAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Asian Alone)", 
+    "universe": "ASIAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "Under 6 years:"
+    ], 
+    "title": "With health insurance coverage"
+  }
 }

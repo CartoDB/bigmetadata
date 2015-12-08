@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B08136007"
   }, 
-  "name": "\"Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work\": \"('Public transportation (excluding taxicab):',)\" \"Bus or trolley bus\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "Bus or trolley bus and Public transportation (excluding taxicab) in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Bus or trolley bus"
+  }
 }

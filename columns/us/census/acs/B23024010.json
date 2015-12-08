@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23024001", 
     "parent": "us/census/acs/B23024002"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Disability Status by Employment Status for the Population 20 to 64 Years\": \"('Income in the past 12 months below poverty level:',)\" \"No disability:\" in \"Population 20 to 64 Years for Whom Poverty Status Is Determined\""
+  "name": "No disability: and Income in the past 12 months below poverty level in Population 20 to 64 Years for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Disability Status by Employment Status for the Population 20 to 64 Years", 
+    "universe": "Population 20 to 64 Years for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:"
+    ], 
+    "title": "No disability:"
+  }
 }

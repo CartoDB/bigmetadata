@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05007001", 
     "parent": "us/census/acs/B05007056"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Latin America:', 'Central America:', 'Other Central America:')\" \"Entered 2000 or later:\" in \"Foreign-born Population\""
+  "name": "Entered 2000 or later: and Latin America and Central America and Other Central America in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Latin America:", 
+      "Central America:", 
+      "Other Central America:"
+    ], 
+    "title": "Entered 2000 or later:"
+  }
 }

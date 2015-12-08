@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23002B001", 
     "parent": "us/census/acs/B23002B041"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (Black or African American Alone)\": \"('Female:',)\" \"65 to 69 years:\" in \"Black or African American Alone Population 16 Years and Over\""
+  "name": "65 to 69 years: and Female in Black or African American Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (Black or African American Alone)", 
+    "universe": "Black or African American Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "65 to 69 years:"
+  }
 }

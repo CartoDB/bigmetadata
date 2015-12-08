@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Food Stamps/SNAP Receipt\": \"()\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B99221001"
+  }, 
+  "name": "Households", 
+  "extra": {
+    "table": "Imputation of Food Stamps/SNAP Receipt", 
+    "universe": "Households", 
+    "title": "Total:"
+  }
 }

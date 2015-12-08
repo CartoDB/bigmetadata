@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08603001", 
     "parent": "us/census/acs/C08603001"
   }, 
-  "name": "\"Travel Time to Work for Workplace Geography\": \"()\" \"60 or more minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "60 or more minutes in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "title": "60 or more minutes"
+  }
 }

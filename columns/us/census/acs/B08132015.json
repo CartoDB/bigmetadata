@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08132001", 
     "parent": "us/census/acs/B08132001"
   }, 
-  "name": "\"Means of Transportation to Work by Time Leaving Home to Go to Work\": \"('Worked outside State of residence',)\" \"4:00 p.m. to 11:59 p.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "4:00 p.m. to 11:59 p.m. and Worked outside State of residence in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Time Leaving Home to Go to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Worked outside State of residence"
+    ], 
+    "title": "4:00 p.m. to 11:59 p.m."
+  }
 }

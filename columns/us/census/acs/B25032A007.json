@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25032A001", 
     "parent": "us/census/acs/B25032A001"
   }, 
-  "name": "\"Units in Structure (White Alone Householder)\": \"()\" \"10 to 19\" in \"Occupied Housing Units With a Householder Who Is White Alone\""
+  "name": "10 to 19 in Occupied Housing Units With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Units in Structure (White Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is White Alone", 
+    "title": "10 to 19"
+  }
 }

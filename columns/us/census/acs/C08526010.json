@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08526001", 
     "parent": "us/census/acs/C08526001"
   }, 
-  "name": "\"Means of Transportation to Work by Industry for Workplace Geography\": \"('Worked at home:',)\" \"Educational services, and health care and social assistance\" in \"Workers 16 Years and Over\""
+  "name": "Educational services, and health care and social assistance within Worked at home in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "Educational services, and health care and social assistance"
+  }
 }

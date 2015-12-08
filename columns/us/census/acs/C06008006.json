@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06008001", 
     "parent": "us/census/acs/C06008001"
   }, 
-  "name": "\"Place of Birth by Marital Status in the United States\": \"()\" \"Born in state of residence:\" in \"Population 15 Years and Over in the United States\""
+  "name": "Born in state of residence: in Population 15 Years and Over in the United States", 
+  "extra": {
+    "table": "Place of Birth by Marital Status in the United States", 
+    "universe": "Population 15 Years and Over in the United States", 
+    "title": "Born in state of residence:"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25068001", 
     "parent": "us/census/acs/B25068021"
   }, 
-  "name": "\"Bedrooms by Gross Rent\": \"('2 bedrooms:', 'With cash rent:')\" \"$200 to $299\" in \"Renter-occupied Housing Units\""
+  "name": "$200 to $299 and 2 bedrooms and With cash rent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Bedrooms by Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "2 bedrooms:", 
+      "With cash rent:"
+    ], 
+    "title": "$200 to $299"
+  }
 }

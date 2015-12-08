@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21001E001", 
     "parent": "us/census/acs/B21001E006"
   }, 
-  "name": "\"Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Native Hawaiian and Other Pacific Islander Alone)\": \"('Male:', '35 to 54 years:')\" \"Nonveteran\" in \"Native Hawaiian and Other Pacific Islander Alone Civilian Population 18 Years and Over\""
+  "name": "Nonveteran and Male and 35 to 54 years in Native Hawaiian and Other Pacific Islander Alone Civilian Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Civilian Population 18 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "35 to 54 years:"
+    ], 
+    "title": "Nonveteran"
+  }
 }

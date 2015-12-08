@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17022001", 
     "parent": "us/census/acs/B17022009"
   }, 
-  "name": "\"Ratio of Income to Poverty Level in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children\": \"('Under 1.30:', 'Other family:')\" \"Male householder, no wife present:\" in \"Families\""
+  "name": "Male householder, no wife present: and Under 1.30 and Other family in Families", 
+  "extra": {
+    "table": "Ratio of Income to Poverty Level in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children", 
+    "universe": "Families", 
+    "ancestors": [
+      "Under 1.30:", 
+      "Other family:"
+    ], 
+    "title": "Male householder, no wife present:"
+  }
 }

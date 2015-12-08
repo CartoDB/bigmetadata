@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27008001", 
     "parent": "us/census/acs/C27008006"
   }, 
-  "name": "\"Tricare/Military Health Coverage by Sex by Age\": \"('Male:', '18 to 64 years:')\" \"No TRICARE/military health coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No TRICARE/military health coverage and Male and 18 to 64 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Tricare/Military Health Coverage by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:", 
+      "18 to 64 years:"
+    ], 
+    "title": "No TRICARE/military health coverage"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Means of Transportation to Work by Industry\": \"()\" \"Total:\" in \"Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08126001"
+  }, 
+  "name": "Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry", 
+    "universe": "Workers 16 Years and Over", 
+    "title": "Total:"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone, Not Hispanic or Latino)\": \"()\" \"Total:\" in \"Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B24010H001"
+  }, 
+  "name": "Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "Civilian Employed White Alone, Not Hispanic or Latino Population 16 Years and Over", 
+    "title": "Total:"
+  }
 }

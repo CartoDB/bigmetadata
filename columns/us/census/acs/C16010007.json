@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C16010001", 
     "parent": "us/census/acs/C16010002"
   }, 
-  "name": "\"Educational Attainment and Employment Status by Language Spoken at Home for the Population 25 Years and Over\": \"('Less than high school graduate:',)\" \"Not in labor force:\" in \"Population 25 Years and Over\""
+  "name": "Not in labor force: and Less than high school graduate in Population 25 Years and Over", 
+  "extra": {
+    "table": "Educational Attainment and Employment Status by Language Spoken at Home for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Less than high school graduate:"
+    ], 
+    "title": "Not in labor force:"
+  }
 }

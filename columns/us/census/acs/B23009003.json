@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23009001", 
     "parent": "us/census/acs/B23009002"
   }, 
-  "name": "\"Presence of Own Children Under 18 Years by Family Type by Number of Workers in Family in the Past 12 Months\": \"('With own children under 18 years:',)\" \"Married-couple family:\" in \"Families\""
+  "name": "Married-couple family: and With own children under 18 years in Families", 
+  "extra": {
+    "table": "Presence of Own Children Under 18 Years by Family Type by Number of Workers in Family in the Past 12 Months", 
+    "universe": "Families", 
+    "ancestors": [
+      "With own children under 18 years:"
+    ], 
+    "title": "Married-couple family:"
+  }
 }

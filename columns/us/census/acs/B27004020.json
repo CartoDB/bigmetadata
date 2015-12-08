@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27004001", 
     "parent": "us/census/acs/B27004018"
   }, 
-  "name": "\"Employer-based Health Insurance by Sex by Age\": \"('Male:', '45 to 54 years:')\" \"No employer-based health insurance\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No employer-based health insurance and Male and 45 to 54 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Employer-based Health Insurance by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:", 
+      "45 to 54 years:"
+    ], 
+    "title": "No employer-based health insurance"
+  }
 }

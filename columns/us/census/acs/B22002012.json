@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B22002001", 
     "parent": "us/census/acs/B22002011"
   }, 
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years by Household Type for Households\": \"('Household received Food Stamps/SNAP in the past 12 months:', 'No children under 18 years:', 'Other family:')\" \"Male householder, no wife present\" in \"Households\""
+  "name": "Male householder, no wife present and Household received Food Stamps/SNAP in the past 12 months and No children under 18 years and Other family in Households", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years by Household Type for Households", 
+    "universe": "Households", 
+    "ancestors": [
+      "Household received Food Stamps/SNAP in the past 12 months:", 
+      "No children under 18 years:", 
+      "Other family:"
+    ], 
+    "title": "Male householder, no wife present"
+  }
 }

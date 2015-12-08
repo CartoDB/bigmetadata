@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010I001", 
     "parent": "us/census/acs/B24010I066"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)\": \"('Female:', 'Natural resources, construction, and maintenance occupations:')\" \"Installation, maintenance, and repair occupations\" in \"Civilian Employed Hispanic or Latino Population 16 Years and Over\""
+  "name": "Installation, maintenance, and repair occupations and Female and Natural resources, construction, and maintenance occupations in Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Natural resources, construction, and maintenance occupations:"
+    ], 
+    "title": "Installation, maintenance, and repair occupations"
+  }
 }

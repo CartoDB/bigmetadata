@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08128001", 
     "parent": "us/census/acs/B08128001"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker\": \"('Worked at home:',)\" \"State government workers\" in \"Workers 16 Years and Over\""
+  "name": "State government workers and Worked at home in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "State government workers"
+  }
 }

@@ -1,3 +1,16 @@
 {
-  "name": "\"Sex by Age by Nativity (Some Other Race Alone)\": \"('Female:', '18 years and over:', 'Foreign born:')\" \"Total:\" in \"People Who Are Some Other Race Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/C05003F001"
+  }, 
+  "name": "Total: and Female and 18 years and over and Foreign born in People Who Are Some Other Race Alone", 
+  "extra": {
+    "table": "Sex by Age by Nativity (Some Other Race Alone)", 
+    "universe": "People Who Are Some Other Race Alone", 
+    "ancestors": [
+      "Female:", 
+      "18 years and over:", 
+      "Foreign born:"
+    ], 
+    "title": "Total:"
+  }
 }

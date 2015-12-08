@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05005001", 
     "parent": "us/census/acs/B05005007"
   }, 
-  "name": "\"Year of Entry by Citizenship Status in the United States\": \"('Entered 1990 to 1999:',)\" \"Foreign born:\" in \"Population Born Outside the United States\""
+  "name": "Foreign born: and Entered 1990 to 1999 in Population Born Outside the United States", 
+  "extra": {
+    "table": "Year of Entry by Citizenship Status in the United States", 
+    "universe": "Population Born Outside the United States", 
+    "ancestors": [
+      "Entered 1990 to 1999:"
+    ], 
+    "title": "Foreign born:"
+  }
 }

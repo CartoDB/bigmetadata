@@ -1,3 +1,11 @@
 {
-  "name": "\"Tenure (White Alone, Not Hispanic or Latino Householder)\": \"()\" \"Total:\" in \"Occupied Housing Units With a Householder Who Is White Alone, Not Hispanic or Latino\""
+  "relationships": {
+    "denominator": "us/census/acs/B25003H001"
+  }, 
+  "name": "Occupied Housing Units With a Householder Who Is White Alone, Not Hispanic or Latino", 
+  "extra": {
+    "table": "Tenure (White Alone, Not Hispanic or Latino Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is White Alone, Not Hispanic or Latino", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25043001", 
     "parent": "us/census/acs/B25043011"
   }, 
-  "name": "\"Tenure by Telephone Service Available by Age of Householder\": \"('Renter occupied:',)\" \"With telephone service available:\" in \"Occupied Housing Units\""
+  "name": "With telephone service available: and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Telephone Service Available by Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "With telephone service available:"
+  }
 }

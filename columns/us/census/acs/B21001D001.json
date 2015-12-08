@@ -1,3 +1,15 @@
 {
-  "name": "\"Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Asian Alone)\": \"('Female:', '65 years and over:')\" \"Total:\" in \"Asian Alone Civilian Population 18 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B21001D001"
+  }, 
+  "name": "Total: and Female and 65 years and over in Asian Alone Civilian Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Asian Alone)", 
+    "universe": "Asian Alone Civilian Population 18 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

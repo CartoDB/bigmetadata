@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27010001", 
     "parent": "us/census/acs/B27010019"
   }, 
-  "name": "\"Types of Health Insurance Coverage by Age\": \"('18 to 34 years:', 'With one type of health insurance coverage:')\" \"With Medicare coverage only\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With Medicare coverage only and 18 to 34 years and With one type of health insurance coverage in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Types of Health Insurance Coverage by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "18 to 34 years:", 
+      "With one type of health insurance coverage:"
+    ], 
+    "title": "With Medicare coverage only"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25011001", 
     "parent": "us/census/acs/B25011017"
   }, 
-  "name": "\"Tenure by Household Type (Including Living Alone) and Age of Householder\": \"('Owner occupied:', 'Nonfamily households:')\" \"Householder not living alone:\" in \"Occupied Housing Units\""
+  "name": "Householder not living alone: and Owner occupied and Nonfamily households in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Type (Including Living Alone) and Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:", 
+      "Nonfamily households:"
+    ], 
+    "title": "Householder not living alone:"
+  }
 }

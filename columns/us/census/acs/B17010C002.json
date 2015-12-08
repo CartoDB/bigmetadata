@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17010C001", 
     "parent": "us/census/acs/B17010C001"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children (American Indian and Alaska Native Alone)\": \"()\" \"Income in the past 12 months below poverty level:\" in \"Families With a Householder Who Is American Indian and Alaska Native Alone\""
+  "name": "Income in the past 12 months below poverty level: in Families With a Householder Who Is American Indian and Alaska Native Alone", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Family Type by Presence of Related Children Under 18 Years by Age of Related Children (American Indian and Alaska Native Alone)", 
+    "universe": "Families With a Householder Who Is American Indian and Alaska Native Alone", 
+    "title": "Income in the past 12 months below poverty level:"
+  }
 }

@@ -1,3 +1,15 @@
 {
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years for Households\": \"('Household did not receive Food Stamps/SNAP in the past 12 months:', 'No children under 18 years:')\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/C22002001"
+  }, 
+  "name": "Total: and Household did not receive Food Stamps/SNAP in the past 12 months and No children under 18 years in Households", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years for Households", 
+    "universe": "Households", 
+    "ancestors": [
+      "Household did not receive Food Stamps/SNAP in the past 12 months:", 
+      "No children under 18 years:"
+    ], 
+    "title": "Total:"
+  }
 }

@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B06011PR001"
   }, 
-  "name": "\"Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Place of Birth in Puerto Rico\": \"('Total:',)\" \"Native; born elsewhere\" in \"Population 15 Years and Over in Puerto Rico With Income\""
+  "name": "Native; born elsewhere and Total in Population 15 Years and Over in Puerto Rico With Income", 
+  "extra": {
+    "table": "Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Place of Birth in Puerto Rico", 
+    "universe": "Population 15 Years and Over in Puerto Rico With Income", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Native; born elsewhere"
+  }
 }

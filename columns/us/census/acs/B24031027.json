@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24031001", 
     "parent": "us/census/acs/B24031001"
   }, 
-  "name": "\"Industry by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over\": \"()\" \"Public administration\" in \"Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Public administration in Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Industry by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over With Earnings", 
+    "title": "Public administration"
+  }
 }

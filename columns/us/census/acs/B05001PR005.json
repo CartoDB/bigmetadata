@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05001PR001", 
     "parent": "us/census/acs/B05001PR001"
   }, 
-  "name": "\"Citizenship Status in Puerto Rico\": \"()\" \"U.S. citizen by naturalization\" in \"Total Population in Puerto Rico\""
+  "name": "U.S. citizen by naturalization in Total Population in Puerto Rico", 
+  "extra": {
+    "table": "Citizenship Status in Puerto Rico", 
+    "universe": "Total Population in Puerto Rico", 
+    "title": "U.S. citizen by naturalization"
+  }
 }

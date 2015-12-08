@@ -1,3 +1,11 @@
 {
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Disability Status for Households\": \"()\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B22010001"
+  }, 
+  "name": "Households", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Disability Status for Households", 
+    "universe": "Households", 
+    "title": "Total:"
+  }
 }

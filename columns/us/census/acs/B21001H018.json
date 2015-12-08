@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21001H001", 
     "parent": "us/census/acs/B21001H001"
   }, 
-  "name": "\"Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (White Alone, Not Hispanic or Latino)\": \"()\" \"Female:\" in \"White Alone, Not Hispanic or Latino Civilian Population 18 Years and Over\""
+  "name": "Female: in White Alone, Not Hispanic or Latino Civilian Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Civilian Population 18 Years and Over", 
+    "title": "Female:"
+  }
 }

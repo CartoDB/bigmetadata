@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06008PR001", 
     "parent": "us/census/acs/B06008PR019"
   }, 
-  "name": "\"Place of Birth by Marital Status in Puerto Rico\": \"('Native; born elsewhere:',)\" \"Never married\" in \"Population 15 Years and Over in Puerto Rico\""
+  "name": "Never married and Native; born elsewhere in Population 15 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Marital Status in Puerto Rico", 
+    "universe": "Population 15 Years and Over in Puerto Rico", 
+    "ancestors": [
+      "Native; born elsewhere:"
+    ], 
+    "title": "Never married"
+  }
 }

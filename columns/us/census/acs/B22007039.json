@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B22007001", 
     "parent": "us/census/acs/B22007033"
   }, 
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Family Type by Number of Workers in Family in the Past 12 Months\": \"('Household did not receive Food Stamps/SNAP in the past 12 months:', 'Other family:')\" \"Female householder, no husband present:\" in \"Families\""
+  "name": "Female householder, no husband present: and Household did not receive Food Stamps/SNAP in the past 12 months and Other family in Families", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Family Type by Number of Workers in Family in the Past 12 Months", 
+    "universe": "Families", 
+    "ancestors": [
+      "Household did not receive Food Stamps/SNAP in the past 12 months:", 
+      "Other family:"
+    ], 
+    "title": "Female householder, no husband present:"
+  }
 }

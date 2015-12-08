@@ -1,3 +1,11 @@
 {
-  "name": "\"Race\": \"()\" \"Total:\" in \"Total Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B02001001"
+  }, 
+  "name": "Total Population", 
+  "extra": {
+    "table": "Race", 
+    "universe": "Total Population", 
+    "title": "Total:"
+  }
 }

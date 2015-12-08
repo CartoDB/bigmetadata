@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08012001", 
     "parent": "us/census/acs/C08012001"
   }, 
-  "name": "\"Sex of Workers by Travel Time to Work\": \"()\" \"Female:\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "Female: in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Sex of Workers by Travel Time to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "title": "Female:"
+  }
 }

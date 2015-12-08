@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05002001", 
     "parent": "us/census/acs/B05002009"
   }, 
-  "name": "\"Place of Birth by Citizenship Status\": \"('Native:', 'Born outside the United States:')\" \"Born abroad of American parent(s)\" in \"Total Population\""
+  "name": "Born abroad of American parent(s) and Native and Born outside the United States in Total Population", 
+  "extra": {
+    "table": "Place of Birth by Citizenship Status", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Native:", 
+      "Born outside the United States:"
+    ], 
+    "title": "Born abroad of American parent(s)"
+  }
 }

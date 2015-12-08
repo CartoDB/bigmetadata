@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07009001", 
     "parent": "us/census/acs/B07009025"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Educational Attainment for Current Residence in the United States\": \"('Moved from different state:',)\" \"Some college or associate's degree\" in \"Population 25 Years and Over in the United States\""
+  "name": "Some college or associate's degree and Moved from different state in Population 25 Years and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Educational Attainment for Current Residence in the United States", 
+    "universe": "Population 25 Years and Over in the United States", 
+    "ancestors": [
+      "Moved from different state:"
+    ], 
+    "title": "Some college or associate's degree"
+  }
 }

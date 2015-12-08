@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27013001", 
     "parent": "us/census/acs/B27013032"
   }, 
-  "name": "\"Private Health Insurance by Work Experience by Sex by Age\": \"('Did not work:',)\" \"Female:\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "Female: and Did not work in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Private Health Insurance by Work Experience by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "ancestors": [
+      "Did not work:"
+    ], 
+    "title": "Female:"
+  }
 }

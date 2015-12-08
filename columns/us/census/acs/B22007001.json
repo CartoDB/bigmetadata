@@ -1,3 +1,11 @@
 {
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Family Type by Number of Workers in Family in the Past 12 Months\": \"()\" \"Total:\" in \"Families\""
+  "relationships": {
+    "denominator": "us/census/acs/B22007001"
+  }, 
+  "name": "Families", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Family Type by Number of Workers in Family in the Past 12 Months", 
+    "universe": "Families", 
+    "title": "Total:"
+  }
 }

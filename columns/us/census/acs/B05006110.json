@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05006001", 
     "parent": "us/census/acs/B05006108"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population in the United States\": \"('Africa:', 'Western Africa:')\" \"Ghana\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Ghana and Africa and Western Africa in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in the United States", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Africa:", 
+      "Western Africa:"
+    ], 
+    "title": "Ghana"
+  }
 }

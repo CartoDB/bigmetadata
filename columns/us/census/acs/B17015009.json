@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17015001", 
     "parent": "us/census/acs/B17015007"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Family Type by Social Security Income by Supplemental Security Income (SSI) and Cash Public Assistance Income\": \"('Income in the past 12 months below poverty level:', 'Married-couple family:', 'Without Social Security income in the past 12 months:')\" \"Without SSI or cash public assistance income in the past 12 months\" in \"Families\""
+  "name": "Without SSI or cash public assistance income in the past 12 months and Income in the past 12 months below poverty level and Married-couple family and Without Social Security income in the past 12 months in Families", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Family Type by Social Security Income by Supplemental Security Income (SSI) and Cash Public Assistance Income", 
+    "universe": "Families", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      "Married-couple family:", 
+      "Without Social Security income in the past 12 months:"
+    ], 
+    "title": "Without SSI or cash public assistance income in the past 12 months"
+  }
 }

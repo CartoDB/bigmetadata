@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27010001", 
     "parent": "us/census/acs/B27010010"
   }, 
-  "name": "\"Types of Health Insurance Coverage by Age\": \"('Under 18 years:', 'With two or more types of health insurance coverage:')\" \"With employer-based and direct-purchase coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With employer-based and direct-purchase coverage and Under 18 years and With two or more types of health insurance coverage in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Types of Health Insurance Coverage by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Under 18 years:", 
+      "With two or more types of health insurance coverage:"
+    ], 
+    "title": "With employer-based and direct-purchase coverage"
+  }
 }

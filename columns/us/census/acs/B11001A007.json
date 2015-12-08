@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001A001", 
     "parent": "us/census/acs/B11001A001"
   }, 
-  "name": "\"Household Type (Including Living Alone) (White Alone)\": \"()\" \"Nonfamily households:\" in \"Households With a Householder Who Is White Alone\""
+  "name": "Nonfamily households: in Households With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (White Alone)", 
+    "universe": "Households With a Householder Who Is White Alone", 
+    "title": "Nonfamily households:"
+  }
 }

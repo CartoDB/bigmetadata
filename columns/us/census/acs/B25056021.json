@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25056001", 
     "parent": "us/census/acs/B25056002"
   }, 
-  "name": "\"Contract Rent\": \"('With cash rent:',)\" \"$1,250 to $1,499\" in \"Renter-occupied Housing Units\""
+  "name": "$1,250 to $1,499 and With cash rent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Contract Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "With cash rent:"
+    ], 
+    "title": "$1,250 to $1,499"
+  }
 }

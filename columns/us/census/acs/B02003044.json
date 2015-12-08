@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02003001", 
     "parent": "us/census/acs/B02003026"
   }, 
-  "name": "\"Detailed Race\": \"('Population of two or more races:', 'Population of three races:')\" \"American Indian and Alaska Native; Asian; Some other race\" in \"Total Population\""
+  "name": "American Indian and Alaska Native; Asian; Some other race and Population of two or more races and Population of three races in Total Population", 
+  "extra": {
+    "table": "Detailed Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Population of two or more races:", 
+      "Population of three races:"
+    ], 
+    "title": "American Indian and Alaska Native; Asian; Some other race"
+  }
 }

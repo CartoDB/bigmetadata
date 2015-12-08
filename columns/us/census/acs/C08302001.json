@@ -1,3 +1,11 @@
 {
-  "name": "\"Time Leaving Home to Go to Work\": \"()\" \"Total:\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "relationships": {
+    "denominator": "us/census/acs/C08302001"
+  }, 
+  "name": "Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Time Leaving Home to Go to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002C001", 
     "parent": "us/census/acs/B15002C011"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (American Indian and Alaska Native Alone)\": \"('Female:',)\" \"GED or alternative credential\" in \"American Indian and Alaska Native Alone Population 25 Years and Over\""
+  "name": "GED or alternative credential and Female in American Indian and Alaska Native Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "GED or alternative credential"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08201001", 
     "parent": "us/census/acs/C08201001"
   }, 
-  "name": "\"Household Size by Vehicles Available\": \"('4-or-more-person household:',)\" \"2 vehicles available\" in \"Households\""
+  "name": "2 vehicles available and 4-or-more-person household in Households", 
+  "extra": {
+    "table": "Household Size by Vehicles Available", 
+    "universe": "Households", 
+    "ancestors": [
+      "4-or-more-person household:"
+    ], 
+    "title": "2 vehicles available"
+  }
 }

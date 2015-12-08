@@ -1,3 +1,14 @@
 {
-  "name": "\"Period of Naturalization\": \"('2.0  and over:',)\" \"Total:\" in \"Foreign-born Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B05011001"
+  }, 
+  "name": "Total: and 2.0  and over in Foreign-born Population", 
+  "extra": {
+    "table": "Period of Naturalization", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "2.0  and over:"
+    ], 
+    "title": "Total:"
+  }
 }

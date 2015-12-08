@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11004001", 
     "parent": "us/census/acs/B11004016"
   }, 
-  "name": "\"Family Type by Presence and Age of Related Children Under 18 Years\": \"('Other family:', 'Female householder, no husband present:', 'With related children under 18 years:')\" \"Under 6 years only\" in \"Families\""
+  "name": "Under 6 years only and Other family and Female householder, no husband present and With related children under 18 years in Families", 
+  "extra": {
+    "table": "Family Type by Presence and Age of Related Children Under 18 Years", 
+    "universe": "Families", 
+    "ancestors": [
+      "Other family:", 
+      "Female householder, no husband present:", 
+      "With related children under 18 years:"
+    ], 
+    "title": "Under 6 years only"
+  }
 }

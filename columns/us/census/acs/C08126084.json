@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08126001", 
     "parent": "us/census/acs/C08126071"
   }, 
-  "name": "\"Means of Transportation to Work by Industry\": \"('Worked at home:',)\" \"Armed forces\" in \"Workers 16 Years and Over\""
+  "name": "Armed forces and Worked at home in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "Armed forces"
+  }
 }

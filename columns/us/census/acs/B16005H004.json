@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16005H001", 
     "parent": "us/census/acs/B16005H002"
   }, 
-  "name": "\"Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (White Alone, Not Hispanic or Latino)\": \"('Native:',)\" \"Speak another language\" in \"White Alone, Not Hispanic or Latino Population 5 Years and Over\""
+  "name": "Speak another language and Native in White Alone, Not Hispanic or Latino Population 5 Years and Over", 
+  "extra": {
+    "table": "Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population 5 Years and Over", 
+    "ancestors": [
+      "Native:"
+    ], 
+    "title": "Speak another language"
+  }
 }

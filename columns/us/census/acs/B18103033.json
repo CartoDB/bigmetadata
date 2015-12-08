@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18103001", 
     "parent": "us/census/acs/B18103031"
   }, 
-  "name": "\"Sex by Age by Vision Difficulty\": \"('Female:', '35 to 64 years:')\" \"No vision difficulty\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No vision difficulty and Female and 35 to 64 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Sex by Age by Vision Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "35 to 64 years:"
+    ], 
+    "title": "No vision difficulty"
+  }
 }

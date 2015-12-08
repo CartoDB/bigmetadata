@@ -1,3 +1,12 @@
 {
-  "name": "\"Aggregate Income Deficit (Dollars) in the Past 12 Months of Unrelated Individuals by Sex\": \"('Income in the past 12 months at or above poverty level:',)\" \"Aggregate income deficit in the past 12 months of unrelated individuals (dollars):\" in \"Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined\""
+  "relationships": {}, 
+  "name": "Aggregate income deficit in the past 12 months of unrelated individuals (dollars): and Income in the past 12 months at or above poverty level in Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Aggregate Income Deficit (Dollars) in the Past 12 Months of Unrelated Individuals by Sex", 
+    "universe": "Unrelated Individuals 15 Years and Over for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:"
+    ], 
+    "title": "Aggregate income deficit in the past 12 months of unrelated individuals (dollars):"
+  }
 }

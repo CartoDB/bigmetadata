@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25104001", 
     "parent": "us/census/acs/B25104001"
   }, 
-  "name": "\"Monthly Housing Costs\": \"()\" \"$2,000 or more\" in \"Occupied Housing Units\""
+  "name": "$2,000 or more in Occupied Housing Units", 
+  "extra": {
+    "table": "Monthly Housing Costs", 
+    "universe": "Occupied Housing Units", 
+    "title": "$2,000 or more"
+  }
 }

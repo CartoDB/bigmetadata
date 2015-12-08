@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C20005E001", 
     "parent": "us/census/acs/C20005E003"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Native Hawaiian and Other Pacific Islander Alone)\": \"('Male:', 'Worked full-time, year-round in the past 12 months:')\" \"No earnings\" in \"Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over\""
+  "name": "No earnings and Male and Worked full-time, year-round in the past 12 months in Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Worked full-time, year-round in the past 12 months:"
+    ], 
+    "title": "No earnings"
+  }
 }

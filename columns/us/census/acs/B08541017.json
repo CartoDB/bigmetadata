@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08541001", 
     "parent": "us/census/acs/B08541016"
   }, 
-  "name": "\"Means of Transportation to Work by Vehicles Available for Workplace Geography\": \"('Public transportation (excluding taxicab):',)\" \"No vehicle available\" in \"Workers 16 Years and Over in Households\""
+  "name": "No vehicle available within Public transportation (excluding taxicab) in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Vehicles Available for Workplace Geography", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "No vehicle available"
+  }
 }

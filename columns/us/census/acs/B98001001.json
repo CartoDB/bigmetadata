@@ -1,3 +1,9 @@
 {
-  "name": "\"Unweighted Housing Unit Sample\": \"()\" \"Initial addresses selected\" in \"Housing Units\""
+  "relationships": {}, 
+  "name": "Initial addresses selected in Housing Units", 
+  "extra": {
+    "table": "Unweighted Housing Unit Sample", 
+    "universe": "Housing Units", 
+    "title": "Initial addresses selected"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12005001", 
     "parent": "us/census/acs/B12005001"
   }, 
-  "name": "\"Marital Status by Nativity\": \"()\" \"Never married:\" in \"Population 15 Years and Over\""
+  "name": "Never married: in Population 15 Years and Over", 
+  "extra": {
+    "table": "Marital Status by Nativity", 
+    "universe": "Population 15 Years and Over", 
+    "title": "Never married:"
+  }
 }

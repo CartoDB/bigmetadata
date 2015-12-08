@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06003PR001", 
     "parent": "us/census/acs/C06003PR004"
   }, 
-  "name": "\"Place of Birth by Sex in Puerto Rico\": \"('Born in Puerto Rico:',)\" \"Male\" in \"Total Population in Puerto Rico\""
+  "name": "Male and Born in Puerto Rico in Total Population in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Sex in Puerto Rico", 
+    "universe": "Total Population in Puerto Rico", 
+    "ancestors": [
+      "Born in Puerto Rico:"
+    ], 
+    "title": "Male"
+  }
 }

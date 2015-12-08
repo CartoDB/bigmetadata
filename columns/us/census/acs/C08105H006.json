@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08105H001", 
     "parent": "us/census/acs/C08105H001"
   }, 
-  "name": "\"Means of Transportation to Work (White Alone, Not Hispanic or Latino)\": \"()\" \"Worked at home\" in \"White Alone, Not Hispanic or Latino Workers 16 Years and Over\""
+  "name": "Worked at home in White Alone, Not Hispanic or Latino Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Workers 16 Years and Over", 
+    "title": "Worked at home"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06010PR001", 
     "parent": "us/census/acs/C06010PR036"
   }, 
-  "name": "\"Place of Birth by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) in Puerto Rico\": \"('Native; born elsewhere:', 'With income:')\" \"$25,000 to $34,999\" in \"Population 15 Years and Over in Puerto Rico\""
+  "name": "$25,000 to $34,999 and Native; born elsewhere and With income in Population 15 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) in Puerto Rico", 
+    "universe": "Population 15 Years and Over in Puerto Rico", 
+    "ancestors": [
+      "Native; born elsewhere:", 
+      "With income:"
+    ], 
+    "title": "$25,000 to $34,999"
+  }
 }

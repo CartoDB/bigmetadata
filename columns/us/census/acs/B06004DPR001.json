@@ -1,3 +1,11 @@
 {
-  "name": "\"Place of Birth (Asian Alone) in Puerto Rico\": \"()\" \"Total:\" in \"Asian Alone Population in Puerto Rico\""
+  "relationships": {
+    "denominator": "us/census/acs/B06004DPR001"
+  }, 
+  "name": "Asian Alone Population in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth (Asian Alone) in Puerto Rico", 
+    "universe": "Asian Alone Population in Puerto Rico", 
+    "title": "Total:"
+  }
 }

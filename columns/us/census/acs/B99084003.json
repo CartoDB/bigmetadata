@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99084001", 
     "parent": "us/census/acs/B99084002"
   }, 
-  "name": "\"Imputation of Travel Time to Work\": \"('Did not work at home:', None)\" \"Imputed\" in \"Workers 16 Years and Over\""
+  "name": "Imputed and Did not work at home in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Imputation of Travel Time to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Did not work at home:", 
+      null
+    ], 
+    "title": "Imputed"
+  }
 }

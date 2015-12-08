@@ -1,3 +1,14 @@
 {
-  "name": "\"Households With Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Presence of Parent of Grandchildren\": \"('Living in renter-occupied housing unit:',)\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B10063001"
+  }, 
+  "name": "Total: and Living in renter-occupied housing unit in Households", 
+  "extra": {
+    "table": "Households With Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Presence of Parent of Grandchildren", 
+    "universe": "Households", 
+    "ancestors": [
+      "Living in renter-occupied housing unit:"
+    ], 
+    "title": "Total:"
+  }
 }

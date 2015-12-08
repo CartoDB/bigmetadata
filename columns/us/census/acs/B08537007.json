@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08537001", 
     "parent": "us/census/acs/B08537001"
   }, 
-  "name": "\"Means of Transportation to Work by Tenure for Workplace Geography\": \"()\" \"Car, truck, or van - carpooled:\" in \"Workers 16 Years and Over in Households\""
+  "name": "Car, truck, or van - carpooled: in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Tenure for Workplace Geography", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "title": "Car, truck, or van - carpooled:"
+  }
 }

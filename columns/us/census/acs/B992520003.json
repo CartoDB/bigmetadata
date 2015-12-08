@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992520001", 
     "parent": "us/census/acs/B992520001"
   }, 
-  "name": "\"Imputation of Price Asked\": \"()\" \"Not imputed\" in \"Vacant-for-sale-only and Sold, Not Occupied Housing Units\""
+  "name": "Not imputed in Vacant-for-sale-only and Sold, Not Occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Price Asked", 
+    "universe": "Vacant-for-sale-only and Sold, Not Occupied Housing Units", 
+    "title": "Not imputed"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08006001", 
     "parent": "us/census/acs/B08006035"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work\": \"('Female:',)\" \"Bicycle\" in \"Workers 16 Years and Over\""
+  "name": "Bicycle and Female in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Bicycle"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04006001", 
     "parent": "us/census/acs/B04006001"
   }, 
-  "name": "\"People Reporting Ancestry\": \"()\" \"Hungarian\" in \"Total Population\""
+  "name": "Hungarian in Total Population", 
+  "extra": {
+    "table": "People Reporting Ancestry", 
+    "universe": "Total Population", 
+    "title": "Hungarian"
+  }
 }

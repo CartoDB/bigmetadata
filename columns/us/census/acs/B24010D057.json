@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010D001", 
     "parent": "us/census/acs/B24010D055"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Asian Alone)\": \"('Female:', 'Service occupations:')\" \"Protective service occupations:\" in \"Civilian Employed Asian Alone Population 16 Years and Over\""
+  "name": "Protective service occupations: and Female and Service occupations in Civilian Employed Asian Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Asian Alone)", 
+    "universe": "Civilian Employed Asian Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:"
+    ], 
+    "title": "Protective service occupations:"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18131001", 
     "parent": "us/census/acs/B18131071"
   }, 
-  "name": "\"Age by Ratio of Income to Poverty Level in the Past 12 Months by Disability Status and Type\": \"('18 years and over:', 'Under .50:', 'With a disability:')\" \"With an independent living difficulty\" in \"Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined\""
+  "name": "With an independent living difficulty and 18 years and over and Under .50 and With a disability in Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Age by Ratio of Income to Poverty Level in the Past 12 Months by Disability Status and Type", 
+    "universe": "Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "18 years and over:", 
+      "Under .50:", 
+      "With a disability:"
+    ], 
+    "title": "With an independent living difficulty"
+  }
 }

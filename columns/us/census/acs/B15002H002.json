@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002H001", 
     "parent": "us/census/acs/B15002H001"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (White Alone, Not Hispanic or Latino)\": \"()\" \"Male:\" in \"White Alone, Not Hispanic or Latino Population 25 Years and Over\""
+  "name": "Male: in White Alone, Not Hispanic or Latino Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population 25 Years and Over", 
+    "title": "Male:"
+  }
 }

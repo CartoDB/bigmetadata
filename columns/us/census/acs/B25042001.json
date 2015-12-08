@@ -1,3 +1,11 @@
 {
-  "name": "\"Tenure by Bedrooms\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25042001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Bedrooms", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

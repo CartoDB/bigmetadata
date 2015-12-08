@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C02003001", 
     "parent": "us/census/acs/C02003002"
   }, 
-  "name": "\"Detailed Race\": \"('Population of one race:',)\" \"White\" in \"Total Population\""
+  "name": "White and Population of one race in Total Population", 
+  "extra": {
+    "table": "Detailed Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Population of one race:"
+    ], 
+    "title": "White"
+  }
 }

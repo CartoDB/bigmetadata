@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010I001", 
     "parent": "us/census/acs/B24010I070"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)\": \"('Female:', 'Production, transportation, and material moving occupations:')\" \"Material moving occupations\" in \"Civilian Employed Hispanic or Latino Population 16 Years and Over\""
+  "name": "Material moving occupations and Female and Production, transportation, and material moving occupations in Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Production, transportation, and material moving occupations:"
+    ], 
+    "title": "Material moving occupations"
+  }
 }

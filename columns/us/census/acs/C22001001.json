@@ -1,3 +1,14 @@
 {
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months for Households\": \"('Household did not receive Food Stamps/SNAP in the past 12 months:',)\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/C22001001"
+  }, 
+  "name": "Total: and Household did not receive Food Stamps/SNAP in the past 12 months in Households", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months for Households", 
+    "universe": "Households", 
+    "ancestors": [
+      "Household did not receive Food Stamps/SNAP in the past 12 months:"
+    ], 
+    "title": "Total:"
+  }
 }

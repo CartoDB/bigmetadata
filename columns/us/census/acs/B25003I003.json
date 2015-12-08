@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25003I001", 
     "parent": "us/census/acs/B25003I001"
   }, 
-  "name": "\"Tenure (Hispanic or Latino Householder)\": \"()\" \"Renter occupied\" in \"Occupied Housing Units With a Householder Who Is Hispanic or Latino\""
+  "name": "Renter occupied in Occupied Housing Units With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Tenure (Hispanic or Latino Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Hispanic or Latino", 
+    "title": "Renter occupied"
+  }
 }

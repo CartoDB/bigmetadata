@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19055001", 
     "parent": "us/census/acs/B19055001"
   }, 
-  "name": "\"Social Security Income in the Past 12 Months for Households\": \"()\" \"With Social Security income\" in \"Households\""
+  "name": "With Social Security income in Households", 
+  "extra": {
+    "table": "Social Security Income in the Past 12 Months for Households", 
+    "universe": "Households", 
+    "title": "With Social Security income"
+  }
 }

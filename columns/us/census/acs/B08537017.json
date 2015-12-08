@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08537001", 
     "parent": "us/census/acs/B08537016"
   }, 
-  "name": "\"Means of Transportation to Work by Tenure for Workplace Geography\": \"('Taxicab, motorcycle, bicycle, or other means:',)\" \"Householder lived in owner-occupied housing units\" in \"Workers 16 Years and Over in Households\""
+  "name": "Householder lived in owner-occupied housing units within Taxicab, motorcycle, bicycle, or other means in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Tenure for Workplace Geography", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, or other means:"
+    ], 
+    "title": "Householder lived in owner-occupied housing units"
+  }
 }

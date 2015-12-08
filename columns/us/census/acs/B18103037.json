@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18103001", 
     "parent": "us/census/acs/B18103021"
   }, 
-  "name": "\"Sex by Age by Vision Difficulty\": \"('Female:',)\" \"75 years and over:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "75 years and over: and Female in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Sex by Age by Vision Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "75 years and over:"
+  }
 }

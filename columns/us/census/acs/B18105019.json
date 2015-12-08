@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18105001", 
     "parent": "us/census/acs/B18105018"
   }, 
-  "name": "\"Sex by Age by Ambulatory Difficulty\": \"('Female:',)\" \"5 to 17 years:\" in \"Civilian Noninstitutionalized Population 5 Years and Over\""
+  "name": "5 to 17 years: and Female in Civilian Noninstitutionalized Population 5 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Ambulatory Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population 5 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "5 to 17 years:"
+  }
 }

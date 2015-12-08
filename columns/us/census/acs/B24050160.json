@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24050001", 
     "parent": "us/census/acs/B24050158"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Production, transportation, and material moving occupations:', 'Arts, entertainment, and recreation, and accommodation and food services:')\" \"Accommodation and food services\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Accommodation and food services and Production, transportation, and material moving occupations and Arts, entertainment, and recreation, and accommodation and food services in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Production, transportation, and material moving occupations:", 
+      "Arts, entertainment, and recreation, and accommodation and food services:"
+    ], 
+    "title": "Accommodation and food services"
+  }
 }

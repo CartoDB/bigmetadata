@@ -1,3 +1,14 @@
 {
-  "name": "\"Tenure by Units in Structure\": \"('Renter-occupied housing units:',)\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/C25032001"
+  }, 
+  "name": "Total: and Renter-occupied housing units in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter-occupied housing units:"
+    ], 
+    "title": "Total:"
+  }
 }

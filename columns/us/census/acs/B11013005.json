@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11013001", 
     "parent": "us/census/acs/B11013001"
   }, 
-  "name": "\"Subfamily Type by Presence of Own Children Under 18 Years\": \"()\" \"Mother-child subfamily\" in \"Subfamilies\""
+  "name": "Mother-child subfamily in Subfamilies", 
+  "extra": {
+    "table": "Subfamily Type by Presence of Own Children Under 18 Years", 
+    "universe": "Subfamilies", 
+    "title": "Mother-child subfamily"
+  }
 }

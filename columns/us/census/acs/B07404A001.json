@@ -1,3 +1,14 @@
 {
-  "name": "\"Geographical Mobility in the Past Year (White Alone) for Residence 1 Year Ago in the United States\": \"('Moved to different state:',)\" \"Total living in area 1 year ago:\" in \"White Alone Population 1 Year and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B07404A001"
+  }, 
+  "name": "Total living in area 1 year ago: within Moved to different state in White Alone Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (White Alone) for Residence 1 Year Ago in the United States", 
+    "universe": "White Alone Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved to different state:"
+    ], 
+    "title": "Total living in area 1 year ago:"
+  }
 }

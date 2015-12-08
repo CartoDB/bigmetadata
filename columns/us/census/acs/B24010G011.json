@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010G001", 
     "parent": "us/census/acs/B24010G003"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Two or More Races)\": \"('Male:', 'Management, business, science, and arts occupations:')\" \"Education, legal, community service, arts, and media occupations:\" in \"Civilian Employed Two or More Races Population 16 Years and Over\""
+  "name": "Education, legal, community service, arts, and media occupations: and Male and Management, business, science, and arts occupations in Civilian Employed Two or More Races Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Two or More Races)", 
+    "universe": "Civilian Employed Two or More Races Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Management, business, science, and arts occupations:"
+    ], 
+    "title": "Education, legal, community service, arts, and media occupations:"
+  }
 }

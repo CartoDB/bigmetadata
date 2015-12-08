@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02005001", 
     "parent": "us/census/acs/B02005039"
   }, 
-  "name": "\"American Indian and Alaska Native Alone for Selected Tribal Groupings\": \"('Alaska Native tribes, specified:',)\" \"Tlingit-Haida\" in \"People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported\""
+  "name": "Tlingit-Haida and Alaska Native tribes, specified in People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported", 
+  "extra": {
+    "table": "American Indian and Alaska Native Alone for Selected Tribal Groupings", 
+    "universe": "People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported", 
+    "ancestors": [
+      "Alaska Native tribes, specified:"
+    ], 
+    "title": "Tlingit-Haida"
+  }
 }

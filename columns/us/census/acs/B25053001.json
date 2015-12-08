@@ -1,3 +1,11 @@
 {
-  "name": "\"Tenure by Kitchen Facilities\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25053001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Kitchen Facilities", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

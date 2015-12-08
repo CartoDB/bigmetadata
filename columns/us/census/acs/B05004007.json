@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B05004001"
   }, 
-  "name": "\"Median Age by Citizenship Status by Sex\": \"()\" \"Foreign born:\" in \"Total Population\""
+  "name": "Foreign born: in Total Population", 
+  "extra": {
+    "table": "Median Age by Citizenship Status by Sex", 
+    "universe": "Total Population", 
+    "title": "Foreign born:"
+  }
 }

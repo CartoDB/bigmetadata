@@ -1,3 +1,11 @@
 {
-  "name": "\"Geographical Mobility in the Past Year (Native Hawaiian and Other Pacific Islander Alone) for Current Residence in the United States\": \"()\" \"Total:\" in \"Native Hawaiian and Other Pacific Islander Alone Population 1 Year and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B07004E001"
+  }, 
+  "name": "Native Hawaiian and Other Pacific Islander Alone Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Native Hawaiian and Other Pacific Islander Alone) for Current Residence in the United States", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population 1 Year and Over in the United States", 
+    "title": "Total:"
+  }
 }

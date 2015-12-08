@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (White Alone Householder)\": \"()\" \"Median household income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"Households With a Householder Who Is White Alone\""
+  "relationships": {}, 
+  "name": "Median household income in the past 12 months (in 2010 inflation-adjusted dollars) in Households With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Median Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (White Alone Householder)", 
+    "universe": "Households With a Householder Who Is White Alone", 
+    "title": "Median household income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05006001", 
     "parent": "us/census/acs/B05006124"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population in the United States\": \"('Americas:', 'Latin America:', 'Caribbean:')\" \"Jamaica\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Jamaica and Americas and Latin America and Caribbean in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in the United States", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Americas:", 
+      "Latin America:", 
+      "Caribbean:"
+    ], 
+    "title": "Jamaica"
+  }
 }

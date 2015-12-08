@@ -1,3 +1,11 @@
 {
-  "name": "\"Tenure by Year Householder Moved Into Unit\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25038001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Householder Moved Into Unit", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

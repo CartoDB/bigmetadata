@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17018001", 
     "parent": "us/census/acs/B17018003"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Household Type by Educational Attainment of Householder\": \"('Income in the past 12 months below poverty level:', 'Married-couple family:', None)\" \"Some college, associate's degree\" in \"Families\""
+  "name": "Some college, associate's degree and Income in the past 12 months below poverty level and Married-couple family in Families", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Household Type by Educational Attainment of Householder", 
+    "universe": "Families", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      "Married-couple family:", 
+      null
+    ], 
+    "title": "Some college, associate's degree"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25068001", 
     "parent": "us/census/acs/B25068030"
   }, 
-  "name": "\"Bedrooms by Gross Rent\": \"('3 or more bedrooms:', 'With cash rent:')\" \"$300 to $499\" in \"Renter-occupied Housing Units\""
+  "name": "$300 to $499 and 3 or more bedrooms and With cash rent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Bedrooms by Gross Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "3 or more bedrooms:", 
+      "With cash rent:"
+    ], 
+    "title": "$300 to $499"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age at First Marriage\": \"()\" \"Female\" in \"Population 15 to 54 Years\""
+  "relationships": {}, 
+  "name": "Female in Population 15 to 54 Years", 
+  "extra": {
+    "table": "Median Age at First Marriage", 
+    "universe": "Population 15 to 54 Years", 
+    "title": "Female"
+  }
 }

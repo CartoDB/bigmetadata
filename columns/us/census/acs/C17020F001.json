@@ -1,3 +1,14 @@
 {
-  "name": "\"Poverty Status in the Past 12 Months by Age (Some Other Race Alone)\": \"('Income in the past 12 months at or above poverty level:',)\" \"Total:\" in \"Some Other Race Alone Population for Whom Poverty Status Is Determined\""
+  "relationships": {
+    "denominator": "us/census/acs/C17020F001"
+  }, 
+  "name": "Total: and Income in the past 12 months at or above poverty level in Some Other Race Alone Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Age (Some Other Race Alone)", 
+    "universe": "Some Other Race Alone Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:"
+    ], 
+    "title": "Total:"
+  }
 }

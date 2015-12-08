@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25127001", 
     "parent": "us/census/acs/B25127067"
   }, 
-  "name": "\"Tenure by Year Structure Built by Units in Structure\": \"('Renter occupied:', 'Built 1939 or earlier:')\" \"Mobile home, boat, RV, van, etc.\" in \"Occupied Housing Units\""
+  "name": "Mobile home, boat, RV, van, etc. and Renter occupied and Built 1939 or earlier in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Structure Built by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "Built 1939 or earlier:"
+    ], 
+    "title": "Mobile home, boat, RV, van, etc."
+  }
 }

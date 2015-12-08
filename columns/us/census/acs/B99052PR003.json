@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99052PR001", 
     "parent": "us/census/acs/B99052PR002"
   }, 
-  "name": "\"Imputation of Year of Entry for Population Born Outside Puerto Rico\": \"('Native:',)\" \"Imputed\" in \"Population Born Outside Puerto Rico\""
+  "name": "Imputed and Native in Population Born Outside Puerto Rico", 
+  "extra": {
+    "table": "Imputation of Year of Entry for Population Born Outside Puerto Rico", 
+    "universe": "Population Born Outside Puerto Rico", 
+    "ancestors": [
+      "Native:"
+    ], 
+    "title": "Imputed"
+  }
 }

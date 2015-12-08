@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B07011001"
   }, 
-  "name": "\"Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Geographical Mobility in the Past Year for Current Residence in the United States\": \"('Total:',)\" \"Moved from abroad\" in \"Population 15 Years and Over in the United States With Income\""
+  "name": "Moved from abroad and Total in Population 15 Years and Over in the United States With Income", 
+  "extra": {
+    "table": "Median Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Geographical Mobility in the Past Year for Current Residence in the United States", 
+    "universe": "Population 15 Years and Over in the United States With Income", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Moved from abroad"
+  }
 }

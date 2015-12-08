@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003F001", 
     "parent": "us/census/acs/B05003F019"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Some Other Race Alone)\": \"('Female:', '18 years and over:')\" \"Foreign born:\" in \"People Who Are Some Other Race Alone\""
+  "name": "Foreign born: and Female and 18 years and over in People Who Are Some Other Race Alone", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Some Other Race Alone)", 
+    "universe": "People Who Are Some Other Race Alone", 
+    "ancestors": [
+      "Female:", 
+      "18 years and over:"
+    ], 
+    "title": "Foreign born:"
+  }
 }

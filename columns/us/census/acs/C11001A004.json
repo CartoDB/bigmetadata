@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C11001A001", 
     "parent": "us/census/acs/C11001A002"
   }, 
-  "name": "\"Household Type (White Alone)\": \"('Family households:',)\" \"Other family\" in \"Households With a Householder Who Is White Alone\""
+  "name": "Other family and Family households in Households With a Householder Who Is White Alone", 
+  "extra": {
+    "table": "Household Type (White Alone)", 
+    "universe": "Households With a Householder Who Is White Alone", 
+    "ancestors": [
+      "Family households:"
+    ], 
+    "title": "Other family"
+  }
 }

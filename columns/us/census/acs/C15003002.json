@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15003001", 
     "parent": "us/census/acs/C15003001"
   }, 
-  "name": "\"Educational Attainment for the Population 25 Years and Over\": \"()\" \"No schooling completed\" in \"Population 25 Years and Over\""
+  "name": "No schooling completed in Population 25 Years and Over", 
+  "extra": {
+    "table": "Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "title": "No schooling completed"
+  }
 }

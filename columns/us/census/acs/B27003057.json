@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27003001", 
     "parent": "us/census/acs/B27003055"
   }, 
-  "name": "\"Public Health Insurance Status by Sex by Age\": \"('Female:', '75 years and over:')\" \"No public coverage\" in \"Civilian Noninstitutionalized Population\""
+  "name": "No public coverage and Female and 75 years and over in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Public Health Insurance Status by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "75 years and over:"
+    ], 
+    "title": "No public coverage"
+  }
 }

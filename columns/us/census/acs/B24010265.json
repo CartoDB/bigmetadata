@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010264"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Natural resources, construction, and maintenance occupations:', 'Farming, fishing, and forestry occupations:')\" \"First-line supervisors of farming, fishing, and forestry workers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "First-line supervisors of farming, fishing, and forestry workers and Female and Natural resources, construction, and maintenance occupations and Farming, fishing, and forestry occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Natural resources, construction, and maintenance occupations:", 
+      "Farming, fishing, and forestry occupations:"
+    ], 
+    "title": "First-line supervisors of farming, fishing, and forestry workers"
+  }
 }

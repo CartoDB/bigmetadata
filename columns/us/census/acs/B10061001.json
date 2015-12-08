@@ -1,3 +1,14 @@
 {
-  "name": "\"Tenure of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent\": \"('In mobile homes and all other types of units:',)\" \"Total:\" in \"Grandparents Living With Own Grandchildren Under 18 Years in Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B10061001"
+  }, 
+  "name": "Total: and In mobile homes and all other types of units in Grandparents Living With Own Grandchildren Under 18 Years in Households", 
+  "extra": {
+    "table": "Tenure of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent", 
+    "universe": "Grandparents Living With Own Grandchildren Under 18 Years in Households", 
+    "ancestors": [
+      "In mobile homes and all other types of units:"
+    ], 
+    "title": "Total:"
+  }
 }

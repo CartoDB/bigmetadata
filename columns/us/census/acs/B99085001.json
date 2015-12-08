@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Vehicles Available for Workers\": \"()\" \"Total:\" in \"Workers 16 Years and Over in Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B99085001"
+  }, 
+  "name": "Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Imputation of Vehicles Available for Workers", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "title": "Total:"
+  }
 }

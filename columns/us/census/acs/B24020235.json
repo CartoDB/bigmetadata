@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020233"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Service occupations:', 'Building and grounds cleaning and maintenance occupations:')\" \"First-line supervisors of landscaping, lawn service, and groundskeeping workers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "First-line supervisors of landscaping, lawn service, and groundskeeping workers and Female and Service occupations and Building and grounds cleaning and maintenance occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:", 
+      "Building and grounds cleaning and maintenance occupations:"
+    ], 
+    "title": "First-line supervisors of landscaping, lawn service, and groundskeeping workers"
+  }
 }

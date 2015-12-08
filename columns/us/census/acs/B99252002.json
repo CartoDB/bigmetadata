@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99252001", 
     "parent": "us/census/acs/B99252001"
   }, 
-  "name": "\"Imputation of Tenure\": \"()\" \"Imputed\" in \"Occupied Housing Units\""
+  "name": "Imputed in Occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Tenure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Imputed"
+  }
 }

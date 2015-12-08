@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010203"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:', 'Arts, design, entertainment, sports, and media occupations:')\" \"Entertainers and performers, sports, and related workers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Entertainers and performers, sports, and related workers and Female and Management, business, science, and arts occupations and Education, legal, community service, arts, and media occupations and Arts, design, entertainment, sports, and media occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Education, legal, community service, arts, and media occupations:", 
+      "Arts, design, entertainment, sports, and media occupations:"
+    ], 
+    "title": "Entertainers and performers, sports, and related workers"
+  }
 }

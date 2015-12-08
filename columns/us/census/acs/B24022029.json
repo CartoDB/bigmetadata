@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24022001", 
     "parent": "us/census/acs/B24022027"
   }, 
-  "name": "\"Sex by Occupation and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Male:', 'Sales and office occupations:')\" \"Office and administrative support occupations\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Office and administrative support occupations and Male and Sales and office occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Sex by Occupation and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Male:", 
+      "Sales and office occupations:"
+    ], 
+    "title": "Office and administrative support occupations"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age by Geographical Mobility in the Past Year for Current Residence in Puerto Rico\": \"()\" \"Total:\" in \"Population 1 Year and Over in Puerto Rico\""
+  "relationships": {}, 
+  "name": "Population 1 Year and Over in Puerto Rico", 
+  "extra": {
+    "table": "Median Age by Geographical Mobility in the Past Year for Current Residence in Puerto Rico", 
+    "universe": "Population 1 Year and Over in Puerto Rico", 
+    "title": "Total:"
+  }
 }

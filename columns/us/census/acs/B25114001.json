@@ -1,3 +1,12 @@
 {
-  "name": "\"Aggregate Gross Rent (Dollars) by Year Householder Moved Into Unit\": \"('Total:',)\" \"Aggregate gross rent:\" in \"Renter-occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Aggregate gross rent: and Total in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Gross Rent (Dollars) by Year Householder Moved Into Unit", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Aggregate gross rent:"
+  }
 }

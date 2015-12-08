@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15002001", 
     "parent": "us/census/acs/C15002010"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over\": \"('Female:',)\" \"Some college, no degree\" in \"Population 25 Years and Over\""
+  "name": "Some college, no degree and Female in Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Some college, no degree"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99072001", 
     "parent": "us/census/acs/B99072001"
   }, 
-  "name": "\"Imputation of Residence 1 Year Ago for the Population 1 Year and Over\": \"()\" \"Same house\" in \"Population 1 Year and Over\""
+  "name": "Same house in Population 1 Year and Over", 
+  "extra": {
+    "table": "Imputation of Residence 1 Year Ago for the Population 1 Year and Over", 
+    "universe": "Population 1 Year and Over", 
+    "title": "Same house"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99053001", 
     "parent": "us/census/acs/B99053001"
   }, 
-  "name": "\"Imputation of Year of Naturalization\": \"()\" \"Imputed\" in \"Foreign-born Naturalized Citizens\""
+  "name": "Imputed in Foreign-born Naturalized Citizens", 
+  "extra": {
+    "table": "Imputation of Year of Naturalization", 
+    "universe": "Foreign-born Naturalized Citizens", 
+    "title": "Imputed"
+  }
 }

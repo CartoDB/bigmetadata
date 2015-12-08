@@ -1,3 +1,9 @@
 {
-  "name": "\"Total Population\": \"()\" \"Total\" in \"Total Population\""
+  "relationships": {}, 
+  "name": "Total in Total Population", 
+  "extra": {
+    "table": "Total Population", 
+    "universe": "Total Population", 
+    "title": "Total"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06010001", 
     "parent": "us/census/acs/B06010003"
   }, 
-  "name": "\"Place of Birth by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) in the United States\": \"('Foreign born:', 'With income:')\" \"$50,000 to $64,999\" in \"Population 15 Years and Over in the United States\""
+  "name": "$50,000 to $64,999 and Foreign born and With income in Population 15 Years and Over in the United States", 
+  "extra": {
+    "table": "Place of Birth by Individual Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) in the United States", 
+    "universe": "Population 15 Years and Over in the United States", 
+    "ancestors": [
+      "Foreign born:", 
+      "With income:"
+    ], 
+    "title": "$50,000 to $64,999"
+  }
 }

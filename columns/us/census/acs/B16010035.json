@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16010001", 
     "parent": "us/census/acs/B16010028"
   }, 
-  "name": "\"Educational Attainment and Employment Status by Language Spoken at Home for the Population 25 Years and Over\": \"(\"Some college or associate's degree:\",)\" \"Not in labor force:\" in \"Population 25 Years and Over\""
+  "name": "Not in labor force: and Some college or associate's degree in Population 25 Years and Over", 
+  "extra": {
+    "table": "Educational Attainment and Employment Status by Language Spoken at Home for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Some college or associate's degree:"
+    ], 
+    "title": "Not in labor force:"
+  }
 }

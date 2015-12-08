@@ -1,3 +1,14 @@
 {
-  "name": "\"Mortgage Status by Age of Householder\": \"('Housing units without a mortgage:',)\" \"Total:\" in \"Owner-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/C25027001"
+  }, 
+  "name": "Total: and Housing units without a mortgage in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Age of Householder", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Housing units without a mortgage:"
+    ], 
+    "title": "Total:"
+  }
 }

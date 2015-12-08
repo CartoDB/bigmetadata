@@ -1,3 +1,11 @@
 {
-  "name": "\"Grandchildren Under 18 Years Living With a Grandparent Householder by Age of Grandchild\": \"()\" \"Total:\" in \"Grandchildren Under 18 Living With Grandparent Householder\""
+  "relationships": {
+    "denominator": "us/census/acs/B10001001"
+  }, 
+  "name": "Grandchildren Under 18 Living With Grandparent Householder", 
+  "extra": {
+    "table": "Grandchildren Under 18 Years Living With a Grandparent Householder by Age of Grandchild", 
+    "universe": "Grandchildren Under 18 Living With Grandparent Householder", 
+    "title": "Total:"
+  }
 }

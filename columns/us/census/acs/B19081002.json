@@ -1,3 +1,9 @@
 {
-  "name": "\"Mean Household Income of Quintiles\": \"()\" \"Second Quintile\" in \"Households\""
+  "relationships": {}, 
+  "name": "Second Quintile in Households", 
+  "extra": {
+    "table": "Mean Household Income of Quintiles", 
+    "universe": "Households", 
+    "title": "Second Quintile"
+  }
 }

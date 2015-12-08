@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15010001", 
     "parent": "us/census/acs/B15010001"
   }, 
-  "name": "\"Detailed Field of Bachelor's Degree for First Major for the Population 25 Years and Over\": \"()\" \"Science and Engineering Related Fields\" in \"POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT\""
+  "name": "Science and Engineering Related Fields in POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT", 
+  "extra": {
+    "table": "Detailed Field of Bachelor's Degree for First Major for the Population 25 Years and Over", 
+    "universe": "POPULATION 25 YEARS AND OVER WITH a BACHELOR'S DEGREE OR HIGHER ATTAINMENT", 
+    "title": "Science and Engineering Related Fields"
+  }
 }

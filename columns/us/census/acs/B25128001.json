@@ -1,3 +1,15 @@
 {
-  "name": "\"Tenure by Age of Householder by Year Householder Moved Into Unit\": \"('Renter occupied:', 'Built 1939 or earlier:')\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25128001"
+  }, 
+  "name": "Total: and Renter occupied and Built 1939 or earlier in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Age of Householder by Year Householder Moved Into Unit", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "Built 1939 or earlier:"
+    ], 
+    "title": "Total:"
+  }
 }

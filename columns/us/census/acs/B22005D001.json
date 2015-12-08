@@ -1,3 +1,11 @@
 {
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (Asian Alone)\": \"()\" \"Total:\" in \"Households With a Householder Who Is Asian Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/B22005D001"
+  }, 
+  "name": "Households With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (Asian Alone)", 
+    "universe": "Households With a Householder Who Is Asian Alone", 
+    "title": "Total:"
+  }
 }

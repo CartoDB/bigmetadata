@@ -1,3 +1,11 @@
 {
-  "name": "\"Sex of Workers by Means of Transportation to Work for Workplace Geography\": \"()\" \"Total:\" in \"Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08406001"
+  }, 
+  "name": "Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "title": "Total:"
+  }
 }

@@ -1,3 +1,14 @@
 {
-  "name": "\"Plumbing Facilities by Occupants Per Room by Year Structure Built\": \"('Renter occupied:',)\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25050001"
+  }, 
+  "name": "Total: and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Plumbing Facilities by Occupants Per Room by Year Structure Built", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Total:"
+  }
 }

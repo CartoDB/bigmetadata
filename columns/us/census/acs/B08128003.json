@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08128001", 
     "parent": "us/census/acs/B08128002"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker\": \"('Worked at home:', 'Private for-profit wage and salary workers:')\" \"Employee of private company workers\" in \"Workers 16 Years and Over\""
+  "name": "Employee of private company workers and Worked at home and Private for-profit wage and salary workers in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:", 
+      "Private for-profit wage and salary workers:"
+    ], 
+    "title": "Employee of private company workers"
+  }
 }

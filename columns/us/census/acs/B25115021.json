@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25115001", 
     "parent": "us/census/acs/B25115020"
   }, 
-  "name": "\"Tenure by Household Type and Presence and Age of Own Children\": \"('Renter occupied:', 'Family households:', 'Other family:')\" \"Male householder, no wife present:\" in \"Occupied Housing Units\""
+  "name": "Male householder, no wife present: and Renter occupied and Family households and Other family in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Type and Presence and Age of Own Children", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "Family households:", 
+      "Other family:"
+    ], 
+    "title": "Male householder, no wife present:"
+  }
 }

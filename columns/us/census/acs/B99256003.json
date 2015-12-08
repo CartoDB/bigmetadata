@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99256001", 
     "parent": "us/census/acs/B99256001"
   }, 
-  "name": "\"Imputation of Year Structure Built\": \"()\" \"Not imputed\" in \"Housing Units\""
+  "name": "Not imputed in Housing Units", 
+  "extra": {
+    "table": "Imputation of Year Structure Built", 
+    "universe": "Housing Units", 
+    "title": "Not imputed"
+  }
 }

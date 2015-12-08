@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Disability Items for the Civilian Noninstitutionalized Population\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B99181001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Imputation of Disability Items for the Civilian Noninstitutionalized Population", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Total:"
+  }
 }

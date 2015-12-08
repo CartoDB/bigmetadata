@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08124001", 
     "parent": "us/census/acs/C08124015"
   }, 
-  "name": "\"Means of Transportation to Work by Occupation\": \"('Car, truck, or van - carpooled:',)\" \"Service occupations\" in \"Workers 16 Years and Over\""
+  "name": "Service occupations and Car, truck, or van - carpooled in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Occupation", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - carpooled:"
+    ], 
+    "title": "Service occupations"
+  }
 }

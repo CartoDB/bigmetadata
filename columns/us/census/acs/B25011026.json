@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25011001", 
     "parent": "us/census/acs/B25011001"
   }, 
-  "name": "\"Tenure by Household Type (Including Living Alone) and Age of Householder\": \"()\" \"Renter occupied:\" in \"Occupied Housing Units\""
+  "name": "Renter occupied: in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Type (Including Living Alone) and Age of Householder", 
+    "universe": "Occupied Housing Units", 
+    "title": "Renter occupied:"
+  }
 }

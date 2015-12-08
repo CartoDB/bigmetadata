@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25110001"
   }, 
-  "name": "\"Aggregate Value (Dollars) by Year Householder Moved Into Unit\": \"()\" \"Moved in 1990 to 1999\" in \"Owner-occupied Housing Units\""
+  "name": "Moved in 1990 to 1999 in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Value (Dollars) by Year Householder Moved Into Unit", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Moved in 1990 to 1999"
+  }
 }

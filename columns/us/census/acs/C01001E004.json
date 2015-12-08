@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C01001E001", 
     "parent": "us/census/acs/C01001E002"
   }, 
-  "name": "\"Sex by Age (Native Hawaiian and Other Pacific Islander Alone)\": \"('Male:',)\" \"18 to 64 years\" in \"People Who Are Native Hawaiian and Other Pacific Islander Alone\""
+  "name": "18 to 64 years and Male in People Who Are Native Hawaiian and Other Pacific Islander Alone", 
+  "extra": {
+    "table": "Sex by Age (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "People Who Are Native Hawaiian and Other Pacific Islander Alone", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "18 to 64 years"
+  }
 }

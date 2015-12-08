@@ -1,3 +1,15 @@
 {
-  "name": "\"Health Insurance Coverage Status and Type by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('Did not work:', '65 years and over:')\" \"Total:\" in \"Civilian Population Living in Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B27015001"
+  }, 
+  "name": "Total: and Did not work and 65 years and over in Civilian Population Living in Households", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Civilian Population Living in Households", 
+    "ancestors": [
+      "Did not work:", 
+      "65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

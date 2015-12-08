@@ -1,3 +1,11 @@
 {
-  "name": "\"American Indian and Alaska Native Alone for Selected Tribal Groupings\": \"()\" \"Total:\" in \"People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported\""
+  "relationships": {
+    "denominator": "us/census/acs/B02005001"
+  }, 
+  "name": "People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported", 
+  "extra": {
+    "table": "American Indian and Alaska Native Alone for Selected Tribal Groupings", 
+    "universe": "People Who Are American Indian and Alaska Native Alone and People With No Tribe Reported", 
+    "title": "Total:"
+  }
 }

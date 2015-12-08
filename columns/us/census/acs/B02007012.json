@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02007001", 
     "parent": "us/census/acs/B02007010"
   }, 
-  "name": "\"Native Hawaiian and Other Pacific Islander Alone by Selected Groups\": \"('Melanesian :',)\" \"Other Melanesian\" in \"Total Native Hawaiian and Other Pacific Islander Alone Population\""
+  "name": "Other Melanesian and Melanesian  in Total Native Hawaiian and Other Pacific Islander Alone Population", 
+  "extra": {
+    "table": "Native Hawaiian and Other Pacific Islander Alone by Selected Groups", 
+    "universe": "Total Native Hawaiian and Other Pacific Islander Alone Population", 
+    "ancestors": [
+      "Melanesian :"
+    ], 
+    "title": "Other Melanesian"
+  }
 }

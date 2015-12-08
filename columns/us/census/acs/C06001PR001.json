@@ -1,3 +1,14 @@
 {
-  "name": "\"Place of Birth by Age in Puerto Rico\": \"('Foreign born:',)\" \"Total:\" in \"Total Population in Puerto Rico\""
+  "relationships": {
+    "denominator": "us/census/acs/C06001PR001"
+  }, 
+  "name": "Total: and Foreign born in Total Population in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Age in Puerto Rico", 
+    "universe": "Total Population in Puerto Rico", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Total:"
+  }
 }

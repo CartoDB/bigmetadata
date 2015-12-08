@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25013001", 
     "parent": "us/census/acs/B25013002"
   }, 
-  "name": "\"Tenure by Educational Attainment of Householder\": \"('Owner-occupied housing units:',)\" \"High school graduate (including equivalency)\" in \"Occupied Housing Units\""
+  "name": "High school graduate (including equivalency) and Owner-occupied housing units in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Educational Attainment of Householder", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner-occupied housing units:"
+    ], 
+    "title": "High school graduate (including equivalency)"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001I001", 
     "parent": "us/census/acs/B01001I017"
   }, 
-  "name": "\"Sex by Age (Hispanic or Latino)\": \"('Female:',)\" \"85 years and over\" in \"Hispanic or Latino Population\""
+  "name": "85 years and over and Female in Hispanic or Latino Population", 
+  "extra": {
+    "table": "Sex by Age (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "85 years and over"
+  }
 }

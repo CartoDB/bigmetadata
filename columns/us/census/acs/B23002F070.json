@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23002F001", 
     "parent": "us/census/acs/B23002F041"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (Some Other Race Alone)\": \"('Female:',)\" \"65 to 69 years:\" in \"Some Other Race Alone Population 16 Years and Over\""
+  "name": "65 to 69 years: and Female in Some Other Race Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (Some Other Race Alone)", 
+    "universe": "Some Other Race Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "65 to 69 years:"
+  }
 }

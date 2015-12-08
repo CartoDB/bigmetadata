@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27019001", 
     "parent": "us/census/acs/B27019001"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Age by Educational Attainment\": \"()\" \"25 to 64 years:\" in \"Civilian Noninstitutionalized Population 25 Years and Over\""
+  "name": "25 to 64 years: in Civilian Noninstitutionalized Population 25 Years and Over", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Age by Educational Attainment", 
+    "universe": "Civilian Noninstitutionalized Population 25 Years and Over", 
+    "title": "25 to 64 years:"
+  }
 }

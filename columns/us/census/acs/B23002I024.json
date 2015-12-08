@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23002I001", 
     "parent": "us/census/acs/B23002I002"
   }, 
-  "name": "\"Sex by Age by Employment Status for the Population 16 Years and Over (Hispanic or Latino)\": \"('Male:',)\" \"55 to 64 years:\" in \"Hispanic or Latino Population 16 Years and Over\""
+  "name": "55 to 64 years: and Male in Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Employment Status for the Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "55 to 64 years:"
+  }
 }

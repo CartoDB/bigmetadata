@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002A001", 
     "parent": "us/census/acs/B15002A011"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (White Alone)\": \"('Female:',)\" \"Less than 9th grade\" in \"White Alone Population 25 Years and Over\""
+  "name": "Less than 9th grade and Female in White Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (White Alone)", 
+    "universe": "White Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Less than 9th grade"
+  }
 }

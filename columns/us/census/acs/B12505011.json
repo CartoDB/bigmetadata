@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12505001", 
     "parent": "us/census/acs/B12505010"
   }, 
-  "name": "\"Number of Times Married by Sex by Marital Status for the Population 15 Years and Over\": \"('Female:', 'Ever married:')\" \"Once\" in \"Population 15 Years and Over\""
+  "name": "Once and Female and Ever married in Population 15 Years and Over", 
+  "extra": {
+    "table": "Number of Times Married by Sex by Marital Status for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Ever married:"
+    ], 
+    "title": "Once"
+  }
 }

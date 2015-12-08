@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23003001", 
     "parent": "us/census/acs/B23003001"
   }, 
-  "name": "\"Presence of Own Children Under 18 Years by Age of Own Children Under 18 Years by Employment Status for Females 20 to 64 Years\": \"()\" \"No own children under 18 years:\" in \"Females 20 to 64 Years in Households\""
+  "name": "No own children under 18 years: in Females 20 to 64 Years in Households", 
+  "extra": {
+    "table": "Presence of Own Children Under 18 Years by Age of Own Children Under 18 Years by Employment Status for Females 20 to 64 Years", 
+    "universe": "Females 20 to 64 Years in Households", 
+    "title": "No own children under 18 years:"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99131001", 
     "parent": "us/census/acs/B99131001"
   }, 
-  "name": "\"Imputation of Marital Status for Females 15 to 50 Years\": \"()\" \"Not imputed\" in \"Women 15 to 50 Years\""
+  "name": "Not imputed in Women 15 to 50 Years", 
+  "extra": {
+    "table": "Imputation of Marital Status for Females 15 to 50 Years", 
+    "universe": "Women 15 to 50 Years", 
+    "title": "Not imputed"
+  }
 }

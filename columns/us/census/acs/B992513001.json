@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Telephone Service Available\": \"()\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B992513001"
+  }, 
+  "name": "Occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Telephone Service Available", 
+    "universe": "Occupied Housing Units", 
+    "title": "Total:"
+  }
 }

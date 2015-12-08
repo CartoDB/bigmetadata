@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05008001", 
     "parent": "us/census/acs/B05008053"
   }, 
-  "name": "\"Sex by Place of Birth by Year of Entry for the Foreign-born Population\": \"('Female:', 'Latin America:', 'Central America:')\" \"Other Central America:\" in \"Foreign-born Population\""
+  "name": "Other Central America: and Female and Latin America and Central America in Foreign-born Population", 
+  "extra": {
+    "table": "Sex by Place of Birth by Year of Entry for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Female:", 
+      "Latin America:", 
+      "Central America:"
+    ], 
+    "title": "Other Central America:"
+  }
 }

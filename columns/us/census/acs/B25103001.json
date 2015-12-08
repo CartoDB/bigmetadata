@@ -1,3 +1,11 @@
 {
-  "name": "\"Mortgage Status by Median Real Estate Taxes Paid (Dollars)\": \"()\" \"Total:\" in \"Owner-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25103001"
+  }, 
+  "name": "Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Median Real Estate Taxes Paid (Dollars)", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Total:"
+  }
 }

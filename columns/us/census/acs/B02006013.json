@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02006001", 
     "parent": "us/census/acs/B02006001"
   }, 
-  "name": "\"Asian Alone by Selected Groups\": \"()\" \"Pakistani\" in \"Total Asian Alone Population\""
+  "name": "Pakistani in Total Asian Alone Population", 
+  "extra": {
+    "table": "Asian Alone by Selected Groups", 
+    "universe": "Total Asian Alone Population", 
+    "title": "Pakistani"
+  }
 }

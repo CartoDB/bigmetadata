@@ -1,3 +1,11 @@
 {
-  "name": "\"Means of Transportation to Work for Workplace Geography (Some Other Race Alone)\": \"()\" \"Total:\" in \"Some Other Race Alone Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08505F001"
+  }, 
+  "name": "Some Other Race Alone Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work for Workplace Geography (Some Other Race Alone)", 
+    "universe": "Some Other Race Alone Workers 16 Years and Over", 
+    "title": "Total:"
+  }
 }

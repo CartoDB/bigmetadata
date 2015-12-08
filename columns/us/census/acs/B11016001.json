@@ -1,3 +1,11 @@
 {
-  "name": "\"Household Type by Household Size\": \"()\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B11016001"
+  }, 
+  "name": "Households", 
+  "extra": {
+    "table": "Household Type by Household Size", 
+    "universe": "Households", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05007001", 
     "parent": "us/census/acs/B05007029"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Latin America:', 'Caribbean:')\" \"Entered 1980 to 1989:\" in \"Foreign-born Population\""
+  "name": "Entered 1980 to 1989: and Latin America and Caribbean in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Latin America:", 
+      "Caribbean:"
+    ], 
+    "title": "Entered 1980 to 1989:"
+  }
 }

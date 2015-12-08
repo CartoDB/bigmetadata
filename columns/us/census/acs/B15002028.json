@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002001", 
     "parent": "us/census/acs/B15002019"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over\": \"('Female:',)\" \"High school graduate, GED, or alternative\" in \"Population 25 Years and Over\""
+  "name": "High school graduate, GED, or alternative and Female in Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "High school graduate, GED, or alternative"
+  }
 }

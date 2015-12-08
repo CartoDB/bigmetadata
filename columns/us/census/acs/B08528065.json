@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08528001", 
     "parent": "us/census/acs/B08528061"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker for Workplace Geography\": \"('Worked at home:',)\" \"Private not-for-profit wage and salary workers\" in \"Workers 16 Years and Over\""
+  "name": "Private not-for-profit wage and salary workers within Worked at home in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "Private not-for-profit wage and salary workers"
+  }
 }

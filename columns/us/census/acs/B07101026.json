@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07101001", 
     "parent": "us/census/acs/B07101025"
   }, 
-  "name": "\"Movers Between Regions in the United States\": \"('Current residence; Midwest:',)\" \"Same residence (non-movers)\" in \"Population 1 Year and Over in the United States\""
+  "name": "Same residence (non-movers) and Current residence; Midwest in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Movers Between Regions in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Current residence; Midwest:"
+    ], 
+    "title": "Same residence (non-movers)"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B98013001", 
     "parent": "us/census/acs/B98013001"
   }, 
-  "name": "\"Total Population Coverage Rate by Weighting Race and Hispanic or Latino Groups\": \"()\" \"Hispanic or Latino\" in \"Total Population\""
+  "name": "Hispanic or Latino in Total Population", 
+  "extra": {
+    "table": "Total Population Coverage Rate by Weighting Race and Hispanic or Latino Groups", 
+    "universe": "Total Population", 
+    "title": "Hispanic or Latino"
+  }
 }

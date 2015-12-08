@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24070001", 
     "parent": "us/census/acs/B24070151"
   }, 
-  "name": "\"Industry by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Self-employed in own not incorporated business workers and unpaid family workers:', 'Professional, scientific, and management, and administrative and waste management services:')\" \"Professional, scientific, and technical services\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Professional, scientific, and technical services and Self-employed in own not incorporated business workers and unpaid family workers and Professional, scientific, and management, and administrative and waste management services in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Self-employed in own not incorporated business workers and unpaid family workers:", 
+      "Professional, scientific, and management, and administrative and waste management services:"
+    ], 
+    "title": "Professional, scientific, and technical services"
+  }
 }

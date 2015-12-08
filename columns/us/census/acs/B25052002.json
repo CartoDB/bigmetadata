@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25052001", 
     "parent": "us/census/acs/B25052001"
   }, 
-  "name": "\"Kitchen Facilities for Occupied Housing Units\": \"()\" \"Complete kitchen facilities\" in \"Occupied Housing Units\""
+  "name": "Complete kitchen facilities in Occupied Housing Units", 
+  "extra": {
+    "table": "Kitchen Facilities for Occupied Housing Units", 
+    "universe": "Occupied Housing Units", 
+    "title": "Complete kitchen facilities"
+  }
 }

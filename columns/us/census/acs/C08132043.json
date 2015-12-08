@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08132001", 
     "parent": "us/census/acs/C08132034"
   }, 
-  "name": "\"Means of Transportation to Work by Time Leaving Home to Go to Work\": \"('Public transportation (excluding taxicab):',)\" \"8:30 a.m. to 8:59 a.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "8:30 a.m. to 8:59 a.m. and Public transportation (excluding taxicab) in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Time Leaving Home to Go to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "8:30 a.m. to 8:59 a.m."
+  }
 }

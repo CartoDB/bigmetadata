@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25123001", 
     "parent": "us/census/acs/B25123002"
   }, 
-  "name": "\"Tenure by Selected Physical and Financial Conditions\": \"('Owner occupied:',)\" \"With three selected conditions\" in \"Occupied Housing Units\""
+  "name": "With three selected conditions and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Selected Physical and Financial Conditions", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "With three selected conditions"
+  }
 }

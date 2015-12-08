@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08532001", 
     "parent": "us/census/acs/B08532046"
   }, 
-  "name": "\"Means of Transportation to Work by Time Arriving at Work From Home for Workplace Geography\": \"('Public transportation (excluding taxicab):',)\" \"12:00 p.m. to 3:59 p.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "12:00 p.m. to 3:59 p.m. within Public transportation (excluding taxicab) in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Time Arriving at Work From Home for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "12:00 p.m. to 3:59 p.m."
+  }
 }

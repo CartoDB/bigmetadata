@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14001001", 
     "parent": "us/census/acs/B14001002"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over\": \"('Enrolled in school:',)\" \"Enrolled in college, undergraduate years\" in \"Population 3 Years and Over\""
+  "name": "Enrolled in college, undergraduate years and Enrolled in school in Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over", 
+    "universe": "Population 3 Years and Over", 
+    "ancestors": [
+      "Enrolled in school:"
+    ], 
+    "title": "Enrolled in college, undergraduate years"
+  }
 }

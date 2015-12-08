@@ -1,3 +1,14 @@
 {
-  "name": "\"Means of Transportation to Work\": \"('3 or more workers:',)\" \"Total:\" in \"Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08301001"
+  }, 
+  "name": "Total: and 3 or more workers in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "3 or more workers:"
+    ], 
+    "title": "Total:"
+  }
 }

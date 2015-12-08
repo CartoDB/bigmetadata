@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992521001", 
     "parent": "us/census/acs/B992521001"
   }, 
-  "name": "\"Imputation of Mortgage Status\": \"()\" \"Imputed\" in \"Owner-occupied Housing Units\""
+  "name": "Imputed in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Mortgage Status", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Imputed"
+  }
 }

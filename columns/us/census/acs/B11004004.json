@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11004001", 
     "parent": "us/census/acs/B11004003"
   }, 
-  "name": "\"Family Type by Presence and Age of Related Children Under 18 Years\": \"('Married-couple family:', 'With related children under 18 years:')\" \"Under 6 years only\" in \"Families\""
+  "name": "Under 6 years only and Married-couple family and With related children under 18 years in Families", 
+  "extra": {
+    "table": "Family Type by Presence and Age of Related Children Under 18 Years", 
+    "universe": "Families", 
+    "ancestors": [
+      "Married-couple family:", 
+      "With related children under 18 years:"
+    ], 
+    "title": "Under 6 years only"
+  }
 }

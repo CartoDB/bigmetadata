@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06008PR001", 
     "parent": "us/census/acs/B06008PR007"
   }, 
-  "name": "\"Place of Birth by Marital Status in Puerto Rico\": \"('Born in Puerto Rico:',)\" \"Divorced\" in \"Population 15 Years and Over in Puerto Rico\""
+  "name": "Divorced and Born in Puerto Rico in Population 15 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Marital Status in Puerto Rico", 
+    "universe": "Population 15 Years and Over in Puerto Rico", 
+    "ancestors": [
+      "Born in Puerto Rico:"
+    ], 
+    "title": "Divorced"
+  }
 }

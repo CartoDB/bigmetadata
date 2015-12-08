@@ -1,3 +1,11 @@
 {
-  "name": "\"Geographical Mobility in the Past Year (American Indian and Alaska Native Alone) for Residence 1 Year Ago in Puerto Rico\": \"()\" \"Total living in area 1 year ago:\" in \"American Indian and Alaska Native Alone Population 1 Year and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B07404CPR001"
+  }, 
+  "name": "Total living in area 1 year ago: in American Indian and Alaska Native Alone Population 1 Year and Over", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (American Indian and Alaska Native Alone) for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "American Indian and Alaska Native Alone Population 1 Year and Over", 
+    "title": "Total living in area 1 year ago:"
+  }
 }

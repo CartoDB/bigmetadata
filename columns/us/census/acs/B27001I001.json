@@ -1,3 +1,14 @@
 {
-  "name": "\"Health Insurance Coverage Status by Age (Hispanic or Latino)\": \"('65 years and over:',)\" \"Total:\" in \"HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "relationships": {
+    "denominator": "us/census/acs/B27001I001"
+  }, 
+  "name": "Total: and 65 years and over in HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Hispanic or Latino)", 
+    "universe": "HISPANIC OR LATINO CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "65 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

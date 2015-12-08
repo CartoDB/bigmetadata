@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B25090001"
   }, 
-  "name": "\"Mortgage Status by Aggregate Real Estate Taxes Paid (Dollars)\": \"('Aggregate real estate taxes paid (dollars):',)\" \"Aggregate real estate taxes paid for units without a mortgage (dollars)\" in \"Owner-occupied Housing Units\""
+  "name": "Aggregate real estate taxes paid for units without a mortgage (dollars) and Aggregate real estate taxes paid (dollars) in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Aggregate Real Estate Taxes Paid (Dollars)", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Aggregate real estate taxes paid (dollars):"
+    ], 
+    "title": "Aggregate real estate taxes paid for units without a mortgage (dollars)"
+  }
 }

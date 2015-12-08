@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992519001", 
     "parent": "us/census/acs/B992519001"
   }, 
-  "name": "\"Imputation of Value\": \"()\" \"Not imputed\" in \"Owner-occupied Housing Units\""
+  "name": "Not imputed in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Value", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Not imputed"
+  }
 }

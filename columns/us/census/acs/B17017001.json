@@ -1,3 +1,11 @@
 {
-  "name": "\"Poverty Status in the Past 12 Months by Household Type by Age of Householder\": \"()\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B17017001"
+  }, 
+  "name": "Households", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Household Type by Age of Householder", 
+    "universe": "Households", 
+    "title": "Total:"
+  }
 }

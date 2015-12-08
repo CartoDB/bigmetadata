@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05006PR001", 
     "parent": "us/census/acs/B05006PR002"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population in Puerto Rico\": \"('Europe:',)\" \"Southern Europe:\" in \"Foreign-born Population in Puerto Rico Excluding Population Born at Sea\""
+  "name": "Southern Europe: and Europe in Foreign-born Population in Puerto Rico Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in Puerto Rico", 
+    "universe": "Foreign-born Population in Puerto Rico Excluding Population Born at Sea", 
+    "ancestors": [
+      "Europe:"
+    ], 
+    "title": "Southern Europe:"
+  }
 }

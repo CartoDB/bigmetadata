@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05002001", 
     "parent": "us/census/acs/C05002001"
   }, 
-  "name": "\"Place of Birth by Nativity\": \"()\" \"Native:\" in \"Total Population\""
+  "name": "Native: in Total Population", 
+  "extra": {
+    "table": "Place of Birth by Nativity", 
+    "universe": "Total Population", 
+    "title": "Native:"
+  }
 }

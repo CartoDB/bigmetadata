@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09017001", 
     "parent": "us/census/acs/B09017001"
   }, 
-  "name": "\"Relationship by Household Type (Including Living Alone) for the Population 65 Years and Over\": \"()\" \"In households:\" in \"Population 65 Years and Over\""
+  "name": "In households: in Population 65 Years and Over", 
+  "extra": {
+    "table": "Relationship by Household Type (Including Living Alone) for the Population 65 Years and Over", 
+    "universe": "Population 65 Years and Over", 
+    "title": "In households:"
+  }
 }

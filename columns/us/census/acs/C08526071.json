@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08526001", 
     "parent": "us/census/acs/C08526001"
   }, 
-  "name": "\"Means of Transportation to Work by Industry for Workplace Geography\": \"()\" \"Worked at home:\" in \"Workers 16 Years and Over\""
+  "name": "Worked at home: in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Industry for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "title": "Worked at home:"
+  }
 }

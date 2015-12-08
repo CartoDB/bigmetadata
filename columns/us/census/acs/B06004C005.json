@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06004C001", 
     "parent": "us/census/acs/B06004C001"
   }, 
-  "name": "\"Place of Birth (American Indian and Alaska Native Alone) in the United States\": \"()\" \"Foreign born\" in \"American Indian and Alaska Native Alone Population in the United States\""
+  "name": "Foreign born in American Indian and Alaska Native Alone Population in the United States", 
+  "extra": {
+    "table": "Place of Birth (American Indian and Alaska Native Alone) in the United States", 
+    "universe": "American Indian and Alaska Native Alone Population in the United States", 
+    "title": "Foreign born"
+  }
 }

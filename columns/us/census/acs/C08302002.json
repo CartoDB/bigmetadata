@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08302001", 
     "parent": "us/census/acs/C08302001"
   }, 
-  "name": "\"Time Leaving Home to Go to Work\": \"()\" \"12:00 a.m. to 4:59 a.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "12:00 a.m. to 4:59 a.m. in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Time Leaving Home to Go to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "title": "12:00 a.m. to 4:59 a.m."
+  }
 }

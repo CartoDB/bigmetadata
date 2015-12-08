@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24011001", 
     "parent": "us/census/acs/B24011002"
   }, 
-  "name": "\"Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over\": \"('Management, business, science, and arts occupations:',)\" \"Management, business, and financial occupations:\" in \"Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Management, business, and financial occupations: and Management, business, science, and arts occupations in Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Occupation by Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Management, business, science, and arts occupations:"
+    ], 
+    "title": "Management, business, and financial occupations:"
+  }
 }

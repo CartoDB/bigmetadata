@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020117"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Male:', 'Natural resources, construction, and maintenance occupations:', 'Construction and extraction occupations:')\" \"Other construction workers and helpers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Other construction workers and helpers and Male and Natural resources, construction, and maintenance occupations and Construction and extraction occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Natural resources, construction, and maintenance occupations:", 
+      "Construction and extraction occupations:"
+    ], 
+    "title": "Other construction workers and helpers"
+  }
 }

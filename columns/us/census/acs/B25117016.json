@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25117001", 
     "parent": "us/census/acs/B25117012"
   }, 
-  "name": "\"Tenure by House Heating Fuel\": \"('Renter occupied:',)\" \"Fuel oil, kerosene, etc.\" in \"Occupied Housing Units\""
+  "name": "Fuel oil, kerosene, etc. and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by House Heating Fuel", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Fuel oil, kerosene, etc."
+  }
 }

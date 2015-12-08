@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25006001", 
     "parent": "us/census/acs/B25006001"
   }, 
-  "name": "\"Race of Householder\": \"()\" \"Householder who is Two or more races:\" in \"Occupied Housing Units\""
+  "name": "Householder who is Two or more races: in Occupied Housing Units", 
+  "extra": {
+    "table": "Race of Householder", 
+    "universe": "Occupied Housing Units", 
+    "title": "Householder who is Two or more races:"
+  }
 }

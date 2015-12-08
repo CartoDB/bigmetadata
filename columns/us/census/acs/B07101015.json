@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07101001", 
     "parent": "us/census/acs/B07101013"
   }, 
-  "name": "\"Movers Between Regions in the United States\": \"('Current residence; Northeast:',)\" \"Movers within same state\" in \"Population 1 Year and Over in the United States\""
+  "name": "Movers within same state and Current residence; Northeast in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Movers Between Regions in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Current residence; Northeast:"
+    ], 
+    "title": "Movers within same state"
+  }
 }

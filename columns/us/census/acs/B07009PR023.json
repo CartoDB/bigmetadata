@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07009PR001", 
     "parent": "us/census/acs/B07009PR019"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Educational Attainment for Current Residence in Puerto Rico\": \"('Moved from different municipio:',)\" \"Bachelor's degree\" in \"Population 25 Years and Over in Puerto Rico\""
+  "name": "Bachelor's degree and Moved from different municipio in Population 25 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Educational Attainment for Current Residence in Puerto Rico", 
+    "universe": "Population 25 Years and Over in Puerto Rico", 
+    "ancestors": [
+      "Moved from different municipio:"
+    ], 
+    "title": "Bachelor's degree"
+  }
 }

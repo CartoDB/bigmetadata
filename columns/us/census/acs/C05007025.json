@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05007001", 
     "parent": "us/census/acs/C05007021"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Latin America:', None)\" \"Mexico:\" in \"Foreign-born Population\""
+  "name": "Mexico: and Latin America in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Latin America:", 
+      null
+    ], 
+    "title": "Mexico:"
+  }
 }

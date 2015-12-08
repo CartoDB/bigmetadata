@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Marital Status for Females 15 to 50 Years\": \"()\" \"Total:\" in \"Women 15 to 50 Years\""
+  "relationships": {
+    "denominator": "us/census/acs/B99131001"
+  }, 
+  "name": "Women 15 to 50 Years", 
+  "extra": {
+    "table": "Imputation of Marital Status for Females 15 to 50 Years", 
+    "universe": "Women 15 to 50 Years", 
+    "title": "Total:"
+  }
 }

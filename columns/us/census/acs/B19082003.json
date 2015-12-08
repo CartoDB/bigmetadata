@@ -1,3 +1,9 @@
 {
-  "name": "\"Shares of Aggregate Household Income by Quintile\": \"()\" \"Third Quintile\" in \"Households\""
+  "relationships": {}, 
+  "name": "Third Quintile in Households", 
+  "extra": {
+    "table": "Shares of Aggregate Household Income by Quintile", 
+    "universe": "Households", 
+    "title": "Third Quintile"
+  }
 }

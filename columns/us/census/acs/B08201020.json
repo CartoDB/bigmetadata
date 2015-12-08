@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08201001", 
     "parent": "us/census/acs/B08201019"
   }, 
-  "name": "\"Household Size by Vehicles Available\": \"('3-person household:',)\" \"No vehicle available\" in \"Households\""
+  "name": "No vehicle available and 3-person household in Households", 
+  "extra": {
+    "table": "Household Size by Vehicles Available", 
+    "universe": "Households", 
+    "ancestors": [
+      "3-person household:"
+    ], 
+    "title": "No vehicle available"
+  }
 }

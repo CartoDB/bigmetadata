@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B10054001", 
     "parent": "us/census/acs/B10054003"
   }, 
-  "name": "\"Language and Ability to Speak English of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent\": \"('Speak only English:', 'Grandparent responsible for own grandchildren under 18 years:')\" \"30 to 59 years\" in \"Grandparents Living With Own Grandchildren Under 18 Years\""
+  "name": "30 to 59 years and Speak only English and Grandparent responsible for own grandchildren under 18 years in Grandparents Living With Own Grandchildren Under 18 Years", 
+  "extra": {
+    "table": "Language and Ability to Speak English of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent", 
+    "universe": "Grandparents Living With Own Grandchildren Under 18 Years", 
+    "ancestors": [
+      "Speak only English:", 
+      "Grandparent responsible for own grandchildren under 18 years:"
+    ], 
+    "title": "30 to 59 years"
+  }
 }

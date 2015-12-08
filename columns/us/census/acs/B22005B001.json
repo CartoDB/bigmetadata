@@ -1,3 +1,11 @@
 {
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (Black or African American Alone)\": \"()\" \"Total:\" in \"Households With a Householder Who Is Black or African American Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/B22005B001"
+  }, 
+  "name": "Households With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (Black or African American Alone)", 
+    "universe": "Households With a Householder Who Is Black or African American Alone", 
+    "title": "Total:"
+  }
 }

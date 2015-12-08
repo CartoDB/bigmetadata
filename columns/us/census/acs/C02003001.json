@@ -1,3 +1,15 @@
 {
-  "name": "\"Detailed Race\": \"('Population of two or more races:', 'Population of six races:')\" \"Total:\" in \"Total Population\""
+  "relationships": {
+    "denominator": "us/census/acs/C02003001"
+  }, 
+  "name": "Total: and Population of two or more races and Population of six races in Total Population", 
+  "extra": {
+    "table": "Detailed Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Population of two or more races:", 
+      "Population of six races:"
+    ], 
+    "title": "Total:"
+  }
 }

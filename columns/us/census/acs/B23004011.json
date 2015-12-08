@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23004001", 
     "parent": "us/census/acs/B23004009"
   }, 
-  "name": "\"Work Status in the Past 12 Months by Age by Employment Status for the Civilian Population 65 Years and Over\": \"('Worked in the past 12 months:', '75 years and over:', 'In labor force:')\" \"Unemployed\" in \"Civilian Population 65 Years and Over\""
+  "name": "Unemployed and Worked in the past 12 months and 75 years and over and In labor force in Civilian Population 65 Years and Over", 
+  "extra": {
+    "table": "Work Status in the Past 12 Months by Age by Employment Status for the Civilian Population 65 Years and Over", 
+    "universe": "Civilian Population 65 Years and Over", 
+    "ancestors": [
+      "Worked in the past 12 months:", 
+      "75 years and over:", 
+      "In labor force:"
+    ], 
+    "title": "Unemployed"
+  }
 }

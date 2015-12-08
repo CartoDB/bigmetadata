@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27019001", 
     "parent": "us/census/acs/B27019013"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Age by Educational Attainment\": \"('25 to 64 years:', \"Some college or associate's degree:\")\" \"With health insurance coverage\" in \"Civilian Noninstitutionalized Population 25 Years and Over\""
+  "name": "With health insurance coverage and 25 to 64 years and Some college or associate's degree in Civilian Noninstitutionalized Population 25 Years and Over", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Age by Educational Attainment", 
+    "universe": "Civilian Noninstitutionalized Population 25 Years and Over", 
+    "ancestors": [
+      "25 to 64 years:", 
+      "Some college or associate's degree:"
+    ], 
+    "title": "With health insurance coverage"
+  }
 }

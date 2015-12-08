@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18108001", 
     "parent": "us/census/acs/B18108001"
   }, 
-  "name": "\"Age by Number of Disabilities\": \"()\" \"5 to 17 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "5 to 17 years: in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Number of Disabilities", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "5 to 17 years:"
+  }
 }

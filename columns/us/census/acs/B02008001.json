@@ -1,3 +1,12 @@
 {
-  "name": "\"White Alone or in Combination With One or More Other Races\": \"('Other Pacific Islander, not specified',)\" \"Total:\" in \"White Alone or in Combination With One or More Other Races\""
+  "relationships": {}, 
+  "name": "Total: and Other Pacific Islander, not specified in White Alone or in Combination With One or More Other Races", 
+  "extra": {
+    "table": "White Alone or in Combination With One or More Other Races", 
+    "universe": "White Alone or in Combination With One or More Other Races", 
+    "ancestors": [
+      "Other Pacific Islander, not specified"
+    ], 
+    "title": "Total:"
+  }
 }

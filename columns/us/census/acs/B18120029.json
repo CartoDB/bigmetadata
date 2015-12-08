@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18120001", 
     "parent": "us/census/acs/B18120021"
   }, 
-  "name": "\"Employment Status by Disability Status and Type\": \"('Not in labor force:',)\" \"No disability\" in \"Civilian Noninstitutionalized Population 18 to 64 Years\""
+  "name": "No disability and Not in labor force in Civilian Noninstitutionalized Population 18 to 64 Years", 
+  "extra": {
+    "table": "Employment Status by Disability Status and Type", 
+    "universe": "Civilian Noninstitutionalized Population 18 to 64 Years", 
+    "ancestors": [
+      "Not in labor force:"
+    ], 
+    "title": "No disability"
+  }
 }

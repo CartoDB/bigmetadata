@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24040001", 
     "parent": "us/census/acs/B24040192"
   }, 
-  "name": "\"Sex by Industry for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Professional, scientific, and management, and administrative and waste management services:')\" \"Management of companies and enterprises\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Management of companies and enterprises and Female and Professional, scientific, and management, and administrative and waste management services in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Professional, scientific, and management, and administrative and waste management services:"
+    ], 
+    "title": "Management of companies and enterprises"
+  }
 }

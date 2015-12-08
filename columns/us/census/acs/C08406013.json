@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08406001", 
     "parent": "us/census/acs/C08406012"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work for Workplace Geography\": \"('Male:',)\" \"Car, truck, or van:\" in \"Workers 16 Years and Over\""
+  "name": "Car, truck, or van: within Male in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Car, truck, or van:"
+  }
 }

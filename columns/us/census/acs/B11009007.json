@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11009001", 
     "parent": "us/census/acs/B11009001"
   }, 
-  "name": "\"Unmarried-partner Households by Sex of Partner\": \"()\" \"All other households\" in \"Households\""
+  "name": "All other households in Households", 
+  "extra": {
+    "table": "Unmarried-partner Households by Sex of Partner", 
+    "universe": "Households", 
+    "title": "All other households"
+  }
 }

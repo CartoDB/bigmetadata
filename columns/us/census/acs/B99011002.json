@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99011001", 
     "parent": "us/census/acs/B99011001"
   }, 
-  "name": "\"Imputation of Sex\": \"()\" \"Imputed\" in \"Total Population\""
+  "name": "Imputed in Total Population", 
+  "extra": {
+    "table": "Imputation of Sex", 
+    "universe": "Total Population", 
+    "title": "Imputed"
+  }
 }

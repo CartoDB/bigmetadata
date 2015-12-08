@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B19215001"
   }, 
-  "name": "\"Median Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex of Householder by Living Alone by Age of Householder\": \"('Total (dollars):',)\" \"Total (dollars)\" in \"Nonfamily Households\""
+  "name": "Total (dollars) and Total (dollars) in Nonfamily Households", 
+  "extra": {
+    "table": "Median Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Sex of Householder by Living Alone by Age of Householder", 
+    "universe": "Nonfamily Households", 
+    "ancestors": [
+      "Total (dollars):"
+    ], 
+    "title": "Total (dollars)"
+  }
 }

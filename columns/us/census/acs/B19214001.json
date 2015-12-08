@@ -1,3 +1,9 @@
 {
-  "name": "\"Aggregate Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"()\" \"Aggregate nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"Nonfamily Households\""
+  "relationships": {}, 
+  "name": "Aggregate nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars) in Nonfamily Households", 
+  "extra": {
+    "table": "Aggregate Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Nonfamily Households", 
+    "title": "Aggregate nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

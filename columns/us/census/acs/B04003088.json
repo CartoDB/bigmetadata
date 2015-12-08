@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04003001", 
     "parent": "us/census/acs/B04003073"
   }, 
-  "name": "\"Total Ancestry Reported\": \"('Subsaharan African:',)\" \"Other Subsaharan African\" in \"Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported\""
+  "name": "Other Subsaharan African and Subsaharan African in Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported", 
+  "extra": {
+    "table": "Total Ancestry Reported", 
+    "universe": "Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported", 
+    "ancestors": [
+      "Subsaharan African:"
+    ], 
+    "title": "Other Subsaharan African"
+  }
 }

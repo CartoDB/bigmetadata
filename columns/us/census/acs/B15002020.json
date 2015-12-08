@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B15002001", 
     "parent": "us/census/acs/B15002019"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over\": \"('Female:',)\" \"No schooling completed\" in \"Population 25 Years and Over\""
+  "name": "No schooling completed and Female in Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "No schooling completed"
+  }
 }

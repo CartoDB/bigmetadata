@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25034001", 
     "parent": "us/census/acs/B25034001"
   }, 
-  "name": "\"Year Structure Built\": \"()\" \"Built 1950 to 1959\" in \"Housing Units\""
+  "name": "Built 1950 to 1959 in Housing Units", 
+  "extra": {
+    "table": "Year Structure Built", 
+    "universe": "Housing Units", 
+    "title": "Built 1950 to 1959"
+  }
 }

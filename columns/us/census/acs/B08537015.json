@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08537001", 
     "parent": "us/census/acs/B08537013"
   }, 
-  "name": "\"Means of Transportation to Work by Tenure for Workplace Geography\": \"('Walked:',)\" \"Householder lived in renter-occupied housing units\" in \"Workers 16 Years and Over in Households\""
+  "name": "Householder lived in renter-occupied housing units within Walked in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Tenure for Workplace Geography", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Walked:"
+    ], 
+    "title": "Householder lived in renter-occupied housing units"
+  }
 }

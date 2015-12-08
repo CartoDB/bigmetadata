@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001001", 
     "parent": "us/census/acs/B11001007"
   }, 
-  "name": "\"Household Type (Including Living Alone)\": \"('Nonfamily households:',)\" \"Householder living alone\" in \"Households\""
+  "name": "Householder living alone and Nonfamily households in Households", 
+  "extra": {
+    "table": "Household Type (Including Living Alone)", 
+    "universe": "Households", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Householder living alone"
+  }
 }

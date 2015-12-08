@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25115001", 
     "parent": "us/census/acs/C25115005"
   }, 
-  "name": "\"Tenure by Household Type\": \"('Owner occupied:', 'Family households:', 'Other family:')\" \"Female householder, no husband present\" in \"Occupied Housing Units\""
+  "name": "Female householder, no husband present and Owner occupied and Family households and Other family in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Household Type", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:", 
+      "Family households:", 
+      "Other family:"
+    ], 
+    "title": "Female householder, no husband present"
+  }
 }

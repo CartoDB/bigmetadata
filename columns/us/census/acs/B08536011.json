@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B08536001"
   }, 
-  "name": "\"Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work for Workplace Geography\": \"()\" \"Walked\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "Walked in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Aggregate Travel Time to Work (In Minutes) of Workers by Means of Transportation to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "title": "Walked"
+  }
 }

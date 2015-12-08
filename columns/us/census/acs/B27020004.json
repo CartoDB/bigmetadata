@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27020001", 
     "parent": "us/census/acs/B27020003"
   }, 
-  "name": "\"Health Insurance Coverage Status and Type by Citizenship Status\": \"('Native Born:', 'With health insurance coverage')\" \"With private health insurance\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With private health insurance and Native Born and With health insurance coverage in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Citizenship Status", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Native Born:", 
+      "With health insurance coverage"
+    ], 
+    "title": "With private health insurance"
+  }
 }

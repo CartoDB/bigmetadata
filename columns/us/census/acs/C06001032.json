@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06001001", 
     "parent": "us/census/acs/C06001028"
   }, 
-  "name": "\"Place of Birth by Age in the United States\": \"('Native; born outside the United States:',)\" \"25 to 44 years\" in \"Total Population in the United States\""
+  "name": "25 to 44 years and Native; born outside the United States in Total Population in the United States", 
+  "extra": {
+    "table": "Place of Birth by Age in the United States", 
+    "universe": "Total Population in the United States", 
+    "ancestors": [
+      "Native; born outside the United States:"
+    ], 
+    "title": "25 to 44 years"
+  }
 }

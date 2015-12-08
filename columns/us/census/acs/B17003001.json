@@ -1,3 +1,11 @@
 {
-  "name": "\"Poverty Status in the Past 12 Months of Individuals by Sex by Educational Attainment\": \"()\" \"Total:\" in \"Population 25 Years and Over for Whom Poverty Status Is Determined\""
+  "relationships": {
+    "denominator": "us/census/acs/B17003001"
+  }, 
+  "name": "Population 25 Years and Over for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Individuals by Sex by Educational Attainment", 
+    "universe": "Population 25 Years and Over for Whom Poverty Status Is Determined", 
+    "title": "Total:"
+  }
 }

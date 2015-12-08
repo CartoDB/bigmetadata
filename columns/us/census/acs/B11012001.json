@@ -1,3 +1,14 @@
 {
-  "name": "\"Household Type by Tenure\": \"('Nonfamily households:',)\" \"Total:\" in \"Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B11012001"
+  }, 
+  "name": "Total: and Nonfamily households in Households", 
+  "extra": {
+    "table": "Household Type by Tenure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Total:"
+  }
 }

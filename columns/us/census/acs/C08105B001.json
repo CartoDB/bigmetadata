@@ -1,3 +1,11 @@
 {
-  "name": "\"Means of Transportation to Work (Black or African American Alone)\": \"()\" \"Total:\" in \"Black or African American Alone Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/C08105B001"
+  }, 
+  "name": "Black or African American Alone Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work (Black or African American Alone)", 
+    "universe": "Black or African American Alone Workers 16 Years and Over", 
+    "title": "Total:"
+  }
 }

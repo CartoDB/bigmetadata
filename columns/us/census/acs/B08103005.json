@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B08103001"
   }, 
-  "name": "\"Median Age by Means of Transportation to Work\": \"('Total:',)\" \"Walked\" in \"Workers 16 Years and Over\""
+  "name": "Walked and Total in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Median Age by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Walked"
+  }
 }

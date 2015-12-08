@@ -1,3 +1,15 @@
 {
-  "name": "\"Year of Entry by Citizenship Status in Puerto Rico\": \"('Foreign born:', 'Not a U.S. citizen:')\" \"Total:\" in \"Population Born Outside Puerto Rico\""
+  "relationships": {
+    "denominator": "us/census/acs/B05005PR001"
+  }, 
+  "name": "Total: and Foreign born and Not a U.S. citizen in Population Born Outside Puerto Rico", 
+  "extra": {
+    "table": "Year of Entry by Citizenship Status in Puerto Rico", 
+    "universe": "Population Born Outside Puerto Rico", 
+    "ancestors": [
+      "Foreign born:", 
+      "Not a U.S. citizen:"
+    ], 
+    "title": "Total:"
+  }
 }

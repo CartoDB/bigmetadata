@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Value (Dollars) for Mobile Homes\": \"()\" \"Median value (dollars)\" in \"Owner-occupied Mobile Homes\""
+  "relationships": {}, 
+  "name": "Median value (dollars) in Owner-occupied Mobile Homes", 
+  "extra": {
+    "table": "Median Value (Dollars) for Mobile Homes", 
+    "universe": "Owner-occupied Mobile Homes", 
+    "title": "Median value (dollars)"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08505C001", 
     "parent": "us/census/acs/B08505C001"
   }, 
-  "name": "\"Means of Transportation to Work for Workplace Geography (American Indian and Alaska Native Alone)\": \"()\" \"Car, truck, or van - drove alone\" in \"American Indian and Alaska Native Alone Workers 16 Years and Over\""
+  "name": "Car, truck, or van - drove alone in American Indian and Alaska Native Alone Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work for Workplace Geography (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Workers 16 Years and Over", 
+    "title": "Car, truck, or van - drove alone"
+  }
 }

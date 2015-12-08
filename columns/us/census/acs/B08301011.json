@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08301001", 
     "parent": "us/census/acs/B08301010"
   }, 
-  "name": "\"Means of Transportation to Work\": \"('Public transportation (excluding taxicab):',)\" \"Bus or trolley bus\" in \"Workers 16 Years and Over\""
+  "name": "Bus or trolley bus and Public transportation (excluding taxicab) in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Bus or trolley bus"
+  }
 }

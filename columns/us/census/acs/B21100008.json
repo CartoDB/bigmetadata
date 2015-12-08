@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21100001", 
     "parent": "us/census/acs/B21100003"
   }, 
-  "name": "\"Service-connected Disability-rating Status and Ratings for Civilian Veterans 18 Years and Over\": \"('Has a service-connected disability rating:',)\" \"70 percent or higher\" in \"Civilian Veterans 18 Years and Over\""
+  "name": "70 percent or higher and Has a service-connected disability rating in Civilian Veterans 18 Years and Over", 
+  "extra": {
+    "table": "Service-connected Disability-rating Status and Ratings for Civilian Veterans 18 Years and Over", 
+    "universe": "Civilian Veterans 18 Years and Over", 
+    "ancestors": [
+      "Has a service-connected disability rating:"
+    ], 
+    "title": "70 percent or higher"
+  }
 }

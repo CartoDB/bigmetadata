@@ -1,3 +1,14 @@
 {
-  "name": "\"Movers Between Regions in the United States\": \"('Moved from elsewhere:',)\" \"Total:\" in \"Population 1 Year and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B07101001"
+  }, 
+  "name": "Total: and Moved from elsewhere in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Movers Between Regions in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved from elsewhere:"
+    ], 
+    "title": "Total:"
+  }
 }

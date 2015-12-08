@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08101001", 
     "parent": "us/census/acs/B08101001"
   }, 
-  "name": "\"Means of Transportation to Work by Age\": \"(None,)\" \"25 to 44 years\" in \"Workers 16 Years and Over\""
+  "name": "25 to 44 years and  in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Age", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null
+    ], 
+    "title": "25 to 44 years"
+  }
 }

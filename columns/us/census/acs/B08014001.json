@@ -1,3 +1,11 @@
 {
-  "name": "\"Sex of Workers by Vehicles Available\": \"()\" \"Total:\" in \"Workers 16 Years and Over in Households\""
+  "relationships": {
+    "denominator": "us/census/acs/B08014001"
+  }, 
+  "name": "Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Sex of Workers by Vehicles Available", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "title": "Total:"
+  }
 }

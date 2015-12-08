@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08124001", 
     "parent": "us/census/acs/C08124029"
   }, 
-  "name": "\"Means of Transportation to Work by Occupation\": \"('Taxicab, motorcycle, bicycle, walked, or other means:',)\" \"Service occupations\" in \"Workers 16 Years and Over\""
+  "name": "Service occupations and Taxicab, motorcycle, bicycle, walked, or other means in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Occupation", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, walked, or other means:"
+    ], 
+    "title": "Service occupations"
+  }
 }

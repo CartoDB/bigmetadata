@@ -1,3 +1,13 @@
 {
-  "name": "\"Aggregate Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Number of Workers in Family\": \"('Other family:', 'Female householder, no husband present:')\" \"Aggregate family income in the past 12 months (in 2010 inflation-adjusted dollars):\" in \"Families\""
+  "relationships": {}, 
+  "name": "Aggregate family income in the past 12 months (in 2010 inflation-adjusted dollars): and Other family and Female householder, no husband present in Families", 
+  "extra": {
+    "table": "Aggregate Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Number of Workers in Family", 
+    "universe": "Families", 
+    "ancestors": [
+      "Other family:", 
+      "Female householder, no husband present:"
+    ], 
+    "title": "Aggregate family income in the past 12 months (in 2010 inflation-adjusted dollars):"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25014B001", 
     "parent": "us/census/acs/B25014B001"
   }, 
-  "name": "\"Occupants Per Room (Black or African American Alone Householder)\": \"()\" \"1.01 or more occupants per room\" in \"Occupied Housing Units With a Householder Who Is Black or African American Alone\""
+  "name": "1.01 or more occupants per room in Occupied Housing Units With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Occupants Per Room (Black or African American Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Black or African American Alone", 
+    "title": "1.01 or more occupants per room"
+  }
 }

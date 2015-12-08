@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B10051H001", 
     "parent": "us/census/acs/B10051H002"
   }, 
-  "name": "\"Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent (White Alone, Not Hispanic or Latino)\": \"('Grandparent responsible for own grandchildren under 18 years:',)\" \"60 years and over\" in \"Grandparents (White Alone, Not Hispanic or Latino) Living With Own Grandchildren Under 18 Years\""
+  "name": "60 years and over and Grandparent responsible for own grandchildren under 18 years in Grandparents (White Alone, Not Hispanic or Latino) Living With Own Grandchildren Under 18 Years", 
+  "extra": {
+    "table": "Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent (White Alone, Not Hispanic or Latino)", 
+    "universe": "Grandparents (White Alone, Not Hispanic or Latino) Living With Own Grandchildren Under 18 Years", 
+    "ancestors": [
+      "Grandparent responsible for own grandchildren under 18 years:"
+    ], 
+    "title": "60 years and over"
+  }
 }

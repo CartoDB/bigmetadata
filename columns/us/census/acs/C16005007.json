@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C16005001", 
     "parent": "us/census/acs/C16005002"
   }, 
-  "name": "\"Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over\": \"('Native:',)\" \"Speak other Indo-European languages:\" in \"Population 5 Years and Over\""
+  "name": "Speak other Indo-European languages: and Native in Population 5 Years and Over", 
+  "extra": {
+    "table": "Nativity by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "Native:"
+    ], 
+    "title": "Speak other Indo-European languages:"
+  }
 }

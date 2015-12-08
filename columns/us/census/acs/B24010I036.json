@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010I001", 
     "parent": "us/census/acs/B24010I034"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)\": \"('Male:', 'Production, transportation, and material moving occupations:')\" \"Transportation occupations\" in \"Civilian Employed Hispanic or Latino Population 16 Years and Over\""
+  "name": "Transportation occupations and Male and Production, transportation, and material moving occupations in Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Production, transportation, and material moving occupations:"
+    ], 
+    "title": "Transportation occupations"
+  }
 }

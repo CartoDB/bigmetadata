@@ -2,5 +2,14 @@
   "relationships": {
     "parent": "us/census/acs/B05004010"
   }, 
-  "name": "\"Median Age by Citizenship Status by Sex\": \"('Foreign born:', 'Naturalized U.S. citizen:')\" \"Male\" in \"Total Population\""
+  "name": "Male and Foreign born and Naturalized U.S. citizen in Total Population", 
+  "extra": {
+    "table": "Median Age by Citizenship Status by Sex", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Foreign born:", 
+      "Naturalized U.S. citizen:"
+    ], 
+    "title": "Male"
+  }
 }

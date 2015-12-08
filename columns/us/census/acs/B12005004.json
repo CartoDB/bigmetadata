@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12005001", 
     "parent": "us/census/acs/B12005002"
   }, 
-  "name": "\"Marital Status by Nativity\": \"('Never married:',)\" \"Foreign born\" in \"Population 15 Years and Over\""
+  "name": "Foreign born and Never married in Population 15 Years and Over", 
+  "extra": {
+    "table": "Marital Status by Nativity", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Never married:"
+    ], 
+    "title": "Foreign born"
+  }
 }

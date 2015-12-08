@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08006001", 
     "parent": "us/census/acs/B08006018"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work\": \"('Male:',)\" \"Worked at home\" in \"Workers 16 Years and Over\""
+  "name": "Worked at home and Male in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Worked at home"
+  }
 }

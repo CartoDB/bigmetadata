@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25070001", 
     "parent": "us/census/acs/B25070001"
   }, 
-  "name": "\"Gross Rent as a Percentage of Household Income in the Past 12 Months\": \"()\" \"10.0 to 14.9 percent\" in \"Renter-occupied Housing Units\""
+  "name": "10.0 to 14.9 percent in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Gross Rent as a Percentage of Household Income in the Past 12 Months", 
+    "universe": "Renter-occupied Housing Units", 
+    "title": "10.0 to 14.9 percent"
+  }
 }

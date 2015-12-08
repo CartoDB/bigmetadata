@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08524001", 
     "parent": "us/census/acs/B08524036"
   }, 
-  "name": "\"Means of Transportation to Work by Occupation for Workplace Geography\": \"('Taxicab, motorcycle, bicycle, or other means:',)\" \"Sales and office occupations\" in \"Workers 16 Years and Over\""
+  "name": "Sales and office occupations within Taxicab, motorcycle, bicycle, or other means in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Occupation for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, or other means:"
+    ], 
+    "title": "Sales and office occupations"
+  }
 }

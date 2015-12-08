@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08537001", 
     "parent": "us/census/acs/B08537004"
   }, 
-  "name": "\"Means of Transportation to Work by Tenure for Workplace Geography\": \"('Car, truck, or van - drove alone:',)\" \"Householder lived in renter-occupied housing units\" in \"Workers 16 Years and Over in Households\""
+  "name": "Householder lived in renter-occupied housing units within Car, truck, or van - drove alone in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Tenure for Workplace Geography", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:"
+    ], 
+    "title": "Householder lived in renter-occupied housing units"
+  }
 }

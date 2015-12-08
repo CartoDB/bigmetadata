@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B08121001"
   }, 
-  "name": "\"Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Means of Transportation to Work\": \"('Total:',)\" \"Worked at home\" in \"Workers 16 Years and Over With Earnings\""
+  "name": "Worked at home and Total in Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Total:"
+    ], 
+    "title": "Worked at home"
+  }
 }

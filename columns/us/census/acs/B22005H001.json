@@ -1,3 +1,11 @@
 {
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (White Alone, Not Hispanic or Latino)\": \"()\" \"Total:\" in \"Households With a Householder Who Is White Alone, Not Hispanic or Latino\""
+  "relationships": {
+    "denominator": "us/census/acs/B22005H001"
+  }, 
+  "name": "Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (White Alone, Not Hispanic or Latino)", 
+    "universe": "Households With a Householder Who Is White Alone, Not Hispanic or Latino", 
+    "title": "Total:"
+  }
 }

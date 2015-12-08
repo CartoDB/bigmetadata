@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08128001", 
     "parent": "us/census/acs/B08128032"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker\": \"('Public transportation (excluding taxicab):', 'Private for-profit wage and salary workers:')\" \"Self-employed in own incorporated business workers\" in \"Workers 16 Years and Over\""
+  "name": "Self-employed in own incorporated business workers and Public transportation (excluding taxicab) and Private for-profit wage and salary workers in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Public transportation (excluding taxicab):", 
+      "Private for-profit wage and salary workers:"
+    ], 
+    "title": "Self-employed in own incorporated business workers"
+  }
 }

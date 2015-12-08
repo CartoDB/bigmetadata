@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age at First Marriage (White Alone, Not Hispanic or Latino)\": \"()\" \"Female\" in \"White Alone, Not Hispanic or Latino Population 15 to 54 Years\""
+  "relationships": {}, 
+  "name": "Female in White Alone, Not Hispanic or Latino Population 15 to 54 Years", 
+  "extra": {
+    "table": "Median Age at First Marriage (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population 15 to 54 Years", 
+    "title": "Female"
+  }
 }

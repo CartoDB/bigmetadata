@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24070001", 
     "parent": "us/census/acs/B24070124"
   }, 
-  "name": "\"Industry by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Local, state, and federal government workers:', 'Professional, scientific, and management, and administrative and waste management services:')\" \"Management of companies and enterprises\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Management of companies and enterprises and Local, state, and federal government workers and Professional, scientific, and management, and administrative and waste management services in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Local, state, and federal government workers:", 
+      "Professional, scientific, and management, and administrative and waste management services:"
+    ], 
+    "title": "Management of companies and enterprises"
+  }
 }

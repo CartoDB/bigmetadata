@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992523001", 
     "parent": "us/census/acs/B992523001"
   }, 
-  "name": "\"Imputation of Selected Monthly Owner Costs for Owner-occupied Housing Units\": \"()\" \"Not imputed\" in \"Owner-occupied Housing Units\""
+  "name": "Not imputed in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Selected Monthly Owner Costs for Owner-occupied Housing Units", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Not imputed"
+  }
 }

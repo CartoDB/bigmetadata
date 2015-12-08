@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B10059001", 
     "parent": "us/census/acs/B10059001"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent\": \"()\" \"Income in the past 12 months below poverty level:\" in \"Grandparents Living With Own Grandchildren Under 18 Years for Whom Poverty Status Is Determined\""
+  "name": "Income in the past 12 months below poverty level: in Grandparents Living With Own Grandchildren Under 18 Years for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent", 
+    "universe": "Grandparents Living With Own Grandchildren Under 18 Years for Whom Poverty Status Is Determined", 
+    "title": "Income in the past 12 months below poverty level:"
+  }
 }

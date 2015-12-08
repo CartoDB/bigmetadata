@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04007001", 
     "parent": "us/census/acs/B04007001"
   }, 
-  "name": "\"Ancestry\": \"()\" \"Ancestry specified:\" in \"Total Population\""
+  "name": "Ancestry specified: in Total Population", 
+  "extra": {
+    "table": "Ancestry", 
+    "universe": "Total Population", 
+    "title": "Ancestry specified:"
+  }
 }

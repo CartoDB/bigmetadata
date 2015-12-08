@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24126001", 
     "parent": "us/census/acs/B24126001"
   }, 
-  "name": "\"Detailed Occupation for the Full-time, Year-round Civilian Employed Female Population 16 Years and Over\": \"()\" \"Miscellaneous media and communications equipment workers, including broadcast and sound engineering technicians and radio operators\" in \"Full-time, Year-round Civilian Employed Female Population 16 Years and Over\""
+  "name": "Miscellaneous media and communications equipment workers, including broadcast and sound engineering technicians and radio operators in Full-time, Year-round Civilian Employed Female Population 16 Years and Over", 
+  "extra": {
+    "table": "Detailed Occupation for the Full-time, Year-round Civilian Employed Female Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Female Population 16 Years and Over", 
+    "title": "Miscellaneous media and communications equipment workers, including broadcast and sound engineering technicians and radio operators"
+  }
 }

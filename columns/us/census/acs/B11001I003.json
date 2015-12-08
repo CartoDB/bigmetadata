@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001I001", 
     "parent": "us/census/acs/B11001I002"
   }, 
-  "name": "\"Household Type (Including Living Alone) (Hispanic or Latino)\": \"('Family households:',)\" \"Married-couple family\" in \"Households With a Householder Who Is Hispanic or Latino\""
+  "name": "Married-couple family and Family households in Households With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (Hispanic or Latino)", 
+    "universe": "Households With a Householder Who Is Hispanic or Latino", 
+    "ancestors": [
+      "Family households:"
+    ], 
+    "title": "Married-couple family"
+  }
 }

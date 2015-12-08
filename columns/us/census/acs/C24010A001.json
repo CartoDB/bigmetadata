@@ -1,3 +1,15 @@
 {
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone)\": \"('Female:', 'Production, transportation, and material moving occupations:')\" \"Total:\" in \"Civilian Employed White Alone Population 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/C24010A001"
+  }, 
+  "name": "Total: and Female and Production, transportation, and material moving occupations in Civilian Employed White Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (White Alone)", 
+    "universe": "Civilian Employed White Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Production, transportation, and material moving occupations:"
+    ], 
+    "title": "Total:"
+  }
 }

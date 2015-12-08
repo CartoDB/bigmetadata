@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992510001", 
     "parent": "us/census/acs/B992510001"
   }, 
-  "name": "\"Imputation of Kitchen Facilities\": \"()\" \"Imputed\" in \"Housing Units\""
+  "name": "Imputed in Housing Units", 
+  "extra": {
+    "table": "Imputation of Kitchen Facilities", 
+    "universe": "Housing Units", 
+    "title": "Imputed"
+  }
 }

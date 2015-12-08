@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06009PR001", 
     "parent": "us/census/acs/B06009PR019"
   }, 
-  "name": "\"Place of Birth by Educational Attainment in Puerto Rico\": \"('Native; born elsewhere:',)\" \"Less than high school graduate\" in \"Population 25 Years and Over in Puerto Rico\""
+  "name": "Less than high school graduate and Native; born elsewhere in Population 25 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Educational Attainment in Puerto Rico", 
+    "universe": "Population 25 Years and Over in Puerto Rico", 
+    "ancestors": [
+      "Native; born elsewhere:"
+    ], 
+    "title": "Less than high school graduate"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Total Ancestry Reported\": \"()\" \"Total:\" in \"Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported\""
+  "relationships": {
+    "denominator": "us/census/acs/B04003001"
+  }, 
+  "name": "Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported", 
+  "extra": {
+    "table": "Total Ancestry Reported", 
+    "universe": "Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported", 
+    "title": "Total:"
+  }
 }

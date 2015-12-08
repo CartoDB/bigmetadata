@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08006001", 
     "parent": "us/census/acs/B08006008"
   }, 
-  "name": "\"Sex of Workers by Means of Transportation to Work\": \"(None, 'Public transportation (excluding taxicab):')\" \"Ferryboat\" in \"Workers 16 Years and Over\""
+  "name": "Ferryboat and Public transportation (excluding taxicab) in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Sex of Workers by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      null, 
+      "Public transportation (excluding taxicab):"
+    ], 
+    "title": "Ferryboat"
+  }
 }

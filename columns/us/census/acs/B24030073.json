@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24030001", 
     "parent": "us/census/acs/B24030072"
   }, 
-  "name": "\"Sex by Industry for the Civilian Employed Population 16 Years and Over\": \"('Male:', 'Transportation and warehousing, and utilities:', 'Transportation and warehousing:')\" \"Air transportation\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Air transportation and Male and Transportation and warehousing, and utilities and Transportation and warehousing in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Transportation and warehousing, and utilities:", 
+      "Transportation and warehousing:"
+    ], 
+    "title": "Air transportation"
+  }
 }

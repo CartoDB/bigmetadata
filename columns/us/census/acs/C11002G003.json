@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C11002G001", 
     "parent": "us/census/acs/C11002G001"
   }, 
-  "name": "\"Household Type for Population in Households (Two or More Races)\": \"()\" \"In nonfamily households\" in \"Population in Households With a Householder Who Is Two or More Races\""
+  "name": "In nonfamily households in Population in Households With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Household Type for Population in Households (Two or More Races)", 
+    "universe": "Population in Households With a Householder Who Is Two or More Races", 
+    "title": "In nonfamily households"
+  }
 }

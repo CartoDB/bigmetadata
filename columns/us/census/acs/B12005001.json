@@ -1,3 +1,11 @@
 {
-  "name": "\"Marital Status by Nativity\": \"()\" \"Total:\" in \"Population 15 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B12005001"
+  }, 
+  "name": "Population 15 Years and Over", 
+  "extra": {
+    "table": "Marital Status by Nativity", 
+    "universe": "Population 15 Years and Over", 
+    "title": "Total:"
+  }
 }

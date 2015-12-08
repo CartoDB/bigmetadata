@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19101G001", 
     "parent": "us/census/acs/B19101G001"
   }, 
-  "name": "\"Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Two or More Races Householder)\": \"()\" \"$35,000 to $39,999\" in \"Families With a Householder Who Is Two or More Races\""
+  "name": "$35,000 to $39,999 in Families With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Two or More Races Householder)", 
+    "universe": "Families With a Householder Who Is Two or More Races", 
+    "title": "$35,000 to $39,999"
+  }
 }

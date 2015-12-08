@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C07001001", 
     "parent": "us/census/acs/C07001041"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Age for Current Residence in the United States\": \"('Moved from different state:',)\" \"1 to 4 years\" in \"Population 1 Year and Over in the United States\""
+  "name": "1 to 4 years and Moved from different state in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Age for Current Residence in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved from different state:"
+    ], 
+    "title": "1 to 4 years"
+  }
 }

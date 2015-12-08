@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25048001", 
     "parent": "us/census/acs/B25048001"
   }, 
-  "name": "\"Plumbing Facilities for Occupied Housing Units\": \"()\" \"Lacking complete plumbing facilities\" in \"Occupied Housing Units\""
+  "name": "Lacking complete plumbing facilities in Occupied Housing Units", 
+  "extra": {
+    "table": "Plumbing Facilities for Occupied Housing Units", 
+    "universe": "Occupied Housing Units", 
+    "title": "Lacking complete plumbing facilities"
+  }
 }

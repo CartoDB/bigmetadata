@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25020001", 
     "parent": "us/census/acs/B25020002"
   }, 
-  "name": "\"Tenure by Rooms\": \"('Owner occupied:',)\" \"1 room\" in \"Occupied Housing Units\""
+  "name": "1 room and Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Rooms", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:"
+    ], 
+    "title": "1 room"
+  }
 }

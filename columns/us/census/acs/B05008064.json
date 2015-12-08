@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05008001", 
     "parent": "us/census/acs/B05008062"
   }, 
-  "name": "\"Sex by Place of Birth by Year of Entry for the Foreign-born Population\": \"('Female:', 'Latin America:', 'South America:')\" \"Entered 1990 to 1999\" in \"Foreign-born Population\""
+  "name": "Entered 1990 to 1999 and Female and Latin America and South America in Foreign-born Population", 
+  "extra": {
+    "table": "Sex by Place of Birth by Year of Entry for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Female:", 
+      "Latin America:", 
+      "South America:"
+    ], 
+    "title": "Entered 1990 to 1999"
+  }
 }

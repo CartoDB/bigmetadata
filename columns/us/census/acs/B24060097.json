@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24060001", 
     "parent": "us/census/acs/B24060090"
   }, 
-  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Self-employed in own incorporated business workers:', 'Service occupations:')\" \"Personal care and service occupations\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Personal care and service occupations and Self-employed in own incorporated business workers and Service occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Self-employed in own incorporated business workers:", 
+      "Service occupations:"
+    ], 
+    "title": "Personal care and service occupations"
+  }
 }

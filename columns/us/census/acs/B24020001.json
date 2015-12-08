@@ -1,3 +1,11 @@
 {
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"()\" \"Total:\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B24020001"
+  }, 
+  "name": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "title": "Total:"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Sex by Age by Independent Living Difficulty\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B18107001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Independent Living Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "title": "Total:"
+  }
 }

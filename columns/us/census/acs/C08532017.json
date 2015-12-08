@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08532001", 
     "parent": "us/census/acs/C08532012"
   }, 
-  "name": "\"Means of Transportation to Work by Time Arriving at Work From Home for Workplace Geography\": \"('Car, truck, or van - drove alone:',)\" \"6:30 a.m. to 6:59 a.m.\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "6:30 a.m. to 6:59 a.m. within Car, truck, or van - drove alone in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Time Arriving at Work From Home for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:"
+    ], 
+    "title": "6:30 a.m. to 6:59 a.m."
+  }
 }

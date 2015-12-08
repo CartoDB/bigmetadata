@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001H001", 
     "parent": "us/census/acs/B01001H002"
   }, 
-  "name": "\"Sex by Age (White Alone, Not Hispanic or Latino)\": \"('Male:',)\" \"45 to 54 years\" in \"White Alone, Not Hispanic or Latino Population\""
+  "name": "45 to 54 years and Male in White Alone, Not Hispanic or Latino Population", 
+  "extra": {
+    "table": "Sex by Age (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "45 to 54 years"
+  }
 }

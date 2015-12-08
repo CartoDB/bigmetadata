@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24080001", 
     "parent": "us/census/acs/C24080002"
   }, 
-  "name": "\"Sex by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Male:',)\" \"State government workers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "State government workers and Male in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "State government workers"
+  }
 }

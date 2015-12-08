@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17001A001", 
     "parent": "us/census/acs/B17001A046"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age (White Alone)\": \"('Income in the past 12 months at or above poverty level:', 'Female:')\" \"65 to 74 years\" in \"White Alone Population for Whom Poverty Status Is Determined\""
+  "name": "65 to 74 years and Income in the past 12 months at or above poverty level and Female in White Alone Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age (White Alone)", 
+    "universe": "White Alone Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Female:"
+    ], 
+    "title": "65 to 74 years"
+  }
 }

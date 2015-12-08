@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B19050001"
   }, 
-  "name": "\"Aggregate Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Age of Householder\": \"()\" \"Householder 65 years and over\" in \"Households\""
+  "name": "Householder 65 years and over in Households", 
+  "extra": {
+    "table": "Aggregate Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Age of Householder", 
+    "universe": "Households", 
+    "title": "Householder 65 years and over"
+  }
 }

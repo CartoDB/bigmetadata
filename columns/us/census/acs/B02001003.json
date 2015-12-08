@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02001001", 
     "parent": "us/census/acs/B02001001"
   }, 
-  "name": "\"Race\": \"()\" \"Black or African American alone\" in \"Total Population\""
+  "name": "Black or African American alone in Total Population", 
+  "extra": {
+    "table": "Race", 
+    "universe": "Total Population", 
+    "title": "Black or African American alone"
+  }
 }

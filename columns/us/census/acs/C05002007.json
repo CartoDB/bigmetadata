@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05002001", 
     "parent": "us/census/acs/C05002005"
   }, 
-  "name": "\"Place of Birth by Nativity\": \"('Native:', 'Born outside the United States:')\" \"U.S. Island Areas or born abroad of American parent(s)\" in \"Total Population\""
+  "name": "U.S. Island Areas or born abroad of American parent(s) and Native and Born outside the United States in Total Population", 
+  "extra": {
+    "table": "Place of Birth by Nativity", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Native:", 
+      "Born outside the United States:"
+    ], 
+    "title": "U.S. Island Areas or born abroad of American parent(s)"
+  }
 }

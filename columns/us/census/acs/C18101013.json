@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C18101001", 
     "parent": "us/census/acs/C18101012"
   }, 
-  "name": "\"Sex by Age by Disability Status\": \"('Female:',)\" \"Under 18 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Under 18 years: and Female in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Sex by Age by Disability Status", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Under 18 years:"
+  }
 }

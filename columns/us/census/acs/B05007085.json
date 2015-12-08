@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05007001", 
     "parent": "us/census/acs/B05007083"
   }, 
-  "name": "\"Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population\": \"('Other areas:', 'Entered 2000 or later:')\" \"Not a U.S. citizen\" in \"Foreign-born Population\""
+  "name": "Not a U.S. citizen and Other areas and Entered 2000 or later in Foreign-born Population", 
+  "extra": {
+    "table": "Place of Birth by Year of Entry by Citizenship Status for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Other areas:", 
+      "Entered 2000 or later:"
+    ], 
+    "title": "Not a U.S. citizen"
+  }
 }

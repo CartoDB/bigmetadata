@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001B001", 
     "parent": "us/census/acs/B27001B001"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Black or African American Alone)\": \"()\" \"75 years and over:\" in \"BLACK OR AFRICAN AMERICAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "75 years and over: in BLACK OR AFRICAN AMERICAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Black or African American Alone)", 
+    "universe": "BLACK OR AFRICAN AMERICAN ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "title": "75 years and over:"
+  }
 }

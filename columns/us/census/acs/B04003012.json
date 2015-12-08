@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04003001", 
     "parent": "us/census/acs/B04003006"
   }, 
-  "name": "\"Total Ancestry Reported\": \"('Arab:',)\" \"Palestinian\" in \"Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported\""
+  "name": "Palestinian and Arab in Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported", 
+  "extra": {
+    "table": "Total Ancestry Reported", 
+    "universe": "Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported", 
+    "ancestors": [
+      "Arab:"
+    ], 
+    "title": "Palestinian"
+  }
 }

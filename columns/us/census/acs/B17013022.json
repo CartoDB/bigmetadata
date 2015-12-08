@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17013001", 
     "parent": "us/census/acs/B17013014"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Families by Household Type by Number of Persons in Family\": \"('Income in the past 12 months at or above poverty level:', 'Married-couple family:', None)\" \"3 to 4 people\" in \"Families\""
+  "name": "3 to 4 people and Income in the past 12 months at or above poverty level and Married-couple family in Families", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Families by Household Type by Number of Persons in Family", 
+    "universe": "Families", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Married-couple family:", 
+      null
+    ], 
+    "title": "3 to 4 people"
+  }
 }

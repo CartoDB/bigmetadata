@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18102001", 
     "parent": "us/census/acs/B18102003"
   }, 
-  "name": "\"Sex by Age by Hearing Difficulty\": \"('Male:', 'Under 5 years:')\" \"With a hearing difficulty\" in \"Civilian Noninstitutionalized Population\""
+  "name": "With a hearing difficulty and Male and Under 5 years in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Sex by Age by Hearing Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:", 
+      "Under 5 years:"
+    ], 
+    "title": "With a hearing difficulty"
+  }
 }

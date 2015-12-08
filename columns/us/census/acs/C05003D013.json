@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05003D001", 
     "parent": "us/census/acs/C05003D009"
   }, 
-  "name": "\"Sex by Age by Nativity (Asian Alone)\": \"('Female:',)\" \"18 years and over:\" in \"People Who Are Asian Alone\""
+  "name": "18 years and over: and Female in People Who Are Asian Alone", 
+  "extra": {
+    "table": "Sex by Age by Nativity (Asian Alone)", 
+    "universe": "People Who Are Asian Alone", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "18 years and over:"
+  }
 }

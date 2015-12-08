@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27014001", 
     "parent": "us/census/acs/C27014001"
   }, 
-  "name": "\"Public Health Insurance by Work Experience by Age\": \"()\" \"Did not work:\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "name": "Did not work: in Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Public Health Insurance by Work Experience by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "title": "Did not work:"
+  }
 }

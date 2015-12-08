@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001G001", 
     "parent": "us/census/acs/B01001G002"
   }, 
-  "name": "\"Sex by Age (Two or More Races)\": \"('Male:',)\" \"75 to 84 years\" in \"People Who Are Two or More Races\""
+  "name": "75 to 84 years and Male in People Who Are Two or More Races", 
+  "extra": {
+    "table": "Sex by Age (Two or More Races)", 
+    "universe": "People Who Are Two or More Races", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "75 to 84 years"
+  }
 }

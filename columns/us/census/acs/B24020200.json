@@ -1,6 +1,19 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020196"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:', 'Education, training, and library occupations:', 'Primary, secondary, and special education school teachers:')\" \"Special education teachers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Special education teachers and Female and Management, business, science, and arts occupations and Education, legal, community service, arts, and media occupations and Education, training, and library occupations and Primary, secondary, and special education school teachers in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Education, legal, community service, arts, and media occupations:", 
+      "Education, training, and library occupations:", 
+      "Primary, secondary, and special education school teachers:"
+    ], 
+    "title": "Special education teachers"
+  }
 }

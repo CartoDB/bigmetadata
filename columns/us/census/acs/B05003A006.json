@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003A001", 
     "parent": "us/census/acs/B05003A005"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (White Alone)\": \"('Male:', 'Under 18 years:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"People Who Are White Alone\""
+  "name": "Naturalized U.S. citizen and Male and Under 18 years and Foreign born in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (White Alone)", 
+    "universe": "People Who Are White Alone", 
+    "ancestors": [
+      "Male:", 
+      "Under 18 years:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010I001", 
     "parent": "us/census/acs/B24010I030"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)\": \"('Male:', 'Natural resources, construction, and maintenance occupations:')\" \"Farming, fishing, and forestry occupations\" in \"Civilian Employed Hispanic or Latino Population 16 Years and Over\""
+  "name": "Farming, fishing, and forestry occupations and Male and Natural resources, construction, and maintenance occupations in Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Hispanic or Latino)", 
+    "universe": "Civilian Employed Hispanic or Latino Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Natural resources, construction, and maintenance occupations:"
+    ], 
+    "title": "Farming, fishing, and forestry occupations"
+  }
 }

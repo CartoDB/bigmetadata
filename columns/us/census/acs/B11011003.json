@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11011001", 
     "parent": "us/census/acs/B11011002"
   }, 
-  "name": "\"Household Type by Units in Structure\": \"('Family households:',)\" \"Married-couple family:\" in \"Households\""
+  "name": "Married-couple family: and Family households in Households", 
+  "extra": {
+    "table": "Household Type by Units in Structure", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:"
+    ], 
+    "title": "Married-couple family:"
+  }
 }

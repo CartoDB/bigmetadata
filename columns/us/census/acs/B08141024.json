@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08141001", 
     "parent": "us/census/acs/B08141021"
   }, 
-  "name": "\"Means of Transportation to Work by Vehicles Available\": \"('Walked:',)\" \"2 vehicles available\" in \"Workers 16 Years and Over in Households\""
+  "name": "2 vehicles available and Walked in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Means of Transportation to Work by Vehicles Available", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "ancestors": [
+      "Walked:"
+    ], 
+    "title": "2 vehicles available"
+  }
 }

@@ -1,3 +1,14 @@
 {
-  "name": "\"Hispanic or Latino Origin by Race\": \"('Hispanic or Latino:',)\" \"Total:\" in \"Total Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B03002001"
+  }, 
+  "name": "Total: and Hispanic or Latino in Total Population", 
+  "extra": {
+    "table": "Hispanic or Latino Origin by Race", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Hispanic or Latino:"
+    ], 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05005PR001", 
     "parent": "us/census/acs/C05005PR002"
   }, 
-  "name": "\"Year of Entry by Nativity in Puerto Rico\": \"('Entered 2000 or later:',)\" \"Native\" in \"Population Born Outside Puerto Rico\""
+  "name": "Native and Entered 2000 or later in Population Born Outside Puerto Rico", 
+  "extra": {
+    "table": "Year of Entry by Nativity in Puerto Rico", 
+    "universe": "Population Born Outside Puerto Rico", 
+    "ancestors": [
+      "Entered 2000 or later:"
+    ], 
+    "title": "Native"
+  }
 }

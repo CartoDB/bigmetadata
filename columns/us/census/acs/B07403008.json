@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07403001", 
     "parent": "us/census/acs/B07403007"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Sex for Residence 1 Year Ago in the United States\": \"('Moved within same county:',)\" \"Male\" in \"Population 1 Year and Over in the United States\""
+  "name": "Male within Moved within same county in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Sex for Residence 1 Year Ago in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved within same county:"
+    ], 
+    "title": "Male"
+  }
 }

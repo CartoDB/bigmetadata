@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25051001", 
     "parent": "us/census/acs/B25051001"
   }, 
-  "name": "\"Kitchen Facilities for All Housing Units\": \"()\" \"Lacking complete kitchen facilities\" in \"Housing Units\""
+  "name": "Lacking complete kitchen facilities in Housing Units", 
+  "extra": {
+    "table": "Kitchen Facilities for All Housing Units", 
+    "universe": "Housing Units", 
+    "title": "Lacking complete kitchen facilities"
+  }
 }

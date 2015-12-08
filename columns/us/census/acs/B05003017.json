@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003001", 
     "parent": "us/census/acs/B05003016"
   }, 
-  "name": "\"Sex by Age by Citizenship Status\": \"('Female:', 'Under 18 years:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"Total Population\""
+  "name": "Naturalized U.S. citizen and Female and Under 18 years and Foreign born in Total Population", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Female:", 
+      "Under 18 years:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Household Income Quintile Upper Limits\": \"()\" \"Second Quintile\" in \"Households\""
+  "relationships": {}, 
+  "name": "Second Quintile in Households", 
+  "extra": {
+    "table": "Household Income Quintile Upper Limits", 
+    "universe": "Households", 
+    "title": "Second Quintile"
+  }
 }

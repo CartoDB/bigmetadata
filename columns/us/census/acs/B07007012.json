@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07007001", 
     "parent": "us/census/acs/B07007011"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Citizenship Status for Current Residence in the United States\": \"('Moved within same county:',)\" \"Native\" in \"Population 1 Year and Over in the United States\""
+  "name": "Native and Moved within same county in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Citizenship Status for Current Residence in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved within same county:"
+    ], 
+    "title": "Native"
+  }
 }

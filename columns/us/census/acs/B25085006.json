@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25085001", 
     "parent": "us/census/acs/B25085001"
   }, 
-  "name": "\"Price Asked\": \"()\" \"$25,000 to $29,999\" in \"Vacant-for-sale-only and Sold, Not Occupied Housing Units\""
+  "name": "$25,000 to $29,999 in Vacant-for-sale-only and Sold, Not Occupied Housing Units", 
+  "extra": {
+    "table": "Price Asked", 
+    "universe": "Vacant-for-sale-only and Sold, Not Occupied Housing Units", 
+    "title": "$25,000 to $29,999"
+  }
 }

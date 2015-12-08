@@ -1,3 +1,15 @@
 {
-  "name": "\"Age and Nativity of Own Children Under 18 Years in Families and Subfamilies by Number and Nativity of Parents\": \"('Female:', 'Other areas:')\" \"Total:\" in \"Own Children Under 18 Years Living in Families or Subfamilies\""
+  "relationships": {
+    "denominator": "us/census/acs/B05009001"
+  }, 
+  "name": "Total: and Female and Other areas in Own Children Under 18 Years Living in Families or Subfamilies", 
+  "extra": {
+    "table": "Age and Nativity of Own Children Under 18 Years in Families and Subfamilies by Number and Nativity of Parents", 
+    "universe": "Own Children Under 18 Years Living in Families or Subfamilies", 
+    "ancestors": [
+      "Female:", 
+      "Other areas:"
+    ], 
+    "title": "Total:"
+  }
 }

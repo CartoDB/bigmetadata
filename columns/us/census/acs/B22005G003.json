@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B22005G001", 
     "parent": "us/census/acs/B22005G001"
   }, 
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (Two or More Races)\": \"()\" \"Household did not receive Food Stamps/SNAP in the past 12 months\" in \"Households With a Householder Who Is Two or More Races\""
+  "name": "Household did not receive Food Stamps/SNAP in the past 12 months in Households With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Race of Householder (Two or More Races)", 
+    "universe": "Households With a Householder Who Is Two or More Races", 
+    "title": "Household did not receive Food Stamps/SNAP in the past 12 months"
+  }
 }

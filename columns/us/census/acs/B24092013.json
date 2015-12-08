@@ -2,5 +2,14 @@
   "relationships": {
     "parent": "us/census/acs/B24092011"
   }, 
-  "name": "\"Sex by Class of Worker and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Private for-profit wage and salary workers:')\" \"Self-employed in own incorporated business workers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings\""
+  "name": "Self-employed in own incorporated business workers and Female and Private for-profit wage and salary workers in Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Sex by Class of Worker and Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Female:", 
+      "Private for-profit wage and salary workers:"
+    ], 
+    "title": "Self-employed in own incorporated business workers"
+  }
 }

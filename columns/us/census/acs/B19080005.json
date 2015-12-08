@@ -1,3 +1,9 @@
 {
-  "name": "\"Household Income Quintile Upper Limits\": \"()\" \"Lower Limit of Top 5 Percent\" in \"Households\""
+  "relationships": {}, 
+  "name": "Lower Limit of Top 5 Percent in Households", 
+  "extra": {
+    "table": "Household Income Quintile Upper Limits", 
+    "universe": "Households", 
+    "title": "Lower Limit of Top 5 Percent"
+  }
 }

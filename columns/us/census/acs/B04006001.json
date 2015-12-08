@@ -1,3 +1,11 @@
 {
-  "name": "\"People Reporting Ancestry\": \"()\" \"Total:\" in \"Total Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B04006001"
+  }, 
+  "name": "Total Population", 
+  "extra": {
+    "table": "People Reporting Ancestry", 
+    "universe": "Total Population", 
+    "title": "Total:"
+  }
 }

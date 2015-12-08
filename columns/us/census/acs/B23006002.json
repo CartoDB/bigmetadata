@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23006001", 
     "parent": "us/census/acs/B23006001"
   }, 
-  "name": "\"Educational Attainment by Employment Status for the Population 25 to 64 Years\": \"()\" \"Less than high school graduate:\" in \"Population 25 to 64 Years\""
+  "name": "Less than high school graduate: in Population 25 to 64 Years", 
+  "extra": {
+    "table": "Educational Attainment by Employment Status for the Population 25 to 64 Years", 
+    "universe": "Population 25 to 64 Years", 
+    "title": "Less than high school graduate:"
+  }
 }

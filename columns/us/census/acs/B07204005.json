@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07204001", 
     "parent": "us/census/acs/B07204004"
   }, 
-  "name": "\"Geographical Mobility in the Past Year for Current Residence--State, County and Place Level in the United States\": \"('Different house in United States 1 year ago:', 'Same city or town:')\" \"Same county\" in \"Population 1 Year and Over in the United States\""
+  "name": "Same county and Different house in United States 1 year ago and Same city or town in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year for Current Residence--State, County and Place Level in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Different house in United States 1 year ago:", 
+      "Same city or town:"
+    ], 
+    "title": "Same county"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07101001", 
     "parent": "us/census/acs/B07101001"
   }, 
-  "name": "\"Movers Between Regions in the United States\": \"('Moved from elsewhere:',)\" \"Movers from abroad:\" in \"Population 1 Year and Over in the United States\""
+  "name": "Movers from abroad: and Moved from elsewhere in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Movers Between Regions in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved from elsewhere:"
+    ], 
+    "title": "Movers from abroad:"
+  }
 }

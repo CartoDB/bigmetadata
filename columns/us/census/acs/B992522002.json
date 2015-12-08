@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992522001", 
     "parent": "us/census/acs/B992522001"
   }, 
-  "name": "\"Imputation of Mortgage Status and Selected Monthly Owner Costs\": \"()\" \"Housing units with a mortgage:\" in \"Owner-occupied Housing Units\""
+  "name": "Housing units with a mortgage: in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Imputation of Mortgage Status and Selected Monthly Owner Costs", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Housing units with a mortgage:"
+  }
 }

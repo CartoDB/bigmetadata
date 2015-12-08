@@ -1,3 +1,14 @@
 {
-  "name": "\"Age by Disability Status by Health Insurance Coverage Status\": \"('2.00 and over:',)\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B18135001"
+  }, 
+  "name": "Total: and 2.00 and over in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status by Health Insurance Coverage Status", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "2.00 and over:"
+    ], 
+    "title": "Total:"
+  }
 }

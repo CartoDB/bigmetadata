@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Travel Time to Work for Workplace Geography\": \"()\" \"Total:\" in \"Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B99088001"
+  }, 
+  "name": "Workers 16 Years and Over", 
+  "extra": {
+    "table": "Imputation of Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "title": "Total:"
+  }
 }

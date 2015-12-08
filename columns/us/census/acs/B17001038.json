@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17001001", 
     "parent": "us/census/acs/B17001032"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age\": \"('Income in the past 12 months at or above poverty level:', 'Male:')\" \"16 and 17 years\" in \"Population for Whom Poverty Status Is Determined\""
+  "name": "16 and 17 years and Income in the past 12 months at or above poverty level and Male in Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age", 
+    "universe": "Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Male:"
+    ], 
+    "title": "16 and 17 years"
+  }
 }

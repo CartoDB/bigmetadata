@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17006001", 
     "parent": "us/census/acs/B17006017"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months of Related Children Under 18 Years by Family Type by Age of Related Children Under 18 Years\": \"('Income in the past 12 months at or above poverty level:', 'In married-couple family:')\" \"5 years\" in \"Related Children Under 18 Years\""
+  "name": "5 years and Income in the past 12 months at or above poverty level and In married-couple family in Related Children Under 18 Years", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months of Related Children Under 18 Years by Family Type by Age of Related Children Under 18 Years", 
+    "universe": "Related Children Under 18 Years", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "In married-couple family:"
+    ], 
+    "title": "5 years"
+  }
 }

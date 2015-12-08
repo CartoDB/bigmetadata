@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23003001", 
     "parent": "us/census/acs/B23003025"
   }, 
-  "name": "\"Presence of Own Children Under 18 Years by Age of Own Children Under 18 Years by Employment Status for Females 20 to 64 Years\": \"('No own children under 18 years:', 'In labor force:')\" \"In Armed Forces\" in \"Females 20 to 64 Years in Households\""
+  "name": "In Armed Forces and No own children under 18 years and In labor force in Females 20 to 64 Years in Households", 
+  "extra": {
+    "table": "Presence of Own Children Under 18 Years by Age of Own Children Under 18 Years by Employment Status for Females 20 to 64 Years", 
+    "universe": "Females 20 to 64 Years in Households", 
+    "ancestors": [
+      "No own children under 18 years:", 
+      "In labor force:"
+    ], 
+    "title": "In Armed Forces"
+  }
 }

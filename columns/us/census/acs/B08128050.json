@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08128001", 
     "parent": "us/census/acs/B08128041"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker\": \"('Walked:',)\" \"Unpaid family workers\" in \"Workers 16 Years and Over\""
+  "name": "Unpaid family workers and Walked in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Walked:"
+    ], 
+    "title": "Unpaid family workers"
+  }
 }

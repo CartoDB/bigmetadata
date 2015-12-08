@@ -1,3 +1,14 @@
 {
-  "name": "\"Place of Birth by Marital Status in Puerto Rico\": \"('Foreign born:',)\" \"Total:\" in \"Population 15 Years and Over in Puerto Rico\""
+  "relationships": {
+    "denominator": "us/census/acs/C06008PR001"
+  }, 
+  "name": "Total: and Foreign born in Population 15 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Place of Birth by Marital Status in Puerto Rico", 
+    "universe": "Population 15 Years and Over in Puerto Rico", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Total:"
+  }
 }

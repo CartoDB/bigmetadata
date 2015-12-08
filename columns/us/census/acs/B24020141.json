@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020132"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Male:', 'Production, transportation, and material moving occupations:', 'Production occupations:')\" \"Other production occupations\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Other production occupations and Male and Production, transportation, and material moving occupations and Production occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Production, transportation, and material moving occupations:", 
+      "Production occupations:"
+    ], 
+    "title": "Other production occupations"
+  }
 }

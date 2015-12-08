@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08203001", 
     "parent": "us/census/acs/C08203016"
   }, 
-  "name": "\"Number of Workers in Household by Vehicles Available\": \"('2 workers:',)\" \"No vehicle available\" in \"Households\""
+  "name": "No vehicle available and 2 workers in Households", 
+  "extra": {
+    "table": "Number of Workers in Household by Vehicles Available", 
+    "universe": "Households", 
+    "ancestors": [
+      "2 workers:"
+    ], 
+    "title": "No vehicle available"
+  }
 }

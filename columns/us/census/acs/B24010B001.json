@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Black or African American Alone)\": \"('Female:',)\" \"Total:\" in \"Civilian Employed Black or African American Alone Population 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B24010B001"
+  }, 
+  "name": "Total: and Female in Civilian Employed Black or African American Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Black or African American Alone)", 
+    "universe": "Civilian Employed Black or African American Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

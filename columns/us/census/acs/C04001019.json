@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C04001001", 
     "parent": "us/census/acs/C04001001"
   }, 
-  "name": "\"First Ancestry Reported\": \"()\" \"Polish\" in \"Total Population\""
+  "name": "Polish in Total Population", 
+  "extra": {
+    "table": "First Ancestry Reported", 
+    "universe": "Total Population", 
+    "title": "Polish"
+  }
 }

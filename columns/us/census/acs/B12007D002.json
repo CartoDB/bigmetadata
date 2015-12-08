@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age at First Marriage (Asian Alone)\": \"()\" \"Female\" in \"Asian Alone Population 15 to 54 Years\""
+  "relationships": {}, 
+  "name": "Female in Asian Alone Population 15 to 54 Years", 
+  "extra": {
+    "table": "Median Age at First Marriage (Asian Alone)", 
+    "universe": "Asian Alone Population 15 to 54 Years", 
+    "title": "Female"
+  }
 }

@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17017001", 
     "parent": "us/census/acs/B17017049"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Household Type by Age of Householder\": \"('Income in the past 12 months at or above poverty level:', 'Nonfamily households:')\" \"Male householder:\" in \"Households\""
+  "name": "Male householder: and Income in the past 12 months at or above poverty level and Nonfamily households in Households", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Household Type by Age of Householder", 
+    "universe": "Households", 
+    "ancestors": [
+      "Income in the past 12 months at or above poverty level:", 
+      "Nonfamily households:"
+    ], 
+    "title": "Male householder:"
+  }
 }

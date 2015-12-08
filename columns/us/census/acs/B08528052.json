@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08528001", 
     "parent": "us/census/acs/B08528051"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker for Workplace Geography\": \"('Taxicab, motorcycle, bicycle, or other means:',)\" \"Private for-profit wage and salary workers:\" in \"Workers 16 Years and Over\""
+  "name": "Private for-profit wage and salary workers: within Taxicab, motorcycle, bicycle, or other means in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, or other means:"
+    ], 
+    "title": "Private for-profit wage and salary workers:"
+  }
 }

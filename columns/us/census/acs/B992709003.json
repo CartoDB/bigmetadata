@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B992709001", 
     "parent": "us/census/acs/B992709001"
   }, 
-  "name": "\"Imputation of VA Health Care\": \"()\" \"Not imputed\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Not imputed in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Imputation of VA Health Care", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "title": "Not imputed"
+  }
 }

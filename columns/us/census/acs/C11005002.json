@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C11005001", 
     "parent": "us/census/acs/C11005001"
   }, 
-  "name": "\"Households by Presence of People Under 18 Years by Household Type\": \"()\" \"Households with one or more people under 18 years:\" in \"Households\""
+  "name": "Households with one or more people under 18 years: in Households", 
+  "extra": {
+    "table": "Households by Presence of People Under 18 Years by Household Type", 
+    "universe": "Households", 
+    "title": "Households with one or more people under 18 years:"
+  }
 }

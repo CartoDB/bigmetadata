@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24050001", 
     "parent": "us/census/acs/B24050155"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Production, transportation, and material moving occupations:', 'Educational services, and health care and social assistance:')\" \"Educational services\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Educational services and Production, transportation, and material moving occupations and Educational services, and health care and social assistance in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Production, transportation, and material moving occupations:", 
+      "Educational services, and health care and social assistance:"
+    ], 
+    "title": "Educational services"
+  }
 }

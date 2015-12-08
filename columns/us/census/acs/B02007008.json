@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B02007001", 
     "parent": "us/census/acs/B02007007"
   }, 
-  "name": "\"Native Hawaiian and Other Pacific Islander Alone by Selected Groups\": \"('Micronesian:',)\" \"Guamanian or Chamorro\" in \"Total Native Hawaiian and Other Pacific Islander Alone Population\""
+  "name": "Guamanian or Chamorro and Micronesian in Total Native Hawaiian and Other Pacific Islander Alone Population", 
+  "extra": {
+    "table": "Native Hawaiian and Other Pacific Islander Alone by Selected Groups", 
+    "universe": "Total Native Hawaiian and Other Pacific Islander Alone Population", 
+    "ancestors": [
+      "Micronesian:"
+    ], 
+    "title": "Guamanian or Chamorro"
+  }
 }

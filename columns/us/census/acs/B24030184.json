@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24030001", 
     "parent": "us/census/acs/B24030175"
   }, 
-  "name": "\"Sex by Industry for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Transportation and warehousing, and utilities:')\" \"Utilities\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Utilities and Female and Transportation and warehousing, and utilities in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Transportation and warehousing, and utilities:"
+    ], 
+    "title": "Utilities"
+  }
 }

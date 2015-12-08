@@ -1,3 +1,11 @@
 {
-  "name": "\"Citizenship Status in the United States\": \"()\" \"Total:\" in \"Total Population in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/C05001001"
+  }, 
+  "name": "Total Population in the United States", 
+  "extra": {
+    "table": "Citizenship Status in the United States", 
+    "universe": "Total Population in the United States", 
+    "title": "Total:"
+  }
 }

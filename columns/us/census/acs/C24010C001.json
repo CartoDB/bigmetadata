@@ -1,3 +1,15 @@
 {
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (American Indian and Alaska Native Alone)\": \"('Female:', 'Production, transportation, and material moving occupations:')\" \"Total:\" in \"Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/C24010C001"
+  }, 
+  "name": "Total: and Female and Production, transportation, and material moving occupations in Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "Civilian Employed American Indian and Alaska Native Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Production, transportation, and material moving occupations:"
+    ], 
+    "title": "Total:"
+  }
 }

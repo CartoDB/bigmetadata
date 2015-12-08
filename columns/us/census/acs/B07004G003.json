@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07004G001", 
     "parent": "us/census/acs/B07004G001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year (Two or More Races) for Current Residence in the United States\": \"()\" \"Moved within same county\" in \"Two or More Races Population 1 Year and Over in the United States\""
+  "name": "Moved within same county in Two or More Races Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Two or More Races) for Current Residence in the United States", 
+    "universe": "Two or More Races Population 1 Year and Over in the United States", 
+    "title": "Moved within same county"
+  }
 }

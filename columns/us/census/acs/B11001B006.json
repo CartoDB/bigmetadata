@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001B001", 
     "parent": "us/census/acs/B11001B004"
   }, 
-  "name": "\"Household Type (Including Living Alone) (Black or African American Alone)\": \"('Family households:', 'Other family:')\" \"Female householder, no husband present\" in \"Households With a Householder Who Is Black or African American Alone\""
+  "name": "Female householder, no husband present and Family households and Other family in Households With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (Black or African American Alone)", 
+    "universe": "Households With a Householder Who Is Black or African American Alone", 
+    "ancestors": [
+      "Family households:", 
+      "Other family:"
+    ], 
+    "title": "Female householder, no husband present"
+  }
 }

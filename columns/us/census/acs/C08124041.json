@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08124001", 
     "parent": "us/census/acs/C08124036"
   }, 
-  "name": "\"Means of Transportation to Work by Occupation\": \"('Worked at home:',)\" \"Production, transportation, and material moving occupations\" in \"Workers 16 Years and Over\""
+  "name": "Production, transportation, and material moving occupations and Worked at home in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Occupation", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:"
+    ], 
+    "title": "Production, transportation, and material moving occupations"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07412001", 
     "parent": "us/census/acs/B07412009"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Poverty Status in the Past 12 Months for Residence 1 Year Ago in the United States\": \"('Moved within same county:',)\" \"At or above 150 percent of the poverty level\" in \"Population 1 Year and Over in the United States for Whom Poverty Status Is Determined\""
+  "name": "At or above 150 percent of the poverty level within Moved within same county in Population 1 Year and Over in the United States for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Poverty Status in the Past 12 Months for Residence 1 Year Ago in the United States", 
+    "universe": "Population 1 Year and Over in the United States for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Moved within same county:"
+    ], 
+    "title": "At or above 150 percent of the poverty level"
+  }
 }

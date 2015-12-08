@@ -1,3 +1,15 @@
 {
-  "name": "\"Tenure by Telephone Service Available\": \"('Renter occupied:', 'No telephone service available:')\" \"Total:\" in \"Occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/C25043001"
+  }, 
+  "name": "Total: and Renter occupied and No telephone service available in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Telephone Service Available", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:", 
+      "No telephone service available:"
+    ], 
+    "title": "Total:"
+  }
 }

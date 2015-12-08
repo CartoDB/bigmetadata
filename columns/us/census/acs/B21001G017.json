@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B21001G001", 
     "parent": "us/census/acs/B21001G015"
   }, 
-  "name": "\"Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Two or More Races)\": \"('Male:', '75 years and over:')\" \"Nonveteran\" in \"Two or More Races Civilian Population 18 Years and Over\""
+  "name": "Nonveteran and Male and 75 years and over in Two or More Races Civilian Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Two or More Races)", 
+    "universe": "Two or More Races Civilian Population 18 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "75 years and over:"
+    ], 
+    "title": "Nonveteran"
+  }
 }

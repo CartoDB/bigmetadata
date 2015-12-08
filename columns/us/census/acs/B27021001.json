@@ -1,3 +1,15 @@
 {
-  "name": "\"Health Insurance Coverage Status and Type by Living Arrangement\": \"('Foreign Born:', 'Noncitizen:')\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B27021001"
+  }, 
+  "name": "Total: and Foreign Born and Noncitizen in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Health Insurance Coverage Status and Type by Living Arrangement", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Foreign Born:", 
+      "Noncitizen:"
+    ], 
+    "title": "Total:"
+  }
 }

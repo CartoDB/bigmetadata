@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07404A001", 
     "parent": "us/census/acs/B07404A001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year (White Alone) for Residence 1 Year Ago in the United States\": \"()\" \"Moved within same county\" in \"White Alone Population 1 Year and Over in the United States\""
+  "name": "Moved within same county in White Alone Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (White Alone) for Residence 1 Year Ago in the United States", 
+    "universe": "White Alone Population 1 Year and Over in the United States", 
+    "title": "Moved within same county"
+  }
 }

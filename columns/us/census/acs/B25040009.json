@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25040001", 
     "parent": "us/census/acs/B25040001"
   }, 
-  "name": "\"House Heating Fuel\": \"()\" \"Other fuel\" in \"Occupied Housing Units\""
+  "name": "Other fuel in Occupied Housing Units", 
+  "extra": {
+    "table": "House Heating Fuel", 
+    "universe": "Occupied Housing Units", 
+    "title": "Other fuel"
+  }
 }

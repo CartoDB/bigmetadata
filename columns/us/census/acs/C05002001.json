@@ -1,3 +1,14 @@
 {
-  "name": "\"Place of Birth by Nativity\": \"('Foreign born:',)\" \"Total:\" in \"Total Population\""
+  "relationships": {
+    "denominator": "us/census/acs/C05002001"
+  }, 
+  "name": "Total: and Foreign born in Total Population", 
+  "extra": {
+    "table": "Place of Birth by Nativity", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Total:"
+  }
 }

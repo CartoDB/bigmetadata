@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24010E001", 
     "parent": "us/census/acs/C24010E002"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Native Hawaiian and Other Pacific Islander Alone)\": \"('Male:',)\" \"Sales and office occupations:\" in \"Civilian Employed Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over\""
+  "name": "Sales and office occupations: and Male in Civilian Employed Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Civilian Employed Native Hawaiian and Other Pacific Islander Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Sales and office occupations:"
+  }
 }

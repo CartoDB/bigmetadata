@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C21001B001", 
     "parent": "us/census/acs/C21001B010"
   }, 
-  "name": "\"Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Black or African American Alone)\": \"('Female:', '18 to 64 years:')\" \"Veteran\" in \"Black or African American Alone Civilian Population 18 Years and Over\""
+  "name": "Veteran and Female and 18 to 64 years in Black or African American Alone Civilian Population 18 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Veteran Status for the Civilian Population 18 Years and Over (Black or African American Alone)", 
+    "universe": "Black or African American Alone Civilian Population 18 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "18 to 64 years:"
+    ], 
+    "title": "Veteran"
+  }
 }

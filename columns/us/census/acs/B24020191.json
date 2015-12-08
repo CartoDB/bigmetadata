@@ -1,6 +1,18 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020190"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Management, business, science, and arts occupations:', 'Education, legal, community service, arts, and media occupations:', 'Legal occupations:')\" \"Lawyers and judicial law clerks\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Lawyers and judicial law clerks and Female and Management, business, science, and arts occupations and Education, legal, community service, arts, and media occupations and Legal occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Education, legal, community service, arts, and media occupations:", 
+      "Legal occupations:"
+    ], 
+    "title": "Lawyers and judicial law clerks"
+  }
 }

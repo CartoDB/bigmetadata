@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08012001", 
     "parent": "us/census/acs/B08012014"
   }, 
-  "name": "\"Sex of Workers by Travel Time to Work\": \"('Male:',)\" \"30 to 34 minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "30 to 34 minutes and Male in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Sex of Workers by Travel Time to Work", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "30 to 34 minutes"
+  }
 }

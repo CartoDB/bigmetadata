@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Year Householder Moved Into Unit by Tenure\": \"()\" \"Owner occupied\" in \"Occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Owner occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Median Year Householder Moved Into Unit by Tenure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Owner occupied"
+  }
 }

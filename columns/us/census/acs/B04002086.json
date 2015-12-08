@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04002001", 
     "parent": "us/census/acs/B04002073"
   }, 
-  "name": "\"Second Ancestry Reported\": \"('Subsaharan African:',)\" \"Zimbabwean\" in \"Total Population\""
+  "name": "Zimbabwean and Subsaharan African in Total Population", 
+  "extra": {
+    "table": "Second Ancestry Reported", 
+    "universe": "Total Population", 
+    "ancestors": [
+      "Subsaharan African:"
+    ], 
+    "title": "Zimbabwean"
+  }
 }

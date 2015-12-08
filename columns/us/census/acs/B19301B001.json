@@ -1,3 +1,13 @@
 {
-  "name": "\"Per Capita Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Black or African American Alone)\": \"('Female householder (dollars):', 'Not living alone (dollars):')\" \"Per capita income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"People Who Are Black or African American Alone\""
+  "relationships": {}, 
+  "name": "Per capita income in the past 12 months (in 2010 inflation-adjusted dollars) and Female householder (dollars) and Not living alone (dollars) in People Who Are Black or African American Alone", 
+  "extra": {
+    "table": "Per Capita Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Black or African American Alone)", 
+    "universe": "People Who Are Black or African American Alone", 
+    "ancestors": [
+      "Female householder (dollars):", 
+      "Not living alone (dollars):"
+    ], 
+    "title": "Per capita income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

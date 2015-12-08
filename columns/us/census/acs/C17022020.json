@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17022001", 
     "parent": "us/census/acs/C17022019"
   }, 
-  "name": "\"Ratio of Income to Poverty Level in the Past 12 Months of Families by Family Type\": \"('1.85 and above:', 'Other family:')\" \"Male householder, no wife present\" in \"Families\""
+  "name": "Male householder, no wife present and 1.85 and above and Other family in Families", 
+  "extra": {
+    "table": "Ratio of Income to Poverty Level in the Past 12 Months of Families by Family Type", 
+    "universe": "Families", 
+    "ancestors": [
+      "1.85 and above:", 
+      "Other family:"
+    ], 
+    "title": "Male householder, no wife present"
+  }
 }

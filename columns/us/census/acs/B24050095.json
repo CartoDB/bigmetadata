@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24050001", 
     "parent": "us/census/acs/B24050094"
   }, 
-  "name": "\"Industry by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Sales and office occupations:', 'Finance and insurance, and real estate and rental and leasing:')\" \"Finance and insurance\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Finance and insurance and Sales and office occupations and Finance and insurance, and real estate and rental and leasing in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Sales and office occupations:", 
+      "Finance and insurance, and real estate and rental and leasing:"
+    ], 
+    "title": "Finance and insurance"
+  }
 }

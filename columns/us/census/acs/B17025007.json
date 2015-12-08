@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17025001", 
     "parent": "us/census/acs/B17025006"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Nativity\": \"('Income in the past 12 months below poverty level:', 'Foreign born:')\" \"Naturalized citizen\" in \"Population for Whom Poverty Status Is Determined\""
+  "name": "Naturalized citizen and Income in the past 12 months below poverty level and Foreign born in Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Nativity", 
+    "universe": "Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized citizen"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Shares of Aggregate Household Income by Quintile\": \"()\" \"Highest Quintile\" in \"Households\""
+  "relationships": {}, 
+  "name": "Highest Quintile in Households", 
+  "extra": {
+    "table": "Shares of Aggregate Household Income by Quintile", 
+    "universe": "Households", 
+    "title": "Highest Quintile"
+  }
 }

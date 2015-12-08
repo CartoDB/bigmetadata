@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C06007001", 
     "parent": "us/census/acs/C06007001"
   }, 
-  "name": "\"Place of Birth by Language Spoken at Home and Ability to Speak English in the United States\": \"('Foreign born:',)\" \"Speak only English\" in \"Population 5 Years and Over in the United States\""
+  "name": "Speak only English and Foreign born in Population 5 Years and Over in the United States", 
+  "extra": {
+    "table": "Place of Birth by Language Spoken at Home and Ability to Speak English in the United States", 
+    "universe": "Population 5 Years and Over in the United States", 
+    "ancestors": [
+      "Foreign born:"
+    ], 
+    "title": "Speak only English"
+  }
 }

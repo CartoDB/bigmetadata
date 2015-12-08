@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05006001", 
     "parent": "us/census/acs/B05006013"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population in the United States\": \"('Europe:', 'Western Europe:')\" \"Netherlands\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Netherlands and Europe and Western Europe in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in the United States", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Europe:", 
+      "Western Europe:"
+    ], 
+    "title": "Netherlands"
+  }
 }

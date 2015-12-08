@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18106001", 
     "parent": "us/census/acs/B18106001"
   }, 
-  "name": "\"Sex by Age by Self-care Difficulty\": \"()\" \"Female:\" in \"Civilian Noninstitutionalized Population 5 Years and Over\""
+  "name": "Female: in Civilian Noninstitutionalized Population 5 Years and Over", 
+  "extra": {
+    "table": "Sex by Age by Self-care Difficulty", 
+    "universe": "Civilian Noninstitutionalized Population 5 Years and Over", 
+    "title": "Female:"
+  }
 }

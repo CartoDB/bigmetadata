@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C12002001", 
     "parent": "us/census/acs/C12002053"
   }, 
-  "name": "\"Sex by Marital Status by Age for the Population 15 Years and Over\": \"('Female:', 'Separated:')\" \"55 to 64 years\" in \"Population 15 Years and Over\""
+  "name": "55 to 64 years and Female and Separated in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status by Age for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Separated:"
+    ], 
+    "title": "55 to 64 years"
+  }
 }

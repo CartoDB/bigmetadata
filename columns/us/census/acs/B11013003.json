@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11013001", 
     "parent": "us/census/acs/B11013002"
   }, 
-  "name": "\"Subfamily Type by Presence of Own Children Under 18 Years\": \"('Married-couple subfamily:',)\" \"With own children under 18 years\" in \"Subfamilies\""
+  "name": "With own children under 18 years and Married-couple subfamily in Subfamilies", 
+  "extra": {
+    "table": "Subfamily Type by Presence of Own Children Under 18 Years", 
+    "universe": "Subfamilies", 
+    "ancestors": [
+      "Married-couple subfamily:"
+    ], 
+    "title": "With own children under 18 years"
+  }
 }

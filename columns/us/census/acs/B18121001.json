@@ -1,3 +1,14 @@
 {
-  "name": "\"Work Experience by Disability Status and Type\": \"('Not in labor force:',)\" \"Total:\" in \"Civilian Noninstitutionalized Population 18 to 64 Years\""
+  "relationships": {
+    "denominator": "us/census/acs/B18121001"
+  }, 
+  "name": "Total: and Not in labor force in Civilian Noninstitutionalized Population 18 to 64 Years", 
+  "extra": {
+    "table": "Work Experience by Disability Status and Type", 
+    "universe": "Civilian Noninstitutionalized Population 18 to 64 Years", 
+    "ancestors": [
+      "Not in labor force:"
+    ], 
+    "title": "Total:"
+  }
 }

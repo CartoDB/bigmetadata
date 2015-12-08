@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C17001C001", 
     "parent": "us/census/acs/C17001C001"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age (American Indian and Alaska Native Alone)\": \"()\" \"Income in the past 12 months below poverty level:\" in \"American Indian and Alaska Native Alone Population for Whom Poverty Status Is Determined\""
+  "name": "Income in the past 12 months below poverty level: in American Indian and Alaska Native Alone Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population for Whom Poverty Status Is Determined", 
+    "title": "Income in the past 12 months below poverty level:"
+  }
 }

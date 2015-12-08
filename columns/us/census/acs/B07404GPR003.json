@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B07404GPR001", 
     "parent": "us/census/acs/B07404GPR001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year (Two or More Races) for Residence 1 Year Ago in Puerto Rico\": \"()\" \"Moved within same municipio\" in \"Two or More Races Population 1 Year and Over\""
+  "name": "Moved within same municipio in Two or More Races Population 1 Year and Over", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (Two or More Races) for Residence 1 Year Ago in Puerto Rico", 
+    "universe": "Two or More Races Population 1 Year and Over", 
+    "title": "Moved within same municipio"
+  }
 }

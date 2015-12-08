@@ -1,3 +1,16 @@
 {
-  "name": "\"Means of Transportation to Work by Travel Time to Work for Workplace Geography\": \"('Taxicab, motorcycle, bicycle, or other means:', None, None)\" \"Total:\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "relationships": {
+    "denominator": "us/census/acs/C08534001"
+  }, 
+  "name": "Total: within Taxicab, motorcycle, bicycle, or other means in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, or other means:", 
+      null, 
+      null
+    ], 
+    "title": "Total:"
+  }
 }

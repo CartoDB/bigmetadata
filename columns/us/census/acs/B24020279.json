@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24020001", 
     "parent": "us/census/acs/B24020278"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Natural resources, construction, and maintenance occupations:', 'Installation, maintenance, and repair occupations:')\" \"First-line supervisors of mechanics, installers, and repairers\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "First-line supervisors of mechanics, installers, and repairers and Female and Natural resources, construction, and maintenance occupations and Installation, maintenance, and repair occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Natural resources, construction, and maintenance occupations:", 
+      "Installation, maintenance, and repair occupations:"
+    ], 
+    "title": "First-line supervisors of mechanics, installers, and repairers"
+  }
 }

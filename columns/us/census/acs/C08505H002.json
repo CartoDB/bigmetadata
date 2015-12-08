@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08505H001", 
     "parent": "us/census/acs/C08505H001"
   }, 
-  "name": "\"Means of Transportation to Work for Workplace Geography (White Alone, Not Hispanic or Latino)\": \"()\" \"Car, truck, or van - drove alone\" in \"White Alone, Not Hispanic or Latino Workers 16 Years and Over\""
+  "name": "Car, truck, or van - drove alone in White Alone, Not Hispanic or Latino Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work for Workplace Geography (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Workers 16 Years and Over", 
+    "title": "Car, truck, or van - drove alone"
+  }
 }

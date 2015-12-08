@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15002001", 
     "parent": "us/census/acs/C15002002"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over\": \"('Male:',)\" \"9th to 12th grade, no diploma\" in \"Population 25 Years and Over\""
+  "name": "9th to 12th grade, no diploma and Male in Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over", 
+    "universe": "Population 25 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "9th to 12th grade, no diploma"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27017001", 
     "parent": "us/census/acs/C27017002"
   }, 
-  "name": "\"Private Health Insurance by Ratio of Income to Poverty Level in the Past 12 Months by Age\": \"('Under 1.00 of poverty threshold:',)\" \"Under 18 years:\" in \"Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined\""
+  "name": "Under 18 years: and Under 1.00 of poverty threshold in Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Private Health Insurance by Ratio of Income to Poverty Level in the Past 12 Months by Age", 
+    "universe": "Civilian Noninstitutionalized Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Under 1.00 of poverty threshold:"
+    ], 
+    "title": "Under 18 years:"
+  }
 }

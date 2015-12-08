@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08111001", 
     "parent": "us/census/acs/B08111026"
   }, 
-  "name": "\"Means of Transportation to Work by Citizenship Status\": \"('Taxicab, motorcycle, bicycle, or other means:',)\" \"Native\" in \"Workers 16 Years and Over\""
+  "name": "Native and Taxicab, motorcycle, bicycle, or other means in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Citizenship Status", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, or other means:"
+    ], 
+    "title": "Native"
+  }
 }

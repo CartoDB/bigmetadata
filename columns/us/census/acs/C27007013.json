@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C27007001", 
     "parent": "us/census/acs/C27007012"
   }, 
-  "name": "\"Medicaid/Means-tested Public Coverage by Sex by Age\": \"('Female:',)\" \"Under 18 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Under 18 years: and Female in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Medicaid/Means-tested Public Coverage by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Under 18 years:"
+  }
 }

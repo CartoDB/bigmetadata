@@ -2,5 +2,10 @@
   "relationships": {
     "parent": "us/census/acs/B25108001"
   }, 
-  "name": "\"Aggregate Value (Dollars) by Year Structure Built\": \"()\" \"Built 1960 to 1969\" in \"Owner-occupied Housing Units\""
+  "name": "Built 1960 to 1969 in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Value (Dollars) by Year Structure Built", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Built 1960 to 1969"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27001E001", 
     "parent": "us/census/acs/B27001E020"
   }, 
-  "name": "\"Health Insurance Coverage Status by Age (Native Hawaiian and Other Pacific Islander Alone)\": \"('55 to 64 years:',)\" \"With health insurance coverage\" in \"NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION\""
+  "name": "With health insurance coverage and 55 to 64 years in NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+  "extra": {
+    "table": "Health Insurance Coverage Status by Age (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE CIVILIAN NONINSTITUTIONALIZED POPULATION", 
+    "ancestors": [
+      "55 to 64 years:"
+    ], 
+    "title": "With health insurance coverage"
+  }
 }

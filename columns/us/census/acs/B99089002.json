@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99089001", 
     "parent": "us/census/acs/B99089001"
   }, 
-  "name": "\"Imputation of Vehicles Available for Workers for Workplace Geography\": \"()\" \"Imputed\" in \"Workers 16 Years and Over in Households\""
+  "name": "Imputed in Workers 16 Years and Over in Households", 
+  "extra": {
+    "table": "Imputation of Vehicles Available for Workers for Workplace Geography", 
+    "universe": "Workers 16 Years and Over in Households", 
+    "title": "Imputed"
+  }
 }

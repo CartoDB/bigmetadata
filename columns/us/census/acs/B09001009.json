@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09001001", 
     "parent": "us/census/acs/B09001002"
   }, 
-  "name": "\"Population Under 18 Years by Age\": \"('In households:',)\" \"15 to 17 years\" in \"Population Under 18 Years\""
+  "name": "15 to 17 years and In households in Population Under 18 Years", 
+  "extra": {
+    "table": "Population Under 18 Years by Age", 
+    "universe": "Population Under 18 Years", 
+    "ancestors": [
+      "In households:"
+    ], 
+    "title": "15 to 17 years"
+  }
 }

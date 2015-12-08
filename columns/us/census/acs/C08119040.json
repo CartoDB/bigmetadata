@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08119001", 
     "parent": "us/census/acs/C08119037"
   }, 
-  "name": "\"Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('Taxicab, motorcycle, bicycle, walked, or other means:',)\" \"$15,000 to $24,999\" in \"Workers 16 Years and Over With Earnings\""
+  "name": "$15,000 to $24,999 and Taxicab, motorcycle, bicycle, walked, or other means in Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Means of Transportation to Work by Workers' Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, walked, or other means:"
+    ], 
+    "title": "$15,000 to $24,999"
+  }
 }

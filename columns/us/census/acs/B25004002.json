@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25004001", 
     "parent": "us/census/acs/B25004001"
   }, 
-  "name": "\"Vacancy Status\": \"()\" \"For rent\" in \"Vacant Housing Units\""
+  "name": "For rent in Vacant Housing Units", 
+  "extra": {
+    "table": "Vacancy Status", 
+    "universe": "Vacant Housing Units", 
+    "title": "For rent"
+  }
 }

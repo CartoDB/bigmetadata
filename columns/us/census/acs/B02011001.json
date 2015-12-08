@@ -1,3 +1,12 @@
 {
-  "name": "\"Asian Alone or in Combination With One or More Other Races\": \"('Other Pacific Islander, not specified',)\" \"Total:\" in \"Asian Alone or in Combination With One or More Other Races\""
+  "relationships": {}, 
+  "name": "Total: and Other Pacific Islander, not specified in Asian Alone or in Combination With One or More Other Races", 
+  "extra": {
+    "table": "Asian Alone or in Combination With One or More Other Races", 
+    "universe": "Asian Alone or in Combination With One or More Other Races", 
+    "ancestors": [
+      "Other Pacific Islander, not specified"
+    ], 
+    "title": "Total:"
+  }
 }

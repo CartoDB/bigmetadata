@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Native Hawaiian and Other Pacific Islander Alone Householder)\": \"()\" \"Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"Nonfamily Households With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone\""
+  "relationships": {}, 
+  "name": "Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars) in Nonfamily Households With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone", 
+  "extra": {
+    "table": "Median Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Native Hawaiian and Other Pacific Islander Alone Householder)", 
+    "universe": "Nonfamily Households With a Householder Who Is Native Hawaiian and Other Pacific Islander Alone", 
+    "title": "Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

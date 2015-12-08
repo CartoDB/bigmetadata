@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25032H001", 
     "parent": "us/census/acs/B25032H001"
   }, 
-  "name": "\"Units in Structure (White Alone, Not Hispanic or Latino Householder)\": \"()\" \"1, detached\" in \"Occupied Housing Units With a Householder Who Is White Alone, Not Hispanic or Latino\""
+  "name": "1, detached in Occupied Housing Units With a Householder Who Is White Alone, Not Hispanic or Latino", 
+  "extra": {
+    "table": "Units in Structure (White Alone, Not Hispanic or Latino Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is White Alone, Not Hispanic or Latino", 
+    "title": "1, detached"
+  }
 }

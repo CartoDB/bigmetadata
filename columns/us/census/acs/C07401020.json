@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C07401001", 
     "parent": "us/census/acs/C07401011"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Age for Residence 1 Year Ago in the United States\": \"('Same house:',)\" \"75 years and over\" in \"Population 1 Year and Over in the United States\""
+  "name": "75 years and over within Same house in Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Age for Residence 1 Year Ago in the United States", 
+    "universe": "Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Same house:"
+    ], 
+    "title": "75 years and over"
+  }
 }

@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B20005C001", 
     "parent": "us/census/acs/B20005C075"
   }, 
-  "name": "\"Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (American Indian and Alaska Native Alone)\": \"('Female:', 'Other:', 'With earnings:')\" \"$30,000 to $34,999\" in \"American Indian and Alaska Native Alone Population 16 Years and Over\""
+  "name": "$30,000 to $34,999 and Female and Other and With earnings in American Indian and Alaska Native Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Work Experience in the Past 12 Months by Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 16 Years and Over (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Other:", 
+      "With earnings:"
+    ], 
+    "title": "$30,000 to $34,999"
+  }
 }

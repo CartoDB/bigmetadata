@@ -1,3 +1,15 @@
 {
-  "name": "\"Tricare/Military Health Coverage by Sex by Age\": \"('Female:', '75 years and over:')\" \"Total:\" in \"Civilian Noninstitutionalized Population\""
+  "relationships": {
+    "denominator": "us/census/acs/C27008001"
+  }, 
+  "name": "Total: and Female and 75 years and over in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Tricare/Military Health Coverage by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Female:", 
+      "75 years and over:"
+    ], 
+    "title": "Total:"
+  }
 }

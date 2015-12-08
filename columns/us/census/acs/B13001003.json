@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B13001001", 
     "parent": "us/census/acs/B13001002"
   }, 
-  "name": "\"Marital Status by Age for Women 15 to 50 Years\": \"('Now married (including spouse absent):',)\" \"15 to 19 years\" in \"Women 15 to 50 Years\""
+  "name": "15 to 19 years and Now married (including spouse absent) in Women 15 to 50 Years", 
+  "extra": {
+    "table": "Marital Status by Age for Women 15 to 50 Years", 
+    "universe": "Women 15 to 50 Years", 
+    "ancestors": [
+      "Now married (including spouse absent):"
+    ], 
+    "title": "15 to 19 years"
+  }
 }

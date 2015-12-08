@@ -1,3 +1,11 @@
 {
-  "name": "\"Occupancy Status\": \"()\" \"Total:\" in \"Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25002001"
+  }, 
+  "name": "Housing Units", 
+  "extra": {
+    "table": "Occupancy Status", 
+    "universe": "Housing Units", 
+    "title": "Total:"
+  }
 }

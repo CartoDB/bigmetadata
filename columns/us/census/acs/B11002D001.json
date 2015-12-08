@@ -1,3 +1,11 @@
 {
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Asian Alone)\": \"()\" \"Total:\" in \"Population in Households With a Householder Who Is Asian Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/B11002D001"
+  }, 
+  "name": "Population in Households With a Householder Who Is Asian Alone", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (Asian Alone)", 
+    "universe": "Population in Households With a Householder Who Is Asian Alone", 
+    "title": "Total:"
+  }
 }

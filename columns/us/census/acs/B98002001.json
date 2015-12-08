@@ -1,3 +1,9 @@
 {
-  "name": "\"Unweighted Group Quarters Population Sample\": \"()\" \"Initial sample selected\" in \"Population in Group Quarters\""
+  "relationships": {}, 
+  "name": "Initial sample selected in Population in Group Quarters", 
+  "extra": {
+    "table": "Unweighted Group Quarters Population Sample", 
+    "universe": "Population in Group Quarters", 
+    "title": "Initial sample selected"
+  }
 }

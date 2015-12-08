@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04004001", 
     "parent": "us/census/acs/B04004073"
   }, 
-  "name": "\"People Reporting Single Ancestry\": \"('Subsaharan African:',)\" \"Somalian\" in \"People Reporting Single Ancestry\""
+  "name": "Somalian and Subsaharan African in People Reporting Single Ancestry", 
+  "extra": {
+    "table": "People Reporting Single Ancestry", 
+    "universe": "People Reporting Single Ancestry", 
+    "ancestors": [
+      "Subsaharan African:"
+    ], 
+    "title": "Somalian"
+  }
 }

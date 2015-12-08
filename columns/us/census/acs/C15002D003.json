@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C15002D001", 
     "parent": "us/census/acs/C15002D002"
   }, 
-  "name": "\"Sex by Educational Attainment for the Population 25 Years and Over (Asian Alone)\": \"('Male:',)\" \"Less than high school diploma\" in \"Asian Alone Population 25 Years and Over\""
+  "name": "Less than high school diploma and Male in Asian Alone Population 25 Years and Over", 
+  "extra": {
+    "table": "Sex by Educational Attainment for the Population 25 Years and Over (Asian Alone)", 
+    "universe": "Asian Alone Population 25 Years and Over", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Less than high school diploma"
+  }
 }

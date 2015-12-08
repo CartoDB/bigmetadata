@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05003D001", 
     "parent": "us/census/acs/B05003D005"
   }, 
-  "name": "\"Sex by Age by Citizenship Status (Asian Alone)\": \"('Male:', 'Under 18 years:', 'Foreign born:')\" \"Naturalized U.S. citizen\" in \"People Who Are Asian Alone\""
+  "name": "Naturalized U.S. citizen and Male and Under 18 years and Foreign born in People Who Are Asian Alone", 
+  "extra": {
+    "table": "Sex by Age by Citizenship Status (Asian Alone)", 
+    "universe": "People Who Are Asian Alone", 
+    "ancestors": [
+      "Male:", 
+      "Under 18 years:", 
+      "Foreign born:"
+    ], 
+    "title": "Naturalized U.S. citizen"
+  }
 }

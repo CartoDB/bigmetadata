@@ -1,3 +1,11 @@
 {
-  "name": "\"Own Children Under 18 Years by Family Type and Age\": \"()\" \"Total:\" in \"Own Children Under 18 Years\""
+  "relationships": {
+    "denominator": "us/census/acs/B09002001"
+  }, 
+  "name": "Own Children Under 18 Years", 
+  "extra": {
+    "table": "Own Children Under 18 Years by Family Type and Age", 
+    "universe": "Own Children Under 18 Years", 
+    "title": "Total:"
+  }
 }

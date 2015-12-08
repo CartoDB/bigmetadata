@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C11001B001", 
     "parent": "us/census/acs/C11001B002"
   }, 
-  "name": "\"Household Type (Black or African American Alone)\": \"('Family households:',)\" \"Married-couple family\" in \"Households With a Householder Who Is Black or African American Alone\""
+  "name": "Married-couple family and Family households in Households With a Householder Who Is Black or African American Alone", 
+  "extra": {
+    "table": "Household Type (Black or African American Alone)", 
+    "universe": "Households With a Householder Who Is Black or African American Alone", 
+    "ancestors": [
+      "Family households:"
+    ], 
+    "title": "Married-couple family"
+  }
 }

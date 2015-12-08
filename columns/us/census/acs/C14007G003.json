@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C14007G001", 
     "parent": "us/census/acs/C14007G002"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over (Two or More Races)\": \"('Enrolled in school:',)\" \"Enrolled in nursery school, preschool, kindergarten\" in \"Two or More Races Population 3 Years and Over\""
+  "name": "Enrolled in nursery school, preschool, kindergarten and Enrolled in school in Two or More Races Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over (Two or More Races)", 
+    "universe": "Two or More Races Population 3 Years and Over", 
+    "ancestors": [
+      "Enrolled in school:"
+    ], 
+    "title": "Enrolled in nursery school, preschool, kindergarten"
+  }
 }

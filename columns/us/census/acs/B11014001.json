@@ -1,3 +1,11 @@
 {
-  "name": "\"Population in Subfamilies by Subfamily Type by Relationship\": \"()\" \"Total:\" in \"Population in Subfamilies\""
+  "relationships": {
+    "denominator": "us/census/acs/B11014001"
+  }, 
+  "name": "Population in Subfamilies", 
+  "extra": {
+    "table": "Population in Subfamilies by Subfamily Type by Relationship", 
+    "universe": "Population in Subfamilies", 
+    "title": "Total:"
+  }
 }

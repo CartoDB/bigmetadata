@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04005001", 
     "parent": "us/census/acs/B04005073"
   }, 
-  "name": "\"People Reporting Multiple Ancestry\": \"('Subsaharan African:',)\" \"Nigerian\" in \"People Reporting Multiple Ancestries\""
+  "name": "Nigerian and Subsaharan African in People Reporting Multiple Ancestries", 
+  "extra": {
+    "table": "People Reporting Multiple Ancestry", 
+    "universe": "People Reporting Multiple Ancestries", 
+    "ancestors": [
+      "Subsaharan African:"
+    ], 
+    "title": "Nigerian"
+  }
 }

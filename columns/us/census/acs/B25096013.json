@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25096001", 
     "parent": "us/census/acs/B25096010"
   }, 
-  "name": "\"Mortgage Status by Value\": \"('Not mortgaged:',)\" \"$100,000 to $149,999\" in \"Owner-occupied Housing Units\""
+  "name": "$100,000 to $149,999 and Not mortgaged in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Value", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "Not mortgaged:"
+    ], 
+    "title": "$100,000 to $149,999"
+  }
 }

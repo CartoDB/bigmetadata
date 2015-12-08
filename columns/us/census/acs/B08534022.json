@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08534001", 
     "parent": "us/census/acs/B08534021"
   }, 
-  "name": "\"Means of Transportation to Work by Travel Time to Work for Workplace Geography\": \"('Car, truck, or van:', 'Drove alone:', None)\" \"Less than 10 minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "Less than 10 minutes within Car, truck, or van within Drove alone in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Means of Transportation to Work by Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Car, truck, or van:", 
+      "Drove alone:", 
+      null
+    ], 
+    "title": "Less than 10 minutes"
+  }
 }

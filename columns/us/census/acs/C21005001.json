@@ -1,3 +1,15 @@
 {
-  "name": "\"Veteran Status by Employment Status for the Civilian Population 18 to 64 Years\": \"('55 to 64 years:', 'Nonveteran:')\" \"Total:\" in \"Civilian Population 18 to 64 Years\""
+  "relationships": {
+    "denominator": "us/census/acs/C21005001"
+  }, 
+  "name": "Total: and 55 to 64 years and Nonveteran in Civilian Population 18 to 64 Years", 
+  "extra": {
+    "table": "Veteran Status by Employment Status for the Civilian Population 18 to 64 Years", 
+    "universe": "Civilian Population 18 to 64 Years", 
+    "ancestors": [
+      "55 to 64 years:", 
+      "Nonveteran:"
+    ], 
+    "title": "Total:"
+  }
 }

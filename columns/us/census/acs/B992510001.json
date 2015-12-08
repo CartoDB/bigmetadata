@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Kitchen Facilities\": \"()\" \"Total:\" in \"Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B992510001"
+  }, 
+  "name": "Housing Units", 
+  "extra": {
+    "table": "Imputation of Kitchen Facilities", 
+    "universe": "Housing Units", 
+    "title": "Total:"
+  }
 }

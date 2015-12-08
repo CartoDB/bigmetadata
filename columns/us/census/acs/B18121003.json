@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18121001", 
     "parent": "us/census/acs/B18121002"
   }, 
-  "name": "\"Work Experience by Disability Status and Type\": \"('Worked full-time, year round:',)\" \"With a disability:\" in \"Civilian Noninstitutionalized Population 18 to 64 Years\""
+  "name": "With a disability: and Worked full-time, year round in Civilian Noninstitutionalized Population 18 to 64 Years", 
+  "extra": {
+    "table": "Work Experience by Disability Status and Type", 
+    "universe": "Civilian Noninstitutionalized Population 18 to 64 Years", 
+    "ancestors": [
+      "Worked full-time, year round:"
+    ], 
+    "title": "With a disability:"
+  }
 }

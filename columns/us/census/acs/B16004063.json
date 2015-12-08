@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B16004001", 
     "parent": "us/census/acs/B16004046"
   }, 
-  "name": "\"Age by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over\": \"('65 years and over:',)\" \"Speak other languages:\" in \"Population 5 Years and Over\""
+  "name": "Speak other languages: and 65 years and over in Population 5 Years and Over", 
+  "extra": {
+    "table": "Age by Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over", 
+    "universe": "Population 5 Years and Over", 
+    "ancestors": [
+      "65 years and over:"
+    ], 
+    "title": "Speak other languages:"
+  }
 }

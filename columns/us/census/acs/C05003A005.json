@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C05003A001", 
     "parent": "us/census/acs/C05003A003"
   }, 
-  "name": "\"Sex by Age by Nativity (White Alone)\": \"('Male:', 'Under 18 years:')\" \"Foreign born\" in \"People Who Are White Alone\""
+  "name": "Foreign born and Male and Under 18 years in People Who Are White Alone", 
+  "extra": {
+    "table": "Sex by Age by Nativity (White Alone)", 
+    "universe": "People Who Are White Alone", 
+    "ancestors": [
+      "Male:", 
+      "Under 18 years:"
+    ], 
+    "title": "Foreign born"
+  }
 }

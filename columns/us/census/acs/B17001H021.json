@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17001H001", 
     "parent": "us/census/acs/B17001H017"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age (White Alone, Not Hispanic or Latino)\": \"('Income in the past 12 months below poverty level:', 'Female:')\" \"12 to 14 years\" in \"White Alone, Not Hispanic or Latino Population for Whom Poverty Status Is Determined\""
+  "name": "12 to 14 years and Income in the past 12 months below poverty level and Female in White Alone, Not Hispanic or Latino Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      "Female:"
+    ], 
+    "title": "12 to 14 years"
+  }
 }

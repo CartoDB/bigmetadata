@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05008001", 
     "parent": "us/census/acs/B05008003"
   }, 
-  "name": "\"Sex by Place of Birth by Year of Entry for the Foreign-born Population\": \"('Male:', 'Europe:')\" \"Entered before 1990\" in \"Foreign-born Population\""
+  "name": "Entered before 1990 and Male and Europe in Foreign-born Population", 
+  "extra": {
+    "table": "Sex by Place of Birth by Year of Entry for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Male:", 
+      "Europe:"
+    ], 
+    "title": "Entered before 1990"
+  }
 }

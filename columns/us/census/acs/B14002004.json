@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14002001", 
     "parent": "us/census/acs/B14002003"
   }, 
-  "name": "\"Sex by School Enrollment by Level of School by Type of School for the Population 3 Years and Over\": \"('Male:', 'Enrolled in school:')\" \"Enrolled in nursery school, preschool:\" in \"Population 3 Years and Over\""
+  "name": "Enrolled in nursery school, preschool: and Male and Enrolled in school in Population 3 Years and Over", 
+  "extra": {
+    "table": "Sex by School Enrollment by Level of School by Type of School for the Population 3 Years and Over", 
+    "universe": "Population 3 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Enrolled in school:"
+    ], 
+    "title": "Enrolled in nursery school, preschool:"
+  }
 }

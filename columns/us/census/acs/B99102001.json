@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Grandparents Living With Grandchildren Under 18 Years\": \"()\" \"Total:\" in \"Population 30 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B99102001"
+  }, 
+  "name": "Population 30 Years and Over", 
+  "extra": {
+    "table": "Imputation of Grandparents Living With Grandchildren Under 18 Years", 
+    "universe": "Population 30 Years and Over", 
+    "title": "Total:"
+  }
 }

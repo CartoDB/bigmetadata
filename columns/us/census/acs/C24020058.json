@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24020001", 
     "parent": "us/census/acs/C24020057"
   }, 
-  "name": "\"Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Service occupations:', 'Protective service occupations:')\" \"Fire fighting and prevention, and other protective service workers including supervisors\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Fire fighting and prevention, and other protective service workers including supervisors and Female and Service occupations and Protective service occupations in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:", 
+      "Protective service occupations:"
+    ], 
+    "title": "Fire fighting and prevention, and other protective service workers including supervisors"
+  }
 }

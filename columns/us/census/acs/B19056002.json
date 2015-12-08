@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19056001", 
     "parent": "us/census/acs/B19056001"
   }, 
-  "name": "\"Supplemental Security Income (SSI) in the Past 12 Months for Households\": \"()\" \"With Supplemental Security Income (SSI)\" in \"Households\""
+  "name": "With Supplemental Security Income (SSI) in Households", 
+  "extra": {
+    "table": "Supplemental Security Income (SSI) in the Past 12 Months for Households", 
+    "universe": "Households", 
+    "title": "With Supplemental Security Income (SSI)"
+  }
 }

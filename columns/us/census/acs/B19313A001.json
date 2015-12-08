@@ -1,3 +1,13 @@
 {
-  "name": "\"Aggregate Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 15 Years and Over (White Alone)\": \"('Female householder (dollars):', 'Not living alone (dollars):')\" \"Aggregate income in the past 12 months (in 2010 inflation-adjusted dollars)\" in \"White Alone Population 15 Years and Over\""
+  "relationships": {}, 
+  "name": "Aggregate income in the past 12 months (in 2010 inflation-adjusted dollars) and Female householder (dollars) and Not living alone (dollars) in White Alone Population 15 Years and Over", 
+  "extra": {
+    "table": "Aggregate Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) for the Population 15 Years and Over (White Alone)", 
+    "universe": "White Alone Population 15 Years and Over", 
+    "ancestors": [
+      "Female householder (dollars):", 
+      "Not living alone (dollars):"
+    ], 
+    "title": "Aggregate income in the past 12 months (in 2010 inflation-adjusted dollars)"
+  }
 }

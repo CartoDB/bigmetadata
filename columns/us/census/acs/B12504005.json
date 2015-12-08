@@ -2,5 +2,13 @@
   "relationships": {
     "parent": "us/census/acs/B12504002"
   }, 
-  "name": "\"Median Duration of Current Marriage in Years by Sex by Marital Status for the Married Population 15 Years and Over\": \"('Male:',)\" \"Separated\" in \"Population 15 Years and Over Who Are Now Married or Separated\""
+  "name": "Separated and Male in Population 15 Years and Over Who Are Now Married or Separated", 
+  "extra": {
+    "table": "Median Duration of Current Marriage in Years by Sex by Marital Status for the Married Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over Who Are Now Married or Separated", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Separated"
+  }
 }

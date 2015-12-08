@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05006001", 
     "parent": "us/census/acs/B05006097"
   }, 
-  "name": "\"Place of Birth for the Foreign-born Population in the United States\": \"('Africa:', 'Middle Africa:')\" \"Other Middle Africa\" in \"Foreign-born Population Excluding Population Born at Sea\""
+  "name": "Other Middle Africa and Africa and Middle Africa in Foreign-born Population Excluding Population Born at Sea", 
+  "extra": {
+    "table": "Place of Birth for the Foreign-born Population in the United States", 
+    "universe": "Foreign-born Population Excluding Population Born at Sea", 
+    "ancestors": [
+      "Africa:", 
+      "Middle Africa:"
+    ], 
+    "title": "Other Middle Africa"
+  }
 }

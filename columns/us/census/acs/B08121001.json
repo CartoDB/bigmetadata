@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Means of Transportation to Work\": \"()\" \"Total:\" in \"Workers 16 Years and Over With Earnings\""
+  "relationships": {}, 
+  "name": "Workers 16 Years and Over With Earnings", 
+  "extra": {
+    "table": "Median Earnings in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Means of Transportation to Work", 
+    "universe": "Workers 16 Years and Over With Earnings", 
+    "title": "Total:"
+  }
 }

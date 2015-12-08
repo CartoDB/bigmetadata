@@ -1,3 +1,14 @@
 {
-  "name": "\"Geographical Mobility in the Past Year by Educational Attainment for Residence 1 Year Ago in the United States\": \"('Moved to different state:',)\" \"Total living in area 1 year ago:\" in \"Population 25 Years and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B07409001"
+  }, 
+  "name": "Total living in area 1 year ago: within Moved to different state in Population 25 Years and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Educational Attainment for Residence 1 Year Ago in the United States", 
+    "universe": "Population 25 Years and Over in the United States", 
+    "ancestors": [
+      "Moved to different state:"
+    ], 
+    "title": "Total living in area 1 year ago:"
+  }
 }

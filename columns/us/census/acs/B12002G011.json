@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12002G001", 
     "parent": "us/census/acs/B12002G008"
   }, 
-  "name": "\"Sex by Marital Status for the Population 15 Years and Over (Two or More Races)\": \"('Female:',)\" \"Separated\" in \"Two or More Races Population 15 Years and Over\""
+  "name": "Separated and Female in Two or More Races Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by Marital Status for the Population 15 Years and Over (Two or More Races)", 
+    "universe": "Two or More Races Population 15 Years and Over", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Separated"
+  }
 }

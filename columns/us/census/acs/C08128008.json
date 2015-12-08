@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08128001", 
     "parent": "us/census/acs/C08128006"
   }, 
-  "name": "\"Means of Transportation to Work by Class of Worker\": \"('Car, truck, or van - drove alone:',)\" \"Government workers\" in \"Workers 16 Years and Over\""
+  "name": "Government workers and Car, truck, or van - drove alone in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Class of Worker", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:"
+    ], 
+    "title": "Government workers"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Age at First Marriage (Hispanic or Latino)\": \"()\" \"Male\" in \"Hispanic or Latino Population 15 to 54 Years\""
+  "relationships": {}, 
+  "name": "Male in Hispanic or Latino Population 15 to 54 Years", 
+  "extra": {
+    "table": "Median Age at First Marriage (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 15 to 54 Years", 
+    "title": "Male"
+  }
 }

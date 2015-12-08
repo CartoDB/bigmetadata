@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99092001", 
     "parent": "us/census/acs/B99092001"
   }, 
-  "name": "\"Imputation of Relationship\": \"()\" \"Not imputed\" in \"Population in Households\""
+  "name": "Not imputed in Population in Households", 
+  "extra": {
+    "table": "Imputation of Relationship", 
+    "universe": "Population in Households", 
+    "title": "Not imputed"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B27005001", 
     "parent": "us/census/acs/B27005002"
   }, 
-  "name": "\"Direct-purchase Health Insurance by Sex by Age\": \"('Male:',)\" \"Under 6 years:\" in \"Civilian Noninstitutionalized Population\""
+  "name": "Under 6 years: and Male in Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Direct-purchase Health Insurance by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "Under 6 years:"
+  }
 }

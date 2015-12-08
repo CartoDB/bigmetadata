@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24040001", 
     "parent": "us/census/acs/B24040185"
   }, 
-  "name": "\"Sex by Industry for the Full-time, Year-round Civilian Employed Population 16 Years and Over\": \"('Female:', 'Information:')\" \"Data processing, libraries, and other information services\" in \"Full-time, Year-round Civilian Employed Population 16 Years and Over\""
+  "name": "Data processing, libraries, and other information services and Female and Information in Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Industry for the Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "universe": "Full-time, Year-round Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Information:"
+    ], 
+    "title": "Data processing, libraries, and other information services"
+  }
 }

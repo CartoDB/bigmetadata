@@ -1,3 +1,14 @@
 {
-  "name": "\"Geographical Mobility in the Past Year (White Alone) for Current Residence in the United States\": \"('Moved from abroad:',)\" \"Total:\" in \"White Alone Population 1 Year and Over in the United States\""
+  "relationships": {
+    "denominator": "us/census/acs/B07004A001"
+  }, 
+  "name": "Total: and Moved from abroad in White Alone Population 1 Year and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year (White Alone) for Current Residence in the United States", 
+    "universe": "White Alone Population 1 Year and Over in the United States", 
+    "ancestors": [
+      "Moved from abroad:"
+    ], 
+    "title": "Total:"
+  }
 }

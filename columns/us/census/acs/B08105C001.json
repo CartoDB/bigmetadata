@@ -1,3 +1,11 @@
 {
-  "name": "\"Means of Transportation to Work (American Indian and Alaska Native Alone)\": \"()\" \"Total:\" in \"American Indian and Alaska Native Alone Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B08105C001"
+  }, 
+  "name": "American Indian and Alaska Native Alone Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work (American Indian and Alaska Native Alone)", 
+    "universe": "American Indian and Alaska Native Alone Workers 16 Years and Over", 
+    "title": "Total:"
+  }
 }

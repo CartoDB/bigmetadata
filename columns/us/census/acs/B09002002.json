@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09002001", 
     "parent": "us/census/acs/B09002001"
   }, 
-  "name": "\"Own Children Under 18 Years by Family Type and Age\": \"()\" \"In married-couple families:\" in \"Own Children Under 18 Years\""
+  "name": "In married-couple families: in Own Children Under 18 Years", 
+  "extra": {
+    "table": "Own Children Under 18 Years by Family Type and Age", 
+    "universe": "Own Children Under 18 Years", 
+    "title": "In married-couple families:"
+  }
 }

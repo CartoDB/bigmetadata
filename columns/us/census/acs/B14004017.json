@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14004001", 
     "parent": "us/census/acs/B14004013"
   }, 
-  "name": "\"Sex by College or Graduate School Enrollment by Type of School by Age for the Population 15 Years and Over\": \"('Male:', 'Not enrolled in college or graduate school:')\" \"35 years and over\" in \"Population 15 Years and Over\""
+  "name": "35 years and over and Male and Not enrolled in college or graduate school in Population 15 Years and Over", 
+  "extra": {
+    "table": "Sex by College or Graduate School Enrollment by Type of School by Age for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "ancestors": [
+      "Male:", 
+      "Not enrolled in college or graduate school:"
+    ], 
+    "title": "35 years and over"
+  }
 }

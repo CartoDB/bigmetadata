@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08113001", 
     "parent": "us/census/acs/C08113008"
   }, 
-  "name": "\"Means of Transportation to Work by Language Spoken at Home and Ability to Speak English\": \"('Car, truck, or van - drove alone:', 'Speak language other than English:')\" \"Speak English less than \"very well\"\" in \"Workers 16 Years and Over\""
+  "name": "Speak English less than \"very well\" and Car, truck, or van - drove alone and Speak language other than English in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Language Spoken at Home and Ability to Speak English", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Car, truck, or van - drove alone:", 
+      "Speak language other than English:"
+    ], 
+    "title": "Speak English less than \"very well\""
+  }
 }

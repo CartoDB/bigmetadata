@@ -1,3 +1,11 @@
 {
-  "name": "\"Public Health Insurance by Work Experience by Sex by Age\": \"()\" \"Total:\" in \"Civilian Noninstitutionalized Population 18 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B27014001"
+  }, 
+  "name": "Civilian Noninstitutionalized Population 18 Years and Over", 
+  "extra": {
+    "table": "Public Health Insurance by Work Experience by Sex by Age", 
+    "universe": "Civilian Noninstitutionalized Population 18 Years and Over", 
+    "title": "Total:"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B18101B001", 
     "parent": "us/census/acs/B18101B008"
   }, 
-  "name": "\"Age by Disability Status (Black or African American Alone)\": \"('65 years and over:',)\" \"No disability\" in \"Black or African American Alone Civilian Noninstitutionalized Population\""
+  "name": "No disability and 65 years and over in Black or African American Alone Civilian Noninstitutionalized Population", 
+  "extra": {
+    "table": "Age by Disability Status (Black or African American Alone)", 
+    "universe": "Black or African American Alone Civilian Noninstitutionalized Population", 
+    "ancestors": [
+      "65 years and over:"
+    ], 
+    "title": "No disability"
+  }
 }

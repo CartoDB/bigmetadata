@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B23006001", 
     "parent": "us/census/acs/B23006016"
   }, 
-  "name": "\"Educational Attainment by Employment Status for the Population 25 to 64 Years\": \"(\"Some college or associate's degree:\",)\" \"Not in labor force\" in \"Population 25 to 64 Years\""
+  "name": "Not in labor force and Some college or associate's degree in Population 25 to 64 Years", 
+  "extra": {
+    "table": "Educational Attainment by Employment Status for the Population 25 to 64 Years", 
+    "universe": "Population 25 to 64 Years", 
+    "ancestors": [
+      "Some college or associate's degree:"
+    ], 
+    "title": "Not in labor force"
+  }
 }

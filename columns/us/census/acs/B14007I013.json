@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B14007I001", 
     "parent": "us/census/acs/B14007I002"
   }, 
-  "name": "\"School Enrollment by Level of School for the Population 3 Years and Over (Hispanic or Latino)\": \"('Enrolled in school:',)\" \"Enrolled in grade 9\" in \"Hispanic or Latino Population 3 Years and Over\""
+  "name": "Enrolled in grade 9 and Enrolled in school in Hispanic or Latino Population 3 Years and Over", 
+  "extra": {
+    "table": "School Enrollment by Level of School for the Population 3 Years and Over (Hispanic or Latino)", 
+    "universe": "Hispanic or Latino Population 3 Years and Over", 
+    "ancestors": [
+      "Enrolled in school:"
+    ], 
+    "title": "Enrolled in grade 9"
+  }
 }

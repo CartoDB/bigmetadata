@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B22002001", 
     "parent": "us/census/acs/B22002003"
   }, 
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years by Household Type for Households\": \"('Household received Food Stamps/SNAP in the past 12 months:', 'With children under 18 years:')\" \"Married-couple family\" in \"Households\""
+  "name": "Married-couple family and Household received Food Stamps/SNAP in the past 12 months and With children under 18 years in Households", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Presence of Children Under 18 Years by Household Type for Households", 
+    "universe": "Households", 
+    "ancestors": [
+      "Household received Food Stamps/SNAP in the past 12 months:", 
+      "With children under 18 years:"
+    ], 
+    "title": "Married-couple family"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04004001", 
     "parent": "us/census/acs/B04004094"
   }, 
-  "name": "\"People Reporting Single Ancestry\": \"('West Indian (except Hispanic groups):',)\" \"Barbadian\" in \"People Reporting Single Ancestry\""
+  "name": "Barbadian and West Indian (except Hispanic groups) in People Reporting Single Ancestry", 
+  "extra": {
+    "table": "People Reporting Single Ancestry", 
+    "universe": "People Reporting Single Ancestry", 
+    "ancestors": [
+      "West Indian (except Hispanic groups):"
+    ], 
+    "title": "Barbadian"
+  }
 }

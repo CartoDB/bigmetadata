@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Family Income for Families With Grandparent Householders And/or Spouses Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Presence of Parent of Grandchildren\": \"()\" \"Grandparent householder and/or spouse responsible for grandchildren under 18 years (dollars)\" in \"Families With Grandparent Householders And/or Spouses Living With Grandchildren\""
+  "relationships": {}, 
+  "name": "Grandparent householder and/or spouse responsible for grandchildren under 18 years (dollars) in Families With Grandparent Householders And/or Spouses Living With Grandchildren", 
+  "extra": {
+    "table": "Median Family Income for Families With Grandparent Householders And/or Spouses Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Presence of Parent of Grandchildren", 
+    "universe": "Families With Grandparent Householders And/or Spouses Living With Grandchildren", 
+    "title": "Grandparent householder and/or spouse responsible for grandchildren under 18 years (dollars)"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04003001", 
     "parent": "us/census/acs/B04003001"
   }, 
-  "name": "\"Total Ancestry Reported\": \"()\" \"American\" in \"Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported\""
+  "name": "American in Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported", 
+  "extra": {
+    "table": "Total Ancestry Reported", 
+    "universe": "Total Ancestry Categories Tallied for People With One or More Ancestry Categories Reported", 
+    "title": "American"
+  }
 }

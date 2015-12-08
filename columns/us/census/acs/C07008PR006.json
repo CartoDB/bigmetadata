@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C07008PR001", 
     "parent": "us/census/acs/C07008PR001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Marital Status for Current Residence in Puerto Rico\": \"()\" \"Same house 1 year ago:\" in \"Population 15 Years and Over in Puerto Rico\""
+  "name": "Same house 1 year ago: in Population 15 Years and Over in Puerto Rico", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Marital Status for Current Residence in Puerto Rico", 
+    "universe": "Population 15 Years and Over in Puerto Rico", 
+    "title": "Same house 1 year ago:"
+  }
 }

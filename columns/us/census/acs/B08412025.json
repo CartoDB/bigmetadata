@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08412001", 
     "parent": "us/census/acs/B08412014"
   }, 
-  "name": "\"Sex of Workers by Travel Time to Work for Workplace Geography\": \"('Male:',)\" \"60 to 89 minutes\" in \"Workers 16 Years and Over Who Did Not Work at Home\""
+  "name": "60 to 89 minutes within Male in Workers 16 Years and Over Who Did Not Work at Home", 
+  "extra": {
+    "table": "Sex of Workers by Travel Time to Work for Workplace Geography", 
+    "universe": "Workers 16 Years and Over Who Did Not Work at Home", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "60 to 89 minutes"
+  }
 }

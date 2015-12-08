@@ -1,3 +1,15 @@
 {
-  "name": "\"Means of Transportation to Work by Citizenship Status\": \"('Worked at home:', 'Foreign born:')\" \"Total:\" in \"Workers 16 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/C08111001"
+  }, 
+  "name": "Total: and Worked at home and Foreign born in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Citizenship Status", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Worked at home:", 
+      "Foreign born:"
+    ], 
+    "title": "Total:"
+  }
 }

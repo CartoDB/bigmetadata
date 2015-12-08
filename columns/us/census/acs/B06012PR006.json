@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06012PR001", 
     "parent": "us/census/acs/B06012PR005"
   }, 
-  "name": "\"Place of Birth by Poverty Status in the Past 12 Months in Puerto Rico\": \"('Born in Puerto Rico:',)\" \"Below 100 percent of the poverty level\" in \"Population in Puerto Rico for Whom Poverty Status Is Determined\""
+  "name": "Below 100 percent of the poverty level and Born in Puerto Rico in Population in Puerto Rico for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Place of Birth by Poverty Status in the Past 12 Months in Puerto Rico", 
+    "universe": "Population in Puerto Rico for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Born in Puerto Rico:"
+    ], 
+    "title": "Below 100 percent of the poverty level"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11002I001", 
     "parent": "us/census/acs/B11002I002"
   }, 
-  "name": "\"Household Type by Relatives and Nonrelatives for Population in Households (Hispanic or Latino)\": \"('In family households:',)\" \"In male householder, no wife present, family:\" in \"Population in Households With a Householder Who Is Hispanic or Latino\""
+  "name": "In male householder, no wife present, family: and In family households in Population in Households With a Householder Who Is Hispanic or Latino", 
+  "extra": {
+    "table": "Household Type by Relatives and Nonrelatives for Population in Households (Hispanic or Latino)", 
+    "universe": "Population in Households With a Householder Who Is Hispanic or Latino", 
+    "ancestors": [
+      "In family households:"
+    ], 
+    "title": "In male householder, no wife present, family:"
+  }
 }

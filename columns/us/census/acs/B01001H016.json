@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B01001H001", 
     "parent": "us/census/acs/B01001H002"
   }, 
-  "name": "\"Sex by Age (White Alone, Not Hispanic or Latino)\": \"('Male:',)\" \"85 years and over\" in \"White Alone, Not Hispanic or Latino Population\""
+  "name": "85 years and over and Male in White Alone, Not Hispanic or Latino Population", 
+  "extra": {
+    "table": "Sex by Age (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population", 
+    "ancestors": [
+      "Male:"
+    ], 
+    "title": "85 years and over"
+  }
 }

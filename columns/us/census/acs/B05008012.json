@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05008001", 
     "parent": "us/census/acs/B05008010"
   }, 
-  "name": "\"Sex by Place of Birth by Year of Entry for the Foreign-born Population\": \"('Male:', 'Latin America:', None)\" \"Entered 2000 or later\" in \"Foreign-born Population\""
+  "name": "Entered 2000 or later and Male and Latin America in Foreign-born Population", 
+  "extra": {
+    "table": "Sex by Place of Birth by Year of Entry for the Foreign-born Population", 
+    "universe": "Foreign-born Population", 
+    "ancestors": [
+      "Male:", 
+      "Latin America:", 
+      null
+    ], 
+    "title": "Entered 2000 or later"
+  }
 }

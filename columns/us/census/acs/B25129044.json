@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25129001", 
     "parent": "us/census/acs/B25129038"
   }, 
-  "name": "\"Tenure by Year Householder Moved Into Unit by Units in Structure\": \"('Owner occupied:', 'Moved in 1969 or earlier:')\" \"Mobile home, boat, RV, van, etc.\" in \"Occupied Housing Units\""
+  "name": "Mobile home, boat, RV, van, etc. and Owner occupied and Moved in 1969 or earlier in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Householder Moved Into Unit by Units in Structure", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Owner occupied:", 
+      "Moved in 1969 or earlier:"
+    ], 
+    "title": "Mobile home, boat, RV, van, etc."
+  }
 }

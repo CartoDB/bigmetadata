@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24070001", 
     "parent": "us/census/acs/B24070023"
   }, 
-  "name": "\"Industry by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"('Arts, entertainment, and recreation, and accommodation and food services:',)\" \"Arts, entertainment, and recreation\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Arts, entertainment, and recreation and Arts, entertainment, and recreation, and accommodation and food services in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Industry by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Arts, entertainment, and recreation, and accommodation and food services:"
+    ], 
+    "title": "Arts, entertainment, and recreation"
+  }
 }

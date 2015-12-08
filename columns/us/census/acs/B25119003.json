@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Household Income the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Tenure\": \"()\" \"Renter occupied (dollars)\" in \"Occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Renter occupied (dollars) in Occupied Housing Units", 
+  "extra": {
+    "table": "Median Household Income the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Tenure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Renter occupied (dollars)"
+  }
 }

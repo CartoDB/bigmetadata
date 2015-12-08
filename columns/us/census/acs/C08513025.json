@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08513001", 
     "parent": "us/census/acs/C08513023"
   }, 
-  "name": "\"Means of Transportation to Work by Language Spoken at Home and Ability to Speak English for Workplace Geography\": \"('Taxicab, motorcycle, bicycle, walked, or other means:', 'Speak language other than English:')\" \"Speak English less than \"very well\"\" in \"Workers 16 Years and Over\""
+  "name": "Speak English less than \"very well\" within Taxicab, motorcycle, bicycle, walked, or other means within Speak language other than English in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Language Spoken at Home and Ability to Speak English for Workplace Geography", 
+    "universe": "Workers 16 Years and Over", 
+    "ancestors": [
+      "Taxicab, motorcycle, bicycle, walked, or other means:", 
+      "Speak language other than English:"
+    ], 
+    "title": "Speak English less than \"very well\""
+  }
 }

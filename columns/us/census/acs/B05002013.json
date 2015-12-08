@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B05002001", 
     "parent": "us/census/acs/B05002001"
   }, 
-  "name": "\"Place of Birth by Citizenship Status\": \"()\" \"Foreign born:\" in \"Total Population\""
+  "name": "Foreign born: in Total Population", 
+  "extra": {
+    "table": "Place of Birth by Citizenship Status", 
+    "universe": "Total Population", 
+    "title": "Foreign born:"
+  }
 }

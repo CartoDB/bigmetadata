@@ -1,3 +1,14 @@
 {
-  "name": "\"Sex by Age (White Alone, Not Hispanic or Latino)\": \"('Female:',)\" \"Total:\" in \"White Alone, Not Hispanic or Latino Population\""
+  "relationships": {
+    "denominator": "us/census/acs/B01001H001"
+  }, 
+  "name": "Total: and Female in White Alone, Not Hispanic or Latino Population", 
+  "extra": {
+    "table": "Sex by Age (White Alone, Not Hispanic or Latino)", 
+    "universe": "White Alone, Not Hispanic or Latino Population", 
+    "ancestors": [
+      "Female:"
+    ], 
+    "title": "Total:"
+  }
 }

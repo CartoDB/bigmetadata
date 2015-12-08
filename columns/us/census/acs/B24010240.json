@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010001", 
     "parent": "us/census/acs/B24010238"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over\": \"('Female:', 'Service occupations:', 'Personal care and service occupations:')\" \"Personal appearance workers\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Personal appearance workers and Female and Service occupations and Personal care and service occupations in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Service occupations:", 
+      "Personal care and service occupations:"
+    ], 
+    "title": "Personal appearance workers"
+  }
 }

@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Poverty Status in the Past 12 Months for Families\": \"()\" \"Total:\" in \"Families\""
+  "relationships": {
+    "denominator": "us/census/acs/B99172001"
+  }, 
+  "name": "Families", 
+  "extra": {
+    "table": "Imputation of Poverty Status in the Past 12 Months for Families", 
+    "universe": "Families", 
+    "title": "Total:"
+  }
 }

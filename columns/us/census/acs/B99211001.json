@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Veteran Status for the Population 18 Years and Over\": \"()\" \"Total:\" in \"Population 18 Years and Over\""
+  "relationships": {
+    "denominator": "us/census/acs/B99211001"
+  }, 
+  "name": "Population 18 Years and Over", 
+  "extra": {
+    "table": "Imputation of Veteran Status for the Population 18 Years and Over", 
+    "universe": "Population 18 Years and Over", 
+    "title": "Total:"
+  }
 }

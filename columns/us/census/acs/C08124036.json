@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C08124001", 
     "parent": "us/census/acs/C08124001"
   }, 
-  "name": "\"Means of Transportation to Work by Occupation\": \"()\" \"Worked at home:\" in \"Workers 16 Years and Over\""
+  "name": "Worked at home: in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Occupation", 
+    "universe": "Workers 16 Years and Over", 
+    "title": "Worked at home:"
+  }
 }

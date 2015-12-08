@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17001E001", 
     "parent": "us/census/acs/B17001E003"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age (Native Hawaiian and Other Pacific Islander Alone)\": \"('Income in the past 12 months below poverty level:', 'Male:')\" \"75 years and over\" in \"Native Hawaiian and Other Pacific Islander Alone Population for Whom Poverty Status Is Determined\""
+  "name": "75 years and over and Income in the past 12 months below poverty level and Male in Native Hawaiian and Other Pacific Islander Alone Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age (Native Hawaiian and Other Pacific Islander Alone)", 
+    "universe": "Native Hawaiian and Other Pacific Islander Alone Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      "Male:"
+    ], 
+    "title": "75 years and over"
+  }
 }

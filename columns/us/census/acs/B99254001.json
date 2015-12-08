@@ -1,3 +1,11 @@
 {
-  "name": "\"Imputation of Rooms\": \"()\" \"Total:\" in \"Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B99254001"
+  }, 
+  "name": "Housing Units", 
+  "extra": {
+    "table": "Imputation of Rooms", 
+    "universe": "Housing Units", 
+    "title": "Total:"
+  }
 }

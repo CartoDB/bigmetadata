@@ -1,3 +1,14 @@
 {
-  "name": "\"Household Type (Some Other Race Alone)\": \"('Nonfamily households:',)\" \"Total:\" in \"Households With a Householder Who Is Some Other Race Alone\""
+  "relationships": {
+    "denominator": "us/census/acs/C11001F001"
+  }, 
+  "name": "Total: and Nonfamily households in Households With a Householder Who Is Some Other Race Alone", 
+  "extra": {
+    "table": "Household Type (Some Other Race Alone)", 
+    "universe": "Households With a Householder Who Is Some Other Race Alone", 
+    "ancestors": [
+      "Nonfamily households:"
+    ], 
+    "title": "Total:"
+  }
 }

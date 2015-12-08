@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C24060001", 
     "parent": "us/census/acs/C24060001"
   }, 
-  "name": "\"Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over\": \"()\" \"Self-employed in own incorporated business workers:\" in \"Civilian Employed Population 16 Years and Over\""
+  "name": "Self-employed in own incorporated business workers: in Civilian Employed Population 16 Years and Over", 
+  "extra": {
+    "table": "Occupation by Class of Worker for the Civilian Employed Population 16 Years and Over", 
+    "universe": "Civilian Employed Population 16 Years and Over", 
+    "title": "Self-employed in own incorporated business workers:"
+  }
 }

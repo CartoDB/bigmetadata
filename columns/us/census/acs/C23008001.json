@@ -1,3 +1,16 @@
 {
-  "name": "\"Age of Own Children Under 18 Years in Families and Subfamilies by Living Arrangements by Employment Status of Parents\": \"('6 to 17 years:', 'Living with one parent:', 'Living with mother:')\" \"Total:\" in \"Own Children Under 18 Years in Families and Subfamilies\""
+  "relationships": {
+    "denominator": "us/census/acs/C23008001"
+  }, 
+  "name": "Total: and 6 to 17 years and Living with one parent and Living with mother in Own Children Under 18 Years in Families and Subfamilies", 
+  "extra": {
+    "table": "Age of Own Children Under 18 Years in Families and Subfamilies by Living Arrangements by Employment Status of Parents", 
+    "universe": "Own Children Under 18 Years in Families and Subfamilies", 
+    "ancestors": [
+      "6 to 17 years:", 
+      "Living with one parent:", 
+      "Living with mother:"
+    ], 
+    "title": "Total:"
+  }
 }

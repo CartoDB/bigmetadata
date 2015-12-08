@@ -1,6 +1,17 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B24010D001", 
     "parent": "us/census/acs/B24010D052"
   }, 
-  "name": "\"Sex by Occupation for the Civilian Employed Population 16 Years and Over (Asian Alone)\": \"('Female:', 'Management, business, science, and arts occupations:', 'Healthcare practitioners and technical occupations:')\" \"Health technologists and technicians\" in \"Civilian Employed Asian Alone Population 16 Years and Over\""
+  "name": "Health technologists and technicians and Female and Management, business, science, and arts occupations and Healthcare practitioners and technical occupations in Civilian Employed Asian Alone Population 16 Years and Over", 
+  "extra": {
+    "table": "Sex by Occupation for the Civilian Employed Population 16 Years and Over (Asian Alone)", 
+    "universe": "Civilian Employed Asian Alone Population 16 Years and Over", 
+    "ancestors": [
+      "Female:", 
+      "Management, business, science, and arts occupations:", 
+      "Healthcare practitioners and technical occupations:"
+    ], 
+    "title": "Health technologists and technicians"
+  }
 }

@@ -1,3 +1,9 @@
 {
-  "name": "\"Median Gross Rent by Year Householder Moved Into Unit\": \"()\" \"Total:\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "relationships": {}, 
+  "name": "Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Median Gross Rent by Year Householder Moved Into Unit", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "title": "Total:"
+  }
 }

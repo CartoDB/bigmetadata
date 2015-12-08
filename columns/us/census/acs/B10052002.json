@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B10052001", 
     "parent": "us/census/acs/B10052001"
   }, 
-  "name": "\"Disability Status of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent\": \"()\" \"With any disability:\" in \"Civilian Grandparents Living With Own Grandchildren Under 18 Years\""
+  "name": "With any disability: in Civilian Grandparents Living With Own Grandchildren Under 18 Years", 
+  "extra": {
+    "table": "Disability Status of Grandparents Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Age of Grandparent", 
+    "universe": "Civilian Grandparents Living With Own Grandchildren Under 18 Years", 
+    "title": "With any disability:"
+  }
 }

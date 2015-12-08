@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B19057001", 
     "parent": "us/census/acs/B19057001"
   }, 
-  "name": "\"Public Assistance Income in the Past 12 Months for Households\": \"()\" \"With public assistance income\" in \"Households\""
+  "name": "With public assistance income in Households", 
+  "extra": {
+    "table": "Public Assistance Income in the Past 12 Months for Households", 
+    "universe": "Households", 
+    "title": "With public assistance income"
+  }
 }

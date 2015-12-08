@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25003F001", 
     "parent": "us/census/acs/B25003F001"
   }, 
-  "name": "\"Tenure (Some Other Race Alone Householder)\": \"()\" \"Renter occupied\" in \"Occupied Housing Units With a Householder Who Is Some Other Race Alone\""
+  "name": "Renter occupied in Occupied Housing Units With a Householder Who Is Some Other Race Alone", 
+  "extra": {
+    "table": "Tenure (Some Other Race Alone Householder)", 
+    "universe": "Occupied Housing Units With a Householder Who Is Some Other Race Alone", 
+    "title": "Renter occupied"
+  }
 }

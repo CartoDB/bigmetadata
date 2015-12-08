@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25054001", 
     "parent": "us/census/acs/C25054001"
   }, 
-  "name": "\"Kitchen Facilities\": \"()\" \"Lacking complete kitchen facilities\" in \"Renter-occupied Housing Units Paying Cash Rent\""
+  "name": "Lacking complete kitchen facilities in Renter-occupied Housing Units Paying Cash Rent", 
+  "extra": {
+    "table": "Kitchen Facilities", 
+    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
+    "title": "Lacking complete kitchen facilities"
+  }
 }

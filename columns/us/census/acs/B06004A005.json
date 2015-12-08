@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B06004A001", 
     "parent": "us/census/acs/B06004A001"
   }, 
-  "name": "\"Place of Birth (White Alone) in the United States\": \"()\" \"Foreign born\" in \"White Alone Population in the United States\""
+  "name": "Foreign born in White Alone Population in the United States", 
+  "extra": {
+    "table": "Place of Birth (White Alone) in the United States", 
+    "universe": "White Alone Population in the United States", 
+    "title": "Foreign born"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B08130001", 
     "parent": "us/census/acs/B08130001"
   }, 
-  "name": "\"Means of Transportation to Work by Place of Work--State and County Level\": \"()\" \"Taxicab, motorcycle, bicycle, or other means:\" in \"Workers 16 Years and Over\""
+  "name": "Taxicab, motorcycle, bicycle, or other means: in Workers 16 Years and Over", 
+  "extra": {
+    "table": "Means of Transportation to Work by Place of Work--State and County Level", 
+    "universe": "Workers 16 Years and Over", 
+    "title": "Taxicab, motorcycle, bicycle, or other means:"
+  }
 }

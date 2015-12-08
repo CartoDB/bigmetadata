@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25017001", 
     "parent": "us/census/acs/B25017001"
   }, 
-  "name": "\"Rooms\": \"()\" \"1 room\" in \"Housing Units\""
+  "name": "1 room in Housing Units", 
+  "extra": {
+    "table": "Rooms", 
+    "universe": "Housing Units", 
+    "title": "1 room"
+  }
 }

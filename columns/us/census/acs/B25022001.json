@@ -1,3 +1,9 @@
 {
-  "name": "\"Aggregate Number of Rooms by Tenure\": \"()\" \"Aggregate number of rooms:\" in \"Occupied Housing Units\""
+  "relationships": {}, 
+  "name": "Aggregate number of rooms: in Occupied Housing Units", 
+  "extra": {
+    "table": "Aggregate Number of Rooms by Tenure", 
+    "universe": "Occupied Housing Units", 
+    "title": "Aggregate number of rooms:"
+  }
 }

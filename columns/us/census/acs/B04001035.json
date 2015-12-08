@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B04001001", 
     "parent": "us/census/acs/B04001001"
   }, 
-  "name": "\"First Ancestry Reported\": \"()\" \"Eastern European\" in \"Total Population\""
+  "name": "Eastern European in Total Population", 
+  "extra": {
+    "table": "First Ancestry Reported", 
+    "universe": "Total Population", 
+    "title": "Eastern European"
+  }
 }

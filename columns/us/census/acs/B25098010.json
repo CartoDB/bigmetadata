@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25098001", 
     "parent": "us/census/acs/B25098002"
   }, 
-  "name": "\"Mortgage Status by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)\": \"('With a mortgage:',)\" \"$150,000 or more\" in \"Owner-occupied Housing Units\""
+  "name": "$150,000 or more and With a mortgage in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
+    "universe": "Owner-occupied Housing Units", 
+    "ancestors": [
+      "With a mortgage:"
+    ], 
+    "title": "$150,000 or more"
+  }
 }

@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11001G001", 
     "parent": "us/census/acs/B11001G002"
   }, 
-  "name": "\"Household Type (Including Living Alone) (Two or More Races)\": \"('Family households:',)\" \"Married-couple family\" in \"Households With a Householder Who Is Two or More Races\""
+  "name": "Married-couple family and Family households in Households With a Householder Who Is Two or More Races", 
+  "extra": {
+    "table": "Household Type (Including Living Alone) (Two or More Races)", 
+    "universe": "Households With a Householder Who Is Two or More Races", 
+    "ancestors": [
+      "Family households:"
+    ], 
+    "title": "Married-couple family"
+  }
 }

@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B99259001", 
     "parent": "us/census/acs/B99259001"
   }, 
-  "name": "\"Imputation of Plumbing Facilities\": \"()\" \"Not imputed\" in \"Housing Units\""
+  "name": "Not imputed in Housing Units", 
+  "extra": {
+    "table": "Imputation of Plumbing Facilities", 
+    "universe": "Housing Units", 
+    "title": "Not imputed"
+  }
 }

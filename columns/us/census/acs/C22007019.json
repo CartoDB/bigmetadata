@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C22007001", 
     "parent": "us/census/acs/C22007017"
   }, 
-  "name": "\"Receipt of Food Stamps/SNAP in the Past 12 Months by Family Type by Number of Workers in Family in the Past 12 Months\": \"('Household did not receive Food Stamps/SNAP in the past 12 months:', 'Married-couple family:')\" \"1 worker\" in \"Families\""
+  "name": "1 worker and Household did not receive Food Stamps/SNAP in the past 12 months and Married-couple family in Families", 
+  "extra": {
+    "table": "Receipt of Food Stamps/SNAP in the Past 12 Months by Family Type by Number of Workers in Family in the Past 12 Months", 
+    "universe": "Families", 
+    "ancestors": [
+      "Household did not receive Food Stamps/SNAP in the past 12 months:", 
+      "Married-couple family:"
+    ], 
+    "title": "1 worker"
+  }
 }

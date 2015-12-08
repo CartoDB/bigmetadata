@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B11016001", 
     "parent": "us/census/acs/B11016002"
   }, 
-  "name": "\"Household Type by Household Size\": \"('Family households:',)\" \"7-or-more person household\" in \"Households\""
+  "name": "7-or-more person household and Family households in Households", 
+  "extra": {
+    "table": "Household Type by Household Size", 
+    "universe": "Households", 
+    "ancestors": [
+      "Family households:"
+    ], 
+    "title": "7-or-more person household"
+  }
 }

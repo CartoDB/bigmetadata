@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B25028001", 
     "parent": "us/census/acs/B25028012"
   }, 
-  "name": "\"Tenure by Year Structure Built\": \"('Renter occupied:',)\" \"Built 1960 to 1969\" in \"Occupied Housing Units\""
+  "name": "Built 1960 to 1969 and Renter occupied in Occupied Housing Units", 
+  "extra": {
+    "table": "Tenure by Year Structure Built", 
+    "universe": "Occupied Housing Units", 
+    "ancestors": [
+      "Renter occupied:"
+    ], 
+    "title": "Built 1960 to 1969"
+  }
 }

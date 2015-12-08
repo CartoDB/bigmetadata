@@ -1,3 +1,14 @@
 {
-  "name": "\"Inclusion of Utilities in Rent\": \"('3 or more bedrooms:',)\" \"Total:\" in \"Renter-occupied Housing Units\""
+  "relationships": {
+    "denominator": "us/census/acs/B25069001"
+  }, 
+  "name": "Total: and 3 or more bedrooms in Renter-occupied Housing Units", 
+  "extra": {
+    "table": "Inclusion of Utilities in Rent", 
+    "universe": "Renter-occupied Housing Units", 
+    "ancestors": [
+      "3 or more bedrooms:"
+    ], 
+    "title": "Total:"
+  }
 }

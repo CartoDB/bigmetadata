@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C07408001", 
     "parent": "us/census/acs/C07408001"
   }, 
-  "name": "\"Geographical Mobility in the Past Year by Marital Status for Residence 1 Year Ago in the United States\": \"()\" \"Moved to different county within same state:\" in \"Population 15 Years and Over in the United States\""
+  "name": "Moved to different county within same state: in Population 15 Years and Over in the United States", 
+  "extra": {
+    "table": "Geographical Mobility in the Past Year by Marital Status for Residence 1 Year Ago in the United States", 
+    "universe": "Population 15 Years and Over in the United States", 
+    "title": "Moved to different county within same state:"
+  }
 }

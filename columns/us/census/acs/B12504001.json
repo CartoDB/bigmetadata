@@ -1,3 +1,13 @@
 {
-  "name": "\"Median Duration of Current Marriage in Years by Sex by Marital Status for the Married Population 15 Years and Over\": \"('Female:', 'Ever married:')\" \"Total:\" in \"Population 15 Years and Over Who Are Now Married or Separated\""
+  "relationships": {}, 
+  "name": "Total: and Female and Ever married in Population 15 Years and Over Who Are Now Married or Separated", 
+  "extra": {
+    "table": "Median Duration of Current Marriage in Years by Sex by Marital Status for the Married Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over Who Are Now Married or Separated", 
+    "ancestors": [
+      "Female:", 
+      "Ever married:"
+    ], 
+    "title": "Total:"
+  }
 }

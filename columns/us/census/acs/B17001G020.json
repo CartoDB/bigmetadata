@@ -1,6 +1,16 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B17001G001", 
     "parent": "us/census/acs/B17001G017"
   }, 
-  "name": "\"Poverty Status in the Past 12 Months by Sex by Age (Two or More Races)\": \"('Income in the past 12 months below poverty level:', 'Female:')\" \"6 to 11 years\" in \"Two or More Races Population for Whom Poverty Status Is Determined\""
+  "name": "6 to 11 years and Income in the past 12 months below poverty level and Female in Two or More Races Population for Whom Poverty Status Is Determined", 
+  "extra": {
+    "table": "Poverty Status in the Past 12 Months by Sex by Age (Two or More Races)", 
+    "universe": "Two or More Races Population for Whom Poverty Status Is Determined", 
+    "ancestors": [
+      "Income in the past 12 months below poverty level:", 
+      "Female:"
+    ], 
+    "title": "6 to 11 years"
+  }
 }

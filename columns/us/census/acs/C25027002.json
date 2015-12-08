@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/C25027001", 
     "parent": "us/census/acs/C25027001"
   }, 
-  "name": "\"Mortgage Status by Age of Householder\": \"()\" \"Housing units with a mortgage:\" in \"Owner-occupied Housing Units\""
+  "name": "Housing units with a mortgage: in Owner-occupied Housing Units", 
+  "extra": {
+    "table": "Mortgage Status by Age of Householder", 
+    "universe": "Owner-occupied Housing Units", 
+    "title": "Housing units with a mortgage:"
+  }
 }

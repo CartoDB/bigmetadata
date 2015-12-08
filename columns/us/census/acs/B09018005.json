@@ -1,6 +1,15 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B09018001", 
     "parent": "us/census/acs/B09018002"
   }, 
-  "name": "\"Relationship to Householder for Children Under 18 Years in Households\": \"('Own child:',)\" \"Stepchild\" in \"Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)\""
+  "name": "Stepchild and Own child in Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)", 
+  "extra": {
+    "table": "Relationship to Householder for Children Under 18 Years in Households", 
+    "universe": "Population Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners)", 
+    "ancestors": [
+      "Own child:"
+    ], 
+    "title": "Stepchild"
+  }
 }

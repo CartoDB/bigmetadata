@@ -1,6 +1,12 @@
 {
   "relationships": {
+    "denominator": "us/census/acs/B12503001", 
     "parent": "us/census/acs/B12503001"
   }, 
-  "name": "\"Divorces in the Last Year by Sex by Marital Status for the Population 15 Years and Over\": \"()\" \"Female:\" in \"Population 15 Years and Over\""
+  "name": "Female: in Population 15 Years and Over", 
+  "extra": {
+    "table": "Divorces in the Last Year by Sex by Marital Status for the Population 15 Years and Over", 
+    "universe": "Population 15 Years and Over", 
+    "title": "Female:"
+  }
 }
