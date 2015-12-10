@@ -40,20 +40,56 @@
 
         <div class="row">
             <div class="col-xs-3 sidebar">
-                <h3>Search</h3>
-                <eui-searchbox field="'name'"></eui-searchbox> <!-- ACTION: change to field to search on -->
-                <!--<h3>Single select facet</h3>
-                <!--<eui-singleselect field="'CHANGE_TO_FIELD'" size="5"></eui-singleselect> <!-- ACTION: change to field to use as facet -->
-                <!--<h3>Multi select facet</h3>
-                <!--<eui-checklist field="'CHANGE_TO_FIELD'" size="10"></eui-checklist> <!-- ACTION: change to field to use as facet -->
+                <h3>Search by Name</h3>
+                <eui-searchbox field="'column.name'"></eui-searchbox> <br />
+                <!--<eui-searchbox placeholder="column id" field="'columns'"></eui-searchbox> -->
+                <h3>Margin of Error</h3>
+                <eui-singleselect field="'column.extra.margin_of_error'" size="5"></eui-singleselect>
+                <h3>Column/Table</h3>
+                <eui-singleselect field="'_type'" size="5"></eui-singleselect> <!-- ACTION: change to field to use as facet -->
+                <h3>Geographic Resolutions</h3>
+                <eui-singleselect field="'resolutions.id'" size="20"></eui-singleselect>
+                <!--<eui-checklist field="'tables.resolutions.id'" size="40"></eui-checklist>-->
+
+                <h3>Sample Size</h3>
+                <div  class="form-group wrapper-sm" eui-aggregation="ejs.HistogramAggregation('samplesize').field('resolutions.sample').interval('100').minDocCount(1)" eui-filter-self="false" eui-or-filter >
+                  <div ng-repeat="bucket in aggResult.buckets   ">
+                       <div class="checkbox" eui-filter="ejs.RangeFilter('resolutions.sample').from(bucket.key).to(aggResult.buckets[$index + 1].key)">
+                                        <label class="i-checks">
+                                        <input type="checkbox" ng-model="filter.enabled"  >
+                                        <i></i>
+                                        </label>
+                       <span class="m-r-n-sm">
+                        <small><span ng-bind="bucket.key | number">%</span>&nbsp;to&nbsp;<span ng-bind="aggResult.buckets[$index + 1].key | number">%</span></small>
+                        <span class="badge bg-success"><span ng-bind="bucket.doc_count | number"></span></span>                        </span>
+                      </div>
+                  </div>
+                </div>
+
+                <h3>Margins of Error</h3>
+                <div  class="form-group wrapper-sm" eui-aggregation="ejs.HistogramAggregation('error').field('resolutions.moe').interval('10').minDocCount(1)" eui-filter-self="false" eui-or-filter >
+                  <div ng-repeat="bucket in aggResult.buckets   ">
+                       <div class="checkbox" eui-filter="ejs.RangeFilter('resolutions.moe').from(bucket.key).to(aggResult.buckets[$index + 1].key)">
+                                        <label class="i-checks">
+                                        <input type="checkbox" ng-model="filter.enabled"  >
+                                        <i></i>
+                                        </label>
+                       <span class="m-r-n-sm">
+                        <small><span ng-bind="bucket.key | number"></span>%&nbsp;to&nbsp;<span ng-bind="aggResult.buckets[$index + 1].key | number"></span>%</small>
+                        <span class="badge bg-success"><span ng-bind="bucket.doc_count | number"></span></span>                        </span>
+                      </div>
+                  </div>
+                </div>
+
+
                 <h3>Results Per Page</h3>
                 <select ng-model="indexVM.pageSize">
                     <option ng-repeat="item in [10, 20, 50, 100]">{{item}}</option>
                 </select>
             </div>
             <div class="col-xs-9 col-xs-offset-3 main">
+                <!--
                 <div class="instructions panel panel-primary">
-                    <!-- README -->
                     <div class="panel-heading">Getting started with the Demo</div>
                     <div class="panel-body">
                         Instructions, modify this file according to the following:
@@ -64,11 +100,16 @@
                         </ol>
                     </div>
                 </div>
+                -->
 
                 <h1>Results</h1>
                 <ul>
                     <li ng-repeat="doc in indexVM.results.hits.hits">
-                        {{doc._source | json | limitTo: 500}} <!-- OPTIONAL: display more meaningful data instead of json -->
+                      <!--{{doc._source.name}}-->
+                      <!--<h5>{{doc._id}}</h5>-->
+                      {{doc._source.column.name}} in {{doc._source.table._id}} at resolutions {{doc._source.resolutions}}
+                      <p>type: '<b>{{doc._type}}</b>'</p>
+                      <!--{{doc._source | json | limitTo: 500000}} -->
                     </li>
                 </ul>
                 <eui-simple-paging></eui-simple-paging>
@@ -77,4 +118,3 @@
     </div>
 </body>
 </html>
-

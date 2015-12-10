@@ -8,10 +8,19 @@
                 "type": "string"
             },
             "parent": {
-                "type": "string"
+                "type": "string",
+                "index": "not_analyzed"
             },
             "ancestors": {
-                "type": "string"
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "aggregate": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+            "sample": {
+                "type": "long"
             },
             "extra": {
                 "type": "object"

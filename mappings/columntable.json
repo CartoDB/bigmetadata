@@ -1,0 +1,78 @@
+{
+    "columntable": {
+        "properties": {
+            "table": {
+                "type": "object",
+                "properties": {
+                    "columns": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "dct_temporal_sm": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "dct_spatial_sm": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "georss_box_s": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "bounds": {
+                        "type": "geo_shape"
+                    }
+                }
+            },
+            "column": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "parent": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "ancestors": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "aggregate": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "sample": {
+                        "type": "long"
+                    },
+                    "extra": {
+                        "type": "object"
+                    }
+                }
+            },
+            "aggregations": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "by_column": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "sample": {
+                        "type": "long"
+                    },
+                    "error": {
+                        "type": "double"
+                    }
+                }
+            }
+        }
+    }
+}
