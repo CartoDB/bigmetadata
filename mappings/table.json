@@ -1,6 +1,9 @@
 {
     "table": {
         "properties": {
+            "title": {
+                "type": "string"
+            },
             "columns": {
                 "type": "string",
                 "index": "not_analyzed"

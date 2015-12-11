@@ -2,7 +2,13 @@
     "column": {
         "properties": {
             "name": {
-                "type": "string"
+                "type": "string",
+                "fields": {
+                    "raw": {
+                        "type":  "string",
+                        "index": "not_analyzed"
+                    }
+                }
             },
             "description": {
                 "type": "string"
@@ -24,7 +30,12 @@
             },
             "extra": {
                 "type": "object"
+            },
+            "tags": {
+                "type": "string",
+                "index": "not_analyzed"
             }
         }
+
     }
 }

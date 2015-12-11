@@ -4,10 +4,6 @@
             "table": {
                 "type": "object",
                 "properties": {
-                    "columns": {
-                        "type": "string",
-                        "index": "not_analyzed"
-                    },
                     "dct_temporal_sm": {
                         "type": "string",
                         "index": "not_analyzed"
@@ -28,8 +24,27 @@
             "column": {
                 "type": "object",
                 "properties": {
+                    "id": {
+                        "type": "string",
+                        "fields": {
+                            "raw": {
+                                "type":  "string",
+                                "index": "not_analyzed"
+                            }
+                        }
+                    },
+                    "tags": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "fields": {
+                            "raw": {
+                                "type":  "string",
+                                "index": "not_analyzed"
+                            }
+                        }
                     },
                     "description": {
                         "type": "string"
@@ -54,8 +69,27 @@
                     }
                 }
             },
-            "aggregations": {
+            "resolutions": {
                 "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "by_column": {
+                        "type": "string",
+                        "index": "not_analyzed"
+                    },
+                    "sample": {
+                        "type": "long"
+                    },
+                    "error": {
+                        "type": "double"
+                    }
+                }
+            },
+            "resolutions_nested": {
+                "type": "nested",
                 "properties": {
                     "id": {
                         "type": "string",
