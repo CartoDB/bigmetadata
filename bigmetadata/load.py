@@ -30,15 +30,17 @@ def index_column(path):
     #if econn.exists(ES_NAME, ES_COLUMN, id=column_id):
     #    return
     with open(path) as column_file:
-        body = json.load(column_file)
-    CACHE[ES_COLUMN][column_id] = body
+        column = json.load(column_file)
+    column_with_id = column.copy()
+    column_with_id['id'] = column_id
+    CACHE[ES_COLUMN][column_id] = column_with_id
     #econn.index(ES_NAME, ES_COLUMN, id=column_id, body=body)
     return [{
         '_op_type': 'index',
         '_index': ES_NAME,
         '_type': ES_COLUMN,
         '_id': column_id,
-        '_source': body
+        '_source': column
     }]
 
 
@@ -51,11 +53,15 @@ def index_table(path):
     table_id = os.path.join(*path.split(os.path.sep)[1:]).replace('.json', '')
     with open(path) as table_file:
         table = json.load(table_file)
-
     columns = table.pop('columns')
+    table_with_id = table.copy()
+    table_with_id['id'] = table_id
+    table['columns'] = []
+
     #econn.index(ES_NAME, ES_TABLE, id=table_id, body=body)
     for column in columns:
         column_id = column['id']
+        table['columns'].append(column_id)
         # Add the columntable
         ops.append({
             '_op_type': 'index',
@@ -64,8 +70,9 @@ def index_table(path):
             '_id': table_id + column_id,
             '_source': {
                 "column": CACHE[ES_COLUMN][column_id],
-                "table": table,
-                "resolutions": column.get('resolutions', [])
+                "table": table_with_id,
+                "resolutions": column.get('resolutions', []),
+                "resolutions_nested": column.get('resolutions', [])
             }
         })
 

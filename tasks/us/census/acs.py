@@ -80,6 +80,7 @@ class ACSColumn(LocalTarget):
         self.table_title = kwargs['table_title'].decode('utf8')
         self.universe = kwargs['universe'].decode('utf8')
         self.denominator = kwargs['denominator']
+        self.tags = kwargs['tags'].split(',')
         self.moe = kwargs['moe']
 
         super(ACSColumn, self).__init__(
@@ -95,10 +96,12 @@ class ACSColumn(LocalTarget):
             name = self.universe
         else:
             name = self.column_title
+            table_title = self.table_title.split(' by ')[0]
             if self.column_parent_path:
                 path = [par.decode('utf8').replace(u':', u'') for par in self.column_parent_path if par]
-                name += u' within ' + u' within '.join(path)
-            name += u' in ' + self.universe
+                if path:
+                    name += u' within ' + u' within '.join(path)
+            name += u' of ' + table_title + u' in ' + self.universe
         if self.moe:
             return u'Margin of error for ' + name
         return name
@@ -106,6 +109,7 @@ class ACSColumn(LocalTarget):
     def generate(self):
         data = {
             'name': self.name,
+            'tags': self.tags,
             'extra': {
                 'title': self.column_title,
                 'table': self.table_title,
@@ -149,6 +153,8 @@ class ACSTable(LocalTarget):
         self.moe = kwargs.get('moe', False)
         self.schema = kwargs['schema']
         self.year = kwargs['year']
+        self.sample = kwargs['sample']
+        self.tags = kwargs['tags']
         if self.moe:
             self.seqnum += '_moe'
             for i, colid in enumerate(self.column_ids):
@@ -159,8 +165,7 @@ class ACSTable(LocalTarget):
 
     def generate(self, cursor, force=False):
         moe_columns = ', '.join([
-            #'(avg({column}_moe/nullif({column}, 0)) * 100)::NUMERIC(5, 2), count({column})'.format(
-            '(avg({column}_moe/nullif({column}, 0)) * 100), count({column})'.format(
+            '(avg(nullif({column}_moe, -1)/nullif({column}, 0)) * 100), count({column})'.format(
                 column=column)
             for column in self.column_ids
         ])
@@ -226,11 +231,23 @@ class ACSTable(LocalTarget):
                             parent_column_id=self.parent_column_ids[i],
                             denominator=self.denominators[i],
                             table_title=self.table_titles[i],
+                            tags=self.tags[i],
                             universe=self.universes[i], moe=self.moe)
             if not col.exists() or force:
                 col.generate()
 
+        if self.sample == '1yr':
+            timespan = self.year
+        elif self.sample == '3yr':
+            timespan = '{} - {}'.format(int(self.year) - 2, self.year)
+        elif self.sample == '5yr':
+            timespan = '{} - {}'.format(int(self.year) - 4, self.year)
+        else:
+            raise Exception('Unrecognized sample {}'.format(self.sample))
+
         data = {
+            'title': self.schema + u' ' + self.seqnum,
+            'dct_temporal_sm': timespan,
             'columns': columns
         }
         with self.open('w') as outfile:
@@ -277,7 +294,8 @@ class ProcessACS(Task):
             '   ARRAY_AGG(denominator_column_id) as denominators,'
             '   ARRAY_AGG(column_id) as column_ids, ARRAY_AGG(column_title) AS column_titles,'
             '   ARRAY_AGG(indent) as indents, ARRAY_AGG(parent_column_id) AS parent_column_ids,'
-            '   ARRAY_AGG(universe) as universes'
+            '   ARRAY_AGG(universe) as universes, '
+            '   ARRAY_AGG(array_to_string(topics, \',\')) as tags '
             ' FROM {schema}.census_table_metadata ctm'
             ' JOIN {schema}.census_column_metadata ccm USING (table_id)'
             ' JOIN information_schema.columns isc ON isc.column_name = LOWER(ccm.column_id)'
@@ -286,23 +304,26 @@ class ProcessACS(Task):
             ' GROUP BY isc.table_name'
             ' ORDER BY isc.table_name'
             ' '.format(schema=self.schema))
-        tables = cursor.fetchall()
+        tables = cursor.fetchall()[0:10]
         for seqnum, table_titles, denominators, column_ids, column_titles, indents, \
-                             parent_column_ids, universes in tables:
+                             parent_column_ids, universes, tags in tables:
 
             yield ACSTable(seqnum=seqnum, source=self.schema,
                            table_titles=table_titles, universes=universes,
                            denominators=denominators, column_titles=column_titles,
                            column_ids=column_ids, indents=indents,
                            schema=self.schema, year=self.year,
-                           parent_column_ids=parent_column_ids)
+                           sample=self.sample,
+                           parent_column_ids=parent_column_ids, tags=tags)
 
             yield ACSTable(seqnum=seqnum, source=self.schema,
                            table_titles=table_titles, universes=universes,
                            denominators=denominators, column_titles=column_titles,
                            column_ids=column_ids, indents=indents,
                            schema=self.schema, year=self.year,
-                           parent_column_ids=parent_column_ids, moe=True)
+                           sample=self.sample,
+                           parent_column_ids=parent_column_ids, moe=True,
+                           tags=tags)
 
 
 class AllACS(WrapperTask):
