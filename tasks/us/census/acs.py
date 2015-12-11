@@ -304,7 +304,7 @@ class ProcessACS(Task):
             ' GROUP BY isc.table_name'
             ' ORDER BY isc.table_name'
             ' '.format(schema=self.schema))
-        tables = cursor.fetchall()[0:10]
+        tables = cursor.fetchall()
         for seqnum, table_titles, denominators, column_ids, column_titles, indents, \
                              parent_column_ids, universes, tags in tables:
 
