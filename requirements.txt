@@ -3,4 +3,5 @@ luigi==2.0.0
 pylint
 psycopg2
 elasticsearch
+ujson
 #pip install git+https://github.com/ljwolf/cenpy@static
