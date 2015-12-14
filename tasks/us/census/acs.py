@@ -84,7 +84,7 @@ class ACSColumn(LocalTarget):
         self.moe = kwargs['moe']
 
         super(ACSColumn, self).__init__(
-            path=os.path.join('columns', classpath(self), self.column_id) + '.json')
+            path=os.path.join('data', 'columns', classpath(self), self.column_id) + '.json')
 
     @property
     def name(self):
@@ -172,7 +172,7 @@ class ACSTable(LocalTarget):
                 self.column_ids[i] = colid + '_moe'
 
         super(ACSTable, self).__init__(
-            path=os.path.join('tables', classpath(self), self.source, self.seqnum) + '.json')
+            path=os.path.join('data', 'tables', classpath(self), self.source, self.seqnum) + '.json')
 
     def generate(self, cursor, force=False):
         moe_columns = ', '.join([

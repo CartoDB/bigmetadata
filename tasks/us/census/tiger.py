@@ -19,7 +19,7 @@ class TigerSumLevel(LocalTarget):
         self.sumlevel = sumlevel
         self.data = SUMLEVELS[sumlevel]
         super(TigerSumLevel, self).__init__(
-            path=os.path.join('columns', classpath(self),
+            path=os.path.join('data', 'columns', classpath(self),
                               self.data['slug']) + '.json')
 
     def generate(self):

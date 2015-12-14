@@ -128,7 +128,7 @@ def load():
     for doc_type in (ES_COLUMN, ES_TABLE, ):
 
         # upload columns and tables
-        for dirpath, _, filenames in os.walk(doc_type + 's'):
+        for dirpath, _, filenames in os.walk(os.path.join('data', doc_type + 's')):
             for filename in filenames:
                 if filename.endswith('.json'):
                     CACHE['CNT'] += 1
