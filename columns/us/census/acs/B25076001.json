@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Lower value quartile (dollars) in Owner-occupied Housing Units", 
-  "extra": {
-    "table": "Lower Value Quartile (Dollars)", 
-    "universe": "Owner-occupied Housing Units", 
-    "title": "Lower value quartile (dollars)"
-  }
-}

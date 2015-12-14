@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median year structure built in Housing Units", 
-  "extra": {
-    "table": "Median Year Structure Built", 
-    "universe": "Housing Units", 
-    "title": "Median year structure built"
-  }
-}

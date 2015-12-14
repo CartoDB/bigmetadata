@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate number of rooms in Housing Units", 
-  "extra": {
-    "table": "Aggregate Number of Rooms", 
-    "universe": "Housing Units", 
-    "title": "Aggregate number of rooms"
-  }
-}

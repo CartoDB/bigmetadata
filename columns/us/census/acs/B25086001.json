@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate price asked (dollars) in Vacant-for-sale-only and Sold, Not Occupied Housing Units", 
-  "extra": {
-    "table": "Aggregate Price Asked (Dollars)", 
-    "universe": "Vacant-for-sale-only and Sold, Not Occupied Housing Units", 
-    "title": "Aggregate price asked (dollars)"
-  }
-}

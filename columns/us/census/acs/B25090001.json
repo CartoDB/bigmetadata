@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate real estate taxes paid (dollars): in Owner-occupied Housing Units", 
-  "extra": {
-    "table": "Mortgage Status by Aggregate Real Estate Taxes Paid (Dollars)", 
-    "universe": "Owner-occupied Housing Units", 
-    "title": "Aggregate real estate taxes paid (dollars):"
-  }
-}

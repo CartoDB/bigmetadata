@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate usual hours: in Population 16 to 64 Years Who Have Worked in the Past 12 Months", 
-  "extra": {
-    "table": "Aggregate Usual Hours Worked in the Past 12 Months by Sex for Workers 16 to 64 Years", 
-    "universe": "Population 16 to 64 Years Who Have Worked in the Past 12 Months", 
-    "title": "Aggregate usual hours:"
-  }
-}

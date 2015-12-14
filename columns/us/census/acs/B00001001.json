@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Total in Total Population", 
-  "extra": {
-    "table": "Unweighted Sample Count of the Population", 
-    "universe": "Total Population", 
-    "title": "Total"
-  }
-}

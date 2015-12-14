@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Owner-occupied Housing Units", 
-  "extra": {
-    "table": "Median Value by Year Structure Built", 
-    "universe": "Owner-occupied Housing Units", 
-    "title": "Total:"
-  }
-}

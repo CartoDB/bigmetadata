@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median monthly housing costs in Occupied Housing Units With Monthly Housing Costs", 
-  "extra": {
-    "table": "Median Monthly Housing Costs (Dollars)", 
-    "universe": "Occupied Housing Units With Monthly Housing Costs", 
-    "title": "Median monthly housing costs"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate value (dollars): in Owner-occupied Housing Units", 
-  "extra": {
-    "table": "Aggregate Value (Dollars) by Year Householder Moved Into Unit", 
-    "universe": "Owner-occupied Housing Units", 
-    "title": "Aggregate value (dollars):"
-  }
-}

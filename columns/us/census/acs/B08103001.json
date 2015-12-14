@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Workers 16 Years and Over", 
-  "extra": {
-    "table": "Median Age by Means of Transportation to Work", 
-    "universe": "Workers 16 Years and Over", 
-    "title": "Total:"
-  }
-}

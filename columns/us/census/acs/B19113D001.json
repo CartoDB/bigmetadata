@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median family income in the past 12 months (in 2010 inflation-adjusted dollars) in Families With a Householder Who Is Asian Alone", 
-  "extra": {
-    "table": "Median Family Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Asian Alone Householder)", 
-    "universe": "Families With a Householder Who Is Asian Alone", 
-    "title": "Median family income in the past 12 months (in 2010 inflation-adjusted dollars)"
-  }
-}

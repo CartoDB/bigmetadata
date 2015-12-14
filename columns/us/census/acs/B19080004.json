@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Fourth Quintile in Households", 
-  "extra": {
-    "table": "Household Income Quintile Upper Limits", 
-    "universe": "Households", 
-    "title": "Fourth Quintile"
-  }
-}

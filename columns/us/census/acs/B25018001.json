@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median number of rooms in Housing Units", 
-  "extra": {
-    "table": "Median Number of Rooms", 
-    "universe": "Housing Units", 
-    "title": "Median number of rooms"
-  }
-}

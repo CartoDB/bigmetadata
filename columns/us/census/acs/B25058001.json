@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median contract rent in Renter-occupied Housing Units Paying Cash Rent", 
-  "extra": {
-    "table": "Median Contract Rent (Dollars)", 
-    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
-    "title": "Median contract rent"
-  }
-}

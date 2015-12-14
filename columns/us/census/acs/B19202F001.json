@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars) in Nonfamily Households With a Householder Who Is Some Other Race Alone", 
-  "extra": {
-    "table": "Median Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Some Other Race Alone Householder)", 
-    "universe": "Nonfamily Households With a Householder Who Is Some Other Race Alone", 
-    "title": "Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars)"
-  }
-}

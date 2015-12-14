@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Top 5 Percent in Households", 
-  "extra": {
-    "table": "Shares of Aggregate Household Income by Quintile", 
-    "universe": "Households", 
-    "title": "Top 5 Percent"
-  }
-}

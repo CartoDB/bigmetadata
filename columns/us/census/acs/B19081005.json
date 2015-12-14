@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Highest Quintile in Households", 
-  "extra": {
-    "table": "Mean Household Income of Quintiles", 
-    "universe": "Households", 
-    "title": "Highest Quintile"
-  }
-}

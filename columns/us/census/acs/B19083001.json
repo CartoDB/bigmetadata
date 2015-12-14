@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Gini Index in Households", 
-  "extra": {
-    "table": "Gini Index of Income Inequality", 
-    "universe": "Households", 
-    "title": "Gini Index"
-  }
-}

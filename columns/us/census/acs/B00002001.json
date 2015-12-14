@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Total in Housing Units", 
-  "extra": {
-    "table": "Unweighted Sample Housing Units", 
-    "universe": "Housing Units", 
-    "title": "Total"
-  }
-}

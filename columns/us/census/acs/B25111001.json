@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Renter-occupied Housing Units Paying Cash Rent", 
-  "extra": {
-    "table": "Median Gross Rent by Year Structure Built", 
-    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
-    "title": "Total:"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Housing units without a mortgage (dollars) in Owner-occupied Housing Units", 
-  "extra": {
-    "table": "Median Selected Monthly Owner Costs (Dollars) by Mortgage Status", 
-    "universe": "Owner-occupied Housing Units", 
-    "title": "Housing units without a mortgage (dollars)"
-  }
-}

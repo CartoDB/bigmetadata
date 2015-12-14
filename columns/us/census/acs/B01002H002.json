@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Male in White Alone, Not Hispanic or Latino Population", 
-  "extra": {
-    "table": "Median Age by Sex (White Alone, Not Hispanic or Latino)", 
-    "universe": "White Alone, Not Hispanic or Latino Population", 
-    "title": "Male"
-  }
-}

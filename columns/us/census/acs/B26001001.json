@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Population in Group Quarters", 
-  "extra": {
-    "table": "Group Quarters Population", 
-    "universe": "Population in Group Quarters", 
-    "title": "Total:"
-  }
-}

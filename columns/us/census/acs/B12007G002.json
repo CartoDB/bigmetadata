@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Female in Two or More Races Population 15 to 54 Years", 
-  "extra": {
-    "table": "Median Age at First Marriage (Two or More Races)", 
-    "universe": "Two or More Races Population 15 to 54 Years", 
-    "title": "Female"
-  }
-}

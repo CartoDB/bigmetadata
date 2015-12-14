@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate household income in the past 12 months (in 2010 inflation-adjusted dollars) in Households With a Householder Who Is Black or African American Alone", 
-  "extra": {
-    "table": "Aggregate Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) (Black or African American Alone Householder)", 
-    "universe": "Households With a Householder Who Is Black or African American Alone", 
-    "title": "Aggregate household income in the past 12 months (in 2010 inflation-adjusted dollars)"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate contract rent in Renter-occupied Housing Units Paying Cash Rent", 
-  "extra": {
-    "table": "Aggregate Contract Rent (Dollars)", 
-    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
-    "title": "Aggregate contract rent"
-  }
-}

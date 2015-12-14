@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median value (dollars) in Owner-occupied Housing Units", 
-  "extra": {
-    "table": "Median Value (Dollars)", 
-    "universe": "Owner-occupied Housing Units", 
-    "title": "Median value (dollars)"
-  }
-}

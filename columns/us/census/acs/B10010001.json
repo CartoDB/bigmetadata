@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Families With Grandparent Householders And/or Spouses Living With Grandchildren", 
-  "extra": {
-    "table": "Median Family Income for Families With Grandparent Householders And/or Spouses Living With Own Grandchildren Under 18 Years by Responsibility for Own Grandchildren and Presence of Parent of Grandchildren", 
-    "universe": "Families With Grandparent Householders And/or Spouses Living With Grandchildren", 
-    "title": "Total:"
-  }
-}

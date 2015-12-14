@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Response Rate in Housing Units", 
-  "extra": {
-    "table": "Housing Unit Response and Nonresponse Rates With Reasons for Noninterviews", 
-    "universe": "Housing Units", 
-    "title": "Response Rate"
-  }
-}

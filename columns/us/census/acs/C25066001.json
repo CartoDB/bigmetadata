@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate gross rent (dollars): in Renter-occupied Housing Units Paying Cash Rent", 
-  "extra": {
-    "table": "Aggregate Gross Rent (Dollars) by Units in Structure", 
-    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
-    "title": "Aggregate gross rent (dollars):"
-  }
-}

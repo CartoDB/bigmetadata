@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate rent asked in Vacant-for-rent and Rented, Not Occupied Housing Units", 
-  "extra": {
-    "table": "Aggregate Rent Asked (Dollars)", 
-    "universe": "Vacant-for-rent and Rented, Not Occupied Housing Units", 
-    "title": "Aggregate rent asked"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median gross rent in Renter-occupied Housing Units Paying Cash Rent", 
-  "extra": {
-    "table": "Median Gross Rent (Dollars)", 
-    "universe": "Renter-occupied Housing Units Paying Cash Rent", 
-    "title": "Median gross rent"
-  }
-}

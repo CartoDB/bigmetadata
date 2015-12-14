@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars) in Nonfamily Households", 
-  "extra": {
-    "table": "Median Nonfamily Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)", 
-    "universe": "Nonfamily Households", 
-    "title": "Median nonfamily household income in the past 12 months (in 2010 inflation-adjusted dollars)"
-  }
-}

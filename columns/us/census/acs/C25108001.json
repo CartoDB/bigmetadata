@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Aggregate value (dollars): in Owner-occupied Housing Units", 
-  "extra": {
-    "table": "Aggregate Value (Dollars) by Year Structure Built", 
-    "universe": "Owner-occupied Housing Units", 
-    "title": "Aggregate value (dollars):"
-  }
-}

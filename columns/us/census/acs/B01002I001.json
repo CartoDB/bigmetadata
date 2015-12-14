@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Hispanic or Latino Population", 
-  "extra": {
-    "table": "Median Age by Sex (Hispanic or Latino)", 
-    "universe": "Hispanic or Latino Population", 
-    "title": "Total:"
-  }
-}

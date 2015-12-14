@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Households", 
-  "extra": {
-    "table": "Median Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) by Household Size", 
-    "universe": "Households", 
-    "title": "Total:"
-  }
-}

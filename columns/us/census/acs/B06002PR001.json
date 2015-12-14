@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Total Population in Puerto Rico", 
-  "extra": {
-    "table": "Median Age by Place of Birth in Puerto Rico", 
-    "universe": "Total Population in Puerto Rico", 
-    "title": "Total:"
-  }
-}

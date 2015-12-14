@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Female in Total Population", 
-  "extra": {
-    "table": "Median Age by Sex", 
-    "universe": "Total Population", 
-    "title": "Female"
-  }
-}

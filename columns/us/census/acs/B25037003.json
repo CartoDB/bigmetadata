@@ -1,9 +1,0 @@
-{
-  "relationships": {}, 
-  "name": "Renter occupied in Occupied Housing Units", 
-  "extra": {
-    "table": "Median Year Structure Built by Tenure", 
-    "universe": "Occupied Housing Units", 
-    "title": "Renter occupied"
-  }
-}
