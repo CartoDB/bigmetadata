@@ -24,7 +24,7 @@ def index_column(path):
     Load json at path into idx.
     '''
     # kill columns/ , tables/ etc.
-    column_id = os.path.join(*path.split(os.path.sep)[1:]).replace('.json', '')
+    column_id = os.path.join(*path.split(os.path.sep)[2:]).replace('.json', '')
     #if econn.exists(ES_NAME, ES_COLUMN, id=column_id):
     #    return
     with open(path) as column_file:
@@ -49,7 +49,7 @@ def index_table(path):
     '''
     # kill columns/ , tables/ etc.
     ops = []
-    table_id = os.path.join(*path.split(os.path.sep)[1:]).replace('.json', '')
+    table_id = os.path.join(*path.split(os.path.sep)[2:]).replace('.json', '')
     with open(path) as table_file:
         table = json.load(table_file)
     
