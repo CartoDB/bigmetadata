@@ -38,29 +38,29 @@
 </head>
 <body ng-app="tutorial" eui-index="'bigmetadata'"><!-- ACTION: change to index name -->
 
-    <div class="container-fluid" eui-sort="ejs.Sort('column.name').asc()"  eui-enabled="false">
+    <div class="container-fluid" eui-sort="ejs.Sort('name').asc()"  eui-enabled="false">
 
-      <!--<div class="row" eui-sort="ejs.Sort('column.id.raw').asc()" eui-enabled="true">-->
-      <div class="row" eui-sort="ejs.Sort('resolutions_nested.error').nestedPath('resolutions_nested').nestedFilter(ejs.TermFilter('resolutions_nested.id', 'us/census/tiger/2010/nation')).asc()" eui-enabled="true">
-          <div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.MissingFilter('column.extra.margin_of_error')).must(ejs.TypeFilter('columntable'))" eui-enabled="true">
+      <!--<div class="row" eui-sort="ejs.Sort('id.raw').asc()" eui-enabled="true">-->
+      <div class="row" eui-sort="ejs.Sort('tables.resolutions_nested.error').nestedPath('tables.resolutions_nested').nestedFilter(ejs.TermFilter('tables.resolutions_nested.id', 'us/census/tiger/2010/nation')).asc()" eui-enabled="true">
+          <div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">
                 <h3>Search by Name</h3>
-                <eui-searchbox field="'column.name'"></eui-searchbox> <br />
+                <eui-searchbox field="'name'"></eui-searchbox> <br />
                 <h3>Search by ID</h3>
-                <eui-searchbox field="'column.id'"></eui-searchbox> <br />
-                <!--<eui-searchbox placeholder="column id" field="'columns'"></eui-searchbox> -->
+                <eui-searchbox field="'id'"></eui-searchbox> <br />
+                <!--<eui-searchbox placeholder="id" field="'columns'"></eui-searchbox> -->
                 <!--
                 <h3>Column/Table</h3>
                 <eui-singleselect field="'_type'" size="5"></eui-singleselect>
                 -->
 
                 <h3>Tags</h3>
-                <eui-singleselect field="'column.tags'" size="20"></eui-singleselect>
+                <eui-singleselect field="'tags'" size="40"></eui-singleselect>
 
                 <h3>Years</h3>
-                <eui-singleselect field="'table.dct_temporal_sm'" size="20"></eui-singleselect>
+                <eui-singleselect field="'tables.dct_temporal_sm'" size="40"></eui-singleselect>
 
                 <h3>Resolutions</h3>
-                <eui-singleselect field="'resolutions.id'" size="20"></eui-singleselect>
+                <eui-singleselect field="'tables.resolutions.id'" size="40"></eui-singleselect>
 
                 <!--<h3>Sample Size</h3>
                 <div  class="form-group wrapper-sm" eui-aggregation="ejs.NestedAggregation('samplesize-nested').path('resolutions').aggregation(ejs.HistogramAggregation('samplesize').field('resolutions.sample').interval('100').minDocCount(1))" eui-filter-self="false" eui-or-filter >
@@ -96,7 +96,7 @@
 
                 <h3>Results Per Page</h3>
                 <select ng-model="indexVM.pageSize">
-                    <option ng-repeat="item in [10, 20, 50, 100]">{{item}}</option>
+                    <option ng-repeat="item in [10, 20, 50, 100, 250, 500, 1000]">{{item}}</option>
                 </select>
             </div>
             <div class="col-xs-9 col-xs-offset-3 main">
@@ -115,17 +115,18 @@
                 -->
 
                 <h1>Results</h1>
-                <ul>
-                    <li ng-repeat="doc in indexVM.results.hits.hits">
-                      <b>{{doc._source.column.name}}</b> (margin {{doc._source.resolutions[0].error | number}}%):
-                      {{doc._source.table.title}}.{{doc._source.column.id}}
+                <table>
+                    <tr ng-repeat="doc in indexVM.results.hits.hits">
+                      <th><b>{{doc._source.name}}</b></th>
+                      <td>(margin {{doc._source.tables[0].resolutions[0].error | number}}%)</td>
+                      <!--<td>{{doc._source.table.title}}.{{doc._source.column.id}}</td>-->
                       <!--{{doc._source.name}}-->
                       <!--<h5>{{doc._id}}</h5>-->
                       <!--{{doc._source.column.name}} ({{doc._source.column.id}}) in {{doc._source.table.id}}-->
                       <!--{{doc._source}}-->
                       <!--<button ng-click='javascript:$("#json-preview").JSONView(JSON.parse({{doc._source}}), collapsed=true)'>Preview</button>-->
-                    </li>
-                </ul>
+                    </tr>
+                </table>
                 <eui-simple-paging></eui-simple-paging>
             </div>
         </div>

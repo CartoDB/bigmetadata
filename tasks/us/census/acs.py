@@ -91,32 +91,43 @@ class ACSColumn(LocalTarget):
         '''
         Attempt a human-readable name for this column
         '''
-        if self.column_title == u'Total:' and not self.column_parent_path:
+        if self.table_title.startswith('Unweighted'):
+            name = self.table_title
+        elif self.column_title in (u'Total:', u'Total') and not self.column_parent_path:
             #name = self.table_title.split(' by ')[0] + u' in ' + self.universe
             name = self.universe
         else:
-            name = self.column_title
             table_title = self.table_title.split(' by ')[0]
+            #dimensions = self.table_title.split(' by ')[1:]
+            name = table_title + u': '
+            name += self.column_title
             if self.column_parent_path:
                 path = [par.decode('utf8').replace(u':', u'') for par in self.column_parent_path if par]
                 if path:
                     name += u' within ' + u' within '.join(path)
-            name += u' of ' + table_title + u' in ' + self.universe
+            name += u' in ' + self.universe
         if self.moe:
             return u'Margin of error for ' + name
         return name
 
     def generate(self):
-        data = {
+        try:
+            with self.open('r') as infile:
+                data = json.load(infile)
+        except IOError:
+            data = {}
+
+        data.update({
             'name': self.name,
             'tags': self.tags,
-            'extra': {
-                'title': self.column_title,
-                'table': self.table_title,
-                'universe': self.universe,
-            }
-        }
-        data['relationships'] = {}
+        })
+        data['extra'] = data.get('extra', {})
+        data['extra'].update({
+            'title': self.column_title,
+            'table': self.table_title,
+            'universe': self.universe,
+        })
+        data['relationships'] = data.get('relationships', {})
         if self.moe:
             data['extra']['margin_of_error'] = True
             data['relationships']['parent'] = self.path.replace(u'_moe.json', u'')
@@ -165,7 +176,7 @@ class ACSTable(LocalTarget):
 
     def generate(self, cursor, force=False):
         moe_columns = ', '.join([
-            '(avg(nullif({column}_moe, -1)/nullif({column}, 0)) * 100), count({column})'.format(
+            'SQRT(SUM(POWER(NULLIF({column}_moe, -1)/NULLIF({column}, 0), 2))) * 100, COUNT({column})'.format(
                 column=column)
             for column in self.column_ids
         ])
@@ -290,12 +301,14 @@ class ProcessACS(Task):
         cursor = pg_cursor()
         # Grab all table and column info
         cursor.execute(
-            ' SELECT isc.table_name as seqnum, ARRAY_AGG(table_title) as table_titles,'
-            '   ARRAY_AGG(denominator_column_id) as denominators,'
-            '   ARRAY_AGG(column_id) as column_ids, ARRAY_AGG(column_title) AS column_titles,'
-            '   ARRAY_AGG(indent) as indents, ARRAY_AGG(parent_column_id) AS parent_column_ids,'
-            '   ARRAY_AGG(universe) as universes, '
-            '   ARRAY_AGG(array_to_string(topics, \',\')) as tags '
+            ' SELECT isc.table_name as seqnum, ARRAY_AGG(table_title ORDER BY column_id) as table_titles,'
+            '   ARRAY_AGG(denominator_column_id ORDER BY column_id) as denominators,'
+            '   ARRAY_AGG(column_id ORDER BY column_id) as column_ids, '
+            '   ARRAY_AGG(column_title ORDER BY column_id) AS column_titles, '
+            '   ARRAY_AGG(indent ORDER BY column_id) as indents, '
+            '   ARRAY_AGG(parent_column_id ORDER BY column_id) AS parent_column_ids, '
+            '   ARRAY_AGG(universe ORDER BY column_id) as universes, '
+            '   ARRAY_AGG(array_to_string(topics, \',\') ORDER BY column_id) as tags '
             ' FROM {schema}.census_table_metadata ctm'
             ' JOIN {schema}.census_column_metadata ccm USING (table_id)'
             ' JOIN information_schema.columns isc ON isc.column_name = LOWER(ccm.column_id)'
