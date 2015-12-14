@@ -1,6 +1,12 @@
 # Thanks to
 # https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
 {
+  "postgres": {
+    "image": "kartoza/postgis:latest",
+    "ports": [
+      "5432:5432"
+    ]
+  },
   "kibana": {
     "build": "kibana/",
     "volumes": [
@@ -16,9 +22,9 @@
   "elasticsearch": {
     "image": "elasticsearch:latest",
     "command": "elasticsearch -Des.network.host=0.0.0.0",
-    "volumes": [
-      "./esconfig:/usr/share/elasticsearch/config"
-    ],
+    #"volumes": [
+    #  "./esconfig:/usr/share/elasticsearch/config"
+    #],
     "ports": [
       "9200:9200",
       "9300:9300"
@@ -41,7 +47,8 @@
     "working_dir": "/bigmetadata",
     "build": ".",
     "links": [
-      "elasticsearch"
+      "elasticsearch",
+      "postgres"
     ],
     "volumes": [
       ".:/bigmetadata"
