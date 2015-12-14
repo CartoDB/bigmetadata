@@ -212,7 +212,6 @@ class ACSTable(LocalTarget):
                     if sumlevel not in SUMLEVELS:
                         continue
                     resolution = os.path.join(classpath(load_sumlevels),
-                                              self.year,
                                               SUMLEVELS[sumlevel]['slug'])
                     #sumlevel_sample = d[1]
                     moe = sam[(i * 2) + 2]
