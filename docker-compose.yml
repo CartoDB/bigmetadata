@@ -56,7 +56,11 @@
     "environment": {
       "PYTHONPATH": "/bigmetadata",
       "ES_HOST": "elasticsearch",
-      "ES_PORT": "9200"
+      "ES_PORT": "9200",
+      "PGHOST": "postgres",
+      "PGUSER": "docker",
+      "PGPASSWORD": "docker",
+      "PGDATABASE": "gis"
     },
     "env_file": ".env",
 #    "external_links": [
