@@ -157,3 +157,76 @@ def test_acs_column_b09020001():
                     tags='',
                     moe=None)
     assert_equals(col.name, 'Population 65 Years and Over')
+
+
+def test_acs_column_b11001001():
+    col = ACSColumn(column_id='B11001001',
+                    column_title='Total:',
+                    column_parent_path=[],
+                    parent_column_id=None,
+                    table_title='Household Type (Including Living Alone)',
+                    universe='Households',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, 'Households')
+
+
+def test_acs_column_b14001002():
+    col = ACSColumn(column_id='B14001002',
+                    column_title='Enrolled in school:',
+                    column_parent_path=['Total:'],
+                    parent_column_id=None,
+                    table_title='School Enrollment by Level of School for the '
+                                'Population 3 Years and Over',
+                    universe='Population 3 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, 'Enrolled in school Population 3 Years and Over')
+
+def test_acs_column_b14001002():
+    col = ACSColumn(column_id='B14001008',
+                    column_title='Enrolled in college, undergraduate years',
+                    column_parent_path=['Total:', 'Enrolled in school:'],
+                    parent_column_id=None,
+                    table_title='School Enrollment by Level of School for the '
+                                'Population 3 Years and Over',
+                    universe='Population 3 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, 'Enrolled in college, undergraduate years Population 3 Years and Over')
+
+
+def test_acs_column_b15003017():
+    col = ACSColumn(column_id='B15003017',
+                    column_title='Regular high school diploma',
+                    column_parent_path=['Total:'],
+                    parent_column_id='B15003001',
+                    table_title='Educational Attainment for the Population 25 Years and Over',
+                    universe='Population 25 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Regular high school diploma Population 25 Years and Over")
+
+
+def test_acs_column_b15003022():
+    col = ACSColumn(column_id='B15003022',
+                    column_title='Bachelor\'s degree',
+                    column_parent_path=['Total:'],
+                    parent_column_id='B15003001',
+                    table_title='Educational Attainment for the Population 25 Years and Over',
+                    universe='Population 25 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Bachelor's degree Population 25 Years and Over")
+
+
+#    b17001002 AS poverty,  -- 0.520%
+#    b19013001 AS hhi,      -- 0.128%
+#    b22003002 AS food_stamps, -- 0.432% -- denominator of this is # of households
+#    b23025003 AS civilian_labor_force, -- 
+#    b23025005 AS unemployment -- denominator of this is civilian_labor_force
