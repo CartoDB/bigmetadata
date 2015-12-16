@@ -99,7 +99,10 @@ class ACSColumn(LocalTarget):
         else:
             table_title = self.table_title.split(' by ')[0]
             #dimensions = self.table_title.split(' by ')[1:]
-            name = table_title + u': '
+            if table_title.lower() not in ('sex',):
+                name = table_title + u': '
+            else:
+                name = u''
             name += self.column_title
             if self.column_parent_path:
                 path = [par.decode('utf8').replace(u':', u'') for par in self.column_parent_path if par]
@@ -176,6 +179,8 @@ class ACSTable(LocalTarget):
 
     def generate(self, cursor, force=False):
         moe_columns = ', '.join([
+            # TODO we should be aggregating the _moe term separately as sum of squares,
+            # then dividing by the total
             'SQRT(SUM(POWER(NULLIF({column}_moe, -1)/NULLIF({column}, 0), 2))) * 100, COUNT({column})'.format(
                 column=column)
             for column in self.column_ids
@@ -271,7 +276,6 @@ class ProcessACS(Task):
 
     def requires(self):
         yield DownloadACS(year=self.year, sample=self.sample)
-        yield Tiger()
 
     @property
     def schema(self):
