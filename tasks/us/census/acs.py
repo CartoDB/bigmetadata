@@ -99,19 +99,30 @@ class ACSColumn(LocalTarget):
         else:
             table_title = self.table_title.split(' by ')[0]
             dimensions = self.table_title.split(' by ')
-            if table_title.lower() not in ('sex',):
-                name = table_title + u': '
-            else:
-                name = u''
-            name += self.column_title.replace(u":", u"")
+            #if table_title.lower() not in ('sex',):
+            #    name = table_title + u': '
+            #else:
+
+            column_title = self.column_title.replace(u':', u'')
+            if dimensions[-1].lower() == u'race' and column_title.endswith(u' alone'):
+                # These extra "alone"s are confusing
+                column_title = column_title.replace(u' alone', u'')
+            name = column_title
+
             if self.column_parent_path:
                 for i, par in enumerate(self.column_parent_path):
                     if par:
                         par = par.decode('utf8').replace(u':', u'')
-                        if par.lower() in ('total', ):
+                        if par.lower() in (u'total', u'not hispanic or latino', ):
+                            # These enclosures are useless
                             continue
-                        name += u' ' + dimensions[len(dimensions) - i] + u' ' + par
-            if self.universe == 'Total Population':
+                        dimension_name = dimensions[len(dimensions) - i]
+                        if dimension_name.lower() in ('sex', 'race', ):
+                            # These dimensions are determinable from context
+                            name += u' ' + par
+                        else:
+                            name += u' ' + dimension_name + u' ' + par
+            if self.universe.lower() in ('total population', ):
                 name += ' Population'
             else:
                 name += u' in ' + self.universe

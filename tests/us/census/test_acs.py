@@ -116,7 +116,7 @@ def test_acs_column_b03002004():
                     denominator='B03002001',
                     tags='',
                     moe=None)
-    assert_equals(col.name, 'Black or African American alone Population')
+    assert_equals(col.name, 'Black or African American Population')
 
 
 def test_acs_column_b03002003():
@@ -129,7 +129,7 @@ def test_acs_column_b03002003():
                     denominator='B03002001',
                     tags='',
                     moe=None)
-    assert_equals(col.name, 'White alone Population')
+    assert_equals(col.name, 'White Population')
 
 
 def test_acs_column_b09001001():
