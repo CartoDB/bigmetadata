@@ -4,7 +4,8 @@
   "postgres": {
     "image": "kartoza/postgis:latest",
     "volumes": [
-      "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf"
+      "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf",
+      "./postgres/data:/var/lib/postgresql"
     ],
     "ports": [
       "5432:5432"
