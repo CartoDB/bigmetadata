@@ -15,7 +15,7 @@ import os
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor)
 from psycopg2 import ProgrammingError
-from tasks.us.census.tiger import Tiger, SUMLEVELS, load_sumlevels
+from tasks.us.census.tiger import SUMLEVELS, load_sumlevels
 
 
 # STEPS:
@@ -54,7 +54,6 @@ class DownloadACS(LoadPostgresFromURL):
             cursor.connection.rollback()
         url = self.url_template.format(year=self.year, sample=self.sample)
         self.load_from_url(url)
-        self.output().touch()
 
 
 class DumpACS(WrapperTask):
@@ -119,7 +118,13 @@ class ACSColumn(LocalTarget):
                             # These dimension values are not interesting
                             continue
 
-                        dimension_name = dimensions[len(dimensions) - i]
+                        if i >= len(dimensions):
+                            dimension_name = dimensions[-1]
+                        elif len(dimensions) > 1:
+                            dimension_name = dimensions[i]
+                        else:
+                            dimension_name = dimensions[0]
+
                         if dimension_name.lower() in ('employment status', ):
                             # These dimensions are not interesting
                             continue
