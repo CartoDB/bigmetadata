@@ -5,11 +5,13 @@
     "image": "kartoza/postgis:latest",
     "volumes": [
       "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf",
-      "./postgres/data:/var/lib/postgresql"
+      "./postgres/data:/var/lib/postgresql"  # commented to work on mac --
+                                              # will cause persistence issues!!
     ],
     "ports": [
       "5432:5432"
-    ]
+    ],
+    "privileged": true
   },
   "kibana": {
     "build": "kibana/",
@@ -47,10 +49,33 @@
       "80:80"
    ]
   },
-  "bigmetadata": {
-    "working_dir": "/bigmetadata",
+  "bigmetadata_daemon": {
     "build": ".",
     "links": [
+      "elasticsearch",
+      "postgres"
+    ],
+    "volumes": [
+      ".:/bigmetadata"
+    ],
+    "ports": [
+      "8082:8082"
+    ],
+    "environment": {
+      "PYTHONPATH": "/bigmetadata",
+      "ES_HOST": "elasticsearch",
+      "ES_PORT": "9200",
+      "PGHOST": "postgres",
+      "PGUSER": "docker",
+      "PGPASSWORD": "docker",
+      "PGDATABASE": "gis"
+    },
+    "env_file": ".env"
+  },
+  "bigmetadata": {
+    "build": ".",
+    "links": [
+      "bigmetadata_daemon",
       "elasticsearch",
       "postgres"
     ],
@@ -66,9 +91,6 @@
       "PGPASSWORD": "docker",
       "PGDATABASE": "gis"
     },
-    "env_file": ".env",
-#    "external_links": [
-#      "docker4data"
-#    ]
+    "env_file": ".env"
   }
 }
