@@ -114,16 +114,30 @@ class ACSColumn(LocalTarget):
                 for i, par in enumerate(self.column_parent_path):
                     if par:
                         par = par.decode('utf8').replace(u':', u'')
-                        if par.lower() in (u'total', u'not hispanic or latino', 'enrolled in school', ):
-                            # These enclosures are useless
+                        if par.lower() in (u'total', u'not hispanic or latino',
+                                           'enrolled in school', 'employment status', ):
+                            # These dimension values are not interesting
                             continue
+
                         dimension_name = dimensions[len(dimensions) - i]
+                        if dimension_name.lower() in ('employment status', ):
+                            # These dimensions are not interesting
+                            continue
                         if dimension_name.lower() in ('sex', 'race', ):
-                            # These dimensions are determinable from context
+                            # We want to show dimension value here for these,
+                            # but don't need to name the dimension
                             name += u' ' + par
                         else:
                             name += u' ' + dimension_name + u' ' + par
-            if self.universe.lower() in ('total population', ):
+            universe = self.universe
+            if 'median' in table_title.lower() or 'aggregate' in table_title.lower():
+                # We may want to use something other than 'in' but still indicate
+                # the universe sometimes
+                pass
+            elif universe.lower().strip('s') in name.lower():
+                # Universe is redundant with the existing name
+                pass
+            elif universe.lower() in ('total population', ):
                 name += ' Population'
             else:
                 name += u' in ' + self.universe

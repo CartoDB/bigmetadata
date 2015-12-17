@@ -225,8 +225,92 @@ def test_acs_column_b15003022():
     assert_equals(col.name, "Bachelor's degree in Population 25 Years and Over")
 
 
-#    b17001002 AS poverty,  -- 0.520%
-#    b19013001 AS hhi,      -- 0.128%
-#    b22003002 AS food_stamps, -- 0.432% -- denominator of this is # of households
-#    b23025003 AS civilian_labor_force, -- 
-#    b23025005 AS unemployment -- denominator of this is civilian_labor_force
+def test_acs_column_b17001002():
+    col = ACSColumn(column_id='B17001002',
+                    column_title='Income in the past 12 months below poverty level:',
+                    column_parent_path=['Total:'],
+                    parent_column_id='B17001001',
+                    table_title='Poverty Status in the Past 12 Months by Sex by Age',
+                    universe='Population for Whom Poverty Status Is Determined',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Income in the past 12 months below poverty level in Population for Whom Poverty Status Is Determined")
+
+
+def test_acs_column_b19013001():
+    col = ACSColumn(column_id='B19013001',
+                    column_title='Median household income in the past 12 months (in 2012 inflation-adjusted dollars)',
+                    column_parent_path=[],
+                    parent_column_id=None,
+                    table_title='Median Household Income in the Past 12 Months (In 2012 Inflation-adjusted Dollars)',
+                    universe='Households',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Median household income in the past 12 months (in 2012 inflation-adjusted dollars)")
+
+
+def test_acs_column_b22003002():
+    col = ACSColumn(column_id='B22003002',
+                    column_title='Household received Food Stamps/SNAP in the past 12 months:',
+                    column_parent_path=['Total:'],
+                    parent_column_id='B22003001',
+                    table_title='Receipt of Food Stamps/SNAP in the Past 12 Months by Poverty Status in the Past 12 Months for Households',
+                    universe='Households',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Household received Food Stamps/SNAP in the past 12 months")
+
+
+def test_acs_column_b23025002():
+    col = ACSColumn(column_id='B23025002',
+                    column_title='In labor force:',
+                    column_parent_path=['Total:'],
+                    parent_column_id='B23025001',
+                    table_title='Employment Status for the Population 16 Years and Over',
+                    universe='Population 16 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "In labor force in Population 16 Years and Over")
+
+
+def test_acs_column_b23025003():
+    col = ACSColumn(column_id='B23025003',
+                    column_title='Civilian labor force:',
+                    column_parent_path=['Total:', 'In labor force:'],
+                    parent_column_id='B23025002',
+                    table_title='Employment Status for the Population 16 Years and Over',
+                    universe='Population 16 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Civilian labor force in Population 16 Years and Over")
+
+
+def test_acs_column_b23025005():
+    col = ACSColumn(column_id='B23025005',
+                    column_title='Unemployed',
+                    column_parent_path=['Total:', 'In labor force:', 'Unemployed', ],
+                    parent_column_id='B23025003',
+                    table_title='Employment Status for the Population 16 Years and Over',
+                    universe='Population 16 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Unemployed in Population 16 Years and Over")
+
+
+def test_acs_column_b23025007():
+    col = ACSColumn(column_id='B23025007',
+                    column_title='Not in labor force',
+                    column_parent_path=['Total:', ],
+                    parent_column_id='B23025001',
+                    table_title='Employment Status for the Population 16 Years and Over',
+                    universe='Population 16 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Not in labor force in Population 16 Years and Over")
