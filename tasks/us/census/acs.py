@@ -97,8 +97,9 @@ class ACSColumn(LocalTarget):
             #name = self.table_title.split(' by ')[0] + u' in ' + self.universe
             name = self.universe
         else:
-            table_title = self.table_title.split(' by ')[0]
-            dimensions = self.table_title.split(' by ')
+            table_title = self.table_title.split(' for ')[0]
+            dimensions = table_title.split(' by ')
+            table_title = table_title.split(' by ')[0]
             #if table_title.lower() not in ('sex',):
             #    name = table_title + u': '
             #else:
@@ -113,7 +114,7 @@ class ACSColumn(LocalTarget):
                 for i, par in enumerate(self.column_parent_path):
                     if par:
                         par = par.decode('utf8').replace(u':', u'')
-                        if par.lower() in (u'total', u'not hispanic or latino', ):
+                        if par.lower() in (u'total', u'not hispanic or latino', 'enrolled in school', ):
                             # These enclosures are useless
                             continue
                         dimension_name = dimensions[len(dimensions) - i]

@@ -196,7 +196,7 @@ def test_acs_column_b14001002():
                     denominator=None,
                     tags='',
                     moe=None)
-    assert_equals(col.name, 'Enrolled in college, undergraduate years Population 3 Years and Over')
+    assert_equals(col.name, 'Enrolled in college, undergraduate years in Population 3 Years and Over')
 
 
 def test_acs_column_b15003017():
@@ -209,7 +209,7 @@ def test_acs_column_b15003017():
                     denominator=None,
                     tags='',
                     moe=None)
-    assert_equals(col.name, "Regular high school diploma Population 25 Years and Over")
+    assert_equals(col.name, "Regular high school diploma in Population 25 Years and Over")
 
 
 def test_acs_column_b15003022():
@@ -222,7 +222,7 @@ def test_acs_column_b15003022():
                     denominator=None,
                     tags='',
                     moe=None)
-    assert_equals(col.name, "Bachelor's degree Population 25 Years and Over")
+    assert_equals(col.name, "Bachelor's degree in Population 25 Years and Over")
 
 
 #    b17001002 AS poverty,  -- 0.520%
