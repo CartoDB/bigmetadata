@@ -6,7 +6,8 @@
     <!--<link rel="stylesheet" href="//rawgit.com/yesmeck/jquery-jsonview/master/dist/jquery.jsonview.css" />-->
     <script src="//code.angularjs.org/1.2.16/angular.js"></script>
     <script src="//rawgit.com/YousefED/ElasticUI/master/examples/demo/lib/elasticsearch.angular.js"></script>
-    <script src="//rawgit.com/YousefED/ElasticUI/master/examples/demo/lib/elastic.js"></script>
+    <!--<script src="//rawgit.com/YousefED/ElasticUI/master/examples/demo/lib/elastic.js"></script>-->
+    <script src="//rawgit.com/fullscale/elastic.js/master/dist/elastic.js"></script>
     <script src="//rawgit.com/YousefED/ElasticUI/master/dist/elasticui.js"></script>
     <!--<script src="//rawgit.com/yesmeck/jquery-jsonview/master/dist/jquery.jsonview.js"></script>-->
     <style>
@@ -38,13 +39,16 @@
 </head>
 <body ng-app="tutorial" eui-index="'bigmetadata'"><!-- ACTION: change to index name -->
 
-    <div class="container-fluid" eui-sort="ejs.Sort('name').asc()"  eui-enabled="false">
+    <div class="container-fluid" eui-aggregation="ejs.TermsAggregation('dedup').order('minError', 'asc').field('name.raw').agg(ejs.TopHitsAggregation('dedup_docs').sort(ejs.Sort().field('_id').order('asc').mode('min')).size(1)).agg(ejs.MinAggregation('minError').field('tables.resolutions.error'))" eui-sort="ejs.Sort('name').asc()"  eui-enabled="false">
 
       <!--<div class="row" eui-sort="ejs.Sort('id.raw').asc()" eui-enabled="true">-->
-      <div class="row" eui-sort="ejs.Sort('tables.resolutions_nested.error').nestedPath('tables.resolutions_nested').nestedFilter(ejs.TermFilter('tables.resolutions_nested.id', 'us/census/tiger/2010/nation')).asc()" eui-enabled="true">
-          <div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">
+      <div class="row" eui-sort="ejs.Sort('tables.resolutions.error', 'column_id')" eui-enabled="true">
+          <div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.RangeFilter('tables.resolutions.error').from(0).to(0.1)).must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">
                 <h3>Search by Name</h3>
-                <eui-searchbox field="'name'"></eui-searchbox> <br />
+                <!--<eui-searchbox field="'name'"></eui-searchbox> <br />-->
+                <!--<input type="text" eui-query="ejs.MatchQuery(field, querystring)" field="'name'" ng-model="querystring" eui-enabled="querystring.length" /><br />-->
+                <input type="text" eui-query="ejs.BoolQuery().must(ejs.MatchQuery('name', querystring))" ng-model="querystring" eui-enabled="querystring.length" />
+
                 <h3>Search by ID</h3>
                 <eui-searchbox field="'id'"></eui-searchbox> <br />
                 <!--<eui-searchbox placeholder="id" field="'columns'"></eui-searchbox> -->
@@ -115,10 +119,19 @@
                 -->
 
                 <h1>Results</h1>
-                <table>
-                    <tr ng-repeat="doc in indexVM.results.hits.hits">
-                      <th><b>{{doc._source.name}}</b></th>
+                <table >
+                    <!--<tr ng-repeat="doc in indexVM.results.hits.hits">-->
+                    <tr ng-repeat="doc in indexVM.results.aggregations.filtered_dedup.dedup.buckets">
+
+                      <th><b>{{doc.dedup_docs.hits.hits[0]._source.name}}</b></th>
+                      <td>(margin {{doc.dedup_docs.hits.hits[0]._source.tables[0].resolutions[0].error | number}}%)</td>
+                      <td>{{doc.dedup_docs.hits.hits[0]._id}}</td>
+
+                      <!--<th><b>{{doc._source.name}}</b></th>
                       <td>(margin {{doc._source.tables[0].resolutions[0].error | number}}%)</td>
+                      <td>{{doc._id}}</td>-->
+
+                      <!--<td>{{doc._source}}</td>-->
                       <!--<td>{{doc._source.table.title}}.{{doc._source.column.id}}</td>-->
                       <!--{{doc._source.name}}-->
                       <!--<h5>{{doc._id}}</h5>-->
@@ -127,10 +140,12 @@
                       <!--<button ng-click='javascript:$("#json-preview").JSONView(JSON.parse({{doc._source}}), collapsed=true)'>Preview</button>-->
                     </tr>
                 </table>
-                <eui-simple-paging></eui-simple-paging>
+                <!--<eui-simple-paging></eui-simple-paging>-->
+                <ul class="pager">
+                  <li ng-class="{disabled:indexVM.page <= 1}"><a href="" ng-click="indexVM.page=indexVM.page - 1">Previous</a></li>
+                  <li ng-class="{disabled:indexVM.pageCount <= indexVM.page}"><a href="" ng-click="indexVM.page=indexVM.page + 1">Next</a></li>
+                </ul>
             </div>
-        </div>
-        <div id="json-preview">
         </div>
     </div>
 </body>
