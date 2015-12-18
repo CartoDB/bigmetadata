@@ -15,5 +15,5 @@ psql:
 
 acs:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.us.census.acs ProcessACS \
-	  --force --year 2010 --sample 1yr --local-scheduler
+	  --module tasks.us.census.acs AllACS \
+	  --parallel-scheduling --workers=8
