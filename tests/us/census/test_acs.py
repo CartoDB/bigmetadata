@@ -314,3 +314,29 @@ def test_acs_column_b23025007():
                     tags='',
                     moe=None)
     assert_equals(col.name, "Not in labor force in Population 16 Years and Over")
+
+
+def test_acs_column_b23025007():
+    col = ACSColumn(column_id='B23025007',
+                    column_title='Not in labor force',
+                    column_parent_path=['Total:', ],
+                    parent_column_id='B23025001',
+                    table_title='Employment Status for the Population 16 Years and Over',
+                    universe='Population 16 Years and Over',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Not in labor force in Population 16 Years and Over")
+
+
+def test_acs_column_c19037001():
+    col = ACSColumn(column_id='B19037003',
+                    column_title='Less than $10,000',
+                    column_parent_path=['Householder under 25 years', ],
+                    parent_column_id='B19037002',
+                    table_title='Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)',
+                    universe='Households',
+                    denominator=None,
+                    tags='',
+                    moe=None)
+    assert_equals(col.name, "Less than $10,000 Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) Householder under 25 years")
