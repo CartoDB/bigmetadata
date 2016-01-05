@@ -567,7 +567,9 @@ class ProcessACS(Task):
 
 class AllACS(WrapperTask):
 
+    force = BooleanParameter(default=False)
+
     def requires(self):
         for year in xrange(2010, 2014):
             for sample in ('1yr', '3yr', '5yr'):
-                yield ProcessACS(year=year, sample=sample)
+                yield ProcessACS(year=year, sample=sample, force=self.force)
