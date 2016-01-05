@@ -39,11 +39,13 @@
 </head>
 <body ng-app="tutorial" eui-index="'bigmetadata'"><!-- ACTION: change to index name -->
 
-    <div class="container-fluid" eui-aggregation="ejs.TermsAggregation('dedup').order('minError', 'asc').field('name.raw').agg(ejs.TopHitsAggregation('dedup_docs').sort(ejs.Sort().field('_id').order('asc').mode('min')).size(1)).agg(ejs.MinAggregation('minError').field('tables.resolutions.error'))" eui-sort="ejs.Sort('name').asc()"  eui-enabled="false">
+<!--<div class="container-fluid" eui-aggregation="ejs.TermsAggregation('dedup').order('minError', 'asc').field('name.raw').agg(ejs.TopHitsAggregation('dedup_docs').sort(ejs.Sort().field('_id').order('asc').mode('min')).size(1)).agg(ejs.MinAggregation('minError').field('tables.resolutions.error'))" eui-sort="ejs.Sort('name').asc()"  eui-enabled="false">-->
+    <div class="container-fluid" eui-sort="ejs.Sort('name').asc()">
 
       <!--<div class="row" eui-sort="ejs.Sort('id.raw').asc()" eui-enabled="true">-->
-      <div class="row" eui-sort="ejs.Sort('tables.resolutions.error', 'column_id')" eui-enabled="true">
-          <div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.RangeFilter('tables.resolutions.error').from(0).to(0.1)).must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">
+      <div class="row" eui-sort="ejs.Sort('tables.resolutions.error', 'column_id').mode('min')" eui-enabled="true">
+        <!--<div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.RangeFilter('tables.resolutions.error').from(0).to(0.1)).must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">-->
+          <div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.RangeFilter('value').from(1).to(2)).must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">
                 <h3>Search by Name</h3>
                 <!--<eui-searchbox field="'name'"></eui-searchbox> <br />-->
                 <!--<input type="text" eui-query="ejs.MatchQuery(field, querystring)" field="'name'" ng-model="querystring" eui-enabled="querystring.length" /><br />-->
@@ -56,6 +58,9 @@
                 <h3>Column/Table</h3>
                 <eui-singleselect field="'_type'" size="5"></eui-singleselect>
                 -->
+
+                <h3>Value</h3>
+                <eui-singleselect field="'value'" size="3"></eui-singleselect>
 
                 <h3>Tags</h3>
                 <eui-singleselect field="'tags'" size="40"></eui-singleselect>
@@ -120,18 +125,18 @@
 
                 <h1>Results</h1>
                 <table >
-                    <!--<tr ng-repeat="doc in indexVM.results.hits.hits">-->
-                    <tr ng-repeat="doc in indexVM.results.aggregations.filtered_dedup.dedup.buckets">
+                    <tr ng-repeat="doc in indexVM.results.hits.hits">
+                    <!--<tr ng-repeat="doc in indexVM.results.aggregations.filtered_dedup.dedup.buckets">-->
 
-                      <th><b>{{doc.dedup_docs.hits.hits[0]._source.name}}</b></th>
+                      <!--<th><b>{{doc.dedup_docs.hits.hits[0]._source.name}}</b></th>
                       <td>(margin {{doc.dedup_docs.hits.hits[0]._source.tables[0].resolutions[0].error | number}}%)</td>
-                      <td>{{doc.dedup_docs.hits.hits[0]._id}}</td>
+                      <td>{{doc.dedup_docs.hits.hits[0]._id}}</td>-->
 
-                      <!--<th><b>{{doc._source.name}}</b></th>
+                      <th><b>{{doc._source.name}}</b></th>
+                      <td>{{doc.extra}}</td>
                       <td>(margin {{doc._source.tables[0].resolutions[0].error | number}}%)</td>
-                      <td>{{doc._id}}</td>-->
+                      <td>{{doc._id}}</td>
 
-                      <!--<td>{{doc._source}}</td>-->
                       <!--<td>{{doc._source.table.title}}.{{doc._source.column.id}}</td>-->
                       <!--{{doc._source.name}}-->
                       <!--<h5>{{doc._id}}</h5>-->
