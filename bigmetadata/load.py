@@ -16,8 +16,10 @@ ES_TABLE = 'table'
 
 CACHE = {
     ES_COLUMN: {},
+    'NAMES': set(),  # TODO cleaner way to not include duplicate names
     'CNT': 0
 }
+
 
 def index_column(path):
     '''
@@ -32,7 +34,9 @@ def index_column(path):
     column_with_id = column.copy()
     column_with_id['id'] = column_id
     column_with_id['tables'] = []
-    CACHE[ES_COLUMN][column_id] = column_with_id
+    if int(column.get('value', 1)) > 0 and column['name'] not in CACHE['NAMES']:
+        CACHE['NAMES'].add(column['name'])
+        CACHE[ES_COLUMN][column_id] = column_with_id
     #econn.index(ES_NAME, ES_COLUMN, id=column_id, body=body)
     #return [{
     #    '_op_type': 'index',
@@ -52,7 +56,7 @@ def index_table(path):
     table_id = os.path.join(*path.split(os.path.sep)[2:]).replace('.json', '')
     with open(path) as table_file:
         table = json.load(table_file)
-    
+
     # Replace real column with just an ID
     columns = table.pop('columns')
     table_for_column = table.copy()
@@ -62,12 +66,13 @@ def index_table(path):
 
     #econn.index(ES_NAME, ES_TABLE, id=table_id, body=body)
     for column in columns:
-        # Add this table to the column
-        tfcc = table_for_column.copy()
-        tfcc['resolutions'] = column.get('resolutions', [])
-        tfcc['resolutions_nested'] = column.get('resolutions', [])
-        CACHE[ES_COLUMN][column['id']]['tables'].append(tfcc)
-        
+        # Add this table to the column, if we care about the column
+        if column['id'] in CACHE[ES_COLUMN]:
+            tfcc = table_for_column.copy()
+            tfcc['resolutions'] = column.get('resolutions', [])
+            tfcc['resolutions_nested'] = column.get('resolutions', [])
+            CACHE[ES_COLUMN][column['id']]['tables'].append(tfcc)
+
         # Add the columntable
         #ops.append({
         #    '_op_type': 'index',
@@ -129,7 +134,7 @@ def load():
 
         # upload columns and tables
         for dirpath, _, filenames in os.walk(os.path.join('data', doc_type + 's')):
-            for filename in filenames:
+            for filename in sorted(filenames):
                 if filename.endswith('.json'):
                     CACHE['CNT'] += 1
                     if CACHE['CNT'] % 1000 == 0:
