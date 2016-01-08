@@ -64,7 +64,7 @@ def test_acs_column_b01001003():
                     denominator=None,
                     tags='',
                     moe=None)
-    assert_equals(col.name, 'Under 5 years Age Male Population')
+    assert_equals(col.name, 'Under 5 years Male Population')
 
 
 def test_acs_column_b01001026():
@@ -329,14 +329,27 @@ def test_acs_column_b23025007():
     assert_equals(col.name, "Not in labor force in Population 16 Years and Over")
 
 
-def test_acs_column_c19037001():
-    col = ACSColumn(column_id='B19037003',
-                    column_title='Less than $10,000',
-                    column_parent_path=['Householder under 25 years', ],
-                    parent_column_id='B19037002',
-                    table_title='Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)',
-                    universe='Households',
-                    denominator=None,
+#def test_acs_column_c19037001():
+#    col = ACSColumn(column_id='C19037001',
+#                    column_title='Less than $10,000',
+#                    column_parent_path=['Householder under 25 years', ],
+#                    parent_column_id='B19037002',
+#                    table_title='Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)',
+#                    universe='Households',
+#                    denominator='B19037001',
+#                    tags='',
+#                    moe=None)
+#    assert_equals(col.name, "Less than $10,000 Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) Householder under 25 years")
+
+
+def test_acs_column_b05001001():
+    col = ACSColumn(column_id='B05001001',
+                    column_title='Total:',
+                    column_parent_path=[],
+                    parent_column_id='',
+                    table_title='Citizenship Status in the United States',
+                    universe='Total Population in the United States',
+                    denominator='B05001001',
                     tags='',
                     moe=None)
-    assert_equals(col.name, "Less than $10,000 Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars) Householder under 25 years")
+    assert_equals(col.name, "Total Population")

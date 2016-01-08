@@ -264,16 +264,13 @@ class ACSColumn(LocalTarget):
         '''
         if self.table_title.startswith('Unweighted'):
             name = self.table_title
-        elif self.column_title in (u'Total:', u'Total') and not self.column_parent_path:
+        elif self.column_title.lower().startswith('total') and not self.column_parent_path:
             #name = self.table_title.split(' by ')[0] + u' in ' + self.universe
             name = self.universe
         else:
             table_title = self.table_title.split(' for ')[0]
             dimensions = table_title.split(' by ')
             table_title = table_title.split(' by ')[0]
-            #if table_title.lower() not in ('sex',):
-            #    name = table_title + u': '
-            #else:
 
             column_title = self.column_title.replace(u':', u'')
             if dimensions[-1].lower() == u'race' and column_title.endswith(u' alone'):
@@ -281,35 +278,45 @@ class ACSColumn(LocalTarget):
                 column_title = column_title.replace(u' alone', u'')
             name = column_title
 
-            if self.column_parent_path:
-                for i, par in enumerate(self.column_parent_path):
+            column_parent_path = self.column_parent_path
+            if column_parent_path:
+                # ignore "total" columns
+                if column_parent_path[0] is None or column_parent_path[0].lower().startswith(u'total'):
+                    column_parent_path.pop(0)
+                for i, par in enumerate(column_parent_path):
                     if par:
                         par = par.decode('utf8').replace(u':', u'')
-                        if par.lower() in (u'total', u'not hispanic or latino',
-                                           'enrolled in school', 'employment status', ):
+                        if par.lower() in (u'not hispanic or latino',
+                                           'enrolled in school', ):
                             # These dimension values are not interesting
                             continue
 
                         if i >= len(dimensions):
-                            dimension_name = dimensions[0]
-                        elif len(dimensions) > 1:
-                            if 'total' in dimensions[0].lower():
-                                dimension_name = dimensions[i]
-                            else:
-                                dimension_name = dimensions[i - 1]
+                            dimension_name = ''
                         else:
-                            dimension_name = dimensions[-1]
+                            dimension_name = dimensions[i]
 
-                        if dimension_name.lower() in ('employment status', ):
+                        if dimension_name.lower() in (u'employment status', ):
                             # These dimensions are not interesting
                             continue
-                        if dimension_name.lower() in ('sex', 'race', ):
+                        elif dimension_name.lower() in ('sex', 'race', ):
                             # We want to show dimension value here for these,
                             # but don't need to name the dimension
                             name += u' ' + par
+                        elif dimension_name.lower() in ('age', ):
+                            name += u' old'
+                        elif name == par:
+                            continue
+                        elif dimension_name == '':
+                            name += u' ' + par
                         else:
-                            name += u' ' + dimension_name + u' ' + par
+                            name += u' ' + par + u' ' + dimension_name
             universe = self.universe
+            if universe.endswith(' in the United States'):
+                universe = universe.replace(' in the United States', '')
+            if universe.startswith('Total '):
+                universe = universe.replace('Total ', '')
+
             if 'median' in table_title.lower() or 'aggregate' in table_title.lower():
                 # We may want to use something other than 'in' but still indicate
                 # the universe sometimes
@@ -317,12 +324,14 @@ class ACSColumn(LocalTarget):
             elif universe.lower().strip('s') in name.lower():
                 # Universe is redundant with the existing name
                 pass
-            elif universe.lower() in ('total population', ):
-                name += ' Population'
+            elif universe.lower() in ('population', ):
+                name += ' ' + universe
             else:
-                name += u' in ' + self.universe
+                name += u' in ' + universe
         if self.moe:
             return u'Margin of error for ' + name
+        if name.endswith(u' in the United States'):
+            name = name.replace(u' in the United States', u'')
         return name
 
     def generate(self):
@@ -354,6 +363,8 @@ class ACSColumn(LocalTarget):
                 data['aggregate'] = 'sum'
             if self.column_parent_path:
                 data['extra']['ancestors'] = self.column_parent_path
+            else:
+                data['extra'].pop('ancestors', '')
             if self.denominator:
                 data['relationships']['denominator'] = \
                         os.path.join(classpath(self), self.denominator)
@@ -452,6 +463,8 @@ class ACSTable(LocalTarget):
 
                 column_parent_path = column_parent_path[0:indent]
                 column_parent_path.append(column_title)
+            else:
+                column_parent_path = []
 
             table_id = self.table_ids[i]
             if table_id in HIGH_VALUE_TABLES:
@@ -544,7 +557,6 @@ class ProcessACS(Task):
         tables = cursor.fetchall()
         for seqnum, table_titles, table_ids, denominators, column_ids, column_titles, indents, \
                              parent_column_ids, universes, tags in tables:
-
             yield ACSTable(seqnum=seqnum, source=self.schema,
                            table_ids=table_ids,
                            table_titles=table_titles, universes=universes,
