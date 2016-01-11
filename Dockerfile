@@ -2,7 +2,7 @@ FROM debian:latest
 
 RUN apt-get update
 RUN apt-get -yq install python-pip python-dev libpq-dev postgresql-client-common \
-                        postgresql-client-9.4 wget curl gdal-bin
+                        postgresql-client-9.4 wget curl gdal-bin unzip
 
 COPY ./requirements.txt /bigmetadata/requirements.txt
 
