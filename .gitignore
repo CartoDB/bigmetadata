@@ -10,3 +10,4 @@ node_modules
 bower_components
 *.swp
 npm-debug.log
+catalog/build

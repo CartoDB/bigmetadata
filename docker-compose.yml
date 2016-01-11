@@ -39,8 +39,9 @@
   "browser": {
     "image": "nginx:latest",
     "volumes": [
-      "./browser:/usr/share/nginx/html/:ro",
-      "./browser/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+      "./browser:/usr/share/nginx/html/browser/:ro",
+      "./browser/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
+      "./catalog/build/html:/usr/share/nginx/html/catalog/:ro"
     ],
    "links": [
      "elasticsearch"

@@ -9,3 +9,4 @@ mock
 #pip install git+https://github.com/ljwolf/cenpy@static
 python-daemon
 sqlalchemy
+sphinx
