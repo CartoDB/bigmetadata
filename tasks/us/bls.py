@@ -79,7 +79,6 @@ class QCEW(Task):
     def tablename(self):
         return '"{schema}".qcew'.format(schema=classpath(self)) + self.year
 
-
     def columns(self):
         return '''
 "area_fips" Text , --"5-character FIPS code"
@@ -148,4 +147,4 @@ CREATE TABLE {tablename} (
         self.output().touch()
 
     def output(self):
-        return DefaultPostgresTarget(table=classpath(self) + '.qcew' + self.year)
+        return DefaultPostgresTarget(self.tablename())
