@@ -4,7 +4,7 @@ Util functions for luigi bigmetadata tasks.
 
 import os
 import subprocess
-from luigi import Task, Parameter
+from luigi import Task, Parameter, LocalTarget
 from luigi.postgres import PostgresTarget
 
 def pg_cursor():
@@ -13,6 +13,56 @@ def pg_cursor():
     '''
     target = DefaultPostgresTarget(table='foo', update_id='bar')
     return target.connect().cursor()
+
+
+def shell(cmd):
+    '''
+    Run a shell command
+    '''
+    return subprocess.check_call(cmd, shell=True)
+
+
+class MetadataTarget(LocalTarget):
+    '''
+    Target that ensures metadata exists.
+    '''
+    pass
+
+
+class ColumnTarget(MetadataTarget):
+    '''
+    Column target for metadata
+    '''
+
+    def __init__(self, **kwargs):
+        self.filename = kwargs.pop('filename')
+        super(ColumnTarget, self).__init__(
+            path=os.path.join('data', 'columns', classpath(self),
+                              self.filename + '.json'))
+
+    #def filename(self):
+    #    '''
+    #    Filename for persistence in bigmetadata
+    #    '''
+    #    raise NotImplementedError('Must implement filename() for ColumnTarget')
+
+
+class TableTarget(MetadataTarget):
+    '''
+    Table target for metadata
+    '''
+
+    def __init__(self, **kwargs):
+        self.filename = kwargs.pop('filename')
+        super(ColumnTarget, self).__init__(
+            path=os.path.join('data', 'tables', classpath(self),
+                              self.filename + '.json'))
+
+    #def filename(self):
+    #    '''
+    #    Filename for persistence in bigmetadata
+    #    '''
+    #    raise NotImplementedError('Must implement filename() for TableTarget')
 
 
 class DefaultPostgresTarget(PostgresTarget):
@@ -26,6 +76,8 @@ class DefaultPostgresTarget(PostgresTarget):
         kwargs['user'] = kwargs.get('user', os.environ.get('PGUSER', 'postgres'))
         kwargs['password'] = kwargs.get('password', os.environ.get('PGPASSWORD'))
         kwargs['database'] = kwargs.get('database', os.environ.get('PGDATABASE', 'postgres'))
+        if 'update_id' not in kwargs:
+            kwargs['update_id'] = kwargs['table']
         super(DefaultPostgresTarget, self).__init__(*args, **kwargs)
 
 
