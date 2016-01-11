@@ -18,5 +18,10 @@ acs:
 	  --module tasks.us.census.acs AllACS \
 	  --parallel-scheduling --workers=8 --force
 
-load:
-	docker-compose run bigmetadata python bigmetadata/load.py
+index:
+	docker-compose run bigmetadata luigi \
+	  --module tasks.elastic Index
+
+sphinx:
+	docker-compose run bigmetadata luigi \
+	  --module tasks.sphinx Sphinx

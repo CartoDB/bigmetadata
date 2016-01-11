@@ -4,8 +4,47 @@ Util functions for luigi bigmetadata tasks.
 
 import os
 import subprocess
+import elasticsearch
+import logging
+import sys
+import time
+
 from luigi import Task, Parameter, LocalTarget
 from luigi.postgres import PostgresTarget
+
+
+def elastic_conn(index_name, logger=None):
+    '''
+    Obtain an index with specified name.  Waits for elasticsearch to start.
+    Returns elasticsearch.
+    '''
+    elastic = elasticsearch.Elasticsearch([{
+        'host': os.environ.get('ES_HOST', 'localhost'),
+        'port': os.environ.get('ES_PORT', '9200')
+    }])
+    while True:
+        try:
+            elastic.indices.create(index=index_name, ignore=400)  # pylint: disable=unexpected-keyword-arg
+            break
+        except elasticsearch.exceptions.ConnectionError:
+            if logger:
+                logger.info('waiting for elasticsearch')
+            time.sleep(1)
+    return elastic
+
+
+def get_logger(name):
+    '''
+    Obtain a logger outputing to stderr with specified name. Defaults to INFO
+    log level.
+    '''
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    handler = logging.StreamHandler(sys.stderr)
+    handler.setFormatter(logging.Formatter('%(asctime)-15s %(message)s'))
+    logger.addHandler(handler)
+    return logger
+
 
 def pg_cursor():
     '''
@@ -27,6 +66,13 @@ class MetadataTarget(LocalTarget):
     Target that ensures metadata exists.
     '''
     pass
+
+
+def classpath(obj):
+    '''
+    Path to this task, suitable for the current OS.
+    '''
+    return os.path.join(*obj.__module__.split('.')[1:])
 
 
 class ColumnTarget(MetadataTarget):
@@ -99,10 +145,3 @@ class LoadPostgresFromURL(Task):
 
     def identifier(self):
         raise NotImplementedError()
-
-
-def classpath(obj):
-    '''
-    Path to this task, suitable for the current OS.
-    '''
-    return os.path.join(*obj.__module__.split('.')[1:])
