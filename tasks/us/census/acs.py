@@ -402,7 +402,7 @@ class ACSTable(LocalTarget):
         if self.moe:
             self.seqnum += '_moe'
             for i, colid in enumerate(self.column_ids):
-                self.column_ids[i] = colid + '_moe'
+                self.column_ids[i] = colid
 
         super(ACSTable, self).__init__(
             path=os.path.join('data', 'tables', classpath(self), self.source, self.seqnum) + '.json')
