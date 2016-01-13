@@ -9,7 +9,7 @@ tasks to download and create metadata
 #import requests
 #import datetime
 #import json
-#import csv
+import csv
 import json
 import os
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
@@ -17,7 +17,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor)
 from psycopg2 import ProgrammingError
 from tasks.us.census.tiger import SUMLEVELS, load_sumlevels
 
-HIGH_VALUE_TABLES = set([
+HIGH_WEIGHT_TABLES = set([
     'B01001',
     'B01002',
     'B03002',
@@ -49,7 +49,7 @@ HIGH_VALUE_TABLES = set([
     'B25114',
 ])
 
-MEDIUM_VALUE_TABLES = set([
+MEDIUM_WEIGHT_TABLES = set([
     "B02001",
     "B04001",
     "B05002",
@@ -252,7 +252,7 @@ class ACSColumn(LocalTarget):
         self.universe = kwargs['universe'].decode('utf8')
         self.denominator = getattr(kwargs['denominator'], 'path', None)
         self.is_denominator = kwargs['is_denominator']
-        self.value = kwargs.get('value', 0)
+        self.weight = kwargs.get('weight', 0)
         self.tags = kwargs['tags'].split(',')
         self.moe = kwargs['moe']
 
@@ -338,7 +338,7 @@ class ACSColumn(LocalTarget):
             name = name.replace(u' in the United States', u'')
         return name
 
-    def generate(self):
+    def generate(self, **override):
         try:
             with self.open('r') as infile:
                 data = json.load(infile)
@@ -346,10 +346,10 @@ class ACSColumn(LocalTarget):
             data = {}
 
         data.update({
-            'name': self.name,
-            'tags': self.tags,
+            'name': override.get('name', self.name),
+            'tags': override.get('tags', '|'.join(self.tags)).split('|'),
         })
-        data['value'] = self.value
+        data['weight'] = override.get('weight', self.weight)
         data['extra'] = data.get('extra', {})
         data['extra'].update({
             'title': self.column_title,
@@ -376,6 +376,61 @@ class ACSColumn(LocalTarget):
                 data['relationships']['parent'] = self.parent_column_id
         with self.open('w') as outfile:
             json.dump(data, outfile, indent=2, sort_keys=True)
+
+
+class ACSColumnGroup(LocalTarget):
+
+    HEADERS = [
+        'weight',
+        'name',
+        'tags',
+        'path'
+    ]
+
+    def __init__(self, table_id, columns, moe, force=False):
+        self.table_id = table_id
+        self.columns = columns
+        self.force = force
+
+        path = os.path.join('data', 'columns', classpath(self), self.table_id)
+        if moe:
+            path = os.path.join(path, 'moe')
+        super(ACSColumnGroup, self).__init__(
+            path=os.path.join(path, 'meta.csv'))
+
+    def generate(self):
+        '''
+        Generate the meta.csv for this columngroup as well as each of the
+        individual columns.  Any updates to meta.csv will be included in the
+        columns.
+        '''
+        headers = ACSColumnGroup.HEADERS
+        data = {}
+        if self.exists():
+            with self.open('r') as fhandle:
+                reader = csv.DictReader(fhandle, headers)
+                for row in reader:
+                    # header row weirdly not skipping
+                    if set(headers) == set(row.values()):
+                        continue
+                    data[row['path']] = row
+            self.remove()
+
+        for column in self.columns:
+            row = data.get(column.path, {})
+            if self.force or not column.exists():
+                column.generate(**row)
+            row['path'] = column.path
+            row['weight'] = row.get('weight', column.weight)
+            row['name'] = row.get('name', column.name).encode('utf8')
+            row['tags'] = row.get('tags', '|'.join(column.tags))
+            data[column.path] = row
+
+        with self.open('w') as fhandle:
+            writer = csv.DictWriter(fhandle, headers)
+            writer.writeheader()
+            for row in sorted(data.values(), key=lambda d: d['path']):
+                writer.writerow(row)
 
 
 class ACSTable(LocalTarget):
@@ -460,12 +515,16 @@ class ACSTable(LocalTarget):
         column_parent_path = []
         columns = []
         columncache = {}
-
+        columngroups = {}
         for i, column_id in enumerate(self.column_ids):
+            table_id = self.table_ids[i]
+            if table_id not in columngroups:
+                columngroups[table_id] = []
+            columngroup = columngroups[table_id]
+
             indent = (self.indents[i] or 0) - 1
             column_title = self.column_titles[i]
             if indent >= 0:
-
                 while len(column_parent_path) < indent:
                     column_parent_path.append(None)
 
@@ -475,15 +534,15 @@ class ACSTable(LocalTarget):
                 column_parent_path = []
 
             table_id = self.table_ids[i]
-            if table_id in HIGH_VALUE_TABLES:
-                value = 2
-            elif table_id in MEDIUM_VALUE_TABLES:
-                value = 1
+            if table_id in HIGH_WEIGHT_TABLES:
+                weight = 2
+            elif table_id in MEDIUM_WEIGHT_TABLES:
+                weight = 1
             else:
-                value = 0
+                weight = 0
 
             col = ACSColumn(column_id=column_id, column_title=column_title,
-                            value=value,
+                            weight=weight,
                             column_parent_path=column_parent_path[:-1],
                             parent_column=columncache.get(self.parent_column_ids[i]),
                             denominator=columncache.get(self.denominators[i]),
@@ -492,8 +551,6 @@ class ACSTable(LocalTarget):
                             table_title=self.table_titles[i],
                             tags=self.tags[i],
                             universe=self.universes[i], moe=self.moe)
-            if not col.exists() or force:
-                col.generate()
             columncache[column_id] = col
 
             if self.moe:
@@ -505,6 +562,10 @@ class ACSTable(LocalTarget):
                     'id': col.path,
                     'resolutions': resolutions[i]
                 })
+            columngroup.append(col)
+
+        for table_id, columns_ in columngroups.iteritems():
+            ACSColumnGroup(table_id=table_id, columns=columns_, force=force, moe=self.moe).generate()
 
         if self.sample == '1yr':
             timespan = self.year
