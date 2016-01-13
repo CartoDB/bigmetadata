@@ -247,6 +247,7 @@ class ACSColumn(LocalTarget):
         self.column_title = kwargs['column_title'].decode('utf8')
         self.column_parent_path = kwargs['column_parent_path']
         self.parent_column_id = kwargs['parent_column_id']
+        self.table_id = kwargs['table_id']
         self.table_title = kwargs['table_title'].decode('utf8')
         self.universe = kwargs['universe'].decode('utf8')
         self.denominator = kwargs['denominator']
@@ -254,8 +255,11 @@ class ACSColumn(LocalTarget):
         self.tags = kwargs['tags'].split(',')
         self.moe = kwargs['moe']
 
-        super(ACSColumn, self).__init__(
-            path=os.path.join('data', 'columns', classpath(self), self.column_id) + '.json')
+        column_num = self.column_id.split(self.table_id)[1]
+        path = os.path.join('data', 'columns', classpath(self), self.table_id)
+        if self.moe:
+            path = os.path.join(path, 'moe')
+        super(ACSColumn, self).__init__(path=os.path.join(path, column_num) + '.json')
 
     @property
     def name(self):
@@ -351,11 +355,12 @@ class ACSColumn(LocalTarget):
             'title': self.column_title,
             'table': self.table_title,
             'universe': self.universe,
+            'denominator': self.column_id == self.denominator
         })
         data['relationships'] = data.get('relationships', {})
         if self.moe:
             data['extra']['margin_of_error'] = True
-            data['relationships']['parent'] = self.path.replace(u'_moe.json', u'')
+            data['relationships']['parent'] = self.path.replace(u'/moe/', u'/')
         else:
             if 'median' in self.table_title.lower():
                 data['aggregate'] = 'median'
@@ -403,57 +408,62 @@ class ACSTable(LocalTarget):
             path=os.path.join('data', 'tables', classpath(self), self.source, self.seqnum) + '.json')
 
     def generate(self, cursor, force=False):
-        moe_columns = ', '.join([
-            'SQRT(SUM(POWER(NULLIF({column}_moe, -1), 2)))/SUM(NULLIF({column}, 0)) * 100, COUNT({column})'.format(
-                column=column)
-            for column in self.column_ids
-        ])
+        # Read in existing data
+        exists = self.exists()
 
-        # Grab approximate margin of error for everything
-        if not self.moe:
-            cursor.execute(
-                ' SELECT SUBSTR(data.geoid, 1, 3) resolution, '
-                '        COUNT(*) resolution_sample, '
-                '        {moe_columns} '
-                ' FROM {schema}.{seqnum} as data, '
-                '      {schema}.{seqnum}_moe as moe '
-                ' WHERE data.geoid = moe.geoid AND '
-                '       SUBSTR(data.geoid, 4, 2) = \'00\' '
-                ' GROUP BY SUBSTR(data.geoid, 1, 3) '
-                ' ORDER BY SUBSTR(data.geoid, 1, 3) '.format(schema=self.schema,
-                                                             seqnum=self.seqnum,
-                                                             moe_columns=moe_columns
-                                                            ))
-            sample_and_moe = cursor.fetchall()
+        if not self.moe:  # we don't store margin of error estimates for margins of error
+            # re-use pre-calculated margin of error if possible
+            if exists:
+                prior_data = json.load(self.open('r'))
+                resolutions = []
+                for column in prior_data['columns']:
+                    resolutions.append(column['resolutions'])
+            else:
+                moe_columns = ', '.join([
+                    'SQRT(SUM(POWER(NULLIF({column}_moe, -1), '
+                    '2)))/SUM(NULLIF({column}, 0)) * 100, COUNT({column})'.format(
+                        column=column)
+                    for column in self.column_ids
+                ])
+
+                cursor.execute(
+                    ' SELECT SUBSTR(data.geoid, 1, 3) resolution, '
+                    '        COUNT(*) resolution_sample, '
+                    '        {moe_columns} '
+                    ' FROM {schema}.{seqnum} as data, '
+                    '      {schema}.{seqnum}_moe as moe '
+                    ' WHERE data.geoid = moe.geoid AND '
+                    '       SUBSTR(data.geoid, 4, 2) = \'00\' '
+                    ' GROUP BY SUBSTR(data.geoid, 1, 3) '
+                    ' ORDER BY SUBSTR(data.geoid, 1, 3) '.format(schema=self.schema,
+                                                                 seqnum=self.seqnum,
+                                                                 moe_columns=moe_columns
+                                                                ))
+                sample_and_moe = cursor.fetchall()
+
+                resolutions = []
+                for i, column_id in enumerate(self.column_ids):
+                    colresolutions = []
+                    for sam in sample_and_moe:
+                        sumlevel = sam[0]
+                        if sumlevel not in SUMLEVELS:
+                            continue
+                        resolution = os.path.join(classpath(load_sumlevels),
+                                                  SUMLEVELS[sumlevel]['slug'])
+                        moe = sam[(i * 2) + 2]
+                        sample = sam[(i * 2) + 3]
+                        if sample > 0:
+                            colresolutions.append({
+                                'id': resolution,
+                                'error': moe,
+                                'sample': sample
+                            })
+                    resolutions.append(colresolutions)
+
         column_parent_path = []
         columns = []
 
         for i, column_id in enumerate(self.column_ids):
-            resolutions = []
-            if self.moe:
-                columns.append({
-                    'id': os.path.join(classpath(self), column_id),
-                })
-            else:
-                for sam in sample_and_moe:
-                    sumlevel = sam[0]
-                    if sumlevel not in SUMLEVELS:
-                        continue
-                    resolution = os.path.join(classpath(load_sumlevels),
-                                              SUMLEVELS[sumlevel]['slug'])
-                    #sumlevel_sample = d[1]
-                    moe = sam[(i * 2) + 2]
-                    sample = sam[(i * 2) + 3]
-                    if sample > 0:
-                        resolutions.append({
-                            'id': resolution,
-                            'error': moe,
-                            'sample': sample
-                        })
-                columns.append({
-                    'id': os.path.join(classpath(self), column_id),
-                    'resolutions': resolutions
-                })
             indent = (self.indents[i] or 0) - 1
             column_title = self.column_titles[i]
             if indent >= 0:
@@ -478,11 +488,26 @@ class ACSTable(LocalTarget):
                             column_parent_path=column_parent_path[:-1],
                             parent_column_id=self.parent_column_ids[i],
                             denominator=self.denominators[i],
+                            table_id=table_id,
                             table_title=self.table_titles[i],
                             tags=self.tags[i],
                             universe=self.universes[i], moe=self.moe)
             if not col.exists() or force:
                 col.generate()
+
+            if self.moe:
+                columns.append({
+                    'id': col.path
+                })
+            else:
+                try:
+                    columns.append({
+                        'id': os.path.join(classpath(self), column_id),
+                        'resolutions': resolutions[i]
+                    })
+                except IndexError:
+                    import pdb
+                    pdb.set_trace()
 
         if self.sample == '1yr':
             timespan = self.year
