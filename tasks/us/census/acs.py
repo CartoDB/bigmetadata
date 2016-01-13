@@ -407,58 +407,57 @@ class ACSTable(LocalTarget):
         super(ACSTable, self).__init__(
             path=os.path.join('data', 'tables', classpath(self), self.source, self.seqnum) + '.json')
 
+    def sample_and_moe(self, cursor):
+        # re-use pre-calculated margin of error if possible
+        resolutions = []
+        if self.exists():
+            prior_data = json.load(self.open('r'))
+            for column in prior_data['columns']:
+                resolutions.append(column['resolutions'])
+        else:
+            moe_columns = ', '.join([
+                'SQRT(SUM(POWER(NULLIF({column}_moe, -1), '
+                '2)))/SUM(NULLIF({column}, 0)) * 100, COUNT({column})'.format(
+                    column=column)
+                for column in self.column_ids
+            ])
+
+            cursor.execute(
+                ' SELECT SUBSTR(data.geoid, 1, 3) resolution, '
+                '        COUNT(*) resolution_sample, '
+                '        {moe_columns} '
+                ' FROM {schema}.{seqnum} as data, '
+                '      {schema}.{seqnum}_moe as moe '
+                ' WHERE data.geoid = moe.geoid AND '
+                '       SUBSTR(data.geoid, 4, 2) = \'00\' '
+                ' GROUP BY SUBSTR(data.geoid, 1, 3) '
+                ' ORDER BY SUBSTR(data.geoid, 1, 3) '.format(schema=self.schema,
+                                                             seqnum=self.seqnum,
+                                                             moe_columns=moe_columns
+                                                            ))
+            sample_and_moe = cursor.fetchall()
+            for i, column_id in enumerate(self.column_ids):
+                colresolutions = []
+                for sam in sample_and_moe:
+                    sumlevel = sam[0]
+                    if sumlevel not in SUMLEVELS:
+                        continue
+                    resolution = os.path.join(classpath(load_sumlevels),
+                                              SUMLEVELS[sumlevel]['slug'])
+                    moe = sam[(i * 2) + 2]
+                    sample = sam[(i * 2) + 3]
+                    if sample > 0:
+                        colresolutions.append({
+                            'id': resolution,
+                            'error': moe,
+                            'sample': sample
+                        })
+                resolutions.append(colresolutions)
+        return resolutions
+
     def generate(self, cursor, force=False):
-        # Read in existing data
-        exists = self.exists()
-
         if not self.moe:  # we don't store margin of error estimates for margins of error
-            # re-use pre-calculated margin of error if possible
-            if exists:
-                prior_data = json.load(self.open('r'))
-                resolutions = []
-                for column in prior_data['columns']:
-                    resolutions.append(column['resolutions'])
-            else:
-                moe_columns = ', '.join([
-                    'SQRT(SUM(POWER(NULLIF({column}_moe, -1), '
-                    '2)))/SUM(NULLIF({column}, 0)) * 100, COUNT({column})'.format(
-                        column=column)
-                    for column in self.column_ids
-                ])
-
-                cursor.execute(
-                    ' SELECT SUBSTR(data.geoid, 1, 3) resolution, '
-                    '        COUNT(*) resolution_sample, '
-                    '        {moe_columns} '
-                    ' FROM {schema}.{seqnum} as data, '
-                    '      {schema}.{seqnum}_moe as moe '
-                    ' WHERE data.geoid = moe.geoid AND '
-                    '       SUBSTR(data.geoid, 4, 2) = \'00\' '
-                    ' GROUP BY SUBSTR(data.geoid, 1, 3) '
-                    ' ORDER BY SUBSTR(data.geoid, 1, 3) '.format(schema=self.schema,
-                                                                 seqnum=self.seqnum,
-                                                                 moe_columns=moe_columns
-                                                                ))
-                sample_and_moe = cursor.fetchall()
-
-                resolutions = []
-                for i, column_id in enumerate(self.column_ids):
-                    colresolutions = []
-                    for sam in sample_and_moe:
-                        sumlevel = sam[0]
-                        if sumlevel not in SUMLEVELS:
-                            continue
-                        resolution = os.path.join(classpath(load_sumlevels),
-                                                  SUMLEVELS[sumlevel]['slug'])
-                        moe = sam[(i * 2) + 2]
-                        sample = sam[(i * 2) + 3]
-                        if sample > 0:
-                            colresolutions.append({
-                                'id': resolution,
-                                'error': moe,
-                                'sample': sample
-                            })
-                    resolutions.append(colresolutions)
+            resolutions = self.sample_and_moe(cursor)
 
         column_parent_path = []
         columns = []
@@ -500,14 +499,10 @@ class ACSTable(LocalTarget):
                     'id': col.path
                 })
             else:
-                try:
-                    columns.append({
-                        'id': os.path.join(classpath(self), column_id),
-                        'resolutions': resolutions[i]
-                    })
-                except IndexError:
-                    import pdb
-                    pdb.set_trace()
+                columns.append({
+                    'id': os.path.join(classpath(self), column_id),
+                    'resolutions': resolutions[i]
+                })
 
         if self.sample == '1yr':
             timespan = self.year
