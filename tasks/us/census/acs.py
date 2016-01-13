@@ -22,15 +22,15 @@ HIGH_WEIGHT_TABLES = set([
     'B01002',
     'B03002',
     'B05001',
-    'B05011',
-    'B07101',
+    #'B05011',
+    #'B07101',
     'B08006',
     'B08013',
-    'B08101',
+    #'B08101',
     'B09001',
     'B11001',
-    'B11002',
-    'B11012',
+    #'B11002',
+    #'B11012',
     'B14001',
     'B15003',
     'B16001',
@@ -41,12 +41,12 @@ HIGH_WEIGHT_TABLES = set([
     'B25001',
     'B25002',
     'B25003',
-    'B25056',
+    #'B25056',
     'B25058',
     'B25071',
     'B25075',
     'B25081',
-    'B25114',
+    #'B25114',
 ])
 
 MEDIUM_WEIGHT_TABLES = set([
@@ -349,7 +349,7 @@ class ACSColumn(LocalTarget):
             'name': override.get('name', self.name),
             'tags': override.get('tags', '|'.join(self.tags)).split('|'),
         })
-        data['weight'] = override.get('weight', self.weight)
+        data['weight'] = int(override.get('weight', self.weight))
         data['extra'] = data.get('extra', {})
         data['extra'].update({
             'title': self.column_title,
@@ -422,7 +422,10 @@ class ACSColumnGroup(LocalTarget):
                 column.generate(**row)
             row['path'] = column.path
             row['weight'] = row.get('weight', column.weight)
-            row['name'] = row.get('name', column.name).encode('utf8')
+            try:
+                row['name'] = row.get('name', column.name).encode('utf8')
+            except UnicodeEncodeError:
+                row['name'] = row.get('name', column.name)
             row['tags'] = row.get('tags', '|'.join(column.tags))
             data[column.path] = row
 
