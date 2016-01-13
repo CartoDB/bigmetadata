@@ -246,20 +246,20 @@ class ACSColumn(LocalTarget):
         self.column_id = kwargs['column_id']
         self.column_title = kwargs['column_title'].decode('utf8')
         self.column_parent_path = kwargs['column_parent_path']
-        self.parent_column_id = kwargs['parent_column_id']
+        self.parent_column_id = getattr(kwargs['parent_column'], 'path', None)
         self.table_id = kwargs['table_id']
         self.table_title = kwargs['table_title'].decode('utf8')
         self.universe = kwargs['universe'].decode('utf8')
-        self.denominator = kwargs['denominator']
+        self.denominator = getattr(kwargs['denominator'], 'path', None)
+        self.is_denominator = kwargs['is_denominator']
         self.value = kwargs.get('value', 0)
         self.tags = kwargs['tags'].split(',')
         self.moe = kwargs['moe']
 
-        column_num = self.column_id.split(self.table_id)[1]
         path = os.path.join('data', 'columns', classpath(self), self.table_id)
         if self.moe:
             path = os.path.join(path, 'moe')
-        super(ACSColumn, self).__init__(path=os.path.join(path, column_num) + '.json')
+        super(ACSColumn, self).__init__(path=os.path.join(path, self.column_id) + '.json')
 
     @property
     def name(self):
@@ -355,7 +355,7 @@ class ACSColumn(LocalTarget):
             'title': self.column_title,
             'table': self.table_title,
             'universe': self.universe,
-            'denominator': self.column_id == self.denominator
+            'isDenominator': self.is_denominator
         })
         data['relationships'] = data.get('relationships', {})
         if self.moe:
@@ -371,11 +371,9 @@ class ACSColumn(LocalTarget):
             else:
                 data['extra'].pop('ancestors', '')
             if self.denominator:
-                data['relationships']['denominator'] = \
-                        os.path.join(classpath(self), self.denominator)
+                data['relationships']['denominator'] = self.denominator
             if self.parent_column_id:
-                data['relationships']['parent'] = \
-                        os.path.join(classpath(self), self.parent_column_id)
+                data['relationships']['parent'] = self.parent_column_id
         with self.open('w') as outfile:
             json.dump(data, outfile, indent=2, sort_keys=True)
 
@@ -461,6 +459,7 @@ class ACSTable(LocalTarget):
 
         column_parent_path = []
         columns = []
+        columncache = {}
 
         for i, column_id in enumerate(self.column_ids):
             indent = (self.indents[i] or 0) - 1
@@ -482,17 +481,20 @@ class ACSTable(LocalTarget):
                 value = 1
             else:
                 value = 0
+
             col = ACSColumn(column_id=column_id, column_title=column_title,
                             value=value,
                             column_parent_path=column_parent_path[:-1],
-                            parent_column_id=self.parent_column_ids[i],
-                            denominator=self.denominators[i],
+                            parent_column=columncache.get(self.parent_column_ids[i]),
+                            denominator=columncache.get(self.denominators[i]),
+                            is_denominator=(column_id == self.denominators[i]),
                             table_id=table_id,
                             table_title=self.table_titles[i],
                             tags=self.tags[i],
                             universe=self.universes[i], moe=self.moe)
             if not col.exists() or force:
                 col.generate()
+            columncache[column_id] = col
 
             if self.moe:
                 columns.append({
@@ -500,7 +502,7 @@ class ACSTable(LocalTarget):
                 })
             else:
                 columns.append({
-                    'id': os.path.join(classpath(self), column_id),
+                    'id': col.path,
                     'resolutions': resolutions[i]
                 })
 
