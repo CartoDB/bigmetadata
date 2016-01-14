@@ -13,7 +13,7 @@ from luigi import Task, Parameter, LocalTarget
 from luigi.postgres import PostgresTarget
 
 
-def elastic_conn(index_name, logger=None):
+def elastic_conn(index_name='bigmetadata', logger=None):
     '''
     Obtain an index with specified name.  Waits for elasticsearch to start.
     Returns elasticsearch.

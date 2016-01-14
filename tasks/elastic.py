@@ -9,7 +9,7 @@ import ujson as json
 import os
 import sys
 
-from bigmetadata.utils import elastic_conn, get_logger
+from tasks.util import elastic_conn, get_logger
 
 
 class Index(Task):
@@ -32,8 +32,7 @@ class Index(Task):
         '''
         Load json at path into idx.
         '''
-        # kill columns/ , tables/ etc.
-        column_id = os.path.join(*path.split(os.path.sep)[2:]).replace('.json', '')
+        column_id = path
         #if econn.exists(ES_NAME, ES_COLUMN, id=column_id):
         #    return
         with open(path) as column_file:
@@ -41,7 +40,7 @@ class Index(Task):
         column_with_id = column.copy()
         column_with_id['id'] = column_id
         column_with_id['tables'] = []
-        if int(column.get('value', 1)) > 0 and column['name'] not in self.CACHE['NAMES']:
+        if int(column.get('weight', 0)) > 1 and column['name'] not in self.CACHE['NAMES']:
             self.CACHE['NAMES'].add(column['name'])
             self.CACHE[self.ES_COLUMN][column_id] = column_with_id
         #econn.index(ES_NAME, ES_COLUMN, id=column_id, body=body)
@@ -58,9 +57,8 @@ class Index(Task):
         '''
         Add tables to columns.
         '''
-        # kill columns/ , tables/ etc.
         ops = []
-        table_id = os.path.join(*path.split(os.path.sep)[2:]).replace('.json', '')
+        table_id = path
         with open(path) as table_file:
             table = json.load(table_file)
 

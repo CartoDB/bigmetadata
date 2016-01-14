@@ -16,6 +16,32 @@ import sys
 import os
 import shlex
 
+from docutils import nodes
+from sphinx import addnodes
+
+class env(nodes.literal):
+    pass
+
+# "Inline" extension to allow use of Sphinx-specific (vs docutils/ReST)
+# methods.
+def setup(app):
+    app.add_node(env)
+    # 'env' object type for Fabric env var referencing
+    # (not to be confused with Sphinx' builtin :envvar:)
+    app.add_object_type(
+        directivename='column',
+        rolename='column',
+        ref_nodeclass=env,
+        objname='Data Column',
+    )
+
+    app.add_object_type(
+        directivename='table',
+        rolename='table',
+        ref_nodeclass=env,
+        objname='Data Table',
+    )
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.

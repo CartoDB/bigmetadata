@@ -424,7 +424,7 @@ class ACSColumnGroup(LocalTarget):
             row['weight'] = row.get('weight', column.weight)
             try:
                 row['name'] = row.get('name', column.name).encode('utf8')
-            except UnicodeEncodeError:
+            except UnicodeError:
                 row['name'] = row.get('name', column.name)
             row['tags'] = row.get('tags', '|'.join(column.tags))
             data[column.path] = row
