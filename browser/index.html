@@ -45,7 +45,7 @@
       <!--<div class="row" eui-sort="ejs.Sort('id.raw').asc()" eui-enabled="true">-->
       <div class="row" eui-sort="ejs.Sort('tables.resolutions.error').mode('min')" eui-enabled="true">
         <!--<div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.RangeFilter('tables.resolutions.error').from(0).to(0.1)).must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">-->
-          <div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.RangeFilter('value').from(1).to(2)).must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">
+          <div class="col-xs-3 sidebar" eui-filter="ejs.BoolFilter().must(ejs.RangeFilter('weight').from(2).to(10)).must(ejs.MissingFilter('extra.margin_of_error')).must(ejs.TypeFilter('column'))" eui-enabled="true">
                 <h3>Search by Name</h3>
                 <!--<eui-searchbox field="'name'"></eui-searchbox> <br />-->
                 <!--<input type="text" eui-query="ejs.MatchQuery(field, querystring)" field="'name'" ng-model="querystring" eui-enabled="querystring.length" /><br />-->
@@ -59,8 +59,8 @@
                 <eui-singleselect field="'_type'" size="5"></eui-singleselect>
                 -->
 
-                <h3>Value</h3>
-                <eui-singleselect field="'value'" size="3"></eui-singleselect>
+                <h3>Weight</h3>
+                <eui-singleselect field="'weight'" size="10"></eui-singleselect>
 
                 <h3>Tags</h3>
                 <eui-singleselect field="'tags'" size="40"></eui-singleselect>

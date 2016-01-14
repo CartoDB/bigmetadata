@@ -10,7 +10,7 @@
                     }
                 }
             },
-            "value": {
+            "weight": {
                 "type": "integer"
             },
             "description": {
