@@ -3,6 +3,7 @@ Sphinx functions for luigi bigmetadata tasks.
 '''
 
 import jinja2
+import re
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
 from tasks.util import shell, elastic_conn
 
@@ -20,7 +21,7 @@ TEMPLATE = jinja2.Template(
 {{ col._source.name }}
 ----------------------------------------------------------------------------
 
-<description todo>
+:description: {{ col._source.description }}
 
 {% if col._source.relationships.denominator %}
 :denominator:
@@ -41,7 +42,10 @@ TEMPLATE = jinja2.Template(
     {% endfor %}
     #}
 
+:bigmetadata source: `View <{{ col.gh_view_url }}>`_, `Edit <{{ col.gh_edit_url }}>`_
+
 {% endfor %}
+
 
 ''')
 
@@ -122,8 +126,14 @@ class JSON2RST(Task):
             #col = self.columns()[_id]
             columns = self.columns_for_tag(tag)
             fhandle = target.open('w')
+
+            # augment column with additional characteristics
+            for col in columns:
+                _id = re.sub(r'^data/', '', col['_source']['id'])
+                col['gh_view_url'] = 'https://github.com/talos/bmd-data/tree/master/{}'.format(_id)
+                col['gh_edit_url'] = 'https://github.com/talos/bmd-data/edit/master/{}'.format(_id)
             fhandle.write(TEMPLATE.render(tag=tag, tag_desc=self.TAGS[tag],
-                                          columns=columns))
+                                          columns=columns).encode('utf8'))
             fhandle.close()
 
 
