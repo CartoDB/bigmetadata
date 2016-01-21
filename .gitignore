@@ -11,3 +11,4 @@ bower_components
 *.swp
 npm-debug.log
 catalog/build
+catalog/source/data
