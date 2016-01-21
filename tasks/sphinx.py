@@ -37,16 +37,29 @@ TEMPLATE = jinja2.Template(
 :margin of error: {{ '%2.2f' | format(col.margin_of_error)  }}% ({{ col.margin_of_error_cat }})
 
 {% endif %}
+:resolutions available: (**low error**, medium error, *high error*)
+
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+
+
+    * -
+    {% for year, resolutions in col.tables_by_year|dictsort %}
+      - {{ year }}
+    {% endfor %}
+    {% for resolution, years in col.tables_by_resolution|dictsort %}
+    * - {{ resolution }}
+      {% for year, _ in col.tables_by_year|dictsort  %}
+      - {% for table in years.get(year, [])|sort(attribute='sample') %}{{ table.style }}{{ table.sample }}{{ table.style }}, {% endfor %}
+      {% endfor %}
+    {% endfor %}
+
 {#
-:dates available:
-
-    {% for table in col._source.tables %}{{ table.dct_temporal_sm }}, {% endfor %}
-#}
-:resolutions available:
-
 {% for resolution, years in col.resolutions|dictsort %}
     * {{ resolution }}: {{ years|sort|join(', ') }}
 {% endfor %}
+#}
 
 {% endif %}
 
@@ -189,19 +202,37 @@ class JSON2RST(Task):
                     else:
                         col['margin_of_error_cat'] = 'high'
 
-                # break tables into available resolutions
-                resolutions = {}
+                # break tables into year/resolution columns
+                tables_by_year = {}
+                tables_by_resolution = {}
                 for table in col['_source'].get('tables', []):
                     year = str(table.get('dct_temporal_sm')).split()[-1]
-                    # TODO we should keep this resolution info embedded in the
-                    # ES JSON
+                    if year not in tables_by_year:
+                        tables_by_year[year] = {}
                     for resolution in table.get('resolutions', []):
                         short_res = resolution['id'].split('/')[-1]
-                        if short_res in HIGH_WEIGHT_COLUMNS:
-                            if short_res not in resolutions:
-                                resolutions[short_res] = set()
-                            resolutions[short_res].add(year)
-                col['resolutions'] = resolutions
+                        if short_res not in HIGH_WEIGHT_COLUMNS:
+                            continue
+                        table['sample'] = table['title'].split(' ')[0]\
+                                .split('_')[1]
+                        if resolution.get('error', 1) < 0.2:
+                            table['style'] = '**'
+                        elif resolution.get('error', 1) < 1:
+                            table['style'] = ''
+                        else:
+                            table['style'] = '*'
+
+                        if short_res not in tables_by_year[year]:
+                            tables_by_year[year][short_res] = []
+                        tables_by_year[year][short_res].append(table)
+                        if short_res not in tables_by_resolution:
+                            tables_by_resolution[short_res] = {}
+                        if year not in tables_by_resolution[short_res]:
+                            tables_by_resolution[short_res][year] = []
+                        tables_by_resolution[short_res][year].append(table)
+
+                col['tables_by_year'] = tables_by_year
+                col['tables_by_resolution'] = tables_by_resolution
 
             fhandle.write(TEMPLATE.render(tag=self.TAGS[tag], columns=columns).encode('utf8'))
             fhandle.close()
