@@ -6,13 +6,16 @@ import jinja2
 import re
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
 from tasks.util import shell, elastic_conn
+from tasks.us.census.tiger import HIGH_WEIGHT_COLUMNS
 
 
 TEMPLATE = jinja2.Template(
-    '''.. {{ tag }}:
+    '''.. {{ tag.title }}:
 
-{{ tag_desc }}
+{{ tag.title }}
 ===========================================================================
+
+{{ tag.short_description }}
 
 .. contents::
    :depth: 10
@@ -30,18 +33,20 @@ TEMPLATE = jinja2.Template(
 {% endif %}
 
 {% if col._source.tables %}
+{% if 'margin_of_error' in col %}
+:margin of error: {{ '%2.2f' | format(col.margin_of_error)  }}% ({{ col.margin_of_error_cat }})
+
+{% endif %}
+{#
 :dates available:
 
     {% for table in col._source.tables %}{{ table.dct_temporal_sm }}, {% endfor %}
-
+#}
 :resolutions available:
 
-    {% for res in col._source.tables[0].resolutions %}{{ res.id }}, {% endfor %}
-    {#
-    {% for table in col._source.tables %}
-    {% for res in table.resolutions %}{{ res.id }}, {% endfor %}
-    {% endfor %}
-    #}
+{% for resolution, years in col.resolutions|dictsort %}
+    * {{ resolution }}: {{ years|sort|join(', ') }}
+{% endfor %}
 
 {% endif %}
 
@@ -76,13 +81,43 @@ class JSON2RST(Task):
 
     force = BooleanParameter(default=False)
 
-    TAGS = {'denominators': 'Denominators',
-            'housing': 'Housing',
-            'income_education_employment': 'Income, Education & Employment',
-            'language': 'Language',
-            'race_age_gender': 'Race, Age & Gender',
-            'transportation': 'Transportation',
-            'boundary': 'Boundaries'}
+    TAGS = {
+        'denominators': {
+            'title': u'Denominators',
+            'short_description': u'Use these to provide a baseline for comparison between different areas.',
+            'long_description': u'',
+        },
+        'housing': {
+            'title': 'Housing',
+            'short_description': u'What type of housing exists and how do people live in it?',
+            'long_description': u'',
+        },
+        'income_education_employment': {
+            'title': 'Income, Education & Employment',
+            'short_description': u'',
+            'long_description': u'',
+        },
+        'language': {
+            'title': 'Language',
+            'short_description': u'What languages do people speak?',
+            'long_description': u'',
+        },
+        'race_age_gender': {
+            'title': 'Race, Age & Gender',
+            'short_description': u'Basic demographic breakdowns.',
+            'long_description': u'',
+        },
+        'transportation': {
+            'title': 'Transportation',
+            'short_description': u'How do people move from place to place?',
+            'long_description': u'',
+        },
+        'boundary': {
+            'title': 'Boundaries',
+            'short_description': u'Use these to provide regions for sound comparison and analysis.',
+            'long_description': u'',
+        }
+    }
 
     def __init__(self, *args, **kwargs):
         super(JSON2RST, self).__init__(*args, **kwargs)
@@ -136,8 +171,39 @@ class JSON2RST(Task):
                 _id = re.sub(r'^data/', '', col['_source']['id'])
                 col['gh_view_url'] = 'https://github.com/talos/bmd-data/tree/master/{}'.format(_id)
                 col['gh_edit_url'] = 'https://github.com/talos/bmd-data/edit/master/{}'.format(_id)
-            fhandle.write(TEMPLATE.render(tag=tag, tag_desc=self.TAGS[tag],
-                                          columns=columns).encode('utf8'))
+
+                # TODO more precise margin of error
+                # right now we just average all the national margins of error
+                # to give an overview
+                national_margins = []
+                for table in col['_source'].get('tables', []):
+                    for resolution in table.get('resolutions', []):
+                        if resolution['id'].endswith('us/census/tiger/nation'):
+                            national_margins += [resolution['error']]
+                if national_margins:
+                    col['margin_of_error'] = sum(national_margins) / len(national_margins)
+                    if col['margin_of_error'] < 0.2:
+                        col['margin_of_error_cat'] = 'low'
+                    elif col['margin_of_error'] < 1:
+                        col['margin_of_error_cat'] = 'medium'
+                    else:
+                        col['margin_of_error_cat'] = 'high'
+
+                # break tables into available resolutions
+                resolutions = {}
+                for table in col['_source'].get('tables', []):
+                    year = str(table.get('dct_temporal_sm')).split()[-1]
+                    # TODO we should keep this resolution info embedded in the
+                    # ES JSON
+                    for resolution in table.get('resolutions', []):
+                        short_res = resolution['id'].split('/')[-1]
+                        if short_res in HIGH_WEIGHT_COLUMNS:
+                            if short_res not in resolutions:
+                                resolutions[short_res] = set()
+                            resolutions[short_res].add(year)
+                col['resolutions'] = resolutions
+
+            fhandle.write(TEMPLATE.render(tag=self.TAGS[tag], columns=columns).encode('utf8'))
             fhandle.close()
 
 
