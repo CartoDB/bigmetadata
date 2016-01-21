@@ -13,7 +13,8 @@ import csv
 import json
 import os
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
-from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor)
+from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
+                        elastic_conn)
 from psycopg2 import ProgrammingError
 from tasks.us.census.tiger import SUMLEVELS, load_sumlevels
 
@@ -671,3 +672,31 @@ class AllACS(WrapperTask):
         for year in xrange(2010, 2014):
             for sample in ('1yr', '3yr', '5yr'):
                 yield ProcessACS(year=year, sample=sample, force=self.force)
+
+
+class ExtractACS(Task):
+    '''
+    Generate a CSV extract of important ACS columns
+    '''
+
+    def seqtables(self, column_ids):
+        '''
+        Identify seq tables we need
+        '''
+        elastic = elastic_conn()
+        #seqtables = elastic.search({
+        #    doc_type='table',
+        #    body={
+        #        'filter': {
+        #            'match': {
+        #                'columns.id': [cid for cid in column_ids
+        #            }
+        #})['hits']['hits']
+
+    def run(self):
+        shell(r"psql -c \copy '{query}' to {output} with csv header".format(
+            query=self.query, output=self.output().path))
+
+
+    def output(self):
+        return LocalTarget('census_extract.csv')
