@@ -12,6 +12,18 @@ from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
 from psycopg2 import ProgrammingError
 
+HIGH_WEIGHT_COLUMNS = set([
+    "block-group",
+    "block",
+    "census-tract",
+    "congressional-district",
+    "county",
+    "nation",
+    "puma",
+    "state",
+    "zcta5"
+])
+
 
 class TigerSumLevel(LocalTarget):
 
@@ -34,12 +46,17 @@ class TigerSumLevel(LocalTarget):
             'extra': {
                 'summary_level': self.data['summary_level'],
                 'source': self.data['source']
-            }
+            },
+            'tags': ['boundary']
         }
+        if self.data['slug'] in HIGH_WEIGHT_COLUMNS:
+            obj['weight'] = 2
+        else:
+            obj['weight'] = 0
         if relationships:
             obj['relationships'] = relationships
         with self.open('w') as outfile:
-            json.dump(obj, outfile, indent=2)
+            json.dump(obj, outfile, indent=2, sort_keys=True)
 
 
 class DownloadTigerGeography(Task):

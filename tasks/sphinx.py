@@ -23,12 +23,13 @@ TEMPLATE = jinja2.Template(
 
 :description: {{ col._source.description }}
 
-{% if col._source.relationships.denominator %}
+{% if col._source.relationships and col._source.relationships.denominator %}
 :denominator:
 
     {{ col._source.relationships.denominator }}
 {% endif %}
 
+{% if col._source.tables %}
 :dates available:
 
     {% for table in col._source.tables %}{{ table.dct_temporal_sm }}, {% endfor %}
@@ -41,6 +42,8 @@ TEMPLATE = jinja2.Template(
     {% for res in table.resolutions %}{{ res.id }}, {% endfor %}
     {% endfor %}
     #}
+
+{% endif %}
 
 :bigmetadata source: `View <{{ col.gh_view_url }}>`_, `Edit <{{ col.gh_edit_url }}>`_
 
@@ -78,7 +81,8 @@ class JSON2RST(Task):
             'income_education_employment': 'Income, Education & Employment',
             'language': 'Language',
             'race_age_gender': 'Race, Age & Gender',
-            'transportation': 'Transportation'}
+            'transportation': 'Transportation',
+            'boundary': 'Boundaries'}
 
     def __init__(self, *args, **kwargs):
         super(JSON2RST, self).__init__(*args, **kwargs)
