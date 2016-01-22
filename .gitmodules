@@ -1,3 +1,6 @@
 [submodule "browser/facetview2"]
 	path = browser/facetview2
 	url = https://github.com/CottageLabs/facetview2
+[submodule "data"]
+	path = data
+	url = git@github.com:talos/bmd-data.git
