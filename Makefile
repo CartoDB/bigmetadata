@@ -18,6 +18,10 @@ acs:
 	  --module tasks.us.census.acs AllACS \
 	  --parallel-scheduling --workers=8 --force
 
+tiger:
+	docker-compose run bigmetadata luigi \
+	  --module tasks.us.census.tiger Tiger --force
+
 index:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.elastic Index
@@ -25,3 +29,9 @@ index:
 sphinx:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.sphinx Sphinx
+
+sphinx-deploy:
+	cd catalog/build/html && \
+	  git add . && \
+	  git commit -m 'updating catalog' && \
+	  git push origin gh-pages
