@@ -4,10 +4,13 @@ Util functions for luigi bigmetadata tasks.
 
 import os
 import subprocess
-import elasticsearch
 import logging
 import sys
 import time
+import re
+import requests
+
+import elasticsearch
 
 from luigi import Task, Parameter, LocalTarget
 from luigi.postgres import PostgresTarget
@@ -56,9 +59,9 @@ def pg_cursor():
 
 def shell(cmd):
     '''
-    Run a shell command
+    Run a shell command. Returns the STDOUT output.
     '''
-    return subprocess.check_call(cmd, shell=True)
+    return subprocess.check_output(cmd, shell=True)
 
 
 class MetadataTarget(LocalTarget):
@@ -73,6 +76,35 @@ def classpath(obj):
     Path to this task, suitable for the current OS.
     '''
     return os.path.join(*obj.__module__.split('.')[1:])
+
+
+def carto_query(q):
+    carto_url = 'https://{}/api/v2/sql'.format(os.environ['CARTODB_DOMAIN'])
+    resp = requests.post(carto_url, data={
+        'api_key': os.environ['CARTODB_API_KEY'],
+        'q': q
+    })
+    #assert resp.status_code == 200
+    if resp.status_code != 200:
+        raise Exception(u'Non-200 response ({}) from carto: {}'.format(
+            resp.status_code, resp.text))
+    return resp
+
+
+def query_to_carto(tablename, query):
+    '''
+    Move the results of the specified query to cartodb
+    '''
+    cmd = u'''
+ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
+        -f CartoDB "CartoDB:observatory" \
+        -overwrite \
+        -nln "{tablename}" \
+        PG:"dbname=$PGDATABASE" -sql '{sql}'
+    '''.format(tablename=tablename, sql=query)
+    shell(cmd)
+    carto_query(u"SELECT CDB_CartodbfyTable('{tablename}')".format(
+        tablename=tablename))
 
 
 class ColumnTarget(MetadataTarget):
@@ -125,6 +157,22 @@ class DefaultPostgresTarget(PostgresTarget):
         if 'update_id' not in kwargs:
             kwargs['update_id'] = kwargs['table']
         super(DefaultPostgresTarget, self).__init__(*args, **kwargs)
+
+    def untouch(self, connection=None):
+        self.create_marker_table()
+
+        if connection is None:
+            connection = self.connect()
+            connection.autocommit = True  # if connection created here, we commit it here
+
+        connection.cursor().execute(
+            """DELETE FROM {marker_table}
+               WHERE update_id = %s AND target_table = %s
+            """.format(marker_table=self.marker_table),
+            (self.update_id, self.table))
+
+        # make sure update is properly marked
+        assert not self.exists(connection)
 
 
 class LoadPostgresFromURL(Task):
