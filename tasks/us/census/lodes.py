@@ -32,21 +32,25 @@ class DownloadLODESFile(Task):
     # [ST] =   lowercase, 2-letter postal code for a chosen state
     state = Parameter()
 
+    # [SEG] = (RAC/WAC only) Segment of the workforce, can have th e values of
+    # "S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01", "SI02",
+    # or "SI03". These correspond to the same segments of the workforce as are
+    # listed in the OD file structure above. 
+    # [PART] = (OD only) Part of the state file, can have a value of either "main" or "aux".
+    #          Complimentary parts of the state file, the main part includes jobs with both
+    #          workplace and residence in the state and the aux part includes jobs with the
+    #          workplace in the state and the residence outside of the state.
+    part_or_segment = Parameter()
+
     # [TYPE] = Job Type, can have a value of "JT00" for All Jobs, "JT01" for Primary
     #          Jobs, "JT02" for All Private Jobs, "JT03" for Private Primary Jobs,
     #          "JT04" for All Federal Jobs, or "JT05" for Federal Primary Jobs.
     job_type = Parameter(default="JT00")
 
-    # [PART] = Part of the state file, can have a value of either "main" or "aux".
-    #          Complimentary parts of the state file, the main part includes jobs with both
-    #          workplace and residence in the state and the aux part includes jobs with the
-    #          workplace in the state and the residence outside of the state.
-    part = Parameter()
-
     def filename(self):
-        # Filename of the OD datasets are described by the following
-        #          templates [ST]_od_[PART]_[TYPE]_[YEAR].csv.gz   where
-        return '{}_{}_{}_{}_{}.csv.gz'.format(self.state, self.filetype, self.part,
+        #   [STATE]_[FILETYPE]_[PART/SEG]_[TYPE]_[YEAR].csv.gz   where
+        return '{}_{}_{}_{}_{}.csv.gz'.format(self.state, self.filetype,
+                                              self.part_or_segment,
                                               self.job_type, self.year)
 
     def url(self):
@@ -75,67 +79,97 @@ class WorkplaceAreaCharacteristics(Task):
 
     def columns(self):
         return '''
-work_census_block TEXT, --w_geocode       Char15  Workplace Census Block Code 
-total_jobs INTEGER, -- C000    Num     Total number of jobs 
+work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code 
+total_jobs INTEGER, -- C000 Num Total number of jobs 
 jobs_age_29_or_younger INTEGER, -- Number of jobs of workers age 29 or younger 11
 jobs_age_30_to_54 INTEGER, -- Number of jobs for workers age 30 to 54 11
 jobs_age_55_or_older INTEGER, -- Number of jobs for workers age 55 or older 11
-jobs_earning_15000_or_less INTEGER, --  Number of jobs with earnings $1250/month or less
-jobs_earning_15001_to_40000 INTEGER, --  Number of jobs with earnings $1251/month to $3333/month
-jobs_earning_40001_or_more INTEGER, --  Number of jobs with earnings greater than $3333/month
-jobs_11_agriculture_forestry_fishing INTEGER, -- CNS01   Num     Number of jobs in NAICS sector 11 (Agriculture, Forestry, Fishing and Hunting) 
-jobs_21_mining_quarrying_oil-gas INTEGER, -- CNS02   Num     Number of jobs in NAICS sector 21 (Mining, Quarrying, and Oil and Gas Extraction) 
-jobs_22_utilities INTEGER, --CNS03   Num     Number of jobs in NAICS sector 22 (Utilities) 
-jobs_23_construction INTEGER, --CNS04   Num     Number of jobs in NAICS sector 23 (Construction) 
-jobs_31_33_manufacturing INTEGER, --CNS05   Num     Number of jobs in NAICS sector 31-33 (Manufacturing) 
-jobs_42_wholesale_trade INTEGER, -- CNS06   Num     Number of jobs in NAICS sector 42 (Wholesale Trade) 
-jobs_44_45_retail_trade INTEGER, -- CNS07   Num     Number of jobs in NAICS sector 44-45 (Retail Trade) 
-jobs_48_49_transport_warehousing INTEGER,  -- CNS08   Num     Number of jobs in NAICS sector 48-49 (Transportation and Warehousing) 
-jobs_51_information INTEGER, -- CNS09   Num     Number of jobs in NAICS sector 51 (Information) 
-jobs_52_finance_and_insurance INTEGER, -- CNS10   Num     Number of jobs in NAICS sector 52 (Finance and Insurance) 
-jobs_53_real_estate_rental_leasing INTEGER, --CNS11   Num     Number of jobs in NAICS sector 53 (Real Estate and Rental and Leasing) 
-jobs_54_professional_scientific_tech_services INTEGER, -- CNS12   Num     Number of jobs in NAICS sector 54 (Professional, Scientific, and Technical Services) 
-jobs_55_management_of_companies_enterprises INTEGER, -- CNS13   Num     Number of jobs in NAICS sector 55 (Management of Companies and Enterprises) 
-jobs_56_admin_support_waste_management INTEGER, -- CNS14   Num     Number of jobs in NAICS sector 56 (Administrative and Support and Waste Management and Remediation Services) 
-jobs_61_educational_services INTEGER, -- CNS15   Num     Number of jobs in NAICS sector 61 (Educational Services) 
-jobs_62_healthcare_social_assistance INTEGER, --CNS16   Num     Number of jobs in NAICS sector 62 (Health Care and Social Assistance) 
-jobs_71_arts_entertainment_recreation INTEGER, -- CNS17   Num     Number of jobs in NAICS sector 71 (Arts, Entertainment, and Recreation) 
-jobs_72_accommodation_and_food INTEGER, -- CNS18   Num     Number of jobs in NAICS sector 72 (Accommodation and Food Services) 
-jobs_81_other_services_except_public_admin INTEGER, -- CNS19   Num     Number of jobs in NAICS sector 81 (Other Services [except Public Administration]) 
-jobs_92_public_administration INTEGER, -- CNS20   Num     Number of jobs in NAICS sector 92 (Public Administration) 
-jobs_white INTEGER, --CR01    Num     Number of jobs for workers with Race: White, Alone12 
-jobs_black INTEGER, --CR02    Num     Number of jobs for workers with Race: Black or African American Alone12 
-jobs_amerindian INTEGER, --CR03    Num     Number of jobs for workers with Race: American Indian or Alaska Native Alone12 
-jobs_asian INTEGER, --CR04    Num     Number of jobs for workers with Race: Asian Alone12 
-jobs_hawaiian INTEGER, -- 33      CR05    Num     Number of jobs for workers with Race: Native Hawaiian or Other Pacific Islander Alone12 
-jobs_two_or_more_races INTEGER, --34      CR07    Num     Number of jobs for workers with Race: Two or More Race Groups12 
-jobs_not_hispanic INTEGER, --35      CT01    Num     Number of jobs for workers with Ethnicity: Not Hispanic or Latino12 
-jobs_hispanic INTEGER, --36      CT02    Num     Number of jobs for workers with Ethnicity: Hispanic or Latino12 
-jobs_less_than_high_school INTEGER, --37      CD01    Num     Number of jobs for workers with Educational Attainment: Less than high school12,13 
-jobs_high_school INTEGER, --38      CD02    Num     Number of jobs for workers with Educational Attainment: High school or equivalent, no college12,13 
-jobs_some_college INTEGER, -- 39      CD03    Num     Number of jobs for workers with Educational Attainment: Some college or Associate degree12,13 
-jobs_bachelors_or_advanced INTEGER, -- 40      CD04    Num     Number of jobs for workers with Educational Attainment: Bachelor's degree or advanced degree12,13 
-jobs_male INTEGER, --41      CS01    Num     Number of jobs for workers with Sex: Male12 
-jobs_female INTEGER, --42      CS02    Num     Number of jobs for workers with Sex: Female12 
-43      CFA01   Num     Number of jobs for workers at firms with Firm Age: 0-1 Years14 
-44      CFA02   Num     Number of jobs for workers at firms with Firm Age: 2-3 Years14 
-45      CFA03   Num     Number of jobs for workers at firms with Firm Age: 4-5 Years14 
-46      CFA04   Num     Number of jobs for workers at firms with Firm Age: 6-10 Years14 
-47      CFA05   Num     Number of jobs for workers at firms with Firm Age: 11+ Years14 
-48      CFS01   Num     Number of jobs for workers at firms with Firm Size: 0-19 Employees14,15 
-49      CFS02   Num     Number of jobs for workers at firms with Firm Size: 20-49 Employees14,15 
-50      CFS03   Num     Number of jobs for workers at firms with Firm Size: 50-249 Employees14,15 
-51      CFS04   Num     Number of jobs for workers at firms with Firm Size: 250-499 Employees14,15 
-52      CFS05   Num     Number of jobs for workers at firms with Firm Size: 500+ Employees14,15 
-53      createdate      Char    Date on which data was created, formatted as YYYYMMDD 
+jobs_earning_15000_or_less INTEGER, -- Number of jobs with earnings $1250/month or less
+jobs_earning_15001_to_40000 INTEGER, -- Number of jobs with earnings $1251/month to $3333/month
+jobs_earning_40001_or_more INTEGER, -- Number of jobs with earnings greater than $3333/month
+jobs_11_agriculture_forestry_fishing INTEGER, -- CNS01 Num Number of jobs in NAICS sector 11 (Agriculture, Forestry, Fishing and Hunting) 
+jobs_21_mining_quarrying_oil_gas INTEGER, -- CNS02 Num Number of jobs in NAICS sector 21 (Mining, Quarrying, and Oil and Gas Extraction) 
+jobs_22_utilities INTEGER, --CNS03 Num Number of jobs in NAICS sector 22 (Utilities) 
+jobs_23_construction INTEGER, --CNS04 Num Number of jobs in NAICS sector 23 (Construction) 
+jobs_31_33_manufacturing INTEGER, --CNS05 Num Number of jobs in NAICS sector 31-33 (Manufacturing) 
+jobs_42_wholesale_trade INTEGER, -- CNS06 Num Number of jobs in NAICS sector 42 (Wholesale Trade) 
+jobs_44_45_retail_trade INTEGER, -- CNS07 Num Number of jobs in NAICS sector 44-45 (Retail Trade) 
+jobs_48_49_transport_warehousing INTEGER, -- CNS08 Num Number of jobs in NAICS sector 48-49 (Transportation and Warehousing) 
+jobs_51_information INTEGER, -- CNS09 Num Number of jobs in NAICS sector 51 (Information) 
+jobs_52_finance_and_insurance INTEGER, -- CNS10 Num Number of jobs in NAICS sector 52 (Finance and Insurance) 
+jobs_53_real_estate_rental_leasing INTEGER, --CNS11 Num Number of jobs in NAICS sector 53 (Real Estate and Rental and Leasing) 
+jobs_54_professional_scientific_tech_services INTEGER, -- CNS12 Num Number of jobs in NAICS sector 54 (Professional, Scientific, and Technical Services) 
+jobs_55_management_of_companies_enterprises INTEGER, -- CNS13 Num Number of jobs in NAICS sector 55 (Management of Companies and Enterprises) 
+jobs_56_admin_support_waste_management INTEGER, -- CNS14 Num Number of jobs in NAICS sector 56 (Administrative and Support and Waste Management and Remediation Services) 
+jobs_61_educational_services INTEGER, -- CNS15 Num Number of jobs in NAICS sector 61 (Educational Services) 
+jobs_62_healthcare_social_assistance INTEGER, --CNS16 Num Number of jobs in NAICS sector 62 (Health Care and Social Assistance) 
+jobs_71_arts_entertainment_recreation INTEGER, -- CNS17 Num Number of jobs in NAICS sector 71 (Arts, Entertainment, and Recreation) 
+jobs_72_accommodation_and_food INTEGER, -- CNS18 Num Number of jobs in NAICS sector 72 (Accommodation and Food Services) 
+jobs_81_other_services_except_public_admin INTEGER, -- CNS19 Num Number of jobs in NAICS sector 81 (Other Services [except Public Administration]) 
+jobs_92_public_administration INTEGER, -- CNS20 Num Number of jobs in NAICS sector 92 (Public Administration) 
+jobs_white INTEGER, --CR01 Num Number of jobs for workers with Race: White, Alone12 
+jobs_black INTEGER, --CR02 Num Number of jobs for workers with Race: Black or African American Alone12 
+jobs_amerindian INTEGER, --CR03 Num Number of jobs for workers with Race: American Indian or Alaska Native Alone12 
+jobs_asian INTEGER, --CR04 Num Number of jobs for workers with Race: Asian Alone12 
+jobs_hawaiian INTEGER, -- 33 CR05 Num Number of jobs for workers with Race: Native Hawaiian or Other Pacific Islander Alone12 
+jobs_two_or_more_races INTEGER, --34 CR07 Num Number of jobs for workers with Race: Two or More Race Groups12 
+jobs_not_hispanic INTEGER, --35 CT01 Num Number of jobs for workers with Ethnicity: Not Hispanic or Latino12 
+jobs_hispanic INTEGER, --36 CT02 Num Number of jobs for workers with Ethnicity: Hispanic or Latino12 
+jobs_less_than_high_school INTEGER, --37 CD01 Num Number of jobs for workers with Educational Attainment: Less than high school12,13 
+jobs_high_school INTEGER, --38 CD02 Num Number of jobs for workers with Educational Attainment: High school or equivalent, no college12,13 
+jobs_some_college INTEGER, -- 39 CD03 Num Number of jobs for workers with Educational Attainment: Some college or Associate degree12,13 
+jobs_bachelors_or_advanced INTEGER, -- 40 CD04 Num Number of jobs for workers with Educational Attainment: Bachelor's degree or advanced degree12,13 
+jobs_male INTEGER, --41 CS01 Num Number of jobs for workers with Sex: Male12 
+jobs_female INTEGER, --42 CS02 Num Number of jobs for workers with Sex: Female12 
+jobs_firm_age_0_1_years INTEGER, --43 CFA01 Num Number of jobs for workers at firms with Firm Age: 0-1 Years14 
+jobs_firm_age_2_3_years INTEGER, --44 CFA02 Num Number of jobs for workers at firms with Firm Age: 2-3 Years14 
+jobs_firm_age_4_5_years INTEGER, --45 CFA03 Num Number of jobs for workers at firms with Firm Age: 4-5 Years14 
+jobs_firm_age_6_10_years INTEGER, --46 CFA04 Num Number of jobs for workers at firms with Firm Age: 6-10 Years14 
+jobs_firm_age_11_more_years INTEGER, --7 CFA05 Num Number of jobs for workers at firms with Firm Age: 11+ Years14 
+jobs_firm_age_0_19_employees INTEGER, --8 CFS01 Num Number of jobs for workers at firms with Firm Size: 0-19 Employees14,15 
+jobs_firm_age_20_49_employees INTEGER, --9 CFS02 Num Number of jobs for workers at firms with Firm Size: 20-49 Employees14,15 
+jobs_firm_age_50_249_employees INTEGER, --0 CFS03 Num Number of jobs for workers at firms with Firm Size: 50-249 Employees14,15 
+jobs_firm_age_250_499_employees INTEGER, --1 CFS04 Num Number of jobs for workers at firms with Firm Size: 250-499 Employees14,15 
+jobs_firm_age_500_more_employees INTEGER, --2 CFS05 Num Number of jobs for workers at firms with Firm Size: 500+ Employees14,15 
+createdate DATE --53 createdate Char Date on which data was created, formatted as YYYYMMDD 
 
 '''
 
     def requires(self):
         for state in STATES - MISSING_STATES.get(self.year, set()):
-            for part in ('main', 'aux',):
-                yield DownloadLODESFile(filetype='wac', year=self.year,
-                                        state=state, part=part)
+            yield DownloadLODESFile(filetype='wac',
+                                    part_or_segment='S000', # all jobs
+                                    year=self.year,
+                                    state=state)
+
+    def run(self):
+        # make the table
+        cursor = pg_cursor()
+        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+            schema=classpath(self)))
+        cursor.execute('''
+DROP TABLE IF EXISTS {tablename};
+CREATE TABLE {tablename} (
+    {columns}
+)
+                       '''.format(tablename=self.tablename(),
+                                  columns=self.columns()))
+
+        cursor.connection.commit()
+
+        for infile in self.input():
+            # gunzip each CSV into the table
+            cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
+                  r"WITH CSV HEADER'".format(input=infile.path, tablename=self.tablename())
+            shell(cmd)
+
+        self.output().touch()
+
+    def output(self):
+        output = DefaultPostgresTarget(table=self.tablename())
+        if self.force:
+            output.untouch()
+        return output
 
 
 class ResidenceAreaCharacteristics(Task):
@@ -148,7 +182,7 @@ class ResidenceAreaCharacteristics(Task):
         for state in STATES - MISSING_STATES.get(self.year, set()):
             for part in ('main', 'aux',):
                 yield DownloadLODESFile(filetype='rac', year=self.year,
-                                        state=state, part=part)
+                                        state=state, part_or_segment=part)
 
 
 class OriginDestination(Task):
