@@ -69,11 +69,14 @@ def slug_column(column_name):
     Turn human-readable column name into a decent one for a SQL table
     '''
     translations = {
-        'population': 'pop'
+        'population': 'pop',
+        'for_whom': '',
+        'is': ''
     }
-    column_name = re.sub(r'\W+', '_', 'foo bar baz').lower()
+    column_name = re.sub(r'[^a-z0-9]+', '_', column_name.lower())
     for before, after in translations.iteritems():
-        column_name.replace(before, after)
+        column_name = column_name.replace(before, after)
+    column_name = re.sub(r'[^a-z0-9]+', '_', column_name).strip('_')
     return column_name
 
 class MetadataTarget(LocalTarget):

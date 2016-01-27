@@ -4,9 +4,11 @@ from tasks.us.census.acs import ACSColumn
 
 def test_acs_column_b00001001():
     col = ACSColumn(column_id='B00001001',
+                    table_id='B00001',
                     column_title='Total',
                     column_parent_path=[],
-                    parent_column_id=None,
+                    parent_column=None,
+                    is_denominator=False,
                     table_title='Unweighted Sample Count of the Population',
                     universe='Total Population',
                     denominator=None,
@@ -17,9 +19,11 @@ def test_acs_column_b00001001():
 
 def test_acs_column_b00002001():
     col = ACSColumn(column_id='B00002001',
+                    table_id='B00002',
                     column_title='Total',
                     column_parent_path=[],
-                    parent_column_id=None,
+                    is_denominator=False,
+                    parent_column=None,
                     table_title='Unweighted Sample Housing Units',
                     universe='Housing Units',
                     denominator=None,
@@ -30,9 +34,11 @@ def test_acs_column_b00002001():
 
 def test_acs_column_b01001001():
     col = ACSColumn(column_id='B01001001',
+                    table_id='B01001',
                     column_title='Total:',
                     column_parent_path=[],
-                    parent_column_id=None,
+                    is_denominator=True,
+                    parent_column=None,
                     table_title='Sex by Age',
                     universe='Total Population',
                     denominator=None,
@@ -43,9 +49,11 @@ def test_acs_column_b01001001():
 
 def test_acs_column_b01001002():
     col = ACSColumn(column_id='B01001002',
+                    table_id='B01001',
                     column_title='Male:',
+                    is_denominator=False,
                     column_parent_path=['Total:'],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='Sex by Age',
                     universe='Total Population',
                     denominator=None,
@@ -56,9 +64,11 @@ def test_acs_column_b01001002():
 
 def test_acs_column_b01001003():
     col = ACSColumn(column_id='B01001003',
+                    table_id='B01001',
                     column_title='Under 5 years',
+                    is_denominator=False,
                     column_parent_path=['Total:', 'Male:'],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='Sex by Age',
                     universe='Total Population',
                     denominator=None,
@@ -69,9 +79,11 @@ def test_acs_column_b01001003():
 
 def test_acs_column_b01001026():
     col = ACSColumn(column_id='B01001026',
+                    table_id='B01001',
                     column_title='Female:',
+                    is_denominator=False,
                     column_parent_path=['Total:'],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='Sex by Age',
                     universe='Total Population',
                     denominator=None,
@@ -82,9 +94,11 @@ def test_acs_column_b01001026():
 
 def test_acs_column_b03002012():
     col = ACSColumn(column_id='B03002012',
+                    table_id='B03002',
                     column_title='Hispanic or Latino:',
+                    is_denominator=False,
                     column_parent_path=['Total:'],
-                    parent_column_id='B03002001',
+                    parent_column='B03002001',
                     table_title='Hispanic or Latino Origin by Race',
                     universe='Total Population',
                     denominator=None,
@@ -95,9 +109,11 @@ def test_acs_column_b03002012():
 
 def test_acs_column_b03002006():
     col = ACSColumn(column_id='B03002006',
+                    table_id='B03002',
+                    is_denominator=False,
                     column_title='Asian alone',
                     column_parent_path=['Total:', 'Not Hispanic or Latino:'],
-                    parent_column_id='B03002002',
+                    parent_column='B03002002',
                     table_title='Hispanic or Latino Origin by Race',
                     universe='Total Population',
                     denominator='B03002001',
@@ -108,9 +124,11 @@ def test_acs_column_b03002006():
 
 def test_acs_column_b03002004():
     col = ACSColumn(column_id='B03002004',
+                    table_id='B03002',
+                    is_denominator=False,
                     column_title='Black or African American alone',
                     column_parent_path=['Total:', 'Not Hispanic or Latino:'],
-                    parent_column_id='B03002002',
+                    parent_column='B03002002',
                     table_title='Hispanic or Latino Origin by Race',
                     universe='Total Population',
                     denominator='B03002001',
@@ -121,9 +139,11 @@ def test_acs_column_b03002004():
 
 def test_acs_column_b03002003():
     col = ACSColumn(column_id='B03002003',
+                    table_id='B03002',
+                    is_denominator=False,
                     column_title='White alone',
                     column_parent_path=['Total:', 'Not Hispanic or Latino:'],
-                    parent_column_id='B03002002',
+                    parent_column='B03002002',
                     table_title='Hispanic or Latino Origin by Race',
                     universe='Total Population',
                     denominator='B03002001',
@@ -134,9 +154,11 @@ def test_acs_column_b03002003():
 
 def test_acs_column_b09001001():
     col = ACSColumn(column_id='B09001001',
+                    table_id='B09001',
+                    is_denominator=True,
                     column_title='Total:',
                     column_parent_path=[],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='Population Under 18 Years by Age',
                     universe='Population Under 18 Years',
                     denominator=None,
@@ -147,9 +169,11 @@ def test_acs_column_b09001001():
 
 def test_acs_column_b09020001():
     col = ACSColumn(column_id='B09020001',
+                    table_id='B09020',
+                    is_denominator=True,
                     column_title='Total:',
                     column_parent_path=[],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='Relationship by Household Type (Including '
                                 'Living Alone) for the Population 65 Years and Over',
                     universe='Population 65 Years and Over',
@@ -161,9 +185,11 @@ def test_acs_column_b09020001():
 
 def test_acs_column_b11001001():
     col = ACSColumn(column_id='B11001001',
+                    table_id='B11001',
+                    is_denominator=True,
                     column_title='Total:',
                     column_parent_path=[],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='Household Type (Including Living Alone)',
                     universe='Households',
                     denominator=None,
@@ -174,9 +200,11 @@ def test_acs_column_b11001001():
 
 def test_acs_column_b14001002():
     col = ACSColumn(column_id='B14001002',
+                    table_id='B14001',
+                    is_denominator=False,
                     column_title='Enrolled in school:',
                     column_parent_path=['Total:'],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='School Enrollment by Level of School for the '
                                 'Population 3 Years and Over',
                     universe='Population 3 Years and Over',
@@ -187,9 +215,11 @@ def test_acs_column_b14001002():
 
 def test_acs_column_b14001002():
     col = ACSColumn(column_id='B14001008',
+                    table_id='B14001',
+                    is_denominator=False,
                     column_title='Enrolled in college, undergraduate years',
                     column_parent_path=['Total:', 'Enrolled in school:'],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='School Enrollment by Level of School for the '
                                 'Population 3 Years and Over',
                     universe='Population 3 Years and Over',
@@ -201,9 +231,11 @@ def test_acs_column_b14001002():
 
 def test_acs_column_b15003017():
     col = ACSColumn(column_id='B15003017',
+                    table_id='B15003',
+                    is_denominator=False,
                     column_title='Regular high school diploma',
                     column_parent_path=['Total:'],
-                    parent_column_id='B15003001',
+                    parent_column='B15003001',
                     table_title='Educational Attainment for the Population 25 Years and Over',
                     universe='Population 25 Years and Over',
                     denominator=None,
@@ -214,9 +246,11 @@ def test_acs_column_b15003017():
 
 def test_acs_column_b15003022():
     col = ACSColumn(column_id='B15003022',
+                    table_id='B15003',
+                    is_denominator=False,
                     column_title='Bachelor\'s degree',
                     column_parent_path=['Total:'],
-                    parent_column_id='B15003001',
+                    parent_column='B15003001',
                     table_title='Educational Attainment for the Population 25 Years and Over',
                     universe='Population 25 Years and Over',
                     denominator=None,
@@ -227,9 +261,11 @@ def test_acs_column_b15003022():
 
 def test_acs_column_b17001002():
     col = ACSColumn(column_id='B17001002',
+                    table_id='B17001',
+                    is_denominator=False,
                     column_title='Income in the past 12 months below poverty level:',
                     column_parent_path=['Total:'],
-                    parent_column_id='B17001001',
+                    parent_column='B17001001',
                     table_title='Poverty Status in the Past 12 Months by Sex by Age',
                     universe='Population for Whom Poverty Status Is Determined',
                     denominator=None,
@@ -240,9 +276,11 @@ def test_acs_column_b17001002():
 
 def test_acs_column_b19013001():
     col = ACSColumn(column_id='B19013001',
+                    table_id='B19013',
+                    is_denominator=True,
                     column_title='Median household income in the past 12 months (in 2012 inflation-adjusted dollars)',
                     column_parent_path=[],
-                    parent_column_id=None,
+                    parent_column=None,
                     table_title='Median Household Income in the Past 12 Months (In 2012 Inflation-adjusted Dollars)',
                     universe='Households',
                     denominator=None,
@@ -253,9 +291,11 @@ def test_acs_column_b19013001():
 
 def test_acs_column_b22003002():
     col = ACSColumn(column_id='B22003002',
+                    table_id='B22003',
+                    is_denominator=False,
                     column_title='Household received Food Stamps/SNAP in the past 12 months:',
                     column_parent_path=['Total:'],
-                    parent_column_id='B22003001',
+                    parent_column='B22003001',
                     table_title='Receipt of Food Stamps/SNAP in the Past 12 Months by Poverty Status in the Past 12 Months for Households',
                     universe='Households',
                     denominator=None,
@@ -266,9 +306,11 @@ def test_acs_column_b22003002():
 
 def test_acs_column_b23025002():
     col = ACSColumn(column_id='B23025002',
+                    table_id='B23022',
+                    is_denominator=False,
                     column_title='In labor force:',
                     column_parent_path=['Total:'],
-                    parent_column_id='B23025001',
+                    parent_column='B23025001',
                     table_title='Employment Status for the Population 16 Years and Over',
                     universe='Population 16 Years and Over',
                     denominator=None,
@@ -279,9 +321,11 @@ def test_acs_column_b23025002():
 
 def test_acs_column_b23025003():
     col = ACSColumn(column_id='B23025003',
+                    table_id='B23022',
+                    is_denominator=False,
                     column_title='Civilian labor force:',
                     column_parent_path=['Total:', 'In labor force:'],
-                    parent_column_id='B23025002',
+                    parent_column='B23025002',
                     table_title='Employment Status for the Population 16 Years and Over',
                     universe='Population 16 Years and Over',
                     denominator=None,
@@ -292,9 +336,11 @@ def test_acs_column_b23025003():
 
 def test_acs_column_b23025005():
     col = ACSColumn(column_id='B23025005',
+                    table_id='B23022',
+                    is_denominator=False,
                     column_title='Unemployed',
                     column_parent_path=['Total:', 'In labor force:', 'Unemployed', ],
-                    parent_column_id='B23025003',
+                    parent_column='B23025003',
                     table_title='Employment Status for the Population 16 Years and Over',
                     universe='Population 16 Years and Over',
                     denominator=None,
@@ -305,9 +351,11 @@ def test_acs_column_b23025005():
 
 def test_acs_column_b23025007():
     col = ACSColumn(column_id='B23025007',
+                    table_id='B23025',
+                    is_denominator=False,
                     column_title='Not in labor force',
                     column_parent_path=['Total:', ],
-                    parent_column_id='B23025001',
+                    parent_column='B23025001',
                     table_title='Employment Status for the Population 16 Years and Over',
                     universe='Population 16 Years and Over',
                     denominator=None,
@@ -318,9 +366,11 @@ def test_acs_column_b23025007():
 
 def test_acs_column_b23025007():
     col = ACSColumn(column_id='B23025007',
+                    table_id='B23025',
+                    is_denominator=False,
                     column_title='Not in labor force',
                     column_parent_path=['Total:', ],
-                    parent_column_id='B23025001',
+                    parent_column='B23025001',
                     table_title='Employment Status for the Population 16 Years and Over',
                     universe='Population 16 Years and Over',
                     denominator=None,
@@ -333,7 +383,7 @@ def test_acs_column_b23025007():
 #    col = ACSColumn(column_id='C19037001',
 #                    column_title='Less than $10,000',
 #                    column_parent_path=['Householder under 25 years', ],
-#                    parent_column_id='B19037002',
+#                    parent_column='B19037002',
 #                    table_title='Age of Householder by Household Income in the Past 12 Months (In 2010 Inflation-adjusted Dollars)',
 #                    universe='Households',
 #                    denominator='B19037001',
@@ -345,8 +395,10 @@ def test_acs_column_b23025007():
 def test_acs_column_b05001001():
     col = ACSColumn(column_id='B05001001',
                     column_title='Total:',
+                    is_denominator=True,
                     column_parent_path=[],
-                    parent_column_id='',
+                    table_id='B05001',
+                    parent_column='',
                     table_title='Citizenship Status in the United States',
                     universe='Total Population in the United States',
                     denominator='B05001001',
