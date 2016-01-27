@@ -78,20 +78,6 @@ class Index(Task):
                 tfcc['resolutions_nested'] = column.get('resolutions', [])
                 self.CACHE[self.ES_COLUMN][column['id']]['tables'].append(tfcc)
 
-            # Add the columntable
-            #ops.append({
-            #    '_op_type': 'index',
-            #    '_index': ES_NAME,
-            #    '_type': ES_COLUMNTABLE,
-            #    '_id': table_id + column_id,
-            #    '_source': {
-            #        "column": CACHE[ES_COLUMN][column_id],
-            #        "table": table_with_id,
-            #        "resolutions": column.get('resolutions', []),
-            #        "resolutions_nested": column.get('resolutions', [])
-            #    }
-            #})
-
         # Add the table
         ops.append({
             '_op_type': 'index',
@@ -102,36 +88,6 @@ class Index(Task):
         })
 
         return ops
-
-        #for column in table_body.pop('columns'):
-
-        #    # Create column if it does not exist
-        #    if not econn.exists(ES_NAME, ES_COLUMN, id=column['id']):
-        #        with open(os.path.join(ES_COLUMN + u's', column['id'] + u'.json')) as column_file:
-        #            column_body = json.load(column_file)
-        #        econn.index(ES_NAME, ES_COLUMN, id=column['id'], body=column_body)
-        #    econn.update(ES_NAME, ES_COLUMN, id=column['id'], body={
-        #        "script": "ctx._source.tables+=new_table",
-        #        "params": {
-        #            "new_table": column_body
-        #        }
-        #    })
-        #    import pdb
-        #    pdb.set_trace()
-
-        #path = os.path.join(*path.split(os.path.sep)[1:])  # kill columns/ , tables/ etc.
-
-        # upload each column in an ES_TABLE into a table entry in ES_COLUMN
-        #for column in body.pop('columns'):
-
-        #    columntableid = os.path.join(path, column['id'])
-        #    LOGGER.info('%s: %s', es_op.im_func.func_name, columntableid)
-        #    econn.index(ES_NAME, ES_COLUMNTABLE, id=columntableid,
-        #          body=columnbody, parent=column['id'])
-
-        #econn.index(ES_NAME, doc_type, id=path, body=body)
-
-        #LOGGER.info('%s: %s', es_op.im_func.func_name, path)
 
 
     def load(self):
@@ -159,7 +115,7 @@ class Index(Task):
         # TODO how do we handle iterative loading?
 
         econn = elastic_conn(self.ES_NAME, self.LOGGER)
-        if self.destructive == True:
+        if self.destructive is True:
             try:
                 econn.indices.delete(index=self.ES_NAME)
                 econn = elastic_conn(self.ES_NAME, self.LOGGER)
@@ -179,4 +135,3 @@ class Index(Task):
             '_id': col_id,
             '_source': column
         } for col_id, column in self.CACHE[self.ES_COLUMN].iteritems()], chunk_size=1000)
-
