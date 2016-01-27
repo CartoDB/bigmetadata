@@ -14,9 +14,13 @@ import json
 import os
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
-                        elastic_conn)
+                        elastic_conn, CartoDBTarget, get_logger,
+                        sql_to_cartodb_table)
+from tasks.us.census.tiger import load_sumlevels
 from psycopg2 import ProgrammingError
 from tasks.us.census.tiger import SUMLEVELS, load_sumlevels
+
+LOGGER = get_logger(__name__)
 
 HIGH_WEIGHT_TABLES = set([
     'B01001',
@@ -229,10 +233,10 @@ class DownloadACS(LoadPostgresFromURL):
 
 
 class DumpACS(WrapperTask):
+    #TODO
     '''
     Dump a table in postgres compressed format
     '''
-    #TODO
     year = Parameter()
     sample = Parameter()
 
@@ -581,7 +585,7 @@ class ACSTable(LocalTarget):
             raise Exception('Unrecognized sample {}'.format(self.sample))
 
         data = {
-            'title': self.schema + u' ' + self.seqnum,
+            'title': self.schema + u'.' + self.seqnum,
             'dct_temporal_sm': timespan,
             'columns': columns
         }
@@ -679,24 +683,81 @@ class ExtractACS(Task):
     Generate a CSV extract of important ACS columns
     '''
 
-    def seqtables(self, column_ids):
+    year = Parameter(default='2013')
+    sample = Parameter(default='5yr')
+    sumlevel = Parameter()
+    force = BooleanParameter(default=False)
+
+    def run(self):
         '''
         Identify seq tables we need
         '''
         elastic = elastic_conn()
-        #seqtables = elastic.search({
-        #    doc_type='table',
-        #    body={
-        #        'filter': {
-        #            'match': {
-        #                'columns.id': [cid for cid in column_ids
-        #            }
-        #})['hits']['hits']
 
-    def run(self):
-        shell(r"psql -c \copy '{query}' to {output} with csv header".format(
-            query=self.query, output=self.output().path))
+        # TODO use metadata to get here
+        tiger_id = 'tiger' + self.year + '.' + load_sumlevels()[self.sumlevel]['table']
 
+        columns = elastic.search(
+            doc_type='column',
+            body={
+                "filter": {
+                    "bool": {
+                        "must": [{
+                            "range": {
+                                "weight": {
+                                    "from": 2, "to": 10
+                                }
+                            },
+                        }, {
+                            "missing": {
+                                "field": "extra.margin_of_error"
+                            },
+                        }]
+                    }
+                }
+            }, size=10000)['hits']['hits']
+
+        table_ids = set()
+        column_ids = set()
+        # Iterate through related tables, check to see if it's a
+        # year/resolution we want to extract
+        for column in columns:
+            # TODO store original column name natively
+            column_id = column['_id'].split('/')[-1].split('.')[0]
+
+            for table in column['_source'].get('tables', []):
+                schema, tablename = table['title'].split(' ')
+                if schema == 'acs{}_{}'.format(self.year, self.sample):
+                    # TODO store schema and tablename data natively
+                    table_ids.add('.'.join([schema, tablename]))
+                    table_ids.add('.'.join([schema, tablename]) + '_moe')
+                    column_ids.add(column_id)
+                    column_ids.add(column_id + '_moe')
+
+        table_ids = sorted(table_ids)
+        column_ids = sorted(column_ids)
+
+        query = u"SELECT geom, {tiger}.geoid, {columns} FROM {first_table} " \
+                u"JOIN {tables} USING (geoid) JOIN {tiger} " \
+                "ON {tiger}.geoid = SUBSTR({first_table}.geoid, 8) " \
+                "WHERE substr({first_table}.geoid, 1, 7) = '{resolution}00US'".format(
+                    columns=u', '.join(column_ids),
+                    tiger=tiger_id,
+                    first_table=table_ids.pop(),
+                    tables=u' USING (geoid) JOIN '.join(table_ids),
+                    resolution=self.sumlevel
+                )
+        LOGGER.info(query)
+        sql_to_cartodb_table(self.tablename(), query)
+
+    def tablename(self):
+        # TODO use metadata to get here
+        resolution = load_sumlevels()[self.sumlevel]['slug'].replace('-', '_')
+        return 'us_census_acs{year}_{sample}_{resolution}'.format(
+            year=self.year, sample=self.sample, resolution=resolution)
 
     def output(self):
-        return LocalTarget('census_extract.csv')
+        target = CartoDBTarget(self.tablename())
+        if self.force and target.exists():
+            target.remove()
+        return target

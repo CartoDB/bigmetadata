@@ -12,7 +12,7 @@ import requests
 
 import elasticsearch
 
-from luigi import Task, Parameter, LocalTarget
+from luigi import Task, Parameter, LocalTarget, Target
 from luigi.postgres import PostgresTarget
 
 
@@ -64,6 +64,18 @@ def shell(cmd):
     return subprocess.check_output(cmd, shell=True)
 
 
+def slug_column(column_name):
+    '''
+    Turn human-readable column name into a decent one for a SQL table
+    '''
+    translations = {
+        'population': 'pop'
+    }
+    column_name = re.sub(r'\W+', '_', 'foo bar baz').lower()
+    for before, after in translations.iteritems():
+        column_name.replace(before, after)
+    return column_name
+
 class MetadataTarget(LocalTarget):
     '''
     Target that ensures metadata exists.
@@ -78,23 +90,24 @@ def classpath(obj):
     return os.path.join(*obj.__module__.split('.')[1:])
 
 
-def carto_query(q):
+def query_cartodb(query):
     carto_url = 'https://{}/api/v2/sql'.format(os.environ['CARTODB_DOMAIN'])
     resp = requests.post(carto_url, data={
         'api_key': os.environ['CARTODB_API_KEY'],
-        'q': q
+        'q': query
     })
     #assert resp.status_code == 200
-    if resp.status_code != 200:
-        raise Exception(u'Non-200 response ({}) from carto: {}'.format(
-            resp.status_code, resp.text))
+    #if resp.status_code != 200:
+    #    raise Exception(u'Non-200 response ({}) from carto: {}'.format(
+    #        resp.status_code, resp.text))
     return resp
 
 
-def query_to_carto(tablename, query):
+def sql_to_cartodb_table(tablename, query):
     '''
     Move the results of the specified query to cartodb
     '''
+    query = query.replace("'", '\'"\'"\'')
     cmd = u'''
 ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -f CartoDB "CartoDB:observatory" \
@@ -103,7 +116,7 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         PG:"dbname=$PGDATABASE" -sql '{sql}'
     '''.format(tablename=tablename, sql=query)
     shell(cmd)
-    carto_query(u"SELECT CDB_CartodbfyTable('{tablename}')".format(
+    query_cartodb(u"SELECT CDB_CartodbfyTable('{tablename}')".format(
         tablename=tablename))
 
 
@@ -193,3 +206,22 @@ class LoadPostgresFromURL(Task):
 
     def identifier(self):
         raise NotImplementedError()
+
+
+class CartoDBTarget(Target):
+    '''
+    Target which is a CartoDB table
+    '''
+
+    def __init__(self, tablename):
+        self.tablename = tablename
+
+    def exists(self):
+        resp = query_cartodb('SELECT * FROM "{tablename}" LIMIT 0'.format(
+            tablename=self.tablename))
+        return resp.status_code == 200
+
+    def remove(self):
+        resp = query_cartodb('DROP TABLE "{tablename}"'.format(
+            tablename=self.tablename))
+        assert resp.status_code == 200

@@ -63,6 +63,7 @@
     "model": "census.summarylevel", 
     "fields": {
         "parent": 3, 
+        "table": "state",
         "plural_name": "states", 
         "description": "", 
         "short_name": "", 
@@ -85,6 +86,7 @@
     "model": "census.summarylevel", 
     "fields": {
         "parent": 4, 
+        "table": "county",
         "plural_name": "counties", 
         "description": "", 
         "short_name": "", 
@@ -109,6 +111,7 @@
     "fields": {
         "parent": 8, 
         "plural_name": "blocks", 
+        "table": "tabblock",
         "description": "", 
         "short_name": "", 
         "census_code_description": "Census blocks are numbered uniquely with a four-digit census block number from 0000 to 9999 within census tract, which nest within state and county. The first digit of the census block number identifies the block group. Block numbers beginning with a zero (in Block Group 0) are only associated with water-only areas.", 
@@ -135,6 +138,7 @@
     "fields": {
         "parent": 5, 
         "plural_name": "census tracts", 
+        "table": "tract",
         "description": "", 
         "short_name": "", 
         "census_code_description": "Census tracts are identified by an up to four-digit integer number and may have an optional two-digit suffix; for example 1457.02 or 23. The census tract codes consist of six digits with an implied decimal between the fourth and fifth digit corresponding to the basic census tract number but with leading zeroes and trailing zeroes for census tracts without a suffix. The tract number examples above would have codes of 145702 and 002300, respectively.\r\n\r\nSome ranges of census tract numbers in the 2010 Census are used to identify distinctive types of census tracts. The code range in the 9400s is used for those census tracts with a majority of population, housing, or land area associated with an American Indian area and matches the numbering used in Census 2000. The code range in the 9800s is new for 2010 and is used to specifically identify special land-use census tracts; that is, census tracts defined to encompass a large area with little or no residential population with special characteristics, such as large parks or employment areas. The range of census tracts in the 9900s represents census tracts delineated specifically to cover large bodies of water. This is different from Census 2000 when water-only census tracts were assigned codes of all zeroes (000000); 000000 is no longer used as a census tract code for the 2010 Census.\r\n\r\nThe Census Bureau uses suffixes to help identify census tract changes for comparison purposes. Census tract suffixes may range from .01 to .98. As part of local review of existing census tracts before each census, some census tracts may have grown enough in population size to qualify as more than one census tract. When a census tract is split, the split parts usually retain the basic number but receive different suffixes. For example, if census tract 14 is split, the new tract numbers would be 14.01 and 14.02. In a few counties, local participants request major changes to, and renumbering of, the census tracts; however, this is generally discouraged. Changes to individual census tract boundaries usually do not result in census tract numbering changes.\r\n\r\nThe Census Bureau introduced the concept of tribal census tracts for the first time for Census 2000. Tribal census tracts for that census consisted of the standard county-based census tracts tabulated within American Indian areas, thus allowing for the tracts to ignore state and county boundaries for tabulation. The Census Bureau assigned the 9400 range of numbers to identify specific tribal census tracts; however, not all tribal census tracts used this numbering scheme. For the 2010 Census, tribal census tracts no longer are tied to or numbered in the same way as the county-based census tracts (see \u201cTribal Census Tract\u201d).", 
@@ -159,6 +163,7 @@
     "fields": {
         "parent": 7, 
         "plural_name": "block groups", 
+        "table": "bg",
         "description": "", 
         "short_name": "", 
         "census_code_description": "Block groups have a valid code range of 0 through 9. BGs beginning with a zero only contain water area and are generally in coastal and Great Lakes water and territorial seas, but also in larger inland water bodies. For the 2010 Census, a block group 0 for the water portion can be delineated in any census tract and not just those census tracts also defined to only include water area. This is a change from Census 2000, when block groups coded 0 only existed in census tracts with a code of 0. To differentiate between county-based block groups and tribal block groups, the codes for tribal block groups use an alphabetic character (see \u201cTribal Block Group\u201d).", 
@@ -184,6 +189,7 @@
     "fields": {
         "parent": 4, 
         "plural_name": "places", 
+        "table": "place",
         "description": "", 
         "short_name": "", 
         "census_code_description": "Place codes are of two types. The five-digit Federal Information Processing Series (FIPS) place code is assigned based on alphabetical sequence within a state. If place names are duplicated within a state and they represent distinctly different areas, a separate code is assigned to each place name alphabetically by the primary county in which each place is located, or if both places are in the same county, they are assigned alphabetically by their legal descriptions (for example, \u201ccity\u201d before \u201cvillage\u201d). Places also are assigned an eight-digit National Standard (ANSI) code.", 
@@ -227,6 +233,7 @@
     "fields": {
         "parent": 1, 
         "plural_name": "CBSAs", 
+        "table": "cbsa",
         "description": "", 
         "short_name": "CBSA", 
         "census_code_description": "Metropolitan statistical areas, micropolitan statistical areas, NECTAs, metropolitan divisions, and NECTA divisions are identified using a five-digit numeric code that is assigned alphabetically based on title and is unique within the nation. The combined statistical area and combined NECTAs are identified using a three-digit numeric code, title and unique within the nation.", 
@@ -247,6 +254,7 @@
     "fields": {
         "parent": 1, 
         "plural_name": "NECTAs", 
+        "table": "necta",
         "description": "", 
         "short_name": "NECTA", 
         "census_code_description": "New England city and town area (NECTA) codes are five digits ranging from 70000-79999.", 
@@ -383,6 +391,7 @@
     "fields": {
         "parent": 4, 
         "plural_name": "PUMAs", 
+        "table": "puma",
         "description": "", 
         "short_name": "PUMA", 
         "census_code_description": "", 
@@ -426,6 +435,7 @@
     "fields": {
         "parent": 1, 
         "plural_name": "ZCTA5s", 
+        "table": "zcta5",
         "description": "", 
         "short_name": "ZCTA5", 
         "census_code_description": "", 
