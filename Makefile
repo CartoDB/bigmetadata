@@ -28,6 +28,12 @@ tiger:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.us.census.tiger Tiger --force
 
+tiger-carto:
+	docker-compose run bigmetadata luigi \
+	  --module tasks.us.census.tiger ExtractAllTiger \
+	  --parallel-scheduling --workers=8 --force \
+	  --year 2013
+
 index:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.elastic Index
