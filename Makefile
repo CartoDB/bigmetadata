@@ -18,6 +18,12 @@ acs:
 	  --module tasks.us.census.acs AllACS \
 	  --parallel-scheduling --workers=8 --force
 
+acs-carto:
+	docker-compose run bigmetadata luigi \
+	  --module tasks.us.census.acs ExtractAllACS \
+	  --parallel-scheduling --workers=8 --force \
+	  --year 2013 --sample 5yr
+
 tiger:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.us.census.tiger Tiger --force

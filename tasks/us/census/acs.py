@@ -683,8 +683,8 @@ class ExtractACS(Task):
     Generate a CSV extract of important ACS columns
     '''
 
-    year = Parameter(default='2013')
-    sample = Parameter(default='5yr')
+    year = Parameter()
+    sample = Parameter()
     sumlevel = Parameter()
     force = BooleanParameter(default=False)
 
@@ -762,3 +762,14 @@ class ExtractACS(Task):
         if self.force and target.exists():
             target.remove()
         return target
+
+
+class ExtractAllACS(Task):
+    force = BooleanParameter(default=False)
+    year = Parameter()
+    sample = Parameter()
+
+    def requires(self):
+        for sumlevel in ('040', '050', '140', '150', '795', '860',):
+            yield ExtractACS(sumlevel=sumlevel, year=self.year,
+                             sample=self.sample, force=self.force)
