@@ -8,7 +8,8 @@ import json
 import os
 import subprocess
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
-                        DefaultPostgresTarget)
+                        DefaultPostgresTarget, CartoDBTarget,
+                        sql_to_cartodb_table)
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
 from psycopg2 import ProgrammingError
 
@@ -344,5 +345,38 @@ def load_sumlevels():
         sumlevels[fields['summary_level']] = fields
     return sumlevels
 
+
+class ExtractTiger(Task):
+    force = BooleanParameter(default=False)
+    year = Parameter()
+    sumlevel = Parameter()
+
+    def run(self):
+        tiger_id = 'tiger' + self.year + '.' + load_sumlevels()[self.sumlevel]['table']
+        query = u'SELECT * FROM {table}'.format(
+            table=tiger_id
+        )
+        sql_to_cartodb_table(self.tablename(), query)
+
+    def tablename(self):
+        resolution = load_sumlevels()[self.sumlevel]['slug'].replace('-', '_')
+        return 'us_census_tiger{year}_{resolution}'.format(
+            year=self.year, resolution=resolution)
+
+    def output(self):
+        target = CartoDBTarget(self.tablename())
+        if self.force and target.exists():
+            target.remove()
+        return target
+
+
+class ExtractAllTiger(Task):
+    force = BooleanParameter(default=False)
+    year = Parameter()
+
+    def requires(self):
+        for sumlevel in ('040', '050', '140', '150', '795', '860',):
+            yield ExtractTiger(sumlevel=sumlevel, year=self.year,
+                               force=self.force)
 
 SUMLEVELS = load_sumlevels()

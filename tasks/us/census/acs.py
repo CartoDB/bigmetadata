@@ -690,7 +690,6 @@ class ExtractACS(Task):
 
     def run(self):
         '''
-        Identify seq tables we need
         '''
         elastic = elastic_conn()
 
