@@ -10,4 +10,7 @@ def test_slug_column():
     assert_equals(slug_column('Commuters by Car, truck, or van'), 'commuters_by_car_truck_or_van')
     assert_equals(slug_column('Aggregate travel time to work (in minutes)'),
                   'aggregate_travel_time_to_work_in_minutes')
-
+    assert_equals(slug_column('Hispanic or Latino Population'),
+                  'hispanic_or_latino_pop')
+    assert_equals(slug_column('Median Household Income (In the past 12 Months)'),
+                  'median_household_income')

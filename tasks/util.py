@@ -71,8 +71,13 @@ def slug_column(column_name):
     translations = {
         'population': 'pop',
         'for_whom': '',
-        'is': ''
+        'u_s': 'us',
+        '_is_': '_',
+        'in_the_past_12_months': '',
+        'black_or_african_american': 'black',
+        'percentage_of': 'percent'
     }
+    # TODO handle accents etc properly
     column_name = re.sub(r'[^a-z0-9]+', '_', column_name.lower())
     for before, after in translations.iteritems():
         column_name = column_name.replace(before, after)

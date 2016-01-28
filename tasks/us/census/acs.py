@@ -15,7 +15,7 @@ import os
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         elastic_conn, CartoDBTarget, get_logger,
-                        sql_to_cartodb_table)
+                        sql_to_cartodb_table, slug_column)
 from tasks.us.census.tiger import load_sumlevels
 from psycopg2 import ProgrammingError
 from tasks.us.census.tiger import SUMLEVELS, load_sumlevels
@@ -705,7 +705,7 @@ class ExtractACS(Task):
                         "must": [{
                             "range": {
                                 "weight": {
-                                    "from": 2, "to": 10
+                                    "from": 3, "to": 10
                                 }
                             },
                         }, {
@@ -724,6 +724,7 @@ class ExtractACS(Task):
         for column in columns:
             # TODO store original column name natively
             column_id = column['_id'].split('/')[-1].split('.')[0]
+            column_slug = slug_column(column['_source']['name'])
 
             for table in column['_source'].get('tables', []):
                 schema, tablename = table['title'].split(' ')
@@ -731,8 +732,8 @@ class ExtractACS(Task):
                     # TODO store schema and tablename data natively
                     table_ids.add('.'.join([schema, tablename]))
                     table_ids.add('.'.join([schema, tablename]) + '_moe')
-                    column_ids.add(column_id)
-                    column_ids.add(column_id + '_moe')
+                    column_ids.add((column_id, column_slug, ))
+                    column_ids.add((column_id + '_moe', column_slug + '_moe', ))
 
         table_ids = sorted(table_ids)
         column_ids = sorted(column_ids)
@@ -741,7 +742,7 @@ class ExtractACS(Task):
                 u"JOIN {tables} USING (geoid) JOIN {tiger} " \
                 "ON {tiger}.geoid = SUBSTR({first_table}.geoid, 8) " \
                 "WHERE substr({first_table}.geoid, 1, 7) = '{resolution}00US'".format(
-                    columns=u', '.join(column_ids),
+                    columns=u', '.join([c[0] + ' AS ' + c[1] for c in column_ids]),
                     tiger=tiger_id,
                     first_table=table_ids.pop(),
                     tables=u' USING (geoid) JOIN '.join(table_ids),
