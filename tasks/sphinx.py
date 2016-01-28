@@ -5,7 +5,7 @@ Sphinx functions for luigi bigmetadata tasks.
 import jinja2
 import re
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
-from tasks.util import shell, elastic_conn
+from tasks.util import shell, elastic_conn, slug_column
 from tasks.us.census.tiger import HIGH_WEIGHT_COLUMNS
 
 
@@ -23,6 +23,13 @@ TEMPLATE = jinja2.Template(
 {% for col in columns %}
 {{ col._source.name }}
 ----------------------------------------------------------------------------
+
+{# preview map #}
+{% if col._source.tables %}
+.. rst-class:: cartodb-static-map
+
+{{ col.slug_name }}
+{% endif %}
 
 :description: {{ col._source.description }}
 
@@ -66,7 +73,6 @@ TEMPLATE = jinja2.Template(
 :bigmetadata source: `View <{{ col.gh_view_url }}>`_, `Edit <{{ col.gh_edit_url }}>`_
 
 {% endfor %}
-
 
 ''')
 
@@ -184,6 +190,8 @@ class JSON2RST(Task):
                 _id = re.sub(r'^data/', '', col['_source']['id'])
                 col['gh_view_url'] = 'https://github.com/talos/bmd-data/tree/master/{}'.format(_id)
                 col['gh_edit_url'] = 'https://github.com/talos/bmd-data/edit/master/{}'.format(_id)
+
+                col['slug_name'] = slug_column(col['_source']['name'])
 
                 # TODO more precise margin of error
                 # right now we just average all the national margins of error

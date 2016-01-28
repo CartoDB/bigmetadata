@@ -22,25 +22,38 @@ from sphinx import addnodes
 class env(nodes.literal):
     pass
 
+# Add custom CSS & JS files
+html_context = {
+    'css_files': [
+        'http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css',
+        '_static/bigmetadata.css'
+    ],
+    'script_files': [
+        'https://code.jquery.com/jquery-1.12.0.min.js',
+        'http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js',
+        '_static/bigmetadata.js'
+    ],
+}
+
 # "Inline" extension to allow use of Sphinx-specific (vs docutils/ReST)
 # methods.
-def setup(app):
-    app.add_node(env)
-    # 'env' object type for Fabric env var referencing
-    # (not to be confused with Sphinx' builtin :envvar:)
-    app.add_object_type(
-        directivename='column',
-        rolename='column',
-        ref_nodeclass=env,
-        objname='Data Column',
-    )
-
-    app.add_object_type(
-        directivename='table',
-        rolename='table',
-        ref_nodeclass=env,
-        objname='Data Table',
-    )
+#def setup(app):
+#    app.add_node(env)
+#    # 'env' object type for Fabric env var referencing
+#    # (not to be confused with Sphinx' builtin :envvar:)
+#    app.add_object_type(
+#        directivename='column',
+#        rolename='column',
+#        ref_nodeclass=env,
+#        objname='Data Column',
+#    )
+#
+#    app.add_object_type(
+#        directivename='table',
+#        rolename='table',
+#        ref_nodeclass=env,
+#        objname='Data Table',
+#    )
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
