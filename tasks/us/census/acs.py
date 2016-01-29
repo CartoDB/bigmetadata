@@ -726,7 +726,11 @@ class ExtractACS(Task):
             column_slug = slug_column(column['_source']['name'])
 
             for table in column['_source'].get('tables', []):
-                schema, tablename = table['title'].split(' ')
+                try:
+                    schema, tablename = table['title'].split('.')
+                except ValueError:
+                    # TODO this should be consistently done with period
+                    schema, tablename = table['title'].split(' ')
                 if schema == 'acs{}_{}'.format(self.year, self.sample):
                     # TODO store schema and tablename data natively
                     table_ids.add('.'.join([schema, tablename]))
@@ -741,7 +745,7 @@ class ExtractACS(Task):
                 u"JOIN {tables} USING (geoid) JOIN {tiger} " \
                 "ON {tiger}.geoid = SUBSTR({first_table}.geoid, 8) " \
                 "WHERE substr({first_table}.geoid, 1, 7) = '{resolution}00US'".format(
-                    columns=u', '.join([c[0] + ' AS ' + c[1] for c in column_ids]),
+                    columns=u', '.join([c[0] + ' AS "' + c[1] + '"' for c in column_ids]),
                     tiger=tiger_id,
                     first_table=table_ids.pop(),
                     tables=u' USING (geoid) JOIN '.join(table_ids),
