@@ -8,9 +8,10 @@ import logging
 import sys
 import time
 import re
-import requests
+from itertools import izip_longest
 
 import elasticsearch
+import requests
 
 from luigi import Task, Parameter, LocalTarget, Target
 from luigi.postgres import PostgresTarget
@@ -233,3 +234,10 @@ class CartoDBTarget(Target):
         resp = query_cartodb('DROP TABLE "{tablename}"'.format(
             tablename=self.tablename))
         assert resp.status_code == 200
+
+
+def grouper(iterable, n, fillvalue=None):
+    "Collect data into fixed-length chunks or blocks"
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx
+    args = [iter(iterable)] * n
+    return izip_longest(fillvalue=fillvalue, *args)
