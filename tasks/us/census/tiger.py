@@ -9,7 +9,7 @@ import os
 import subprocess
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
                         DefaultPostgresTarget, CartoDBTarget,
-                        sql_to_cartodb_table)
+                        sql_to_cartodb_table, grouper, shell)
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
 from psycopg2 import ProgrammingError
 
@@ -153,28 +153,33 @@ class TigerGeographyShapefileToSQL(Task):
         cursor.connection.commit()
 
         shapefiles = self.input()
-        subprocess.check_call(
-            'shp2pgsql -D -W "latin1" -s 4326 -c {shp_path} '
-            '{qualified_table} | psql'.format(
-                shp_path=shapefiles.next().path,
-                qualified_table=self.qualified_table),
-            shell=True)
+        cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
+                'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
+                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {qualified_table} ' \
+                '{shpfile_path} '.format(
+                    qualified_table=self.qualified_table,
+                    shpfile_path=shapefiles.next().path)
+        shell(cmd)
 
-        subprocess.check_call(
-            'export PG_USE_COPY=yes PGCLIENTENCODING=latin1; '
-            'echo \'{shapefiles}\' | xargs -P 16 -I shpfile_path '
-            'ogr2ogr -f PostgreSQL PG:dbname=census -append -nlt MultiPolygon '
-            '-nln {qualified_table} shpfile_path '.format(
-                shapefiles='\n'.join([shp.path for shp in shapefiles]),
-                qualified_table=self.qualified_table),
-            shell=True)
+        # chunk into 500 shapefiles at a time.
+        for shape_group in grouper(shapefiles, 500):
+            subprocess.check_call(
+                'export PG_USE_COPY=yes PGCLIENTENCODING=latin1; '
+                'echo \'{shapefiles}\' | xargs -P 16 -I shpfile_path '
+                'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE -append '
+                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {qualified_table} '
+                'shpfile_path '.format(
+                    shapefiles='\n'.join([shp.path for shp in shape_group if shp]),
+                    qualified_table=self.qualified_table),
+                shell=True)
 
         # Spatial index
+        cursor.execute('ALTER TABLE {qualified_table} RENAME COLUMN '
+                       'wkb_geometry TO geom'.format(qualified_table=self.qualified_table))
         cursor.execute('CREATE INDEX ON {qualified_table} USING GIST (geom)'.format(
             qualified_table=self.qualified_table))
-
+        cursor.connection.commit()
         self.output().touch()
-
         self.force = False
 
     def output(self):
@@ -206,6 +211,43 @@ class DownloadTiger(LoadPostgresFromURL):
         self.output().touch()
 
 
+class SimpleShoreline(Task):
+
+    force = BooleanParameter(default=False)
+    year = Parameter()
+
+    def requires(self):
+        return TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year)
+
+    def run(self):
+        cursor = pg_cursor()
+        cursor.execute('DROP TABLE IF EXISTS {output}'.format(
+            output=self.output().table))
+        cursor.execute('CREATE TABLE {output} AS SELECT * FROM {input} '
+                       "WHERE mtfcc IN ('H2040', 'H2053', 'H2051', 'H3010') ".format(
+                           input=self.input().table,
+                           output=self.output().table
+                       ))
+        cursor.execute('ALTER TABLE {output} ALTER COLUMN geom SET DATA TYPE GEOMETRY'.format(
+            output=self.output().table
+        ))
+        cursor.execute('UPDATE {output} SET geom = ST_SimplifyPreserveTopology(geom, 0.01)'.format(
+            output=self.output().table
+        ))
+        cursor.execute('CREATE INDEX ON {output} USING GIST (geom)'.format(
+            output=self.output().table
+        ))
+        cursor.connection.commit()
+        self.output().touch()
+
+    def output(self):
+        output = DefaultPostgresTarget(table='"' + classpath(self) + '/' + str(self.year) + '".simple_shoreline')
+        if self.force:
+            output.untouch()
+            self.force = False
+        return output
+
+
 class ShorelineClipTiger(Task):
     '''
     Clip the provided geography to shoreline.
@@ -233,8 +275,7 @@ class ShorelineClipTiger(Task):
     @property
     def positive_shape(self):
         return '"tiger{year}"."{geography}"'.format(
-            #year=self.year,
-            year=2012,
+            year=self.year,
             geography=str(self.geography).lower())
 
     @property
@@ -244,7 +285,7 @@ class ShorelineClipTiger(Task):
     def requires(self):
         return {
             'tiger': ProcessTiger(year=self.year),
-            'water': TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year)
+            'water': SimpleShoreline(year=self.year)
         }
 
     def complete(self):
@@ -257,24 +298,45 @@ class ShorelineClipTiger(Task):
         cursor.execute('DROP TABLE IF EXISTS {qualified_table}'.format(
             qualified_table=self.qualified_table))
 
+        # create merged table
+        #cursor.execute('CREATE TABLE {qualified_table} AS '
+        #               'SELECT pos.*, ST_DIFFERENCE(pos.geom, neg.geom) '
+        #               'FROM {positive_shape}
+
         # copy positive table
         cursor.execute('CREATE TABLE {qualified_table} AS '
                        'SELECT * FROM {positive_shape}'.format(
-                           qualified_table=self.qualified_table,
+                           qualified_table=self.output().table,
                            positive_shape=self.positive_shape
                        ))
 
         # update geometries in positive table
+        cursor.execute('CREATE UNIQUE INDEX ON {qualified_table} '
+                       '(geoid)'.format(qualified_table=self.qualified_table))
         cursor.execute('CREATE INDEX ON {qualified_table} USING GIST '
-                       '(the_geom)'.format(qualified_table=self.qualified_table))
-        cursor.execute('UPDATE {qualified_table} pos '
-                       'SET the_geom = ST_DIFFERENCE(pos.the_geom, neg.geom) '
-                       'FROM {negative_shape} neg '
-                       'WHERE pos.the_geom && neg.geom '
-                       'AND neg.mtfcc IN ( \'H2040\', \'H2053\', \'H2051\', \'H3010\' )'.format(
-                           qualified_table=self.qualified_table,
-                           negative_shape=self.negative_shape
-                       ))
+                       '(geom)'.format(qualified_table=self.qualified_table))
+        cursor.connection.commit()
+        tmp_table = 'intersection_tmp'
+        cursor.execute('DROP TABLE IF EXISTS {tmp}'.format(tmp=tmp_table))
+        query = 'CREATE TEMPORARY TABLE {tmp} AS (' \
+                '  SELECT pos.geoid, ' \
+                '    ST_MakeValid(ST_Union(ST_MakeValid(neg.geom))) geom ' \
+                '  FROM {qualified_table} pos, {negative_shape} neg ' \
+                '  WHERE pos.geom && neg.geom ' \
+                '  GROUP BY pos.geoid)'.format(
+                    tmp=tmp_table,
+                    qualified_table=self.output().table,
+                    negative_shape=self.negative_shape
+                )
+        cursor.execute(query)
+        cursor.connection.commit()
+        query = 'UPDATE {qualified_table} pos ' \
+                'SET geom = ST_DIFFERENCE(pos.geom, tmp.geom) ' \
+                'FROM {tmp} tmp WHERE tmp.geoid = pos.geoid'.format(
+                    qualified_table=self.output().table,
+                    tmp=tmp_table
+                )
+        cursor.execute(query)
         cursor.connection.commit()
         try:
             self.output().touch()
@@ -368,6 +430,34 @@ class ExtractTiger(Task):
         if self.force and target.exists():
             target.remove()
         return target
+
+
+class ExtractClippedTiger(Task):
+    # TODO this should be merged with ExtractTiger
+
+    force = BooleanParameter(default=False)
+    year = Parameter()
+    sumlevel = Parameter()
+
+    def requires(self):
+        return ShorelineClipTiger(
+            year=self.year, geography=load_sumlevels()[self.sumlevel]['table'])
+
+    def run(self):
+        query = u'SELECT * FROM {table}'.format(
+            table=self.input().table
+        )
+        sql_to_cartodb_table(self.tablename(), query)
+
+    def tablename(self):
+        return self.input().table.replace('-', '_').replace('/', '_').replace('"', '').replace('.', '_')
+
+    def output(self):
+        target = CartoDBTarget(self.tablename())
+        if self.force and target.exists():
+            target.remove()
+        return target
+
 
 
 class ExtractAllTiger(Task):
