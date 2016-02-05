@@ -25,13 +25,16 @@ class env(nodes.literal):
 # Add custom CSS & JS files
 html_context = {
     'css_files': [
-        'http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css',
+        '//libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css',
         '_static/bigmetadata.css'
     ],
     'script_files': [
-        'https://code.jquery.com/jquery-1.12.0.min.js',
-        'http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js',
-        '_static/bigmetadata.js'
+        #'https://code.jquery.com/jquery-1.12.0.min.js',
+        '_static/jquery.js',
+        '_static/underscore.js',
+        '_static/doctools.js',
+        '_static/bigmetadata.js',
+        '//libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js'
     ],
 }
 
