@@ -680,7 +680,7 @@ class AllACS(WrapperTask):
 
 class ExtractACS(Task):
     '''
-    Generate a CSV extract of important ACS columns
+    Generate an extract of important ACS columns for CartoDB
     '''
 
     year = Parameter()
@@ -741,10 +741,15 @@ class ExtractACS(Task):
         table_ids = sorted(table_ids)
         column_ids = sorted(column_ids)
 
-        query = u"SELECT geom, {tiger}.geoid, {columns} FROM {first_table} " \
+        if self.sumlevel == '795':
+            geoid = 'geoid10'
+        else:
+            geoid = 'geoid'
+        query = u"SELECT geom, {tiger}.{geoid} as geoid, {columns} FROM {first_table} " \
                 u"JOIN {tables} USING (geoid) JOIN {tiger} " \
-                "ON {tiger}.geoid = SUBSTR({first_table}.geoid, 8) " \
+                "ON {tiger}.{geoid} = SUBSTR({first_table}.geoid, 8) " \
                 "WHERE substr({first_table}.geoid, 1, 7) = '{resolution}00US'".format(
+                    geoid=geoid,
                     columns=u', '.join([c[0] + ' AS "' + c[1] + '"' for c in column_ids]),
                     tiger=tiger_id,
                     first_table=table_ids.pop(),
