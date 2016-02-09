@@ -13,7 +13,7 @@ from itertools import izip_longest
 import elasticsearch
 import requests
 
-from luigi import Task, Parameter, LocalTarget, Target
+from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
 from luigi.postgres import PostgresTarget
 
 
@@ -85,6 +85,7 @@ def slug_column(column_name):
     column_name = re.sub(r'[^a-z0-9]+', '_', column_name).strip('_')
     return column_name
 
+
 class MetadataTarget(LocalTarget):
     '''
     Target that ensures metadata exists.
@@ -121,6 +122,7 @@ def sql_to_cartodb_table(tablename, query):
 ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -f CartoDB "CartoDB:observatory" \
         -overwrite \
+        -nlt GEOMETRY \
         -nln "{tablename}" \
         PG:"dbname=$PGDATABASE" -sql '{sql}'
     '''.format(tablename=tablename, sql=query)
@@ -197,6 +199,51 @@ class DefaultPostgresTarget(PostgresTarget):
         assert not self.exists(connection)
 
 
+class LoadCSVFromURL(Task):
+    '''
+    Load CSV from a URL into the database.  Requires a schema, URL, and
+    tablename.
+    '''
+
+    force = BooleanParameter(default=False)
+
+    def url(self):
+        raise NotImplementedError()
+
+    def tableschema(self):
+        raise NotImplementedError()
+
+    def tablename(self):
+        raise NotImplementedError()
+
+    def schemaname(self):
+        return classpath(self)
+
+    def run(self):
+        cursor = pg_cursor()
+        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schemaname}"'.format(
+            schemaname=self.schemaname()
+        ))
+        cursor.execute('DROP TABLE IF EXISTS {tablename}'.format(
+            tablename=self.output().table
+        ))
+        cursor.execute('CREATE TABLE {tablename} ({schema})'.format(
+            tablename=self.output().table, schema=self.tableschema()))
+        cursor.connection.commit()
+        shell("curl '{url}' | psql -c 'COPY {table} FROM STDIN WITH CSV HEADER'".format(
+            table=self.output().table, url=self.url()
+        ))
+        self.output().touch()
+
+    def output(self):
+        qualified_table = '"{}"."{}"'.format(self.schemaname(), self.tablename())
+        target = DefaultPostgresTarget(table=qualified_table)
+        if self.force:
+            target.untouch()
+            self.force = False
+        return target
+
+
 class LoadPostgresFromURL(Task):
 
     def load_from_url(self, url):
@@ -241,3 +288,23 @@ def grouper(iterable, n, fillvalue=None):
     # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx
     args = [iter(iterable)] * n
     return izip_longest(fillvalue=fillvalue, *args)
+
+
+class TableToCarto(Task):
+
+    force = BooleanParameter(default=False)
+    table = Parameter()
+    outname = Parameter(default=None)
+
+    def run(self):
+        sql_to_cartodb_table(self.output().tablename, 'SELECT * FROM {table}'.format(
+            table=self.table
+        ))
+
+    def output(self):
+        if self.outname is None:
+            self.outname = slug_column(self.table)
+        target = CartoDBTarget(self.outname)
+        if self.force:
+            target.untouch()
+        return target
