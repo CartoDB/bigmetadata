@@ -9,7 +9,7 @@ import os
 import subprocess
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
                         DefaultPostgresTarget, CartoDBTarget,
-                        sql_to_cartodb_table, grouper, shell)
+                        sql_to_cartodb_table, grouper, shell, slug_column)
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
 from psycopg2 import ProgrammingError
 
@@ -131,11 +131,12 @@ class TigerGeographyShapefileToSQL(Task):
 
     @property
     def schema(self):
-        return os.path.join(classpath(self), self.year)
+        return classpath(self)
 
     @property
     def qualified_table(self):
-        return '"{schema}"."{table}"'.format(schema=self.schema, table=self.table)
+        return '"{schema}"."{table}{year}"'.format(schema=self.schema,
+                                                   table=self.table, year=self.year)
 
     def complete(self):
         if self.force == True:
@@ -223,17 +224,12 @@ class SimpleShoreline(Task):
         cursor = pg_cursor()
         cursor.execute('DROP TABLE IF EXISTS {output}'.format(
             output=self.output().table))
-        cursor.execute('CREATE TABLE {output} AS SELECT * FROM {input} '
-                       "WHERE mtfcc IN ('H2040', 'H2053', 'H2051', 'H3010') ".format(
+        cursor.execute('CREATE TABLE {output} AS '
+                       'SELECT ST_Subdivide(geom) geom FROM {input} '
+                       "WHERE mtfcc != 'H2030' OR awater > 3000000".format(
                            input=self.input().table,
                            output=self.output().table
                        ))
-        cursor.execute('ALTER TABLE {output} ALTER COLUMN geom SET DATA TYPE GEOMETRY'.format(
-            output=self.output().table
-        ))
-        cursor.execute('UPDATE {output} SET geom = ST_SimplifyPreserveTopology(geom, 0.01)'.format(
-            output=self.output().table
-        ))
         cursor.execute('CREATE INDEX ON {output} USING GIST (geom)'.format(
             output=self.output().table
         ))
@@ -241,7 +237,8 @@ class SimpleShoreline(Task):
         self.output().touch()
 
     def output(self):
-        output = DefaultPostgresTarget(table='"' + classpath(self) + '/' + str(self.year) + '".simple_shoreline')
+        output = DefaultPostgresTarget(
+            table='"' + classpath(self) +'".simple_shoreline' + str(self.year))
         if self.force:
             output.untouch()
             self.force = False
@@ -260,96 +257,111 @@ class ShorelineClipTiger(Task):
     geography = Parameter()
     force = BooleanParameter()
 
-    @property
-    def schema(self):
-        return os.path.join(classpath(self), self.year)
-
-    @property
-    def name(self):
-        return str(self.geography).lower() + '_shoreline_clipped'
-
-    @property
-    def negative_shape(self):
-        return self.input()['water'].table
-
-    @property
-    def positive_shape(self):
-        return '"tiger{year}"."{geography}"'.format(
-            year=self.year,
-            geography=str(self.geography).lower())
-
-    @property
-    def qualified_table(self):
-        return '"{}"."{}"'.format(self.schema, self.name)
-
     def requires(self):
         return {
             'tiger': ProcessTiger(year=self.year),
             'water': SimpleShoreline(year=self.year)
         }
 
-    def complete(self):
-        if self.force:
-            return False
-        return super(ShorelineClipTiger, self).complete()
-
     def run(self):
         cursor = pg_cursor()
-        cursor.execute('DROP TABLE IF EXISTS {qualified_table}'.format(
-            qualified_table=self.qualified_table))
+        #tiger = [t for t in self.input()['tiger'] if t.data['slug'] == self.geography.lower()][0]
+        pos = 'tiger{}.{}'.format(self.year, self.geography)
+        neg = self.input()['water'].table
+        if pos.endswith('.puma'):
+            geoid = 'geoid10'
+        else:
+            geoid = 'geoid'
+        pos_split = pos.split('.')[1] + '_split'
+        pos_neg_joined = pos_split + '_' + slug_column(neg) + '_joined'
+        pos_neg_joined_diffed = pos_neg_joined + '_diffed'
+        pos_neg_joined_diffed_merged = pos_neg_joined_diffed + '_merged'
+        output = self.output().table
 
-        # create merged table
-        #cursor.execute('CREATE TABLE {qualified_table} AS '
-        #               'SELECT pos.*, ST_DIFFERENCE(pos.geom, neg.geom) '
-        #               'FROM {positive_shape}
+        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+            schema=classpath(self)))
 
-        # copy positive table
-        cursor.execute('CREATE TABLE {qualified_table} AS '
-                       'SELECT * FROM {positive_shape}'.format(
-                           qualified_table=self.output().table,
-                           positive_shape=self.positive_shape
-                       ))
+        # Split the positive table into geoms with a reasonable number of
+        # vertices.
+        cursor.execute('DROP TABLE IF EXISTS {pos_split}'.format(
+            pos_split=pos_split))
+        cursor.execute('CREATE TEMPORARY TABLE {pos_split} '
+                       '(id serial primary key, {geoid} text, geom geometry)'.format(
+                           geoid=geoid, pos_split=pos_split))
+        cursor.execute('INSERT INTO {pos_split} ({geoid}, geom) '
+                       'SELECT {geoid}, ST_Subdivide(geom) geom '
+                       'FROM {pos}'.format(pos=pos, pos_split=pos_split, geoid=geoid))
 
-        # update geometries in positive table
-        cursor.execute('CREATE UNIQUE INDEX ON {qualified_table} '
-                       '(geoid)'.format(qualified_table=self.qualified_table))
-        cursor.execute('CREATE INDEX ON {qualified_table} USING GIST '
-                       '(geom)'.format(qualified_table=self.qualified_table))
+        cursor.execute('CREATE INDEX ON {pos_split} USING GIST (geom)'.format(
+            pos_split=pos_split))
+
+        # Join the split up pos to the split up neg, then union the geoms based
+        # off the split pos id (technically the union on pos geom is extraneous)
+        cursor.execute('DROP TABLE IF EXISTS {pos_neg_joined}'.format(
+            pos_neg_joined=pos_neg_joined))
+        cursor.execute('CREATE TEMPORARY TABLE {pos_neg_joined} AS '
+                       'SELECT id, {geoid}, ST_Union(neg.geom) neg_geom, '
+                       '       ST_Union(pos.geom) pos_geom '
+                       'FROM {pos_split} pos, {neg} neg '
+                       'WHERE ST_Intersects(pos.geom, neg.geom) '
+                       'GROUP BY id'.format(geoid=geoid, neg=neg,
+                                            pos_split=pos_split,
+                                            pos_neg_joined=pos_neg_joined))
+
+        # Calculate the difference between the pos and neg geoms
+        cursor.execute('DROP TABLE IF EXISTS {pos_neg_joined_diffed}'.format(
+            pos_neg_joined_diffed=pos_neg_joined_diffed))
+        cursor.execute('CREATE TEMPORARY TABLE {pos_neg_joined_diffed} '
+                       'AS SELECT {geoid}, id, ST_Difference( '
+                       'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) geom '
+                       'FROM {pos_neg_joined}'.format(
+                           geoid=geoid,
+                           pos_neg_joined=pos_neg_joined,
+                           pos_neg_joined_diffed=pos_neg_joined_diffed))
+
+        # Create new table with both diffed and non-diffed (didn't intersect with
+        # water) geoms
+        cursor.execute('DROP TABLE IF EXISTS {pos_neg_joined_diffed_merged}'.format(
+            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+        cursor.execute('CREATE TEMPORARY TABLE {pos_neg_joined_diffed_merged} '
+                       'AS SELECT * FROM {pos_neg_joined_diffed}'.format(
+                           pos_neg_joined_diffed=pos_neg_joined_diffed,
+                           pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+        cursor.execute('INSERT INTO {pos_neg_joined_diffed_merged} '
+                       'SELECT {geoid}, id, geom FROM {pos_split} '
+                       'WHERE id NOT IN (SELECT id from {pos_neg_joined_diffed})'.format(
+                           geoid=geoid,
+                           pos_split=pos_split,
+                           pos_neg_joined_diffed=pos_neg_joined_diffed,
+                           pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+        cursor.execute('CREATE INDEX ON {pos_neg_joined_diffed_merged} '
+                       'USING GIST (geom)'.format(
+                           pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+
+        # Re-union the pos table based off its geoid
+        cursor.execute('DROP TABLE IF EXISTS {output}'.format(output=output))
+        cursor.execute('CREATE TABLE {output} AS '
+                       'SELECT {geoid} AS geoid, ST_UNION(geom) AS geom '
+                       'FROM {pos_neg_joined_diffed_merged} '
+                       'GROUP BY {geoid}'.format(
+                           geoid=geoid,
+                           output=output,
+                           pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+
         cursor.connection.commit()
-        tmp_table = 'intersection_tmp'
-        cursor.execute('DROP TABLE IF EXISTS {tmp}'.format(tmp=tmp_table))
-        query = 'CREATE TEMPORARY TABLE {tmp} AS (' \
-                '  SELECT pos.geoid, ' \
-                '    ST_MakeValid(ST_Union(ST_MakeValid(neg.geom))) geom ' \
-                '  FROM {qualified_table} pos, {negative_shape} neg ' \
-                '  WHERE pos.geom && neg.geom ' \
-                '  GROUP BY pos.geoid)'.format(
-                    tmp=tmp_table,
-                    qualified_table=self.output().table,
-                    negative_shape=self.negative_shape
-                )
-        cursor.execute(query)
-        cursor.connection.commit()
-        query = 'UPDATE {qualified_table} pos ' \
-                'SET geom = ST_DIFFERENCE(pos.geom, tmp.geom) ' \
-                'FROM {tmp} tmp WHERE tmp.geoid = pos.geoid'.format(
-                    qualified_table=self.output().table,
-                    tmp=tmp_table
-                )
-        cursor.execute(query)
-        cursor.connection.commit()
-        try:
-            self.output().touch()
-        except:
-            if self.force:
-                pass
-            else:
-                raise
-        self.force = False
+        self.output().touch()
 
     def output(self):
-        return DefaultPostgresTarget(table=self.qualified_table,
-                                     update_id=self.qualified_table)
+        tablename = '"{schema}".{geography}_{year}_shoreline_clipped'.format(
+            schema=classpath(self),
+            geography=str(self.geography).lower(),
+            year=self.year)
+
+        target = DefaultPostgresTarget(table=tablename)
+        if self.force:
+            target.untouch()
+            self.force = False
+        return target
 
 
 class ProcessTiger(Task):
@@ -422,8 +434,7 @@ class ExtractTiger(Task):
 
     def tablename(self):
         resolution = load_sumlevels()[self.sumlevel]['slug'].replace('-', '_')
-        return 'us_census_tiger{year}_{resolution}'.format(
-            year=self.year, resolution=resolution)
+        return slug_column(self.output().table)
 
     def output(self):
         target = CartoDBTarget(self.tablename())
@@ -459,14 +470,18 @@ class ExtractClippedTiger(Task):
         return target
 
 
-
 class ExtractAllTiger(Task):
     force = BooleanParameter(default=False)
     year = Parameter()
+    clipped = BooleanParameter(default=True)
 
     def requires(self):
         for sumlevel in ('040', '050', '140', '150', '795', '860',):
-            yield ExtractTiger(sumlevel=sumlevel, year=self.year,
-                               force=self.force)
+            if self.clipped:
+                yield ExtractClippedTiger(sumlevel=sumlevel, year=self.year,
+                                          force=self.force)
+            else:
+                yield ExtractTiger(sumlevel=sumlevel, year=self.year,
+                                   force=self.force)
 
 SUMLEVELS = load_sumlevels()
