@@ -16,6 +16,11 @@ import requests
 from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
 from luigi.postgres import PostgresTarget
 
+from sqlalchemy import Table
+from sqlalchemy.schema import CreateSchema
+
+from tasks.meta import metadata
+
 
 def elastic_conn(index_name='bigmetadata', logger=None):
     '''
@@ -97,7 +102,7 @@ def classpath(obj):
     '''
     Path to this task, suitable for the current OS.
     '''
-    return os.path.join(*obj.__module__.split('.')[1:])
+    return '.'.join(obj.__module__.split('.')[1:])
 
 
 def query_cartodb(query):
@@ -129,42 +134,6 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
     shell(cmd)
     query_cartodb(u"SELECT CDB_CartodbfyTable('{tablename}')".format(
         tablename=tablename))
-
-
-class ColumnTarget(MetadataTarget):
-    '''
-    Column target for metadata
-    '''
-
-    def __init__(self, **kwargs):
-        self.filename = kwargs.pop('filename')
-        super(ColumnTarget, self).__init__(
-            path=os.path.join('data', 'columns', classpath(self),
-                              self.filename + '.json'))
-
-    #def filename(self):
-    #    '''
-    #    Filename for persistence in bigmetadata
-    #    '''
-    #    raise NotImplementedError('Must implement filename() for ColumnTarget')
-
-
-class TableTarget(MetadataTarget):
-    '''
-    Table target for metadata
-    '''
-
-    def __init__(self, **kwargs):
-        self.filename = kwargs.pop('filename')
-        super(ColumnTarget, self).__init__(
-            path=os.path.join('data', 'tables', classpath(self),
-                              self.filename + '.json'))
-
-    #def filename(self):
-    #    '''
-    #    Filename for persistence in bigmetadata
-    #    '''
-    #    raise NotImplementedError('Must implement filename() for TableTarget')
 
 
 class DefaultPostgresTarget(PostgresTarget):
@@ -308,3 +277,34 @@ class TableToCarto(Task):
         if self.force:
             target.untouch()
         return target
+
+
+# https://stackoverflow.com/questions/1175208/elegant-python-function-to-convert-camelcase-to-camel-case
+def camel_to_underscore(name):
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+
+
+class TableTarget(Target):
+
+    def __init__(self, task, columns):
+        task_id = camel_to_underscore(task.task_id)
+        task_id = task_id.replace('force=_false', '')
+        task_id = task_id.replace('force=_true', '')
+        tablename = re.sub(r'[^a-z0-9]+', '_', task_id).strip('_')
+        schema = classpath(task)
+        self.table = Table(tablename, metadata, *columns, schema=schema,
+                           extend_existing=True)
+
+    def exists(self):
+        return self.table.exists()
+
+    def create(self):
+        return self.table.create()
+
+    def drop(self, **kwargs):
+        return self.table.drop(**kwargs)
+
+    def __str__(self):
+        return '"{schema}"."{table}"'.format(schema=self.table.schema,
+                                             table=self.table.name)

@@ -268,12 +268,12 @@ class ShorelineClipTiger(Task):
         #tiger = [t for t in self.input()['tiger'] if t.data['slug'] == self.geography.lower()][0]
         pos = 'tiger{}.{}'.format(self.year, self.geography)
         neg = self.input()['water'].table
-        if pos.endswith('.puma'):
+        if self.geography == 'puma':
             geoid = 'geoid10'
         else:
             geoid = 'geoid'
-        pos_split = pos.split('.')[1] + '_split'
-        pos_neg_joined = pos_split + '_' + slug_column(neg) + '_joined'
+        pos_split = pos.split('.')[-1] + '_split'
+        pos_neg_joined = pos_split + '_' + neg.split('.')[-1] + '_joined'
         pos_neg_joined_diffed = pos_neg_joined + '_diffed'
         pos_neg_joined_diffed_merged = pos_neg_joined_diffed + '_merged'
         output = self.output().table
