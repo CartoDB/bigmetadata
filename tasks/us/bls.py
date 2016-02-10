@@ -10,12 +10,17 @@ import os
 import requests
 
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
-from tasks.util import (TableTarget, shell, classpath, pg_cursor)
+from tasks.util import (TableTarget, shell, classpath, pg_cursor, slug_column,
+                        CartoDBTarget, sql_to_cartodb_table)
+from tasks.us.census.tiger import ProcessTiger
 from psycopg2 import ProgrammingError
 
 #from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Text, Numeric, Column, Table, Integer
 
+naics_industry_code = lambda: Column("industry_code", Text, info={
+    'description': "6-character Industry Code (NAICS SuperSector),"
+})
 
 class NAICS(Task):
 
@@ -24,7 +29,7 @@ class NAICS(Task):
 
     def columns(self):
         return [
-            Column('industry_code', Text, info={'description': 'NAICS Industry Code'}),
+            naics_industry_code(),
             Column('industry_title', Text, info={'description': 'Title of NAICS industry'}),
         ]
 
@@ -76,16 +81,14 @@ class RawQCEW(Task):
                 'is_geoid': True
             }),
             Column("own_code", Text, info={
-                'description': "1-character ownership code"
+                'description': "1-character ownership code: http://www.bls.gov/cew/doc/titles/ownership/ownership_titles.htm" # 5 for private
             }),
-            Column("industry_code", Text, info={
-                'description': "6-character Industry Code (NAICS  SuperSector),"
-            }),
+            naics_industry_code(),
             Column("agglvl_code", Text, info={
-                'description': "2-character aggregation level code"
+                'description': "2-character aggregation level code: http://www.bls.gov/cew/doc/titles/agglevel/agglevel_titles.htm"
             }),
             Column("size_code", Text, info={
-                'description': "1-character size code"
+                'description': "1-character size code: http://www.bls.gov/cew/doc/titles/size/size_titles.htm"
             }),
             Column("year", Text, info={
                 'description': "4-character year"
@@ -225,25 +228,142 @@ class RawQCEW(Task):
         return target
 
 
+class SimpleQCEW(Task):
+    '''
+    Isolate the rows of QCEW we actually care about without significantly
+    modifying the schema.  Brings us down to one quarter.
+
+    We pull out private employment at the county level, divided by three-digit
+    NAICS code and supercategory (four-digits, but simpler).
+
+    agglvl 75: 3-digit by ownership
+    agglvl 73: superlevel by ownership
+    '''
+    year = Parameter()
+    qtr = Parameter()
+
+    def columns(self):
+        return RawQCEW(self.year).columns()
+
+    def requires(self):
+        return RawQCEW(self.year)
+
+    def run(self):
+        cursor = pg_cursor()
+        cursor.execute('CREATE TABLE {output} AS '
+                       'SELECT * FROM {qcew} '
+                       "WHERE agglvl_code IN ('75', '73')"
+                       "      AND year = '{year}'"
+                       "      AND qtr = '{qtr}'"
+                       "      AND own_code = '5'".format(
+                           qtr=self.qtr,
+                           year=self.year,
+                           output=self.output(),
+                           qcew=self.input()))
+        cursor.connection.commit()
+
+    def output(self):
+        return TableTarget(self, self.columns())
+
+
 class QCEW(Task):
     '''
     Turn QCEW data into a columnar format that works better for upload
     '''
 
     year = Parameter()
+    qtr = Parameter()
 
     def requires(self):
         return {
-            'qcew': RawQCEW(year=self.year),
+            'qcew': SimpleQCEW(year=self.year, qtr=self.qtr),
             'naics': NAICS()
         }
 
     def columns(self):
+        '''
+        Define a limited set of columns for the export
+        '''
+        yield Column('area_fips', Text)
+        dimensions = ('avg_wkly_wage', 'qtrly_estabs', 'month3_emplvl',
+                      'lq_avg_wkly_wage', 'lq_qtrly_estabs', 'lq_month3_emplvl')
+        naics = self.input()['naics']
+        qcew = self.input()['qcew']
+        code_to_name = dict([(code, category) for code, category in naics.select().execute()])
         cursor = pg_cursor()
-        #for 
+        # TODO implement shared column on industry_code
+        cursor.execute('SELECT DISTINCT {code} FROM {qcew} ORDER BY {code} ASC'.format(
+            code=naics_industry_code().name, qcew=qcew))
+        for code, in cursor:
+            name = code_to_name[code]
+            for dim in dimensions:
+                column = Column(dim + '_' + slug_column(name), Integer, info={
+                    'code': code,
+                    'dimension': dim,
+                    'description': '{dim} for {name}'.format(
+                        dim=qcew.table.columns[dim].info['description'],
+                        name=name
+                    )
+                })
+                yield column
 
     def run(self):
-        pass
+        cursor = pg_cursor()
+        self.output().create()
+        try:
+            cursor.execute('INSERT INTO {output} (area_fips) '
+                           'SELECT distinct area_fips FROM {qcew} '.format(
+                               output=self.output(),
+                               qcew=self.input()['qcew']
+                           ))
+            cursor.connection.commit()
+            for col in self.output().table.columns:
+                if 'code' not in col.info:
+                    continue
+                query = ('UPDATE {output} SET {column} = {dim} '
+                         'FROM {qcew} '
+                         'WHERE {industry_code} = \'{code}\' AND '
+                         '{qcew}.area_fips = {output}.area_fips'.format(
+                             code=col.info['code'],
+                             dim=col.info['dimension'],
+                             output=self.output(),
+                             column=col.name,
+                             qcew=self.input()['qcew'],
+                             industry_code=naics_industry_code().name
+                         ), )[0]
+                cursor.execute(query)
+            cursor.connection.commit()
+        except:
+            self.output().drop()
+            raise
 
     def output(self):
         return TableTarget(self, self.columns())
+
+
+class ExportQCEW(Task):
+
+    year = Parameter()
+    qtr = Parameter()
+    force = BooleanParameter(default=False)
+
+    def requires(self):
+        return {
+            'tiger': ProcessTiger(year=2013),
+            'qcew': QCEW(year=self.year, qtr=self.qtr)
+        }
+
+    def run(self):
+        query = 'SELECT geoid, geom, qcew.* FROM ' \
+                '{qcew} qcew, {tiger} tiger ' \
+                'WHERE tiger.geoid = qcew.area_fips'.format(
+                    qcew=self.input()['qcew'],
+                    tiger='tiger2013.county'
+                )
+        sql_to_cartodb_table(self.output(), query)
+
+    def output(self):
+        target = CartoDBTarget(slug_column(str(self.input()['qcew'])))
+        if self.force and target.exists():
+            target.remove()
+        return target

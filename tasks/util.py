@@ -241,6 +241,9 @@ class CartoDBTarget(Target):
     def __init__(self, tablename):
         self.tablename = tablename
 
+    def __str__(self):
+        return self.tablename
+
     def exists(self):
         resp = query_cartodb('SELECT * FROM "{tablename}" LIMIT 0'.format(
             tablename=self.tablename))
@@ -305,6 +308,9 @@ class TableTarget(Target):
     def drop(self, **kwargs):
         return self.table.drop(**kwargs)
 
+    def select(self):
+        return self.table.select()
+
     def __str__(self):
-        return '"{schema}"."{table}"'.format(schema=self.table.schema,
-                                             table=self.table.name)
+        return '"{schema}".{table}'.format(schema=self.table.schema,
+                                           table=self.table.name)
