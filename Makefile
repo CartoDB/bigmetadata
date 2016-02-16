@@ -8,7 +8,7 @@ python:
 	docker-compose run bigmetadata python
 
 build:
-	docker-compose build bigmetadata
+	docker-compose build
 
 psql:
 	docker-compose run bigmetadata psql

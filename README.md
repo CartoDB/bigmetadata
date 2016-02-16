@@ -1,23 +1,113 @@
-## Big Metadata
+## Bigmetadata
 
-Work on creating a column-based metadata store.
+### What it is
 
-### Running it
+Bigmetadata comprises four parts:
 
-Easiest way to get started is with Docker.  Make sure you have Docker and
-docker-compose up and running on your system.
+    ETL | Observatory | Metadata | Catalog
 
-    docker-compose run bigmetadata /bigmetadata/run.sh
+Everything is dockerized and can be run on a standalone EC2 instance provided
+Docker is available.
 
-This will run metadata generation.  By default this will use your local
-postgres -- if you want to use a different postgres, specify it via shell
-variables in a `.env` file in the the root bigmetadata directory:
+* __ETL__: Luigi tasks that extract data from anywhere on the web, transform the
+  data in modular and observable steps, generate metadata, and upload
+  observatory datasets in the process.  While the ETL pushes transformed
+  datasets to CartoDB, it actually is backed by its own separate
+  Postgres/PostGIS database.
 
-    ### .env
+* __Observatory__: transformed and standardized datasets living on a [CartoDB
+  instance](https://observatory.cartodb.com).  This is where we can pull our
+  actual data from, whether shuffling bytes or using a FDW.  This is also where
+  preview visuals using widgets or other CartoDB JS interfaces can get their
+  underlying data from.
 
-    PGPASSWORD=<mypassword>
-    PGHOST=<myhost>
-    PGUSER=<myuser>
-    PGPORT=<myport>
-    PGOPTIONS="-c default_tablespace=<mytablespace>"
+* __Metadata__: human and machine-readable descriptions of the data in the
+  observatory.  Currently structured as
+  [a large hierarchy of JSON blobs](https://github.com/talos/bmd-data), but
+  I am moving towards a simpler tabular relational store in postgres based off
+  of `information_schema`.  While tables have some minimal metadata, for the
+  most part what is described are columns in tables.
+
+* __Catalog__: a [static HTML guide](https://cartodb.github.io/bigmetadata) to
+  data in the observatory generated from the metadata.  Docs are generated
+  using [Sphinx](http://sphinx-doc.org/) and hosted on GitHub pages.
+
+
+### Installation
+
+You'll need [docker](https://www.docker.com/) and [docker-compose]() to get
+started.  Most of the requirements are available as images, but you will need
+to build the postgres and bigmetadata containers before gettings tarted:
+
+    docker-compose build
+
+You'll then need to configure `CARTODB_API_KEY` and `CARTODB_DOMAIN` in the
+`.env` file in order to upload to CartoDB.
+
+    cp .env.sample .env
+    vim .env
+
+Then get all your containers running in the background:
+
+    docker-compose run -d
+
+### Tasks
+
+Most of the common tasks have already been wrapped up in the `Makefile`.
+
+* `make sphinx`: Regenerate the catalog
+* `make sphinx-deploy`: Deploy the catalog to Github Pages
+* `make acs`: ETL the entirety of the American Community Survey (Census)
+* `make acs-carto`: Upload the ACS to the observatory
+* `make tiger`: ETL the boundary files of the census
+* `make tiger-carto`: Upload the census boundary files to the observatory
+* `make sh`: Drop into the bigmetadata container to run shell scripts
+* `make python`: Drop into an interactive Python shell in the bigmetadata
+  container
+* `make psql`: Drop into an interactive psql session in the bigmetadata
+  container's database
+
+Any other task can be run using `docker-compose`:
+
+    docker-compose run bigmetadata luigi --module tasks.path.to.task \
+      TaskName --param1 val1 --param2 val2
+
+For example, to run QCEW numbers for one quarter:
+
+    docker-compose run bigmetadata luigi --module tasks.us.bls QCEW --year 2014 --qtr 4
+
+### Naming conventions
+
+#### Tables
+
+In bigmetadata's postgres, tables live in a schema that matches their ETL
+task's module.  For example, the ETL process for data from the US Bureau of
+Labor Statistics lives in `tasks.us.bls`, so resulting tables would live in the
+schema `us.bls`.  Tables resulting from a task have an underscored version of
+their class's name, so the `QCEW` task would generate the table
+`"us.bls".qcew`.  If parameters were used in running the task, they are
+appended after, such as `"us.bls".qcew_year_2014_qtr_4`.
+
+When uploaded to cartodb, these the schema is flattened into the table name,
+so `"us.bls".qcew_year_2014_qtr_4` would turn into
+`us_bls_qcew_year_2014_qtr_4`.
+
+#### Columns
+
+Columns in postgres should be fully-qualified, like tables, such as
+`"us.bls.avg_wkly_wage_trade_transportation_and_utilities"`.  When uploaded
+to CartoDB, column names are replaced with a simple `colname` from metadata,
+so the above becomes "simply" `avg_wkly_wage_trade_transportation_and_utilities`.
+
+### Metadata
+
+#### Why favor descriptions of columns over tables in metadata?
+
+Our users need third party data in their maps to make it possible for them to
+better interpret their own data.
+
+In order to make this as simple as possible, we need to rethink the prevailing
+model of finding a table in a relevant dataset (for example, the census in the
+United States), joining it to existing data, and then figuring out what each
+column means from a separate data dictionary.
 
