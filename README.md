@@ -107,7 +107,11 @@ Our users need third party data in their maps to make it possible for them to
 better interpret their own data.
 
 In order to make this as simple as possible, we need to rethink the prevailing
-model of finding a table in a relevant dataset (for example, the census in the
-United States), joining it to existing data, and then figuring out what each
-column means from a separate data dictionary.
+model of finding external data by where it's sourced from.  Instead, we should
+think of finding external data by need.
 
+For example, instead of requiring our user to think "I need race or demographic
+data alongside my data, I'm in the US, so I should look at the census", we
+should enable our user to look up race or demographic data -- and figure out
+which columns they need from the census without particularly worrying about
+delving into the source.
