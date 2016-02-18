@@ -40,7 +40,7 @@ class Index(Task):
         column_with_id = column.copy()
         column_with_id['id'] = column_id
         column_with_id['tables'] = []
-        if int(column.get('weight', 0)) > 0 and column['name'] not in self.CACHE['NAMES']:
+        if int(column.get('weight', 0)) > 2 and column['name'] not in self.CACHE['NAMES']:
             self.CACHE['NAMES'].add(column['name'])
             self.CACHE[self.ES_COLUMN][column_id] = column_with_id
         #econn.index(ES_NAME, ES_COLUMN, id=column_id, body=body)
