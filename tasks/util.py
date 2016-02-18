@@ -9,7 +9,6 @@ import sys
 import time
 import re
 from itertools import izip_longest
-from contextlib import contextmanager
 
 import elasticsearch
 import requests
@@ -18,8 +17,6 @@ from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
 from luigi.postgres import PostgresTarget
 
 from sqlalchemy import Table
-
-from tasks.meta import (metadata, Session)
 
 
 def elastic_conn(index_name='bigmetadata', logger=None):
@@ -326,20 +323,6 @@ class TableTarget(Target):
     def __str__(self):
         return '"{schema}".{table}'.format(schema=self.table.schema,
                                            table=self.table.name)
-
-
-@contextmanager
-def session_scope():
-    """Provide a transactional scope around a series of operations."""
-    session = Session()
-    try:
-        yield session
-        session.commit()
-    except:
-        session.rollback()
-        raise
-    finally:
-        session.close()
 
 
 #def save_metadata(session, table):

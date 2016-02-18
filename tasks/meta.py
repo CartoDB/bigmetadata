@@ -16,6 +16,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, composite
 from sqlalchemy.schema import DDL
 
+from contextlib import contextmanager
+from tasks.util import classpath
+
+
 connection = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
     user=os.environ.get('PGUSER', 'postgres'),
     password=os.environ.get('PGPASSWORD', ''),
@@ -53,8 +57,8 @@ class BMDColumnTable(Base):
 
     colname = Column(String, nullable=False)
 
-    column = relationship("BMDColumn", back_populates="tables")
-    table = relationship("BMDTable", back_populates="columns")
+    column = relationship("BMDColumn", back_populates="tables", cascade="all,delete")
+    table = relationship("BMDTable", back_populates="columns", cascade="all,delete")
 
     extra = Column(JSON)
 
@@ -68,8 +72,6 @@ class BMDColumnToColumn(Base):
 
     source_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
     target_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
-    #source = relationship("BMDColumn", foreign_keys=[source_id])
-    #target = relationship("BMDColumn", foreign_keys=[target_id])
 
     reltype = Column(String, primary_key=True)
 
@@ -77,7 +79,7 @@ class BMDColumnToColumn(Base):
 class BMDColumn(Base):
     __tablename__ = 'bmd_column'
 
-    id = Column(String, primary_key=True) # fully-qualified id like 'us/census/acs/b01001001'
+    id = Column(String, primary_key=True) # fully-qualified id like '"us.census.acs".b01001001'
 
     type = Column(String, nullable=False) # postgres type, IE numeric, string, geometry, etc.
     description = Column(String) # human-readable description to provide in
@@ -87,13 +89,15 @@ class BMDColumn(Base):
     aggregate = Column(String) # what aggregate operation to use when adding
                                # these together across geoms: AVG, SUM etc.
 
-    tables = relationship("BMDColumnTable", back_populates="column")
-    tags = relationship("BMDColumnTag", back_populates="column")
+    tables = relationship("BMDColumnTable", back_populates="column", cascade="all,delete")
+    tags = relationship("BMDColumnTag", back_populates="column", cascade="all,delete")
 
     source_columns = relationship("BMDColumnToColumn", backref='target',
-                                  foreign_keys='BMDColumnToColumn.source_id')
+                                  foreign_keys='BMDColumnToColumn.source_id',
+                                  cascade="all,delete")
     target_columns = relationship("BMDColumnToColumn", backref='source',
-                                  foreign_keys='BMDColumnToColumn.target_id')
+                                  foreign_keys='BMDColumnToColumn.target_id',
+                                  cascade="all,delete")
 
 
 # We should have one of these for every table we load in through the ETL
@@ -102,7 +106,8 @@ class BMDTable(Base):
 
     id = Column(String, primary_key=True) # fully-qualified id like 'us/census/acs/acs5yr_2011/seq0001'
 
-    columns = relationship("BMDColumnTable", back_populates="table")
+    columns = relationship("BMDColumnTable", back_populates="table",
+                           cascade="all,delete")
 
     tablename = Column(String, nullable=False)
     timespan = Column(String)
@@ -118,7 +123,7 @@ class BMDTag(Base):
     name = Column(String, nullable=False)
     description = Column(String)
 
-    columns = relationship("BMDColumnTag", back_populates="tag")
+    columns = relationship("BMDColumnTag", back_populates="tag", cascade="all,delete")
 
 
 class BMDColumnTag(Base):
@@ -127,8 +132,45 @@ class BMDColumnTag(Base):
     column_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
     tag_id = Column(String, ForeignKey('bmd_tag.id'), primary_key=True)
 
-    column = relationship("BMDColumn", back_populates='tags')
-    tag = relationship("BMDTag", back_populates='columns')
+    column = relationship("BMDColumn", back_populates='tags', cascade="all,delete")
+    tag = relationship("BMDTag", back_populates='columns', cascade="all,delete")
+
+
+@contextmanager
+def session_scope():
+    """Provide a transactional scope around a series of operations."""
+    session = Session()
+    try:
+        yield session
+        session.commit()
+    except:
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
+
+class BMD(object):
+
+    def __init__(self):
+        # delete existing columns if they overlap
+        with session_scope() as session:
+            for attrname, obj in type(self).__dict__.iteritems():
+                if not attrname.startswith('__'):
+                    obj.id = self.qualify(obj.id)
+                    existing_obj = session.query(type(obj)).get(obj.id)
+                    if existing_obj:
+                        session.delete(existing_obj)
+
+        # create new columns
+        with session_scope() as session:
+            for attrname, obj in type(self).__dict__.iteritems():
+                if not attrname.startswith('__'):
+                    session.add(obj)
+                    setattr(self, attrname, obj)
+
+    def qualify(self, n):
+        return '"{classpath}".{n}'.format(classpath=classpath(self), n=n)
 
 
 def fromkeys(d, l):
@@ -143,5 +185,5 @@ def fromkeys(d, l):
 #ColumnTableInfoMetadata.__table__.drop(connection)
 #ColumnInfoMetadata.__table__.drop(connection)
 
-Base.metadata.drop_all()
+#Base.metadata.drop_all()
 Base.metadata.create_all()
