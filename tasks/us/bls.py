@@ -11,7 +11,8 @@ import requests
 
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
 from tasks.util import (TableTarget, shell, classpath, pg_cursor, slug_column,
-                        CartoDBTarget, sql_to_cartodb_table)
+                        CartoDBTarget, sql_to_cartodb_table, session_scope,
+                        SessionTask)
 from tasks.us.census.tiger import ProcessTiger
 from psycopg2 import ProgrammingError
 
@@ -22,10 +23,9 @@ naics_industry_code = lambda: Column("industry_code", Text, info={
     'description': "6-character Industry Code (NAICS SuperSector),"
 })
 
-class NAICS(Task):
+class NAICS(SessionTask):
 
     URL = 'http://www.bls.gov/cew/doc/titles/industry/industry_titles.csv'
-    force = BooleanParameter(default=False)
 
     def columns(self):
         return [
@@ -33,23 +33,11 @@ class NAICS(Task):
             Column('industry_title', Text, info={'description': 'Title of NAICS industry'}),
         ]
 
-    def run(self):
-        self.output().create()
-        try:
-            shell("curl '{url}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
-                output=self.output(),
-                url=self.URL
-            ))
-        except:
-            self.output().remove()
-            raise
-
-    def output(self):
-        target = TableTarget(self, self.columns())
-        if self.force:
-            target.drop(checkfirst=True)
-            self.force = False
-        return target
+    def runsession(self, session):
+        shell("curl '{url}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
+            output=self.output(),
+            url=self.URL
+        ))
 
 
 class DownloadQCEW(Task):
@@ -94,16 +82,11 @@ class RawQCEW(Task):
                 'description': "4-character year"
             }),
             Column("qtr", Text, info={
-                'description': "1-character quarter (always A for annual),"
+                'description': "1-character quarter (always A for annual)"
             }),
             Column("disclosure_code", Text, info={
-                'description': "1-character disclosure code (either ' '(blank), or 'N' not disclosed),"
+                'description': "1-character disclosure code (either ' '(blank), or 'N' not disclosed)"
             }),
-            # area_title = Column(Text, info={ 'description': "Multi-character area title associated with the area's FIPS (Excluded from singlefile)," }),
-            # own_title = Column(Text, info={ 'description': "Multi-character ownership title associated with the ownership code (Excluded from singlefile)," }),
-            # industry_title = Column(Text, info={ 'description': "Multi-character industry title associated with the industry code (Excluded from singlefile)," }),
-            # agglvl_title = Column(Text, info={ 'description': "Multi-character aggregation title associated with the agglvl code (Excluded from singlefile)," }),
-            # size_title = Column(Text, info={ 'description': "Multi-character size title associated with the size code (Excluded from singlefile)," }),
             Column("qtrly_estabs", Numeric, info={
                 'description': "Count of establishments for a given quarter"
             }),
@@ -266,7 +249,7 @@ class SimpleQCEW(Task):
         return TableTarget(self, self.columns())
 
 
-class QCEW(Task):
+class QCEW(SessionTask):
     '''
     Turn QCEW data into a columnar format that works better for upload
     '''
@@ -307,38 +290,27 @@ class QCEW(Task):
                 })
                 yield column
 
-    def run(self):
-        cursor = pg_cursor()
-        self.output().create()
-        try:
-            cursor.execute('INSERT INTO {output} (area_fips) '
-                           'SELECT distinct area_fips FROM {qcew} '.format(
-                               output=self.output(),
-                               qcew=self.input()['qcew']
-                           ))
-            cursor.connection.commit()
-            for col in self.output().table.columns:
-                if 'code' not in col.info:
-                    continue
-                query = ('UPDATE {output} SET {column} = {dim} '
-                         'FROM {qcew} '
-                         'WHERE {industry_code} = \'{code}\' AND '
-                         '{qcew}.area_fips = {output}.area_fips'.format(
-                             code=col.info['code'],
-                             dim=col.info['dimension'],
-                             output=self.output(),
-                             column=col.name,
-                             qcew=self.input()['qcew'],
-                             industry_code=naics_industry_code().name
-                         ), )[0]
-                cursor.execute(query)
-            cursor.connection.commit()
-        except:
-            self.output().drop()
-            raise
-
-    def output(self):
-        return TableTarget(self, self.columns())
+    def runsession(self, session):
+        session.execute('INSERT INTO {output} (area_fips) '
+                        'SELECT distinct area_fips FROM {qcew} '.format(
+                            output=self.output(),
+                            qcew=self.input()['qcew']
+                        ))
+        for col in self.output().table.columns:
+            if 'code' not in col.info:
+                continue
+            query = ('UPDATE {output} SET {column} = {dim} '
+                     'FROM {qcew} '
+                     'WHERE {industry_code} = \'{code}\' AND '
+                     '{qcew}.area_fips = {output}.area_fips'.format(
+                         code=col.info['code'],
+                         dim=col.info['dimension'],
+                         output=self.output(),
+                         column=col.name,
+                         qcew=self.input()['qcew'],
+                         industry_code=naics_industry_code().name
+                     ), )[0]
+            session.execute(query)
 
 
 class ExportQCEW(Task):
