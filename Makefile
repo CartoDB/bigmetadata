@@ -16,22 +16,22 @@ psql:
 acs:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.us.census.acs AllACS \
-	  --parallel-scheduling --workers=8 --force
+	  --parallel-scheduling --workers=8
 
 acs-carto:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.us.census.acs ExtractAllACS \
-	  --parallel-scheduling --workers=8 --force \
+	  --parallel-scheduling --workers=8 \
 	  --year 2013 --sample 5yr
 
 tiger:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.us.census.tiger Tiger --force
+	  --module tasks.us.census.tiger Tiger
 
 tiger-carto:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.us.census.tiger ExtractAllTiger \
-	  --parallel-scheduling --workers=8 --force \
+	  --parallel-scheduling --workers=8 \
 	  --year 2013
 
 index:
