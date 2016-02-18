@@ -18,10 +18,8 @@ from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
 from luigi.postgres import PostgresTarget
 
 from sqlalchemy import Table
-from sqlalchemy.schema import CreateSchema
 
-from tasks.meta import (metadata, Session, ColumnDefinition, TableDefinition,
-                        ColumnTableDefinition)
+from tasks.meta import (metadata, Session)
 
 
 def elastic_conn(index_name='bigmetadata', logger=None):
@@ -344,33 +342,33 @@ def session_scope():
         session.close()
 
 
-def save_metadata(session, table):
-    '''
-    Persist the metadata for a new table or update existing metadata.
-    '''
-    table_id = '"' + table.schema + '".' + table.name
-    table_def = session.query(TableDefinition).get(table_id)
-    if not table_def:
-        table_def = TableDefinition(id=table_id, **table.info)
-    else:
-        for key, val in table.info.iteritems():
-            setattr(table_def, key, val)
-
-    session.add(table_def)
-    #for column_name, column in table_meta.columns.iteritems():
-    #    column_meta = session.query(ColumnInfoMetadata).get(column_name)
-    #    if not column_meta:
-    #        column_meta = ColumnInfoMetadata(column_name=column_name, **column.info)
-    #    else:
-    #        column_meta.update(**column.info)
-    #    column_table = ColumnTableInfoMetadata(table=table,
-    #                                           column_name=column_name)
-    #    column_table_meta = session.query(ColumnTableInfoMetadata).filter_by(
-    #        column=column_meta, column_table=column_table).one()
-    #    column_meta.columns.append(column_table_meta)
-    #    session.add(column_meta)
-
-    #session.add(table_meta)
+#def save_metadata(session, table):
+#    '''
+#    Persist the metadata for a new table or update existing metadata.
+#    '''
+#    table_id = '"' + table.schema + '".' + table.name
+#    table_def = session.query(TableDefinition).get(table_id)
+#    if not table_def:
+#        table_def = TableDefinition(id=table_id, **table.info)
+#    else:
+#        for key, val in table.info.iteritems():
+#            setattr(table_def, key, val)
+#
+#    session.add(table_def)
+#    #for column_name, column in table_meta.columns.iteritems():
+#    #    column_meta = session.query(ColumnInfoMetadata).get(column_name)
+#    #    if not column_meta:
+#    #        column_meta = ColumnInfoMetadata(column_name=column_name, **column.info)
+#    #    else:
+#    #        column_meta.update(**column.info)
+#    #    column_table = ColumnTableInfoMetadata(table=table,
+#    #                                           column_name=column_name)
+#    #    column_table_meta = session.query(ColumnTableInfoMetadata).filter_by(
+#    #        column=column_meta, column_table=column_table).one()
+#    #    column_meta.columns.append(column_table_meta)
+#    #    session.add(column_meta)
+#
+#    #session.add(table_meta)
 
 
 class SessionTask(Task):
@@ -404,15 +402,3 @@ class SessionTask(Task):
             target.drop()
             self.force = False
         return target
-
-
-#def test():
-#    with session_scope() as session:
-#        tabledef = TableDefinition(id='"foo.bar".table')
-#        columndef = ColumnDefinition(id='"foo.bar".column')
-#        association = ColumnTableDefinition(column=columndef)
-#        tabledef.columns.append(association)
-#        session.add(tabledef)
-#
-#        import pdb
-#        pdb.set_trace()
