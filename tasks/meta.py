@@ -68,10 +68,8 @@ class BMDColumnToColumn(Base):
 
     source_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
     target_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
-    source = relationship("BMDColumn", back_populates='target_columns',
-                          foreign_keys=[source_id])
-    target = relationship("BMDColumn", back_populates='source_columns',
-                          foreign_keys=[target_id])
+    #source = relationship("BMDColumn", foreign_keys=[source_id])
+    #target = relationship("BMDColumn", foreign_keys=[target_id])
 
     reltype = Column(String, primary_key=True)
 
@@ -92,14 +90,10 @@ class BMDColumn(Base):
     tables = relationship("BMDColumnTable", back_populates="column")
     tags = relationship("BMDColumnTag", back_populates="column")
 
-    source_columns = relationship("BMDColumnToColumn", back_populates='source',
-                                  foreign_keys=[BMDColumnToColumn.source_id])
-    target_columns = relationship("BMDColumnToColumn", back_populates='target',
-                                  foreign_keys=[BMDColumnToColumn.target_id])
-    #primaryjoin=
-    #'and_(ColumnTableInfoMetadata.table_schema==ColumnTableInfo.table_schema, '
-    #'ColumnTableInfoMetadata.table_name==ColumnTableInfo.table_name,'
-    #'ColumnTableInfoMetadata.column_name==ColumnTableInfo.column_name)',
+    source_columns = relationship("BMDColumnToColumn", backref='target',
+                                  foreign_keys='BMDColumnToColumn.source_id')
+    target_columns = relationship("BMDColumnToColumn", backref='source',
+                                  foreign_keys='BMDColumnToColumn.target_id')
 
 
 # We should have one of these for every table we load in through the ETL

@@ -12,12 +12,18 @@ def setup():
     Base.metadata.drop_all()
     Base.metadata.create_all()
     with session_scope() as session:
+        population_tag = BMDTag(id='population', name='population')
+        session.add(population_tag)
         datacols = {
             'median_rent': BMDColumn(id='"us.census.acs".median_rent', type='numeric'),
             'total_pop': BMDColumn(id='"us.census.acs".total_pop', type='numeric'),
             'male_pop': BMDColumn(id='"us.census.acs".male_pop', type='numeric'),
             'female_pop': BMDColumn(id='"us.census.acs".female_pop', type='numeric'),
         }
+        for numerator_col in ('male_pop', 'female_pop', ):
+            session.add(BMDColumnToColumn(source=datacols[numerator_col],
+                                          target=datacols['total_pop'],
+                                          reltype='denominator'))
         tract_geoid = BMDColumn(id='"us.census.acs".tract_2013_geoid', type='text')
         puma_geoid = BMDColumn(id='"us.census.acs".puma_2013_geoid', type='text')
         tables = {
@@ -33,6 +39,9 @@ def setup():
                                    column=puma_geoid,
                                    colname='geoid'))
         for colname, datacol in datacols.iteritems():
+            if colname.endswith('pop'):
+                session.add(BMDColumnTag(tag=population_tag,
+                                         column=datacol))
             for table in tables.values():
                 coltable = BMDColumnTable(column=datacol,
                                           table=table,
@@ -72,7 +81,9 @@ def test_tags_in_columns():
     '''
     Columns can refer to tags.
     '''
-    pass
+    with session_scope() as session:
+        column = session.query(BMDColumn).get('"us.census.acs".total_pop')
+        assert_equals(['population'], [tag.tag.name for tag in column.tags])
 
 
 @with_setup(setup, teardown)
@@ -80,12 +91,21 @@ def test_columns_in_tags():
     '''
     Tags can refer to columns.
     '''
-    pass
+    with session_scope() as session:
+        tag = session.query(BMDTag).get('population')
+        assert_equals(3, len(tag.columns))
 
 
 @with_setup(setup, teardown)
-def test_column_to_column():
+def test_column_to_column_target():
     '''
-    Columns can refer to other columns.
+    Columns can refer to other columns as a target.
     '''
-    pass
+    with session_scope() as session:
+        column = session.query(BMDColumn).get('"us.census.acs".female_pop')
+        assert_equals(0, len(column.source_columns))
+        assert_equals(1, len(column.target_columns))
+
+        target = column.target_columns[0]
+        assert_equals(target.reltype, 'denominator')
+        assert_equals(target.target.id, '"us.census.acs".total_pop')
