@@ -741,7 +741,7 @@ class ExtractACS(Task):
         table_ids = sorted(table_ids)
         column_ids = sorted(column_ids)
 
-        if self.sumlevel == '795':
+        if self.sumlevel in ('795', '860'):
             geoid = 'geoid10'
         else:
             geoid = 'geoid'
