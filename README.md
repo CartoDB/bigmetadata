@@ -51,7 +51,7 @@ to build the postgres and bigmetadata containers before gettings tarted:
 
 Then get all your containers running in the background:
 
-    docker-compose run -d
+    docker-compose up -d
 
 ### Tasks
 
