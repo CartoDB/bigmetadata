@@ -31,6 +31,7 @@ class Columns(BMD):
     total_pop = BMDColumn(
         id='B01001001',
         type='Numeric',
+        name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
         aggregate='sum',
         tags=[BMDColumnTag(tag=tags.denominator),
@@ -39,6 +40,7 @@ class Columns(BMD):
     male_pop = BMDColumn(
         id='B01001002',
         type='Numeric',
+        name="Male Population",
         description="The number of people within each geography who are male.",
         aggregate='sum',
         target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
@@ -47,11 +49,49 @@ class Columns(BMD):
     female_pop = BMDColumn(
         id='B01001026',
         type='Numeric',
+        name="Female Population",
         description="The number of people within each geography who are female.",
         aggregate='sum',
         target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
         tags=[BMDColumnTag(tag=tags.population)]
     )
+    white_pop = BMDColumn(
+        id='B03002003',
+        type='Numeric',
+        name="White Population",
+        description="The number of people identifying as white, non-Hispanic in each geography.",
+        aggregate='sum',
+        target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
+        tags=[BMDColumnTag(tag=tags.population)]
+    )
+    black_pop = BMDColumn(
+        id='B03002004',
+        type='Numeric',
+        name='Black or African American Population',
+        description="The number of people identifying as black or African American, non-Hispanic in each geography.",
+        aggregate='sum',
+        target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
+        tags=[BMDColumnTag(tag=tags.population)]
+    )
+    asian_pop = BMDColumn(
+        id='B03002006',
+        type='Numeric',
+        name='Asian Population',
+        description="The number of people identifying as Asian, non-Hispanic in each geography.",
+        aggregate='sum',
+        target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
+        tags=[BMDColumnTag(tag=tags.population)]
+    )
+    hispanic_pop = BMDColumn(
+        id='B03002012',
+        type='Numeric',
+        name='Asian Population',
+        description="The number of people identifying as Hispanic or Latino in each geography.",
+        aggregate='sum',
+        target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
+        tags=[BMDColumnTag(tag=tags.population)]
+    )
+
 
 columns = Columns()
 
@@ -248,7 +288,7 @@ class DownloadACS(LoadPostgresFromURL):
         return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
 
     def identifier(self):
-        return self.schema + '.census_table_metadata'
+        return self.schema
 
     def run(self):
         cursor = pg_cursor()
@@ -305,102 +345,57 @@ class Extract(SessionTask):
             geography = load_sumlevels()[self.sumlevel]['table']
             return ShorelineClipTiger(year=self.year, geography=geography)
 
+    columns = [
+        BMDColumnTable(colname='total_pop', column=columns.total_pop),
+        BMDColumnTable(colname='female_pop', column=columns.female_pop),
+        BMDColumnTable(colname='male_pop', column=columns.male_pop),
+        BMDColumnTable(colname='white_pop', column=columns.white_pop),
+        BMDColumnTable(colname='black_pop', column=columns.black_pop),
+        BMDColumnTable(colname='asian_pop', column=columns.asian_pop),
+        BMDColumnTable(colname='hispanic_pop', column=columns.hispanic_pop)
+    ]
+
     def requires(self):
         return DownloadACS(year=self.year, sample=self.sample)
 
-    def columns(self):
-        return [
-            BMDColumnTable(colname='total_pop', column=columns.total_pop),
-            BMDColumnTable(colname='female_pop', column=columns.female_pop),
-            BMDColumnTable(colname='male_pop', column=columns.male_pop)
-        ]
-
     def runsession(self, session):
         '''
+        load relevant columns from underlying census tables
         '''
-        elastic = elastic_conn()
-
-        # TODO use metadata to get here
-        if not self.clipped:
-            tiger_id = 'tiger' + self.year + '.' + load_sumlevels()[self.sumlevel]['table']
-        else:
-            tiger_id = self.input().table
-
-        columns = elastic.search(
-            doc_type='column',
-            body={
-                "filter": {
-                    "bool": {
-                        "must": [{
-                            "range": {
-                                "weight": {
-                                    "from": 3, "to": 10
-                                }
-                            },
-                        }, {
-                            "missing": {
-                                "field": "extra.margin_of_error"
-                            },
-                        }]
-                    }
-                }
-            }, size=10000)['hits']['hits']
-
-        table_ids = set()
-        column_ids = set()
-        # Iterate through related tables, check to see if it's a
-        # year/resolution we want to extract
-        for column in columns:
-            # TODO store original column name natively
-            column_id = column['_id'].split('/')[-1].split('.')[0]
-            column_slug = slug_column(column['_source']['name'])
-
-            for table in column['_source'].get('tables', []):
-                try:
-                    schema, tablename = table['title'].split('.')
-                except ValueError:
-                    # TODO this should be consistently done with period
-                    schema, tablename = table['title'].split(' ')
-                if schema == 'acs{}_{}'.format(self.year, self.sample):
-                    # TODO store schema and tablename data natively
-                    table_ids.add('.'.join([schema, tablename]))
-                    table_ids.add('.'.join([schema, tablename]) + '_moe')
-                    column_ids.add((column_id, column_slug, ))
-                    column_ids.add((column_id + '_moe', column_slug + '_moe', ))
-
-        table_ids = sorted(table_ids)
-        column_ids = sorted(column_ids)
-
-        if not self.clipped and self.sumlevel in ('795', '860'):
-            geoid = 'geoid10'
-        else:
-            geoid = 'geoid'
-        query = u"SELECT geom, {tiger}.{geoid} as geoid, {columns} FROM {first_table} " \
-                u"JOIN {tables} USING (geoid) JOIN {tiger} " \
-                "ON {tiger}.{geoid} = SUBSTR({first_table}.geoid, 8) " \
-                "WHERE substr({first_table}.geoid, 1, 7) = '{resolution}00US'".format(
-                    geoid=geoid,
-                    columns=u', '.join([c[0] + ' AS "' + c[1] + '"' for c in column_ids]),
-                    tiger=tiger_id,
-                    first_table=table_ids.pop(),
-                    tables=u' USING (geoid) JOIN '.join(table_ids),
-                    resolution=self.sumlevel
-                )
-        LOGGER.info(query)
-        sql_to_cartodb_table(self.tablename(), query)
-
-    def tablename(self):
-        # TODO use metadata to get here
-        resolution = load_sumlevels()[self.sumlevel]['slug'].replace('-', '_')
-        return 'us_census_acs{year}_{sample}_{resolution}{clipped}'.format(
-            year=self.year, sample=self.sample, resolution=resolution,
-            clipped='_clipped' if self.clipped else '')
-
-    def output(self):
-        target = CartoDBTarget(self.tablename())
-        if self.force and target.exists():
-            target.remove()
-        return target
+        #result = session.execute(
+        #    "SELECT * FROM user WHERE id=:param",
+        #    {"param":5}
+        #)
+        sumlevel = '040' # TODO
+        colids = []
+        colnames = []
+        tableids = set()
+        inputschema = self.input().table
+        for coltable in self.columns:
+            session.add(coltable)
+            session.add(coltable.column)
+            colid = coltable.column.id.split('.')[-1]
+            colids.append(colid)
+            colnames.append(coltable.colname)
+            tableids.add(colid[0:6])
+        tableclause = '"{inputschema}".{inputtable} '.format(
+            inputschema=inputschema, inputtable=tableids.pop())
+        for tableid in tableids:
+            tableclause += 'JOIN "{inputschema}".{inputtable} ' \
+                           'USING (geoid)'.format(inputschema=inputschema,
+                                                inputtable=tableid)
+        session.execute('INSERT INTO {output} ({colnames}) '
+                        '  SELECT {colids} '
+                        '  FROM {tableclause} '
+                        '  WHERE geoid LIKE :sumlevelprefix '
+                        ''.format(
+                            output=self.output().table_id,
+                            colnames=', '.join(colnames),
+                            colids=', '.join(colids),
+                            tableclause=tableclause
+                        ), {
+                            'sumlevelprefix': sumlevel + '00US%'
+                        })
 
 
 class ExtractAllACS(Task):
