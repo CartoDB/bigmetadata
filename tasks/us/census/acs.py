@@ -18,7 +18,8 @@ from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, slug_column)
 from tasks.us.census.tiger import load_sumlevels
 from psycopg2 import ProgrammingError
-from tasks.us.census.tiger import SUMLEVELS, load_sumlevels, ShorelineClipTiger
+from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, columns,
+                                   ShorelineClipTiger)
 
 from tasks.meta import (BMD, BMDColumn, BMDTag, BMDColumnToColumn, SessionTask,
                         BMDColumnTag, session_scope, BMDColumnTable)
@@ -93,7 +94,7 @@ class Columns(BMD):
     )
 
 
-columns = Columns()
+ACS_COLUMNS = Columns()
 
 #
 #HIGH_WEIGHT_TABLES = set([
@@ -345,15 +346,18 @@ class Extract(SessionTask):
             geography = load_sumlevels()[self.sumlevel]['table']
             return ShorelineClipTiger(year=self.year, geography=geography)
 
-    columns = [
-        BMDColumnTable(colname='total_pop', column=columns.total_pop),
-        BMDColumnTable(colname='female_pop', column=columns.female_pop),
-        BMDColumnTable(colname='male_pop', column=columns.male_pop),
-        BMDColumnTable(colname='white_pop', column=columns.white_pop),
-        BMDColumnTable(colname='black_pop', column=columns.black_pop),
-        BMDColumnTable(colname='asian_pop', column=columns.asian_pop),
-        BMDColumnTable(colname='hispanic_pop', column=columns.hispanic_pop)
-    ]
+    def generate_columns(self):
+        return [
+            BMDColumnTable(colname='geoid',
+                           column=getattr(TIGER_COLUMNS, self.resolution)),
+            BMDColumnTable(colname='total_pop', column=ACS_COLUMNS.total_pop),
+            BMDColumnTable(colname='female_pop', column=ACS_COLUMNS.female_pop),
+            BMDColumnTable(colname='male_pop', column=ACS_COLUMNS.male_pop),
+            BMDColumnTable(colname='white_pop', column=ACS_COLUMNS.white_pop),
+            BMDColumnTable(colname='black_pop', column=ACS_COLUMNS.black_pop),
+            BMDColumnTable(colname='asian_pop', column=ACS_COLUMNS.asian_pop),
+            BMDColumnTable(colname='hispanic_pop', column=ACS_COLUMNS.hispanic_pop)
+        ]
 
     def requires(self):
         return DownloadACS(year=self.year, sample=self.sample)
@@ -362,16 +366,12 @@ class Extract(SessionTask):
         '''
         load relevant columns from underlying census tables
         '''
-        #result = session.execute(
-        #    "SELECT * FROM user WHERE id=:param",
-        #    {"param":5}
-        #)
         sumlevel = '040' # TODO
         colids = []
         colnames = []
         tableids = set()
         inputschema = self.input().table
-        for coltable in self.columns:
+        for coltable in self.columns():
             session.add(coltable)
             session.add(coltable.column)
             colid = coltable.column.id.split('.')[-1]
@@ -383,7 +383,7 @@ class Extract(SessionTask):
         for tableid in tableids:
             tableclause += 'JOIN "{inputschema}".{inputtable} ' \
                            'USING (geoid)'.format(inputschema=inputschema,
-                                                inputtable=tableid)
+                                                  inputtable=tableid)
         session.execute('INSERT INTO {output} ({colnames}) '
                         '  SELECT {colids} '
                         '  FROM {tableclause} '
