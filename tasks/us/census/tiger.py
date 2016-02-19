@@ -10,6 +10,7 @@ import subprocess
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
                         DefaultPostgresTarget, CartoDBTarget,
                         sql_to_cartodb_table, grouper, shell, slug_column)
+from tasks.meta import BMD, SessionTask, BMDColumnTable, BMDColumn
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
 from psycopg2 import ProgrammingError
 
@@ -24,40 +25,6 @@ HIGH_WEIGHT_COLUMNS = set([
     "state",
     "zcta5"
 ])
-
-
-class TigerSumLevel(LocalTarget):
-
-    def __init__(self, sumlevel):
-        self.sumlevel = sumlevel
-        self.data = SUMLEVELS[sumlevel]
-        super(TigerSumLevel, self).__init__(
-            path=os.path.join('data', 'columns', classpath(self),
-                              self.data['slug']) + '.json')
-
-    def generate(self):
-        relationships = {}
-        if self.data['ancestors']:
-            relationships['ancestors'] = self.data['ancestors']
-        if self.data['parent']:
-            relationships['parent'] = self.data['parent']
-        obj = {
-            'name': self.data['name'],
-            'description': self.data['census_description'],
-            'extra': {
-                'summary_level': self.data['summary_level'],
-                'source': self.data['source']
-            },
-            'tags': ['boundary']
-        }
-        if self.data['slug'] in HIGH_WEIGHT_COLUMNS:
-            obj['weight'] = 2
-        else:
-            obj['weight'] = 0
-        if relationships:
-            obj['relationships'] = relationships
-        with self.open('w') as outfile:
-            json.dump(obj, outfile, indent=2, sort_keys=True)
 
 
 class DownloadTigerGeography(Task):
@@ -139,7 +106,7 @@ class TigerGeographyShapefileToSQL(Task):
                                                    table=self.table, year=self.year)
 
     def complete(self):
-        if self.force == True:
+        if self.force is True:
             return False
         return super(TigerGeographyShapefileToSQL, self).complete()
 
@@ -198,7 +165,7 @@ class DownloadTiger(LoadPostgresFromURL):
         return 'tiger{year}'.format(year=self.year)
 
     def identifier(self):
-        return self.schema + '.census_names'
+        return self.schema
 
     def run(self):
         cursor = pg_cursor()
@@ -364,28 +331,74 @@ class ShorelineClipTiger(Task):
         return target
 
 
-class ProcessTiger(Task):
+#class ProcessTiger(Task):
+#
+#    force = BooleanParameter(default=False)
+#    year = Parameter()
+#
+#    def requires(self):
+#        yield DownloadTiger(year=self.year)
+#
+#    def output(self):
+#        for sumlevel in SUMLEVELS:
+#            yield TigerSumLevel(sumlevel)
+#
+#    def complete(self):
+#        if self.force:
+#            return False
+#        else:
+#            return super(ProcessTiger, self).complete()
+#
+#    def run(self):
+#        for output in self.output():
+#            output.generate()
+#        self.force = False
+
+class SumLevel(SessionTask):
 
     force = BooleanParameter(default=False)
+    geography = Parameter()
     year = Parameter()
 
+    def columns(self):
+        schema = '"' + classpath(self) + '"'
+        return [
+            BMDColumnTable(
+                colname='geoid',
+                column=BMDColumn(
+                    id='{schema}.{geography}_{year}_geoid'.format(
+                        schema=schema,
+                        geography=self.geography.replace('-', '_'),
+                        year=self.year
+                    ),
+                    type='Text'
+                )
+            ),
+            BMDColumnTable(
+                colname='geom',
+                column=BMDColumn(
+                    id='{schema}.{geography}_{year}_geom'.format(
+                        schema=schema,
+                        geography=self.geography.replace('-', '_'),
+                        year=self.year
+                    ),
+                    type='Geometry'
+                )
+            )
+        ]
+
     def requires(self):
-        yield DownloadTiger(year=self.year)
+        return DownloadTiger(year=self.year)
 
-    def output(self):
-        for sumlevel in SUMLEVELS:
-            yield TigerSumLevel(sumlevel)
-
-    def complete(self):
-        if self.force:
-            return False
-        else:
-            return super(ProcessTiger, self).complete()
-
-    def run(self):
-        for output in self.output():
-            output.generate()
-        self.force = False
+    def runsession(self, session):
+        input_tablename = SUMLEVELS_BY_SLUG[self.geography]['table']
+        session.execute('INSERT INTO {output} (geoid, geom) '
+                        'SELECT geoid, geom '
+                        'FROM {inputschema}.{input_tablename}'.format(
+                            inputschema=self.input().table,
+                            input_tablename=input_tablename,
+                            output=self.output().table_id
+                        ))
 
 
 class Tiger(WrapperTask):
@@ -485,3 +498,4 @@ class ExtractAllTiger(Task):
                                    force=self.force)
 
 SUMLEVELS = load_sumlevels()
+SUMLEVELS_BY_SLUG = dict([(v['slug'], v) for k, v in SUMLEVELS.iteritems()])
