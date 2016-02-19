@@ -225,7 +225,7 @@ class LoadPostgresFromURL(Task):
 
     def output(self):
         id_ = self.identifier()
-        return DefaultPostgresTarget(table=id_, update_id=id_)
+        return DefaultPostgresTarget(table=id_)
 
     def identifier(self):
         raise NotImplementedError()
