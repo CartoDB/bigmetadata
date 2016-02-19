@@ -15,14 +15,13 @@ import os
 from sqlalchemy import Column, Numeric, Text
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
-                        CartoDBTarget, get_logger,
-                        slug_column, SessionTask)
+                        CartoDBTarget, get_logger, slug_column)
 from tasks.us.census.tiger import load_sumlevels
 from psycopg2 import ProgrammingError
 from tasks.us.census.tiger import SUMLEVELS, load_sumlevels, ShorelineClipTiger
 
-from tasks.meta import (BMD, BMDColumn, BMDTag, BMDColumnToColumn,
-                        BMDColumnTag, session_scope)
+from tasks.meta import (BMD, BMDColumn, BMDTag, BMDColumnToColumn, SessionTask,
+                        BMDColumnTag, session_scope, BMDColumnTable)
 from tasks.tags import tags
 
 LOGGER = get_logger(__name__)
@@ -311,10 +310,9 @@ class Extract(SessionTask):
 
     def columns(self):
         return [
-            ColumnTable(column=geoid),
-            ColumnTable(column=total_pop),
-            ColumnTable(column=female_pop),
-            ColumnTable(column=male_pop)
+            BMDColumnTable(colname='total_pop', column=columns.total_pop),
+            BMDColumnTable(colname='female_pop', column=columns.female_pop),
+            BMDColumnTable(colname='male_pop', column=columns.male_pop)
         ]
 
     def runsession(self, session):
