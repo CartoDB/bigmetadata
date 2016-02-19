@@ -35,7 +35,7 @@ Docker is available.
 
 ### Installation
 
-You'll need [docker](https://www.docker.com/) and [docker-compose]() to get
+You'll need [docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) to get
 started.  Most of the requirements are available as images, but you will need
 to build the postgres and bigmetadata containers before gettings tarted:
 
