@@ -36,16 +36,18 @@ Docker is available.
 ### Installation
 
 You'll need [docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) to get
-started.  Most of the requirements are available as images, but you will need
-to build the postgres and bigmetadata containers before gettings tarted:
-
-    docker-compose build
+started.
 
 You'll then need to configure `CARTODB_API_KEY` and `CARTODB_DOMAIN` in the
 `.env` file in order to upload to CartoDB.
 
     cp .env.sample .env
     vim .env
+
+Most of the requirements are available as images, but you will need
+to build the postgres and bigmetadata containers before gettings tarted:
+
+    docker-compose build
 
 Then get all your containers running in the background:
 
