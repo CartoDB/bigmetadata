@@ -66,7 +66,7 @@ class RawQCEW(Task):
         return [
             Column("area_fips", Text, info={
                 'description': "5-character FIPS code (State-county)",
-                'is_geoid': True
+                'target': True
             }),
             Column("own_code", Text, info={
                 'description': "1-character ownership code: http://www.bls.gov/cew/doc/titles/ownership/ownership_titles.htm" # 5 for private

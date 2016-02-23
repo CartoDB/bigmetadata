@@ -225,9 +225,9 @@ class SessionTask(Task):
 
     def output(self):
         target = TableTarget(self, self.columns)
-        #if self.force:
-        #    target.table.drop()
-        #    self.force = False
+        if self.force:
+            target.table.drop()
+            self.force = False
         return target
 
 

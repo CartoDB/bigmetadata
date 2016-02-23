@@ -18,7 +18,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, slug_column)
 from tasks.us.census.tiger import load_sumlevels
 from psycopg2 import ProgrammingError
-from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, columns,
+from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, TIGER_GEOID_COLUMNS,
                                    ShorelineClipTiger)
 
 from tasks.meta import (BMD, BMDColumn, BMDTag, BMDColumnToColumn, SessionTask,
@@ -689,7 +689,7 @@ class Extract(SessionTask):
     def generate_columns(self):
         return [
             BMDColumnTable(colname='geoid',
-                           column=getattr(TIGER_COLUMNS, self.resolution)),
+                           column=getattr(TIGER_GEOID_COLUMNS, self.geography)),
             BMDColumnTable(colname='total_pop', column=ACS_COLUMNS.total_pop),
             BMDColumnTable(colname='female_pop', column=ACS_COLUMNS.female_pop),
             BMDColumnTable(colname='male_pop', column=ACS_COLUMNS.male_pop),

@@ -2,6 +2,14 @@
 Test metadata functions
 '''
 
+from tasks.util import shell
+
+# TODO clean this up in a more general init script
+try:
+    shell('createdb test')
+except:
+    pass
+
 from nose.tools import assert_equals, with_setup
 from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
                         BMDTag, BMDColumnTag, Base)
