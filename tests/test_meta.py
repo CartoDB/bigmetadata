@@ -5,7 +5,7 @@ Test metadata functions
 from nose.tools import assert_equals, with_setup
 from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
                         BMDTag, BMDColumnTag, Base)
-from tasks.util import session_scope
+from tasks.meta import session_scope
 
 
 def setup():
