@@ -114,3 +114,29 @@ def test_column_target_relations_create_update():
         assert_equals(session.query(BMDColumnTable).count(), 1)
         assert_equals(session.query(BMDTable).count(), 1)
 
+
+@with_setup(setup, teardown)
+def test_column_target_many_inits():
+    col = ColumnTarget(BMDColumn(id='foobar',
+                                 type='Numeric',
+                                 name="Total Population",
+                                 description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+                                 aggregate='sum',
+                                 weight=10))
+
+    with session_scope() as session:
+        assert_equals(session.query(BMDColumn).count(), 0)
+        col.update_or_create(session)
+        assert_equals(session.query(BMDColumn).count(), 1)
+
+    col = ColumnTarget(BMDColumn(id='foobar',
+                                 type='Numeric',
+                                 name="Total Population",
+                                 description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+                                 aggregate='sum',
+                                 weight=10))
+
+    with session_scope() as session:
+        assert_equals(session.query(BMDColumn).count(), 1)
+        col.update_or_create(session)
+        assert_equals(session.query(BMDColumn).count(), 1)
