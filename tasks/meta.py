@@ -216,17 +216,6 @@ def fromkeys(d, l):
     return dict((k, v) for k, v in d.iteritems() if v is not None)
 
 
-def update_or_create(session, obj, predicate):
-    try:
-        with session.no_autoflush:
-            existing_obj = session.query(type(obj)).filter(*predicate(obj)).one()
-        for key, val in obj.__dict__.iteritems():
-            if not key.startswith('__'):
-                setattr(existing_obj, key, val)
-        return existing_obj
-    except NoResultFound:
-        session.add(obj)
-        return obj
 
 
 #

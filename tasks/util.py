@@ -18,7 +18,7 @@ from luigi.postgres import PostgresTarget
 
 from sqlalchemy import Table, types, Column
 
-from tasks.meta import (BMDColumn, BMDTable, update_or_create, metadata,
+from tasks.meta import (BMDColumn, BMDTable, metadata,
                         BMDColumnTable, session_scope)
 
 
@@ -268,7 +268,8 @@ class ColumnTarget(Target):
     '''
 
     def __init__(self, column):
-        self._id = '"' + classpath(self) + '"' + column.id
+        #self._id = '"' + classpath(self) + '".' + column.id
+        self._id = column.id
         column.id = self._id
         self._column = column
 
@@ -279,7 +280,7 @@ class ColumnTarget(Target):
         existing = self._get(session)
         if existing:
             for key, val in self._column.__dict__.iteritems():
-                if not key.startswith('__'):
+                if not key.startswith('_'):
                     setattr(existing, key, val)
         else:
             session.add(self._column)
@@ -516,3 +517,14 @@ class SessionTask(Task):
         return target
 
 
+#def update_or_create(session, obj, predicate):
+#    try:
+#        with session.no_autoflush:
+#            existing_obj = session.query(type(obj)).filter(*predicate(obj)).one()
+#        for key, val in obj.__dict__.iteritems():
+#            if not key.startswith('__'):
+#                setattr(existing_obj, key, val)
+#        return existing_obj
+#    except NoResultFound:
+#        session.add(obj)
+#        return obj
