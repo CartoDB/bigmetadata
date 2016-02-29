@@ -1,7 +1,7 @@
-from tasks.meta import BMDTag, BMD
+from tasks.meta import BMDTag
 
 
-class Tags(BMD):
+class Tags():
     denominator = BMDTag(
         id='denominator',
         name='Denominator',
@@ -34,5 +34,3 @@ class Tags(BMD):
         id='boundary',
         name='Boundaries',
         description='Use these to provide regions for sound comparison and analysis.')
-
-tags = Tags()

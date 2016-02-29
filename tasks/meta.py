@@ -4,6 +4,7 @@ meta.py
 functions for persisting metadata about tables loaded via ETL
 '''
 
+from contextlib import contextmanager
 import os
 import re
 
@@ -11,15 +12,12 @@ from luigi import Task, BooleanParameter, Target
 
 from sqlalchemy import (Column, Integer, String, Boolean, MetaData,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
-                        ForeignKeyConstraint, Table, types)
+                        ForeignKeyConstraint, Table)
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, composite
-from sqlalchemy.schema import DDL
-
-from contextlib import contextmanager
-from tasks.util import classpath, camel_to_underscore, slug_column
+from sqlalchemy.orm.exc import NoResultFound
 
 
 connection = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
@@ -31,6 +29,7 @@ connection = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.for
 ))
 
 metadata = MetaData(connection)
+
 
 # Create necessary schemas
 #event.listen(metadata, 'before_create', DDL('CREATE SCHEMA IF NOT EXISTS %(schema)s').execute_if(
@@ -163,27 +162,49 @@ def session_scope():
         session.close()
 
 
-class BMD(object):
-
-    def __init__(self):
-        # delete existing columns if they overlap
-        with session_scope() as session:
-            for attrname, obj in type(self).__dict__.iteritems():
-                if not attrname.startswith('__'):
-                    obj.id = self.qualify(obj.id)
-                    existing_obj = session.query(type(obj)).get(obj.id)
-                    if existing_obj:
-                        session.delete(existing_obj)
-
-        # create new columns
-        with session_scope() as session:
-            for attrname, obj in type(self).__dict__.iteritems():
-                if not attrname.startswith('__'):
-                    session.add(obj)
-                    setattr(self, attrname, obj)
-
-    def qualify(self, n):
-        return '"{classpath}".{n}'.format(classpath=classpath(self), n=n)
+#class BMD(object):
+#
+#    def __init__(self, session):
+#        # update existing columns without destroying relationships
+#        #with session_scope() as session:
+#        #    for attrname, obj in type(self).__dict__.iteritems():
+#        #        if not attrname.startswith('__'):
+#        #            obj.id = self.qualify(obj.id)
+#        #            existing_obj = session.query(type(obj)).get(obj.id)
+#        #            if existing_obj:
+#        #                #for k, v in obj.__dict__.iteritems():
+#        #                #    if not k.startswith('__'):
+#        #                #        setattr(
+#        #                session.delete(existing_obj)
+#
+#        # create new columns, or update existing without destroying
+#        # relationships
+#        #with session_scope() as session:
+#        for attrname, obj in type(self).__dict__.iteritems():
+#            if not attrname.startswith('__'):
+#                get_or_update = self.build_get_or_update(obj)
+#                setattr(self, attrname, get_or_update)
+#                get_or_update(session)
+#
+#    def build_get_or_update(self, bmd_obj):
+#        def get_or_update(session):
+#            existing_obj = session.query(type(bmd_obj)).get(self.qualify(
+#                self.qualify(bmd_obj.id)))
+#            if existing_obj:
+#                for key, val in bmd_obj.__dict__.iteritems():
+#                    if not key.startswith('__'):
+#                        setattr(existing_obj, key, val)
+#                return existing_obj
+#            else:
+#                session.add(bmd_obj)
+#                bmd_obj.id = self.qualify(bmd_obj.id)
+#                return bmd_obj
+#        return get_or_update
+#
+#    def qualify(self, n):
+#        if n.startswith('"'):
+#            return n
+#        return '"{classpath}".{n}'.format(classpath=classpath(self), n=n)
 
 
 def fromkeys(d, l):
@@ -195,97 +216,18 @@ def fromkeys(d, l):
     return dict((k, v) for k, v in d.iteritems() if v is not None)
 
 
-class SessionTask(Task):
-    '''
-    A Task whose `runession` and `columns` methods should be overriden, and
-    executes creating a single output table defined by its name, path, and
-    defined columns.
-    '''
+def update_or_create(session, obj, predicate):
+    try:
+        with session.no_autoflush:
+            existing_obj = session.query(type(obj)).filter(*predicate(obj)).one()
+        for key, val in obj.__dict__.iteritems():
+            if not key.startswith('__'):
+                setattr(existing_obj, key, val)
+        return existing_obj
+    except NoResultFound:
+        session.add(obj)
+        return obj
 
-    force = BooleanParameter(default=False)
-
-    def generate_columns(self):
-        return NotImplementedError('Must implement columns method that returns '
-                                   'an iterable sequence of columns for the '
-                                   'table generated by this task.')
-
-    def columns(self):
-        if not hasattr(self, '_columns'):
-            self._columns = self.generate_columns()
-        return self._columns
-
-    def runsession(self, session):
-        return NotImplementedError('Must implement runsession method that '
-                                   'populates the table')
-
-    def run(self):
-        with session_scope() as session:
-            self.output().create() # TODO in session
-            self.runsession(session)
-
-    def output(self):
-        target = TableTarget(self, self.columns)
-        if self.force:
-            target.table.drop()
-            self.force = False
-        return target
-
-
-class TableTarget(Target):
-
-    def __init__(self, task, columntables, timespan=None, bounds=None,
-                 description=None):
-        task_id = camel_to_underscore(task.task_id)
-        task_id = task_id.replace('force=_false', '')
-        task_id = task_id.replace('force=_true', '')
-        self.tablename = re.sub(r'[^a-z0-9]+', '_', task_id).strip('_')
-        self.schema = classpath(task)
-        self.table_id = '"{schema}".{tablename}'.format(schema=self.schema,
-                                                        tablename=self.tablename)
-        self.columntables = columntables
-        self.timespan = timespan
-        self.bounds = bounds
-        self.description = description
-
-    def table(self, session):
-        #return session.query(Table
-        import pdb
-        pdb.set_trace()
-
-    def exists(self):
-        return False # TODO
-        #return self.table().exists()
-
-    def create(self, **kwargs):
-        columns = []
-
-        with session_scope() as session:
-            existing_table = session.query(BMDTable).get(self.table_id)
-            if existing_table:
-                session.delete(existing_table)
-
-        with session_scope() as session:
-            session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
-                schema=self.schema))
-            metatable = BMDTable(id=self.table_id,
-                                 tablename=slug_column(self.table_id),
-                                 bounds=self.bounds, timespan=self.timespan,
-                                 description=self.description)
-            for columntable in self.columntables():
-                session.add(columntable)
-                session.add(columntable.column)
-                columntable.table = metatable
-                if columntable.column.type.lower() == 'geometry':
-                    coltype = Geometry
-                else:
-                    coltype = getattr(types, columntable.column.type)
-                columns.append(Column(columntable.colname, coltype))
-
-        table = Table(self.tablename, metadata, *columns, schema=self.schema,
-                      extend_existing=True)
-        if table.exists():
-            table.drop()
-        table.create(**kwargs)
 
 #
 #TableInfoMetadata.__table__.drop(connection)

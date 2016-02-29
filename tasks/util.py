@@ -16,7 +16,10 @@ import requests
 from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
 from luigi.postgres import PostgresTarget
 
-from sqlalchemy import Table
+from sqlalchemy import Table, types, Column
+
+from tasks.meta import (BMDColumn, BMDTable, update_or_create, metadata,
+                        BMDColumnTable, session_scope)
 
 
 def elastic_conn(index_name='bigmetadata', logger=None):
@@ -260,6 +263,143 @@ def grouper(iterable, n, fillvalue=None):
     return izip_longest(fillvalue=fillvalue, *args)
 
 
+class ColumnTarget(Target):
+    '''
+    '''
+
+    def __init__(self, column):
+        self._id = '"' + classpath(self) + '"' + column.id
+        column.id = self._id
+        self._column = column
+
+    def _get(self, session):
+        return session.query(BMDColumn).get(self._id)
+
+    def update_or_create(self, session):
+        existing = self._get(session)
+        if existing:
+            for key, val in self._column.__dict__.iteritems():
+                if not key.startswith('__'):
+                    setattr(existing, key, val)
+        else:
+            session.add(self._column)
+
+    def exists(self, session):
+        return self._get(session) is not None
+
+
+#class TagTarget(Target):
+#    '''
+#    '''
+#
+#    def __init__(self, tag):
+#        self.tag = tag
+#
+#    def update_or_create(self, session):
+#        pass
+#
+#    def exists(self, session):
+#        pass
+
+
+class TableTarget(Target):
+
+    def __init__(self, task, columntables, timespan=None, bounds=None,
+                 description=None):
+        task_id = camel_to_underscore(task.task_id)
+        task_id = task_id.replace('force=_false', '')
+        task_id = task_id.replace('force=_true', '')
+        self.tablename = re.sub(r'[^a-z0-9]+', '_', task_id).strip('_')
+        self.schema = classpath(task)
+        self.table_id = '"{schema}".{tablename}'.format(schema=self.schema,
+                                                        tablename=self.tablename)
+        self.columntables = columntables
+        self.timespan = timespan
+        self.bounds = bounds
+        self.description = description
+
+    def table(self, session):
+        #return session.query(Table
+        import pdb
+        pdb.set_trace()
+
+    def exists(self):
+        return False # TODO
+        #return self.table().exists()
+
+    def create(self, session, **kwargs):
+        columns = []
+
+        #existing_table = session.query(BMDTable).get(self.table_id)
+        #if existing_table:
+        #    session.delete(existing_table)
+
+        session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+            schema=self.schema))
+        session.commit()
+        metatable = BMDTable(id=self.table_id,
+                             tablename=slug_column(self.table_id),
+                             bounds=self.bounds, timespan=self.timespan,
+                             description=self.description)
+        session.add(metatable)
+        for columntable in self.columntables():
+            session.add(columntable)
+            columntable.table = metatable
+            columntable = update_or_create(session, columntable, lambda o: [
+                BMDColumnTable.column_id == o.column.id,
+                BMDColumnTable.table_id == o.table.id,
+            ])
+            columntable.column = update_or_create(session, columntable.column, lambda o: [
+                BMDColumn.id == o.id
+            ])
+
+            if columntable.column.type.lower() == 'geometry':
+                coltype = Geometry
+            else:
+                coltype = getattr(types, columntable.column.type)
+            columns.append(Column(columntable.colname, coltype))
+
+        table = Table(self.tablename, metadata, *columns, schema=self.schema,
+                      extend_existing=True)
+        if table.exists():
+            table.drop()
+        table.create(**kwargs)
+
+
+class ColumnsTask(Task):
+    '''
+    This will update-or-create columns defined in it when run
+    '''
+
+    def columns(self):
+        '''
+        '''
+        raise NotImplementedError('Must return iterable of ColumnTargets')
+
+    def run(self):
+        pass
+
+    def output(self):
+        pass
+
+
+class TagsTask(Task):
+    '''
+    This will update-or-create tags defined in it when run
+    '''
+
+    def tags(self):
+        '''
+        '''
+        raise NotImplementedError('Must return iterable of TagTargets')
+
+    def run(self):
+        pass
+
+    def output(self):
+        pass
+
+
 class TableToCarto(Task):
 
     force = BooleanParameter(default=False)
@@ -335,3 +475,44 @@ def camel_to_underscore(name):
 #    #    session.add(column_meta)
 #
 #    #session.add(table_meta)
+
+class SessionTask(Task):
+    '''
+    A Task whose `runession` and `columns` methods should be overriden, and
+    executes creating a single output table defined by its name, path, and
+    defined columns.
+    '''
+
+    force = BooleanParameter(default=False)
+
+    def generate_columns(self):
+        return NotImplementedError('Must implement columns method that returns '
+                                   'an iterable sequence of columns for the '
+                                   'table generated by this task.')
+
+    def columns(self):
+        if not hasattr(self, '_columns'):
+            self._columns = []
+            columns = self.generate_columns()
+            for colname, column in columns:
+                self._columns.append(BMDColumnTable(colname=colname,
+                                                    column=column))
+        return self._columns
+
+    def runsession(self, session):
+        return NotImplementedError('Must implement runsession method that '
+                                   'populates the table')
+
+    def run(self):
+        with session_scope() as session:
+            self.output().create(session)
+            self.runsession(session)
+
+    def output(self):
+        target = TableTarget(self, self.columns)
+        if self.force:
+            target.table.drop()
+            self.force = False
+        return target
+
+

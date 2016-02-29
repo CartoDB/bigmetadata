@@ -1,3 +1,114 @@
+'''
+Test ACS columns
+'''
+
+from tasks.util import shell
+
+# TODO clean this up in a more general init script
+try:
+    shell('createdb test')
+except:
+    pass
+
+from nose.tools import assert_equals, with_setup, assert_false, assert_true
+
+from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
+                        BMDTag, BMDColumnTag, Base, session_scope)
+from tasks.us.census.acs import Columns, Extract
+from tasks.us.census.tiger import GeoidColumns
+
+
+#def setup():
+#    Base.metadata.drop_all()
+#    Base.metadata.create_all()
+#
+#
+#def teardown():
+#    Base.metadata.drop_all()
+#    Base.metadata.clear()
+#
+#
+#@with_setup(setup, teardown)
+#def test_acs_extract_columns():
+#    geography = 'state'
+#    extract = Extract(year=2013, sample='1yr', geography=geography)
+#
+#    # TODO assert every column from here is a columntable, with a column
+#    # pointing to an ACS_COLUMNS column
+#    columns = extract.columns()
+#    for col in columns:
+#        assert_true(isinstance(col, BMDColumnTable))
+#        if col.colname != 'geoid':
+#            assert_true(hasattr(Columns, col.colname))
+#            assert_equals(getattr(Columns, col.colname), col.column)
+#        else:
+#            assert_equals(getattr(GeoidColumns, geography), col.column)
+#
+#    # this doesn't raise any exception to run twice
+#    columns = extract.columns()
+#
+#
+#@with_setup(setup, teardown)
+#def test_acs_extract_output():
+#    '''
+#    ACS extract should create an output table based off of columns
+#    '''
+#    geography = 'state'
+#    extract = Extract(year=2013, sample='1yr', geography=geography)
+#    output = extract.output()
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDTable).count(), 0)
+#        assert_equals(session.query(BMDColumn).count(), 0)
+#        assert_equals(session.query(BMDColumnTable).count(), 0)
+#    with session_scope() as session:
+#        output.create(session)
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDTable).count(), 1)
+#        assert_true(session.query(BMDColumn).count() > 0)
+#        assert_true(session.query(BMDColumnTable).count() > 0)
+#    # Can run twice without error
+#    output = extract.output()
+#
+#
+#@with_setup(setup, teardown)
+#def test_acs_extract_output_2():
+#    '''
+#    Can do this a second time without crashing
+#    '''
+#    geography = 'state'
+#    extract = Extract(year=2013, sample='1yr', geography=geography)
+#    output = extract.output()
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDTable).count(), 0)
+#        assert_equals(session.query(BMDColumn).count(), 0)
+#        assert_equals(session.query(BMDColumnTable).count(), 0)
+#    with session_scope() as session:
+#        output.create(session)
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDTable).count(), 1)
+#        assert_true(session.query(BMDColumn).count() > 0)
+#        assert_true(session.query(BMDColumnTable).count() > 0)
+#    # Can run twice without error
+#    output = extract.output()
+#
+#
+#@with_setup(setup, teardown)
+#def test_acs_extract_run():
+#    geography = 'state'
+#    extract = Extract(year=2013, sample='1yr', geography=geography)
+#    with session_scope() as session:
+#        session.execute('CREATE SCHEMA IF NOT EXISTS acs2013_1yr')
+#    extract.run()
+
+#@with_setup(setup, teardown)
+#def test_acs_extract_target():
+#    extract = Extract(year=2013, sample='1yr', geography='state')
+#    target = extract.output()
+#    assert_false(target.exists())
+#    target.create()
+#    assert_true(target.exists())
+
+
 #from nose.tools import assert_equals
 #from tasks.us.census.acs import ACSColumn
 #
