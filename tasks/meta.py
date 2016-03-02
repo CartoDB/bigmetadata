@@ -67,8 +67,8 @@ class BMDColumnTable(Base):
 
     colname = Column(String, nullable=False)
 
-    column = relationship("BMDColumn", back_populates="tables", cascade="all,delete")
-    table = relationship("BMDTable", back_populates="columns", cascade="all,delete")
+    column = relationship("BMDColumn", back_populates="tables")
+    table = relationship("BMDTable", back_populates="columns")
 
     extra = Column(JSON)
 
@@ -144,8 +144,8 @@ class BMDColumnTag(Base):
     column_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
     tag_id = Column(String, ForeignKey('bmd_tag.id'), primary_key=True)
 
-    column = relationship("BMDColumn", back_populates='tags', cascade="all,delete")
-    tag = relationship("BMDTag", back_populates='columns', cascade="all,delete")
+    column = relationship("BMDColumn", back_populates='tags')
+    tag = relationship("BMDTag", back_populates='columns')
 
 
 @contextmanager

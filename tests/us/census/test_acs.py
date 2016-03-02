@@ -2,20 +2,20 @@
 Test ACS columns
 '''
 
-from tasks.util import shell
-
-# TODO clean this up in a more general init script
-try:
-    shell('createdb test')
-except:
-    pass
-
-from nose.tools import assert_equals, with_setup, assert_false, assert_true
-
-from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
-                        BMDTag, BMDColumnTag, Base, session_scope)
-from tasks.us.census.acs import Columns, Extract
-from tasks.us.census.tiger import GeoidColumns
+#from tasks.util import shell
+#
+## TODO clean this up in a more general init script
+#try:
+#    shell('createdb test')
+#except:
+#    pass
+#
+#from nose.tools import assert_equals, with_setup, assert_false, assert_true
+#
+#from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
+#                        BMDTag, BMDColumnTag, Base, session_scope)
+#from tasks.us.census.acs import Columns, Extract
+#from tasks.us.census.tiger import GeoidColumns
 
 
 #def setup():

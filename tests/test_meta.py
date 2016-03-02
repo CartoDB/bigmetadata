@@ -167,3 +167,41 @@ def test_column_to_column_target():
         target = column.target_columns[0]
         assert_equals(target.reltype, 'denominator')
         assert_equals(target.target.id, '"us.census.acs".total_pop')
+
+
+@with_setup(setup, teardown)
+def test_delete_column_deletes_relevant_related_objects():
+    populate()
+    with session_scope() as session:
+        assert_equals(session.query(BMDColumn).count(), 6)
+        assert_equals(session.query(BMDTable).count(), 2)
+        assert_equals(session.query(BMDColumnTable).count(), 10)
+        session.delete(session.query(BMDColumn).get('"us.census.acs".median_rent'))
+        assert_equals(session.query(BMDColumn).count(), 5)
+        assert_equals(session.query(BMDTable).count(), 2)
+        assert_equals(session.query(BMDColumnTable).count(), 8)
+
+@with_setup(setup, teardown)
+def test_delete_table_deletes_relevant_related_objects():
+    populate()
+    with session_scope() as session:
+        assert_equals(session.query(BMDColumn).count(), 6)
+        assert_equals(session.query(BMDTable).count(), 2)
+        assert_equals(session.query(BMDColumnTable).count(), 10)
+        session.delete(session.query(BMDTable).get('"us.census.acs".extract_2013_5yr_tract'))
+        assert_equals(session.query(BMDColumn).count(), 6)
+        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(BMDColumnTable).count(), 5)
+
+
+@with_setup(setup, teardown)
+def test_delete_tag_deletes_relevant_related_objects():
+    populate()
+    with session_scope() as session:
+        assert_equals(session.query(BMDColumn).count(), 6)
+        assert_equals(session.query(BMDColumnTag).count(), 3)
+        assert_equals(session.query(BMDTag).count(), 1)
+        session.delete(session.query(BMDTag).get('population'))
+        assert_equals(session.query(BMDColumn).count(), 6)
+        assert_equals(session.query(BMDTag).count(), 0)
+        assert_equals(session.query(BMDColumnTag).count(), 0)

@@ -18,7 +18,7 @@ from luigi.postgres import PostgresTarget
 
 from sqlalchemy import Table, types, Column
 
-from tasks.meta import (BMDColumn, BMDTable, metadata,
+from tasks.meta import (BMDColumn, BMDTable, metadata, Geometry,
                         BMDColumnTable, session_scope)
 
 
@@ -270,14 +270,17 @@ class ColumnTarget(Target):
     def __init__(self, column):
         #self._id = '"' + classpath(self) + '".' + column.id
         self._id = column.id
-        column.id = self._id
+        #column.id = self._id
         self._column = column
 
-    def _get(self, session):
+    def get(self, session):
+        '''
+        Return a copy of the underlying BMDColumn in the specified session.
+        '''
         return session.query(BMDColumn).get(self._id)
 
     def update_or_create(self, session):
-        existing = self._get(session)
+        existing = self.get(session)
         if existing:
             for key, val in self._column.__dict__.iteritems():
                 if not key.startswith('_'):
@@ -285,8 +288,9 @@ class ColumnTarget(Target):
         else:
             session.add(self._column)
 
-    def exists(self, session):
-        return self._get(session) is not None
+    def exists(self):
+        with session_scope() as session:
+            return self.get(session) is not None
 
 
 #class TagTarget(Target):
@@ -305,66 +309,117 @@ class ColumnTarget(Target):
 
 class TableTarget(Target):
 
-    def __init__(self, task, columntables, timespan=None, bounds=None,
-                 description=None):
-        task_id = camel_to_underscore(task.task_id)
-        task_id = task_id.replace('force=_false', '')
-        task_id = task_id.replace('force=_true', '')
-        self.tablename = re.sub(r'[^a-z0-9]+', '_', task_id).strip('_')
-        self.schema = classpath(task)
-        self.table_id = '"{schema}".{tablename}'.format(schema=self.schema,
-                                                        tablename=self.tablename)
-        self.columntables = columntables
-        self.timespan = timespan
-        self.bounds = bounds
-        self.description = description
+    #def __init__(self, task, columntables, timespan=None, bounds=None,
+    #             description=None):
+    #    task_id = camel_to_underscore(task.task_id)
+    #    task_id = task_id.replace('force=_false', '')
+    #    task_id = task_id.replace('force=_true', '')
+    #    self.tablename = re.sub(r'[^a-z0-9]+', '_', task_id).strip('_')
+    #    self.schema = classpath(task)
+    #    self.table_id = '"{schema}".{tablename}'.format(schema=self.schema,
+    #                                                    tablename=self.tablename)
+    #    self.columntables = columntables
+    #    self.timespan = timespan
+    #    self.bounds = bounds
+    #    self.description = description
 
-    def table(self, session):
-        #return session.query(Table
-        import pdb
-        pdb.set_trace()
+    def __init__(self, table, columns):
+        '''
+        columns: should be an ordereddict if you want to specify columns' order
+        in the table
+        '''
+        self._id = table.id
+        self._table = table
+        self._columns = columns
+        self._complete = False
 
     def exists(self):
-        return False # TODO
-        #return self.table().exists()
+        '''
+        We always want to run this at least once, because we can always
+        regenerate tabular data from scratch.
+        '''
+        return not self._complete
 
-    def create(self, session, **kwargs):
+    def get(self, session):
+        '''
+        Return a copy of the underlying BMDTable in the specified session.
+        '''
+        return session.query(BMDTable).get(self._id)
+
+    def update_or_create(self, session):
+
+        # delete old metadata table
+        old_table = session.query(BMDTable).get(self._id)
+        if old_table:
+            session.delete(old_table)
+
+        # delete old local data table
+        if self._id in metadata.tables:
+            metadata.tables[self._id].drop()
+
+        session.flush()
+
+        # create new metadata table
+        session.add(self._table)
+
+        # create new local data table
         columns = []
+        for colname, coltarget in self._columns.items():
+            col = coltarget.get(session)
+            if col is None:
+                import pdb
+                pdb.set_trace()
 
-        #existing_table = session.query(BMDTable).get(self.table_id)
-        #if existing_table:
-        #    session.delete(existing_table)
-
-        session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
-            schema=self.schema))
-        session.commit()
-        metatable = BMDTable(id=self.table_id,
-                             tablename=slug_column(self.table_id),
-                             bounds=self.bounds, timespan=self.timespan,
-                             description=self.description)
-        session.add(metatable)
-        for columntable in self.columntables():
-            session.add(columntable)
-            columntable.table = metatable
-            columntable = update_or_create(session, columntable, lambda o: [
-                BMDColumnTable.column_id == o.column.id,
-                BMDColumnTable.table_id == o.table.id,
-            ])
-            columntable.column = update_or_create(session, columntable.column, lambda o: [
-                BMDColumn.id == o.id
-            ])
-
-            if columntable.column.type.lower() == 'geometry':
+            # Column info for sqlalchemy's internal metadata
+            if col.type.lower() == 'geometry':
                 coltype = Geometry
             else:
-                coltype = getattr(types, columntable.column.type)
-            columns.append(Column(columntable.colname, coltype))
+                coltype = getattr(types, col.type)
+            columns.append(Column(colname, coltype))
 
-        table = Table(self.tablename, metadata, *columns, schema=self.schema,
-                      extend_existing=True)
-        if table.exists():
-            table.drop()
-        table.create(**kwargs)
+            # Column info for bmd metadata
+            session.add(BMDColumnTable(colname=colname, table=self._table,
+                                       column=col))
+
+        Table(self._table.id, metadata, *columns).create()
+
+        self._complete = True
+        #columns = []
+
+        ##existing_table = session.query(BMDTable).get(self.table_id)
+        ##if existing_table:
+        ##    session.delete(existing_table)
+
+        #session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+        #    schema=self.schema))
+        #session.commit()
+        #metatable = BMDTable(id=self.table_id,
+        #                     tablename=slug_column(self.table_id),
+        #                     bounds=self.bounds, timespan=self.timespan,
+        #                     description=self.description)
+        #session.add(metatable)
+        #for columntable in self.columntables():
+        #    session.add(columntable)
+        #    columntable.table = metatable
+        #    columntable = update_or_create(session, columntable, lambda o: [
+        #        BMDColumnTable.column_id == o.column.id,
+        #        BMDColumnTable.table_id == o.table.id,
+        #    ])
+        #    columntable.column = update_or_create(session, columntable.column, lambda o: [
+        #        BMDColumn.id == o.id
+        #    ])
+
+        #    if columntable.column.type.lower() == 'geometry':
+        #        coltype = Geometry
+        #    else:
+        #        coltype = getattr(types, columntable.column.type)
+        #    columns.append(Column(columntable.colname, coltype))
+
+        #table = Table(self.tablename, metadata, *columns, schema=self.schema,
+        #              extend_existing=True)
+        #if table.exists():
+        #    table.drop()
+        #table.create(**kwargs)
 
 
 class ColumnsTask(Task):
@@ -378,10 +433,17 @@ class ColumnsTask(Task):
         raise NotImplementedError('Must return iterable of ColumnTargets')
 
     def run(self):
-        pass
+        with session_scope() as session:
+            for _, coltarget in self.output().iteritems():
+                coltarget.update_or_create(session)
 
     def output(self):
-        pass
+        output = {}
+        for col in self.columns():
+            orig_id = col.id
+            col.id = '"{}".{}'.format(classpath(self), orig_id)
+            output[orig_id] = ColumnTarget(col)
+        return output
 
 
 class TagsTask(Task):
@@ -477,9 +539,9 @@ def camel_to_underscore(name):
 #
 #    #session.add(table_meta)
 
-class SessionTask(Task):
+class TableTask(Task):
     '''
-    A Task whose `runession` and `columns` methods should be overriden, and
+    A Task whose `runsession` and `columns` methods should be overriden, and
     executes creating a single output table defined by its name, path, and
     defined columns.
     '''
@@ -488,8 +550,8 @@ class SessionTask(Task):
 
     def generate_columns(self):
         return NotImplementedError('Must implement columns method that returns '
-                                   'an iterable sequence of columns for the '
-                                   'table generated by this task.')
+                                   'an iterable of ColumnTables for '
+                                   'the table generated by this task.')
 
     def columns(self):
         if not hasattr(self, '_columns'):

@@ -1,7 +1,8 @@
-from nose.tools import assert_equals, with_setup
-from tasks.util import slug_column, ColumnTarget
+from nose.tools import assert_equals, with_setup, assert_raises, assert_in
+from tasks.util import (slug_column, ColumnTarget, ColumnsTask, TableTask,
+                        TableTarget)
 from tasks.meta import (session_scope, BMDColumn, Base, BMDColumnTable, BMDTag,
-                        BMDColumnTag, BMDTable)
+                        BMDColumnTag, BMDTable, metadata)
 
 
 def setup():
@@ -140,3 +141,160 @@ def test_column_target_many_inits():
         assert_equals(session.query(BMDColumn).count(), 1)
         col.update_or_create(session)
         assert_equals(session.query(BMDColumn).count(), 1)
+
+
+#@with_setup(setup, teardown)
+#def test_table_target_many_inits():
+#    pop_col = ColumnTarget(BMDColumn(id='population',
+#                                     type='Numeric',
+#                                     name="Total Population",
+#                                     description='The total number of all',
+#                                     aggregate='sum',
+#                                     weight=10))
+#    foo_col = ColumnTarget(BMDColumn(id='foobar',
+#                                     type='Numeric',
+#                                     name="Foo Bar",
+#                                     description='moo boo foo',
+#                                     aggregate='median',
+#                                     weight=8))
+#    with session_scope() as session:
+#        pop_col.update_or_create(session)
+#        foo_col.update_or_create(session)
+#
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDColumn).count(), 2)
+#
+#    columns = {
+#        'population': pop_col,
+#        'foobar': foo_col
+#    }
+#    table = TableTarget(BMDTable(id='foobar', tablename='foobar'), columns)
+#
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDTable).count(), 0)
+#        assert_equals(session.query(BMDColumn).count(), 2)
+#        table.update_or_create(session)
+#        assert_equals(session.query(BMDColumn).count(), 2)
+#        assert_equals(session.query(BMDTable).count(), 1)
+#        assert_in('foobar', metadata.tables)
+#        sqlalchemy_table = metadata.tables['foobar']
+#        assert_equals(len(sqlalchemy_table.columns), 2)
+#
+#    # new session, old object
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDTable).count(), 1)
+#        table.update_or_create(session)
+#        assert_equals(session.query(BMDTable).count(), 1)
+#        assert_in('foobar', metadata.tables)
+#        sqlalchemy_table = metadata.tables['foobar']
+#        assert_equals(len(sqlalchemy_table.columns), 2)
+#
+#    # new session, new object
+#    table = TableTarget(BMDTable(id='foobar', tablename='foobar'), columns)
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDTable).count(), 1)
+#        table.update_or_create(session)
+#        assert_equals(session.query(BMDTable).count(), 1)
+#        assert_in('foobar', metadata.tables)
+#        sqlalchemy_table = metadata.tables['foobar']
+#        assert_equals(len(sqlalchemy_table.columns), 2)
+#
+#
+#@with_setup(setup, teardown)
+#def test_columns_task_fails_no_columns():
+#    class TestColumnsTask(ColumnsTask):
+#        pass
+#
+#    task = TestColumnsTask()
+#    with assert_raises(NotImplementedError):
+#        task.run()
+
+
+@with_setup(setup, teardown)
+def test_columns_task_creates_columns_only_when_run():
+
+    class TestColumnsTask(ColumnsTask):
+        def columns(self):
+            return [
+                BMDColumn(id='population',
+                          type='Numeric',
+                          name="Total Population",
+                          description='The total number of all',
+                          aggregate='sum',
+                          weight=10),
+                BMDColumn(id='foobar',
+                          type='Numeric',
+                          name="Foo Bar",
+                          description='moo boo foo',
+                          aggregate='median',
+                          weight=8),
+            ]
+
+    task = TestColumnsTask()
+    with session_scope() as session:
+        assert_equals(session.query(BMDColumn).count(), 0)
+    task.run()
+    with session_scope() as session:
+        assert_equals(session.query(BMDColumn).count(), 2)
+        assert_equals(task.output()['population'].get(session).id, '"test_util".population')
+        assert_equals(task.output()['foobar'].get(session).id, '"test_util".foobar')
+    assert_equals(True, task.complete())
+
+    table = BMDTable(id='table', tablename='tablename')
+    with session_scope() as session:
+        coltable = BMDColumnTable(column=task.output()['population'].get(session),
+                                  table=table, colname='colnamaste')
+        session.add(table)
+        session.add(coltable)
+
+    with session_scope() as session:
+        assert_equals(session.query(BMDColumnTable).count(), 1)
+
+
+#@with_setup(setup, teardown)
+#def test_table_task_creates_columns_when_run():
+#
+#    class TestColumnsTask(ColumnsTask):
+#
+#        def columns(self):
+#            return [
+#                BMDColumn(id='population',
+#                          type='Numeric',
+#                          name="Total Population",
+#                          description='The total number of all',
+#                          aggregate='sum',
+#                          weight=10),
+#                BMDColumn(id='foobar',
+#                          type='Numeric',
+#                          name="Foo Bar",
+#                          description='moo boo foo',
+#                          aggregate='median',
+#                          weight=8),
+#            ]
+#
+#    class TestTableTask(TableTask):
+#
+#        def requires(self):
+#            return {
+#                'meta': TestColumnsTask()
+#            }
+#
+#        def columns(self, session):
+#            return {
+#                'population': self.input()['meta']['population'].get(session),
+#                'foobar': self.input()['meta']['foobar'].get(session)
+#            }
+#
+#        def runsession(self, session):
+#            pass
+#
+#    task = TestTableTask(BMDTable(id='tableid', tablename='table'))
+#    assert_equals(False, task.complete())
+#    task.run()
+#    assert_equals(True, task.complete())
+#
+#    with session_scope() as session:
+#        assert_equals(session.query(BMDColumn).count(), 2)
+#        assert_equals(session.query(BMDColumnTable).count(), 2)
+#        assert_equals(session.query(BMDTable).count(), 1)
+#        assert_in('')
