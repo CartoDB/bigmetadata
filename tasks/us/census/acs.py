@@ -31,18 +31,24 @@ LOGGER = get_logger(__name__)
 
 
 class Columns(ColumnsTask):
+    def requires(self):
+        return {
+            'tags': Tags(),
+
+        }
+
     def columns(self):
+        total_pop = BMDColumn(
+            id='B01001001',
+            type='Numeric',
+            name="Total Population",
+            description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+            aggregate='sum',
+            weight=10,
+            tags=[BMDColumnTag(tag=self.input()['tags']['denominator']),
+                  BMDColumnTag(tag=self.input()['tags']['population'])]
+        )
         return [
-            BMDColumn(
-                id='B01001001',
-                type='Numeric',
-                name="Total Population",
-                description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
-                aggregate='sum',
-                weight=10,
-                #tags=[BMDColumnTag(tag=Tags.denominator),
-                #BMDColumnTag(tag=Tags.population)]
-            ),
             BMDColumn(
                 id='B01001002',
                 type='Numeric',
@@ -50,8 +56,8 @@ class Columns(ColumnsTask):
                 description="The number of people within each geography who are male.",
                 aggregate='sum',
                 weight=8,
-                #target_columns=[BMDColumnToColumn(target=self.total_pop(), reltype='denominator')],
-                #tags=[BMDColumnTag(tag=Tags.population)]
+                target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
+                tags=[BMDColumnTag(tag=self.input()['tags']['population'])]
             ),
             BMDColumn(
                 id='B01001026',
@@ -60,8 +66,8 @@ class Columns(ColumnsTask):
                 description="The number of people within each geography who are female.",
                 aggregate='sum',
                 weight=8,
-                #target_columns=[BMDColumnToColumn(target=self.total_pop(), reltype='denominator')],
-                #tags=[BMDColumnTag(tag=Tags.population)]
+                target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
+                tags=[BMDColumnTag(tag=self.input()['tags']['population'])]
             )
         ]
 

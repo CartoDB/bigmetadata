@@ -5,7 +5,7 @@ Sphinx functions for luigi bigmetadata tasks.
 import jinja2
 import re
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
-from tasks.util import shell, elastic_conn, slug_column
+from tasks.util import shell, slug_column
 from tasks.us.census.tiger import HIGH_WEIGHT_COLUMNS
 
 

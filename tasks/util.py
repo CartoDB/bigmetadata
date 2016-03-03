@@ -8,9 +8,9 @@ import logging
 import sys
 import time
 import re
+from slugify import slugify
 from itertools import izip_longest
 
-import elasticsearch
 import requests
 
 from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
@@ -19,27 +19,7 @@ from luigi.postgres import PostgresTarget
 from sqlalchemy import Table, types, Column
 
 from tasks.meta import (BMDColumn, BMDTable, metadata, Geometry,
-                        BMDColumnTable, session_scope)
-
-
-def elastic_conn(index_name='bigmetadata', logger=None):
-    '''
-    Obtain an index with specified name.  Waits for elasticsearch to start.
-    Returns elasticsearch.
-    '''
-    elastic = elasticsearch.Elasticsearch([{
-        'host': os.environ.get('ES_HOST', 'localhost'),
-        'port': os.environ.get('ES_PORT', '9200')
-    }])
-    while True:
-        try:
-            elastic.indices.create(index=index_name, ignore=400)  # pylint: disable=unexpected-keyword-arg
-            break
-        except elasticsearch.exceptions.ConnectionError:
-            if logger:
-                logger.info('waiting for elasticsearch')
-            time.sleep(1)
-    return elastic
+                        BMDColumnTable, BMDTag, session_scope)
 
 
 def get_logger(name):
@@ -70,32 +50,30 @@ def shell(cmd):
     return subprocess.check_output(cmd, shell=True)
 
 
-def slug_column(column_name):
-    '''
-    Turn human-readable column name into a decent one for a SQL table
-    '''
-    translations = {
-        'population': 'pop',
-        'for_whom': '',
-        'u_s': 'us',
-        '_is_': '_',
-        'in_the_past_12_months': '',
-        'black_or_african_american': 'black',
-        'percentage_of': 'percent'
-    }
-    # TODO handle accents etc properly
-    column_name = re.sub(r'[^a-z0-9]+', '_', column_name.lower())
-    for before, after in translations.iteritems():
-        column_name = column_name.replace(before, after)
-    column_name = re.sub(r'[^a-z0-9]+', '_', column_name).strip('_')
-    return column_name
+def underscore_slugify(txt):
+    return slugify(camel_to_underscore(
+        re.sub(r'[^a-zA-Z0-9]+', '_', u'"foo.bar.baz".MyTableName'))
+    ).replace('-', '_')
 
-
-class MetadataTarget(LocalTarget):
-    '''
-    Target that ensures metadata exists.
-    '''
-    pass
+#def slug_column(column_name):
+#    '''
+#    Turn human-readable column name into a decent one for a SQL table
+#    '''
+#    translations = {
+#        'population': 'pop',
+#        'for_whom': '',
+#        'u_s': 'us',
+#        '_is_': '_',
+#        'in_the_past_12_months': '',
+#        'black_or_african_american': 'black',
+#        'percentage_of': 'percent'
+#    }
+#    # TODO handle accents etc properly
+#    column_name = re.sub(r'[^a-z0-9]+', '_', column_name.lower())
+#    for before, after in translations.iteritems():
+#        column_name = column_name.replace(before, after)
+#    column_name = re.sub(r'[^a-z0-9]+', '_', column_name).strip('_')
+#    return column_name
 
 
 def classpath(obj):
@@ -268,9 +246,7 @@ class ColumnTarget(Target):
     '''
 
     def __init__(self, column):
-        #self._id = '"' + classpath(self) + '".' + column.id
         self._id = column.id
-        #column.id = self._id
         self._column = column
 
     def get(self, session):
@@ -293,28 +269,45 @@ class ColumnTarget(Target):
             return self.get(session) is not None
 
 
-#class TagTarget(Target):
-#    '''
-#    '''
-#
-#    def __init__(self, tag):
-#        self.tag = tag
-#
-#    def update_or_create(self, session):
-#        pass
-#
-#    def exists(self, session):
-#        pass
+class TagTarget(Target):
+    '''
+    '''
+
+    def __init__(self, tag):
+        self._id = tag.id
+        self._tag = tag
+
+    def get(self, session):
+        '''
+        Return a copy of the underlying BMDColumn in the specified session.
+        '''
+        return session.query(BMDTag).get(self._id)
+
+    def update_or_create(self, session):
+        existing = self.get(session)
+        if existing:
+            for key, val in self._tag.__dict__.iteritems():
+                if not key.startswith('_'):
+                    setattr(existing, key, val)
+        else:
+            session.add(self._tag)
+
+    def exists(self):
+        with session_scope() as session:
+            return self.get(session) is not None
 
 
 class TableTarget(Target):
 
-    def __init__(self, bmd_table, columns):
+    def __init__(self, schema, name, bmd_table, columns):
         '''
         columns: should be an ordereddict if you want to specify columns' order
         in the table
         '''
-        self._id = bmd_table.id
+        self._id = '"{schema}"."{name}"'.format(schema=schema, name=name)
+        bmd_table.id = self._id
+        self._schema = schema
+        self._name = name
         self._bmd_table = bmd_table
         self._columns = columns
         if self._id in metadata.tables:
@@ -373,7 +366,8 @@ class TableTarget(Target):
         # replace local data table
         if bmd_table.id in metadata.tables:
             metadata.tables[bmd_table.id].drop()
-        self.table = Table(bmd_table.id, metadata, *columns, extend_existing=True)
+        self.table = Table(self._name, metadata, *columns,
+                           schema=self._schema, extend_existing=True)
         self.table.create()
 
         #session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
@@ -389,7 +383,7 @@ class ColumnsTask(Task):
     def columns(self):
         '''
         '''
-        raise NotImplementedError('Must return iterable of ColumnTargets')
+        raise NotImplementedError('Must return iterable of BMDColumns')
 
     def run(self):
         with session_scope() as session:
@@ -413,13 +407,20 @@ class TagsTask(Task):
     def tags(self):
         '''
         '''
-        raise NotImplementedError('Must return iterable of TagTargets')
+        raise NotImplementedError('Must return iterable of BMDTags')
 
     def run(self):
-        pass
+        with session_scope() as session:
+            for _, tagtarget in self.output().iteritems():
+                tagtarget.update_or_create(session)
 
     def output(self):
-        pass
+        output = {}
+        for tag in self.tags():
+            orig_id = tag.id
+            tag.id = '"{}".{}'.format(classpath(self), orig_id)
+            output[orig_id] = TagTarget(tag)
+        return output
 
 
 class TableToCarto(Task):
@@ -526,7 +527,8 @@ class TableTask(Task):
             self.runsession(session)
 
     def output(self):
-        return TableTarget(BMDTable(id=self.task_id, tablename=self.task_id),
+        return TableTarget(classpath(self),
+                           underscore_slugify(self.task_id),
                            self.columns())
 
 

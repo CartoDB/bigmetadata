@@ -1,3 +1,4 @@
+from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
 from tasks.util import (slug_column, ColumnTarget, ColumnsTask, TableTask,
@@ -169,42 +170,49 @@ def test_table_target_many_inits():
         'population': pop_col,
         'foobar': foo_col
     }
-    table = TableTarget(BMDTable(id='foobar', tablename='foobar'), columns)
+    table_target = TableTarget('test', 'foobar', BMDTable(), columns)
 
     with session_scope() as session:
-        assert_equals(False, table.exists())
+        assert_equals(False, table_target.exists())
         assert_equals(session.query(BMDTable).count(), 0)
         assert_equals(session.query(BMDColumn).count(), 2)
-        table.update_or_create(session)
+        table_target.update_or_create(session)
         assert_equals(session.query(BMDColumn).count(), 2)
         assert_equals(session.query(BMDTable).count(), 1)
         assert_in('foobar', metadata.tables)
         sqlalchemy_table = metadata.tables['foobar']
         assert_equals(len(sqlalchemy_table.columns), 2)
-    assert_equals(True, table.exists())
+
+    assert_equals(True, table_target.exists())
+    assert_equals(table_target.table.schema, 'test')
+    assert_equals(table_target.table.name, 'foobar')
+
+    # how do we refer to id?
+    import pdb
+    pdb.set_trace()
 
     # new session, old object
     with session_scope() as session:
-        assert_equals(True, table.exists())
+        assert_equals(True, table_target.exists())
         assert_equals(session.query(BMDTable).count(), 1)
-        table.update_or_create(session)
+        table_target.update_or_create(session)
         assert_equals(session.query(BMDTable).count(), 1)
         assert_in('foobar', metadata.tables)
         sqlalchemy_table = metadata.tables['foobar']
         assert_equals(len(sqlalchemy_table.columns), 2)
-        assert_equals(True, table.exists())
+        assert_equals(True, table_target.exists())
 
     # new session, new object
-    table = TableTarget(BMDTable(id='foobar', tablename='foobar'), columns)
+    table_target = TableTarget('test', 'foobar', BMDTable(), columns)
     with session_scope() as session:
-        assert_equals(True, table.exists())
+        assert_equals(True, table_target.exists())
         assert_equals(session.query(BMDTable).count(), 1)
-        table.update_or_create(session)
+        table_target.update_or_create(session)
         assert_equals(session.query(BMDTable).count(), 1)
         assert_in('foobar', metadata.tables)
         sqlalchemy_table = metadata.tables['foobar']
         assert_equals(len(sqlalchemy_table.columns), 2)
-        assert_equals(True, table.exists())
+        assert_equals(True, table_target.exists())
 
 
 @with_setup(setup, teardown)
@@ -273,6 +281,9 @@ class TestColumnsTask(ColumnsTask):
 
 class TestTableTask(TableTask):
 
+    alpha = Parameter(default=1996)
+    beta = Parameter(default=5000)
+
     def requires(self):
         return {
             'meta': TestColumnsTask()
@@ -336,3 +347,14 @@ def test_table_task_replaces_data():
 
     with session_scope() as session:
         assert_equals(session.query(task.table).count(), 0)
+
+@with_setup(setup, teardown)
+def test_table_task_qualifies_table_name_schema():
+
+    task = TestTableTask()
+    for dep in task.deps():
+        dep.run()
+    task.run()
+
+    assert_equals(task.table.schema, 'tests.test_util')
+    assert_equals(task.table.name, 'test_table_task_alpha_1996_beta_5000')

@@ -162,51 +162,6 @@ def session_scope():
         session.close()
 
 
-#class BMD(object):
-#
-#    def __init__(self, session):
-#        # update existing columns without destroying relationships
-#        #with session_scope() as session:
-#        #    for attrname, obj in type(self).__dict__.iteritems():
-#        #        if not attrname.startswith('__'):
-#        #            obj.id = self.qualify(obj.id)
-#        #            existing_obj = session.query(type(obj)).get(obj.id)
-#        #            if existing_obj:
-#        #                #for k, v in obj.__dict__.iteritems():
-#        #                #    if not k.startswith('__'):
-#        #                #        setattr(
-#        #                session.delete(existing_obj)
-#
-#        # create new columns, or update existing without destroying
-#        # relationships
-#        #with session_scope() as session:
-#        for attrname, obj in type(self).__dict__.iteritems():
-#            if not attrname.startswith('__'):
-#                get_or_update = self.build_get_or_update(obj)
-#                setattr(self, attrname, get_or_update)
-#                get_or_update(session)
-#
-#    def build_get_or_update(self, bmd_obj):
-#        def get_or_update(session):
-#            existing_obj = session.query(type(bmd_obj)).get(self.qualify(
-#                self.qualify(bmd_obj.id)))
-#            if existing_obj:
-#                for key, val in bmd_obj.__dict__.iteritems():
-#                    if not key.startswith('__'):
-#                        setattr(existing_obj, key, val)
-#                return existing_obj
-#            else:
-#                session.add(bmd_obj)
-#                bmd_obj.id = self.qualify(bmd_obj.id)
-#                return bmd_obj
-#        return get_or_update
-#
-#    def qualify(self, n):
-#        if n.startswith('"'):
-#            return n
-#        return '"{classpath}".{n}'.format(classpath=classpath(self), n=n)
-
-
 def fromkeys(d, l):
     '''
     Similar to the builtin dict `fromkeys`, except remove keys with a value
@@ -216,12 +171,4 @@ def fromkeys(d, l):
     return dict((k, v) for k, v in d.iteritems() if v is not None)
 
 
-
-
-#
-#TableInfoMetadata.__table__.drop(connection)
-#ColumnTableInfoMetadata.__table__.drop(connection)
-#ColumnInfoMetadata.__table__.drop(connection)
-
-#Base.metadata.drop_all()
 Base.metadata.create_all()
