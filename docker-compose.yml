@@ -13,29 +13,6 @@
     ],
     "privileged": true
   },
-  #"kibana": {
-  #  "build": "kibana/",
-  #  "volumes": [
-  #    "./kibana/config/kibana.yml:/opt/kibana/config/kibana.yml"
-  #  ],
-  #  "ports": [
-  #    "5601:5601"
-  #  ],
-  #  "links": [
-  #    "elasticsearch"
-  #  ],
-  #},
-  "elasticsearch": {
-    "image": "elasticsearch:latest",
-    "command": "elasticsearch -Des.network.host=0.0.0.0",
-    #"volumes": [
-    #  "./esconfig:/usr/share/elasticsearch/config"
-    #],
-    "ports": [
-      "9200:9200",
-      "9300:9300"
-    ]
-  },
   "browser": {
     "image": "nginx:latest",
     "volumes": [
@@ -43,9 +20,6 @@
       "./browser/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
       "./catalog/build/html:/usr/share/nginx/html/catalog/:ro"
     ],
-   "links": [
-     "elasticsearch"
-   ],
    "ports": [
       "80:80"
    ]
@@ -53,7 +27,6 @@
   "bigmetadata_daemon": {
     "build": ".",
     "links": [
-      "elasticsearch",
       "postgres"
     ],
     "volumes": [
@@ -64,8 +37,6 @@
     ],
     "environment": {
       "PYTHONPATH": "/bigmetadata",
-      "ES_HOST": "elasticsearch",
-      "ES_PORT": "9200",
       "PGHOST": "postgres",
       "PGUSER": "docker",
       "PGPASSWORD": "docker",
@@ -77,7 +48,6 @@
     "build": ".",
     "links": [
       "bigmetadata_daemon",
-      "elasticsearch",
       "postgres"
     ],
     "volumes": [
@@ -85,8 +55,6 @@
     ],
     "environment": {
       "PYTHONPATH": "/bigmetadata",
-      "ES_HOST": "elasticsearch",
-      "ES_PORT": "9200",
       "PGHOST": "postgres",
       "PGUSER": "docker",
       "PGPASSWORD": "docker",
