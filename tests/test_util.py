@@ -1,8 +1,9 @@
-from nose.tools import assert_equals, with_setup, assert_raises, assert_in
+from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
+                        assert_is_none)
 from tasks.util import (slug_column, ColumnTarget, ColumnsTask, TableTask,
                         TableTarget)
 from tasks.meta import (session_scope, BMDColumn, Base, BMDColumnTable, BMDTag,
-                        BMDColumnTag, BMDTable, metadata)
+                        BMDColumnTag, BMDColumnToColumn, BMDTable, metadata)
 
 
 def setup():
@@ -219,31 +220,22 @@ def test_columns_task_fails_no_columns():
 @with_setup(setup, teardown)
 def test_columns_task_creates_columns_only_when_run():
 
-    class TestColumnsTask(ColumnsTask):
-        def columns(self):
-            return [
-                BMDColumn(id='population',
-                          type='Numeric',
-                          name="Total Population",
-                          description='The total number of all',
-                          aggregate='sum',
-                          weight=10),
-                BMDColumn(id='foobar',
-                          type='Numeric',
-                          name="Foo Bar",
-                          description='moo boo foo',
-                          aggregate='median',
-                          weight=8),
-            ]
-
     task = TestColumnsTask()
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 0)
     task.run()
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 2)
+        assert_equals(session.query(BMDColumnToColumn).count(), 1)
         assert_equals(task.output()['population'].get(session).id, '"test_util".population')
         assert_equals(task.output()['foobar'].get(session).id, '"test_util".foobar')
+        pop = session.query(BMDColumn).get('"test_util".population')
+        foobar = session.query(BMDColumn).get('"test_util".foobar')
+        assert_equals(len(pop.source_columns), 1)
+        assert_equals(len(foobar.target_columns), 1)
+        assert_equals(pop.source_columns[0].source.id, foobar.id)
+        assert_equals(foobar.target_columns[0].target.id, pop.id)
+
     assert_equals(True, task.complete())
 
     table = BMDTable(id='table', tablename='tablename')
@@ -257,42 +249,47 @@ def test_columns_task_creates_columns_only_when_run():
         assert_equals(session.query(BMDColumnTable).count(), 1)
 
 
+class TestColumnsTask(ColumnsTask):
+
+    def columns(self):
+        pop_column = BMDColumn(id='population',
+                               type='Numeric',
+                               name="Total Population",
+                               description='The total number of all',
+                               aggregate='sum',
+                               weight=10)
+        return [
+            pop_column,
+            BMDColumn(id='foobar',
+                      type='Numeric',
+                      name="Foo Bar",
+                      description='moo boo foo',
+                      aggregate='median',
+                      weight=8,
+                      target_columns=[BMDColumnToColumn(reltype='denominator',
+                                                        target=pop_column)]
+                     ),
+        ]
+
+class TestTableTask(TableTask):
+
+    def requires(self):
+        return {
+            'meta': TestColumnsTask()
+        }
+
+    def columns(self):
+        return {
+            'population': self.input()['meta']['population'],
+            'foobar': self.input()['meta']['foobar']
+        }
+
+    def runsession(self, session):
+        pass
+
+
 @with_setup(setup, teardown)
 def test_table_task_creates_columns_when_run():
-
-    class TestColumnsTask(ColumnsTask):
-
-        def columns(self):
-            return [
-                BMDColumn(id='population',
-                          type='Numeric',
-                          name="Total Population",
-                          description='The total number of all',
-                          aggregate='sum',
-                          weight=10),
-                BMDColumn(id='foobar',
-                          type='Numeric',
-                          name="Foo Bar",
-                          description='moo boo foo',
-                          aggregate='median',
-                          weight=8),
-            ]
-
-    class TestTableTask(TableTask):
-
-        def requires(self):
-            return {
-                'meta': TestColumnsTask()
-            }
-
-        def columns(self):
-            return {
-                'population': self.input()['meta']['population'],
-                'foobar': self.input()['meta']['foobar']
-            }
-
-        def runsession(self, session):
-            pass
 
     task = TestTableTask()
     assert_equals(False, task.complete())
@@ -306,3 +303,36 @@ def test_table_task_creates_columns_when_run():
         assert_equals(session.query(BMDColumnTable).count(), 2)
         assert_equals(session.query(BMDTable).count(), 1)
         assert_in(task.task_id, metadata.tables)
+
+
+@with_setup(setup, teardown)
+def test_table_task_table():
+
+    task = TestTableTask()
+    for dep in task.deps():
+        dep.run()
+
+    task.run()
+
+    with session_scope() as session:
+        assert_equals(task.table.name, task.output().get(session).id)
+
+
+@with_setup(setup, teardown)
+def test_table_task_replaces_data():
+
+    task = TestTableTask()
+    for dep in task.deps():
+        dep.run()
+    task.run()
+
+    with session_scope() as session:
+        assert_equals(session.query(task.table).count(), 0)
+        session.execute('INSERT INTO "{table}" VALUES (100, 100)'.format(
+            table=task.table.name))
+        assert_equals(session.query(task.table).count(), 1)
+
+    task.run()
+
+    with session_scope() as session:
+        assert_equals(session.query(task.table).count(), 0)

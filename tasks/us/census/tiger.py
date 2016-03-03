@@ -10,7 +10,7 @@ import subprocess
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
                         DefaultPostgresTarget, CartoDBTarget,
                         sql_to_cartodb_table, grouper, shell, slug_column,
-                        SessionTask
+                        TableTask, ColumnTarget, ColumnsTask
                        )
 from tasks.meta import (BMDColumnTable, BMDColumn,
                         BMDColumnTag, BMDColumnToColumn)
@@ -31,7 +31,7 @@ HIGH_WEIGHT_COLUMNS = set([
 ])
 
 
-class GeomColumns(object):
+class GeomColumns(ColumnsTask):
 #    block_group = BMDColumn(
 #        id='block_group',
 #        type='Geometry',
@@ -80,15 +80,17 @@ class GeomColumns(object):
 #        weight=6,
 #        tags=[BMDColumnTag(tag=Tags.boundary)]
 #    )
-    def state(self):
-        return dict(
-            id='state',
-            type='Geometry',
-            name='US States',
-            description="States and Equivalent Entities are the primary governmental divisions of the United States. In addition to the 50 states, the Census Bureau treats the District of Columbia, Puerto Rico, American Samoa, the Commonwealth of the Northern Mariana Islands, Guam, and the U.S. Virgin Islands as the statistical equivalents of states for the purpose of data presentation.",
-            weight=8,
-            #tags=[BMDColumnTag(tag=Tags.boundary)]
-        )
+    def columns(self):
+        return [
+            BMDColumn(
+                id='state',
+                type='Geometry',
+                name='US States',
+                description="States and Equivalent Entities are the primary governmental divisions of the United States. In addition to the 50 states, the Census Bureau treats the District of Columbia, Puerto Rico, American Samoa, the Commonwealth of the Northern Mariana Islands, Guam, and the U.S. Virgin Islands as the statistical equivalents of states for the purpose of data presentation.",
+                weight=8,
+                #tags=[BMDColumnTag(tag=Tags.boundary)]
+            )
+        ]
 #    zcta5 = BMDColumn(
 #        id='zcta5',
 #        type='Geometry',
@@ -99,7 +101,7 @@ class GeomColumns(object):
 #    )
 
 
-class GeoidColumns(object):
+class GeoidColumns(ColumnsTask):
 #    block_group = BMDColumn(
 #        id='block_group_geoid',
 #        type='Text',
@@ -152,8 +154,8 @@ class GeoidColumns(object):
 #        target_columns=[BMDColumnToColumn(target=GeomColumns.puma,
 #                                  reltype='geom_ref')]
 #    )
-    def state(self):
-        return dict(
+    def columns(self):
+        return [BMDColumn(
             id='state_geoid',
             type='Text',
             name='US State Geoids',
@@ -161,7 +163,7 @@ class GeoidColumns(object):
             weight=0,
             #target_columns=[BMDColumnToColumn(target=GeomColumns().state(),
             #                                  reltype='geom_ref')]
-        )
+        )]
 #    zcta5 = BMDColumn(
 #        id='zcta5_geoid',
 #        type='Text',
@@ -500,7 +502,7 @@ class ShorelineClipTiger(Task):
 #            output.generate()
 #        self.force = False
 
-class SumLevel(SessionTask):
+class SumLevel(TableTask):
 
     force = BooleanParameter(default=False)
     geography = Parameter()

@@ -2,32 +2,31 @@
 Test ACS columns
 '''
 
-#from tasks.util import shell
-#
-## TODO clean this up in a more general init script
-#try:
-#    shell('createdb test')
-#except:
-#    pass
-#
-#from nose.tools import assert_equals, with_setup, assert_false, assert_true
-#
-#from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
-#                        BMDTag, BMDColumnTag, Base, session_scope)
-#from tasks.us.census.acs import Columns, Extract
-#from tasks.us.census.tiger import GeoidColumns
+from tasks.util import shell
+
+# TODO clean this up in a more general init script
+try:
+    shell('createdb test')
+except:
+    pass
+
+from nose.tools import assert_equals, with_setup, assert_false, assert_true
+
+from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
+                        BMDTag, BMDColumnTag, Base, session_scope)
+from tasks.us.census.acs import Columns, Extract
+from tasks.us.census.tiger import GeoidColumns
 
 
-#def setup():
-#    Base.metadata.drop_all()
-#    Base.metadata.create_all()
-#
-#
-#def teardown():
-#    Base.metadata.drop_all()
-#    Base.metadata.clear()
-#
-#
+def setup():
+    Base.metadata.drop_all()
+    Base.metadata.create_all()
+
+
+def teardown():
+    Base.metadata.drop_all()
+
+
 #@with_setup(setup, teardown)
 #def test_acs_extract_columns():
 #    geography = 'state'
@@ -46,8 +45,8 @@ Test ACS columns
 #
 #    # this doesn't raise any exception to run twice
 #    columns = extract.columns()
-#
-#
+
+
 #@with_setup(setup, teardown)
 #def test_acs_extract_output():
 #    '''
@@ -55,20 +54,30 @@ Test ACS columns
 #    '''
 #    geography = 'state'
 #    extract = Extract(year=2013, sample='1yr', geography=geography)
-#    output = extract.output()
+#    def rundeps(task):
+#        for dep in task.deps():
+#            if 'DownloadACS' in dep.task_id:
+#                if not dep.output().exists():
+#                    dep.output().touch()
+#            rundeps(dep)
+#        if not task.complete():
+#            task.run()
+#
 #    with session_scope() as session:
 #        assert_equals(session.query(BMDTable).count(), 0)
 #        assert_equals(session.query(BMDColumn).count(), 0)
 #        assert_equals(session.query(BMDColumnTable).count(), 0)
-#    with session_scope() as session:
-#        output.create(session)
+#
+#    rundeps(extract)
+#
 #    with session_scope() as session:
 #        assert_equals(session.query(BMDTable).count(), 1)
 #        assert_true(session.query(BMDColumn).count() > 0)
 #        assert_true(session.query(BMDColumnTable).count() > 0)
-#    # Can run twice without error
-#    output = extract.output()
 #
+#    # marked as complete
+#    assert_equals(extract.complete(), True)
+
 #
 #@with_setup(setup, teardown)
 #def test_acs_extract_output_2():

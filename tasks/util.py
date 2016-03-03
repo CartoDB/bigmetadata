@@ -309,14 +309,18 @@ class ColumnTarget(Target):
 
 class TableTarget(Target):
 
-    def __init__(self, table, columns):
+    def __init__(self, bmd_table, columns):
         '''
         columns: should be an ordereddict if you want to specify columns' order
         in the table
         '''
-        self._id = table.id
-        self._table = table
+        self._id = bmd_table.id
+        self._bmd_table = bmd_table
         self._columns = columns
+        if self._id in metadata.tables:
+            self.table = metadata.tables[bmd_table.id]
+        else:
+            self.table = None
 
     def exists(self):
         '''
@@ -337,12 +341,12 @@ class TableTarget(Target):
         # replace metadata table
         bmd_table = self.get(session)
         if bmd_table:
-            for key, val in self._table.__dict__.iteritems():
+            for key, val in self._bmd_table.__dict__.iteritems():
                 if not key.startswith('_'):
                     setattr(bmd_table, key, val)
         else:
-            session.add(self._table)
-            bmd_table = self._table
+            session.add(self._bmd_table)
+            bmd_table = self._bmd_table
 
         # create new local data table
         columns = []
@@ -367,9 +371,10 @@ class TableTarget(Target):
             session.add(coltable)
 
         # replace local data table
-        if self._id in metadata.tables:
-            metadata.tables[self._id].drop()
-        Table(bmd_table.id, metadata, *columns, extend_existing=True).create()
+        if bmd_table.id in metadata.tables:
+            metadata.tables[bmd_table.id].drop()
+        self.table = Table(bmd_table.id, metadata, *columns, extend_existing=True)
+        self.table.create()
 
         #session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
         #    schema=self.schema))
@@ -507,6 +512,13 @@ class TableTask(Task):
     def runsession(self, session):
         return NotImplementedError('Must implement runsession method that '
                                    'populates the table')
+
+    @property
+    def table(self):
+        '''
+        Obtain metadata table for insertion via sqlalchemy or direct postgres
+        '''
+        return self.output().table
 
     def run(self):
         with session_scope() as session:
