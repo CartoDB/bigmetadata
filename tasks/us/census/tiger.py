@@ -9,8 +9,9 @@ import os
 import subprocess
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
                         DefaultPostgresTarget, CartoDBTarget,
-                        sql_to_cartodb_table, grouper, shell, slug_column,
-                        TableTask, ColumnTarget, ColumnsTask
+                        sql_to_cartodb_table, grouper, shell,
+                        underscore_slugify, TableTask, ColumnTarget,
+                        ColumnsTask
                        )
 from tasks.meta import (BMDColumnTable, BMDColumn,
                         BMDColumnTag, BMDColumnToColumn)

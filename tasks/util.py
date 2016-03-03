@@ -51,9 +51,8 @@ def shell(cmd):
 
 
 def underscore_slugify(txt):
-    return slugify(camel_to_underscore(
-        re.sub(r'[^a-zA-Z0-9]+', '_', u'"foo.bar.baz".MyTableName'))
-    ).replace('-', '_')
+    return slugify(camel_to_underscore(re.sub(
+        r'[^a-zA-Z0-9]+', '_', txt))).replace('-', '_')
 
 #def slug_column(column_name):
 #    '''
@@ -304,8 +303,9 @@ class TableTarget(Target):
         columns: should be an ordereddict if you want to specify columns' order
         in the table
         '''
-        self._id = '"{schema}"."{name}"'.format(schema=schema, name=name)
+        self._id = '{schema}.{name}'.format(schema=schema, name=name)
         bmd_table.id = self._id
+        bmd_table.tablename = underscore_slugify(self._id)
         self._schema = schema
         self._name = name
         self._bmd_table = bmd_table
@@ -314,6 +314,11 @@ class TableTarget(Target):
             self.table = metadata.tables[bmd_table.id]
         else:
             self.table = None
+        with session_scope() as session:
+            session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+                schema=self._schema))
+            session.flush()
+
 
     def exists(self):
         '''
@@ -369,10 +374,6 @@ class TableTarget(Target):
         self.table = Table(self._name, metadata, *columns,
                            schema=self._schema, extend_existing=True)
         self.table.create()
-
-        #session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
-        #    schema=self.schema))
-        #session.commit()
 
 
 class ColumnsTask(Task):
@@ -515,6 +516,14 @@ class TableTask(Task):
                                    'populates the table')
 
     @property
+    def description(self):
+        return None
+
+    @property
+    def timespan(self):
+        return None
+
+    @property
     def table(self):
         '''
         Obtain metadata table for insertion via sqlalchemy or direct postgres
@@ -529,6 +538,8 @@ class TableTask(Task):
     def output(self):
         return TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
+                           BMDTable(description=self.description,
+                                    timespan=self.timespan),
                            self.columns())
 
 

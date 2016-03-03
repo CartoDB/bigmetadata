@@ -1,7 +1,7 @@
 from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
-from tasks.util import (slug_column, ColumnTarget, ColumnsTask, TableTask,
+from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
                         TableTarget)
 from tasks.meta import (session_scope, BMDColumn, Base, BMDColumnTable, BMDTag,
                         BMDColumnTag, BMDColumnToColumn, BMDTable, metadata)
@@ -16,19 +16,24 @@ def teardown():
     Base.metadata.drop_all()
 
 
-def test_slug_column():
-    assert_equals(slug_column('Population'), 'pop')
-    assert_equals(slug_column('Population 5 Years and Over'), 'pop_5_years_and_over')
-    assert_equals(slug_column('Workers 16 Years and Over'), 'workers_16_years_and_over')
-    assert_equals(slug_column('Population for Whom Poverty Status Is Determined'),
-                  'pop_poverty_status_determined')
-    assert_equals(slug_column('Commuters by Car, truck, or van'), 'commuters_by_car_truck_or_van')
-    assert_equals(slug_column('Aggregate travel time to work (in minutes)'),
-                  'aggregate_travel_time_to_work_in_minutes')
-    assert_equals(slug_column('Hispanic or Latino Population'),
-                  'hispanic_or_latino_pop')
-    assert_equals(slug_column('Median Household Income (In the past 12 Months)'),
-                  'median_household_income')
+def test_underscore_slugify():
+    assert_equals(underscore_slugify('"path.to.schema"."ClassName(param1=100, param2=foobar)"'),
+                  'path_to_schema_class_name_param1_100_param2_foobar'
+                 )
+
+#def test_slug_column():
+#    assert_equals(slug_column('Population'), 'pop')
+#    assert_equals(slug_column('Population 5 Years and Over'), 'pop_5_years_and_over')
+#    assert_equals(slug_column('Workers 16 Years and Over'), 'workers_16_years_and_over')
+#    assert_equals(slug_column('Population for Whom Poverty Status Is Determined'),
+#                  'pop_poverty_status_determined')
+#    assert_equals(slug_column('Commuters by Car, truck, or van'), 'commuters_by_car_truck_or_van')
+#    assert_equals(slug_column('Aggregate travel time to work (in minutes)'),
+#                  'aggregate_travel_time_to_work_in_minutes')
+#    assert_equals(slug_column('Hispanic or Latino Population'),
+#                  'hispanic_or_latino_pop')
+#    assert_equals(slug_column('Median Household Income (In the past 12 Months)'),
+#                  'median_household_income')
 
 
 @with_setup(setup, teardown)
@@ -171,6 +176,7 @@ def test_table_target_many_inits():
         'foobar': foo_col
     }
     table_target = TableTarget('test', 'foobar', BMDTable(), columns)
+    table_id = 'test.foobar'
 
     with session_scope() as session:
         assert_equals(False, table_target.exists())
@@ -179,17 +185,13 @@ def test_table_target_many_inits():
         table_target.update_or_create(session)
         assert_equals(session.query(BMDColumn).count(), 2)
         assert_equals(session.query(BMDTable).count(), 1)
-        assert_in('foobar', metadata.tables)
-        sqlalchemy_table = metadata.tables['foobar']
+        assert_in(table_id, metadata.tables)
+        sqlalchemy_table = metadata.tables[table_id]
         assert_equals(len(sqlalchemy_table.columns), 2)
 
     assert_equals(True, table_target.exists())
     assert_equals(table_target.table.schema, 'test')
     assert_equals(table_target.table.name, 'foobar')
-
-    # how do we refer to id?
-    import pdb
-    pdb.set_trace()
 
     # new session, old object
     with session_scope() as session:
@@ -197,8 +199,8 @@ def test_table_target_many_inits():
         assert_equals(session.query(BMDTable).count(), 1)
         table_target.update_or_create(session)
         assert_equals(session.query(BMDTable).count(), 1)
-        assert_in('foobar', metadata.tables)
-        sqlalchemy_table = metadata.tables['foobar']
+        assert_in(table_id, metadata.tables)
+        sqlalchemy_table = metadata.tables[table_id]
         assert_equals(len(sqlalchemy_table.columns), 2)
         assert_equals(True, table_target.exists())
 
@@ -209,8 +211,8 @@ def test_table_target_many_inits():
         assert_equals(session.query(BMDTable).count(), 1)
         table_target.update_or_create(session)
         assert_equals(session.query(BMDTable).count(), 1)
-        assert_in('foobar', metadata.tables)
-        sqlalchemy_table = metadata.tables['foobar']
+        assert_in(table_id, metadata.tables)
+        sqlalchemy_table = metadata.tables[table_id]
         assert_equals(len(sqlalchemy_table.columns), 2)
         assert_equals(True, table_target.exists())
 
@@ -313,7 +315,7 @@ def test_table_task_creates_columns_when_run():
         assert_equals(session.query(BMDColumn).count(), 2)
         assert_equals(session.query(BMDColumnTable).count(), 2)
         assert_equals(session.query(BMDTable).count(), 1)
-        assert_in(task.task_id, metadata.tables)
+        assert_in(task.table.fullname, metadata.tables)
 
 
 @with_setup(setup, teardown)
@@ -326,7 +328,7 @@ def test_table_task_table():
     task.run()
 
     with session_scope() as session:
-        assert_equals(task.table.name, task.output().get(session).id)
+        assert_equals(task.table.fullname, task.output().get(session).id)
 
 
 @with_setup(setup, teardown)
@@ -339,8 +341,9 @@ def test_table_task_replaces_data():
 
     with session_scope() as session:
         assert_equals(session.query(task.table).count(), 0)
-        session.execute('INSERT INTO "{table}" VALUES (100, 100)'.format(
-            table=task.table.name))
+        session.execute('INSERT INTO "{schema}"."{tablename}" VALUES (100, 100)'.format(
+            schema=task.table.schema,
+            tablename=task.table.name))
         assert_equals(session.query(task.table).count(), 1)
 
     task.run()
@@ -356,5 +359,5 @@ def test_table_task_qualifies_table_name_schema():
         dep.run()
     task.run()
 
-    assert_equals(task.table.schema, 'tests.test_util')
+    assert_equals(task.table.schema, 'test_util')
     assert_equals(task.table.name, 'test_table_task_alpha_1996_beta_5000')

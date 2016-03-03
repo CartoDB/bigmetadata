@@ -16,7 +16,7 @@ from collections import OrderedDict
 from sqlalchemy import Column, Numeric, Text
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
-                        CartoDBTarget, get_logger, slug_column, TableTask,
+                        CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         session_scope, ColumnTarget, ColumnsTask)
 from tasks.us.census.tiger import load_sumlevels
 from psycopg2 import ProgrammingError
@@ -34,7 +34,6 @@ class Columns(ColumnsTask):
     def requires(self):
         return {
             'tags': Tags(),
-
         }
 
     def columns(self):
