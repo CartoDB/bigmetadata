@@ -329,8 +329,7 @@ class TableTarget(Target):
         We always want to run this at least once, because we can always
         regenerate tabular data from scratch.
         '''
-        with session_scope() as session:
-            return self.get(session) is not None
+        return self._id_noquote in metadata.tables
 
     def get(self, session):
         '''
