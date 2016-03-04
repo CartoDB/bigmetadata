@@ -31,6 +31,7 @@ LOGGER = get_logger(__name__)
 
 
 class Columns(ColumnsTask):
+
     def requires(self):
         return {
             'tags': Tags(),
@@ -44,10 +45,11 @@ class Columns(ColumnsTask):
             description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
             aggregate='sum',
             weight=10,
-            tags=[BMDColumnTag(tag=self.input()['tags']['denominator']),
-                  BMDColumnTag(tag=self.input()['tags']['population'])]
+            tags=[BMDColumnTag(tag_id=self.input()['tags']['denominator']._id),
+                  BMDColumnTag(tag_id=self.input()['tags']['population']._id)]
         )
         return [
+            total_pop,
             BMDColumn(
                 id='B01001002',
                 type='Numeric',
@@ -56,19 +58,18 @@ class Columns(ColumnsTask):
                 aggregate='sum',
                 weight=8,
                 target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
-                tags=[BMDColumnTag(tag=self.input()['tags']['population'])]
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['population']._id)]
             ),
             BMDColumn(
                 id='B01001026',
                 type='Numeric',
-                name="Female Population",
-                description="The number of people within each geography who are female.",
+                name="Total Population",
+                description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
                 aggregate='sum',
                 weight=8,
                 target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
-                tags=[BMDColumnTag(tag=self.input()['tags']['population'])]
-            )
-        ]
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['population']._id)]
+            ) ]
 
     #def male_pop(self):
     #    return dict(
@@ -727,8 +728,6 @@ class Extract(TableTask):
     year = Parameter()
     sample = Parameter()
     geography = Parameter()
-    force = BooleanParameter(default=False)
-    clipped = BooleanParameter()
 
     def requires(self):
         if self.clipped:
@@ -761,10 +760,12 @@ class Extract(TableTask):
         inputschema = self.input()['data'].table
         for colname, coltarget in self.columns().iteritems():
             colid = coltarget.get(session).id
-            colids.append(colid)
             colnames.append(colname)
-            #tableids.add(colid[0:6])
-            tableids.add(colid.split('.')[-1][0:6])
+            if colid.endswith('geoid'):
+                colids.append('geoid')
+            else:
+                colids.append(coltarget.name)
+                tableids.add(colid.split('.')[-1][0:6])
         tableclause = '"{inputschema}".{inputtable} '.format(
             inputschema=inputschema, inputtable=tableids.pop())
         for tableid in tableids:
@@ -772,7 +773,7 @@ class Extract(TableTask):
                            'USING (geoid)'.format(inputschema=inputschema,
                                                   inputtable=tableid)
         table_id = self.output().get(session).id
-        session.execute('INSERT INTO "{output}" ({colnames}) '
+        session.execute('INSERT INTO {output} ({colnames}) '
                         '  SELECT {colids} '
                         '  FROM {tableclause} '
                         '  WHERE geoid LIKE :sumlevelprefix '

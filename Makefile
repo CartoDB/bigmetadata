@@ -2,7 +2,7 @@ sh:
 	docker-compose run bigmetadata /bin/bash
 
 test:
-	docker-compose run bigmetadata nosetests -s tests/
+	docker-compose run -e PGDATABASE=test bigmetadata nosetests -s tests/
 
 python:
 	docker-compose run bigmetadata python
@@ -34,10 +34,6 @@ tiger-carto:
 	  --parallel-scheduling --workers=8 \
 	  --year 2013
 
-index:
-	docker-compose run bigmetadata luigi \
-	  --module tasks.elastic Index
-
 sphinx:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.sphinx Sphinx
@@ -47,3 +43,6 @@ sphinx-deploy:
 	  git add . && \
 	  git commit -m 'updating catalog' && \
 	  git push origin gh-pages
+
+kill:
+	docker-compose ps | grep _run_ | cut -c 1-34 | xargs docker stop

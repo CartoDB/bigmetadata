@@ -38,12 +38,12 @@ def test_underscore_slugify():
 
 @with_setup(setup, teardown)
 def test_column_target_create_update():
-    col = ColumnTarget(BMDColumn(id='foobar',
-                                 type='Numeric',
-                                 name="Total Population",
-                                 description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
-                                 aggregate='sum',
-                                 weight=10))
+    col = ColumnTarget('tests', 'foobar', BMDColumn(
+        type='Numeric',
+        name="Total Population",
+        description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+        aggregate='sum',
+        weight=10))
 
     # Does not exist in DB til we update_or_create
     with session_scope() as session:
@@ -58,12 +58,12 @@ def test_column_target_create_update():
         assert_equals(session.query(BMDColumn).count(), 1)
 
     # Can overwrite the existing column
-    col = ColumnTarget(BMDColumn(id='foobar',
-                                 type='Numeric',
-                                 name="foobar",
-                                 description='foo-bar-baz',
-                                 aggregate='sum',
-                                 weight=10))
+    col = ColumnTarget('tests', 'foobar', BMDColumn(
+        type='Numeric',
+        name="foobar",
+        description='foo-bar-baz',
+        aggregate='sum',
+        weight=10))
 
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 1)
@@ -74,19 +74,19 @@ def test_column_target_create_update():
 
     # Should auto-qualify column id
     with session_scope() as session:
-        rawcol = session.query(BMDColumn).get('foobar')
+        rawcol = session.query(BMDColumn).get('"tests".foobar')
         assert_equals(rawcol.name, 'foobar')
         assert_equals(rawcol.description, 'foo-bar-baz')
 
 
 @with_setup(setup, teardown)
 def test_column_target_relations_create_update():
-    col = ColumnTarget(BMDColumn(id='foobar',
-                                 type='Numeric',
-                                 name="Total Population",
-                                 description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
-                                 aggregate='sum',
-                                 weight=10))
+    col = ColumnTarget("tests", "foobar", BMDColumn(
+        type='Numeric',
+        name="Total Population",
+        description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+        aggregate='sum',
+        weight=10))
 
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 0)
@@ -114,7 +114,7 @@ def test_column_target_relations_create_update():
         col.update_or_create(session)
 
     with session_scope() as session:
-        rawcol = session.query(BMDColumn).get('foobar')
+        rawcol = session.query(BMDColumn).get('"tests".foobar')
         assert_equals(rawcol.name, 'foo bar baz')
         assert_equals(session.query(BMDTag).count(), 1)
         assert_equals(session.query(BMDColumnTag).count(), 1)
@@ -125,24 +125,24 @@ def test_column_target_relations_create_update():
 
 @with_setup(setup, teardown)
 def test_column_target_many_inits():
-    col = ColumnTarget(BMDColumn(id='foobar',
-                                 type='Numeric',
-                                 name="Total Population",
-                                 description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
-                                 aggregate='sum',
-                                 weight=10))
+    col = ColumnTarget("tests", "foobar", BMDColumn(
+        type='Numeric',
+        name="Total Population",
+        description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+        aggregate='sum',
+        weight=10))
 
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 0)
         col.update_or_create(session)
         assert_equals(session.query(BMDColumn).count(), 1)
 
-    col = ColumnTarget(BMDColumn(id='foobar',
-                                 type='Numeric',
-                                 name="Total Population",
-                                 description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
-                                 aggregate='sum',
-                                 weight=10))
+    col = ColumnTarget("tests", "foobar", BMDColumn(
+        type='Numeric',
+        name="Total Population",
+        description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+        aggregate='sum',
+        weight=10))
 
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 1)
@@ -152,18 +152,18 @@ def test_column_target_many_inits():
 
 @with_setup(setup, teardown)
 def test_table_target_many_inits():
-    pop_col = ColumnTarget(BMDColumn(id='population',
-                                     type='Numeric',
-                                     name="Total Population",
-                                     description='The total number of all',
-                                     aggregate='sum',
-                                     weight=10))
-    foo_col = ColumnTarget(BMDColumn(id='foobar',
-                                     type='Numeric',
-                                     name="Foo Bar",
-                                     description='moo boo foo',
-                                     aggregate='median',
-                                     weight=8))
+    pop_col = ColumnTarget("tests", "population", BMDColumn(
+        type='Numeric',
+        name="Total Population",
+        description='The total number of all',
+        aggregate='sum',
+        weight=10))
+    foo_col = ColumnTarget("tests", "foo", BMDColumn(
+        type='Numeric',
+        name="Foo Bar",
+        description='moo boo foo',
+        aggregate='median',
+        weight=8))
     with session_scope() as session:
         pop_col.update_or_create(session)
         foo_col.update_or_create(session)
@@ -328,7 +328,9 @@ def test_table_task_table():
     task.run()
 
     with session_scope() as session:
-        assert_equals(task.table.fullname, task.output().get(session).id)
+        assert_equals('"{schema}".{name}'.format(schema=task.table.schema,
+                                                 name=task.table.name),
+                      task.output().get(session).id)
 
 
 @with_setup(setup, teardown)

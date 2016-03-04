@@ -244,8 +244,12 @@ class ColumnTarget(Target):
     '''
     '''
 
-    def __init__(self, column):
-        self._id = column.id
+    def __init__(self, schema, name, column):
+        self.schema = schema
+        self.name = name
+        self._id = '"{schema}".{name}'.format(schema=schema, name=name)
+        column.id = self._id
+        #self._id = column.id
         self._column = column
 
     def get(self, session):
@@ -303,22 +307,22 @@ class TableTarget(Target):
         columns: should be an ordereddict if you want to specify columns' order
         in the table
         '''
-        self._id = '{schema}.{name}'.format(schema=schema, name=name)
+        self._id = '"{schema}".{name}'.format(schema=schema, name=name)
+        self._id_noquote = '{schema}.{name}'.format(schema=schema, name=name)
         bmd_table.id = self._id
         bmd_table.tablename = underscore_slugify(self._id)
         self._schema = schema
         self._name = name
         self._bmd_table = bmd_table
         self._columns = columns
-        if self._id in metadata.tables:
-            self.table = metadata.tables[bmd_table.id]
+        if self._id_noquote in metadata.tables:
+            self.table = metadata.tables[self._id_noquote]
         else:
             self.table = None
         with session_scope() as session:
             session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
                 schema=self._schema))
             session.flush()
-
 
     def exists(self):
         '''
@@ -373,6 +377,7 @@ class TableTarget(Target):
             metadata.tables[bmd_table.id].drop()
         self.table = Table(self._name, metadata, *columns,
                            schema=self._schema, extend_existing=True)
+        self.table.drop(checkfirst=True)
         self.table.create()
 
 
@@ -395,8 +400,8 @@ class ColumnsTask(Task):
         output = {}
         for col in self.columns():
             orig_id = col.id
-            col.id = '"{}".{}'.format(classpath(self), orig_id)
-            output[orig_id] = ColumnTarget(col)
+            #col.id = '"{}".{}'.format(classpath(self), orig_id)
+            output[orig_id] = ColumnTarget(classpath(self), orig_id, col)
         return output
 
 
