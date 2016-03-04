@@ -18,7 +18,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         sql_to_cartodb_table, slug_column)
 from tasks.us.census.tiger import load_sumlevels
 from psycopg2 import ProgrammingError
-from tasks.us.census.tiger import SUMLEVELS, load_sumlevels
+from tasks.us.census.tiger import SUMLEVELS, load_sumlevels, ShorelineClipTiger
 
 LOGGER = get_logger(__name__)
 
@@ -687,6 +687,12 @@ class ExtractACS(Task):
     sample = Parameter()
     sumlevel = Parameter()
     force = BooleanParameter(default=False)
+    clipped = BooleanParameter()
+
+    def requires(self):
+        if self.clipped:
+            geography = load_sumlevels()[self.sumlevel]['table']
+            return ShorelineClipTiger(year=self.year, geography=geography)
 
     def run(self):
         '''
@@ -694,7 +700,10 @@ class ExtractACS(Task):
         elastic = elastic_conn()
 
         # TODO use metadata to get here
-        tiger_id = 'tiger' + self.year + '.' + load_sumlevels()[self.sumlevel]['table']
+        if not self.clipped:
+            tiger_id = 'tiger' + self.year + '.' + load_sumlevels()[self.sumlevel]['table']
+        else:
+            tiger_id = self.input().table
 
         columns = elastic.search(
             doc_type='column',
@@ -741,7 +750,7 @@ class ExtractACS(Task):
         table_ids = sorted(table_ids)
         column_ids = sorted(column_ids)
 
-        if self.sumlevel in ('795', '860'):
+        if not self.clipped and self.sumlevel in ('795', '860'):
             geoid = 'geoid10'
         else:
             geoid = 'geoid'
@@ -762,8 +771,9 @@ class ExtractACS(Task):
     def tablename(self):
         # TODO use metadata to get here
         resolution = load_sumlevels()[self.sumlevel]['slug'].replace('-', '_')
-        return 'us_census_acs{year}_{sample}_{resolution}'.format(
-            year=self.year, sample=self.sample, resolution=resolution)
+        return 'us_census_acs{year}_{sample}_{resolution}{clipped}'.format(
+            year=self.year, sample=self.sample, resolution=resolution,
+            clipped='_clipped' if self.clipped else '')
 
     def output(self):
         target = CartoDBTarget(self.tablename())
@@ -776,8 +786,10 @@ class ExtractAllACS(Task):
     force = BooleanParameter(default=False)
     year = Parameter()
     sample = Parameter()
+    clipped = BooleanParameter()
 
     def requires(self):
         for sumlevel in ('040', '050', '140', '150', '795', '860',):
             yield ExtractACS(sumlevel=sumlevel, year=self.year,
+                             clipped=self.clipped,
                              sample=self.sample, force=self.force)

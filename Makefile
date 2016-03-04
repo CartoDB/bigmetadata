@@ -22,7 +22,7 @@ acs-carto:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.us.census.acs ExtractAllACS \
 	  --parallel-scheduling --workers=8 \
-	  --year 2013 --sample 5yr
+	  --year 2013 --sample 5yr --clipped
 
 tiger:
 	docker-compose run bigmetadata luigi \
