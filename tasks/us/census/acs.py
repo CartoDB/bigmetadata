@@ -464,53 +464,53 @@ class Columns(ColumnsTask):
             target_columns=[BMDColumnToColumn(target=owner_occupied_housing_units,
                                               reltype='denominator')],
             tags=[BMDColumnTag(tag_id=self.input()['tags']['housing']._id)])
-        return [
-            total_pop,
-            male_pop,
-            female_pop,
-            median_age,
-            white_pop,
-            black_pop,
-            asian_pop,
-            hispanic_pop,
-            not_us_citizen_pop,
-            workers_16_and_over,
-            commuters_by_car_truck_van,
-            commuters_by_public_transportation,
-            commuters_by_bus,
-            commuters_by_subway_or_elevated,
-            walked_to_work,
-            worked_at_home,
-            children,
-            households,
-            population_3_years_over,
-            in_school,
-            in_grades_1_to_4,
-            in_grades_5_to_8,
-            in_grades_9_to_12,
-            in_undergrad_college,
-            pop_25_years_over,
-            high_school_diploma,
-            bachelors_degree,
-            masters_degree,
-            pop_5_years_over,
-            speak_only_english_at_home,
-            speak_spanish_at_home,
-            pop_determined_poverty_status,
-            poverty,
-            median_income,
-            gini_index,
-            income_per_capita,
-            housing_units,
-            vacant_housing_units,
-            vacant_housing_units_for_rent,
-            vacant_housing_units_for_sale,
-            median_rent,
-            percent_income_spent_on_rent,
-            owner_occupied_housing_units,
-            million_dollar_housing_units,
-            mortgaged_housing_units,
-        ]
+        return OrderedDict({
+            "total_pop":                        total_pop,
+            "male_pop":                         male_pop,
+            "female_pop":                       female_pop,
+            "median_age":                       median_age,
+            "white_pop":                        white_pop,
+            "black_pop":                        black_pop,
+            "asian_pop":                        asian_pop,
+            "hispanic_pop":                     hispanic_pop,
+            "not_us_citizen_pop":               not_us_citizen_pop,
+            "workers_16_and_over":              workers_16_and_over,
+            "commuters_by_car_truck_van":       commuters_by_car_truck_van,
+            "commuters_by_public_transportation":commuters_by_public_transportation,
+            "commuters_by_bus":                 commuters_by_bus,
+            "commuters_by_subway_or_elevated":  commuters_by_subway_or_elevated,
+            "walked_to_work":                   walked_to_work,
+            "worked_at_home":                   worked_at_home,
+            "children":                         children,
+            "households":                       households,
+            "population_3_years_over":          population_3_years_over,
+            "in_school":                        in_school,
+            "in_grades_1_to_4":                 in_grades_1_to_4,
+            "in_grades_5_to_8":                 in_grades_5_to_8,
+            "in_grades_9_to_12":                in_grades_9_to_12,
+            "in_undergrad_college":             in_undergrad_college,
+            "pop_25_years_over":                pop_25_years_over,
+            "high_school_diploma":              high_school_diploma,
+            "bachelors_degree":                 bachelors_degree,
+            "masters_degree":                   masters_degree,
+            "pop_5_years_over":                 pop_5_years_over,
+            "speak_only_english_at_home":       speak_only_english_at_home,
+            "speak_spanish_at_home":            speak_spanish_at_home,
+            "pop_determined_poverty_status":    pop_determined_poverty_status,
+            "poverty":                          poverty,
+            "median_income":                    median_income,
+            "gini_index":                       gini_index,
+            "income_per_capita":                income_per_capita,
+            "housing_units":                    housing_units,
+            "vacant_housing_units":             vacant_housing_units,
+            "vacant_housing_units_for_rent":    vacant_housing_units_for_rent,
+            "vacant_housing_units_for_sale":    vacant_housing_units_for_sale,
+            "median_rent":                      median_rent,
+            "percent_income_spent_on_rent":     percent_income_spent_on_rent,
+            "owner_occupied_housing_units":     owner_occupied_housing_units,
+            "million_dollar_housing_units":     million_dollar_housing_units,
+            "mortgaged_housing_units":          mortgaged_housing_units,
+        })
 
 
 #
@@ -757,11 +757,9 @@ class Extract(TableTask):
     geography = Parameter()
 
     def requires(self):
-        if self.clipped:
-            geography = load_sumlevels()[self.sumlevel]['table']
-            return ShorelineClipTiger(year=self.year, geography=geography)
-
-    def requires(self):
+        #if self.clipped:
+        #    geography = load_sumlevels()[self.sumlevel]['table']
+        #    return ShorelineClipTiger(year=self.year, geography=geography)
         return {
             'acs': Columns(),
             'tiger': GeoidColumns(),
@@ -769,12 +767,16 @@ class Extract(TableTask):
         }
 
     def columns(self):
-        return OrderedDict([
+        cols = OrderedDict([
             ('geoid', self.input()['tiger'][self.geography + '_geoid']),
-            ('total_pop', self.input()['acs']['B01001001']),
-            ('male_pop', self.input()['acs']['B01001002']),
-            ('female_pop', self.input()['acs']['B01001026']),
         ])
+        #    ('total_pop', self.input()['acs']['B01001001']),
+        #    ('male_pop', self.input()['acs']['B01001002']),
+        #    ('female_pop', self.input()['acs']['B01001026']),
+        #])
+        for colkey, col in self.input()['acs'].iteritems():
+            cols[colkey] = col
+        return cols
 
     def runsession(self, session):
         '''

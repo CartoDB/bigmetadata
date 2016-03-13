@@ -82,8 +82,8 @@ class GeomColumns(ColumnsTask):
 #        tags=[BMDColumnTag(tag=Tags.boundary)]
 #    )
     def columns(self):
-        return [
-            BMDColumn(
+        return {
+            'state': BMDColumn(
                 id='state',
                 type='Geometry',
                 name='US States',
@@ -91,7 +91,7 @@ class GeomColumns(ColumnsTask):
                 weight=8,
                 #tags=[BMDColumnTag(tag=Tags.boundary)]
             )
-        ]
+        }
 #    zcta5 = BMDColumn(
 #        id='zcta5',
 #        type='Geometry',
@@ -156,15 +156,17 @@ class GeoidColumns(ColumnsTask):
 #                                  reltype='geom_ref')]
 #    )
     def columns(self):
-        return [BMDColumn(
-            id='state_geoid',
-            type='Text',
-            name='US State Geoids',
-            description="",
-            weight=0,
-            #target_columns=[BMDColumnToColumn(target=GeomColumns().state(),
-            #                                  reltype='geom_ref')]
-        )]
+        return {
+            'state_geoid': BMDColumn(
+                id='state_geoid',
+                type='Text',
+                name='US State Geoids',
+                description="",
+                weight=0,
+                #target_columns=[BMDColumnToColumn(target=GeomColumns().state(),
+                #                                  reltype='geom_ref')]
+            )
+        }
 #    zcta5 = BMDColumn(
 #        id='zcta5_geoid',
 #        type='Text',
