@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
@@ -237,7 +238,7 @@ def test_columns_task_creates_columns_only_when_run():
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 2)
         assert_equals(session.query(BMDColumnToColumn).count(), 1)
-        assert_equals(task.output()['population'].get(session).id, '"test_util".population')
+        assert_equals(task.output()['pop'].get(session).id, '"test_util".population')
         assert_equals(task.output()['foobar'].get(session).id, '"test_util".foobar')
         pop = session.query(BMDColumn).get('"test_util".population')
         foobar = session.query(BMDColumn).get('"test_util".foobar')
@@ -250,7 +251,7 @@ def test_columns_task_creates_columns_only_when_run():
 
     table = BMDTable(id='table', tablename='tablename')
     with session_scope() as session:
-        coltable = BMDColumnTable(column=task.output()['population'].get(session),
+        coltable = BMDColumnTable(column=task.output()['pop'].get(session),
                                   table=table, colname='colnamaste')
         session.add(table)
         session.add(coltable)
@@ -268,18 +269,19 @@ class TestColumnsTask(ColumnsTask):
                                description='The total number of all',
                                aggregate='sum',
                                weight=10)
-        return [
-            pop_column,
-            BMDColumn(id='foobar',
-                      type='Numeric',
-                      name="Foo Bar",
-                      description='moo boo foo',
-                      aggregate='median',
-                      weight=8,
-                      target_columns=[BMDColumnToColumn(reltype='denominator',
-                                                        target=pop_column)]
-                     ),
-        ]
+        return OrderedDict({
+            'pop': pop_column,
+            'foobar': BMDColumn(id='foobar',
+                                type='Numeric',
+                                name="Foo Bar",
+                                description='moo boo foo',
+                                aggregate='median',
+                                weight=8,
+                                target_columns=[BMDColumnToColumn(reltype='denominator',
+                                                                  target=pop_column)]
+                               ),
+        })
+
 
 class TestTableTask(TableTask):
 
@@ -293,7 +295,7 @@ class TestTableTask(TableTask):
 
     def columns(self):
         return {
-            'population': self.input()['meta']['population'],
+            'population': self.input()['meta']['pop'],
             'foobar': self.input()['meta']['foobar']
         }
 

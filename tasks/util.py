@@ -2,6 +2,8 @@
 Util functions for luigi bigmetadata tasks.
 '''
 
+from collections import OrderedDict
+
 import os
 import subprocess
 import logging
@@ -396,11 +398,9 @@ class ColumnsTask(Task):
                 coltarget.update_or_create(session)
 
     def output(self):
-        output = {}
-        for col in self.columns():
-            orig_id = col.id
-            #col.id = '"{}".{}'.format(classpath(self), orig_id)
-            output[orig_id] = ColumnTarget(classpath(self), orig_id, col)
+        output = OrderedDict({})
+        for col_key, col in self.columns().iteritems():
+            output[col_key] = ColumnTarget(classpath(self), col.id, col)
         return output
 
 
