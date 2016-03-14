@@ -18,10 +18,10 @@ from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         session_scope, ColumnTarget, ColumnsTask)
-from tasks.us.census.tiger import load_sumlevels
+from tasks.us.census.tiger import load_sumlevels, SumLevel
 from psycopg2 import ProgrammingError
 from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
-                                   ShorelineClipTiger)
+                                   SUMLEVELS_BY_SLUG, ShorelineClipTiger)
 
 from tasks.meta import (BMDColumn, BMDTag, BMDColumnToColumn, BMDColumnTag,
                         BMDColumnTable)
@@ -757,23 +757,26 @@ class Extract(TableTask):
     geography = Parameter()
 
     def requires(self):
-        #if self.clipped:
-        #    geography = load_sumlevels()[self.sumlevel]['table']
-        #    return ShorelineClipTiger(year=self.year, geography=geography)
         return {
             'acs': Columns(),
             'tiger': GeoidColumns(),
-            'data': DownloadACS(year=self.year, sample=self.sample)
+            'data': DownloadACS(year=self.year, sample=self.sample),
+            'tigerdata': SumLevel(geography=self.geography, year=self.year)
         }
+
+    def timespan(self):
+        sample = int(self.sample[0])
+        return '{start} - {end}'.format(start=int(self.year) - sample + 1,
+                                        end=int(self.year))
+
+    def bounds(self):
+        with session_scope() as session:
+            return self.input()['tigerdata'].get(session).bounds
 
     def columns(self):
         cols = OrderedDict([
             ('geoid', self.input()['tiger'][self.geography + '_geoid']),
         ])
-        #    ('total_pop', self.input()['acs']['B01001001']),
-        #    ('male_pop', self.input()['acs']['B01001002']),
-        #    ('female_pop', self.input()['acs']['B01001026']),
-        #])
         for colkey, col in self.input()['acs'].iteritems():
             cols[colkey] = col
         return cols
@@ -782,7 +785,7 @@ class Extract(TableTask):
         '''
         load relevant columns from underlying census tables
         '''
-        sumlevel = '040' # TODO
+        sumlevel = SUMLEVELS_BY_SLUG[self.geography]['summary_level']
         colids = []
         colnames = []
         tableids = set()
@@ -816,15 +819,12 @@ class Extract(TableTask):
                         })
 
 
-class ExtractAllACS(Task):
+class ExtractAll(Task):
     force = BooleanParameter(default=False)
     year = Parameter()
     sample = Parameter()
-    clipped = BooleanParameter()
 
     def requires(self):
-        #for sumlevel in ('040', '050', '140', '150', '795', '860',):
-        for sumlevel in ('state', 'county', 'census-tract', 'census-block', 'puma', 'zcta5',):
-            yield ExtractACS(sumlevel=sumlevel, year=self.year,
-                             clipped=self.clipped,
-                             sample=self.sample, force=self.force)
+        for geo in ('state', 'county', 'census_tract', 'block_group', 'puma', 'zcta5',):
+            yield Extract(geography=geo, year=self.year,
+                          sample=self.sample, force=self.force)
