@@ -522,13 +522,14 @@ class TableTask(Task):
         return NotImplementedError('Must implement runsession method that '
                                    'populates the table')
 
-    @property
     def description(self):
         return None
 
-    @property
     def timespan(self):
-        return None
+        return NotImplementedError('Must define timespan for table')
+
+    def bounds(self):
+        return NotImplementedError('Must define bounds for table')
 
     @property
     def table(self):
@@ -545,8 +546,9 @@ class TableTask(Task):
     def output(self):
         return TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
-                           BMDTable(description=self.description,
-                                    timespan=self.timespan),
+                           BMDTable(description=self.description(),
+                                    bounds=self.bounds(),
+                                    timespan=self.timespan()),
                            self.columns())
 
 

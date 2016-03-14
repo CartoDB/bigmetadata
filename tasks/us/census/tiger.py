@@ -7,29 +7,19 @@ Tiger
 import json
 import os
 import subprocess
+from collections import OrderedDict
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
                         DefaultPostgresTarget, CartoDBTarget,
                         sql_to_cartodb_table, grouper, shell,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask
                        )
-from tasks.meta import (BMDColumnTable, BMDColumn,
+from tasks.meta import (BMDColumnTable, BMDColumn, session_scope,
                         BMDColumnTag, BMDColumnToColumn)
 from tasks.tags import Tags
 
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
 from psycopg2 import ProgrammingError
-
-HIGH_WEIGHT_COLUMNS = set([
-    "block-group",
-    "block",
-    "census-tract",
-    "congressional-district",
-    "county",
-    "puma",
-    "state",
-    "zcta5"
-])
 
 
 class GeomColumns(ColumnsTask):
@@ -115,7 +105,7 @@ class GeoidColumns(ColumnsTask):
 
     def columns(self):
         return {
-            'block_group': BMDColumn(
+            'block_group_geoid': BMDColumn(
                 id='block_group_geoid',
                 type='Text',
                 name='US Census Block Group Geoids',
@@ -125,7 +115,7 @@ class GeoidColumns(ColumnsTask):
                     target_id=self.input()['block_group']._id,
                     reltype='geom_ref')]
             ),
-            'block': BMDColumn(
+            'block_geoid': BMDColumn(
                 id='block_geoid',
                 type='Text',
                 name='US Census Block Geoids',
@@ -135,7 +125,7 @@ class GeoidColumns(ColumnsTask):
                     target_id=self.input()['block']._id,
                     reltype='geom_ref')]
             ),
-            'census_tract': BMDColumn(
+            'census_tract_geoid': BMDColumn(
                 id='census_tract_geoid',
                 type='Text',
                 name='US Census Tract Geoids',
@@ -146,7 +136,7 @@ class GeoidColumns(ColumnsTask):
                     target_id=self.input()['census_tract']._id,
                     reltype='geom_ref')]
             ),
-            'congressional_district': BMDColumn(
+            'congressional_district_geoid': BMDColumn(
                 id='congressional_district_geoid',
                 type='Text',
                 name='US Congressional District Geoids',
@@ -157,7 +147,7 @@ class GeoidColumns(ColumnsTask):
                     target_id=self.input()['congressional_district']._id,
                     reltype='geom_ref')]
             ),
-            'county': BMDColumn(
+            'county_geoid': BMDColumn(
                 id='county_geoid',
                 type='Text',
                 name='US County Geoids',
@@ -168,7 +158,7 @@ class GeoidColumns(ColumnsTask):
                     target_id=self.input()['county']._id,
                     reltype='geom_ref')]
             ),
-            'puma': BMDColumn(
+            'puma_geoid': BMDColumn(
                 id='puma_geoid',
                 type='Text',
                 name='US Census Public Use Microdata Area Geoids',
@@ -190,7 +180,7 @@ class GeoidColumns(ColumnsTask):
                     target_id=self.input()['state']._id,
                     reltype='geom_ref')]
             ),
-            'zcta5': BMDColumn(
+            'zcta5_geoid': BMDColumn(
                 id='zcta5_geoid',
                 type='Text',
                 name='US Census Zip Code Tabulation Area Geoids',
@@ -533,38 +523,63 @@ class ShorelineClipTiger(Task):
 
 class SumLevel(TableTask):
 
-    force = BooleanParameter(default=False)
     geography = Parameter()
     year = Parameter()
 
+    @property
+    def geoid(self):
+        return 'geoid10' if self.geography in ('zcta5', 'puma') else 'geoid'
+
+    @property
+    def input_tablename(self):
+        return SUMLEVELS_BY_SLUG[self.geography]['table']
+
     def columns(self):
-        return [
-            BMDColumnTable(colname='geoid',
-                           column=getattr(GeoidColumns, self.geography)),
-            BMDColumnTable(colname='geom',
-                           column=getattr(GeomColumns, self.geography))
-        ]
+        return OrderedDict([
+            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
+            ('geom', self.input()['geoms'][self.geography])
+        ])
+
+    def timespan(self):
+        return self.year
+
+    def bounds(self):
+        with session_scope() as session:
+            with session.no_autoflush:
+                return session.execute('SELECT ST_EXTENT(geom) FROM '
+                                       '{inputschema}.{input_tablename}'.format(
+                                           inputschema=self.input()['data'].table,
+                                           input_tablename=self.input_tablename
+                                       )).first()[0]
 
     def requires(self):
-        return DownloadTiger(year=self.year)
+        return {
+            'data': DownloadTiger(year=self.year),
+            'geoids': GeoidColumns(),
+            'geoms': GeomColumns()
+        }
 
     def runsession(self, session):
-        input_tablename = SUMLEVELS_BY_SLUG[self.geography]['table']
         session.execute('INSERT INTO {output} (geoid, geom) '
-                        'SELECT geoid, geom '
+                        'SELECT {geoid}, geom '
                         'FROM {inputschema}.{input_tablename}'.format(
-                            inputschema=self.input().table,
-                            input_tablename=input_tablename,
-                            output=self.output().table_id
+                            geoid=self.geoid,
+                            inputschema=self.input()['data'].table,
+                            input_tablename=self.input_tablename,
+                            output=self.output().get(session).id
                         ))
 
 
-class Tiger(WrapperTask):
+class AllSumLevels(WrapperTask):
+    '''
+    Compute all sumlevels
+    '''
 
-    force = BooleanParameter(default=False)
+    year = Parameter(default=2013)
 
     def requires(self):
-        yield ProcessTiger(year=2013, force=self.force)
+        for geo in ('state', 'county', 'census_tract', 'block_group', 'puma', 'zcta5',):
+            yield SumLevel(year=self.year, geography=geo)
 
 
 def load_sumlevels():

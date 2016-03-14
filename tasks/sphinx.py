@@ -7,7 +7,6 @@ import re
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
 from tasks.util import shell
 from tasks.meta import session_scope, BMDTag
-from tasks.us.census.tiger import HIGH_WEIGHT_COLUMNS
 
 
 TEMPLATE = jinja2.Template(
@@ -26,22 +25,28 @@ TEMPLATE = jinja2.Template(
 ----------------------------------------------------------------------------
 
 {# preview map #}
+{#
 {% if col.tables %}
 .. rst-class:: cartodb-static-map
 
 {{ col.slug_name }}
 {% endif %}
+#}
 
 :description: {{ col.description }}
 
-{% for coltarget in col.targets %}
+{% for coltarget in col.target_columns %}
+    {% set target = coltarget.target %}
     :{{ coltarget.reltype }}:
 
-    {{ coltarget.column.id }}
+    {{ coltarget.target.id }}
 {% endfor %}
 
-{% for table in col.tables %}
+{% for coltable in col.tables %}
+    {% set table = coltable.table %}
+    :{{ table.timespan }}:
 
+    {{ table.tablename }}
 {% endfor %}
 {% endfor %}
 
