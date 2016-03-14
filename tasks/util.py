@@ -56,26 +56,6 @@ def underscore_slugify(txt):
     return slugify(camel_to_underscore(re.sub(
         r'[^a-zA-Z0-9]+', '_', txt))).replace('-', '_')
 
-#def slug_column(column_name):
-#    '''
-#    Turn human-readable column name into a decent one for a SQL table
-#    '''
-#    translations = {
-#        'population': 'pop',
-#        'for_whom': '',
-#        'u_s': 'us',
-#        '_is_': '_',
-#        'in_the_past_12_months': '',
-#        'black_or_african_american': 'black',
-#        'percentage_of': 'percent'
-#    }
-#    # TODO handle accents etc properly
-#    column_name = re.sub(r'[^a-z0-9]+', '_', column_name.lower())
-#    for before, after in translations.iteritems():
-#        column_name = column_name.replace(before, after)
-#    column_name = re.sub(r'[^a-z0-9]+', '_', column_name).strip('_')
-#    return column_name
-
 
 def classpath(obj):
     '''
@@ -444,10 +424,10 @@ class TableToCarto(Task):
 
     def output(self):
         if self.outname is None:
-            self.outname = slug_column(self.table)
+            self.outname = underscore_slugify(self.table)
         target = CartoDBTarget(self.outname)
-        if self.force:
-            target.untouch()
+        if self.force and target.exists():
+            target.remove()
         return target
 
 
@@ -550,16 +530,3 @@ class TableTask(Task):
                                     bounds=self.bounds(),
                                     timespan=self.timespan()),
                            self.columns())
-
-
-#def update_or_create(session, obj, predicate):
-#    try:
-#        with session.no_autoflush:
-#            existing_obj = session.query(type(obj)).filter(*predicate(obj)).one()
-#        for key, val in obj.__dict__.iteritems():
-#            if not key.startswith('__'):
-#                setattr(existing_obj, key, val)
-#        return existing_obj
-#    except NoResultFound:
-#        session.add(obj)
-#        return obj

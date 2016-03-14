@@ -801,8 +801,8 @@ class Extract(TableTask):
         tableclause = '"{inputschema}".{inputtable} '.format(
             inputschema=inputschema, inputtable=tableids.pop())
         for tableid in tableids:
-            tableclause += 'JOIN "{inputschema}".{inputtable} ' \
-                           'USING (geoid)'.format(inputschema=inputschema,
+            tableclause += ' JOIN "{inputschema}".{inputtable} ' \
+                           ' USING (geoid) '.format(inputschema=inputschema,
                                                   inputtable=tableid)
         table_id = self.output().get(session).id
         session.execute('INSERT INTO {output} ({colnames}) '
@@ -819,12 +819,10 @@ class Extract(TableTask):
                         })
 
 
-class ExtractAll(Task):
-    force = BooleanParameter(default=False)
+class ExtractAll(WrapperTask):
     year = Parameter()
     sample = Parameter()
 
     def requires(self):
         for geo in ('state', 'county', 'census_tract', 'block_group', 'puma', 'zcta5',):
-            yield Extract(geography=geo, year=self.year,
-                          sample=self.sample, force=self.force)
+            yield Extract(geography=geo, year=self.year, sample=self.sample)

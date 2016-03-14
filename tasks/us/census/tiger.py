@@ -498,31 +498,34 @@ class ShorelineClipTiger(Task):
         return target
 
 
-#class ProcessTiger(Task):
-#
-#    force = BooleanParameter(default=False)
-#    year = Parameter()
-#
-#    def requires(self):
-#        yield DownloadTiger(year=self.year)
-#
-#    def output(self):
-#        for sumlevel in SUMLEVELS:
-#            yield TigerSumLevel(sumlevel)
-#
-#    def complete(self):
-#        if self.force:
-#            return False
-#        else:
-#            return super(ProcessTiger, self).complete()
-#
-#    def run(self):
-#        for output in self.output():
-#            output.generate()
-#        self.force = False
+
+class ExtractClippedTiger(Task):
+    # TODO this should be merged with ExtractTiger
+
+    force = BooleanParameter(default=False)
+    year = Parameter()
+    sumlevel = Parameter()
+
+    def requires(self):
+
+    def run(self):
+        query = u'SELECT * FROM {table}'.format(
+            table=self.input().table
+        )
+        sql_to_cartodb_table(self.tablename(), query)
+
+    def tablename(self):
+        return self.input().table.replace('-', '_').replace('/', '_').replace('"', '').replace('.', '_')
+
+    def output(self):
+        target = CartoDBTarget(self.tablename())
+        if self.force and target.exists():
+            target.remove()
+        return target
 
 class SumLevel(TableTask):
 
+    clipped = BooleanParameter(default=False)
     geography = Parameter()
     year = Parameter()
 
@@ -533,6 +536,18 @@ class SumLevel(TableTask):
     @property
     def input_tablename(self):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
+
+    def requires(self):
+        if self.clipped:
+            tiger = return ShorelineClipTiger(
+                year=self.year, geography=load_sumlevels()[self.sumlevel]['table'])
+        else:
+            tiger = DownloadTiger(year=self.year)
+        return {
+            'data': tiger,
+            'geoids': GeoidColumns(),
+            'geoms': GeomColumns()
+        }
 
     def columns(self):
         return OrderedDict([
@@ -552,21 +567,22 @@ class SumLevel(TableTask):
                                            input_tablename=self.input_tablename
                                        )).first()[0]
 
-    def requires(self):
-        return {
-            'data': DownloadTiger(year=self.year),
-            'geoids': GeoidColumns(),
-            'geoms': GeomColumns()
-        }
-
     def runsession(self, session):
+        import pdb
+        pdb.set_trace()
+        if self.clipped:
+            from_clause = self.input()['data'].table
+        else:
+            from_clause = '{inputschema}.{input_tablename}'.format(
+                inputschema=self.input()['data'].table,
+                input_tablename=self.input_tablename,
+            )
         session.execute('INSERT INTO {output} (geoid, geom) '
                         'SELECT {geoid}, geom '
-                        'FROM {inputschema}.{input_tablename}'.format(
+                        'FROM {fromclause}'.format(
                             geoid=self.geoid,
-                            inputschema=self.input()['data'].table,
-                            input_tablename=self.input_tablename,
-                            output=self.output().get(session).id
+                            output=self.output().get(session).id,
+                            fromclause=fromclause
                         ))
 
 
@@ -604,56 +620,6 @@ def load_sumlevels():
 
         sumlevels[fields['summary_level']] = fields
     return sumlevels
-
-
-class ExtractTiger(Task):
-    force = BooleanParameter(default=False)
-    year = Parameter()
-    sumlevel = Parameter()
-
-    def run(self):
-        tiger_id = 'tiger' + self.year + '.' + load_sumlevels()[self.sumlevel]['table']
-        query = u'SELECT * FROM {table}'.format(
-            table=tiger_id
-        )
-        sql_to_cartodb_table(self.tablename(), query)
-
-    def tablename(self):
-        resolution = load_sumlevels()[self.sumlevel]['slug'].replace('-', '_')
-        return slug_column(self.output().table)
-
-    def output(self):
-        target = CartoDBTarget(self.tablename())
-        if self.force and target.exists():
-            target.remove()
-        return target
-
-
-class ExtractClippedTiger(Task):
-    # TODO this should be merged with ExtractTiger
-
-    force = BooleanParameter(default=False)
-    year = Parameter()
-    sumlevel = Parameter()
-
-    def requires(self):
-        return ShorelineClipTiger(
-            year=self.year, geography=load_sumlevels()[self.sumlevel]['table'])
-
-    def run(self):
-        query = u'SELECT * FROM {table}'.format(
-            table=self.input().table
-        )
-        sql_to_cartodb_table(self.tablename(), query)
-
-    def tablename(self):
-        return self.input().table.replace('-', '_').replace('/', '_').replace('"', '').replace('.', '_')
-
-    def output(self):
-        target = CartoDBTarget(self.tablename())
-        if self.force and target.exists():
-            target.remove()
-        return target
 
 
 class ExtractAllTiger(Task):
