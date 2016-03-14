@@ -258,7 +258,8 @@ class ColumnTarget(Target):
         '''
         Return a copy of the underlying BMDColumn in the specified session.
         '''
-        return session.query(BMDColumn).get(self._id)
+        with session.no_autoflush:
+            return session.query(BMDColumn).get(self._id)
 
     def update_or_create(self, session):
         existing = self.get(session)
@@ -286,7 +287,8 @@ class TagTarget(Target):
         '''
         Return a copy of the underlying BMDColumn in the specified session.
         '''
-        return session.query(BMDTag).get(self._id)
+        with session.no_autoflush:
+            return session.query(BMDTag).get(self._id)
 
     def update_or_create(self, session):
         existing = self.get(session)
@@ -337,7 +339,8 @@ class TableTarget(Target):
         '''
         Return a copy of the underlying BMDTable in the specified session.
         '''
-        return session.query(BMDTable).get(self._id)
+        with session.no_autoflush:
+            return session.query(BMDTable).get(self._id)
 
     def update_or_create(self, session):
 

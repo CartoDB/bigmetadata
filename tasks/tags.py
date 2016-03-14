@@ -31,4 +31,3 @@ class Tags(TagsTask):
                    name='Boundaries',
                    description='Use these to provide regions for sound comparison and analysis.'),
         ]
-        
