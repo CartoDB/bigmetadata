@@ -36,7 +36,7 @@ tiger-carto:
 
 sphinx:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.sphinx Sphinx
+	  --module tasks.sphinx Sphinx --force
 
 sphinx-deploy:
 	cd catalog/build/html && \
