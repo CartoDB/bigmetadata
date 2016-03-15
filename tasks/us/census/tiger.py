@@ -568,8 +568,6 @@ class SumLevel(TableTask):
                                        )).first()[0]
 
     def runsession(self, session):
-        import pdb
-        pdb.set_trace()
         if self.clipped:
             from_clause = self.input()['data'].table
         else:
