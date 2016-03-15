@@ -513,185 +513,6 @@ class Columns(ColumnsTask):
         })
 
 
-#
-#HIGH_WEIGHT_TABLES = set([
-#    'B01001',
-#    'B01002',
-#    'B03002',
-#    'B05001',
-#    #'B05011',
-#    #'B07101',
-#    'B08006',
-#    #'B08013',
-#    #'B08101',
-#    'B09001',
-#    'B11001',
-#    #'B11002',
-#    #'B11012',
-#    'B14001',
-#    'B15003',
-#    'B16001',
-#    'B17001',
-#    'B19013',
-#    'B19083',
-#    'B19301',
-#    'B25001',
-#    'B25002',
-#    'B25003',
-#    #'B25056',
-#    'B25058',
-#    'B25071',
-#    'B25075',
-#    'B25081',
-#    #'B25114',
-#])
-#
-#MEDIUM_WEIGHT_TABLES = set([
-#    "B02001",
-#    "B04001",
-#    "B05002",
-#    "B05012",
-#    "B06011",
-#    "B06012",
-#    "B07001",
-#    "B07204",
-#    "B08011",
-#    "B08012",
-#    "B08103",
-#    "B08134",
-#    "B08136",
-#    "B08301",
-#    "B08303",
-#    "B09002",
-#    "B09005",
-#    "B09008",
-#    "B09010",
-#    "B09018",
-#    "B09019",
-#    "B11005",
-#    "B11006",
-#    "B11007",
-#    "B11011",
-#    "B11014",
-#    "B11016",
-#    "B11017",
-#    "B12001",
-#    "B12002",
-#    "B12007",
-#    "B12501",
-#    "B12503",
-#    "B12504",
-#    "B12505",
-#    "B13002",
-#    "B13016",
-#    "B14002",
-#    "B14003",
-#    "B15001",
-#    "B15002",
-#    "B16002",
-#    "B16006",
-#    "B17015",
-#    "B19001",
-#    "B19013A",
-#    "B19013B",
-#    "B19013C",
-#    "B19013D",
-#    "B19013E",
-#    "B19013F",
-#    "B19013G",
-#    "B19013H",
-#    "B19013I",
-#    "B19019",
-#    "B19051",
-#    "B19052",
-#    "B19053",
-#    "B19054",
-#    "B19055",
-#    "B19056",
-#    "B19057",
-#    "B19058",
-#    "B19059",
-#    "B19060",
-#    "B19080",
-#    "B19081",
-#    "B19082",
-#    "B19101",
-#    "B19113",
-#    "B19301A",
-#    "B19301B",
-#    "B19301C",
-#    "B19301D",
-#    "B19301E",
-#    "B19301F",
-#    "B19301G",
-#    "B19301H",
-#    "B19301I",
-#    "B23001",
-#    "B23006",
-#    "B23020",
-#    "B23025",
-#    "B25003A",
-#    "B25003B",
-#    "B25003C",
-#    "B25003D",
-#    "B25003E",
-#    "B25003F",
-#    "B25003G",
-#    "B25003H",
-#    "B25003I",
-#    "B25004",
-#    "B25017",
-#    "B25018",
-#    "B25019",
-#    "B25024",
-#    "B25026",
-#    "B25027",
-#    "B25034",
-#    "B25035",
-#    "B25036",
-#    "B25037",
-#    "B25040",
-#    "B25041",
-#    "B25057",
-#    "B25059",
-#    "B25060",
-#    "B25061",
-#    "B25062",
-#    "B25063",
-#    "B25064",
-#    "B25065",
-#    "B25070",
-#    "B25076",
-#    "B25077",
-#    "B25078",
-#    "B25085",
-#    "B25104",
-#    "B25105",
-#    "B27001",
-#    "B27002",
-#    "B27003",
-#    "B27010",
-#    "B27011",
-#    "B27015",
-#    "B27019",
-#    "B27020",
-#    "B27022",
-#    "C02003",
-#    "C15002A",
-#    "C15010",
-#    "C17002",
-#    "C24010",
-#    "C24020",
-#    "C24030",
-#    "C24040"
-#])
-
-# STEPS:
-#
-# 1. load ACS SQL into postgres
-# 2. extract usable metadata from the imported tables, persist as json
-#
-
 class DownloadACS(LoadPostgresFromURL):
 
     # http://censusreporter.tumblr.com/post/73727555158/easier-access-to-acs-data
@@ -724,29 +545,6 @@ class DownloadACS(LoadPostgresFromURL):
         self.load_from_url(url)
 
 
-class DumpACS(WrapperTask):
-    #TODO
-    '''
-    Dump a table in postgres compressed format
-    '''
-    year = Parameter()
-    sample = Parameter()
-
-    def requires(self):
-        pass
-
-
-
-class AllACS(WrapperTask):
-
-    force = BooleanParameter(default=False)
-
-    def requires(self):
-        for year in xrange(2010, 2014):
-            for sample in ('1yr', '3yr', '5yr'):
-                yield ProcessACS(year=year, sample=sample, force=self.force)
-
-
 class Extract(TableTask):
     '''
     Generate an extract of important ACS columns for CartoDB
@@ -770,8 +568,9 @@ class Extract(TableTask):
                                         end=int(self.year))
 
     def bounds(self):
-        with session_scope() as session:
-            return self.input()['tigerdata'].get(session).bounds
+        if self.input()['tigerdata'].exists():
+            with session_scope() as session:
+                return self.input()['tigerdata'].get(session).bounds
 
     def columns(self):
         cols = OrderedDict([

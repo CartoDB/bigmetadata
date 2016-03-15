@@ -507,6 +507,7 @@ class ExtractClippedTiger(Task):
     sumlevel = Parameter()
 
     def requires(self):
+        pass
 
     def run(self):
         query = u'SELECT * FROM {table}'.format(
@@ -539,8 +540,8 @@ class SumLevel(TableTask):
 
     def requires(self):
         if self.clipped:
-            tiger = return ShorelineClipTiger(
-                year=self.year, geography=load_sumlevels()[self.sumlevel]['table'])
+            tiger = ShorelineClipTiger(
+                year=self.year, geography=self.input_tablename)
         else:
             tiger = DownloadTiger(year=self.year)
         return {
@@ -559,12 +560,18 @@ class SumLevel(TableTask):
         return self.year
 
     def bounds(self):
+        if self.clipped:
+            from_clause = self.input()['data'].table
+        else:
+            from_clause = '{inputschema}.{input_tablename}'.format(
+                inputschema=self.input()['data'].table,
+                input_tablename=self.input_tablename,
+            )
         with session_scope() as session:
             with session.no_autoflush:
                 return session.execute('SELECT ST_EXTENT(geom) FROM '
-                                       '{inputschema}.{input_tablename}'.format(
-                                           inputschema=self.input()['data'].table,
-                                           input_tablename=self.input_tablename
+                                       '{from_clause}'.format(
+                                           from_clause=from_clause
                                        )).first()[0]
 
     def runsession(self, session):
@@ -577,10 +584,10 @@ class SumLevel(TableTask):
             )
         session.execute('INSERT INTO {output} (geoid, geom) '
                         'SELECT {geoid}, geom '
-                        'FROM {fromclause}'.format(
+                        'FROM {from_clause}'.format(
                             geoid=self.geoid,
                             output=self.output().get(session).id,
-                            fromclause=fromclause
+                            from_clause=from_clause
                         ))
 
 
@@ -592,8 +599,9 @@ class AllSumLevels(WrapperTask):
     year = Parameter(default=2013)
 
     def requires(self):
-        for geo in ('state', 'county', 'census_tract', 'block_group', 'puma', 'zcta5',):
-            yield SumLevel(year=self.year, geography=geo)
+        for clipped in (True, False):
+            for geo in ('state', 'county', 'census_tract', 'block_group', 'puma', 'zcta5',):
+                yield SumLevel(year=self.year, geography=geo, clipped=clipped)
 
 
 def load_sumlevels():

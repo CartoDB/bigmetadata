@@ -60,14 +60,13 @@ Most of the common tasks have already been wrapped up in the `Makefile`.
 * `make sphinx`: Regenerate the catalog
 * `make sphinx-deploy`: Deploy the catalog to Github Pages
 * `make acs`: ETL the entirety of the American Community Survey (Census)
-* `make acs-carto`: Upload the ACS to the observatory
 * `make tiger`: ETL the boundary files of the census
-* `make tiger-carto`: Upload the census boundary files to the observatory
 * `make sh`: Drop into the bigmetadata container to run shell scripts
 * `make python`: Drop into an interactive Python shell in the bigmetadata
   container
 * `make psql`: Drop into an interactive psql session in the bigmetadata
   container's database
+* `make sync`: Sync local data and metadata to the Observatory account.
 
 Any other task can be run using `docker-compose`:
 
