@@ -12,38 +12,46 @@ from luigi import Task, BooleanParameter, Target
 
 from sqlalchemy import (Column, Integer, String, Boolean, MetaData,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
-                        ForeignKeyConstraint, Table)
+                        ForeignKeyConstraint, Table, exc, func)
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, composite
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.types import UserDefinedType
 
 
-connection = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
-    user=os.environ.get('PGUSER', 'postgres'),
-    password=os.environ.get('PGPASSWORD', ''),
-    host=os.environ.get('PGHOST', 'localhost'),
-    port=os.environ.get('PGPORT', '5432'),
-    db=os.environ.get('PGDATABASE', 'postgres')
-))
 
-metadata = MetaData(connection)
+def get_engine():
+    engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
+        user=os.environ.get('PGUSER', 'postgres'),
+        password=os.environ.get('PGPASSWORD', ''),
+        host=os.environ.get('PGHOST', 'localhost'),
+        port=os.environ.get('PGPORT', '5432'),
+        db=os.environ.get('PGDATABASE', 'postgres')
+    ))
+
+    @event.listens_for(engine, "connect")
+    def connect(dbapi_connection, connection_record):
+        connection_record.info['pid'] = os.getpid()
+
+    @event.listens_for(engine, "checkout")
+    def checkout(dbapi_connection, connection_record, connection_proxy):
+        pid = os.getpid()
+        if connection_record.info['pid'] != pid:
+            connection_record.connection = connection_proxy.connection = None
+            raise exc.DisconnectionError(
+                "Connection record belongs to pid %s, "
+                "attempting to check out in pid %s" %
+                (connection_record.info['pid'], pid)
+            )
+    return engine
 
 
-# Create necessary schemas
-#event.listen(metadata, 'before_create', DDL('CREATE SCHEMA IF NOT EXISTS %(schema)s').execute_if(
-#    callable_=lambda ddl, target, bind, tables, **kwargs: 'schema' in ddl.context
-#))
-
+metadata = MetaData(get_engine())
 Base = declarative_base(metadata=metadata)
 
-# create a configured "Session" class
-Session = sessionmaker(bind=connection)
-
-
-from sqlalchemy import func
-from sqlalchemy.types import UserDefinedType
+Session = sessionmaker(bind=get_engine())
 
 
 class Geometry(UserDefinedType):
@@ -151,7 +159,7 @@ class BMDColumnTag(Base):
 @contextmanager
 def session_scope():
     """Provide a transactional scope around a series of operations."""
-    session = Session()
+    session = sessionmaker(bind=get_engine())()
     try:
         yield session
         session.commit()

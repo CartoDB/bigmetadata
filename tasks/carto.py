@@ -17,7 +17,6 @@ class SyncMetadata(Task):
             yield TableToCarto(table=tablename, outname=tablename, force=self.force)
 
 
-
 def should_upload(table):
     '''
     Determine whether a table has any tagged columns.  If so, it should be
