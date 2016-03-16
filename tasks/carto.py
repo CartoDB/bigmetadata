@@ -5,10 +5,10 @@ Tasks to sync data locally to CartoDB
 from tasks.meta import session_scope, BMDTable, Base
 from tasks.util import TableToCarto
 
-from luigi import Task, WrapperTask, BooleanParameter
+from luigi import WrapperTask, BooleanParameter
 
 
-class SyncMetadata(Task):
+class SyncMetadata(WrapperTask):
 
     force = BooleanParameter(default=True)
 
