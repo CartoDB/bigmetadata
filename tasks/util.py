@@ -10,6 +10,7 @@ import logging
 import sys
 import time
 import re
+from hashlib import sha1
 from slugify import slugify
 from itertools import izip_longest
 
@@ -294,7 +295,7 @@ class TableTarget(Target):
         self._id = '"{schema}".{name}'.format(schema=schema, name=name)
         self._id_noquote = '{schema}.{name}'.format(schema=schema, name=name)
         bmd_table.id = self._id
-        bmd_table.tablename = underscore_slugify(self._id)
+        bmd_table.tablename = sha1(underscore_slugify(self._id)).hexdigest()
         self._schema = schema
         self._name = name
         self._bmd_table = bmd_table
@@ -307,6 +308,12 @@ class TableTarget(Target):
             session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
                 schema=self._schema))
             session.flush()
+
+    def sync(self):
+        '''
+        Whether this data should be synced to carto. Defaults to True.
+        '''
+        return True
 
     def exists(self):
         '''

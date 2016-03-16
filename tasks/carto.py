@@ -17,6 +17,18 @@ class SyncMetadata(Task):
             yield TableToCarto(table=tablename, outname=tablename, force=self.force)
 
 
+
+def should_upload(table):
+    '''
+    Determine whether a table has any tagged columns.  If so, it should be
+    uploaded, otherwise it should be ignored.
+    '''
+    for coltable in table.columns:
+        if coltable.column.tags:
+            return True
+    return False
+
+
 class SyncData(WrapperTask):
 
     force = BooleanParameter(default=False)
@@ -25,7 +37,8 @@ class SyncData(WrapperTask):
         tables = {}
         with session_scope() as session:
             for table in session.query(BMDTable):
-                tables[table.id] = table.tablename
+                if should_upload(table):
+                    tables[table.id] = table.tablename
 
         for table_id, tablename in tables.iteritems():
             yield TableToCarto(table=table_id, outname=tablename, force=self.force)
