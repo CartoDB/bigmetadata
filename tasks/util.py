@@ -299,6 +299,7 @@ class TableTarget(Target):
         self._schema = schema
         self._name = name
         self._bmd_table = bmd_table
+        self._bmd_dict = bmd_table.__dict__.copy()
         self._columns = columns
         if self._id_noquote in metadata.tables:
             self.table = metadata.tables[self._id_noquote]
@@ -320,7 +321,27 @@ class TableTarget(Target):
         We always want to run this at least once, because we can always
         regenerate tabular data from scratch.
         '''
-        return self._id_noquote in metadata.tables
+        with session_scope() as session:
+            with session.no_autoflush:
+                if self.get(session) is None:
+                    return False
+                old_dict = self.get(session).__dict__.copy()
+                new_dict = self._bmd_dict.copy()
+                old_dict.pop('_sa_instance_state')
+                new_dict.pop('_sa_instance_state')
+                for key, val in old_dict.iteritems():
+                    if key == 'id':
+                        continue
+                    if val is None:
+                        new_dict[key] = val
+                    if key not in new_dict:
+                        new_dict[key] = None
+                for key, val in new_dict.items():
+                    if isinstance(val, list):
+                        new_dict.pop(key)
+                return new_dict == old_dict
+
+        #return self._id_noquote in metadata.tables
 
     def get(self, session):
         '''

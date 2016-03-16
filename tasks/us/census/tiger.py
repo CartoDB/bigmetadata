@@ -393,7 +393,7 @@ class ShorelineClipTiger(Task):
 
     def requires(self):
         return {
-            'tiger': ProcessTiger(year=self.year),
+            'tiger': SumLevel(year=self.year, geography=self.geography),
             'water': SimpleShoreline(year=self.year)
         }
 
@@ -532,7 +532,7 @@ class SumLevel(TableTask):
 
     @property
     def geoid(self):
-        return 'geoid10' if self.geography in ('zcta5', 'puma') else 'geoid'
+        return 'geoid10' if self.geography in ('zcta5', 'puma', ) else 'geoid'
 
     @property
     def input_tablename(self):
