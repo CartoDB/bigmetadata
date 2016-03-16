@@ -10,7 +10,7 @@ from luigi import Task, WrapperTask, BooleanParameter
 
 class SyncMetadata(Task):
 
-    force = BooleanParameter(default=False)
+    force = BooleanParameter(default=True)
 
     def requires(self):
         for tablename, _ in Base.metadata.tables.iteritems():

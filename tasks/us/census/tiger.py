@@ -628,19 +628,5 @@ def load_sumlevels():
     return sumlevels
 
 
-class ExtractAllTiger(Task):
-    force = BooleanParameter(default=False)
-    year = Parameter()
-    clipped = BooleanParameter(default=True)
-
-    def requires(self):
-        for sumlevel in ('040', '050', '140', '150', '795', '860',):
-            if self.clipped:
-                yield ExtractClippedTiger(sumlevel=sumlevel, year=self.year,
-                                          force=self.force)
-            else:
-                yield ExtractTiger(sumlevel=sumlevel, year=self.year,
-                                   force=self.force)
-
 SUMLEVELS = load_sumlevels()
 SUMLEVELS_BY_SLUG = dict([(v['slug'], v) for k, v in SUMLEVELS.iteritems()])

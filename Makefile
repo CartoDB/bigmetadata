@@ -20,7 +20,8 @@ acs:
 
 tiger:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.us.census.tiger AllSumLevels
+	  --module tasks.us.census.tiger AllSumLevels \
+	  --parallel-scheduling --workers=8
 
 sphinx:
 	docker-compose run bigmetadata luigi \

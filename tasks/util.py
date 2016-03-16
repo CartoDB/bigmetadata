@@ -435,6 +435,7 @@ class TableToCarto(Task):
         target = CartoDBTarget(self.outname)
         if self.force and target.exists():
             target.remove()
+            self.force = False
         return target
 
 
