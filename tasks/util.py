@@ -83,18 +83,59 @@ def sql_to_cartodb_table(tablename, query):
     '''
     Move the results of the specified query to cartodb
     '''
+    api_key = os.environ['CARTODB_API_KEY']
+    # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/bmd_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
+    try:
+        viz_id = requests.get('{url}/api/v1/tables/{tablename}?api_key={api_key}'.format(
+            url=os.environ['CARTODB_URL'],
+            tablename=tablename,
+            api_key=api_key
+        )).json()['id']
+        # delete dataset by id DELETE https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
+        resp = requests.delete('{url}/api/v1/viz/{viz_id}?api_key={api_key}'.format(
+            url=os.environ['CARTODB_URL'],
+            viz_id=viz_id,
+            api_key=api_key
+        ))
+    except:
+        pass
     query = query.replace("'", '\'"\'"\'')
+    private_tablename = tablename + '_private'
     cmd = u'''
 ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -f CartoDB "CartoDB:observatory" \
         -overwrite \
         -nlt GEOMETRY \
-        -nln "{tablename}" \
+        -nln "{private_tablename}" \
         PG:"dbname=$PGDATABASE" -sql '{sql}'
-    '''.format(tablename=tablename, sql=query)
+    '''.format(private_tablename=private_tablename, sql=query)
     shell(cmd)
-    query_cartodb(u"SELECT CDB_CartodbfyTable('{tablename}')".format(
-        tablename=tablename))
+    resp = requests.post('{url}?api_key={api_key}'.format(
+        url=os.environ['CARTODB_IMPORT_API_URL'],
+        api_key=api_key
+    ), json={
+        'table_name': tablename,
+        'table_copy': private_tablename,
+        'create_vis': False,
+        'type_guessing': False,
+        'privacy': 'public'
+    })
+    assert resp.status_code == 200
+    import_id = resp.json()["item_queue_id"]
+    while True:
+        resp = requests.get('{url}{import_id}?api_key={api_key}'.format(
+            url=os.environ['CARTODB_IMPORT_API_URL'],
+            import_id=import_id,
+            api_key=api_key
+        ))
+        if resp.json()['state'] == 'complete':
+            break
+        elif resp.json()['state'] == 'failure':
+            raise Exception('Import failed: {}'.format(resp.json()))
+        time.sleep(1)
+
+    resp = query_cartodb('DROP TABLE "{}"'.format(private_tablename))
+    assert resp.status_code == 200
 
 
 class DefaultPostgresTarget(PostgresTarget):
