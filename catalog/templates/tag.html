@@ -1,0 +1,43 @@
+.. {{ tag.title }}:
+
+{{ tag.name }}
+===========================================================================
+
+{{ tag.description }}
+
+.. contents::
+   :depth: 10
+
+{% for coltag in tag.columns %}
+
+{% set col = coltag.column %}
+
+.. _{{ col.id }}:
+
+{{ col.name }}
+----------------------------------------------------------------------------
+
+:description: {{ col.description }}
+
+{% for coltarget in col.target_columns %}
+    {% set target = coltarget.target %}
+:{{ coltarget.reltype }}:
+
+    :ref:`{{ target.id }}`
+{% endfor %}
+
+{# preview map #}
+{#
+.. rst-class:: cartodb-static-map
+   {{ table.tablename }}.{{ coltable.colname }}
+   #}
+
+{#
+{% for coltable in col.tables %}
+    {% set table = coltable.table %}
+    :{{ table.timespan }}:
+
+{% endfor %}
+#}
+
+{% endfor %}

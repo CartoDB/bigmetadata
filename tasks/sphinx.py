@@ -2,77 +2,14 @@
 Sphinx functions for luigi bigmetadata tasks.
 '''
 
-import jinja2
 import re
+from jinja2 import Environment, PackageLoader
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
 from tasks.util import shell
 from tasks.meta import session_scope, BMDTag
 
-
-TEMPLATE = jinja2.Template(
-    '''.. {{ tag.title }}:
-
-{{ tag.name }}
-===========================================================================
-
-{{ tag.description }}
-
-.. contents::
-   :depth: 10
-
-{% for col in columns %}
-
-.. _{{ col.id }}:
-
-{{ col.name }}
-----------------------------------------------------------------------------
-
-{# preview map #}
-{#
-{% if col.tables %}
-.. rst-class:: cartodb-static-map
-
-{{ col.slug_name }}
-{% endif %}
-#}
-
-:description: {{ col.description }}
-
-{% for coltarget in col.target_columns %}
-    {% set target = coltarget.target %}
-:{{ coltarget.reltype }}:
-
-    :ref:`{{ target.id }}`
-{% endfor %}
-
-{% for coltable in col.tables %}
-    {% set table = coltable.table %}
-    :{{ table.timespan }}:
-
-    {{ table.tablename }}.{{ coltable.colname }}
-{% endfor %}
-{% endfor %}
-
-''')
-
-#{% for col in columns %}
-#.. docutils:column:: {{ col._source.name }}
-#
-#   {{ col._source.description }}
-#
-#Times & dates available:
-#{% endfor %}
-
-#                           '''
-#Can be found in:
-#
-#{% for table in col.tables %}
-#  * {{ table.id }}
-#      {% for resolution in table.resolutions %}
-#        * {{ resolution.id }}, {{ resolution.sample }}, {{ resolution.error }}</li>
-#      {% endfor %}
-#{% endfor %}
-#    '''
+env = Environment(loader=PackageLoader('catalog', 'templates'))
+TAG_TEMPLATE = env.get_template('tag.html')
 
 
 class GenerateRST(Task):
@@ -99,65 +36,7 @@ class GenerateRST(Task):
                 tag = session.query(BMDTag).get(tag_id)
                 tag.columns.sort(lambda x, y: -x.column.weight.__cmp__(y.column.weight))
 
-                columns = []
-                # augment column with additional characteristics
-                for coltag in tag.columns:
-                    col = coltag.column
-                    columns.append(col)
-
-                    #_id = re.sub(r'^data/', '', col.id)
-                    #col['slug_name'] = slug_column(col['_source']['name'])
-
-                    # # TODO more precise margin of error
-                    # # right now we just average all the national margins of error
-                    # # to give an overview
-                    # national_margins = []
-                    # for table in col['_source'].get('tables', []):
-                    #     for resolution in table.get('resolutions', []):
-                    #         if resolution['id'].endswith('us/census/tiger/nation'):
-                    #             national_margins += [resolution['error']]
-                    # if national_margins:
-                    #     col['margin_of_error'] = sum(national_margins) / len(national_margins)
-                    #     if col['margin_of_error'] < 0.2:
-                    #         col['margin_of_error_cat'] = 'low'
-                    #     elif col['margin_of_error'] < 1:
-                    #         col['margin_of_error_cat'] = 'medium'
-                    #     else:
-                    #         col['margin_of_error_cat'] = 'high'
-                    #
-                    # # break tables into year/resolution columns
-                    # tables_by_year = {}
-                    # tables_by_resolution = {}
-                    # for table in col['_source'].get('tables', []):
-                    #     year = str(table.get('dct_temporal_sm')).split()[-1]
-                    #     if year not in tables_by_year:
-                    #         tables_by_year[year] = {}
-                    #     for resolution in table.get('resolutions', []):
-                    #         short_res = resolution['id'].split('/')[-1]
-                    #         if short_res not in HIGH_WEIGHT_COLUMNS:
-                    #             continue
-                    #         table['sample'] = table['title'].split(' ')[0]\
-                    #                 .split('_')[1]
-                    #         if resolution.get('error', 1) < 0.2:
-                    #             table['style'] = '**'
-                    #         elif resolution.get('error', 1) < 1:
-                    #             table['style'] = ''
-                    #         else:
-                    #             table['style'] = '*'
-
-                    #         if short_res not in tables_by_year[year]:
-                    #             tables_by_year[year][short_res] = []
-                    #         tables_by_year[year][short_res].append(table)
-                    #         if short_res not in tables_by_resolution:
-                    #             tables_by_resolution[short_res] = {}
-                    #         if year not in tables_by_resolution[short_res]:
-                    #             tables_by_resolution[short_res][year] = []
-                    #         tables_by_resolution[short_res][year].append(table)
-
-                    # col['tables_by_year'] = tables_by_year
-                    # col['tables_by_resolution'] = tables_by_resolution
-
-                fhandle.write(TEMPLATE.render(tag=tag, columns=columns).encode('utf8'))
+                fhandle.write(TAG_TEMPLATE.render(tag=tag).encode('utf8'))
                 fhandle.close()
 
 
