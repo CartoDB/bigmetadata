@@ -38,7 +38,7 @@ Docker is available.
 You'll need [docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) to get
 started.
 
-You'll then need to configure `CARTODB_API_KEY` and `CARTODB_DOMAIN` in the
+You'll then need to configure `CARTODB_API_KEY` and `CARTODB_URL` in the
 `.env` file in order to upload to CartoDB.
 
     cp .env.sample .env

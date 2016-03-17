@@ -11,9 +11,9 @@ import sys
 import time
 import re
 from hashlib import sha1
-from slugify import slugify
 from itertools import izip_longest
 
+from slugify import slugify
 import requests
 
 from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
@@ -67,7 +67,7 @@ def classpath(obj):
 
 def query_cartodb(query):
     #carto_url = 'https://{}/api/v2/sql'.format(os.environ['CARTODB_DOMAIN'])
-    carto_url = os.environ['CARTODB_API_URL']
+    carto_url = os.environ['CARTODB_URL'] + '/api/v2/sql'
     resp = requests.post(carto_url, data={
         'api_key': os.environ['CARTODB_API_KEY'],
         'q': query
@@ -84,21 +84,6 @@ def sql_to_cartodb_table(tablename, query):
     Move the results of the specified query to cartodb
     '''
     api_key = os.environ['CARTODB_API_KEY']
-    # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/bmd_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
-    try:
-        viz_id = requests.get('{url}/api/v1/tables/{tablename}?api_key={api_key}'.format(
-            url=os.environ['CARTODB_URL'],
-            tablename=tablename,
-            api_key=api_key
-        )).json()['id']
-        # delete dataset by id DELETE https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
-        resp = requests.delete('{url}/api/v1/viz/{viz_id}?api_key={api_key}'.format(
-            url=os.environ['CARTODB_URL'],
-            viz_id=viz_id,
-            api_key=api_key
-        ))
-    except:
-        pass
     query = query.replace("'", '\'"\'"\'')
     private_tablename = tablename + '_private'
     cmd = u'''
@@ -110,8 +95,8 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         PG:"dbname=$PGDATABASE" -sql '{sql}'
     '''.format(private_tablename=private_tablename, sql=query)
     shell(cmd)
-    resp = requests.post('{url}?api_key={api_key}'.format(
-        url=os.environ['CARTODB_IMPORT_API_URL'],
+    resp = requests.post('{url}/api/v1/imports/?api_key={api_key}'.format(
+        url=os.environ['CARTODB_URL'],
         api_key=api_key
     ), json={
         'table_name': tablename,
@@ -123,8 +108,8 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
     assert resp.status_code == 200
     import_id = resp.json()["item_queue_id"]
     while True:
-        resp = requests.get('{url}{import_id}?api_key={api_key}'.format(
-            url=os.environ['CARTODB_IMPORT_API_URL'],
+        resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
+            url=os.environ['CARTODB_URL'],
             import_id=import_id,
             api_key=api_key
         ))
@@ -132,6 +117,7 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
             break
         elif resp.json()['state'] == 'failure':
             raise Exception('Import failed: {}'.format(resp.json()))
+        print resp.json()['state']
         time.sleep(1)
 
     resp = query_cartodb('DROP TABLE "{}"'.format(private_tablename))
@@ -252,9 +238,23 @@ class CartoDBTarget(Target):
         return resp.status_code == 200
 
     def remove(self):
-        resp = query_cartodb('DROP TABLE "{tablename}"'.format(
-            tablename=self.tablename))
-        assert resp.status_code == 200
+        api_key = os.environ['CARTODB_API_KEY']
+        # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/bmd_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
+        try:
+            resp = requests.get('{url}/api/v1/tables/{tablename}?api_key={api_key}'.format(
+                url=os.environ['CARTODB_URL'],
+                tablename=self.tablename,
+                api_key=api_key
+            ))
+            viz_id = resp.json()['id']
+            # delete dataset by id DELETE https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
+            resp = requests.delete('{url}/api/v1/viz/{viz_id}?api_key={api_key}'.format(
+                url=os.environ['CARTODB_URL'],
+                viz_id=viz_id,
+                api_key=api_key
+            ))
+        except ValueError:
+            pass
 
 
 def grouper(iterable, n, fillvalue=None):
@@ -506,56 +506,6 @@ def camel_to_underscore(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
-
-    #def touch(self):
-    #    with session_scope() as session:
-    #        #table = TableDefinition(id=self.table.fullname, **self.table.info)
-    #        #for key, col in self.table.columns.iteritems():
-    #        #    import pdb
-    #        #    pdb.set_trace()
-    #        #    column = ColumnDefinition(id=key, **col.info)
-    #        #    association = ColumnTable(column=column)
-    #        #    table.columns.append(association)
-    #        #session.add(table)
-
-    def drop(self, checkfirst=True, **kwargs):
-        return self.table.drop(checkfirst=checkfirst, **kwargs)
-
-    def select(self):
-        return self.table.select()
-
-    def __str__(self):
-        return '"{schema}".{table}'.format(schema=self.table.schema,
-                                           table=self.table.name)
-
-
-#def save_metadata(session, table):
-#    '''
-#    Persist the metadata for a new table or update existing metadata.
-#    '''
-#    table_id = '"' + table.schema + '".' + table.name
-#    table_def = session.query(TableDefinition).get(table_id)
-#    if not table_def:
-#        table_def = TableDefinition(id=table_id, **table.info)
-#    else:
-#        for key, val in table.info.iteritems():
-#            setattr(table_def, key, val)
-#
-#    session.add(table_def)
-#    #for column_name, column in table_meta.columns.iteritems():
-#    #    column_meta = session.query(ColumnInfoMetadata).get(column_name)
-#    #    if not column_meta:
-#    #        column_meta = ColumnInfoMetadata(column_name=column_name, **column.info)
-#    #    else:
-#    #        column_meta.update(**column.info)
-#    #    column_table = ColumnTableInfoMetadata(table=table,
-#    #                                           column_name=column_name)
-#    #    column_table_meta = session.query(ColumnTableInfoMetadata).filter_by(
-#    #        column=column_meta, column_table=column_table).one()
-#    #    column_meta.columns.append(column_table_meta)
-#    #    session.add(column_meta)
-#
-#    #session.add(table_meta)
 
 class TableTask(Task):
     '''

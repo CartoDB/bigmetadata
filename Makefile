@@ -33,9 +33,11 @@ sphinx-deploy:
 	  git commit -m 'updating catalog' && \
 	  git push origin gh-pages
 
+# do not exceed three slots available for import api
 sync-meta:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.carto SyncMetadata
+	  --module tasks.carto SyncMetadata \
+	  --parallel-scheduling --workers=3
 
 sync-data:
 	docker-compose run bigmetadata luigi \
