@@ -21,6 +21,9 @@ TEMPLATE = jinja2.Template(
    :depth: 10
 
 {% for col in columns %}
+
+.. _{{ col.id }}:
+
 {{ col.name }}
 ----------------------------------------------------------------------------
 
@@ -37,16 +40,16 @@ TEMPLATE = jinja2.Template(
 
 {% for coltarget in col.target_columns %}
     {% set target = coltarget.target %}
-    :{{ coltarget.reltype }}:
+:{{ coltarget.reltype }}:
 
-    {{ coltarget.target.id }}
+    :ref:`{{ target.id }}`
 {% endfor %}
 
 {% for coltable in col.tables %}
     {% set table = coltable.table %}
     :{{ table.timespan }}:
 
-    {{ table.tablename }}
+    {{ table.tablename }}.{{ coltable.colname }}
 {% endfor %}
 {% endfor %}
 
