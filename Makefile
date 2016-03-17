@@ -41,7 +41,8 @@ sync-meta:
 
 sync-data:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.carto SyncData
+	  --module tasks.carto SyncData \
+	  --parallel-scheduling --workers=3
 
 sync: sync-meta sync-data
 
