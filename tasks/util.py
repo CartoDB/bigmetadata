@@ -336,7 +336,7 @@ class TableTarget(Target):
         self._id = '"{schema}".{name}'.format(schema=schema, name=name)
         self._id_noquote = '{schema}.{name}'.format(schema=schema, name=name)
         bmd_table.id = self._id
-        bmd_table.tablename = sha1(underscore_slugify(self._id)).hexdigest()
+        bmd_table.tablename = 'bmd_' + sha1(underscore_slugify(self._id)).hexdigest()
         self._schema = schema
         self._name = name
         self._bmd_table = bmd_table
