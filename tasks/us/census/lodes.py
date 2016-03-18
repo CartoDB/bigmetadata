@@ -6,7 +6,12 @@ characteristics files
 import os
 import subprocess
 
-from tasks.util import shell, DefaultPostgresTarget, pg_cursor, classpath
+from collections import OrderedDict
+from tasks.meta import BMDColumn, BMDColumnToColumn, BMDColumnTag
+from tasks.util import (shell, DefaultPostgresTarget, pg_cursor, classpath,
+                        ColumnsTask, TableTask)
+from tasks.tags import Tags
+
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
 
 
@@ -69,7 +74,528 @@ class DownloadLODESFile(Task):
         #return DefaultPostgresTarget(self.filename())
 
 
-class WorkplaceAreaCharacteristics(Task):
+class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': Tags()
+        }
+
+    def columns(self):
+        total_jobs = BMDColumn(
+            type='Integer',
+            name='Total Jobs',
+            description='Total number of jobs',
+            weight=8,
+            aggregate='sum',
+            tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._id),
+                  BMDColumnTag(tag_id=self.input()['tags']['denominator']._id)]
+        )
+        return OrderedDict([
+            #work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code
+            ('total_jobs', total_jobs),
+            ('jobs_age_29_or_younger', BMDColumn(
+                type='Integer',
+                name='Jobs for workers age 29 or younger',
+                description='Number of jobs of workers age 29 or younger',
+                weight=3,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._id)]
+            )),
+            ('jobs_age_30_to_54', BMDColumn(
+                type='Integer',
+                name='Jobs for workers age 30 to 54',
+                description='Number of jobs for workers age 30 to 54',
+                weight=3,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._id)]
+            )),
+            ('jobs_age_55_or_older', BMDColumn(
+                type='Integer',
+                name='Jobs for workers age 55 or older',
+                description='Number of jobs for workers age 55 or older',
+                weight=3,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._tag.id)]
+            )),
+            ('jobs_earning_15000_or_less', BMDColumn(
+                type='Integer',
+                name='Jobs earning up to $15,000 per year',
+                description='Number of jobs with earnings $1250/month or less ($15,000 per year)',
+                weight=3,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_earning_15001_to_40000', BMDColumn(
+                type='Integer',
+                name='Jobs earning $15,000 to $40,000 per year',
+                description='Number of jobs with earnings $1251/month to $3333/month ($15,000 to $40,000 per year)',
+                weight=5,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_earning_40001_or_more', BMDColumn(
+                type='Integer',
+                name='Jobs with earnings greater than $40,000 per year',
+                description='Number of Jobs with earnings greater than $3333/month',
+                weight=5,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_11_agriculture_forestry_fishing', BMDColumn(
+                type='Integer',
+                name='Agriculture, Forestry, Fishing and Hunting jobs',
+                description='Number of jobs in NAICS sector 11 (Agriculture, Forestry, Fishing and Hunting)',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_21_mining_quarrying_oil_gas', BMDColumn(
+                type='Integer',
+                name='Mining, Quarrying, and Oil and Gas Extraction jobs',
+                description='Number of jobs in NAICS sector 21 (Mining, Quarrying, and Oil and Gas Extraction) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_22_utilities', BMDColumn(
+                type='Integer',
+                name='Utilities Jobs',
+                description='Number of jobs in NAICS sector 22 (Utilities) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_23_construction', BMDColumn(
+                type='Integer',
+                name='Construction Jobs',
+                description='Number of jobs in NAICS sector 23 (Construction) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_31_33_manufacturing', BMDColumn(
+                type='Integer',
+                name='Manufacturing Jobs',
+                description='Number of jobs in NAICS sector 31-33 (Manufacturing) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_42_wholesale_trade', BMDColumn(
+                type='Integer',
+                name='Wholesale Trade Jobs',
+                description='Number of jobs in NAICS sector 42 (Wholesale Trade) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_44_45_retail_trade', BMDColumn(
+                type='Integer',
+                name='Retail Trade Jobs',
+                description='Number of jobs in NAICS sector 44-45 (Retail Trade) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_48_49_transport_warehousing', BMDColumn(
+                type='Integer',
+                name='Transport and Warehousing Jobs',
+                description='Number of jobs in NAICS sector 48-49 (Transportation and Warehousing) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_51_information', BMDColumn(
+                type='Integer',
+                name='Information Jobs',
+                description='Number of jobs in NAICS sector 51 (Information) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_52_finance_and_insurance', BMDColumn(
+                type='Integer',
+                name='Finance and Insurance Jobs',
+                description='Number of jobs in NAICS sector 52 (Finance and Insurance)',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_53_real_estate_rental_leasing', BMDColumn(
+                type='Integer',
+                name='Real Estate and Rental and Leasing Jobs',
+                description='Number of jobs in NAICS sector 53 (Real Estate and Rental and Leasing) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_54_professional_scientific_tech_services', BMDColumn(
+                type='Integer',
+                name='Professional, Scientific, and Technical Services Jobs',
+                description='Number of jobs in NAICS sector 54 (Professional, Scientific, and Technical Services) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_55_management_of_companies_enterprises', BMDColumn(
+                type='Integer',
+                name='Management of Companies and Enterprises Jobs',
+                description='Number of jobs in NAICS sector 55 (Management of Companies and Enterprises) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_56_admin_support_waste_management', BMDColumn(
+                type='Integer',
+                name='Administrative and Support and Waste Management and Remediation Services Jobs',
+                description='Number of jobs in NAICS sector 56 (Administrative and Support and Waste Management and Remediation Services) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_61_educational_services', BMDColumn(
+                type='Integer',
+                name='Educational Services Jobs',
+                description='Number of jobs in NAICS sector 61 (Educational Services) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_62_healthcare_social_assistance', BMDColumn(
+                type='Integer',
+                name='Health Care and Social Assistance Jobs',
+                description='Number of jobs in NAICS sector 62 (Health Care and Social Assistance) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_71_arts_entertainment_recreation', BMDColumn(
+                type='Integer',
+                name='Arts, Entertainment, and Recreation jobs',
+                description='Number of jobs in NAICS sector 71 (Arts, Entertainment, and Recreation) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_72_accommodation_and_food', BMDColumn(
+                type='Integer',
+                name='Accommodation and Food Services jobs',
+                description='Number of jobs in NAICS sector 72 (Accommodation and Food Services) ',
+                weight=4,
+                aggregate='sum',
+            )),
+            ('jobs_81_other_services_except_public_admin', BMDColumn(
+                type='Integer',
+                name='Other Services (except Public Administration) jobs',
+                description='Jobs in NAICS sector 81 (Other Services [except Public Administration])',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_92_public_administration', BMDColumn(
+                type='Integer',
+                name='Public Administration jobs',
+                description='Number of jobs in NAICS sector 92 (Public Administration) ',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_white', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who are white',
+                description='Number of jobs for workers with Race: White, Alone',
+                weight=2,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._tag.id)]
+            )),
+            ('jobs_black', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who are black',
+                description='Number of jobs for workers with Race: Black or African American Alone',
+                weight=2,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._tag.id)]
+            )),
+            ('jobs_amerindian', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who are American Indian or Alaska Native Alone',
+                description='Number of jobs for workers with Race: American Indian or Alaska Native Alone',
+                weight=0,
+                aggregate='sum',
+            )),
+            ('jobs_asian', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who are Asian',
+                description='Number of jobs for workers with Race: Asian Alone',
+                weight=2,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._tag.id)]
+            )),
+            ('jobs_hawaiian', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who are Native Hawaiian or Other Pacific Islander Alone',
+                description='Number of jobs for workers with Race: Native Hawaiian or Other Pacific Islander Alone',
+                weight=0,
+                aggregate='sum',
+            )),
+            ('jobs_two_or_more_races', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who reported Two or More Race Groups',
+                description='Number of jobs for workers with Race: Two or More Race Groups',
+                weight=0,
+                aggregate='sum',
+            )),
+            ('jobs_not_hispanic', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who are Not Hispanic or Latino',
+                description='Number of jobs for workers with Ethnicity: Not Hispanic or Latino',
+                weight=0,
+                aggregate='sum',
+            )),
+            ('jobs_hispanic', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who are Hispanic or Latino',
+                description='Number of jobs for workers with Ethnicity: Hispanic or Latino',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._tag.id)]
+            )),
+            ('jobs_less_than_high_school', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who did not complete high school',
+                description='Number of jobs for workers with Educational Attainment: Less than high school',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_high_school', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who completed high school',
+                description='Number of jobs for workers with Educational Attainment: High school or equivalent, no college',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_some_college', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who completed some college or Associate degree',
+                description='Number of jobs for workers with Educational Attainment: Some college or Associate degree',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_bachelors_or_advanced', BMDColumn(
+                type='Integer',
+                name='Jobs held by workers who obtained a Bachelor\'s degree or advanced degree',
+                description='Number of jobs for workers with Educational Attainment: Bachelor\'s degree or advanced degree',
+                weight=4,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_male', BMDColumn(
+                type='Integer',
+                name='Jobs held by men',
+                description='Number of jobs for male workers',
+                weight=2,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._tag.id)]
+            )),
+            ('jobs_female', BMDColumn(
+                type='Integer',
+                name='Jobs held by women',
+                description='Number of jobs for female workers',
+                weight=2,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id),
+                      BMDColumnTag(tag_id=self.input()['tags']['race_age_gender']._tag.id)]
+            )),
+            ('jobs_firm_age_0_1_years', BMDColumn(
+                type='Integer',
+                name='Jobs at firms aged 0-1 Years',
+                description='Number of jobs for workers at firms with Firm Age: 0-1 Years',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_2_3_years', BMDColumn(
+                type='Integer',
+                name='Jobs at firms aged 2-3 Years',
+                description='Number of jobs for workers at firms with Firm Age: 2-3 Years',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_4_5_years', BMDColumn(
+                type='Integer',
+                name='Jobs at firms aged 4-5 Years',
+                description='Number of jobs for workers at firms with Firm Age: 4-5 Years',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_6_10_years', BMDColumn(
+                type='Integer',
+                name='Jobs at firms aged 6-10 years',
+                description='Number of jobs for workers at firms with Firm Age: 6-10 Years',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_11_more_years', BMDColumn(
+                type='Integer',
+                name='Jobs at firms aged 11+ Years',
+                description='Number of jobs for workers at firms with Firm Age: 11+ Years',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_0_19_employees', BMDColumn(
+                type='Integer',
+                name='Jobs at firms with 0-19 Employees',
+                description='Number of jobs for workers at firms with Firm Size: 0-19 Employees',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_20_49_employees', BMDColumn(
+                type='Integer',
+                name='Jobs at firms with 20-49 Employees',
+                description='Number of jobs for workers at firms with Firm Size: 20-49 Employees',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_50_249_employees', BMDColumn(
+                type='Integer',
+                name='Jobs at firms with 0-249 Employees',
+                description='Number of jobs for workers at firms with Firm Size: 50-249 Employees',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_250_499_employees', BMDColumn(
+                type='Integer',
+                name='Jobs at firms with 250-499 Employees',
+                description='Number of jobs for workers at firms with Firm Size: 250-499 Employees',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('jobs_firm_age_500_more_employees', BMDColumn(
+                type='Integer',
+                name='Jobs at firms with 500+ Employees',
+                description='Number of jobs for workers at firms with Firm Size: 500+ Employees',
+                weight=1,
+                aggregate='sum',
+                target_columns=[BMDColumnToColumn(target=total_jobs,
+                                                  reltype='denominator')],
+                tags=[BMDColumnTag(tag_id=self.input()['tags']['income_education_employment']._tag.id)]
+            )),
+            ('createdate', BMDColumn(
+                type='Date',
+                name='Date on which data was created, formatted as YYYYMMDD ',
+                weight=0
+            )),
+        ])
+
+class WorkplaceAreaCharacteristics(TableTask):
 
     force = BooleanParameter(default=False)
     year = Parameter(default=2013)
@@ -77,63 +603,6 @@ class WorkplaceAreaCharacteristics(Task):
     def tablename(self):
         return '"{}".wac_{}'.format(classpath(self), self.year)
 
-    def columns(self):
-        return '''
-work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code 
-total_jobs INTEGER, -- C000 Num Total number of jobs 
-jobs_age_29_or_younger INTEGER, -- Number of jobs of workers age 29 or younger 11
-jobs_age_30_to_54 INTEGER, -- Number of jobs for workers age 30 to 54 11
-jobs_age_55_or_older INTEGER, -- Number of jobs for workers age 55 or older 11
-jobs_earning_15000_or_less INTEGER, -- Number of jobs with earnings $1250/month or less
-jobs_earning_15001_to_40000 INTEGER, -- Number of jobs with earnings $1251/month to $3333/month
-jobs_earning_40001_or_more INTEGER, -- Number of jobs with earnings greater than $3333/month
-jobs_11_agriculture_forestry_fishing INTEGER, -- CNS01 Num Number of jobs in NAICS sector 11 (Agriculture, Forestry, Fishing and Hunting) 
-jobs_21_mining_quarrying_oil_gas INTEGER, -- CNS02 Num Number of jobs in NAICS sector 21 (Mining, Quarrying, and Oil and Gas Extraction) 
-jobs_22_utilities INTEGER, --CNS03 Num Number of jobs in NAICS sector 22 (Utilities) 
-jobs_23_construction INTEGER, --CNS04 Num Number of jobs in NAICS sector 23 (Construction) 
-jobs_31_33_manufacturing INTEGER, --CNS05 Num Number of jobs in NAICS sector 31-33 (Manufacturing) 
-jobs_42_wholesale_trade INTEGER, -- CNS06 Num Number of jobs in NAICS sector 42 (Wholesale Trade) 
-jobs_44_45_retail_trade INTEGER, -- CNS07 Num Number of jobs in NAICS sector 44-45 (Retail Trade) 
-jobs_48_49_transport_warehousing INTEGER, -- CNS08 Num Number of jobs in NAICS sector 48-49 (Transportation and Warehousing) 
-jobs_51_information INTEGER, -- CNS09 Num Number of jobs in NAICS sector 51 (Information) 
-jobs_52_finance_and_insurance INTEGER, -- CNS10 Num Number of jobs in NAICS sector 52 (Finance and Insurance) 
-jobs_53_real_estate_rental_leasing INTEGER, --CNS11 Num Number of jobs in NAICS sector 53 (Real Estate and Rental and Leasing) 
-jobs_54_professional_scientific_tech_services INTEGER, -- CNS12 Num Number of jobs in NAICS sector 54 (Professional, Scientific, and Technical Services) 
-jobs_55_management_of_companies_enterprises INTEGER, -- CNS13 Num Number of jobs in NAICS sector 55 (Management of Companies and Enterprises) 
-jobs_56_admin_support_waste_management INTEGER, -- CNS14 Num Number of jobs in NAICS sector 56 (Administrative and Support and Waste Management and Remediation Services) 
-jobs_61_educational_services INTEGER, -- CNS15 Num Number of jobs in NAICS sector 61 (Educational Services) 
-jobs_62_healthcare_social_assistance INTEGER, --CNS16 Num Number of jobs in NAICS sector 62 (Health Care and Social Assistance) 
-jobs_71_arts_entertainment_recreation INTEGER, -- CNS17 Num Number of jobs in NAICS sector 71 (Arts, Entertainment, and Recreation) 
-jobs_72_accommodation_and_food INTEGER, -- CNS18 Num Number of jobs in NAICS sector 72 (Accommodation and Food Services) 
-jobs_81_other_services_except_public_admin INTEGER, -- CNS19 Num Number of jobs in NAICS sector 81 (Other Services [except Public Administration]) 
-jobs_92_public_administration INTEGER, -- CNS20 Num Number of jobs in NAICS sector 92 (Public Administration) 
-jobs_white INTEGER, --CR01 Num Number of jobs for workers with Race: White, Alone12 
-jobs_black INTEGER, --CR02 Num Number of jobs for workers with Race: Black or African American Alone12 
-jobs_amerindian INTEGER, --CR03 Num Number of jobs for workers with Race: American Indian or Alaska Native Alone12 
-jobs_asian INTEGER, --CR04 Num Number of jobs for workers with Race: Asian Alone12 
-jobs_hawaiian INTEGER, -- 33 CR05 Num Number of jobs for workers with Race: Native Hawaiian or Other Pacific Islander Alone12 
-jobs_two_or_more_races INTEGER, --34 CR07 Num Number of jobs for workers with Race: Two or More Race Groups12 
-jobs_not_hispanic INTEGER, --35 CT01 Num Number of jobs for workers with Ethnicity: Not Hispanic or Latino12 
-jobs_hispanic INTEGER, --36 CT02 Num Number of jobs for workers with Ethnicity: Hispanic or Latino12 
-jobs_less_than_high_school INTEGER, --37 CD01 Num Number of jobs for workers with Educational Attainment: Less than high school12,13 
-jobs_high_school INTEGER, --38 CD02 Num Number of jobs for workers with Educational Attainment: High school or equivalent, no college12,13 
-jobs_some_college INTEGER, -- 39 CD03 Num Number of jobs for workers with Educational Attainment: Some college or Associate degree12,13 
-jobs_bachelors_or_advanced INTEGER, -- 40 CD04 Num Number of jobs for workers with Educational Attainment: Bachelor's degree or advanced degree12,13 
-jobs_male INTEGER, --41 CS01 Num Number of jobs for workers with Sex: Male12 
-jobs_female INTEGER, --42 CS02 Num Number of jobs for workers with Sex: Female12 
-jobs_firm_age_0_1_years INTEGER, --43 CFA01 Num Number of jobs for workers at firms with Firm Age: 0-1 Years14 
-jobs_firm_age_2_3_years INTEGER, --44 CFA02 Num Number of jobs for workers at firms with Firm Age: 2-3 Years14 
-jobs_firm_age_4_5_years INTEGER, --45 CFA03 Num Number of jobs for workers at firms with Firm Age: 4-5 Years14 
-jobs_firm_age_6_10_years INTEGER, --46 CFA04 Num Number of jobs for workers at firms with Firm Age: 6-10 Years14 
-jobs_firm_age_11_more_years INTEGER, --7 CFA05 Num Number of jobs for workers at firms with Firm Age: 11+ Years14 
-jobs_firm_age_0_19_employees INTEGER, --8 CFS01 Num Number of jobs for workers at firms with Firm Size: 0-19 Employees14,15 
-jobs_firm_age_20_49_employees INTEGER, --9 CFS02 Num Number of jobs for workers at firms with Firm Size: 20-49 Employees14,15 
-jobs_firm_age_50_249_employees INTEGER, --0 CFS03 Num Number of jobs for workers at firms with Firm Size: 50-249 Employees14,15 
-jobs_firm_age_250_499_employees INTEGER, --1 CFS04 Num Number of jobs for workers at firms with Firm Size: 250-499 Employees14,15 
-jobs_firm_age_500_more_employees INTEGER, --2 CFS05 Num Number of jobs for workers at firms with Firm Size: 500+ Employees14,15 
-createdate DATE --53 createdate Char Date on which data was created, formatted as YYYYMMDD 
-
-'''
 
     def requires(self):
         for state in STATES - MISSING_STATES.get(self.year, set()):
