@@ -70,8 +70,14 @@ class BMDColumnTable(Base):
 
     __tablename__ = 'bmd_column_table'
 
-    column_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
-    table_id = Column(String, ForeignKey('bmd_table.id'), primary_key=True)
+    column_id = Column(String, ForeignKey('bmd_column.id',
+                                          onupdate="CASCADE",
+                                          ondelete="CASCADE"),
+                       primary_key=True)
+    table_id = Column(String, ForeignKey('bmd_table.id',
+                                          onupdate="CASCADE",
+                                          ondelete="CASCADE"),
+                      primary_key=True)
 
     colname = Column(String, nullable=False)
 
@@ -88,8 +94,14 @@ class BMDColumnTable(Base):
 class BMDColumnToColumn(Base):
     __tablename__ = 'bmd_column_to_column'
 
-    source_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
-    target_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
+    source_id = Column(String, ForeignKey('bmd_column.id',
+                                          onupdate="CASCADE",
+                                          ondelete="CASCADE"),
+                       primary_key=True)
+    target_id = Column(String, ForeignKey('bmd_column.id',
+                                          onupdate="CASCADE",
+                                          ondelete="CASCADE"),
+                       primary_key=True)
 
     reltype = Column(String, primary_key=True)
 
@@ -149,8 +161,14 @@ class BMDTag(Base):
 class BMDColumnTag(Base):
     __tablename__ = 'bmd_column_tag'
 
-    column_id = Column(String, ForeignKey('bmd_column.id'), primary_key=True)
-    tag_id = Column(String, ForeignKey('bmd_tag.id'), primary_key=True)
+    column_id = Column(String, ForeignKey('bmd_column.id',
+                                          onupdate="CASCADE",
+                                          ondelete="CASCADE"),
+                       primary_key=True)
+    tag_id = Column(String, ForeignKey('bmd_tag.id',
+                                       onupdate="CASCADE",
+                                       ondelete="CASCADE"),
+                    primary_key=True)
 
     column = relationship("BMDColumn", back_populates='tags')
     tag = relationship("BMDTag", back_populates='columns')
