@@ -3,9 +3,9 @@ from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
-                        TableTarget)
+                        TableTarget, TagTarget)
 from tasks.meta import (session_scope, BMDColumn, Base, BMDColumnTable, BMDTag,
-                        BMDColumnTag, bmd_column_to_column, BMDTable, metadata)
+                        BMDTable, BMDColumnTag, BMDColumnToColumn, metadata)
 
 
 def setup():
@@ -95,8 +95,8 @@ def test_column_target_relations_create_update():
         rawcol = col._column
         tag = BMDTag(id='tag', name='some tag', description='some tag')
         session.add(tag)
-        coltag = BMDColumnTag(column=rawcol, tag=tag)
-        session.add(coltag)
+        rawcol.tags.append(TagTarget(tag))
+        session.add(rawcol)
         table = BMDTable(id='table', tablename='foobar')
         session.add(table)
         coltable = BMDColumnTable(column=rawcol, table=table, colname='col')
@@ -242,10 +242,10 @@ def test_columns_task_creates_columns_only_when_run():
         assert_equals(task.output()['foobar'].get(session).id, '"test_util".foobar')
         pop = session.query(BMDColumn).get('"test_util".population')
         foobar = session.query(BMDColumn).get('"test_util".foobar')
-        assert_equals(len(pop.source_columns), 1)
-        assert_equals(len(foobar.target_columns), 1)
-        assert_equals(pop.source_columns[0].source.id, foobar.id)
-        assert_equals(foobar.target_columns[0].target.id, pop.id)
+        assert_equals(len(pop.sources), 1)
+        assert_equals(len(foobar.targets), 1)
+        assert_equals(pop.sources.keys()[0].id, foobar.id)
+        assert_equals(foobar.targets.keys()[0].id, pop.id)
 
     assert_equals(True, task.complete())
 
@@ -277,8 +277,9 @@ class TestColumnsTask(ColumnsTask):
                                 description='moo boo foo',
                                 aggregate='median',
                                 weight=8,
-                                target_columns=[BMDColumnToColumn(reltype='denominator',
-                                                                  target=pop_column)]
+                                targets={
+                                    pop_column: 'denominator'
+                                }
                                ),
         })
 

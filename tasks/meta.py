@@ -83,18 +83,24 @@ class BMDColumnTable(Base):
     extra = Column(JSON)
 
 
-def targets_creator(coltarget, reltype):
-    with session_scope() as session:
-        with session.no_autoflush:
-            col = coltarget.get(session) or coltarget._column
-            return BMDColumnToColumn(target=col, reltype=reltype)
+def targets_creator(coltarget_or_col, reltype):
+    if isinstance(coltarget_or_col, BMDColumn):
+        col = coltarget_or_col
+    else:
+        with session_scope() as session:
+            with session.no_autoflush:
+                col = coltarget_or_col.get(session) or coltarget_or_col._column
+    return BMDColumnToColumn(target=col, reltype=reltype)
 
 
-def sources_creator(coltarget, reltype):
-    with session_scope() as session:
-        with session.no_autoflush:
-            col = coltarget.get(session) or coltarget._column
-            return BMDColumnToColumn(source=col, reltype=reltype)
+def sources_creator(coltarget_or_col, reltype):
+    if isinstance(coltarget_or_col, BMDColumn):
+        col = coltarget_or_col
+    else:
+        with session_scope() as session:
+            with session.no_autoflush:
+                col = coltarget_or_col.get(session) or coltarget_or_col._column
+    return BMDColumnToColumn(source=col, reltype=reltype)
 
 
 class BMDColumnToColumn(Base):
