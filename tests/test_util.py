@@ -3,9 +3,9 @@ from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
-                        TableTarget)
+                        TableTarget, TagTarget, TagsTask)
 from tasks.meta import (session_scope, BMDColumn, Base, BMDColumnTable, BMDTag,
-                        BMDColumnTag, BMDColumnToColumn, BMDTable, metadata)
+                        BMDTable, BMDColumnTag, BMDColumnToColumn, metadata)
 
 
 def setup():
@@ -21,6 +21,14 @@ def test_underscore_slugify():
     assert_equals(underscore_slugify('"path.to.schema"."ClassName(param1=100, param2=foobar)"'),
                   'path_to_schema_class_name_param1_100_param2_foobar'
                  )
+
+
+def runtask(task):
+    if task.complete():
+        return
+    for dep in task.deps():
+        runtask(dep)
+    task.run()
 
 #def test_slug_column():
 #    assert_equals(slug_column('Population'), 'pop')
@@ -95,8 +103,8 @@ def test_column_target_relations_create_update():
         rawcol = col._column
         tag = BMDTag(id='tag', name='some tag', description='some tag')
         session.add(tag)
-        coltag = BMDColumnTag(column=rawcol, tag=tag)
-        session.add(coltag)
+        rawcol.tags.append(TagTarget(tag))
+        session.add(rawcol)
         table = BMDTable(id='table', tablename='foobar')
         session.add(table)
         coltable = BMDColumnTable(column=rawcol, table=table, colname='col')
@@ -225,7 +233,7 @@ def test_columns_task_fails_no_columns():
 
     task = TestColumnsTask()
     with assert_raises(NotImplementedError):
-        task.run()
+        runtask(task)
 
 
 @with_setup(setup, teardown)
@@ -234,7 +242,7 @@ def test_columns_task_creates_columns_only_when_run():
     task = TestColumnsTask()
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 0)
-    task.run()
+    runtask(task)
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 2)
         assert_equals(session.query(BMDColumnToColumn).count(), 1)
@@ -242,10 +250,10 @@ def test_columns_task_creates_columns_only_when_run():
         assert_equals(task.output()['foobar'].get(session).id, '"test_util".foobar')
         pop = session.query(BMDColumn).get('"test_util".population')
         foobar = session.query(BMDColumn).get('"test_util".foobar')
-        assert_equals(len(pop.source_columns), 1)
-        assert_equals(len(foobar.target_columns), 1)
-        assert_equals(pop.source_columns[0].source.id, foobar.id)
-        assert_equals(foobar.target_columns[0].target.id, pop.id)
+        assert_equals(len(pop.sources), 1)
+        assert_equals(len(foobar.targets), 1)
+        assert_equals(pop.sources.keys()[0].id, foobar.id)
+        assert_equals(foobar.targets.keys()[0].id, pop.id)
 
     assert_equals(True, task.complete())
 
@@ -260,14 +268,37 @@ def test_columns_task_creates_columns_only_when_run():
         assert_equals(session.query(BMDColumnTable).count(), 1)
 
 
+
+class TestTagsTask(TagsTask):
+    def tags(self):
+        return [
+            BMDTag(id='denominator',
+                   name='Denominator',
+                   description='Use these to provide a baseline for comparison between different areas.'),
+            BMDTag(id='population',
+                   name='Population',
+                   description='')
+        ]
+
+
 class TestColumnsTask(ColumnsTask):
 
+    def requires(self):
+        return {
+            'tags': TestTagsTask()
+        }
+
     def columns(self):
+        tags = self.input()['tags']
         pop_column = BMDColumn(id='population',
                                type='Numeric',
                                name="Total Population",
                                description='The total number of all',
                                aggregate='sum',
+                               tags=[
+                                   tags['denominator'],
+                                   tags['population']
+                               ],
                                weight=10)
         return OrderedDict({
             'pop': pop_column,
@@ -277,8 +308,10 @@ class TestColumnsTask(ColumnsTask):
                                 description='moo boo foo',
                                 aggregate='median',
                                 weight=8,
-                                target_columns=[BMDColumnToColumn(reltype='denominator',
-                                                                  target=pop_column)]
+                                tags=[tags['population']],
+                                targets={
+                                    pop_column: 'denominator'
+                                }
                                ),
         })
 
@@ -314,9 +347,7 @@ def test_table_task_creates_columns_when_run():
 
     task = TestTableTask()
     assert_equals(False, task.complete())
-    for dep in task.deps():
-        dep.run()
-    task.run()
+    runtask(task)
     assert_equals(True, task.complete())
 
     with session_scope() as session:
@@ -330,10 +361,7 @@ def test_table_task_creates_columns_when_run():
 def test_table_task_table():
 
     task = TestTableTask()
-    for dep in task.deps():
-        dep.run()
-
-    task.run()
+    runtask(task)
 
     with session_scope() as session:
         assert_equals('"{schema}".{name}'.format(schema=task.table.schema,
@@ -345,9 +373,7 @@ def test_table_task_table():
 def test_table_task_replaces_data():
 
     task = TestTableTask()
-    for dep in task.deps():
-        dep.run()
-    task.run()
+    runtask(task)
 
     with session_scope() as session:
         assert_equals(session.query(task.table).count(), 0)
@@ -356,18 +382,16 @@ def test_table_task_replaces_data():
             tablename=task.table.name))
         assert_equals(session.query(task.table).count(), 1)
 
-    task.run()
+    runtask(task)
 
     with session_scope() as session:
-        assert_equals(session.query(task.table).count(), 0)
+        assert_equals(session.query(task.table).count(), 1)
 
 @with_setup(setup, teardown)
 def test_table_task_qualifies_table_name_schema():
 
     task = TestTableTask()
-    for dep in task.deps():
-        dep.run()
-    task.run()
+    runtask(task)
 
     assert_equals(task.table.schema, 'test_util')
     assert_equals(task.table.name, 'test_table_task_alpha_1996_beta_5000')

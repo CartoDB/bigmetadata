@@ -7,5 +7,5 @@ nose
 mock
 python-daemon
 python-slugify
-sqlalchemy
+sqlalchemy==git+https://github.com/zzzeek/sqlalchemy.git@rel_1_1
 sphinx

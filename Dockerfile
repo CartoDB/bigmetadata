@@ -17,6 +17,7 @@ RUN cd /usr/local/src && tar -xvf gdal-${GDAL_VERSION}.tar.gz && cd gdal-${GDAL_
 
 RUN apt-get -yq remove python-pip
 RUN easy_install pip
+RUN apt-get -yq install git
 RUN pip install -r /bigmetadata/requirements.txt
 
 EXPOSE 8082

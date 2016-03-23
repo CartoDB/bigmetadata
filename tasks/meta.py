@@ -15,9 +15,11 @@ from sqlalchemy import (Column, Integer, String, Boolean, MetaData,
                         ForeignKeyConstraint, Table, exc, func)
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker, composite
+from sqlalchemy.orm import relationship, sessionmaker, composite, backref
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm.collections import attribute_mapped_collection, InstrumentedList
 from sqlalchemy.types import UserDefinedType
 
 
@@ -70,14 +72,8 @@ class BMDColumnTable(Base):
 
     __tablename__ = 'bmd_column_table'
 
-    column_id = Column(String, ForeignKey('bmd_column.id',
-                                          onupdate="CASCADE",
-                                          ondelete="CASCADE"),
-                       primary_key=True)
-    table_id = Column(String, ForeignKey('bmd_table.id',
-                                          onupdate="CASCADE",
-                                          ondelete="CASCADE"),
-                      primary_key=True)
+    column_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
+    table_id = Column(String, ForeignKey('bmd_table.id', ondelete='cascade'), primary_key=True)
 
     colname = Column(String, nullable=False)
 
@@ -87,25 +83,59 @@ class BMDColumnTable(Base):
     extra = Column(JSON)
 
 
-# For example, a single census identifier like b01001001
-# This has a one-to-many relation with ColumnTable and extends our existing
-# columns through that table
-# TODO get the source/target relations working through
+def tag_creator(tagtarget):
+    with session_scope() as session:
+        with session.no_autoflush:
+            tag = tagtarget.get(session) or tagtarget._tag
+            return BMDColumnTag(tag_id=tag.id)
+            #return tag
+
+
+def targets_creator(coltarget_or_col, reltype):
+    if isinstance(coltarget_or_col, BMDColumn):
+        col = coltarget_or_col
+    else:
+        with session_scope() as session:
+            with session.no_autoflush:
+                col = coltarget_or_col.get(session) or coltarget_or_col._column
+    return BMDColumnToColumn(target=col, reltype=reltype)
+
+
+def sources_creator(coltarget_or_col, reltype):
+    if isinstance(coltarget_or_col, BMDColumn):
+        col = coltarget_or_col
+    else:
+        with session_scope() as session:
+            with session.no_autoflush:
+                col = coltarget_or_col.get(session) or coltarget_or_col._column
+    return BMDColumnToColumn(source=col, reltype=reltype)
+
+
 class BMDColumnToColumn(Base):
     __tablename__ = 'bmd_column_to_column'
 
-    source_id = Column(String, ForeignKey('bmd_column.id',
-                                          onupdate="CASCADE",
-                                          ondelete="CASCADE"),
-                       primary_key=True)
-    target_id = Column(String, ForeignKey('bmd_column.id',
-                                          onupdate="CASCADE",
-                                          ondelete="CASCADE"),
-                       primary_key=True)
+    source_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
+    target_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
 
     reltype = Column(String, primary_key=True)
 
+    source = relationship('BMDColumn',
+                          foreign_keys=[source_id],
+                          backref=backref(
+                              "tgts",
+                              collection_class=attribute_mapped_collection("target"),
+                              cascade="all, delete-orphan",
+                          ))
+    target = relationship('BMDColumn',
+                          foreign_keys=[target_id],
+                          backref=backref(
+                              "srcs",
+                              collection_class=attribute_mapped_collection("source"),
+                              cascade="all, delete-orphan",
+                          ))
 
+
+# For example, a single census identifier like b01001001
 class BMDColumn(Base):
     __tablename__ = 'bmd_column'
 
@@ -122,14 +152,11 @@ class BMDColumn(Base):
                                # these together across geoms: AVG, SUM etc.
 
     tables = relationship("BMDColumnTable", back_populates="column", cascade="all,delete")
-    tags = relationship("BMDColumnTag", back_populates="column", cascade="all,delete")
+    #tags = relationship("BMDColumnTag", back_populates="column", cascade="all,delete")
+    tags = association_proxy('column_column_tags', 'tag', creator=tag_creator)
 
-    source_columns = relationship("BMDColumnToColumn", backref='target',
-                                  foreign_keys='BMDColumnToColumn.source_id',
-                                  cascade="all,delete")
-    target_columns = relationship("BMDColumnToColumn", backref='source',
-                                  foreign_keys='BMDColumnToColumn.target_id',
-                                  cascade="all,delete")
+    targets = association_proxy('tgts', 'reltype', creator=targets_creator)
+    sources = association_proxy('srcs', 'reltype', creator=sources_creator)
 
 
 # We should have one of these for every table we load in through the ETL
@@ -155,23 +182,26 @@ class BMDTag(Base):
     name = Column(String, nullable=False)
     description = Column(String)
 
-    columns = relationship("BMDColumnTag", back_populates="tag", cascade="all,delete")
+    #columns = relationship("BMDColumnTag", back_populates="tag", cascade="all,delete")
+    columns = association_proxy('tag_column_tags', 'column')
 
 
 class BMDColumnTag(Base):
     __tablename__ = 'bmd_column_tag'
 
-    column_id = Column(String, ForeignKey('bmd_column.id',
-                                          onupdate="CASCADE",
-                                          ondelete="CASCADE"),
-                       primary_key=True)
-    tag_id = Column(String, ForeignKey('bmd_tag.id',
-                                       onupdate="CASCADE",
-                                       ondelete="CASCADE"),
-                    primary_key=True)
+    column_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
+    tag_id = Column(String, ForeignKey('bmd_tag.id', ondelete='cascade'), primary_key=True)
 
-    column = relationship("BMDColumn", back_populates='tags')
-    tag = relationship("BMDTag", back_populates='columns')
+    column = relationship("BMDColumn",
+                          foreign_keys=[column_id],
+                          backref=backref('column_column_tags',
+                                          cascade='all, delete-orphan')
+                         )
+    tag = relationship("BMDTag",
+                       foreign_keys=[tag_id],
+                       backref=backref('tag_column_tags',
+                                       cascade='all, delete-orphan')
+                      )
 
 
 @contextmanager
