@@ -84,7 +84,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[tags['population']]
+            tags=[tags['population'], tags['race_age_gender']]
         )
         black_pop = BMDColumn(
             id='B03002004',
@@ -109,7 +109,7 @@ class Columns(ColumnsTask):
         hispanic_pop = BMDColumn(
             id='B03002012',
             type='Numeric',
-            name='Asian Population',
+            name='Hispanic Population',
             description="The number of people identifying as Hispanic or Latino in each geography.",
             aggregate='sum',
             weight=7,

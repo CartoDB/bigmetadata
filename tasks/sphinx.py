@@ -8,9 +8,15 @@ from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
 from tasks.util import shell
 from tasks.meta import session_scope, BMDTag
 
-env = Environment(loader=PackageLoader('catalog', 'templates'))
-TAG_TEMPLATE = env.get_template('tag.html')
 
+env = Environment(loader=PackageLoader('catalog', 'templates'))
+
+def test_filter(arg):
+    pass
+
+env.filters['test'] = test_filter
+
+TAG_TEMPLATE = env.get_template('tag.html')
 
 class GenerateRST(Task):
 
@@ -34,9 +40,10 @@ class GenerateRST(Task):
                 fhandle = target.open('w')
 
                 tag = session.query(BMDTag).get(tag_id)
-                tag.columns.sort(lambda x, y: -x.column.weight.__cmp__(y.column.weight))
+                columns = [c for c in tag.columns]
+                columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
 
-                fhandle.write(TAG_TEMPLATE.render(tag=tag).encode('utf8'))
+                fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns).encode('utf8'))
                 fhandle.close()
 
 

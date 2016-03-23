@@ -8,9 +8,7 @@
 .. contents::
    :depth: 10
 
-{% for coltag in tag.columns %}
-
-{% set col = coltag.column %}
+{% for col in columns %}
 
 .. _{{ col.id }}:
 
@@ -19,9 +17,8 @@
 
 :description: {{ col.description }}
 
-{% for coltarget in col.target_columns %}
-    {% set target = coltarget.target %}
-:{{ coltarget.reltype }}:
+{% for target, reltype in col.targets.iteritems() %}
+:{{ reltype }}:
 
     :ref:`{{ target.id }}`
 {% endfor %}
