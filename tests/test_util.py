@@ -5,7 +5,7 @@ from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
                         TableTarget)
 from tasks.meta import (session_scope, BMDColumn, Base, BMDColumnTable, BMDTag,
-                        BMDColumnTag, BMDColumnToColumn, BMDTable, metadata)
+                        BMDColumnTag, bmd_column_to_column, BMDTable, metadata)
 
 
 def setup():
