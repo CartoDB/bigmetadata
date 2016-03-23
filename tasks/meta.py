@@ -19,7 +19,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, composite, backref
 from sqlalchemy.orm.exc import NoResultFound
-from sqlalchemy.orm.collections import attribute_mapped_collection
+from sqlalchemy.orm.collections import attribute_mapped_collection, InstrumentedList
 from sqlalchemy.types import UserDefinedType
 
 
@@ -83,6 +83,14 @@ class BMDColumnTable(Base):
     extra = Column(JSON)
 
 
+def tag_creator(tagtarget):
+    with session_scope() as session:
+        with session.no_autoflush:
+            tag = tagtarget.get(session) or tagtarget._tag
+            return BMDColumnTag(tag_id=tag.id)
+            #return tag
+
+
 def targets_creator(coltarget_or_col, reltype):
     if isinstance(coltarget_or_col, BMDColumn):
         col = coltarget_or_col
@@ -127,13 +135,6 @@ class BMDColumnToColumn(Base):
                           ))
 
 
-def tag_creator(tagtarget):
-    with session_scope() as session:
-        with session.no_autoflush:
-            tag = tagtarget.get(session) or tagtarget._tag
-            return BMDColumnTag(tag=tag)
-
-
 # For example, a single census identifier like b01001001
 class BMDColumn(Base):
     __tablename__ = 'bmd_column'
@@ -152,7 +153,7 @@ class BMDColumn(Base):
 
     tables = relationship("BMDColumnTable", back_populates="column", cascade="all,delete")
     #tags = relationship("BMDColumnTag", back_populates="column", cascade="all,delete")
-    tags = association_proxy('column_tags', 'tag', creator=tag_creator)
+    tags = association_proxy('column_column_tags', 'tag', creator=tag_creator)
 
     targets = association_proxy('tgts', 'reltype', creator=targets_creator)
     sources = association_proxy('srcs', 'reltype', creator=sources_creator)
@@ -182,7 +183,7 @@ class BMDTag(Base):
     description = Column(String)
 
     #columns = relationship("BMDColumnTag", back_populates="tag", cascade="all,delete")
-    columns = association_proxy('column_tags', 'column')
+    columns = association_proxy('tag_column_tags', 'column')
 
 
 class BMDColumnTag(Base):
@@ -192,10 +193,14 @@ class BMDColumnTag(Base):
     tag_id = Column(String, ForeignKey('bmd_tag.id', ondelete='cascade'), primary_key=True)
 
     column = relationship("BMDColumn",
-                          backref=backref('column_tags', cascade='all, delete-orphan')
+                          foreign_keys=[column_id],
+                          backref=backref('column_column_tags',
+                                          cascade='all, delete-orphan')
                          )
     tag = relationship("BMDTag",
-                       backref=backref('column_tags', cascade='all, delete-orphan')
+                       foreign_keys=[tag_id],
+                       backref=backref('tag_column_tags',
+                                       cascade='all, delete-orphan')
                       )
 
 

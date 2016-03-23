@@ -16,49 +16,6 @@ from tasks.meta import (BMDColumnTable, BMDColumn, BMDTable,
 from tasks.util import session_scope, ColumnTarget, TagTarget
 
 
-#class Tags():
-#    denominator = BMDTag(
-#        id='denominator',
-#        name='Denominator',
-#        description='Use these to provide a baseline for comparison between different areas.')
-#    population = BMDTag(
-#        id='population',
-#        name='Population',
-#        description='')
-#
-#
-#class Columns():
-#    total_pop = BMDColumn(
-#        id='B01001001',
-#        type='Numeric',
-#        name="Total Population",
-#        description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
-#        aggregate='sum',
-#        weight=10,
-#        tags=[BMDColumnTag(tag=Tags.denominator),
-#              BMDColumnTag(tag=Tags.population)]
-#    )
-#    male_pop = BMDColumn(
-#        id='B01001002',
-#        type='Numeric',
-#        name="Male Population",
-#        description="The number of people within each geography who are male.",
-#        aggregate='sum',
-#        weight=8,
-#        target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
-#        tags=[BMDColumnTag(tag=Tags.population)]
-#    )
-#    female_pop = BMDColumn(
-#        id='B01001026',
-#        type='Numeric',
-#        name="Female Population",
-#        description="The number of people within each geography who are female.",
-#        aggregate='sum',
-#        weight=8,
-#        target_columns=[BMDColumnToColumn(target=total_pop, reltype='denominator')],
-#        tags=[BMDColumnTag(tag=Tags.population)]
-#    )
-
 def setup():
     Base.metadata.drop_all()
     Base.metadata.create_all()
