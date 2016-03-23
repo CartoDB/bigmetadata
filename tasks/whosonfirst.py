@@ -55,7 +55,7 @@ class ImportWhosOnFirstResolution(Task):
         return target
 
 
-class WhosOnFirstMetadata(Task):
+class WhosOnFirstColumns(Task):
     pass
 
 
