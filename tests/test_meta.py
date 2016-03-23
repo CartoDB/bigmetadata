@@ -13,7 +13,7 @@ except:
 from nose.tools import assert_equals, with_setup
 from tasks.meta import (BMDColumnTable, BMDColumn, BMDTable,
                         BMDTag, BMDColumnTag, Base)
-from tasks.util import session_scope, ColumnTarget
+from tasks.util import session_scope, ColumnTarget, TagTarget
 
 
 #class Tags():
@@ -75,7 +75,6 @@ def populate():
         }
         for numerator_col in ('male_pop', 'female_pop', ):
             datacol = datacols[numerator_col]
-            #datacol.targets.append(ColumnTarget('us.census.acs', 'total_pop', datacols['total_pop']))
             datacol.targets[ColumnTarget(
                 'us.census.acs', 'total_pop', datacols['total_pop'])] = 'denominator'
             session.add(datacol)
@@ -95,8 +94,9 @@ def populate():
                                    colname='geoid'))
         for colname, datacol in datacols.iteritems():
             if colname.endswith('pop'):
-                session.add(BMDColumnTag(tag=population_tag,
-                                         column=datacol))
+                #session.add(BMDColumnTag(tag=population_tag,
+                #                         column=datacol))
+                datacol.tags.append(TagTarget(population_tag))
             for table in tables.values():
                 coltable = BMDColumnTable(column=datacol,
                                           table=table,
@@ -141,7 +141,7 @@ def test_tags_in_columns():
     populate()
     with session_scope() as session:
         column = session.query(BMDColumn).get('"us.census.acs".total_pop')
-        assert_equals(['population'], [tag.tag.name for tag in column.tags])
+        assert_equals(['population'], [tag.name for tag in column.tags])
 
 
 @with_setup(setup, teardown)

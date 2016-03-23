@@ -121,6 +121,13 @@ class BMDColumnToColumn(Base):
                           ))
 
 
+def tag_creator(tagtarget):
+    with session_scope() as session:
+        with session.no_autoflush:
+            tag = tagtarget.get(session) or tagtarget._tag
+            return BMDColumnTag(tag=tag)
+
+
 # For example, a single census identifier like b01001001
 class BMDColumn(Base):
     __tablename__ = 'bmd_column'
@@ -138,7 +145,8 @@ class BMDColumn(Base):
                                # these together across geoms: AVG, SUM etc.
 
     tables = relationship("BMDColumnTable", back_populates="column", cascade="all,delete")
-    tags = relationship("BMDColumnTag", back_populates="column", cascade="all,delete")
+    #tags = relationship("BMDColumnTag", back_populates="column", cascade="all,delete")
+    tags = association_proxy('column_tags', 'tag', creator=tag_creator)
 
     targets = association_proxy('tgts', 'reltype', creator=targets_creator)
     sources = association_proxy('srcs', 'reltype', creator=sources_creator)
@@ -167,7 +175,8 @@ class BMDTag(Base):
     name = Column(String, nullable=False)
     description = Column(String)
 
-    columns = relationship("BMDColumnTag", back_populates="tag", cascade="all,delete")
+    #columns = relationship("BMDColumnTag", back_populates="tag", cascade="all,delete")
+    columns = association_proxy('column_tags', 'column')
 
 
 class BMDColumnTag(Base):
@@ -176,8 +185,12 @@ class BMDColumnTag(Base):
     column_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
     tag_id = Column(String, ForeignKey('bmd_tag.id', ondelete='cascade'), primary_key=True)
 
-    column = relationship("BMDColumn", back_populates='tags')
-    tag = relationship("BMDTag", back_populates='columns')
+    column = relationship("BMDColumn",
+                          backref=backref('column_tags', cascade='all, delete-orphan')
+                         )
+    tag = relationship("BMDTag",
+                       backref=backref('column_tags', cascade='all, delete-orphan')
+                      )
 
 
 @contextmanager
