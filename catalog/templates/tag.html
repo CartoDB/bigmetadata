@@ -29,12 +29,11 @@
    {{ table.tablename }}.{{ coltable.colname }}
    #}
 
-{#
 {% for coltable in col.tables %}
     {% set table = coltable.table %}
-    :{{ table.timespan }}:
+    {#:{{ table.timespan }}:#}
 
+    `On Carto <http://observatory.cartodb.com/tables/{{ table.tablename }}>`_
 {% endfor %}
-#}
 
 {% endfor %}

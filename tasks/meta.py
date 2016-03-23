@@ -24,20 +24,21 @@ from sqlalchemy.types import UserDefinedType
 
 
 
-def get_engine():
-    engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
-        user=os.environ.get('PGUSER', 'postgres'),
-        password=os.environ.get('PGPASSWORD', ''),
-        host=os.environ.get('PGHOST', 'localhost'),
-        port=os.environ.get('PGPORT', '5432'),
-        db=os.environ.get('PGDATABASE', 'postgres')
-    ))
+_engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
+    user=os.environ.get('PGUSER', 'postgres'),
+    password=os.environ.get('PGPASSWORD', ''),
+    host=os.environ.get('PGHOST', 'localhost'),
+    port=os.environ.get('PGPORT', '5432'),
+    db=os.environ.get('PGDATABASE', 'postgres')
+))
 
-    @event.listens_for(engine, "connect")
+def get_engine():
+
+    @event.listens_for(_engine, "connect")
     def connect(dbapi_connection, connection_record):
         connection_record.info['pid'] = os.getpid()
 
-    @event.listens_for(engine, "checkout")
+    @event.listens_for(_engine, "checkout")
     def checkout(dbapi_connection, connection_record, connection_proxy):
         pid = os.getpid()
         if connection_record.info['pid'] != pid:
@@ -47,7 +48,7 @@ def get_engine():
                 "attempting to check out in pid %s" %
                 (connection_record.info['pid'], pid)
             )
-    return engine
+    return _engine
 
 
 metadata = MetaData(get_engine())
