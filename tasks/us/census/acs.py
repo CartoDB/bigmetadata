@@ -17,27 +17,39 @@ from sqlalchemy import Column, Numeric, Text
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
-                        session_scope, ColumnTarget, ColumnsTask)
+                        session_scope, ColumnTarget, ColumnsTask, TagsTask)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
 from psycopg2 import ProgrammingError
 from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
                                    SUMLEVELS_BY_SLUG, ShorelineClipTiger)
 
 from tasks.meta import (BMDColumn, BMDTag, BMDColumnTable)
-from tasks.tags import Tags
+from tasks.tags import Tags as GeneralTags
 
 LOGGER = get_logger(__name__)
+
+
+class Tags(TagsTask):
+
+    def tags(self):
+        return [
+            BMDTag(id='demographics',
+                   name='US American Community Survey Demographics',
+                   description='Standard Demographic Data from the US American Community Survey')
+        ]
 
 
 class Columns(ColumnsTask):
 
     def requires(self):
         return {
-            'tags': Tags(),
+            'tags': GeneralTags(),
+            'censustags': Tags()
         }
 
     def columns(self):
         tags = self.input()['tags']
+        censustags = self.input()['censustags']
         total_pop = BMDColumn(
             id='B01001001',
             type='Numeric',
@@ -45,7 +57,7 @@ class Columns(ColumnsTask):
             description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
             aggregate='sum',
             weight=10,
-            tags=[tags['denominator'], tags['population']]
+            tags=[censustags['demographics'], tags['denominator'], tags['population']]
         )
         male_pop = BMDColumn(
             id='B01001002',
@@ -55,17 +67,17 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=8,
             targets={total_pop: 'denominator'},
-            tags=[tags['population']]
+            tags=[censustags['demographics'], tags['population']]
         )
         female_pop = BMDColumn(
             id='B01001026',
             type='Numeric',
-            name="Total Population",
-            description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+            name="Female Population",
+            description='The number of people within each geography who are female.',
             aggregate='sum',
             weight=8,
             targets={total_pop: 'denominator'},
-            tags=[tags['population']]
+            tags=[censustags['demographics'], tags['population']]
         )
         median_age = BMDColumn(
             id='B01002001',
@@ -74,7 +86,7 @@ class Columns(ColumnsTask):
             description="The median age of all people in a given geographic area.",
             aggregate='median',
             weight=2,
-            tags=[tags['population']]
+            tags=[censustags['demographics'], tags['population']]
         )
         white_pop = BMDColumn(
             id='B03002003',
@@ -84,7 +96,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[tags['population'], tags['race_age_gender']]
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
         black_pop = BMDColumn(
             id='B03002004',
@@ -94,7 +106,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[tags['population'], tags['race_age_gender']]
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
         asian_pop = BMDColumn(
             id='B03002006',
@@ -104,7 +116,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[tags['population'], tags['race_age_gender']]
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
         hispanic_pop = BMDColumn(
             id='B03002012',
@@ -114,7 +126,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[tags['population'], tags['race_age_gender']]
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
         not_us_citizen_pop = BMDColumn(
             id='B05001006',
@@ -124,7 +136,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=3,
             targets={total_pop: 'denominator'},
-            tags=[tags['population']]
+            tags=[censustags['demographics'], tags['population']]
         )
         workers_16_and_over = BMDColumn(
             id='B08006001',
@@ -133,7 +145,7 @@ class Columns(ColumnsTask):
             description="The number of people in each geography who work.  Workers include those employed at private for-profit companies, the self-employed, government workers and non-profit employees.",
             aggregate='sum',
             weight=5,
-            tags=[tags['denominator'], tags['income_education_employment']]
+            tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']]
         )
         commuters_by_car_truck_van = BMDColumn(
             id='B08006002',
@@ -143,7 +155,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
-            tags=[tags['transportation']])
+            tags=[censustags['demographics'], tags['transportation']])
         commuters_by_public_transportation = BMDColumn(
             id='B08006008',
             type='Numeric',
@@ -152,7 +164,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
-            tags=[tags['transportation']])
+            tags=[censustags['demographics'], tags['transportation']])
         commuters_by_bus = BMDColumn(
             id='B08006009',
             type='Numeric',
@@ -161,7 +173,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
-            tags=[tags['transportation']])
+            tags=[censustags['demographics'], tags['transportation']])
         commuters_by_subway_or_elevated = BMDColumn(
             id='B08006011',
             type='Numeric',
@@ -170,7 +182,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
-            tags=[tags['transportation']])
+            tags=[censustags['demographics'], tags['transportation']])
         walked_to_work = BMDColumn(
             id='B08006015',
             type='Numeric',
@@ -179,7 +191,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
-            tags=[tags['transportation']])
+            tags=[censustags['demographics'], tags['transportation']])
         worked_at_home = BMDColumn(
             id='B08006017',
             type='Numeric',
@@ -188,7 +200,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
-            tags=[tags['transportation']])
+            tags=[censustags['demographics'], tags['transportation']])
         children = BMDColumn(
             id='B09001001',
             type='Numeric',
@@ -196,7 +208,7 @@ class Columns(ColumnsTask):
             description='The number of people within each geography who are under 18 years of age.',
             weight=4,
             aggregate='sum',
-            tags=[tags['denominator'], tags['race_age_gender']])
+            tags=[censustags['demographics'], tags['denominator'], tags['race_age_gender']])
         households = BMDColumn(
             id='B11001001',
             type='Numeric',
@@ -204,7 +216,7 @@ class Columns(ColumnsTask):
             description='A count of the number of households in each geography.  A household consists of one or more people who live in the same dwelling and also share at meals or living accommodation, and may consist of a single family or some other grouping of people. ',
             weight=8,
             aggregate='sum',
-            tags=[tags['housing']])
+            tags=[censustags['demographics'], tags['housing']])
         population_3_years_over = BMDColumn(
             id='B14001001',
             type='Numeric',
@@ -212,7 +224,7 @@ class Columns(ColumnsTask):
             description='The total number of people in each geography age 3 years and over.  This denominator is mostly used to calculate rates of school enrollment.',
             weight=4,
             aggregate='sum',
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         in_school = BMDColumn(
             id='B14001002',
             type='Numeric',
@@ -221,7 +233,7 @@ class Columns(ColumnsTask):
             weight=6,
             aggregate='sum',
             targets={population_3_years_over: 'denominator'},
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         in_grades_1_to_4 = BMDColumn(
             id='B14001005',
             type='Numeric',
@@ -230,7 +242,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         in_grades_5_to_8 = BMDColumn(
             id='B14001006',
             type='Numeric',
@@ -239,7 +251,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         in_grades_9_to_12 = BMDColumn(
             id='B14001007',
             type='Numeric',
@@ -248,7 +260,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         in_undergrad_college = BMDColumn(
             id='B14001008',
             type='Numeric',
@@ -257,7 +269,7 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={in_school: 'denominator'},
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         pop_25_years_over = BMDColumn(
             id='B15003001',
             type='Numeric',
@@ -265,7 +277,7 @@ class Columns(ColumnsTask):
             description='The number of people in a geographic area who are over the age of 25.  This is used mostly as a denominator of educational attainment.',
             weight=2,
             aggregate='sum',
-            tags=[tags['denominator'], tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']])
         high_school_diploma = BMDColumn(
             id='B15003017',
             type='Numeric',
@@ -274,7 +286,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         bachelors_degree = BMDColumn(
             id='B15003022',
             type='Numeric',
@@ -283,7 +295,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         masters_degree = BMDColumn(
             id='B15003023',
             type='Numeric',
@@ -292,7 +304,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         pop_5_years_over = BMDColumn(
             id='B16001001',
             type='Numeric',
@@ -300,7 +312,7 @@ class Columns(ColumnsTask):
             description='The number of people in a geographic area who are over the age of 5.  This is primarily used as a denominator of measures of language spoken at home.',
             weight=2,
             aggregate='sum',
-            tags=[tags['denominator'], tags['language']])
+            tags=[censustags['demographics'], tags['denominator'], tags['language']])
         speak_only_english_at_home = BMDColumn(
             id='B16001002',
             type='Numeric',
@@ -309,7 +321,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
-            tags=[tags['language']])
+            tags=[censustags['demographics'], tags['language']])
         speak_spanish_at_home = BMDColumn(
             id='B16001003',
             type='Numeric',
@@ -318,7 +330,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
-            tags=[tags['language']])
+            tags=[censustags['demographics'], tags['language']])
         pop_determined_poverty_status = BMDColumn(
             id='B17001001',
             type='Numeric',
@@ -326,16 +338,16 @@ class Columns(ColumnsTask):
             description='The number of people in each geography who could be identified as either living in poverty or not.  This should be used as the denominator when calculating poverty rates, as it excludes people for whom it was not possible to determine poverty.',
             weight=2,
             aggregate='sum',
-            tags=[tags['denominator']])
+            tags=[censustags['demographics'], tags['denominator']])
         poverty = BMDColumn(
             id='B17001002',
             type='Numeric',
-            name='Population for Whom Poverty Status Determined',
+            name='Income In The Past 12 Months Below Poverty Level',
             description="The number of people in a geographic area who are part of a family (which could be just them as an individual) determined to be \"in poverty\" following the Office of Management and Budget's Directive 14. (https://www.census.gov/hhes/povmeas/methodology/ombdir14.html)",
             weight=2,
             aggregate='sum',
             targets={pop_determined_poverty_status: 'denominator'},
-            tags=[tags['denominator'], tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']])
         median_income = BMDColumn(
             id='B19013001',
             type='Numeric',
@@ -343,7 +355,7 @@ class Columns(ColumnsTask):
             description="Within a geographic area, the median income received by every household on a regular basis before payments for personal income taxes, social security, union dues, medicare deductions, etc.  It includes income received from wages, salary, commissions, bonuses, and tips; self-employment income from own nonfarm or farm businesses, including proprietorships and partnerships; interest, dividends, net rental income, royalty income, or income from estates and trusts; Social Security or Railroad Retirement income; Supplemental Security Income (SSI); any cash public assistance or welfare payments from the state or local welfare office; retirement, survivor, or disability benefits; and any other sources of income received regularly such as Veterans' (VA) payments, unemployment and/or worker's compensation, child support, and alimony.",
             weight=8,
             aggregate='median',
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         gini_index = BMDColumn(
             id='B19083001',
             type='Numeric',
@@ -351,7 +363,7 @@ class Columns(ColumnsTask):
             description='',
             weight=5,
             aggregate='',
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         income_per_capita = BMDColumn(
             id='B19301001',
             type='Numeric',
@@ -359,7 +371,7 @@ class Columns(ColumnsTask):
             description='',
             weight=7,
             aggregate='average',
-            tags=[tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['income_education_employment']])
         housing_units = BMDColumn(
             id='B25001001',
             type='Numeric',
@@ -367,7 +379,7 @@ class Columns(ColumnsTask):
             description='A count of housing units in each geography.  A housing unit is a house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters.',
             weight=8,
             aggregate='sum',
-            tags=[tags['housing'], tags['denominator']])
+            tags=[censustags['demographics'], tags['housing'], tags['denominator']])
         vacant_housing_units = BMDColumn(
             id='B25002003',
             type='Numeric',
@@ -376,7 +388,7 @@ class Columns(ColumnsTask):
             weight=8,
             aggregate='sum',
             targets={housing_units: 'denominator'},
-            tags=[tags['housing']])
+            tags=[censustags['demographics'], tags['housing']])
         vacant_housing_units_for_rent = BMDColumn(
             id='B25004002',
             type='Numeric',
@@ -385,7 +397,7 @@ class Columns(ColumnsTask):
             weight=7,
             aggregate='sum',
             targets={vacant_housing_units: 'denominator'},
-            tags=[tags['housing']])
+            tags=[censustags['demographics'], tags['housing']])
         vacant_housing_units_for_sale = BMDColumn(
             id='B25004004',
             type='Numeric',
@@ -394,7 +406,7 @@ class Columns(ColumnsTask):
             weight=7,
             aggregate='sum',
             targets={vacant_housing_units: 'denominator'},
-            tags=[tags['housing']])
+            tags=[censustags['demographics'], tags['housing']])
         median_rent = BMDColumn(
             id='B25058001',
             type='Numeric',
@@ -402,7 +414,7 @@ class Columns(ColumnsTask):
             description="The median contract rent within a geographic area. The contract rent is the monthly rent agreed to or contracted for, regardless of any furnishings, utilities, fees, meals, or services that may be included. For vacant units, it is the monthly rent asked for the rental unit at the time of interview.",
             weight=8,
             aggregate='median',
-            tags=[tags['housing']])
+            tags=[censustags['demographics'], tags['housing']])
         percent_income_spent_on_rent = BMDColumn(
             id='B25071001',
             type='Numeric',
@@ -410,7 +422,7 @@ class Columns(ColumnsTask):
             description="Within a geographic area, the median percentage of household income which was spent on gross rent.  Gross rent is the amount of the contract rent plus the estimated average monthly cost of utilities (electricity, gas, water, sewer etc.) and fuels (oil, coal, wood, etc.) if these are paid by the renter.  Household income is the sum of the income of all people 15 years and older living in the household.",
             weight=4,
             aggregate='average',
-            tags=[tags['housing'], tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['housing'], tags['income_education_employment']])
         owner_occupied_housing_units = BMDColumn(
             id='B25075001',
             type='Numeric',
@@ -419,7 +431,7 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={housing_units: 'denominator'},
-            tags=[tags['housing']])
+            tags=[censustags['demographics'], tags['housing']])
         million_dollar_housing_units = BMDColumn(
             id='B25075025',
             type='Numeric',
@@ -428,7 +440,7 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={owner_occupied_housing_units: 'denominator'},
-            tags=[tags['housing']])
+            tags=[censustags['demographics'], tags['housing']])
 
         mortgaged_housing_units = BMDColumn(
             id='B25081002',
@@ -438,7 +450,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={owner_occupied_housing_units: 'denominator'},
-            tags=[tags['housing']])
+            tags=[censustags['demographics'], tags['housing']])
         return OrderedDict({
             "total_pop":                        total_pop,
             "male_pop":                         male_pop,
