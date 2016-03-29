@@ -521,6 +521,13 @@ class TableTask(Task):
     defined columns.
     '''
 
+    def __init__(self, *args, **kwargs):
+        super(TableTask, self).__init__(*args, **kwargs)
+        # Make sure everything is defined
+        self.columns()
+        self.timespan()
+        self.bounds()
+
     def columns(self):
         return NotImplementedError('Must implement columns method that returns '
                                    'a dict of ColumnTargets')
