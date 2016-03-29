@@ -14,7 +14,8 @@ class SyncMetadata(WrapperTask):
 
     def requires(self):
         for tablename, _ in Base.metadata.tables.iteritems():
-            yield TableToCarto(table=tablename, outname=tablename, force=self.force)
+            if tablename.startswith('bmd_'):
+                yield TableToCarto(table=tablename, outname=tablename, force=self.force)
 
 
 def should_upload(table):

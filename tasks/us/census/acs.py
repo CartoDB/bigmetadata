@@ -15,13 +15,15 @@ import os
 from collections import OrderedDict
 from sqlalchemy import Column, Numeric, Text
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
+from psycopg2 import ProgrammingError
+
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         session_scope, ColumnTarget, ColumnsTask, TagsTask)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
-from psycopg2 import ProgrammingError
 from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
                                    SUMLEVELS_BY_SLUG, ShorelineClipTiger)
+from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (BMDColumn, BMDTag, BMDColumnTable)
 from tasks.tags import Tags as GeneralTags
@@ -44,12 +46,16 @@ class Columns(ColumnsTask):
     def requires(self):
         return {
             'tags': GeneralTags(),
-            'censustags': Tags()
+            'censustags': Tags(),
+            'segmenttags': SegmentTags()
         }
 
     def columns(self):
         tags = self.input()['tags']
         censustags = self.input()['censustags']
+        segmenttags = self.input()['segmenttags']
+        tag_middle_aged_men = segmenttags['middle_aged_men']
+        tag_families_with_young_children = segmenttags['families_with_young_children']
         total_pop = BMDColumn(
             id='B01001001',
             type='Numeric',
@@ -204,7 +210,7 @@ class Columns(ColumnsTask):
         children = BMDColumn(
             id='B09001001',
             type='Numeric',
-            name='Children under 18 Years of Age',
+            name='children under 18 Years of Age',
             description='The number of people within each geography who are under 18 years of age.',
             weight=4,
             aggregate='sum',
@@ -451,53 +457,470 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={owner_occupied_housing_units: 'denominator'},
             tags=[censustags['demographics'], tags['housing']])
-        return OrderedDict({
-            "total_pop":                        total_pop,
-            "male_pop":                         male_pop,
-            "female_pop":                       female_pop,
-            "median_age":                       median_age,
-            "white_pop":                        white_pop,
-            "black_pop":                        black_pop,
-            "asian_pop":                        asian_pop,
-            "hispanic_pop":                     hispanic_pop,
-            "not_us_citizen_pop":               not_us_citizen_pop,
-            "workers_16_and_over":              workers_16_and_over,
-            "commuters_by_car_truck_van":       commuters_by_car_truck_van,
-            "commuters_by_public_transportation":commuters_by_public_transportation,
-            "commuters_by_bus":                 commuters_by_bus,
-            "commuters_by_subway_or_elevated":  commuters_by_subway_or_elevated,
-            "walked_to_work":                   walked_to_work,
-            "worked_at_home":                   worked_at_home,
-            "children":                         children,
-            "households":                       households,
-            "population_3_years_over":          population_3_years_over,
-            "in_school":                        in_school,
-            "in_grades_1_to_4":                 in_grades_1_to_4,
-            "in_grades_5_to_8":                 in_grades_5_to_8,
-            "in_grades_9_to_12":                in_grades_9_to_12,
-            "in_undergrad_college":             in_undergrad_college,
-            "pop_25_years_over":                pop_25_years_over,
-            "high_school_diploma":              high_school_diploma,
-            "bachelors_degree":                 bachelors_degree,
-            "masters_degree":                   masters_degree,
-            "pop_5_years_over":                 pop_5_years_over,
-            "speak_only_english_at_home":       speak_only_english_at_home,
-            "speak_spanish_at_home":            speak_spanish_at_home,
-            "pop_determined_poverty_status":    pop_determined_poverty_status,
-            "poverty":                          poverty,
-            "median_income":                    median_income,
-            "gini_index":                       gini_index,
-            "income_per_capita":                income_per_capita,
-            "housing_units":                    housing_units,
-            "vacant_housing_units":             vacant_housing_units,
-            "vacant_housing_units_for_rent":    vacant_housing_units_for_rent,
-            "vacant_housing_units_for_sale":    vacant_housing_units_for_sale,
-            "median_rent":                      median_rent,
-            "percent_income_spent_on_rent":     percent_income_spent_on_rent,
-            "owner_occupied_housing_units":     owner_occupied_housing_units,
-            "million_dollar_housing_units":     million_dollar_housing_units,
-            "mortgaged_housing_units":          mortgaged_housing_units,
-        })
+
+        #* families with young children (under 6 years of age):
+        #  - B23008002: total families with children under 6 years
+        families_with_young_children = BMDColumn(
+            id='B23008002',
+            type='Numeric',
+            name='Families with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            tags=[tag_families_with_young_children])
+
+        #  - B23008003: living with two parents
+        two_parent_families_with_young_children = BMDColumn(
+            id='B23008003',
+            type='Numeric',
+            name='Two-parent families with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={families_with_young_children: 'denominator'},
+            tags=[tag_families_with_young_children])
+        #  - B23008004: living with two parents, both in labor force  
+        two_parents_in_labor_force_families_with_young_children = BMDColumn(
+            id='B23008004',
+            type='Numeric',
+            name='Two-parent families, both parents in labor force with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={families_with_young_children: 'denominator'},
+            tags=[tag_families_with_young_children])
+        #  - B23008005: living with two parents, father only in labor force  
+        two_parents_father_in_labor_force_families_with_young_children = BMDColumn(
+            id='B23008005',
+            type='Numeric',
+            name='Two-parent families, father only in labor force with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={families_with_young_children: 'denominator'},
+            tags=[tag_families_with_young_children])
+
+        #  - B23008006: living with two parents, mother only in labor force  
+        two_parents_mother_in_labor_force_families_with_young_children = BMDColumn(
+            id='B23008006',
+            type='Numeric',
+            name='Two-parent families, mother only in labor force with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={families_with_young_children: 'denominator'},
+            tags=[tag_families_with_young_children])
+
+        #  - B23008007: living with two parents, neither parent in labor force  
+        two_parents_not_in_labor_force_families_with_young_children = BMDColumn(
+            id='B23008007',
+            type='Numeric',
+            name='Two-parent families, neither parent in labor force with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={families_with_young_children: 'denominator'},
+            tags=[tag_families_with_young_children])
+
+        #  - B23008008: living with one parent  
+        one_parent_families_with_young_children = BMDColumn(
+            id='B23008008',
+            type='Numeric',
+            name='One-parent families with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={families_with_young_children: 'denominator'},
+            tags=[tag_families_with_young_children])
+
+        #  - B23008009: living with father
+        father_one_parent_families_with_young_children = BMDColumn(
+            id='B23008009',
+            type='Numeric',
+            name='One-parent families, father, with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={families_with_young_children: 'denominator'},
+            tags=[tag_families_with_young_children])
+
+        #  - B23008010: living with father who is in labor force
+        father_in_labor_force_one_parent_families_with_young_children = BMDColumn(
+            id='B23008010',
+            type='Numeric',
+            name='One-parent families, father in labor force, with young children (under 6 years of age)',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={families_with_young_children: 'denominator'},
+            tags=[tag_families_with_young_children])
+
+        # TODO
+        #  - B23008011: living with father who is not in labor force
+        #  - B23008012: living with mother  
+        #  - B23008013: living with mother, who is in labor force  
+        #  - B23008014: living with mother, who is not in labor force  
+        #  - B11003004: married couple
+        #  - B11003011: male householder, no wife
+        #  - B11003017: female householder, no husband
+        #  - B23003003: living with female 20 to 64 years of age
+        #  - B23003004: living with female 20 to 64 years of age who is in labor force
+        #  - B23003005: living with female 20 to 64 years of age who is in armed forces
+        #  - B23003006: living with female 20 to 64 years of age who is in civilian labor force
+        #  - B23003007: living with female 20 to 64 years of age who is employed in civilian labor force
+        #  - B23003008: living with female 20 to 64 years of age who is unemployed in civilian labor force
+        #  - B23003009: living with female 20 to 64 years of age who is not in labor force
+
+        #* men in middle age (45-64)
+        men_45_to_64 = BMDColumn(
+            id='B15001027',
+            type='Numeric',
+            name='Men age 45 to 64 ("middle aged")',
+            description=0,
+            aggregate='sum',
+            tags=[tag_middle_aged_men])
+
+        #  - B01001015: 45 To 49 Years
+        men_45_to_49 = BMDColumn(
+            id='B01001015',
+            type='Numeric',
+            name='Men age 45 to 49',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001016: 50 To 54 Years
+        men_50_to_54 = BMDColumn(
+            id='B01001016',
+            type='Numeric',
+            name='Men age 50 to 54',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001017: 55 To 59 Years
+        men_55_to_59 = BMDColumn(
+            id='B01001017',
+            type='Numeric',
+            name='Men age 55 to 59',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001018: 60 and 61 Years
+        men_60_61 = BMDColumn(
+            id='B01001018',
+            type='Numeric',
+            name='Men age 60 to 61',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001019: 62 To 64 Years
+        men_62_64 = BMDColumn(
+            id='B01001019',
+            type='Numeric',
+            name='Men age 62 to 64',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001B012: black, 45 to 54 Years
+        black_men_45_54 = BMDColumn(
+            id='B01001B012',
+            type='Numeric',
+            name='Black Men age 45 to 54',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001B013: black, 55 to 64 Years
+        black_men_55_64 = BMDColumn(
+            id='B01001B013',
+            type='Numeric',
+            name='Black Men age 55 to 64',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001I012: Hispanic, 45 to 54 Years
+        hispanic_men_45_54 = BMDColumn(
+            id='B01001I012',
+            type='Numeric',
+            name='Hispanic Men age 45 to 54',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001I013: Hispanic, 55 to 64 Years
+        hispanic_men_55_64 = BMDColumn(
+            id='B01001I013',
+            type='Numeric',
+            name='Hispanic Men age 55 to 64',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001H012: white non-hispanic, 45 to 54 Years
+        white_men_45_54 = BMDColumn(
+            id='B01001H012',
+            type='Numeric',
+            name='White Men age 45 to 54',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001H013: white non-hispanic, 55 to 64 Years
+        white_men_55_64 = BMDColumn(
+            id='B01001H013',
+            type='Numeric',
+            name='White Men age 55 to 64',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001D012: asian, 45 to 54 Years
+        asian_men_45_54 = BMDColumn(
+            id='B01001D012',
+            type='Numeric',
+            name='Asian Men age 45 to 54',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B01001D013: asian, 55 to 64 Years
+        asian_men_55_64 = BMDColumn(
+            id='B01001D013',
+            type='Numeric',
+            name='Asian Men age 55 to 64',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B05013012: foreign born, 45 to 49 Years
+        #  - B05013013: foreign born, 50 to 54 Years
+        #  - B05013014: foreign born, 55 to 59 Years
+        #  - B05013015: foreign born, 60 to 64 Years
+        #  - B15001028: less than 9th grade education
+        men_45_64_less_than_9_grade = BMDColumn(
+            id='B15001028',
+            type='Numeric',
+            name='Men age 45 to 64 who attained less than a 9th grade education',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B15001029: completed between 9th to 12th grade, no diploma
+        men_45_64_grade_9_12 = BMDColumn(
+            id='B15001029',
+            type='Numeric',
+            name='Men age 45 to 64 who attained between 9th and 12th grade, no diploma',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B15001030: high school graduate including GED
+        men_45_64_high_school = BMDColumn(
+            id='B15001030',
+            type='Numeric',
+            name='Men age 45 to 64 who completed high school or obtained GED',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B15001031: some college, no degree
+        men_45_64_some_college = BMDColumn(
+            id='B15001031',
+            type='Numeric',
+            name='Men age 45 to 64 who completed some college, no degree',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B15001032: associate's degree
+        men_45_64_associates_degree = BMDColumn(
+            id='B15001032',
+            type='Numeric',
+            name='Men age 45 to 64 who obtained an associate\'s degree',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B15001033: bachelor's degree
+        men_45_64_bachelors_degree = BMDColumn(
+            id='B15001033',
+            type='Numeric',
+            name='Men age 45 to 64 who obtained a bachelor\'s degree',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B15001034: graduate/professional degree
+        men_45_64_graduate_degree = BMDColumn(
+            id='B15001034',
+            type='Numeric',
+            name='Men age 45 to 64 who obtained a graduate or professional degree',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[tag_middle_aged_men])
+
+        #  - B17001013: income below poverty, 45 to 54 years
+        #  - B17001014: income below poverty, 55 to 64 years
+        #  - B17001015: income above poverty, 45 to 54 years
+        #  - B17001016: income above poverty, 55 to 64 years
+        #  - B23001046: in labor force, 45 to 54 years
+        #men_45_64_in_labor_force = BMDColumn(
+        #    id='B23001046',
+        #    type='Numeric',
+        #    name='Men age 45 to 64 who are in the labor force',
+        #    description='',
+        #    weight=0,
+        #    aggregate='sum',
+        #    #targets={total_pop: 'denominator'},
+        #    tags=[tag_middle_aged_men])
+
+        ##  - B23001047: in armed forces, 45 to 54 years
+        ##  - B23001048: in civilian labor force, 45 to 54 years
+        ##  - B23001049: employed in civilian labor force, 45 to 54 years
+        ##  - B23001050: unemployed in civilian labor force, 45 to 54 years
+        #men_45_64_unemployed = BMDColumn(
+        #    id='B23001050',
+        #    type='Numeric',
+        #    name='Men age 45 to 64 who are in the labor force',
+        #    description='',
+        #    weight=0,
+        #    aggregate='sum',
+        #    targets={men_45_64_in_labor_force: 'denominator'},
+        #    tags=[tag_middle_aged_men])
+
+        ##  - B23001051 not in labor force, 45 to 54 years
+        #men_45_64_not_in_labor_force = BMDColumn(
+        #    id='B23001051',
+        #    type='Numeric',
+        #    name='Men age 45 to 64 who are not in the labor force',
+        #    description='',
+        #    weight=0,
+        #    aggregate='sum',
+        #    targets={men_45_64_in_labor_force: 'denominator'},
+        #    tags=[tag_middle_aged_men])
+
+
+        return OrderedDict([
+            ("total_pop",                        total_pop),
+            ("male_pop",                         male_pop),
+            ("female_pop",                       female_pop),
+            ("median_age",                       median_age),
+            ("white_pop",                        white_pop),
+            ("black_pop",                        black_pop),
+            ("asian_pop",                        asian_pop),
+            ("hispanic_pop",                     hispanic_pop),
+            ("not_us_citizen_pop",               not_us_citizen_pop),
+            ("workers_16_and_over",              workers_16_and_over),
+            ("commuters_by_car_truck_van",       commuters_by_car_truck_van),
+            ("commuters_by_public_transportation",commuters_by_public_transportation),
+            ("commuters_by_bus",                 commuters_by_bus),
+            ("commuters_by_subway_or_elevated",  commuters_by_subway_or_elevated),
+            ("walked_to_work",                   walked_to_work),
+            ("worked_at_home",                   worked_at_home),
+            ("children",                         children),
+            ("households",                       households),
+            ("population_3_years_over",          population_3_years_over),
+            ("in_school",                        in_school),
+            ("in_grades_1_to_4",                 in_grades_1_to_4),
+            ("in_grades_5_to_8",                 in_grades_5_to_8),
+            ("in_grades_9_to_12",                in_grades_9_to_12),
+            ("in_undergrad_college",             in_undergrad_college),
+            ("pop_25_years_over",                pop_25_years_over),
+            ("high_school_diploma",              high_school_diploma),
+            ("bachelors_degree",                 bachelors_degree),
+            ("masters_degree",                   masters_degree),
+            ("pop_5_years_over",                 pop_5_years_over),
+            ("speak_only_english_at_home",       speak_only_english_at_home),
+            ("speak_spanish_at_home",            speak_spanish_at_home),
+            ("pop_determined_poverty_status",    pop_determined_poverty_status),
+            ("poverty",                          poverty),
+            ("median_income",                    median_income),
+            ("gini_index",                       gini_index),
+            ("income_per_capita",                income_per_capita),
+            ("housing_units",                    housing_units),
+            ("vacant_housing_units",             vacant_housing_units),
+            ("vacant_housing_units_for_rent",    vacant_housing_units_for_rent),
+            ("vacant_housing_units_for_sale",    vacant_housing_units_for_sale),
+            ("median_rent",                      median_rent),
+            ("percent_income_spent_on_rent",     percent_income_spent_on_rent),
+            ("owner_occupied_housing_units",     owner_occupied_housing_units),
+            ("million_dollar_housing_units",     million_dollar_housing_units),
+            ("mortgaged_housing_units",          mortgaged_housing_units),
+            ("families_with_young_children",     families_with_young_children),
+            ("two_parent_families_with_young_children", two_parent_families_with_young_children),
+            ("two_parents_in_labor_force_families_with_young_children", two_parents_in_labor_force_families_with_young_children),
+            ("two_parents_father_in_labor_force_families_with_young_children", two_parents_father_in_labor_force_families_with_young_children),
+            ("two_parents_mother_in_labor_force_families_with_young_children", two_parents_mother_in_labor_force_families_with_young_children),
+            ("two_parents_not_in_labor_force_families_with_young_children", two_parents_not_in_labor_force_families_with_young_children),
+            ("one_parent_families_with_young_children", one_parent_families_with_young_children),
+            ("father_one_parent_families_with_young_children", father_one_parent_families_with_young_children),
+            ('men_45_to_64',                  men_45_to_64),
+            ('men_45_to_49',                  men_45_to_49),
+            ('men_50_to_54',                  men_50_to_54),
+            ('men_55_to_59',                  men_55_to_59),
+            ('men_60_61',                     men_60_61),
+            ('men_62_64',                     men_62_64),
+            ('black_men_45_54',               black_men_45_54),
+            ('black_men_55_64',               black_men_55_64),
+            ('hispanic_men_45_54',            hispanic_men_45_54),
+            ('hispanic_men_55_64',            hispanic_men_55_64),
+            ('white_men_45_54',               white_men_45_54),
+            ('white_men_55_64',               white_men_55_64),
+            ('asian_men_45_54',               asian_men_45_54),
+            ('asian_men_55_64',               asian_men_55_64),
+            ('men_45_64_less_than_9_grade',   men_45_64_less_than_9_grade),
+            ('men_45_64_grade_9_12',          men_45_64_grade_9_12),
+            ('men_45_64_high_school',         men_45_64_high_school),
+            ('men_45_64_some_college',        men_45_64_some_college),
+            ('men_45_64_associates_degree',   men_45_64_associates_degree),
+            ('men_45_64_bachelors_degree',    men_45_64_bachelors_degree),
+            ('men_45_64_graduate_degree',     men_45_64_graduate_degree),
+        ])
 
 
 class DownloadACS(LoadPostgresFromURL):
@@ -583,13 +1006,13 @@ class Extract(TableTask):
                 colids.append('geoid')
             else:
                 colids.append(coltarget.name)
-                tableids.add(colid.split('.')[-1][0:6])
+                tableids.add(colid.split('.')[-1][0:-3])
         tableclause = '"{inputschema}".{inputtable} '.format(
             inputschema=inputschema, inputtable=tableids.pop())
         for tableid in tableids:
             tableclause += ' JOIN "{inputschema}".{inputtable} ' \
                            ' USING (geoid) '.format(inputschema=inputschema,
-                                                  inputtable=tableid)
+                                                    inputtable=tableid)
         table_id = self.output().get(session).id
         session.execute('INSERT INTO {output} ({colnames}) '
                         '  SELECT {colids} '

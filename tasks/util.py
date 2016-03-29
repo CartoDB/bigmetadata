@@ -94,7 +94,9 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -nln "{private_tablename}" \
         PG:"dbname=$PGDATABASE" -sql '{sql}'
     '''.format(private_tablename=private_tablename, sql=query)
+    print cmd
     shell(cmd)
+    print 'copying via import api'
     resp = requests.post('{url}/api/v1/imports/?api_key={api_key}'.format(
         url=os.environ['CARTODB_URL'],
         api_key=api_key
@@ -241,18 +243,22 @@ class CartoDBTarget(Target):
         api_key = os.environ['CARTODB_API_KEY']
         # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/bmd_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
         try:
-            resp = requests.get('{url}/api/v1/tables/{tablename}?api_key={api_key}'.format(
-                url=os.environ['CARTODB_URL'],
-                tablename=self.tablename,
-                api_key=api_key
-            ))
-            viz_id = resp.json()['id']
-            # delete dataset by id DELETE https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
-            resp = requests.delete('{url}/api/v1/viz/{viz_id}?api_key={api_key}'.format(
-                url=os.environ['CARTODB_URL'],
-                viz_id=viz_id,
-                api_key=api_key
-            ))
+            while True:
+                resp = requests.get('{url}/api/v1/tables/{tablename}?api_key={api_key}'.format(
+                    url=os.environ['CARTODB_URL'],
+                    tablename=self.tablename,
+                    api_key=api_key
+                ))
+                viz_id = resp.json()['id']
+                # delete dataset by id DELETE https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
+                try:
+                    requests.delete('{url}/api/v1/viz/{viz_id}?api_key={api_key}'.format(
+                        url=os.environ['CARTODB_URL'],
+                        viz_id=viz_id,
+                        api_key=api_key
+                    ), timeout=1)
+                except requests.Timeout:
+                    pass
         except ValueError:
             pass
 
@@ -490,6 +496,7 @@ class TableToCarto(Task):
         sql_to_cartodb_table(self.output().tablename, 'SELECT * FROM {table}'.format(
             table=self.table
         ))
+        self.force = False
 
     def output(self):
         if self.outname is None:

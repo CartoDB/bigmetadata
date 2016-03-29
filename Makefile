@@ -37,11 +37,12 @@ sphinx-deploy:
 sync-meta:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.carto SyncMetadata
+#	  --parallel-scheduling --workers=3
 
 sync-data:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.carto SyncData \
-	  --parallel-scheduling --workers=3
+	  --module tasks.carto SyncData
+#	  --parallel-scheduling --workers=3
 
 sync: sync-meta sync-data
 
