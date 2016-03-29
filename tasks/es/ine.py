@@ -211,12 +211,10 @@ class FiveYearPopulationColumns(ColumnsTask):
 
     def requires(self):
         return {
-            'geoms': Geometry(),
             'tags': Tags()
         }
 
     def columns(self):
-        geometries = self.input()['geometries']
         tags = self.input()['tags']
         total_pop = BMDColumn(
             id='total_pop',
@@ -227,37 +225,36 @@ class FiveYearPopulationColumns(ColumnsTask):
             weight=10,
             tags=[tags['demographics']]
         )
-        return OrderedDict([
+        columns = OrderedDict([
             ('gender', BMDColumn(
                 id='gender',
                 type='Numeric',
                 name='Gender',
                 weight=0
             )),
-            ('cusec', geometries['cusec']),
-            ('total_pop', total_pop),
-            ('pop_0_4', BMDColumn()),
-            ('pop_5_9', BMDColumn()),
-            ('pop_10_14', BMDColumn()),
-            ('pop_15_19', BMDColumn()),
-            ('pop_20_24', BMDColumn()),
-            ('pop_25_29', BMDColumn()),
-            ('pop_30_34', BMDColumn()),
-            ('pop_35_39', BMDColumn()),
-            ('pop_40_44', BMDColumn()),
-            ('pop_45_49', BMDColumn()),
-            ('pop_50_54', BMDColumn()),
-            ('pop_55_59', BMDColumn()),
-            ('pop_60_64', BMDColumn()),
-            ('pop_65_69', BMDColumn()),
-            ('pop_70_74', BMDColumn()),
-            ('pop_75_79', BMDColumn()),
-            ('pop_80_84', BMDColumn()),
-            ('pop_85_89', BMDColumn()),
-            ('pop_90_94', BMDColumn()),
-            ('pop_95_99', BMDColumn()),
-            ('pop_100_more', BMDColumn()),
+            ('total_pop', total_pop)
         ])
+        for i in xrange(0, 20):
+            start = i * 5
+            end = start + 4
+            _id = 'pop_{start}_{end}'.format(start=start, end=end)
+            columns[_id] = BMDColumn(
+                id=_id,
+                type='Numeric',
+                name='Population age {start} to {end}'.format(
+                    start=start, end=end),
+                targets={total_pop: 'denominator'},
+                tags=[tags['demographics']]
+            )
+        columns['pop_100_more'] = BMDColumn(
+            id='pop_100_more',
+            type='Numeric',
+            name='Population age 100 or more'.format(
+                start=start, end=end),
+            targets={total_pop: 'denominator'},
+            tags=[tags['demographics']])
+
+        return columns
 
 
 class FiveYearPopulation(TableTask):
@@ -266,7 +263,13 @@ class FiveYearPopulation(TableTask):
     '''
 
     def requires(self):
-        return Download()
+        return {
+            'data': Download(),
+            'meta': FiveYearPopulationColumns()
+        }
+
+    def columns(self):
+        return self.input()['meta']
 
     def runsession(self, session):
         pass
