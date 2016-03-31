@@ -3,9 +3,9 @@ Tasks to sync data locally to CartoDB
 '''
 
 from tasks.meta import session_scope, BMDTable, Base
-from tasks.util import TableToCarto
+from tasks.util import TableToCarto, underscore_slugify
 
-from luigi import WrapperTask, BooleanParameter
+from luigi import WrapperTask, BooleanParameter, Parameter
 
 
 class SyncMetadata(WrapperTask):
@@ -30,6 +30,23 @@ def should_upload(table):
 
 
 class SyncData(WrapperTask):
+    '''
+    Upload a single BMD table to cartodb by ID
+    '''
+    force = BooleanParameter(default=True)
+    schema = Parameter()
+    table = Parameter()
+
+    def requires(self):
+        table_id = '"{schema}".{table}'.format(schema=self.schema,
+                                               table=underscore_slugify(self.table))
+        with session_scope() as session:
+            table = session.query(BMDTable).get(table_id)
+            tablename = table.tablename
+        return TableToCarto(table=table_id, outname=tablename, force=self.force)
+
+
+class SyncAllData(WrapperTask):
 
     force = BooleanParameter(default=False)
 

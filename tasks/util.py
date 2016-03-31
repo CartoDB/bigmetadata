@@ -32,10 +32,12 @@ def get_logger(name):
     '''
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
-    handler = logging.StreamHandler(sys.stderr)
+    handler = logging.StreamHandler(sys.stdout)
     handler.setFormatter(logging.Formatter('%(asctime)-15s %(message)s'))
     logger.addHandler(handler)
     return logger
+
+LOGGER = get_logger(__name__)
 
 
 def pg_cursor():
@@ -50,7 +52,11 @@ def shell(cmd):
     '''
     Run a shell command. Returns the STDOUT output.
     '''
-    return subprocess.check_output(cmd, shell=True)
+    try:
+        return subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as err:
+        LOGGER.error(err.output)
+        raise
 
 
 def underscore_slugify(txt):
@@ -63,6 +69,15 @@ def classpath(obj):
     Path to this task, suitable for the current OS.
     '''
     return '.'.join(obj.__module__.split('.')[1:])
+
+
+def tablize(task):
+    '''
+    Generate a qualified tablename, properly quoted, for the passed object.
+    '''
+    return '"{schema}".{tablename}'.format(
+        schema=classpath(task),
+        tablename=underscore_slugify(task.task_id))
 
 
 def query_cartodb(query):
@@ -290,6 +305,7 @@ class ColumnTarget(Target):
             return session.query(BMDColumn).get(self._id)
 
     def update_or_create(self, session):
+        #session.merge(self._column)
         existing = self.get(session)
         if existing:
             for key, val in self._column.__dict__.iteritems():
@@ -529,21 +545,21 @@ class TableTask(Task):
         self.bounds()
 
     def columns(self):
-        return NotImplementedError('Must implement columns method that returns '
+        raise NotImplementedError('Must implement columns method that returns '
                                    'a dict of ColumnTargets')
 
     def runsession(self, session):
-        return NotImplementedError('Must implement runsession method that '
+        raise NotImplementedError('Must implement runsession method that '
                                    'populates the table')
 
     def description(self):
         return None
 
     def timespan(self):
-        return NotImplementedError('Must define timespan for table')
+        raise NotImplementedError('Must define timespan for table')
 
     def bounds(self):
-        return NotImplementedError('Must define bounds for table')
+        raise NotImplementedError('Must define bounds for table')
 
     @property
     def table(self):

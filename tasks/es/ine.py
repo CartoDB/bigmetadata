@@ -10,7 +10,7 @@ from tasks.meta import BMDColumn, BMDColumnToColumn, BMDTag
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         session_scope, ColumnTarget, ColumnsTask, TagsTask,
-                        classpath, DefaultPostgresTarget)
+                        classpath, DefaultPostgresTarget, tablize)
 
 
 class Tags(TagsTask):
@@ -80,24 +80,24 @@ class RawGeometry(Task):
 class GeometryColumns(ColumnsTask):
 
     def columns(self):
-        geom = BMDColumn(
+        cusec_geom = BMDColumn(
             id='cusec_geom',
             name=u'Secci\xf3n Censal',
             type="Geometry",
             weight=10,
             description='The finest division of the Spanish Census.'
         )
-        geoid = BMDColumn(
-            id='cusec_geoid',
+        cusec_id = BMDColumn(
+            id='cusec_id',
             name=u"Secci\xf3n Censal",
             type="Text",
             targets={
-                geom: 'geom_ref'
+                cusec_geom: 'geom_ref'
             }
         )
         return OrderedDict([
-            ("cusec_id", geoid),
-            ("cusec_geom", geom),
+            ("cusec_id", cusec_id),
+            ("geom", cusec_geom),
         ])
 
 
@@ -134,27 +134,27 @@ class Geometry(TableTask):
                             input=self.input()['data'].table))
 
 
-class Download(Task):
+class FiveYearPopulationDownload(Task):
 
     URL = 'http://www.ine.es/pcaxisdl/t20/e245/p07/a2015/l0/0001.px'
 
     def run(self):
         self.output().makedirs()
         cmd = 'wget "{url}" -O "{output}"'.format(url=self.URL,
-                                              output=self.output().path)
+                                                  output=self.output().path)
         shell(cmd)
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), '0001.px'))
 
 
-class Parse(Task):
+class FiveYearPopulationParse(Task):
     '''
     convert px file to csv
     '''
 
     def requires(self):
-        return Download()
+        return FiveYearPopulationDownload()
 
     def run(self):
         output = self.output()
@@ -228,7 +228,7 @@ class FiveYearPopulationColumns(ColumnsTask):
         columns = OrderedDict([
             ('gender', BMDColumn(
                 id='gender',
-                type='Numeric',
+                type='Text',
                 name='Gender',
                 weight=0
             )),
@@ -257,19 +257,78 @@ class FiveYearPopulationColumns(ColumnsTask):
         return columns
 
 
-class FiveYearPopulation(TableTask):
+class RawFiveYearPopulation(TableTask):
     '''
     Load csv into postgres
     '''
 
     def requires(self):
         return {
-            'data': Download(),
-            'meta': FiveYearPopulationColumns()
+            'data': FiveYearPopulationParse(),
+            'meta': FiveYearPopulationColumns(),
+            'geometa': GeometryColumns(),
+            'geotable': Geometry()
+        }
+
+    def timespan(self):
+        return '2011'
+
+    def bounds(self):
+        if not self.input()['geotable'].exists():
+            return
+        else:
+            with session_scope() as session:
+                return self.input()['geotable'].get(session).bounds
+
+    def columns(self):
+        '''
+        Add the geoid (cusec_id) column into the second position as expected
+        '''
+        metacols = self.input()['meta']
+        cols = OrderedDict()
+        cols['gender'] = metacols.pop('gender')
+        cols['cusec_id'] = self.input()['geometa']['cusec_id']
+        for key, col in metacols.iteritems():
+            cols[key] = col
+        return cols
+
+    def runsession(self, session):
+        shell("cat '{input}' | psql -c '\\copy {output} FROM STDIN WITH CSV "
+              "HEADER ENCODING '\"'\"'latin1'\"'\"".format(
+                  output=self.output().get(session).id,
+                  input=self.input()['data'].path
+              ))
+
+
+class FiveYearPopulation(TableTask):
+    '''
+    Keep only the "ambos sexos" entries
+    '''
+
+    def requires(self):
+        return {
+            'data': RawFiveYearPopulation(),
         }
 
     def columns(self):
-        return self.input()['meta']
+        '''
+        Add the geoid (cusec_id) column into the second position as expected
+        '''
+        cols = self.requires()['data'].columns()
+        cols.pop('gender')
+        return cols
+
+    def timespan(self):
+        return self.requires()['data'].timespan()
+
+    def bounds(self):
+        return self.requires()['data'].bounds()
 
     def runsession(self, session):
-        pass
+        session.execute('INSERT INTO {output} '
+                        'SELECT {cols} FROM {input} '
+                        "WHERE gender = 'Ambos Sexos'".format(
+                            cols=', '.join(self.columns().keys()),
+                            output=self.output().get(session).id,
+                            input=self.input()['data'].get(session).id
+                        ))

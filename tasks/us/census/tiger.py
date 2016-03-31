@@ -554,6 +554,8 @@ class SumLevel(TableTask):
         return self.year
 
     def bounds(self):
+        if not self.input()['data'].exists():
+            return
         if self.clipped:
             from_clause = self.input()['data'].table
         else:
