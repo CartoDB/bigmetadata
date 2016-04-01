@@ -518,6 +518,7 @@ class ExtractClippedTiger(Task):
             target.remove()
         return target
 
+
 class SumLevel(TableTask):
 
     clipped = BooleanParameter(default=False)
@@ -547,7 +548,7 @@ class SumLevel(TableTask):
     def columns(self):
         return OrderedDict([
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
-            ('geom', self.input()['geoms'][self.geography])
+            ('the_geom', self.input()['geoms'][self.geography])
         ])
 
     def timespan(self):
@@ -578,8 +579,8 @@ class SumLevel(TableTask):
                 inputschema=self.input()['data'].table,
                 input_tablename=self.input_tablename,
             )
-        session.execute('INSERT INTO {output} (geoid, geom) '
-                        'SELECT {geoid}, geom '
+        session.execute('INSERT INTO {output} (geoid, the_geom) '
+                        'SELECT {geoid}, geom the_geom  '
                         'FROM {from_clause}'.format(
                             geoid=self.geoid,
                             output=self.output().get(session).id,

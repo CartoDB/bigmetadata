@@ -1003,7 +1003,7 @@ class Extract(TableTask):
             colid = coltarget.get(session).id
             colnames.append(colname)
             if colid.endswith('geoid'):
-                colids.append('geoid')
+                colids.append('SUBSTR(geoid, 8)')
             else:
                 colids.append(coltarget.name)
                 tableids.add(colid.split('.')[-1][0:-3])
