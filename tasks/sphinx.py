@@ -6,7 +6,7 @@ import re
 from jinja2 import Environment, PackageLoader
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
 from tasks.util import shell
-from tasks.meta import session_scope, BMDTag
+from tasks.meta import session_scope, OBSTag
 
 
 env = Environment(loader=PackageLoader('catalog', 'templates'))
@@ -30,7 +30,7 @@ class GenerateRST(Task):
     def output(self):
         targets = {}
         with session_scope() as session:
-            for tag in session.query(BMDTag):
+            for tag in session.query(OBSTag):
                 targets[tag.id] = LocalTarget('catalog/source/data/{tag}.rst'.format(tag=tag.id))
         return targets
 
@@ -39,7 +39,7 @@ class GenerateRST(Task):
             for tag_id, target in self.output().iteritems():
                 fhandle = target.open('w')
 
-                tag = session.query(BMDTag).get(tag_id)
+                tag = session.query(OBSTag).get(tag_id)
                 columns = [c for c in tag.columns]
                 columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
 

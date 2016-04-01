@@ -6,7 +6,7 @@ import os
 
 from collections import OrderedDict
 from luigi import Task, LocalTarget
-from tasks.meta import BMDColumn, BMDColumnToColumn, BMDTag
+from tasks.meta import OBSColumn, OBSColumnToColumn, OBSTag
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         session_scope, ColumnTarget, ColumnsTask, TagsTask,
@@ -17,7 +17,7 @@ class Tags(TagsTask):
 
     def tags(self):
         return [
-            BMDTag(id='demographics',
+            OBSTag(id='demographics',
                    name='Demographics of Spain',
                    description='Demographics of Spain from the INE Census')
         ]
@@ -80,14 +80,14 @@ class RawGeometry(Task):
 class GeometryColumns(ColumnsTask):
 
     def columns(self):
-        cusec_geom = BMDColumn(
+        cusec_geom = OBSColumn(
             id='cusec_geom',
             name=u'Secci\xf3n Censal',
             type="Geometry",
             weight=10,
             description='The finest division of the Spanish Census.'
         )
-        cusec_id = BMDColumn(
+        cusec_id = OBSColumn(
             id='cusec_id',
             name=u"Secci\xf3n Censal",
             type="Text",
@@ -216,7 +216,7 @@ class FiveYearPopulationColumns(ColumnsTask):
 
     def columns(self):
         tags = self.input()['tags']
-        total_pop = BMDColumn(
+        total_pop = OBSColumn(
             id='total_pop',
             type='Numeric',
             name='Total Population',
@@ -226,7 +226,7 @@ class FiveYearPopulationColumns(ColumnsTask):
             tags=[tags['demographics']]
         )
         columns = OrderedDict([
-            ('gender', BMDColumn(
+            ('gender', OBSColumn(
                 id='gender',
                 type='Text',
                 name='Gender',
@@ -238,7 +238,7 @@ class FiveYearPopulationColumns(ColumnsTask):
             start = i * 5
             end = start + 4
             _id = 'pop_{start}_{end}'.format(start=start, end=end)
-            columns[_id] = BMDColumn(
+            columns[_id] = OBSColumn(
                 id=_id,
                 type='Numeric',
                 name='Population age {start} to {end}'.format(
@@ -246,7 +246,7 @@ class FiveYearPopulationColumns(ColumnsTask):
                 targets={total_pop: 'denominator'},
                 tags=[tags['demographics']]
             )
-        columns['pop_100_more'] = BMDColumn(
+        columns['pop_100_more'] = OBSColumn(
             id='pop_100_more',
             type='Numeric',
             name='Population age 100 or more'.format(

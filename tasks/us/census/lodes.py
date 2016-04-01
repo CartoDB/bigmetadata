@@ -7,7 +7,7 @@ import os
 import subprocess
 
 from collections import OrderedDict
-from tasks.meta import BMDColumn, BMDColumnToColumn, BMDColumnTag
+from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag
 from tasks.util import (shell, DefaultPostgresTarget, pg_cursor, classpath,
                         ColumnsTask, TableTask)
 from tasks.tags import Tags
@@ -83,7 +83,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
 
     def columns(self):
         tags = self.input()['tags']
-        total_jobs = BMDColumn(
+        total_jobs = OBSColumn(
             id='total_jobs',
             type='Integer',
             name='Total Jobs',
@@ -95,7 +95,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
         return OrderedDict([
             #work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code
             ('total_jobs', total_jobs),
-            ('jobs_age_29_or_younger', BMDColumn(
+            ('jobs_age_29_or_younger', OBSColumn(
                 id='jobs_age_29_or_younger',
                 type='Integer',
                 name='Jobs for workers age 29 or younger',
@@ -105,7 +105,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment'], tags['race_age_gender']]
             )),
-            ('jobs_age_30_to_54', BMDColumn(
+            ('jobs_age_30_to_54', OBSColumn(
                 id='jobs_age_30_to_54',
                 type='Integer',
                 name='Jobs for workers age 30 to 54',
@@ -115,7 +115,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment'], tags['race_age_gender']]
             )),
-            ('jobs_age_55_or_older', BMDColumn(
+            ('jobs_age_55_or_older', OBSColumn(
                 id='jobs_age_55_or_older',
                 type='Integer',
                 name='Jobs for workers age 55 or older',
@@ -125,7 +125,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment'], tags['race_age_gender']]
             )),
-            ('jobs_earning_15000_or_less', BMDColumn(
+            ('jobs_earning_15000_or_less', OBSColumn(
                 id='jobs_earning_15000_or_less',
                 type='Integer',
                 name='Jobs earning up to $15,000 per year',
@@ -135,7 +135,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_earning_15001_to_40000', BMDColumn(
+            ('jobs_earning_15001_to_40000', OBSColumn(
                 id='jobs_earning_15001_to_40000',
                 type='Integer',
                 name='Jobs earning $15,000 to $40,000 per year',
@@ -145,7 +145,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_earning_40001_or_more', BMDColumn(
+            ('jobs_earning_40001_or_more', OBSColumn(
                 id='jobs_earning_40001_or_more',
                 type='Integer',
                 name='Jobs with earnings greater than $40,000 per year',
@@ -155,7 +155,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_11_agriculture_forestry_fishing', BMDColumn(
+            ('jobs_11_agriculture_forestry_fishing', OBSColumn(
                 id='jobs_11_agriculture_forestry_fishing',
                 type='Integer',
                 name='Agriculture, Forestry, Fishing and Hunting jobs',
@@ -165,7 +165,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_21_mining_quarrying_oil_gas', BMDColumn(
+            ('jobs_21_mining_quarrying_oil_gas', OBSColumn(
                 id='jobs_21_mining_quarrying_oil_gas',
                 type='Integer',
                 name='Mining, Quarrying, and Oil and Gas Extraction jobs',
@@ -175,7 +175,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_22_utilities', BMDColumn(
+            ('jobs_22_utilities', OBSColumn(
                 id='jobs_22_utilities',
                 type='Integer',
                 name='Utilities Jobs',
@@ -185,7 +185,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_23_construction', BMDColumn(
+            ('jobs_23_construction', OBSColumn(
                 id='jobs_23_construction',
                 type='Integer',
                 name='Construction Jobs',
@@ -195,7 +195,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_31_33_manufacturing', BMDColumn(
+            ('jobs_31_33_manufacturing', OBSColumn(
                 id='jobs_31_33_manufacturing',
                 type='Integer',
                 name='Manufacturing Jobs',
@@ -205,7 +205,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_42_wholesale_trade', BMDColumn(
+            ('jobs_42_wholesale_trade', OBSColumn(
                 id='jobs_42_wholesale_trade',
                 type='Integer',
                 name='Wholesale Trade Jobs',
@@ -215,7 +215,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_44_45_retail_trade', BMDColumn(
+            ('jobs_44_45_retail_trade', OBSColumn(
                 id='jobs_44_45_retail_trade',
                 type='Integer',
                 name='Retail Trade Jobs',
@@ -225,7 +225,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_48_49_transport_warehousing', BMDColumn(
+            ('jobs_48_49_transport_warehousing', OBSColumn(
                 id='jobs_48_49_transport_warehousing',
                 type='Integer',
                 name='Transport and Warehousing Jobs',
@@ -235,7 +235,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_51_information', BMDColumn(
+            ('jobs_51_information', OBSColumn(
                 id='jobs_51_information',
                 type='Integer',
                 name='Information Jobs',
@@ -245,7 +245,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_52_finance_and_insurance', BMDColumn(
+            ('jobs_52_finance_and_insurance', OBSColumn(
                 id='jobs_52_finance_and_insurance',
                 type='Integer',
                 name='Finance and Insurance Jobs',
@@ -255,7 +255,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_53_real_estate_rental_leasing', BMDColumn(
+            ('jobs_53_real_estate_rental_leasing', OBSColumn(
                 id='jobs_53_real_estate_rental_leasing',
                 type='Integer',
                 name='Real Estate and Rental and Leasing Jobs',
@@ -265,7 +265,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_54_professional_scientific_tech_services', BMDColumn(
+            ('jobs_54_professional_scientific_tech_services', OBSColumn(
                 id='jobs_54_professional_scientific_tech_services',
                 type='Integer',
                 name='Professional, Scientific, and Technical Services Jobs',
@@ -275,7 +275,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_55_management_of_companies_enterprises', BMDColumn(
+            ('jobs_55_management_of_companies_enterprises', OBSColumn(
                 id='jobs_55_management_of_companies_enterprises',
                 type='Integer',
                 name='Management of Companies and Enterprises Jobs',
@@ -285,7 +285,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_56_admin_support_waste_management', BMDColumn(
+            ('jobs_56_admin_support_waste_management', OBSColumn(
                 id='jobs_56_admin_support_waste_management',
                 type='Integer',
                 name='Administrative and Support and Waste Management and Remediation Services Jobs',
@@ -295,7 +295,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_61_educational_services', BMDColumn(
+            ('jobs_61_educational_services', OBSColumn(
                 id='jobs_61_educational_services',
                 type='Integer',
                 name='Educational Services Jobs',
@@ -305,7 +305,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_62_healthcare_social_assistance', BMDColumn(
+            ('jobs_62_healthcare_social_assistance', OBSColumn(
                 id='jobs_62_healthcare_social_assistance',
                 type='Integer',
                 name='Health Care and Social Assistance Jobs',
@@ -315,7 +315,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_71_arts_entertainment_recreation', BMDColumn(
+            ('jobs_71_arts_entertainment_recreation', OBSColumn(
                 id='jobs_71_arts_entertainment_recreation',
                 type='Integer',
                 name='Arts, Entertainment, and Recreation jobs',
@@ -325,7 +325,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_72_accommodation_and_food', BMDColumn(
+            ('jobs_72_accommodation_and_food', OBSColumn(
                 id='jobs_72_accommodation_and_food',
                 type='Integer',
                 name='Accommodation and Food Services jobs',
@@ -335,7 +335,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_81_other_services_except_public_admin', BMDColumn(
+            ('jobs_81_other_services_except_public_admin', OBSColumn(
                 id='jobs_81_other_services_except_public_admin',
                 type='Integer',
                 name='Other Services (except Public Administration) jobs',
@@ -345,7 +345,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_92_public_administration', BMDColumn(
+            ('jobs_92_public_administration', OBSColumn(
                 id='jobs_92_public_administration',
                 type='Integer',
                 name='Public Administration jobs',
@@ -355,7 +355,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_white', BMDColumn(
+            ('jobs_white', OBSColumn(
                 id='jobs_white',
                 type='Integer',
                 name='Jobs held by workers who are white',
@@ -365,7 +365,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment'], tags['race_age_gender']]
             )),
-            ('jobs_black', BMDColumn(
+            ('jobs_black', OBSColumn(
                 id='jobs_black',
                 type='Integer',
                 name='Jobs held by workers who are black',
@@ -375,7 +375,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment'], tags['race_age_gender']]
             )),
-            ('jobs_amerindian', BMDColumn(
+            ('jobs_amerindian', OBSColumn(
                 id='jobs_amerindian',
                 type='Integer',
                 name='Jobs held by workers who are American Indian or Alaska Native Alone',
@@ -383,7 +383,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=0,
                 aggregate='sum',
             )),
-            ('jobs_asian', BMDColumn(
+            ('jobs_asian', OBSColumn(
                 id='jobs_asian',
                 type='Integer',
                 name='Jobs held by workers who are Asian',
@@ -393,7 +393,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment'], tags['race_age_gender']]
             )),
-            ('jobs_hawaiian', BMDColumn(
+            ('jobs_hawaiian', OBSColumn(
                 id='jobs_hawaiian',
                 type='Integer',
                 name='Jobs held by workers who are Native Hawaiian or Other Pacific Islander Alone',
@@ -401,7 +401,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=0,
                 aggregate='sum',
             )),
-            ('jobs_two_or_more_races', BMDColumn(
+            ('jobs_two_or_more_races', OBSColumn(
                 id='jobs_two_or_more_races',
                 type='Integer',
                 name='Jobs held by workers who reported Two or More Race Groups',
@@ -409,7 +409,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=0,
                 aggregate='sum',
             )),
-            ('jobs_not_hispanic', BMDColumn(
+            ('jobs_not_hispanic', OBSColumn(
                 id='jobs_not_hispanic',
                 type='Integer',
                 name='Jobs held by workers who are Not Hispanic or Latino',
@@ -417,7 +417,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=0,
                 aggregate='sum',
             )),
-            ('jobs_hispanic', BMDColumn(
+            ('jobs_hispanic', OBSColumn(
                 id='jobs_hispanic',
                 type='Integer',
                 name='Jobs held by workers who are Hispanic or Latino',
@@ -427,7 +427,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment'], tags['race_age_gender']]
             )),
-            ('jobs_less_than_high_school', BMDColumn(
+            ('jobs_less_than_high_school', OBSColumn(
                 id='jobs_less_than_high_school',
                 type='Integer',
                 name='Jobs held by workers who did not complete high school',
@@ -437,7 +437,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_high_school', BMDColumn(
+            ('jobs_high_school', OBSColumn(
                 id='jobs_high_school',
                 type='Integer',
                 name='Jobs held by workers who completed high school',
@@ -447,7 +447,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_some_college', BMDColumn(
+            ('jobs_some_college', OBSColumn(
                 id='jobs_some_college',
                 type='Integer',
                 name='Jobs held by workers who completed some college or Associate degree',
@@ -457,7 +457,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_bachelors_or_advanced', BMDColumn(
+            ('jobs_bachelors_or_advanced', OBSColumn(
                 id='jobs_bachelors_or_advanced',
                 type='Integer',
                 name='Jobs held by workers who obtained a Bachelor\'s degree or advanced degree',
@@ -467,7 +467,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_male', BMDColumn(
+            ('jobs_male', OBSColumn(
                 id='jobs_male',
                 type='Integer',
                 name='Jobs held by men',
@@ -477,7 +477,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['race_age_gender'], tags['income_education_employment']]
             )),
-            ('jobs_female', BMDColumn(
+            ('jobs_female', OBSColumn(
                 id='jobs_female',
                 type='Integer',
                 name='Jobs held by women',
@@ -487,7 +487,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['race_age_gender'], tags['income_education_employment']]
             )),
-            ('jobs_firm_age_0_1_years', BMDColumn(
+            ('jobs_firm_age_0_1_years', OBSColumn(
                 id='jobs_firm_age_0_1_years',
                 type='Integer',
                 name='Jobs at firms aged 0-1 Years',
@@ -497,7 +497,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_2_3_years', BMDColumn(
+            ('jobs_firm_age_2_3_years', OBSColumn(
                 id='jobs_firm_age_2_3_years',
                 type='Integer',
                 name='Jobs at firms aged 2-3 Years',
@@ -507,7 +507,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_4_5_years', BMDColumn(
+            ('jobs_firm_age_4_5_years', OBSColumn(
                 id='jobs_firm_age_4_5_years',
                 type='Integer',
                 name='Jobs at firms aged 4-5 Years',
@@ -517,7 +517,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_6_10_years', BMDColumn(
+            ('jobs_firm_age_6_10_years', OBSColumn(
                 id='jobs_firm_age_6_10_years',
                 type='Integer',
                 name='Jobs at firms aged 6-10 years',
@@ -527,7 +527,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_11_more_years', BMDColumn(
+            ('jobs_firm_age_11_more_years', OBSColumn(
                 id='jobs_firm_age_11_more_years',
                 type='Integer',
                 name='Jobs at firms aged 11+ Years',
@@ -537,7 +537,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_0_19_employees', BMDColumn(
+            ('jobs_firm_age_0_19_employees', OBSColumn(
                 id='jobs_firm_age_0_19_employees',
                 type='Integer',
                 name='Jobs at firms with 0-19 Employees',
@@ -547,7 +547,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_20_49_employees', BMDColumn(
+            ('jobs_firm_age_20_49_employees', OBSColumn(
                 id='jobs_firm_age_20_49_employees',
                 type='Integer',
                 name='Jobs at firms with 20-49 Employees',
@@ -557,7 +557,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_50_249_employees', BMDColumn(
+            ('jobs_firm_age_50_249_employees', OBSColumn(
                 id='jobs_firm_age_50_249_employees',
                 type='Integer',
                 name='Jobs at firms with 0-249 Employees',
@@ -567,7 +567,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_250_499_employees', BMDColumn(
+            ('jobs_firm_age_250_499_employees', OBSColumn(
                 id='jobs_firm_age_250_499_employees',
                 type='Integer',
                 name='Jobs at firms with 250-499 Employees',
@@ -577,7 +577,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('jobs_firm_age_500_more_employees', BMDColumn(
+            ('jobs_firm_age_500_more_employees', OBSColumn(
                 id='jobs_firm_age_500_or_more_employees',
                 type='Integer',
                 name='Jobs at firms with 500+ Employees',
@@ -587,7 +587,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['income_education_employment']]
             )),
-            ('createdate', BMDColumn(
+            ('createdate', OBSColumn(
                 id='createdate',
                 type='Date',
                 name='Date on which data was created, formatted as YYYYMMDD ',

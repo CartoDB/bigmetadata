@@ -21,8 +21,8 @@ from luigi.postgres import PostgresTarget
 
 from sqlalchemy import Table, types, Column
 
-from tasks.meta import (BMDColumn, BMDTable, metadata, Geometry,
-                        BMDColumnTable, BMDTag, session_scope)
+from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry,
+                        OBSColumnTable, OBSTag, session_scope)
 
 
 def get_logger(name):
@@ -256,7 +256,7 @@ class CartoDBTarget(Target):
 
     def remove(self):
         api_key = os.environ['CARTODB_API_KEY']
-        # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/bmd_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
+        # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/obs_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
         try:
             while True:
                 resp = requests.get('{url}/api/v1/tables/{tablename}?api_key={api_key}'.format(
@@ -299,10 +299,10 @@ class ColumnTarget(Target):
 
     def get(self, session):
         '''
-        Return a copy of the underlying BMDColumn in the specified session.
+        Return a copy of the underlying OBSColumn in the specified session.
         '''
         with session.no_autoflush:
-            return session.query(BMDColumn).get(self._id)
+            return session.query(OBSColumn).get(self._id)
 
     def update_or_create(self, session):
         #session.merge(self._column)
@@ -329,10 +329,10 @@ class TagTarget(Target):
 
     def get(self, session):
         '''
-        Return a copy of the underlying BMDColumn in the specified session.
+        Return a copy of the underlying OBSColumn in the specified session.
         '''
         with session.no_autoflush:
-            return session.query(BMDTag).get(self._id)
+            return session.query(OBSTag).get(self._id)
 
     def update_or_create(self, session):
         existing = self.get(session)
@@ -350,19 +350,19 @@ class TagTarget(Target):
 
 class TableTarget(Target):
 
-    def __init__(self, schema, name, bmd_table, columns):
+    def __init__(self, schema, name, obs_table, columns):
         '''
         columns: should be an ordereddict if you want to specify columns' order
         in the table
         '''
         self._id = '"{schema}".{name}'.format(schema=schema, name=name)
         self._id_noquote = '{schema}.{name}'.format(schema=schema, name=name)
-        bmd_table.id = self._id
-        bmd_table.tablename = 'bmd_' + sha1(underscore_slugify(self._id)).hexdigest()
+        obs_table.id = self._id
+        obs_table.tablename = 'obs_' + sha1(underscore_slugify(self._id)).hexdigest()
         self._schema = schema
         self._name = name
-        self._bmd_table = bmd_table
-        self._bmd_dict = bmd_table.__dict__.copy()
+        self._obs_table = obs_table
+        self._obs_dict = obs_table.__dict__.copy()
         self._columns = columns
         if self._id_noquote in metadata.tables:
             self.table = metadata.tables[self._id_noquote]
@@ -389,7 +389,7 @@ class TableTarget(Target):
                 if self.get(session) is None:
                     return False
                 old_dict = self.get(session).__dict__.copy()
-                new_dict = self._bmd_dict.copy()
+                new_dict = self._obs_dict.copy()
                 old_dict.pop('_sa_instance_state')
                 new_dict.pop('_sa_instance_state')
                 for key, val in old_dict.iteritems():
@@ -408,22 +408,22 @@ class TableTarget(Target):
 
     def get(self, session):
         '''
-        Return a copy of the underlying BMDTable in the specified session.
+        Return a copy of the underlying OBSTable in the specified session.
         '''
         with session.no_autoflush:
-            return session.query(BMDTable).get(self._id)
+            return session.query(OBSTable).get(self._id)
 
     def update_or_create(self, session):
 
         # replace metadata table
-        bmd_table = self.get(session)
-        if bmd_table:
-            for key, val in self._bmd_table.__dict__.iteritems():
+        obs_table = self.get(session)
+        if obs_table:
+            for key, val in self._obs_table.__dict__.iteritems():
                 if not key.startswith('_'):
-                    setattr(bmd_table, key, val)
+                    setattr(obs_table, key, val)
         else:
-            session.add(self._bmd_table)
-            bmd_table = self._bmd_table
+            session.add(self._obs_table)
+            obs_table = self._obs_table
 
         # create new local data table
         columns = []
@@ -438,18 +438,18 @@ class TableTarget(Target):
             columns.append(Column(colname, coltype))
 
             # Column info for bmd metadata
-            coltable = session.query(BMDColumnTable).filter_by(
-                column_id=col.id, table_id=bmd_table.id).first()
+            coltable = session.query(OBSColumnTable).filter_by(
+                column_id=col.id, table_id=obs_table.id).first()
             if coltable:
                 coltable.colname = colname
             else:
-                coltable = BMDColumnTable(colname=colname, table=bmd_table,
+                coltable = OBSColumnTable(colname=colname, table=obs_table,
                                           column=col)
             session.add(coltable)
 
         # replace local data table
-        if bmd_table.id in metadata.tables:
-            metadata.tables[bmd_table.id].drop()
+        if obs_table.id in metadata.tables:
+            metadata.tables[obs_table.id].drop()
         self.table = Table(self._name, metadata, *columns,
                            schema=self._schema, extend_existing=True)
         self.table.drop(checkfirst=True)
@@ -464,7 +464,7 @@ class ColumnsTask(Task):
     def columns(self):
         '''
         '''
-        raise NotImplementedError('Must return iterable of BMDColumns')
+        raise NotImplementedError('Must return iterable of OBSColumns')
 
     def run(self):
         with session_scope() as session:
@@ -486,7 +486,7 @@ class TagsTask(Task):
     def tags(self):
         '''
         '''
-        raise NotImplementedError('Must return iterable of BMDTags')
+        raise NotImplementedError('Must return iterable of OBSTags')
 
     def run(self):
         with session_scope() as session:
@@ -576,7 +576,7 @@ class TableTask(Task):
     def output(self):
         return TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
-                           BMDTable(description=self.description(),
+                           OBSTable(description=self.description(),
                                     bounds=self.bounds(),
                                     timespan=self.timespan()),
                            self.columns())

@@ -11,8 +11,8 @@ except:
     pass
 
 from nose.tools import assert_equals, with_setup
-from tasks.meta import (BMDColumnTable, BMDColumn, BMDTable,
-                        BMDTag, BMDColumnTag, Base)
+from tasks.meta import (OBSColumnTable, OBSColumn, OBSTable,
+                        OBSTag, OBSColumnTag, Base)
 from tasks.util import session_scope, ColumnTarget, TagTarget
 
 
@@ -22,33 +22,33 @@ def setup():
 
 def populate():
     with session_scope() as session:
-        population_tag = BMDTag(id='population', name='population', type='catalog')
-        source_tag = BMDTag(id='us_census', name='US Census', type='source')
+        population_tag = OBSTag(id='population', name='population', type='catalog')
+        source_tag = OBSTag(id='us_census', name='US Census', type='source')
         session.add(population_tag)
         session.add(source_tag)
         datacols = {
-            'median_rent': BMDColumn(id='"us.census.acs".median_rent', type='numeric'),
-            'total_pop': BMDColumn(id='"us.census.acs".total_pop', type='numeric'),
-            'male_pop': BMDColumn(id='"us.census.acs".male_pop', type='numeric'),
-            'female_pop': BMDColumn(id='"us.census.acs".female_pop', type='numeric'),
+            'median_rent': OBSColumn(id='"us.census.acs".median_rent', type='numeric'),
+            'total_pop': OBSColumn(id='"us.census.acs".total_pop', type='numeric'),
+            'male_pop': OBSColumn(id='"us.census.acs".male_pop', type='numeric'),
+            'female_pop': OBSColumn(id='"us.census.acs".female_pop', type='numeric'),
         }
         for numerator_col in ('male_pop', 'female_pop', ):
             datacol = datacols[numerator_col]
             datacol.targets[ColumnTarget(
                 'us.census.acs', 'total_pop', datacols['total_pop'])] = 'denominator'
             session.add(datacol)
-        tract_geoid = BMDColumn(id='"us.census.acs".tract_2013_geoid', type='text')
-        puma_geoid = BMDColumn(id='"us.census.acs".puma_2013_geoid', type='text')
+        tract_geoid = OBSColumn(id='"us.census.acs".tract_2013_geoid', type='text')
+        puma_geoid = OBSColumn(id='"us.census.acs".puma_2013_geoid', type='text')
         tables = {
-            'tract': BMDTable(id='"us.census.acs".extract_2013_5yr_tract',
+            'tract': OBSTable(id='"us.census.acs".extract_2013_5yr_tract',
                               tablename='us_census_acs2013_5yr_tract'),
-            'puma': BMDTable(id='"us.census.acs".extract_2013_5yr_puma',
+            'puma': OBSTable(id='"us.census.acs".extract_2013_5yr_puma',
                              tablename='us_census_acs2013_5yr_puma')
         }
-        session.add(BMDColumnTable(table=tables['tract'],
+        session.add(OBSColumnTable(table=tables['tract'],
                                    column=tract_geoid,
                                    colname='geoid'))
-        session.add(BMDColumnTable(table=tables['puma'],
+        session.add(OBSColumnTable(table=tables['puma'],
                                    column=puma_geoid,
                                    colname='geoid'))
         for colname, datacol in datacols.iteritems():
@@ -56,7 +56,7 @@ def populate():
                 datacol.tags.append(TagTarget(population_tag))
                 datacol.tags.append(TagTarget(source_tag))
             for table in tables.values():
-                coltable = BMDColumnTable(column=datacol,
+                coltable = OBSColumnTable(column=datacol,
                                           table=table,
                                           colname=colname)
                 session.add(coltable)
@@ -76,7 +76,7 @@ def test_columns_in_tables():
     '''
     populate()
     with session_scope() as session:
-        table = session.query(BMDTable).get('"us.census.acs".extract_2013_5yr_puma')
+        table = session.query(OBSTable).get('"us.census.acs".extract_2013_5yr_puma')
         assert_equals(5, len(table.columns))
 
 
@@ -87,7 +87,7 @@ def test_tables_in_columns():
     '''
     populate()
     with session_scope() as session:
-        column = session.query(BMDColumn).get('"us.census.acs".median_rent')
+        column = session.query(OBSColumn).get('"us.census.acs".median_rent')
         assert_equals(2, len(column.tables))
 
 
@@ -98,7 +98,7 @@ def test_tags_in_columns():
     '''
     populate()
     with session_scope() as session:
-        column = session.query(BMDColumn).get('"us.census.acs".total_pop')
+        column = session.query(OBSColumn).get('"us.census.acs".total_pop')
         assert_equals(['US Census', 'population'], sorted([tag.name for tag in column.tags]))
 
 
@@ -109,8 +109,8 @@ def test_columns_in_tags():
     '''
     populate()
     with session_scope() as session:
-        tag = session.query(BMDTag).get('population')
-        tag2 = session.query(BMDTag).get('us_census')
+        tag = session.query(OBSTag).get('population')
+        tag2 = session.query(OBSTag).get('us_census')
         assert_equals(3, len(tag.columns))
         assert_equals(3, len(tag2.columns))
         assert_equals(tag.type, 'catalog')
@@ -124,7 +124,7 @@ def test_column_to_column_target():
     '''
     populate()
     with session_scope() as session:
-        column = session.query(BMDColumn).get('"us.census.acs".female_pop')
+        column = session.query(OBSColumn).get('"us.census.acs".female_pop')
         assert_equals(0, len(column.sources))
         assert_equals(1, len(column.targets))
 
@@ -137,35 +137,35 @@ def test_column_to_column_target():
 def test_delete_column_deletes_relevant_related_objects():
     populate()
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 6)
-        assert_equals(session.query(BMDTable).count(), 2)
-        assert_equals(session.query(BMDColumnTable).count(), 10)
-        session.delete(session.query(BMDColumn).get('"us.census.acs".median_rent'))
-        assert_equals(session.query(BMDColumn).count(), 5)
-        assert_equals(session.query(BMDTable).count(), 2)
-        assert_equals(session.query(BMDColumnTable).count(), 8)
+        assert_equals(session.query(OBSColumn).count(), 6)
+        assert_equals(session.query(OBSTable).count(), 2)
+        assert_equals(session.query(OBSColumnTable).count(), 10)
+        session.delete(session.query(OBSColumn).get('"us.census.acs".median_rent'))
+        assert_equals(session.query(OBSColumn).count(), 5)
+        assert_equals(session.query(OBSTable).count(), 2)
+        assert_equals(session.query(OBSColumnTable).count(), 8)
 
 @with_setup(setup, teardown)
 def test_delete_table_deletes_relevant_related_objects():
     populate()
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 6)
-        assert_equals(session.query(BMDTable).count(), 2)
-        assert_equals(session.query(BMDColumnTable).count(), 10)
-        session.delete(session.query(BMDTable).get('"us.census.acs".extract_2013_5yr_tract'))
-        assert_equals(session.query(BMDColumn).count(), 6)
-        assert_equals(session.query(BMDTable).count(), 1)
-        assert_equals(session.query(BMDColumnTable).count(), 5)
+        assert_equals(session.query(OBSColumn).count(), 6)
+        assert_equals(session.query(OBSTable).count(), 2)
+        assert_equals(session.query(OBSColumnTable).count(), 10)
+        session.delete(session.query(OBSTable).get('"us.census.acs".extract_2013_5yr_tract'))
+        assert_equals(session.query(OBSColumn).count(), 6)
+        assert_equals(session.query(OBSTable).count(), 1)
+        assert_equals(session.query(OBSColumnTable).count(), 5)
 
 
 @with_setup(setup, teardown)
 def test_delete_tag_deletes_relevant_related_objects():
     populate()
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 6)
-        assert_equals(session.query(BMDColumnTag).count(), 6)
-        assert_equals(session.query(BMDTag).count(), 2)
-        session.delete(session.query(BMDTag).get('population'))
-        assert_equals(session.query(BMDColumn).count(), 6)
-        assert_equals(session.query(BMDColumnTag).count(), 3)
-        assert_equals(session.query(BMDTag).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 6)
+        assert_equals(session.query(OBSColumnTag).count(), 6)
+        assert_equals(session.query(OBSTag).count(), 2)
+        session.delete(session.query(OBSTag).get('population'))
+        assert_equals(session.query(OBSColumn).count(), 6)
+        assert_equals(session.query(OBSColumnTag).count(), 3)
+        assert_equals(session.query(OBSTag).count(), 1)

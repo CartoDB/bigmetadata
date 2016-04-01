@@ -2,7 +2,7 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import session_scope, BMDTable, Base
+from tasks.meta import session_scope, OBSTable, Base
 from tasks.util import TableToCarto, underscore_slugify
 
 from luigi import WrapperTask, BooleanParameter, Parameter
@@ -14,7 +14,7 @@ class SyncMetadata(WrapperTask):
 
     def requires(self):
         for tablename, _ in Base.metadata.tables.iteritems():
-            if tablename.startswith('bmd_'):
+            if tablename.startswith('obs_'):
                 yield TableToCarto(table=tablename, outname=tablename, force=self.force)
 
 
@@ -31,7 +31,7 @@ def should_upload(table):
 
 class SyncData(WrapperTask):
     '''
-    Upload a single BMD table to cartodb by ID
+    Upload a single OBS table to cartodb by ID
     '''
     force = BooleanParameter(default=True)
     schema = Parameter()
@@ -41,7 +41,7 @@ class SyncData(WrapperTask):
         table_id = '"{schema}".{table}'.format(schema=self.schema,
                                                table=underscore_slugify(self.table))
         with session_scope() as session:
-            table = session.query(BMDTable).get(table_id)
+            table = session.query(OBSTable).get(table_id)
             tablename = table.tablename
         return TableToCarto(table=table_id, outname=tablename, force=self.force)
 
@@ -53,7 +53,7 @@ class SyncAllData(WrapperTask):
     def requires(self):
         tables = {}
         with session_scope() as session:
-            for table in session.query(BMDTable):
+            for table in session.query(OBSTable):
                 if should_upload(table):
                     tables[table.id] = table.tablename
 

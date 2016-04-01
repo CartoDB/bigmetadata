@@ -4,8 +4,8 @@ from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
                         TableTarget, TagTarget, TagsTask)
-from tasks.meta import (session_scope, BMDColumn, Base, BMDColumnTable, BMDTag,
-                        BMDTable, BMDColumnTag, BMDColumnToColumn, metadata)
+from tasks.meta import (session_scope, OBSColumn, Base, OBSColumnTable, OBSTag,
+                        OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
 from tests.util import runtask
 
 
@@ -40,7 +40,7 @@ def test_underscore_slugify():
 
 @with_setup(setup, teardown)
 def test_column_target_create_update():
-    col = ColumnTarget('tests', 'foobar', BMDColumn(
+    col = ColumnTarget('tests', 'foobar', OBSColumn(
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -49,18 +49,18 @@ def test_column_target_create_update():
 
     # Does not exist in DB til we update_or_create
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 0)
+        assert_equals(session.query(OBSColumn).count(), 0)
         col.update_or_create(session)
-        assert_equals(session.query(BMDColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
 
     # Can update_or_create all we want
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
         col.update_or_create(session)
-        assert_equals(session.query(BMDColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
 
     # Can overwrite the existing column
-    col = ColumnTarget('tests', 'foobar', BMDColumn(
+    col = ColumnTarget('tests', 'foobar', OBSColumn(
         type='Numeric',
         name="foobar",
         description='foo-bar-baz',
@@ -68,22 +68,22 @@ def test_column_target_create_update():
         weight=10))
 
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
         col.update_or_create(session)
         assert_equals(col._column.name, 'foobar')
         assert_equals(col._column.description, 'foo-bar-baz')
-        assert_equals(session.query(BMDColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
 
     # Should auto-qualify column id
     with session_scope() as session:
-        rawcol = session.query(BMDColumn).get('"tests".foobar')
+        rawcol = session.query(OBSColumn).get('"tests".foobar')
         assert_equals(rawcol.name, 'foobar')
         assert_equals(rawcol.description, 'foo-bar-baz')
 
 
 @with_setup(setup, teardown)
 def test_column_target_relations_create_update():
-    col = ColumnTarget("tests", "foobar", BMDColumn(
+    col = ColumnTarget("tests", "foobar", OBSColumn(
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -91,24 +91,24 @@ def test_column_target_relations_create_update():
         weight=10))
 
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 0)
+        assert_equals(session.query(OBSColumn).count(), 0)
         col.update_or_create(session)
         rawcol = col._column
-        tag = BMDTag(id='tag', name='some tag', description='some tag', type='some type')
+        tag = OBSTag(id='tag', name='some tag', description='some tag', type='some type')
         session.add(tag)
         rawcol.tags.append(TagTarget(tag))
         session.add(rawcol)
-        table = BMDTable(id='table', tablename='foobar')
+        table = OBSTable(id='table', tablename='foobar')
         session.add(table)
-        coltable = BMDColumnTable(column=rawcol, table=table, colname='col')
+        coltable = OBSColumnTable(column=rawcol, table=table, colname='col')
         session.add(coltable)
 
     with session_scope() as session:
-        assert_equals(session.query(BMDTag).count(), 1)
-        assert_equals(session.query(BMDColumnTag).count(), 1)
-        assert_equals(session.query(BMDColumn).count(), 1)
-        assert_equals(session.query(BMDColumnTable).count(), 1)
-        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(OBSTag).count(), 1)
+        assert_equals(session.query(OBSColumnTag).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
+        assert_equals(session.query(OBSColumnTable).count(), 1)
+        assert_equals(session.query(OBSTable).count(), 1)
 
     col._column.name = 'foo bar baz'
 
@@ -116,18 +116,18 @@ def test_column_target_relations_create_update():
         col.update_or_create(session)
 
     with session_scope() as session:
-        rawcol = session.query(BMDColumn).get('"tests".foobar')
+        rawcol = session.query(OBSColumn).get('"tests".foobar')
         assert_equals(rawcol.name, 'foo bar baz')
-        assert_equals(session.query(BMDTag).count(), 1)
-        assert_equals(session.query(BMDColumnTag).count(), 1)
-        assert_equals(session.query(BMDColumn).count(), 1)
-        assert_equals(session.query(BMDColumnTable).count(), 1)
-        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(OBSTag).count(), 1)
+        assert_equals(session.query(OBSColumnTag).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
+        assert_equals(session.query(OBSColumnTable).count(), 1)
+        assert_equals(session.query(OBSTable).count(), 1)
 
 
 @with_setup(setup, teardown)
 def test_column_target_many_inits():
-    col = ColumnTarget("tests", "foobar", BMDColumn(
+    col = ColumnTarget("tests", "foobar", OBSColumn(
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -135,11 +135,11 @@ def test_column_target_many_inits():
         weight=10))
 
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 0)
+        assert_equals(session.query(OBSColumn).count(), 0)
         col.update_or_create(session)
-        assert_equals(session.query(BMDColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
 
-    col = ColumnTarget("tests", "foobar", BMDColumn(
+    col = ColumnTarget("tests", "foobar", OBSColumn(
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -147,20 +147,20 @@ def test_column_target_many_inits():
         weight=10))
 
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
         col.update_or_create(session)
-        assert_equals(session.query(BMDColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 1)
 
 
 @with_setup(setup, teardown)
 def test_table_target_many_inits():
-    pop_col = ColumnTarget("tests", "population", BMDColumn(
+    pop_col = ColumnTarget("tests", "population", OBSColumn(
         type='Numeric',
         name="Total Population",
         description='The total number of all',
         aggregate='sum',
         weight=10))
-    foo_col = ColumnTarget("tests", "foo", BMDColumn(
+    foo_col = ColumnTarget("tests", "foo", OBSColumn(
         type='Numeric',
         name="Foo Bar",
         description='moo boo foo',
@@ -171,22 +171,22 @@ def test_table_target_many_inits():
         foo_col.update_or_create(session)
 
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 2)
+        assert_equals(session.query(OBSColumn).count(), 2)
 
     columns = {
         'population': pop_col,
         'foobar': foo_col
     }
-    table_target = TableTarget('test', 'foobar', BMDTable(), columns)
+    table_target = TableTarget('test', 'foobar', OBSTable(), columns)
     table_id = 'test.foobar'
 
     with session_scope() as session:
         assert_equals(False, table_target.exists())
-        assert_equals(session.query(BMDTable).count(), 0)
-        assert_equals(session.query(BMDColumn).count(), 2)
+        assert_equals(session.query(OBSTable).count(), 0)
+        assert_equals(session.query(OBSColumn).count(), 2)
         table_target.update_or_create(session)
-        assert_equals(session.query(BMDColumn).count(), 2)
-        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 2)
+        assert_equals(session.query(OBSTable).count(), 1)
         assert_in(table_id, metadata.tables)
         sqlalchemy_table = metadata.tables[table_id]
         assert_equals(len(sqlalchemy_table.columns), 2)
@@ -198,21 +198,21 @@ def test_table_target_many_inits():
     # new session, old object
     with session_scope() as session:
         assert_equals(True, table_target.exists())
-        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(OBSTable).count(), 1)
         table_target.update_or_create(session)
-        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(OBSTable).count(), 1)
         assert_in(table_id, metadata.tables)
         sqlalchemy_table = metadata.tables[table_id]
         assert_equals(len(sqlalchemy_table.columns), 2)
         assert_equals(True, table_target.exists())
 
     # new session, new object
-    table_target = TableTarget('test', 'foobar', BMDTable(), columns)
+    table_target = TableTarget('test', 'foobar', OBSTable(), columns)
     with session_scope() as session:
         assert_equals(True, table_target.exists())
-        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(OBSTable).count(), 1)
         table_target.update_or_create(session)
-        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(OBSTable).count(), 1)
         assert_in(table_id, metadata.tables)
         sqlalchemy_table = metadata.tables[table_id]
         assert_equals(len(sqlalchemy_table.columns), 2)
@@ -234,15 +234,15 @@ def test_columns_task_creates_columns_only_when_run():
 
     task = TestColumnsTask()
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 0)
+        assert_equals(session.query(OBSColumn).count(), 0)
     runtask(task)
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 2)
-        assert_equals(session.query(BMDColumnToColumn).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 2)
+        assert_equals(session.query(OBSColumnToColumn).count(), 1)
         assert_equals(task.output()['pop'].get(session).id, '"test_util".population')
         assert_equals(task.output()['foobar'].get(session).id, '"test_util".foobar')
-        pop = session.query(BMDColumn).get('"test_util".population')
-        foobar = session.query(BMDColumn).get('"test_util".foobar')
+        pop = session.query(OBSColumn).get('"test_util".population')
+        foobar = session.query(OBSColumn).get('"test_util".foobar')
         assert_equals(len(pop.sources), 1)
         assert_equals(len(foobar.targets), 1)
         assert_equals(pop.sources.keys()[0].id, foobar.id)
@@ -250,26 +250,26 @@ def test_columns_task_creates_columns_only_when_run():
 
     assert_equals(True, task.complete())
 
-    table = BMDTable(id='table', tablename='tablename')
+    table = OBSTable(id='table', tablename='tablename')
     with session_scope() as session:
-        coltable = BMDColumnTable(column=task.output()['pop'].get(session),
+        coltable = OBSColumnTable(column=task.output()['pop'].get(session),
                                   table=table, colname='colnamaste')
         session.add(table)
         session.add(coltable)
 
     with session_scope() as session:
-        assert_equals(session.query(BMDColumnTable).count(), 1)
+        assert_equals(session.query(OBSColumnTable).count(), 1)
 
 
 
 class TestTagsTask(TagsTask):
     def tags(self):
         return [
-            BMDTag(id='denominator',
+            OBSTag(id='denominator',
                    name='Denominator',
                    type='catalog',
                    description='Use these to provide a baseline for comparison between different areas.'),
-            BMDTag(id='population',
+            OBSTag(id='population',
                    name='Population',
                    type='catalog',
                    description='')
@@ -285,7 +285,7 @@ class TestColumnsTask(ColumnsTask):
 
     def columns(self):
         tags = self.input()['tags']
-        pop_column = BMDColumn(id='population',
+        pop_column = OBSColumn(id='population',
                                type='Numeric',
                                name="Total Population",
                                description='The total number of all',
@@ -297,7 +297,7 @@ class TestColumnsTask(ColumnsTask):
                                weight=10)
         return OrderedDict({
             'pop': pop_column,
-            'foobar': BMDColumn(id='foobar',
+            'foobar': OBSColumn(id='foobar',
                                 type='Numeric',
                                 name="Foo Bar",
                                 description='moo boo foo',
@@ -346,9 +346,9 @@ def test_table_task_creates_columns_when_run():
     assert_equals(True, task.complete())
 
     with session_scope() as session:
-        assert_equals(session.query(BMDColumn).count(), 2)
-        assert_equals(session.query(BMDColumnTable).count(), 2)
-        assert_equals(session.query(BMDTable).count(), 1)
+        assert_equals(session.query(OBSColumn).count(), 2)
+        assert_equals(session.query(OBSColumnTable).count(), 2)
+        assert_equals(session.query(OBSTable).count(), 1)
         assert_in(task.table.fullname, metadata.tables)
 
 

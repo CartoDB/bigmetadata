@@ -14,8 +14,8 @@ from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask
                        )
-from tasks.meta import (BMDColumnTable, BMDColumn, session_scope,
-                        BMDColumnTag, BMDColumnToColumn)
+from tasks.meta import (OBSColumnTable, OBSColumn, session_scope,
+                        OBSColumnTag, OBSColumnToColumn)
 from tasks.tags import Tags
 
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
@@ -32,7 +32,7 @@ class GeomColumns(ColumnsTask):
     def columns(self):
         tags = self.input()['tags']
         return {
-            'block_group': BMDColumn(
+            'block_group': OBSColumn(
                 id='block_group',
                 type='Geometry',
                 name='US Census Block Groups',
@@ -40,7 +40,7 @@ class GeomColumns(ColumnsTask):
                 weight=10,
                 tags=[tags['boundary']]
             ),
-            'block': BMDColumn(
+            'block': OBSColumn(
                 id='block',
                 type='Geometry',
                 name='US Census Blocks',
@@ -48,7 +48,7 @@ class GeomColumns(ColumnsTask):
                 weight=3,
                 tags=[tags['boundary']]
             ),
-            'census_tract': BMDColumn(
+            'census_tract': OBSColumn(
                 id='census_tract',
                 type='Geometry',
                 name='US Census Tracts',
@@ -56,7 +56,7 @@ class GeomColumns(ColumnsTask):
                 weight=9,
                 tags=[tags['boundary']]
             ),
-            'congressional_district': BMDColumn(
+            'congressional_district': OBSColumn(
                 id='congressional_district',
                 type='Geometry',
                 name='US Congressional Districts',
@@ -64,7 +64,7 @@ class GeomColumns(ColumnsTask):
                 weight=5,
                 tags=[tags['boundary']]
             ),
-            'county': BMDColumn(
+            'county': OBSColumn(
                 id='county',
                 type='Geometry',
                 name='US County',
@@ -72,7 +72,7 @@ class GeomColumns(ColumnsTask):
                 weight=7,
                 tags=[tags['boundary']]
             ),
-            'puma': BMDColumn(
+            'puma': OBSColumn(
                 id='puma',
                 type='Geometry',
                 name='US Census Public Use Microdata Areas',
@@ -80,7 +80,7 @@ class GeomColumns(ColumnsTask):
                 weight=6,
                 tags=[tags['boundary']]
             ),
-            'state': BMDColumn(
+            'state': OBSColumn(
                 id='state',
                 type='Geometry',
                 name='US States',
@@ -88,7 +88,7 @@ class GeomColumns(ColumnsTask):
                 weight=8,
                 tags=[tags['boundary']]
             ),
-            'zcta5': BMDColumn(
+            'zcta5': OBSColumn(
                 id='zcta5',
                 type='Geometry',
                 name='US Census Zip Code Tabulation Areas',
@@ -107,7 +107,7 @@ class GeoidColumns(ColumnsTask):
     def columns(self):
         geoms = self.input()
         return {
-            'block_group_geoid': BMDColumn(
+            'block_group_geoid': OBSColumn(
                 id='block_group_geoid',
                 type='Text',
                 name='US Census Block Group Geoids',
@@ -116,7 +116,7 @@ class GeoidColumns(ColumnsTask):
                     geoms['block_group']: 'geom_ref'
                 }
             ),
-            'block_geoid': BMDColumn(
+            'block_geoid': OBSColumn(
                 id='block_geoid',
                 type='Text',
                 name='US Census Block Geoids',
@@ -125,7 +125,7 @@ class GeoidColumns(ColumnsTask):
                     geoms['block']: 'geom_ref'
                 }
             ),
-            'census_tract_geoid': BMDColumn(
+            'census_tract_geoid': OBSColumn(
                 id='census_tract_geoid',
                 type='Text',
                 name='US Census Tract Geoids',
@@ -135,7 +135,7 @@ class GeoidColumns(ColumnsTask):
                     geoms['census_tract']: 'geom_ref'
                 }
             ),
-            'congressional_district_geoid': BMDColumn(
+            'congressional_district_geoid': OBSColumn(
                 id='congressional_district_geoid',
                 type='Text',
                 name='US Congressional District Geoids',
@@ -145,7 +145,7 @@ class GeoidColumns(ColumnsTask):
                     geoms['congressional_district']: 'geom_ref'
                 }
             ),
-            'county_geoid': BMDColumn(
+            'county_geoid': OBSColumn(
                 id='county_geoid',
                 type='Text',
                 name='US County Geoids',
@@ -155,7 +155,7 @@ class GeoidColumns(ColumnsTask):
                     geoms['county']: 'geom_ref'
                 }
             ),
-            'puma_geoid': BMDColumn(
+            'puma_geoid': OBSColumn(
                 id='puma_geoid',
                 type='Text',
                 name='US Census Public Use Microdata Area Geoids',
@@ -165,7 +165,7 @@ class GeoidColumns(ColumnsTask):
                     geoms['puma']: 'geom_ref'
                 }
             ),
-            'state_geoid': BMDColumn(
+            'state_geoid': OBSColumn(
                 id='state_geoid',
                 type='Text',
                 name='US State Geoids',
@@ -175,7 +175,7 @@ class GeoidColumns(ColumnsTask):
                     geoms['state']: 'geom_ref'
                 }
             ),
-            'zcta5_geoid': BMDColumn(
+            'zcta5_geoid': OBSColumn(
                 id='zcta5_geoid',
                 type='Text',
                 name='US Census Zip Code Tabulation Area Geoids',

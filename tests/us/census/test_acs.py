@@ -13,8 +13,8 @@ except:
 
 from nose.tools import assert_equals, with_setup, assert_false, assert_true
 
-from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
-                        BMDTag, BMDColumnTag, Base, session_scope)
+from tasks.meta import (OBSColumnTable, OBSColumn, OBSColumnToColumn, OBSTable,
+                        OBSTag, OBSColumnTag, Base, session_scope)
 from tasks.us.census.acs import Columns, Extract
 
 from tests.util import runtask

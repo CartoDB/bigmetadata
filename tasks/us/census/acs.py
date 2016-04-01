@@ -25,7 +25,7 @@ from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
                                    SUMLEVELS_BY_SLUG, ShorelineClipTiger)
 from tasks.us.census.segments import SegmentTags
 
-from tasks.meta import (BMDColumn, BMDTag, BMDColumnTable)
+from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable)
 from tasks.tags import Tags as GeneralTags
 
 LOGGER = get_logger(__name__)
@@ -35,7 +35,7 @@ class Tags(TagsTask):
 
     def tags(self):
         return [
-            BMDTag(id='demographics',
+            OBSTag(id='demographics',
                    name='US American Community Survey Demographics',
                    type='catalog',
                    description='Standard Demographic Data from the US American Community Survey')
@@ -57,7 +57,7 @@ class Columns(ColumnsTask):
         segmenttags = self.input()['segmenttags']
         tag_middle_aged_men = segmenttags['middle_aged_men']
         tag_families_with_young_children = segmenttags['families_with_young_children']
-        total_pop = BMDColumn(
+        total_pop = OBSColumn(
             id='B01001001',
             type='Numeric',
             name="Total Population",
@@ -66,7 +66,7 @@ class Columns(ColumnsTask):
             weight=10,
             tags=[censustags['demographics'], tags['denominator'], tags['population']]
         )
-        male_pop = BMDColumn(
+        male_pop = OBSColumn(
             id='B01001002',
             type='Numeric',
             name="Male Population",
@@ -76,7 +76,7 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population']]
         )
-        female_pop = BMDColumn(
+        female_pop = OBSColumn(
             id='B01001026',
             type='Numeric',
             name="Female Population",
@@ -86,7 +86,7 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population']]
         )
-        median_age = BMDColumn(
+        median_age = OBSColumn(
             id='B01002001',
             type='Numeric',
             name="Median Age",
@@ -95,7 +95,7 @@ class Columns(ColumnsTask):
             weight=2,
             tags=[censustags['demographics'], tags['population']]
         )
-        white_pop = BMDColumn(
+        white_pop = OBSColumn(
             id='B03002003',
             type='Numeric',
             name="White Population",
@@ -105,7 +105,7 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
-        black_pop = BMDColumn(
+        black_pop = OBSColumn(
             id='B03002004',
             type='Numeric',
             name='Black or African American Population',
@@ -115,7 +115,7 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
-        asian_pop = BMDColumn(
+        asian_pop = OBSColumn(
             id='B03002006',
             type='Numeric',
             name='Asian Population',
@@ -125,7 +125,7 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
-        hispanic_pop = BMDColumn(
+        hispanic_pop = OBSColumn(
             id='B03002012',
             type='Numeric',
             name='Hispanic Population',
@@ -135,7 +135,7 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
-        not_us_citizen_pop = BMDColumn(
+        not_us_citizen_pop = OBSColumn(
             id='B05001006',
             type='Numeric',
             name='Not a U.S. Citizen Population',
@@ -145,7 +145,7 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population']]
         )
-        workers_16_and_over = BMDColumn(
+        workers_16_and_over = OBSColumn(
             id='B08006001',
             type='Numeric',
             name='Workers over the Age of 16',
@@ -154,7 +154,7 @@ class Columns(ColumnsTask):
             weight=5,
             tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']]
         )
-        commuters_by_car_truck_van = BMDColumn(
+        commuters_by_car_truck_van = OBSColumn(
             id='B08006002',
             type='Numeric',
             name='Commuters by Car, Truck, or Van',
@@ -163,7 +163,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
-        commuters_by_public_transportation = BMDColumn(
+        commuters_by_public_transportation = OBSColumn(
             id='B08006008',
             type='Numeric',
             name='Commuters by Public Transportation',
@@ -172,7 +172,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
-        commuters_by_bus = BMDColumn(
+        commuters_by_bus = OBSColumn(
             id='B08006009',
             type='Numeric',
             name='Commuters by Bus',
@@ -181,7 +181,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
-        commuters_by_subway_or_elevated = BMDColumn(
+        commuters_by_subway_or_elevated = OBSColumn(
             id='B08006011',
             type='Numeric',
             name='Commuters by Subway or Elevated',
@@ -190,7 +190,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
-        walked_to_work = BMDColumn(
+        walked_to_work = OBSColumn(
             id='B08006015',
             type='Numeric',
             name='Walked to Work',
@@ -199,7 +199,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
-        worked_at_home = BMDColumn(
+        worked_at_home = OBSColumn(
             id='B08006017',
             type='Numeric',
             name='Worked at Home',
@@ -208,7 +208,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
-        children = BMDColumn(
+        children = OBSColumn(
             id='B09001001',
             type='Numeric',
             name='children under 18 Years of Age',
@@ -216,7 +216,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator'], tags['race_age_gender']])
-        households = BMDColumn(
+        households = OBSColumn(
             id='B11001001',
             type='Numeric',
             name='Households',
@@ -224,7 +224,7 @@ class Columns(ColumnsTask):
             weight=8,
             aggregate='sum',
             tags=[censustags['demographics'], tags['housing']])
-        population_3_years_over = BMDColumn(
+        population_3_years_over = OBSColumn(
             id='B14001001',
             type='Numeric',
             name='Population 3 Years and Over',
@@ -232,7 +232,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']])
-        in_school = BMDColumn(
+        in_school = OBSColumn(
             id='B14001002',
             type='Numeric',
             name='Students Enrolled in School',
@@ -241,7 +241,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={population_3_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
-        in_grades_1_to_4 = BMDColumn(
+        in_grades_1_to_4 = OBSColumn(
             id='B14001005',
             type='Numeric',
             name='Students Enrolled in Grades 1 to 4',
@@ -250,7 +250,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={in_school: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
-        in_grades_5_to_8 = BMDColumn(
+        in_grades_5_to_8 = OBSColumn(
             id='B14001006',
             type='Numeric',
             name='Students Enrolled in Grades 5 to 8',
@@ -259,7 +259,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={in_school: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
-        in_grades_9_to_12 = BMDColumn(
+        in_grades_9_to_12 = OBSColumn(
             id='B14001007',
             type='Numeric',
             name='Students Enrolled in Grades 9 to 12',
@@ -268,7 +268,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={in_school: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
-        in_undergrad_college = BMDColumn(
+        in_undergrad_college = OBSColumn(
             id='B14001008',
             type='Numeric',
             name='Students Enrolled as Undergraduate in College',
@@ -277,7 +277,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={in_school: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
-        pop_25_years_over = BMDColumn(
+        pop_25_years_over = OBSColumn(
             id='B15003001',
             type='Numeric',
             name='Population 25 Years and Over',
@@ -285,7 +285,7 @@ class Columns(ColumnsTask):
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']])
-        high_school_diploma = BMDColumn(
+        high_school_diploma = OBSColumn(
             id='B15003017',
             type='Numeric',
             name='Population Completed High School',
@@ -294,7 +294,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
-        bachelors_degree = BMDColumn(
+        bachelors_degree = OBSColumn(
             id='B15003022',
             type='Numeric',
             name="Population Completed Bachelor's Degree",
@@ -303,7 +303,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
-        masters_degree = BMDColumn(
+        masters_degree = OBSColumn(
             id='B15003023',
             type='Numeric',
             name="Population Completed Master's Degree",
@@ -312,7 +312,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
-        pop_5_years_over = BMDColumn(
+        pop_5_years_over = OBSColumn(
             id='B16001001',
             type='Numeric',
             name='Population 5 Years and Over',
@@ -320,7 +320,7 @@ class Columns(ColumnsTask):
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator'], tags['language']])
-        speak_only_english_at_home = BMDColumn(
+        speak_only_english_at_home = OBSColumn(
             id='B16001002',
             type='Numeric',
             name='Speaks only English at Home',
@@ -329,7 +329,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['language']])
-        speak_spanish_at_home = BMDColumn(
+        speak_spanish_at_home = OBSColumn(
             id='B16001003',
             type='Numeric',
             name='Speaks Spanish at Home',
@@ -338,7 +338,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['language']])
-        pop_determined_poverty_status = BMDColumn(
+        pop_determined_poverty_status = OBSColumn(
             id='B17001001',
             type='Numeric',
             name='Population for Whom Poverty Status Determined',
@@ -346,7 +346,7 @@ class Columns(ColumnsTask):
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator']])
-        poverty = BMDColumn(
+        poverty = OBSColumn(
             id='B17001002',
             type='Numeric',
             name='Income In The Past 12 Months Below Poverty Level',
@@ -355,7 +355,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_determined_poverty_status: 'denominator'},
             tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']])
-        median_income = BMDColumn(
+        median_income = OBSColumn(
             id='B19013001',
             type='Numeric',
             name='Median Household Income in the past 12 Months',
@@ -363,7 +363,7 @@ class Columns(ColumnsTask):
             weight=8,
             aggregate='median',
             tags=[censustags['demographics'], tags['income_education_employment']])
-        gini_index = BMDColumn(
+        gini_index = OBSColumn(
             id='B19083001',
             type='Numeric',
             name='Gini Index',
@@ -371,7 +371,7 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='',
             tags=[censustags['demographics'], tags['income_education_employment']])
-        income_per_capita = BMDColumn(
+        income_per_capita = OBSColumn(
             id='B19301001',
             type='Numeric',
             name='Per Capita Income in the past 12 Months',
@@ -379,7 +379,7 @@ class Columns(ColumnsTask):
             weight=7,
             aggregate='average',
             tags=[censustags['demographics'], tags['income_education_employment']])
-        housing_units = BMDColumn(
+        housing_units = OBSColumn(
             id='B25001001',
             type='Numeric',
             name='Housing Units',
@@ -387,7 +387,7 @@ class Columns(ColumnsTask):
             weight=8,
             aggregate='sum',
             tags=[censustags['demographics'], tags['housing'], tags['denominator']])
-        vacant_housing_units = BMDColumn(
+        vacant_housing_units = OBSColumn(
             id='B25002003',
             type='Numeric',
             name='Vacant Housing Units',
@@ -396,7 +396,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={housing_units: 'denominator'},
             tags=[censustags['demographics'], tags['housing']])
-        vacant_housing_units_for_rent = BMDColumn(
+        vacant_housing_units_for_rent = OBSColumn(
             id='B25004002',
             type='Numeric',
             name='Vacant Housing Units for Rent',
@@ -405,7 +405,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={vacant_housing_units: 'denominator'},
             tags=[censustags['demographics'], tags['housing']])
-        vacant_housing_units_for_sale = BMDColumn(
+        vacant_housing_units_for_sale = OBSColumn(
             id='B25004004',
             type='Numeric',
             name='Vacant Housing Units for Sale',
@@ -414,7 +414,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={vacant_housing_units: 'denominator'},
             tags=[censustags['demographics'], tags['housing']])
-        median_rent = BMDColumn(
+        median_rent = OBSColumn(
             id='B25058001',
             type='Numeric',
             name='Median Rent',
@@ -422,7 +422,7 @@ class Columns(ColumnsTask):
             weight=8,
             aggregate='median',
             tags=[censustags['demographics'], tags['housing']])
-        percent_income_spent_on_rent = BMDColumn(
+        percent_income_spent_on_rent = OBSColumn(
             id='B25071001',
             type='Numeric',
             name='Percent of Household Income Spent on Rent',
@@ -430,7 +430,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='average',
             tags=[censustags['demographics'], tags['housing'], tags['income_education_employment']])
-        owner_occupied_housing_units = BMDColumn(
+        owner_occupied_housing_units = OBSColumn(
             id='B25075001',
             type='Numeric',
             name='Owner-occupied Housing Units',
@@ -439,7 +439,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={housing_units: 'denominator'},
             tags=[censustags['demographics'], tags['housing']])
-        million_dollar_housing_units = BMDColumn(
+        million_dollar_housing_units = OBSColumn(
             id='B25075025',
             type='Numeric',
             name='Owner-occupied Housing Units valued at $1,000,000 or more.',
@@ -449,7 +449,7 @@ class Columns(ColumnsTask):
             targets={owner_occupied_housing_units: 'denominator'},
             tags=[censustags['demographics'], tags['housing']])
 
-        mortgaged_housing_units = BMDColumn(
+        mortgaged_housing_units = OBSColumn(
             id='B25081002',
             type='Numeric',
             name='Owner-occupied Housing Units with a Mortgage',
@@ -461,7 +461,7 @@ class Columns(ColumnsTask):
 
         #* families with young children (under 6 years of age):
         #  - B23008002: total families with children under 6 years
-        families_with_young_children = BMDColumn(
+        families_with_young_children = OBSColumn(
             id='B23008002',
             type='Numeric',
             name='Families with young children (under 6 years of age)',
@@ -471,7 +471,7 @@ class Columns(ColumnsTask):
             tags=[tag_families_with_young_children])
 
         #  - B23008003: living with two parents
-        two_parent_families_with_young_children = BMDColumn(
+        two_parent_families_with_young_children = OBSColumn(
             id='B23008003',
             type='Numeric',
             name='Two-parent families with young children (under 6 years of age)',
@@ -481,7 +481,7 @@ class Columns(ColumnsTask):
             targets={families_with_young_children: 'denominator'},
             tags=[tag_families_with_young_children])
         #  - B23008004: living with two parents, both in labor force  
-        two_parents_in_labor_force_families_with_young_children = BMDColumn(
+        two_parents_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008004',
             type='Numeric',
             name='Two-parent families, both parents in labor force with young children (under 6 years of age)',
@@ -491,7 +491,7 @@ class Columns(ColumnsTask):
             targets={families_with_young_children: 'denominator'},
             tags=[tag_families_with_young_children])
         #  - B23008005: living with two parents, father only in labor force  
-        two_parents_father_in_labor_force_families_with_young_children = BMDColumn(
+        two_parents_father_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008005',
             type='Numeric',
             name='Two-parent families, father only in labor force with young children (under 6 years of age)',
@@ -502,7 +502,7 @@ class Columns(ColumnsTask):
             tags=[tag_families_with_young_children])
 
         #  - B23008006: living with two parents, mother only in labor force  
-        two_parents_mother_in_labor_force_families_with_young_children = BMDColumn(
+        two_parents_mother_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008006',
             type='Numeric',
             name='Two-parent families, mother only in labor force with young children (under 6 years of age)',
@@ -513,7 +513,7 @@ class Columns(ColumnsTask):
             tags=[tag_families_with_young_children])
 
         #  - B23008007: living with two parents, neither parent in labor force  
-        two_parents_not_in_labor_force_families_with_young_children = BMDColumn(
+        two_parents_not_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008007',
             type='Numeric',
             name='Two-parent families, neither parent in labor force with young children (under 6 years of age)',
@@ -524,7 +524,7 @@ class Columns(ColumnsTask):
             tags=[tag_families_with_young_children])
 
         #  - B23008008: living with one parent  
-        one_parent_families_with_young_children = BMDColumn(
+        one_parent_families_with_young_children = OBSColumn(
             id='B23008008',
             type='Numeric',
             name='One-parent families with young children (under 6 years of age)',
@@ -535,7 +535,7 @@ class Columns(ColumnsTask):
             tags=[tag_families_with_young_children])
 
         #  - B23008009: living with father
-        father_one_parent_families_with_young_children = BMDColumn(
+        father_one_parent_families_with_young_children = OBSColumn(
             id='B23008009',
             type='Numeric',
             name='One-parent families, father, with young children (under 6 years of age)',
@@ -546,7 +546,7 @@ class Columns(ColumnsTask):
             tags=[tag_families_with_young_children])
 
         #  - B23008010: living with father who is in labor force
-        father_in_labor_force_one_parent_families_with_young_children = BMDColumn(
+        father_in_labor_force_one_parent_families_with_young_children = OBSColumn(
             id='B23008010',
             type='Numeric',
             name='One-parent families, father in labor force, with young children (under 6 years of age)',
@@ -573,7 +573,7 @@ class Columns(ColumnsTask):
         #  - B23003009: living with female 20 to 64 years of age who is not in labor force
 
         #* men in middle age (45-64)
-        men_45_to_64 = BMDColumn(
+        men_45_to_64 = OBSColumn(
             id='B15001027',
             type='Numeric',
             name='Men age 45 to 64 ("middle aged")',
@@ -582,7 +582,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001015: 45 To 49 Years
-        men_45_to_49 = BMDColumn(
+        men_45_to_49 = OBSColumn(
             id='B01001015',
             type='Numeric',
             name='Men age 45 to 49',
@@ -593,7 +593,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001016: 50 To 54 Years
-        men_50_to_54 = BMDColumn(
+        men_50_to_54 = OBSColumn(
             id='B01001016',
             type='Numeric',
             name='Men age 50 to 54',
@@ -604,7 +604,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001017: 55 To 59 Years
-        men_55_to_59 = BMDColumn(
+        men_55_to_59 = OBSColumn(
             id='B01001017',
             type='Numeric',
             name='Men age 55 to 59',
@@ -615,7 +615,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001018: 60 and 61 Years
-        men_60_61 = BMDColumn(
+        men_60_61 = OBSColumn(
             id='B01001018',
             type='Numeric',
             name='Men age 60 to 61',
@@ -626,7 +626,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001019: 62 To 64 Years
-        men_62_64 = BMDColumn(
+        men_62_64 = OBSColumn(
             id='B01001019',
             type='Numeric',
             name='Men age 62 to 64',
@@ -637,7 +637,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001B012: black, 45 to 54 Years
-        black_men_45_54 = BMDColumn(
+        black_men_45_54 = OBSColumn(
             id='B01001B012',
             type='Numeric',
             name='Black Men age 45 to 54',
@@ -648,7 +648,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001B013: black, 55 to 64 Years
-        black_men_55_64 = BMDColumn(
+        black_men_55_64 = OBSColumn(
             id='B01001B013',
             type='Numeric',
             name='Black Men age 55 to 64',
@@ -659,7 +659,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001I012: Hispanic, 45 to 54 Years
-        hispanic_men_45_54 = BMDColumn(
+        hispanic_men_45_54 = OBSColumn(
             id='B01001I012',
             type='Numeric',
             name='Hispanic Men age 45 to 54',
@@ -670,7 +670,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001I013: Hispanic, 55 to 64 Years
-        hispanic_men_55_64 = BMDColumn(
+        hispanic_men_55_64 = OBSColumn(
             id='B01001I013',
             type='Numeric',
             name='Hispanic Men age 55 to 64',
@@ -681,7 +681,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001H012: white non-hispanic, 45 to 54 Years
-        white_men_45_54 = BMDColumn(
+        white_men_45_54 = OBSColumn(
             id='B01001H012',
             type='Numeric',
             name='White Men age 45 to 54',
@@ -692,7 +692,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001H013: white non-hispanic, 55 to 64 Years
-        white_men_55_64 = BMDColumn(
+        white_men_55_64 = OBSColumn(
             id='B01001H013',
             type='Numeric',
             name='White Men age 55 to 64',
@@ -703,7 +703,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001D012: asian, 45 to 54 Years
-        asian_men_45_54 = BMDColumn(
+        asian_men_45_54 = OBSColumn(
             id='B01001D012',
             type='Numeric',
             name='Asian Men age 45 to 54',
@@ -714,7 +714,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001D013: asian, 55 to 64 Years
-        asian_men_55_64 = BMDColumn(
+        asian_men_55_64 = OBSColumn(
             id='B01001D013',
             type='Numeric',
             name='Asian Men age 55 to 64',
@@ -729,7 +729,7 @@ class Columns(ColumnsTask):
         #  - B05013014: foreign born, 55 to 59 Years
         #  - B05013015: foreign born, 60 to 64 Years
         #  - B15001028: less than 9th grade education
-        men_45_64_less_than_9_grade = BMDColumn(
+        men_45_64_less_than_9_grade = OBSColumn(
             id='B15001028',
             type='Numeric',
             name='Men age 45 to 64 who attained less than a 9th grade education',
@@ -740,7 +740,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001029: completed between 9th to 12th grade, no diploma
-        men_45_64_grade_9_12 = BMDColumn(
+        men_45_64_grade_9_12 = OBSColumn(
             id='B15001029',
             type='Numeric',
             name='Men age 45 to 64 who attained between 9th and 12th grade, no diploma',
@@ -751,7 +751,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001030: high school graduate including GED
-        men_45_64_high_school = BMDColumn(
+        men_45_64_high_school = OBSColumn(
             id='B15001030',
             type='Numeric',
             name='Men age 45 to 64 who completed high school or obtained GED',
@@ -762,7 +762,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001031: some college, no degree
-        men_45_64_some_college = BMDColumn(
+        men_45_64_some_college = OBSColumn(
             id='B15001031',
             type='Numeric',
             name='Men age 45 to 64 who completed some college, no degree',
@@ -773,7 +773,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001032: associate's degree
-        men_45_64_associates_degree = BMDColumn(
+        men_45_64_associates_degree = OBSColumn(
             id='B15001032',
             type='Numeric',
             name='Men age 45 to 64 who obtained an associate\'s degree',
@@ -784,7 +784,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001033: bachelor's degree
-        men_45_64_bachelors_degree = BMDColumn(
+        men_45_64_bachelors_degree = OBSColumn(
             id='B15001033',
             type='Numeric',
             name='Men age 45 to 64 who obtained a bachelor\'s degree',
@@ -795,7 +795,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001034: graduate/professional degree
-        men_45_64_graduate_degree = BMDColumn(
+        men_45_64_graduate_degree = OBSColumn(
             id='B15001034',
             type='Numeric',
             name='Men age 45 to 64 who obtained a graduate or professional degree',
@@ -810,7 +810,7 @@ class Columns(ColumnsTask):
         #  - B17001015: income above poverty, 45 to 54 years
         #  - B17001016: income above poverty, 55 to 64 years
         #  - B23001046: in labor force, 45 to 54 years
-        #men_45_64_in_labor_force = BMDColumn(
+        #men_45_64_in_labor_force = OBSColumn(
         #    id='B23001046',
         #    type='Numeric',
         #    name='Men age 45 to 64 who are in the labor force',
@@ -824,7 +824,7 @@ class Columns(ColumnsTask):
         ##  - B23001048: in civilian labor force, 45 to 54 years
         ##  - B23001049: employed in civilian labor force, 45 to 54 years
         ##  - B23001050: unemployed in civilian labor force, 45 to 54 years
-        #men_45_64_unemployed = BMDColumn(
+        #men_45_64_unemployed = OBSColumn(
         #    id='B23001050',
         #    type='Numeric',
         #    name='Men age 45 to 64 who are in the labor force',
@@ -835,7 +835,7 @@ class Columns(ColumnsTask):
         #    tags=[tag_middle_aged_men])
 
         ##  - B23001051 not in labor force, 45 to 54 years
-        #men_45_64_not_in_labor_force = BMDColumn(
+        #men_45_64_not_in_labor_force = OBSColumn(
         #    id='B23001051',
         #    type='Numeric',
         #    name='Men age 45 to 64 who are not in the labor force',

@@ -4,7 +4,7 @@ Test sphinx implementation
 
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
-from tasks.meta import session_scope, BMDTag, BMDColumn, Base
+from tasks.meta import session_scope, OBSTag, OBSColumn, Base
 from tasks.sphinx import GenerateRST
 
 
@@ -18,10 +18,10 @@ def teardown():
 
 
 def populate(session):
-    # tag_denominator = BMDTag()
-    # tag_boundary = BMDTag()
-    # population_column = BMDColumn()
-    # subset_column = BMDColumn()
+    # tag_denominator = OBSTag()
+    # tag_boundary = OBSTag()
+    # population_column = OBSColumn()
+    # subset_column = OBSColumn()
     # session.add(tag_denominator)
     # session.add(tag_boundary)
     # session.add(population_column)

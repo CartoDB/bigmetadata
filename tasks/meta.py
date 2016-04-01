@@ -69,17 +69,17 @@ class Geometry(UserDefinedType):
 
 
 # A connection between a table and a column
-class BMDColumnTable(Base):
+class OBSColumnTable(Base):
 
-    __tablename__ = 'bmd_column_table'
+    __tablename__ = 'obs_column_table'
 
-    column_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
-    table_id = Column(String, ForeignKey('bmd_table.id', ondelete='cascade'), primary_key=True)
+    column_id = Column(String, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
+    table_id = Column(String, ForeignKey('obs_table.id', ondelete='cascade'), primary_key=True)
 
     colname = Column(String, nullable=False)
 
-    column = relationship("BMDColumn", back_populates="tables")
-    table = relationship("BMDTable", back_populates="columns")
+    column = relationship("OBSColumn", back_populates="tables")
+    table = relationship("OBSTable", back_populates="columns")
 
     extra = Column(JSON)
 
@@ -88,46 +88,46 @@ def tag_creator(tagtarget):
     with session_scope() as session:
         with session.no_autoflush:
             tag = tagtarget.get(session) or tagtarget._tag
-            return BMDColumnTag(tag_id=tag.id)
+            return OBSColumnTag(tag_id=tag.id)
             #return tag
 
 
 def targets_creator(coltarget_or_col, reltype):
-    if isinstance(coltarget_or_col, BMDColumn):
+    if isinstance(coltarget_or_col, OBSColumn):
         col = coltarget_or_col
     else:
         with session_scope() as session:
             with session.no_autoflush:
                 col = coltarget_or_col.get(session) or coltarget_or_col._column
-    return BMDColumnToColumn(target=col, reltype=reltype)
+    return OBSColumnToColumn(target=col, reltype=reltype)
 
 
 def sources_creator(coltarget_or_col, reltype):
-    if isinstance(coltarget_or_col, BMDColumn):
+    if isinstance(coltarget_or_col, OBSColumn):
         col = coltarget_or_col
     else:
         with session_scope() as session:
             with session.no_autoflush:
                 col = coltarget_or_col.get(session) or coltarget_or_col._column
-    return BMDColumnToColumn(source=col, reltype=reltype)
+    return OBSColumnToColumn(source=col, reltype=reltype)
 
 
-class BMDColumnToColumn(Base):
-    __tablename__ = 'bmd_column_to_column'
+class OBSColumnToColumn(Base):
+    __tablename__ = 'obs_column_to_column'
 
-    source_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
-    target_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
+    source_id = Column(String, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
+    target_id = Column(String, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
 
     reltype = Column(String, primary_key=True)
 
-    source = relationship('BMDColumn',
+    source = relationship('OBSColumn',
                           foreign_keys=[source_id],
                           backref=backref(
                               "tgts",
                               collection_class=attribute_mapped_collection("target"),
                               cascade="all, delete-orphan",
                           ))
-    target = relationship('BMDColumn',
+    target = relationship('OBSColumn',
                           foreign_keys=[target_id],
                           backref=backref(
                               "srcs",
@@ -137,8 +137,8 @@ class BMDColumnToColumn(Base):
 
 
 # For example, a single census identifier like b01001001
-class BMDColumn(Base):
-    __tablename__ = 'bmd_column'
+class OBSColumn(Base):
+    __tablename__ = 'obs_column'
 
     id = Column(String, primary_key=True) # fully-qualified id like '"us.census.acs".b01001001'
 
@@ -152,8 +152,8 @@ class BMDColumn(Base):
     aggregate = Column(String) # what aggregate operation to use when adding
                                # these together across geoms: AVG, SUM etc.
 
-    tables = relationship("BMDColumnTable", back_populates="column", cascade="all,delete")
-    #tags = relationship("BMDColumnTag", back_populates="column", cascade="all,delete")
+    tables = relationship("OBSColumnTable", back_populates="column", cascade="all,delete")
+    #tags = relationship("OBSColumnTag", back_populates="column", cascade="all,delete")
     tags = association_proxy('column_column_tags', 'tag', creator=tag_creator)
 
     targets = association_proxy('tgts', 'reltype', creator=targets_creator)
@@ -161,12 +161,12 @@ class BMDColumn(Base):
 
 
 # We should have one of these for every table we load in through the ETL
-class BMDTable(Base):
-    __tablename__ = 'bmd_table'
+class OBSTable(Base):
+    __tablename__ = 'obs_table'
 
     id = Column(String, primary_key=True) # fully-qualified id like '"us.census.acs".extract_year_2013_sample_5yr'
 
-    columns = relationship("BMDColumnTable", back_populates="table",
+    columns = relationship("OBSColumnTable", back_populates="table",
                            cascade="all,delete")
 
     tablename = Column(String, nullable=False)
@@ -175,8 +175,8 @@ class BMDTable(Base):
     description = Column(String)
 
 
-class BMDTag(Base):
-    __tablename__ = 'bmd_tag'
+class OBSTag(Base):
+    __tablename__ = 'obs_tag'
 
     id = Column(String, primary_key=True)
 
@@ -184,22 +184,22 @@ class BMDTag(Base):
     type = Column(String, nullable=False)
     description = Column(String)
 
-    #columns = relationship("BMDColumnTag", back_populates="tag", cascade="all,delete")
+    #columns = relationship("OBSColumnTag", back_populates="tag", cascade="all,delete")
     columns = association_proxy('tag_column_tags', 'column')
 
 
-class BMDColumnTag(Base):
-    __tablename__ = 'bmd_column_tag'
+class OBSColumnTag(Base):
+    __tablename__ = 'obs_column_tag'
 
-    column_id = Column(String, ForeignKey('bmd_column.id', ondelete='cascade'), primary_key=True)
-    tag_id = Column(String, ForeignKey('bmd_tag.id', ondelete='cascade'), primary_key=True)
+    column_id = Column(String, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
+    tag_id = Column(String, ForeignKey('obs_tag.id', ondelete='cascade'), primary_key=True)
 
-    column = relationship("BMDColumn",
+    column = relationship("OBSColumn",
                           foreign_keys=[column_id],
                           backref=backref('column_column_tags',
                                           cascade='all, delete-orphan')
                          )
-    tag = relationship("BMDTag",
+    tag = relationship("OBSTag",
                        foreign_keys=[tag_id],
                        backref=backref('tag_column_tags',
                                        cascade='all, delete-orphan')
