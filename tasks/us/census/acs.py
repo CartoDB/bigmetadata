@@ -37,6 +37,7 @@ class Tags(TagsTask):
         return [
             BMDTag(id='demographics',
                    name='US American Community Survey Demographics',
+                   type='catalog',
                    description='Standard Demographic Data from the US American Community Survey')
         ]
 

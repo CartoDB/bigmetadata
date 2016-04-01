@@ -14,9 +14,11 @@ class SegmentTags(TagsTask):
         return [
             BMDTag(id='middle_aged_men',
                    name='Middle Aged Men (45 to 64 years old)',
+                   type='segment',
                    description=''),
             BMDTag(id='families_with_young_children',
                    name='Families with young children (Under 6 years old)',
+                   type='segment',
                    description='')
         ]
 

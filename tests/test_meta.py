@@ -22,8 +22,10 @@ def setup():
 
 def populate():
     with session_scope() as session:
-        population_tag = BMDTag(id='population', name='population')
+        population_tag = BMDTag(id='population', name='population', type='catalog')
+        source_tag = BMDTag(id='us_census', name='US Census', type='source')
         session.add(population_tag)
+        session.add(source_tag)
         datacols = {
             'median_rent': BMDColumn(id='"us.census.acs".median_rent', type='numeric'),
             'total_pop': BMDColumn(id='"us.census.acs".total_pop', type='numeric'),
@@ -51,9 +53,8 @@ def populate():
                                    colname='geoid'))
         for colname, datacol in datacols.iteritems():
             if colname.endswith('pop'):
-                #session.add(BMDColumnTag(tag=population_tag,
-                #                         column=datacol))
                 datacol.tags.append(TagTarget(population_tag))
+                datacol.tags.append(TagTarget(source_tag))
             for table in tables.values():
                 coltable = BMDColumnTable(column=datacol,
                                           table=table,
@@ -98,7 +99,7 @@ def test_tags_in_columns():
     populate()
     with session_scope() as session:
         column = session.query(BMDColumn).get('"us.census.acs".total_pop')
-        assert_equals(['population'], [tag.name for tag in column.tags])
+        assert_equals(['US Census', 'population'], sorted([tag.name for tag in column.tags]))
 
 
 @with_setup(setup, teardown)
@@ -109,7 +110,11 @@ def test_columns_in_tags():
     populate()
     with session_scope() as session:
         tag = session.query(BMDTag).get('population')
+        tag2 = session.query(BMDTag).get('us_census')
         assert_equals(3, len(tag.columns))
+        assert_equals(3, len(tag2.columns))
+        assert_equals(tag.type, 'catalog')
+        assert_equals(tag2.type, 'source')
 
 
 @with_setup(setup, teardown)
@@ -158,9 +163,9 @@ def test_delete_tag_deletes_relevant_related_objects():
     populate()
     with session_scope() as session:
         assert_equals(session.query(BMDColumn).count(), 6)
-        assert_equals(session.query(BMDColumnTag).count(), 3)
-        assert_equals(session.query(BMDTag).count(), 1)
+        assert_equals(session.query(BMDColumnTag).count(), 6)
+        assert_equals(session.query(BMDTag).count(), 2)
         session.delete(session.query(BMDTag).get('population'))
         assert_equals(session.query(BMDColumn).count(), 6)
-        assert_equals(session.query(BMDTag).count(), 0)
-        assert_equals(session.query(BMDColumnTag).count(), 0)
+        assert_equals(session.query(BMDColumnTag).count(), 3)
+        assert_equals(session.query(BMDTag).count(), 1)

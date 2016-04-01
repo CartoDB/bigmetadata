@@ -181,6 +181,7 @@ class BMDTag(Base):
     id = Column(String, primary_key=True)
 
     name = Column(String, nullable=False)
+    type = Column(String, nullable=False)
     description = Column(String)
 
     #columns = relationship("BMDColumnTag", back_populates="tag", cascade="all,delete")

@@ -94,7 +94,7 @@ def test_column_target_relations_create_update():
         assert_equals(session.query(BMDColumn).count(), 0)
         col.update_or_create(session)
         rawcol = col._column
-        tag = BMDTag(id='tag', name='some tag', description='some tag')
+        tag = BMDTag(id='tag', name='some tag', description='some tag', type='some type')
         session.add(tag)
         rawcol.tags.append(TagTarget(tag))
         session.add(rawcol)
@@ -267,9 +267,11 @@ class TestTagsTask(TagsTask):
         return [
             BMDTag(id='denominator',
                    name='Denominator',
+                   type='catalog',
                    description='Use these to provide a baseline for comparison between different areas.'),
             BMDTag(id='population',
                    name='Population',
+                   type='catalog',
                    description='')
         ]
 
