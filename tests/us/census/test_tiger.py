@@ -16,6 +16,8 @@ from nose.tools import assert_equals, with_setup, assert_false, assert_true
 from tasks.meta import (Base)
 from tasks.us.census.tiger import GeoidColumns, GeomColumns
 
+from tests.util import runtask
+
 
 def setup():
     Base.metadata.drop_all()
@@ -28,16 +30,10 @@ def teardown():
 
 @with_setup(setup, teardown)
 def test_geom_columns_run():
-    task = GeomColumns()
-    for dep in task.deps():
-        dep.run()
-    task.run()
+    runtask(GeomColumns())
 
 
 @with_setup(setup, teardown)
 def test_geoid_columns_run():
-    task = GeoidColumns()
-    for dep in task.deps():
-        dep.run()
-    task.run()
+    runtask(GeoidColumns())
 

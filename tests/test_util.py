@@ -6,6 +6,7 @@ from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask
                         TableTarget, TagTarget, TagsTask)
 from tasks.meta import (session_scope, BMDColumn, Base, BMDColumnTable, BMDTag,
                         BMDTable, BMDColumnTag, BMDColumnToColumn, metadata)
+from tests.util import runtask
 
 
 def setup():
@@ -21,14 +22,6 @@ def test_underscore_slugify():
     assert_equals(underscore_slugify('"path.to.schema"."ClassName(param1=100, param2=foobar)"'),
                   'path_to_schema_class_name_param1_100_param2_foobar'
                  )
-
-
-def runtask(task):
-    if task.complete():
-        return
-    for dep in task.deps():
-        runtask(dep)
-    task.run()
 
 #def test_slug_column():
 #    assert_equals(slug_column('Population'), 'pop')

@@ -18,6 +18,8 @@ from tasks.meta import (BMDColumnTable, BMDColumn, BMDColumnToColumn, BMDTable,
 
 from tasks.us.census.lodes import WorkplaceAreaCharacteristicsColumns
 
+from tests.util import runtask
+
 
 def setup():
     Base.metadata.drop_all()
@@ -30,8 +32,5 @@ def teardown():
 
 @with_setup(setup, teardown)
 def test_wac_columns_run():
-    task = WorkplaceAreaCharacteristicsColumns()
-    for dep in task.deps():
-        dep.run()
-    task.run()
+    runtask(WorkplaceAreaCharacteristicsColumns())
 
