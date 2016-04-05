@@ -82,28 +82,25 @@ class OBSColumnTable(Base):
 
 
 def tag_creator(tagtarget):
-    #tag = tagtarget.get(current_session()) #or tagtarget._tag
     tag = tagtarget._tag
-    return OBSColumnTag(tag=tag)
+    return OBSColumnTag(tag_id=tag.id)
 
 
 def targets_creator(coltarget_or_col, reltype):
     if isinstance(coltarget_or_col, OBSColumn):
+        session = current_session()
         col = coltarget_or_col
     else:
-        #col = coltarget_or_col.get(current_session()) #or coltarget_or_col._column
         col = coltarget_or_col._column
-    #return OBSColumnToColumn(target=col, reltype=reltype)
     return OBSColumnToColumn(target=col, reltype=reltype)
 
 
 def sources_creator(coltarget_or_col, reltype):
     if isinstance(coltarget_or_col, OBSColumn):
+        session = current_session()
         col = coltarget_or_col
     else:
-        #col = coltarget_or_col.get(current_session()) #or coltarget_or_col._column
         col = coltarget_or_col._column
-    #return OBSColumnToColumn(source=col, reltype=reltype)
     return OBSColumnToColumn(source=col, reltype=reltype)
 
 

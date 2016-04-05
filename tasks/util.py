@@ -304,19 +304,17 @@ class ColumnTarget(Target):
         '''
         Return a copy of the underlying OBSColumn in the specified session.
         '''
-        with session.no_autoflush:
-            return session.query(OBSColumn).get(self._id)
+        return session.query(OBSColumn).get(self._id)
 
     def update_or_create(self):
         session = current_session()
         if self._column in session:
             pass
-        #elif self.get(session):
+        elif self.get(session):
+            self._column = session.merge(self._column)
         else:
-            with session.no_autoflush:
-                self._column = session.merge(self._column)
-        #else:
-        #    session.add(self._column)
+            #self._column = session.merge(self._column)
+            session.add(self._column)
 
     def exists(self):
         existing = self.get(current_session())
@@ -338,20 +336,17 @@ class TagTarget(Target):
         '''
         Return a copy of the underlying OBSColumn in the specified session.
         '''
-        with session.no_autoflush:
-            return session.query(OBSTag).get(self._id)
+        return session.query(OBSTag).get(self._id)
 
     def update_or_create(self):
         session = current_session()
         if self._tag in session:
             pass
+        elif self.get(session):
+            self._tag = session.merge(self._tag)
         else:
-            with session.no_autoflush:
-                self._tag = session.merge(self._tag)
-        #elif self.get(session):
-        #    self._tag = session.merge(self._tag)
-        #else:
-        #    session.add(self._tag)
+            #self._tag = session.merge(self._tag)
+            session.add(self._tag)
 
     def exists(self):
         session = current_session()
@@ -405,8 +400,7 @@ class TableTarget(Target):
         '''
         Return a copy of the underlying OBSTable in the specified session.
         '''
-        with session.no_autoflush:
-            return session.query(OBSTable).get(self._id)
+        return session.query(OBSTable).get(self._id)
 
     def update_or_create(self):
 
@@ -476,7 +470,7 @@ class ColumnsTask(Task):
         for col_key, col in self.columns().iteritems():
             if not col.version:
                 col.version = self.version()
-            output[col_key] = ColumnTarget(classpath(self), col.id, col, self)
+            output[col_key] = ColumnTarget(classpath(self), col_key, col, self)
         return output
 
 

@@ -1,5 +1,5 @@
 requests==2.8.1
-luigi==2.0.0
+luigi==2.1.0
 pylint
 psycopg2
 ujson
@@ -7,5 +7,5 @@ nose
 mock
 python-daemon
 python-slugify
-sqlalchemy==git+https://github.com/zzzeek/sqlalchemy.git@rel_1_1
+git+https://github.com/zzzeek/sqlalchemy.git@rel_1_1#egg=Package
 sphinx

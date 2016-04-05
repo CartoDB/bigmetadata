@@ -80,16 +80,19 @@ class RawGeometry(Task):
 
 class GeometryColumns(ColumnsTask):
 
+    def version(self):
+        return '2'
+
     def columns(self):
         cusec_geom = OBSColumn(
-            id='cusec_geom',
+            #id='cusec_geom',
             name=u'Secci\xf3n Censal',
             type="Geometry",
             weight=10,
             description='The finest division of the Spanish Census.'
         )
         cusec_id = OBSColumn(
-            id='cusec_id',
+            #id='cusec_id',
             name=u"Secci\xf3n Censal",
             type="Text",
             targets={
@@ -210,6 +213,9 @@ class FiveYearPopulationParse(Task):
 
 class FiveYearPopulationColumns(ColumnsTask):
 
+    def version(self):
+        return '0'
+
     def requires(self):
         return {
             'tags': Tags()
@@ -218,7 +224,7 @@ class FiveYearPopulationColumns(ColumnsTask):
     def columns(self):
         tags = self.input()['tags']
         total_pop = OBSColumn(
-            id='total_pop',
+            #id='total_pop',
             type='Numeric',
             name='Total Population',
             description='The total number of all people living in a geographic area.',
@@ -228,7 +234,7 @@ class FiveYearPopulationColumns(ColumnsTask):
         )
         columns = OrderedDict([
             ('gender', OBSColumn(
-                id='gender',
+                #id='gender',
                 type='Text',
                 name='Gender',
                 weight=0
@@ -240,7 +246,7 @@ class FiveYearPopulationColumns(ColumnsTask):
             end = start + 4
             _id = 'pop_{start}_{end}'.format(start=start, end=end)
             columns[_id] = OBSColumn(
-                id=_id,
+                #id=_id,
                 type='Numeric',
                 name='Population age {start} to {end}'.format(
                     start=start, end=end),
@@ -248,7 +254,7 @@ class FiveYearPopulationColumns(ColumnsTask):
                 tags=[tags['demographics']]
             )
         columns['pop_100_more'] = OBSColumn(
-            id='pop_100_more',
+            #id='pop_100_more',
             type='Numeric',
             name='Population age 100 or more'.format(
                 start=start, end=end),
