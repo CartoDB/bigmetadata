@@ -88,7 +88,6 @@ def tag_creator(tagtarget):
 
 def targets_creator(coltarget_or_col, reltype):
     if isinstance(coltarget_or_col, OBSColumn):
-        session = current_session()
         col = coltarget_or_col
     else:
         col = coltarget_or_col._column
@@ -97,7 +96,6 @@ def targets_creator(coltarget_or_col, reltype):
 
 def sources_creator(coltarget_or_col, reltype):
     if isinstance(coltarget_or_col, OBSColumn):
-        session = current_session()
         col = coltarget_or_col
     else:
         col = coltarget_or_col._column

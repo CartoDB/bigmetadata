@@ -312,6 +312,15 @@ class ColumnTarget(Target):
             pass
         elif self.get(session):
             self._column = session.merge(self._column)
+            session.add(self._column)
+            if self._column.targets:
+                # fix missing sources in association_proxy... very weird
+                # bug
+                for target in self._column.tgts.keys():
+                    if None in target.srcs:
+                        col2col = target.srcs.pop(None)
+                        target.srcs[col2col.source] = col2col
+
         else:
             #self._column = session.merge(self._column)
             session.add(self._column)
