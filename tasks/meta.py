@@ -4,11 +4,11 @@ meta.py
 functions for persisting metadata about tables loaded via ETL
 '''
 
-from contextlib import contextmanager
 import os
 import re
 
-from luigi import Task, BooleanParameter, Target
+import luigi
+from luigi import Task, BooleanParameter, Target, Event
 
 from sqlalchemy import (Column, Integer, String, Boolean, MetaData,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
@@ -21,7 +21,6 @@ from sqlalchemy.orm import relationship, sessionmaker, composite, backref
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm.collections import attribute_mapped_collection, InstrumentedList
 from sqlalchemy.types import UserDefinedType
-
 
 
 _engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
@@ -54,8 +53,6 @@ def get_engine():
 metadata = MetaData(get_engine())
 Base = declarative_base(metadata=metadata)
 
-Session = sessionmaker(bind=get_engine())
-
 
 class Geometry(UserDefinedType):
     def get_col_spec(self):
@@ -85,20 +82,18 @@ class OBSColumnTable(Base):
 
 
 def tag_creator(tagtarget):
-    with session_scope() as session:
-        with session.no_autoflush:
-            tag = tagtarget.get(session) or tagtarget._tag
-            return OBSColumnTag(tag_id=tag.id)
-            #return tag
+    #tag = tagtarget.get(current_session()) #or tagtarget._tag
+    tag = tagtarget._tag
+    return OBSColumnTag(tag=tag)
 
 
 def targets_creator(coltarget_or_col, reltype):
     if isinstance(coltarget_or_col, OBSColumn):
         col = coltarget_or_col
     else:
-        with session_scope() as session:
-            with session.no_autoflush:
-                col = coltarget_or_col.get(session) or coltarget_or_col._column
+        #col = coltarget_or_col.get(current_session()) #or coltarget_or_col._column
+        col = coltarget_or_col._column
+    #return OBSColumnToColumn(target=col, reltype=reltype)
     return OBSColumnToColumn(target=col, reltype=reltype)
 
 
@@ -106,9 +101,9 @@ def sources_creator(coltarget_or_col, reltype):
     if isinstance(coltarget_or_col, OBSColumn):
         col = coltarget_or_col
     else:
-        with session_scope() as session:
-            with session.no_autoflush:
-                col = coltarget_or_col.get(session) or coltarget_or_col._column
+        #col = coltarget_or_col.get(current_session()) #or coltarget_or_col._column
+        col = coltarget_or_col._column
+    #return OBSColumnToColumn(source=col, reltype=reltype)
     return OBSColumnToColumn(source=col, reltype=reltype)
 
 
@@ -153,11 +148,12 @@ class OBSColumn(Base):
                                # these together across geoms: AVG, SUM etc.
 
     tables = relationship("OBSColumnTable", back_populates="column", cascade="all,delete")
-    #tags = relationship("OBSColumnTag", back_populates="column", cascade="all,delete")
     tags = association_proxy('column_column_tags', 'tag', creator=tag_creator)
 
     targets = association_proxy('tgts', 'reltype', creator=targets_creator)
     sources = association_proxy('srcs', 'reltype', creator=sources_creator)
+
+    version = Column(String, default='0', nullable=False)
 
 
 # We should have one of these for every table we load in through the ETL
@@ -174,6 +170,8 @@ class OBSTable(Base):
     bounds = Column(String)
     description = Column(String)
 
+    version = Column(String, default='0', nullable=False)
+
 
 class OBSTag(Base):
     __tablename__ = 'obs_tag'
@@ -184,8 +182,9 @@ class OBSTag(Base):
     type = Column(String, nullable=False)
     description = Column(String)
 
-    #columns = relationship("OBSColumnTag", back_populates="tag", cascade="all,delete")
     columns = association_proxy('tag_column_tags', 'column')
+
+    version = Column(String, default='0', nullable=False)
 
 
 class OBSColumnTag(Base):
@@ -206,18 +205,132 @@ class OBSColumnTag(Base):
                       )
 
 
-@contextmanager
-def session_scope():
-    """Provide a transactional scope around a series of operations."""
-    session = sessionmaker(bind=get_engine())()
+class CurrentSession(object):
+
+    def __init__(self):
+        self._session = None
+
+    def begin(self):
+        if not self._session:
+            self._session = sessionmaker(bind=get_engine())()
+
+    def get(self):
+        if not self._session:
+            self.begin()
+        return self._session
+
+    def commit(self):
+        try:
+            self._session.commit()
+        except:
+            self._session.rollback()
+            raise
+        finally:
+            self._session.expunge_all()
+            self._session.close()
+            self._session = None
+
+    def rollback(self):
+        try:
+            self._session.rollback()
+        except:
+            raise
+        finally:
+            self._session.expunge_all()
+            self._session.close()
+            self._session = None
+
+    #def __init__(self):
+    #    self._sessiondict = {}
+
+    #def begin(self, task):
+    #    if task.task_id in self._sessiondict:
+    #        pass
+    #    else:
+    #        self._sessiondict[task.task_id] = sessionmaker(bind=get_engine())()
+
+    #def get(self, task):
+    #    if task.task_id not in self._sessiondict:
+    #        self.begin(task)
+    #    return self._sessiondict[task.task_id]
+
+    #def commit(self, task):
+    #    self._sessiondict[task.task_id].commit()
+    #    self._sessiondict[task.task_id].close()
+    #    del self._sessiondict[task.task_id]
+
+    #def rollback(self, task):
+    #    self._sessiondict[task.task_id].rollback()
+    #    self._sessiondict[task.task_id].close()
+    #    del self._sessiondict[task.task_id]
+
+
+#class ReadOnlySession(object):
+#
+#    def __init__(self):
+#        self.session = None
+#
+#    def begin(self):
+#        self.session = sessionmaker(bind=get_engine(), autoflush=False,
+#                                    autocommit=False)()
+#        self.session.flush = abort_ro
+#
+#    def close(self):
+#        self.session.rollback()
+#        self.session.close()
+
+
+def abort_ro(*args, **kwargs):
+    '''
+    the terrible consequences for trying
+    to flush to the db
+    '''
+    print 'Read-only session only available between tasks.  ' \
+            'Cannot write to DB outside a task\'s run()'
+
+
+_current_session = CurrentSession()
+#_readonly_session = ReadOnlySession()
+#_readonly_session.begin()
+
+
+#def current_session(task):
+#    session = _current_session.get(task)
+def current_session():
+    return _current_session.get()
+
+
+# set up session lifecycle in tasks
+@luigi.Task.event_handler(Event.START)
+def session_begin(task):
+    '''
+    create new session and make available globally
+    '''
+    print 'begin'
+    _current_session.begin()
+
+
+@luigi.Task.event_handler(Event.SUCCESS)
+def session_commit(task):
+    '''
+    commit the global session
+    '''
+    print 'commit'
     try:
-        yield session
-        session.commit()
-    except:
-        session.rollback()
-        raise
-    finally:
-        session.close()
+        _current_session.commit()
+    except Exception as err:
+        import pdb
+        pdb.set_trace()
+        print err
+
+
+@luigi.Task.event_handler(Event.FAILURE)
+def session_rollback(task, exception):
+    '''
+    rollback the global session
+    '''
+    print 'rollback: {}'.format(exception)
+    _current_session.rollback()
 
 
 def fromkeys(d, l):

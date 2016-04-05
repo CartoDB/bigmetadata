@@ -2,23 +2,21 @@
 Test metadata functions
 '''
 
-from tasks.util import shell
+
+from nose.tools import assert_equals, with_setup, assert_raises
+from tasks.meta import (OBSColumnTable, OBSColumn, OBSTable,
+                        OBSTag, OBSColumnTag, Base, current_session)
+from tasks.util import ColumnTarget, TagTarget, shell
+
+from tests.util import setup, teardown
 
 # TODO clean this up in a more general init script
 try:
     shell('createdb test')
 except:
     pass
+from tests.util import session_scope
 
-from nose.tools import assert_equals, with_setup
-from tasks.meta import (OBSColumnTable, OBSColumn, OBSTable,
-                        OBSTag, OBSColumnTag, Base)
-from tasks.util import session_scope, ColumnTarget, TagTarget
-
-
-def setup():
-    Base.metadata.drop_all()
-    Base.metadata.create_all()
 
 def populate():
     with session_scope() as session:
@@ -63,10 +61,6 @@ def populate():
             session.add(datacol)
         for table in tables.values():
             session.add(table)
-
-
-def teardown():
-    Base.metadata.drop_all()
 
 
 @with_setup(setup, teardown)
@@ -169,3 +163,8 @@ def test_delete_tag_deletes_relevant_related_objects():
         assert_equals(session.query(OBSColumn).count(), 6)
         assert_equals(session.query(OBSColumnTag).count(), 3)
         assert_equals(session.query(OBSTag).count(), 1)
+
+
+def test_global_session_raises():
+    with assert_raises(Exception):
+        current_session()

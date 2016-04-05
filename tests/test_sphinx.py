@@ -4,17 +4,8 @@ Test sphinx implementation
 
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
-from tasks.meta import session_scope, OBSTag, OBSColumn, Base
+from tasks.meta import session_scope, OBSTag, OBSColumn, Base, setup, teardown
 from tasks.sphinx import GenerateRST
-
-
-def setup():
-    Base.metadata.drop_all()
-    Base.metadata.create_all()
-
-
-def teardown():
-    Base.metadata.drop_all()
 
 
 def populate(session):

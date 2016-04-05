@@ -4,18 +4,11 @@ from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_is_none)
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
                         TableTarget, TagTarget, TagsTask)
-from tasks.meta import (session_scope, OBSColumn, Base, OBSColumnTable, OBSTag,
+from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
-from tests.util import runtask
+from tests.util import runtask, session_scope
+from tests.util import setup, teardown
 
-
-def setup():
-    Base.metadata.drop_all()
-    Base.metadata.create_all()
-
-
-def teardown():
-    Base.metadata.drop_all()
 
 
 def test_underscore_slugify():
@@ -191,6 +184,7 @@ def test_table_target_many_inits():
         sqlalchemy_table = metadata.tables[table_id]
         assert_equals(len(sqlalchemy_table.columns), 2)
 
+    table_target.exists()
     assert_equals(True, table_target.exists())
     assert_equals(table_target.table.schema, 'test')
     assert_equals(table_target.table.name, 'foobar')
@@ -333,7 +327,7 @@ class TestTableTask(TableTask):
     def timespan(self):
         return ''
 
-    def runsession(self, session):
+    def populate(self):
         pass
 
 

@@ -14,21 +14,18 @@ except:
 from nose.tools import assert_equals, with_setup, assert_false, assert_true
 
 from tasks.meta import (OBSColumnTable, OBSColumn, OBSColumnToColumn, OBSTable,
-                        OBSTag, OBSColumnTag, Base, session_scope)
+                        OBSTag, OBSColumnTag, Base)
 from tasks.us.census.acs import Columns, Extract
 
-from tests.util import runtask
-
-
-def setup():
-    Base.metadata.drop_all()
-    Base.metadata.create_all()
-
-
-def teardown():
-    Base.metadata.drop_all()
+from tests.util import runtask, setup, teardown
 
 
 @with_setup(setup, teardown)
 def test_acs_columns_run():
-    runtask(Columns())
+    task = Columns()
+    assert_equals(False, task.complete())
+    runtask(task)
+    assert_equals(True, task.complete())
+    #import pdb
+    #pdb.set_Trace()
+    #assert_equals(False, results.empty())

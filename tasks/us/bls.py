@@ -311,31 +311,3 @@ class QCEW(SessionTask):
                          industry_code=naics_industry_code().name
                      ), )[0]
             session.execute(query)
-
-
-class ExportQCEW(Task):
-
-    year = Parameter()
-    qtr = Parameter()
-    force = BooleanParameter(default=False)
-
-    def requires(self):
-        return {
-            'tiger': ProcessTiger(year=2013),
-            'qcew': QCEW(year=self.year, qtr=self.qtr)
-        }
-
-    def run(self):
-        query = 'SELECT geoid, geom, qcew.* FROM ' \
-                '{qcew} qcew, {tiger} tiger ' \
-                'WHERE tiger.geoid = qcew.area_fips'.format(
-                    qcew=self.input()['qcew'],
-                    tiger='tiger2013.county'
-                )
-        sql_to_cartodb_table(self.output(), query)
-
-    def output(self):
-        target = CartoDBTarget(slug_column(str(self.input()['qcew'])))
-        if self.force and target.exists():
-            target.remove()
-        return target

@@ -19,19 +19,22 @@ from psycopg2 import ProgrammingError
 
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
-                        session_scope, ColumnTarget, ColumnsTask, TagsTask)
+                        ColumnTarget, ColumnsTask, TagsTask)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
 from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
                                    SUMLEVELS_BY_SLUG, ShorelineClipTiger)
 from tasks.us.census.segments import SegmentTags
 
-from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable)
-from tasks.tags import Tags as GeneralTags
+from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
+from tasks.tags import CategoryTags
 
 LOGGER = get_logger(__name__)
 
 
-class Tags(TagsTask):
+class ACSTags(TagsTask):
+
+    def version(self):
+        return '0'
 
     def tags(self):
         return [
@@ -46,10 +49,13 @@ class Columns(ColumnsTask):
 
     def requires(self):
         return {
-            'tags': GeneralTags(),
-            'censustags': Tags(),
+            'tags': CategoryTags(),
+            'censustags': ACSTags(),
             'segmenttags': SegmentTags()
         }
+
+    def version(self):
+        return '1'
 
     def columns(self):
         tags = self.input()['tags']
@@ -979,9 +985,9 @@ class Extract(TableTask):
                                         end=int(self.year))
 
     def bounds(self):
+        session = current_session()
         if self.input()['tigerdata'].exists():
-            with session_scope() as session:
-                return self.input()['tigerdata'].get(session).bounds
+            return self.input()['tigerdata'].get(session).bounds
 
     def columns(self):
         cols = OrderedDict([
@@ -991,10 +997,11 @@ class Extract(TableTask):
             cols[colkey] = col
         return cols
 
-    def runsession(self, session):
+    def populate(self):
         '''
         load relevant columns from underlying census tables
         '''
+        session = current_session()
         sumlevel = SUMLEVELS_BY_SLUG[self.geography]['summary_level']
         colids = []
         colnames = []

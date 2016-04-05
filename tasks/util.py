@@ -22,7 +22,7 @@ from luigi.postgres import PostgresTarget
 from sqlalchemy import Table, types, Column
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry,
-                        OBSColumnTable, OBSTag, session_scope)
+                        OBSColumnTable, OBSTag, current_session)
 
 
 def get_logger(name):
@@ -94,21 +94,23 @@ def query_cartodb(query):
     return resp
 
 
-def sql_to_cartodb_table(tablename, query):
+def sql_to_cartodb_table(outname, localname):
     '''
-    Move the results of the specified query to cartodb
+    Move the specified table to cartodb
     '''
     api_key = os.environ['CARTODB_API_KEY']
-    query = query.replace("'", '\'"\'"\'')
-    private_tablename = tablename + '_private'
+    private_outname = outname + '_private'
+    schema = '.'.join(localname.split('.')[0:-1]).replace('"', '')
+    tablename = localname.split('.')[-1]
     cmd = u'''
 ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -f CartoDB "CartoDB:observatory" \
         -overwrite \
         -nlt GEOMETRY \
-        -nln "{private_tablename}" \
-        PG:"dbname=$PGDATABASE" -sql '{sql}'
-    '''.format(private_tablename=private_tablename, sql=query)
+        -nln "{private_outname}" \
+        PG:dbname=$PGDATABASE' active_schema={schema}' '{tablename}'
+    '''.format(private_outname=private_outname, tablename=tablename,
+               schema=schema)
     print cmd
     shell(cmd)
     print 'copying via import api'
@@ -116,8 +118,8 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         url=os.environ['CARTODB_URL'],
         api_key=api_key
     ), json={
-        'table_name': tablename,
-        'table_copy': private_tablename,
+        'table_name': outname,
+        'table_copy': private_outname,
         'create_vis': False,
         'type_guessing': False,
         'privacy': 'public'
@@ -137,7 +139,7 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         print resp.json()['state']
         time.sleep(1)
 
-    resp = query_cartodb('DROP TABLE "{}"'.format(private_tablename))
+    resp = query_cartodb('DROP TABLE "{}"'.format(private_outname))
     assert resp.status_code == 200
 
 
@@ -289,12 +291,13 @@ class ColumnTarget(Target):
     '''
     '''
 
-    def __init__(self, schema, name, column):
+    def __init__(self, schema, name, column, task):
         self.schema = schema
         self.name = name
         self._id = '"{schema}".{name}'.format(schema=schema, name=name)
         column.id = self._id
         #self._id = column.id
+        self._task = task
         self._column = column
 
     def get(self, session):
@@ -304,28 +307,32 @@ class ColumnTarget(Target):
         with session.no_autoflush:
             return session.query(OBSColumn).get(self._id)
 
-    def update_or_create(self, session):
-        #session.merge(self._column)
-        existing = self.get(session)
-        if existing:
-            for key, val in self._column.__dict__.iteritems():
-                if not key.startswith('_'):
-                    setattr(existing, key, val)
+    def update_or_create(self):
+        session = current_session()
+        if self._column in session:
+            pass
+        #elif self.get(session):
         else:
-            session.add(self._column)
+            with session.no_autoflush:
+                self._column = session.merge(self._column)
+        #else:
+        #    session.add(self._column)
 
     def exists(self):
-        with session_scope() as session:
-            return self.get(session) is not None
+        existing = self.get(current_session())
+        if existing and existing.version == (self._column.version or '0'):
+            return True
+        return False
 
 
 class TagTarget(Target):
     '''
     '''
 
-    def __init__(self, tag):
+    def __init__(self, tag, task):
         self._id = tag.id
         self._tag = tag
+        self._task = task
 
     def get(self, session):
         '''
@@ -334,23 +341,29 @@ class TagTarget(Target):
         with session.no_autoflush:
             return session.query(OBSTag).get(self._id)
 
-    def update_or_create(self, session):
-        existing = self.get(session)
-        if existing:
-            for key, val in self._tag.__dict__.iteritems():
-                if not key.startswith('_'):
-                    setattr(existing, key, val)
+    def update_or_create(self):
+        session = current_session()
+        if self._tag in session:
+            pass
         else:
-            session.add(self._tag)
+            with session.no_autoflush:
+                self._tag = session.merge(self._tag)
+        #elif self.get(session):
+        #    self._tag = session.merge(self._tag)
+        #else:
+        #    session.add(self._tag)
 
     def exists(self):
-        with session_scope() as session:
-            return self.get(session) is not None
+        session = current_session()
+        existing = self.get(session)
+        if existing and existing.version == (self._tag.version or '0'):
+            return True
+        return False
 
 
 class TableTarget(Target):
 
-    def __init__(self, schema, name, obs_table, columns):
+    def __init__(self, schema, name, obs_table, columns, task):
         '''
         columns: should be an ordereddict if you want to specify columns' order
         in the table
@@ -364,14 +377,11 @@ class TableTarget(Target):
         self._obs_table = obs_table
         self._obs_dict = obs_table.__dict__.copy()
         self._columns = columns
+        self._task = task
         if self._id_noquote in metadata.tables:
             self.table = metadata.tables[self._id_noquote]
         else:
             self.table = None
-        with session_scope() as session:
-            session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
-                schema=self._schema))
-            session.flush()
 
     def sync(self):
         '''
@@ -384,25 +394,10 @@ class TableTarget(Target):
         We always want to run this at least once, because we can always
         regenerate tabular data from scratch.
         '''
-        with session_scope() as session:
-            with session.no_autoflush:
-                if self.get(session) is None:
-                    return False
-                old_dict = self.get(session).__dict__.copy()
-                new_dict = self._obs_dict.copy()
-                old_dict.pop('_sa_instance_state')
-                new_dict.pop('_sa_instance_state')
-                for key, val in old_dict.iteritems():
-                    if key == 'id':
-                        continue
-                    if val is None:
-                        new_dict[key] = val
-                    if key not in new_dict:
-                        new_dict[key] = None
-                for key, val in new_dict.items():
-                    if isinstance(val, list):
-                        new_dict.pop(key)
-                return new_dict == old_dict
+        existing = self.get(current_session())
+        if existing and existing.version == (self._obs_table.version or '0'):
+            return True
+        return False
 
         #return self._id_noquote in metadata.tables
 
@@ -413,17 +408,20 @@ class TableTarget(Target):
         with session.no_autoflush:
             return session.query(OBSTable).get(self._id)
 
-    def update_or_create(self, session):
+    def update_or_create(self):
+
+        session = current_session()
+        session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+            schema=self._schema))
 
         # replace metadata table
-        obs_table = self.get(session)
-        if obs_table:
-            for key, val in self._obs_table.__dict__.iteritems():
-                if not key.startswith('_'):
-                    setattr(obs_table, key, val)
+        if self._obs_table in session:
+            pass
+        elif self.get(session):
+            self._obs_table = session.merge(self._obs_table)
         else:
             session.add(self._obs_table)
-            obs_table = self._obs_table
+        obs_table = self._obs_table
 
         # create new local data table
         columns = []
@@ -467,14 +465,18 @@ class ColumnsTask(Task):
         raise NotImplementedError('Must return iterable of OBSColumns')
 
     def run(self):
-        with session_scope() as session:
-            for _, coltarget in self.output().iteritems():
-                coltarget.update_or_create(session)
+        for _, coltarget in self.output().iteritems():
+            coltarget.update_or_create()
+
+    def version(self):
+        return '0'
 
     def output(self):
         output = OrderedDict({})
         for col_key, col in self.columns().iteritems():
-            output[col_key] = ColumnTarget(classpath(self), col.id, col)
+            if not col.version:
+                col.version = self.version()
+            output[col_key] = ColumnTarget(classpath(self), col.id, col, self)
         return output
 
 
@@ -489,16 +491,20 @@ class TagsTask(Task):
         raise NotImplementedError('Must return iterable of OBSTags')
 
     def run(self):
-        with session_scope() as session:
-            for _, tagtarget in self.output().iteritems():
-                tagtarget.update_or_create(session)
+        for _, tagtarget in self.output().iteritems():
+            tagtarget.update_or_create()
+
+    def version(self):
+        return '0'
 
     def output(self):
         output = {}
         for tag in self.tags():
             orig_id = tag.id
             tag.id = '"{}".{}'.format(classpath(self), orig_id)
-            output[orig_id] = TagTarget(tag)
+            if not tag.version:
+                tag.version = self.version()
+            output[orig_id] = TagTarget(tag, self)
         return output
 
 
@@ -509,9 +515,7 @@ class TableToCarto(Task):
     outname = Parameter(default=None)
 
     def run(self):
-        sql_to_cartodb_table(self.output().tablename, 'SELECT * FROM {table}'.format(
-            table=self.table
-        ))
+        sql_to_cartodb_table(self.output().tablename, self.table)
         self.force = False
 
     def output(self):
@@ -532,24 +536,27 @@ def camel_to_underscore(name):
 
 class TableTask(Task):
     '''
-    A Task whose `runsession` and `columns` methods should be overriden, and
+    A Task whose `populate` and `columns` methods should be overriden, and
     executes creating a single output table defined by its name, path, and
     defined columns.
     '''
 
-    def __init__(self, *args, **kwargs):
-        super(TableTask, self).__init__(*args, **kwargs)
-        # Make sure everything is defined
-        self.columns()
-        self.timespan()
-        self.bounds()
+    #def __init__(self, *args, **kwargs):
+    #    super(TableTask, self).__init__(*args, **kwargs)
+    #    # Make sure everything is defined
+    #    self.columns()
+    #    self.timespan()
+    #    self.bounds()
+
+    def version(self):
+        return '0'
 
     def columns(self):
         raise NotImplementedError('Must implement columns method that returns '
                                    'a dict of ColumnTargets')
 
-    def runsession(self, session):
-        raise NotImplementedError('Must implement runsession method that '
+    def populate(self):
+        raise NotImplementedError('Must implement populate method that '
                                    'populates the table')
 
     def description(self):
@@ -569,14 +576,14 @@ class TableTask(Task):
         return self.output().table
 
     def run(self):
-        with session_scope() as session:
-            self.output().update_or_create(session)
-            self.runsession(session)
+        self.output().update_or_create()
+        self.populate()
 
     def output(self):
         return TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
                            OBSTable(description=self.description(),
                                     bounds=self.bounds(),
+                                    version=self.version(),
                                     timespan=self.timespan()),
-                           self.columns())
+                           self.columns(), self)

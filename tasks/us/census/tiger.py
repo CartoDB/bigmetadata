@@ -14,9 +14,9 @@ from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask
                        )
-from tasks.meta import (OBSColumnTable, OBSColumn, session_scope,
+from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
                         OBSColumnTag, OBSColumnToColumn)
-from tasks.tags import Tags
+from tasks.tags import CategoryTags
 
 from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
 from psycopg2 import ProgrammingError
@@ -26,7 +26,7 @@ class GeomColumns(ColumnsTask):
 
     def requires(self):
         return {
-            'tags': Tags(),
+            'tags': CategoryTags(),
         }
 
     def columns(self):
@@ -504,10 +504,7 @@ class ExtractClippedTiger(Task):
         pass
 
     def run(self):
-        query = u'SELECT * FROM {table}'.format(
-            table=self.input().table
-        )
-        sql_to_cartodb_table(self.tablename(), query)
+        sql_to_cartodb_table(self.tablename(), self.input().table)
 
     def tablename(self):
         return self.input().table.replace('-', '_').replace('/', '_').replace('"', '').replace('.', '_')
@@ -564,14 +561,14 @@ class SumLevel(TableTask):
                 inputschema=self.input()['data'].table,
                 input_tablename=self.input_tablename,
             )
-        with session_scope() as session:
-            with session.no_autoflush:
-                return session.execute('SELECT ST_EXTENT(geom) FROM '
-                                       '{from_clause}'.format(
-                                           from_clause=from_clause
-                                       )).first()[0]
+        session = current_session()
+        return session.execute('SELECT ST_EXTENT(geom) FROM '
+                               '{from_clause}'.format(
+                                   from_clause=from_clause
+                               )).first()[0]
 
-    def runsession(self, session):
+    def populate(self):
+        session = current_session()
         if self.clipped:
             from_clause = self.input()['data'].table
         else:

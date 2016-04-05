@@ -2,7 +2,10 @@ from tasks.meta import OBSTag
 from tasks.util import TagsTask
 
 
-class Tags(TagsTask):
+class CategoryTags(TagsTask):
+
+    def version(self):
+        return '0'
 
     def tags(self):
         return [

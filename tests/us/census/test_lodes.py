@@ -14,20 +14,11 @@ except:
 from nose.tools import assert_equals, with_setup, assert_false, assert_true
 
 from tasks.meta import (OBSColumnTable, OBSColumn, OBSColumnToColumn, OBSTable,
-                        OBSTag, OBSColumnTag, Base, session_scope)
+                        OBSTag, OBSColumnTag, Base)
 
 from tasks.us.census.lodes import WorkplaceAreaCharacteristicsColumns
 
-from tests.util import runtask
-
-
-def setup():
-    Base.metadata.drop_all()
-    Base.metadata.create_all()
-
-
-def teardown():
-    Base.metadata.drop_all()
+from tests.util import runtask, setup, teardown
 
 
 @with_setup(setup, teardown)

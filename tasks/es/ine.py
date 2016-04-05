@@ -6,10 +6,10 @@ import os
 
 from collections import OrderedDict
 from luigi import Task, LocalTarget
-from tasks.meta import OBSColumn, OBSColumnToColumn, OBSTag
+from tasks.meta import OBSColumn, OBSColumnToColumn, OBSTag, current_session
 from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
-                        session_scope, ColumnTarget, ColumnsTask, TagsTask,
+                        ColumnTarget, ColumnsTask, TagsTask,
                         classpath, DefaultPostgresTarget, tablize)
 
 
@@ -19,6 +19,7 @@ class Tags(TagsTask):
         return [
             OBSTag(id='demographics',
                    name='Demographics of Spain',
+                   type='catalog',
                    description='Demographics of Spain from the INE Census')
         ]
 
@@ -51,9 +52,9 @@ class RawGeometry(Task):
         return 'raw_geometry'
 
     def run(self):
-        with session_scope() as session:
-            session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
-                schema=classpath(self)))
+        session = current_session()
+        session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+            schema=classpath(self)))
 
         cmd = 'unzip -o "{input}" -d "$(dirname {input})/$(basename {input} .zip)"'.format(
             input=self.input().path)
@@ -92,7 +93,7 @@ class GeometryColumns(ColumnsTask):
             name=u"Secci\xf3n Censal",
             type="Text",
             targets={
-                cusec_geom: 'geom_ref'
+                #cusec_geom: 'geom_ref'
             }
         )
         return OrderedDict([
@@ -118,14 +119,14 @@ class Geometry(TableTask):
     def bounds(self):
         if not self.input()['data'].exists():
             return
-        with session_scope() as session:
-            with session.no_autoflush:
-                return session.execute(
-                    'SELECT ST_EXTENT(wkb_geometry) FROM '
-                    '{input}'.format(input=self.input()['data'].table)
-                ).first()[0]
+        session = current_session()
+        return session.execute(
+            'SELECT ST_EXTENT(wkb_geometry) FROM '
+            '{input}'.format(input=self.input()['data'].table)
+        ).first()[0]
 
-    def runsession(self, session):
+    def populate(self):
+        session = current_session()
         session.execute('INSERT INTO {output} '
                         'SELECT cusec as cusec_id, '
                         '       wkb_geometry as cusec_geom '
@@ -252,7 +253,8 @@ class FiveYearPopulationColumns(ColumnsTask):
             name='Population age 100 or more'.format(
                 start=start, end=end),
             targets={total_pop: 'denominator'},
-            tags=[tags['demographics']])
+            tags=[tags['demographics']]
+        )
 
         return columns
 
@@ -277,8 +279,8 @@ class RawFiveYearPopulation(TableTask):
         if not self.input()['geotable'].exists():
             return
         else:
-            with session_scope() as session:
-                return self.input()['geotable'].get(session).bounds
+            session = current_session()
+            return self.input()['geotable'].get(session).bounds
 
     def columns(self):
         '''
@@ -292,7 +294,8 @@ class RawFiveYearPopulation(TableTask):
             cols[key] = col
         return cols
 
-    def runsession(self, session):
+    def populate(self):
+        session = current_session()
         shell("cat '{input}' | psql -c '\\copy {output} FROM STDIN WITH CSV "
               "HEADER ENCODING '\"'\"'latin1'\"'\"".format(
                   output=self.output().get(session).id,
@@ -324,7 +327,8 @@ class FiveYearPopulation(TableTask):
     def bounds(self):
         return self.requires()['data'].bounds()
 
-    def runsession(self, session):
+    def populate(self):
+        session = current_session()
         session.execute('INSERT INTO {output} '
                         'SELECT {cols} FROM {input} '
                         "WHERE gender = 'Ambos Sexos'".format(

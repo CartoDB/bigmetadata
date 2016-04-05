@@ -60,8 +60,7 @@ class ExtractDMA(Task):
         return DMA()
 
     def run(self):
-        query = u'SELECT * FROM {table}'.format(table=self.input().table)
-        sql_to_cartodb_table(self.tablename(), query)
+        sql_to_cartodb_table(self.tablename(), self.input().table)
 
     def output(self):
         target = CartoDBTarget(self.tablename())
