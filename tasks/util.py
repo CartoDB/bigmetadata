@@ -304,7 +304,8 @@ class ColumnTarget(Target):
         '''
         Return a copy of the underlying OBSColumn in the specified session.
         '''
-        return session.query(OBSColumn).get(self._id)
+        with session.no_autoflush:
+            return session.query(OBSColumn).get(self._id)
 
     def update_or_create(self):
         session = current_session()
@@ -312,7 +313,6 @@ class ColumnTarget(Target):
             pass
         elif self.get(session):
             self._column = session.merge(self._column)
-            session.add(self._column)
             if self._column.targets:
                 # fix missing sources in association_proxy... very weird
                 # bug
@@ -345,7 +345,8 @@ class TagTarget(Target):
         '''
         Return a copy of the underlying OBSColumn in the specified session.
         '''
-        return session.query(OBSTag).get(self._id)
+        with session.no_autoflush:
+            return session.query(OBSTag).get(self._id)
 
     def update_or_create(self):
         session = current_session()
@@ -409,7 +410,8 @@ class TableTarget(Target):
         '''
         Return a copy of the underlying OBSTable in the specified session.
         '''
-        return session.query(OBSTable).get(self._id)
+        with session.no_autoflush:
+            return session.query(OBSTable).get(self._id)
 
     def update_or_create(self):
 

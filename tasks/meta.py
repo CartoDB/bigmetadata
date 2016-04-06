@@ -82,23 +82,27 @@ class OBSColumnTable(Base):
 
 
 def tag_creator(tagtarget):
-    tag = tagtarget._tag
-    return OBSColumnTag(tag_id=tag.id)
+    tag = tagtarget.get(current_session())
+    return OBSColumnTag(tag=tag)
 
 
 def targets_creator(coltarget_or_col, reltype):
+    # internal to task
     if isinstance(coltarget_or_col, OBSColumn):
         col = coltarget_or_col
+    # from required task
     else:
-        col = coltarget_or_col._column
+        col = coltarget_or_col.get(current_session())
     return OBSColumnToColumn(target=col, reltype=reltype)
 
 
 def sources_creator(coltarget_or_col, reltype):
+    # internal to task
     if isinstance(coltarget_or_col, OBSColumn):
         col = coltarget_or_col
+    # from required task
     else:
-        col = coltarget_or_col._column
+        col = coltarget_or_col.get(current_session())
     return OBSColumnToColumn(source=col, reltype=reltype)
 
 
@@ -314,9 +318,8 @@ def session_commit(task):
     try:
         _current_session.commit()
     except Exception as err:
-        import pdb
-        pdb.set_trace()
         print err
+        raise
 
 
 @luigi.Task.event_handler(Event.FAILURE)
