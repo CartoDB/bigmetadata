@@ -33,6 +33,8 @@ def runtask(task):
     with Worker(scheduler=scheduler, worker_id='X') as worker:
         worker.add(task)
         worker.run()
+
+    return worker
     #q = Queue()
     #worker = TaskProcess(task, 1, Queue())
     #worker.run()
@@ -48,14 +50,3 @@ def session_scope():
     except Exception as e:
         session_rollback(None, e)
         raise
-    finally:
-        pass
-    #session = sessionmaker(bind=get_engine())()
-    #try:
-    #    yield session
-    #    session.commit()
-    #except:
-    #    session.rollback()
-    #    raise
-    #finally:
-    #    session.close()

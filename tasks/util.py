@@ -22,7 +22,8 @@ from luigi.postgres import PostgresTarget
 from sqlalchemy import Table, types, Column
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry,
-                        OBSColumnTable, OBSTag, current_session)
+                        OBSColumnTable, OBSTag, current_session,
+                        session_commit, session_rollback)
 
 
 def get_logger(name):
@@ -309,24 +310,34 @@ class ColumnTarget(Target):
 
     def update_or_create(self):
         session = current_session()
-        if self._column in session:
-            pass
-        elif self.get(session):
-            self._column = session.merge(self._column)
-            if self._column.targets:
-                # fix missing sources in association_proxy... very weird
-                # bug
-                for target in self._column.tgts.keys():
-                    if None in target.srcs:
-                        col2col = target.srcs.pop(None)
-                        target.srcs[col2col.source] = col2col
-
+        # weird_obj = session.identity_map.get((OBSColumn, ('"us.census.acs".B08006015',)))
+        # #if self._column.id == '"us.census.acs".B08006015':
+        # #    import pdb
+        # #    pdb.set_trace()
+        # #    print 'updating_or_creating weird object'
+        # if weird_obj:
+        #     print weird_obj.tgts
+        #     import pdb
+        #     pdb.set_trace()
+        #     print 'weird_object in identity_map'
+        in_session = session.identity_map.get((OBSColumn, (self._column.id, )))
+        if in_session:
+            has_in_sesion = True
+            if None in in_session.srcs:
+                col2col = in_session.srcs.pop(None)
+                in_session.srcs[col2col.reltype] = col2col
+            if None in in_session.tgts:
+                col2col = in_session.tgts.pop(None)
+                in_session.tgts[col2col.reltype] = col2col
         else:
-            #self._column = session.merge(self._column)
-            session.add(self._column)
+            had_in_session = False
+
+        self._column = session.merge(self._column)
 
     def exists(self):
         existing = self.get(current_session())
+        if existing:
+            current_session().expunge(existing)
         if existing and existing.version == (self._column.version or '0'):
             return True
         return False
@@ -349,18 +360,13 @@ class TagTarget(Target):
             return session.query(OBSTag).get(self._id)
 
     def update_or_create(self):
-        session = current_session()
-        if self._tag in session:
-            pass
-        elif self.get(session):
-            self._tag = session.merge(self._tag)
-        else:
-            #self._tag = session.merge(self._tag)
-            session.add(self._tag)
+        self._tag = current_session().merge(self._tag)
 
     def exists(self):
         session = current_session()
         existing = self.get(session)
+        if existing:
+            session.expunge(existing)
         if existing and existing.version == (self._tag.version or '0'):
             return True
         return False
@@ -400,6 +406,8 @@ class TableTarget(Target):
         regenerate tabular data from scratch.
         '''
         existing = self.get(current_session())
+        if existing:
+            current_session().expunge(existing)
         if existing and existing.version == (self._obs_table.version or '0'):
             return True
         return False
@@ -420,12 +428,7 @@ class TableTarget(Target):
             schema=self._schema))
 
         # replace metadata table
-        if self._obs_table in session:
-            pass
-        elif self.get(session):
-            self._obs_table = session.merge(self._obs_table)
-        else:
-            session.add(self._obs_table)
+        self._obs_table = session.merge(self._obs_table)
         obs_table = self._obs_table
 
         # create new local data table
@@ -469,6 +472,13 @@ class ColumnsTask(Task):
         '''
         raise NotImplementedError('Must return iterable of OBSColumns')
 
+    def on_failure(self, ex):
+        session_rollback(self, ex)
+        super(ColumnsTask, self).on_failure(ex)
+
+    def on_success(self):
+        session_commit(self)
+
     def run(self):
         for _, coltarget in self.output().iteritems():
             coltarget.update_or_create()
@@ -478,10 +488,16 @@ class ColumnsTask(Task):
 
     def output(self):
         output = OrderedDict({})
+        num_objs = len([o for o in current_session()])
         for col_key, col in self.columns().iteritems():
+            try:
+                assert num_objs == len([o for o in current_session()])
+            except:
+                import pdb
+                pdb.set_trace()
             if not col.version:
                 col.version = self.version()
-            output[col_key] = ColumnTarget(classpath(self), col_key, col, self)
+            output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
         return output
 
 
@@ -494,6 +510,13 @@ class TagsTask(Task):
         '''
         '''
         raise NotImplementedError('Must return iterable of OBSTags')
+
+    def on_failure(self, ex):
+        session_rollback(self, ex)
+        super(TagsTask, self).on_failure(ex)
+
+    def on_success(self):
+        session_commit(self)
 
     def run(self):
         for _, tagtarget in self.output().iteritems():
@@ -546,15 +569,15 @@ class TableTask(Task):
     defined columns.
     '''
 
-    #def __init__(self, *args, **kwargs):
-    #    super(TableTask, self).__init__(*args, **kwargs)
-    #    # Make sure everything is defined
-    #    self.columns()
-    #    self.timespan()
-    #    self.bounds()
-
     def version(self):
         return '0'
+
+    def on_failure(self, ex):
+        session_rollback(self, ex)
+        super(TableTask, self).on_failure(ex)
+
+    def on_success(self):
+        session_commit(self)
 
     def columns(self):
         raise NotImplementedError('Must implement columns method that returns '

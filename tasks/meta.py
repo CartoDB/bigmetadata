@@ -83,7 +83,9 @@ class OBSColumnTable(Base):
 
 def tag_creator(tagtarget):
     tag = tagtarget.get(current_session())
-    return OBSColumnTag(tag=tag)
+    coltag = OBSColumnTag(tag=tag, tag_id=tag.id)
+    current_session().expunge(tag)
+    return coltag
 
 
 def targets_creator(coltarget_or_col, reltype):
@@ -93,7 +95,7 @@ def targets_creator(coltarget_or_col, reltype):
     # from required task
     else:
         col = coltarget_or_col.get(current_session())
-    return OBSColumnToColumn(target=col, reltype=reltype)
+    return OBSColumnToColumn(reltype=reltype, target=col)
 
 
 def sources_creator(coltarget_or_col, reltype):
@@ -103,7 +105,7 @@ def sources_creator(coltarget_or_col, reltype):
     # from required task
     else:
         col = coltarget_or_col.get(current_session())
-    return OBSColumnToColumn(source=col, reltype=reltype)
+    return OBSColumnToColumn(reltype=reltype, source=col)
 
 
 class OBSColumnToColumn(Base):
@@ -219,17 +221,21 @@ class CurrentSession(object):
         return self._session
 
     def commit(self):
+        if not self._session:
+            return
         try:
             self._session.commit()
         except:
             self._session.rollback()
+            self._session.expunge_all()
             raise
         finally:
-            self._session.expunge_all()
             self._session.close()
             self._session = None
 
     def rollback(self):
+        if not self._session:
+            return
         try:
             self._session.rollback()
         except:
@@ -239,77 +245,15 @@ class CurrentSession(object):
             self._session.close()
             self._session = None
 
-    #def __init__(self):
-    #    self._sessiondict = {}
-
-    #def begin(self, task):
-    #    if task.task_id in self._sessiondict:
-    #        pass
-    #    else:
-    #        self._sessiondict[task.task_id] = sessionmaker(bind=get_engine())()
-
-    #def get(self, task):
-    #    if task.task_id not in self._sessiondict:
-    #        self.begin(task)
-    #    return self._sessiondict[task.task_id]
-
-    #def commit(self, task):
-    #    self._sessiondict[task.task_id].commit()
-    #    self._sessiondict[task.task_id].close()
-    #    del self._sessiondict[task.task_id]
-
-    #def rollback(self, task):
-    #    self._sessiondict[task.task_id].rollback()
-    #    self._sessiondict[task.task_id].close()
-    #    del self._sessiondict[task.task_id]
-
-
-#class ReadOnlySession(object):
-#
-#    def __init__(self):
-#        self.session = None
-#
-#    def begin(self):
-#        self.session = sessionmaker(bind=get_engine(), autoflush=False,
-#                                    autocommit=False)()
-#        self.session.flush = abort_ro
-#
-#    def close(self):
-#        self.session.rollback()
-#        self.session.close()
-
-
-def abort_ro(*args, **kwargs):
-    '''
-    the terrible consequences for trying
-    to flush to the db
-    '''
-    print 'Read-only session only available between tasks.  ' \
-            'Cannot write to DB outside a task\'s run()'
-
 
 _current_session = CurrentSession()
-#_readonly_session = ReadOnlySession()
-#_readonly_session.begin()
 
 
-#def current_session(task):
-#    session = _current_session.get(task)
 def current_session():
     return _current_session.get()
 
 
-# set up session lifecycle in tasks
-@luigi.Task.event_handler(Event.START)
-def session_begin(task):
-    '''
-    create new session and make available globally
-    '''
-    print 'begin'
-    _current_session.begin()
-
-
-@luigi.Task.event_handler(Event.SUCCESS)
+#@luigi.Task.event_handler(Event.SUCCESS)
 def session_commit(task):
     '''
     commit the global session
@@ -318,11 +262,13 @@ def session_commit(task):
     try:
         _current_session.commit()
     except Exception as err:
+        import pdb
+        pdb.set_trace()
         print err
         raise
 
 
-@luigi.Task.event_handler(Event.FAILURE)
+#@luigi.Task.event_handler(Event.FAILURE)
 def session_rollback(task, exception):
     '''
     rollback the global session
