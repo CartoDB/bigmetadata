@@ -488,16 +488,11 @@ class ColumnsTask(Task):
 
     def output(self):
         output = OrderedDict({})
-        num_objs = len([o for o in current_session()])
         for col_key, col in self.columns().iteritems():
-            try:
-                assert num_objs == len([o for o in current_session()])
-            except:
-                import pdb
-                pdb.set_trace()
             if not col.version:
                 col.version = self.version()
             output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
+        current_session().expunge_all()
         return output
 
 
