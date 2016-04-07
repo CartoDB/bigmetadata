@@ -492,11 +492,15 @@ class SimpleQCEW(TableTask):
     We pull out private employment at the county level, divided by three-digit
     NAICS code and supercategory (four-digits, but simpler).
 
-    agglvl 75: 3-digit by ownership
+    agglvl 74: 2-digit by ownership
     agglvl 73: superlevel by ownership
+    agglvl 71: total
     '''
     year = IntParameter()
     qtr = IntParameter()
+
+    def version(self):
+        return '1'
 
     def requires(self):
         return RawQCEW(year=self.year)
@@ -515,7 +519,7 @@ class SimpleQCEW(TableTask):
         session = current_session()
         session.execute('INSERT INTO {output} '
                         'SELECT * FROM {qcew} '
-                        "WHERE agglvl_code IN ('74', '73')"
+                        "WHERE agglvl_code IN ('74', '73', '71')"
                         "      AND year = '{year}'"
                         "      AND qtr = '{qtr}'"
                         "      AND own_code = '5'".format(
@@ -532,6 +536,9 @@ class QCEW(TableTask):
 
     year = IntParameter()
     qtr = IntParameter()
+
+    def version(self):
+        return '1'
 
     def requires(self):
         return {
