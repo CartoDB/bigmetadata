@@ -7,7 +7,8 @@ import os
 import subprocess
 
 from collections import OrderedDict
-from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag
+from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSColumnTag,
+                        current_session)
 from tasks.util import (shell, DefaultPostgresTarget, pg_cursor, classpath,
                         ColumnsTask, TableTask)
 from tasks.tags import CategoryTags
@@ -72,8 +73,7 @@ class DownloadLODESFile(Task):
             shell('rm -f {target}'.format(target=self.output().path))
 
     def output(self):
-        return LocalTarget(path=os.path.join(classpath(self), self.filename()))
-        #return DefaultPostgresTarget(self.filename())
+        return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
 
 
 class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
@@ -546,7 +546,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
         ])
 
 
-class DownloadWorkplaceAreaCharacteristics(WrapperTask):
+class DownloadWorkplaceAreaCharacteristics(Task):
     '''
     Download all WAC files available
     '''
@@ -560,6 +560,10 @@ class DownloadWorkplaceAreaCharacteristics(WrapperTask):
                                     year=self.year,
                                     state=state)
 
+    def output(self):
+        for outfile in self.input():
+            yield outfile
+
 
 class DownloadResidenceAreaCharacteristics(Task):
 
@@ -569,6 +573,10 @@ class DownloadResidenceAreaCharacteristics(Task):
         for state in STATES - MISSING_STATES.get(self.year, set()):
             yield DownloadLODESFile(filetype='rac', year=self.year,
                                     state=state, part_or_segment='S000') # all jobs
+
+    def output(self):
+        for outfile in self.input():
+            yield outfile
 
 
 class WorkplaceAreaCharacteristics(TableTask):
@@ -582,32 +590,32 @@ class WorkplaceAreaCharacteristics(TableTask):
         return {
             'data_meta': WorkplaceAreaCharacteristicsColumns(),
             'tiger_meta': GeoidColumns(),
-            'data': DownloadWorkplaceAreaCharacteristics(year=self.year)
+            'data': DownloadWorkplaceAreaCharacteristics(year=self.year),
         }
+
+    def timespan(self):
+        return unicode(self.year)
+
+    def bounds(self):
+        return '' # TODO
 
     def columns(self):
         data_columns = self.input()['data_meta']
         tiger_columns = self.input()['tiger_meta']
+        cols = OrderedDict([
+            ('w_geocode', tiger_columns['block_geoid'])
+        ])
+        cols.update(data_columns)
+        return cols
 
     def populate(self):
-        # make the table
-        cursor = pg_cursor()
-
-        cursor.connection.commit()
-
-        for infile in self.input():
+        for infile in self.input()['data']:
             # gunzip each CSV into the table
             cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
-                  r"WITH CSV HEADER'".format(input=infile.path, tablename=self.tablename())
+                  r"WITH CSV HEADER'".format(input=infile.path,
+                                             tablename=self.output().get(current_session()).id)
+            print cmd
             shell(cmd)
-
-        self.output().touch()
-
-    def output(self):
-        output = DefaultPostgresTarget(table=self.tablename())
-        if self.force:
-            output.untouch()
-        return output
 
 
 class OriginDestination(Task):
