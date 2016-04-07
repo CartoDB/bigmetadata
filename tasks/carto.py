@@ -2,7 +2,7 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import session_scope, OBSTable, Base
+from tasks.meta import current_session, OBSTable, Base
 from tasks.util import TableToCarto, underscore_slugify
 
 from luigi import WrapperTask, BooleanParameter, Parameter
@@ -40,9 +40,9 @@ class SyncData(WrapperTask):
     def requires(self):
         table_id = '"{schema}".{table}'.format(schema=self.schema,
                                                table=underscore_slugify(self.table))
-        with session_scope() as session:
-            table = session.query(OBSTable).get(table_id)
-            tablename = table.tablename
+        session = current_session()
+        table = session.query(OBSTable).get(table_id)
+        tablename = table.tablename
         return TableToCarto(table=table_id, outname=tablename, force=self.force)
 
 
@@ -52,10 +52,10 @@ class SyncAllData(WrapperTask):
 
     def requires(self):
         tables = {}
-        with session_scope() as session:
-            for table in session.query(OBSTable):
-                if should_upload(table):
-                    tables[table.id] = table.tablename
+        session = current_session()
+        for table in session.query(OBSTable):
+            if should_upload(table):
+                tables[table.id] = table.tablename
 
         for table_id, tablename in tables.iteritems():
             yield TableToCarto(table=table_id, outname=tablename, force=self.force)

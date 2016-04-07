@@ -379,6 +379,7 @@ class RawQCEWColumns(ColumnsTask):
             ))
         ])
 
+
 class DownloadQCEW(Task):
 
     year = IntParameter()
@@ -459,12 +460,13 @@ class SimpleQCEWColumns(ColumnsTask):
                                 'WHERE (LENGTH(naics_industry_code) = 4 '
                                 '  AND naics_industry_code LIKE \'10%\') '
                                 '  OR LENGTH(naics_industry_code) = 2 '
+                                '  OR naics_industry_code LIKE \'%-%\' ' # 2-digit codes sometimes hyphenated
                                 'ORDER BY naics_industry_code'.format(
                                     qcew=self.input()['qcew_data'].get(session).id))
         for code, in codes:
             name = code_to_name[code]
             for inputkey, inputcol in inputcols.iteritems():
-                key = '{name}_{key}'.format(name=underscore_slugify(name),
+                key = '{key}_naics{code}'.format(code=underscore_slugify(code),
                                             key=inputkey)
                 columns[key] = OBSColumn(
                     type=inputcol.type,
@@ -496,6 +498,9 @@ class SimpleQCEW(TableTask):
     year = IntParameter()
     qtr = IntParameter()
 
+    def requires(self):
+        return RawQCEW(year=self.year)
+
     def timespan(self):
         return '{year}Q{quarter}'.format(year=self.year,
                                          quarter=self.qtr)
@@ -504,26 +509,20 @@ class SimpleQCEW(TableTask):
         return None
 
     def columns(self):
-        return RawQCEW(self.year).columns()
-
-    def requires(self):
-        return {
-            'metadata': SimpleQCEWColumns(),
-            'data': RawQCEW(self.year)
-        }
+        return RawQCEW(year=self.year).columns()
 
     def populate(self):
         session = current_session()
-        session.execute('INSERT INOT {output} AS '
-                         'SELECT * FROM {qcew} '
-                         "WHERE agglvl_code IN ('75', '73')"
-                         "      AND year = '{year}'"
-                         "      AND qtr = '{qtr}'"
-                         "      AND own_code = '5'".format(
-                             qtr=self.qtr,
-                             year=self.year,
-                             output=self.output(),
-                             qcew=self.input()))
+        session.execute('INSERT INTO {output} '
+                        'SELECT * FROM {qcew} '
+                        "WHERE agglvl_code IN ('74', '73')"
+                        "      AND year = '{year}'"
+                        "      AND qtr = '{qtr}'"
+                        "      AND own_code = '5'".format(
+                            qtr=self.qtr,
+                            year=self.year,
+                            output=self.output().get(session).id,
+                            qcew=self.input().get(session).id))
 
 
 class QCEW(TableTask):
@@ -536,30 +535,60 @@ class QCEW(TableTask):
 
     def requires(self):
         return {
-            'qcew': SimpleQCEW(year=self.year, qtr=self.qtr),
-            'naics': NAICS()
+            'tiger_meta': GeoidColumns(),
+            'qcew_meta': SimpleQCEWColumns(self.year),
+            'qcew_data': SimpleQCEW(self.year, qtr=self.qtr),
         }
 
     def columns(self):
-        pass
+        columns = OrderedDict()
+        columns['county_fips'] = self.input()['tiger_meta']['county_geoid']
+        columns.update(self.input()['qcew_meta'])
+        return columns
+
+    def bounds(self):
+        return '' # TODO
+
+    def timespan(self):
+        return '{year}Q{qtr}'.format(year=self.year, qtr=self.qtr)
+
 
     def populate(self):
         session = current_session()
-        session.execute('INSERT INTO {output} (area_fips) '
-                        'SELECT distinct area_fips FROM {qcew} '.format(
-                            output=self.output(),
-                            qcew=self.input()['qcew']
+        input_table = self.input()['qcew_data'].get(session).id
+        output_table = self.output().get(session).id
+        session.execute('INSERT INTO {output} (county_fips) '
+                        'SELECT distinct county_fips FROM {qcew} '.format(
+                            output=output_table,
+                            qcew=input_table,
                         ))
-        for col in self.output().table.columns:
-            query = ('UPDATE {output} SET {column} = {dim} '
-                     'FROM {qcew} '
-                     'WHERE {industry_code} = \'{code}\' AND '
-                     '{qcew}.area_fips = {output}.area_fips'.format(
-                         code=col.info['code'],
-                         dim=col.info['dimension'],
-                         output=self.output(),
-                         column=col.name,
-                         qcew=self.input()['qcew'],
-                         industry_code=naics_industry_code().name
+
+        #for col in self.input()['qcew'].table.columns:
+
+        # prepare updates by naics code
+        cols = SimpleQCEWColumns(self.year).columns()
+        updates = {}
+        for colname, col in cols.iteritems():
+            if '_naics' not in colname:
+                pass
+            old_colname, naics_code = colname.split('_naics')
+            if naics_code not in updates:
+                updates[naics_code] = []
+            updates[naics_code].append((colname, old_colname, ))
+
+        for naics_code, columns in updates.iteritems():
+            setstatement = ','.join([
+                '{colname} = input.{old_colname}'.format(colname=colname,
+                                                         old_colname=old_colname)
+                for colname, old_colname in columns])
+            query = ('UPDATE {output} SET {setstatement} '
+                     'FROM {qcew} as input '
+                     'WHERE naics_industry_code = \'{code}\' AND '
+                     'input.county_fips = {output}.county_fips'.format(
+                         output=output_table,
+                         setstatement=setstatement,
+                         qcew=input_table,
+                         code=naics_code
                      ), )[0]
+            print query
             session.execute(query)
