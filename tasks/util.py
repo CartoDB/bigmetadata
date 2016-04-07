@@ -310,29 +310,23 @@ class ColumnTarget(Target):
 
     def update_or_create(self):
         session = current_session()
-        # weird_obj = session.identity_map.get((OBSColumn, ('"us.census.acs".B08006015',)))
-        # #if self._column.id == '"us.census.acs".B08006015':
-        # #    import pdb
-        # #    pdb.set_trace()
-        # #    print 'updating_or_creating weird object'
-        # if weird_obj:
-        #     print weird_obj.tgts
-        #     import pdb
-        #     pdb.set_trace()
-        #     print 'weird_object in identity_map'
         in_session = session.identity_map.get((OBSColumn, (self._column.id, )))
         if in_session:
-            has_in_sesion = True
             if None in in_session.srcs:
                 col2col = in_session.srcs.pop(None)
-                in_session.srcs[col2col.reltype] = col2col
+                in_session.srcs[col2col.source] = col2col
             if None in in_session.tgts:
                 col2col = in_session.tgts.pop(None)
-                in_session.tgts[col2col.reltype] = col2col
-        else:
-            had_in_session = False
+                in_session.tgts[col2col.target] = col2col
 
         self._column = session.merge(self._column)
+        if self._column.targets:
+            # fix missing sources in association_proxy... very weird
+            # bug
+            for target in self._column.tgts.keys():
+                if None in target.srcs:
+                    col2col = target.srcs.pop(None)
+                    target.srcs[col2col.source] = col2col
 
     def exists(self):
         existing = self.get(current_session())

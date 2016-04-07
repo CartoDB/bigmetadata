@@ -19,7 +19,9 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, composite, backref
 from sqlalchemy.orm.exc import NoResultFound
-from sqlalchemy.orm.collections import attribute_mapped_collection, InstrumentedList
+from sqlalchemy.orm.collections import (attribute_mapped_collection,
+                                        InstrumentedList, MappedCollection,
+                                        _SerializableAttrGetter, collection)
 from sqlalchemy.types import UserDefinedType
 
 
@@ -82,9 +84,10 @@ class OBSColumnTable(Base):
 
 
 def tag_creator(tagtarget):
-    tag = tagtarget.get(current_session())
+    tag = tagtarget.get(current_session()) or tagtarget._tag
     coltag = OBSColumnTag(tag=tag, tag_id=tag.id)
-    current_session().expunge(tag)
+    if tag in current_session():
+        current_session().expunge(tag)
     return coltag
 
 
@@ -95,7 +98,7 @@ def targets_creator(coltarget_or_col, reltype):
     # from required task
     else:
         col = coltarget_or_col.get(current_session())
-    return OBSColumnToColumn(reltype=reltype, target=col)
+    return OBSColumnToColumn(target=col, reltype=reltype)
 
 
 def sources_creator(coltarget_or_col, reltype):
@@ -105,7 +108,29 @@ def sources_creator(coltarget_or_col, reltype):
     # from required task
     else:
         col = coltarget_or_col.get(current_session())
-    return OBSColumnToColumn(reltype=reltype, source=col)
+    return OBSColumnToColumn(source=col, reltype=reltype)
+
+
+class PatchedMappedCollection(MappedCollection):
+
+    @collection.remover
+    @collection.internally_instrumented
+    def remove(self, value, _sa_initiator=None):
+        key = self.keyfunc(value)
+        if key not in self and None in self:
+            key = None
+        if self[key] != value:
+            raise Exception(
+                "Can not remove '%s': collection holds '%s' for key '%s'. "
+                "Possible cause: is the MappedCollection key function "
+                "based on mutable properties or properties that only obtain "
+                "values after flush?" %
+                (value, self[key], key))
+        self.__delitem__(key, _sa_initiator)
+
+
+target_collection = lambda: PatchedMappedCollection(_SerializableAttrGetter("target"))
+source_collection = lambda: PatchedMappedCollection(_SerializableAttrGetter("source"))
 
 
 class OBSColumnToColumn(Base):
@@ -120,14 +145,14 @@ class OBSColumnToColumn(Base):
                           foreign_keys=[source_id],
                           backref=backref(
                               "tgts",
-                              collection_class=attribute_mapped_collection("target"),
+                              collection_class=target_collection,
                               cascade="all, delete-orphan",
                           ))
     target = relationship('OBSColumn',
                           foreign_keys=[target_id],
                           backref=backref(
                               "srcs",
-                              collection_class=attribute_mapped_collection("source"),
+                              collection_class=source_collection,
                               cascade="all, delete-orphan",
                           ))
 
@@ -262,8 +287,6 @@ def session_commit(task):
     try:
         _current_session.commit()
     except Exception as err:
-        import pdb
-        pdb.set_trace()
         print err
         raise
 

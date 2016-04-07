@@ -224,7 +224,6 @@ class FiveYearPopulationColumns(ColumnsTask):
     def columns(self):
         tags = self.input()['tags']
         total_pop = OBSColumn(
-            #id='total_pop',
             type='Numeric',
             name='Total Population',
             description='The total number of all people living in a geographic area.',
@@ -234,7 +233,6 @@ class FiveYearPopulationColumns(ColumnsTask):
         )
         columns = OrderedDict([
             ('gender', OBSColumn(
-                #id='gender',
                 type='Text',
                 name='Gender',
                 weight=0
@@ -246,7 +244,6 @@ class FiveYearPopulationColumns(ColumnsTask):
             end = start + 4
             _id = 'pop_{start}_{end}'.format(start=start, end=end)
             columns[_id] = OBSColumn(
-                #id=_id,
                 type='Numeric',
                 name='Population age {start} to {end}'.format(
                     start=start, end=end),
@@ -254,7 +251,6 @@ class FiveYearPopulationColumns(ColumnsTask):
                 tags=[tags['demographics']]
             )
         columns['pop_100_more'] = OBSColumn(
-            #id='pop_100_more',
             type='Numeric',
             name='Population age 100 or more'.format(
                 start=start, end=end),
