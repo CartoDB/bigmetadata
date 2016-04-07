@@ -11,7 +11,7 @@ import requests
 
 from collections import OrderedDict
 from luigi import Task, IntParameter, LocalTarget, BooleanParameter
-from tasks.util import (TableTarget, shell, classpath, pg_cursor, underscore_slugify,
+from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
                         CartoDBTarget, sql_to_cartodb_table,
                         TableTask, ColumnsTask)
 from tasks.meta import OBSColumn, current_session
@@ -431,37 +431,55 @@ class RawQCEW(TableTask):
 
 class SimpleQCEWColumns(ColumnsTask):
 
+    year = IntParameter()
+
     def requires(self):
         return {
-            'tiger': GeoidColumns(),
-            'qcew': RawQCEWColumns()
+            'naics': NAICS(),
+            'qcew_meta': RawQCEWColumns(),
+            'qcew_data': RawQCEW(year=self.year)
         }
 
     def columns(self):
+        session = current_session()
         columns = OrderedDict()
-        columns['area_fips'] = self.input()['tiger']['county_geoid']
 
-        dimensions = ('avg_wkly_wage', 'qtrly_estabs', 'month3_emplvl',
-                      'lq_avg_wkly_wage', 'lq_qtrly_estabs', 'lq_month3_emplvl')
-        naics = self.input()['naics']
-        qcew = self.input()['qcew']
-        code_to_name = dict([(code, category) for code, category in naics.select().execute()])
-        cursor = pg_cursor()
+        inputcols = OrderedDict([(k, self.input()['qcew_meta'][k].get(session))
+                                 for k in ('avg_wkly_wage', 'qtrly_estabs',
+                                           'month3_emplvl', 'lq_avg_wkly_wage',
+                                           'lq_qtrly_estabs', 'lq_month3_emplvl')])
+
+        code_to_name = dict([(code, category) for code, category in session.execute(
+            'select industry_code, industry_title from {naics}'.format(
+                naics=self.input()['naics'].get(session).id))])
+
         # TODO implement shared column on industry_code
-        cursor.execute('SELECT DISTINCT {code} FROM {qcew} ORDER BY {code} ASC'.format(
-            code=naics_industry_code().name, qcew=qcew))
-        for code, in cursor:
+        codes = session.execute('SELECT DISTINCT naics_industry_code '
+                                'FROM {qcew} '
+                                'WHERE (LENGTH(naics_industry_code) = 4 '
+                                '  AND naics_industry_code LIKE \'10%\') '
+                                '  OR LENGTH(naics_industry_code) = 2 '
+                                'ORDER BY naics_industry_code'.format(
+                                    qcew=self.input()['qcew_data'].get(session).id))
+        for code, in codes:
             name = code_to_name[code]
-            for dim in dimensions:
-                column = Column(dim + '_' + slug_column(name), Integer, info={
-                    'code': code,
-                    'dimension': dim,
-                    'description': '{dim} for {name}'.format(
-                        dim=qcew.table.columns[dim].info['description'],
+            for inputkey, inputcol in inputcols.iteritems():
+                key = '{name}_{key}'.format(name=underscore_slugify(name),
+                                            key=inputkey)
+                columns[key] = OBSColumn(
+                    type=inputcol.type,
+                    description='{inputdescription} for {name}'.format(
+                        inputdescription=inputcol.description,
+                        name=name
+                    ),
+                    weight=inputcol.weight,
+                    aggregate=inputcol.aggregate,
+                    name='{inputname} for {name}'.format(
+                        inputname=inputcol.name,
                         name=name
                     )
-                })
-                yield column
+                )
+        return columns
 
 
 class SimpleQCEW(TableTask):
@@ -495,18 +513,17 @@ class SimpleQCEW(TableTask):
         }
 
     def populate(self):
-        cursor = pg_cursor()
-        cursor.execute('INSERT INOT {output} AS '
-                       'SELECT * FROM {qcew} '
-                       "WHERE agglvl_code IN ('75', '73')"
-                       "      AND year = '{year}'"
-                       "      AND qtr = '{qtr}'"
-                       "      AND own_code = '5'".format(
-                           qtr=self.qtr,
-                           year=self.year,
-                           output=self.output(),
-                           qcew=self.input()))
-        cursor.connection.commit()
+        session = current_session()
+        session.execute('INSERT INOT {output} AS '
+                         'SELECT * FROM {qcew} '
+                         "WHERE agglvl_code IN ('75', '73')"
+                         "      AND year = '{year}'"
+                         "      AND qtr = '{qtr}'"
+                         "      AND own_code = '5'".format(
+                             qtr=self.qtr,
+                             year=self.year,
+                             output=self.output(),
+                             qcew=self.input()))
 
 
 class QCEW(TableTask):
