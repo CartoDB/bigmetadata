@@ -6,11 +6,27 @@ import os
 import subprocess
 
 from collections import OrderedDict
-from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag
+from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag, current_session
 from tasks.util import (shell,  pg_cursor, classpath,
                         ColumnsTask, TableTask)
+from tasks.us.census.tiger import GeoidColumns
+
+
 
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
+
+category_maps = {
+    'one'   :    1,
+    'two'   :    2,
+    'three' :    3,
+    'four'  :    4,
+    'five'  :    5,
+    'six'   :    6  ,
+    'seven' :    7,
+    'eight' :    8,
+    'nine'  :    9,
+    'ten'   :    10
+}
 
 
 class DownloadSpielmanSingletonFile(Task):
@@ -109,53 +125,62 @@ class ProcessSpielmanSingletonFile(Task):
     def output(self):
         return LocalTarget(path=os.path.join(classpath(self), self.filename()))
 
-class CreateSpielmanSingletonColumns(ColumnsTask):
+class CreateSpielmanSingletonTable(TableTask):
     def requires(self):
         return {
-            'data_file': ProcessSpielmanSingletonFile()
+            'columns'   : CreateSpielmanSingletonColumns(),
+            'data_file' : ProcessSpielmanSingletonFile(),
+            'tiger'     : GeoidColumns()
         }
+
+    def timespan(self):
+        return '2009-2013'
+
+    def bounds(self):
+        return
+
+    def populate(self):
+        shell("psql -c '\copy  {table} FROM {file_path} WITH CSV HEADER'".format(
+            table      = self.output().get(current_session()).id,
+            file_path  = self.input()['data_file'].path
+        ))
+
+    def columns(self):
+        columns = OrderedDict({
+            'geoid': self.input()['tiger']['census_tract_geoid']
+        })
+        columns.update(self.input()['columns'])
+        return columns
+
+class CreateSpielmanSingletonColumns(ColumnsTask):
 
     def columns(self):
         X10 = OBSColumn(
             id='X10',
             type='Text',
             name="SS_segment_10_clusters",
-            description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters',
-            aggregate='sum',
-            weight=10,
-            tags=[censustags['demographics'], tags['population']]
+            description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters'
         )
         X2 = OBSColumn(
             id='X2',
             type='Text',
             name="SS_segment_2_clusters",
-            description="Sociodemographic classes from Spielman and Singleton 2015, 10 clusters",
-            aggregate='sum',
-            weight=8,
-            targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population']]
+            description="Sociodemographic classes from Spielman and Singleton 2015, 10 clusters"
         )
         X31 = OBSColumn(
             id='X31',
             type='Text',
             name="SS_segment_31_clusters",
-            description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters',
-            aggregate='sum',
-            weight=8,
-            targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population']]
+            description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters'
         )
         X55 = OBSColumn(
             id='X55',
             type='Text',
             name="SS_segment_55_clusters",
-            description="Sociodemographic classes from Spielman and Singleton 2015, 10 clusters",
-            aggregate=nil,
-            weight=2,
-            tags=[censustags['demographics'], tags['population']]
+            description="Sociodemographic classes from Spielman and Singleton 2015, 10 clusters"
         )
 
-        return OrderedDict([X10,X2,X31,X55,X2])
+        return OrderedDict([['X10', X10],['X2', X2], ['X31',X31], ['X55', X55], ['X2', X2]])
 
 #
 # class LoadSpielmanSingletonToDB(self):
