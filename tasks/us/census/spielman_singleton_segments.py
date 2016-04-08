@@ -123,7 +123,7 @@ class ProcessSpielmanSingletonFile(Task):
             folder= self.decompressed_folder()))
 
     def output(self):
-        return LocalTarget(path=os.path.join(classpath(self), self.filename()))
+        return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
 
 class CreateSpielmanSingletonTable(TableTask):
     def requires(self):
