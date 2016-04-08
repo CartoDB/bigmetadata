@@ -180,6 +180,7 @@ class OBSColumn(Base):
     sources = association_proxy('srcs', 'reltype', creator=sources_creator)
 
     version = Column(String, default='0', nullable=False)
+    extra = Column(JSON)
 
 
 # We should have one of these for every table we load in through the ETL
