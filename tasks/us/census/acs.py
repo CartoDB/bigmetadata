@@ -121,6 +121,16 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
+        amerindian_pop = OBSColumn(
+            id='B03002005',
+            type='Numeric',
+            name='American Indian and Alaska Native Population',
+            description="The number of people identifying as American Indian or Alaska native in each geography.",
+            aggregate='sum',
+            weight=0,
+            targets={total_pop: 'denominator'},
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+        )
         asian_pop = OBSColumn(
             id='B03002006',
             type='Numeric',
@@ -128,6 +138,36 @@ class Columns(ColumnsTask):
             description="The number of people identifying as Asian, non-Hispanic in each geography.",
             aggregate='sum',
             weight=7,
+            targets={total_pop: 'denominator'},
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+        )
+        other_race_pop = OBSColumn(
+            id='B03002008',
+            type='Numeric',
+            name='Other Race population',
+            description="The number of people identifying as another race in each geography",
+            aggregate='sum',
+            weight=0,
+            targets={total_pop: 'denominator'},
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+        )
+        two_or_more_races_pop = OBSColumn(
+            id='B03002009',
+            type='Numeric',
+            name='Two or more races population',
+            description="The number of people identifying as two or more races in each geography",
+            aggregate='sum',
+            weight=0,
+            targets={total_pop: 'denominator'},
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+        )
+        not_hispanic_pop = OBSColumn(
+            id='B03002002',
+            type='Numeric',
+            name='Population not Hispanic',
+            description="The number of people not identifying as Hispanic or Latino in each geography.",
+            aggregate='sum',
+            weight=0,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -168,6 +208,24 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
+            tags=[censustags['demographics'], tags['transportation']])
+        commuters_drove_alone = OBSColumn(
+            id='B08006003',
+            type='Numeric',
+            name='Commuters who drove alone',
+            description='The number of workers age 16 years and over within a geographic area who primarily traveled by car driving alone.  This is the principal mode of travel or type of conveyance, by distance rather than time, that the worker usually used to get from home to work.',
+            weight=2,
+            aggregate='sum',
+            targets={commuters_by_car_truck_van: 'denominator'},
+            tags=[censustags['demographics'], tags['transportation']])
+        commuters_by_carpool = OBSColumn(
+            id='B08006004',
+            type='Numeric',
+            name='Commuters by Carpool',
+            description='The number of workers age 16 years and over within a geographic area who primarily traveled to work by carpool.  This is the principal mode of travel or type of conveyance, by distance rather than time, that the worker usually used to get from home to work.',
+            weight=2,
+            aggregate='sum',
+            targets={commuters_by_car_truck_van: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
         commuters_by_public_transportation = OBSColumn(
             id='B08006008',
@@ -296,6 +354,33 @@ class Columns(ColumnsTask):
             type='Numeric',
             name='Population Completed High School',
             description='The number of people in a geographic area over the age of 25 who completed high school, and did not complete a more advanced degree.',
+            weight=4,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'},
+            tags=[censustags['demographics'], tags['income_education_employment']])
+        less_one_year_college = OBSColumn(
+            id='B15003019',
+            type='Numeric',
+            name="Population completed less than one year of college, no degree",
+            description="The number of people in a geographic area over the age of 25 who attended college for less than one year and no further.",
+            weight=4,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'},
+            tags=[censustags['demographics'], tags['income_education_employment']])
+        one_year_more_college = OBSColumn(
+            id='B15003020',
+            type='Numeric',
+            name="Population completed more than one year of college, no degree",
+            description="The number of people in a geographic area over the age of 25 who attended college for more than one year but did not obtain a degree",
+            weight=4,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'},
+            tags=[censustags['demographics'], tags['income_education_employment']])
+        associates_degree = OBSColumn(
+            id='B15003021',
+            type='Numeric',
+            name="Population Completed Associate's Degree",
+            description="The number of people in a geographic area over the age of 25 who obtained a associate's degree, and did not complete a more advanced degree.",
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
@@ -851,6 +936,206 @@ class Columns(ColumnsTask):
         #    targets={men_45_64_in_labor_force: 'denominator'},
         #    tags=[tag_middle_aged_men])
 
+        # Pitney bowes
+        #for 
+        pop_15_and_over = OBSColumn(
+            id="B12005001",
+            type='Numeric',
+            name='Population 15 Years and Over',
+            description='The number of people in a geographic area who are over the age of 15.  This is used mostly as a denominator of marital status.',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['denominator']]
+        )
+        pop_never_married = OBSColumn(
+            id="B12005002",
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Never Married',
+            description='The number of people in a geographic area who have never been married.',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+        pop_now_married = OBSColumn(
+            id="B12005005",
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Currently married',
+            description='The number of people in a geographic area who are currently married',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+        pop_separated = OBSColumn(
+            id='B12005008',
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Married but separated',
+            description='The number of people in a geographic area who are married but separated',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+        pop_widowed = OBSColumn(
+            id='B12005012',
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Widowed',
+            description='The number of people in a geographic area who are widowed',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+        pop_divorced = OBSColumn(
+            id='B12005015',
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Divorced',
+            description='The number of people in a geographic area who are divorced',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+
+        commuters_16_over = OBSColumn(
+            id='B08134001',
+            type='Numeric',
+            name='Workers age 16 and over who do not work from home',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_less_10_mins = OBSColumn(
+            id='B08134002',
+            targets={commuters_16_over: 'denominator'}
+        )
+        commute_10_14_mins = OBSColumn(
+            id='B08134003',
+            targets={commuters_16_over: 'denominator'}
+        )
+        commute_15_19_mins = OBSColumn(
+            id='B08134004',
+            targets={commuters_16_over: 'denominator'}
+        )
+        commute_20_24_mins = OBSColumn(
+            id='B08134005',
+            targets={commuters_16_over: 'denominator'}
+        )
+        commute_25_29_mins = OBSColumn(
+            id='B08134006',
+            targets={commuters_16_over: 'denominator'}
+        )
+        commute_30_34_mins = OBSColumn(
+            id='B08134007',
+            targets={commuters_16_over: 'denominator'}
+        )
+        commute_35_44_mins = OBSColumn(
+            id='B08134008',
+            targets={commuters_16_over: 'denominator'}
+        )
+        commute_45_59_mins = OBSColumn(
+            id='B08134009',
+            targets={commuters_16_over: 'denominator'}
+        )
+        commute_60_more_mins = OBSColumn(
+            id='B08134010',
+            targets={commuters_16_over: 'denominator'}
+        )
+
+        aggregate_travel_time_to_work = OBSColumn(
+            id='B08135001',
+            aggregate='sum'
+        )
+
+        income_less_10000 = OBSColumn(
+            id='B19001002',
+            aggregate='sum',
+            name='Household income less than $10,000',
+            targets={households: 'denominator'}
+        )
+        income_10000_14999 = OBSColumn(
+            id='B19001003',
+            name='Household income $10,000 to $14,999',
+            targets={households: 'denominator'}
+        )
+        income_15000_19999 = OBSColumn(
+            id='B19001004',
+            name='Household income $15,000 to $19,999',
+            targets={households: 'denominator'}
+        )
+        income_20000_24999 = OBSColumn(
+            id='B19001005',
+            name='Household income $20,000 To $24,999',
+            targets={households: 'denominator'}
+        )
+        income_25000_29999 = OBSColumn(
+            id='B19001006',
+            name='Household income  $25,000 To $29,999',
+            targets={households: 'denominator'}
+        )
+        income_30000_34999 = OBSColumn(
+            id='B19001007',
+            name='Household income  $30,000 To $34,999',
+            targets={households: 'denominator'}
+        )
+        income_35000_39999 = OBSColumn(
+            id='B19001008',
+            name='Household income  $35,000 To $39,999',
+            targets={households: 'denominator'}
+        )
+        income_40000_44999 = OBSColumn(
+            id='B19001009',
+            name='Household income  $40,000 To $44,999',
+            targets={households: 'denominator'}
+        )
+        income_45000_49999 = OBSColumn(
+            id='B19001010',
+            name='Household income  $45,000 To $49,999',
+            targets={households: 'denominator'}
+        )
+        income_50000_59999 = OBSColumn(
+            id='B19001011',
+            name='Household income  $50,000 To $59,999',
+            targets={households: 'denominator'}
+        )
+        income_60000_74999 = OBSColumn(
+            id='B19001012',
+            name='Household income  $60,000 To $74,999',
+            targets={households: 'denominator'}
+        )
+        income_75000_99999 = OBSColumn(
+            id='B19001013',
+            name='Household income  $75,000 To $99,999',
+            targets={households: 'denominator'}
+        )
+        income_100000_124999 = OBSColumn(
+            id='B19001014',
+            name='Household income  $100,000 To $124,999',
+            targets={households: 'denominator'}
+        )
+        income_125000_149999 = OBSColumn(
+            id='B19001015',
+            name='Household income  $125,000 To $149,999',
+            targets={households: 'denominator'}
+        )
+        income_150000_199999 = OBSColumn(
+            id='B19001016',
+            name='Household income  $150,000 To $199,999',
+            targets={households: 'denominator'}
+        )
+        income_200000_or_more = OBSColumn(
+            id='B19001017',
+            name='Household income  $200,000 Or More',
+            targets={households: 'denominator'}
+        )
+        #TODO
+        #average_travel_time_to_work = OBSColumn(
+        #    id='B08135001',
+        #    aggregate='sum'
+        #)
 
         return OrderedDict([
             ("total_pop",                        total_pop),
@@ -864,6 +1149,8 @@ class Columns(ColumnsTask):
             ("not_us_citizen_pop",               not_us_citizen_pop),
             ("workers_16_and_over",              workers_16_and_over),
             ("commuters_by_car_truck_van",       commuters_by_car_truck_van),
+            ('commuters_drove_alone', commuters_drove_alone),
+            ('commuters_by_carpool', commuters_by_carpool),
             ("commuters_by_public_transportation",commuters_by_public_transportation),
             ("commuters_by_bus",                 commuters_by_bus),
             ("commuters_by_subway_or_elevated",  commuters_by_subway_or_elevated),
@@ -879,6 +1166,9 @@ class Columns(ColumnsTask):
             ("in_undergrad_college",             in_undergrad_college),
             ("pop_25_years_over",                pop_25_years_over),
             ("high_school_diploma",              high_school_diploma),
+            ("less_one_year_college", less_one_year_college),
+            ("one_year_more_college", one_year_more_college),
+            ("associates_degree", associates_degree),
             ("bachelors_degree",                 bachelors_degree),
             ("masters_degree",                   masters_degree),
             ("pop_5_years_over",                 pop_5_years_over),
