@@ -519,6 +519,9 @@ class SumLevel(TableTask):
     def input_tablename(self):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
+    def version(self):
+        return '4'
+
     def requires(self):
         if self.clipped:
             tiger = ShorelineClipTiger(

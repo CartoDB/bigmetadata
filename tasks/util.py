@@ -435,6 +435,7 @@ class TableTarget(Target):
         session = current_session()
         session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
             schema=self._schema))
+        session.flush()
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
@@ -497,11 +498,17 @@ class ColumnsTask(Task):
 
     def output(self):
         output = OrderedDict({})
+        session = current_session()
+        already_in_session = [obj for obj in session]
         for col_key, col in self.columns().iteritems():
             if not col.version:
                 col.version = self.version()
             output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
-        current_session().expunge_all()
+        now_in_session = [obj for obj in session]
+        for obj in now_in_session:
+            if obj not in already_in_session:
+                if obj in session:
+                    session.expunge(obj)
         return output
 
 
