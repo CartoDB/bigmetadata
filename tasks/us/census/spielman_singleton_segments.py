@@ -16,16 +16,16 @@ from tasks.us.census.tiger import GeoidColumns
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
 
 category_maps = {
-    'one'   :    1,
-    'two'   :    2,
-    'three' :    3,
-    'four'  :    4,
-    'five'  :    5,
-    'six'   :    6  ,
-    'seven' :    7,
-    'eight' :    8,
-    'nine'  :    9,
-    'ten'   :    10
+    'Histpnic and Young'   :    1,
+    'Wealthy Nuclear Families'   :    2,
+    'Middle Income, Single Family Home' :    3,
+    'Native American'  :    4,
+    'Wealthy, urban without Kids'  :    5,
+    'Low income and diverse'   :    6  ,
+    'Wealthy Old Caucasion ' :    7,
+    'Low income, mix of minorities' :    8,
+    'Low income, African American'  :    9,
+    'Residential Institutions'   :    10
 }
 
 
@@ -132,7 +132,8 @@ class CreateSpielmanSingletonTable(TableTask):
             'data_file' : ProcessSpielmanSingletonFile(),
             'tiger'     : GeoidColumns()
         }
-
+    def version(self):
+        return '2'
     def timespan(self):
         return '2009-2013'
 
@@ -140,10 +141,17 @@ class CreateSpielmanSingletonTable(TableTask):
         return
 
     def populate(self):
+        table_name = self.output().get(current_session()).id
         shell("psql -c '\copy  {table} FROM {file_path} WITH CSV HEADER'".format(
-            table      = self.output().get(current_session()).id,
+            table      = table_name,
             file_path  = self.input()['data_file'].path
         ))
+        for name, segement_id in category_maps.iteritems():
+            current_session().execute("update {table} set \"X10\" = '{name}'  where \"X10\" ='{segement_id}'; ".format(
+                table       = table_name,
+                name        = name,
+                segement_id = segement_id
+            ))
 
     def columns(self):
         columns = OrderedDict({
