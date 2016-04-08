@@ -44,6 +44,9 @@ class ACSTags(TagsTask):
                    description='Standard Demographic Data from the US American Community Survey')
         ]
 
+class
+class QuantColumns(ColumnsTask):
+
 
 class Columns(ColumnsTask):
 
@@ -56,6 +59,7 @@ class Columns(ColumnsTask):
 
     def version(self):
         return '1'
+
 
     def columns(self):
         tags = self.input()['tags']
@@ -704,7 +708,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
             tags=[tag_families_with_young_children])
-        #  - B23008004: living with two parents, both in labor force  
+        #  - B23008004: living with two parents, both in labor force
         two_parents_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008004',
             type='Numeric',
@@ -715,7 +719,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
             tags=[tag_families_with_young_children])
-        #  - B23008005: living with two parents, father only in labor force  
+        #  - B23008005: living with two parents, father only in labor force
         two_parents_father_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008005',
             type='Numeric',
@@ -727,7 +731,7 @@ class Columns(ColumnsTask):
             targets={families_with_young_children: 'denominator'},
             tags=[tag_families_with_young_children])
 
-        #  - B23008006: living with two parents, mother only in labor force  
+        #  - B23008006: living with two parents, mother only in labor force
         two_parents_mother_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008006',
             type='Numeric',
@@ -739,7 +743,7 @@ class Columns(ColumnsTask):
             targets={families_with_young_children: 'denominator'},
             tags=[tag_families_with_young_children])
 
-        #  - B23008007: living with two parents, neither parent in labor force  
+        #  - B23008007: living with two parents, neither parent in labor force
         two_parents_not_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008007',
             type='Numeric',
@@ -751,7 +755,7 @@ class Columns(ColumnsTask):
             targets={families_with_young_children: 'denominator'},
             tags=[tag_families_with_young_children])
 
-        #  - B23008008: living with one parent  
+        #  - B23008008: living with one parent
         one_parent_families_with_young_children = OBSColumn(
             id='B23008008',
             type='Numeric',
@@ -788,9 +792,9 @@ class Columns(ColumnsTask):
 
         # TODO
         #  - B23008011: living with father who is not in labor force
-        #  - B23008012: living with mother  
-        #  - B23008013: living with mother, who is in labor force  
-        #  - B23008014: living with mother, who is not in labor force  
+        #  - B23008012: living with mother
+        #  - B23008013: living with mother, who is in labor force
+        #  - B23008014: living with mother, who is not in labor force
         #  - B11003004: married couple
         #  - B11003011: male householder, no wife
         #  - B11003017: female householder, no husband
@@ -1076,7 +1080,7 @@ class Columns(ColumnsTask):
         #    tags=[tag_middle_aged_men])
 
         # Pitney bowes
-        #for 
+        #for
         pop_15_and_over = OBSColumn(
             id="B12005001",
             type='Numeric',
@@ -1612,6 +1616,80 @@ class DownloadACS(LoadPostgresFromURL):
         url = self.url_template.format(year=self.year, sample=self.sample)
         self.load_from_url(url)
 
+
+class QuantileColumns(ColumnTask):
+    def requires(self):
+        return columns()
+
+    def columns(self):
+        quantile_columns = OrderedDict()
+        for name, col in self.input():
+            quantile_columns[name] =
+                OBSColumn(
+                    id=col.id+'_quant',
+                    type='Numeric',
+                    name='Quantile:'+col.name,
+                    description=col.description,
+                    targets={col: 'quantile_source'}
+                )
+        return quantile_columns
+
+
+
+class Quantiles(TableTask):
+    '''
+    Calculate the quantiles for each ACS column
+    '''
+
+    year = Parameter()
+    sample  = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return {
+            'columns' : QuantileColumns(),
+            'table'   : Extract(year = self.year ,sample= self.sample ,geography=self.geography),
+            'tiger'   : GeoidColumns()
+          }
+
+    def columns(self):
+        columns = OrderedDict({
+            'geoid': self.input()['tiger']['census_tract_geoid']
+        })
+        columns.update(self.input()['columns'])
+        return columns
+
+    def bounds(self):
+        return 'box2d(0 0, 0 0)'
+
+    def timespan(self):
+        sample = int(self.sample[0])
+        return '{start} - {end}'.format(start=int(self.year) - sample + 1,
+                                        end=int(self.year))
+
+    def populate(self):
+        connection = current_session()
+        quant_col_names  =  self.input()['columns'].keys()
+        old_col_names  = [name.split("_quantile")[0] for name in quant_col_names ]
+        selects =[ " percent_rank() OVER (ORDER BY {old_col} ASC) ".format(old_col=name) for name in old_col_names]
+
+        insert_statment = ", ".join(quant_col_names)
+        select_statment = ", ".join(selects)
+
+        connection.execute( '''
+            INSERT INTO {table}
+            (geoid, {insert_statment})
+            VALUES(
+                select geoid, {select_statment}
+                FROM
+                {source_table}
+            )
+        '''.format(
+            table        = self.output().table,
+            insert_statment = insert_statment,
+            select_statment = select_statment,
+            source_table = self.input()['table'].table
+        ))
 
 class Extract(TableTask):
     '''
