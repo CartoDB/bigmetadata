@@ -384,9 +384,13 @@ class TableTarget(Target):
         self._columns = columns
         self._task = task
         if self._id_noquote in metadata.tables:
-            self.table = metadata.tables[self._id_noquote]
+            self._table = metadata.tables[self._id_noquote]
         else:
-            self.table = None
+            self._table = None
+
+    @property
+    def table(self):
+        return self.get(current_session()).id
 
     def sync(self):
         '''
@@ -450,10 +454,10 @@ class TableTarget(Target):
         # replace local data table
         if obs_table.id in metadata.tables:
             metadata.tables[obs_table.id].drop()
-        self.table = Table(self._name, metadata, *columns,
-                           schema=self._schema, extend_existing=True)
-        self.table.drop(checkfirst=True)
-        self.table.create()
+        self._table = Table(self._name, metadata, *columns,
+                            schema=self._schema, extend_existing=True)
+        self._table.drop(checkfirst=True)
+        self._table.create()
 
 
 class ColumnsTask(Task):
@@ -584,13 +588,6 @@ class TableTask(Task):
 
     def bounds(self):
         raise NotImplementedError('Must define bounds for table')
-
-    @property
-    def table(self):
-        '''
-        Obtain metadata table for insertion via sqlalchemy or direct postgres
-        '''
-        return self.output().table
 
     def run(self):
         self.output().update_or_create()
