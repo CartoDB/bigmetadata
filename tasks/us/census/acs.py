@@ -1621,10 +1621,10 @@ class QuantileColumns(ColumnsTask):
 
     def columns(self):
         quantile_columns = OrderedDict()
-        for name, coltarget in self.input().iteritems():
+        for colname, coltarget in self.input().iteritems():
             col = coltarget.get(current_session())
-            quantile_columns[name] = OBSColumn(
-                id=col.id+'_quant',
+            quantile_columns[colname+'_quantile'] = OBSColumn(
+                id=col.id+'_quantile',
                 type='Numeric',
                 name='Quantile:'+col.name,
                 description=col.description,
