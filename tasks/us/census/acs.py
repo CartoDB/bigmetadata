@@ -105,7 +105,8 @@ class Columns(ColumnsTask):
             id='B03002003',
             type='Numeric',
             name="White Population",
-            description="The number of people identifying as white, non-Hispanic in each geography.",
+            description="The number of people identifying as white, "
+                        "non-Hispanic in each geography.",
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
@@ -121,6 +122,16 @@ class Columns(ColumnsTask):
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
+        amerindian_pop = OBSColumn(
+            id='B03002005',
+            type='Numeric',
+            name='American Indian and Alaska Native Population',
+            description="The number of people identifying as American Indian or Alaska native in each geography.",
+            aggregate='sum',
+            weight=0,
+            targets={total_pop: 'denominator'},
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+        )
         asian_pop = OBSColumn(
             id='B03002006',
             type='Numeric',
@@ -128,6 +139,36 @@ class Columns(ColumnsTask):
             description="The number of people identifying as Asian, non-Hispanic in each geography.",
             aggregate='sum',
             weight=7,
+            targets={total_pop: 'denominator'},
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+        )
+        other_race_pop = OBSColumn(
+            id='B03002008',
+            type='Numeric',
+            name='Other Race population',
+            description="The number of people identifying as another race in each geography",
+            aggregate='sum',
+            weight=0,
+            targets={total_pop: 'denominator'},
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+        )
+        two_or_more_races_pop = OBSColumn(
+            id='B03002009',
+            type='Numeric',
+            name='Two or more races population',
+            description="The number of people identifying as two or more races in each geography",
+            aggregate='sum',
+            weight=0,
+            targets={total_pop: 'denominator'},
+            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+        )
+        not_hispanic_pop = OBSColumn(
+            id='B03002002',
+            type='Numeric',
+            name='Population not Hispanic',
+            description="The number of people not identifying as Hispanic or Latino in each geography.",
+            aggregate='sum',
+            weight=0,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -145,7 +186,9 @@ class Columns(ColumnsTask):
             id='B05001006',
             type='Numeric',
             name='Not a U.S. Citizen Population',
-            description="The number of people within each geography who indicated that they are not U.S. citizens.",
+            description=
+            "The number of people within each geography who indicated that "
+            "they are not U.S. citizens.",
             aggregate='sum',
             weight=3,
             targets={total_pop: 'denominator'},
@@ -155,25 +198,62 @@ class Columns(ColumnsTask):
             id='B08006001',
             type='Numeric',
             name='Workers over the Age of 16',
-            description="The number of people in each geography who work.  Workers include those employed at private for-profit companies, the self-employed, government workers and non-profit employees.",
+            description="The number of people in each geography who work. "
+            "Workers include those employed at private for-profit companies, the "
+            "self-employed, government workers and non-profit employees.",
             aggregate='sum',
             weight=5,
-            tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']]
+            tags=[censustags['demographics'], tags['denominator'],
+                  tags['income_education_employment']]
         )
         commuters_by_car_truck_van = OBSColumn(
             id='B08006002',
             type='Numeric',
             name='Commuters by Car, Truck, or Van',
-            description='The number of workers age 16 years and over within a geographic area who primarily traveled to work by car, truck or van.  This is the principal mode of travel or type of conveyance, by distance rather than time, that the worker usually used to get from home to work.',
+            description='The number of workers age 16 years and over within '
+            ' a geographic area who primarily traveled to work by car, truck or '
+            ' van.  This is the principal mode of travel or type of conveyance, '
+            ' by distance rather than time, that the worker usually used to get '
+            ' from home to work.',
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
+            tags=[censustags['demographics'], tags['transportation']])
+        commuters_drove_alone = OBSColumn(
+            id='B08006003',
+            type='Numeric',
+            name='Commuters who drove alone',
+            description='The number of workers age 16 years and over within '
+            'a geographic area who primarily traveled by car driving alone. '
+            'This is the principal mode of travel or type of conveyance, by '
+            'distance rather than time, that the worker usually used to get from '
+            'home to work.',
+            weight=2,
+            aggregate='sum',
+            targets={commuters_by_car_truck_van: 'denominator'},
+            tags=[censustags['demographics'], tags['transportation']])
+        commuters_by_carpool = OBSColumn(
+            id='B08006004',
+            type='Numeric',
+            name='Commuters by Carpool',
+            description='The number of workers age 16 years and over within '
+            'a geographic area who primarily traveled to work by carpool.  This '
+            'is the principal mode of travel or type of conveyance, by distance '
+            'rather than time, that the worker usually used to get from home to '
+            'work.',
+            weight=2,
+            aggregate='sum',
+            targets={commuters_by_car_truck_van: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
         commuters_by_public_transportation = OBSColumn(
             id='B08006008',
             type='Numeric',
             name='Commuters by Public Transportation',
-            description='The number of workers age 16 years and over within a geographic area who primarily traveled to work by public transportation.  This is the principal mode of travel or type of conveyance, by distance rather than time, that the worker usually used to get from home to work.',
+            description='The number of workers age 16 years and over within '
+            'a geographic area who primarily traveled to work by public '
+            'transportation.  This is the principal mode of travel or type of '
+            'conveyance, by distance rather than time, that the worker usually '
+            'used to get from home to work.',
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
@@ -182,7 +262,12 @@ class Columns(ColumnsTask):
             id='B08006009',
             type='Numeric',
             name='Commuters by Bus',
-            description='The number of workers age 16 years and over within a geographic area who primarily traveled to work by bus.  This is the principal mode of travel or type of conveyance, by distance rather than time, that the worker usually used to get from home to work.  This is a subset of workers who commuted by public transport.',
+            description='The number of workers age 16 years and over within '
+            'a geographic area who primarily traveled to work by bus.  This is '
+            'the principal mode of travel or type of conveyance, by distance '
+            'rather than time, that the worker usually used to get from home to '
+            'work.  This is a subset of workers who commuted by public '
+            'transport.',
             weight=3,
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
@@ -191,7 +276,12 @@ class Columns(ColumnsTask):
             id='B08006011',
             type='Numeric',
             name='Commuters by Subway or Elevated',
-            description='The number of workers age 16 years and over within a geographic area who primarily traveled to work by subway or elevated train.  This is the principal mode of travel or type of conveyance, by distance rather than time, that the worker usually used to get from home to work.  This is a subset of workers who commuted by public transport.',
+            description='The number of workers age 16 years and over within '
+            'a geographic area who primarily traveled to work by subway or '
+            'elevated train.  This is the principal mode of travel or type of '
+            'conveyance, by distance rather than time, that the worker usually '
+            'used to get from home to work.  This is a subset of workers who '
+            'commuted by public transport.',
             weight=3,
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
@@ -200,7 +290,10 @@ class Columns(ColumnsTask):
             id='B08006015',
             type='Numeric',
             name='Walked to Work',
-            description='The number of workers age 16 years and over within a geographic area who primarily walked to work.  This would mean that of any way of getting to work, they travelled the most distance walking.',
+            description='The number of workers age 16 years and over within '
+            'a geographic area who primarily walked to work.  This would mean '
+            'that of any way of getting to work, they travelled the most '
+            'distance walking.',
             weight=4,
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
@@ -209,7 +302,8 @@ class Columns(ColumnsTask):
             id='B08006017',
             type='Numeric',
             name='Worked at Home',
-            description='The count within a geographical area of workers over the age of 16 who worked at home.',
+            description='The count within a geographical area of workers over '
+            'the age of 16 who worked at home.',
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
@@ -218,7 +312,8 @@ class Columns(ColumnsTask):
             id='B09001001',
             type='Numeric',
             name='children under 18 Years of Age',
-            description='The number of people within each geography who are under 18 years of age.',
+            description='The number of people within each geography who are '
+            'under 18 years of age.',
             weight=4,
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator'], tags['race_age_gender']])
@@ -226,7 +321,10 @@ class Columns(ColumnsTask):
             id='B11001001',
             type='Numeric',
             name='Households',
-            description='A count of the number of households in each geography.  A household consists of one or more people who live in the same dwelling and also share at meals or living accommodation, and may consist of a single family or some other grouping of people. ',
+            description='A count of the number of households in each geography. '
+            'A household consists of one or more people who live in the same '
+            'dwelling and also share at meals or living accommodation, and may '
+            'consist of a single family or some other grouping of people. ',
             weight=8,
             aggregate='sum',
             tags=[censustags['demographics'], tags['housing']])
@@ -234,7 +332,9 @@ class Columns(ColumnsTask):
             id='B14001001',
             type='Numeric',
             name='Population 3 Years and Over',
-            description='The total number of people in each geography age 3 years and over.  This denominator is mostly used to calculate rates of school enrollment.',
+            description='The total number of people in each geography age '
+            '3 years and over.  This denominator is mostly used to calculate '
+            'rates of school enrollment.',
             weight=4,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']])
@@ -242,7 +342,10 @@ class Columns(ColumnsTask):
             id='B14001002',
             type='Numeric',
             name='Students Enrolled in School',
-            description='The total number of people in each geography currently enrolled at any level of school, from nursery or pre-school to advanced post-graduate education.  Only includes those over the age of 3.',
+            description='The total number of people in each geography currently '
+            'enrolled at any level of school, from nursery or pre-school to '
+            'advanced post-graduate education.  Only includes those over the age '
+            'of 3.',
             weight=6,
             aggregate='sum',
             targets={population_3_years_over: 'denominator'},
@@ -251,7 +354,9 @@ class Columns(ColumnsTask):
             id='B14001005',
             type='Numeric',
             name='Students Enrolled in Grades 1 to 4',
-            description='The total number of people in each geography currently enrolled in grades 1 through 4 inclusive.  This corresponds roughly to elementary school.',
+            description='The total number of people in each geography currently '
+            'enrolled in grades 1 through 4 inclusive.  This corresponds roughly '
+            'to elementary school.',
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
@@ -260,7 +365,9 @@ class Columns(ColumnsTask):
             id='B14001006',
             type='Numeric',
             name='Students Enrolled in Grades 5 to 8',
-            description='The total number of people in each geography currently enrolled in grades 5 through 8 inclusive.  This corresponds roughly to middle school.',
+            description='The total number of people in each geography currently '
+            'enrolled in grades 5 through 8 inclusive.  This corresponds roughly '
+            'to middle school.',
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
@@ -269,7 +376,9 @@ class Columns(ColumnsTask):
             id='B14001007',
             type='Numeric',
             name='Students Enrolled in Grades 9 to 12',
-            description='The total number of people in each geography currently enrolled in grades 9 through 12 inclusive.  This corresponds roughly to high school.',
+            description='The total number of people in each geography currently '
+            'enrolled in grades 9 through 12 inclusive.  This corresponds '
+            'roughly to high school.',
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
@@ -278,7 +387,11 @@ class Columns(ColumnsTask):
             id='B14001008',
             type='Numeric',
             name='Students Enrolled as Undergraduate in College',
-            description='The number of people in a geographic area who are enrolled in college at the undergraduate level. Enrollment refers to being registered or listed as a student in an educational program leading to a college degree. This may be a public school or college, a private school or college.',
+            description='The number of people in a geographic area who are '
+            'enrolled in college at the undergraduate level. Enrollment refers '
+            'to being registered or listed as a student in an educational '
+            'program leading to a college degree. This may be a public school or '
+            'college, a private school or college.',
             weight=5,
             aggregate='sum',
             targets={in_school: 'denominator'},
@@ -287,15 +400,52 @@ class Columns(ColumnsTask):
             id='B15003001',
             type='Numeric',
             name='Population 25 Years and Over',
-            description='The number of people in a geographic area who are over the age of 25.  This is used mostly as a denominator of educational attainment.',
+            description='The number of people in a geographic area who are over '
+            'the age of 25.  This is used mostly as a denominator of educational '
+            'attainment.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['denominator'],
+                  tags['income_education_employment']])
         high_school_diploma = OBSColumn(
             id='B15003017',
             type='Numeric',
             name='Population Completed High School',
-            description='The number of people in a geographic area over the age of 25 who completed high school, and did not complete a more advanced degree.',
+            description='The number of people in a geographic area over the age '
+            'of 25 who completed high school, and did not complete a more '
+            'advanced degree.',
+            weight=4,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'},
+            tags=[censustags['demographics'], tags['income_education_employment']])
+        less_one_year_college = OBSColumn(
+            id='B15003019',
+            type='Numeric',
+            name="Population completed less than one year of college, no degree",
+            description="The number of people in a geographic area over the age "
+            "of 25 who attended college for less than one year and no further.",
+            weight=4,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'},
+            tags=[censustags['demographics'], tags['income_education_employment']])
+        one_year_more_college = OBSColumn(
+            id='B15003020',
+            type='Numeric',
+            name="Population completed more than one year of college, no degree",
+            description="The number of people in a geographic area over the age "
+            "of 25 who attended college for more than one year but did not "
+            "obtain a degree",
+            weight=4,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'},
+            tags=[censustags['demographics'], tags['income_education_employment']])
+        associates_degree = OBSColumn(
+            id='B15003021',
+            type='Numeric',
+            name="Population Completed Associate's Degree",
+            description="The number of people in a geographic area over the age "
+            "of 25 who obtained a associate's degree, and did not complete "
+            "a more advanced degree.",
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
@@ -304,7 +454,9 @@ class Columns(ColumnsTask):
             id='B15003022',
             type='Numeric',
             name="Population Completed Bachelor's Degree",
-            description="The number of people in a geographic area over the age of 25 who obtained a bachelor's degree, and did not complete a more advanced degree.",
+            description="The number of people in a geographic area over the age "
+            "of 25 who obtained a bachelor's degree, and did not complete a more "
+            "advanced degree.",
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
@@ -313,7 +465,9 @@ class Columns(ColumnsTask):
             id='B15003023',
             type='Numeric',
             name="Population Completed Master's Degree",
-            description="The number of people in a geographic area over the age of 25 who obtained a master's degree, but did not complete a more advanced degree.",
+            description="The number of people in a geographic area over the age "
+            "of 25 who obtained a master's degree, but did not complete a more "
+            "advanced degree.",
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
@@ -322,7 +476,9 @@ class Columns(ColumnsTask):
             id='B16001001',
             type='Numeric',
             name='Population 5 Years and Over',
-            description='The number of people in a geographic area who are over the age of 5.  This is primarily used as a denominator of measures of language spoken at home.',
+            description='The number of people in a geographic area who are over '
+            'the age of 5.  This is primarily used as a denominator of measures '
+            'of language spoken at home.',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator'], tags['language']])
@@ -330,7 +486,8 @@ class Columns(ColumnsTask):
             id='B16001002',
             type='Numeric',
             name='Speaks only English at Home',
-            description='The number of people in a geographic area over age 5 who speak only English at home.',
+            description='The number of people in a geographic area over age '
+            '5 who speak only English at home.',
             weight=3,
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
@@ -339,7 +496,9 @@ class Columns(ColumnsTask):
             id='B16001003',
             type='Numeric',
             name='Speaks Spanish at Home',
-            description='The number of people in a geographic area over age 5 who speak Spanish at home, possibly in addition to other languages.',
+            description='The number of people in a geographic area over age '
+            '5 who speak Spanish at home, possibly in addition to other '
+            'languages.',
             weight=4,
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
@@ -348,7 +507,10 @@ class Columns(ColumnsTask):
             id='B17001001',
             type='Numeric',
             name='Population for Whom Poverty Status Determined',
-            description='The number of people in each geography who could be identified as either living in poverty or not.  This should be used as the denominator when calculating poverty rates, as it excludes people for whom it was not possible to determine poverty.',
+            description='The number of people in each geography who could be '
+            'identified as either living in poverty or not.  This should be used '
+            'as the denominator when calculating poverty rates, as it excludes '
+            'people for whom it was not possible to determine poverty.',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator']])
@@ -356,19 +518,38 @@ class Columns(ColumnsTask):
             id='B17001002',
             type='Numeric',
             name='Income In The Past 12 Months Below Poverty Level',
-            description="The number of people in a geographic area who are part of a family (which could be just them as an individual) determined to be \"in poverty\" following the Office of Management and Budget's Directive 14. (https://www.census.gov/hhes/povmeas/methodology/ombdir14.html)",
+            description="The number of people in a geographic area who are part "
+            "of a family (which could be just them as an individual) determined "
+            "to be \"in poverty\" following the Office of Management and "
+            "Budget's Directive 14. "
+            "(https://www.census.gov/hhes/povmeas/methodology/ombdir14.html)",
             weight=2,
             aggregate='sum',
             targets={pop_determined_poverty_status: 'denominator'},
-            tags=[censustags['demographics'], tags['denominator'], tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['denominator'],
+                  tags['income_education_employment']])
         median_income = OBSColumn(
             id='B19013001',
             type='Numeric',
             name='Median Household Income in the past 12 Months',
-            description="Within a geographic area, the median income received by every household on a regular basis before payments for personal income taxes, social security, union dues, medicare deductions, etc.  It includes income received from wages, salary, commissions, bonuses, and tips; self-employment income from own nonfarm or farm businesses, including proprietorships and partnerships; interest, dividends, net rental income, royalty income, or income from estates and trusts; Social Security or Railroad Retirement income; Supplemental Security Income (SSI); any cash public assistance or welfare payments from the state or local welfare office; retirement, survivor, or disability benefits; and any other sources of income received regularly such as Veterans' (VA) payments, unemployment and/or worker's compensation, child support, and alimony.",
+            description="Within a geographic area, the median income received "
+            "by every household on a regular basis before payments for personal "
+            "income taxes, social security, union dues, medicare deductions, "
+            "etc.  It includes income received from wages, salary, commissions, "
+            "bonuses, and tips; self-employment income from own nonfarm or farm "
+            "businesses, including proprietorships and partnerships; interest, "
+            "dividends, net rental income, royalty income, or income from "
+            "estates and trusts; Social Security or Railroad Retirement income; "
+            "Supplemental Security Income (SSI); any cash public assistance or "
+            "welfare payments from the state or local welfare office; "
+            "retirement, survivor, or disability benefits; and any other sources "
+            "of income received regularly such as Veterans' (VA) payments, "
+            "unemployment and/or worker's compensation, child support, and "
+            "alimony.",
             weight=8,
             aggregate='median',
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[censustags['demographics'],
+                  tags['income_education_employment']])
         gini_index = OBSColumn(
             id='B19083001',
             type='Numeric',
@@ -389,7 +570,10 @@ class Columns(ColumnsTask):
             id='B25001001',
             type='Numeric',
             name='Housing Units',
-            description='A count of housing units in each geography.  A housing unit is a house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters.',
+            description='A count of housing units in each geography.  A housing '
+            'unit is a house, an apartment, a mobile home or trailer, a group of '
+            'rooms, or a single room occupied as separate living quarters, or if '
+            'vacant, intended for occupancy as separate living quarters.',
             weight=8,
             aggregate='sum',
             tags=[censustags['demographics'], tags['housing'], tags['denominator']])
@@ -397,7 +581,12 @@ class Columns(ColumnsTask):
             id='B25002003',
             type='Numeric',
             name='Vacant Housing Units',
-            description="The count of vacant housing units in a geographic area. A housing unit is vacant if no one is living in it at the time of enumeration, unless its occupants are only temporarily absent. Units temporarily occupied at the time of enumeration entirely by people who have a usual residence elsewhere are also classified as vacant.",
+            description="The count of vacant housing units in a geographic "
+            "area. A housing unit is vacant if no one is living in it at the "
+            "time of enumeration, unless its occupants are only temporarily "
+            "absent. Units temporarily occupied at the time of enumeration "
+            "entirely by people who have a usual residence elsewhere are also "
+            "classified as vacant.",
             weight=8,
             aggregate='sum',
             targets={housing_units: 'denominator'},
@@ -406,7 +595,12 @@ class Columns(ColumnsTask):
             id='B25004002',
             type='Numeric',
             name='Vacant Housing Units for Rent',
-            description="The count of vacant housing units in a geographic area that are for rent. A housing unit is vacant if no one is living in it at the time of enumeration, unless its occupants are only temporarily absent. Units temporarily occupied at the time of enumeration entirely by people who have a usual residence elsewhere are also classified as vacant.",
+            description="The count of vacant housing units in a geographic area "
+            "that are for rent. A housing unit is vacant if no one is living in "
+            "it at the time of enumeration, unless its occupants are only "
+            "temporarily absent. Units temporarily occupied at the time of "
+            "enumeration entirely by people who have a usual residence elsewhere "
+            "are also classified as vacant.",
             weight=7,
             aggregate='sum',
             targets={vacant_housing_units: 'denominator'},
@@ -415,7 +609,12 @@ class Columns(ColumnsTask):
             id='B25004004',
             type='Numeric',
             name='Vacant Housing Units for Sale',
-            description="The count of vacant housing units in a geographic area that are for sale. A housing unit is vacant if no one is living in it at the time of enumeration, unless its occupants are only temporarily absent. Units temporarily occupied at the time of enumeration entirely by people who have a usual residence elsewhere are also classified as vacant.",
+            description="The count of vacant housing units in a geographic area "
+            "that are for sale. A housing unit is vacant if no one is living in "
+            "it at the time of enumeration, unless its occupants are only "
+            "temporarily absent. Units temporarily occupied at the time of "
+            "enumeration entirely by people who have a usual residence elsewhere "
+            "are also classified as vacant.",
             weight=7,
             aggregate='sum',
             targets={vacant_housing_units: 'denominator'},
@@ -424,7 +623,11 @@ class Columns(ColumnsTask):
             id='B25058001',
             type='Numeric',
             name='Median Rent',
-            description="The median contract rent within a geographic area. The contract rent is the monthly rent agreed to or contracted for, regardless of any furnishings, utilities, fees, meals, or services that may be included. For vacant units, it is the monthly rent asked for the rental unit at the time of interview.",
+            description="The median contract rent within a geographic area. The "
+            "contract rent is the monthly rent agreed to or contracted for, "
+            "regardless of any furnishings, utilities, fees, meals, or services "
+            "that may be included. For vacant units, it is the monthly rent "
+            "asked for the rental unit at the time of interview.",
             weight=8,
             aggregate='median',
             tags=[censustags['demographics'], tags['housing']])
@@ -432,10 +635,17 @@ class Columns(ColumnsTask):
             id='B25071001',
             type='Numeric',
             name='Percent of Household Income Spent on Rent',
-            description="Within a geographic area, the median percentage of household income which was spent on gross rent.  Gross rent is the amount of the contract rent plus the estimated average monthly cost of utilities (electricity, gas, water, sewer etc.) and fuels (oil, coal, wood, etc.) if these are paid by the renter.  Household income is the sum of the income of all people 15 years and older living in the household.",
+            description="Within a geographic area, the median percentage of "
+            "household income which was spent on gross rent.  Gross rent is the "
+            "amount of the contract rent plus the estimated average monthly cost "
+            "of utilities (electricity, gas, water, sewer etc.) and fuels (oil, "
+            "coal, wood, etc.) if these are paid by the renter.  Household "
+            "income is the sum of the income of all people 15 years and older "
+            "living in the household.",
             weight=4,
             aggregate='average',
-            tags=[censustags['demographics'], tags['housing'], tags['income_education_employment']])
+            tags=[censustags['demographics'], tags['housing'],
+                  tags['income_education_employment']])
         owner_occupied_housing_units = OBSColumn(
             id='B25075001',
             type='Numeric',
@@ -449,7 +659,11 @@ class Columns(ColumnsTask):
             id='B25075025',
             type='Numeric',
             name='Owner-occupied Housing Units valued at $1,000,000 or more.',
-            description="The count of owner occupied housing units in a geographic area that are valued at $1,000,000 or more.  Value is the respondent's estimate of how much the property (house and lot, mobile home and lot, or condominium unit) would sell for if it were for sale.",
+            description="The count of owner occupied housing units in "
+            "a geographic area that are valued at $1,000,000 or more.  Value is "
+            "the respondent's estimate of how much the property (house and lot, "
+            "mobile home and lot, or condominium unit) would sell for if it were "
+            "for sale.",
             weight=5,
             aggregate='sum',
             targets={owner_occupied_housing_units: 'denominator'},
@@ -459,7 +673,11 @@ class Columns(ColumnsTask):
             id='B25081002',
             type='Numeric',
             name='Owner-occupied Housing Units with a Mortgage',
-            description="The count of housing units within a geographic area that are mortagaged. \"Mortgage\" refers to all forms of debt where the property is pledged as security for repayment of the debt, including deeds of trust, trust deed, contracts to purchase, land contracts, junior mortgages, and home equity loans.",
+            description="The count of housing units within a geographic area "
+            "that are mortagaged. \"Mortgage\" refers to all forms of debt where "
+            "the property is pledged as security for repayment of the debt, "
+            "including deeds of trust, trust deed, contracts to purchase, land "
+            "contracts, junior mortgages, and home equity loans.",
             weight=4,
             aggregate='sum',
             targets={owner_occupied_housing_units: 'denominator'},
@@ -490,7 +708,8 @@ class Columns(ColumnsTask):
         two_parents_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008004',
             type='Numeric',
-            name='Two-parent families, both parents in labor force with young children (under 6 years of age)',
+            name='Two-parent families, both parents in labor force with young '
+            'children (under 6 years of age)',
             description='',
             weight=0,
             aggregate='sum',
@@ -500,7 +719,8 @@ class Columns(ColumnsTask):
         two_parents_father_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008005',
             type='Numeric',
-            name='Two-parent families, father only in labor force with young children (under 6 years of age)',
+            name='Two-parent families, father only in labor force with young '
+            'children (under 6 years of age)',
             description='',
             weight=0,
             aggregate='sum',
@@ -511,7 +731,8 @@ class Columns(ColumnsTask):
         two_parents_mother_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008006',
             type='Numeric',
-            name='Two-parent families, mother only in labor force with young children (under 6 years of age)',
+            name='Two-parent families, mother only in labor force with young '
+            'children (under 6 years of age)',
             description='',
             weight=0,
             aggregate='sum',
@@ -522,7 +743,8 @@ class Columns(ColumnsTask):
         two_parents_not_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008007',
             type='Numeric',
-            name='Two-parent families, neither parent in labor force with young children (under 6 years of age)',
+            name='Two-parent families, neither parent in labor force with young '
+            'children (under 6 years of age)',
             description='',
             weight=0,
             aggregate='sum',
@@ -544,7 +766,8 @@ class Columns(ColumnsTask):
         father_one_parent_families_with_young_children = OBSColumn(
             id='B23008009',
             type='Numeric',
-            name='One-parent families, father, with young children (under 6 years of age)',
+            name='One-parent families, father, with young children (under '
+            '6 years of age)',
             description='',
             weight=0,
             aggregate='sum',
@@ -555,7 +778,8 @@ class Columns(ColumnsTask):
         father_in_labor_force_one_parent_families_with_young_children = OBSColumn(
             id='B23008010',
             type='Numeric',
-            name='One-parent families, father in labor force, with young children (under 6 years of age)',
+            name='One-parent families, father in labor force, with young '
+            'children (under 6 years of age)',
             description='',
             weight=0,
             aggregate='sum',
@@ -851,82 +1075,509 @@ class Columns(ColumnsTask):
         #    targets={men_45_64_in_labor_force: 'denominator'},
         #    tags=[tag_middle_aged_men])
 
+        # Pitney bowes
+        #for 
+        pop_15_and_over = OBSColumn(
+            id="B12005001",
+            type='Numeric',
+            name='Population 15 Years and Over',
+            description='The number of people in a geographic area who are over '
+            'the age of 15.  This is used mostly as a denominator of marital '
+            'status.',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['denominator']]
+        )
+        pop_never_married = OBSColumn(
+            id="B12005002",
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Never Married',
+            description='The number of people in a geographic area who have never been married.',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+        pop_now_married = OBSColumn(
+            id="B12005005",
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Currently married',
+            description='The number of people in a geographic area who are currently married',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+        pop_separated = OBSColumn(
+            id='B12005008',
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Married but separated',
+            description='The number of people in a geographic area who are married but separated',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+        pop_widowed = OBSColumn(
+            id='B12005012',
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Widowed',
+            description='The number of people in a geographic area who are widowed',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+        pop_divorced = OBSColumn(
+            id='B12005015',
+            targets={pop_15_and_over: 'denominator'},
+            type='Numeric',
+            name='Divorced',
+            description='The number of people in a geographic area who are divorced',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics']]
+        )
+
+        commuters_16_over = OBSColumn(
+            id='B08134001',
+            type='Numeric',
+            name='Workers age 16 and over who do not work from home',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_less_10_mins = OBSColumn(
+            id='B08134002',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with less than 10 minute commute',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in less than 10 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_10_14_mins = OBSColumn(
+            id='B08134003',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with a commute between 10 and 14 minutes',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in between 10 and 14 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+
+        )
+        commute_15_19_mins = OBSColumn(
+            id='B08134004',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with a commute between 15 and 19 minutes',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in between 15 and 19 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+
+        )
+        commute_20_24_mins = OBSColumn(
+            id='B08134005',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with a commute between 20 and 24 minutes',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in between 20 and 24 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_25_29_mins = OBSColumn(
+            id='B08134006',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with a commute between 25 and 29 minutes',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in between 25 and 29 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_30_34_mins = OBSColumn(
+            id='B08134007',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with a commute between 30 and 34 minutes',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in between 30 and 34 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_35_44_mins = OBSColumn(
+            id='B08134008',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with a commute between 35 and 44 minutes',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in between 35 and 44 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_45_59_mins = OBSColumn(
+            id='B08134009',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with a commute between 45 and 59 minutes',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in between 45 and 59 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_60_more_mins = OBSColumn(
+            id='B08134010',
+            targets={commuters_16_over: 'denominator'},
+            type='Numeric',
+            name='Number of workers with a commute of over 60 minutes',
+            description='The number of workers over the age of 16 who do not '
+                        'work from home and commute in over 60 minutes '
+                        'in a geographic area',
+            weight=2,
+            aggregate='sum',
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+
+        aggregate_travel_time_to_work = OBSColumn(
+            id='B08135001',
+            type='Numeric',
+            name='Aggregate travel time to work',
+            description='The total number of minutes every worker over the age '
+                        'of 16 who did not work from home spent spent '
+                        'commuting to work in one day in a geographic area',
+            weight=2,
+            aggregate='sum',
+            targets={commuters_16_over: 'divisor'},
+            tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+
+        income_less_10000 = OBSColumn(
+            id='B19001002',
+            type='Numeric',
+            aggregate='sum',
+            name='Households with income less than $10,000',
+            description='The number of households in a geographic area whose '
+                        'annual income was less than $10,000.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_10000_14999 = OBSColumn(
+            id='B19001003',
+            type='Numeric',
+            name='Households with income of $10,000 to $14,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $10,000 and $14,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_15000_19999 = OBSColumn(
+            id='B19001004',
+            type='Numeric',
+            name='Households with income of $15,000 to $19,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $15,000 and $19,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_20000_24999 = OBSColumn(
+            id='B19001005',
+            type='Numeric',
+            name='Households with income of $20,000 To $24,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $20,000 and $24,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_25000_29999 = OBSColumn(
+            id='B19001006',
+            type='Numeric',
+            name='Households with income of $25,000 To $29,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $20,000 and $24,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_30000_34999 = OBSColumn(
+            id='B19001007',
+            type='Numeric',
+            name='Households with income of $30,000 To $34,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $30,000 and $34,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_35000_39999 = OBSColumn(
+            id='B19001008',
+            type='Numeric',
+            name='Households with income of $35,000 To $39,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $35,000 and $39,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_40000_44999 = OBSColumn(
+            id='B19001009',
+            type='Numeric',
+            name='Households with income of $40,000 To $44,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $40,000 and $44,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_45000_49999 = OBSColumn(
+            id='B19001010',
+            type='Numeric',
+            name='Households with income of $45,000 To $49,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $45,000 and $49,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_50000_59999 = OBSColumn(
+            id='B19001011',
+            type='Numeric',
+            name='Households with income of $50,000 To $59,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $50,000 and $59,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_60000_74999 = OBSColumn(
+            id='B19001012',
+            type='Numeric',
+            name='Households with income of $60,000 To $74,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $60,000 and $74,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_75000_99999 = OBSColumn(
+            id='B19001013',
+            type='Numeric',
+            name='Households with income of $75,000 To $99,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $75,000 and $99,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_100000_124999 = OBSColumn(
+            id='B19001014',
+            type='Numeric',
+            name='Households with income of $100,000 To $124,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $100,000 and $124,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_125000_149999 = OBSColumn(
+            id='B19001015',
+            type='Numeric',
+            name='Households with income of $125,000 To $149,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $125,000 and $149,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_150000_199999 = OBSColumn(
+            id='B19001016',
+            type='Numeric',
+            name='Households with income of $150,000 To $199,999',
+            description='The number of households in a geographic area whose '
+                        'annual income was between $150,000 and $1999,999.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        income_200000_or_more = OBSColumn(
+            id='B19001017',
+            type='Numeric',
+            name='Households with income of $200,000 Or More',
+            description='The number of households in a geographic area whose '
+                        'annual income was more than $200,000.',
+            weight=2,
+            tags=[censustags['demographics'], tags['income_education_employment']],
+            targets={households: 'denominator'}
+        )
+        #TODO
+        #average_travel_time_to_work = OBSColumn(
+        #    id='B08135001',
+        #    aggregate='sum'
+        #)
 
         return OrderedDict([
-            ("total_pop",                        total_pop),
-            ("male_pop",                         male_pop),
-            ("female_pop",                       female_pop),
-            ("median_age",                       median_age),
-            ("white_pop",                        white_pop),
-            ("black_pop",                        black_pop),
-            ("asian_pop",                        asian_pop),
-            ("hispanic_pop",                     hispanic_pop),
-            ("not_us_citizen_pop",               not_us_citizen_pop),
-            ("workers_16_and_over",              workers_16_and_over),
-            ("commuters_by_car_truck_van",       commuters_by_car_truck_van),
-            ("commuters_by_public_transportation",commuters_by_public_transportation),
-            ("commuters_by_bus",                 commuters_by_bus),
-            ("commuters_by_subway_or_elevated",  commuters_by_subway_or_elevated),
-            ("walked_to_work",                   walked_to_work),
-            ("worked_at_home",                   worked_at_home),
-            ("children",                         children),
-            ("households",                       households),
-            ("population_3_years_over",          population_3_years_over),
-            ("in_school",                        in_school),
-            ("in_grades_1_to_4",                 in_grades_1_to_4),
-            ("in_grades_5_to_8",                 in_grades_5_to_8),
-            ("in_grades_9_to_12",                in_grades_9_to_12),
-            ("in_undergrad_college",             in_undergrad_college),
-            ("pop_25_years_over",                pop_25_years_over),
-            ("high_school_diploma",              high_school_diploma),
-            ("bachelors_degree",                 bachelors_degree),
-            ("masters_degree",                   masters_degree),
-            ("pop_5_years_over",                 pop_5_years_over),
-            ("speak_only_english_at_home",       speak_only_english_at_home),
-            ("speak_spanish_at_home",            speak_spanish_at_home),
-            ("pop_determined_poverty_status",    pop_determined_poverty_status),
-            ("poverty",                          poverty),
-            ("median_income",                    median_income),
-            ("gini_index",                       gini_index),
-            ("income_per_capita",                income_per_capita),
-            ("housing_units",                    housing_units),
-            ("vacant_housing_units",             vacant_housing_units),
-            ("vacant_housing_units_for_rent",    vacant_housing_units_for_rent),
-            ("vacant_housing_units_for_sale",    vacant_housing_units_for_sale),
-            ("median_rent",                      median_rent),
-            ("percent_income_spent_on_rent",     percent_income_spent_on_rent),
-            ("owner_occupied_housing_units",     owner_occupied_housing_units),
-            ("million_dollar_housing_units",     million_dollar_housing_units),
-            ("mortgaged_housing_units",          mortgaged_housing_units),
-            ("families_with_young_children",     families_with_young_children),
+            ("total_pop", total_pop),
+            ("male_pop", male_pop),
+            ("female_pop", female_pop),
+            ("median_age", median_age),
+            ("white_pop", white_pop),
+            ("black_pop", black_pop),
+            ("asian_pop", asian_pop),
+            ("hispanic_pop", hispanic_pop),
+            ("amerindian_pop", amerindian_pop),
+            ("other_race_pop", other_race_pop),
+            ("two_or_more_races_pop", two_or_more_races_pop),
+            ("not_hispanic_pop", not_hispanic_pop),
+            ("not_us_citizen_pop", not_us_citizen_pop),
+            ("workers_16_and_over", workers_16_and_over),
+            ("commuters_by_car_truck_van", commuters_by_car_truck_van),
+            ('commuters_drove_alone', commuters_drove_alone),
+            ('commuters_by_carpool', commuters_by_carpool),
+            ("commuters_by_public_transportation", commuters_by_public_transportation),
+            ("commuters_by_bus", commuters_by_bus),
+            ("commuters_by_subway_or_elevated", commuters_by_subway_or_elevated),
+            ("walked_to_work", walked_to_work),
+            ("worked_at_home", worked_at_home),
+            ("children", children),
+            ("households", households),
+            ("population_3_years_over", population_3_years_over),
+            ("in_school", in_school),
+            ("in_grades_1_to_4", in_grades_1_to_4),
+            ("in_grades_5_to_8", in_grades_5_to_8),
+            ("in_grades_9_to_12", in_grades_9_to_12),
+            ("in_undergrad_college", in_undergrad_college),
+            ("pop_25_years_over", pop_25_years_over),
+            ("high_school_diploma", high_school_diploma),
+            ("less_one_year_college", less_one_year_college),
+            ("one_year_more_college", one_year_more_college),
+            ("associates_degree", associates_degree),
+            ("bachelors_degree", bachelors_degree),
+            ("masters_degree", masters_degree),
+            ("pop_5_years_over", pop_5_years_over),
+            ("speak_only_english_at_home", speak_only_english_at_home),
+            ("speak_spanish_at_home", speak_spanish_at_home),
+            ("pop_determined_poverty_status", pop_determined_poverty_status),
+            ("poverty", poverty),
+            ("median_income", median_income),
+            ("gini_index", gini_index),
+            ("income_per_capita", income_per_capita),
+            ("housing_units", housing_units),
+            ("vacant_housing_units", vacant_housing_units),
+            ("vacant_housing_units_for_rent", vacant_housing_units_for_rent),
+            ("vacant_housing_units_for_sale", vacant_housing_units_for_sale),
+            ("median_rent", median_rent),
+            ("percent_income_spent_on_rent", percent_income_spent_on_rent),
+            ("owner_occupied_housing_units", owner_occupied_housing_units),
+            ("million_dollar_housing_units", million_dollar_housing_units),
+            ("mortgaged_housing_units", mortgaged_housing_units),
+            ("families_with_young_children", families_with_young_children),
             ("two_parent_families_with_young_children", two_parent_families_with_young_children),
-            ("two_parents_in_labor_force_families_with_young_children", two_parents_in_labor_force_families_with_young_children),
-            ("two_parents_father_in_labor_force_families_with_young_children", two_parents_father_in_labor_force_families_with_young_children),
-            ("two_parents_mother_in_labor_force_families_with_young_children", two_parents_mother_in_labor_force_families_with_young_children),
-            ("two_parents_not_in_labor_force_families_with_young_children", two_parents_not_in_labor_force_families_with_young_children),
-            ("one_parent_families_with_young_children", one_parent_families_with_young_children),
-            ("father_one_parent_families_with_young_children", father_one_parent_families_with_young_children),
-            ('men_45_to_64',                  men_45_to_64),
-            ('men_45_to_49',                  men_45_to_49),
-            ('men_50_to_54',                  men_50_to_54),
-            ('men_55_to_59',                  men_55_to_59),
-            ('men_60_61',                     men_60_61),
-            ('men_62_64',                     men_62_64),
-            ('black_men_45_54',               black_men_45_54),
-            ('black_men_55_64',               black_men_55_64),
-            ('hispanic_men_45_54',            hispanic_men_45_54),
-            ('hispanic_men_55_64',            hispanic_men_55_64),
-            ('white_men_45_54',               white_men_45_54),
-            ('white_men_55_64',               white_men_55_64),
-            ('asian_men_45_54',               asian_men_45_54),
-            ('asian_men_55_64',               asian_men_55_64),
-            ('men_45_64_less_than_9_grade',   men_45_64_less_than_9_grade),
-            ('men_45_64_grade_9_12',          men_45_64_grade_9_12),
-            ('men_45_64_high_school',         men_45_64_high_school),
-            ('men_45_64_some_college',        men_45_64_some_college),
-            ('men_45_64_associates_degree',   men_45_64_associates_degree),
-            ('men_45_64_bachelors_degree',    men_45_64_bachelors_degree),
-            ('men_45_64_graduate_degree',     men_45_64_graduate_degree),
+            ("two_parents_in_labor_force_families_with_young_children",
+             two_parents_in_labor_force_families_with_young_children),
+            ("two_parents_father_in_labor_force_families_with_young_children",
+             two_parents_father_in_labor_force_families_with_young_children),
+            ("two_parents_mother_in_labor_force_families_with_young_children",
+             two_parents_mother_in_labor_force_families_with_young_children),
+            ("two_parents_not_in_labor_force_families_with_young_children",
+             two_parents_not_in_labor_force_families_with_young_children),
+            ("one_parent_families_with_young_children",
+             one_parent_families_with_young_children),
+            ("father_one_parent_families_with_young_children",
+             father_one_parent_families_with_young_children),
+            ('men_45_to_64', men_45_to_64),
+            ('men_45_to_49', men_45_to_49),
+            ('men_50_to_54', men_50_to_54),
+            ('men_55_to_59', men_55_to_59),
+            ('men_60_61', men_60_61),
+            ('men_62_64', men_62_64),
+            ('black_men_45_54', black_men_45_54),
+            ('black_men_55_64', black_men_55_64),
+            ('hispanic_men_45_54', hispanic_men_45_54),
+            ('hispanic_men_55_64', hispanic_men_55_64),
+            ('white_men_45_54', white_men_45_54),
+            ('white_men_55_64', white_men_55_64),
+            ('asian_men_45_54', asian_men_45_54),
+            ('asian_men_55_64', asian_men_55_64),
+            ('men_45_64_less_than_9_grade', men_45_64_less_than_9_grade),
+            ('men_45_64_grade_9_12', men_45_64_grade_9_12),
+            ('men_45_64_high_school', men_45_64_high_school),
+            ('men_45_64_some_college', men_45_64_some_college),
+            ('men_45_64_associates_degree', men_45_64_associates_degree),
+            ('men_45_64_bachelors_degree', men_45_64_bachelors_degree),
+            ('men_45_64_graduate_degree', men_45_64_graduate_degree),
+            ("two_parent_families_with_young_children", two_parent_families_with_young_children),
+            ("two_parents_in_labor_force_families_with_young_children",
+             two_parents_in_labor_force_families_with_young_children),
+            ("two_parents_father_in_labor_force_families_with_young_children",
+             two_parents_father_in_labor_force_families_with_young_children),
+            ("two_parents_mother_in_labor_force_families_with_young_children",
+             two_parents_mother_in_labor_force_families_with_young_children),
+            ("two_parents_not_in_labor_force_families_with_young_children",
+             two_parents_not_in_labor_force_families_with_young_children),
+            ("one_parent_families_with_young_children",
+             one_parent_families_with_young_children),
+            ("father_one_parent_families_with_young_children",
+             father_one_parent_families_with_young_children),
+            ("father_in_labor_force_one_parent_families_with_young_children",
+             father_in_labor_force_one_parent_families_with_young_children),
+            ("pop_15_and_over", pop_15_and_over),
+            ("pop_never_married", pop_never_married),
+            ("pop_now_married", pop_now_married),
+            ("pop_separated", pop_separated),
+            ("pop_widowed", pop_widowed),
+            ("pop_divorced", pop_divorced),
+            ("commuters_16_over", commuters_16_over),
+            ("commute_less_10_mins", commute_less_10_mins),
+            ("commute_10_14_mins", commute_10_14_mins),
+            ("commute_15_19_mins", commute_15_19_mins),
+            ("commute_20_24_mins", commute_20_24_mins),
+            ("commute_25_29_mins", commute_25_29_mins),
+            ("commute_30_34_mins", commute_30_34_mins),
+            ("commute_35_44_mins", commute_35_44_mins),
+            ("commute_45_59_mins", commute_45_59_mins),
+            ("commute_60_more_mins", commute_60_more_mins),
+            ("aggregate_travel_time_to_work", aggregate_travel_time_to_work),
+            ("income_less_10000", income_less_10000),
+            ("income_10000_14999", income_10000_14999),
+            ("income_15000_19999", income_15000_19999),
+            ("income_20000_24999", income_20000_24999),
+            ("income_25000_29999", income_25000_29999),
+            ("income_30000_34999", income_30000_34999),
+            ("income_35000_39999", income_35000_39999),
+            ("income_40000_44999", income_40000_44999),
+            ("income_45000_49999", income_45000_49999),
+            ("income_50000_59999", income_50000_59999),
+            ("income_60000_74999", income_60000_74999),
+            ("income_75000_99999", income_75000_99999),
+            ("income_100000_124999", income_100000_124999),
+            ("income_125000_149999", income_125000_149999),
+            ("income_150000_199999", income_150000_199999),
+            ("income_200000_or_more", income_200000_or_more),
         ])
 
 
@@ -970,6 +1621,9 @@ class Extract(TableTask):
     year = Parameter()
     sample = Parameter()
     geography = Parameter()
+
+    def version(self):
+        return '1'
 
     def requires(self):
         return {

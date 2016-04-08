@@ -219,7 +219,6 @@ class UnzipTigerGeography(Task):
 
     year = Parameter()
     geography = Parameter()
-    force = BooleanParameter() # TODO
 
     def requires(self):
         return DownloadTigerGeography(year=self.year, geography=self.geography)
@@ -519,6 +518,9 @@ class SumLevel(TableTask):
     @property
     def input_tablename(self):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
+
+    def version(self):
+        return '4'
 
     def requires(self):
         if self.clipped:
