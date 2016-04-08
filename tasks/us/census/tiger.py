@@ -219,7 +219,6 @@ class UnzipTigerGeography(Task):
 
     year = Parameter()
     geography = Parameter()
-    force = BooleanParameter() # TODO
 
     def requires(self):
         return DownloadTigerGeography(year=self.year, geography=self.geography)
