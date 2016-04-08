@@ -44,9 +44,6 @@ class ACSTags(TagsTask):
                    description='Standard Demographic Data from the US American Community Survey')
         ]
 
-class
-class QuantColumns(ColumnsTask):
-
 
 class Columns(ColumnsTask):
 
@@ -1617,21 +1614,22 @@ class DownloadACS(LoadPostgresFromURL):
         self.load_from_url(url)
 
 
-class QuantileColumns(ColumnTask):
+class QuantileColumns(ColumnsTask):
+
     def requires(self):
-        return columns()
+        return Columns()
 
     def columns(self):
         quantile_columns = OrderedDict()
-        for name, col in self.input():
-            quantile_columns[name] =
-                OBSColumn(
-                    id=col.id+'_quant',
-                    type='Numeric',
-                    name='Quantile:'+col.name,
-                    description=col.description,
-                    targets={col: 'quantile_source'}
-                )
+        for name, coltarget in self.input().iteritems():
+            col = coltarget.get(current_session())
+            quantile_columns[name] = OBSColumn(
+                id=col.id+'_quant',
+                type='Numeric',
+                name='Quantile:'+col.name,
+                description=col.description,
+                targets={col: 'quantile_source'}
+            )
         return quantile_columns
 
 
@@ -1642,7 +1640,7 @@ class Quantiles(TableTask):
     '''
 
     year = Parameter()
-    sample  = Parameter()
+    sample = Parameter()
     geography = Parameter()
 
     def requires(self):
@@ -1679,11 +1677,8 @@ class Quantiles(TableTask):
         connection.execute( '''
             INSERT INTO {table}
             (geoid, {insert_statment})
-            VALUES(
-                select geoid, {select_statment}
-                FROM
-                {source_table}
-            )
+            SELECT geoid, {select_statment}
+            FROM {source_table}
         '''.format(
             table        = self.output().table,
             insert_statment = insert_statment,
