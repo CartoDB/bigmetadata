@@ -433,9 +433,11 @@ class TableTarget(Target):
     def update_or_create(self):
 
         session = current_session()
-        session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+
+        # create schema out-of-band as we cannot create a table after a schema
+        # in a single session
+        shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=self._schema))
-        session.flush()
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
