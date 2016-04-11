@@ -455,8 +455,13 @@ class TableTarget(Target):
             # Column info for sqlalchemy's internal metadata
             if col.type.lower() == 'geometry':
                 coltype = Geometry
+
+            # For enum type, pull keys from extra["categories"]
+            elif col.type.lower().startswith('enum'):
+                cats = col.extra['categories'].keys()
+                coltype = types.Enum(*cats, name=col.id + '_enum')
             else:
-                coltype = getattr(types, col.type)
+                coltype = getattr(types, col.type.capitalize())
             columns.append(Column(colname, coltype))
 
             # Column info for bmd metadata

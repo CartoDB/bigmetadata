@@ -15,19 +15,6 @@ from tasks.us.census.tiger import GeoidColumns
 
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
 
-category_maps = {
-    'Histpnic and Young'   :    1,
-    'Wealthy Nuclear Families'   :    2,
-    'Middle Income, Single Family Home' :    3,
-    'Native American'  :    4,
-    'Wealthy, urban without Kids'  :    5,
-    'Low income and diverse'   :    6  ,
-    'Wealthy Old Caucasion ' :    7,
-    'Low income, mix of minorities' :    8,
-    'Low income, African American'  :    9,
-    'Residential Institutions'   :    10
-}
-
 
 class DownloadSpielmanSingletonFile(Task):
 
@@ -125,33 +112,35 @@ class ProcessSpielmanSingletonFile(Task):
     def output(self):
         return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
 
-class CreateSpielmanSingletonTable(TableTask):
+class SpielmanSingletonTable(TableTask):
     def requires(self):
         return {
-            'columns'   : CreateSpielmanSingletonColumns(),
+            'columns'   : SpielmanSingletonColumns(),
             'data_file' : ProcessSpielmanSingletonFile(),
             'tiger'     : GeoidColumns()
         }
     def version(self):
-        return '2'
+        return '4'
+
     def timespan(self):
-        return '2009-2013'
+        return '2009 - 2013'
 
     def bounds(self):
-        return
+        return 'BOX(0 0,0 0)'
 
     def populate(self):
         table_name = self.output().get(current_session()).id
-        shell("psql -c '\copy  {table} FROM {file_path} WITH CSV HEADER'".format(
-            table      = table_name,
-            file_path  = self.input()['data_file'].path
+        shell(r"psql -c '\copy {table} FROM {file_path} WITH CSV HEADER'".format(
+            table=table_name,
+            file_path=self.input()['data_file'].path
         ))
-        for name, segement_id in category_maps.iteritems():
-            current_session().execute("update {table} set \"X10\" = '{name}'  where \"X10\" ='{segement_id}'; ".format(
-                table       = table_name,
-                name        = name,
-                segement_id = segement_id
-            ))
+        for name, segment_id in SpielmanSingletonColumns.x10_mapping.iteritems():
+            current_session().execute("update {table} set \"X10\" = '{name}' "
+                                      "where \"X10\" ='{segment_id}'; ".format(
+                                          table=table_name,
+                                          name=name,
+                                          segment_id=segment_id
+                                      ))
 
     def columns(self):
         columns = OrderedDict({
@@ -160,35 +149,71 @@ class CreateSpielmanSingletonTable(TableTask):
         columns.update(self.input()['columns'])
         return columns
 
-class CreateSpielmanSingletonColumns(ColumnsTask):
+class SpielmanSingletonColumns(ColumnsTask):
+
+    x10_mapping = {
+        'Hispanic and Young' : 1,
+        'Wealthy Nuclear Families' : 2,
+        'Middle Income, Single Family Home' : 3,
+        'Native American' : 4,
+        'Wealthy, urban without Kids' : 5,
+        'Low income and diverse' : 6,
+        'Wealthy Old Caucasion ' : 7,
+        'Low income, mix of minorities' : 8,
+        'Low income, African American' : 9,
+        'Residential Institutions' : 10
+    }
+
+    x10_categories = OrderedDict([
+        ('Hispanic and Young', 'Hispanic and Young description'),
+        ('Wealthy Nuclear Families', 'Wealthy Nuclear Families desc'),
+        ('Middle Income, Single Family Home', 'Middle Income, Single Family Home desc'),
+        ('Native American', 'Native American desc'),
+        ('Wealthy, urban without Kids', 'Wealthy, urban without Kids desc'),
+        ('Low income and diverse', 'Low income and diverse desc'),
+        ('Wealthy Old Caucasion', 'Wealthy Old Caucasion desc'),
+        ('Low income, mix of minorities', 'Low income, mix of minorities desc'),
+        ('Low income, African American', 'Low income, African American desc'),
+        ('Residential Institutions', 'Residential Institutions desc')
+    ])
+
+    def version(self):
+        return '2'
 
     def columns(self):
-        X10 = OBSColumn(
+        x10 = OBSColumn(
             id='X10',
             type='Text',
             name="SS_segment_10_clusters",
-            description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters'
+            description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters',
+            extra={'categories': self.x10_categories}
         )
-        X2 = OBSColumn(
+        x2 = OBSColumn(
             id='X2',
             type='Text',
             name="SS_segment_2_clusters",
             description="Sociodemographic classes from Spielman and Singleton 2015, 10 clusters"
         )
-        X31 = OBSColumn(
+        x31 = OBSColumn(
             id='X31',
             type='Text',
             name="SS_segment_31_clusters",
             description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters'
         )
-        X55 = OBSColumn(
+        x55 = OBSColumn(
             id='X55',
             type='Text',
             name="SS_segment_55_clusters",
             description="Sociodemographic classes from Spielman and Singleton 2015, 10 clusters"
         )
 
-        return OrderedDict([['X10', X10],['X2', X2], ['X31',X31], ['X55', X55], ['X2', X2]])
+        return OrderedDict([
+            ('X10', x10),
+            ('X2', x2),
+            ('X31', x31),
+            ('X55', x55),
+            ('X2', x2)
+        ])
 
 #
 # class LoadSpielmanSingletonToDB(self):
