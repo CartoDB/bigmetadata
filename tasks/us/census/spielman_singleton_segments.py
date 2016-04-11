@@ -82,7 +82,7 @@ class ProcessSpielmanSingletonFile(Task):
         return self.input()['downloaded_file'].path.split("/")[-1].replace('.zip','.csv')
 
     def grab_relevant_columns(self):
-        shell("awk -F',' 'BEGIN{{OFS=\",\"}}{{print $5, $159, $160, $161, $162}}' {source}  |  sed -e '1s/^.*$/GEOID10,X10,X31,X55,X2/' > {target}".format(
+        shell("awk -F',' 'BEGIN{{OFS=\",\"}}{{print $5, $159, $160, $161, $162}}' {source}  |  sed -e '1s/^.*$/GEOID10,x10,x31,x55,x2/' > {target}".format(
             source =self.output().path.replace('.csv','_tmp.csv') , target=self.output().path))
 
     def decompressed_folder(self):
