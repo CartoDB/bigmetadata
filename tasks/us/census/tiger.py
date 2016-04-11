@@ -244,6 +244,9 @@ class TigerGeographyShapefileToSQL(TableTask):
     def requires(self):
         return UnzipTigerGeography(year=self.year, geography=self.geography)
 
+    def version(self):
+        return '2'
+
     def columns(self):
         return {}
 
