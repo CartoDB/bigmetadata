@@ -5,7 +5,7 @@ Tasks to sync data locally to CartoDB
 from tasks.meta import current_session, OBSTable, Base
 from tasks.util import TableToCarto, underscore_slugify
 
-from luigi import WrapperTask, BooleanParameter, Parameter
+from luigi import WrapperTask, BooleanParameter, Parameter, Task
 
 
 class SyncMetadata(WrapperTask):
@@ -59,3 +59,47 @@ class SyncAllData(WrapperTask):
 
         for table_id, tablename in tables.iteritems():
             yield TableToCarto(table=table_id, outname=tablename, force=self.force)
+
+
+class PurgeMetadata(Task):
+    '''
+    Purge local metadata that no longer has tasks linking to it
+    '''
+    pass
+
+
+class PurgeData(Task):
+    '''
+    Purge local data that no longer has tasks linking to it.
+    '''
+    pass
+
+
+class PurgeRemoteData(Task):
+    '''
+    Purge remote data that is no longer available locally
+    '''
+    pass
+
+
+class TestData(Task):
+    '''
+    See if a dataset has been uploaded & is in sync
+    '''
+    pass
+
+
+class TestAllData(Task):
+    '''
+    See if all datasets have been uploaded & are in sync
+    '''
+
+    pass
+
+
+class TestMetadata(Task):
+    '''
+    Make sure all metadata is uploaded & in sync
+    '''
+    pass
+
