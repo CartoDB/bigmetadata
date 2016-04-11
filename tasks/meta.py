@@ -236,17 +236,25 @@ class CurrentSession(object):
 
     def __init__(self):
         self._session = None
+        self._pid = None
 
     def begin(self):
         if not self._session:
             self._session = sessionmaker(bind=get_engine())()
+        self._pid = os.getpid()
 
     def get(self):
+        # If we forked, there would be a PID mismatch and we need a new
+        # connection
+        if self._pid != os.getpid():
+            self._session = None
         if not self._session:
             self.begin()
         return self._session
 
     def commit(self):
+        if self._pid != os.getpid():
+            raise Exception('cannot commit forked connection')
         if not self._session:
             return
         try:
@@ -260,6 +268,8 @@ class CurrentSession(object):
             self._session = None
 
     def rollback(self):
+        if self._pid != os.getpid():
+            raise Exception('cannot rollback forked connection')
         if not self._session:
             return
         try:

@@ -16,13 +16,13 @@ psql:
 acs:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.us.census.acs ExtractAll \
-	  --year 2013 --sample 5yr
-#	  --parallel-scheduling --workers=8
+	  --year 2013 --sample 5yr \
+	  --parallel-scheduling --workers=8
 
 tiger:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.us.census.tiger AllSumLevels
-#	  --parallel-scheduling --workers=8
+	  --module tasks.us.census.tiger AllSumLevels \
+	  --parallel-scheduling --workers=8
 
 sphinx:
 	docker-compose run bigmetadata luigi \
@@ -37,13 +37,13 @@ sphinx-deploy:
 # do not exceed three slots available for import api
 sync-meta:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.carto SyncMetadata
-#	  --parallel-scheduling --workers=3
+	  --module tasks.carto SyncMetadata \
+	  --parallel-scheduling --workers=3
 
 sync-data:
 	docker-compose run bigmetadata luigi \
-	  --module tasks.carto SyncAllData
-#	  --parallel-scheduling --workers=3
+	  --module tasks.carto SyncAllData \
+	  --parallel-scheduling --workers=3
 
 sync: sync-meta sync-data
 
