@@ -113,6 +113,7 @@ class ProcessSpielmanSingletonFile(Task):
         return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
 
 class SpielmanSingletonTable(TableTask):
+
     def requires(self):
         return {
             'columns'   : SpielmanSingletonColumns(),
@@ -120,7 +121,7 @@ class SpielmanSingletonTable(TableTask):
             'tiger'     : GeoidColumns()
         }
     def version(self):
-        return '4'
+        return '5'
 
     def timespan(self):
         return '2009 - 2013'
@@ -135,8 +136,8 @@ class SpielmanSingletonTable(TableTask):
             file_path=self.input()['data_file'].path
         ))
         for name, segment_id in SpielmanSingletonColumns.x10_mapping.iteritems():
-            current_session().execute("update {table} set \"X10\" = '{name}' "
-                                      "where \"X10\" ='{segment_id}'; ".format(
+            current_session().execute("update {table} set X10 = '{name}' "
+                                      "where X10 ='{segment_id}'; ".format(
                                           table=table_name,
                                           name=name,
                                           segment_id=segment_id
@@ -178,7 +179,7 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return '2'
+        return '3'
 
     def columns(self):
         x10 = OBSColumn(

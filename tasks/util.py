@@ -450,6 +450,7 @@ class TableTarget(Target):
         # create new local data table
         columns = []
         for colname, coltarget in self._columns.items():
+            colname = colname.lower()
             col = coltarget.get(session)
 
             # Column info for sqlalchemy's internal metadata
