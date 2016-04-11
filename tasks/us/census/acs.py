@@ -1288,6 +1288,7 @@ class Columns(ColumnsTask):
         income_10000_14999 = OBSColumn(
             id='B19001003',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $10,000 to $14,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $10,000 and $14,999.',
@@ -1298,6 +1299,7 @@ class Columns(ColumnsTask):
         income_15000_19999 = OBSColumn(
             id='B19001004',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $15,000 to $19,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $15,000 and $19,999.',
@@ -1308,6 +1310,7 @@ class Columns(ColumnsTask):
         income_20000_24999 = OBSColumn(
             id='B19001005',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $20,000 To $24,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $20,000 and $24,999.',
@@ -1318,6 +1321,7 @@ class Columns(ColumnsTask):
         income_25000_29999 = OBSColumn(
             id='B19001006',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $25,000 To $29,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $20,000 and $24,999.',
@@ -1328,6 +1332,7 @@ class Columns(ColumnsTask):
         income_30000_34999 = OBSColumn(
             id='B19001007',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $30,000 To $34,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $30,000 and $34,999.',
@@ -1338,6 +1343,7 @@ class Columns(ColumnsTask):
         income_35000_39999 = OBSColumn(
             id='B19001008',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $35,000 To $39,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $35,000 and $39,999.',
@@ -1348,6 +1354,7 @@ class Columns(ColumnsTask):
         income_40000_44999 = OBSColumn(
             id='B19001009',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $40,000 To $44,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $40,000 and $44,999.',
@@ -1358,6 +1365,7 @@ class Columns(ColumnsTask):
         income_45000_49999 = OBSColumn(
             id='B19001010',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $45,000 To $49,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $45,000 and $49,999.',
@@ -1368,6 +1376,7 @@ class Columns(ColumnsTask):
         income_50000_59999 = OBSColumn(
             id='B19001011',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $50,000 To $59,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $50,000 and $59,999.',
@@ -1378,6 +1387,7 @@ class Columns(ColumnsTask):
         income_60000_74999 = OBSColumn(
             id='B19001012',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $60,000 To $74,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $60,000 and $74,999.',
@@ -1388,6 +1398,7 @@ class Columns(ColumnsTask):
         income_75000_99999 = OBSColumn(
             id='B19001013',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $75,000 To $99,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $75,000 and $99,999.',
@@ -1398,6 +1409,7 @@ class Columns(ColumnsTask):
         income_100000_124999 = OBSColumn(
             id='B19001014',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $100,000 To $124,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $100,000 and $124,999.',
@@ -1408,6 +1420,7 @@ class Columns(ColumnsTask):
         income_125000_149999 = OBSColumn(
             id='B19001015',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $125,000 To $149,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $125,000 and $149,999.',
@@ -1418,6 +1431,7 @@ class Columns(ColumnsTask):
         income_150000_199999 = OBSColumn(
             id='B19001016',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $150,000 To $199,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $150,000 and $1999,999.',
@@ -1428,6 +1442,7 @@ class Columns(ColumnsTask):
         income_200000_or_more = OBSColumn(
             id='B19001017',
             type='Numeric',
+            aggregate='sum',
             name='Households with income of $200,000 Or More',
             description='The number of households in a geographic area whose '
                         'annual income was more than $200,000.',
@@ -1650,15 +1665,18 @@ class Quantiles(TableTask):
             'tiger'   : GeoidColumns()
           }
 
+    def version(self):
+        return '2'
+
     def columns(self):
         columns = OrderedDict({
-            'geoid': self.input()['tiger']['census_tract_geoid']
+            'geoid': self.input()['tiger'][self.geography + '_geoid']
         })
         columns.update(self.input()['columns'])
         return columns
 
     def bounds(self):
-        return 'box2d(0 0, 0 0)'
+        return 'BOX(0 0,0 0)'
 
     def timespan(self):
         sample = int(self.sample[0])
@@ -1769,4 +1787,4 @@ class ExtractAll(WrapperTask):
 
     def requires(self):
         for geo in ('state', 'county', 'census_tract', 'block_group', 'puma', 'zcta5',):
-            yield Extract(geography=geo, year=self.year, sample=self.sample)
+            yield Quantiles(geography=geo, year=self.year, sample=self.sample)
