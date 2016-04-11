@@ -20,6 +20,7 @@ from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
 from luigi.postgres import PostgresTarget
 
 from sqlalchemy import Table, types, Column
+from sqlalchemy.dialects.postgresql import JSON
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry,
                         OBSColumnTable, OBSTag, current_session,
@@ -95,10 +96,15 @@ def query_cartodb(query):
     return resp
 
 
-def sql_to_cartodb_table(outname, localname):
+def sql_to_cartodb_table(outname, localname, json_column_names=None):
     '''
     Move the specified table to cartodb
+
+    If json_column_names are specified, then those columns will be altered to
+    JSON after the fact (they get smushed to TEXT at some point in the import
+    process)
     '''
+    json_column_names = json_column_names or []
     api_key = os.environ['CARTODB_API_KEY']
     private_outname = outname + '_private'
     schema = '.'.join(localname.split('.')[0:-1]).replace('"', '')
@@ -142,6 +148,15 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
 
     resp = query_cartodb('DROP TABLE "{}"'.format(private_outname))
     assert resp.status_code == 200
+
+    for colname in json_column_names:
+        query = 'ALTER TABLE {outname} ALTER COLUMN {colname} ' \
+                'SET DATA TYPE json USING {colname}::json'.format(
+                    outname=outname, colname=colname
+                )
+        print query
+        resp = query_cartodb(query)
+        assert resp.status_code == 200
 
 
 class DefaultPostgresTarget(PostgresTarget):
@@ -422,7 +437,10 @@ class TableTarget(Target):
     def update_or_create(self):
 
         session = current_session()
-        session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
+
+        # create schema out-of-band as we cannot create a table after a schema
+        # in a single session
+        shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=self._schema))
 
         # replace metadata table
@@ -486,11 +504,17 @@ class ColumnsTask(Task):
 
     def output(self):
         output = OrderedDict({})
+        session = current_session()
+        already_in_session = [obj for obj in session]
         for col_key, col in self.columns().iteritems():
             if not col.version:
                 col.version = self.version()
             output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
-        current_session().expunge_all()
+        now_in_session = [obj for obj in session]
+        for obj in now_in_session:
+            if obj not in already_in_session:
+                if obj in session:
+                    session.expunge(obj)
         return output
 
 
@@ -536,7 +560,15 @@ class TableToCarto(Task):
     outname = Parameter(default=None)
 
     def run(self):
-        sql_to_cartodb_table(self.output().tablename, self.table)
+        json_colnames = []
+        if self.table in metadata.tables:
+            cols = metadata.tables[self.table].columns
+            for colname, coldef in cols.items():
+                coltype = coldef.type
+                if isinstance(coltype, JSON):
+                    json_colnames.append(colname)
+
+        sql_to_cartodb_table(self.output().tablename, self.table, json_colnames)
         self.force = False
 
     def output(self):
