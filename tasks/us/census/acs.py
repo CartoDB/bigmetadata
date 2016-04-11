@@ -1658,7 +1658,7 @@ class Quantiles(TableTask):
         return columns
 
     def bounds(self):
-        return 'box2d(0 0, 0 0)'
+        return 'BOX(0 0,0 0)'
 
     def timespan(self):
         sample = int(self.sample[0])
