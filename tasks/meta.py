@@ -248,6 +248,7 @@ class CurrentSession(object):
         # connection
         if self._pid != os.getpid():
             self._session = None
+            print 'FORKED: {} not {}'.format(self._pid, os.getpid())
         if not self._session:
             self.begin()
         return self._session
