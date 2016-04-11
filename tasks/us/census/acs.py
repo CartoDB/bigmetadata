@@ -1650,9 +1650,12 @@ class Quantiles(TableTask):
             'tiger'   : GeoidColumns()
           }
 
+    def version(self):
+        return '2'
+
     def columns(self):
         columns = OrderedDict({
-            'geoid': self.input()['tiger']['census_tract_geoid']
+            'geoid': self.input()['tiger'][self.geography + '_geoid']
         })
         columns.update(self.input()['columns'])
         return columns
