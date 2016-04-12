@@ -34,7 +34,7 @@ LOGGER = get_logger(__name__)
 class ACSTags(TagsTask):
 
     def version(self):
-        return '0'
+        return 0
 
     def tags(self):
         return [
@@ -55,7 +55,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return '1'
+        return 1
 
 
     def columns(self):
@@ -1634,12 +1634,15 @@ class QuantileColumns(ColumnsTask):
     def requires(self):
         return Columns()
 
+    def version(self):
+        return 3
+
     def columns(self):
         quantile_columns = OrderedDict()
         for colname, coltarget in self.input().iteritems():
             col = coltarget.get(current_session())
             quantile_columns[colname+'_quantile'] = OBSColumn(
-                id=col.id.split('.')[1]+'_quantile',
+                id=col.id.split('.')[-1]+'_quantile',
                 type='Numeric',
                 name='Quantile:'+col.name,
                 description=col.description,
@@ -1662,12 +1665,14 @@ class Quantiles(TableTask):
     def requires(self):
         return {
             'columns' : QuantileColumns(),
-            'table'   : Extract(year = self.year ,sample= self.sample ,geography=self.geography),
+            'table'   : Extract(year=self.year,
+                                sample=self.sample,
+                                geography=self.geography),
             'tiger'   : GeoidColumns()
-          }
+        }
 
     def version(self):
-        return '2'
+        return 5
 
     def columns(self):
         columns = OrderedDict({
@@ -1686,14 +1691,16 @@ class Quantiles(TableTask):
 
     def populate(self):
         connection = current_session()
-        quant_col_names  =  self.input()['columns'].keys()
-        old_col_names  = [name.split("_quantile")[0] for name in quant_col_names ]
-        selects =[ " percent_rank() OVER (ORDER BY {old_col} ASC) ".format(old_col=name) for name in old_col_names]
+        quant_col_names = self.input()['columns'].keys()
+        old_col_names = [name.split("_quantile")[0]
+                         for name in quant_col_names]
+        selects = [" percent_rank() OVER (ORDER BY {old_col} ASC) ".format(old_col=name)
+                   for name in old_col_names]
 
         insert_statment = ", ".join(quant_col_names)
         select_statment = ", ".join(selects)
 
-        connection.execute( '''
+        connection.execute('''
             INSERT INTO {table}
             (geoid, {insert_statment})
             SELECT geoid, {select_statment}
@@ -1715,7 +1722,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return {

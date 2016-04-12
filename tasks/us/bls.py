@@ -500,7 +500,7 @@ class SimpleQCEW(TableTask):
     qtr = IntParameter()
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return RawQCEW(year=self.year)
@@ -538,7 +538,7 @@ class QCEW(TableTask):
     qtr = IntParameter()
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return {

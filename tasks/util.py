@@ -345,10 +345,17 @@ class ColumnTarget(Target):
 
     def exists(self):
         existing = self.get(current_session())
+        new_version = float(self._column.version) or 0.0
         if existing:
+            existing_version = float(existing.version)
             current_session().expunge(existing)
-        if existing and existing.version == (self._column.version or '0'):
+        else:
+            existing_version = 0.0
+        if existing and existing_version == new_version:
             return True
+        elif existing and existing_version > new_version:
+            raise Exception('Metadata version mismatch: running tasks with '
+                            'older version than what is in DB')
         return False
 
 
@@ -374,10 +381,17 @@ class TagTarget(Target):
     def exists(self):
         session = current_session()
         existing = self.get(session)
+        new_version = float(existing.version) or 0.0
         if existing:
-            session.expunge(existing)
-        if existing and existing.version == (self._tag.version or '0'):
+            existing_version = float(existing.version)
+            current_session().expunge(existing)
+        else:
+            existing_version = 0.0
+        if existing and existing_version == new_version:
             return True
+        elif existing and existing_version > new_version:
+            raise Exception('Metadata version mismatch: running tasks with '
+                            'older version than what is in DB')
         return False
 
 
@@ -471,8 +485,14 @@ class TableTarget(Target):
             if coltable:
                 coltable.colname = colname
             else:
-                coltable = OBSColumnTable(colname=colname, table=obs_table,
-                                          column=col)
+                # catch the case where a column id has changed
+                coltable = session.query(OBSColumnTable).filter_by(
+                    table_id=obs_table.id, colname=colname).first()
+                if coltable:
+                    coltable.column = col
+                else:
+                    coltable = OBSColumnTable(colname=colname, table=obs_table,
+                                              column=col)
             session.add(coltable)
 
         # replace local data table
@@ -506,7 +526,7 @@ class ColumnsTask(Task):
             coltarget.update_or_create()
 
     def version(self):
-        return '0'
+        return 0
 
     def output(self):
         output = OrderedDict({})
@@ -546,7 +566,7 @@ class TagsTask(Task):
             tagtarget.update_or_create()
 
     def version(self):
-        return '0'
+        return 0
 
     def output(self):
         output = {}
@@ -601,7 +621,7 @@ class TableTask(Task):
     '''
 
     def version(self):
-        return '0'
+        return 0
 
     def on_failure(self, ex):
         session_rollback(self, ex)

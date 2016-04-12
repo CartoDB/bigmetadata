@@ -25,7 +25,7 @@ from psycopg2 import ProgrammingError
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return {
@@ -97,7 +97,7 @@ class GeomColumns(ColumnsTask):
 class GeoidColumns(ColumnsTask):
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return GeomColumns()
@@ -245,7 +245,7 @@ class TigerGeographyShapefileToSQL(TableTask):
         return UnzipTigerGeography(year=self.year, geography=self.geography)
 
     def version(self):
-        return '2'
+        return 2
 
     def columns(self):
         return {}
@@ -465,7 +465,7 @@ class SumLevel(TableTask):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
-        return '4'
+        return 4
 
     def requires(self):
         if self.clipped:
