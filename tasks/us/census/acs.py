@@ -1639,10 +1639,11 @@ class QuantileColumns(ColumnsTask):
         for colname, coltarget in self.input().iteritems():
             col = coltarget.get(current_session())
             quantile_columns[colname+'_quantile'] = OBSColumn(
-                id=col.id+'_quantile',
+                id=col.id.split('.')[1]+'_quantile',
                 type='Numeric',
                 name='Quantile:'+col.name,
                 description=col.description,
+                aggregate='quantile',
                 targets={col: 'quantile_source'}
             )
         return quantile_columns
