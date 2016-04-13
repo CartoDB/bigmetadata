@@ -6,7 +6,7 @@ import re
 from jinja2 import Environment, PackageLoader
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
 from tasks.util import shell
-from tasks.meta import session_scope, OBSTag
+from tasks.meta import current_session, OBSTag
 
 
 env = Environment(loader=PackageLoader('catalog', 'templates'))
@@ -29,22 +29,22 @@ class GenerateRST(Task):
 
     def output(self):
         targets = {}
-        with session_scope() as session:
-            for tag in session.query(OBSTag):
-                targets[tag.id] = LocalTarget('catalog/source/data/{tag}.rst'.format(tag=tag.id))
+        session = current_session()
+        for tag in session.query(OBSTag):
+            targets[tag.id] = LocalTarget('catalog/source/data/{tag}.rst'.format(tag=tag.id))
         return targets
 
     def run(self):
-        with session_scope() as session:
-            for tag_id, target in self.output().iteritems():
-                fhandle = target.open('w')
+        session = current_session()
+        for tag_id, target in self.output().iteritems():
+            fhandle = target.open('w')
 
-                tag = session.query(OBSTag).get(tag_id)
-                columns = [c for c in tag.columns]
-                columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
+            tag = session.query(OBSTag).get(tag_id)
+            columns = [c for c in tag.columns]
+            columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
 
-                fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns).encode('utf8'))
-                fhandle.close()
+            fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns).encode('utf8'))
+            fhandle.close()
 
 
 class Sphinx(Task):
@@ -59,4 +59,3 @@ class Sphinx(Task):
 
     def run(self):
         shell('cd catalog && make html')
-
