@@ -83,6 +83,9 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
             'tags': CategoryTags()
         }
 
+    def version(self):
+        return 1
+
     def columns(self):
         tags = self.input()['tags']
         total_jobs = OBSColumn(
@@ -486,8 +489,8 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
             )),
             ('jobs_firm_age_11_more_years', OBSColumn(
                 type='Integer',
-                name='Jobs at firms aged 11+ Years',
-                description='Number of jobs for workers at firms with Firm Age: 11+ Years',
+                name='Jobs at firms aged 11 or more Years',
+                description='Number of jobs for workers at firms with Firm Age: 11 or more Years',
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
@@ -531,8 +534,8 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
             )),
             ('jobs_firm_age_500_more_employees', OBSColumn(
                 type='Integer',
-                name='Jobs at firms with 500+ Employees',
-                description='Number of jobs for workers at firms with Firm Size: 500+ Employees',
+                name='Jobs at firms with 500 or more Employees',
+                description='Number of jobs for workers at firms with Firm Size: 500 or more Employees',
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
