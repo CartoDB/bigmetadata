@@ -45,7 +45,7 @@ class NAICS(TableTask):
         return None
 
     def bounds(self):
-        return None
+        return 'BOX(0 0,0 0)'
 
     def columns(self):
         return self.input()
@@ -405,7 +405,7 @@ class RawQCEW(TableTask):
         return self.year
 
     def bounds(self):
-        return None
+        return 'BOX(0 0,0 0)'
 
     def requires(self):
         return {
@@ -500,7 +500,7 @@ class SimpleQCEW(TableTask):
     qtr = IntParameter()
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return RawQCEW(year=self.year)
@@ -510,7 +510,7 @@ class SimpleQCEW(TableTask):
                                          quarter=self.qtr)
 
     def bounds(self):
-        return None
+        return 'BOX(0 0,0 0)'
 
     def columns(self):
         return RawQCEW(year=self.year).columns()
@@ -538,7 +538,7 @@ class QCEW(TableTask):
     qtr = IntParameter()
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return {
@@ -554,7 +554,7 @@ class QCEW(TableTask):
         return columns
 
     def bounds(self):
-        return '' # TODO
+        return 'BOX(0 0,0 0)'
 
     def timespan(self):
         return '{year}Q{qtr}'.format(year=self.year, qtr=self.qtr)

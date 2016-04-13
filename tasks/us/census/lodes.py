@@ -584,7 +584,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return '0'
+        return 0
 
     def requires(self):
         return {
@@ -597,7 +597,7 @@ class WorkplaceAreaCharacteristics(TableTask):
         return unicode(self.year)
 
     def bounds(self):
-        return '' # TODO
+        return 'BOX(0 0,0 0)'
 
     def columns(self):
         data_columns = self.input()['data_meta']

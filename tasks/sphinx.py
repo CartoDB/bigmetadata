@@ -4,9 +4,9 @@ Sphinx functions for luigi bigmetadata tasks.
 
 import re
 from jinja2 import Environment, PackageLoader
-from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
+from luigi import WrapperTask, Task, LocalTarget, BooleanParameter, Parameter
 from tasks.util import shell
-from tasks.meta import session_scope, OBSTag
+from tasks.meta import current_session, OBSTag
 
 
 env = Environment(loader=PackageLoader('catalog', 'templates'))
@@ -21,6 +21,7 @@ TAG_TEMPLATE = env.get_template('tag.html')
 class GenerateRST(Task):
 
     force = BooleanParameter(default=False)
+    format = Parameter()
 
     def __init__(self, *args, **kwargs):
         super(GenerateRST, self).__init__(*args, **kwargs)
@@ -29,34 +30,35 @@ class GenerateRST(Task):
 
     def output(self):
         targets = {}
-        with session_scope() as session:
-            for tag in session.query(OBSTag):
-                targets[tag.id] = LocalTarget('catalog/source/data/{tag}.rst'.format(tag=tag.id))
+        session = current_session()
+        for tag in session.query(OBSTag):
+            targets[tag.id] = LocalTarget('catalog/source/data/{tag}.rst'.format(tag=tag.id))
         return targets
 
     def run(self):
-        with session_scope() as session:
-            for tag_id, target in self.output().iteritems():
-                fhandle = target.open('w')
+        session = current_session()
+        for tag_id, target in self.output().iteritems():
+            fhandle = target.open('w')
 
-                tag = session.query(OBSTag).get(tag_id)
-                columns = [c for c in tag.columns]
-                columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
+            tag = session.query(OBSTag).get(tag_id)
+            columns = [c for c in tag.columns]
+            columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
 
-                fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns).encode('utf8'))
-                fhandle.close()
+            fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns,
+                                              format=self.format).encode('utf8'))
+            fhandle.close()
 
 
 class Sphinx(Task):
 
     force = BooleanParameter(default=False)
+    format = Parameter(default='html')
 
     def requires(self):
-        return GenerateRST(force=self.force)
+        return GenerateRST(force=self.force, format=self.format)
 
     def complete(self):
         return False
 
     def run(self):
-        shell('cd catalog && make html')
-
+        shell('cd catalog && make {}'.format(self.format))

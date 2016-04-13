@@ -81,7 +81,7 @@ class RawGeometry(Task):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return '2'
+        return 2
 
     def columns(self):
         cusec_geom = OBSColumn(
@@ -214,7 +214,7 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return '0'
+        return 0
 
     def requires(self):
         return {

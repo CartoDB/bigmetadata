@@ -8,24 +8,24 @@ import json
 import os
 import subprocess
 from collections import OrderedDict
-from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor,
-                        DefaultPostgresTarget, CartoDBTarget,
+from tasks.util import (LoadPostgresFromURL, classpath, DefaultPostgresTarget,
                         sql_to_cartodb_table, grouper, shell,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask
                        )
 from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
-                        OBSColumnTag, OBSColumnToColumn)
+                        OBSColumnTag, OBSColumnToColumn, current_session)
 from tasks.tags import CategoryTags
 
-from luigi import Task, WrapperTask, Parameter, LocalTarget, BooleanParameter
+from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
+                   IntParameter)
 from psycopg2 import ProgrammingError
 
 
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return {
@@ -97,7 +97,7 @@ class GeomColumns(ColumnsTask):
 class GeoidColumns(ColumnsTask):
 
     def version(self):
-        return '1'
+        return 1
 
     def requires(self):
         return GeomColumns()
@@ -180,7 +180,7 @@ class GeoidColumns(ColumnsTask):
 
 class DownloadTigerGeography(Task):
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
     force = BooleanParameter() # TODO
 
@@ -192,7 +192,7 @@ class DownloadTigerGeography(Task):
 
     @property
     def directory(self):
-        return os.path.join('tmp', classpath(self), self.year)
+        return os.path.join('tmp', classpath(self), str(self.year))
 
     def run(self):
         subprocess.check_call('wget --recursive --continue --accept=*.zip '
@@ -233,49 +233,38 @@ class UnzipTigerGeography(Task):
             yield LocalTarget(infile.path.replace('.zip', '.shp'))
 
 
-class TigerGeographyShapefileToSQL(Task):
+class TigerGeographyShapefileToSQL(TableTask):
     '''
-    Take downloaded shapefiles and turn them into a SQL dump.
+    Take downloaded shapefiles and load them into Postgres
     '''
 
     year = Parameter()
     geography = Parameter()
-    force = BooleanParameter()
-
-    @property
-    def table(self):
-        return str(self.geography).lower()
-
-    @property
-    def schema(self):
-        return classpath(self)
-
-    @property
-    def qualified_table(self):
-        return '"{schema}"."{table}{year}"'.format(schema=self.schema,
-                                                   table=self.table, year=self.year)
-
-    def complete(self):
-        if self.force is True:
-            return False
-        return super(TigerGeographyShapefileToSQL, self).complete()
 
     def requires(self):
         return UnzipTigerGeography(year=self.year, geography=self.geography)
 
-    def run(self):
-        cursor = pg_cursor()
-        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(schema=self.schema))
-        cursor.execute('DROP TABLE IF EXISTS {qualified_table}'.format(
-            qualified_table=self.qualified_table))
-        cursor.connection.commit()
+    def version(self):
+        return 2
+
+    def columns(self):
+        return {}
+
+    def bounds(self):
+        return 'BOX(0 0,0 0)'
+
+    def timespan(self):
+        return str(self.year)
+
+    def populate(self):
+        session = current_session()
 
         shapefiles = self.input()
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
                 'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
                 '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {qualified_table} ' \
-                '{shpfile_path} '.format(
-                    qualified_table=self.qualified_table,
+                '-overwrite {shpfile_path} '.format(
+                    qualified_table=self.output().table,
                     shpfile_path=shapefiles.next().path)
         shell(cmd)
 
@@ -288,21 +277,15 @@ class TigerGeographyShapefileToSQL(Task):
                 '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {qualified_table} '
                 'shpfile_path '.format(
                     shapefiles='\n'.join([shp.path for shp in shape_group if shp]),
-                    qualified_table=self.qualified_table),
+                    qualified_table=self.output().table),
                 shell=True)
 
         # Spatial index
-        cursor.execute('ALTER TABLE {qualified_table} RENAME COLUMN '
-                       'wkb_geometry TO geom'.format(qualified_table=self.qualified_table))
-        cursor.execute('CREATE INDEX ON {qualified_table} USING GIST (geom)'.format(
-            qualified_table=self.qualified_table))
-        cursor.connection.commit()
-        self.output().touch()
-        self.force = False
-
-    def output(self):
-        return DefaultPostgresTarget(table=self.qualified_table,
-                                     update_id=self.qualified_table)
+        session.execute('ALTER TABLE {qualified_table} RENAME COLUMN '
+                        'wkb_geometry TO geom'.format(
+                            qualified_table=self.output().table))
+        session.execute('CREATE INDEX ON {qualified_table} USING GIST (geom)'.format(
+            qualified_table=self.output().table))
 
 
 class DownloadTiger(LoadPostgresFromURL):
@@ -318,51 +301,54 @@ class DownloadTiger(LoadPostgresFromURL):
         return self.schema
 
     def run(self):
-        cursor = pg_cursor()
-        try:
-            cursor.execute('DROP SCHEMA {schema} CASCADE'.format(schema=self.schema))
-            cursor.connection.commit()
-        except ProgrammingError:
-            cursor.connection.rollback()
+        shell("psql -c 'DROP SCHEMA \"{schema}\" CASCADE'".format(schema=self.schema))
         url = self.url_template.format(year=self.year)
         self.load_from_url(url)
         self.output().touch()
 
 
-class SimpleShoreline(Task):
+class SimpleShorelineColumns(ColumnsTask):
+
+    def columns(self):
+        return {
+            'geom': OBSColumn(type='Geometry')
+        }
+
+
+class SimpleShoreline(TableTask):
 
     force = BooleanParameter(default=False)
     year = Parameter()
 
     def requires(self):
-        return TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year)
+        return {
+            'meta': SimpleShorelineColumns(),
+            'data': TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year)
+        }
 
-    def run(self):
-        cursor = pg_cursor()
-        cursor.execute('DROP TABLE IF EXISTS {output}'.format(
-            output=self.output().table))
-        cursor.execute('CREATE TABLE {output} AS '
-                       'SELECT ST_Subdivide(geom) geom FROM {input} '
-                       "WHERE mtfcc != 'H2030' OR awater > 3000000".format(
-                           input=self.input().table,
-                           output=self.output().table
-                       ))
-        cursor.execute('CREATE INDEX ON {output} USING GIST (geom)'.format(
+    def columns(self):
+        return self.input()['meta']
+
+    def timespan(self):
+        return str(self.year)
+
+    def bounds(self):
+        return 'BOX(0 0,0 0)'
+
+    def populate(self):
+        session = current_session()
+        session.execute('INSERT INTO {output} '
+                        'SELECT ST_Subdivide(geom) geom FROM {input} '
+                        "WHERE mtfcc != 'H2030' OR awater > 3000000".format(
+                            input=self.input()['data'].table,
+                            output=self.output().table
+                        ))
+        session.execute('CREATE INDEX ON {output} USING GIST (geom)'.format(
             output=self.output().table
         ))
-        cursor.connection.commit()
-        self.output().touch()
-
-    def output(self):
-        output = DefaultPostgresTarget(
-            table='"' + classpath(self) +'".simple_shoreline' + str(self.year))
-        if self.force:
-            output.untouch()
-            self.force = False
-        return output
 
 
-class ShorelineClipTiger(Task):
+class ShorelineClipTiger(TableTask):
     '''
     Clip the provided geography to shoreline.
     '''
@@ -372,7 +358,6 @@ class ShorelineClipTiger(Task):
 
     year = Parameter()
     geography = Parameter()
-    force = BooleanParameter()
 
     def requires(self):
         return {
@@ -380,129 +365,89 @@ class ShorelineClipTiger(Task):
             'water': SimpleShoreline(year=self.year)
         }
 
-    def run(self):
-        cursor = pg_cursor()
+    def timespan(self):
+        return str(self.year)
+
+    def bounds(self):
+        return 'BOX(0 0,0 0)'
+
+    def columns(self):
+        return []
+
+    def populate(self):
+        session = current_session()
         #tiger = [t for t in self.input()['tiger'] if t.data['slug'] == self.geography.lower()][0]
-        pos = 'tiger{}.{}'.format(self.year, self.geography)
+        pos = self.input()['tiger'].table
         neg = self.input()['water'].table
-        if self.geography in ('puma', 'zcta5'):
-            geoid = 'geoid10'
-        else:
-            geoid = 'geoid'
         pos_split = pos.split('.')[-1] + '_split'
         pos_neg_joined = pos_split + '_' + neg.split('.')[-1] + '_joined'
         pos_neg_joined_diffed = pos_neg_joined + '_diffed'
         pos_neg_joined_diffed_merged = pos_neg_joined_diffed + '_merged'
         output = self.output().table
 
-        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
-            schema=classpath(self)))
-
         # Split the positive table into geoms with a reasonable number of
         # vertices.
-        cursor.execute('DROP TABLE IF EXISTS {pos_split}'.format(
+        session.execute('DROP TABLE IF EXISTS {pos_split}'.format(
             pos_split=pos_split))
-        cursor.execute('CREATE TEMPORARY TABLE {pos_split} '
-                       '(id serial primary key, {geoid} text, geom geometry)'.format(
-                           geoid=geoid, pos_split=pos_split))
-        cursor.execute('INSERT INTO {pos_split} ({geoid}, geom) '
-                       'SELECT {geoid}, ST_Subdivide(geom) geom '
-                       'FROM {pos}'.format(pos=pos, pos_split=pos_split, geoid=geoid))
+        session.execute('CREATE TEMPORARY TABLE {pos_split} '
+                        '(id serial primary key, geoid text, geom geometry)'.format(
+                            pos_split=pos_split))
+        session.execute('INSERT INTO {pos_split} (geoid, geom) '
+                        'SELECT geoid, ST_Subdivide(geom) geom '
+                        'FROM {pos}'.format(pos=pos, pos_split=pos_split))
 
-        cursor.execute('CREATE INDEX ON {pos_split} USING GIST (geom)'.format(
+        session.execute('CREATE INDEX ON {pos_split} USING GIST (geom)'.format(
             pos_split=pos_split))
 
         # Join the split up pos to the split up neg, then union the geoms based
         # off the split pos id (technically the union on pos geom is extraneous)
-        cursor.execute('DROP TABLE IF EXISTS {pos_neg_joined}'.format(
+        session.execute('DROP TABLE IF EXISTS {pos_neg_joined}'.format(
             pos_neg_joined=pos_neg_joined))
-        cursor.execute('CREATE TEMPORARY TABLE {pos_neg_joined} AS '
-                       'SELECT id, {geoid}, ST_Union(neg.geom) neg_geom, '
-                       '       ST_Union(pos.geom) pos_geom '
-                       'FROM {pos_split} pos, {neg} neg '
-                       'WHERE ST_Intersects(pos.geom, neg.geom) '
-                       'GROUP BY id'.format(geoid=geoid, neg=neg,
-                                            pos_split=pos_split,
-                                            pos_neg_joined=pos_neg_joined))
+        session.execute('CREATE TEMPORARY TABLE {pos_neg_joined} AS '
+                        'SELECT id, geoid, ST_Union(neg.geom) neg_geom, '
+                        '       ST_Union(pos.geom) pos_geom '
+                        'FROM {pos_split} pos, {neg} neg '
+                        'WHERE ST_Intersects(pos.geom, neg.geom) '
+                        'GROUP BY id'.format(neg=neg,
+                                             pos_split=pos_split,
+                                             pos_neg_joined=pos_neg_joined))
 
         # Calculate the difference between the pos and neg geoms
-        cursor.execute('DROP TABLE IF EXISTS {pos_neg_joined_diffed}'.format(
+        session.execute('DROP TABLE IF EXISTS {pos_neg_joined_diffed}'.format(
             pos_neg_joined_diffed=pos_neg_joined_diffed))
-        cursor.execute('CREATE TEMPORARY TABLE {pos_neg_joined_diffed} '
-                       'AS SELECT {geoid}, id, ST_Difference( '
-                       'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) geom '
-                       'FROM {pos_neg_joined}'.format(
-                           geoid=geoid,
-                           pos_neg_joined=pos_neg_joined,
-                           pos_neg_joined_diffed=pos_neg_joined_diffed))
+        session.execute('CREATE TEMPORARY TABLE {pos_neg_joined_diffed} '
+                        'AS SELECT geoid, id, ST_Difference( '
+                        'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) geom '
+                        'FROM {pos_neg_joined}'.format(
+                            pos_neg_joined=pos_neg_joined,
+                            pos_neg_joined_diffed=pos_neg_joined_diffed))
 
         # Create new table with both diffed and non-diffed (didn't intersect with
         # water) geoms
-        cursor.execute('DROP TABLE IF EXISTS {pos_neg_joined_diffed_merged}'.format(
+        session.execute('DROP TABLE IF EXISTS {pos_neg_joined_diffed_merged}'.format(
             pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
-        cursor.execute('CREATE TEMPORARY TABLE {pos_neg_joined_diffed_merged} '
-                       'AS SELECT * FROM {pos_neg_joined_diffed}'.format(
-                           pos_neg_joined_diffed=pos_neg_joined_diffed,
-                           pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
-        cursor.execute('INSERT INTO {pos_neg_joined_diffed_merged} '
-                       'SELECT {geoid}, id, geom FROM {pos_split} '
-                       'WHERE id NOT IN (SELECT id from {pos_neg_joined_diffed})'.format(
-                           geoid=geoid,
-                           pos_split=pos_split,
-                           pos_neg_joined_diffed=pos_neg_joined_diffed,
-                           pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
-        cursor.execute('CREATE INDEX ON {pos_neg_joined_diffed_merged} '
-                       'USING GIST (geom)'.format(
-                           pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+        session.execute('CREATE TEMPORARY TABLE {pos_neg_joined_diffed_merged} '
+                        'AS SELECT * FROM {pos_neg_joined_diffed}'.format(
+                            pos_neg_joined_diffed=pos_neg_joined_diffed,
+                            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+        session.execute('INSERT INTO {pos_neg_joined_diffed_merged} '
+                        'SELECT geoid, id, geom FROM {pos_split} '
+                        'WHERE id NOT IN (SELECT id from {pos_neg_joined_diffed})'.format(
+                            pos_split=pos_split,
+                            pos_neg_joined_diffed=pos_neg_joined_diffed,
+                            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+        session.execute('CREATE INDEX ON {pos_neg_joined_diffed_merged} '
+                        'USING GIST (geom)'.format(
+                            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
 
         # Re-union the pos table based off its geoid
-        cursor.execute('DROP TABLE IF EXISTS {output}'.format(output=output))
-        cursor.execute('CREATE TABLE {output} AS '
-                       'SELECT {geoid} AS geoid, ST_UNION(geom) AS geom '
-                       'FROM {pos_neg_joined_diffed_merged} '
-                       'GROUP BY {geoid}'.format(
-                           geoid=geoid,
-                           output=output,
-                           pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
-
-        cursor.connection.commit()
-        self.output().touch()
-
-    def output(self):
-        tablename = '"{schema}".{geography}_{year}_shoreline_clipped'.format(
-            schema=classpath(self),
-            geography=str(self.geography).lower(),
-            year=self.year)
-
-        target = DefaultPostgresTarget(table=tablename)
-        if self.force:
-            target.untouch()
-            self.force = False
-        return target
-
-
-
-class ExtractClippedTiger(Task):
-    # TODO this should be merged with ExtractTiger
-
-    force = BooleanParameter(default=False)
-    year = Parameter()
-    sumlevel = Parameter()
-
-    def requires(self):
-        pass
-
-    def run(self):
-        sql_to_cartodb_table(self.tablename(), self.input().table)
-
-    def tablename(self):
-        return self.input().table.replace('-', '_').replace('/', '_').replace('"', '').replace('.', '_')
-
-    def output(self):
-        target = CartoDBTarget(self.tablename())
-        if self.force and target.exists():
-            target.remove()
-        return target
+        session.execute('DROP TABLE IF EXISTS {output}'.format(output=output))
+        session.execute('CREATE TABLE {output} AS '
+                        'SELECT geoid, ST_UNION(geom) AS geom '
+                        'FROM {pos_neg_joined_diffed_merged} '
+                        'GROUP BY geoid'.format(
+                            output=output,
+                            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
 
 
 class SumLevel(TableTask):
@@ -520,7 +465,7 @@ class SumLevel(TableTask):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
-        return '4'
+        return 4
 
     def requires(self):
         if self.clipped:
@@ -572,7 +517,7 @@ class SumLevel(TableTask):
                         'SELECT {geoid}, geom the_geom  '
                         'FROM {from_clause}'.format(
                             geoid=self.geoid,
-                            output=self.output().get(session).id,
+                            output=self.output().table,
                             from_clause=from_clause
                         ))
 

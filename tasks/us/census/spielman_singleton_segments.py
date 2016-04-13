@@ -121,7 +121,7 @@ class SpielmanSingletonTable(TableTask):
             'tiger'     : GeoidColumns()
         }
     def version(self):
-        return '5'
+        return 5
 
     def timespan(self):
         return '2009 - 2013'
@@ -179,7 +179,7 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return '3'
+        return 3
 
     def columns(self):
         x10 = OBSColumn(

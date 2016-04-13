@@ -10,9 +10,9 @@ import re
 import luigi
 from luigi import Task, BooleanParameter, Target, Event
 
-from sqlalchemy import (Column, Integer, String, Boolean, MetaData,
+from sqlalchemy import (Column, Integer, String, Boolean, MetaData, Numeric,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
-                        ForeignKeyConstraint, Table, exc, func)
+                        ForeignKeyConstraint, Table, exc, func, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.ext.associationproxy import association_proxy
@@ -81,6 +81,8 @@ class OBSColumnTable(Base):
     table = relationship("OBSTable", back_populates="columns")
 
     extra = Column(JSON)
+
+    colname_constraint = UniqueConstraint(table_id, colname)
 
 
 def tag_creator(tagtarget):
@@ -179,7 +181,7 @@ class OBSColumn(Base):
     targets = association_proxy('tgts', 'reltype', creator=targets_creator)
     sources = association_proxy('srcs', 'reltype', creator=sources_creator)
 
-    version = Column(String, default='0', nullable=False)
+    version = Column(Numeric, default=0, nullable=False)
     extra = Column(JSON)
 
 
@@ -197,7 +199,7 @@ class OBSTable(Base):
     bounds = Column(String)
     description = Column(String)
 
-    version = Column(String, default='0', nullable=False)
+    version = Column(Numeric, default=0, nullable=False)
 
 
 class OBSTag(Base):
@@ -211,7 +213,7 @@ class OBSTag(Base):
 
     columns = association_proxy('tag_column_tags', 'column')
 
-    version = Column(String, default='0', nullable=False)
+    version = Column(Numeric, default=0, nullable=False)
 
 
 class OBSColumnTag(Base):
@@ -236,17 +238,26 @@ class CurrentSession(object):
 
     def __init__(self):
         self._session = None
+        self._pid = None
 
     def begin(self):
         if not self._session:
             self._session = sessionmaker(bind=get_engine())()
+        self._pid = os.getpid()
 
     def get(self):
+        # If we forked, there would be a PID mismatch and we need a new
+        # connection
+        if self._pid != os.getpid():
+            self._session = None
+            print 'FORKED: {} not {}'.format(self._pid, os.getpid())
         if not self._session:
             self.begin()
         return self._session
 
     def commit(self):
+        if self._pid != os.getpid():
+            raise Exception('cannot commit forked connection')
         if not self._session:
             return
         try:
@@ -260,6 +271,8 @@ class CurrentSession(object):
             self._session = None
 
     def rollback(self):
+        if self._pid != os.getpid():
+            raise Exception('cannot rollback forked connection')
         if not self._session:
             return
         try:
