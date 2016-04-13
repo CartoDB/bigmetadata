@@ -12,3 +12,4 @@ bower_components
 npm-debug.log
 catalog/source/data
 catalog/build/doctrees
+catalog/build/latex

@@ -4,7 +4,7 @@ Sphinx functions for luigi bigmetadata tasks.
 
 import re
 from jinja2 import Environment, PackageLoader
-from luigi import WrapperTask, Task, LocalTarget, BooleanParameter
+from luigi import WrapperTask, Task, LocalTarget, BooleanParameter, Parameter
 from tasks.util import shell
 from tasks.meta import current_session, OBSTag
 
@@ -21,6 +21,7 @@ TAG_TEMPLATE = env.get_template('tag.html')
 class GenerateRST(Task):
 
     force = BooleanParameter(default=False)
+    format = Parameter()
 
     def __init__(self, *args, **kwargs):
         super(GenerateRST, self).__init__(*args, **kwargs)
@@ -43,19 +44,21 @@ class GenerateRST(Task):
             columns = [c for c in tag.columns]
             columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
 
-            fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns).encode('utf8'))
+            fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns,
+                                              format=self.format).encode('utf8'))
             fhandle.close()
 
 
 class Sphinx(Task):
 
     force = BooleanParameter(default=False)
+    format = Parameter(default='html')
 
     def requires(self):
-        return GenerateRST(force=self.force)
+        return GenerateRST(force=self.force, format=self.format)
 
     def complete(self):
         return False
 
     def run(self):
-        shell('cd catalog && make html')
+        shell('cd catalog && make {}'.format(self.format))
