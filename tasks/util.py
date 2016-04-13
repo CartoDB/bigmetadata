@@ -419,7 +419,7 @@ class TableTarget(Target):
 
     @property
     def table(self):
-        return self.get(current_session()).id
+        return self._id
 
     def sync(self):
         '''
