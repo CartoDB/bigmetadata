@@ -37,7 +37,6 @@ sphinx-deploy:
 sphinx-pdf:
 	docker-compose run bigmetadata luigi \
 	  --module tasks.sphinx Sphinx --format latexpdf --force
-	cp catalog/build/latex/bigmetadata.pdf catalog/build/html/
 
 # do not exceed three slots available for import api
 sync-meta:
