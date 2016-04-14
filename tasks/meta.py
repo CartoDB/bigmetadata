@@ -25,6 +25,11 @@ from sqlalchemy.orm.collections import (attribute_mapped_collection,
 from sqlalchemy.types import UserDefinedType
 
 
+def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
+    return [int(text) if text.isdigit() else text.lower()
+            for text in re.split(_nsre, s)]
+
+
 _engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
     user=os.environ.get('PGUSER', 'postgres'),
     password=os.environ.get('PGPASSWORD', ''),
@@ -183,6 +188,23 @@ class OBSColumn(Base):
 
     version = Column(Numeric, default=0, nullable=False)
     extra = Column(JSON)
+
+    def children(self):
+        children = [col for col, reltype in self.sources.iteritems() if reltype == 'denominator']
+        children.sort(key=lambda x: natural_sort_key(x.name))
+        return children
+
+    def has_children(self):
+        '''
+        Returns True if this column has children, false otherwise.
+        '''
+        return len(self.children()) > 0
+
+    def has_denominator(self):
+        '''
+        Returns True if this column has no denominator, False otherwise.
+        '''
+        return 'denominator' in self.targets.values()
 
 
 # We should have one of these for every table we load in through the ETL

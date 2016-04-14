@@ -1,0 +1,48 @@
+{%- macro build_column(col, depth=0) %}
+
+.. _{{ col.id }}:
+
+{{ col.name }}
+{%
+  if depth == 0
+%}---------------------------------------------------------------------------{%
+  elif depth == 1
+%}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^{%
+  elif depth == 2
+%}"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{%
+  endif
+%}
+
+{{ col.description }}
+
+{# preview map #}
+{#
+.. rst-class:: cartodb-static-map
+   {{ table.tablename }}.{{ coltable.colname }}
+   #}
+
+{% if format == 'html' %}
+{% for coltable in col.tables %}
+    {% set table = coltable.table %}
+    {#:{{ table.timespan }}:#}
+
+    `On Carto <http://observatory.cartodb.com/tables/{{ table.tablename }}>`_
+{% endfor %}
+{% endif %}
+
+{% for target, reltype in col.targets.iteritems() %}
+:{{ reltype }}:
+
+    :ref:`{{ target.id }}`
+{% endfor %}
+
+{% if col.has_children() %}
+.. contents:: Subcolumns of {{ col.name }}
+   :local:
+   :depth: 1
+
+  {% for denom in col.children() %}
+  {{ build_column(denom, depth + 1) }}
+  {% endfor %}
+{% endif %}
+{%- endmacro %}

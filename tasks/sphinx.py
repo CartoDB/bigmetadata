@@ -18,6 +18,7 @@ env.filters['test'] = test_filter
 
 TAG_TEMPLATE = env.get_template('tag.html')
 
+
 class GenerateRST(Task):
 
     force = BooleanParameter(default=False)
@@ -26,13 +27,15 @@ class GenerateRST(Task):
     def __init__(self, *args, **kwargs):
         super(GenerateRST, self).__init__(*args, **kwargs)
         if self.force:
-            shell('rm -rf catalog/source/data/*')
+            shell('rm -rf catalog/source/*/*')
 
     def output(self):
         targets = {}
         session = current_session()
         for tag in session.query(OBSTag):
-            targets[tag.id] = LocalTarget('catalog/source/data/{tag}.rst'.format(tag=tag.id))
+            targets[tag.id] = LocalTarget('catalog/source/{type}/{tag}.rst'.format(
+                type=tag.type,
+                tag=tag.id))
         return targets
 
     def run(self):
@@ -41,8 +44,9 @@ class GenerateRST(Task):
             fhandle = target.open('w')
 
             tag = session.query(OBSTag).get(tag_id)
-            columns = [c for c in tag.columns]
-            columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
+            columns = [c for c in tag.columns if not c.has_denominator()]
+            #columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
+            columns.sort(lambda x, y: cmp(x.name, y.name))
 
             fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns,
                                               format=self.format).encode('utf8'))

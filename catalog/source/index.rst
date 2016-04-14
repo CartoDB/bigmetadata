@@ -14,7 +14,7 @@ Contents:
    :maxdepth: 1
    :glob:
 
-   data/*
+   */*
 
 
 Indices and tables

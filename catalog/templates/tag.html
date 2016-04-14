@@ -1,3 +1,5 @@
+{% import 'macros.html' as macros %}
+
 .. {{ tag.title }}:
 
 {{ tag.name }}
@@ -6,36 +8,11 @@
 {{ tag.description }}
 
 .. contents::
+   :local:
    :depth: 10
 
 {% for col in columns %}
 
-.. _{{ col.id }}:
-
-{{ col.name }}
-----------------------------------------------------------------------------
-
-:description: {{ col.description }}
-
-{% for target, reltype in col.targets.iteritems() %}
-:{{ reltype }}:
-
-    :ref:`{{ target.id }}`
-{% endfor %}
-
-{# preview map #}
-{#
-.. rst-class:: cartodb-static-map
-   {{ table.tablename }}.{{ coltable.colname }}
-   #}
-
-{% if format == 'html' %}
-{% for coltable in col.tables %}
-    {% set table = coltable.table %}
-    {#:{{ table.timespan }}:#}
-
-    `On Carto <http://observatory.cartodb.com/tables/{{ table.tablename }}>`_
-{% endfor %}
-{% endif %}
+{{ macros.build_column(col) }}
 
 {% endfor %}

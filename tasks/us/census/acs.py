@@ -55,8 +55,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 1
-
+        return 2
 
     def columns(self):
         tags = self.input()['tags']
@@ -297,7 +296,7 @@ class Columns(ColumnsTask):
             'distance walking.',
             weight=4,
             aggregate='sum',
-            targets={commuters_by_public_transportation: 'denominator'},
+            targets={workers_16_and_over: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
         worked_at_home = OBSColumn(
             id='B08006017',
@@ -312,7 +311,7 @@ class Columns(ColumnsTask):
         children = OBSColumn(
             id='B09001001',
             type='Numeric',
-            name='children under 18 Years of Age',
+            name='Children under 18 Years of Age',
             description='The number of people within each geography who are '
             'under 18 years of age.',
             weight=4,
@@ -482,7 +481,7 @@ class Columns(ColumnsTask):
             'of language spoken at home.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['denominator'], tags['language']])
+            tags=[censustags['demographics'], tags['denominator']])
         speak_only_english_at_home = OBSColumn(
             id='B16001002',
             type='Numeric',

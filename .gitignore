@@ -10,6 +10,6 @@ node_modules
 bower_components
 *.swp
 npm-debug.log
-catalog/source/data
+catalog/source/*/*
 catalog/build/doctrees
 catalog/build/latex
