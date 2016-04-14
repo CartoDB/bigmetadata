@@ -1,31 +1,31 @@
 sh:
-	docker-compose run bigmetadata /bin/bash
+	docker-compose run --rm bigmetadata /bin/bash
 
 test:
-	docker-compose run -e PGDATABASE=test bigmetadata nosetests -s tests/
+	docker-compose run --rm -e PGDATABASE=test bigmetadata nosetests -s tests/
 
 python:
-	docker-compose run bigmetadata python
+	docker-compose run --rm bigmetadata python
 
 build:
 	docker-compose build
 
 psql:
-	docker-compose run bigmetadata psql
+	docker-compose run --rm bigmetadata psql
 
 acs:
-	docker-compose run bigmetadata luigi \
+	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.us.census.acs ExtractAll \
 	  --year 2013 --sample 5yr
 #	  --parallel-scheduling --workers=8
 
 tiger:
-	docker-compose run bigmetadata luigi \
+	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.us.census.tiger AllSumLevels
 #	  --parallel-scheduling --workers=8
 
 sphinx:
-	docker-compose run bigmetadata luigi \
+	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Sphinx --force
 
 sphinx-deploy:
@@ -36,17 +36,17 @@ sphinx-deploy:
 	  git push origin gh-pages
 
 sphinx-pdf:
-	docker-compose run bigmetadata luigi \
+	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Sphinx --format latexpdf --force
 
 # do not exceed three slots available for import api
 sync-meta:
-	docker-compose run bigmetadata luigi \
+	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.carto SyncMetadata
 #	  --parallel-scheduling --workers=3
 
 sync-data:
-	docker-compose run bigmetadata luigi \
+	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.carto SyncAllData
 #	  --parallel-scheduling --workers=3
 
@@ -67,4 +67,4 @@ endif
 #run : prog
 #	@echo prog $(RUN_ARGS)
 run:
-	docker-compose run bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
+	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
