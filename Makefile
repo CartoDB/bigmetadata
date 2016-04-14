@@ -32,6 +32,7 @@ sphinx-deploy:
 	cd catalog/build/html && \
 	  git add . && \
 	  git commit -m 'updating catalog' && \
+	  git checkout -B gh-pages && \
 	  git push origin gh-pages
 
 sphinx-pdf:
