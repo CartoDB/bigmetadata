@@ -55,7 +55,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 3
+        return 5
 
     def columns(self):
         tags = self.input()['tags']
@@ -868,14 +868,14 @@ class Columns(ColumnsTask):
             'work at all during the reference week, were waiting to be called '
             'back to a job from which they had been laid off, and were available '
             'for work except for temporary illness. Examples of job seeking '
-            'activities are: <ul>'
-            '<li> Registering at a public or private employment office '
-            '<li> Meeting with prospective employers '
-            '<li> Investigating possibilities for starting a professional '
-            'practice or opening a business '
-            '<li> Placing or answering advertisements '
-            '<li> Writing letters of application '
-            '<li> Being on a union or professional register</ul>',
+            'activities are:' '''
+              * Registering at a public or private employment office
+              * Meeting with prospective employers
+              * Investigating possibilities for starting a professional
+                practice or opening a business
+              * Placing or answering advertisements
+              * Writing letters of application
+              * Being on a union or professional register''',
             weight=1,
             aggregate='sum',
             targets={civilian_labor_force: 'denominator'},
