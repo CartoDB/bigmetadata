@@ -25,7 +25,8 @@
    ]
   },
   "bigmetadata_daemon": {
-    "build": ".",
+    #"build": ".",
+    "image": "recessionporn/bigmetadata",
     "links": [
       "postgres"
     ],
@@ -45,7 +46,7 @@
     "env_file": ".env"
   },
   "bigmetadata": {
-    "build": ".",
+    "image": "recessionporn/bigmetadata",
     "links": [
       "bigmetadata_daemon",
       "postgres"
