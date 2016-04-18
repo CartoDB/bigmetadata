@@ -62,5 +62,19 @@
       "PGDATABASE": "gis"
     },
     "env_file": ".env"
-  }
+  },
+  "ipython": {
+    "build": "ipython",
+    "ports": [
+      "8888:8888"
+    ],
+    "links": [
+      "postgres"
+    ],
+    "volumes": [
+      ".:/bigmetadata"
+    ],
+    "working_dir": "/tmp/ipython",
+    "command": "sh -c /bigmetadata/ipython/start.sh"
+  },
 }
