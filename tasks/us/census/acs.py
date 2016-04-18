@@ -1928,5 +1928,7 @@ class ExtractAll(WrapperTask):
     sample = Parameter()
 
     def requires(self):
-        for geo in ('state', 'county', 'census_tract', 'block_group', 'puma', 'zcta5',):
+        for geo in ('state', 'county', 'census_tract', 'block_group', 'puma',
+                    'zcta5', 'school_district_elementary',
+                    'school_district_secondary', 'school_district_unified'):
             yield Quantiles(geography=geo, year=self.year, sample=self.sample)

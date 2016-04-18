@@ -456,6 +456,7 @@
     "fields": {
         "parent": 4, 
         "plural_name": "school districts (elementary)", 
+        "table": "elsd",
         "description": "", 
         "short_name": "", 
         "census_code_description": "", 
@@ -482,6 +483,7 @@
         "description": "", 
         "short_name": "", 
         "census_code_description": "", 
+        "table": "scsd",
         "ancestors": [
             1, 
             2, 
@@ -505,6 +507,7 @@
         "description": "", 
         "short_name": "", 
         "census_code_description": "", 
+        "table": "unsd",
         "ancestors": [
             1, 
             2, 
