@@ -231,7 +231,6 @@ class DownloadTigerGeography(Task):
 
     year = IntParameter()
     geography = Parameter()
-    force = BooleanParameter() # TODO
 
     url_format = 'ftp://ftp2.census.gov/geo/tiger/TIGER{year}/{geography}/'
 
@@ -244,21 +243,28 @@ class DownloadTigerGeography(Task):
         return os.path.join('tmp', classpath(self), str(self.year))
 
     def run(self):
-        subprocess.check_call('wget --recursive --continue --accept=*.zip '
-                              '--no-parent --cut-dirs=3 --no-host-directories '
-                              '--directory-prefix={directory} '
-                              '{url}'.format(directory=self.directory, url=self.url), shell=True)
+        shell('wget --recursive --continue --accept=*.zip '
+              '--no-parent --cut-dirs=3 --no-host-directories '
+              '--directory-prefix={directory} '
+              '{url}'.format(directory=self.directory, url=self.url))
 
     def output(self):
-        filenames = subprocess.check_output('wget --recursive --accept=*.zip --reject *.zip '
-                                            '--no-parent --cut-dirs=3 --no-host-directories '
-                                            '{url} 2>&1 | grep Rejecting'.format(url=self.url), shell=True)
+        filenames = shell('wget --recursive --accept=*.zip --reject *.zip '
+                          '--no-parent --cut-dirs=3 --no-host-directories '
+                          '{url} 2>&1 | grep Rejecting'.format(url=self.url))
         for fname in filenames.split('\n'):
             if not fname:
                 continue
             path = os.path.join(self.directory, self.geography,
                                 fname.replace("Rejecting '", '').replace("'.", ''))
             yield LocalTarget(path)
+
+    def complete(self):
+        try:
+            exists = shell('ls {}'.format(os.path.join(self.directory, self.geography, '*.zip')))
+            return exists != ''
+        except subprocess.CalledProcessError:
+            return False
 
 
 class UnzipTigerGeography(Task):
@@ -272,14 +278,25 @@ class UnzipTigerGeography(Task):
     def requires(self):
         return DownloadTigerGeography(year=self.year, geography=self.geography)
 
+    @property
+    def directory(self):
+        return os.path.join('tmp', classpath(self), str(self.year))
+
     def run(self):
         for infile in self.input():
-            subprocess.check_call("unzip -n -q -d $(dirname {zippath}) '{zippath}'".format(
-                zippath=infile.path), shell=True)
+            shell("unzip -n -q -d $(dirname {zippath}) '{zippath}'".format(
+                zippath=infile.path))
 
     def output(self):
         for infile in self.input():
             yield LocalTarget(infile.path.replace('.zip', '.shp'))
+
+    def complete(self):
+        try:
+            exists = shell('ls {}'.format(os.path.join(self.directory, self.geography, '*.shp')))
+            return exists != ''
+        except subprocess.CalledProcessError:
+            return False
 
 
 class TigerGeographyShapefileToSQL(TableTask):
@@ -308,26 +325,29 @@ class TigerGeographyShapefileToSQL(TableTask):
     def populate(self):
         session = current_session()
 
+        self.output()._table.drop(checkfirst=True)
         shapefiles = self.input()
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
                 'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {qualified_table} ' \
-                '-overwrite {shpfile_path} '.format(
-                    qualified_table=self.output().table,
+                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} ' \
+                '-lco SCHEMA={schema} {shpfile_path} '.format(
+                    tablename=self.output()._name,
+                    schema=self.output()._schema,
                     shpfile_path=shapefiles.next().path)
         shell(cmd)
 
         # chunk into 500 shapefiles at a time.
         for shape_group in grouper(shapefiles, 500):
-            subprocess.check_call(
+            shell(
                 'export PG_USE_COPY=yes PGCLIENTENCODING=latin1; '
                 'echo \'{shapefiles}\' | xargs -P 16 -I shpfile_path '
                 'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE -append '
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {qualified_table} '
+                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} '
+                '-lco SCHEMA={schema} ' \
                 'shpfile_path '.format(
                     shapefiles='\n'.join([shp.path for shp in shape_group if shp]),
-                    qualified_table=self.output().table),
-                shell=True)
+                    tablename=self.output()._name,
+                    schema=self.output()._schema))
 
         # Spatial index
         session.execute('ALTER TABLE {qualified_table} RENAME COLUMN '
@@ -366,7 +386,6 @@ class SimpleShorelineColumns(ColumnsTask):
 
 class SimpleShoreline(TableTask):
 
-    force = BooleanParameter(default=False)
     year = Parameter()
 
     def requires(self):
