@@ -658,6 +658,25 @@ class TableTask(Task):
         self.output().update_or_create()
         self.populate()
 
+    def complete(self):
+        inputs = self.input()
+        if isinstance(inputs, dict):
+            for _, input_ in self.input().iteritems():
+                if not input_.exists():
+                    return False
+        elif isinstance(inputs, list):
+            for input_ in self.input():
+                if not input_.exists():
+                    return False
+        elif isinstance(inputs, Target):
+            if not inputs.exists():
+                return False
+        else:
+            raise Exception('Can only work with inputs that are a dict, '
+                            'list or Target')
+
+        return super(TableTask, self).complete()
+
     def output(self):
         return TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
