@@ -24,20 +24,20 @@ tiger:
 	  --module tasks.us.census.tiger AllSumLevels
 #	  --parallel-scheduling --workers=8
 
-sphinx:
+catalog:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Sphinx --force
 
-sphinx-deploy:
+pdf-catalog:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.sphinx Sphinx --format latexpdf --force
+
+deploy-catalog: catalog pdf-catalog
 	cd catalog/build/html && \
 	  git add . && \
 	  git commit -m 'updating catalog' && \
 	  git checkout -B gh-pages && \
 	  git push origin gh-pages
-
-sphinx-pdf:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Sphinx --format latexpdf --force
 
 # do not exceed three slots available for import api
 sync-meta:
@@ -63,7 +63,7 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
-.PHONY: run
+.PHONY: run catalog
 #run : prog
 #	@echo prog $(RUN_ARGS)
 run:

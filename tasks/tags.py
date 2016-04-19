@@ -5,7 +5,7 @@ from tasks.util import TagsTask
 class CategoryTags(TagsTask):
 
     def version(self):
-        return 2
+        return 7
 
     def tags(self):
         return [
@@ -28,9 +28,7 @@ class CategoryTags(TagsTask):
 How much money people earn, what jobs they hold or are available in different
 areas, and the educational attainment or current enrollment of the population.
 
-.. figure:: https://observatory.cartodb.com/api/v1/map/static/center/692473e8ecb84eaf5db3aab15fe6d92c:1457125224518/6/39.342794409/-77.4536132812/800/500.png
-  :height: 500px
-  :width: 800 px
+.. figure:: ../../_static/img/GenerateStaticImage_5a2f4cc8_e189_11_125dd21a55.png
   :scale: 100 %
   :alt: Median Household Income
   :align: center
@@ -50,9 +48,7 @@ areas, and the educational attainment or current enrollment of the population.
                    type='category',
                    description='''Basic demographic breakdowns.
 
-.. figure:: 
-  :height: 500px
-  :width: 800 px
+.. figure:: ../../_static/img/GenerateStaticImage_4def78b4_f6c6_11_9e6824668c.png
   :scale: 100 %
   :alt: Median Household Income
   :align: center

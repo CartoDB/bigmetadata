@@ -3,11 +3,15 @@ Tasks to sync data locally to CartoDB
 '''
 
 from tasks.meta import current_session, OBSTable, Base
-from tasks.util import TableToCarto, underscore_slugify, query_cartodb
+from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
+                        classpath, shell)
 
-from luigi import WrapperTask, BooleanParameter, Parameter, Task
+from luigi import WrapperTask, BooleanParameter, Parameter, Task, LocalTarget
 from nose.tools import assert_equal
 
+import os
+import json
+import requests
 
 def extract_dict_a_from_b(a, b):
     return dict([(k, b[k]) for k in a.keys() if k in b.keys()])
@@ -69,6 +73,76 @@ class SyncAllData(WrapperTask):
 
         for table_id, tablename in tables.iteritems():
             yield TableToCarto(table=table_id, outname=tablename, force=self.force)
+
+
+class GenerateStaticImage(Task):
+
+    #BASEMAP = {
+    #    "type": "http",
+    #    "options": {
+    #        "urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+    #        "subdomains": "1234",
+    #        #"urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+    #        #"subdomains": ["a", "b", "c"]
+    #    }
+    #}
+
+    #57d9408e-0351-11e6-9c12-0e787de82d45
+
+    viz = Parameter()
+    VIZ_URL = '{cartodb_url}/api/v2/viz/{{viz}}/viz.json'.format(
+        cartodb_url=os.environ['CARTODB_URL'])
+    MAP_URL = '{cartodb_url}/api/v1/map'.format(
+        cartodb_url=os.environ['CARTODB_URL'])
+
+    def viz_to_config(self):
+        resp = requests.get(self.VIZ_URL.format(viz=self.viz))
+
+        assert resp.status_code == 200
+        data = resp.json()
+        layers = []
+        #layers.append(BASEMAP)
+        for data_layer in data['layers']:
+            if data_layer['type'] == 'layergroup':
+                for layer in data_layer['options']['layer_definition']['layers']:
+                    if layer['visible'] is True:
+                        layers.append({'type': 'mapnik', 'options': layer['options']})
+
+        return {
+            'layers': layers,
+            'center': json.loads(data['center']),
+            'bounds': data['bounds'],
+            'zoom': data['zoom']
+        }
+
+    def get_named_map(self, map_config):
+
+        config = {
+            "version": "1.3.0",
+            "layers": map_config
+        }
+        resp = requests.get(self.MAP_URL,
+                            headers={'content-type':'application/json'},
+                            params={'config': json.dumps(config)})
+        return resp.json()
+
+    def run(self):
+        self.output().makedirs()
+        config = self.viz_to_config()
+        named_map = self.get_named_map(config['layers'])
+        img_url = '{cartodb_url}/api/v1/map/static/center/' \
+                '{layergroupid}/{zoom}/{center_lon}/{center_lat}/800/500.png'.format(
+                    cartodb_url=os.environ['CARTODB_URL'],
+                    layergroupid=named_map['layergroupid'],
+                    zoom=config['zoom'],
+                    center_lon=config['center'][0],
+                    center_lat=config['center'][1]
+                )
+        shell('curl "{img_url}" > {output}'.format(img_url=img_url,
+                                                   output=self.output().path))
+
+    def output(self):
+        return LocalTarget(os.path.join('catalog/build/html/_static/img', self.task_id + '.png'))
 
 
 class PurgeFunctions(Task):

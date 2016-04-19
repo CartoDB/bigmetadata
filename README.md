@@ -57,8 +57,10 @@ Then get all your containers running in the background:
 
 Most of the common tasks have already been wrapped up in the `Makefile`.
 
-* `make sphinx`: Regenerate the catalog
-* `make sphinx-deploy`: Deploy the catalog to Github Pages
+* `make catalog`: Regenerate the catalog
+* `make pdf-catalog`: Regenerate the PDF version of the catalog
+* `make deploy-catalog`: Deploy the catalog to Github Pages. This will also
+  rebuild both the HTML and PDF catalogs
 * `make acs`: ETL the entirety of the American Community Survey (Census)
 * `make tiger`: ETL the boundary files of the census
 * `make sh`: Drop into the bigmetadata container to run shell scripts
