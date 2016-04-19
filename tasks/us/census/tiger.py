@@ -25,7 +25,7 @@ from psycopg2 import ProgrammingError
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -113,13 +113,20 @@ class GeomColumns(ColumnsTask):
                 weight=5,
                 tags=[tags['boundary']]
             ),
+            'cbsa': OBSColumn(
+                type='Geometry',
+                name='Core Based Statistical Area (CBSA)',
+                description=desc("cbsa"),
+                weight=0,
+                tags=[]
+            ),
         }
 
 
 class GeoidColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return GeomColumns()
@@ -221,7 +228,16 @@ class GeoidColumns(ColumnsTask):
                 description="",
                 weight=0,
                 targets={
-                    geoms['school_district_unified']: 'geom_ref'
+                    geoms['school_district_unified']: 'geom_ref',
+                }
+            ),
+            'cbsa_geoid': OBSColumn(
+                type='Text',
+                name='Core Based Statistical Area Geoids',
+                description="",
+                weight=0,
+                targets={
+                    geoms['cbsa']: 'geom_ref'
                 }
             ),
         }
