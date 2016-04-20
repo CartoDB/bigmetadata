@@ -26,7 +26,7 @@
   },
   "bigmetadata_daemon": {
     #"build": ".",
-    "image": "recessionporn/bigmetadata",
+    "image": "recessionporn/bigmetadata:docker-hub",
     "links": [
       "postgres"
     ],
@@ -46,7 +46,7 @@
     "env_file": ".env"
   },
   "bigmetadata": {
-    "image": "recessionporn/bigmetadata",
+    "image": "recessionporn/bigmetadata:docker-hub",
     "links": [
       "bigmetadata_daemon",
       "postgres"

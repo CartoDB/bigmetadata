@@ -26,11 +26,11 @@ tiger:
 
 catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Sphinx --force
+	  --module tasks.sphinx Catalog --force
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Sphinx --format latexpdf --force
+	  --module tasks.sphinx Catalog --format latexpdf --force
 
 deploy-catalog: catalog pdf-catalog
 	cd catalog/build/html && \

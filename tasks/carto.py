@@ -142,7 +142,7 @@ class GenerateStaticImage(Task):
                                                    output=self.output().path))
 
     def output(self):
-        return LocalTarget(os.path.join('catalog/build/html/_static/img', self.task_id + '.png'))
+        return LocalTarget(os.path.join('catalog/source/img', self.task_id + '.png'))
 
 
 class PurgeFunctions(Task):
