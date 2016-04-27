@@ -8,7 +8,7 @@ import json
 import os
 import subprocess
 from collections import OrderedDict
-from tasks.util import (LoadPostgresFromURL, classpath, DefaultPostgresTarget,
+from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                         sql_to_cartodb_table, grouper, shell,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask
@@ -16,16 +16,41 @@ from tasks.util import (LoadPostgresFromURL, classpath, DefaultPostgresTarget,
 from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
                         OBSColumnTag, OBSColumnToColumn, current_session)
 from tasks.tags import CategoryTags
+from tasks.carto import Import as CartoImport
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
                    IntParameter)
 from psycopg2 import ProgrammingError
 
 
+class ClippedGeomColumns(ColumnsTask):
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return GeomColumns()
+
+    def columns(self):
+        cols = OrderedDict()
+        for colname, coltarget in self.input().iteritems():
+            col = coltarget.get(current_session())
+            cols[colname + '_clipped'] = OBSColumn(
+                type='Geometry',
+                name=col.name,
+                weight=col.weight,
+                description='A cartography-ready version of {name}'.format(
+                    name=col.name),
+                targets={col: 'cartography'}
+            )
+
+        return cols
+
+
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -116,10 +141,32 @@ class GeomColumns(ColumnsTask):
         }
 
 
+class Attributes(ColumnsTask):
+
+    def version(self):
+        return 1
+
+    def columns(self):
+        return OrderedDict([
+            ('aland', OBSColumn(
+                type='Numeric',
+                name='Land area',
+                aggregate='sum',
+                weight=0,
+            )),
+            ('awater', OBSColumn(
+                type='Numeric',
+                name='Water area',
+                aggregate='sum',
+                weight=0,
+            ))
+        ])
+
+
 class GeoidColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return GeomColumns()
@@ -249,21 +296,16 @@ class DownloadTigerGeography(Task):
               '{url}'.format(directory=self.directory, url=self.url))
 
     def output(self):
-        filenames = shell('wget --recursive --accept=*.zip --reject *.zip '
-                          '--no-parent --cut-dirs=3 --no-host-directories '
-                          '{url} 2>&1 | grep Rejecting'.format(url=self.url))
-        for fname in filenames.split('\n'):
-            if not fname:
-                continue
-            path = os.path.join(self.directory, self.geography,
-                                fname.replace("Rejecting '", '').replace("'.", ''))
+        filenames = shell('ls {}'.format(os.path.join(
+            self.directory, self.geography, '*.zip'))).split('\n')
+        for path in filenames:
             yield LocalTarget(path)
 
     def complete(self):
         try:
             exists = shell('ls {}'.format(os.path.join(self.directory, self.geography, '*.zip')))
             return exists != ''
-        except subprocess.CalledProcessError:
+        except subprocess.CalledProcessError as err:
             return False
 
 
@@ -280,26 +322,28 @@ class UnzipTigerGeography(Task):
 
     @property
     def directory(self):
-        return os.path.join('tmp', classpath(self), str(self.year))
+        return os.path.join('tmp', classpath(self), str(self.year), self.geography)
 
     def run(self):
-        for infile in self.input():
-            shell("unzip -n -q -d $(dirname {zippath}) '{zippath}'".format(
-                zippath=infile.path))
+        #for infile in self.input():
+        cmd = "cd {path} && find -iname '*.zip' -print0 | xargs -0 -n1 unzip -n -q ".format(
+            path=self.directory)
+        shell(cmd)
 
     def output(self):
-        for infile in self.input():
-            yield LocalTarget(infile.path.replace('.zip', '.shp'))
+        shps = shell('ls {}'.format(os.path.join(self.directory, '*.shp')))
+        for path in shps:
+            yield LocalTarget(path)
 
     def complete(self):
         try:
-            exists = shell('ls {}'.format(os.path.join(self.directory, self.geography, '*.shp')))
+            exists = shell('ls {}'.format(os.path.join(self.directory, '*.shp')))
             return exists != ''
         except subprocess.CalledProcessError:
             return False
 
 
-class TigerGeographyShapefileToSQL(TableTask):
+class TigerGeographyShapefileToSQL(TempTableTask):
     '''
     Take downloaded shapefiles and load them into Postgres
     '''
@@ -310,45 +354,35 @@ class TigerGeographyShapefileToSQL(TableTask):
     def requires(self):
         return UnzipTigerGeography(year=self.year, geography=self.geography)
 
-    def version(self):
-        return 2
+    def run(self):
+        shapefiles = shell('ls {dir}/*.shp'.format(
+            dir=os.path.join('tmp', classpath(self), str(self.year), self.geography)
+        )).strip().split('\n')
 
-    def columns(self):
-        return {}
-
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
-    def timespan(self):
-        return str(self.year)
-
-    def populate(self):
-        session = current_session()
-
-        self.output()._table.drop(checkfirst=True)
-        shapefiles = self.input()
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
                 'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
                 '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} ' \
                 '-lco SCHEMA={schema} {shpfile_path} '.format(
-                    tablename=self.output()._name,
-                    schema=self.output()._schema,
-                    shpfile_path=shapefiles.next().path)
+                    tablename=self.output().tablename,
+                    schema=self.output().schema,
+                    shpfile_path=shapefiles.pop())
         shell(cmd)
 
         # chunk into 500 shapefiles at a time.
-        for shape_group in grouper(shapefiles, 500):
+        for i, shape_group in enumerate(grouper(shapefiles, 500)):
             shell(
                 'export PG_USE_COPY=yes PGCLIENTENCODING=latin1; '
                 'echo \'{shapefiles}\' | xargs -P 16 -I shpfile_path '
-                'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE -append '
+                'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE '
+                'active_schema={schema}" -append '
                 '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} '
-                '-lco SCHEMA={schema} ' \
                 'shpfile_path '.format(
-                    shapefiles='\n'.join([shp.path for shp in shape_group if shp]),
-                    tablename=self.output()._name,
-                    schema=self.output()._schema))
+                    shapefiles='\n'.join([shp for shp in shape_group if shp]),
+                    tablename=self.output().tablename,
+                    schema=self.output().schema))
+            print 'imported {} shapefiles'.format((i + 1) * 500)
 
+        session = current_session()
         # Spatial index
         session.execute('ALTER TABLE {qualified_table} RENAME COLUMN '
                         'wkb_geometry TO geom'.format(
@@ -362,52 +396,31 @@ class DownloadTiger(LoadPostgresFromURL):
     url_template = 'https://s3.amazonaws.com/census-backup/tiger/{year}/tiger{year}_backup.sql.gz'
     year = Parameter()
 
-    @property
-    def schema(self):
-        return 'tiger{year}'.format(year=self.year)
-
-    def identifier(self):
-        return self.schema
-
     def run(self):
-        shell("psql -c 'DROP SCHEMA \"{schema}\" CASCADE'".format(schema=self.schema))
+        schema = 'tiger{year}'.format(year=self.year)
+        shell("psql -c 'DROP SCHEMA IF EXISTS \"{schema}\" CASCADE'".format(schema=schema))
+        shell("psql -c 'CREATE SCHEMA \"{schema}\"'".format(schema=schema))
         url = self.url_template.format(year=self.year)
         self.load_from_url(url)
-        self.output().touch()
 
 
-class SimpleShorelineColumns(ColumnsTask):
-
-    def columns(self):
-        return {
-            'geom': OBSColumn(type='Geometry')
-        }
-
-
-class SimpleShoreline(TableTask):
+class SimpleShoreline(TempTableTask):
 
     year = Parameter()
 
     def requires(self):
         return {
-            'meta': SimpleShorelineColumns(),
-            'data': TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year)
+            'data': TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year),
+            'us_landmask': CartoImport(table='us_landmask'),
         }
 
-    def columns(self):
-        return self.input()['meta']
-
-    def timespan(self):
-        return str(self.year)
-
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
-    def populate(self):
+    def run(self):
         session = current_session()
-        session.execute('INSERT INTO {output} '
-                        'SELECT ST_Subdivide(geom) geom FROM {input} '
-                        "WHERE mtfcc != 'H2030' OR awater > 3000000".format(
+        session.execute('CREATE TABLE {output} AS '
+                        'SELECT ST_Subdivide(geom) geom, false in_landmask, '
+                        '       aland, awater, mtfcc '
+                        'FROM {input} '
+                        "WHERE mtfcc != 'H2030' OR awater > 300000".format(
                             input=self.input()['data'].table,
                             output=self.output().table
                         ))
@@ -415,8 +428,166 @@ class SimpleShoreline(TableTask):
             output=self.output().table
         ))
 
+        session.execute('UPDATE {output} data SET in_landmask = True '
+                        'FROM {landmask} landmask '
+                        'WHERE ST_WITHIN(data.geom, landmask.the_geom)'.format(
+                            landmask=self.input()['us_landmask'].table,
+                            output=self.output().table
+                        ))
 
-class ShorelineClipTiger(TableTask):
+
+class SplitSumLevel(TempTableTask):
+    '''
+    Split the positive table into geoms with a reasonable number of
+    vertices.  Assumes there is a geoid and the_geom column.
+    '''
+
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return SumLevel(year=self.year, geography=self.geography)
+
+    def run(self):
+        session = current_session()
+        session.execute('CREATE TABLE {output} '
+                        '(id serial primary key, geoid text, the_geom geometry, '
+                        'aland NUMERIC, awater NUMERIC)'.format(
+                            output=self.output().table))
+        session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater) '
+                        'SELECT geoid, ST_Subdivide(the_geom) the_geom, '
+                        '       aland, awater '
+                        'FROM {input} '
+                        'WHERE aland > 0 '.format(output=self.output().table,
+                                                  input=self.input().table))
+
+        session.execute('CREATE INDEX ON {output} USING GIST (the_geom)'.format(
+            output=self.output().table))
+
+
+class JoinTigerWaterGeoms(TempTableTask):
+    '''
+    Join the split up pos to the split up neg, then union the geoms based
+    off the split pos id (technically the union on pos geom is extraneous)
+    '''
+
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return {
+            'pos': SplitSumLevel(year=self.year, geography=self.geography),
+            'neg': SimpleShoreline(year=self.year),
+        }
+
+    def use_mask(self):
+        '''
+        Returns true if we should not clip interior geometries, False otherwise.
+        '''
+        return self.geography.lower() in ('state', 'county', )
+
+    def run(self):
+        session = current_session()
+        stmt = ('CREATE TABLE {output} AS '
+                'SELECT id, geoid, ST_Union(ST_MakeValid(neg.geom)) neg_geom, '
+                '       MAX(pos.the_geom) pos_geom '
+                'FROM {pos} pos, {neg} neg '
+                'WHERE ST_Intersects(pos.the_geom, neg.geom) '
+                '      AND pos.awater > 0 '
+                '      {mask_clause} '
+                'GROUP BY id '.format(
+                    neg=self.input()['neg'].table,
+                    mask_clause=' AND in_landmask = false' if self.use_mask() else '',
+                    pos=self.input()['pos'].table,
+                    output=self.output().table), )[0]
+        session.execute(stmt)
+
+
+class DiffTigerWaterGeoms(TempTableTask):
+    '''
+    Calculate the difference between the pos and neg geoms
+    '''
+
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return JoinTigerWaterGeoms(year=self.year, geography=self.geography)
+
+    def run(self):
+        session = current_session()
+        stmt = ('CREATE TABLE {output} '
+                        'AS SELECT geoid, id, ST_Difference( '
+                        #'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) the_geom '
+                        'pos_geom, neg_geom) the_geom '
+                        'FROM {input}'.format(
+                            output=self.output().table,
+                            input=self.input().table), )[0]
+        session.execute(stmt)
+
+
+class PreunionTigerWaterGeoms(TempTableTask):
+    '''
+    Create new table with both diffed and non-diffed (didn't intersect with
+    water) geoms
+    '''
+
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return {
+            'diffed': DiffTigerWaterGeoms(year=self.year, geography=self.geography),
+            'split': SplitSumLevel(year=self.year, geography=self.geography)
+        }
+
+    def run(self):
+        session = current_session()
+        session.execute('CREATE TABLE {output} '
+                        'AS SELECT geoid::text, id::int, the_geom::geometry, '
+                        'aland::numeric, awater::Numeric '
+                        'FROM {split} LIMIT 0 '.format(
+                            output=self.output().table,
+                            split=self.input()['split'].table))
+        session.execute('INSERT INTO {output} (geoid, id, the_geom) '
+                        'SELECT geoid, id, the_geom FROM {diffed}'.format(
+                            output=self.output().table,
+                            diffed=self.input()['diffed'].table))
+        session.execute('INSERT INTO {output} '
+                        'SELECT geoid, id, the_geom, aland, awater FROM {split} '
+                        'WHERE id NOT IN (SELECT id from {diffed})'.format(
+                            split=self.input()['split'].table,
+                            diffed=self.input()['diffed'].table,
+                            output=self.output().table))
+        #session.execute('CREATE INDEX ON {output} '
+        #                'USING GIST (the_geom)'.format(
+        #                    output=self.output().table))
+
+
+class UnionTigerWaterGeoms(TempTableTask):
+    '''
+    Re-union the pos table based off its geoid, this includes holes in
+    the output geoms
+    '''
+
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return PreunionTigerWaterGeoms(year=self.year, geography=self.geography)
+
+    def run(self):
+        session = current_session()
+        session.execute('CREATE TABLE {output} AS '
+                        'SELECT geoid, ST_UNION(the_geom) AS the_geom, '
+                        '       MAX(aland) aland, MAX(awater) awater '
+                        'FROM {input} '
+                        'GROUP BY geoid'.format(
+                            output=self.output().table,
+                            input=self.input().table))
+
+
+class ShorelineClip(TableTask):
     '''
     Clip the provided geography to shoreline.
     '''
@@ -427,100 +598,48 @@ class ShorelineClipTiger(TableTask):
     year = Parameter()
     geography = Parameter()
 
+    def version(self):
+        return 1
+
     def requires(self):
         return {
-            'tiger': SumLevel(year=self.year, geography=self.geography),
-            'water': SimpleShoreline(year=self.year)
+            'data': UnionTigerWaterGeoms(year=self.year, geography=self.geography),
+            'geoms': ClippedGeomColumns(),
+            'geoids': GeoidColumns(),
+            'attributes': Attributes(),
         }
 
+    def columns(self):
+        return OrderedDict([
+            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
+            ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
+            ('aland', self.input()['attributes']['aland']),
+        ])
+
     def timespan(self):
-        return str(self.year)
+        return self.year
 
     def bounds(self):
         return 'BOX(0 0,0 0)'
 
-    def columns(self):
-        return []
-
     def populate(self):
         session = current_session()
-        #tiger = [t for t in self.input()['tiger'] if t.data['slug'] == self.geography.lower()][0]
-        pos = self.input()['tiger'].table
-        neg = self.input()['water'].table
-        pos_split = pos.split('.')[-1] + '_split'
-        pos_neg_joined = pos_split + '_' + neg.split('.')[-1] + '_joined'
-        pos_neg_joined_diffed = pos_neg_joined + '_diffed'
-        pos_neg_joined_diffed_merged = pos_neg_joined_diffed + '_merged'
-        output = self.output().table
-
-        # Split the positive table into geoms with a reasonable number of
-        # vertices.
-        session.execute('DROP TABLE IF EXISTS {pos_split}'.format(
-            pos_split=pos_split))
-        session.execute('CREATE TEMPORARY TABLE {pos_split} '
-                        '(id serial primary key, geoid text, geom geometry)'.format(
-                            pos_split=pos_split))
-        session.execute('INSERT INTO {pos_split} (geoid, geom) '
-                        'SELECT geoid, ST_Subdivide(geom) geom '
-                        'FROM {pos}'.format(pos=pos, pos_split=pos_split))
-
-        session.execute('CREATE INDEX ON {pos_split} USING GIST (geom)'.format(
-            pos_split=pos_split))
-
-        # Join the split up pos to the split up neg, then union the geoms based
-        # off the split pos id (technically the union on pos geom is extraneous)
-        session.execute('DROP TABLE IF EXISTS {pos_neg_joined}'.format(
-            pos_neg_joined=pos_neg_joined))
-        session.execute('CREATE TEMPORARY TABLE {pos_neg_joined} AS '
-                        'SELECT id, geoid, ST_Union(neg.geom) neg_geom, '
-                        '       ST_Union(pos.geom) pos_geom '
-                        'FROM {pos_split} pos, {neg} neg '
-                        'WHERE ST_Intersects(pos.geom, neg.geom) '
-                        'GROUP BY id'.format(neg=neg,
-                                             pos_split=pos_split,
-                                             pos_neg_joined=pos_neg_joined))
-
-        # Calculate the difference between the pos and neg geoms
-        session.execute('DROP TABLE IF EXISTS {pos_neg_joined_diffed}'.format(
-            pos_neg_joined_diffed=pos_neg_joined_diffed))
-        session.execute('CREATE TEMPORARY TABLE {pos_neg_joined_diffed} '
-                        'AS SELECT geoid, id, ST_Difference( '
-                        'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) geom '
-                        'FROM {pos_neg_joined}'.format(
-                            pos_neg_joined=pos_neg_joined,
-                            pos_neg_joined_diffed=pos_neg_joined_diffed))
-
-        # Create new table with both diffed and non-diffed (didn't intersect with
-        # water) geoms
-        session.execute('DROP TABLE IF EXISTS {pos_neg_joined_diffed_merged}'.format(
-            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
-        session.execute('CREATE TEMPORARY TABLE {pos_neg_joined_diffed_merged} '
-                        'AS SELECT * FROM {pos_neg_joined_diffed}'.format(
-                            pos_neg_joined_diffed=pos_neg_joined_diffed,
-                            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
-        session.execute('INSERT INTO {pos_neg_joined_diffed_merged} '
-                        'SELECT geoid, id, geom FROM {pos_split} '
-                        'WHERE id NOT IN (SELECT id from {pos_neg_joined_diffed})'.format(
-                            pos_split=pos_split,
-                            pos_neg_joined_diffed=pos_neg_joined_diffed,
-                            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
-        session.execute('CREATE INDEX ON {pos_neg_joined_diffed_merged} '
-                        'USING GIST (geom)'.format(
-                            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
-
-        # Re-union the pos table based off its geoid
-        session.execute('DROP TABLE IF EXISTS {output}'.format(output=output))
-        session.execute('CREATE TABLE {output} AS '
-                        'SELECT geoid, ST_UNION(geom) AS geom '
-                        'FROM {pos_neg_joined_diffed_merged} '
+        stmt = ('INSERT INTO {output} '
+                        'SELECT geoid, ST_Collect(ST_MakePolygon(the_geom)) AS the_geom, '
+                        '  MAX(aland) aland '
+                        'FROM ( '
+                        '    SELECT geoid, ST_ExteriorRing((ST_Dump(the_geom)).geom) AS the_geom, '
+                        '           aland '
+                        '    FROM {input} '
+                        ') holes '
                         'GROUP BY geoid'.format(
-                            output=output,
-                            pos_neg_joined_diffed_merged=pos_neg_joined_diffed_merged))
+                            output=self.output().table,
+                            input=self.input()['data'].table), )[0]
+        session.execute(stmt)
 
 
 class SumLevel(TableTask):
 
-    clipped = BooleanParameter(default=False)
     geography = Parameter()
     year = Parameter()
 
@@ -533,16 +652,13 @@ class SumLevel(TableTask):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
-        return 4
+        return 6
 
     def requires(self):
-        if self.clipped:
-            tiger = ShorelineClipTiger(
-                year=self.year, geography=self.input_tablename)
-        else:
-            tiger = DownloadTiger(year=self.year)
+        tiger = DownloadTiger(year=self.year)
         return {
             'data': tiger,
+            'attributes': Attributes(),
             'geoids': GeoidColumns(),
             'geoms': GeomColumns()
         }
@@ -550,22 +666,19 @@ class SumLevel(TableTask):
     def columns(self):
         return OrderedDict([
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
-            ('the_geom', self.input()['geoms'][self.geography])
+            ('the_geom', self.input()['geoms'][self.geography]),
+            ('aland', self.input()['attributes']['aland']),
+            ('awater', self.input()['attributes']['awater']),
         ])
 
     def timespan(self):
         return self.year
 
     def bounds(self):
-        if not self.input()['data'].exists():
-            return
-        if self.clipped:
-            from_clause = self.input()['data'].table
-        else:
-            from_clause = '{inputschema}.{input_tablename}'.format(
-                inputschema=self.input()['data'].table,
-                input_tablename=self.input_tablename,
-            )
+        from_clause = '{inputschema}.{input_tablename}'.format(
+            inputschema='tiger' + str(self.year),
+            input_tablename=self.input_tablename,
+        )
         session = current_session()
         return session.execute('SELECT ST_EXTENT(geom) FROM '
                                '{from_clause}'.format(
@@ -574,16 +687,13 @@ class SumLevel(TableTask):
 
     def populate(self):
         session = current_session()
-        if self.clipped:
-            from_clause = self.input()['data'].table
-        else:
-            from_clause = '{inputschema}.{input_tablename}'.format(
-                inputschema=self.input()['data'].table,
-                input_tablename=self.input_tablename,
-            )
-        session.execute('INSERT INTO {output} (geoid, the_geom) '
-                        'SELECT {geoid}, geom the_geom  '
-                        'FROM {from_clause}'.format(
+        from_clause = '{inputschema}.{input_tablename}'.format(
+            inputschema='tiger' + str(self.year),
+            input_tablename=self.input_tablename,
+        )
+        session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater) '
+                        'SELECT {geoid}, geom the_geom, aland, awater '
+                        'FROM {from_clause} '.format(
                             geoid=self.geoid,
                             output=self.output().table,
                             from_clause=from_clause
@@ -595,15 +705,14 @@ class AllSumLevels(WrapperTask):
     Compute all sumlevels
     '''
 
-    year = Parameter(default=2013)
+    year = Parameter(default=2014)
 
     def requires(self):
-        #for clipped in (True, False):
-        for clipped in (False, ):
-            for geo in ('state', 'county', 'census_tract', 'block_group',
-                        'puma', 'zcta5', 'school_district_elementary',
-                        'school_district_secondary', 'school_district_unified'):
-                yield SumLevel(year=self.year, geography=geo, clipped=clipped)
+        for geo in ('state', 'county', 'census_tract', 'block_group',
+                    'puma', 'zcta5', 'school_district_elementary',
+                    'school_district_secondary', 'school_district_unified'):
+            yield SumLevel(year=self.year, geography=geo)
+            yield ShorelineClip(year=self.year, geography=geo)
 
 
 def load_sumlevels():

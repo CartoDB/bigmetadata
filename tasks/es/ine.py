@@ -7,10 +7,10 @@ import os
 from collections import OrderedDict
 from luigi import Task, LocalTarget
 from tasks.meta import OBSColumn, OBSColumnToColumn, OBSTag, current_session
-from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
+from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
-                        ColumnTarget, ColumnsTask, TagsTask,
-                        classpath, DefaultPostgresTarget, tablize)
+                        ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
+                        classpath, PostgresTarget, tablize)
 
 
 class Tags(TagsTask):
@@ -38,7 +38,7 @@ class DownloadGeometry(Task):
                                         'cartografia_censo2011_nacional.zip'))
 
 
-class RawGeometry(Task):
+class RawGeometry(TempTableTask):
 
     def requires(self):
         return DownloadGeometry()
@@ -69,13 +69,6 @@ class RawGeometry(Task):
                     table=self.tablename,
                     input=self.input().path)
         shell(cmd)
-        self.output().touch()
-
-    def output(self):
-        return DefaultPostgresTarget(table='"{schema}".{table}'.format(
-            schema=self.schema,
-            table=self.tablename
-        ))
 
 
 class GeometryColumns(ColumnsTask):

@@ -3,10 +3,15 @@ Tasks to sync data locally to CartoDB
 '''
 
 from tasks.meta import current_session, OBSTable, Base
-from tasks.util import TableToCarto, underscore_slugify, query_cartodb
+from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
+                        classpath, shell, PostgresTarget, TempTableTask)
 
 from luigi import WrapperTask, BooleanParameter, Parameter, Task
 from nose.tools import assert_equal
+from urllib import quote_plus
+
+import requests
+
 
 
 def extract_dict_a_from_b(a, b):
@@ -17,6 +22,69 @@ def metatables():
     for tablename, table in Base.metadata.tables.iteritems():
         if tablename.startswith('obs_'):
             yield tablename, table
+
+
+class Import(TempTableTask):
+    '''
+    Import a table from a CartoDB account
+    '''
+
+    username = Parameter(default='')
+    subdomain = Parameter(default='observatory')
+    table = Parameter()
+
+    TYPE_MAP = {
+        'string': 'TEXT',
+        'number': 'NUMERIC',
+        'geometry': 'GEOMETRY',
+    }
+
+    @property
+    def _url(self):
+        return 'https://{subdomain}.cartodb.com/{username}api/v2/sql'.format(
+            username=self.username + '/' if self.username else '',
+            subdomain=self.subdomain
+        )
+
+    def _query(self, **params):
+        return requests.get(self._url, params=params)
+
+    def _create_table(self):
+        resp = self._query(
+            q='SELECT * FROM {table} LIMIT 0'.format(table=self.table)
+        )
+        coltypes = dict([
+            (k, self.TYPE_MAP[v['type']]) for k, v in resp.json()['fields'].iteritems()
+        ])
+        resp = self._query(
+            q='SELECT * FROM {table} LIMIT 0'.format(table=self.table),
+            format='csv'
+        )
+        colnames = resp.text.strip().split(',')
+        columns = ', '.join(['{colname} {type}'.format(
+            colname=c,
+            type=coltypes[c]
+        ) for c in colnames])
+        stmt = 'CREATE TABLE {table} ({columns})'.format(table=self.output().table,
+                                                         columns=columns)
+        shell("psql -c '{stmt}'".format(stmt=stmt))
+
+    def _load_rows(self):
+        url = self._url + '?q={q}&format={format}'.format(
+            q=quote_plus('SELECT * FROM {table}'.format(table=self.table)),
+            format='csv'
+        )
+        shell(r"curl '{url}' | "
+              r"psql -c '\copy {table} FROM STDIN WITH CSV HEADER'".format(
+                  table=self.output().table,
+                  url=url))
+
+    def run(self):
+        self._create_table()
+        self._load_rows()
+        shell("psql -c 'CREATE INDEX ON {table} USING gist (the_geom)'".format(
+            table=self.output().table,
+        ))
 
 
 class SyncMetadata(WrapperTask):

@@ -7,8 +7,7 @@ import subprocess
 
 from collections import OrderedDict
 from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag, current_session
-from tasks.util import (shell,  pg_cursor, classpath,
-                        ColumnsTask, TableTask)
+from tasks.util import shell, classpath, ColumnsTask, TableTask
 from tasks.us.census.tiger import GeoidColumns
 
 

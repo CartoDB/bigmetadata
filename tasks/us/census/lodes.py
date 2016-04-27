@@ -9,7 +9,7 @@ import subprocess
 from collections import OrderedDict
 from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSColumnTag,
                         current_session)
-from tasks.util import (shell, DefaultPostgresTarget, pg_cursor, classpath,
+from tasks.util import (shell, TempTableTask, classpath,
                         ColumnsTask, TableTask)
 from tasks.tags import CategoryTags
 from tasks.us.census.tiger import GeoidColumns
@@ -621,7 +621,7 @@ class WorkplaceAreaCharacteristics(TableTask):
             shell(cmd)
 
 
-class OriginDestination(Task):
+class OriginDestination(TempTableTask):
 
     year = IntParameter(default=2013)
 
@@ -653,7 +653,7 @@ createdate DATE -- Date on which da ta was created, formatted as YYYYMMDD
 
     def run(self):
         # make the table
-        cursor = pg_cursor()
+        cursor = current_session()
         cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
             schema=classpath(self)))
         cursor.execute('''
@@ -671,11 +671,3 @@ CREATE TABLE {tablename} (
             cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
                   r"WITH CSV HEADER'".format(input=infile.path, tablename=self.tablename())
             shell(cmd)
-
-        self.output().touch()
-
-    def output(self):
-        output = DefaultPostgresTarget(table=self.tablename())
-        if self.force:
-            output.untouch()
-        return output

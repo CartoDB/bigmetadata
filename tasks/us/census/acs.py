@@ -17,7 +17,7 @@ from sqlalchemy import Column, Numeric, Text
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from psycopg2 import ProgrammingError
 
-from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
+from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
@@ -1744,23 +1744,10 @@ class DownloadACS(LoadPostgresFromURL):
     def schema(self):
         return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
 
-    def identifier(self):
-        return self.schema
-
     def run(self):
-        cursor = pg_cursor()
-        try:
-            cursor.execute('CREATE ROLE census')
-            cursor.connection.commit()
-        except ProgrammingError:
-            cursor.connection.rollback()
-        try:
-            cursor.execute('DROP SCHEMA {schema} CASCADE'.format(schema=self.schema))
-            cursor.connection.commit()
-        except ProgrammingError:
-            cursor.connection.rollback()
-        url = self.url_template.format(year=self.year, sample=self.sample)
-        self.load_from_url(url)
+        cursor = current_session()
+        cursor.execute('DROP SCHEMA IF EXISTS {schema} CASCADE'.format(schema=self.schema))
+        self.load_from_url(self.url_template.format(year=self.year, sample=self.sample))
 
 
 class QuantileColumns(ColumnsTask):
