@@ -5,7 +5,7 @@ from tasks.util import TagsTask
 class CategoryTags(TagsTask):
 
     def version(self):
-        return 9
+        return 12
 
     def tags(self):
         return [
@@ -19,11 +19,11 @@ class CategoryTags(TagsTask):
                    description=''),
             OBSTag(id='housing',
                    name='Housing',
-                   type='category',
+                   type='catalog',
                    description='What type of housing exists and how do people live in it?'),
             OBSTag(id='income_education_employment',
                    name='Income, Education and Employment',
-                   type='category',
+                   type='catalog',
                    description='''
 How much money people earn, what jobs they hold or are available in different
 areas, and the educational attainment or current enrollment of the population.
@@ -41,11 +41,11 @@ areas, and the educational attainment or current enrollment of the population.
                   ),
             OBSTag(id='language',
                    name="Language",
-                   type='category',
+                   type='catalog',
                    description='What languages do people speak?'),
             OBSTag(id='race_age_gender',
                    name='Race, Age and Gender',
-                   type='category',
+                   type='catalog',
                    description='''Basic demographic breakdowns.
 
 .. cartofigure:: 4def78b4-f6c6-11e5-ac8d-0e31c9be1b51
@@ -59,10 +59,10 @@ areas, and the educational attainment or current enrollment of the population.
 '''),
             OBSTag(id='transportation',
                    name='Transportation',
-                   type='category',
+                   type='catalog',
                    description='How do people move from place to place?'),
             OBSTag(id='boundary',
                    name='Boundaries',
-                   type='category',
+                   type='catalog',
                    description='Use these to provide regions for sound comparison and analysis.'),
         ]

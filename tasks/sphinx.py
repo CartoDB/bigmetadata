@@ -46,7 +46,7 @@ class GenerateRST(Task):
     def output(self):
         targets = {}
         session = current_session()
-        for tag in session.query(OBSTag):
+        for tag in session.query(OBSTag).filter(OBSTag.type == 'catalog'):
             targets[tag.id] = LocalTarget('catalog/source/{type}/{tag}.rst'.format(
                 type=tag.type,
                 tag=tag.id))
