@@ -16,12 +16,12 @@ psql:
 acs:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.us.census.acs ExtractAll \
-	  --year 2013 --sample 5yr
+	  --year 2014 --sample 5yr
 #	  --parallel-scheduling --workers=8
 
 tiger:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.census.tiger AllSumLevels
+	  --module tasks.us.census.tiger AllSumLevels --year 2014
 #	  --parallel-scheduling --workers=8
 
 catalog:

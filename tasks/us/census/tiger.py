@@ -734,7 +734,7 @@ class AllSumLevels(WrapperTask):
     Compute all sumlevels
     '''
 
-    year = Parameter(default=2014)
+    year = Parameter()
 
     def requires(self):
         for geo in ('state', 'county', 'census_tract', 'block_group',
