@@ -206,6 +206,21 @@ class OBSColumn(Base):
         '''
         return 'denominator' in self.targets.values()
 
+    def denominator(self):
+        '''
+        Return the denominator of this column.
+        '''
+        if not self.has_denominator():
+            return None
+        return [(k, v) for k, v in  self.targets.iteritems() if v == 'denominator'][0][0]
+
+    def summable(self):
+        '''
+        Returns True if we can sum this column and calculate for arbitrary
+        areas.
+        '''
+        return self.aggregate == 'sum'
+
 
 # We should have one of these for every table we load in through the ETL
 class OBSTable(Base):

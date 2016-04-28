@@ -14,7 +14,57 @@
 %}
 
 {{ col.description }}
+{#
+Code example
+#}
 
+Measure "{{ col.name }}" {% if col.summable() %}density per sq. kilometer
+{%endif %}for one point:
+
+.. code:: postgresql
+
+  SELECT cdb_observatory.OBS_GetMeasure(
+    CDB_LatLng(40.7, -73.9),
+    '{{ col.id }}'
+  );
+
+{% if col.summable() %}
+Measure "{{ col.name }}" within an area:
+
+.. code:: postgresql
+
+  SELECT cdb_observatory.OBS_GetMeasure(
+    ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
+    '{{ col.id }}'
+  );
+
+{% else %}
+
+{{ col.name }} is only available for point lookups.
+{% endif %}
+
+{% if col.has_denominator() %}
+Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" at one point:
+
+.. code:: postgresql
+
+  SELECT cdb_observatory.OBS_GetMeasure(
+    CDB_LatLng(40.7, -73.9),
+    '{{ col.id }}', 'denominator'
+  );
+
+{% if col.summable() %}
+Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" within an area:
+
+.. code:: postgresql
+
+  SELECT cdb_observatory.OBS_GetMeasure(
+    ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
+    '{{ col.id }}', 'denominator'
+  );
+{% endif %}
+
+{% endif %}
 {# preview map #}
 {#
 .. rst-class:: cartodb-static-map

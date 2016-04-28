@@ -77,15 +77,15 @@ class SyncAllData(WrapperTask):
 
 class GenerateStaticImage(Task):
 
-    #BASEMAP = {
-    #    "type": "http",
-    #    "options": {
-    #        "urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
-    #        "subdomains": "1234",
-    #        #"urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
-    #        #"subdomains": ["a", "b", "c"]
-    #    }
-    #}
+    BASEMAP = {
+        "type": "http",
+        "options": {
+            "urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+            "subdomains": "1234",
+            #"urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+            #"subdomains": ["a", "b", "c"]
+        }
+    }
 
     #57d9408e-0351-11e6-9c12-0e787de82d45
 
@@ -101,7 +101,7 @@ class GenerateStaticImage(Task):
         assert resp.status_code == 200
         data = resp.json()
         layers = []
-        #layers.append(BASEMAP)
+        layers.append(self.BASEMAP)
         for data_layer in data['layers']:
             if data_layer['type'] == 'layergroup':
                 for layer in data_layer['options']['layer_definition']['layers']:
@@ -138,6 +138,7 @@ class GenerateStaticImage(Task):
                     center_lon=config['center'][0],
                     center_lat=config['center'][1]
                 )
+        print img_url
         shell('curl "{img_url}" > {output}'.format(img_url=img_url,
                                                    output=self.output().path))
 
