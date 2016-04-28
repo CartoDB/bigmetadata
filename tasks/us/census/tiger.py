@@ -518,8 +518,8 @@ class DiffTigerWaterGeoms(TempTableTask):
         session = current_session()
         stmt = ('CREATE TABLE {output} '
                         'AS SELECT geoid, id, ST_Difference( '
-                        #'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) the_geom '
-                        'pos_geom, neg_geom) the_geom '
+                        'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) the_geom '
+                        #'pos_geom, neg_geom) the_geom '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input().table), )[0]
