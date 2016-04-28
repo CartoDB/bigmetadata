@@ -411,7 +411,7 @@ class SimpleShoreline(TempTableTask):
     def requires(self):
         return {
             'data': TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year),
-            'us_landmask': CartoImport(table='us_landmask'),
+            'us_landmask': CartoImport(table='us_landmask_union'),
         }
 
     def run(self):
