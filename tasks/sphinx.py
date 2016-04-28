@@ -64,8 +64,16 @@ class GenerateRST(Task):
                 tag.description = re.sub(r'\.\. cartofigure:: (\S+)',
                                          '.. figure:: {}'.format(viz_path),
                                          tag.description)
-            columns = [c for c in tag.columns if not c.has_denominator()]
-            #columns.sort(lambda x, y: -x.weight.__cmp__(y.weight))
+            columns = []
+            for col in tag.columns:
+                # tags with denominators will appear beneath that denominator
+                if not col.has_denominator():
+                    columns.append(col)
+
+                # unless the denominator is not in this tag
+                elif tag not in col.denominator().tags:
+                    columns.append(col)
+
             columns.sort(lambda x, y: cmp(x.name, y.name))
 
             fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns,
