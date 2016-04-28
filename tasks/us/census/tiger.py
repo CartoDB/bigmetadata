@@ -643,9 +643,20 @@ class SumLevel(TableTask):
     geography = Parameter()
     year = Parameter()
 
+    def has_10_suffix(self):
+        return self.geography.lower() in ('puma', 'zcta5', )
+
     @property
     def geoid(self):
-        return 'geoid10' if self.geography in ('zcta5', 'puma', ) else 'geoid'
+        return 'geoid10' if self.has_10_suffix() else 'geoid'
+
+    @property
+    def aland(self):
+        return 'aland10' if self.has_10_suffix() else 'aland'
+
+    @property
+    def awater(self):
+        return 'awater10' if self.has_10_suffix() else 'awater'
 
     @property
     def input_tablename(self):
@@ -692,10 +703,12 @@ class SumLevel(TableTask):
             input_tablename=self.input_tablename,
         )
         session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater) '
-                        'SELECT {geoid}, geom the_geom, aland, awater '
+                        'SELECT {geoid}, geom the_geom, {aland}, {awater} '
                         'FROM {from_clause} '.format(
                             geoid=self.geoid,
                             output=self.output().table,
+                            aland=self.aland,
+                            awater=self.awater,
                             from_clause=from_clause
                         ))
 
