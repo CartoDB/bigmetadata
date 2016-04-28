@@ -22,7 +22,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         ColumnTarget, ColumnsTask, TagsTask)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
 from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
-                                   SUMLEVELS_BY_SLUG, ShorelineClipTiger)
+                                   SUMLEVELS_BY_SLUG)
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
@@ -1880,7 +1880,7 @@ class Extract(TableTask):
         colids = []
         colnames = []
         tableids = set()
-        inputschema = self.input()['data'].table
+        inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
         for colname, coltarget in self.columns().iteritems():
             colid = coltarget.get(session).id
             colnames.append(colname)
@@ -1889,10 +1889,10 @@ class Extract(TableTask):
             else:
                 colids.append(coltarget.name)
                 tableids.add(colid.split('.')[-1][0:-3])
-        tableclause = '"{inputschema}".{inputtable} '.format(
+        tableclause = '{inputschema}.{inputtable} '.format(
             inputschema=inputschema, inputtable=tableids.pop())
         for tableid in tableids:
-            tableclause += ' JOIN "{inputschema}".{inputtable} ' \
+            tableclause += ' JOIN {inputschema}.{inputtable} ' \
                            ' USING (geoid) '.format(inputschema=inputschema,
                                                     inputtable=tableid)
         table_id = self.output().get(session).id
