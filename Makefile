@@ -40,7 +40,7 @@ deploy-catalog: catalog pdf-catalog
 	  git push origin gh-pages
 
 # do not exceed three slots available for import api
-sync-meta:
+sync: sync-data
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.carto SyncMetadata
 #	  --parallel-scheduling --workers=3
@@ -49,8 +49,6 @@ sync-data:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.carto SyncAllData
 #	  --parallel-scheduling --workers=3
-
-sync: sync-meta sync-data
 
 kill:
 	docker-compose ps | grep _run_ | cut -c 1-34 | xargs docker stop
