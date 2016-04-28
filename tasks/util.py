@@ -17,7 +17,6 @@ from slugify import slugify
 import requests
 
 from luigi import Task, Parameter, LocalTarget, Target, BooleanParameter
-from luigi.postgres import PostgresTarget
 
 from sqlalchemy import Table, types, Column
 from sqlalchemy.dialects.postgresql import JSON
@@ -40,14 +39,6 @@ def get_logger(name):
     return logger
 
 LOGGER = get_logger(__name__)
-
-
-def pg_cursor():
-    '''
-    Obtain a cursor on a fresh connection to postgres.
-    '''
-    target = DefaultPostgresTarget(table='foo', update_id='bar')
-    return target.connect().cursor()
 
 
 def shell(cmd):
@@ -159,101 +150,36 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         assert resp.status_code == 200
 
 
-class DefaultPostgresTarget(PostgresTarget):
+class PostgresTarget(Target):
     '''
     PostgresTarget which by default uses command-line specified login.
     '''
 
-    def __init__(self, *args, **kwargs):
-        kwargs['host'] = kwargs.get('host', os.environ.get('PGHOST', 'localhost'))
-        kwargs['port'] = kwargs.get('port', os.environ.get('PGPORT', '5432'))
-        kwargs['user'] = kwargs.get('user', os.environ.get('PGUSER', 'postgres'))
-        kwargs['password'] = kwargs.get('password', os.environ.get('PGPASSWORD'))
-        kwargs['database'] = kwargs.get('database', os.environ.get('PGDATABASE', 'postgres'))
-        if 'update_id' not in kwargs:
-            kwargs['update_id'] = kwargs['table']
-        super(DefaultPostgresTarget, self).__init__(*args, **kwargs)
+    def __init__(self, schema, tablename):
+        self._schema = schema
+        self._tablename = tablename
 
-    def untouch(self, connection=None):
-        self.create_marker_table()
+    @property
+    def table(self):
+        return '"{schema}".{tablename}'.format(schema=self._schema,
+                                               tablename=self._tablename)
 
-        if connection is None:
-            connection = self.connect()
-            connection.autocommit = True  # if connection created here, we commit it here
-
-        connection.cursor().execute(
-            """DELETE FROM {marker_table}
-               WHERE update_id = %s AND target_table = %s
-            """.format(marker_table=self.marker_table),
-            (self.update_id, self.table))
-
-        # make sure update is properly marked
-        assert not self.exists(connection)
-
-
-class LoadCSVFromURL(Task):
-    '''
-    Load CSV from a URL into the database.  Requires a schema, URL, and
-    tablename.
-    '''
-
-    force = BooleanParameter(default=False)
-
-    def url(self):
-        raise NotImplementedError()
-
-    def tableschema(self):
-        raise NotImplementedError()
-
+    @property
     def tablename(self):
-        raise NotImplementedError()
+        return self._tablename
 
-    def schemaname(self):
-        return classpath(self)
+    @property
+    def schema(self):
+        return self._schema
 
-    def run(self):
-        cursor = pg_cursor()
-        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schemaname}"'.format(
-            schemaname=self.schemaname()
-        ))
-        cursor.execute('DROP TABLE IF EXISTS {tablename}'.format(
-            tablename=self.output().table
-        ))
-        cursor.execute('CREATE TABLE {tablename} ({schema})'.format(
-            tablename=self.output().table, schema=self.tableschema()))
-        cursor.connection.commit()
-        shell("curl '{url}' | psql -c 'COPY {table} FROM STDIN WITH CSV HEADER'".format(
-            table=self.output().table, url=self.url()
-        ))
-        self.output().touch()
-
-    def output(self):
-        qualified_table = '"{}"."{}"'.format(self.schemaname(), self.tablename())
-        target = DefaultPostgresTarget(table=qualified_table)
-        if self.force:
-            target.untouch()
-            self.force = False
-        return target
-
-
-class LoadPostgresFromURL(Task):
-
-    def load_from_url(self, url):
-        '''
-        Load psql at a URL into the database.
-
-        Ignores tablespaces assigned in the SQL.
-        '''
-        subprocess.check_call('curl {url} | gunzip -c | '
-                              'grep -v default_tablespace | psql'.format(url=url), shell=True)
-        self.output().touch()
-
-    def output(self):
-        id_ = self.identifier()
-        return DefaultPostgresTarget(table=id_)
-
-    def identifier(self):
-        raise NotImplementedError()
+    def exists(self):
+        session = current_session()
+        resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
+                               "WHERE table_schema ILIKE '{schema}'  "
+                               "  AND table_name ILIKE '{tablename}' ".format(
+                                   schema=self._schema,
+                                   tablename=self._tablename))
+        return int(resp.fetchone()[0]) > 0
 
 
 class CartoDBTarget(Target):
@@ -354,8 +280,11 @@ class ColumnTarget(Target):
         if existing and existing_version == new_version:
             return True
         elif existing and existing_version > new_version:
-            raise Exception('Metadata version mismatch: running tasks with '
-                            'older version than what is in DB')
+            raise Exception('Metadata version mismatch: cannot run task {task} '
+                            'with ETL version ({etl}) older than what is in '
+                            'DB ({db})'.format(task=self._task.task_id,
+                                               etl=new_version,
+                                               db=existing_version))
         return False
 
 
@@ -419,7 +348,7 @@ class TableTarget(Target):
 
     @property
     def table(self):
-        return self.get(current_session()).id
+        return self._id
 
     def sync(self):
         '''
@@ -620,6 +549,42 @@ def camel_to_underscore(name):
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
 
+class TempTableTask(Task):
+    '''
+    A Task that generates a table that will not be referred to in metadata.
+    '''
+
+    def on_failure(self, ex):
+        session_rollback(self, ex)
+        super(TempTableTask, self).on_failure(ex)
+
+    def on_success(self):
+        session_commit(self)
+
+    def output(self):
+        shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
+            schema=classpath(self)))
+        return PostgresTarget(classpath(self), self.task_id)
+
+
+class LoadPostgresFromURL(TempTableTask):
+
+    def load_from_url(self, url):
+        '''
+        Load psql at a URL into the database.
+
+        Ignores tablespaces assigned in the SQL.
+        '''
+        shell('curl {url} | gunzip -c | grep -v default_tablespace | psql'.format(
+            url=url))
+        self.mark_done()
+
+    def mark_done(self):
+        session = current_session()
+        session.execute('CREATE TABLE {table} ()'.format(
+            table=self.output().table))
+
+
 class TableTask(Task):
     '''
     A Task whose `populate` and `columns` methods should be overriden, and
@@ -659,21 +624,9 @@ class TableTask(Task):
         self.populate()
 
     def complete(self):
-        inputs = self.input()
-        if isinstance(inputs, dict):
-            for _, input_ in self.input().iteritems():
-                if not input_.exists():
-                    return False
-        elif isinstance(inputs, list):
-            for input_ in self.input():
-                if not input_.exists():
-                    return False
-        elif isinstance(inputs, Target):
-            if not inputs.exists():
+        for dep in self.deps():
+            if not dep.complete():
                 return False
-        else:
-            raise Exception('Can only work with inputs that are a dict, '
-                            'list or Target')
 
         return super(TableTask, self).complete()
 

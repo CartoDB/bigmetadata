@@ -17,12 +17,12 @@ from sqlalchemy import Column, Numeric, Text
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from psycopg2 import ProgrammingError
 
-from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor, shell,
+from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
 from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
-                                   SUMLEVELS_BY_SLUG, ShorelineClipTiger)
+                                   SUMLEVELS_BY_SLUG)
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
@@ -1744,23 +1744,10 @@ class DownloadACS(LoadPostgresFromURL):
     def schema(self):
         return 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
 
-    def identifier(self):
-        return self.schema
-
     def run(self):
-        cursor = pg_cursor()
-        try:
-            cursor.execute('CREATE ROLE census')
-            cursor.connection.commit()
-        except ProgrammingError:
-            cursor.connection.rollback()
-        try:
-            cursor.execute('DROP SCHEMA {schema} CASCADE'.format(schema=self.schema))
-            cursor.connection.commit()
-        except ProgrammingError:
-            cursor.connection.rollback()
-        url = self.url_template.format(year=self.year, sample=self.sample)
-        self.load_from_url(url)
+        cursor = current_session()
+        cursor.execute('DROP SCHEMA IF EXISTS {schema} CASCADE'.format(schema=self.schema))
+        self.load_from_url(self.url_template.format(year=self.year, sample=self.sample))
 
 
 class QuantileColumns(ColumnsTask):
@@ -1893,7 +1880,7 @@ class Extract(TableTask):
         colids = []
         colnames = []
         tableids = set()
-        inputschema = self.input()['data'].table
+        inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
         for colname, coltarget in self.columns().iteritems():
             colid = coltarget.get(session).id
             colnames.append(colname)
@@ -1902,10 +1889,10 @@ class Extract(TableTask):
             else:
                 colids.append(coltarget.name)
                 tableids.add(colid.split('.')[-1][0:-3])
-        tableclause = '"{inputschema}".{inputtable} '.format(
+        tableclause = '{inputschema}.{inputtable} '.format(
             inputschema=inputschema, inputtable=tableids.pop())
         for tableid in tableids:
-            tableclause += ' JOIN "{inputschema}".{inputtable} ' \
+            tableclause += ' JOIN {inputschema}.{inputtable} ' \
                            ' USING (geoid) '.format(inputschema=inputschema,
                                                     inputtable=tableid)
         table_id = self.output().get(session).id
