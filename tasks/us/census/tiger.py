@@ -617,7 +617,7 @@ class ShorelineClip(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 1
+        return 3
 
     def requires(self):
         return {
@@ -650,6 +650,7 @@ class ShorelineClip(TableTask):
                 '           aland '
                 '    FROM {input} '
                 ') holes '
+                'WHERE ST_NPoints(the_geom) > 10 '
                 'GROUP BY geoid'.format(
                     output=self.output().table,
                     input=self.input()['data'].table), )[0]
