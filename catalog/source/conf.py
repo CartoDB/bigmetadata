@@ -326,5 +326,12 @@ texinfo_documents = [
 #texinfo_no_detailmenu = False
 
 pdf_documents = [
-    ('index', u'Observatory', u'Observatory', u'CartoDB'),
+    ('index', u'observatory', u'Observatory', u'CartoDB'),
 ]
+
+pdf_toc_depth = 2
+pdf_use_numbered_links = True
+
+# A list of folders to search for stylesheets. Example:
+pdf_style_path = ['.', 'stylesheets']
+pdf_stylesheets = ['style.yml']
