@@ -376,8 +376,9 @@ class TigerGeographyShapefileToSQL(TempTableTask):
         )).strip().split('\n')
 
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
-                'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
+                'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE active_schema={schema}" ' \
                 '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} ' \
+                '-lco OVERWRITE=yes ' \
                 '-lco SCHEMA={schema} {shpfile_path} '.format(
                     tablename=self.output().tablename,
                     schema=self.output().schema,
@@ -533,12 +534,12 @@ class DiffTigerWaterGeoms(TempTableTask):
     def run(self):
         session = current_session()
         stmt = ('CREATE TABLE {output} '
-                        'AS SELECT geoid, id, ST_Difference( '
-                        'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) the_geom '
-                        #'pos_geom, neg_geom) the_geom '
-                        'FROM {input}'.format(
-                            output=self.output().table,
-                            input=self.input().table), )[0]
+                'AS SELECT geoid, id, ST_Difference( '
+                'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) the_geom '
+                #'pos_geom, neg_geom) the_geom '
+                'FROM {input}'.format(
+                    output=self.output().table,
+                    input=self.input().table), )[0]
         session.execute(stmt)
 
 
@@ -566,7 +567,8 @@ class PreunionTigerWaterGeoms(TempTableTask):
                             output=self.output().table,
                             split=self.input()['split'].table))
         session.execute('INSERT INTO {output} (geoid, id, the_geom) '
-                        'SELECT geoid, id, the_geom FROM {diffed}'.format(
+                        'SELECT geoid, id, the_geom FROM {diffed} '
+                        'WHERE ST_AREA(ST_TRANSFORM(the_geom, 3857)) > 1'.format(
                             output=self.output().table,
                             diffed=self.input()['diffed'].table))
         session.execute('INSERT INTO {output} '
@@ -641,16 +643,16 @@ class ShorelineClip(TableTask):
     def populate(self):
         session = current_session()
         stmt = ('INSERT INTO {output} '
-                        'SELECT geoid, ST_Collect(ST_MakePolygon(the_geom)) AS the_geom, '
-                        '  MAX(aland) aland '
-                        'FROM ( '
-                        '    SELECT geoid, ST_ExteriorRing((ST_Dump(the_geom)).geom) AS the_geom, '
-                        '           aland '
-                        '    FROM {input} '
-                        ') holes '
-                        'GROUP BY geoid'.format(
-                            output=self.output().table,
-                            input=self.input()['data'].table), )[0]
+                'SELECT geoid, ST_Union(ST_MakePolygon(the_geom)) AS the_geom, '
+                '  MAX(aland) aland '
+                'FROM ( '
+                '    SELECT geoid, ST_ExteriorRing((ST_Dump(the_geom)).geom) AS the_geom, '
+                '           aland '
+                '    FROM {input} '
+                ') holes '
+                'GROUP BY geoid'.format(
+                    output=self.output().table,
+                    input=self.input()['data'].table), )[0]
         session.execute(stmt)
 
 
