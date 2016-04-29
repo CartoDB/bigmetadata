@@ -5,7 +5,7 @@ RUN apt-get -yq install python-pip python-dev libpq-dev postgresql-client-common
                         postgresql-client-9.4 wget curl unzip build-essential \
                         libcurl4-gnutls-dev libproj-dev texlive-latex-base \
                         texlive-fonts-recommended texlive-fonts-extra \
-                        texlive-latex-extra
+                        texlive-latex-extra libjpeg-dev
 
 COPY ./requirements.txt /bigmetadata/requirements.txt
 

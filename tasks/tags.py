@@ -5,7 +5,7 @@ from tasks.util import TagsTask
 class CategoryTags(TagsTask):
 
     def version(self):
-        return 12
+        return 13
 
     def tags(self):
         return [

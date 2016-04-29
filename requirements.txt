@@ -9,3 +9,4 @@ python-daemon
 python-slugify
 git+https://github.com/zzzeek/sqlalchemy.git@rel_1_1#egg=Package
 sphinx
+rst2pdf
