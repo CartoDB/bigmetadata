@@ -6,9 +6,11 @@ from tasks.meta import current_session, OBSTable, Base, OBSColumn
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, TempTableTask)
 
-from luigi import WrapperTask, BooleanParameter, Parameter, Task, LocalTarget
+from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
+                   DateParameter)
 from nose.tools import assert_equal
 from urllib import quote_plus
+from datetime import date
 
 import requests
 
@@ -341,3 +343,19 @@ class TestMetadata(Task):
 
     def complete(self):
         return hasattr(self, '_complete') and self._complete is True
+
+
+class Dump(Task):
+    '''
+    Dump of the entire observatory schema
+    '''
+
+    timestamp = DateParameter(default=date.today())
+
+    def run(self):
+        self.output().makedirs()
+        shell('pg_dump -Fc -Z0 -x -n observatory -f {output}'.format(
+            output=self.output().path))
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id + '.dump'))
