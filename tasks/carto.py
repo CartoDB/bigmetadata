@@ -124,16 +124,14 @@ class SyncColumn(WrapperTask):
         if cols.count():
             for col in cols:
                 for coltable in col.tables:
-                    schema, table = coltable.table.schema_name
-                    yield SyncData(schema=schema, table=table)
+                    yield SyncData(exact_id=coltable.table.id)
         else:
             tables = session.query(OBSTable).filter(OBSTable.id.ilike(
                 '%' + self.keywords + '%'
             ))
             if tables.count():
                 for table in tables:
-                    schema, table = table.schema_name
-                    yield SyncData(schema=schema, table=table)
+                    yield SyncData(exact_id=table.id)
             else:
                 raise Exception('Unable to find any tables or columns with ID '
                                 'that matched "{keywords}" via ILIKE'.format(
@@ -143,19 +141,19 @@ class SyncColumn(WrapperTask):
 
 class SyncData(WrapperTask):
     '''
-    Upload a single OBS table to cartodb by ID
+    Upload a single OBS table to cartodb by fuzzy ID
     '''
     force = BooleanParameter(default=True)
-    schema = Parameter()
-    table = Parameter()
+    id = Parameter()
+    exact_id = Parameter(default=None)
 
     def requires(self):
-        table_id = '"{schema}".{table}'.format(schema=self.schema,
-                                               table=underscore_slugify(self.table))
         session = current_session()
-        table = session.query(OBSTable).get(table_id)
-        tablename = table.tablename
-        return TableToCarto(table=table_id, outname=tablename, force=self.force)
+        if self.exact_id:
+            table = session.query(OBSTable).get(self.exact_id)
+        else:
+            table = session.query(OBSTable).filter(OBSTable.id.ilike('%' + self.id + '%')).one()
+        return TableToCarto(table=table.tablename, force=self.force)
 
 
 class SyncAllData(WrapperTask):

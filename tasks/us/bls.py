@@ -51,10 +51,9 @@ class NAICS(TableTask):
         return self.input()
 
     def populate(self):
-        session = current_session()
-        table_id = self.output().get(session).id
+        tablename = self.output().table
         shell("curl '{url}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
-            output=table_id,
+            output=tablename,
             url=self.URL
         ))
 
@@ -427,7 +426,7 @@ class RawQCEW(TableTask):
     def populate(self):
         session = current_session()
         shell("psql -c '\\copy {table} FROM {input} WITH CSV HEADER'".format(
-            table=self.output().get(session).id, input=self.input()['data'].path))
+            table=self.output().table, input=self.input()['data'].path))
 
 
 class SimpleQCEWColumns(ColumnsTask):
@@ -452,7 +451,7 @@ class SimpleQCEWColumns(ColumnsTask):
 
         code_to_name = dict([(code, category) for code, category in session.execute(
             'select industry_code, industry_title from {naics}'.format(
-                naics=self.input()['naics'].get(session).id))])
+                naics=self.input()['naics'].table))])
 
         # TODO implement shared column on industry_code
         codes = session.execute('SELECT DISTINCT naics_industry_code '
@@ -462,7 +461,7 @@ class SimpleQCEWColumns(ColumnsTask):
                                 '  OR LENGTH(naics_industry_code) = 2 '
                                 '  OR naics_industry_code LIKE \'%-%\' ' # 2-digit codes sometimes hyphenated
                                 'ORDER BY naics_industry_code'.format(
-                                    qcew=self.input()['qcew_data'].get(session).id))
+                                    qcew=self.input()['qcew_data'].table))
         for code, in codes:
             name = code_to_name[code]
             for inputkey, inputcol in inputcols.iteritems():
@@ -525,8 +524,8 @@ class SimpleQCEW(TableTask):
                         "      AND own_code = '5'".format(
                             qtr=self.qtr,
                             year=self.year,
-                            output=self.output().get(session).id,
-                            qcew=self.input().get(session).id))
+                            output=self.output().table,
+                            qcew=self.input().table))
 
 
 class QCEW(TableTask):
@@ -562,8 +561,8 @@ class QCEW(TableTask):
 
     def populate(self):
         session = current_session()
-        input_table = self.input()['qcew_data'].get(session).id
-        output_table = self.output().get(session).id
+        input_table = self.input()['qcew_data'].table
+        output_table = self.output().table
         session.execute('INSERT INTO {output} (county_fips) '
                         'SELECT distinct county_fips FROM {qcew} '.format(
                             output=output_table,

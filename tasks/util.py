@@ -64,15 +64,6 @@ def classpath(obj):
     return '.'.join(obj.__module__.split('.')[1:])
 
 
-def tablize(task):
-    '''
-    Generate a qualified tablename, properly quoted, for the passed object.
-    '''
-    return '"{schema}".{tablename}'.format(
-        schema=classpath(task),
-        tablename=underscore_slugify(task.task_id))
-
-
 def query_cartodb(query):
     #carto_url = 'https://{}/api/v2/sql'.format(os.environ['CARTODB_DOMAIN'])
     carto_url = os.environ['CARTODB_URL'] + '/api/v2/sql'
@@ -98,8 +89,6 @@ def sql_to_cartodb_table(outname, localname, json_column_names=None):
     json_column_names = json_column_names or []
     api_key = os.environ['CARTODB_API_KEY']
     private_outname = outname + '_private'
-    schema = '.'.join(localname.split('.')[0:-1]).replace('"', '')
-    tablename = localname.split('.')[-1]
     cmd = u'''
 ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -f CartoDB "CartoDB:observatory" \
@@ -107,8 +96,8 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -nlt GEOMETRY \
         -nln "{private_outname}" \
         PG:dbname=$PGDATABASE' active_schema={schema}' '{tablename}'
-    '''.format(private_outname=private_outname, tablename=tablename,
-               schema=schema)
+    '''.format(private_outname=private_outname, tablename=localname,
+               schema='public')
     print cmd
     shell(cmd)
     print 'copying via import api'
@@ -348,7 +337,7 @@ class TableTarget(Target):
 
     @property
     def table(self):
-        return self._id
+        return self._obs_table.tablename
 
     def sync(self):
         '''
@@ -362,7 +351,6 @@ class TableTarget(Target):
         regenerate tabular data from scratch.
         '''
 
-
         existing = self.get(current_session())
         new_version = float(self._obs_table.version) or 0.0
         if existing:
@@ -371,7 +359,14 @@ class TableTarget(Target):
         else:
             existing_version = 0.0
         if existing and existing_version == new_version:
-            return True
+            # Then make sure the data table actually exists, too
+            resp = current_session().execute(
+                'SELECT COUNT(*) FROM information_schema.tables '
+                "WHERE table_schema ILIKE '{schema}'  "
+                "  AND table_name ILIKE '{tablename}' ".format(
+                    schema='public',
+                    tablename=self.table))
+            return int(resp.fetchone()[0]) > 0
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: running tasks with '
                             'older version than what is in DB')
@@ -387,11 +382,6 @@ class TableTarget(Target):
     def update_or_create(self):
 
         session = current_session()
-
-        # create schema out-of-band as we cannot create a table after a schema
-        # in a single session
-        shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
-            schema=self._schema))
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
@@ -415,7 +405,7 @@ class TableTarget(Target):
                 coltype = getattr(types, col.type.capitalize())
             columns.append(Column(colname, coltype))
 
-            # Column info for bmd metadata
+            # Column info for obs metadata
             coltable = session.query(OBSColumnTable).filter_by(
                 column_id=col.id, table_id=obs_table.id).first()
             if coltable:
@@ -434,8 +424,7 @@ class TableTarget(Target):
         # replace local data table
         if obs_table.id in metadata.tables:
             metadata.tables[obs_table.id].drop()
-        self._table = Table(self._name, metadata, *columns,
-                            schema=self._schema, extend_existing=True)
+        self._table = Table(self.table, metadata, *columns, extend_existing=True)
         self._table.drop(checkfirst=True)
         self._table.create()
 
@@ -638,3 +627,48 @@ class TableTask(Task):
                                     version=self.version(),
                                     timespan=self.timespan()),
                            self.columns(), self)
+
+
+class RenameTables(Task):
+    '''
+    A one-time use task that renames all ID-instantiated data tables to their
+    tablename.
+    '''
+
+    def run(self):
+        session = current_session()
+        for table in session.query(OBSTable):
+            table_id = table.id
+            tablename = table.tablename
+            schema = '.'.join(table.id.split('.')[0:-1]).strip('"')
+            table = table.id.split('.')[-1]
+            resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
+                                   "WHERE table_schema ILIKE '{schema}'  "
+                                   "  AND table_name ILIKE '{table}' ".format(
+                                       schema=schema,
+                                       table=table))
+            if int(resp.fetchone()[0]) > 0:
+                resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
+                                       "WHERE table_schema ILIKE 'public'  "
+                                       "  AND table_name ILIKE '{table}' ".format(
+                                           table=tablename))
+                # new table already exists -- just drop it
+                if int(resp.fetchone()[0]) > 0:
+                    cmd = 'DROP TABLE {table_id}'.format(table_id=table_id)
+                    session.execute(cmd)
+                else:
+                    cmd = 'ALTER TABLE {old} RENAME TO {new}'.format(
+                        old=table_id, new=tablename)
+                    print cmd
+                    session.execute(cmd)
+                    cmd = 'ALTER TABLE "{schema}".{new} SET SCHEMA public'.format(
+                        new=tablename, schema=schema)
+                    print cmd
+                    session.execute(cmd)
+
+        session.commit()
+        self._complete = True
+
+    def complete(self):
+        return hasattr(self, '_complete')
+

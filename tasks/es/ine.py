@@ -10,7 +10,7 @@ from tasks.meta import OBSColumn, OBSColumnToColumn, OBSTag, current_session
 from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
-                        classpath, PostgresTarget, tablize)
+                        classpath, PostgresTarget )
 
 
 class Tags(TagsTask):
@@ -127,7 +127,7 @@ class Geometry(TableTask):
                         'SELECT cusec as cusec_id, '
                         '       wkb_geometry as cusec_geom '
                         'FROM {input} '.format(
-                            output=self.output().get(session).id,
+                            output=self.output().table,
                             input=self.input()['data'].table))
 
 
@@ -293,7 +293,7 @@ class RawFiveYearPopulation(TableTask):
         session = current_session()
         shell("cat '{input}' | psql -c '\\copy {output} FROM STDIN WITH CSV "
               "HEADER ENCODING '\"'\"'latin1'\"'\"".format(
-                  output=self.output().get(session).id,
+                  output=self.output().table,
                   input=self.input()['data'].path
               ))
 
@@ -328,6 +328,6 @@ class FiveYearPopulation(TableTask):
                         'SELECT {cols} FROM {input} '
                         "WHERE gender = 'Ambos Sexos'".format(
                             cols=', '.join(self.columns().keys()),
-                            output=self.output().get(session).id,
-                            input=self.input()['data'].get(session).id
+                            output=self.output().table,
+                            input=self.input()['data'].table
                         ))

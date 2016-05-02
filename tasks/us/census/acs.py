@@ -1895,7 +1895,8 @@ class Extract(TableTask):
             tableclause += ' JOIN {inputschema}.{inputtable} ' \
                            ' USING (geoid) '.format(inputschema=inputschema,
                                                     inputtable=tableid)
-        table_id = self.output().get(session).id
+        #table_id = self.output().get(session).id
+        table_id = self.output().table
         session.execute('INSERT INTO {output} ({colnames}) '
                         '  SELECT {colids} '
                         '  FROM {tableclause} '

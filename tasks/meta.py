@@ -238,16 +238,6 @@ class OBSTable(Base):
 
     version = Column(Numeric, default=0, nullable=False)
 
-    @property
-    def schema_name(self):
-        '''
-        Return the schema and name as a two tuple.  For example, an OBSTable with
-        an ID of "us.census.acs".quantiles_2014_state_09185 would yield
-
-        ('us.census.acs', 'quantiles_2014_state_09185', )
-        '''
-        return '.'.join(self.id.split('.')[0:-1]).strip('"'), self.id.split('.')[-1]
-
 
 class OBSTag(Base):
     __tablename__ = 'obs_tag'

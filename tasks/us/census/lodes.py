@@ -616,7 +616,7 @@ class WorkplaceAreaCharacteristics(TableTask):
             # gunzip each CSV into the table
             cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
                   r"WITH CSV HEADER'".format(input=infile.path,
-                                             tablename=self.output().get(current_session()).id)
+                                             tablename=self.output().table)
             print cmd
             shell(cmd)
 
@@ -654,8 +654,6 @@ createdate DATE -- Date on which da ta was created, formatted as YYYYMMDD
     def run(self):
         # make the table
         cursor = current_session()
-        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
-            schema=classpath(self)))
         cursor.execute('''
 DROP TABLE IF EXISTS {tablename};
 CREATE TABLE {tablename} (
