@@ -121,7 +121,7 @@ class SyncColumn(WrapperTask):
         cols = session.query(OBSColumn).filter(OBSColumn.id.ilike(
             '%' + self.keywords + '%'
         ))
-        if cols:
+        if cols.count():
             for col in cols:
                 for coltable in col.tables:
                     schema, table = coltable.table.schema_name
@@ -132,7 +132,8 @@ class SyncColumn(WrapperTask):
             ))
             if tables.count():
                 for table in tables:
-                    yield table
+                    schema, table = table.schema_name
+                    yield SyncData(schema=schema, table=table)
             else:
                 raise Exception('Unable to find any tables or columns with ID '
                                 'that matched "{keywords}" via ILIKE'.format(
