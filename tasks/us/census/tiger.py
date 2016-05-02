@@ -26,7 +26,7 @@ from psycopg2 import ProgrammingError
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return GeomColumns()
@@ -34,7 +34,7 @@ class ClippedGeomColumns(ColumnsTask):
     def columns(self):
         cols = OrderedDict()
         for colname, coltarget in self.input().iteritems():
-            col = coltarget.get(current_session())
+            col = coltarget._column
             cols[colname + '_clipped'] = OBSColumn(
                 type='Geometry',
                 name=col.name,
@@ -50,7 +50,7 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 4
+        return 6
 
     def requires(self):
         return {
@@ -145,6 +145,13 @@ class GeomColumns(ColumnsTask):
                 weight=0,
                 tags=[]
             ),
+            'place': OBSColumn(
+                type='Geometry',
+                name='Incorporated Places',
+                description=desc("place"),
+                weight=0,
+                tags=[]
+            ),
         }
 
 
@@ -173,121 +180,25 @@ class Attributes(ColumnsTask):
 class GeoidColumns(ColumnsTask):
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return GeomColumns()
 
     def columns(self):
-        geoms = self.input()
-        return {
-            'block_group_geoid': OBSColumn(
+        cols = OrderedDict()
+        for colname, coltarget in self.input().iteritems():
+            col = coltarget._column
+            cols[colname + '_geoid'] = OBSColumn(
                 type='Text',
-                name='US Census Block Group Geoids',
+                name=col.name + ' Geoids',
                 weight=0,
                 targets={
-                    geoms['block_group']: 'geom_ref'
+                    col: 'geom_ref'
                 }
-            ),
-            'block_geoid': OBSColumn(
-                type='Text',
-                name='US Census Block Geoids',
-                weight=0,
-                targets={
-                    geoms['block']: 'geom_ref'
-                }
-            ),
-            'census_tract_geoid': OBSColumn(
-                type='Text',
-                name='US Census Tract Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['census_tract']: 'geom_ref'
-                }
-            ),
-            'congressional_district_geoid': OBSColumn(
-                type='Text',
-                name='US Congressional District Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['congressional_district']: 'geom_ref'
-                }
-            ),
-            'county_geoid': OBSColumn(
-                type='Text',
-                name='US County Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['county']: 'geom_ref'
-                }
-            ),
-            'puma_geoid': OBSColumn(
-                type='Text',
-                name='US Census Public Use Microdata Area Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['puma']: 'geom_ref'
-                }
-            ),
-            'state_geoid': OBSColumn(
-                type='Text',
-                name='US State Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['state']: 'geom_ref'
-                }
-            ),
-            'zcta5_geoid': OBSColumn(
-                type='Text',
-                name='US Census Zip Code Tabulation Area Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['zcta5']: 'geom_ref'
-                }
-            ),
-            'school_district_elementary_geoid': OBSColumn(
-                type='Text',
-                name='Elementary School District Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['school_district_elementary']: 'geom_ref'
-                }
-            ),
-            'school_district_secondary_geoid': OBSColumn(
-                type='Text',
-                name='Secondary School District Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['school_district_secondary']: 'geom_ref'
-                }
-            ),
-            'school_district_unified_geoid': OBSColumn(
-                type='Text',
-                name='Unified School District Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['school_district_unified']: 'geom_ref',
-                }
-            ),
-            'cbsa_geoid': OBSColumn(
-                type='Text',
-                name='Core Based Statistical Area Geoids',
-                description="",
-                weight=0,
-                targets={
-                    geoms['cbsa']: 'geom_ref'
-                }
-            ),
-        }
+            )
+
+        return cols
 
 
 class DownloadTigerGeography(Task):
@@ -742,8 +653,8 @@ class AllSumLevels(WrapperTask):
     year = Parameter()
 
     def requires(self):
-        for geo in ('state', 'county', 'census_tract', 'block_group',
-                    'puma', 'zcta5', 'school_district_elementary',
+        for geo in ('state', 'county', 'census_tract', 'block_group', 'place',
+                    'puma', 'zcta5', 'school_district_elementary', 'cbsa',
                     'school_district_secondary', 'school_district_unified'):
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
