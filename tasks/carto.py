@@ -2,7 +2,7 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import current_session, OBSTable, Base
+from tasks.meta import current_session, OBSTable, Base, OBSColumn
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, TempTableTask)
 
@@ -108,6 +108,36 @@ def should_upload(table):
         if coltable.column.tags:
             return True
     return False
+
+
+class SyncColumn(WrapperTask):
+    '''
+    Upload tables relevant to updating a particular column by keyword.
+    '''
+    keywords = Parameter()
+
+    def requires(self):
+        session = current_session()
+        cols = session.query(OBSColumn).filter(OBSColumn.id.ilike(
+            '%' + self.keywords + '%'
+        ))
+        if cols:
+            for col in cols:
+                for coltable in col.tables:
+                    schema, table = coltable.table.schema_name
+                    yield SyncData(schema=schema, table=table)
+        else:
+            tables = session.query(OBSTable).filter(OBSTable.id.ilike(
+                '%' + self.keywords + '%'
+            ))
+            if tables.count():
+                for table in tables:
+                    yield table
+            else:
+                raise Exception('Unable to find any tables or columns with ID '
+                                'that matched "{keywords}" via ILIKE'.format(
+                                    keywords=self.keywords
+                                ))
 
 
 class SyncData(WrapperTask):
