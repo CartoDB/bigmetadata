@@ -57,7 +57,7 @@ def get_engine():
     return _engine
 
 
-metadata = MetaData(get_engine())
+metadata = MetaData(bind=get_engine(), schema='observatory')
 Base = declarative_base(metadata=metadata)
 
 

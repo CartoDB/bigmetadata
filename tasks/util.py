@@ -97,7 +97,7 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -nln "{private_outname}" \
         PG:dbname=$PGDATABASE' active_schema={schema}' '{tablename}'
     '''.format(private_outname=private_outname, tablename=localname,
-               schema='public')
+               schema='observatory')
     print cmd
     shell(cmd)
     print 'copying via import api'
@@ -337,7 +337,7 @@ class TableTarget(Target):
 
     @property
     def table(self):
-        return self._obs_table.tablename
+        return 'observatory.' + self._obs_table.tablename
 
     def sync(self):
         '''
@@ -364,7 +364,7 @@ class TableTarget(Target):
                 'SELECT COUNT(*) FROM information_schema.tables '
                 "WHERE table_schema ILIKE '{schema}'  "
                 "  AND table_name ILIKE '{tablename}' ".format(
-                    schema='public',
+                    schema='observatory',
                     tablename=self.table))
             return int(resp.fetchone()[0]) > 0
         elif existing and existing_version > new_version:
@@ -649,7 +649,7 @@ class RenameTables(Task):
                                        table=table))
             if int(resp.fetchone()[0]) > 0:
                 resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
-                                       "WHERE table_schema ILIKE 'public'  "
+                                       "WHERE table_schema ILIKE 'observatory'  "
                                        "  AND table_name ILIKE '{table}' ".format(
                                            table=tablename))
                 # new table already exists -- just drop it
@@ -661,8 +661,18 @@ class RenameTables(Task):
                         old=table_id, new=tablename)
                     print cmd
                     session.execute(cmd)
-                    cmd = 'ALTER TABLE "{schema}".{new} SET SCHEMA public'.format(
+                    cmd = 'ALTER TABLE "{schema}".{new} SET SCHEMA observatory'.format(
                         new=tablename, schema=schema)
+                    print cmd
+                    session.execute(cmd)
+            else:
+                resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
+                                       "WHERE table_schema ILIKE 'public'  "
+                                       "  AND table_name ILIKE '{table}' ".format(
+                                           table=tablename))
+                if int(resp.fetchone()[0]) > 0:
+                    cmd = 'ALTER TABLE public.{new} SET SCHEMA observatory'.format(
+                        new=tablename)
                     print cmd
                     session.execute(cmd)
 
