@@ -597,7 +597,7 @@ class UnionTigerWaterGeoms(TempTableTask):
     def run(self):
         session = current_session()
         session.execute('CREATE TABLE {output} AS '
-                        'SELECT geoid, ST_UNION(the_geom) AS the_geom, '
+                        'SELECT geoid, ST_Union(ST_MakeValid(the_geom)) AS the_geom, '
                         '       MAX(aland) aland, MAX(awater) awater '
                         'FROM {input} '
                         'GROUP BY geoid'.format(
@@ -643,15 +643,16 @@ class ShorelineClip(TableTask):
     def populate(self):
         session = current_session()
         stmt = ('INSERT INTO {output} '
-                'SELECT geoid, ST_Union(ST_MakePolygon(the_geom)) AS the_geom, '
+                'SELECT geoid, ST_Union(ST_MakePolygon(ST_ExteriorRing(the_geom))) AS the_geom, '
                 '       MAX(aland) aland '
                 'FROM ( '
-                '    SELECT geoid, ST_ExteriorRing((ST_Dump(the_geom)).geom) AS the_geom, '
+                '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
                 '           aland '
                 '    FROM {input} '
-                ') holes '
-                'WHERE ST_NPoints(the_geom) > 10 AND '
-                '      ST_Area(ST_Transform(ST_MakePolygon(the_geom), 3857)) > 5000 '
+                ') holes WHERE '
+                "      GeometryType(the_geom) = 'POLYGON' AND "
+                '      ST_NPoints(the_geom) > 10 AND '
+                '      ST_Area(ST_Transform(the_geom, 3857)) > 5000 '
                 'GROUP BY geoid'.format(
                     output=self.output().table,
                     input=self.input()['data'].table), )[0]
