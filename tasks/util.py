@@ -423,7 +423,8 @@ class TableTarget(Target):
         # replace local data table
         if obs_table.id in metadata.tables:
             metadata.tables[obs_table.id].drop()
-        self._table = Table(self.table, metadata, *columns, extend_existing=True)
+        self._table = Table(self._obs_table.tablename, metadata, *columns,
+                            extend_existing=True, schema='observatory')
         self._table.drop(checkfirst=True)
         self._table.create()
 
