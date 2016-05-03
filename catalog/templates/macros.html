@@ -14,6 +14,12 @@
 %}
 
 {{ col.description }}
+
+{% if col.extra.categories %}
+  {% for catname, category in col.extra.categories.items() %}
+  * **{{ catname }}**: {{ category.description }}
+  {% endfor %}
+{% endif %}
 {#
 Code example
 #}

@@ -34,14 +34,18 @@ LOGGER = get_logger(__name__)
 class ACSTags(TagsTask):
 
     def version(self):
-        return 0
+        return 1
 
     def tags(self):
         return [
             OBSTag(id='demographics',
                    name='US American Community Survey Demographics',
+                   type='source',
+                   description='Standard Demographic Data from the US American Community Survey'),
+            OBSTag(id='segments',
+                   name='US Population Segments',
                    type='catalog',
-                   description='Standard Demographic Data from the US American Community Survey')
+                   description='Segmentation of the United States population'),
         ]
 
 

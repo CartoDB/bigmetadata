@@ -9,7 +9,7 @@ from collections import OrderedDict
 from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag, current_session
 from tasks.util import shell, classpath, ColumnsTask, TableTask
 from tasks.us.census.tiger import GeoidColumns
-
+from tasks.us.census.acs import ACSTags
 
 
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
@@ -203,7 +203,7 @@ class SpielmanSingletonColumns(ColumnsTask):
                 "Wealth":{
                   "Income Gini": "Average",
                   "Public Assistance": "High",
-                  "etirement Income" : "Low"
+                  "Retirement Income" : "Low"
                 },
                 "Commuting":{
                   "No Car" : "High",
@@ -282,7 +282,7 @@ class SpielmanSingletonColumns(ColumnsTask):
             "Wealth":{
               "Income Gini": "Average",
               "Public Assistance": "Low",
-              "etirement Income" : "Average"
+              "Retirement Income" : "Average"
             },
             "Commuting":{
               "No Car" : "Low",
@@ -439,7 +439,7 @@ class SpielmanSingletonColumns(ColumnsTask):
             "Wealth":{
               "Income Gini": "Average",
               "Public Assistance": "High",
-              "etirement Income" : "Low"
+              "Retirement Income" : "Low"
             },
             "Commuting":{
               "No Car" : "High",
@@ -941,15 +941,22 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 4
+        return 6
+
+    def requires(self):
+        return {
+            'acs_tags': ACSTags()
+        }
 
     def columns(self):
+        segments_tag = self.input()['acs_tags']['segments']
         x10 = OBSColumn(
             id='X10',
             type='Text',
             name="SS_segment_10_clusters",
             description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters',
-            extra={'categories': self.x10_categories}
+            extra={'categories': self.x10_categories},
+            tags=[segments_tag],
         )
         x2 = OBSColumn(
             id='X2',

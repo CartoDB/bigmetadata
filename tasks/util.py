@@ -496,15 +496,15 @@ class TagsTask(Task):
         return 0
 
     def output(self):
-        if not hasattr(self, '_output'):
-            output = {}
-            for tag in self.tags():
-                orig_id = tag.id
-                tag.id = '.'.join([classpath(self), orig_id])
-                if not tag.version:
-                    tag.version = self.version()
-                output[orig_id] = TagTarget(tag, self)
-            self._output = output
+        #if not hasattr(self, '_output'):
+        output = {}
+        for tag in self.tags():
+            orig_id = tag.id
+            tag.id = '.'.join([classpath(self), orig_id])
+            if not tag.version:
+                tag.version = self.version()
+            output[orig_id] = TagTarget(tag, self)
+        self._output = output
         return self._output
 
 
