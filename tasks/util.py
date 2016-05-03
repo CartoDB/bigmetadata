@@ -453,19 +453,21 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
-        output = OrderedDict({})
-        session = current_session()
-        already_in_session = [obj for obj in session]
-        for col_key, col in self.columns().iteritems():
-            if not col.version:
-                col.version = self.version()
-            output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
-        now_in_session = [obj for obj in session]
-        for obj in now_in_session:
-            if obj not in already_in_session:
-                if obj in session:
-                    session.expunge(obj)
-        return output
+        if not hasattr(self, '_output'):
+            output = OrderedDict({})
+            session = current_session()
+            already_in_session = [obj for obj in session]
+            for col_key, col in self.columns().iteritems():
+                if not col.version:
+                    col.version = self.version()
+                output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
+            now_in_session = [obj for obj in session]
+            for obj in now_in_session:
+                if obj not in already_in_session:
+                    if obj in session:
+                        session.expunge(obj)
+            self._output = output
+        return self._output
 
 
 class TagsTask(Task):
@@ -493,14 +495,16 @@ class TagsTask(Task):
         return 0
 
     def output(self):
-        output = {}
-        for tag in self.tags():
-            orig_id = tag.id
-            tag.id = '.'.join([classpath(self), orig_id])
-            if not tag.version:
-                tag.version = self.version()
-            output[orig_id] = TagTarget(tag, self)
-        return output
+        if not hasattr(self, '_output'):
+            output = {}
+            for tag in self.tags():
+                orig_id = tag.id
+                tag.id = '.'.join([classpath(self), orig_id])
+                if not tag.version:
+                    tag.version = self.version()
+                output[orig_id] = TagTarget(tag, self)
+            self._output = output
+        return self._output
 
 
 class TableToCarto(Task):
@@ -619,13 +623,15 @@ class TableTask(Task):
         return super(TableTask, self).complete()
 
     def output(self):
-        return TableTarget(classpath(self),
-                           underscore_slugify(self.task_id),
-                           OBSTable(description=self.description(),
-                                    bounds=self.bounds(),
-                                    version=self.version(),
-                                    timespan=self.timespan()),
-                           self.columns(), self)
+        if not hasattr(self, '_output'):
+            self._output = TableTarget(classpath(self),
+                                       underscore_slugify(self.task_id),
+                                       OBSTable(description=self.description(),
+                                                bounds=self.bounds(),
+                                                version=self.version(),
+                                                timespan=self.timespan()),
+                                       self.columns(), self)
+        return self._output
 
 
 class RenameTables(Task):
