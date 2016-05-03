@@ -225,7 +225,7 @@ class ColumnTarget(Target):
     def __init__(self, schema, name, column, task):
         self.schema = schema
         self.name = name
-        self._id = '"{schema}".{name}'.format(schema=schema, name=name)
+        self._id = '.'.join([schema, name])
         column.id = self._id
         #self._id = column.id
         self._task = task
@@ -320,8 +320,7 @@ class TableTarget(Target):
         columns: should be an ordereddict if you want to specify columns' order
         in the table
         '''
-        self._id = '"{schema}".{name}'.format(schema=schema, name=name)
-        self._id_noquote = '{schema}.{name}'.format(schema=schema, name=name)
+        self._id = '.'.join([schema, name])
         obs_table.id = self._id
         obs_table.tablename = 'obs_' + sha1(underscore_slugify(self._id)).hexdigest()
         self._schema = schema
@@ -330,8 +329,8 @@ class TableTarget(Target):
         self._obs_dict = obs_table.__dict__.copy()
         self._columns = columns
         self._task = task
-        if self._id_noquote in metadata.tables:
-            self._table = metadata.tables[self._id_noquote]
+        if obs_table.tablename in metadata.tables:
+            self._table = metadata.tables[obs_table.tablename]
         else:
             self._table = None
 
@@ -365,7 +364,7 @@ class TableTarget(Target):
                 "WHERE table_schema ILIKE '{schema}'  "
                 "  AND table_name ILIKE '{tablename}' ".format(
                     schema='observatory',
-                    tablename=self.table))
+                    tablename=self._obs_table.tablename))
             return int(resp.fetchone()[0]) > 0
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: running tasks with '
@@ -424,7 +423,8 @@ class TableTarget(Target):
         # replace local data table
         if obs_table.id in metadata.tables:
             metadata.tables[obs_table.id].drop()
-        self._table = Table(self.table, metadata, *columns, extend_existing=True)
+        self._table = Table(self._obs_table.tablename, metadata, *columns,
+                            extend_existing=True, schema='observatory')
         self._table.drop(checkfirst=True)
         self._table.create()
 
@@ -454,19 +454,21 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
-        output = OrderedDict({})
-        session = current_session()
-        already_in_session = [obj for obj in session]
-        for col_key, col in self.columns().iteritems():
-            if not col.version:
-                col.version = self.version()
-            output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
-        now_in_session = [obj for obj in session]
-        for obj in now_in_session:
-            if obj not in already_in_session:
-                if obj in session:
-                    session.expunge(obj)
-        return output
+        if not hasattr(self, '_output'):
+            output = OrderedDict({})
+            session = current_session()
+            already_in_session = [obj for obj in session]
+            for col_key, col in self.columns().iteritems():
+                if not col.version:
+                    col.version = self.version()
+                output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
+            now_in_session = [obj for obj in session]
+            for obj in now_in_session:
+                if obj not in already_in_session:
+                    if obj in session:
+                        session.expunge(obj)
+            self._output = output
+        return self._output
 
 
 class TagsTask(Task):
@@ -494,14 +496,16 @@ class TagsTask(Task):
         return 0
 
     def output(self):
-        output = {}
-        for tag in self.tags():
-            orig_id = tag.id
-            tag.id = '"{}".{}'.format(classpath(self), orig_id)
-            if not tag.version:
-                tag.version = self.version()
-            output[orig_id] = TagTarget(tag, self)
-        return output
+        if not hasattr(self, '_output'):
+            output = {}
+            for tag in self.tags():
+                orig_id = tag.id
+                tag.id = '.'.join([classpath(self), orig_id])
+                if not tag.version:
+                    tag.version = self.version()
+                output[orig_id] = TagTarget(tag, self)
+            self._output = output
+        return self._output
 
 
 class TableToCarto(Task):
@@ -620,13 +624,15 @@ class TableTask(Task):
         return super(TableTask, self).complete()
 
     def output(self):
-        return TableTarget(classpath(self),
-                           underscore_slugify(self.task_id),
-                           OBSTable(description=self.description(),
-                                    bounds=self.bounds(),
-                                    version=self.version(),
-                                    timespan=self.timespan()),
-                           self.columns(), self)
+        if not hasattr(self, '_output'):
+            self._output = TableTarget(classpath(self),
+                                       underscore_slugify(self.task_id),
+                                       OBSTable(description=self.description(),
+                                                bounds=self.bounds(),
+                                                version=self.version(),
+                                                timespan=self.timespan()),
+                                       self.columns(), self)
+        return self._output
 
 
 class RenameTables(Task):
