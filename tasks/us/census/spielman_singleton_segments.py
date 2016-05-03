@@ -176,6 +176,781 @@ class SpielmanSingletonColumns(ColumnsTask):
         ('Low income, African American', 'Low income, African American desc'),
         ('Residential Institutions', 'Residential Institutions desc')
     ])
+    
+    x10_categories = OrderedDict([
+        ('Hispanic and Young', {
+            'Description' : '''Predominantly Hispanic, tends to have at most high school education, 
+                lots of married couples and single mothers, high mobility within cities, 
+                typically takes public transit and tends to rent.''', 
+            'Details' : {
+                "Education":{
+                  "Less than highschool": "High",
+                  "High School": "Average",
+                  "Some College / Assc degree" :"Low",
+                  "Bachelor Degree" :"Low",
+                  "Grad Degree" :"Low"
+                },
+                "Family Structure":{
+                  "Single Mothers" : "High",
+                  "Married Couples" : "Average",
+                  "Male-Male Couples": "Low",
+                  "Female-Female Couples" : "Low"
+                },
+                "Residential Stability":{
+                  "Moved home within city in the last year" : "High",
+                  "Moved city in the last year" : "Low"
+                },
+                "Language":{
+                  "Speaks english only" : "Low",
+                  "Speaks Spanish" : "High",
+                  "Speaks Spanish Low English" : "High"
+                },
+                "Ethnicity":{
+                  "White" : "Low",
+                  "Black" : "Low",
+                  "American Indian": "Average",
+                  "Asian": "Low",
+                  "Hispanic Latino" : "High",
+                  "Not a Citizen" : "High"
+                },
+                "Wealth":{
+                  "Income Gini": "Average",
+                  "Public Assistance": "High",
+                  "etirement Income" : "Low"
+                },
+                "Commuting":{
+                  "No Car" : "High",
+                  "Public Transport" : "High",
+                  "Commute 5-9 mins":"Low",
+                  "Commute 10-14 mins":"Average",
+                  "Commute 15-19 mins":"Avarage",
+                  "Commute 20-24 mins":"Average",
+                  "Commute 25-29 mins":"Low",
+                  "Commute 30-34 mins":"High",
+                  "Commute 35-39 mins":"Low",
+                  "Commute 40-44 mins":"Average",
+                  "Commute 45-59 mins":"Average",
+                  "Commute 60-89 mins":"High",
+                  "Commute 90+ mins":"High"
+                },
+                "Housing":{
+                  "Median rent": "Average",
+                  "Housing lower value quantile" : "Low",
+                  "Housing median value" : "Low",
+                  "Housing upper value quantile" : "Low",
+                  "Vacancy" : "Low",
+                  "Housing Upper Value Quantile":"Low" ,
+                  "Renter Occupied" : "High",
+                  "Single Family Detached" : "Low",
+                  "Single Family Attached" : "Low", 
+                  "Building with 2 Units" : "High",
+                  "3-4 Units" : "High",
+                  "5-9 Units" : "High",
+                  "10-20 Units" : "High",
+                  "20-49 Units": "High",
+                  "50+ Units" : "Low",
+                  "Mobile Homes" : "Average",
+                  "Built 2005 or later" : "Low",
+                  "Built 2000-2004": "Low",
+                  "Built earlier than 1939" : "Low"
+                  }
+               }
+            }
+         ),
+         
+         
+        ('Wealthy Nuclear Families', {
+         'Description' : ''' Highly educated, high levels of bachelor or grad degrees,
+            married couples and some same sex couples, tends to stay put, white or asian, 
+            high income, tends to own a car and lives in single family homes with high rents ''',
+         'Details':{
+             "Education":{
+              "Less than highschool": "Low",
+              "High School": "Low",
+              "Some College / Assc degree" :"Average",
+              "Bachelor Degree" :"High",
+              "Grad Degree" :"High"
+            },
+            "Family Structure":{
+              "Single Mothers" : "Low",
+              "Married Couples" : "High",
+              "Male-Male Couples": "Average",
+              "Female-Female Couples" : "Average"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "Low",
+              "Moved city in the last year" : "Average"
+            },
+            "Language":{
+              "Speaks english only" : "Average",
+              "Speaks Spanish" : "Low",
+              "Speaks Spanish Low English" : "Average"
+            },
+            "Ethnicity":{
+              "White" : "Average",
+              "Black" : "Low",
+              "American Indian": "Low",
+              "Asian": "High",
+              "Hispanic Latino" : "Low",
+              "Not a Citizen" : "Low"
+            },
+            "Wealth":{
+              "Income Gini": "Average",
+              "Public Assistance": "Low",
+              "etirement Income" : "Average"
+            },
+            "Commuting":{
+              "No Car" : "Low",
+              "Public Transport" : "Low",
+              "Commute 5-9 mins":"Low",
+              "Commute 10-14 mins":"Low",
+              "Commute 15-19 mins":"Low",
+              "Commute 20-24 mins":"Average",
+              "Commute 25-29 mins":"High",
+              "Commute 30-34 mins":"Average",
+              "Commute 35-39 mins":"High",
+              "Commute 40-44 mins":"High",
+              "Commute 45-59 mins":"High",
+              "Commute 60-89 mins":"High",
+              "Commute 90+ mins":"Average"
+            },
+            "Housing":{
+              "Median rent": "High",
+              "Housing lower value quantile" : "High",
+              "Housing median value" : "High",
+              "Housing upper value quantile" : "High",
+              "Vacancy" : "Low",
+              "Housing Upper Value Quantile":"Low" ,
+              "Renter Occupied" : "Low",
+              "Single Family Detached" : "High",
+              "Single Family Attached" : "High", 
+              "Building with 2 Units" : "Low",
+              "3-4 Units" : "Low",
+              "5-9 Units" : "Low",
+              "10-20 Units" : "Low",
+              "20-49 Units": "Low",
+              "50+ Units" : "Low",
+              "Mobile Homes" : "Low",
+              "Built 2005 or later" : "High",
+              "Built 2000-2004": "High",
+              "Built earlier than 1939" : "Low"
+              }
+           }
+        }),
+        
+        ('Middle Income, Single Family Home', {
+            'Description' : '''Highschool and some college education, mix of single parents and married couples, 
+            tends to stay put and only moves within cities, English speaking, white, good retirement funds, owns 
+            their own car, lives in lower rent homes of mobile homes.''' ,
+            'Details' : {
+            "Education":{
+              "Less than highschool": "Average",
+              "High School": "High",
+              "Some College / Assc degree" :"Average",
+              "Bachelor Degree" :"Low",
+              "Grad Degree" :"Low"
+            },
+            "Family Structure":{
+              "Single Mothers" : "Average",
+              "Married Couples" : "Average",
+              "Male-Male Couples": "Low",
+              "Female-Female Couples" : "Average"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "Low",
+              "Moved city in the last year" : "Average"
+            },
+            "Language":{
+              "Speaks english only" : "High",
+              "Speaks Spanish" : "Low",
+              "Speaks Spanish Low English" : "Low"
+            },
+            "Ethnicity":{
+              "White" : "High",
+              "Black" : "Low",
+              "American Indian": "Low",
+              "Asian": "Low",
+              "Hispanic Latino" : "Low",
+              "Not a Citizen" : "Low"
+            },
+            "Wealth":{
+              "Income Gini": "Average",
+              "Public Assistance": "Average",
+              "Retirement Income" : "High"
+            },
+            "Commuting":{
+              "No Car" : "Low",
+              "Public Transport" : "Low",
+              "Commute 5-9 mins":"High",
+              "Commute 10-14 mins":"Average",
+              "Commute 15-19 mins":"Average",
+              "Commute 20-24 mins":"Average",
+              "Commute 25-29 mins":"Average",
+              "Commute 30-34 mins":"Average",
+              "Commute 35-39 mins":"Low",
+              "Commute 40-44 mins":"Average",
+              "Commute 45-59 mins":"Low",
+              "Commute 60-89 mins":"Low",
+              "Commute 90+ mins":"Low",
+            },
+            "Housing":{
+              "Median rent": "Low",
+              "Housing lower value quantile" : "Low",
+              "Housing median value" : "Low",
+              "Housing upper value quantile" : "Low",
+              "Vacancy" : "Average",
+              "Housing Upper Value Quantile":"Low" ,
+              "Renter Occupied" : "High",
+              "Single Family Detached" : "Low",
+              "Single Family Attached" : "Low", 
+              "Building with 2 Units" : "Low",
+              "3-4 Units" : "Low",
+              "5-9 Units" : "Low",
+              "10-20 Units" : "Low",
+              "20-49 Units": "Low",
+              "50+ Units" : "Low",
+              "Mobile Homes" : "High",
+              "Built 2005 or later" : "Low",
+              "Built 2000-2004": "Low",
+              "Built earlier than 1939" : "Average"
+              }
+           }
+        }),
+        
+        ('Native American', {
+            'Description' : '''Native Amerian, high school educated with some college,
+                commutes far for work, single parent families, typical doesn't own a car and lives in low rental housing ''',
+            'Deatils' : {
+            "Education":{
+              "Less than highschool": "High",
+              "High School": "High",
+              "Some College / Assc degree" :"Average",
+              "Bachelor Degree" :"Low",
+              "Grad Degree" :"Low"
+            },
+            "Family Structure":{
+              "Single Mothers" : "High",
+              "Married Couples" : "Low",
+              "Male-Male Couples": "Low",
+              "Female-Female Couples" : "Low"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "Low",
+              "Moved city in the last year" : "Average"
+            },
+            "Language":{
+              "Speaks english only" : "Average",
+              "Speaks Spanish" : "Low",
+              "Speaks Spanish Low English" : "Low"
+            },
+            "Ethnicity":{
+              "White" : "Low",
+              "Black" : "Low",
+              "American Indian": "High",
+              "Asian": "Low",
+              "Hispanic Latino" : "Low",
+              "Not a Citizen" : "Low"
+            },
+            "Wealth":{
+              "Income Gini": "Average",
+              "Public Assistance": "High",
+              "etirement Income" : "Low"
+            },
+            "Commuting":{
+              "No Car" : "High",
+              "Public Transport" : "Low",
+              "Commute 5-9 mins":"High",
+              "Commute 10-14 mins":"Average",
+              "Commute 15-19 mins":"Low",
+              "Commute 20-24 mins":"Low",
+              "Commute 25-29 mins":"Low",
+              "Commute 30-34 mins":"Low",
+              "Commute 35-39 mins":"Low",
+              "Commute 40-44 mins":"Low",
+              "Commute 45-59 mins":"Low",
+              "Commute 60-89 mins":"Low",
+              "Commute 90+ mins":"High"
+            },
+            "Housing":{
+              "Median rent": "Low",
+              "Housing lower value quantile" : "Low",
+              "Housing median value" : "Low",
+              "Housing upper value quantile" : "Low",
+              "Vacancy" : "High",
+              "Housing Upper Value Quantile":"Average" ,
+              "Renter Occupied" : "High",
+              "Single Family Detached" : "Low",
+              "Single Family Attached" : "Low", 
+              "Building with 2 Units" : "Low",
+              "3-4 Units" : "Low",
+              "5-9 Units" : "Low",
+              "10-20 Units" : "Low",
+              "20-49 Units": "Low",
+              "50+ Units" : "Low",
+              "Mobile Homes" : "High",
+              "Built 2005 or later" : "Low",
+              "Built 2000-2004": "Low",
+              "Built earlier than 1939" : "Low"
+            }
+         }
+      }),
+        
+        ('Wealthy, urban without Kids',{
+            'Description' : '''Typically has an advanced degree, single parents or same sex couples, highly mobile, White, Black or Asian, doesn't own a car
+                and lives in high rental homes''',
+            'Details' : {
+             "Education":{
+              "Less than highschool": "Low",
+              "High School": "Low",
+              "Some College / Assc degree" :"Low",
+              "Bachelor Degree" :"High",
+              "Grad Degree" :"High"
+            },
+            "Family Structure":{
+              "Single Mothers" : "High",
+              "Married Couples" : "Low",
+              "Male-Male Couples": "High",
+              "Female-Female Couples" : "High"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "High",
+              "Moved city in the last year" : "High"
+            },
+            "Language":{
+              "Speaks english only" : "Average",
+              "Speaks Spanish" : "Average",
+              "Speaks Spanish Low English" : "Low"
+            },
+            "Ethnicity":{
+              "White" : "Average",
+              "Black" : "Average",
+              "American Indian": "Low",
+              "Asian": "High",
+              "Hispanic Latino" : "Low",
+              "Not a Citizen" : "High"
+            },
+            "Wealth":{
+              "Income Gini": "High",
+              "Public Assistance": "Low",
+              "Retirement Income" : "Low"
+            },
+            "Commuting":{
+              "No Car" : "High",
+              "Public Transport" : "High",
+              "Commute 5-9 mins":"Low",
+              "Commute 10-14 mins":"Average",
+              "Commute 15-19 mins":"Average",
+              "Commute 20-24 mins":"Average",
+              "Commute 25-29 mins":"Average",
+              "Commute 30-34 mins":"High",
+              "Commute 35-39 mins":"Average",
+              "Commute 40-44 mins":"High",
+              "Commute 45-59 mins":"High",
+              "Commute 60-89 mins":"Average",
+              "Commute 90+ mins":"Low",
+            },
+            "Housing":{
+              "Median rent": "High",
+              "Housing lower value quantile" : "High",
+              "Housing median value" : "High",
+              "Housing upper value quantile" : "High",
+              "Vacancy" : "Average",
+              "Renter Occupied" : "High",
+              "Single Family Detached" : "Low",
+              "Single Family Attached" : "High", 
+              "Building with 2 Units" : "High",
+              "3-4 Units" : "High",
+              "5-9 Units" : "High",
+              "10-20 Units" : "High",
+              "20-49 Units": "High",
+              "50+ Units" : "High",
+              "Mobile Homes" : "Low",
+              "Built 2005 or later" : "High",
+              "Built 2000-2004": "Average",
+              "Built earlier than 1939" : "High"
+             }
+          }
+        }),
+        
+        ('Low income and diverse', {
+            'Description' : '''Highschool education, single parent families, mobile within cities, 
+                multilingual, Black or Asian, typlically doesn't own a car, uses public transit, high median rent. ''',
+            'Details' : {
+            "Education":{
+              "Less than highschool": "High",
+              "High School": "Average",
+              "Some College / Assc degree" :"Low",
+              "Bachelor Degree" :"Low",
+              "Grad Degree" :"Low"
+            },
+            "Family Structure":{
+              "Single Mothers" : "High",
+              "Married Couples" : "Low",
+              "Male-Male Couples": "Low",
+              "Female-Female Couples" : "Low"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "High",
+              "Moved city in the last year" : "Low"
+            },
+            "Language":{
+              "Speaks english only" : "Low",
+              "Speaks Spanish" : "High",
+              "Speaks Spanish Low English" : "High"
+            },
+            "Ethnicity":{
+              "White" : "Low",
+              "Black" : "High",
+              "American Indian": "Low",
+              "Asian": "High",
+              "Hispanic Latino" : "High",
+              "Not a Citizen" : "High"
+            },
+            "Wealth":{
+              "Income Gini": "Average",
+              "Public Assistance": "High",
+              "Retirement Income" : "Low"
+            },
+            "Commuting":{
+              "No Car" : "High",
+              "Public Transport" : "High",
+              "Commute 5-9 mins":"Low",
+              "Commute 10-14 mins":"Low",
+              "Commute 15-19 mins":"Low",
+              "Commute 20-24 mins":"Low",
+              "Commute 25-29 mins":"Low",
+              "Commute 30-34 mins":"High",
+              "Commute 35-39 mins":"Average",
+              "Commute 40-44 mins":"High",
+              "Commute 45-59 mins":"High",
+              "Commute 60-89 mins":"High",
+              "Commute 90+ mins":"High"
+            },
+            "Housing":{
+              "Median rent": "Average",
+              "Housing lower value quantile" : "Low",
+              "Housing median value" : "Low",
+              "Housing upper value quantile" : "Low",
+              "Vacancy" : "High",
+              "Renter Occupied" : "High",
+              "Single Family Detached" : "Low",
+              "Single Family Attached" : "High", 
+              "Building with 2 Units" : "Average",
+              "3-4 Units" : "High",
+              "5-9 Units" : "High",
+              "10-20 Units" : "High",
+              "20-49 Units": "High",
+              "50+ Units" : "High",
+              "Mobile Homes" : "Low",
+              "Built 2005 or later" : "Average",
+              "Built 2000-2004": "Average",
+              "Built earlier than 1939" : "High"
+              }
+           }
+        }),
+        ('Wealthy Old Caucasion', {
+            'Description' : '''Highly educated, married couples and same sex couples, 
+                tend to stay put, English speaking, White or Asian, high income and high rent ''',
+            'Details' : {
+             "Education":{
+              "Less than highschool": "Low",
+              "High School": "Low",
+              "Some College / Assc degree" :"Average",
+              "Bachelor Degree" :"High",
+              "Grad Degree" :"High"
+            },
+            "Family Structure":{
+              "Single Mothers" : "Low",
+              "Married Couples" : "Average",
+              "Male-Male Couples": "High",
+              "Female-Female Couples" : "Average"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "Low",
+              "Moved city in the last year" : "Average"
+            },
+            "Language":{
+              "Speaks english only" : "High",
+              "Speaks Spanish" : "Low",
+              "Speaks Spanish Low English" : "Low"
+            },
+            "Ethnicity":{
+              "White" : "High",
+              "Black" : "Low",
+              "American Indian": "Low",
+              "Asian": "Average",
+              "Hispanic Latino" : "Low",
+              "Not a Citizen" : "Low"
+            },
+            "Wealth":{
+              "Income Gini": "Average",
+              "Public Assistance": "Low",
+              "Retirement Income" : "High"
+            },
+            "Commuting":{
+              "No Car" : "Average",
+              "Public Transport" : "High",
+              "Commute 5-9 mins":"Average",
+              "Commute 10-14 mins":"Average",
+              "Commute 15-19 mins":"Average",
+              "Commute 20-24 mins":"Average",
+              "Commute 25-29 mins":"Average",
+              "Commute 30-34 mins":"Average",
+              "Commute 35-39 mins":"Average",
+              "Commute 40-44 mins":"Average",
+              "Commute 45-59 mins":"Average",
+              "Commute 60-89 mins":"Average",
+              "Commute 90+ mins":"Average",
+            },
+            "Housing":{
+              "Median rent": "High",
+              "Housing lower value quantile" : "High",
+              "Housing median value" : "High",
+              "Housing upper value quantile" : "High",
+              "Vacancy" : "High",
+              "Renter Occupied" : "Low",
+              "Single Family Detached" : "Low",
+              "Single Family Attached" : "High", 
+              "Building with 2 Units" : "Low",
+              "3-4 Units" : "Low",
+              "5-9 Units" : "Average",
+              "10-20 Units" : "Average",
+              "20-49 Units": "High",
+              "50+ Units" : "High",
+              "Mobile Homes" : "Low",
+              "Built 2005 or later" : "Average",
+              "Built 2000-2004": "High",
+              "Built earlier than 1939" : "Low"
+              }
+           }
+        }),
+        
+        ('Low income, mix of minorities', {
+            'Description' : '''Highschool education, single parent familes, mobile within cities, diverse minorities, uses public transit and low rent''',
+            'Details' : {
+            "Education":{
+              "Less than highschool": "High",
+              "High School": "Average",
+              "Some College / Assc degree" :"Low",
+              "Bachelor Degree" :"Low",
+              "Grad Degree" :"Low"
+            },
+            "Family Structure":{
+              "Single Mothers" : "High",
+              "Married Couples" : "Low",
+              "Male-Male Couples": "Low",
+              "Female-Female Couples" : "Low"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "High",
+              "Moved city in the last year" : "Low"
+            },
+            "Language":{
+              "Speaks english only" : "Low",
+              "Speaks Spanish" : "High",
+              "Speaks Spanish Low English" : "High"
+            },
+            "Ethnicity":{
+              "White" : "Low",
+              "Black" : "High",
+              "American Indian": "Low",
+              "Asian": "High",
+              "Hispanic Latino" : "High",
+              "Not a Citizen" : "High"
+            },
+            "Wealth":{
+              "Income Gini": "Average",
+              "Public Assistance": "High",
+              "Retirement Income" : "Low"
+            },
+            "Commuting":{
+              "No Car" : "Average",
+              "Public Transport" : "High",
+              "Commute 5-9 mins":"Low",
+              "Commute 10-14 mins":"Low",
+              "Commute 15-19 mins":"Low",
+              "Commute 20-24 mins":"Low",
+              "Commute 25-29 mins":"Low",
+              "Commute 30-34 mins":"High",
+              "Commute 35-39 mins":"Average",
+              "Commute 40-44 mins":"High",
+              "Commute 45-59 mins":"High",
+              "Commute 60-89 mins":"High",
+              "Commute 90+ mins":"High"
+            },
+            "Housing":{
+              "Median rent": "Low",
+              "Housing lower value quantile" : "Low",
+              "Housing median value" : "Low",
+              "Housing upper value quantile" : "Low",
+              "Vacancy" : "High",
+              "Renter Occupied" : "High",
+              "Single Family Detached" : "Low",
+              "Single Family Attached" : "High", 
+              "Building with 2 Units" : "High",
+              "3-4 Units" : "High",
+              "5-9 Units" : "High",
+              "10-20 Units" : "High",
+              "20-49 Units": "High",
+              "50+ Units" : "High",
+              "Mobile Homes" : "Low",
+              "Built 2005 or later" : "Average",
+              "Built 2000-2004": "Average",
+              "Built earlier than 1939" : "Low"
+             }
+           }
+        }),
+        
+        ('Low income, African American', {
+            'Description' : 'African American, low income, highschool education, single parent famalies, mobile within cities, uses public transport.',
+            "Education":{
+              "Less than highschool": "High",
+              "High School": "High",
+              "Some College / Assc degree" :"Low",
+              "Bachelor Degree" :"Low",
+              "Grad Degree" :"Low"
+            },
+            "Family Structure":{
+              "Single Mothers" : "High",
+              "Married Couples" : "Low",
+              "Male-Male Couples": "Low",
+              "Female-Female Couples" : "Low"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "High",
+              "Moved city in the last year" : "Low"
+            },
+            "Language":{
+              "Speaks english only" : "High",
+              "Speaks Spanish" : "Low",
+              "Speaks Spanish Low English" : "Low"
+            },
+            "Ethnicity":{
+              "White" : "Low",
+              "Black" : "High",
+              "American Indian": "Low",
+              "Asian": "Low",
+              "Hispanic Latino" : "Low",
+              "Not a Citizen" : "Low"
+            },
+            "Wealth":{
+              "Income Gini": "High",
+              "Public Assistance": "High",
+              "Retirement Income" : "Low"
+            },
+            "Commuting":{
+              "No Car" : "High",
+              "Public Transport" : "High",
+              "Commute 5-9 mins":"High",
+              "Commute 10-14 mins":"High",
+              "Commute 15-19 mins":"High",
+              "Commute 20-24 mins":"Average",
+              "Commute 25-29 mins":"Low",
+              "Commute 30-34 mins":"Average",
+              "Commute 35-39 mins":"Low",
+              "Commute 40-44 mins":"Low",
+              "Commute 45-59 mins":"Low",
+              "Commute 60-89 mins":"Low",
+              "Commute 90+ mins":"Low"
+            },
+            "Housing":{
+              "Median rent": "Low",
+              "Housing lower value quantile" : "Low",
+              "Housing median value" : "Low",
+              "Housing upper value quantile" : "Low",
+              "Vacancy" : "High",
+              "Renter Occupied" : "High",
+              "Single Family Detached" : "Average",
+              "Single Family Attached" : "Low", 
+              "Building with 2 Units" : "High",
+              "3-4 Units" : "High",
+              "5-9 Units" : "High",
+              "10-20 Units" : "Low",
+              "20-49 Units": "Low",
+              "50+ Units" : "Average",
+              "Mobile Homes" : "Low",
+              "Built 2005 or later" : "Low",
+              "Built 2000-2004": "Low",
+              "Built earlier than 1939" : "High"
+              }
+           }
+        }),
+        ('Residential Institutions', {
+            'Description' : '''Advanced education, highly mobile, White, Black or Asian, public transit, low rent''',
+            'Details' : {
+            "Education":{
+              "Less than highschool": "Low",
+              "High School": "Low",
+              "Some College / Assc degree" :"Average",
+              "Bachelor Degree" :"High",
+              "Grad Degree" :"High"
+            },
+            "Family Structure":{
+              "Single Mothers" : "High",
+              "Married Couples" : "Low",
+              "Male-Male Couples": "Low",
+              "Female-Female Couples" : "High"
+            },
+            "Residential Stability":{
+              "Moved home within city in the last year" : "High",
+              "Moved city in the last year" : "High"
+            },
+            "Language":{
+              "Speaks english only" : "Average",
+              "Speaks Spanish" : "Low",
+              "Speaks Spanish Low English" : "Low"
+            },
+            "Ethnicity":{
+              "White" : "Average",
+              "Black" : "Average",
+              "American Indian": "Low",
+              "Asian": "High",
+              "Hispanic Latino" : "Low",
+              "Not a Citizen" : "Low"
+            },
+            "Wealth":{
+              "Income Gini": "High",
+              "Public Assistance": "Average",
+              "Retirement Income" : "Low"
+            },
+            "Commuting":{
+              "No Car" : "High",
+              "Public Transport" : "Low",
+              "Commute 5-9 mins":"High",
+              "Commute 10-14 mins":"High",
+              "Commute 15-19 mins":"Average",
+              "Commute 20-24 mins":"Low",
+              "Commute 25-29 mins":"Low",
+              "Commute 30-34 mins":"Low",
+              "Commute 35-39 mins":"Low",
+              "Commute 40-44 mins":"Low",
+              "Commute 45-59 mins":"Low",
+              "Commute 60-89 mins":"Low",
+              "Commute 90+ mins":"Low"
+            },
+            "Housing":{
+              "Median rent": "Low",
+              "Housing lower value quantile" : "Average",
+              "Housing median value" : "Average",
+              "Housing upper value quantile" : "Average",
+              "Vacancy" : "Average",
+              "Renter Occupied" : "High",
+              "Single Family Detached" : "Low",
+              "Single Family Attached" : "Average", 
+              "Building with 2 Units" : "High",
+              "3-4 Units" : "High",
+              "5-9 Units" : "High",
+              "10-20 Units" : "High",
+              "20-49 Units": "High",
+              "50+ Units" : "High",
+              "Mobile Homes" : "Low",
+              "Built 2005 or later" : "Low",
+              "Built 2000-2004": "Low",
+              "Built earlier than 1939" : "High"
+            }
+         }
+      })
+    ])
 
     def version(self):
         return 3
