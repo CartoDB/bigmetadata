@@ -43,19 +43,7 @@ class RawGeometry(TempTableTask):
     def requires(self):
         return DownloadGeometry()
 
-    @property
-    def schema(self):
-        return classpath(self)
-
-    @property
-    def tablename(self):
-        return 'raw_geometry'
-
     def run(self):
-        session = current_session()
-        session.execute('CREATE SCHEMA IF NOT EXISTS "{schema}"'.format(
-            schema=classpath(self)))
-
         cmd = 'unzip -o "{input}" -d "$(dirname {input})/$(basename {input} .zip)"'.format(
             input=self.input().path)
         shell(cmd)
@@ -65,8 +53,8 @@ class RawGeometry(TempTableTask):
                 '-lco OVERWRITE=yes ' \
                 '-lco SCHEMA={schema} -lco PRECISION=no ' \
                 '$(dirname {input})/$(basename {input} .zip)/*.shp '.format(
-                    schema=self.schema,
-                    table=self.tablename,
+                    schema=self.output().schema,
+                    table=self.output().tablename,
                     input=self.input().path)
         shell(cmd)
 
