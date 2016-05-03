@@ -165,24 +165,11 @@ class SpielmanSingletonColumns(ColumnsTask):
     }
 
     x10_categories = OrderedDict([
-        ('Hispanic and Young', 'Hispanic and Young description'),
-        ('Wealthy Nuclear Families', 'Wealthy Nuclear Families desc'),
-        ('Middle Income, Single Family Home', 'Middle Income, Single Family Home desc'),
-        ('Native American', 'Native American desc'),
-        ('Wealthy, urban without Kids', 'Wealthy, urban without Kids desc'),
-        ('Low income and diverse', 'Low income and diverse desc'),
-        ('Wealthy Old Caucasion', 'Wealthy Old Caucasion desc'),
-        ('Low income, mix of minorities', 'Low income, mix of minorities desc'),
-        ('Low income, African American', 'Low income, African American desc'),
-        ('Residential Institutions', 'Residential Institutions desc')
-    ])
-    
-    x10_categories = OrderedDict([
         ('Hispanic and Young', {
-            'Description' : '''Predominantly Hispanic, tends to have at most high school education, 
-                lots of married couples and single mothers, high mobility within cities, 
-                typically takes public transit and tends to rent.''', 
-            'Details' : {
+            'description' : 'Predominantly Hispanic, tends to have at most high school education, '
+                'lots of married couples and single mothers, high mobility within cities, '
+                'typically takes public transit and tends to rent.', 
+            'details' : {
                 "Education":{
                   "Less than highschool": "High",
                   "High School": "Average",
@@ -257,13 +244,11 @@ class SpielmanSingletonColumns(ColumnsTask):
                }
             }
          ),
-         
-         
         ('Wealthy Nuclear Families', {
-         'Description' : ''' Highly educated, high levels of bachelor or grad degrees,
-            married couples and some same sex couples, tends to stay put, white or asian, 
-            high income, tends to own a car and lives in single family homes with high rents ''',
-         'Details':{
+         'description' : 'Highly educated, high levels of bachelor or grad degrees, '
+            'married couples and some same sex couples, tends to stay put, white or asian, '
+            'high income, tends to own a car and lives in single family homes with high rents.',
+         'details':{
              "Education":{
               "Less than highschool": "Low",
               "High School": "Low",
@@ -337,12 +322,12 @@ class SpielmanSingletonColumns(ColumnsTask):
               }
            }
         }),
-        
         ('Middle Income, Single Family Home', {
-            'Description' : '''Highschool and some college education, mix of single parents and married couples, 
-            tends to stay put and only moves within cities, English speaking, white, good retirement funds, owns 
-            their own car, lives in lower rent homes of mobile homes.''' ,
-            'Details' : {
+            'description' : 'High school and some college education, mix of '
+            'single parents and married couples, tends to stay put and only '
+            'moves within cities, English speaking, white, good retirement '
+            'funds, owns their own car, lives in lower rent homes of mobile homes.',
+            'details' : {
             "Education":{
               "Less than highschool": "Average",
               "High School": "High",
@@ -416,11 +401,11 @@ class SpielmanSingletonColumns(ColumnsTask):
               }
            }
         }),
-        
         ('Native American', {
-            'Description' : '''Native Amerian, high school educated with some college,
-                commutes far for work, single parent families, typical doesn't own a car and lives in low rental housing ''',
-            'Deatils' : {
+            'description' : 'Native Amerian, high school educated with some '
+            'college, commutes for work, single parent families, typical '
+            'doesn\'t own a car and lives in low cost rental housing.',
+            'details' : {
             "Education":{
               "Less than highschool": "High",
               "High School": "High",
@@ -494,11 +479,11 @@ class SpielmanSingletonColumns(ColumnsTask):
             }
          }
       }),
-        
         ('Wealthy, urban without Kids',{
-            'Description' : '''Typically has an advanced degree, single parents or same sex couples, highly mobile, White, Black or Asian, doesn't own a car
-                and lives in high rental homes''',
-            'Details' : {
+            'description' : 'Typically has an advanced degree, single parents '
+            'or same sex couples, highly mobile, White, Black or Asian, '
+            'doesn\'t own a car and lives in high rental housing.',
+            'details' : {
              "Education":{
               "Less than highschool": "Low",
               "High School": "Low",
@@ -571,11 +556,11 @@ class SpielmanSingletonColumns(ColumnsTask):
              }
           }
         }),
-        
         ('Low income and diverse', {
-            'Description' : '''Highschool education, single parent families, mobile within cities, 
-                multilingual, Black or Asian, typlically doesn't own a car, uses public transit, high median rent. ''',
-            'Details' : {
+            'description' : 'High school education, single parent families, '
+            'mobile within cities, multilingual, Black or Asian, typically '
+            'doesn\'t own a car, uses public transit, high median rent. ',
+            'details' : {
             "Education":{
               "Less than highschool": "High",
               "High School": "Average",
@@ -649,9 +634,10 @@ class SpielmanSingletonColumns(ColumnsTask):
            }
         }),
         ('Wealthy Old Caucasion', {
-            'Description' : '''Highly educated, married couples and same sex couples, 
-                tend to stay put, English speaking, White or Asian, high income and high rent ''',
-            'Details' : {
+            'description' : 'Highly educated, married couples and same sex '
+            'couples, tend to stay put, English speaking, White or Asian, high '
+            'income and high rent.',
+            'details' : {
              "Education":{
               "Less than highschool": "Low",
               "High School": "Low",
@@ -724,10 +710,11 @@ class SpielmanSingletonColumns(ColumnsTask):
               }
            }
         }),
-        
         ('Low income, mix of minorities', {
-            'Description' : '''Highschool education, single parent familes, mobile within cities, diverse minorities, uses public transit and low rent''',
-            'Details' : {
+            'description' : 'Highschool education, single parent familes, '
+            'mobile within cities, diverse minorities, uses public transit '
+            'and low rent.',
+            'details' : {
             "Education":{
               "Less than highschool": "High",
               "High School": "Average",
@@ -800,9 +787,10 @@ class SpielmanSingletonColumns(ColumnsTask):
              }
            }
         }),
-        
         ('Low income, African American', {
-            'Description' : 'African American, low income, highschool education, single parent famalies, mobile within cities, uses public transport.',
+            'description' : 'African American, low income, high school '
+            'education, single parent famalies, mobile within cities, uses '
+            'public transport.',
             "Education":{
               "Less than highschool": "High",
               "High School": "High",
@@ -872,12 +860,12 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Built 2005 or later" : "Low",
               "Built 2000-2004": "Low",
               "Built earlier than 1939" : "High"
-              }
            }
         }),
         ('Residential Institutions', {
-            'Description' : '''Advanced education, highly mobile, White, Black or Asian, public transit, low rent''',
-            'Details' : {
+            'description' : 'Advanced education, highly mobile, White, Black '
+            'or Asian, public transit, low rent.',
+            'details' : {
             "Education":{
               "Less than highschool": "Low",
               "High School": "Low",
@@ -953,7 +941,7 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         x10 = OBSColumn(
