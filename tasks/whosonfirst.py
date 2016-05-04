@@ -19,12 +19,13 @@ from tasks.util import (classpath, shell, TempTableTask, TableTask,
 class GlobalBoundaries(TagsTask):
 
     def version(self):
-        return 1
+        return 2
 
     def tags(self):
         return [OBSTag(id='global',
                        type='catalog',
                        name='Global Boundaries',
+                       description='',
                       )]
 
 
@@ -64,7 +65,7 @@ class WOFColumns(ColumnsTask):
     resolution = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
@@ -75,19 +76,19 @@ class WOFColumns(ColumnsTask):
         global_tag = self.input()['global']['global']
 
         geom_names = {
-            'continent': '',
-            'country': '',
-            'disputed': '',
-            'marinearea': '',
-            'region': '',
+            'continent': 'Continents',
+            'country': 'Countries',
+            'disputed': 'Disputed Areas',
+            'marinearea': 'Marine Areas',
+            'region': 'Regions (First-level Administrative)',
         }
 
         geom_descriptions = {
-            'continent': '',
-            'country': '',
-            'disputed': '',
-            'marinearea': '',
-            'region': '',
+            'continent': 'Continents of the world.',
+            'country': ' ',
+            'disputed': ' ',
+            'marinearea': ' ',
+            'region': ' ',
         }
 
         return OrderedDict([
@@ -161,4 +162,5 @@ class AllWOF(WrapperTask):
     def requires(self):
         for resolution in ('continent', 'country', 'disputed', 'marinearea',
                            'region', ):
+            yield WOFColumns(resolution=resolution)
             yield WOF(resolution=resolution)
