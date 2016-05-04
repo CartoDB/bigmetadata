@@ -4,19 +4,32 @@
 Bigmetadata tasks
 '''
 
-from tasks.meta import current_session
-from tasks.util import (classpath, shell, TempTableTask)
-
+import subprocess
 from csv import DictReader
-from luigi import Task, Parameter, BooleanParameter, WrapperTask
+from collections import OrderedDict
 
 import requests
-import subprocess
+from luigi import Task, Parameter, BooleanParameter, WrapperTask
+
+from tasks.meta import current_session, OBSColumn, OBSTag
+from tasks.util import (classpath, shell, TempTableTask, TableTask,
+                        ColumnsTask, TagsTask)
 
 
-class ImportWOFResolution(TempTableTask):
+class GlobalBoundaries(TagsTask):
 
-    force = BooleanParameter(default=False)
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='global',
+                       type='catalog',
+                       name='Global Boundaries',
+                      )]
+
+
+class DownloadWOF(TempTableTask):
+
     resolution = Parameter()
     URL = 'https://raw.githubusercontent.com/whosonfirst/whosonfirst-data/master/meta/wof-{resolution}-latest.csv'
 
@@ -24,30 +37,116 @@ class ImportWOFResolution(TempTableTask):
         resp = requests.get(self.URL.format(resolution=self.resolution))
         encoded = resp.text.encode(resp.headers['Content-Type'].split('charset=')[1])
         reader = DictReader(encoded.split('\r\n'))
-        cursor = current_session()
-        cursor.execute('CREATE SCHEMA IF NOT EXISTS "{}"'.format(classpath(self)))
-        cursor.connection.commit()
 
-        created_table = False
         for i, line in enumerate(reader):
             # TODO would be much, much faster in parallel...
             url = 'https://whosonfirst.mapzen.com/data/{path}'.format(path=line['path'])
             lfs_url = 'https://github.com/whosonfirst/whosonfirst-data/raw/master/data/{path}'.format(
                 path=line['path'])
-            cmd = 'wget \'{url}\' -O - | ogr2ogr -{operation} -nlt MULTIPOLYGON -nln \'{table}\' ' \
-                    '-f PostgreSQL PG:"dbname=$PGDATABASE" /vsistdin/'.format(
+            cmd = 'wget \'{url}\' -O - | ogr2ogr -{operation} ' \
+                    '-nlt MULTIPOLYGON -nln \'{table}\' ' \
+                    '-f PostgreSQL PG:"dbname=$PGDATABASE ' \
+                    'active_schema={schema}" /vsistdin/'.format(
                         url=url,
-                        operation='append' if created_table else 'overwrite',
-                        table=self.output().table
+                        schema=self.output().schema,
+                        table=self.output().tablename,
+                        operation='append' if i > 0 else 'overwrite -lco OVERWRITE=yes'
                     )
             try:
                 shell(cmd)
             except subprocess.CalledProcessError:
                 cmd = cmd.replace(url, lfs_url)
                 shell(cmd)
-            created_table = True
-        self.output().touch()
 
 
-class WOFColumns(Task):
-    pass
+class WOFColumns(ColumnsTask):
+
+    resolution = Parameter()
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return {
+            'global': GlobalBoundaries()
+        }
+
+    def columns(self):
+        global_tag = self.input()['global']['global']
+
+        geom_names = {
+            'continent': '',
+            'country': '',
+            'disputedarea': '',
+            'marinearea': '',
+            'region': '',
+        }
+
+        geom_descriptions = {
+            'continent': '',
+            'country': '',
+            'disputedarea': '',
+            'marinearea': '',
+            'region': '',
+        }
+
+        return OrderedDict([
+            ('wof_id', OBSColumn(
+                id='wof_' + self.resolution + '_id',
+                name="Who's on First ID",
+                type="Numeric",
+                weight=0,
+            )),
+            ('the_geom', OBSColumn(
+                id='wof_' + self.resolution + '_geom',
+                name=geom_names[self.resolution],
+                type="Geometry",
+                weight=5,
+                description=geom_descriptions[self.resolution],
+                tags=[global_tag],
+            )),
+            ('name', OBSColumn(
+                id='wof_' + self.resolution + '_name',
+                #name=name_names[self.resolution],
+                type="Text",
+                weight=0
+                #description=name_descriptions[self.resolution],
+            )),
+            #('placetype', OBSColumn(
+            #    id='wof:placetype'
+            #)),
+        ])
+
+
+class WOF(TableTask):
+
+    resolution = Parameter()
+
+    def bounds(self):
+        return 'BOX(0 0,0 0)'
+
+    def timespan(self):
+        return '2016'
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return {
+            'columns': WOFColumns(resolution=self.resolution),
+            'data': DownloadWOF(resolution=self.resolution),
+        }
+
+    def columns(self):
+        return self.input()['columns']
+
+    def populate(self):
+        session = current_session()
+
+        session.execute('INSERT INTO {output} '
+                        'SELECT "wof:id", wkb_geometry, "wof:name" '
+                        'FROM {input} '.format(
+                            output=self.output().table,
+                            input=self.input()['data'].table
+                        ))
+
