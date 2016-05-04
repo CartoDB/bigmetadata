@@ -77,7 +77,7 @@ class WOFColumns(ColumnsTask):
         geom_names = {
             'continent': '',
             'country': '',
-            'disputedarea': '',
+            'disputed': '',
             'marinearea': '',
             'region': '',
         }
@@ -85,7 +85,7 @@ class WOFColumns(ColumnsTask):
         geom_descriptions = {
             'continent': '',
             'country': '',
-            'disputedarea': '',
+            'disputed': '',
             'marinearea': '',
             'region': '',
         }
@@ -129,7 +129,7 @@ class WOF(TableTask):
         return '2016'
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
@@ -144,7 +144,12 @@ class WOF(TableTask):
         session = current_session()
 
         session.execute('INSERT INTO {output} '
-                        'SELECT "wof:id", wkb_geometry, "wof:name" '
+                        'SELECT "wof:id", '
+                        'CASE WHEN ST_Npoints(wkb_geometry) > 1000000 '
+                        '     THEN ST_Simplify(wkb_geometry, 0.0001) '
+                        '     ELSE wkb_geometry '
+                        'END, '
+                        '"wof:name" '
                         'FROM {input} '.format(
                             output=self.output().table,
                             input=self.input()['data'].table
@@ -154,6 +159,6 @@ class WOF(TableTask):
 class AllWOF(WrapperTask):
 
     def requires(self):
-        for resolution in ('continent', 'country', 'disputedarea', 'marinearea',
+        for resolution in ('continent', 'country', 'disputed', 'marinearea',
                            'region', ):
             yield WOF(resolution=resolution)
