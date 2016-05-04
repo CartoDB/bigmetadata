@@ -148,15 +148,17 @@ class SyncData(WrapperTask):
     Upload a single OBS table to cartodb by fuzzy ID
     '''
     force = BooleanParameter(default=True)
-    id = Parameter()
+    id = Parameter(default=None)
     exact_id = Parameter(default=None)
 
     def requires(self):
         session = current_session()
         if self.exact_id:
             table = session.query(OBSTable).get(self.exact_id)
-        else:
+        elif self.id:
             table = session.query(OBSTable).filter(OBSTable.id.ilike('%' + self.id + '%')).one()
+        else:
+            raise Exception('Need id or exact_id for SyncData')
         return TableToCarto(table=table.tablename, force=self.force)
 
 

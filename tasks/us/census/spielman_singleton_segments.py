@@ -119,8 +119,9 @@ class SpielmanSingletonTable(TableTask):
             'data_file' : ProcessSpielmanSingletonFile(),
             'tiger'     : GeoidColumns()
         }
+
     def version(self):
-        return 5
+        return 6
 
     def timespan(self):
         return '2009 - 2013'
@@ -129,7 +130,7 @@ class SpielmanSingletonTable(TableTask):
         return 'BOX(0 0,0 0)'
 
     def populate(self):
-        table_name = self.output().get(current_session()).id
+        table_name = self.output().table
         shell(r"psql -c '\copy {table} FROM {file_path} WITH CSV HEADER'".format(
             table=table_name,
             file_path=self.input()['data_file'].path
@@ -941,7 +942,7 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
@@ -979,7 +980,6 @@ class SpielmanSingletonColumns(ColumnsTask):
 
         return OrderedDict([
             ('X10', x10),
-            ('X2', x2),
             ('X31', x31),
             ('X55', x55),
             ('X2', x2)
