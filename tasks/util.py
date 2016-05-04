@@ -78,7 +78,8 @@ def query_cartodb(query):
     return resp
 
 
-def sql_to_cartodb_table(outname, localname, json_column_names=None):
+def sql_to_cartodb_table(outname, localname, json_column_names=None,
+                         schema='observatory'):
     '''
     Move the specified table to cartodb
 
@@ -97,7 +98,7 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -nln "{private_outname}" \
         PG:dbname=$PGDATABASE' active_schema={schema}' '{tablename}'
     '''.format(private_outname=private_outname, tablename=localname,
-               schema='observatory')
+               schema=schema)
     print cmd
     shell(cmd)
     print 'copying via import api'
@@ -511,24 +512,31 @@ class TagsTask(Task):
 class TableToCarto(Task):
 
     force = BooleanParameter(default=False)
+    schema = Parameter(default='observatory')
     table = Parameter()
     outname = Parameter(default=None)
 
     def run(self):
         json_colnames = []
-        if self.table in metadata.tables:
-            cols = metadata.tables[self.table].columns
+        table = '.'.join([self.schema, self.table])
+        if table in metadata.tables:
+            cols = metadata.tables[table].columns
             for colname, coldef in cols.items():
                 coltype = coldef.type
                 if isinstance(coltype, JSON):
                     json_colnames.append(colname)
 
-        sql_to_cartodb_table(self.output().tablename, self.table, json_colnames)
+        sql_to_cartodb_table(self.output().tablename, self.table, json_colnames,
+                             schema=self.schema)
         self.force = False
 
     def output(self):
+        if self.schema != 'observatory':
+            table = '.'.join([self.schema, self.table])
+        else:
+            table = self.table
         if self.outname is None:
-            self.outname = underscore_slugify(self.table)
+            self.outname = underscore_slugify(table)
         target = CartoDBTarget(self.outname)
         if self.force and target.exists():
             target.remove()

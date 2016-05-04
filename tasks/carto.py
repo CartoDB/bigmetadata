@@ -25,7 +25,7 @@ def extract_dict_a_from_b(a, b):
 
 def metatables():
     for tablename, table in Base.metadata.tables.iteritems():
-        if tablename.startswith('obs_'):
+        if tablename.startswith('observatory.obs_'):
             yield tablename, table
 
 
@@ -98,7 +98,9 @@ class SyncMetadata(WrapperTask):
 
     def requires(self):
         for tablename, _ in metatables():
-            yield TableToCarto(table=tablename, outname=tablename, force=self.force)
+            schema, tablename = tablename.split('.')
+            yield TableToCarto(table=tablename, outname=tablename, force=self.force,
+                               schema=schema)
 
 
 def should_upload(table):
