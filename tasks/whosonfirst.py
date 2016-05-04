@@ -150,3 +150,10 @@ class WOF(TableTask):
                             input=self.input()['data'].table
                         ))
 
+
+class AllWOF(WrapperTask):
+
+    def requires(self):
+        for resolution in ('continent', 'country', 'disputedarea', 'marinearea',
+                           'region', ):
+            yield WOF(resolution=resolution)
