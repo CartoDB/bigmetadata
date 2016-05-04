@@ -24,8 +24,13 @@
 Code example
 #}
 
-Measure "{{ col.name }}" {% if col.summable() %}density per sq. kilometer
-{% endif %}for one point:
+{% if col.type|lower == 'text' %}
+Obtain category of "{{ col.name }}" at one point:
+{% elif col.type|lower == 'numeric' %}
+Measure "{{ col.name }}" {% if col.summable() %}density per sq. kilometer{% endif %}for one point:
+{% elif col.type|lower == 'geometry' %}
+Obtain "{{ col.name }}" geometry at one point:
+{% endif %}
 
 .. code:: postgresql
 
@@ -37,11 +42,32 @@ Measure "{{ col.name }}" {% if col.summable() %}density per sq. kilometer
   );
 
 {% elif col.type|lower == 'numeric' %}
+
   SELECT cdb_observatory.OBS_GetMeasure(
     CDB_LatLng(40.7, -73.9),
     '{{ col.id }}'
   );
 
+{% elif col.type|lower == 'geometry' %}
+
+  SELECT cdb_observatory.OBS_GetBoundary(
+    CDB_LatLng(40.7, -73.9),
+    '{{ col.id }}'
+  );
+
+{% endif %}
+
+{% if col.type|lower == 'text' %}
+Obtain category of "{{ col.name }}" within an area:
+
+.. code:: postgresql
+
+  SELECT cdb_observatory.OBS_GetCategory(
+    ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
+    '{{ col.id }}'
+  );
+
+{% elif col.type|lower == 'numeric' %}
 {% if col.summable() %}
 Measure "{{ col.name }}" within an area:
 
@@ -55,6 +81,18 @@ Measure "{{ col.name }}" within an area:
 {% else %}
 
 {{ col.name }} is only available for point lookups.
+{% endif %}
+{% elif col.type|lower == 'geometry' %}
+
+Obtain all "{{ col.name }}" geometries within an area:
+
+.. code:: postgresql
+
+  SELECT cdb_observatory.OBS_GetBoundary(
+    ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
+    '{{ col.id }}'
+  );
+
 {% endif %}
 
 {% if col.has_denominator() %}
@@ -78,7 +116,6 @@ Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" within an are
   );
 {% endif %}
 
-{% endif %}
 {% endif %}
 {# preview map #}
 {#
