@@ -174,7 +174,7 @@ class SyncAllData(WrapperTask):
                 tables[table.id] = table.tablename
 
         for table_id, tablename in tables.iteritems():
-            yield TableToCarto(table=table_id, outname=tablename, force=self.force)
+            yield TableToCarto(table=tablename, outname=tablename, force=self.force)
 
 
 class GenerateStaticImage(Task):
