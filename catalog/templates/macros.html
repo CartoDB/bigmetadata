@@ -29,6 +29,14 @@ Measure "{{ col.name }}" {% if col.summable() %}density per sq. kilometer
 
 .. code:: postgresql
 
+{% if col.type|lower == 'text' %}
+
+  SELECT cdb_observatory.OBS_GetCategory(
+    CDB_LatLng(40.7, -73.9),
+    '{{ col.id }}'
+  );
+
+{% elif col.type|lower == 'numeric' %}
   SELECT cdb_observatory.OBS_GetMeasure(
     CDB_LatLng(40.7, -73.9),
     '{{ col.id }}'
@@ -70,6 +78,7 @@ Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" within an are
   );
 {% endif %}
 
+{% endif %}
 {% endif %}
 {# preview map #}
 {#

@@ -941,7 +941,7 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 6
+        return 7
 
     def requires(self):
         return {
@@ -953,7 +953,7 @@ class SpielmanSingletonColumns(ColumnsTask):
         x10 = OBSColumn(
             id='X10',
             type='Text',
-            name="SS_segment_10_clusters",
+            name="Spielman-Singleton Segments: 10 Clusters",
             description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters',
             extra={'categories': self.x10_categories},
             tags=[segments_tag],
