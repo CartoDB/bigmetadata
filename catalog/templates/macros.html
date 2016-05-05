@@ -88,7 +88,7 @@ Obtain all "{{ col.name }}" geometries within an area:
 
 .. code:: postgresql
 
-  SELECT cdb_observatory.OBS_GetBoundary(
+  SELECT cdb_observatory.OBS_GetBoundariesByGeometry(
     ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
     '{{ col.id }}'
   );
