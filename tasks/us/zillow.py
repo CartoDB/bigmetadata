@@ -21,7 +21,8 @@ class ExtractAllZillow(WrapperTask):
     
     def requires(self):            
         ## go across all types
-        geographies = ('State', 'Metro', 'County', 'City', 'Zip', 'Neighborhood',)
+        # geographies = ('State', 'Metro', 'County', 'City', 'Zip', 'Neighborhood',)
+        geographies = ('Zip',)
         
         ## cherry-picked datasets
         hometypes = ('AllHomes', 'SingleFamilyResidence',)
@@ -40,12 +41,16 @@ class ExtractAllZillow(WrapperTask):
         median_sqft_rental = 'MedianRentalPricePerSqft'
         
         for g in geographies:
+            ## get Zhvi datasets
             for h in hometypes:
                 yield DownloadZillow(geography=g, hometype=h, measure=home_measure)
+            ## get Zri datasets
             for r in rentaltypes:
-                yield DownloadZillow(geography=g, hometype=h, measure=home_measure)
+                yield DownloadZillow(geography=g, hometype=r, measure=home_measure)
+            ## get median value / sqft datasets
             for hm in hometypes_medians:
                 yield DownloadZillow(geography=g, hometype=hm, measure=median_sqft_houses)
+            ## get median rental / sqft datasets
             for rm in rentaltypes_medians:
                 yield DownloadZillow(geography=g, hometype=rm, measure=median_sqft_rental)
             
