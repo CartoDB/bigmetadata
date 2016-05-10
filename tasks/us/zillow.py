@@ -80,22 +80,64 @@ class ZillowTags(TagsTask):
 
 class DownloadZillow(Task):
 
-    geography = Parameter(default='Zip')
-    hometype = Parameter(default='SingleFamilyResidence')
-    measure = Parameter(default='Zhvi')
+    geography = Parameter()
+    hometype = Parameter()
+    measure = Parameter()
 
     URL = 'http://files.zillowstatic.com/research/public/{geography}/{geography}_{measure}_{hometype}.csv'
 
     def run(self):
         self.output().makedirs()
         shell('wget \'{url}\' -O {output}'.format(
-            url=self.URL.format(geography=self.geography, hometype=self.hometype, measure=self.measure), output=self.output().path))
+            url=self.URL.format(geography=self.geography, hometype=self.hometype,
+                                measure=self.measure), output=self.output().path))
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) + '.csv')
 
 
-class ZillowColumns(ColumnsTask):
+class ZillowValueColumns(ColumnsTask):
+
+    def columns(self):
+        columns = OrderedDict()
+
+        for hometype, hometype_human, measure, measure_human in hometype_measures():
+            aggregate = 'median' if 'median' in measure.lower() else 'sum'
+            col_id = '{hometype}_{measure}'.format(hometype=hometype,
+                                                   measure=measure)
+            col = OBSColumn(type='Numeric',
+                            name='{measure} for {hometype}'.format(
+                                measure=measure_human,
+                                hometype=hometype_human),
+                            aggregate=aggregate,
+                            weight=1,
+                            description='{measure} for {hometype}'.format(
+                                measure=measure_human,
+                                hometype=hometype_human))
+            columns[col_id] = col
+        return columns
+
+
+class ZillowTimeValueColumns(ColumnsTask):
+
+    def columns(self):
+        columns = OrderedDict()
+
+        # TODO generate value columns
+        for year in xrange(1996, 2030):
+            for month in xrange(1, 13):
+                yr_str = str(year).zfill(2)
+                mo_str = str(month).zfill(2)
+
+                columns['{yr}_{mo}'.format(
+                    yr=yr_str, mo=mo_str)] = OBSColumn(
+                        type='Numeric',
+                        name='',
+                        description='',
+                        weight=0)
+        return columns
+
+class ZillowGeoColumns(ColumnsTask):
 
     def columns(self):
         # TODO manually generate columns before value columns
@@ -134,33 +176,6 @@ class ZillowColumns(ColumnsTask):
                                 description="",
                                 weight=0))
         ])
-        # TODO generate value columns
-        for year in xrange(1996, 2030):
-            for month in xrange(1, 13):
-                yr_str = str(year).zfill(2)
-                mo_str = str(month).zfill(2)
-
-                columns['{yr}_{mo}'.format(
-                    yr=yr_str, mo=mo_str)] = OBSColumn(
-                        type='Numeric',
-                        name='',
-                        description='',
-                        weight=0)
-
-        for hometype, hometype_human, measure, measure_human in hometype_measures():
-            aggregate = 'median' if 'median' in measure.lower() else 'sum'
-            col_id = '{hometype}_{measure}'.format(hometype=hometype,
-                                                   measure=measure)
-            col = OBSColumn(type='Numeric',
-                            name='{measure} for {hometype}'.format(
-                                measure=measure_human,
-                                hometype=hometype_human),
-                            aggregate=aggregate,
-                            weight=1,
-                            description='{measure} for {hometype}'.format(
-                                measure=measure_human,
-                                hometype=hometype_human))
-            columns[col_id] = col
 
         return columns
 
@@ -175,7 +190,8 @@ class WideZillow(TableTask):
         return {
             'data': DownloadZillow(geography=self.geography, hometype=self.hometype,
                                    measure=self.measure),
-            'metadata': ZillowColumns(),
+            'zillow_geo': ZillowGeoColumns(),
+            'zillow_time_value': ZillowTimeValueColumns(),
             'geoids': GeoidColumns()
         }
 
@@ -184,6 +200,9 @@ class WideZillow(TableTask):
 
     def timespan(self):
         return None
+
+    def version(self):
+        return 2
 
     def columns(self):
         if self.geography == 'Zip':
@@ -209,16 +228,20 @@ class WideZillow(TableTask):
                 colname = underscore_slugify(headercell)
                 if colname[0:2] in ('19', '20'):
                     colname = 'value_' + colname
-                columns[colname] = self.input()['metadata'][headercell]
+                    columns[colname] = self.input()['zillow_time_value'][headercell]
+                else:
+                    columns[colname] = self.input()['zillow_geo'][headercell]
 
         return columns
 
     def populate(self):
-
         shell(r"psql -c '\copy {table} FROM {file_path} WITH CSV HEADER'".format(
-            table     = self.output().table,
-            file_path = self.input()['data'].path
+            table=self.output().table,
+            file_path=self.input()['data'].path
         ))
+        session = current_session()
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
+            output=self.output().table))
 
 
 class Zillow(TableTask):
@@ -232,7 +255,7 @@ class Zillow(TableTask):
 
     def requires(self):
         requirements = {
-            'metadata': ZillowColumns(),
+            'metadata': ZillowValueColumns(),
             'geoids': GeoidColumns()
         }
         for hometype, _, measure, _ in hometype_measures():
@@ -281,17 +304,13 @@ class Zillow(TableTask):
                         'SET {col_id} = value_{year}_{month} ' \
                         'FROM {input_table} WHERE ' \
                         '{input_table}.region_name = {output}.region_name '
-            print stmt.format(
-                output=self.output().table,
-                year=self.year.zfill(2),
-                month=self.month.zfill(2),
-                col_id=col_id,
-                input_table=input_table)
-
             session.execute(stmt.format(
                 output=self.output().table,
                 year=self.year.zfill(2),
                 month=self.month.zfill(2),
                 col_id=col_id,
                 input_table=input_table))
+            if insert:
+                session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
+                    output=self.ouptut().table))
             insert = False
