@@ -24,7 +24,6 @@ HOMETYPES = {
     'AllHomesPlusMultifamily': 'All homes plus multifamily',
     'SingleFamilyResidenceRental': 'Single Family residence rental',
     'Sfr': 'Single Family residence rental',
-    'AllHomes': 'All homes'
 }
 
 MEASURES_HUMAN = {
@@ -308,11 +307,20 @@ class Zillow(TableTask):
                         '{input_table}.region_name = {output}.region_name '
             session.execute(stmt.format(
                 output=self.output().table,
-                year=self.year.zfill(2),
-                month=self.month.zfill(2),
+                year=str(self.year).zfill(2),
+                month=str(self.month).zfill(2),
                 col_id=col_id,
                 input_table=input_table))
             if insert:
                 session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
                     output=self.output().table))
             insert = False
+
+
+class AllZillow(WrapperTask):
+
+    def requires(self):
+        for geography in ('Zip', ):
+            for year in xrange(1996, 2017):
+                for month in xrange(1, 13):
+                    yield Zillow(geography=geography, year=year, month=month)
