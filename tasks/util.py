@@ -350,20 +350,19 @@ class TableTarget(Target):
         We always want to run this at least once, because we can always
         regenerate tabular data from scratch.
         '''
-
-        existing = self.get(current_session())
+        session = current_session()
+        existing = self.get(session)
         new_version = float(self._obs_table.version) or 0.0
         if existing:
             existing_version = float(existing.version)
-            current_session().expunge(existing)
+            session.expunge(existing)
         else:
             existing_version = 0.0
         if existing and existing_version == new_version:
-            # Then make sure the data table actually exists, too
-            resp = current_session().execute(
+            resp = session.execute(
                 'SELECT COUNT(*) FROM information_schema.tables '
-                "WHERE table_schema ILIKE '{schema}'  "
-                "  AND table_name ILIKE '{tablename}' ".format(
+                "WHERE table_schema = '{schema}'  "
+                "  AND table_name = '{tablename}' ".format(
                     schema='observatory',
                     tablename=self._obs_table.tablename))
             return int(resp.fetchone()[0]) > 0
@@ -380,7 +379,6 @@ class TableTarget(Target):
             return session.query(OBSTable).get(self._id)
 
     def update_or_create(self):
-
         session = current_session()
 
         # replace metadata table
@@ -705,4 +703,3 @@ class RenameTables(Task):
 
     def complete(self):
         return hasattr(self, '_complete')
-
