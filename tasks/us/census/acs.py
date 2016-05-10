@@ -62,9 +62,10 @@ class Columns(ColumnsTask):
         return 5
 
     def columns(self):
-        tags = self.input()['tags']
-        censustags = self.input()['censustags']
-        segmenttags = self.input()['segmenttags']
+        input_ = self.input()
+        tags = input_['tags']
+        censustags = input_['censustags']
+        segmenttags = input_['segmenttags']
         tag_middle_aged_men = segmenttags['middle_aged_men']
         tag_families_with_young_children = segmenttags['families_with_young_children']
         total_pop = OBSColumn(
@@ -1800,10 +1801,11 @@ class Quantiles(TableTask):
         return 5
 
     def columns(self):
+        input_ = self.input()
         columns = OrderedDict({
-            'geoid': self.input()['tiger'][self.geography + '_geoid']
+            'geoid': input_['tiger'][self.geography + '_geoid']
         })
-        columns.update(self.input()['columns'])
+        columns.update(input_['columns'])
         return columns
 
     def bounds(self):
@@ -1816,7 +1818,8 @@ class Quantiles(TableTask):
 
     def populate(self):
         connection = current_session()
-        quant_col_names = self.input()['columns'].keys()
+        input_ = self.input()
+        quant_col_names = input_['columns'].keys()
         old_col_names = [name.split("_quantile")[0]
                          for name in quant_col_names]
         selects = [" percent_rank() OVER (ORDER BY {old_col} ASC) ".format(old_col=name)
@@ -1834,7 +1837,7 @@ class Quantiles(TableTask):
             table        = self.output().table,
             insert_statment = insert_statment,
             select_statment = select_statment,
-            source_table = self.input()['table'].table
+            source_table = input_['table'].table
         ))
 
 class Extract(TableTask):
@@ -1864,14 +1867,16 @@ class Extract(TableTask):
 
     def bounds(self):
         session = current_session()
-        if self.input()['tigerdata'].exists():
-            return self.input()['tigerdata'].get(session).bounds
+        input_ = self.input()
+        if input_['tigerdata'].exists():
+            return input_['tigerdata'].get(session).bounds
 
     def columns(self):
+        input_ = self.input()
         cols = OrderedDict([
-            ('geoid', self.input()['tiger'][self.geography + '_geoid']),
+            ('geoid', input_['tiger'][self.geography + '_geoid']),
         ])
-        for colkey, col in self.input()['acs'].iteritems():
+        for colkey, col in input_['acs'].iteritems():
             cols[colkey] = col
         return cols
 
