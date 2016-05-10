@@ -1797,7 +1797,7 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 5
+        return 6
 
     def columns(self):
         columns = OrderedDict({
@@ -1847,7 +1847,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
@@ -1899,7 +1899,6 @@ class Extract(TableTask):
             tableclause += ' JOIN {inputschema}.{inputtable} ' \
                            ' USING (geoid) '.format(inputschema=inputschema,
                                                     inputtable=tableid)
-        #table_id = self.output().get(session).id
         table_id = self.output().table
         session.execute('INSERT INTO {output} ({colnames}) '
                         '  SELECT {colids} '

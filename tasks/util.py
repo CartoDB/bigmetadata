@@ -622,22 +622,34 @@ class TableTask(Task):
     def run(self):
         self.output().update_or_create()
         self.populate()
+        self.create_indexes()
 
-    def complete(self):
-        for dep in self.deps():
-            if not dep.complete():
-                return False
+    def create_indexes(self):
+        session = current_session()
+        for colname, coltarget in self.columns().iteritems():
+            col = coltarget._column
+            if col.should_index():
+                session.execute('CREATE INDEX ON {table} ({colname})'.format(
+                    table=self.output().table, colname=colname))
 
-        return super(TableTask, self).complete()
+    #def complete(self):
+    #    for dep in self.deps():
+    #        if not dep.complete():
+    #            return False
+
+    #    return super(TableTask, self).complete()
 
     def output(self):
+        if not hasattr(self, '_columns'):
+            self._columns = self.columns()
+
         self._output = TableTarget(classpath(self),
                                    underscore_slugify(self.task_id),
                                    OBSTable(description=self.description(),
                                             bounds=self.bounds(),
                                             version=self.version(),
                                             timespan=self.timespan()),
-                                   self.columns(), self)
+                                   self._columns, self)
         return self._output
 
 

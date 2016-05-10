@@ -189,6 +189,9 @@ class OBSColumn(Base):
     version = Column(Numeric, default=0, nullable=False)
     extra = Column(JSON)
 
+    def should_index(self):
+        return 'geom_ref' in self.targets.values()
+
     def children(self):
         children = [col for col, reltype in self.sources.iteritems() if reltype == 'denominator']
         children.sort(key=lambda x: natural_sort_key(x.name))

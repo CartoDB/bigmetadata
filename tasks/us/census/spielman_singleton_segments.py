@@ -104,9 +104,9 @@ class ProcessSpielmanSingletonFile(Task):
         }
         for old_name, new_name in rename.iteritems():
             shell('mv {folder}/{old_name} {folder}/{new_name}'.format(
-            old_name=old_name,
-            new_name=new_name,
-            folder= self.decompressed_folder()))
+                old_name=old_name,
+                new_name=new_name,
+                folder=self.decompressed_folder()))
 
     def output(self):
         return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
@@ -121,7 +121,7 @@ class SpielmanSingletonTable(TableTask):
         }
 
     def version(self):
-        return 6
+        return 7
 
     def timespan(self):
         return '2009 - 2013'

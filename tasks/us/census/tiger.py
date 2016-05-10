@@ -528,7 +528,7 @@ class ShorelineClip(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {
@@ -595,7 +595,7 @@ class SumLevel(TableTask):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
-        return 6
+        return 7
 
     def requires(self):
         tiger = DownloadTiger(year=self.year)
