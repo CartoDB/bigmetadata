@@ -230,9 +230,9 @@ class SpielmanSingletonColumns(ColumnsTask):
         "Very wealthy, multiple million dollar homes": 15,
         "High rise, dense urbanites": 42
     }
-    
-    x55_categories = OrderedDict({
-        ("Middle Class, Educated, Suburban, Mixed Race":, {'description' :'', 'details' : {}}),
+
+    x55_categories = OrderedDict([
+        ("Middle Class, Educated, Suburban, Mixed Race", {'description' :'', 'details' : {}}),
         ("Low Income on Urban Periphery", {'description' :'', 'details' : {}}),
         ("Suburban, Young and Low-income", {'description' :'', 'details' : {}}),
         ("low-income, urban, young, unmarried", {'description' :'', 'details' : {}}),
@@ -286,9 +286,9 @@ class SpielmanSingletonColumns(ColumnsTask):
         ("Wealthy city commuters", {'description' :'', 'details' : {}}),
         ("New Developments", {'description' :'', 'details' : {}}),
         ("Very wealthy, multiple million dollar homes", {'description' :'', 'details' : {}}),
-        ("High rise, dense urbanites", {'description' :'', 'details' : {}})
-    })
-    
+        ("High rise, dense urbanites", {'description' :'', 'details' : {}}),
+    ])
+
     x10_categories = OrderedDict([
         ('Hispanic and Young', {
             'description' : 'Predominantly Hispanic, tends to have at most high school education, '
@@ -351,10 +351,10 @@ class SpielmanSingletonColumns(ColumnsTask):
                   "Housing median value" : "Low",
                   "Housing upper value quantile" : "Low",
                   "Vacancy" : "Low",
-                  "Housing Upper Value Quantile":"Low" ,
+                  "Housing Upper Value Quantile":"Low",
                   "Renter Occupied" : "High",
                   "Single Family Detached" : "Low",
-                  "Single Family Attached" : "Low", 
+                  "Single Family Attached" : "Low",
                   "Building with 2 Units" : "High",
                   "3-4 Units" : "High",
                   "5-9 Units" : "High",
@@ -1066,7 +1066,7 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 8
+        return 9
 
     def requires(self):
         return {
