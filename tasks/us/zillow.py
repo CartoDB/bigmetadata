@@ -124,7 +124,7 @@ class ZillowTimeValueColumns(ColumnsTask):
         columns = OrderedDict()
 
         # TODO generate value columns
-        for year in xrange(1996, 2030):
+        for year in xrange(1996, 2017):
             for month in xrange(1, 13):
                 yr_str = str(year).zfill(2)
                 mo_str = str(month).zfill(2)
@@ -217,20 +217,21 @@ class WideZillow(TableTask):
 
         columns = OrderedDict()
 
-        with self.input()['data'].open() as fhandle:
+        input_ = self.input()
+        with input_['data'].open() as fhandle:
             first_row = fhandle.next().strip().split(',')
 
         for headercell in first_row:
             headercell = headercell.strip('"').replace('-', '_')
             if headercell == 'RegionName':
-                columns['region_name'] = self.input()['geoids'][tiger_geo + '_geoid']
+                columns['region_name'] = input_['geoids'][tiger_geo + '_geoid']
             else:
                 colname = underscore_slugify(headercell)
                 if colname[0:2] in ('19', '20'):
                     colname = 'value_' + colname
-                    columns[colname] = self.input()['zillow_time_value'][headercell]
+                    columns[colname] = input_['zillow_time_value'][headercell]
                 else:
-                    columns[colname] = self.input()['zillow_geo'][headercell]
+                    columns[colname] = input_['zillow_geo'][headercell]
 
         return columns
 
@@ -274,6 +275,7 @@ class Zillow(TableTask):
                                        month=str(self.month).zfill(2))
 
     def columns(self):
+        input_ = self.input()
         if self.geography == 'Zip':
             tiger_geo = 'zcta5'
         else:
@@ -281,11 +283,11 @@ class Zillow(TableTask):
             raise Exception('unrecognized geography {}'.format(self.geography))
 
         columns = OrderedDict([
-            ('region_name', self.input()['geoids'][tiger_geo + '_geoid']),
+            ('region_name', input_['geoids'][tiger_geo + '_geoid']),
         ])
         for hometype, _, measure, _ in hometype_measures():
             col_id = hometype + '_' + measure
-            columns[col_id] = self.input()['metadata'][col_id]
+            columns[col_id] = input_['metadata'][col_id]
         return columns
 
     def populate(self):
@@ -312,5 +314,5 @@ class Zillow(TableTask):
                 input_table=input_table))
             if insert:
                 session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
-                    output=self.ouptut().table))
+                    output=self.output().table))
             insert = False
