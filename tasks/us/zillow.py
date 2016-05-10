@@ -71,11 +71,12 @@ class ZillowTags(TagsTask):
 
     def tags(self):
         return [
-            OBSTag(id='homevalue',
-                   name='Zillow Home Value Index',
+            OBSTag(id='indexes',
+                   name='Zillow Home Value and Rental Indexes',
                    type='catalog',
-                   description='The Zillow Home Value Index'),
+                   description='Zillow home value and rental indexes.'),
         ]
+
 
 class DownloadZillow(Task):
 
@@ -97,11 +98,21 @@ class DownloadZillow(Task):
 
 class ZillowValueColumns(ColumnsTask):
 
+    def requires(self):
+        return {
+            'tags': ZillowTags()
+        }
+
+    def version(self):
+        return 2
+
     def columns(self):
+        input_ = self.input()
+        tag = input_['tags']['indexes']
         columns = OrderedDict()
 
         for hometype, hometype_human, measure, measure_human in hometype_measures():
-            aggregate = 'median' if 'median' in measure.lower() else 'sum'
+            aggregate = 'median' if 'median' in measure.lower() else 'index'
             col_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                    measure=measure)
             col = OBSColumn(type='Numeric',
@@ -112,7 +123,8 @@ class ZillowValueColumns(ColumnsTask):
                             weight=1,
                             description='{measure} for {hometype}'.format(
                                 measure=measure_human,
-                                hometype=hometype_human))
+                                hometype=hometype_human),
+                            tags=[tag])
             columns[col_id] = col
         return columns
 
