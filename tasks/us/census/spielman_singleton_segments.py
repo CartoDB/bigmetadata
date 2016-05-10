@@ -142,6 +142,14 @@ class SpielmanSingletonTable(TableTask):
                                           name=name,
                                           segment_id=segment_id
                                       ))
+                                      
+        for name, segment_id in SpielmanSingletonColumns.x55_mapping.iteritems():
+            current_session().execute("update {table} set X55 = '{name}' "
+                                      "where X55 ='{segment_id}'; ".format(
+                                          table=table_name,
+                                          name=name,
+                                          segment_id=segment_id
+                                      ))
 
     def columns(self):
         columns = OrderedDict({
@@ -164,7 +172,123 @@ class SpielmanSingletonColumns(ColumnsTask):
         'Low income, African American' : 9,
         'Residential Institutions' : 10
     }
-
+    
+    x55_mapping = {
+        "Middle Class, Educated, Surburban, Mixed Race": 1,
+        "Low Income on Urban Periphery": 3,
+        "Suburban, Young and Low-income": 19,
+        "low-income, urban, young, unmarried": 32,
+        "Low education, mainly suburban": 34,
+        "Young, working class and rural": 38,
+        "Low-Income with gentrificication": 54,
+        "Highschool education Long Comuters, Black, White Hispanic mix": 10,
+        "Rural, Bachelors or college degree, Rent owned mix": 25,
+        "Rural,High School Education, Owns property": 28,
+        "Young, City based renters in Sparse neighborhoods, Low poverty": 50,
+        "Predominatly black, high high school attainment, home owners": 16,
+        "White and minority mix multilingual, mixed income / education. Married": 29,
+        "Hispanic Black mix multilingual, high poverty, renters, uses public transport": 33,
+        "Predominatly black renters, rent own mix": 41,
+        "Lower Middle Income with higher rent burden": 5,
+        "Black and mixed comminity with rent burden": 6,
+        "Lower Middle Income with affordable housing": 9,
+        "Relatively affordable, satisfied lower middle class": 12,
+        "Satisfied Lower Middle Income Higher Rent Costs": 20,
+        "Suburban/Rural Satisfied, decently educated lower middle class": 23,
+        "Struggling lower middle class with rent burden": 24,
+        "Older white home owners, less comfortable fnancially": 43,
+        "Older home owners, more financially comfortable, some diversity": 55,
+        "Yonger, poorer,single parent family Native Americans": 7,
+        "Older, middle income Native Americans once married and Educated": 17,
+        "Older, mixed race professionals": 14,
+        "Telecomuting Highly Educated Super Wealthy Tech Workers": 21,
+        "Retired Grandparents": 35,
+        "Wealthy and Rural Living": 40,
+        "Wealthy, Retired Mountains/Coasts": 48,
+        "Wealthy Diverse Suburbanites On the Coasts": 49,
+        "Retirement Communitties": 53,
+        "Urban - Inner city": 26,
+        "Rural families": 31,
+        "College towns": 30,
+        "College town with poverty": 44,
+        "University campus wider area": 46,
+        "City Outskirt University Campuses": 51,
+        "City Center University Campuses": 52,
+        "Lower educational attainment, Homeowner, Low rent": 2,
+        "Younger, Long Commuter in dense neighborhood": 4,
+        "Long commuters White black mix": 13,
+        "Low rent in built up neighborhoods": 18,
+        "Renters within cities, mixed income areas, White/Hispanic mix, Unmarried": 22,
+        "Older Home owners with high income": 27,
+        "Older home owners and very high income": 36,
+        "White Asian Mix Big City Burbs Dwellers": 37,
+        "Bacelors degree Mid income With Mortages": 39,
+        "Asian Hispanic Mix, Mid income": 45,
+        "Bacelors degree Higher income Home Owners": 47,
+        "Welthy city commuters": 8,
+        "New Developments": 11,
+        "Very wealthy, multiple million dollar homes": 15,
+        "High rise, dense urabanites": 42
+    }
+    
+    x55_categories = OrderedDict({
+        ("Middle Class, Educated, Surburban, Mixed Race":, {'description' :'', 'details' : {}}),
+        ("Low Income on Urban Periphery", {'description' :'', 'details' : {}}),
+        ("Suburban, Young and Low-income", {'description' :'', 'details' : {}}),
+        ("low-income, urban, young, unmarried", {'description' :'', 'details' : {}}),
+        ("Low education, mainly suburban", {'description' :'', 'details' : {}}),
+        ("Young, working class and rural", {'description' :'', 'details' : {}}),
+        ("Low-Income with gentrificication", {'description' :'', 'details' : {}}),
+        ("Highschool education Long Comuters, Black, White Hispanic mix", {'description' :'', 'details' : {}}),
+        ("Rural, Bachelors or college degree, Rent owned mix", {'description' :'', 'details' : {}}),
+        ("Rural,High School Education, Owns property", {'description' :'', 'details' : {}}),
+        ("Young, City based renters in Sparse neighborhoods, Low poverty", {'description' :'', 'details' : {}}),
+        ("Predominatly black, high high school attainment, home owners", {'description' :'', 'details' : {}}),
+        ("White and minority mix multilingual, mixed income / education. Married", {'description' :'', 'details' : {}}),
+        ("Hispanic Black mix multilingual, high poverty, renters, uses public transport", {'description' :'', 'details' : {}}),
+        ("Predominatly black renters, rent own mix", {'description' :'', 'details' : {}}),
+        ("Lower Middle Income with higher rent burden", {'description' :'', 'details' : {}}),
+        ("Black and mixed comminity with rent burden", {'description' :'', 'details' : {}}),
+        ("Lower Middle Income with affordable housing", {'description' :'', 'details' : {}}),
+        ("Relatively affordable, satisfied lower middle class", {'description' :'', 'details' : {}}),
+        ("Satisfied Lower Middle Income Higher Rent Costs", {'description' :'', 'details' : {}}),
+        ("Suburban/Rural Satisfied, decently educated lower middle class", {'description' :'', 'details' : {}}),
+        ("Struggling lower middle class with rent burden", {'description' :'', 'details' : {}}),
+        ("Older white home owners, less comfortable fnancially", {'description' :'', 'details' : {}}),
+        ("Older home owners, more financially comfortable, some diversity", {'description' :'', 'details' : {}}),
+        ("Yonger, poorer,single parent family Native Americans", {'description' :'', 'details' : {}}),
+        ("Older, middle income Native Americans once married and Educated", {'description' :'', 'details' : {}}),
+        ("Older, mixed race professionals", {'description' :'', 'details' : {}}),
+        ("Telecomuting Highly Educated Super Wealthy Tech Workers", {'description' :'', 'details' : {}}),
+        ("Retired Grandparents", {'description' :'', 'details' : {}}),
+        ("Wealthy and Rural Living", {'description' :'', 'details' : {}}),
+        ("Wealthy, Retired Mountains/Coasts", {'description' :'', 'details' : {}}),
+        ("Wealthy Diverse Suburbanites On the Coasts", {'description' :'', 'details' : {}}),
+        ("Retirement Communitties", {'description' :'', 'details' : {}}),
+        ("Urban - Inner city", {'description' :'', 'details' : {}}),
+        ("Rural families", {'description' :'', 'details' : {}}),
+        ("College towns", {'description' :'', 'details' : {}}),
+        ("College town with poverty", {'description' :'', 'details' : {}}),
+        ("University campus wider area", {'description' :'', 'details' : {}}),
+        ("City Outskirt University Campuses", {'description' :'', 'details' : {}}),
+        ("City Center University Campuses", {'description' :'', 'details' : {}}),
+        ("Lower educational attainment, Homeowner, Low rent", {'description' :'', 'details' : {}}),
+        ("Younger, Long Commuter in dense neighborhood", {'description' :'', 'details' : {}}),
+        ("Long commuters White black mix", {'description' :'', 'details' : {}}),
+        ("Low rent in built up neighborhoods", {'description' :'', 'details' : {}}),
+        ("Renters within cities, mixed income areas, White/Hispanic mix, Unmarried", {'description' :'', 'details' : {}}),
+        ("Older Home owners with high income", {'description' :'', 'details' : {}}),
+        ("Older home owners and very high income", {'description' :'', 'details' : {}}),
+        ("White Asian Mix Big City Burbs Dwellers", {'description' :'', 'details' : {}}),
+        ("Bacelors degree Mid income With Mortages", {'description' :'', 'details' : {}}),
+        ("Asian Hispanic Mix, Mid income", {'description' :'', 'details' : {}}),
+        ("Bacelors degree Higher income Home Owners", {'description' :'', 'details' : {}}),
+        ("Welthy city commuters", {'description' :'', 'details' : {}}),
+        ("New Developments", {'description' :'', 'details' : {}}),
+        ("Very wealthy, multiple million dollar homes", {'description' :'', 'details' : {}}),
+        ("High rise, dense urabanites", {'description' :'', 'details' : {}})
+    })
+    
     x10_categories = OrderedDict([
         ('Hispanic and Young', {
             'description' : 'Predominantly Hispanic, tends to have at most high school education, '
@@ -975,7 +1099,8 @@ class SpielmanSingletonColumns(ColumnsTask):
             id='X55',
             type='Text',
             name="SS_segment_55_clusters",
-            description="Sociodemographic classes from Spielman and Singleton 2015, 10 clusters"
+            description="Sociodemographic classes from Spielman and Singleton 2015, 55 clusters",
+            extra={'categories': self.x55_categories}
         )
 
         return OrderedDict([
