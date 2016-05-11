@@ -1,3 +1,4 @@
+
 '''
 Define special segments for the census
 '''
@@ -182,7 +183,7 @@ class SpielmanSingletonColumns(ColumnsTask):
         "Young, working class and rural": 38,
         "Low-Income with gentrification": 54,
         "High school education Long Commuters, Black, White Hispanic mix": 10,
-        "Rural, Bachelors or college degree, Rent owned mix": 25,
+        "Non-urban, Bachelors or college degree, Rent owned mix": 25,
         "Rural,High School Education, Owns property": 28,
         "Young, City based renters in Sparse neighborhoods, Low poverty": 50,
         "Predominantly black, high high school attainment, home owners": 16,
@@ -219,7 +220,7 @@ class SpielmanSingletonColumns(ColumnsTask):
         "Long commuters White black mix": 13,
         "Low rent in built up neighborhoods": 18,
         "Renters within cities, mixed income areas, White/Hispanic mix, Unmarried": 22,
-        "Older Home owners with high income": 27,
+        "Mix of older home owners with middle income and farmers": 27,
         "Older home owners and very high income": 36,
         "White Asian Mix Big City Burbs Dwellers": 37,
         "Bachelors degree Mid income With Mortgages": 39,
@@ -227,7 +228,7 @@ class SpielmanSingletonColumns(ColumnsTask):
         "Bachelors degree Higher income Home Owners": 47,
         "Wealthy city commuters": 8,
         "New Developments": 11,
-        "Very wealthy, multiple million dollar homes": 15,
+        "Wealthy transplants displacing long-term local residents": 15,
         "High rise, dense urbanites": 42
     }
     
