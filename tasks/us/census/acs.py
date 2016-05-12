@@ -59,16 +59,17 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 5
+        return 7
 
     def columns(self):
-        tags = self.input()['tags']
-        censustags = self.input()['censustags']
-        segmenttags = self.input()['segmenttags']
+        input_ = self.input()
+        tags = input_['tags']
+        censustags = input_['censustags']
+        segmenttags = input_['segmenttags']
         tag_middle_aged_men = segmenttags['middle_aged_men']
         tag_families_with_young_children = segmenttags['families_with_young_children']
         total_pop = OBSColumn(
-            id='B01001001',
+            id='B01003001',
             type='Numeric',
             name="Total Population",
             description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -250,7 +251,7 @@ class Columns(ColumnsTask):
             targets={commuters_by_car_truck_van: 'denominator'},
             tags=[censustags['demographics'], tags['transportation']])
         commuters_by_public_transportation = OBSColumn(
-            id='B08006008',
+            id='B08301010',
             type='Numeric',
             name='Commuters by Public Transportation',
             description='The number of workers age 16 years and over within '
@@ -321,6 +322,14 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator'], tags['race_age_gender']])
+        children_in_single_female_hh = OBSColumn(
+            id='B09005005',
+            type='Numeric',
+            name='Children under 18 years of age in single female-led household',
+            weight=0,
+            aggregate='sum',
+            targets={children: 'denominator'}
+        )
         households = OBSColumn(
             id='B11001001',
             type='Numeric',
@@ -332,6 +341,30 @@ class Columns(ColumnsTask):
             weight=8,
             aggregate='sum',
             tags=[censustags['demographics'], tags['housing']])
+        married_households = OBSColumn(
+            id='B11001003',
+            type='Numeric',
+            name='Married households',
+            description='',
+            weight=0,
+            targets={households: 'denominator'}
+        )
+        male_male_households = OBSColumn(
+            id='B11009003',
+            type='Numeric',
+            name='Households with two male partners',
+            description='',
+            weight=0,
+            targets={households: 'denominator'}
+        )
+        female_female_households = OBSColumn(
+            id='B11009005',
+            type='Numeric',
+            name='Households with two female partners',
+            description='',
+            weight=0,
+            targets={households: 'denominator'}
+        )
         population_3_years_over = OBSColumn(
             id='B14001001',
             type='Numeric',
@@ -411,6 +444,15 @@ class Columns(ColumnsTask):
             aggregate='sum',
             tags=[censustags['demographics'], tags['denominator'],
                   tags['income_education_employment']])
+        less_than_high_school_graduate = OBSColumn(
+            id='B07009002',
+            type='Numeric',
+            name='Less than high school graduate',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'}
+        )
         high_school_diploma = OBSColumn(
             id='B15003017',
             type='Numeric',
@@ -422,6 +464,15 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
+        high_school_including_ged = OBSColumn(
+            id='B07009003',
+            type='Numeric',
+            name='Population with high school degree, including GED',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'}
+        )
         less_one_year_college = OBSColumn(
             id='B15003019',
             type='Numeric',
@@ -454,6 +505,15 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
+        some_college_and_associates_degree = OBSColumn(
+            id='B07009004',
+            type='Numeric',
+            name='Population who completed some college or obtained associate\'s degree',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'}
+        )
         bachelors_degree = OBSColumn(
             id='B15003022',
             type='Numeric',
@@ -465,6 +525,15 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
+        bachelors_degree_2 = OBSColumn(
+            id='B07009005',
+            type='Numeric',
+            name='Population who completed a bachelor\'s degree. From mobility table.',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'}
+        )
         masters_degree = OBSColumn(
             id='B15003023',
             type='Numeric',
@@ -476,6 +545,15 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['income_education_employment']])
+        graduate_professional_degree = OBSColumn(
+            id='B07009006',
+            type='Numeric',
+            name='Population who completed a graduate or professional degree',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={pop_25_years_over: 'denominator'}
+        )
         pop_5_years_over = OBSColumn(
             id='B16001001',
             type='Numeric',
@@ -507,6 +585,15 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
             tags=[censustags['demographics'], tags['language']])
+        speak_spanish_at_home_low_english = OBSColumn(
+            id='B16001005',
+            type='Numeric',
+            name='Speaks Spanish at Home, speaks English less than "very well"',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={pop_5_years_over: 'denominator'}
+        )
         pop_determined_poverty_status = OBSColumn(
             id='B17001001',
             type='Numeric',
@@ -595,6 +682,24 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={housing_units: 'denominator'},
             tags=[censustags['demographics'], tags['housing']])
+        occupied_housing_units = OBSColumn(
+            id='B25003001',
+            type='Numeric',
+            name='Renter occupied housing units',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        housing_units_renter_occupied = OBSColumn(
+            id='B25003003',
+            type='Numeric',
+            name='Renter occupied housing units',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={occupied_housing_units: 'denominator'}
+        )
         vacant_housing_units_for_rent = OBSColumn(
             id='B25004002',
             type='Numeric',
@@ -686,6 +791,115 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={owner_occupied_housing_units: 'denominator'},
             tags=[censustags['demographics'], tags['housing']])
+
+        dwellings_1_units_detached = OBSColumn(
+            id='B25024002',
+            type='Numeric',
+            name='Single-family (one unit) detached dwellings',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        dwellings_1_units_attached = OBSColumn(
+            id='B25024003',
+            type='Numeric',
+            name='Single-family (one unit) detached dwellings',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        dwellings_2_units = OBSColumn(
+            id='B25024004',
+            type='Numeric',
+            name='Two-family (two unit) dwellings',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        dwellings_3_to_4_units = OBSColumn(
+            id='B25024005',
+            type='Numeric',
+            name='Multifamily dwellings with three to 4 units',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        dwellings_5_to_9_units = OBSColumn(
+            id='B25024006',
+            type='Numeric',
+            name='Apartment buildings with 5 to 9 units',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        dwellings_10_to_19_units = OBSColumn(
+            id='B25024007',
+            type='Numeric',
+            name='Apartment buildings with 10 to 19 units',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        dwellings_20_to_49_units = OBSColumn(
+            id='B25024008',
+            type='Numeric',
+            name='Apartment buildings with 20 to 49 units',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        dwellings_50_or_more_units = OBSColumn(
+            id='B25024009',
+            type='Numeric',
+            name='Apartment buildings with 50 or more units',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        mobile_homes = OBSColumn(
+            id='B25024010',
+            type='Numeric',
+            name='Mobile homes',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        housing_built_2005_or_later = OBSColumn(
+            id='B25034002',
+            type='Numeric',
+            name='Housing units built in 2005 or later',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        housing_built_2000_to_2004 = OBSColumn(
+            id='B25034003',
+            type='Numeric',
+            name='Housing units built between 2000 and 2004',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
+        housing_built_1939_or_earlier = OBSColumn(
+            id='B25034010',
+            type='Numeric',
+            name='Housing units built before 1939',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={housing_units: 'denominator'}
+        )
 
         #* families with young children (under 6 years of age):
         #  - B23008002: total families with children under 6 years
@@ -918,6 +1132,169 @@ class Columns(ColumnsTask):
             tags=[tags['income_education_employment'], censustags['demographics']]
         )
 
+        employed_agriculture_forestry_fishing_hunting_mining = OBSColumn(
+            id='C24050002',
+            type='Numeric',
+            name='Workers employed in firms in agriculture, forestry, fishing, hunting, or mining',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_construction = OBSColumn(
+            id='C24050003',
+            type='Numeric',
+            name='Workers employed in firms in construction',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_manufacturing = OBSColumn(
+            id='C24050004',
+            type='Numeric',
+            name='Workers employed in firms in manufacturing',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_wholesale_trade = OBSColumn(
+            id='C24050005',
+            type='Numeric',
+            name='Workers employed in firms in wholesale trade',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_retail_trade = OBSColumn(
+            id='C24050006',
+            type='Numeric',
+            name='Workers employed in firms in retail trade',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_transportation_warehousing_utilities = OBSColumn(
+            id='C24050007',
+            type='Numeric',
+            name='Workers employed in firms in transportation, warehousing, and utilities',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_information = OBSColumn(
+            id='C24050008',
+            type='Numeric',
+            name='Workers employed in firms in information',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_finance_insurance_real_estate = OBSColumn(
+            id='C24050009',
+            type='Numeric',
+            name='Workers employed in firms in finance, insurance, real estate and rental and leasing',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_science_management_admin_waste = OBSColumn(
+            id='C24050010',
+            type='Numeric',
+            name='Workers employed in firms in professional scientific, management, administrative and waste management services',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_education_health_social = OBSColumn(
+            id='C24050011',
+            type='Numeric',
+            name='Workers employed in firms in educational services, health care, and social assistance',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_arts_entertainment_recreation_accommodation_food = OBSColumn(
+            id='C24050012',
+            type='Numeric',
+            name='Workers employed in firms in arts, entertainment, recreation, accommodation and food services',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_other_services_not_public_admin = OBSColumn(
+            id='C24050013',
+            type='Numeric',
+            name='Workers employed in firms in other services except public administration',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        employed_public_administration = OBSColumn(
+            id='C24050014',
+            type='Numeric',
+            name='Workers employed in firms in public administration',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        occupation_management_arts = OBSColumn(
+            id='C24050015',
+            type='Numeric',
+            name='Workers employed in management business science and arts occupations',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        occupation_services = OBSColumn(
+            id='C24050029',
+            type='Numeric',
+            name='Workers employed in service occupations',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        occupation_sales_office = OBSColumn(
+            id='C24050043',
+            type='Numeric',
+            name='Workers employed in sales and office occupations',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        occupation_natural_resources_construction_maintenance = OBSColumn(
+            id='C24050057',
+            type='Numeric',
+            name='Workers employed in natural resources, construction, and maintenance occupations',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+        occupation_production_transportation_material = OBSColumn(
+            id='C24050071',
+            type='Numeric',
+            name='Workers employed in production, transportation, and material moving',
+            weight=0,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            description=''
+        )
+
         # TODO
         #  - B23008011: living with father who is not in labor force
         #  - B23008012: living with mother
@@ -934,17 +1311,439 @@ class Columns(ColumnsTask):
         #  - B23003008: living with female 20 to 64 years of age who is unemployed in civilian labor force
         #  - B23003009: living with female 20 to 64 years of age who is not in labor force
 
+        male_under_5 = OBSColumn(
+            id='B01001003',
+            type='Numeric',
+            name='Male under 5 years',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_5_to_9 = OBSColumn(
+            id='B01001004',
+            type='Numeric',
+            name='Male age 5 to 9',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_10_to_14 = OBSColumn(
+            id='B01001004',
+            type='Numeric',
+            name='Male age 10 to 14',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_15_to_17 = OBSColumn(
+            id='B01001006',
+            type='Numeric',
+            name='Male age 15 to 17',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_18_to_19 = OBSColumn(
+            id='B01001007',
+            type='Numeric',
+            name='Male age 18 and 19',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_20 = OBSColumn(
+            id='B01001008',
+            type='Numeric',
+            name='Male age 20',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_21 = OBSColumn(
+            id='B01001009',
+            type='Numeric',
+            name='Male age 21',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_22_to_24 = OBSColumn(
+            id='B01001010',
+            type='Numeric',
+            name='Male age 22 to 24',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_25_to_29 = OBSColumn(
+            id='B01001011',
+            type='Numeric',
+            name='Male age 25 to 29',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_30_to_34 = OBSColumn(
+            id='B01001012',
+            type='Numeric',
+            name='Male age 30 to 34',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_35_to_39 = OBSColumn(
+            id='B01001013',
+            type='Numeric',
+            name='Male age 35 to 39',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_40_to_44 = OBSColumn(
+            id='B01001014',
+            type='Numeric',
+            name='Male age 40 to 44',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+
+        male_65_to_66 = OBSColumn(
+            id='B01001020',
+            type='Numeric',
+            name='Male age 65 to 66',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_67_to_69 = OBSColumn(
+            id='B01001021',
+            type='Numeric',
+            name='Male age 67 to 69',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_70_to_74 = OBSColumn(
+            id='B01001022',
+            type='Numeric',
+            name='Male age 70 to 74',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_75_to_79 = OBSColumn(
+            id='B01001023',
+            type='Numeric',
+            name='Male age 75 to 79',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_80_to_84 = OBSColumn(
+            id='B01001024',
+            type='Numeric',
+            name='Male age 80 to 84',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        male_85_and_over = OBSColumn(
+            id='B01001025',
+            type='Numeric',
+            name='Male age 85 and over',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+
+        # female
+        female_under_5 = OBSColumn(
+            id='B01001027',
+            type='Numeric',
+            name='Female under 5 years',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_5_to_9 = OBSColumn(
+            id='B01001028',
+            type='Numeric',
+            name='Female age 5 to 9',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_10_to_14 = OBSColumn(
+            id='B01001029',
+            type='Numeric',
+            name='Female age 10 to 14',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_15_to_17 = OBSColumn(
+            id='B01001030',
+            type='Numeric',
+            name='Female age 15 to 17',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_18_to_19 = OBSColumn(
+            id='B01001031',
+            type='Numeric',
+            name='Female age 18 and 19',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_20 = OBSColumn(
+            id='B01001032',
+            type='Numeric',
+            name='Female age 20',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_21 = OBSColumn(
+            id='B01001033',
+            type='Numeric',
+            name='Female age 21',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_22_to_24 = OBSColumn(
+            id='B01001034',
+            type='Numeric',
+            name='Female age 22 to 24',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_25_to_29 = OBSColumn(
+            id='B01001035',
+            type='Numeric',
+            name='Female age 25 to 29',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_30_to_34 = OBSColumn(
+            id='B01001036',
+            type='Numeric',
+            name='Female age 30 to 34',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_35_to_39 = OBSColumn(
+            id='B01001037',
+            type='Numeric',
+            name='Female age 35 to 39',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_40_to_44 = OBSColumn(
+            id='B01001038',
+            type='Numeric',
+            name='Female age 40 to 44',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_45_to_49 = OBSColumn(
+            id='B01001039',
+            type='Numeric',
+            name='Female age 45 to 49',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_50_to_54 = OBSColumn(
+            id='B01001040',
+            type='Numeric',
+            name='Female age 50 to 54',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_55_to_59 = OBSColumn(
+            id='B01001041',
+            type='Numeric',
+            name='Female age 55 to 59',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_60_to_61 = OBSColumn(
+            id='B01001042',
+            type='Numeric',
+            name='Female age 60 and 61',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_62_to_64 = OBSColumn(
+            id='B01001043',
+            type='Numeric',
+            name='Female age 62 to 64',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+
+        female_65_to_66 = OBSColumn(
+            id='B01001044',
+            type='Numeric',
+            name='Female age 65 to 66',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_67_to_69 = OBSColumn(
+            id='B01001045',
+            type='Numeric',
+            name='Female age 67 to 69',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_70_to_74 = OBSColumn(
+            id='B01001046',
+            type='Numeric',
+            name='Female age 70 to 74',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_75_to_79 = OBSColumn(
+            id='B01001047',
+            type='Numeric',
+            name='Female age 75 to 79',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_80_to_84 = OBSColumn(
+            id='B01001048',
+            type='Numeric',
+            name='Female age 80 to 84',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        female_85_and_over = OBSColumn(
+            id='B01001049',
+            type='Numeric',
+            name='Female age 85 and over',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+
+        white_including_hispanic = OBSColumn(
+            id= 'B02001002',
+            type='Numeric',
+            name='White including Hispanic',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        black_including_hispanic = OBSColumn(
+            id= 'B02001003',
+            type='Numeric',
+            name='Black including Hispanic',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        amerindian_including_hispanic = OBSColumn(
+            id= 'B02001004',
+            type='Numeric',
+            name='American Indian including Hispanic',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+        asian_including_hispanic = OBSColumn(
+            id='B02001005',
+            type='Numeric',
+            name='Asian including Hispanic',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+
+        hispanic_any_race = OBSColumn(
+            id='B03001003',
+            type='Numeric',
+            name='Hispanic of any race',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={total_pop: 'denominator'}
+        )
+
         #* men in middle age (45-64)
-        men_45_to_64 = OBSColumn(
+        male_45_to_64 = OBSColumn(
             id='B15001027',
             type='Numeric',
             name='Men age 45 to 64 ("middle aged")',
-            description=0,
+            description='',
+            weight=0,
             aggregate='sum',
             tags=[tag_middle_aged_men])
 
         #  - B01001015: 45 To 49 Years
-        men_45_to_49 = OBSColumn(
+        male_45_to_49 = OBSColumn(
             id='B01001015',
             type='Numeric',
             name='Men age 45 to 49',
@@ -955,7 +1754,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001016: 50 To 54 Years
-        men_50_to_54 = OBSColumn(
+        male_50_to_54 = OBSColumn(
             id='B01001016',
             type='Numeric',
             name='Men age 50 to 54',
@@ -966,7 +1765,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001017: 55 To 59 Years
-        men_55_to_59 = OBSColumn(
+        male_55_to_59 = OBSColumn(
             id='B01001017',
             type='Numeric',
             name='Men age 55 to 59',
@@ -977,7 +1776,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001018: 60 and 61 Years
-        men_60_61 = OBSColumn(
+        male_60_61 = OBSColumn(
             id='B01001018',
             type='Numeric',
             name='Men age 60 to 61',
@@ -988,7 +1787,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001019: 62 To 64 Years
-        men_62_64 = OBSColumn(
+        male_62_64 = OBSColumn(
             id='B01001019',
             type='Numeric',
             name='Men age 62 to 64',
@@ -999,7 +1798,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001B012: black, 45 to 54 Years
-        black_men_45_54 = OBSColumn(
+        black_male_45_54 = OBSColumn(
             id='B01001B012',
             type='Numeric',
             name='Black Men age 45 to 54',
@@ -1010,7 +1809,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001B013: black, 55 to 64 Years
-        black_men_55_64 = OBSColumn(
+        black_male_55_64 = OBSColumn(
             id='B01001B013',
             type='Numeric',
             name='Black Men age 55 to 64',
@@ -1021,7 +1820,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001I012: Hispanic, 45 to 54 Years
-        hispanic_men_45_54 = OBSColumn(
+        hispanic_male_45_54 = OBSColumn(
             id='B01001I012',
             type='Numeric',
             name='Hispanic Men age 45 to 54',
@@ -1032,7 +1831,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001I013: Hispanic, 55 to 64 Years
-        hispanic_men_55_64 = OBSColumn(
+        hispanic_male_55_64 = OBSColumn(
             id='B01001I013',
             type='Numeric',
             name='Hispanic Men age 55 to 64',
@@ -1043,7 +1842,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001H012: white non-hispanic, 45 to 54 Years
-        white_men_45_54 = OBSColumn(
+        white_male_45_54 = OBSColumn(
             id='B01001H012',
             type='Numeric',
             name='White Men age 45 to 54',
@@ -1054,7 +1853,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001H013: white non-hispanic, 55 to 64 Years
-        white_men_55_64 = OBSColumn(
+        white_male_55_64 = OBSColumn(
             id='B01001H013',
             type='Numeric',
             name='White Men age 55 to 64',
@@ -1065,7 +1864,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001D012: asian, 45 to 54 Years
-        asian_men_45_54 = OBSColumn(
+        asian_male_45_54 = OBSColumn(
             id='B01001D012',
             type='Numeric',
             name='Asian Men age 45 to 54',
@@ -1076,7 +1875,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B01001D013: asian, 55 to 64 Years
-        asian_men_55_64 = OBSColumn(
+        asian_male_55_64 = OBSColumn(
             id='B01001D013',
             type='Numeric',
             name='Asian Men age 55 to 64',
@@ -1091,7 +1890,7 @@ class Columns(ColumnsTask):
         #  - B05013014: foreign born, 55 to 59 Years
         #  - B05013015: foreign born, 60 to 64 Years
         #  - B15001028: less than 9th grade education
-        men_45_64_less_than_9_grade = OBSColumn(
+        male_45_64_less_than_9_grade = OBSColumn(
             id='B15001028',
             type='Numeric',
             name='Men age 45 to 64 who attained less than a 9th grade education',
@@ -1102,7 +1901,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001029: completed between 9th to 12th grade, no diploma
-        men_45_64_grade_9_12 = OBSColumn(
+        male_45_64_grade_9_12 = OBSColumn(
             id='B15001029',
             type='Numeric',
             name='Men age 45 to 64 who attained between 9th and 12th grade, no diploma',
@@ -1113,7 +1912,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001030: high school graduate including GED
-        men_45_64_high_school = OBSColumn(
+        male_45_64_high_school = OBSColumn(
             id='B15001030',
             type='Numeric',
             name='Men age 45 to 64 who completed high school or obtained GED',
@@ -1124,7 +1923,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001031: some college, no degree
-        men_45_64_some_college = OBSColumn(
+        male_45_64_some_college = OBSColumn(
             id='B15001031',
             type='Numeric',
             name='Men age 45 to 64 who completed some college, no degree',
@@ -1135,7 +1934,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001032: associate's degree
-        men_45_64_associates_degree = OBSColumn(
+        male_45_64_associates_degree = OBSColumn(
             id='B15001032',
             type='Numeric',
             name='Men age 45 to 64 who obtained an associate\'s degree',
@@ -1146,7 +1945,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001033: bachelor's degree
-        men_45_64_bachelors_degree = OBSColumn(
+        male_45_64_bachelors_degree = OBSColumn(
             id='B15001033',
             type='Numeric',
             name='Men age 45 to 64 who obtained a bachelor\'s degree',
@@ -1157,7 +1956,7 @@ class Columns(ColumnsTask):
             tags=[tag_middle_aged_men])
 
         #  - B15001034: graduate/professional degree
-        men_45_64_graduate_degree = OBSColumn(
+        male_45_64_graduate_degree = OBSColumn(
             id='B15001034',
             type='Numeric',
             name='Men age 45 to 64 who obtained a graduate or professional degree',
@@ -1172,7 +1971,7 @@ class Columns(ColumnsTask):
         #  - B17001015: income above poverty, 45 to 54 years
         #  - B17001016: income above poverty, 55 to 64 years
         #  - B23001046: in labor force, 45 to 54 years
-        #men_45_64_in_labor_force = OBSColumn(
+        #male_45_64_in_labor_force = OBSColumn(
         #    id='B23001046',
         #    type='Numeric',
         #    name='Men age 45 to 64 who are in the labor force',
@@ -1186,29 +1985,28 @@ class Columns(ColumnsTask):
         ##  - B23001048: in civilian labor force, 45 to 54 years
         ##  - B23001049: employed in civilian labor force, 45 to 54 years
         ##  - B23001050: unemployed in civilian labor force, 45 to 54 years
-        #men_45_64_unemployed = OBSColumn(
+        #male_45_64_unemployed = OBSColumn(
         #    id='B23001050',
         #    type='Numeric',
         #    name='Men age 45 to 64 who are in the labor force',
         #    description='',
         #    weight=0,
         #    aggregate='sum',
-        #    targets={men_45_64_in_labor_force: 'denominator'},
+        #    targets={male_45_64_in_labor_force: 'denominator'},
         #    tags=[tag_middle_aged_men])
 
         ##  - B23001051 not in labor force, 45 to 54 years
-        #men_45_64_not_in_labor_force = OBSColumn(
+        #male_45_64_not_in_labor_force = OBSColumn(
         #    id='B23001051',
         #    type='Numeric',
         #    name='Men age 45 to 64 who are not in the labor force',
         #    description='',
         #    weight=0,
         #    aggregate='sum',
-        #    targets={men_45_64_in_labor_force: 'denominator'},
+        #    targets={male_45_64_in_labor_force: 'denominator'},
         #    tags=[tag_middle_aged_men])
 
         # Pitney bowes
-        #for
         pop_15_and_over = OBSColumn(
             id="B12005001",
             type='Numeric',
@@ -1293,8 +2091,17 @@ class Columns(ColumnsTask):
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
         )
+        commute_5_9_mins = OBSColumn(
+            id='B08303003',
+            type='Numeric',
+            name='Number of workers with a commute between 5 and 9 minutes',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={commuters_16_over: 'denominator'},
+        )
         commute_10_14_mins = OBSColumn(
-            id='B08134003',
+            id='B08303004',
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 10 and 14 minutes',
@@ -1307,7 +2114,7 @@ class Columns(ColumnsTask):
 
         )
         commute_15_19_mins = OBSColumn(
-            id='B08134004',
+            id='B08303005',
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 15 and 19 minutes',
@@ -1320,7 +2127,7 @@ class Columns(ColumnsTask):
 
         )
         commute_20_24_mins = OBSColumn(
-            id='B08134005',
+            id='B08303006',
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 20 and 24 minutes',
@@ -1332,7 +2139,7 @@ class Columns(ColumnsTask):
             tags=[censustags['demographics'], tags['income_education_employment']]
         )
         commute_25_29_mins = OBSColumn(
-            id='B08134006',
+            id='B08303007',
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 25 and 29 minutes',
@@ -1344,7 +2151,7 @@ class Columns(ColumnsTask):
             tags=[censustags['demographics'], tags['income_education_employment']]
         )
         commute_30_34_mins = OBSColumn(
-            id='B08134007',
+            id='B08303008',
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 30 and 34 minutes',
@@ -1354,6 +2161,24 @@ class Columns(ColumnsTask):
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
+        )
+        commute_35_39_mins = OBSColumn(
+            id='B08303009',
+            type='Numeric',
+            name='Number of workers with a commute between 35 and 39 minutes',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={commuters_16_over: 'denominator'},
+        )
+        commute_40_44_mins = OBSColumn(
+            id='B08303010',
+            type='Numeric',
+            name='Number of workers with a commute between 40 and 44 minutes',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={commuters_16_over: 'denominator'},
         )
         commute_35_44_mins = OBSColumn(
             id='B08134008',
@@ -1368,7 +2193,7 @@ class Columns(ColumnsTask):
             tags=[censustags['demographics'], tags['income_education_employment']]
         )
         commute_45_59_mins = OBSColumn(
-            id='B08134009',
+            id='B08303011',
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 45 and 59 minutes',
@@ -1391,7 +2216,24 @@ class Columns(ColumnsTask):
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
         )
-
+        commute_60_89_mins = OBSColumn(
+            id='B08303012',
+            type='Numeric',
+            name='Number of workers with a commute between 60 and 89 minutes',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={commuters_16_over: 'denominator'},
+        )
+        commute_90_more_mins = OBSColumn(
+            id='B08303013',
+            type='Numeric',
+            name='Number of workers with a commute of more than 90 minutes',
+            description='',
+            weight=0,
+            aggregate='sum',
+            targets={commuters_16_over: 'denominator'},
+        )
         aggregate_travel_time_to_work = OBSColumn(
             id='B08135001',
             type='Numeric',
@@ -1587,6 +2429,98 @@ class Columns(ColumnsTask):
         #    aggregate='sum'
         #)
 
+        households_public_asst_or_food_stamps = OBSColumn(
+            id='B19058002',
+            type='Numeric',
+            aggregate='sum',
+            weight=0,
+            name='Households on cash public assistance or receiving food stamps (SNAP)',
+            targets={households: 'denominator'}
+        )
+
+        households_retirement_income = OBSColumn(
+            id='B19059002',
+            type='Numeric',
+            aggregate='sum',
+            weight=0,
+            name='Households receiving retirement income',
+            targets={households: 'denominator'}
+        )
+
+        renter_occupied_housing_units_paying_cash_median_gross_rent = OBSColumn(
+            id='B25064001',
+            type='Numeric',
+            aggregate='median',
+            name='Renter-Occupied Housing Units Paying Cash Rent Median Gross Rent',
+            description='',
+            weight=0
+        )
+
+        owner_occupied_housing_units_lower_value_quartile = OBSColumn(
+            id='B25076001',
+            type='Numeric',
+            name='Owner-Occupied Housing Units Lower Value Quartile',
+            description='',
+            weight=0
+        )
+
+        owner_occupied_housing_units_median_value = OBSColumn(
+            id='B25077001',
+            type='Numeric',
+            aggregate='median',
+            name='Owner-Occupied Housing Units Median Value',
+            description='',
+            weight=0
+        )
+
+        owner_occupied_housing_units_upper_value_quartile = OBSColumn(
+            id='B25078001',
+            type='Numeric',
+            name='Owner-Occupied Housing Units Upper Value Quartile',
+            description='',
+            weight=0
+        )
+
+        population_1_year_and_over = OBSColumn(
+            id='B07204001',
+            type='Numeric',
+            name='Population 1 year and over',
+            description='',
+            weight=0
+        )
+        different_house_year_ago_same_city = OBSColumn(
+            id='B07204004',
+            type='Numeric',
+            name='Lived in a different house one year ago in the same city',
+            description='',
+            weight=0,
+            targets={population_1_year_and_over: 'denominator'},
+        )
+        different_house_year_ago_different_city = OBSColumn(
+            id='B07204007',
+            type='Numeric',
+            name='Lived in a different house one year ago in a different city',
+            description='',
+            weight=0,
+            targets={population_1_year_and_over: 'denominator'},
+        )
+
+        group_quarters = OBSColumn(
+            id='B26001001',
+            type='Numeric',
+            name='Population living in group quarters',
+            description='',
+            weight=0,
+        )
+        no_car = OBSColumn(
+            id='B08014002',
+            type='Numeric',
+            name='Workers age 16 and over with no vehicle',
+            description='',
+            weight=0,
+            targets={workers_16_and_over: 'denominator'},
+        )
+
         return OrderedDict([
             ("total_pop", total_pop),
             ("male_pop", male_pop),
@@ -1663,27 +2597,21 @@ class Columns(ColumnsTask):
             ('unemployed_pop', unemployed_pop),
             ('armed_forces', armed_forces),
             ('not_in_labor_force', not_in_labor_force),
-            ('men_45_to_64', men_45_to_64),
-            ('men_45_to_49', men_45_to_49),
-            ('men_50_to_54', men_50_to_54),
-            ('men_55_to_59', men_55_to_59),
-            ('men_60_61', men_60_61),
-            ('men_62_64', men_62_64),
-            ('black_men_45_54', black_men_45_54),
-            ('black_men_55_64', black_men_55_64),
-            ('hispanic_men_45_54', hispanic_men_45_54),
-            ('hispanic_men_55_64', hispanic_men_55_64),
-            ('white_men_45_54', white_men_45_54),
-            ('white_men_55_64', white_men_55_64),
-            ('asian_men_45_54', asian_men_45_54),
-            ('asian_men_55_64', asian_men_55_64),
-            ('men_45_64_less_than_9_grade', men_45_64_less_than_9_grade),
-            ('men_45_64_grade_9_12', men_45_64_grade_9_12),
-            ('men_45_64_high_school', men_45_64_high_school),
-            ('men_45_64_some_college', men_45_64_some_college),
-            ('men_45_64_associates_degree', men_45_64_associates_degree),
-            ('men_45_64_bachelors_degree', men_45_64_bachelors_degree),
-            ('men_45_64_graduate_degree', men_45_64_graduate_degree),
+            ('black_male_45_54', black_male_45_54),
+            ('black_male_55_64', black_male_55_64),
+            ('hispanic_male_45_54', hispanic_male_45_54),
+            ('hispanic_male_55_64', hispanic_male_55_64),
+            ('white_male_45_54', white_male_45_54),
+            ('white_male_55_64', white_male_55_64),
+            ('asian_male_45_54', asian_male_45_54),
+            ('asian_male_55_64', asian_male_55_64),
+            ('male_45_64_less_than_9_grade', male_45_64_less_than_9_grade),
+            ('male_45_64_grade_9_12', male_45_64_grade_9_12),
+            ('male_45_64_high_school', male_45_64_high_school),
+            ('male_45_64_some_college', male_45_64_some_college),
+            ('male_45_64_associates_degree', male_45_64_associates_degree),
+            ('male_45_64_bachelors_degree', male_45_64_bachelors_degree),
+            ('male_45_64_graduate_degree', male_45_64_graduate_degree),
             ("two_parent_families_with_young_children", two_parent_families_with_young_children),
             ("two_parents_in_labor_force_families_with_young_children",
              two_parents_in_labor_force_families_with_young_children),
@@ -1732,6 +2660,131 @@ class Columns(ColumnsTask):
             ("income_125000_149999", income_125000_149999),
             ("income_150000_199999", income_150000_199999),
             ("income_200000_or_more", income_200000_or_more),
+            ("renter_occupied_housing_units_paying_cash_median_gross_rent",
+             renter_occupied_housing_units_paying_cash_median_gross_rent),
+            ("owner_occupied_housing_units_lower_value_quartile",
+             owner_occupied_housing_units_lower_value_quartile),
+            ("owner_occupied_housing_units_median_value",
+             owner_occupied_housing_units_median_value),
+            ("owner_occupied_housing_units_upper_value_quartile",
+             owner_occupied_housing_units_upper_value_quartile),
+            ('less_than_high_school_graduate', less_than_high_school_graduate),
+            ('high_school_including_ged', high_school_including_ged),
+            ('some_college_and_associates_degree', some_college_and_associates_degree),
+            ('bachelors_degree_2', bachelors_degree_2),
+            ('graduate_professional_degree', graduate_professional_degree),
+            ('children_in_single_female_hh', children_in_single_female_hh),
+            ('married_households', married_households),
+            ('male_male_households', male_male_households),
+            ('female_female_households', female_female_households),
+            ('occupied_housing_units', occupied_housing_units),
+            ('children_in_single_female_hh', children_in_single_female_hh),
+            ('married_households', married_households),
+            ('male_male_households', male_male_households),
+            ('female_female_households', female_female_households),
+            ('some_college_and_associates_degree', some_college_and_associates_degree),
+            ('speak_spanish_at_home_low_english', speak_spanish_at_home_low_english),
+            ('housing_units_renter_occupied', housing_units_renter_occupied),
+            ('dwellings_1_units_detached', dwellings_1_units_detached),
+            ('dwellings_1_units_attached', dwellings_1_units_attached),
+            ('dwellings_2_units', dwellings_2_units),
+            ('dwellings_3_to_4_units', dwellings_3_to_4_units),
+            ('dwellings_5_to_9_units', dwellings_5_to_9_units),
+            ('dwellings_10_to_19_units', dwellings_10_to_19_units),
+            ('dwellings_20_to_49_units', dwellings_20_to_49_units),
+            ('dwellings_50_or_more_units', dwellings_50_or_more_units),
+            ('mobile_homes', mobile_homes),
+            ('housing_built_2005_or_later', housing_built_2005_or_later),
+            ('housing_built_2000_to_2004', housing_built_2000_to_2004),
+            ('housing_built_1939_or_earlier', housing_built_1939_or_earlier),
+            ('two_parent_families_with_young_children', two_parent_families_with_young_children),
+            ('employed_agriculture_forestry_fishing_hunting_mining', employed_agriculture_forestry_fishing_hunting_mining),
+            ('employed_construction', employed_construction),
+            ('employed_manufacturing', employed_manufacturing),
+            ('employed_wholesale_trade', employed_wholesale_trade),
+            ('employed_retail_trade', employed_retail_trade),
+            ('employed_transportation_warehousing_utilities', employed_transportation_warehousing_utilities),
+            ('employed_information', employed_information),
+            ('employed_finance_insurance_real_estate', employed_finance_insurance_real_estate),
+            ('employed_science_management_admin_waste', employed_science_management_admin_waste),
+            ('employed_education_health_social', employed_education_health_social),
+            ('employed_arts_entertainment_recreation_accommodation_food', employed_arts_entertainment_recreation_accommodation_food),
+            ('employed_other_services_not_public_admin', employed_other_services_not_public_admin),
+            ('employed_public_administration', employed_public_administration),
+            ('occupation_management_arts', occupation_management_arts),
+            ('occupation_services', occupation_services),
+            ('occupation_sales_office', occupation_sales_office),
+            ('occupation_natural_resources_construction_maintenance', occupation_natural_resources_construction_maintenance),
+            ('occupation_production_transportation_material', occupation_production_transportation_material),
+            ('male_under_5', male_under_5),
+            ('male_5_to_9', male_5_to_9),
+            ('male_10_to_14', male_10_to_14),
+            ('male_15_to_17', male_15_to_17),
+            ('male_18_to_19', male_18_to_19),
+            ('male_20', male_20),
+            ('male_21', male_21),
+            ('male_22_to_24', male_22_to_24),
+            ('male_25_to_29', male_25_to_29),
+            ('male_30_to_34', male_30_to_34),
+            ('male_35_to_39', male_35_to_39),
+            ('male_40_to_44', male_40_to_44),
+            ('male_45_to_64', male_45_to_64),
+            ('male_45_to_49', male_45_to_49),
+            ('male_50_to_54', male_50_to_54),
+            ('male_55_to_59', male_55_to_59),
+            ('male_60_61', male_60_61),
+            ('male_62_64', male_62_64),
+            ('male_65_to_66', male_65_to_66),
+            ('male_67_to_69', male_67_to_69),
+            ('male_70_to_74', male_70_to_74),
+            ('male_75_to_79', male_75_to_79),
+            ('male_80_to_84', male_80_to_84),
+            ('male_85_and_over', male_85_and_over),
+
+            ('female_under_5', female_under_5),
+            ('female_5_to_9', female_5_to_9),
+            ('female_10_to_14', female_10_to_14),
+            ('female_15_to_17', female_15_to_17),
+            ('female_18_to_19', female_18_to_19),
+            ('female_20', female_20),
+            ('female_21', female_21),
+            ('female_22_to_24', female_22_to_24),
+            ('female_25_to_29', female_25_to_29),
+            ('female_30_to_34', female_30_to_34),
+            ('female_35_to_39', female_35_to_39),
+            ('female_40_to_44', female_40_to_44),
+            ('female_45_to_49', female_45_to_49),
+            ('female_50_to_54', female_50_to_54),
+            ('female_55_to_59', female_55_to_59),
+            ('female_60_to_61', female_60_to_61),
+            ('female_62_to_64', female_62_to_64),
+            ('female_65_to_66', female_65_to_66),
+            ('female_67_to_69', female_67_to_69),
+            ('female_70_to_74', female_70_to_74),
+            ('female_75_to_79', female_75_to_79),
+            ('female_80_to_84', female_80_to_84),
+            ('female_85_and_over', female_85_and_over),
+            ('white_including_hispanic', white_including_hispanic),
+            ('black_including_hispanic', black_including_hispanic),
+            ('amerindian_including_hispanic', amerindian_including_hispanic),
+            ('asian_including_hispanic', asian_including_hispanic),
+            ('hispanic_any_race', hispanic_any_race),
+            ('commute_5_9_mins', commute_5_9_mins),
+            ('commute_35_39_mins', commute_35_39_mins),
+            ('commute_40_44_mins', commute_40_44_mins),
+            ('commute_60_89_mins', commute_60_89_mins),
+            ('commute_90_more_mins', commute_90_more_mins),
+            ('households_public_asst_or_food_stamps', households_public_asst_or_food_stamps),
+            ('households_retirement_income', households_retirement_income),
+            ('renter_occupied_housing_units_paying_cash_median_gross_rent', renter_occupied_housing_units_paying_cash_median_gross_rent),
+            ('owner_occupied_housing_units_lower_value_quartile', owner_occupied_housing_units_lower_value_quartile),
+            ('owner_occupied_housing_units_median_value', owner_occupied_housing_units_median_value),
+            ('owner_occupied_housing_units_upper_value_quartile', owner_occupied_housing_units_upper_value_quartile),
+            ('population_1_year_and_over', population_1_year_and_over),
+            ('different_house_year_ago_same_city', different_house_year_ago_same_city),
+            ('different_house_year_ago_different_city', different_house_year_ago_different_city),
+            ('group_quarters', group_quarters),
+            ('no_car', no_car),
         ])
 
 
@@ -1797,13 +2850,14 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 5
+        return 7
 
     def columns(self):
+        input_ = self.input()
         columns = OrderedDict({
-            'geoid': self.input()['tiger'][self.geography + '_geoid']
+            'geoid': input_['tiger'][self.geography + '_geoid']
         })
-        columns.update(self.input()['columns'])
+        columns.update(input_['columns'])
         return columns
 
     def bounds(self):
@@ -1816,7 +2870,8 @@ class Quantiles(TableTask):
 
     def populate(self):
         connection = current_session()
-        quant_col_names = self.input()['columns'].keys()
+        input_ = self.input()
+        quant_col_names = input_['columns'].keys()
         old_col_names = [name.split("_quantile")[0]
                          for name in quant_col_names]
         selects = [" percent_rank() OVER (ORDER BY {old_col} ASC) ".format(old_col=name)
@@ -1834,7 +2889,7 @@ class Quantiles(TableTask):
             table        = self.output().table,
             insert_statment = insert_statment,
             select_statment = select_statment,
-            source_table = self.input()['table'].table
+            source_table = input_['table'].table
         ))
 
 class Extract(TableTask):
@@ -1847,14 +2902,14 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 2
+        return 5
 
     def requires(self):
         return {
             'acs': Columns(),
             'tiger': GeoidColumns(),
             'data': DownloadACS(year=self.year, sample=self.sample),
-            'tigerdata': SumLevel(geography=self.geography, year=self.year)
+            'tigerdata': SumLevel(geography=self.geography, year='2014')
         }
 
     def timespan(self):
@@ -1864,14 +2919,16 @@ class Extract(TableTask):
 
     def bounds(self):
         session = current_session()
-        if self.input()['tigerdata'].exists():
-            return self.input()['tigerdata'].get(session).bounds
+        input_ = self.input()
+        if input_['tigerdata'].exists():
+            return input_['tigerdata'].get(session).bounds
 
     def columns(self):
+        input_ = self.input()
         cols = OrderedDict([
-            ('geoid', self.input()['tiger'][self.geography + '_geoid']),
+            ('geoid', input_['tiger'][self.geography + '_geoid']),
         ])
-        for colkey, col in self.input()['acs'].iteritems():
+        for colkey, col in input_['acs'].iteritems():
             cols[colkey] = col
         return cols
 
@@ -1899,7 +2956,6 @@ class Extract(TableTask):
             tableclause += ' JOIN {inputschema}.{inputtable} ' \
                            ' USING (geoid) '.format(inputschema=inputschema,
                                                     inputtable=tableid)
-        #table_id = self.output().get(session).id
         table_id = self.output().table
         session.execute('INSERT INTO {output} ({colnames}) '
                         '  SELECT {colids} '

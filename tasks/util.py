@@ -350,20 +350,19 @@ class TableTarget(Target):
         We always want to run this at least once, because we can always
         regenerate tabular data from scratch.
         '''
-
-        existing = self.get(current_session())
+        session = current_session()
+        existing = self.get(session)
         new_version = float(self._obs_table.version) or 0.0
         if existing:
             existing_version = float(existing.version)
-            current_session().expunge(existing)
+            session.expunge(existing)
         else:
             existing_version = 0.0
         if existing and existing_version == new_version:
-            # Then make sure the data table actually exists, too
-            resp = current_session().execute(
+            resp = session.execute(
                 'SELECT COUNT(*) FROM information_schema.tables '
-                "WHERE table_schema ILIKE '{schema}'  "
-                "  AND table_name ILIKE '{tablename}' ".format(
+                "WHERE table_schema = '{schema}'  "
+                "  AND table_name = '{tablename}' ".format(
                     schema='observatory',
                     tablename=self._obs_table.tablename))
             return int(resp.fetchone()[0]) > 0
@@ -380,7 +379,6 @@ class TableTarget(Target):
             return session.query(OBSTable).get(self._id)
 
     def update_or_create(self):
-
         session = current_session()
 
         # replace metadata table
@@ -622,22 +620,34 @@ class TableTask(Task):
     def run(self):
         self.output().update_or_create()
         self.populate()
+        self.create_indexes()
 
-    def complete(self):
-        for dep in self.deps():
-            if not dep.complete():
-                return False
+    def create_indexes(self):
+        session = current_session()
+        for colname, coltarget in self.columns().iteritems():
+            col = coltarget._column
+            if col.should_index():
+                session.execute('CREATE INDEX ON {table} ({colname})'.format(
+                    table=self.output().table, colname=colname))
 
-        return super(TableTask, self).complete()
+    #def complete(self):
+    #    for dep in self.deps():
+    #        if not dep.complete():
+    #            return False
+
+    #    return super(TableTask, self).complete()
 
     def output(self):
+        if not hasattr(self, '_columns'):
+            self._columns = self.columns()
+
         self._output = TableTarget(classpath(self),
                                    underscore_slugify(self.task_id),
                                    OBSTable(description=self.description(),
                                             bounds=self.bounds(),
                                             version=self.version(),
                                             timespan=self.timespan()),
-                                   self.columns(), self)
+                                   self._columns, self)
         return self._output
 
 
@@ -693,4 +703,3 @@ class RenameTables(Task):
 
     def complete(self):
         return hasattr(self, '_complete')
-
