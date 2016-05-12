@@ -122,7 +122,7 @@ class SpielmanSingletonTable(TableTask):
         }
 
     def version(self):
-        return 7
+        return 8
 
     def timespan(self):
         return '2009 - 2013'
@@ -1067,7 +1067,7 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
@@ -1081,27 +1081,30 @@ class SpielmanSingletonColumns(ColumnsTask):
             type='Text',
             name="Spielman-Singleton Segments: 10 Clusters",
             description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters',
+            weight=4,
             extra={'categories': self.x10_categories},
             tags=[segments_tag],
         )
         x2 = OBSColumn(
             id='X2',
             type='Text',
-            name="SS_segment_2_clusters",
-            description="Sociodemographic classes from Spielman and Singleton 2015, 10 clusters"
+            name="Spielman-Singleton Segments: 2 Clusters",
+            description="Sociodemographic classes from Spielman and Singleton 2015, 2 clusters"
         )
         x31 = OBSColumn(
             id='X31',
             type='Text',
-            name="SS_segment_31_clusters",
+            name="Spielman-Singleton Segments: 31 Clusters",
             description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters'
         )
         x55 = OBSColumn(
             id='X55',
             type='Text',
-            name="SS_segment_55_clusters",
+            name="Spielman-Singleton Segments: 55 Clusters",
             description="Sociodemographic classes from Spielman and Singleton 2015, 55 clusters",
-            extra={'categories': self.x55_categories}
+            weight=7,
+            extra={'categories': self.x55_categories},
+            tags=[segments_tag],
         )
 
         return OrderedDict([
