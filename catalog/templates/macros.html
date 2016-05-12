@@ -34,24 +34,32 @@ Obtain "{{ col.name }}" geometry at one point:
 
 .. code:: postgresql
 
+{% if 'us.zillow' in col.id %}
+  {% let point = 'CDB_LatLng(40.76, -73.52)' %}
+{% elif 'es.ine' in col.id %}
+  {% let point = 'CDB_LatLng(40.39, -3.7)' %}
+{% else %}
+  {% let point = 'CDB_LatLng(40.7, -73.9)'
+{% endif %}
+
 {% if col.type|lower == 'text' %}
 
   SELECT cdb_observatory.OBS_GetCategory(
-    CDB_LatLng(40.7, -73.9),
+    {{ point }},
     '{{ col.id }}'
   );
 
 {% elif col.type|lower == 'numeric' %}
 
   SELECT cdb_observatory.OBS_GetMeasure(
-    CDB_LatLng(40.7, -73.9),
+    {{ point }},
     '{{ col.id }}'
   );
 
 {% elif col.type|lower == 'geometry' %}
 
   SELECT cdb_observatory.OBS_GetBoundary(
-    CDB_LatLng(40.7, -73.9),
+    {{ point }},
     '{{ col.id }}'
   );
 
@@ -63,7 +71,7 @@ Obtain category of "{{ col.name }}" within an area:
 .. code:: postgresql
 
   SELECT cdb_observatory.OBS_GetCategory(
-    ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
+    ST_Buffer({{ point }}, 0.01),
     '{{ col.id }}'
   );
 
@@ -74,7 +82,7 @@ Measure "{{ col.name }}" within an area:
 .. code:: postgresql
 
   SELECT cdb_observatory.OBS_GetMeasure(
-    ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
+    ST_Buffer({{ point }}, 0.01),
     '{{ col.id }}'
   );
 
@@ -89,7 +97,7 @@ Obtain all "{{ col.name }}" geometries within an area:
 .. code:: postgresql
 
   SELECT cdb_observatory.OBS_GetBoundariesByGeometry(
-    ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
+    ST_Buffer({{ point }}, 0.01),
     '{{ col.id }}'
   );
 
@@ -101,7 +109,7 @@ Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" at one point:
 .. code:: postgresql
 
   SELECT cdb_observatory.OBS_GetMeasure(
-    CDB_LatLng(40.7, -73.9),
+    {{ point }},
     '{{ col.id }}', 'denominator'
   );
 
@@ -111,7 +119,7 @@ Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" within an are
 .. code:: postgresql
 
   SELECT cdb_observatory.OBS_GetMeasure(
-    ST_Buffer(CDB_LatLng(40.7, -73.9), 0.01),
+    ST_Buffer({{ point }}, 0.01),
     '{{ col.id }}', 'denominator'
   );
 {% endif %}
