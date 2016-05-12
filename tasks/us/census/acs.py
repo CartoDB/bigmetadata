@@ -2944,18 +2944,35 @@ class Extract(TableTask):
         inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
         for colname, coltarget in self.columns().iteritems():
             colid = coltarget.get(session).id
-            colnames.append(colname)
+            tableid = colid.split('.')[-1][0:-3]
             if colid.endswith('geoid'):
                 colids.append('SUBSTR(geoid, 8)')
             else:
+                resp = session.execute('SELECT COUNT(*) FROM information_schema.columns '
+                                       "WHERE table_schema = '{inputschema}'  "
+                                       "  AND table_name ILIKE '{inputtable}' "
+                                       "  AND column_name ILIKE '{colid}' ".format(
+                                           inputschema=inputschema,
+                                           inputtable=tableid,
+                                           colid=coltarget.name))
+                if int(resp.fetchone()[0]) == 0:
+                    continue
                 colids.append(coltarget.name)
-                tableids.add(colid.split('.')[-1][0:-3])
+            colnames.append(colname)
+            tableids.add(tableid)
+
         tableclause = '{inputschema}.{inputtable} '.format(
             inputschema=inputschema, inputtable=tableids.pop())
         for tableid in tableids:
-            tableclause += ' JOIN {inputschema}.{inputtable} ' \
-                           ' USING (geoid) '.format(inputschema=inputschema,
-                                                    inputtable=tableid)
+            resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
+                                   "WHERE table_schema = '{inputschema}'  "
+                                   "  AND table_name ILIKE '{inputtable}' ".format(
+                                       inputschema=inputschema,
+                                       inputtable=tableid))
+            if int(resp.fetchone()[0]) > 0:
+                tableclause += ' JOIN {inputschema}.{inputtable} ' \
+                               ' USING (geoid) '.format(inputschema=inputschema,
+                                                        inputtable=tableid)
         table_id = self.output().table
         session.execute('INSERT INTO {output} ({colnames}) '
                         '  SELECT {colids} '
