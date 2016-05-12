@@ -14,6 +14,7 @@ from luigi import Task, Parameter, BooleanParameter, WrapperTask
 from tasks.meta import current_session, OBSColumn, OBSTag
 from tasks.util import (classpath, shell, TempTableTask, TableTask,
                         ColumnsTask, TagsTask)
+from tasks.us.census.tiger import ShorelineClip, DownloadTiger
 
 
 class GlobalBoundaries(TagsTask):
@@ -65,7 +66,7 @@ class WOFColumns(ColumnsTask):
     resolution = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
@@ -90,6 +91,14 @@ class WOFColumns(ColumnsTask):
             'marinearea': ' ',
             'region': ' ',
         }
+        the_geom = OBSColumn(
+            id='wof_' + self.resolution + '_geom',
+            name=geom_names[self.resolution],
+            type="Geometry",
+            weight=5,
+            description=geom_descriptions[self.resolution],
+            tags=[global_tag],
+        )
 
         return OrderedDict([
             ('wof_id', OBSColumn(
@@ -97,15 +106,9 @@ class WOFColumns(ColumnsTask):
                 name="Who's on First ID",
                 type="Numeric",
                 weight=0,
+                targets={the_geom: 'geom_ref'},
             )),
-            ('the_geom', OBSColumn(
-                id='wof_' + self.resolution + '_geom',
-                name=geom_names[self.resolution],
-                type="Geometry",
-                weight=5,
-                description=geom_descriptions[self.resolution],
-                tags=[global_tag],
-            )),
+            ('the_geom', the_geom),
             ('name', OBSColumn(
                 id='wof_' + self.resolution + '_name',
                 #name=name_names[self.resolution],
@@ -124,19 +127,24 @@ class WOF(TableTask):
     resolution = Parameter()
 
     def bounds(self):
-        return 'BOX(0 0,0 0)'
+        return 'BOX(-180 -90,180 90)'
 
     def timespan(self):
         return '2016'
 
     def version(self):
-        return 2
+        return 4
 
     def requires(self):
-        return {
+        requirements = {
             'columns': WOFColumns(resolution=self.resolution),
             'data': DownloadWOF(resolution=self.resolution),
         }
+        if self.resolution == 'region':
+            requirements['shoreline'] = ShorelineClip(year=2014, geography='state')
+            requirements['tiger'] = DownloadTiger(year=2014)
+
+        return requirements
 
     def columns(self):
         return self.input()['columns']
@@ -155,6 +163,19 @@ class WOF(TableTask):
                             output=self.output().table,
                             input=self.input()['data'].table
                         ))
+
+        # replace default WOF US states with our clipped versions
+        if self.resolution == 'region':
+            for geoid, statename in session.execute('SELECT geoid, name FROM tiger2014.state'):
+                session.execute('UPDATE {output} out '
+                                'SET the_geom = shoreline.the_geom '
+                                'FROM {shoreline} shoreline '
+                                'WHERE shoreline.geoid = \'{geoid}\' '
+                                '  AND out.name ILIKE \'{statename}\' '.format(
+                                    shoreline=self.input()['shoreline'].table,
+                                    output=self.output().table,
+                                    geoid=geoid,
+                                    statename=statename))
 
 
 class AllWOF(WrapperTask):
