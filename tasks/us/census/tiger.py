@@ -576,7 +576,7 @@ class SumLevel(TableTask):
     year = Parameter()
 
     def has_10_suffix(self):
-        return self.geography.lower() in ('puma', 'zcta5', )
+        return self.geography.lower() in ('puma', 'zcta5', 'block', )
 
     @property
     def geoid(self):
