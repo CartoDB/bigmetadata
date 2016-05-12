@@ -66,6 +66,10 @@ class GenerateRST(Task):
                                          tag.description)
             columns = []
             for col in tag.columns:
+
+                if col.weight < 1:
+                    continue
+
                 # tags with denominators will appear beneath that denominator
                 if not col.has_denominator():
                     columns.append(col)

@@ -143,8 +143,10 @@ Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" within an are
    :local:
    :depth: 1
 
-  {% for denom in col.children() %}
-  {{ build_column(denom, depth + 1) }}
+  {% for child in col.children() %}
+  {% if child.weight > 0 %}
+  {{ build_column(child, depth + 1) }}
+  {% endif %}
   {% endfor %}
 {% endif %}
 {%- endmacro %}

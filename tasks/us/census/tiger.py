@@ -655,7 +655,8 @@ class AllSumLevels(WrapperTask):
     def requires(self):
         for geo in ('state', 'county', 'census_tract', 'block_group', 'place',
                     'puma', 'zcta5', 'school_district_elementary', 'cbsa',
-                    'school_district_secondary', 'school_district_unified'):
+                    'school_district_secondary', 'school_district_unified',
+                    'block', 'congressional_district'):
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
 

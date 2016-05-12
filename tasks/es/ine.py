@@ -62,23 +62,27 @@ class RawGeometry(TempTableTask):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 2
+        return 3
+
+    def requires(self):
+        return {
+            'tags': Tags()
+        }
 
     def columns(self):
+        tags = self.input()['tags']
         cusec_geom = OBSColumn(
-            #id='cusec_geom',
             name=u'Secci\xf3n Censal',
             type="Geometry",
             weight=10,
-            description='The finest division of the Spanish Census.'
+            description='The smallest division of the Spanish Census.',
+            tags=[tags['demographics']],
         )
         cusec_id = OBSColumn(
-            #id='cusec_id',
             name=u"Secci\xf3n Censal",
             type="Text",
-            targets={
-                #cusec_geom: 'geom_ref'
-            }
+            tags=[],
+            targets={cusec_geom: 'geom_ref'}
         )
         return OrderedDict([
             ("cusec_id", cusec_id),

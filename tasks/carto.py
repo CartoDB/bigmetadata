@@ -109,7 +109,7 @@ def should_upload(table):
     uploaded, otherwise it should be ignored.
     '''
     for coltable in table.columns:
-        if coltable.column.tags:
+        if coltable.column.tags and coltable.column.weight > 0:
             return True
     return False
 
