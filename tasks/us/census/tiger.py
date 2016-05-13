@@ -26,22 +26,28 @@ from psycopg2 import ProgrammingError
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 2
+        return 4
 
     def requires(self):
-        return GeomColumns()
+        return {
+            'geom_columns': GeomColumns(),
+            'tags': CategoryTags(),
+        }
 
     def columns(self):
         cols = OrderedDict()
-        for colname, coltarget in self.input().iteritems():
+        tags = self.input()['tags']
+        for colname, coltarget in self.input()['geom_columns'].iteritems():
             col = coltarget._column
             cols[colname + '_clipped'] = OBSColumn(
                 type='Geometry',
-                name=col.name,
+                name='Shoreline clipped ' + col.name,
                 weight=col.weight,
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
-                targets={col: 'cartography'}
+                targets={col: 'cartography'},
+                tags=[tags['boundary']],
+                weight=col.weight
             )
 
         return cols

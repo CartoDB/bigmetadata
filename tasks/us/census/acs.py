@@ -2813,7 +2813,7 @@ class QuantileColumns(ColumnsTask):
         return Columns()
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         quantile_columns = OrderedDict()
@@ -2825,7 +2825,8 @@ class QuantileColumns(ColumnsTask):
                 name='Quantile:'+col.name,
                 description=col.description,
                 aggregate='quantile',
-                targets={col: 'quantile_source'}
+                targets={col: 'quantile_source'},
+                weight=1
             )
         return quantile_columns
 
