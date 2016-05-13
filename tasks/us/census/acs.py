@@ -345,7 +345,7 @@ class Columns(ColumnsTask):
             id='B11001003',
             type='Numeric',
             name='Married households',
-            description='',
+            description='People in formal marriages, as well as people in common-law marriages, are included. Does not include same-sex marriages.',
             weight=0,
             targets={households: 'denominator'}
         )
@@ -353,16 +353,16 @@ class Columns(ColumnsTask):
             id='B11009003',
             type='Numeric',
             name='Households with two male partners',
-            description='',
-            weight=0,
+            description='An unmarried partner is a person age 15 years and over, who is not related to the householder, who shares living quarters, and who has an intimate relationship with the householder.',
+            weight=1,
             targets={households: 'denominator'}
         )
         female_female_households = OBSColumn(
             id='B11009005',
             type='Numeric',
             name='Households with two female partners',
-            description='',
-            weight=0,
+            description='An unmarried partner is a person age 15 years and over, who is not related to the householder, who shares living quarters, and who has an intimate relationship with the householder.',
+            weight=1,
             targets={households: 'denominator'}
         )
         population_3_years_over = OBSColumn(
@@ -448,8 +448,10 @@ class Columns(ColumnsTask):
             id='B07009002',
             type='Numeric',
             name='Less than high school graduate',
-            description='',
-            weight=0,
+            description='The number of people in a geographic area over the age '
+            'of 25 who have not completed high school or any other advanced '
+            'degree.',
+            weight=1,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'}
         )
@@ -468,8 +470,9 @@ class Columns(ColumnsTask):
             id='B07009003',
             type='Numeric',
             name='Population with high school degree, including GED',
-            description='',
-            weight=0,
+            description="The number of people in a geographic area over the age "
+            "of 25 who attained a high school degree or GED.",
+            weight=1,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'}
         )
@@ -509,8 +512,10 @@ class Columns(ColumnsTask):
             id='B07009004',
             type='Numeric',
             name='Population who completed some college or obtained associate\'s degree',
-            description='',
-            weight=0,
+            description="The number of people in a geographic area over the age "
+            "of 25 who obtained an associate's degree, and did not complete a more "
+            "advanced degree.",
+            weight=1,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'}
         )
