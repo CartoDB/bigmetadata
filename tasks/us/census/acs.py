@@ -346,7 +346,7 @@ class Columns(ColumnsTask):
             type='Numeric',
             name='Married households',
             description='People in formal marriages, as well as people in common-law marriages, are included. Does not include same-sex marriages.',
-            weight=0,
+            weight=1,
             targets={households: 'denominator'}
         )
         male_male_households = OBSColumn(
@@ -691,8 +691,8 @@ class Columns(ColumnsTask):
             id='B25003001',
             type='Numeric',
             name='Renter occupied housing units',
-            description='',
-            weight=0,
+            description='A housing unit is classified as occupied if it is the usual place of residence of the person or group of people living in it at the time of enumeration.',
+            weight=1,
             aggregate='sum',
             targets={housing_units: 'denominator'}
         )
@@ -700,8 +700,8 @@ class Columns(ColumnsTask):
             id='B25003003',
             type='Numeric',
             name='Renter occupied housing units',
-            description='',
-            weight=0,
+            description='All occupied units which are not owner occupied, whether they are rented for cash rent or occupied without payment of cash rent, are classified as renter-occupied.',
+            weight=1,
             aggregate='sum',
             targets={occupied_housing_units: 'denominator'}
         )
@@ -873,8 +873,8 @@ class Columns(ColumnsTask):
             id='B25024010',
             type='Numeric',
             name='Mobile homes',
-            description='',
-            weight=0,
+            description='A manufactured home is defined as a movable dwelling, 8 feet or more wide and 40 feet or more long, designed to be towed on its own chassis, with transportation gear integral to the unit when it leaves the factory, and without need of a permanent foundation. These homes are built in accordance with the U.S. Department of Housing and Urban Development (HUD) building code.',
+            weight=1,
             aggregate='sum',
             targets={housing_units: 'denominator'}
         )
@@ -882,17 +882,17 @@ class Columns(ColumnsTask):
             id='B25034002',
             type='Numeric',
             name='Housing units built in 2005 or later',
-            description='',
-            weight=0,
+            description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built in 2005 or later.',
             aggregate='sum',
+            weight=1,
             targets={housing_units: 'denominator'}
         )
         housing_built_2000_to_2004 = OBSColumn(
             id='B25034003',
             type='Numeric',
             name='Housing units built between 2000 and 2004',
-            description='',
-            weight=0,
+            description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built from 2000 to 2004.',
+            weight=1,
             aggregate='sum',
             targets={housing_units: 'denominator'}
         )
@@ -900,8 +900,8 @@ class Columns(ColumnsTask):
             id='B25034010',
             type='Numeric',
             name='Housing units built before 1939',
-            description='',
-            weight=0,
+            description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built in 1939 or earlier.',
+            weight=1,
             aggregate='sum',
             targets={housing_units: 'denominator'}
         )
