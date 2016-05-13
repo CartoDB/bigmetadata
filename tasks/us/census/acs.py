@@ -645,7 +645,7 @@ class Columns(ColumnsTask):
             id='B19083001',
             type='Numeric',
             name='Gini Index',
-            description='',
+            description='The Gini Index provides a measure of inequality in family income across a country. The value ranges from 0 to 1. The more equal the distribution of income the lower, closer to 0, the Gini Index.',
             weight=5,
             aggregate='',
             tags=[censustags['demographics'], tags['income_education_employment']])
