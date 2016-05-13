@@ -133,7 +133,7 @@ class Columns(ColumnsTask):
             name='American Indian and Alaska Native Population',
             description="The number of people identifying as American Indian or Alaska native in each geography.",
             aggregate='sum',
-            weight=0,
+            weight=1,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -153,7 +153,7 @@ class Columns(ColumnsTask):
             name='Other Race population',
             description="The number of people identifying as another race in each geography",
             aggregate='sum',
-            weight=0,
+            weight=1,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -163,7 +163,7 @@ class Columns(ColumnsTask):
             name='Two or more races population',
             description="The number of people identifying as two or more races in each geography",
             aggregate='sum',
-            weight=0,
+            weight=1,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -173,7 +173,7 @@ class Columns(ColumnsTask):
             name='Population not Hispanic',
             description="The number of people not identifying as Hispanic or Latino in each geography.",
             aggregate='sum',
-            weight=0,
+            weight=1,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -326,7 +326,7 @@ class Columns(ColumnsTask):
             id='B09005005',
             type='Numeric',
             name='Children under 18 years of age in single female-led household',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={children: 'denominator'}
         )
