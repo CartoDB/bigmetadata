@@ -136,7 +136,7 @@ class ZillowValueColumns(ColumnsTask):
                             aggregate=aggregate,
                             weight=1,
                             description='{measure_description} {hometype_description}'.format(
-                                measure_description=MEASURES_DESCRIPTION[measure_human]
+                                measure_description=MEASURES_DESCRIPTION[measure_human],
                                 hometype_description=HOMETYPES_DESCRIPTION[hometype_human],
                                 ),
                             tags=[tag])
