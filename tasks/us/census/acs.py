@@ -2493,16 +2493,16 @@ class Columns(ColumnsTask):
             id='B07204004',
             type='Numeric',
             name='Lived in a different house one year ago in the same city',
-            description='',
-            weight=0,
+            description='All people in a geographic area who lived in the same city but moved to a different unit within the year prior to the survey.',
+            weight=1,
             targets={population_1_year_and_over: 'denominator'},
         )
         different_house_year_ago_different_city = OBSColumn(
             id='B07204007',
             type='Numeric',
             name='Lived in a different house one year ago in a different city',
-            description='',
-            weight=0,
+            description='All people in a geographic area who lived in a different city within the year prior to the survey.',
+            weight=1,
             targets={population_1_year_and_over: 'denominator'},
         )
 
