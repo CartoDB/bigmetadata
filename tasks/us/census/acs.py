@@ -2518,7 +2518,7 @@ class Columns(ColumnsTask):
             type='Numeric',
             name='Workers age 16 and over with no vehicle',
             description='All people in a geographic area over the age of 16 who do not own a car.',
-            weight=0,
+            weight=1,
             targets={workers_16_and_over: 'denominator'},
         )
 
