@@ -122,8 +122,8 @@ class ZillowValueColumns(ColumnsTask):
                             aggregate=aggregate,
                             weight=1,
                             description='{measure} for {hometype}'.format(
-                                measure=measure_human,
-                                hometype=hometype_human),
+                                measure=MEASURES_HUMAN[measure_human],
+                                hometype=HOMETYPES[hometype_human].lower()),
                             tags=[tag])
             columns[col_id] = col
         return columns
