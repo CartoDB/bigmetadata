@@ -1204,55 +1204,55 @@ class Columns(ColumnsTask):
             id='C24050009',
             type='Numeric',
             name='Workers employed in firms in finance, insurance, real estate and rental and leasing',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Real Estate and Rental and Leasing sector comprises establishments primarily engaged in renting, leasing, or otherwise allowing the use of tangible or intangible assets, and establishments providing related services. The major portion of this sector comprises establishments that rent, lease, or otherwise allow the use of their own assets by others. The assets may be tangible, as is the case of real estate and equipment, or intangible, as is the case with patents and trademarks.'
         )
         employed_science_management_admin_waste = OBSColumn(
             id='C24050010',
             type='Numeric',
             name='Workers employed in firms in professional scientific, management, administrative and waste management services',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Administrative and Support and Waste Management and Remediation Services sector comprises establishments performing routine support activities for the day-to-day operations of other organizations. The establishments in this sector specialize in one or more of these support activities and provide these services to clients in a variety of industries and, in some cases, to households. Activities performed include office administration, hiring and placing of personnel, document preparation and similar clerical services, solicitation, collection, security and surveillance services, cleaning, and waste disposal services.'
         )
         employed_education_health_social = OBSColumn(
             id='C24050011',
             type='Numeric',
             name='Workers employed in firms in educational services, health care, and social assistance',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='Outpatient health services, other than hospital care, including: public health administration; research and education; categorical health programs; treatment and immunization clinics; nursing; environmental health activities such as air and water pollution control; ambulance service if provided separately from fire protection services, and other general public health activities such as mosquito abatement. School health services provided by health agencies (rather than school agencies) are included here. Sewage treatment operations are classified under Sewerage.'
         )
         employed_arts_entertainment_recreation_accommodation_food = OBSColumn(
             id='C24050012',
             type='Numeric',
             name='Workers employed in firms in arts, entertainment, recreation, accommodation and food services',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Arts, Entertainment, and Recreation sector includes a wide range of establishments that operate facilities or provide services to meet varied cultural, entertainment, and recreational interests of their patrons. This sector comprises (1) establishments that are involved in producing, promoting, or participating in live performances, events, or exhibits intended for public viewing; (2) establishments that preserve and exhibit objects and sites of historical, cultural, or educational interest; and (3) establishments that operate facilities or provide services that enable patrons to participate in recreational activities or pursue amusement, hobby, and leisure-time interests.'
         )
         employed_other_services_not_public_admin = OBSColumn(
             id='C24050013',
             type='Numeric',
             name='Workers employed in firms in other services except public administration',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Other Services (Except Public Administration) sector comprises establishments engaged in providing services not specifically provided for elsewhere in the classification system. Establishments in this sector are primarily engaged in activities such as equipment and machinery repairing, promoting or administering religious activities, grantmaking, advocacy, and providing drycleaning and laundry services, personal care services, death care services, pet care services, photofinishing services, temporary parking services, and dating services. Private households that engage in employing workers on or about the premises in activities primarily concerned with the operation of the household are included in this sector.'
         )
         employed_public_administration = OBSColumn(
             id='C24050014',
             type='Numeric',
             name='Workers employed in firms in public administration',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Public Administration sector consists of establishments of federal, state, and local government agencies that administer, oversee, and manage public programs and have executive, legislative, or judicial authority over other institutions within a given area. These agencies also set policy, create laws, adjudicate civil and criminal legal cases, provide for public safety and for national defense. In general, government establishments in the public administration sector oversee governmental programs and activities that are not performed by private establishments.'
         )
         occupation_management_arts = OBSColumn(
             id='C24050015',
@@ -1320,8 +1320,8 @@ class Columns(ColumnsTask):
             id='B01001003',
             type='Numeric',
             name='Male under 5 years',
-            description='',
-            weight=0,
+            description='The male population over the age of five years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1329,8 +1329,8 @@ class Columns(ColumnsTask):
             id='B01001004',
             type='Numeric',
             name='Male age 5 to 9',
-            description='',
-            weight=0,
+            description='The male population between the age of five years to nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1338,8 +1338,8 @@ class Columns(ColumnsTask):
             id='B01001004',
             type='Numeric',
             name='Male age 10 to 14',
-            description='',
-            weight=0,
+            description='The male population between the age of ten years to fourteen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1347,8 +1347,8 @@ class Columns(ColumnsTask):
             id='B01001006',
             type='Numeric',
             name='Male age 15 to 17',
-            description='',
-            weight=0,
+            description='The male population between the age of fifteeen years to seventeen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1356,8 +1356,8 @@ class Columns(ColumnsTask):
             id='B01001007',
             type='Numeric',
             name='Male age 18 and 19',
-            description='',
-            weight=0,
+            description='The male population between the age of eighteen years to nineteen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1365,8 +1365,8 @@ class Columns(ColumnsTask):
             id='B01001008',
             type='Numeric',
             name='Male age 20',
-            description='',
-            weight=0,
+            description='The male population with an age of twenty years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1374,8 +1374,8 @@ class Columns(ColumnsTask):
             id='B01001009',
             type='Numeric',
             name='Male age 21',
-            description='',
-            weight=0,
+            description='The male population with an age of twenty-one years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1383,8 +1383,8 @@ class Columns(ColumnsTask):
             id='B01001010',
             type='Numeric',
             name='Male age 22 to 24',
-            description='',
-            weight=0,
+            description='The male population between the age of twenty-two years to twenty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1392,8 +1392,8 @@ class Columns(ColumnsTask):
             id='B01001011',
             type='Numeric',
             name='Male age 25 to 29',
-            description='',
-            weight=0,
+            description='The male population between the age of twenty-five years to twenty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1401,8 +1401,8 @@ class Columns(ColumnsTask):
             id='B01001012',
             type='Numeric',
             name='Male age 30 to 34',
-            description='',
-            weight=0,
+            description='The male population between the age of thirty years to thirty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1410,8 +1410,8 @@ class Columns(ColumnsTask):
             id='B01001013',
             type='Numeric',
             name='Male age 35 to 39',
-            description='',
-            weight=0,
+            description='The male population between the age of thirty-five years to thirty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1419,8 +1419,8 @@ class Columns(ColumnsTask):
             id='B01001014',
             type='Numeric',
             name='Male age 40 to 44',
-            description='',
-            weight=0,
+            description='The male population between the age of fourty years to fourty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1429,8 +1429,8 @@ class Columns(ColumnsTask):
             id='B01001020',
             type='Numeric',
             name='Male age 65 to 66',
-            description='',
-            weight=0,
+            description='The male population between the age of sixty-five years to sixty-six years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1438,8 +1438,8 @@ class Columns(ColumnsTask):
             id='B01001021',
             type='Numeric',
             name='Male age 67 to 69',
-            description='',
-            weight=0,
+            description='The male population between the age of sixty-seven years to sixty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1447,8 +1447,8 @@ class Columns(ColumnsTask):
             id='B01001022',
             type='Numeric',
             name='Male age 70 to 74',
-            description='',
-            weight=0,
+            description='The male population between the age of seventy years to seventy-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1456,8 +1456,8 @@ class Columns(ColumnsTask):
             id='B01001023',
             type='Numeric',
             name='Male age 75 to 79',
-            description='',
-            weight=0,
+            description='The male population between the age of seventy-five years to seventy-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1465,8 +1465,8 @@ class Columns(ColumnsTask):
             id='B01001024',
             type='Numeric',
             name='Male age 80 to 84',
-            description='',
-            weight=0,
+            description='The male population between the age of eighty years to eighty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1474,8 +1474,8 @@ class Columns(ColumnsTask):
             id='B01001025',
             type='Numeric',
             name='Male age 85 and over',
-            description='',
-            weight=0,
+            description='The male population of the age of eighty-five years and over within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
