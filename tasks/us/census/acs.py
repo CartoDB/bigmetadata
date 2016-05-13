@@ -2078,8 +2078,8 @@ class Columns(ColumnsTask):
             id='B08134001',
             type='Numeric',
             name='Workers age 16 and over who do not work from home',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2089,9 +2089,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with less than 10 minute commute',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in less than 10 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in less than 10 minutes.',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2100,8 +2099,9 @@ class Columns(ColumnsTask):
             id='B08303003',
             type='Numeric',
             name='Number of workers with a commute between 5 and 9 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 5 and 9 minutes.',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2110,9 +2110,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 10 and 14 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 10 and 14 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 10 and 14 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2123,9 +2122,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 15 and 19 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 15 and 19 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 15 and 19 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2136,9 +2134,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 20 and 24 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 20 and 24 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 20 and 24 minutes.',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2148,9 +2145,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 25 and 29 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 25 and 29 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 25 and 29 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2160,9 +2156,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 30 and 34 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 30 and 34 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 30 and 34 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2171,8 +2166,9 @@ class Columns(ColumnsTask):
             id='B08303009',
             type='Numeric',
             name='Number of workers with a commute between 35 and 39 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 35 and 39 minutes. ',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2180,8 +2176,9 @@ class Columns(ColumnsTask):
             id='B08303010',
             type='Numeric',
             name='Number of workers with a commute between 40 and 44 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 40 and 44 minutes. ',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2190,9 +2187,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 35 and 44 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 35 and 44 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 35 and 44 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2202,9 +2198,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 45 and 59 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 45 and 59 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 45 and 59 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2214,9 +2209,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute of over 60 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in over 60 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in over 60 minutes.',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2225,8 +2219,9 @@ class Columns(ColumnsTask):
             id='B08303012',
             type='Numeric',
             name='Number of workers with a commute between 60 and 89 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 60 and 89 minutes .',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2234,8 +2229,9 @@ class Columns(ColumnsTask):
             id='B08303013',
             type='Numeric',
             name='Number of workers with a commute of more than 90 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute more than 90 minutes.',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2243,9 +2239,9 @@ class Columns(ColumnsTask):
             id='B08135001',
             type='Numeric',
             name='Aggregate travel time to work',
-            description='The total number of minutes every worker over the age '
+            description='The total number of minutes every worker in a geographic area over the age '
                         'of 16 who did not work from home spent spent '
-                        'commuting to work in one day in a geographic area',
+                        'commuting to work in one day',
             weight=2,
             aggregate='sum',
             targets={commuters_16_over: 'divisor'},
@@ -2474,8 +2470,8 @@ class Columns(ColumnsTask):
             type='Numeric',
             aggregate='median',
             name='Owner-Occupied Housing Units Median Value',
-            description='',
-            weight=0
+            description='The middle value (median) in a geographic area owner occupied housing units.',
+            weight=1
         )
 
         owner_occupied_housing_units_upper_value_quartile = OBSColumn(
@@ -2490,8 +2486,8 @@ class Columns(ColumnsTask):
             id='B07204001',
             type='Numeric',
             name='Population 1 year and over',
-            description='',
-            weight=0
+            description='All people, male and female, child and adult, living in a given geographic area that are 1 year and older.',
+            weight=1
         )
         different_house_year_ago_same_city = OBSColumn(
             id='B07204004',
