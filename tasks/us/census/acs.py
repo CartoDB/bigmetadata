@@ -1742,8 +1742,8 @@ class Columns(ColumnsTask):
             id='B15001027',
             type='Numeric',
             name='Men age 45 to 64 ("middle aged")',
-            description='',
-            weight=0,
+            description='The male population between the age of fourty-five years to sixty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             tags=[tag_middle_aged_men])
 
@@ -1752,8 +1752,8 @@ class Columns(ColumnsTask):
             id='B01001015',
             type='Numeric',
             name='Men age 45 to 49',
-            description='',
-            weight=0,
+            description='The male population between the age of fourty-five years to fourty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -1763,8 +1763,8 @@ class Columns(ColumnsTask):
             id='B01001016',
             type='Numeric',
             name='Men age 50 to 54',
-            description='',
-            weight=0,
+            description='The male population between the age of fifty years to fifty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -1774,8 +1774,8 @@ class Columns(ColumnsTask):
             id='B01001017',
             type='Numeric',
             name='Men age 55 to 59',
-            description='',
-            weight=0,
+            description='The male population between the age of fifty-five years to fifty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -1785,8 +1785,8 @@ class Columns(ColumnsTask):
             id='B01001018',
             type='Numeric',
             name='Men age 60 to 61',
-            description='',
-            weight=0,
+            description='The male population between the age of sixty years to sixty-one years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -1796,8 +1796,8 @@ class Columns(ColumnsTask):
             id='B01001019',
             type='Numeric',
             name='Men age 62 to 64',
-            description='',
-            weight=0,
+            description='The male population between the age of sixty-two years to sixty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
