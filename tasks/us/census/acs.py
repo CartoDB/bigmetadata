@@ -2851,7 +2851,7 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 7
+        return 8
 
     def columns(self):
         input_ = self.input()
@@ -2903,7 +2903,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 5
+        return 7
 
     def requires(self):
         return {

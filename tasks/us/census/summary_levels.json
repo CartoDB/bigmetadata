@@ -312,6 +312,7 @@
         "summary_level": "500", 
         "census_notes": "", 
         "slug": "congressional_district", 
+        "table": "cd",
         "name": "Congressional District"
     }
 },
