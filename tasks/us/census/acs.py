@@ -645,7 +645,7 @@ class Columns(ColumnsTask):
             id='B19083001',
             type='Numeric',
             name='Gini Index',
-            description='',
+            description='The Gini index, or index of income concentration, is a statistical measure of income inequality ranging from 0 to 1. A measure of 1 indicates perfect inequality, i.e., one household having all the income and rest having none. A measure of 0 indicates perfect equality, i.e., all households having an equal share of income.',
             weight=5,
             aggregate='',
             tags=[censustags['demographics'], tags['income_education_employment']])
@@ -653,7 +653,7 @@ class Columns(ColumnsTask):
             id='B19301001',
             type='Numeric',
             name='Per Capita Income in the past 12 Months',
-            description='',
+            description='Per capita income is the mean income computed for every man, woman, and child in a particular group. It is derived by dividing the total income of a particular group by the total population.',
             weight=7,
             aggregate='average',
             tags=[censustags['demographics'], tags['income_education_employment']])
