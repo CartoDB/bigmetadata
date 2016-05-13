@@ -46,8 +46,7 @@ class ClippedGeomColumns(ColumnsTask):
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
                 targets={col: 'cartography'},
-                tags=[tags['boundary']],
-                weight=col.weight
+                tags=[tags['boundary']]
             )
 
         return cols
