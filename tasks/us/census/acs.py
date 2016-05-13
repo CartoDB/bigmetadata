@@ -1485,8 +1485,8 @@ class Columns(ColumnsTask):
             id='B01001027',
             type='Numeric',
             name='Female under 5 years',
-            description='',
-            weight=0,
+            description='The female population over the age of five years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1494,8 +1494,8 @@ class Columns(ColumnsTask):
             id='B01001028',
             type='Numeric',
             name='Female age 5 to 9',
-            description='',
-            weight=0,
+            description='The female population between the age of five years to nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1503,8 +1503,8 @@ class Columns(ColumnsTask):
             id='B01001029',
             type='Numeric',
             name='Female age 10 to 14',
-            description='',
-            weight=0,
+            description='The female population between the age of ten years to fourteen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1512,8 +1512,8 @@ class Columns(ColumnsTask):
             id='B01001030',
             type='Numeric',
             name='Female age 15 to 17',
-            description='',
-            weight=0,
+            description='The female population between the age of fifteeen years to seventeen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1521,8 +1521,8 @@ class Columns(ColumnsTask):
             id='B01001031',
             type='Numeric',
             name='Female age 18 and 19',
-            description='',
-            weight=0,
+            description='The female population between the age of eighteen years to nineteen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1530,8 +1530,8 @@ class Columns(ColumnsTask):
             id='B01001032',
             type='Numeric',
             name='Female age 20',
-            description='',
-            weight=0,
+            description='The female population with an age of twenty years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1539,8 +1539,8 @@ class Columns(ColumnsTask):
             id='B01001033',
             type='Numeric',
             name='Female age 21',
-            description='',
-            weight=0,
+            description='The female population with an age of twenty-one years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1548,8 +1548,8 @@ class Columns(ColumnsTask):
             id='B01001034',
             type='Numeric',
             name='Female age 22 to 24',
-            description='',
-            weight=0,
+            description='The female population between the age of twenty-two years to twenty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1557,8 +1557,8 @@ class Columns(ColumnsTask):
             id='B01001035',
             type='Numeric',
             name='Female age 25 to 29',
-            description='',
-            weight=0,
+            description='The female population between the age of twenty-five years to twenty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1566,8 +1566,8 @@ class Columns(ColumnsTask):
             id='B01001036',
             type='Numeric',
             name='Female age 30 to 34',
-            description='',
-            weight=0,
+            description='The female population between the age of thirty years to thirty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1575,8 +1575,8 @@ class Columns(ColumnsTask):
             id='B01001037',
             type='Numeric',
             name='Female age 35 to 39',
-            description='',
-            weight=0,
+            description='The female population between the age of thirty-five years to thirty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1584,8 +1584,8 @@ class Columns(ColumnsTask):
             id='B01001038',
             type='Numeric',
             name='Female age 40 to 44',
-            description='',
-            weight=0,
+            description='The female population between the age of fourty years to fourty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1593,8 +1593,8 @@ class Columns(ColumnsTask):
             id='B01001039',
             type='Numeric',
             name='Female age 45 to 49',
-            description='',
-            weight=0,
+            description='The female population between the age of fourty-five years to fourty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1602,8 +1602,8 @@ class Columns(ColumnsTask):
             id='B01001040',
             type='Numeric',
             name='Female age 50 to 54',
-            description='',
-            weight=0,
+            description='The female population between the age of fifty years to fifty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1611,8 +1611,8 @@ class Columns(ColumnsTask):
             id='B01001041',
             type='Numeric',
             name='Female age 55 to 59',
-            description='',
-            weight=0,
+            description='The female population between the age of fifty-five years to fifty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1620,8 +1620,8 @@ class Columns(ColumnsTask):
             id='B01001042',
             type='Numeric',
             name='Female age 60 and 61',
-            description='',
-            weight=0,
+            description='The female population between the age of sixty years to sixty-one years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1629,8 +1629,8 @@ class Columns(ColumnsTask):
             id='B01001043',
             type='Numeric',
             name='Female age 62 to 64',
-            description='',
-            weight=0,
+            description='The female population between the age of sixty-two years to sixty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1639,8 +1639,8 @@ class Columns(ColumnsTask):
             id='B01001044',
             type='Numeric',
             name='Female age 65 to 66',
-            description='',
-            weight=0,
+            description='The female population between the age of sixty-five years to sixty-six years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1648,8 +1648,8 @@ class Columns(ColumnsTask):
             id='B01001045',
             type='Numeric',
             name='Female age 67 to 69',
-            description='',
-            weight=0,
+            description='The female population between the age of sixty-seven years to sixty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1657,8 +1657,8 @@ class Columns(ColumnsTask):
             id='B01001046',
             type='Numeric',
             name='Female age 70 to 74',
-            description='',
-            weight=0,
+            description='The female population between the age of seventy years to seventy-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1666,8 +1666,8 @@ class Columns(ColumnsTask):
             id='B01001047',
             type='Numeric',
             name='Female age 75 to 79',
-            description='',
-            weight=0,
+            description='The female population between the age of seventy-five years to seventy-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1675,8 +1675,8 @@ class Columns(ColumnsTask):
             id='B01001048',
             type='Numeric',
             name='Female age 80 to 84',
-            description='',
-            weight=0,
+            description='The female population between the age of eighty years to eighty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1684,8 +1684,8 @@ class Columns(ColumnsTask):
             id='B01001049',
             type='Numeric',
             name='Female age 85 and over',
-            description='',
-            weight=0,
+            description='The female population of the age of eighty-five years and over within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
