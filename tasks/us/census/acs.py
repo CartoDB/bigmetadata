@@ -1141,64 +1141,64 @@ class Columns(ColumnsTask):
             id='C24050002',
             type='Numeric',
             name='Workers employed in firms in agriculture, forestry, fishing, hunting, or mining',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Agriculture, Forestry, Fishing and Hunting sector comprises establishments primarily engaged in growing crops, raising animals, harvesting timber, and harvesting fish and other animals from a farm, ranch, or their natural habitats.'
         )
         employed_construction = OBSColumn(
             id='C24050003',
             type='Numeric',
             name='Workers employed in firms in construction',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Construction sector comprises establishments primarily engaged in the construction of buildings or engineering projects (e.g., highways and utility systems). Construction work done may include new work, additions, alterations, or maintenance and repairs.'
         )
         employed_manufacturing = OBSColumn(
             id='C24050004',
             type='Numeric',
             name='Workers employed in firms in manufacturing',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Manufacturing sector comprises establishments engaged in the mechanical, physical, or chemical transformation of materials, substances, or components into new products.'
         )
         employed_wholesale_trade = OBSColumn(
             id='C24050005',
             type='Numeric',
             name='Workers employed in firms in wholesale trade',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Wholesale Trade sector comprises establishments engaged in wholesaling merchandise, generally without transformation, and rendering services incidental to the sale of merchandise. The wholesaling process is an intermediate step in the distribution of merchandise. Wholesalers are organized to sell or arrange the purchase or sale of (a) goods for resale (i.e., goods sold to other wholesalers or retailers), (b) capital or durable nonconsumer goods, and (c) raw and intermediate materials and supplies used in production.'
         )
         employed_retail_trade = OBSColumn(
             id='C24050006',
             type='Numeric',
             name='Workers employed in firms in retail trade',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Retail Trade sector comprises establishments engaged in retailing merchandise, generally without transformation, and rendering services incidental to the sale of merchandise. The retailing process is the final step in the distribution of merchandise; retailers are, therefore, organized to sell merchandise in small quantities to the general public.'
         )
         employed_transportation_warehousing_utilities = OBSColumn(
             id='C24050007',
             type='Numeric',
             name='Workers employed in firms in transportation, warehousing, and utilities',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Transportation and Warehousing sector includes industries providing transportation of passengers and cargo, warehousing and storage for goods, scenic and sightseeing transportation, and support activities related to modes of transportation. The modes of transportation are air, rail, water, road, and pipeline.'
         )
         employed_information = OBSColumn(
             id='C24050008',
             type='Numeric',
             name='Workers employed in firms in information',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Information sector comprises establishments engaged in the following processes: (a) producing and distributing information and cultural products, (b) providing the means to transmit or distribute these products as well as data or communications, and (c) processing data. Included are the publishing industries, the motion picture and sound recording industries; the broadcasting industries, the telecommunications industries; Web search portals, data processing industries, and the information services industries.'
         )
         employed_finance_insurance_real_estate = OBSColumn(
             id='C24050009',
