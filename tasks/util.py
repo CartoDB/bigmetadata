@@ -422,10 +422,13 @@ class TableTarget(Target):
                               'mode() within group (order by {colname}) col{i}_mode, '
                               'stddev_pop({colname}) col{i}_stddev'.format(
                                   i=i, colname=colname.lower()))
-        stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
-            select=', '.join(select), output=self.table)
-        resp = session.execute(stmt)
-        colinfo = dict(zip(resp.keys(), resp.fetchone()))
+        if select:
+            stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
+                select=', '.join(select), output=self.table)
+            resp = session.execute(stmt)
+            colinfo = dict(zip(resp.keys(), resp.fetchone()))
+        else:
+            colinfo = {}
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
@@ -668,15 +671,16 @@ class TableTask(Task):
         raise NotImplementedError('Must define bounds for table')
 
     def run(self):
-        self.output().update_or_create_table()
+        output = self.output()
+        output.update_or_create_table()
         self.populate()
-        self.output().update_or_create_metadata()
+        output.update_or_create_metadata()
         self.create_indexes()
 
     def create_indexes(self):
         session = current_session()
         for colname, coltarget in self.columns().iteritems():
-            col = coltarget._column
+            col = coltarget.get(session)
             if col.should_index():
                 session.execute('CREATE INDEX ON {table} ({colname})'.format(
                     table=self.output().table, colname=colname))
