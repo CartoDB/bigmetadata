@@ -445,14 +445,17 @@ class TableTarget(Target):
             coltable = session.query(OBSColumnTable).filter_by(
                 column_id=col.id, table_id=obs_table.id).first()
             if coltable:
+                coltable_existed = True
                 coltable.colname = colname
             else:
                 # catch the case where a column id has changed
                 coltable = session.query(OBSColumnTable).filter_by(
                     table_id=obs_table.id, colname=colname).first()
                 if coltable:
+                    coltable_existed = True
                     coltable.column = col
                 else:
+                    coltable_existed = False
                     coltable = OBSColumnTable(colname=colname, table=obs_table,
                                               column=col)
             # include analysis
@@ -469,7 +472,8 @@ class TableTarget(Target):
                     'stddev': colinfo.get('col%s_stddev' % i),
                 }
                 if stats['notnull'] == 0:
-                    session.delete(coltable)
+                    if coltable_existed:
+                        session.delete(coltable)
                     continue
                 for k in stats.keys():
                     if stats[k] is not None:
