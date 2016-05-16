@@ -59,7 +59,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 8
+        return 9
 
     def columns(self):
         input_ = self.input()
@@ -2242,7 +2242,7 @@ class Columns(ColumnsTask):
             description='The total number of minutes every worker in a geographic area over the age '
                         'of 16 who did not work from home spent spent '
                         'commuting to work in one day',
-            weight=2,
+            weight=0,
             aggregate='sum',
             targets={commuters_16_over: 'divisor'},
             tags=[censustags['demographics'], tags['income_education_employment']]
