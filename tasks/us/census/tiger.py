@@ -560,7 +560,7 @@ class ShorelineClip(TableTask):
         return self.year
 
     def bounds(self):
-        return 'BOX(0 0,0 0)'
+        return 'BOX(-179.231086 -14.601813,179.859681 71.441059)'
 
     def populate(self):
         session = current_session()
