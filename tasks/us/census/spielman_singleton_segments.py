@@ -125,7 +125,7 @@ class SpielmanSingletonTable(TableTask):
         return 8
 
     def timespan(self):
-        return '2009 - 2013'
+        return '2010 - 2014'
 
     def bounds(self):
         return 'BOX(0 0,0 0)'
@@ -143,7 +143,7 @@ class SpielmanSingletonTable(TableTask):
                                           name=name,
                                           segment_id=segment_id
                                       ))
-                                      
+
         for name, segment_id in SpielmanSingletonColumns.x55_mapping.iteritems():
             current_session().execute("update {table} set X55 = '{name}' "
                                       "where X55 ='{segment_id}'; ".format(
@@ -173,7 +173,7 @@ class SpielmanSingletonColumns(ColumnsTask):
         'Low income, African American' : 9,
         'Residential Institutions' : 10
     }
-    
+
     x55_mapping = {
         "Middle Class, Educated, Suburban, Mixed Race": 1,
         "Low Income on Urban Periphery": 3,
