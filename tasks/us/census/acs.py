@@ -59,7 +59,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 7
+        return 8
 
     def columns(self):
         input_ = self.input()
@@ -133,7 +133,7 @@ class Columns(ColumnsTask):
             name='American Indian and Alaska Native Population',
             description="The number of people identifying as American Indian or Alaska native in each geography.",
             aggregate='sum',
-            weight=0,
+            weight=1,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -153,7 +153,7 @@ class Columns(ColumnsTask):
             name='Other Race population',
             description="The number of people identifying as another race in each geography",
             aggregate='sum',
-            weight=0,
+            weight=1,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -163,7 +163,7 @@ class Columns(ColumnsTask):
             name='Two or more races population',
             description="The number of people identifying as two or more races in each geography",
             aggregate='sum',
-            weight=0,
+            weight=1,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -173,7 +173,7 @@ class Columns(ColumnsTask):
             name='Population not Hispanic',
             description="The number of people not identifying as Hispanic or Latino in each geography.",
             aggregate='sum',
-            weight=0,
+            weight=1,
             targets={total_pop: 'denominator'},
             tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
         )
@@ -326,7 +326,7 @@ class Columns(ColumnsTask):
             id='B09005005',
             type='Numeric',
             name='Children under 18 years of age in single female-led household',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={children: 'denominator'}
         )
@@ -345,24 +345,24 @@ class Columns(ColumnsTask):
             id='B11001003',
             type='Numeric',
             name='Married households',
-            description='',
-            weight=0,
+            description='People in formal marriages, as well as people in common-law marriages, are included. Does not include same-sex marriages.',
+            weight=1,
             targets={households: 'denominator'}
         )
         male_male_households = OBSColumn(
             id='B11009003',
             type='Numeric',
             name='Households with two male partners',
-            description='',
-            weight=0,
+            description='An unmarried partner is a person age 15 years and over, who is not related to the householder, who shares living quarters, and who has an intimate relationship with the householder.',
+            weight=1,
             targets={households: 'denominator'}
         )
         female_female_households = OBSColumn(
             id='B11009005',
             type='Numeric',
             name='Households with two female partners',
-            description='',
-            weight=0,
+            description='An unmarried partner is a person age 15 years and over, who is not related to the householder, who shares living quarters, and who has an intimate relationship with the householder.',
+            weight=1,
             targets={households: 'denominator'}
         )
         population_3_years_over = OBSColumn(
@@ -448,8 +448,10 @@ class Columns(ColumnsTask):
             id='B07009002',
             type='Numeric',
             name='Less than high school graduate',
-            description='',
-            weight=0,
+            description='The number of people in a geographic area over the age '
+            'of 25 who have not completed high school or any other advanced '
+            'degree.',
+            weight=1,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'}
         )
@@ -468,8 +470,9 @@ class Columns(ColumnsTask):
             id='B07009003',
             type='Numeric',
             name='Population with high school degree, including GED',
-            description='',
-            weight=0,
+            description="The number of people in a geographic area over the age "
+            "of 25 who attained a high school degree or GED.",
+            weight=1,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'}
         )
@@ -509,8 +512,10 @@ class Columns(ColumnsTask):
             id='B07009004',
             type='Numeric',
             name='Population who completed some college or obtained associate\'s degree',
-            description='',
-            weight=0,
+            description="The number of people in a geographic area over the age "
+            "of 25 who obtained an associate's degree, and did not complete a more "
+            "advanced degree.",
+            weight=1,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'}
         )
@@ -686,8 +691,8 @@ class Columns(ColumnsTask):
             id='B25003001',
             type='Numeric',
             name='Renter occupied housing units',
-            description='',
-            weight=0,
+            description='A housing unit is classified as occupied if it is the usual place of residence of the person or group of people living in it at the time of enumeration.',
+            weight=1,
             aggregate='sum',
             targets={housing_units: 'denominator'}
         )
@@ -695,8 +700,8 @@ class Columns(ColumnsTask):
             id='B25003003',
             type='Numeric',
             name='Renter occupied housing units',
-            description='',
-            weight=0,
+            description='All occupied units which are not owner occupied, whether they are rented for cash rent or occupied without payment of cash rent, are classified as renter-occupied.',
+            weight=1,
             aggregate='sum',
             targets={occupied_housing_units: 'denominator'}
         )
@@ -868,8 +873,8 @@ class Columns(ColumnsTask):
             id='B25024010',
             type='Numeric',
             name='Mobile homes',
-            description='',
-            weight=0,
+            description='A manufactured home is defined as a movable dwelling, 8 feet or more wide and 40 feet or more long, designed to be towed on its own chassis, with transportation gear integral to the unit when it leaves the factory, and without need of a permanent foundation. These homes are built in accordance with the U.S. Department of Housing and Urban Development (HUD) building code.',
+            weight=1,
             aggregate='sum',
             targets={housing_units: 'denominator'}
         )
@@ -877,17 +882,17 @@ class Columns(ColumnsTask):
             id='B25034002',
             type='Numeric',
             name='Housing units built in 2005 or later',
-            description='',
-            weight=0,
+            description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built in 2005 or later.',
             aggregate='sum',
+            weight=1,
             targets={housing_units: 'denominator'}
         )
         housing_built_2000_to_2004 = OBSColumn(
             id='B25034003',
             type='Numeric',
             name='Housing units built between 2000 and 2004',
-            description='',
-            weight=0,
+            description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built from 2000 to 2004.',
+            weight=1,
             aggregate='sum',
             targets={housing_units: 'denominator'}
         )
@@ -895,8 +900,8 @@ class Columns(ColumnsTask):
             id='B25034010',
             type='Numeric',
             name='Housing units built before 1939',
-            description='',
-            weight=0,
+            description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built in 1939 or earlier.',
+            weight=1,
             aggregate='sum',
             targets={housing_units: 'denominator'}
         )
@@ -1136,118 +1141,118 @@ class Columns(ColumnsTask):
             id='C24050002',
             type='Numeric',
             name='Workers employed in firms in agriculture, forestry, fishing, hunting, or mining',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Agriculture, Forestry, Fishing and Hunting sector comprises establishments primarily engaged in growing crops, raising animals, harvesting timber, and harvesting fish and other animals from a farm, ranch, or their natural habitats.'
         )
         employed_construction = OBSColumn(
             id='C24050003',
             type='Numeric',
             name='Workers employed in firms in construction',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Construction sector comprises establishments primarily engaged in the construction of buildings or engineering projects (e.g., highways and utility systems). Construction work done may include new work, additions, alterations, or maintenance and repairs.'
         )
         employed_manufacturing = OBSColumn(
             id='C24050004',
             type='Numeric',
             name='Workers employed in firms in manufacturing',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Manufacturing sector comprises establishments engaged in the mechanical, physical, or chemical transformation of materials, substances, or components into new products.'
         )
         employed_wholesale_trade = OBSColumn(
             id='C24050005',
             type='Numeric',
             name='Workers employed in firms in wholesale trade',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Wholesale Trade sector comprises establishments engaged in wholesaling merchandise, generally without transformation, and rendering services incidental to the sale of merchandise. The wholesaling process is an intermediate step in the distribution of merchandise. Wholesalers are organized to sell or arrange the purchase or sale of (a) goods for resale (i.e., goods sold to other wholesalers or retailers), (b) capital or durable nonconsumer goods, and (c) raw and intermediate materials and supplies used in production.'
         )
         employed_retail_trade = OBSColumn(
             id='C24050006',
             type='Numeric',
             name='Workers employed in firms in retail trade',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Retail Trade sector comprises establishments engaged in retailing merchandise, generally without transformation, and rendering services incidental to the sale of merchandise. The retailing process is the final step in the distribution of merchandise; retailers are, therefore, organized to sell merchandise in small quantities to the general public.'
         )
         employed_transportation_warehousing_utilities = OBSColumn(
             id='C24050007',
             type='Numeric',
             name='Workers employed in firms in transportation, warehousing, and utilities',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Transportation and Warehousing sector includes industries providing transportation of passengers and cargo, warehousing and storage for goods, scenic and sightseeing transportation, and support activities related to modes of transportation. The modes of transportation are air, rail, water, road, and pipeline.'
         )
         employed_information = OBSColumn(
             id='C24050008',
             type='Numeric',
             name='Workers employed in firms in information',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Information sector comprises establishments engaged in the following processes: (a) producing and distributing information and cultural products, (b) providing the means to transmit or distribute these products as well as data or communications, and (c) processing data. Included are the publishing industries, the motion picture and sound recording industries; the broadcasting industries, the telecommunications industries; Web search portals, data processing industries, and the information services industries.'
         )
         employed_finance_insurance_real_estate = OBSColumn(
             id='C24050009',
             type='Numeric',
             name='Workers employed in firms in finance, insurance, real estate and rental and leasing',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Real Estate and Rental and Leasing sector comprises establishments primarily engaged in renting, leasing, or otherwise allowing the use of tangible or intangible assets, and establishments providing related services. The major portion of this sector comprises establishments that rent, lease, or otherwise allow the use of their own assets by others. The assets may be tangible, as is the case of real estate and equipment, or intangible, as is the case with patents and trademarks.'
         )
         employed_science_management_admin_waste = OBSColumn(
             id='C24050010',
             type='Numeric',
             name='Workers employed in firms in professional scientific, management, administrative and waste management services',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Administrative and Support and Waste Management and Remediation Services sector comprises establishments performing routine support activities for the day-to-day operations of other organizations. The establishments in this sector specialize in one or more of these support activities and provide these services to clients in a variety of industries and, in some cases, to households. Activities performed include office administration, hiring and placing of personnel, document preparation and similar clerical services, solicitation, collection, security and surveillance services, cleaning, and waste disposal services.'
         )
         employed_education_health_social = OBSColumn(
             id='C24050011',
             type='Numeric',
             name='Workers employed in firms in educational services, health care, and social assistance',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='Outpatient health services, other than hospital care, including: public health administration; research and education; categorical health programs; treatment and immunization clinics; nursing; environmental health activities such as air and water pollution control; ambulance service if provided separately from fire protection services, and other general public health activities such as mosquito abatement. School health services provided by health agencies (rather than school agencies) are included here. Sewage treatment operations are classified under Sewerage.'
         )
         employed_arts_entertainment_recreation_accommodation_food = OBSColumn(
             id='C24050012',
             type='Numeric',
             name='Workers employed in firms in arts, entertainment, recreation, accommodation and food services',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Arts, Entertainment, and Recreation sector includes a wide range of establishments that operate facilities or provide services to meet varied cultural, entertainment, and recreational interests of their patrons. This sector comprises (1) establishments that are involved in producing, promoting, or participating in live performances, events, or exhibits intended for public viewing; (2) establishments that preserve and exhibit objects and sites of historical, cultural, or educational interest; and (3) establishments that operate facilities or provide services that enable patrons to participate in recreational activities or pursue amusement, hobby, and leisure-time interests.'
         )
         employed_other_services_not_public_admin = OBSColumn(
             id='C24050013',
             type='Numeric',
             name='Workers employed in firms in other services except public administration',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Other Services (Except Public Administration) sector comprises establishments engaged in providing services not specifically provided for elsewhere in the classification system. Establishments in this sector are primarily engaged in activities such as equipment and machinery repairing, promoting or administering religious activities, grantmaking, advocacy, and providing drycleaning and laundry services, personal care services, death care services, pet care services, photofinishing services, temporary parking services, and dating services. Private households that engage in employing workers on or about the premises in activities primarily concerned with the operation of the household are included in this sector.'
         )
         employed_public_administration = OBSColumn(
             id='C24050014',
             type='Numeric',
             name='Workers employed in firms in public administration',
-            weight=0,
+            weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='The Public Administration sector consists of establishments of federal, state, and local government agencies that administer, oversee, and manage public programs and have executive, legislative, or judicial authority over other institutions within a given area. These agencies also set policy, create laws, adjudicate civil and criminal legal cases, provide for public safety and for national defense. In general, government establishments in the public administration sector oversee governmental programs and activities that are not performed by private establishments.'
         )
         occupation_management_arts = OBSColumn(
             id='C24050015',
@@ -1315,8 +1320,8 @@ class Columns(ColumnsTask):
             id='B01001003',
             type='Numeric',
             name='Male under 5 years',
-            description='',
-            weight=0,
+            description='The male population over the age of five years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1324,8 +1329,8 @@ class Columns(ColumnsTask):
             id='B01001004',
             type='Numeric',
             name='Male age 5 to 9',
-            description='',
-            weight=0,
+            description='The male population between the age of five years to nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1333,8 +1338,8 @@ class Columns(ColumnsTask):
             id='B01001004',
             type='Numeric',
             name='Male age 10 to 14',
-            description='',
-            weight=0,
+            description='The male population between the age of ten years to fourteen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1342,8 +1347,8 @@ class Columns(ColumnsTask):
             id='B01001006',
             type='Numeric',
             name='Male age 15 to 17',
-            description='',
-            weight=0,
+            description='The male population between the age of fifteeen years to seventeen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1351,8 +1356,8 @@ class Columns(ColumnsTask):
             id='B01001007',
             type='Numeric',
             name='Male age 18 and 19',
-            description='',
-            weight=0,
+            description='The male population between the age of eighteen years to nineteen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1360,8 +1365,8 @@ class Columns(ColumnsTask):
             id='B01001008',
             type='Numeric',
             name='Male age 20',
-            description='',
-            weight=0,
+            description='The male population with an age of twenty years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1369,8 +1374,8 @@ class Columns(ColumnsTask):
             id='B01001009',
             type='Numeric',
             name='Male age 21',
-            description='',
-            weight=0,
+            description='The male population with an age of twenty-one years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1378,8 +1383,8 @@ class Columns(ColumnsTask):
             id='B01001010',
             type='Numeric',
             name='Male age 22 to 24',
-            description='',
-            weight=0,
+            description='The male population between the age of twenty-two years to twenty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1387,8 +1392,8 @@ class Columns(ColumnsTask):
             id='B01001011',
             type='Numeric',
             name='Male age 25 to 29',
-            description='',
-            weight=0,
+            description='The male population between the age of twenty-five years to twenty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1396,8 +1401,8 @@ class Columns(ColumnsTask):
             id='B01001012',
             type='Numeric',
             name='Male age 30 to 34',
-            description='',
-            weight=0,
+            description='The male population between the age of thirty years to thirty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1405,8 +1410,8 @@ class Columns(ColumnsTask):
             id='B01001013',
             type='Numeric',
             name='Male age 35 to 39',
-            description='',
-            weight=0,
+            description='The male population between the age of thirty-five years to thirty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1414,8 +1419,8 @@ class Columns(ColumnsTask):
             id='B01001014',
             type='Numeric',
             name='Male age 40 to 44',
-            description='',
-            weight=0,
+            description='The male population between the age of fourty years to fourty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1424,8 +1429,8 @@ class Columns(ColumnsTask):
             id='B01001020',
             type='Numeric',
             name='Male age 65 to 66',
-            description='',
-            weight=0,
+            description='The male population between the age of sixty-five years to sixty-six years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1433,8 +1438,8 @@ class Columns(ColumnsTask):
             id='B01001021',
             type='Numeric',
             name='Male age 67 to 69',
-            description='',
-            weight=0,
+            description='The male population between the age of sixty-seven years to sixty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1442,8 +1447,8 @@ class Columns(ColumnsTask):
             id='B01001022',
             type='Numeric',
             name='Male age 70 to 74',
-            description='',
-            weight=0,
+            description='The male population between the age of seventy years to seventy-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1451,8 +1456,8 @@ class Columns(ColumnsTask):
             id='B01001023',
             type='Numeric',
             name='Male age 75 to 79',
-            description='',
-            weight=0,
+            description='The male population between the age of seventy-five years to seventy-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1460,8 +1465,8 @@ class Columns(ColumnsTask):
             id='B01001024',
             type='Numeric',
             name='Male age 80 to 84',
-            description='',
-            weight=0,
+            description='The male population between the age of eighty years to eighty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1469,8 +1474,8 @@ class Columns(ColumnsTask):
             id='B01001025',
             type='Numeric',
             name='Male age 85 and over',
-            description='',
-            weight=0,
+            description='The male population of the age of eighty-five years and over within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1480,8 +1485,8 @@ class Columns(ColumnsTask):
             id='B01001027',
             type='Numeric',
             name='Female under 5 years',
-            description='',
-            weight=0,
+            description='The female population over the age of five years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1489,8 +1494,8 @@ class Columns(ColumnsTask):
             id='B01001028',
             type='Numeric',
             name='Female age 5 to 9',
-            description='',
-            weight=0,
+            description='The female population between the age of five years to nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1498,8 +1503,8 @@ class Columns(ColumnsTask):
             id='B01001029',
             type='Numeric',
             name='Female age 10 to 14',
-            description='',
-            weight=0,
+            description='The female population between the age of ten years to fourteen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1507,8 +1512,8 @@ class Columns(ColumnsTask):
             id='B01001030',
             type='Numeric',
             name='Female age 15 to 17',
-            description='',
-            weight=0,
+            description='The female population between the age of fifteeen years to seventeen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1516,8 +1521,8 @@ class Columns(ColumnsTask):
             id='B01001031',
             type='Numeric',
             name='Female age 18 and 19',
-            description='',
-            weight=0,
+            description='The female population between the age of eighteen years to nineteen years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1525,8 +1530,8 @@ class Columns(ColumnsTask):
             id='B01001032',
             type='Numeric',
             name='Female age 20',
-            description='',
-            weight=0,
+            description='The female population with an age of twenty years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1534,8 +1539,8 @@ class Columns(ColumnsTask):
             id='B01001033',
             type='Numeric',
             name='Female age 21',
-            description='',
-            weight=0,
+            description='The female population with an age of twenty-one years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1543,8 +1548,8 @@ class Columns(ColumnsTask):
             id='B01001034',
             type='Numeric',
             name='Female age 22 to 24',
-            description='',
-            weight=0,
+            description='The female population between the age of twenty-two years to twenty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1552,8 +1557,8 @@ class Columns(ColumnsTask):
             id='B01001035',
             type='Numeric',
             name='Female age 25 to 29',
-            description='',
-            weight=0,
+            description='The female population between the age of twenty-five years to twenty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1561,8 +1566,8 @@ class Columns(ColumnsTask):
             id='B01001036',
             type='Numeric',
             name='Female age 30 to 34',
-            description='',
-            weight=0,
+            description='The female population between the age of thirty years to thirty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1570,8 +1575,8 @@ class Columns(ColumnsTask):
             id='B01001037',
             type='Numeric',
             name='Female age 35 to 39',
-            description='',
-            weight=0,
+            description='The female population between the age of thirty-five years to thirty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1579,8 +1584,8 @@ class Columns(ColumnsTask):
             id='B01001038',
             type='Numeric',
             name='Female age 40 to 44',
-            description='',
-            weight=0,
+            description='The female population between the age of fourty years to fourty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1588,8 +1593,8 @@ class Columns(ColumnsTask):
             id='B01001039',
             type='Numeric',
             name='Female age 45 to 49',
-            description='',
-            weight=0,
+            description='The female population between the age of fourty-five years to fourty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1597,8 +1602,8 @@ class Columns(ColumnsTask):
             id='B01001040',
             type='Numeric',
             name='Female age 50 to 54',
-            description='',
-            weight=0,
+            description='The female population between the age of fifty years to fifty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1606,8 +1611,8 @@ class Columns(ColumnsTask):
             id='B01001041',
             type='Numeric',
             name='Female age 55 to 59',
-            description='',
-            weight=0,
+            description='The female population between the age of fifty-five years to fifty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1615,8 +1620,8 @@ class Columns(ColumnsTask):
             id='B01001042',
             type='Numeric',
             name='Female age 60 and 61',
-            description='',
-            weight=0,
+            description='The female population between the age of sixty years to sixty-one years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1624,8 +1629,8 @@ class Columns(ColumnsTask):
             id='B01001043',
             type='Numeric',
             name='Female age 62 to 64',
-            description='',
-            weight=0,
+            description='The female population between the age of sixty-two years to sixty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1634,8 +1639,8 @@ class Columns(ColumnsTask):
             id='B01001044',
             type='Numeric',
             name='Female age 65 to 66',
-            description='',
-            weight=0,
+            description='The female population between the age of sixty-five years to sixty-six years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1643,8 +1648,8 @@ class Columns(ColumnsTask):
             id='B01001045',
             type='Numeric',
             name='Female age 67 to 69',
-            description='',
-            weight=0,
+            description='The female population between the age of sixty-seven years to sixty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1652,8 +1657,8 @@ class Columns(ColumnsTask):
             id='B01001046',
             type='Numeric',
             name='Female age 70 to 74',
-            description='',
-            weight=0,
+            description='The female population between the age of seventy years to seventy-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1661,8 +1666,8 @@ class Columns(ColumnsTask):
             id='B01001047',
             type='Numeric',
             name='Female age 75 to 79',
-            description='',
-            weight=0,
+            description='The female population between the age of seventy-five years to seventy-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1670,8 +1675,8 @@ class Columns(ColumnsTask):
             id='B01001048',
             type='Numeric',
             name='Female age 80 to 84',
-            description='',
-            weight=0,
+            description='The female population between the age of eighty years to eighty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1679,8 +1684,8 @@ class Columns(ColumnsTask):
             id='B01001049',
             type='Numeric',
             name='Female age 85 and over',
-            description='',
-            weight=0,
+            description='The female population of the age of eighty-five years and over within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'}
         )
@@ -1737,8 +1742,8 @@ class Columns(ColumnsTask):
             id='B15001027',
             type='Numeric',
             name='Men age 45 to 64 ("middle aged")',
-            description='',
-            weight=0,
+            description='The male population between the age of fourty-five years to sixty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             tags=[tag_middle_aged_men])
 
@@ -1747,8 +1752,8 @@ class Columns(ColumnsTask):
             id='B01001015',
             type='Numeric',
             name='Men age 45 to 49',
-            description='',
-            weight=0,
+            description='The male population between the age of fourty-five years to fourty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -1758,8 +1763,8 @@ class Columns(ColumnsTask):
             id='B01001016',
             type='Numeric',
             name='Men age 50 to 54',
-            description='',
-            weight=0,
+            description='The male population between the age of fifty years to fifty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -1769,8 +1774,8 @@ class Columns(ColumnsTask):
             id='B01001017',
             type='Numeric',
             name='Men age 55 to 59',
-            description='',
-            weight=0,
+            description='The male population between the age of fifty-five years to fifty-nine years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -1780,8 +1785,8 @@ class Columns(ColumnsTask):
             id='B01001018',
             type='Numeric',
             name='Men age 60 to 61',
-            description='',
-            weight=0,
+            description='The male population between the age of sixty years to sixty-one years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -1791,8 +1796,8 @@ class Columns(ColumnsTask):
             id='B01001019',
             type='Numeric',
             name='Men age 62 to 64',
-            description='',
-            weight=0,
+            description='The male population between the age of sixty-two years to sixty-four years within the specified area.',
+            weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
             tags=[tag_middle_aged_men])
@@ -2073,8 +2078,8 @@ class Columns(ColumnsTask):
             id='B08134001',
             type='Numeric',
             name='Workers age 16 and over who do not work from home',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2084,9 +2089,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with less than 10 minute commute',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in less than 10 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in less than 10 minutes.',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2095,8 +2099,9 @@ class Columns(ColumnsTask):
             id='B08303003',
             type='Numeric',
             name='Number of workers with a commute between 5 and 9 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 5 and 9 minutes.',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2105,9 +2110,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 10 and 14 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 10 and 14 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 10 and 14 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2118,9 +2122,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 15 and 19 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 15 and 19 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 15 and 19 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2131,9 +2134,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 20 and 24 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 20 and 24 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 20 and 24 minutes.',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2143,9 +2145,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 25 and 29 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 25 and 29 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 25 and 29 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2155,9 +2156,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 30 and 34 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 30 and 34 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 30 and 34 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2166,8 +2166,9 @@ class Columns(ColumnsTask):
             id='B08303009',
             type='Numeric',
             name='Number of workers with a commute between 35 and 39 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 35 and 39 minutes. ',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2175,8 +2176,9 @@ class Columns(ColumnsTask):
             id='B08303010',
             type='Numeric',
             name='Number of workers with a commute between 40 and 44 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 40 and 44 minutes. ',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2185,9 +2187,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 35 and 44 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 35 and 44 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 35 and 44 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2197,9 +2198,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute between 45 and 59 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in between 45 and 59 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 45 and 59 minutes. ',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2209,9 +2209,8 @@ class Columns(ColumnsTask):
             targets={commuters_16_over: 'denominator'},
             type='Numeric',
             name='Number of workers with a commute of over 60 minutes',
-            description='The number of workers over the age of 16 who do not '
-                        'work from home and commute in over 60 minutes '
-                        'in a geographic area',
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in over 60 minutes.',
             weight=2,
             aggregate='sum',
             tags=[censustags['demographics'], tags['income_education_employment']]
@@ -2220,8 +2219,9 @@ class Columns(ColumnsTask):
             id='B08303012',
             type='Numeric',
             name='Number of workers with a commute between 60 and 89 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute in between 60 and 89 minutes .',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2229,8 +2229,9 @@ class Columns(ColumnsTask):
             id='B08303013',
             type='Numeric',
             name='Number of workers with a commute of more than 90 minutes',
-            description='',
-            weight=0,
+            description='The number of workers in a geographic area over the age of 16 who do not '
+                        'work from home and commute more than 90 minutes.',
+            weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
         )
@@ -2238,9 +2239,9 @@ class Columns(ColumnsTask):
             id='B08135001',
             type='Numeric',
             name='Aggregate travel time to work',
-            description='The total number of minutes every worker over the age '
+            description='The total number of minutes every worker in a geographic area over the age '
                         'of 16 who did not work from home spent spent '
-                        'commuting to work in one day in a geographic area',
+                        'commuting to work in one day',
             weight=2,
             aggregate='sum',
             targets={commuters_16_over: 'divisor'},
@@ -2469,8 +2470,8 @@ class Columns(ColumnsTask):
             type='Numeric',
             aggregate='median',
             name='Owner-Occupied Housing Units Median Value',
-            description='',
-            weight=0
+            description='The middle value (median) in a geographic area owner occupied housing units.',
+            weight=1
         )
 
         owner_occupied_housing_units_upper_value_quartile = OBSColumn(
@@ -2485,23 +2486,23 @@ class Columns(ColumnsTask):
             id='B07204001',
             type='Numeric',
             name='Population 1 year and over',
-            description='',
-            weight=0
+            description='All people, male and female, child and adult, living in a given geographic area that are 1 year and older.',
+            weight=1
         )
         different_house_year_ago_same_city = OBSColumn(
             id='B07204004',
             type='Numeric',
             name='Lived in a different house one year ago in the same city',
-            description='',
-            weight=0,
+            description='All people in a geographic area who lived in the same city but moved to a different unit within the year prior to the survey.',
+            weight=1,
             targets={population_1_year_and_over: 'denominator'},
         )
         different_house_year_ago_different_city = OBSColumn(
             id='B07204007',
             type='Numeric',
             name='Lived in a different house one year ago in a different city',
-            description='',
-            weight=0,
+            description='All people in a geographic area who lived in a different city within the year prior to the survey.',
+            weight=1,
             targets={population_1_year_and_over: 'denominator'},
         )
 
@@ -2516,8 +2517,8 @@ class Columns(ColumnsTask):
             id='B08014002',
             type='Numeric',
             name='Workers age 16 and over with no vehicle',
-            description='',
-            weight=0,
+            description='All people in a geographic area over the age of 16 who do not own a car.',
+            weight=1,
             targets={workers_16_and_over: 'denominator'},
         )
 
