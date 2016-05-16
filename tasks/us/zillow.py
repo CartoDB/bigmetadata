@@ -33,6 +33,47 @@ MEASURES_HUMAN = {
     'MedianRentalPricePerSqft': 'Median rental price per square foot'
 }
 
+HOMETYPES_DESCRIPTION = {
+    'AllHomes': 'Zillow defines all homes as single-family, condominium and '
+                'co-operative homes with a county record. Unless specified, '
+                'all series cover this segment of the housing stock.',
+    'SingleFamilyResidence': 'Single family residences are detached, '
+                             'free-standing residential buildings. ',
+    'AllHomesPlusMultifamily': 'In addition to "All homes", which Zillow defines '
+                               'as single-family, condominium and co-operative '
+                               'homes with a county record, this group includes '
+                               'units in buildings with 5 or more housing '
+                               'units that are not a condominiums or co-ops.',
+    'SingleFamilyResidenceRental': 'Single Family residence rental is defined '
+                                   'as detached, free-standing residential '
+                                   'buildings which are rented out.',
+}
+
+HOMETYPES_DESCRIPTION['Sfr'] = HOMETYPES_DESCRIPTION['SingleFamilyResidence']
+
+MEASURES_DESCRIPTION = {
+    'Zhvi': 'The Zillow Home Value Index (ZHVI) is a time series tracking the '
+            'monthly median home value (in US Dollars) in a particular '
+            'geographical region. In general, each ZHVI time series begins in '
+            'April 1996. See `Zillow\'s methodology '
+            '<http://www.zillow.com/research/zhvi-methodology-6032/>`_ for '
+            'more information.',
+    'Zri': 'Similar to Zillow\'s ZHVI, the Zillow Rent Index (ZRI) tracks the '
+           'monthly median rent (in US Dollars) in different geographical '
+           'regions. In general, each ZRI time series beginds in November, '
+           '2010.  See `Zillow\'s methodology '
+           '<http://www.zillow.com/research/zillow-rent-index-methodology-2393/>`_ '
+           'for more information.',
+    'MedianValuePerSqft': 'Median of the estimated monthly rent price (US '
+                          'Dollars) of all homes, per square foot. This is '
+                          'calculated by taking the estimated rent price for '
+                          'a home and dividing it by the homes square footage.',
+    'MedianRentalPricePerSqft': 'Median of the value (US Dollars) of all homes '
+                                'per square foot. This number is calculated by '
+                                'taking the estimated home value for each home '
+                                'in a given region and dividing it by the '
+                                'home\'s square footage.'
+}
 
 def measures_for_hometype(hometype):
     homes = ('AllHomes', 'SingleFamilyResidence', )
@@ -104,7 +145,7 @@ class ZillowValueColumns(ColumnsTask):
         }
 
     def version(self):
-        return 2
+        return 4
 
     def columns(self):
         input_ = self.input()
@@ -121,9 +162,10 @@ class ZillowValueColumns(ColumnsTask):
                                 hometype=hometype_human),
                             aggregate=aggregate,
                             weight=1,
-                            description='{measure} for {hometype}'.format(
-                                measure=measure_human,
-                                hometype=hometype_human),
+                            description='{measure_description} {hometype_description}'.format(
+                                measure_description=MEASURES_DESCRIPTION[measure],
+                                hometype_description=HOMETYPES_DESCRIPTION[hometype],
+                                ),
                             tags=[tag])
             columns[col_id] = col
         return columns

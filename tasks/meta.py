@@ -10,7 +10,7 @@ import re
 import luigi
 from luigi import Task, BooleanParameter, Target, Event
 
-from sqlalchemy import (Column, Integer, String, Boolean, MetaData, Numeric,
+from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
                         ForeignKeyConstraint, Table, exc, func, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import JSON
@@ -77,10 +77,10 @@ class OBSColumnTable(Base):
 
     __tablename__ = 'obs_column_table'
 
-    column_id = Column(String, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
-    table_id = Column(String, ForeignKey('obs_table.id', ondelete='cascade'), primary_key=True)
+    column_id = Column(Text, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
+    table_id = Column(Text, ForeignKey('obs_table.id', ondelete='cascade'), primary_key=True)
 
-    colname = Column(String, nullable=False)
+    colname = Column(Text, nullable=False)
 
     column = relationship("OBSColumn", back_populates="tables")
     table = relationship("OBSTable", back_populates="columns")
@@ -143,10 +143,10 @@ source_collection = lambda: PatchedMappedCollection(_SerializableAttrGetter("sou
 class OBSColumnToColumn(Base):
     __tablename__ = 'obs_column_to_column'
 
-    source_id = Column(String, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
-    target_id = Column(String, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
+    source_id = Column(Text, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
+    target_id = Column(Text, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
 
-    reltype = Column(String, primary_key=True)
+    reltype = Column(Text, primary_key=True)
 
     source = relationship('OBSColumn',
                           foreign_keys=[source_id],
@@ -168,16 +168,16 @@ class OBSColumnToColumn(Base):
 class OBSColumn(Base):
     __tablename__ = 'obs_column'
 
-    id = Column(String, primary_key=True) # fully-qualified id like '"us.census.acs".b01001001'
+    id = Column(Text, primary_key=True) # fully-qualified id like '"us.census.acs".b01001001'
 
-    type = Column(String, nullable=False) # postgres type, IE numeric, string, geometry, etc.
-    name = Column(String) # human-readable name to provide in bigmetadata
+    type = Column(Text, nullable=False) # postgres type, IE numeric, string, geometry, etc.
+    name = Column(Text) # human-readable name to provide in bigmetadata
 
-    description = Column(String) # human-readable description to provide in
+    description = Column(Text) # human-readable description to provide in
                                  # bigmetadata
 
     weight = Column(Integer, default=0)
-    aggregate = Column(String) # what aggregate operation to use when adding
+    aggregate = Column(Text) # what aggregate operation to use when adding
                                # these together across geoms: AVG, SUM etc.
 
     tables = relationship("OBSColumnTable", back_populates="column", cascade="all,delete")
@@ -229,15 +229,15 @@ class OBSColumn(Base):
 class OBSTable(Base):
     __tablename__ = 'obs_table'
 
-    id = Column(String, primary_key=True) # fully-qualified id like '"us.census.acs".extract_year_2013_sample_5yr'
+    id = Column(Text, primary_key=True) # fully-qualified id like '"us.census.acs".extract_year_2013_sample_5yr'
 
     columns = relationship("OBSColumnTable", back_populates="table",
                            cascade="all,delete")
 
-    tablename = Column(String, nullable=False)
-    timespan = Column(String)
-    bounds = Column(String)
-    description = Column(String)
+    tablename = Column(Text, nullable=False)
+    timespan = Column(Text)
+    bounds = Column(Text)
+    description = Column(Text)
 
     version = Column(Numeric, default=0, nullable=False)
 
@@ -245,11 +245,11 @@ class OBSTable(Base):
 class OBSTag(Base):
     __tablename__ = 'obs_tag'
 
-    id = Column(String, primary_key=True)
+    id = Column(Text, primary_key=True)
 
-    name = Column(String, nullable=False)
-    type = Column(String, nullable=False)
-    description = Column(String)
+    name = Column(Text, nullable=False)
+    type = Column(Text, nullable=False)
+    description = Column(Text)
 
     columns = association_proxy('tag_column_tags', 'column')
 
@@ -259,8 +259,8 @@ class OBSTag(Base):
 class OBSColumnTag(Base):
     __tablename__ = 'obs_column_tag'
 
-    column_id = Column(String, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
-    tag_id = Column(String, ForeignKey('obs_tag.id', ondelete='cascade'), primary_key=True)
+    column_id = Column(Text, ForeignKey('obs_column.id', ondelete='cascade'), primary_key=True)
+    tag_id = Column(Text, ForeignKey('obs_tag.id', ondelete='cascade'), primary_key=True)
 
     column = relationship("OBSColumn",
                           foreign_keys=[column_id],

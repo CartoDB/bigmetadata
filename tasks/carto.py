@@ -105,11 +105,14 @@ class SyncMetadata(WrapperTask):
 
 def should_upload(table):
     '''
-    Determine whether a table has any tagged columns.  If so, it should be
+    Determine whether a table has any important columns.  If so, it should be
     uploaded, otherwise it should be ignored.
     '''
+    # TODO this table doesn't want to upload
+    if table.tablename == 'obs_ffebc3eb689edab4faa757f75ca02c65d7db7327':
+        return False
     for coltable in table.columns:
-        if coltable.column.tags and coltable.column.weight > 0:
+        if coltable.column.weight > 0:
             return True
     return False
 
