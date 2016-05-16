@@ -34,10 +34,17 @@ Obtain "{{ col.name }}" geometry at one point:
 
 .. code:: postgresql
 
-{% if 'us.zillow' in col.id %}
-  {% set point = 'CDB_LatLng(40.76, -73.52)' %}
+{% if 'whosonfirst.wof_disputed_geom' == col.id %}
+  {% set point = 'CDB_LatLng(33.78, 76.57)' %}
+{% elif 'whosonfirst.wof_marinearea_geom' == col.id %}
+  {% set point = 'CDB_LatLng(43.33, -68.47)' %}
+{% elif col.id in ('us.census.tiger.school_district_elementary',
+                   'us.census.tiger.school_district_secondary') %}
+  {% set point = 'CDB_LatLng(40.7025, -73.7067)' %}
 {% elif 'es.ine' in col.id %}
   {% set point = 'CDB_LatLng(40.39, -3.7)' %}
+{% elif 'us.zillow' in col.id %}
+  {% set point = 'CDB_LatLng(28.3305906291771, -81.3544048197256)' %}
 {% else %}
   {% set point = 'CDB_LatLng(40.7, -73.9)' %}
 {% endif %}
