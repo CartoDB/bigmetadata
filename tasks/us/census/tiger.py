@@ -26,7 +26,7 @@ from psycopg2 import ProgrammingError
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 6
+        return 7
 
     def requires(self):
         return {
@@ -56,7 +56,7 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 6
+        return 7
 
     def requires(self):
         return {
@@ -78,7 +78,7 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='US Census Blocks',
                 description=desc("block"),
-                weight=3,
+                weight=0,
                 tags=[tags['boundary']]
             ),
             'census_tract': OBSColumn(
