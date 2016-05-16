@@ -381,10 +381,6 @@ class TableTarget(Target):
     def update_or_create_table(self):
         session = current_session()
 
-        # replace metadata table
-        self._obs_table = session.merge(self._obs_table)
-        obs_table = self._obs_table
-
         # create new local data table
         columns = []
         for colname, coltarget in self._columns.items():
@@ -403,6 +399,7 @@ class TableTarget(Target):
                 coltype = getattr(types, col.type.capitalize())
             columns.append(Column(colname, coltype))
 
+        obs_table = self._obs_table
         # replace local data table
         if obs_table.id in metadata.tables:
             metadata.tables[obs_table.id].drop()
@@ -429,6 +426,10 @@ class TableTarget(Target):
             select=', '.join(select), output=self.table)
         resp = session.execute(stmt)
         colinfo = dict(zip(resp.keys(), resp.fetchone()))
+
+        # replace metadata table
+        self._obs_table = session.merge(self._obs_table)
+        obs_table = self._obs_table
 
         obs_table = self._obs_table
 
