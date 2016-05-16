@@ -26,7 +26,7 @@ from psycopg2 import ProgrammingError
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 4
+        return 6
 
     def requires(self):
         return {
@@ -36,9 +36,10 @@ class ClippedGeomColumns(ColumnsTask):
 
     def columns(self):
         cols = OrderedDict()
+        session = current_session()
         tags = self.input()['tags']
         for colname, coltarget in self.input()['geom_columns'].iteritems():
-            col = coltarget._column
+            col = coltarget.get(session)
             cols[colname + '_clipped'] = OBSColumn(
                 type='Geometry',
                 name='Shoreline clipped ' + col.name,
@@ -185,21 +186,26 @@ class Attributes(ColumnsTask):
 class GeoidColumns(ColumnsTask):
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
-        return GeomColumns()
+        return {
+            'raw': GeomColumns(),
+            'clipped': ClippedGeomColumns()
+        }
 
     def columns(self):
         cols = OrderedDict()
-        for colname, coltarget in self.input().iteritems():
+        clipped = self.input()['clipped']
+        for colname, coltarget in self.input()['raw'].iteritems():
             col = coltarget._column
             cols[colname + '_geoid'] = OBSColumn(
                 type='Text',
                 name=col.name + ' Geoids',
                 weight=0,
                 targets={
-                    col: 'geom_ref'
+                    col: 'geom_ref',
+                    clipped[colname + '_clipped']._column: 'geom_ref'
                 }
             )
 
