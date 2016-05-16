@@ -59,7 +59,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 7
+        return 8
 
     def columns(self):
         input_ = self.input()
