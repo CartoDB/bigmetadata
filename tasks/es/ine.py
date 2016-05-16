@@ -62,7 +62,7 @@ class RawGeometry(TempTableTask):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -86,11 +86,14 @@ class GeometryColumns(ColumnsTask):
         )
         return OrderedDict([
             ("cusec_id", cusec_id),
-            ("geom", cusec_geom),
+            ("the_geom", cusec_geom),
         ])
 
 
 class Geometry(TableTask):
+
+    def version(self):
+        return 1
 
     def requires(self):
         return {
@@ -199,7 +202,7 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return 0
+        return 1
 
     def requires(self):
         return {
@@ -259,6 +262,9 @@ class RawFiveYearPopulation(TableTask):
             'geotable': Geometry()
         }
 
+    def version(self):
+        return 1
+
     def timespan(self):
         return '2011'
 
@@ -299,6 +305,9 @@ class FiveYearPopulation(TableTask):
         return {
             'data': RawFiveYearPopulation(),
         }
+
+    def version(self):
+        return 1
 
     def columns(self):
         '''
