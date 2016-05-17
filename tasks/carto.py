@@ -185,10 +185,21 @@ class GenerateStaticImage(Task):
     BASEMAP = {
         "type": "http",
         "options": {
-            "urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
-            "subdomains": "1234",
+            #"urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+            #"subdomains": "1234",
+            # Dark Matter
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+            "subdomains": "abcd",
             #"urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
             #"subdomains": ["a", "b", "c"]
+        }
+    }
+
+    LABELS = {
+        "type": "http",
+        "options": {
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png",
+            "subdomains": "abcd",
         }
     }
 
@@ -212,7 +223,7 @@ class GenerateStaticImage(Task):
                 for layer in data_layer['options']['layer_definition']['layers']:
                     if layer['visible'] is True:
                         layers.append({'type': 'mapnik', 'options': layer['options']})
-
+        layers.append(self.LABELS)
         return {
             'layers': layers,
             'center': json.loads(data['center']),
