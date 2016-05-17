@@ -13,21 +13,9 @@ from luigi import Task, Parameter, BooleanParameter, WrapperTask
 
 from tasks.meta import current_session, OBSColumn, OBSTag
 from tasks.util import (classpath, shell, TempTableTask, TableTask,
-                        ColumnsTask, TagsTask)
+                        ColumnsTask)
 from tasks.us.census.tiger import ShorelineClip, DownloadTiger
-
-
-class GlobalBoundaries(TagsTask):
-
-    def version(self):
-        return 2
-
-    def tags(self):
-        return [OBSTag(id='global',
-                       type='catalog',
-                       name='Global Boundaries',
-                       description='',
-                      )]
+from tasks.tags import SectionTags, SubsectionTags
 
 
 class DownloadWOF(TempTableTask):
@@ -66,15 +54,17 @@ class WOFColumns(ColumnsTask):
     resolution = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
-            'global': GlobalBoundaries()
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
         }
 
     def columns(self):
-        global_tag = self.input()['global']['global']
+        glob = self.input()['sections']['global']
+        boundaries = self.input()['subsections']['boundary']
 
         geom_names = {
             'continent': 'Continents',
@@ -84,20 +74,20 @@ class WOFColumns(ColumnsTask):
             'region': 'Regions (First-level Administrative)',
         }
 
-        geom_descriptions = {
-            'continent': 'Continents of the world.',
-            'country': ' ',
-            'disputed': ' ',
-            'marinearea': ' ',
-            'region': ' ',
-        }
+        #geom_descriptions = {
+        #    'continent': 'Continents of the world',
+        #    'country': 'Countries of the world',
+        #    'disputed': 'Disputed territories of the world',
+        #    'marinearea': 'Marine ',
+        #    'region': ' ',
+        #}
         the_geom = OBSColumn(
             id='wof_' + self.resolution + '_geom',
             name=geom_names[self.resolution],
             type="Geometry",
             weight=5,
-            description=geom_descriptions[self.resolution],
-            tags=[global_tag],
+            description='',
+            tags=[glob, boundaries],
         )
 
         return OrderedDict([

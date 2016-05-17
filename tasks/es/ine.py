@@ -11,15 +11,19 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
                         classpath, PostgresTarget )
+from tasks.tags import SectionTags, SubsectionTags
 
 
 class Tags(TagsTask):
 
+    def version(self):
+        return 2
+
     def tags(self):
         return [
             OBSTag(id='demographics',
-                   name='Demographics of Spain',
-                   type='catalog',
+                   name='Demographics',
+                   type='subsection',
                    description='Demographics of Spain from the INE Census')
         ]
 
@@ -62,21 +66,23 @@ class RawGeometry(TempTableTask):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return {
-            'tags': Tags()
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
         }
 
     def columns(self):
-        tags = self.input()['tags']
+        sections = self.input()['sections']
+        subsections = self.input()['subsections']
         cusec_geom = OBSColumn(
             name=u'Secci\xf3n Censal',
             type="Geometry",
             weight=10,
             description='The smallest division of the Spanish Census.',
-            tags=[tags['demographics']],
+            tags=[sections['spain'], subsections['boundary']],
         )
         cusec_id = OBSColumn(
             name=u"Secci\xf3n Censal",
@@ -202,14 +208,16 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return 1
+        return 4
 
     def requires(self):
         return {
-            'tags': Tags()
+            'tags': Tags(),
+            'sections': SectionTags(),
         }
 
     def columns(self):
+        spain = self.input()['sections']['spain']
         tags = self.input()['tags']
         total_pop = OBSColumn(
             type='Numeric',
@@ -217,7 +225,7 @@ class FiveYearPopulationColumns(ColumnsTask):
             description='The total number of all people living in a geographic area.',
             aggregate='sum',
             weight=10,
-            tags=[tags['demographics']]
+            tags=[tags['demographics'], spain]
         )
         columns = OrderedDict([
             ('gender', OBSColumn(
@@ -236,14 +244,18 @@ class FiveYearPopulationColumns(ColumnsTask):
                 name='Population age {start} to {end}'.format(
                     start=start, end=end),
                 targets={total_pop: 'denominator'},
-                tags=[tags['demographics']]
+                description='',
+                weight=3,
+                tags=[spain, tags['demographics']]
             )
         columns['pop_100_more'] = OBSColumn(
             type='Numeric',
             name='Population age 100 or more'.format(
                 start=start, end=end),
             targets={total_pop: 'denominator'},
-            tags=[tags['demographics']]
+            description='',
+            weight=3,
+            tags=[tags['demographics'], spain]
         )
 
         return columns
