@@ -13,4 +13,5 @@ npm-debug.log
 catalog/source/*
 catalog/build/doctrees
 catalog/build/latex
+catalog/build/html
 _build

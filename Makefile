@@ -34,10 +34,12 @@ pdf-catalog:
 
 deploy-catalog: catalog pdf-catalog
 	cd catalog/build/html && \
-	  git add . && \
-	  git commit -m 'updating catalog' && \
-	  git checkout -B gh-pages && \
-	  git push origin gh-pages
+	git init && \
+	git checkout -B gh-pages && \
+	git add . && \
+	git commit -m "updating catalog" && \
+	git remote add origin git@github.com:cartodb/bigmetadata.git && \
+	git push -f origin gh-pages
 
 # do not exceed three slots available for import api
 sync: sync-data

@@ -1,4 +1,0 @@
-[submodule "catalog/build/html"]
-	path = catalog/build/html
-	url = git@github.com:cartodb/bigmetadata
-	branch = gh-pages
