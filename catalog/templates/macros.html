@@ -69,9 +69,8 @@ Obtain "{{ col.name }}" geometry at one point:
 
 {% elif col.type|lower == 'geometry' %}
 
-  INSERT INTO {new_table_name} (the_geom, {geo_id_column})
-    SELECT *
-    FROM OBS_GetBoundary(
+  INSERT INTO {tablename}(the_geom)
+    SELECT OBS_GetBoundary(
       {{ point }},
       '{{ col.id }}'
     )
