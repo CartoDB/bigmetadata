@@ -113,6 +113,3 @@ class Catalog(Task):
 
     def run(self):
         shell('cd catalog && make {}'.format(self.format))
-        # copy PDF outputs to HTML to allow for public access
-        if self.format == 'latexpdf':
-            shell('cp catalog/build/latex/*.pdf catalog/build/html/')

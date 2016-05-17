@@ -30,7 +30,7 @@ catalog:
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format latexpdf --force
+	  --module tasks.sphinx Catalog --format pdf --force
 
 deploy-catalog: catalog pdf-catalog
 	cd catalog/build/html && \
