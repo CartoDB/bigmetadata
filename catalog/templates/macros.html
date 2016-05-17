@@ -33,7 +33,7 @@ Code example
 {% if col.type|lower == 'text' %}
 Obtain category of "{{ col.name }}" at one point:
 {% elif col.type|lower == 'numeric' %}
-Measure "{{ col.name }}" {% if col.summable() %}density per sq. kilometer{% endif %}for one point:
+Measure "{{ col.name }}" {% if col.summable() %} density per sq. kilometer {% endif %} for one point:
 {% elif col.type|lower == 'geometry' %}
 Obtain "{{ col.name }}" geometry at one point:
 {% endif %}
