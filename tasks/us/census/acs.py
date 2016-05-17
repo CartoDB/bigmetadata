@@ -26,7 +26,7 @@ from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
-from tasks.tags import CategoryTags
+from tasks.tags import SectionTags, SubsectionTags
 
 LOGGER = get_logger(__name__)
 
@@ -34,17 +34,17 @@ LOGGER = get_logger(__name__)
 class ACSTags(TagsTask):
 
     def version(self):
-        return 1
+        return 3
 
     def tags(self):
         return [
-            OBSTag(id='demographics',
-                   name='US American Community Survey Demographics',
+            OBSTag(id='acs',
+                   name='US American Community Survey',
                    type='source',
-                   description='Standard Demographic Data from the US American Community Survey'),
+                   description='The United States American Community Survey'),
             OBSTag(id='segments',
                    name='US Population Segments',
-                   type='catalog',
+                   type='subsection',
                    description='Segmentation of the United States population'),
         ]
 
@@ -53,21 +53,21 @@ class Columns(ColumnsTask):
 
     def requires(self):
         return {
-            'tags': CategoryTags(),
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
             'censustags': ACSTags(),
-            'segmenttags': SegmentTags()
+            'segmenttags': SegmentTags(),
         }
 
     def version(self):
-        return 9
+        return 10
 
     def columns(self):
         input_ = self.input()
-        tags = input_['tags']
-        censustags = input_['censustags']
-        segmenttags = input_['segmenttags']
-        tag_middle_aged_men = segmenttags['middle_aged_men']
-        tag_families_with_young_children = segmenttags['families_with_young_children']
+        subsections = input_['subsections']
+        #segmenttags = input_['segmenttags']
+        #tag_middle_aged_men = segmenttags['middle_aged_men']
+        #tag_families_with_young_children = segmenttags['families_with_young_children']
         total_pop = OBSColumn(
             id='B01003001',
             type='Numeric',
@@ -75,7 +75,7 @@ class Columns(ColumnsTask):
             description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
             aggregate='sum',
             weight=10,
-            tags=[censustags['demographics'], tags['denominator'], tags['population']]
+            tags=[subsections['age_gender'], subsections['race_ethnicity']]
         )
         male_pop = OBSColumn(
             id='B01001002',
@@ -85,7 +85,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=8,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population']]
+            tags=[subsections['age_gender']]
         )
         female_pop = OBSColumn(
             id='B01001026',
@@ -95,7 +95,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=8,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population']]
+            tags=[subsections['age_gender']]
         )
         median_age = OBSColumn(
             id='B01002001',
@@ -104,7 +104,7 @@ class Columns(ColumnsTask):
             description="The median age of all people in a given geographic area.",
             aggregate='median',
             weight=2,
-            tags=[censustags['demographics'], tags['population']]
+            tags=[subsections['age_gender']]
         )
         white_pop = OBSColumn(
             id='B03002003',
@@ -115,7 +115,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+            tags=[subsections['race_ethnicity']]
         )
         black_pop = OBSColumn(
             id='B03002004',
@@ -125,7 +125,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+            tags=[subsections['race_ethnicity']]
         )
         amerindian_pop = OBSColumn(
             id='B03002005',
@@ -135,7 +135,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=1,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+            tags=[subsections['race_ethnicity']]
         )
         asian_pop = OBSColumn(
             id='B03002006',
@@ -145,7 +145,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+            tags=[subsections['race_ethnicity']]
         )
         other_race_pop = OBSColumn(
             id='B03002008',
@@ -155,7 +155,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=1,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+            tags=[subsections['race_ethnicity']]
         )
         two_or_more_races_pop = OBSColumn(
             id='B03002009',
@@ -165,7 +165,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=1,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+            tags=[subsections['race_ethnicity']]
         )
         not_hispanic_pop = OBSColumn(
             id='B03002002',
@@ -175,7 +175,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=1,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+            tags=[subsections['race_ethnicity']]
         )
         hispanic_pop = OBSColumn(
             id='B03002012',
@@ -185,7 +185,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=7,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population'], tags['race_age_gender']]
+            tags=[subsections['race_ethnicity']]
         )
         not_us_citizen_pop = OBSColumn(
             id='B05001006',
@@ -197,7 +197,7 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=3,
             targets={total_pop: 'denominator'},
-            tags=[censustags['demographics'], tags['population']]
+            tags=[]
         )
         workers_16_and_over = OBSColumn(
             id='B08006001',
@@ -208,8 +208,7 @@ class Columns(ColumnsTask):
             "self-employed, government workers and non-profit employees.",
             aggregate='sum',
             weight=5,
-            tags=[censustags['demographics'], tags['denominator'],
-                  tags['income_education_employment']]
+            tags=[subsections['employment']]
         )
         commuters_by_car_truck_van = OBSColumn(
             id='B08006002',
@@ -223,7 +222,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
-            tags=[censustags['demographics'], tags['transportation']])
+            tags=[subsections['transportation']])
         commuters_drove_alone = OBSColumn(
             id='B08006003',
             type='Numeric',
@@ -236,7 +235,7 @@ class Columns(ColumnsTask):
             weight=2,
             aggregate='sum',
             targets={commuters_by_car_truck_van: 'denominator'},
-            tags=[censustags['demographics'], tags['transportation']])
+            tags=[subsections['transportation']])
         commuters_by_carpool = OBSColumn(
             id='B08006004',
             type='Numeric',
@@ -249,7 +248,7 @@ class Columns(ColumnsTask):
             weight=2,
             aggregate='sum',
             targets={commuters_by_car_truck_van: 'denominator'},
-            tags=[censustags['demographics'], tags['transportation']])
+            tags=[subsections['transportation']])
         commuters_by_public_transportation = OBSColumn(
             id='B08301010',
             type='Numeric',
@@ -262,7 +261,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
-            tags=[censustags['demographics'], tags['transportation']])
+            tags=[subsections['transportation']])
         commuters_by_bus = OBSColumn(
             id='B08006009',
             type='Numeric',
@@ -276,7 +275,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
-            tags=[censustags['demographics'], tags['transportation']])
+            tags=[subsections['transportation']])
         commuters_by_subway_or_elevated = OBSColumn(
             id='B08006011',
             type='Numeric',
@@ -290,7 +289,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={commuters_by_public_transportation: 'denominator'},
-            tags=[censustags['demographics'], tags['transportation']])
+            tags=[subsections['transportation']])
         walked_to_work = OBSColumn(
             id='B08006015',
             type='Numeric',
@@ -302,7 +301,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
-            tags=[censustags['demographics'], tags['transportation']])
+            tags=[subsections['transportation']])
         worked_at_home = OBSColumn(
             id='B08006017',
             type='Numeric',
@@ -312,7 +311,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
-            tags=[censustags['demographics'], tags['transportation']])
+            tags=[subsections['transportation'], subsections['employment']])
         children = OBSColumn(
             id='B09001001',
             type='Numeric',
@@ -321,7 +320,7 @@ class Columns(ColumnsTask):
             'under 18 years of age.',
             weight=4,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['denominator'], tags['race_age_gender']])
+            tags=[subsections['age_gender'], subsections['families']])
         children_in_single_female_hh = OBSColumn(
             id='B09005005',
             type='Numeric',
@@ -340,7 +339,7 @@ class Columns(ColumnsTask):
             'consist of a single family or some other grouping of people. ',
             weight=8,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['housing']])
+            tags=[subsections['housing']])
         married_households = OBSColumn(
             id='B11001003',
             type='Numeric',
@@ -374,7 +373,7 @@ class Columns(ColumnsTask):
             'rates of school enrollment.',
             weight=4,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         in_school = OBSColumn(
             id='B14001002',
             type='Numeric',
@@ -386,7 +385,7 @@ class Columns(ColumnsTask):
             weight=6,
             aggregate='sum',
             targets={population_3_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         in_grades_1_to_4 = OBSColumn(
             id='B14001005',
             type='Numeric',
@@ -397,7 +396,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         in_grades_5_to_8 = OBSColumn(
             id='B14001006',
             type='Numeric',
@@ -408,7 +407,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         in_grades_9_to_12 = OBSColumn(
             id='B14001007',
             type='Numeric',
@@ -419,7 +418,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={in_school: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         in_undergrad_college = OBSColumn(
             id='B14001008',
             type='Numeric',
@@ -432,7 +431,7 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={in_school: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         pop_25_years_over = OBSColumn(
             id='B15003001',
             type='Numeric',
@@ -442,8 +441,7 @@ class Columns(ColumnsTask):
             'attainment.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['denominator'],
-                  tags['income_education_employment']])
+            tags=[subsections['education']])
         less_than_high_school_graduate = OBSColumn(
             id='B07009002',
             type='Numeric',
@@ -453,7 +451,8 @@ class Columns(ColumnsTask):
             'degree.',
             weight=1,
             aggregate='sum',
-            targets={pop_25_years_over: 'denominator'}
+            targets={pop_25_years_over: 'denominator'},
+            tags=[subsections['education']]
         )
         high_school_diploma = OBSColumn(
             id='B15003017',
@@ -465,7 +464,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         high_school_including_ged = OBSColumn(
             id='B07009003',
             type='Numeric',
@@ -474,7 +473,8 @@ class Columns(ColumnsTask):
             "of 25 who attained a high school degree or GED.",
             weight=1,
             aggregate='sum',
-            targets={pop_25_years_over: 'denominator'}
+            targets={pop_25_years_over: 'denominator'},
+            tags=[subsections['education']]
         )
         less_one_year_college = OBSColumn(
             id='B15003019',
@@ -485,7 +485,8 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']]
+        )
         one_year_more_college = OBSColumn(
             id='B15003020',
             type='Numeric',
@@ -496,7 +497,8 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']]
+        )
         associates_degree = OBSColumn(
             id='B15003021',
             type='Numeric',
@@ -507,7 +509,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         some_college_and_associates_degree = OBSColumn(
             id='B07009004',
             type='Numeric',
@@ -517,8 +519,8 @@ class Columns(ColumnsTask):
             "advanced degree.",
             weight=1,
             aggregate='sum',
-            targets={pop_25_years_over: 'denominator'}
-        )
+            targets={pop_25_years_over: 'denominator'},
+            tags=[subsections['education']])
         bachelors_degree = OBSColumn(
             id='B15003022',
             type='Numeric',
@@ -529,7 +531,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         bachelors_degree_2 = OBSColumn(
             id='B07009005',
             type='Numeric',
@@ -537,7 +539,7 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={pop_25_years_over: 'denominator'}
+            targets={pop_25_years_over: 'denominator'},
         )
         masters_degree = OBSColumn(
             id='B15003023',
@@ -549,7 +551,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_25_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['education']])
         graduate_professional_degree = OBSColumn(
             id='B07009006',
             type='Numeric',
@@ -557,8 +559,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={pop_25_years_over: 'denominator'}
-        )
+            targets={pop_25_years_over: 'denominator'},
+            tags=[subsections['education']])
         pop_5_years_over = OBSColumn(
             id='B16001001',
             type='Numeric',
@@ -568,7 +570,7 @@ class Columns(ColumnsTask):
             'of language spoken at home.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['denominator']])
+            tags=[subsections['language']])
         speak_only_english_at_home = OBSColumn(
             id='B16001002',
             type='Numeric',
@@ -578,7 +580,7 @@ class Columns(ColumnsTask):
             weight=3,
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['language']])
+            tags=[subsections['language']])
         speak_spanish_at_home = OBSColumn(
             id='B16001003',
             type='Numeric',
@@ -589,7 +591,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={pop_5_years_over: 'denominator'},
-            tags=[censustags['demographics'], tags['language']])
+            tags=[subsections['language']])
         speak_spanish_at_home_low_english = OBSColumn(
             id='B16001005',
             type='Numeric',
@@ -597,8 +599,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={pop_5_years_over: 'denominator'}
-        )
+            targets={pop_5_years_over: 'denominator'},
+            tags=[subsections['language']])
         pop_determined_poverty_status = OBSColumn(
             id='B17001001',
             type='Numeric',
@@ -609,7 +611,7 @@ class Columns(ColumnsTask):
             'people for whom it was not possible to determine poverty.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['denominator']])
+            tags=[subsections['income']])
         poverty = OBSColumn(
             id='B17001002',
             type='Numeric',
@@ -622,8 +624,7 @@ class Columns(ColumnsTask):
             weight=2,
             aggregate='sum',
             targets={pop_determined_poverty_status: 'denominator'},
-            tags=[censustags['demographics'], tags['denominator'],
-                  tags['income_education_employment']])
+            tags=[subsections['income']])
         median_income = OBSColumn(
             id='B19013001',
             type='Numeric',
@@ -644,8 +645,7 @@ class Columns(ColumnsTask):
             "alimony.",
             weight=8,
             aggregate='median',
-            tags=[censustags['demographics'],
-                  tags['income_education_employment']])
+            tags=[subsections['income']])
         gini_index = OBSColumn(
             id='B19083001',
             type='Numeric',
@@ -653,7 +653,7 @@ class Columns(ColumnsTask):
             description='The Gini index, or index of income concentration, is a statistical measure of income inequality ranging from 0 to 1. A measure of 1 indicates perfect inequality, i.e., one household having all the income and rest having none. A measure of 0 indicates perfect equality, i.e., all households having an equal share of income.',
             weight=5,
             aggregate='',
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['income']])
         income_per_capita = OBSColumn(
             id='B19301001',
             type='Numeric',
@@ -661,7 +661,7 @@ class Columns(ColumnsTask):
             description='Per capita income is the mean income computed for every man, woman, and child in a particular group. It is derived by dividing the total income of a particular group by the total population.',
             weight=7,
             aggregate='average',
-            tags=[censustags['demographics'], tags['income_education_employment']])
+            tags=[subsections['income']])
         housing_units = OBSColumn(
             id='B25001001',
             type='Numeric',
@@ -672,7 +672,7 @@ class Columns(ColumnsTask):
             'vacant, intended for occupancy as separate living quarters.',
             weight=8,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['housing'], tags['denominator']])
+            tags=[subsections['housing']])
         vacant_housing_units = OBSColumn(
             id='B25002003',
             type='Numeric',
@@ -686,7 +686,7 @@ class Columns(ColumnsTask):
             weight=8,
             aggregate='sum',
             targets={housing_units: 'denominator'},
-            tags=[censustags['demographics'], tags['housing']])
+            tags=[subsections['housing']])
         occupied_housing_units = OBSColumn(
             id='B25003001',
             type='Numeric',
@@ -694,8 +694,8 @@ class Columns(ColumnsTask):
             description='A housing unit is classified as occupied if it is the usual place of residence of the person or group of people living in it at the time of enumeration.',
             weight=1,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
-        )
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']])
         housing_units_renter_occupied = OBSColumn(
             id='B25003003',
             type='Numeric',
@@ -703,8 +703,8 @@ class Columns(ColumnsTask):
             description='All occupied units which are not owner occupied, whether they are rented for cash rent or occupied without payment of cash rent, are classified as renter-occupied.',
             weight=1,
             aggregate='sum',
-            targets={occupied_housing_units: 'denominator'}
-        )
+            targets={occupied_housing_units: 'denominator'},
+            tags=[subsections['housing']])
         vacant_housing_units_for_rent = OBSColumn(
             id='B25004002',
             type='Numeric',
@@ -718,7 +718,7 @@ class Columns(ColumnsTask):
             weight=7,
             aggregate='sum',
             targets={vacant_housing_units: 'denominator'},
-            tags=[censustags['demographics'], tags['housing']])
+            tags=[subsections['housing']])
         vacant_housing_units_for_sale = OBSColumn(
             id='B25004004',
             type='Numeric',
@@ -732,7 +732,7 @@ class Columns(ColumnsTask):
             weight=7,
             aggregate='sum',
             targets={vacant_housing_units: 'denominator'},
-            tags=[censustags['demographics'], tags['housing']])
+            tags=[subsections['housing']])
         median_rent = OBSColumn(
             id='B25058001',
             type='Numeric',
@@ -744,7 +744,7 @@ class Columns(ColumnsTask):
             "asked for the rental unit at the time of interview.",
             weight=8,
             aggregate='median',
-            tags=[censustags['demographics'], tags['housing']])
+            tags=[subsections['housing']])
         percent_income_spent_on_rent = OBSColumn(
             id='B25071001',
             type='Numeric',
@@ -758,8 +758,7 @@ class Columns(ColumnsTask):
             "living in the household.",
             weight=4,
             aggregate='average',
-            tags=[censustags['demographics'], tags['housing'],
-                  tags['income_education_employment']])
+            tags=[subsections['housing'], subsections['income']])
         owner_occupied_housing_units = OBSColumn(
             id='B25075001',
             type='Numeric',
@@ -768,7 +767,7 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={housing_units: 'denominator'},
-            tags=[censustags['demographics'], tags['housing']])
+            tags=[subsections['housing']])
         million_dollar_housing_units = OBSColumn(
             id='B25075025',
             type='Numeric',
@@ -781,7 +780,7 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={owner_occupied_housing_units: 'denominator'},
-            tags=[censustags['demographics'], tags['housing']])
+            tags=[subsections['housing']])
 
         mortgaged_housing_units = OBSColumn(
             id='B25081002',
@@ -795,7 +794,7 @@ class Columns(ColumnsTask):
             weight=4,
             aggregate='sum',
             targets={owner_occupied_housing_units: 'denominator'},
-            tags=[censustags['demographics'], tags['housing']])
+            tags=[subsections['housing']])
 
         dwellings_1_units_detached = OBSColumn(
             id='B25024002',
@@ -804,7 +803,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         dwellings_1_units_attached = OBSColumn(
             id='B25024003',
@@ -813,7 +813,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         dwellings_2_units = OBSColumn(
             id='B25024004',
@@ -822,7 +823,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         dwellings_3_to_4_units = OBSColumn(
             id='B25024005',
@@ -831,7 +833,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         dwellings_5_to_9_units = OBSColumn(
             id='B25024006',
@@ -840,7 +843,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         dwellings_10_to_19_units = OBSColumn(
             id='B25024007',
@@ -849,7 +853,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         dwellings_20_to_49_units = OBSColumn(
             id='B25024008',
@@ -858,7 +863,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         dwellings_50_or_more_units = OBSColumn(
             id='B25024009',
@@ -867,7 +873,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         mobile_homes = OBSColumn(
             id='B25024010',
@@ -876,7 +883,8 @@ class Columns(ColumnsTask):
             description='A manufactured home is defined as a movable dwelling, 8 feet or more wide and 40 feet or more long, designed to be towed on its own chassis, with transportation gear integral to the unit when it leaves the factory, and without need of a permanent foundation. These homes are built in accordance with the U.S. Department of Housing and Urban Development (HUD) building code.',
             weight=1,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         housing_built_2005_or_later = OBSColumn(
             id='B25034002',
@@ -885,7 +893,8 @@ class Columns(ColumnsTask):
             description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built in 2005 or later.',
             aggregate='sum',
             weight=1,
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         housing_built_2000_to_2004 = OBSColumn(
             id='B25034003',
@@ -894,7 +903,8 @@ class Columns(ColumnsTask):
             description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built from 2000 to 2004.',
             weight=1,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
         housing_built_1939_or_earlier = OBSColumn(
             id='B25034010',
@@ -903,7 +913,8 @@ class Columns(ColumnsTask):
             description='A house, an apartment, a mobile home or trailer, a group of rooms, or a single room occupied as separate living quarters, or if vacant, intended for occupancy as separate living quarters built in 1939 or earlier.',
             weight=1,
             aggregate='sum',
-            targets={housing_units: 'denominator'}
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing']]
         )
 
         #* families with young children (under 6 years of age):
@@ -915,7 +926,7 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families']])
 
         #  - B23008003: living with two parents
         two_parent_families_with_young_children = OBSColumn(
@@ -926,7 +937,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families']])
         #  - B23008004: living with two parents, both in labor force
         two_parents_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008004',
@@ -937,7 +948,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families']])
         #  - B23008005: living with two parents, father only in labor force
         two_parents_father_in_labor_force_families_with_young_children = OBSColumn(
             id='B23008005',
@@ -948,7 +959,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families'], subsections['employment']])
 
         #  - B23008006: living with two parents, mother only in labor force
         two_parents_mother_in_labor_force_families_with_young_children = OBSColumn(
@@ -960,7 +971,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families'], subsections['employment']])
 
         #  - B23008007: living with two parents, neither parent in labor force
         two_parents_not_in_labor_force_families_with_young_children = OBSColumn(
@@ -972,7 +983,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families'], subsections['employment']])
 
         #  - B23008008: living with one parent
         one_parent_families_with_young_children = OBSColumn(
@@ -983,7 +994,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families']])
 
         #  - B23008009: living with father
         father_one_parent_families_with_young_children = OBSColumn(
@@ -995,7 +1006,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families']])
 
         #  - B23008010: living with father who is in labor force
         father_in_labor_force_one_parent_families_with_young_children = OBSColumn(
@@ -1007,7 +1018,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={families_with_young_children: 'denominator'},
-            tags=[tag_families_with_young_children])
+            tags=[subsections['families'], subsections['employment']])
 
         # - B23025001: population age 16 and over
         pop_16_over = OBSColumn(
@@ -1019,7 +1030,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={},
-            tags=[tags['income_education_employment'], censustags['demographics']]
+            tags=[subsections['age_gender'], subsections['employment']]
         )
 
         # - B23025002: pop in labor force
@@ -1034,7 +1045,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={pop_16_over: 'denominator'},
-            tags=[tags['income_education_employment'], censustags['demographics']]
+            tags=[subsections['employment']]
         )
 
         # - B23025003: civilian labor force
@@ -1048,7 +1059,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={pop_in_labor_force: 'denominator'},
-            tags=[tags['income_education_employment'], censustags['demographics']]
+            tags=[subsections['employment']]
         )
 
         # - B23025004: employed population
@@ -1074,7 +1085,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={civilian_labor_force: 'denominator'},
-            tags=[tags['income_education_employment'], censustags['demographics']]
+            tags=[subsections['employment']]
         )
 
         # - B23025005: unemployed population
@@ -1102,7 +1113,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={civilian_labor_force: 'denominator'},
-            tags=[tags['income_education_employment'], censustags['demographics']]
+            tags=[subsections['employment']]
         )
 
         # - B23025006: in armed forces
@@ -1116,7 +1127,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={pop_in_labor_force: 'denominator'},
-            tags=[tags['income_education_employment'], censustags['demographics']]
+            tags=[subsections['employment']]
         )
 
         # - B23025007: not in labor force
@@ -1134,7 +1145,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={pop_16_over: 'denominator'},
-            tags=[tags['income_education_employment'], censustags['demographics']]
+            tags=[subsections['employment']]
         )
 
         employed_agriculture_forestry_fishing_hunting_mining = OBSColumn(
@@ -1144,7 +1155,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Agriculture, Forestry, Fishing and Hunting sector comprises establishments primarily engaged in growing crops, raising animals, harvesting timber, and harvesting fish and other animals from a farm, ranch, or their natural habitats.'
+            description='The Agriculture, Forestry, Fishing and Hunting sector comprises establishments primarily engaged in growing crops, raising animals, harvesting timber, and harvesting fish and other animals from a farm, ranch, or their natural habitats.',
+            tags=[subsections['employment']]
         )
         employed_construction = OBSColumn(
             id='C24050003',
@@ -1153,7 +1165,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Construction sector comprises establishments primarily engaged in the construction of buildings or engineering projects (e.g., highways and utility systems). Construction work done may include new work, additions, alterations, or maintenance and repairs.'
+            description='The Construction sector comprises establishments primarily engaged in the construction of buildings or engineering projects (e.g., highways and utility systems). Construction work done may include new work, additions, alterations, or maintenance and repairs.',
+            tags=[subsections['employment']]
         )
         employed_manufacturing = OBSColumn(
             id='C24050004',
@@ -1162,7 +1175,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Manufacturing sector comprises establishments engaged in the mechanical, physical, or chemical transformation of materials, substances, or components into new products.'
+            description='The Manufacturing sector comprises establishments engaged in the mechanical, physical, or chemical transformation of materials, substances, or components into new products.',
+            tags=[subsections['employment']]
         )
         employed_wholesale_trade = OBSColumn(
             id='C24050005',
@@ -1171,7 +1185,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Wholesale Trade sector comprises establishments engaged in wholesaling merchandise, generally without transformation, and rendering services incidental to the sale of merchandise. The wholesaling process is an intermediate step in the distribution of merchandise. Wholesalers are organized to sell or arrange the purchase or sale of (a) goods for resale (i.e., goods sold to other wholesalers or retailers), (b) capital or durable nonconsumer goods, and (c) raw and intermediate materials and supplies used in production.'
+            description='The Wholesale Trade sector comprises establishments engaged in wholesaling merchandise, generally without transformation, and rendering services incidental to the sale of merchandise. The wholesaling process is an intermediate step in the distribution of merchandise. Wholesalers are organized to sell or arrange the purchase or sale of (a) goods for resale (i.e., goods sold to other wholesalers or retailers), (b) capital or durable nonconsumer goods, and (c) raw and intermediate materials and supplies used in production.',
+            tags=[subsections['employment']]
         )
         employed_retail_trade = OBSColumn(
             id='C24050006',
@@ -1180,7 +1195,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Retail Trade sector comprises establishments engaged in retailing merchandise, generally without transformation, and rendering services incidental to the sale of merchandise. The retailing process is the final step in the distribution of merchandise; retailers are, therefore, organized to sell merchandise in small quantities to the general public.'
+            description='The Retail Trade sector comprises establishments engaged in retailing merchandise, generally without transformation, and rendering services incidental to the sale of merchandise. The retailing process is the final step in the distribution of merchandise; retailers are, therefore, organized to sell merchandise in small quantities to the general public.',
+            tags=[subsections['employment']]
         )
         employed_transportation_warehousing_utilities = OBSColumn(
             id='C24050007',
@@ -1189,7 +1205,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Transportation and Warehousing sector includes industries providing transportation of passengers and cargo, warehousing and storage for goods, scenic and sightseeing transportation, and support activities related to modes of transportation. The modes of transportation are air, rail, water, road, and pipeline.'
+            description='The Transportation and Warehousing sector includes industries providing transportation of passengers and cargo, warehousing and storage for goods, scenic and sightseeing transportation, and support activities related to modes of transportation. The modes of transportation are air, rail, water, road, and pipeline.',
+            tags=[subsections['employment']]
         )
         employed_information = OBSColumn(
             id='C24050008',
@@ -1198,7 +1215,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Information sector comprises establishments engaged in the following processes: (a) producing and distributing information and cultural products, (b) providing the means to transmit or distribute these products as well as data or communications, and (c) processing data. Included are the publishing industries, the motion picture and sound recording industries; the broadcasting industries, the telecommunications industries; Web search portals, data processing industries, and the information services industries.'
+            description='The Information sector comprises establishments engaged in the following processes: (a) producing and distributing information and cultural products, (b) providing the means to transmit or distribute these products as well as data or communications, and (c) processing data. Included are the publishing industries, the motion picture and sound recording industries; the broadcasting industries, the telecommunications industries; Web search portals, data processing industries, and the information services industries.',
+            tags=[subsections['employment']]
         )
         employed_finance_insurance_real_estate = OBSColumn(
             id='C24050009',
@@ -1207,7 +1225,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Real Estate and Rental and Leasing sector comprises establishments primarily engaged in renting, leasing, or otherwise allowing the use of tangible or intangible assets, and establishments providing related services. The major portion of this sector comprises establishments that rent, lease, or otherwise allow the use of their own assets by others. The assets may be tangible, as is the case of real estate and equipment, or intangible, as is the case with patents and trademarks.'
+            description='The Real Estate and Rental and Leasing sector comprises establishments primarily engaged in renting, leasing, or otherwise allowing the use of tangible or intangible assets, and establishments providing related services. The major portion of this sector comprises establishments that rent, lease, or otherwise allow the use of their own assets by others. The assets may be tangible, as is the case of real estate and equipment, or intangible, as is the case with patents and trademarks.',
+            tags=[subsections['employment']]
         )
         employed_science_management_admin_waste = OBSColumn(
             id='C24050010',
@@ -1216,7 +1235,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Administrative and Support and Waste Management and Remediation Services sector comprises establishments performing routine support activities for the day-to-day operations of other organizations. The establishments in this sector specialize in one or more of these support activities and provide these services to clients in a variety of industries and, in some cases, to households. Activities performed include office administration, hiring and placing of personnel, document preparation and similar clerical services, solicitation, collection, security and surveillance services, cleaning, and waste disposal services.'
+            description='The Administrative and Support and Waste Management and Remediation Services sector comprises establishments performing routine support activities for the day-to-day operations of other organizations. The establishments in this sector specialize in one or more of these support activities and provide these services to clients in a variety of industries and, in some cases, to households. Activities performed include office administration, hiring and placing of personnel, document preparation and similar clerical services, solicitation, collection, security and surveillance services, cleaning, and waste disposal services.',
+            tags=[subsections['employment']]
         )
         employed_education_health_social = OBSColumn(
             id='C24050011',
@@ -1225,7 +1245,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='Outpatient health services, other than hospital care, including: public health administration; research and education; categorical health programs; treatment and immunization clinics; nursing; environmental health activities such as air and water pollution control; ambulance service if provided separately from fire protection services, and other general public health activities such as mosquito abatement. School health services provided by health agencies (rather than school agencies) are included here. Sewage treatment operations are classified under Sewerage.'
+            description='Outpatient health services, other than hospital care, including: public health administration; research and education; categorical health programs; treatment and immunization clinics; nursing; environmental health activities such as air and water pollution control; ambulance service if provided separately from fire protection services, and other general public health activities such as mosquito abatement. School health services provided by health agencies (rather than school agencies) are included here. Sewage treatment operations are classified under Sewerage.',
+            tags=[subsections['employment']]
         )
         employed_arts_entertainment_recreation_accommodation_food = OBSColumn(
             id='C24050012',
@@ -1234,7 +1255,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Arts, Entertainment, and Recreation sector includes a wide range of establishments that operate facilities or provide services to meet varied cultural, entertainment, and recreational interests of their patrons. This sector comprises (1) establishments that are involved in producing, promoting, or participating in live performances, events, or exhibits intended for public viewing; (2) establishments that preserve and exhibit objects and sites of historical, cultural, or educational interest; and (3) establishments that operate facilities or provide services that enable patrons to participate in recreational activities or pursue amusement, hobby, and leisure-time interests.'
+            description='The Arts, Entertainment, and Recreation sector includes a wide range of establishments that operate facilities or provide services to meet varied cultural, entertainment, and recreational interests of their patrons. This sector comprises (1) establishments that are involved in producing, promoting, or participating in live performances, events, or exhibits intended for public viewing; (2) establishments that preserve and exhibit objects and sites of historical, cultural, or educational interest; and (3) establishments that operate facilities or provide services that enable patrons to participate in recreational activities or pursue amusement, hobby, and leisure-time interests.',
+            tags=[subsections['employment']]
         )
         employed_other_services_not_public_admin = OBSColumn(
             id='C24050013',
@@ -1243,7 +1265,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Other Services (Except Public Administration) sector comprises establishments engaged in providing services not specifically provided for elsewhere in the classification system. Establishments in this sector are primarily engaged in activities such as equipment and machinery repairing, promoting or administering religious activities, grantmaking, advocacy, and providing drycleaning and laundry services, personal care services, death care services, pet care services, photofinishing services, temporary parking services, and dating services. Private households that engage in employing workers on or about the premises in activities primarily concerned with the operation of the household are included in this sector.'
+            description='The Other Services (Except Public Administration) sector comprises establishments engaged in providing services not specifically provided for elsewhere in the classification system. Establishments in this sector are primarily engaged in activities such as equipment and machinery repairing, promoting or administering religious activities, grantmaking, advocacy, and providing drycleaning and laundry services, personal care services, death care services, pet care services, photofinishing services, temporary parking services, and dating services. Private households that engage in employing workers on or about the premises in activities primarily concerned with the operation of the household are included in this sector.',
+            tags=[subsections['employment']]
         )
         employed_public_administration = OBSColumn(
             id='C24050014',
@@ -1252,7 +1275,8 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description='The Public Administration sector consists of establishments of federal, state, and local government agencies that administer, oversee, and manage public programs and have executive, legislative, or judicial authority over other institutions within a given area. These agencies also set policy, create laws, adjudicate civil and criminal legal cases, provide for public safety and for national defense. In general, government establishments in the public administration sector oversee governmental programs and activities that are not performed by private establishments.'
+            description='The Public Administration sector consists of establishments of federal, state, and local government agencies that administer, oversee, and manage public programs and have executive, legislative, or judicial authority over other institutions within a given area. These agencies also set policy, create laws, adjudicate civil and criminal legal cases, provide for public safety and for national defense. In general, government establishments in the public administration sector oversee governmental programs and activities that are not performed by private establishments.',
+            tags=[subsections['employment']]
         )
         occupation_management_arts = OBSColumn(
             id='C24050015',
@@ -1261,7 +1285,8 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='',
+            tags=[subsections['employment']]
         )
         occupation_services = OBSColumn(
             id='C24050029',
@@ -1270,7 +1295,8 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='',
+            tags=[subsections['employment']]
         )
         occupation_sales_office = OBSColumn(
             id='C24050043',
@@ -1279,7 +1305,8 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='',
+            tags=[subsections['employment']]
         )
         occupation_natural_resources_construction_maintenance = OBSColumn(
             id='C24050057',
@@ -1288,7 +1315,8 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='',
+            tags=[subsections['employment']]
         )
         occupation_production_transportation_material = OBSColumn(
             id='C24050071',
@@ -1297,7 +1325,8 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={employed_pop: 'denominator'},
-            description=''
+            description='',
+            tags=[subsections['employment']]
         )
 
         # TODO
@@ -1323,7 +1352,8 @@ class Columns(ColumnsTask):
             description='The male population over the age of five years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_5_to_9 = OBSColumn(
             id='B01001004',
@@ -1332,7 +1362,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of five years to nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_10_to_14 = OBSColumn(
             id='B01001004',
@@ -1341,7 +1372,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of ten years to fourteen years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_15_to_17 = OBSColumn(
             id='B01001006',
@@ -1350,7 +1382,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of fifteeen years to seventeen years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_18_to_19 = OBSColumn(
             id='B01001007',
@@ -1359,7 +1392,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of eighteen years to nineteen years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_20 = OBSColumn(
             id='B01001008',
@@ -1368,7 +1402,8 @@ class Columns(ColumnsTask):
             description='The male population with an age of twenty years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_21 = OBSColumn(
             id='B01001009',
@@ -1377,7 +1412,8 @@ class Columns(ColumnsTask):
             description='The male population with an age of twenty-one years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_22_to_24 = OBSColumn(
             id='B01001010',
@@ -1386,7 +1422,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of twenty-two years to twenty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_25_to_29 = OBSColumn(
             id='B01001011',
@@ -1395,7 +1432,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of twenty-five years to twenty-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_30_to_34 = OBSColumn(
             id='B01001012',
@@ -1404,7 +1442,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of thirty years to thirty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_35_to_39 = OBSColumn(
             id='B01001013',
@@ -1413,7 +1452,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of thirty-five years to thirty-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_40_to_44 = OBSColumn(
             id='B01001014',
@@ -1422,7 +1462,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of fourty years to fourty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
 
         male_65_to_66 = OBSColumn(
@@ -1432,7 +1473,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of sixty-five years to sixty-six years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_67_to_69 = OBSColumn(
             id='B01001021',
@@ -1441,7 +1483,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of sixty-seven years to sixty-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_70_to_74 = OBSColumn(
             id='B01001022',
@@ -1450,7 +1493,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of seventy years to seventy-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_75_to_79 = OBSColumn(
             id='B01001023',
@@ -1459,7 +1503,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of seventy-five years to seventy-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_80_to_84 = OBSColumn(
             id='B01001024',
@@ -1468,7 +1513,8 @@ class Columns(ColumnsTask):
             description='The male population between the age of eighty years to eighty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         male_85_and_over = OBSColumn(
             id='B01001025',
@@ -1477,7 +1523,8 @@ class Columns(ColumnsTask):
             description='The male population of the age of eighty-five years and over within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
 
         # female
@@ -1488,7 +1535,8 @@ class Columns(ColumnsTask):
             description='The female population over the age of five years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_5_to_9 = OBSColumn(
             id='B01001028',
@@ -1497,7 +1545,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of five years to nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_10_to_14 = OBSColumn(
             id='B01001029',
@@ -1506,7 +1555,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of ten years to fourteen years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_15_to_17 = OBSColumn(
             id='B01001030',
@@ -1515,7 +1565,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of fifteeen years to seventeen years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_18_to_19 = OBSColumn(
             id='B01001031',
@@ -1524,7 +1575,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of eighteen years to nineteen years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_20 = OBSColumn(
             id='B01001032',
@@ -1533,7 +1585,8 @@ class Columns(ColumnsTask):
             description='The female population with an age of twenty years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_21 = OBSColumn(
             id='B01001033',
@@ -1542,7 +1595,8 @@ class Columns(ColumnsTask):
             description='The female population with an age of twenty-one years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_22_to_24 = OBSColumn(
             id='B01001034',
@@ -1551,7 +1605,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of twenty-two years to twenty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_25_to_29 = OBSColumn(
             id='B01001035',
@@ -1560,7 +1615,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of twenty-five years to twenty-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_30_to_34 = OBSColumn(
             id='B01001036',
@@ -1569,7 +1625,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of thirty years to thirty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_35_to_39 = OBSColumn(
             id='B01001037',
@@ -1578,7 +1635,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of thirty-five years to thirty-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_40_to_44 = OBSColumn(
             id='B01001038',
@@ -1587,7 +1645,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of fourty years to fourty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_45_to_49 = OBSColumn(
             id='B01001039',
@@ -1596,7 +1655,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of fourty-five years to fourty-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_50_to_54 = OBSColumn(
             id='B01001040',
@@ -1605,7 +1665,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of fifty years to fifty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_55_to_59 = OBSColumn(
             id='B01001041',
@@ -1614,7 +1675,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of fifty-five years to fifty-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_60_to_61 = OBSColumn(
             id='B01001042',
@@ -1623,7 +1685,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of sixty years to sixty-one years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_62_to_64 = OBSColumn(
             id='B01001043',
@@ -1632,7 +1695,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of sixty-two years to sixty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
 
         female_65_to_66 = OBSColumn(
@@ -1642,7 +1706,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of sixty-five years to sixty-six years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_67_to_69 = OBSColumn(
             id='B01001045',
@@ -1651,7 +1716,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of sixty-seven years to sixty-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_70_to_74 = OBSColumn(
             id='B01001046',
@@ -1660,7 +1726,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of seventy years to seventy-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_75_to_79 = OBSColumn(
             id='B01001047',
@@ -1669,7 +1736,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of seventy-five years to seventy-nine years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_80_to_84 = OBSColumn(
             id='B01001048',
@@ -1678,7 +1746,8 @@ class Columns(ColumnsTask):
             description='The female population between the age of eighty years to eighty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
         female_85_and_over = OBSColumn(
             id='B01001049',
@@ -1687,26 +1756,29 @@ class Columns(ColumnsTask):
             description='The female population of the age of eighty-five years and over within the specified area.',
             weight=1,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender']]
         )
 
         white_including_hispanic = OBSColumn(
-            id= 'B02001002',
+            id='B02001002',
             type='Numeric',
             name='White including Hispanic',
             description='',
             weight=0,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['race_ethnicity']]
         )
         black_including_hispanic = OBSColumn(
-            id= 'B02001003',
+            id='B02001003',
             type='Numeric',
             name='Black including Hispanic',
             description='',
             weight=0,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['race_ethnicity']]
         )
         amerindian_including_hispanic = OBSColumn(
             id= 'B02001004',
@@ -1715,7 +1787,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['race_ethnicity']]
         )
         asian_including_hispanic = OBSColumn(
             id='B02001005',
@@ -1724,7 +1797,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['race_ethnicity']]
         )
 
         hispanic_any_race = OBSColumn(
@@ -1734,7 +1808,8 @@ class Columns(ColumnsTask):
             description='',
             weight=0,
             aggregate='sum',
-            targets={total_pop: 'denominator'}
+            targets={total_pop: 'denominator'},
+            tags=[subsections['race_ethnicity']]
         )
 
         #* men in middle age (45-64)
@@ -1745,7 +1820,7 @@ class Columns(ColumnsTask):
             description='The male population between the age of fourty-five years to sixty-four years within the specified area.',
             weight=1,
             aggregate='sum',
-            tags=[tag_middle_aged_men])
+            tags=[subsections['age_gender']])
 
         #  - B01001015: 45 To 49 Years
         male_45_to_49 = OBSColumn(
@@ -1756,7 +1831,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[subsections['age_gender']])
 
         #  - B01001016: 50 To 54 Years
         male_50_to_54 = OBSColumn(
@@ -1767,7 +1842,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[subsections['age_gender']])
 
         #  - B01001017: 55 To 59 Years
         male_55_to_59 = OBSColumn(
@@ -1778,7 +1853,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[subsections['age_gender']])
 
         #  - B01001018: 60 and 61 Years
         male_60_61 = OBSColumn(
@@ -1789,7 +1864,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[subsections['age_gender']])
 
         #  - B01001019: 62 To 64 Years
         male_62_64 = OBSColumn(
@@ -1800,7 +1875,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[subsections['age_gender']])
 
         #  - B01001B012: black, 45 to 54 Years
         black_male_45_54 = OBSColumn(
@@ -1811,7 +1886,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B01001B013: black, 55 to 64 Years
         black_male_55_64 = OBSColumn(
@@ -1822,7 +1897,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B01001I012: Hispanic, 45 to 54 Years
         hispanic_male_45_54 = OBSColumn(
@@ -1833,7 +1908,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B01001I013: Hispanic, 55 to 64 Years
         hispanic_male_55_64 = OBSColumn(
@@ -1844,7 +1919,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B01001H012: white non-hispanic, 45 to 54 Years
         white_male_45_54 = OBSColumn(
@@ -1855,7 +1930,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B01001H013: white non-hispanic, 55 to 64 Years
         white_male_55_64 = OBSColumn(
@@ -1866,7 +1941,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B01001D012: asian, 45 to 54 Years
         asian_male_45_54 = OBSColumn(
@@ -1877,7 +1952,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B01001D013: asian, 55 to 64 Years
         asian_male_55_64 = OBSColumn(
@@ -1888,7 +1963,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B05013012: foreign born, 45 to 49 Years
         #  - B05013013: foreign born, 50 to 54 Years
@@ -1903,7 +1978,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B15001029: completed between 9th to 12th grade, no diploma
         male_45_64_grade_9_12 = OBSColumn(
@@ -1914,8 +1989,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
-
+            tags=[]) 
         #  - B15001030: high school graduate including GED
         male_45_64_high_school = OBSColumn(
             id='B15001030',
@@ -1925,7 +1999,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B15001031: some college, no degree
         male_45_64_some_college = OBSColumn(
@@ -1936,7 +2010,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B15001032: associate's degree
         male_45_64_associates_degree = OBSColumn(
@@ -1947,7 +2021,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B15001033: bachelor's degree
         male_45_64_bachelors_degree = OBSColumn(
@@ -1958,7 +2032,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B15001034: graduate/professional degree
         male_45_64_graduate_degree = OBSColumn(
@@ -1969,7 +2043,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={total_pop: 'denominator'},
-            tags=[tag_middle_aged_men])
+            tags=[])
 
         #  - B17001013: income below poverty, 45 to 54 years
         #  - B17001014: income below poverty, 55 to 64 years
@@ -2021,7 +2095,7 @@ class Columns(ColumnsTask):
             'status.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['denominator']]
+            tags=[subsections['families'], subsections['age_gender']]
         )
         pop_never_married = OBSColumn(
             id="B12005002",
@@ -2031,7 +2105,7 @@ class Columns(ColumnsTask):
             description='The number of people in a geographic area who have never been married.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics']]
+            tags=[subsections['families']]
         )
         pop_now_married = OBSColumn(
             id="B12005005",
@@ -2041,7 +2115,7 @@ class Columns(ColumnsTask):
             description='The number of people in a geographic area who are currently married',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics']]
+            tags=[subsections['families']]
         )
         pop_separated = OBSColumn(
             id='B12005008',
@@ -2051,7 +2125,7 @@ class Columns(ColumnsTask):
             description='The number of people in a geographic area who are married but separated',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics']]
+            tags=[subsections['families']]
         )
         pop_widowed = OBSColumn(
             id='B12005012',
@@ -2061,7 +2135,7 @@ class Columns(ColumnsTask):
             description='The number of people in a geographic area who are widowed',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics']]
+            tags=[subsections['families']]
         )
         pop_divorced = OBSColumn(
             id='B12005015',
@@ -2071,7 +2145,7 @@ class Columns(ColumnsTask):
             description='The number of people in a geographic area who are divorced',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics']]
+            tags=[subsections['families']]
         )
 
         commuters_16_over = OBSColumn(
@@ -2082,7 +2156,7 @@ class Columns(ColumnsTask):
                         'work from home',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_less_10_mins = OBSColumn(
             id='B08134002',
@@ -2093,7 +2167,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in less than 10 minutes.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_5_9_mins = OBSColumn(
             id='B08303003',
@@ -2104,6 +2178,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_10_14_mins = OBSColumn(
             id='B08303004',
@@ -2114,8 +2189,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in between 10 and 14 minutes. ',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
-
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_15_19_mins = OBSColumn(
             id='B08303005',
@@ -2126,8 +2200,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in between 15 and 19 minutes. ',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
-
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_20_24_mins = OBSColumn(
             id='B08303006',
@@ -2138,7 +2211,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in between 20 and 24 minutes.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_25_29_mins = OBSColumn(
             id='B08303007',
@@ -2149,7 +2222,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in between 25 and 29 minutes. ',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_30_34_mins = OBSColumn(
             id='B08303008',
@@ -2160,7 +2233,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in between 30 and 34 minutes. ',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_35_39_mins = OBSColumn(
             id='B08303009',
@@ -2171,6 +2244,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_40_44_mins = OBSColumn(
             id='B08303010',
@@ -2181,6 +2255,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_35_44_mins = OBSColumn(
             id='B08134008',
@@ -2191,7 +2266,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in between 35 and 44 minutes. ',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_45_59_mins = OBSColumn(
             id='B08303011',
@@ -2202,7 +2277,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in between 45 and 59 minutes. ',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_60_more_mins = OBSColumn(
             id='B08134010',
@@ -2213,7 +2288,7 @@ class Columns(ColumnsTask):
                         'work from home and commute in over 60 minutes.',
             weight=2,
             aggregate='sum',
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_60_89_mins = OBSColumn(
             id='B08303012',
@@ -2224,6 +2299,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
+            tags=[subsections['employment'], subsections['transportation']]
         )
         commute_90_more_mins = OBSColumn(
             id='B08303013',
@@ -2234,6 +2310,7 @@ class Columns(ColumnsTask):
             weight=1,
             aggregate='sum',
             targets={commuters_16_over: 'denominator'},
+            tags=[subsections['employment'], subsections['transportation']]
         )
         aggregate_travel_time_to_work = OBSColumn(
             id='B08135001',
@@ -2245,7 +2322,7 @@ class Columns(ColumnsTask):
             weight=0,
             aggregate='sum',
             targets={commuters_16_over: 'divisor'},
-            tags=[censustags['demographics'], tags['income_education_employment']]
+            tags=[subsections['employment'], subsections['transportation']]
         )
 
         income_less_10000 = OBSColumn(
@@ -2256,7 +2333,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was less than $10,000.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_10000_14999 = OBSColumn(
@@ -2267,7 +2344,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $10,000 and $14,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_15000_19999 = OBSColumn(
@@ -2278,7 +2355,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $15,000 and $19,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_20000_24999 = OBSColumn(
@@ -2289,7 +2366,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $20,000 and $24,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_25000_29999 = OBSColumn(
@@ -2300,7 +2377,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $20,000 and $24,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_30000_34999 = OBSColumn(
@@ -2311,7 +2388,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $30,000 and $34,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_35000_39999 = OBSColumn(
@@ -2322,7 +2399,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $35,000 and $39,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_40000_44999 = OBSColumn(
@@ -2333,7 +2410,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $40,000 and $44,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_45000_49999 = OBSColumn(
@@ -2344,7 +2421,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $45,000 and $49,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_50000_59999 = OBSColumn(
@@ -2355,7 +2432,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $50,000 and $59,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_60000_74999 = OBSColumn(
@@ -2366,7 +2443,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $60,000 and $74,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_75000_99999 = OBSColumn(
@@ -2377,7 +2454,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $75,000 and $99,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_100000_124999 = OBSColumn(
@@ -2388,7 +2465,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $100,000 and $124,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_125000_149999 = OBSColumn(
@@ -2399,7 +2476,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $125,000 and $149,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_150000_199999 = OBSColumn(
@@ -2410,7 +2487,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was between $150,000 and $1999,999.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         income_200000_or_more = OBSColumn(
@@ -2421,7 +2498,7 @@ class Columns(ColumnsTask):
             description='The number of households in a geographic area whose '
                         'annual income was more than $200,000.',
             weight=2,
-            tags=[censustags['demographics'], tags['income_education_employment']],
+            tags=[subsections['income']],
             targets={households: 'denominator'}
         )
         #TODO
@@ -2436,7 +2513,8 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=0,
             name='Households on cash public assistance or receiving food stamps (SNAP)',
-            targets={households: 'denominator'}
+            targets={households: 'denominator'},
+            tags=[subsections['income']],
         )
 
         households_retirement_income = OBSColumn(
@@ -2445,7 +2523,8 @@ class Columns(ColumnsTask):
             aggregate='sum',
             weight=0,
             name='Households receiving retirement income',
-            targets={households: 'denominator'}
+            targets={households: 'denominator'},
+            tags=[subsections['income']],
         )
 
         renter_occupied_housing_units_paying_cash_median_gross_rent = OBSColumn(
@@ -2454,7 +2533,8 @@ class Columns(ColumnsTask):
             aggregate='median',
             name='Renter-Occupied Housing Units Paying Cash Rent Median Gross Rent',
             description='',
-            weight=0
+            weight=0,
+            tags=[subsections['housing']],
         )
 
         owner_occupied_housing_units_lower_value_quartile = OBSColumn(
@@ -2462,7 +2542,8 @@ class Columns(ColumnsTask):
             type='Numeric',
             name='Owner-Occupied Housing Units Lower Value Quartile',
             description='',
-            weight=0
+            weight=0,
+            tags=[subsections['housing']],
         )
 
         owner_occupied_housing_units_median_value = OBSColumn(
@@ -2471,7 +2552,8 @@ class Columns(ColumnsTask):
             aggregate='median',
             name='Owner-Occupied Housing Units Median Value',
             description='The middle value (median) in a geographic area owner occupied housing units.',
-            weight=1
+            weight=1,
+            tags=[subsections['housing']],
         )
 
         owner_occupied_housing_units_upper_value_quartile = OBSColumn(
@@ -2479,7 +2561,8 @@ class Columns(ColumnsTask):
             type='Numeric',
             name='Owner-Occupied Housing Units Upper Value Quartile',
             description='',
-            weight=0
+            weight=0,
+            tags=[subsections['housing']],
         )
 
         population_1_year_and_over = OBSColumn(
@@ -2487,7 +2570,8 @@ class Columns(ColumnsTask):
             type='Numeric',
             name='Population 1 year and over',
             description='All people, male and female, child and adult, living in a given geographic area that are 1 year and older.',
-            weight=1
+            weight=1,
+            tags=[subsections['age_gender']],
         )
         different_house_year_ago_same_city = OBSColumn(
             id='B07204004',
@@ -2496,6 +2580,7 @@ class Columns(ColumnsTask):
             description='All people in a geographic area who lived in the same city but moved to a different unit within the year prior to the survey.',
             weight=1,
             targets={population_1_year_and_over: 'denominator'},
+            tags=[subsections['housing']],
         )
         different_house_year_ago_different_city = OBSColumn(
             id='B07204007',
@@ -2504,6 +2589,7 @@ class Columns(ColumnsTask):
             description='All people in a geographic area who lived in a different city within the year prior to the survey.',
             weight=1,
             targets={population_1_year_and_over: 'denominator'},
+            tags=[subsections['housing']],
         )
 
         group_quarters = OBSColumn(
@@ -2512,6 +2598,7 @@ class Columns(ColumnsTask):
             name='Population living in group quarters',
             description='',
             weight=0,
+            tags=[subsections['housing']],
         )
         no_car = OBSColumn(
             id='B08014002',
@@ -2520,9 +2607,10 @@ class Columns(ColumnsTask):
             description='All people in a geographic area over the age of 16 who do not own a car.',
             weight=1,
             targets={workers_16_and_over: 'denominator'},
+            tags=[subsections['transportation']],
         )
 
-        return OrderedDict([
+        columns = OrderedDict([
             ("total_pop", total_pop),
             ("male_pop", male_pop),
             ("female_pop", female_pop),
@@ -2699,24 +2787,29 @@ class Columns(ColumnsTask):
             ('housing_built_2000_to_2004', housing_built_2000_to_2004),
             ('housing_built_1939_or_earlier', housing_built_1939_or_earlier),
             ('two_parent_families_with_young_children', two_parent_families_with_young_children),
-            ('employed_agriculture_forestry_fishing_hunting_mining', employed_agriculture_forestry_fishing_hunting_mining),
+            ('employed_agriculture_forestry_fishing_hunting_mining',
+             employed_agriculture_forestry_fishing_hunting_mining),
             ('employed_construction', employed_construction),
             ('employed_manufacturing', employed_manufacturing),
             ('employed_wholesale_trade', employed_wholesale_trade),
             ('employed_retail_trade', employed_retail_trade),
-            ('employed_transportation_warehousing_utilities', employed_transportation_warehousing_utilities),
+            ('employed_transportation_warehousing_utilities',
+             employed_transportation_warehousing_utilities),
             ('employed_information', employed_information),
             ('employed_finance_insurance_real_estate', employed_finance_insurance_real_estate),
             ('employed_science_management_admin_waste', employed_science_management_admin_waste),
             ('employed_education_health_social', employed_education_health_social),
-            ('employed_arts_entertainment_recreation_accommodation_food', employed_arts_entertainment_recreation_accommodation_food),
+            ('employed_arts_entertainment_recreation_accommodation_food',
+             employed_arts_entertainment_recreation_accommodation_food),
             ('employed_other_services_not_public_admin', employed_other_services_not_public_admin),
             ('employed_public_administration', employed_public_administration),
             ('occupation_management_arts', occupation_management_arts),
             ('occupation_services', occupation_services),
             ('occupation_sales_office', occupation_sales_office),
-            ('occupation_natural_resources_construction_maintenance', occupation_natural_resources_construction_maintenance),
-            ('occupation_production_transportation_material', occupation_production_transportation_material),
+            ('occupation_natural_resources_construction_maintenance',
+             occupation_natural_resources_construction_maintenance),
+            ('occupation_production_transportation_material',
+             occupation_production_transportation_material),
             ('male_under_5', male_under_5),
             ('male_5_to_9', male_5_to_9),
             ('male_10_to_14', male_10_to_14),
@@ -2741,7 +2834,6 @@ class Columns(ColumnsTask):
             ('male_75_to_79', male_75_to_79),
             ('male_80_to_84', male_80_to_84),
             ('male_85_and_over', male_85_and_over),
-
             ('female_under_5', female_under_5),
             ('female_5_to_9', female_5_to_9),
             ('female_10_to_14', female_10_to_14),
@@ -2777,16 +2869,26 @@ class Columns(ColumnsTask):
             ('commute_90_more_mins', commute_90_more_mins),
             ('households_public_asst_or_food_stamps', households_public_asst_or_food_stamps),
             ('households_retirement_income', households_retirement_income),
-            ('renter_occupied_housing_units_paying_cash_median_gross_rent', renter_occupied_housing_units_paying_cash_median_gross_rent),
-            ('owner_occupied_housing_units_lower_value_quartile', owner_occupied_housing_units_lower_value_quartile),
-            ('owner_occupied_housing_units_median_value', owner_occupied_housing_units_median_value),
-            ('owner_occupied_housing_units_upper_value_quartile', owner_occupied_housing_units_upper_value_quartile),
+            ('renter_occupied_housing_units_paying_cash_median_gross_rent',
+             renter_occupied_housing_units_paying_cash_median_gross_rent),
+            ('owner_occupied_housing_units_lower_value_quartile',
+             owner_occupied_housing_units_lower_value_quartile),
+            ('owner_occupied_housing_units_median_value',
+             owner_occupied_housing_units_median_value),
+            ('owner_occupied_housing_units_upper_value_quartile',
+             owner_occupied_housing_units_upper_value_quartile),
             ('population_1_year_and_over', population_1_year_and_over),
             ('different_house_year_ago_same_city', different_house_year_ago_same_city),
             ('different_house_year_ago_different_city', different_house_year_ago_different_city),
             ('group_quarters', group_quarters),
             ('no_car', no_car),
         ])
+        united_states_section = input_['sections']['united_states']
+        acs_source = input_['censustags']['acs']
+        for _, col in columns.iteritems():
+            col.tags.append(united_states_section)
+            col.tags.append(acs_source)
+        return columns
 
 
 class DownloadACS(LoadPostgresFromURL):

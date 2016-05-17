@@ -11,10 +11,10 @@ Use this catalog to find data to power analysis of your CartoDB maps.
 Contents:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :glob:
 
-   */*
+   *
 
 
 Indices and tables

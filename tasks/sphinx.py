@@ -19,7 +19,8 @@ def test_filter(arg):
 
 env.filters['test'] = test_filter
 
-TAG_TEMPLATE = env.get_template('tag.html')
+SECTION_TEMPLATE = env.get_template('section.html')
+SUBSECTION_TEMPLATE = env.get_template('subsection.html')
 
 
 class GenerateRST(Task):
@@ -37,36 +38,44 @@ class GenerateRST(Task):
     def requires(self):
         session = current_session()
         requirements = {}
-        for tag_id, target in self.output().iteritems():
-            tag = session.query(OBSTag).get(tag_id)
-            if '.. cartofigure:: ' in tag.description:
-                viz_id = re.search(r'\.\. cartofigure:: (\S+)', tag.description).groups()[0]
+        for section_subsection, _ in self.output().iteritems():
+            section_id, subsection_id = section_subsection
+            subsection = session.query(OBSTag).get(subsection_id)
+            if '.. cartofigure:: ' in subsection.description:
+                viz_id = re.search(r'\.\. cartofigure:: (\S+)', subsection.description).groups()[0]
                 requirements[viz_id] = GenerateStaticImage(viz_id)
         return requirements
 
     def output(self):
         targets = {}
         session = current_session()
-        for tag in session.query(OBSTag).filter(OBSTag.type == 'catalog'):
-            targets[tag.id] = LocalTarget('catalog/source/{type}/{tag}.rst'.format(
-                type=tag.type,
-                tag=tag.id))
+        for section in session.query(OBSTag).filter(OBSTag.type == 'section'):
+            for subsection in session.query(OBSTag).filter(OBSTag.type == 'subsection'):
+                targets[(section.id, subsection.id)] = LocalTarget(
+                    'catalog/source/{section}/{subsection}.rst'.format(
+                        section=section.id,
+                        subsection=subsection.id))
         return targets
 
     def run(self):
         session = current_session()
-        for tag_id, target in self.output().iteritems():
+        for section_subsection, target in self.output().iteritems():
+            section_id, subsection_id = section_subsection
+            section = session.query(OBSTag).get(section_id)
+            subsection = session.query(OBSTag).get(subsection_id)
+            target.makedirs()
             fhandle = target.open('w')
 
-            tag = session.query(OBSTag).get(tag_id)
-            if '.. cartofigure:: ' in tag.description:
-                viz_id = re.search(r'\.\. cartofigure:: (\S+)', tag.description).groups()[0]
+            if '.. cartofigure:: ' in subsection.description:
+                viz_id = re.search(r'\.\. cartofigure:: (\S+)', subsection.description).groups()[0]
                 viz_path = os.path.join('../', *self.input()[viz_id].path.split(os.path.sep)[2:])
-                tag.description = re.sub(r'\.\. cartofigure:: (\S+)',
-                                         '.. figure:: {}'.format(viz_path),
-                                         tag.description)
+                subsection.description = re.sub(r'\.\. cartofigure:: (\S+)',
+                                                '.. figure:: {}'.format(viz_path),
+                                                subsection.description)
             columns = []
-            for col in tag.columns:
+            for col in subsection.columns:
+                if section not in col.tags:
+                    continue
 
                 if col.weight < 1:
                     continue
@@ -75,14 +84,19 @@ class GenerateRST(Task):
                 if not col.has_denominator():
                     columns.append(col)
 
-                # unless the denominator is not in this tag
-                elif tag not in col.denominator().tags:
+                # unless the denominator is not in this subsection
+                elif subsection not in col.denominator().tags:
                     columns.append(col)
 
             columns.sort(lambda x, y: cmp(x.name, y.name))
 
-            fhandle.write(TAG_TEMPLATE.render(tag=tag, columns=columns,
-                                              format=self.format).encode('utf8'))
+            with open('catalog/source/{}.rst'.format(section.id), 'w') as section_fhandle:
+                section_fhandle.write(SECTION_TEMPLATE.render(section=section))
+            if columns:
+                fhandle.write(SUBSECTION_TEMPLATE.render(
+                    subsection=subsection, columns=columns, format=self.format).encode('utf8'))
+            else:
+                fhandle.write('')
             fhandle.close()
 
 

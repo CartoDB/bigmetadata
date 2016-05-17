@@ -15,7 +15,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                        )
 from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
                         OBSColumnTag, OBSColumnToColumn, current_session)
-from tasks.tags import CategoryTags
+from tasks.tags import SectionTags, SubsectionTags
 from tasks.carto import Import as CartoImport
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
@@ -26,18 +26,20 @@ from psycopg2 import ProgrammingError
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
             'geom_columns': GeomColumns(),
-            'tags': CategoryTags(),
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
         }
 
     def columns(self):
         cols = OrderedDict()
         session = current_session()
-        tags = self.input()['tags']
+        sections = self.input()['sections']
+        subsections = self.input()['subsections']
         for colname, coltarget in self.input()['geom_columns'].iteritems():
             col = coltarget.get(session)
             cols[colname + '_clipped'] = OBSColumn(
@@ -47,7 +49,7 @@ class ClippedGeomColumns(ColumnsTask):
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
                 targets={col: 'cartography'},
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             )
 
         return cols
@@ -56,11 +58,12 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
-            'tags': CategoryTags(),
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
         }
 
     def _generate_desc(self, sumlevel):
@@ -70,84 +73,85 @@ class GeomColumns(ColumnsTask):
         return SUMLEVELS_BY_SLUG[sumlevel]['census_description']
 
     def columns(self):
-        tags = self.input()['tags']
+        sections = self.input()['sections']
+        subsections = self.input()['subsections']
         return {
             'block_group': OBSColumn(
                 type='Geometry',
                 name='US Census Block Groups',
                 description=self._generate_desc("block_group"),
                 weight=10,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'block': OBSColumn(
                 type='Geometry',
                 name='US Census Blocks',
                 description=self._generate_desc("block"),
                 weight=0,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'census_tract': OBSColumn(
                 type='Geometry',
                 name='US Census Tracts',
                 description=self._generate_desc("census_tract"),
                 weight=9,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'congressional_district': OBSColumn(
                 type='Geometry',
                 name='US Congressional Districts',
                 description=self._generate_desc("congressional_district"),
                 weight=5,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'county': OBSColumn(
                 type='Geometry',
                 name='US County',
                 description=self._generate_desc("county"),
                 weight=7,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'puma': OBSColumn(
                 type='Geometry',
                 name='US Census Public Use Microdata Areas',
                 description=self._generate_desc("puma"),
                 weight=6,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'state': OBSColumn(
                 type='Geometry',
                 name='US States',
                 description=self._generate_desc("state"),
                 weight=8,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'zcta5': OBSColumn(
                 type='Geometry',
                 name='US Census Zip Code Tabulation Areas',
                 description=self._generate_desc('zcta5'),
                 weight=6,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_elementary': OBSColumn(
                 type='Geometry',
                 name='Elementary School District',
                 description=self._generate_desc('school_district_elementary'),
                 weight=3,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_secondary': OBSColumn(
                 type='Geometry',
                 name='Secondary School District',
                 description=self._generate_desc('school_district_secondary'),
                 weight=3,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_unified': OBSColumn(
                 type='Geometry',
                 name='Unified School District',
                 description=self._generate_desc('school_district_unified'),
                 weight=5,
-                tags=[tags['boundary']]
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'cbsa': OBSColumn(
                 type='Geometry',
