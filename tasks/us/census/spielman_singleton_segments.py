@@ -11,6 +11,7 @@ from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag, current_sessi
 from tasks.util import shell, classpath, ColumnsTask, TableTask
 from tasks.us.census.tiger import GeoidColumns
 from tasks.us.census.acs import ACSTags
+from tasks.tags import SectionTags, SubsectionTags
 
 
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
@@ -1067,15 +1068,18 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 10
+        return 11
 
     def requires(self):
         return {
-            'acs_tags': ACSTags()
+            'acs_tags': ACSTags(),
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
         }
 
     def columns(self):
         segments_tag = self.input()['acs_tags']['segments']
+        usa = self.input()['sections']['united_states']
         x10 = OBSColumn(
             id='X10',
             type='Text',
@@ -1083,7 +1087,7 @@ class SpielmanSingletonColumns(ColumnsTask):
             description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters',
             weight=4,
             extra={'categories': self.x10_categories},
-            tags=[segments_tag],
+            tags=[segments_tag, usa],
         )
         x2 = OBSColumn(
             id='X2',
@@ -1104,7 +1108,7 @@ class SpielmanSingletonColumns(ColumnsTask):
             description="Sociodemographic classes from Spielman and Singleton 2015, 55 clusters",
             weight=7,
             extra={'categories': self.x55_categories},
-            tags=[segments_tag],
+            tags=[segments_tag, usa],
         )
 
         return OrderedDict([
