@@ -89,8 +89,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'bigmetadata'
-copyright = u'2016, John Krauss'
-author = u'John Krauss'
+copyright = u'2016, CartoDB'
+author = u'CartoDB'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -265,7 +265,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   (master_doc, 'bigmetadata.tex', u'bigmetadata Documentation',
-   u'John Krauss', 'manual'),
+   u'CartoDB', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
