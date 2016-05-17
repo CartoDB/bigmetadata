@@ -13,6 +13,12 @@
   endif
 %}
 
+{% if col.has_catalog_image() %}
+.. figure:: ../img/{{ col.id }}.png
+  :width: 100 %
+  :align: center
+{% endif %}
+
 {{ col.description }}
 
 {% if col.extra.categories %}

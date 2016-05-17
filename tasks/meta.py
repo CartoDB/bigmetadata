@@ -209,6 +209,12 @@ class OBSColumn(Base):
         '''
         return 'denominator' in self.targets.values()
 
+    def has_catalog_image(self):
+        '''
+        Returns True if this column has a pre-generated image for the catalog.
+        '''
+        return os.path.exists(os.path.join('catalog', 'img', self.id + '.png'))
+
     def denominator(self):
         '''
         Return the denominator of this column.

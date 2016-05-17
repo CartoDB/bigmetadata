@@ -56,105 +56,110 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 7
+        return 9
 
     def requires(self):
         return {
             'tags': CategoryTags(),
         }
 
+    def _generate_desc(self, sumlevel):
+        '''
+        Add figure to the description
+        '''
+        return SUMLEVELS_BY_SLUG[sumlevel]['census_description']
+
     def columns(self):
         tags = self.input()['tags']
-        desc = lambda sumlevel: SUMLEVELS_BY_SLUG[sumlevel]['census_description']
         return {
             'block_group': OBSColumn(
                 type='Geometry',
                 name='US Census Block Groups',
-                description=desc("block_group"),
+                description=self._generate_desc("block_group"),
                 weight=10,
                 tags=[tags['boundary']]
             ),
             'block': OBSColumn(
                 type='Geometry',
                 name='US Census Blocks',
-                description=desc("block"),
+                description=self._generate_desc("block"),
                 weight=0,
                 tags=[tags['boundary']]
             ),
             'census_tract': OBSColumn(
                 type='Geometry',
                 name='US Census Tracts',
-                description=desc("census_tract"),
+                description=self._generate_desc("census_tract"),
                 weight=9,
                 tags=[tags['boundary']]
             ),
             'congressional_district': OBSColumn(
                 type='Geometry',
                 name='US Congressional Districts',
-                description=desc("congressional_district"),
+                description=self._generate_desc("congressional_district"),
                 weight=5,
                 tags=[tags['boundary']]
             ),
             'county': OBSColumn(
                 type='Geometry',
                 name='US County',
-                description=desc("county"),
+                description=self._generate_desc("county"),
                 weight=7,
                 tags=[tags['boundary']]
             ),
             'puma': OBSColumn(
                 type='Geometry',
                 name='US Census Public Use Microdata Areas',
-                description=desc("puma"),
+                description=self._generate_desc("puma"),
                 weight=6,
                 tags=[tags['boundary']]
             ),
             'state': OBSColumn(
                 type='Geometry',
                 name='US States',
-                description=desc("state"),
+                description=self._generate_desc("state"),
                 weight=8,
                 tags=[tags['boundary']]
             ),
             'zcta5': OBSColumn(
                 type='Geometry',
                 name='US Census Zip Code Tabulation Areas',
-                description=desc('zcta5'),
+                description=self._generate_desc('zcta5'),
                 weight=6,
                 tags=[tags['boundary']]
             ),
             'school_district_elementary': OBSColumn(
                 type='Geometry',
                 name='Elementary School District',
-                description=desc('school_district_elementary'),
+                description=self._generate_desc('school_district_elementary'),
                 weight=3,
                 tags=[tags['boundary']]
             ),
             'school_district_secondary': OBSColumn(
                 type='Geometry',
                 name='Secondary School District',
-                description=desc('school_district_secondary'),
+                description=self._generate_desc('school_district_secondary'),
                 weight=3,
                 tags=[tags['boundary']]
             ),
             'school_district_unified': OBSColumn(
                 type='Geometry',
                 name='Unified School District',
-                description=desc('school_district_unified'),
+                description=self._generate_desc('school_district_unified'),
                 weight=5,
                 tags=[tags['boundary']]
             ),
             'cbsa': OBSColumn(
                 type='Geometry',
                 name='Core Based Statistical Area (CBSA)',
-                description=desc("cbsa"),
+                description=self._generate_desc("cbsa"),
                 weight=0,
                 tags=[]
             ),
             'place': OBSColumn(
                 type='Geometry',
                 name='Incorporated Places',
-                description=desc("place"),
+                description=self._generate_desc("place"),
                 weight=0,
                 tags=[]
             ),

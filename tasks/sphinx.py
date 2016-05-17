@@ -31,6 +31,7 @@ class GenerateRST(Task):
         super(GenerateRST, self).__init__(*args, **kwargs)
         if self.force:
             shell('rm -rf catalog/source/*/*')
+        shell('cp -R catalog/img/* catalog/source/img/')
 
 
     def requires(self):
