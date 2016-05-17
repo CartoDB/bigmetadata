@@ -13,6 +13,7 @@ from luigi import (Task, IntParameter, LocalTarget, BooleanParameter, Parameter,
 from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
                         CartoDBTarget, sql_to_cartodb_table,
                         TableTask, ColumnsTask, TagsTask)
+from tasks.tags import SectionTags, SubsectionTags
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.us.census.tiger import GeoidColumns
 from psycopg2 import ProgrammingError
@@ -108,13 +109,13 @@ def hometype_measures():
 class ZillowTags(TagsTask):
 
     def version(self):
-        return 1
+        return 2
 
     def tags(self):
         return [
             OBSTag(id='indexes',
                    name='Zillow Home Value and Rental Indexes',
-                   type='catalog',
+                   type='subsection',
                    description='Zillow home value and rental indexes.'),
         ]
 
@@ -141,15 +142,20 @@ class ZillowValueColumns(ColumnsTask):
 
     def requires(self):
         return {
-            'tags': ZillowTags()
+            'tags': ZillowTags(),
+            'subsections': SubsectionTags(),
+            'sections': SectionTags(),
         }
 
     def version(self):
-        return 4
+        return 5
 
     def columns(self):
         input_ = self.input()
         tag = input_['tags']['indexes']
+        united_states = input_['sections']['united_states']
+        housing = input_['subsections']['housing']
+
         columns = OrderedDict()
 
         for hometype, hometype_human, measure, measure_human in hometype_measures():
@@ -166,7 +172,7 @@ class ZillowValueColumns(ColumnsTask):
                                 measure_description=MEASURES_DESCRIPTION[measure],
                                 hometype_description=HOMETYPES_DESCRIPTION[hometype],
                                 ),
-                            tags=[tag])
+                            tags=[tag, united_states, housing])
             columns[col_id] = col
         return columns
 
