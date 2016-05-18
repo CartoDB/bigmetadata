@@ -34,6 +34,8 @@ pdf-catalog:
 
 deploy-catalog: catalog pdf-catalog
 	cd catalog/build/html && \
+	sudo chown -R ubuntu:ubuntu . && \
+	touch .nojekyll && \
 	git init && \
 	git checkout -B gh-pages && \
 	git add . && \
