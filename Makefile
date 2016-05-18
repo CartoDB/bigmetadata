@@ -32,7 +32,7 @@ pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Catalog --format pdf --force
 
-deploy-catalog: catalog pdf-catalog
+deploy-catalog:
 	cd catalog/build/html && \
 	sudo chown -R ubuntu:ubuntu . && \
 	touch .nojekyll && \
@@ -40,7 +40,7 @@ deploy-catalog: catalog pdf-catalog
 	git checkout -B gh-pages && \
 	git add . && \
 	git commit -m "updating catalog" && \
-	git remote add origin git@github.com:cartodb/bigmetadata.git && \
+	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
 	git push -f origin gh-pages
 
 # do not exceed three slots available for import api
