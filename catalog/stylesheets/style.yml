@@ -67,14 +67,14 @@
         defaultHeader : ###Section###
 
   fontsAlias:
-    stdFont: Open-Sans
-    stdBold: Open-Sans-Bold
-    stdItalic: Open-Sans-Oblique
-    stdBoldItalic: Open-Sans-BoldOblique
-    stdSans: Open-Sans
-    stdSansBold: Open-Sans-Bold
-    stdSansItalic: Open-Sans-Oblique
-    stdSansBoldItalic: Open-Sans-BoldOblique
+    stdFont: OpenSans-Regular
+    stdBold: OpenSans-Semibold
+    stdItalic: OpenSans-Italic
+    stdBoldItalic: OpenSans-SemiboldItalic
+    stdSans: OpenSans-Regular
+    stdSansBold: OpenSans-Semibold
+    stdSansItalic: OpenSans-Italic
+    stdSansBoldItalic: OpenSans-SemiboldItalic
     stdMono: Courier
     stdMonoItalic: Courier-Oblique
     stdMonoBold: Courier-Bold
@@ -93,11 +93,11 @@
       rightIndent: 0
       firstLineIndent: 0
       alignment: TA_LEFT
-      spaceBefore: 5
-      spaceAfter: 5
+      spaceBefore: 14
+      spaceAfter: 8
       bulletFontName: stdFont
       bulletFontSize: 9
-      bulletIndent: 0
+      bulletIndent: 24px
       textColor: #2E3C43
       backColor: null
       wordWrap: null
@@ -128,6 +128,7 @@
 
     toc:
       parent: normal
+      spaceBefore: 12
 
     blockquote:
       parent: bodytext
@@ -295,13 +296,13 @@
     heading:
       parent: normal
       keepWithNext: true
-      spaceBefore: 12
+      spaceBefore: 20
       spaceAfter: 6
 
     title:
       parent: heading
       fontName: stdBold
-      fontSize: 200%
+      fontSize: 30pt
       alignment: TA_CENTER
       keepWithNext: false
       spaceAfter: 10
@@ -309,34 +310,37 @@
     subtitle:
       parent: title
       spaceBefore: 12
-      fontSize: 75%
+      fontSize: 12pt
 
     heading1:
       parent: heading
       fontName: stdBold
-      fontSize: 175%
+      fontSize: 20pt
 
     heading2:
       parent: heading
       fontName: stdBold
-      fontSize: 150%
+      fontSize: 20pt
 
     heading3:
       parent: heading
-      fontName: stdBoldItalic
-      fontSize: 125%
+      fontName: stdBold
+      fontSize: 14pt
 
     heading4:
       parent: heading
-      fontName: stdBoldItalic
+      fontName: stdBold
+      fontSize: 14pt
 
     heading5:
       parent: heading
-      fontName: stdBoldItalic
+      fontName: stdBold
+      fontSize: 14pt
 
     heading6:
       parent: heading
-      fontName: stdBoldItalic
+      fontName: stdBold
+      fontSize: 14pt
 
     topic-title:
       parent: heading3
@@ -479,10 +483,12 @@
       leftIndent: 0
       spaceBefore: 8
       spaceAfter: 8
-      backColor: beige
-      borderColor: darkgray
-      borderWidth: 0.5
+      backColor: white
+      borderColor: #2E3C43
+      borderWidth: 1
       borderPadding: 6
+      fontSize: 7pt
+      fontName: stdMono
 
     linenumber:
       parent: code

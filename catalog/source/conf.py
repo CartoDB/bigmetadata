@@ -329,9 +329,21 @@ pdf_documents = [
     ('index', u'observatory', u'The Data Observatory', u'CartoDB'),
 ]
 
-pdf_toc_depth = 3
-pdf_use_numbered_links = True
-
 # A list of folders to search for stylesheets. Example:
 pdf_style_path = ['.', 'stylesheets']
 pdf_stylesheets = ['style.yml']
+
+pdf_use_toc = True
+pdf_toc_depth = 3
+pdf_use_numbered_links = True
+use_numbered_links = True
+
+pdf_break_level = 2
+
+pdf_header = None
+pdf_footer = None
+header = None
+footer = None
+pdf_smartquotes = 1
+smartquotes = 1
+pdf_font_path = ["/usr/share/texlive/texmf-dist/fonts/"]

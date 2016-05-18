@@ -8,8 +8,6 @@ The Data Observatory Catalog
 
 Use this catalog to find data to power analysis of your CartoDB maps.
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
    :glob:
