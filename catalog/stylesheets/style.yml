@@ -40,14 +40,14 @@
     oneColumn:
         frames: []
             [0cm, 0cm, 100%, 100%]
-        showHeader : true
+        showHeader : false
         showFooter : true
 
     twoColumn:
         frames: []
             [0cm, 0cm, 49%, 100%]
             [51%, 0cm, 49%, 100%]
-        showHeader : true
+        showHeader : false
         showFooter : true
 
     threeColumn:
@@ -55,13 +55,13 @@
             [2%, 0cm, 29.333%, 100%]
             [35.333%, 0cm, 29.333%, 100%]
             [68.666%, 0cm, 29.333%, 100%]
-        showHeader : true
+        showHeader : false
         showFooter : true
 
     cutePage:
         frames: []
             [0%, 0%, 100%, 100%]
-        showHeader : true
+        showHeader : false
         showFooter : true
         defaultFooter : ###Page###
         defaultHeader : ###Section###
@@ -75,10 +75,14 @@
     stdSansBold: OpenSans-Semibold
     stdSansItalic: OpenSans-Italic
     stdSansBoldItalic: OpenSans-SemiboldItalic
-    stdMono: Courier
-    stdMonoItalic: Courier-Oblique
-    stdMonoBold: Courier-Bold
-    stdMonoBoldItalic: Courier-BoldOblique
+    #stdMono: Courier
+    #stdMonoItalic: Courier-Oblique
+    #stdMonoBold: Courier-Bold
+    #stdMonoBoldItalic: Courier-BoldOblique
+    stdMono: FreeMono
+    stdMonoItalic: FreeMonoOblique
+    stdMonoBold: FreeMonoBold
+    stdMonoBoldItalic: FreeMonoBoldOblique
     stdSerif: Times-Roman
 
   linkColor: #3AA9E3
@@ -303,14 +307,17 @@
       parent: heading
       fontName: stdBold
       fontSize: 30pt
-      alignment: TA_CENTER
+      alignment: TA_LEFT
       keepWithNext: false
       spaceAfter: 10
+      spaceBefore: 10
 
     subtitle:
       parent: title
-      spaceBefore: 12
+      spaceAfter: 0
+      spaceBefore: 50
       fontSize: 12pt
+      fontName: std
 
     heading1:
       parent: heading

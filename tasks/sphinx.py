@@ -12,21 +12,22 @@ from tasks.meta import current_session, OBSTag
 from tasks.carto import GenerateStaticImage
 
 
-env = Environment(loader=PackageLoader('catalog', 'templates'))
+ENV = Environment(loader=PackageLoader('catalog', 'templates'))
 
-def test_filter(arg):
-    pass
+#def test_filter(arg):
+#    pass
+#
+#env.filters['test'] = test_filter
 
-env.filters['test'] = test_filter
-
-SECTION_TEMPLATE = env.get_template('section.html')
-SUBSECTION_TEMPLATE = env.get_template('subsection.html')
+SECTION_TEMPLATE = ENV.get_template('section.html')
+SUBSECTION_TEMPLATE = ENV.get_template('subsection.html')
 
 
 class GenerateRST(Task):
 
     force = BooleanParameter(default=False)
     format = Parameter()
+    preview = BooleanParameter(default=False)
 
     def __init__(self, *args, **kwargs):
         super(GenerateRST, self).__init__(*args, **kwargs)
@@ -49,8 +50,12 @@ class GenerateRST(Task):
     def output(self):
         targets = {}
         session = current_session()
+        i = 0
         for section in session.query(OBSTag).filter(OBSTag.type == 'section'):
             for subsection in session.query(OBSTag).filter(OBSTag.type == 'subsection'):
+                i += 1
+                if i > 1 and self.preview:
+                    break
                 targets[(section.id, subsection.id)] = LocalTarget(
                     'catalog/source/{section}/{subsection}.rst'.format(
                         section=section.id,
@@ -104,9 +109,10 @@ class Catalog(Task):
 
     force = BooleanParameter(default=False)
     format = Parameter(default='html')
+    preview = BooleanParameter(default=False)
 
     def requires(self):
-        return GenerateRST(force=self.force, format=self.format)
+        return GenerateRST(force=self.force, format=self.format, preview=self.preview)
 
     def complete(self):
         return False

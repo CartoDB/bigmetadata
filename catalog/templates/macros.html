@@ -38,7 +38,7 @@ Measure "{{ col.name }}" {% if col.summable() %} density per sq. kilometer {% en
 Obtain "{{ col.name }}" geometry at one point:
 {% endif %}
 
-.. code:: postgresql
+.. code-block:: postgresql
 
 {% if 'whosonfirst.wof_disputed_geom' == col.id %}
   {% set point = 'CDB_LatLng(33.78, 76.57)' %}
@@ -88,7 +88,7 @@ Obtain "{{ col.name }}" geometry at one point:
 {% if col.summable() %}
 Measure "{{ col.name }}" within an area:
 
-.. code:: postgresql
+.. code-block:: postgresql
 
     UPDATE {table_name}
       SET {new_numeric_column} =
@@ -105,7 +105,7 @@ Measure "{{ col.name }}" within an area:
 
 Obtain all "{{ col.name }}" geometries within an area:
 
-.. code:: postgresql
+.. code-block:: postgresql
 
   INSERT INTO {new_table_name} (the_geom, {geo_id_column})
     SELECT *
@@ -119,7 +119,7 @@ Obtain all "{{ col.name }}" geometries within an area:
 {% if col.has_denominator() %}
 Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" at one point:
 
-.. code:: postgresql
+.. code-block:: postgresql
 
   UPDATE {table_name}
     SET {new_numeric_column} =
@@ -132,7 +132,7 @@ Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" at one point:
 {% if col.summable() %}
 Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" within an area:
 
-.. code:: postgresql
+.. code-block:: postgresql
 
   UPDATE {table_name}
     SET {new_numeric_column} =

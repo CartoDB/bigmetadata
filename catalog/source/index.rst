@@ -6,14 +6,17 @@
 The Data Observatory Catalog
 ============================
 
-Use this catalog to find data to power analysis of your CartoDB maps.
+The Data Observatory is a pioneering data service that provides measurements of
+populations, jobs, commerce, and many other interesting location dimensions.
+Gain better understanding of the patterns and trends in your world's data with
+the Data Observatory and CartoDB.
 
 .. toctree::
+   :numbered:
    :maxdepth: 2
    :glob:
 
    *
-
 
 Search
 ==================
