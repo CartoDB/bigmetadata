@@ -499,7 +499,8 @@ class PreunionTigerWaterGeoms(TempTableTask):
                             split=self.input()['split'].table))
         session.execute('INSERT INTO {output} (geoid, id, the_geom) '
                         'SELECT geoid, id, the_geom FROM {diffed} '
-                        'WHERE ST_AREA(ST_TRANSFORM(the_geom, 3857)) > 1'.format(
+                        'WHERE ST_Area(ST_Transform(the_geom, 3857)) > 5000'
+                        '  AND ST_NPoints(the_geom) > 10 '.format(
                             output=self.output().table,
                             diffed=self.input()['diffed'].table))
         session.execute('INSERT INTO {output} '
@@ -508,9 +509,8 @@ class PreunionTigerWaterGeoms(TempTableTask):
                             split=self.input()['split'].table,
                             diffed=self.input()['diffed'].table,
                             output=self.output().table))
-        #session.execute('CREATE INDEX ON {output} '
-        #                'USING GIST (the_geom)'.format(
-        #                    output=self.output().table))
+        session.execute('CREATE INDEX ON {output} (geoid) '.format(
+            output=self.output().table))
 
 
 class UnionTigerWaterGeoms(TempTableTask):
@@ -580,10 +580,7 @@ class ShorelineClip(TableTask):
                 '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
                 '           aland '
                 '    FROM {input} '
-                ') holes WHERE '
-                "      GeometryType(the_geom) = 'POLYGON' AND "
-                '      ST_NPoints(the_geom) > 10 AND '
-                '      ST_Area(ST_Transform(the_geom, 3857)) > 5000 '
+                ") holes WHERE GeometryType(the_geom) = 'POLYGON' "
                 'GROUP BY geoid'.format(
                     output=self.output().table,
                     input=self.input()['data'].table), )[0]
