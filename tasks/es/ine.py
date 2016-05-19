@@ -134,11 +134,8 @@ class Geometry(TableTask):
 
 class SeccionDataDownload(Task):
 
-
     # metadata source: http://www.ine.es/en/censos2011_datos/indicadores_seccen_rejilla_en.xls
 
-    URL = 'http://www.ine.es/en/censos2011_datos/indicadores_seccion_censal_csv_en.zip'
-    # inside that URL, concatenate all CSVs together to get all seccions
     # available data:
 
     # t1_1    Total population
@@ -290,7 +287,25 @@ class SeccionDataDownload(Task):
     # t22_3   Hogares de 3 personas
     # t22_4   Hogares de 4 personas
     # t22_5   Hogares de 5 personas
-    # t22_6   Hogares de 6 o más personas
+    # t22_6   Hogares de 6 o mas personas
+
+    URL = 'http://www.ine.es/en/censos2011_datos/indicadores_seccion_censal_csv_en.zip'
+    # inside that URL, concatenate all CSVs together to get all seccions
+
+    def run(self):
+        self.output().makedirs()
+        cmd = 'wget "{url}" -O {output_dir}.zip && ' \
+                'mkdir -p {output_dir} && ' \
+                'unzip -o {output_dir}.zip -d {output_dir} && ' \
+                'tail -n +2 -q {output_dir}/*.csv > {output_csv}'.format(
+                    url=self.URL,
+                    output_dir=self.output().path.replace('.csv', ''),
+                    output_csv=self.output().path)
+        shell(cmd)
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) + '.csv')
+
 
 class FiveYearPopulationDownload(Task):
 
