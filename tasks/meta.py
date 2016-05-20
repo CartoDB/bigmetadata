@@ -38,6 +38,8 @@ _engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format
     db=os.environ.get('PGDATABASE', 'postgres')
 ))
 
+
+
 def get_engine():
 
     @event.listens_for(_engine, "connect")
@@ -368,5 +370,7 @@ def fromkeys(d, l):
     d = d.fromkeys(l)
     return dict((k, v) for k, v in d.iteritems() if v is not None)
 
+DENOMINATOR = 'denominator'
+GEOM_REF = 'geom_ref'
 
 Base.metadata.create_all()

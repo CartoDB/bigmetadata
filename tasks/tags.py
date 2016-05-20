@@ -27,7 +27,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 14
+        return 15
 
     def tags(self):
         return [
@@ -73,6 +73,11 @@ How much people earn.
                    name='Age and Gender',
                    type='subsection',
                    description='Population breakdowns by age and gender.'
+                  ),
+            OBSTag(id='nationality',
+                   name='Nationality',
+                   type='subsection',
+                   description='''Population breakdowns by nationality and place of birth.''',
                   ),
             OBSTag(id='race_ethnicity',
                    name='Race and Ethnicity',
