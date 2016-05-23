@@ -1810,7 +1810,7 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {
@@ -1822,14 +1822,14 @@ class FiveYearPopulationColumns(ColumnsTask):
     def columns(self):
         spain = self.input()['sections']['spain']
         tags = self.input()['tags']
-        total_pop = self.input()['seccion_columns']['total_pop']._column
+        session = current_session()
+        total_pop = self.input()['seccion_columns']['total_pop'].get(session)
         columns = OrderedDict([
             ('gender', OBSColumn(
                 type='Text',
                 name='Gender',
                 weight=0
-            )),
-            ('total_pop', total_pop)
+            ))
         ])
         for i in xrange(0, 20):
             start = i * 5
@@ -1866,12 +1866,13 @@ class RawFiveYearPopulation(TableTask):
         return {
             'data': FiveYearPopulationParse(),
             'meta': FiveYearPopulationColumns(),
+            'seccion_columns': SeccionColumns(),
             'geometa': GeometryColumns(),
             'geotable': Geometry()
         }
 
     def version(self):
-        return 1
+        return 2
 
     def timespan(self):
         return '2011'
@@ -1891,6 +1892,7 @@ class RawFiveYearPopulation(TableTask):
         cols = OrderedDict()
         cols['gender'] = metacols.pop('gender')
         cols['cusec_id'] = self.input()['geometa']['cusec_id']
+        cols['total_pop'] = self.input()['seccion_columns']['total_pop']
         for key, col in metacols.iteritems():
             cols[key] = col
         return cols
