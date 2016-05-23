@@ -284,6 +284,34 @@ class PurgeMetadataColumns(Task):
     pass
 
 
+class PurgeUndocumentedTables(Task):
+    '''
+    Purge tables that should be in metadata but are not.
+    '''
+
+    def run(self):
+        session = current_session()
+        resp = session.execute('SELECT table_schema, table_name '
+                               'FROM information_schema.tables '
+                               "WHERE table_schema ILIKE 'observatory' ")
+        for _, tablename in resp:
+            if tablename in ('obs_table', 'obs_column_table', 'obs_column',
+                             'obs_tag', 'obs_column_to_column', 'obs_column_tag'):
+                continue
+            if session.query(OBSTable).filter_by(tablename=tablename).count() == 0:
+                cnt = session.execute('SELECT COUNT(*) FROM observatory.{tablename}'.format(
+                    tablename=tablename)).fetchone()[0]
+                if cnt == 0:
+                    stmt = 'DROP TABLE observatory.{tablename}'.format(
+                        tablename=tablename)
+                    print(stmt)
+                    session.execute(stmt)
+                    session.commit()
+                else:
+                    import pdb
+                    pdb.set_trace()
+
+
 class PurgeMetadataTables(Task):
     '''
     Purge local metadata tables that no longer have tasks linking to them,
