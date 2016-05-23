@@ -372,6 +372,10 @@ class ConfirmTablesDescribedExist(Task):
     '''
     Confirm that all tables described in obs_table actually exist.
     '''
+
+    def complete(self):
+        return getattr(self, '_complete', False)
+
     def run(self):
         session = current_session()
         for table in session.query(OBSTable):
@@ -380,6 +384,7 @@ class ConfirmTablesDescribedExist(Task):
             assert session.execute(
                 'SELECT COUNT(*) FROM observatory.{tablename}'.format(
                     tablename=table.tablename)).fetchone()[0] > 0
+        self._complete = True
 
 
 class PurgeMetadata(WrapperTask):
