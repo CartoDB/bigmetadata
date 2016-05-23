@@ -285,9 +285,28 @@ class PurgeMetadataColumns(Task):
 
 class PurgeMetadataTables(Task):
     '''
-    Purge local metadata tables that no longer have tasks linking to them
+    Purge local metadata tables that no longer have tasks linking to them,
+    as well as entries in obs_table that do not link to any table.
     '''
-    pass
+
+    def run(self):
+        session = current_session()
+        for _output in self.output():
+            if not _output.exists():
+                resp = session.execute("SELECT id from observatory.obs_table "
+                                       "WHERE tablename = '{tablename}'".format(
+                                           tablename=_output.tablename))
+                _id = resp.fetchall()[0][0]
+                stmt = "DELETE FROM observatory.obs_table " \
+                        "WHERE id = '{id}'".format(id=_id)
+                print(stmt)
+                session.execute(stmt)
+                session.commit()
+
+    def output(self):
+        session = current_session()
+        for table in session.query(OBSTable):
+            yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
 
 class PurgeMetadata(WrapperTask):
