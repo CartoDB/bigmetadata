@@ -308,8 +308,8 @@ class PurgeUndocumentedTables(Task):
                     session.execute(stmt)
                     session.commit()
                 else:
-                    import pdb
-                    pdb.set_trace()
+                    raise Exception("Will not automatically drop table {tablename} "
+                                    "with data in it".format(tablename=tablename))
 
 
 class PurgeMetadataTables(Task):
@@ -366,6 +366,20 @@ class PurgeMetadataTables(Task):
             #    # drop table
             #    pass
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
+
+
+class ConfirmTablesDescribedExist(Task):
+    '''
+    Confirm that all tables described in obs_table actually exist.
+    '''
+    def run(self):
+        session = current_session()
+        for table in session.query(OBSTable):
+            target = PostgresTarget('observatory', table.tablename)
+            assert target.exists()
+            assert session.execute(
+                'SELECT COUNT(*) FROM observatory.{tablename}'.format(
+                    tablename=table.tablename)).fetchone()[0] > 0
 
 
 class PurgeMetadata(WrapperTask):
@@ -447,6 +461,9 @@ class Dump(Task):
     '''
 
     timestamp = DateParameter(default=date.today())
+
+    def requires(self):
+        return ConfirmTablesDescribedExist()
 
     def run(self):
         self.output().makedirs()
