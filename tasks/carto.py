@@ -253,6 +253,10 @@ WHERE source_c.id = data_geoid_ct.column_id
   AND c2c.source_id = source_c.id
   AND c2c.reltype = 'geom_ref'
   AND target_c.type ILIKE 'geometry'
+  AND (data_ct.extra->'stats'->>'avg')::NUMERIC IS NOT NULL
+  AND (data_ct.extra->'stats'->>'stddev')::NUMERIC IS NOT NULL
+  AND (data_ct.extra->'stats'->>'min')::NUMERIC IS NOT NULL
+  AND (data_ct.extra->'stats'->>'max')::NUMERIC IS NOT NULL
 ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
 '''.format(measure=self.measure)
         resp = session.execute(query)
@@ -260,11 +264,11 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
                 data_tablename, geom_geoid_colname, \
                 geom_geom_colname, geom_tablename = resp.fetchone()
         calcmax = avg + (stddev * 3)
-        calcmin = avg - (stddev * 3)
         max = max if max < calcmax else calcmax
+        calcmin = avg - (stddev * 3)
         min = min if min > calcmin else calcmin
 
-        cartosql =  "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
+        cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
                 "geom.the_geom_webmercator, data.{data_data_colname} measure " \
                 "FROM {geom_tablename} as geom, {data_tablename} as data " \
                 "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} ".format(
@@ -416,7 +420,7 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
                                                    output=self.output().path))
 
     def output(self):
-        return LocalTarget(os.path.join('catalog/source/img', self.task_id + '.png'))
+        return LocalTarget(os.path.join('catalog/source/img', self.measure + '.png'))
 
 
 class GenerateStaticImage(Task):

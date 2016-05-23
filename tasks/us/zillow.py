@@ -311,7 +311,7 @@ class Zillow(TableTask):
     geography = Parameter() # example: Zip
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         requirements = {

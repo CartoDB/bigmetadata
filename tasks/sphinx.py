@@ -9,7 +9,7 @@ from jinja2 import Environment, PackageLoader
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter, Parameter
 from tasks.util import shell
 from tasks.meta import current_session, OBSTag
-from tasks.carto import GenerateStaticImage
+from tasks.carto import GenerateStaticImage, ImagesForMeasure
 
 
 ENV = Environment(loader=PackageLoader('catalog', 'templates'))
@@ -45,6 +45,12 @@ class GenerateRST(Task):
             if '.. cartofigure:: ' in subsection.description:
                 viz_id = re.search(r'\.\. cartofigure:: (\S+)', subsection.description).groups()[0]
                 requirements[viz_id] = GenerateStaticImage(viz_id)
+            for column in subsection.columns:
+                if column.type.lower() == 'numeric' and column.weight > 0:
+                    requirements[column.id] = ImagesForMeasure(
+                        measure=column.id, lon=39.00851330385611,
+                        lat=-77.10205078124999, zoom=8)
+
         return requirements
 
     def output(self):
