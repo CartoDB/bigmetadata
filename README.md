@@ -83,24 +83,18 @@ For example, to run QCEW numbers for one quarter:
 
 #### Tables
 
-In bigmetadata's postgres, tables live in a schema that matches their ETL
-task's module.  For example, the ETL process for data from the US Bureau of
-Labor Statistics lives in `tasks.us.bls`, so resulting tables would live in the
-schema `us.bls`.  Tables resulting from a task have an underscored version of
-their class's name, so the `QCEW` task would generate the table
-`"us.bls".qcew`.  If parameters were used in running the task, they are
-appended after, such as `"us.bls".qcew_year_2014_qtr_4`.
-
-When uploaded to cartodb, these the schema is flattened into the table name,
-so `"us.bls".qcew_year_2014_qtr_4` would turn into
-`us_bls_qcew_year_2014_qtr_4`.
+In bigmetadata's postgres, tables live in the `observatory` schema, with an
+auto-generated hash for the tablename prefixed by `obs` (EG `obs_<hash>`).
+In `obs_table`, the table ID refers back to the task which created that table
+as well as the parameters called.
 
 #### Columns
 
-Columns in postgres should be fully-qualified, like tables, such as
-`"us.bls.avg_wkly_wage_trade_transportation_and_utilities"`.  When uploaded
-to CartoDB, column names are replaced with a simple `colname` from metadata,
-so the above becomes "simply" `avg_wkly_wage_trade_transportation_and_utilities`.
+Column IDs in metadata are fully-qualified, like tables, such as
+`us.bls.avg_wkly_wage_trade_transportation_and_utilities`.  In tables
+themselves, column names are the `colname` from metadata,
+so the above would be `avg_wkly_wage_trade_transportation_and_utilities` in
+an actual table.
 
 ### Metadata
 
