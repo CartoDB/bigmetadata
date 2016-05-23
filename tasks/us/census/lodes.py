@@ -11,7 +11,7 @@ from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSColumnTag,
                         current_session)
 from tasks.util import (shell, TempTableTask, classpath,
                         ColumnsTask, TableTask)
-from tasks.tags import CategoryTags
+from tasks.tags import SectionTags, SubsectionTags
 from tasks.us.census.tiger import GeoidColumns
 
 from luigi import (Task, Parameter, LocalTarget, BooleanParameter, WrapperTask,

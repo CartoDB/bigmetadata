@@ -8,6 +8,7 @@ from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter)
+from luigi.task_register import Register
 from nose.tools import assert_equal
 from urllib import quote_plus
 from datetime import date
@@ -283,11 +284,102 @@ class PurgeMetadataColumns(Task):
     pass
 
 
+class PurgeUndocumentedTables(Task):
+    '''
+    Purge tables that should be in metadata but are not.
+    '''
+
+    def run(self):
+        session = current_session()
+        resp = session.execute('SELECT table_schema, table_name '
+                               'FROM information_schema.tables '
+                               "WHERE table_schema ILIKE 'observatory' ")
+        for _, tablename in resp:
+            if tablename in ('obs_table', 'obs_column_table', 'obs_column',
+                             'obs_tag', 'obs_column_to_column', 'obs_column_tag'):
+                continue
+            if session.query(OBSTable).filter_by(tablename=tablename).count() == 0:
+                cnt = session.execute('SELECT COUNT(*) FROM observatory.{tablename}'.format(
+                    tablename=tablename)).fetchone()[0]
+                if cnt == 0:
+                    stmt = 'DROP TABLE observatory.{tablename}'.format(
+                        tablename=tablename)
+                    print(stmt)
+                    session.execute(stmt)
+                    session.commit()
+                else:
+                    raise Exception("Will not automatically drop table {tablename} "
+                                    "with data in it".format(tablename=tablename))
+
+
 class PurgeMetadataTables(Task):
     '''
-    Purge local metadata tables that no longer have tasks linking to them
+    Purge local metadata tables that no longer have tasks linking to them,
+    as well as entries in obs_table that do not link to any table.
     '''
-    pass
+
+    def run(self):
+        session = current_session()
+        for _output in self.output():
+            if not _output.exists():
+                resp = session.execute("SELECT id from observatory.obs_table "
+                                       "WHERE tablename = '{tablename}'".format(
+                                           tablename=_output.tablename))
+                _id = resp.fetchall()[0][0]
+                stmt = "DELETE FROM observatory.obs_table " \
+                        "WHERE id = '{id}'".format(id=_id)
+                print(stmt)
+                session.execute(stmt)
+                session.commit()
+
+    def output(self):
+        session = current_session()
+        for table in session.query(OBSTable):
+            split = table.id.split('.')
+            schema, task_id = split[0:-1], split[-1]
+            modname = 'tasks.' + '.'.join(schema)
+            module = __import__(modname, fromlist=['*'])
+            exists = False
+            for name in dir(module):
+                kls = getattr(module, name)
+                if not isinstance(kls, Register):
+                    continue
+                # this doesn't work because of underscore_slugify
+                #possible_kls = '_'.join(task_id.split('_')[0:-len(kls.get_params())-1])
+                if task_id.startswith(underscore_slugify(name)):
+                    exists = True
+            if exists is True:
+                print('{table} exists'.format(table=table))
+            else:
+                # TODO drop table
+                import pdb
+                pdb.set_trace()
+                print table
+            #task_classes = dict([(underscore_slugify(kls), getattr(module, kls))
+            #                     for kls in dir(module)
+            #                     if isinstance(getattr(module, kls), Register)])
+            #try:
+            #    import pdb
+            #    pdb.set_trace()
+            #    module = __import__(modname)
+            #except ImportError:
+            #    # drop table
+            #    pass
+            yield PostgresTarget(schema='observatory', tablename=table.tablename)
+
+
+class ConfirmTablesDescribedExist(Task):
+    '''
+    Confirm that all tables described in obs_table actually exist.
+    '''
+    def run(self):
+        session = current_session()
+        for table in session.query(OBSTable):
+            target = PostgresTarget('observatory', table.tablename)
+            assert target.exists()
+            assert session.execute(
+                'SELECT COUNT(*) FROM observatory.{tablename}'.format(
+                    tablename=table.tablename)).fetchone()[0] > 0
 
 
 class PurgeMetadata(WrapperTask):
@@ -369,6 +461,9 @@ class Dump(Task):
     '''
 
     timestamp = DateParameter(default=date.today())
+
+    def requires(self):
+        return ConfirmTablesDescribedExist()
 
     def run(self):
         self.output().makedirs()
