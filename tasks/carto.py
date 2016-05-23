@@ -7,11 +7,12 @@ from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, TempTableTask)
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
-                   DateParameter)
+                   DateParameter, IntParameter, FloatParameter)
 from luigi.task_register import Register
 from nose.tools import assert_equal
 from urllib import quote_plus
 from datetime import date
+from decimal import Decimal
 
 import requests
 
@@ -179,6 +180,243 @@ class SyncAllData(WrapperTask):
 
         for table_id, tablename in tables.iteritems():
             yield TableToCarto(table=tablename, outname=tablename, force=self.force)
+
+
+class ImagesForMeasure(Task):
+    '''
+    Generate a set of static images for a measure
+    '''
+
+    MAP_URL = '{cartodb_url}/api/v1/map'.format(
+        cartodb_url=os.environ['CARTODB_URL'])
+
+    BASEMAP = {
+        "type": "http",
+        "options": {
+            #"urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
+            #"subdomains": "1234",
+            # Dark Matter
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+            "subdomains": "abcd",
+            #"urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+            #"subdomains": ["a", "b", "c"]
+        }
+    }
+
+    LABELS = {
+        "type": "http",
+        "options": {
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png",
+            "subdomains": "abcd",
+        }
+    }
+
+    measure = Parameter()
+    lon = FloatParameter()
+    lat = FloatParameter()
+    #bounds = Parameter()
+    zoom = IntParameter()
+
+    def _generate_config(self):
+        layers = []
+        layers.append(self.BASEMAP)
+        session = current_session()
+        query = '''
+SELECT data_t.timespan,
+       (data_ct.extra->'stats'->>'stddev')::NUMERIC "stddev",
+       (data_ct.extra->'stats'->>'avg')::NUMERIC "avg",
+       (data_ct.extra->'stats'->>'min')::NUMERIC "min",
+       (data_ct.extra->'stats'->>'max')::NUMERIC "max",
+       data_ct.colname as data_colname, data_geoid_ct.colname data_geoid_colname,
+       data_t.tablename as data_tablename,
+       geom_geoid_ct.colname geom_geoid_colname,
+       geom_ct.colname geom_geom_colname, geom_t.tablename as geom_tablename
+       --target_c.weight, target_c.id
+FROM observatory.obs_column source_c,
+     observatory.obs_column target_c,
+     observatory.obs_column_to_column c2c,
+     observatory.obs_column_table data_ct,
+     observatory.obs_column_table data_geoid_ct,
+     observatory.obs_column_table geom_geoid_ct,
+     observatory.obs_column_table geom_ct,
+     observatory.obs_table geom_t,
+     observatory.obs_table data_t
+WHERE source_c.id = data_geoid_ct.column_id
+  AND source_c.id = geom_geoid_ct.column_id
+  AND data_ct.column_id = '{measure}'
+  AND data_ct.table_id = data_t.id
+  AND data_geoid_ct.table_id = data_t.id
+  AND geom_geoid_ct.table_id = geom_t.id
+  AND geom_ct.table_id = geom_t.id
+  AND geom_ct.column_id = target_c.id
+  AND c2c.target_id = target_c.id
+  AND c2c.source_id = source_c.id
+  AND c2c.reltype = 'geom_ref'
+  AND target_c.type ILIKE 'geometry'
+ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
+'''.format(measure=self.measure)
+        resp = session.execute(query)
+        timespan, stddev, avg, min, max, data_data_colname, data_geoid_colname, \
+                data_tablename, geom_geoid_colname, \
+                geom_geom_colname, geom_tablename = resp.fetchone()
+        calcmax = avg + (stddev * 3)
+        calcmin = avg - (stddev * 3)
+        max = max if max < calcmax else calcmax
+        min = min if min > calcmin else calcmin
+
+        cartosql =  "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
+                "geom.the_geom_webmercator, data.{data_data_colname} measure " \
+                "FROM {geom_tablename} as geom, {data_tablename} as data " \
+                "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} ".format(
+                    geom_geom_colname=geom_geom_colname,
+                    data_data_colname=data_data_colname,
+                    geom_tablename=geom_tablename,
+                    data_tablename=data_tablename,
+                    geom_geoid_colname=geom_geoid_colname,
+                    data_geoid_colname=data_geoid_colname)
+        layers.append({
+            'type': 'mapnik',
+            'options': {
+                'layer_name': data_tablename,
+                'cartocss': '''/** choropleth visualization */
+
+/*
+@1:#045275;
+@2:#00718b;
+@3:#089099;
+@4:#46aea0;
+@5:#7ccba2;
+@6:#b7e6a5;
+@7:#f7feae;
+*/
+/*
+@1:#442D6B;
+@2:#993291;
+@3:#C53986;
+@4:#D55C60;
+@5:#EDAB77;
+@6:#FADF9D;
+@7:#FEF9CC;
+*/
+/*
+@1:#7A003B;
+@2:#921b45;
+@3:#af3051;
+@4:#c64d5d;
+@5:#d9726c;
+@6:#eda18b;
+@7:#fdcdae;
+*/
+
+@1:#324546;
+@2:#4e5e52;
+@3:#6e7f61;
+@4:#909e74;
+@5:#b4bc89;
+@6:#DAD59F;
+@7:#f9ebb2;
+
+/*
+@1:#443F7A;
+@2:#68578D;
+@3:#8A71A3;
+@4:#AB8CB9;
+@5:#CCA9D0;
+@6:#EBC7E8;
+@7:#FFE6FF;
+*/
+
+#data {{
+  polygon-opacity: 0.9;
+  line-color: transparent;
+  line-width: 0.5;
+  line-opacity: 1;
+
+  [measure=null]{{
+    polygon-fill: lightgray;
+    polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/diagonal_1px_med.png);
+    polygon-pattern-opacity: 0.2;
+    polygon-opacity: 0;
+  }}
+
+  [measure <= {range7}] {{
+     polygon-fill: @1;
+     line-color: lighten(@1,5);
+  }}
+  [measure <= {range6}] {{
+     polygon-fill: @2;
+     line-color: lighten(@2,5);
+  }}
+  [measure <= {range5}] {{
+     polygon-fill: @3;
+     line-color: lighten(@3,5);
+  }}
+  [measure <= {range4}] {{
+     polygon-fill: @4;
+     line-color: lighten(@4,5);
+  }}
+  [measure <= {range3}] {{
+     polygon-fill: @5;
+     line-color: lighten(@5,5);
+  }}
+  [measure <= {range2}] {{
+     polygon-fill: @6;
+     line-color: lighten(@6,5);
+  }}
+  [measure <= {range1}] {{
+     polygon-fill: @7;
+     line-color: lighten(@7,5);
+  }}
+}}'''.format(
+    range1=min,
+    range2=min + ((avg - min) / Decimal(3.0)),
+    range3=min + ((avg - min) * Decimal(2.0)/Decimal(3.0)),
+    range4=avg,
+    range5=avg + ((max - avg) / Decimal(3.0)),
+    range6=avg + ((max - avg) * Decimal(2.0)/Decimal(3.0)),
+    range7=max),
+                'cartocss_version': "2.1.1",
+                'sql': cartosql,
+                "table_name": "\"\"."
+            }
+        })
+        layers.append(self.LABELS)
+        return {
+            'layers': layers,
+            'center': [self.lon, self.lat],
+            #'bounds': self.bounds,
+            'zoom': self.zoom
+        }
+
+    def get_named_map(self, map_config):
+
+        config = {
+            "version": "1.3.0",
+            "layers": map_config
+        }
+        resp = requests.get(self.MAP_URL,
+                            headers={'content-type':'application/json'},
+                            params={'config': json.dumps(config)})
+        return resp.json()
+
+    def run(self):
+        self.output().makedirs()
+        config = self._generate_config()
+        named_map = self.get_named_map(config['layers'])
+        img_url = '{cartodb_url}/api/v1/map/static/center/' \
+                '{layergroupid}/{zoom}/{center_lon}/{center_lat}/800/500.png'.format(
+                    cartodb_url=os.environ['CARTODB_URL'],
+                    layergroupid=named_map['layergroupid'],
+                    zoom=config['zoom'],
+                    center_lon=config['center'][0],
+                    center_lat=config['center'][1]
+                )
+        print img_url
+        shell('curl "{img_url}" > {output}'.format(img_url=img_url,
+                                                   output=self.output().path))
+
+    def output(self):
+        return LocalTarget(os.path.join('catalog/source/img', self.task_id + '.png'))
 
 
 class GenerateStaticImage(Task):
