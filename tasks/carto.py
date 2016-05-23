@@ -8,6 +8,7 @@ from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter)
+from luigi.task_register import Register
 from nose.tools import assert_equal
 from urllib import quote_plus
 from datetime import date
@@ -306,6 +307,36 @@ class PurgeMetadataTables(Task):
     def output(self):
         session = current_session()
         for table in session.query(OBSTable):
+            split = table.id.split('.')
+            schema, task_id = split[0:-1], split[-1]
+            modname = 'tasks.' + '.'.join(schema)
+            module = __import__(modname, fromlist=['*'])
+            exists = False
+            for name in dir(module):
+                kls = getattr(module, name)
+                if not isinstance(kls, Register):
+                    continue
+                # this doesn't work because of underscore_slugify
+                #possible_kls = '_'.join(task_id.split('_')[0:-len(kls.get_params())-1])
+                if task_id.startswith(underscore_slugify(name)):
+                    exists = True
+            if exists is True:
+                print('{table} exists'.format(table=table))
+            else:
+                # TODO drop table
+                import pdb
+                pdb.set_trace()
+                print table
+            #task_classes = dict([(underscore_slugify(kls), getattr(module, kls))
+            #                     for kls in dir(module)
+            #                     if isinstance(getattr(module, kls), Register)])
+            #try:
+            #    import pdb
+            #    pdb.set_trace()
+            #    module = __import__(modname)
+            #except ImportError:
+            #    # drop table
+            #    pass
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
 
