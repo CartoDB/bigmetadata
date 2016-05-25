@@ -48,8 +48,7 @@ class GenerateRST(Task):
             for column in subsection.columns:
                 if column.type.lower() == 'numeric' and column.weight > 0:
                     requirements[column.id] = ImagesForMeasure(
-                        measure=column.id, lon=39.00851330385611,
-                        lat=-77.10205078124999, zoom=8)
+                        measure=column.id, force=False)
 
         return requirements
 

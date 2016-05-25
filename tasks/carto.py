@@ -13,9 +13,11 @@ from nose.tools import assert_equal
 from urllib import quote_plus
 from datetime import date
 from decimal import Decimal
+from cStringIO import StringIO
+from PIL import Image, ImageOps
 
 import requests
-
+import urllib
 
 import os
 import json
@@ -155,11 +157,14 @@ class SyncData(WrapperTask):
     force = BooleanParameter(default=True)
     id = Parameter(default=None)
     exact_id = Parameter(default=None)
+    tablename = Parameter(default=None)
 
     def requires(self):
         session = current_session()
         if self.exact_id:
             table = session.query(OBSTable).get(self.exact_id)
+        elif self.tablename:
+            table = session.query(OBSTable).filter(OBSTable.tablename == self.tablename).one()
         elif self.id:
             table = session.query(OBSTable).filter(OBSTable.id.ilike('%' + self.id + '%')).one()
         else:
@@ -193,36 +198,99 @@ class ImagesForMeasure(Task):
     BASEMAP = {
         "type": "http",
         "options": {
-            #"urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
-            #"subdomains": "1234",
-            # Dark Matter
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
             "subdomains": "abcd",
-            #"urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
-            #"subdomains": ["a", "b", "c"]
         }
     }
 
     LABELS = {
         "type": "http",
         "options": {
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png",
+            "urlTemplate": "http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
             "subdomains": "abcd",
         }
     }
 
-    measure = Parameter()
-    lon = FloatParameter()
-    lat = FloatParameter()
-    #bounds = Parameter()
-    zoom = IntParameter()
+    SPAIN_CENTERS = [
+        [40.4139017, -3.7350414],
+        [40.4139017, -3.7350414],
+        [40.4139017, -3.7350414],
+        [40.4139017, -3.7350414],
+    ]
+    SPAIN_ZOOMS = [
+        #6, 9, 12, 15
+        #6, 8, 10, 13
+        6, 8, 11, 13
+    ]
+    US_CENTERS = [
+        [37.996162679728116, -97.6904296875],
+        [38.16911413556086, -114.884033203125],
+        #[37.67512527892127, -121.06109619140625],
+        [37.75225820732333, -122.11584777832031],
+        [37.75225820732333, -122.44584777832031],
+    ]
+    US_ZOOMS = [
+        3, 5, 9, 12
+    ]
+    US_BOUNDARIES = [
+        'us.census.tiger.state_clipped',
+        'us.census.tiger.county_clipped',
+        'us.census.tiger.census_tract_clipped',
+        'us.census.tiger.block_group_clipped',
+    ]
 
-    def _generate_config(self):
+    PALETTES = {
+        'tags.people': '''
+@5:#6c2167;
+@4:#a24186;
+@3:#ca699d;
+@2:#e498b4;
+@1:#f3cbd3;''',
+        'tags.money': '''
+@5:#1d4f60;
+@4:#2d7974;
+@3:#4da284;
+@2:#80c799;
+@1:#c4e6c3;''',
+        'tags.households': '''
+@5:#63589f;
+@4:#9178c4;
+@3:#b998dd;
+@2:#dbbaed;
+@1:#f3e0f7;''',
+        'tags.housing': '''
+@5:#2a5674;
+@4:#45829b;
+@3:#68abb8;
+@2:#96d0d1;
+@1:#d1eeea;''',
+        'tags.ratio': '''
+@5:#eb4a40;
+@4:#f17854;
+@3:#f59e72;
+@2:#f9c098;
+@1:#fde0c5;''',
+    }
+
+    measure = Parameter()
+    force = BooleanParameter(default=False)
+
+    def __init__(self, *args, **kwargs):
+        if kwargs.get('force'):
+            target_path = self.output(measure=kwargs['measure']).path
+            try:
+                os.unlink(target_path)
+            except OSError:
+                pass
+        super(ImagesForMeasure, self).__init__(*args, **kwargs)
+
+    def _generate_config(self, zoom, lon, lat, boundary=None):
         layers = []
         layers.append(self.BASEMAP)
         session = current_session()
-        query = '''
-SELECT data_t.timespan,
+        measure = session.query(OBSColumn).get(self.measure)
+        mainquery = '''
+SELECT data_t.timespan, data_c.aggregate, target_c.id boundary_id,
        (data_ct.extra->'stats'->>'stddev')::NUMERIC "stddev",
        (data_ct.extra->'stats'->>'avg')::NUMERIC "avg",
        (data_ct.extra->'stats'->>'min')::NUMERIC "min",
@@ -230,166 +298,220 @@ SELECT data_t.timespan,
        data_ct.colname as data_colname, data_geoid_ct.colname data_geoid_colname,
        data_t.tablename as data_tablename,
        geom_geoid_ct.colname geom_geoid_colname,
-       geom_ct.colname geom_geom_colname, geom_t.tablename as geom_tablename
+       geom_ct.colname geom_geom_colname, geom_t.tablename as geom_tablename,
+       denom_ct.colname denominator_colname
        --target_c.weight, target_c.id
-FROM observatory.obs_column source_c,
-     observatory.obs_column target_c,
-     observatory.obs_column_to_column c2c,
-     observatory.obs_column_table data_ct,
-     observatory.obs_column_table data_geoid_ct,
-     observatory.obs_column_table geom_geoid_ct,
-     observatory.obs_column_table geom_ct,
-     observatory.obs_table geom_t,
-     observatory.obs_table data_t
-WHERE source_c.id = data_geoid_ct.column_id
-  AND source_c.id = geom_geoid_ct.column_id
-  AND data_ct.column_id = '{measure}'
-  AND data_ct.table_id = data_t.id
-  AND data_geoid_ct.table_id = data_t.id
-  AND geom_geoid_ct.table_id = geom_t.id
-  AND geom_ct.table_id = geom_t.id
-  AND geom_ct.column_id = target_c.id
-  AND c2c.target_id = target_c.id
-  AND c2c.source_id = source_c.id
-  AND c2c.reltype = 'geom_ref'
+FROM observatory.obs_column_to_column geom_ref_c2c
+ JOIN observatory.obs_column target_c
+   ON geom_ref_c2c.target_id = target_c.id
+ JOIN observatory.obs_column source_c
+   ON geom_ref_c2c.source_id = source_c.id
+ JOIN observatory.obs_column_table data_geoid_ct
+   ON source_c.id = data_geoid_ct.column_id
+ JOIN observatory.obs_column_table geom_geoid_ct
+   ON source_c.id = geom_geoid_ct.column_id
+ JOIN observatory.obs_column_table geom_ct
+   ON geom_ct.column_id = target_c.id
+ JOIN observatory.obs_table geom_t
+   ON geom_ct.table_id = geom_t.id
+   AND geom_geoid_ct.table_id = geom_t.id
+ JOIN observatory.obs_table data_t
+   ON data_geoid_ct.table_id = data_t.id
+ JOIN observatory.obs_column_table data_ct
+   ON data_ct.table_id = data_t.id
+ JOIN observatory.obs_column data_c
+   ON data_ct.column_id = data_c.id
+ LEFT JOIN
+   (observatory.obs_column_to_column denom_c2c
+       JOIN observatory.obs_column_table denom_ct
+         ON denom_c2c.target_id = denom_ct.column_id) -- force denom in same table
+   ON denom_c2c.source_id = data_ct.column_id
+WHERE
+  data_ct.column_id = '{measure}'
+  {boundary_clause}
+  AND geom_ref_c2c.reltype = 'geom_ref'
   AND target_c.type ILIKE 'geometry'
   AND (data_ct.extra->'stats'->>'avg')::NUMERIC IS NOT NULL
   AND (data_ct.extra->'stats'->>'stddev')::NUMERIC IS NOT NULL
   AND (data_ct.extra->'stats'->>'min')::NUMERIC IS NOT NULL
   AND (data_ct.extra->'stats'->>'max')::NUMERIC IS NOT NULL
+  AND (denom_c2c.reltype IS NULL OR denom_c2c.reltype = 'denominator')
+  AND (denom_ct.table_id IS NULL OR denom_ct.table_id = data_t.id)
 ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
-'''.format(measure=self.measure)
+'''
+        query = mainquery.format(
+            measure=self.measure,
+            boundary_clause="AND target_c.id = '{}'".format(boundary) if boundary else '')
         resp = session.execute(query)
-        timespan, stddev, avg, min, max, data_data_colname, data_geoid_colname, \
-                data_tablename, geom_geoid_colname, \
-                geom_geom_colname, geom_tablename = resp.fetchone()
+        results = resp.fetchone()
+        if not results:
+            # give up boundary clause if no results
+            query = mainquery.format(measure=self.measure, boundary_clause='')
+            resp = session.execute(query)
+            results = resp.fetchone()
+        try:
+            timespan, aggregate, boundary_id, stddev, avg, min, max, data_data_colname, \
+                    data_geoid_colname, data_tablename, geom_geoid_colname, \
+                    geom_geom_colname, geom_tablename, denom_colname = results
+        except TypeError:
+            import pdb
+            pdb.set_trace()
         calcmax = avg + (stddev * 3)
         max = max if max < calcmax else calcmax
         calcmin = avg - (stddev * 3)
         min = min if min > calcmin else calcmin
 
-        cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
-                "geom.the_geom_webmercator, data.{data_data_colname} measure " \
-                "FROM {geom_tablename} as geom, {data_tablename} as data " \
-                "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} ".format(
-                    geom_geom_colname=geom_geom_colname,
-                    data_data_colname=data_data_colname,
-                    geom_tablename=geom_tablename,
-                    data_tablename=data_tablename,
-                    geom_geoid_colname=geom_geoid_colname,
-                    data_geoid_colname=data_geoid_colname)
+        if denom_colname:
+            cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
+                    "geom.the_geom_webmercator, " \
+                    "data.{data_data_colname} / NULLIF(data.{denom_colname}, 0) measure " \
+                    "FROM {geom_tablename} as geom, {data_tablename} as data " \
+                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+            statssql = "SELECT ST_Xmin(ST_Extent(geom.{geom_geom_colname})) x_min, " \
+                    "ST_Ymin(ST_Extent(geom.{geom_geom_colname})) y_min, " \
+                    "ST_Xmax(ST_Extent(geom.{geom_geom_colname})) x_max, " \
+                    "ST_Ymax(ST_Extent(geom.{geom_geom_colname})) y_max, " \
+                    'MIN(data.{data_data_colname} / NULLIF(data.{denom_colname}, 0)) "min", ' \
+                    'MAX(data.{data_data_colname} / NULLIF(data.{denom_colname}, 0)) "max", ' \
+                    'AVG(data.{data_data_colname} / NULLIF(data.{denom_colname}, 0)) "avg", ' \
+                    'MODE() WITHIN GROUP (ORDER BY data.{data_data_colname} / ' \
+                    '  NULLIF(data.{denom_colname}, 0)) "mode", ' \
+                    'STDDEV_POP(data.{data_data_colname} / ' \
+                    '  NULLIF(data.{denom_colname}, 0)) "stddev_pop", ' \
+                    'PERCENTILE_CONT(0.5) WITHIN ' \
+                    '  GROUP (ORDER BY data.{data_data_colname} / ' \
+                    '  NULLIF(data.{denom_colname}, 0)) "median" ' \
+                    "FROM observatory.{geom_tablename} as geom, " \
+                    "     observatory.{data_tablename} as data " \
+                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+        elif aggregate == 'sum':
+            cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
+                    "geom.the_geom_webmercator, " \
+                    "data.{data_data_colname} / " \
+                    "  ST_Area(ST_Transform(geom.{geom_geom_colname}, 3857)) * 1000000.0 measure " \
+                    "FROM {geom_tablename} as geom, {data_tablename} as data " \
+                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+            statssql = "SELECT ST_Xmin(ST_Extent(geom.{geom_geom_colname})) x_min, " \
+                    "ST_Ymin(ST_Extent(geom.{geom_geom_colname})) y_min, " \
+                    "ST_Xmax(ST_Extent(geom.{geom_geom_colname})) x_max, " \
+                    "ST_Ymax(ST_Extent(geom.{geom_geom_colname})) y_max, " \
+                    'MIN(data.{data_data_colname} / {landarea}) "min", ' \
+                    'MAX(data.{data_data_colname} / {landarea}) "max", ' \
+                    'AVG(data.{data_data_colname} / {landarea}) "avg", ' \
+                    'MODE() WITHIN GROUP (ORDER BY data.{data_data_colname} / ' \
+                    '  {landarea}) "mode", ' \
+                    'STDDEV_POP(data.{data_data_colname} / ' \
+                    '  {landarea}) "stddev_pop", ' \
+                    'PERCENTILE_CONT(0.5) WITHIN ' \
+                    '  GROUP (ORDER BY data.{data_data_colname} / ' \
+                    '  {landarea}) "median" ' \
+                    "FROM observatory.{geom_tablename} as geom, " \
+                    "     observatory.{data_tablename} as data " \
+                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+        else:
+            cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
+                    "geom.the_geom_webmercator, " \
+                    "data.{data_data_colname} measure " \
+                    "FROM {geom_tablename} as geom, {data_tablename} as data " \
+                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+            statssql = "SELECT ST_Xmin(ST_Extent(geom.{geom_geom_colname})) x_min, " \
+                    "ST_Ymin(ST_Extent(geom.{geom_geom_colname})) y_min, " \
+                    "ST_Xmax(ST_Extent(geom.{geom_geom_colname})) x_max, " \
+                    "ST_Ymax(ST_Extent(geom.{geom_geom_colname})) y_max, " \
+                    'MIN(data.{data_data_colname}) "min", ' \
+                    'MAX(data.{data_data_colname}) "max", ' \
+                    'AVG(data.{data_data_colname}) "avg", ' \
+                    'MODE() WITHIN GROUP (ORDER BY data.{data_data_colname}) "mode", ' \
+                    'STDDEV_POP(data.{data_data_colname}) "stddev_pop", ' \
+                    'PERCENTILE_CONT(0.5) WITHIN ' \
+                    '  GROUP (ORDER BY data.{data_data_colname}) "median" ' \
+                    "FROM observatory.{geom_tablename} as geom, " \
+                    "     observatory.{data_tablename} as data " \
+                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+
+        if boundary_id.lower().startswith('us.census.tiger'):
+            landarea = 'aland * 1000000.0'
+        else:
+            landarea = 'ST_Area(ST_Transform(geom.{geom_geom_colname}, 3857))' \
+                    ' * 1000000.0'.format(geom_geom_colname=geom_geom_colname)
+
+        cartosql = cartosql.format(geom_geom_colname=geom_geom_colname,
+                                   data_data_colname=data_data_colname,
+                                   geom_tablename=geom_tablename,
+                                   data_tablename=data_tablename,
+                                   geom_geoid_colname=geom_geoid_colname,
+                                   data_geoid_colname=data_geoid_colname,
+                                   denom_colname=denom_colname,
+                                   landarea=landarea)
+        statssql = statssql.format(geom_geom_colname=geom_geom_colname,
+                                   data_data_colname=data_data_colname,
+                                   geom_tablename=geom_tablename,
+                                   data_tablename=data_tablename,
+                                   geom_geoid_colname=geom_geoid_colname,
+                                   data_geoid_colname=data_geoid_colname,
+                                   denom_colname=denom_colname,
+                                   landarea=landarea)
+
+        xmin, ymin, xmax, ymax, min, max, avg, mode, stddev, median = \
+                session.execute(statssql).fetchone()
+
+        if measure.unit():
+            ramp = self.PALETTES.get(measure.unit().id, self.PALETTES['tags.ratio'])
+        else:
+            ramp = self.PALETTES['tags.ratio']
+
         layers.append({
             'type': 'mapnik',
             'options': {
                 'layer_name': data_tablename,
                 'cartocss': '''/** choropleth visualization */
 
-/*
-@1:#045275;
-@2:#00718b;
-@3:#089099;
-@4:#46aea0;
-@5:#7ccba2;
-@6:#b7e6a5;
-@7:#f7feae;
-*/
-/*
-@1:#442D6B;
-@2:#993291;
-@3:#C53986;
-@4:#D55C60;
-@5:#EDAB77;
-@6:#FADF9D;
-@7:#FEF9CC;
-*/
-/*
-@1:#7A003B;
-@2:#921b45;
-@3:#af3051;
-@4:#c64d5d;
-@5:#d9726c;
-@6:#eda18b;
-@7:#fdcdae;
-*/
-
-@1:#324546;
-@2:#4e5e52;
-@3:#6e7f61;
-@4:#909e74;
-@5:#b4bc89;
-@6:#DAD59F;
-@7:#f9ebb2;
-
-/*
-@1:#443F7A;
-@2:#68578D;
-@3:#8A71A3;
-@4:#AB8CB9;
-@5:#CCA9D0;
-@6:#EBC7E8;
-@7:#FFE6FF;
-*/
+{ramp}
 
 #data {{
   polygon-opacity: 0.9;
-  line-color: transparent;
-  line-width: 0.5;
-  line-opacity: 1;
+  polygon-gamma: 0.5;
+  line-color: #000000;
+  line-width: 0.25;
+  line-opacity: 0.2;
+  line-comp-op: hard-light;
 
   [measure=null]{{
-    polygon-fill: lightgray;
-    polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/diagonal_1px_med.png);
-    polygon-pattern-opacity: 0.2;
-    polygon-opacity: 0;
-  }}
-
-  [measure <= {range7}] {{
-     polygon-fill: @1;
-     line-color: lighten(@1,5);
-  }}
-  [measure <= {range6}] {{
-     polygon-fill: @2;
-     line-color: lighten(@2,5);
+     polygon-fill: #cacdce;
   }}
   [measure <= {range5}] {{
-     polygon-fill: @3;
-     line-color: lighten(@3,5);
+     polygon-fill: @5;
   }}
   [measure <= {range4}] {{
      polygon-fill: @4;
-     line-color: lighten(@4,5);
   }}
   [measure <= {range3}] {{
-     polygon-fill: @5;
-     line-color: lighten(@5,5);
+     polygon-fill: @3;
   }}
   [measure <= {range2}] {{
-     polygon-fill: @6;
-     line-color: lighten(@6,5);
+     polygon-fill: @2;
   }}
   [measure <= {range1}] {{
-     polygon-fill: @7;
-     line-color: lighten(@7,5);
+     polygon-fill: @1;
   }}
 }}'''.format(
+    ramp=ramp,
     range1=min,
-    range2=min + ((avg - min) / Decimal(3.0)),
-    range3=min + ((avg - min) * Decimal(2.0)/Decimal(3.0)),
-    range4=avg,
-    range5=avg + ((max - avg) / Decimal(3.0)),
-    range6=avg + ((max - avg) * Decimal(2.0)/Decimal(3.0)),
-    range7=max),
+    range2=float(min) + (float(avg - min) / 2.0),
+    range3=avg,
+    range4=float(avg) + (float(max - avg) / 2.0),
+    range5=max),
                 'cartocss_version': "2.1.1",
                 'sql': cartosql,
                 "table_name": "\"\"."
             }
         })
-        layers.append(self.LABELS)
+        #layers.append(self.LABELS)
         return {
             'layers': layers,
-            'center': [self.lon, self.lat],
+            'center': [lon, lat],
             #'bounds': self.bounds,
-            'zoom': self.zoom
+            'zoom': zoom
         }
 
     def get_named_map(self, map_config):
@@ -405,22 +527,61 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
 
     def run(self):
         self.output().makedirs()
-        config = self._generate_config()
-        named_map = self.get_named_map(config['layers'])
-        img_url = '{cartodb_url}/api/v1/map/static/center/' \
-                '{layergroupid}/{zoom}/{center_lon}/{center_lat}/800/500.png'.format(
-                    cartodb_url=os.environ['CARTODB_URL'],
-                    layergroupid=named_map['layergroupid'],
-                    zoom=config['zoom'],
-                    center_lon=config['center'][0],
-                    center_lat=config['center'][1]
-                )
-        print img_url
-        shell('curl "{img_url}" > {output}'.format(img_url=img_url,
-                                                   output=self.output().path))
 
-    def output(self):
-        return LocalTarget(os.path.join('catalog/source/img', self.measure + '.png'))
+        if self.measure.lower().startswith('es.ine'):
+            zooms = self.SPAIN_ZOOMS
+            centers = self.SPAIN_CENTERS
+        else:
+            zooms = self.US_ZOOMS
+            centers = self.US_CENTERS
+        image_urls = []
+        for center, zoom, boundary in zip(centers, zooms, self.US_BOUNDARIES):
+            lon, lat = center
+            if self.measure.lower().startswith('us.census.acs'):
+                config = self._generate_config(zoom, lon, lat, boundary)
+            else:
+                config = self._generate_config(zoom, lon, lat)
+            named_map = self.get_named_map(config['layers'])
+            if 'layergroupid' not in named_map:
+                with self.output().open('w') as fhandle:
+                    fhandle.write('')
+                    return
+            image_urls.append('{cartodb_url}/api/v1/map/static/center/' \
+                              '{layergroupid}/{zoom}/{center_lon}/{center_lat}/500/500.png'.format(
+                                  cartodb_url=os.environ['CARTODB_URL'],
+                                  layergroupid=named_map['layergroupid'],
+                                  zoom=zoom,
+                                  center_lon=lon,
+                                  center_lat=lat
+                              ))
+
+        url1 = image_urls.pop(0)
+        file1 = StringIO(urllib.urlopen(url1).read())
+        image1 = ImageOps.expand(Image.open(file1), border=10, fill='white')
+
+        for url2 in image_urls:
+            file2 = StringIO(urllib.urlopen(url2).read())
+
+            image2 = ImageOps.expand(Image.open(file2), border=10, fill='white')
+
+            (width1, height1) = image1.size
+            (width2, height2) = image2.size
+
+            result_width = width1 + width2
+            result_height = max(height1, height2)
+
+            result = Image.new('RGB', (result_width, result_height))
+            result.paste(im=image1, box=(0, 0))
+            result.paste(im=image2, box=(width1, 0))
+
+            image1 = result
+        image1.save(self.output().path)
+
+    def output(self, measure=None):
+        if measure is None:
+            measure = self.measure
+        return LocalTarget(os.path.join('catalog/img', measure + '.png'))
+        #return LocalTarget(os.path.join('catalog/build/html/_images', measure + '.png'))
 
 
 class GenerateStaticImage(Task):

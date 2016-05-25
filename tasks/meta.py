@@ -225,6 +225,14 @@ class OBSColumn(Base):
             return None
         return [(k, v) for k, v in  self.targets.iteritems() if v == 'denominator'][0][0]
 
+    def unit(self):
+        '''
+        Return the unit of this column
+        '''
+        units = [tag for tag in self.tags if tag.type == 'unit']
+        if units:
+            return units[0]
+
     def summable(self):
         '''
         Returns True if we can sum this column and calculate for arbitrary

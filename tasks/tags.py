@@ -2,6 +2,40 @@ from tasks.meta import OBSTag
 from tasks.util import TagsTask
 
 
+class UnitTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='people',
+                   name='People',
+                   type='unit',
+                   description=''),
+            OBSTag(id='households',
+                   name='Households',
+                   type='unit',
+                   description=''),
+            OBSTag(id='housing_units',
+                   name='Housing Units',
+                   type='unit',
+                   description=''),
+            OBSTag(id='money',
+                   name='Money',
+                   type='unit',
+                   description=''),
+            OBSTag(id='ratio',
+                   name='Ratio',
+                   type='unit',
+                   description=''),
+            OBSTag(id='years',
+                   name='Years',
+                   type='unit',
+                   description=''),
+        ]
+
+
 class SectionTags(TagsTask):
 
     def version(self):
