@@ -17,7 +17,6 @@ from cStringIO import StringIO
 from PIL import Image, ImageOps
 
 import requests
-import urllib
 
 import os
 import json
@@ -215,7 +214,7 @@ class ImagesForMeasure(Task):
         [40.4139017, -3.7350414],
         [40.4139017, -3.7350414],
         [40.4139017, -3.7350414],
-        [40.4139017, -3.7350414],
+        [40.4139017, -3.7050414],
     ]
     SPAIN_ZOOMS = [
         #6, 9, 12, 15
@@ -542,10 +541,9 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
             else:
                 config = self._generate_config(zoom, lon, lat)
             named_map = self.get_named_map(config['layers'])
-            if 'layergroupid' not in named_map:
-                with self.output().open('w') as fhandle:
-                    fhandle.write('')
-                    return
+            #if 'layergroupid' not in named_map:
+            #    import pdb
+            #    pdb.set_trace()
             image_urls.append('{cartodb_url}/api/v1/map/static/center/' \
                               '{layergroupid}/{zoom}/{center_lon}/{center_lat}/500/500.png'.format(
                                   cartodb_url=os.environ['CARTODB_URL'],
@@ -556,11 +554,13 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
                               ))
 
         url1 = image_urls.pop(0)
-        file1 = StringIO(urllib.urlopen(url1).read())
+        print url1
+        file1 = StringIO(requests.get(url1, stream=True).content)
         image1 = ImageOps.expand(Image.open(file1), border=10, fill='white')
 
         for url2 in image_urls:
-            file2 = StringIO(urllib.urlopen(url2).read())
+            print url2
+            file2 = StringIO(requests.get(url2, stream=True).content)
 
             image2 = ImageOps.expand(Image.open(file2), border=10, fill='white')
 
