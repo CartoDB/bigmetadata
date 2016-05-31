@@ -86,12 +86,18 @@ class GenerateRST(Task):
                     continue
 
                 # tags with denominators will appear beneath that denominator
-                if not col.has_denominator():
+                if not col.has_denominators():
                     columns.append(col)
 
                 # unless the denominator is not in this subsection
-                elif subsection not in col.denominator().tags:
-                    columns.append(col)
+                else:
+                    add_to_columns = True
+                    for denominator in col.denominators():
+                        if subsection in denominator.tags:
+                            add_to_columns = False
+                            break
+                    if add_to_columns:
+                        columns.append(col)
 
             columns.sort(lambda x, y: cmp(x.name, y.name))
 

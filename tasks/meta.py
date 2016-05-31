@@ -173,7 +173,7 @@ class OBSColumn(Base):
         '''
         return len(self.children()) > 0
 
-    def has_denominator(self):
+    def has_denominators(self):
         '''
         Returns True if this column has no denominator, False otherwise.
         '''
@@ -185,13 +185,13 @@ class OBSColumn(Base):
         '''
         return os.path.exists(os.path.join('catalog', 'img', self.id + '.png'))
 
-    def denominator(self):
+    def denominators(self):
         '''
         Return the denominator of this column.
         '''
-        if not self.has_denominator():
-            return None
-        return [(k, v) for k, v in  self.targets.iteritems() if v == 'denominator'][0][0]
+        if not self.has_denominators():
+            return []
+        return [k for k, v in self.targets.iteritems() if v == 'denominator']
 
     def summable(self):
         '''
