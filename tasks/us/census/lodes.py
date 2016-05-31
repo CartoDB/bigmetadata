@@ -625,9 +625,6 @@ class OriginDestination(TempTableTask):
 
     year = IntParameter(default=2013)
 
-    def tablename(self):
-        return '"{}".od_{}'.format(classpath(self), self.year)
-
     def columns(self):
         return '''
 work_census_block Text, -- Workplace Census Block Code
@@ -646,26 +643,28 @@ createdate DATE -- Date on which da ta was created, formatted as YYYYMMDD
 '''
 
     def requires(self):
-        for state in self.STATES - self.MISSING_STATES.get(self.year, set()):
+        for state in STATES - MISSING_STATES.get(self.year, set()):
             for part in ('main', 'aux',):
                 yield DownloadLODESFile(filetype='od', year=self.year,
-                                        state=state, part=part)
+                                        state=state, part_or_segment=part)
 
     def run(self):
         # make the table
-        cursor = current_session()
-        cursor.execute('''
+        session = current_session()
+        session.execute('''
 DROP TABLE IF EXISTS {tablename};
 CREATE TABLE {tablename} (
     {columns}
-)
-                       '''.format(tablename=self.tablename(),
+);
+                       '''.format(tablename=self.output().table,
                                   columns=self.columns()))
+        session.commit()
 
-        cursor.connection.commit()
+        #cursor.connection.commit()
 
         for infile in self.input():
+            print infile.path
             # gunzip each CSV into the table
             cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
-                  r"WITH CSV HEADER'".format(input=infile.path, tablename=self.tablename())
+                  r"WITH CSV HEADER'".format(input=infile.path, tablename=self.output().table)
             shell(cmd)

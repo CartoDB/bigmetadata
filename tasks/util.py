@@ -240,24 +240,7 @@ class ColumnTarget(Target):
             return session.query(OBSColumn).get(self._id)
 
     def update_or_create(self):
-        session = current_session()
-        in_session = session.identity_map.get((OBSColumn, (self._column.id, )))
-        if in_session:
-            if None in in_session.srcs:
-                col2col = in_session.srcs.pop(None)
-                in_session.srcs[col2col.source] = col2col
-            if None in in_session.tgts:
-                col2col = in_session.tgts.pop(None)
-                in_session.tgts[col2col.target] = col2col
-
-        self._column = session.merge(self._column)
-        if self._column.targets:
-            # fix missing sources in association_proxy... very weird
-            # bug
-            for target in self._column.tgts.keys():
-                if None in target.srcs:
-                    col2col = target.srcs.pop(None)
-                    target.srcs[col2col.source] = col2col
+        self._column = current_session().merge(self._column)
 
     def exists(self):
         existing = self.get(current_session())

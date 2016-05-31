@@ -116,8 +116,9 @@ Obtain all "{{ col.name }}" geometries within an area:
 
 {% endif %}
 
-{% if col.has_denominator() %}
-Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" at one point:
+{% if col.has_denominators() %}
+{% set denominator = col.denominators()[0] %}
+Measure "{{ col.name }}" percent of "{{ denominator.name }}" at one point:
 
 .. code-block:: postgresql
 
@@ -130,7 +131,7 @@ Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" at one point:
       );
 
 {% if col.summable() %}
-Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" within an area:
+Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
 .. code-block:: postgresql
 
@@ -143,7 +144,6 @@ Measure "{{ col.name }}" percent of "{{ col.denominator().name }}" within an are
       );
 
 {% endif %}
-
 {% endif %}
 {# preview map #}
 {#
