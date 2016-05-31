@@ -129,6 +129,9 @@ class SeccionColumns(ColumnsTask):
             'sections': SectionTags(),
         }
 
+    def version(self):
+        return 38
+
     def columns(self):
         spain = self.input()['sections']['spain']
         tags = self.input()['tags']
@@ -1810,7 +1813,7 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return 6
+        return 7
 
     def requires(self):
         return {
