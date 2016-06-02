@@ -569,7 +569,10 @@ class ShorelineClip(TableTask):
         return self.year
 
     def bounds(self):
-        return 'BOX(-179.231086 -14.601813,179.859681 71.441059)'
+        # TODO currently obtained from
+        # SELECT ST_Extent(the_geom) FROM observatory.obs_624e5d2362e08aaa5463d7671e7748432262719c 
+        # WHERE geoid NOT IN ( '02', '69', '66');
+        return 'BOX(-178.443593 -14.601813,-64.512674 49.384358)'
 
     def populate(self):
         session = current_session()
