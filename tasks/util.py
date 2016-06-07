@@ -127,7 +127,11 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         print resp.json()['state']
         time.sleep(1)
 
-    resp = query_cartodb('DROP TABLE "{}"'.format(private_outname))
+    # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
+    assert resp.json()['table_name'] == outname # the copy should not have a
+                                                # mutilated name (like '_1', '_2' etc)
+
+    resp = query_cartodb('DROP TABLE "{}" CASCADE'.format(private_outname))
     assert resp.status_code == 200
 
     for colname in json_column_names:
@@ -718,7 +722,7 @@ class RenameTables(Task):
                                            table=tablename))
                 # new table already exists -- just drop it
                 if int(resp.fetchone()[0]) > 0:
-                    cmd = 'DROP TABLE {table_id}'.format(table_id=table_id)
+                    cmd = 'DROP TABLE {table_id} CASCADE'.format(table_id=table_id)
                     session.execute(cmd)
                 else:
                     cmd = 'ALTER TABLE {old} RENAME TO {new}'.format(

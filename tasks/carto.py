@@ -705,7 +705,7 @@ class PurgeUndocumentedTables(Task):
                 cnt = session.execute('SELECT COUNT(*) FROM observatory.{tablename}'.format(
                     tablename=tablename)).fetchone()[0]
                 if cnt == 0:
-                    stmt = 'DROP TABLE observatory.{tablename}'.format(
+                    stmt = 'DROP TABLE observatory.{tablename} CASCADE'.format(
                         tablename=tablename)
                     print(stmt)
                     session.execute(stmt)
