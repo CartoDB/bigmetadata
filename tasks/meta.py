@@ -350,3 +350,82 @@ DENOMINATOR = 'denominator'
 GEOM_REF = 'geom_ref'
 
 Base.metadata.create_all()
+
+# create materialized view obs_meta as
+# SELECT numer_c.id numer_id,
+#        denom_c.id denom_id,
+#        geom_c.id geom_id,
+# 
+#        MAX(numer_c.type) numer_type,
+#        MAX(denom_c.type) denom_type,
+#        MAX(geom_c.type) geom_type,
+# 
+#        MAX(numer_data_ct.colname) numer_colname,
+#        MAX(denom_data_ct.colname) denom_colname,
+#        MAX(geom_geom_ct.colname) geom_colname,
+# 
+#        MAX(numer_geomref_ct.colname) numer_geomref_colname,
+#        MAX(denom_geomref_ct.colname) denom_geomref_colname,
+#        MAX(geom_geomref_ct.colname) geom_geomref_colname,
+# 
+#        MAX(numer_t.tablename) numer_tablename,
+#        MAX(denom_t.tablename) denom_tablename,
+#        MAX(geom_t.tablename) geom_tablename,
+# 
+#        MAX(numer_t.timespan) numer_timespan,
+#        MAX(denom_t.timespan) denom_timespan,
+#        MAX(geom_t.timespan) geom_timespan,
+# 
+#        MAX(numer_t.bounds)::box2d numer_bounds,
+#        MAX(denom_t.bounds)::box2d denom_bounds,
+#        MAX(geom_t.bounds)::box2d geom_bounds,
+# 
+#        ARRAY_AGG(s_tag.id) section_tags,
+#        ARRAY_AGG(ss_tag.id) subsection_tags,
+#        ARRAY_AGG(unit_tag.id) unit_tags
+# FROM obs_column_table numer_data_ct,
+#      obs_table numer_t, obs_column_table numer_geomref_ct,
+#      obs_column geomref_c, obs_column_to_column geomref_c2c,
+#      obs_column geom_c, obs_column_table geom_geom_ct,
+#      obs_column_table geom_geomref_ct,
+#      obs_table geom_t,
+#      obs_column_tag unit_ctag, obs_tag unit_tag,
+#      obs_column_tag ss_ctag, obs_tag ss_tag,
+#      obs_column_tag s_ctag, obs_tag s_tag,
+#      obs_column numer_c
+#   LEFT JOIN (
+#     obs_column_to_column denom_c2c
+#     JOIN obs_column denom_c ON denom_c2c.target_id = denom_c.id
+#     JOIN obs_column_table denom_data_ct ON denom_data_ct.column_id = denom_c.id
+#     JOIN obs_table denom_t ON denom_data_ct.table_id = denom_t.id
+#     JOIN obs_column_table denom_geomref_ct ON denom_geomref_ct.table_id = denom_t.id
+#   ) ON denom_c2c.source_id = numer_c.id
+# WHERE numer_c.id = numer_data_ct.column_id
+#   AND numer_data_ct.table_id = numer_t.id
+#   AND numer_t.id = numer_geomref_ct.table_id
+#   AND numer_geomref_ct.column_id = geomref_c.id
+#   AND geomref_c2c.reltype = 'geom_ref'
+#   AND geomref_c.id = geomref_c2c.source_id
+#   AND geom_c.id = geomref_c2c.target_id
+#   AND geom_geomref_ct.column_id = geom_c.id
+#   AND geom_geomref_ct.table_id = geom_t.id
+#   AND geom_geom_ct.column_id = geom_c.id
+#   AND geom_geom_ct.table_id = geom_t.id
+#   AND geom_c.type ILIKE 'geometry'
+#   AND numer_c.type NOT ILIKE 'geometry'
+#   AND numer_t.id != geom_t.id
+#   AND numer_c.id != geomref_c.id
+#   AND unit_tag.type ILIKE 'unit'
+#   AND ss_tag.type ILIKE 'subsection'
+#   AND s_tag.type ILIKE 'section'
+#   AND unit_ctag.column_id = numer_c.id
+#   AND unit_ctag.tag_id = unit_tag.id
+#   AND ss_ctag.column_id = numer_c.id
+#   AND ss_ctag.tag_id = ss_tag.id
+#   AND s_ctag.column_id = numer_c.id
+#   AND s_ctag.tag_id = s_tag.id
+#   AND (denom_c2c.reltype = 'denominator' OR denom_c2c.reltype IS NULL)
+#   AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
+# GROUP BY numer_c.id, denom_c.id, geom_c.id,
+#          numer_t.id, denom_t.id, geom_t.id
+# 
