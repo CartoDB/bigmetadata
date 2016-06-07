@@ -351,35 +351,36 @@ GEOM_REF = 'geom_ref'
 
 Base.metadata.create_all()
 
-# create materialized view obs_meta as
 # SELECT numer_c.id numer_id,
 #        denom_c.id denom_id,
 #        geom_c.id geom_id,
-# 
+#        MAX(numer_c.name) numer_name,
+#        MAX(denom_c.name) denom_name,
+#        MAX(geom_c.name) geom_name,
+#        MAX(numer_c.description) numer_description,
+#        MAX(denom_c.description) denom_description,
+#        MAX(geom_c.description) geom_description,
+#        MAX(numer_c.aggregate) numer_aggregate,
+#        MAX(denom_c.aggregate) denom_aggregate,
+#        MAX(geom_c.aggregate) geom_aggregate,
 #        MAX(numer_c.type) numer_type,
 #        MAX(denom_c.type) denom_type,
 #        MAX(geom_c.type) geom_type,
-# 
 #        MAX(numer_data_ct.colname) numer_colname,
 #        MAX(denom_data_ct.colname) denom_colname,
 #        MAX(geom_geom_ct.colname) geom_colname,
-# 
 #        MAX(numer_geomref_ct.colname) numer_geomref_colname,
 #        MAX(denom_geomref_ct.colname) denom_geomref_colname,
 #        MAX(geom_geomref_ct.colname) geom_geomref_colname,
-# 
 #        MAX(numer_t.tablename) numer_tablename,
 #        MAX(denom_t.tablename) denom_tablename,
 #        MAX(geom_t.tablename) geom_tablename,
-# 
 #        MAX(numer_t.timespan) numer_timespan,
 #        MAX(denom_t.timespan) denom_timespan,
 #        MAX(geom_t.timespan) geom_timespan,
-# 
 #        MAX(numer_t.bounds)::box2d numer_bounds,
 #        MAX(denom_t.bounds)::box2d denom_bounds,
 #        MAX(geom_t.bounds)::box2d geom_bounds,
-# 
 #        ARRAY_AGG(s_tag.id) section_tags,
 #        ARRAY_AGG(ss_tag.id) subsection_tags,
 #        ARRAY_AGG(unit_tag.id) unit_tags
@@ -428,4 +429,4 @@ Base.metadata.create_all()
 #   AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
 # GROUP BY numer_c.id, denom_c.id, geom_c.id,
 #          numer_t.id, denom_t.id, geom_t.id
-# 
+# ;
