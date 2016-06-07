@@ -13,7 +13,7 @@ from luigi import (Task, IntParameter, LocalTarget, BooleanParameter, Parameter,
 from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
                         CartoDBTarget, sql_to_cartodb_table,
                         TableTask, ColumnsTask, TagsTask)
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.us.census.tiger import GeoidColumns
 from psycopg2 import ProgrammingError
@@ -32,6 +32,13 @@ MEASURES_HUMAN = {
     'Zri': 'Zillow Rental Index',
     'MedianValuePerSqft': 'Median value per square foot',
     'MedianRentalPricePerSqft': 'Median rental price per square foot'
+}
+
+MEASURES_UNITS = {
+    'Zhvi': 'index',
+    'Zri': 'index',
+    'MedianValuePerSqft': 'money',
+    'MedianRentalPricePerSqft': 'money'
 }
 
 HOMETYPES_DESCRIPTION = {
@@ -103,7 +110,8 @@ def hometype_measures():
     for hometype, hometype_human in HOMETYPES.iteritems():
         for measure in measures_for_hometype(hometype):
             measure_human = MEASURES_HUMAN[measure]
-            yield hometype, hometype_human, measure, measure_human
+            measure_unit = MEASURES_UNITS[measure]
+            yield hometype, hometype_human, measure, measure_human, measure_unit
 
 
 class ZillowTags(TagsTask):
@@ -145,20 +153,22 @@ class ZillowValueColumns(ColumnsTask):
             'tags': ZillowTags(),
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
+            'units': UnitTags(),
         }
 
     def version(self):
-        return 5
+        return 6
 
     def columns(self):
         input_ = self.input()
         tag = input_['tags']['indexes']
         united_states = input_['sections']['united_states']
         housing = input_['subsections']['housing']
+        units = input_['units']
 
         columns = OrderedDict()
 
-        for hometype, hometype_human, measure, measure_human in hometype_measures():
+        for hometype, hometype_human, measure, measure_human, measure_unit in hometype_measures():
             aggregate = 'median' if 'median' in measure.lower() else 'index'
             col_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                    measure=measure)
@@ -172,7 +182,7 @@ class ZillowValueColumns(ColumnsTask):
                                 measure_description=MEASURES_DESCRIPTION[measure],
                                 hometype_description=HOMETYPES_DESCRIPTION[hometype],
                                 ),
-                            tags=[tag, united_states, housing])
+                            tags=[tag, united_states, housing, units[measure_unit]])
             columns[col_id] = col
         return columns
 

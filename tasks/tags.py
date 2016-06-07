@@ -5,10 +5,14 @@ from tasks.util import TagsTask
 class UnitTags(TagsTask):
 
     def version(self):
-        return 1
+        return 2
 
     def tags(self):
         return [
+            OBSTag(id='index',
+                   name='Index',
+                   type='unit',
+                   description=''),
             OBSTag(id='people',
                    name='People',
                    type='unit',
