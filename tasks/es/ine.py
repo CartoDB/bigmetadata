@@ -12,7 +12,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
                         classpath, PostgresTarget)
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 
 class DownloadGeometry(Task):
@@ -127,14 +127,16 @@ class SeccionColumns(ColumnsTask):
         return {
             'tags': SubsectionTags(),
             'sections': SectionTags(),
+            'units': UnitTags(),
         }
 
     def version(self):
-        return 38
+        return 39
 
     def columns(self):
         spain = self.input()['sections']['spain']
         tags = self.input()['tags']
+        units = self.input()['units']
 
         total_pop = OBSColumn(
             id='t1_1',
@@ -143,7 +145,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain])
+            tags=[tags['age_gender'], spain, units['people']])
         male_pop = OBSColumn(
             id='t2_1',
             name='Males',
@@ -151,7 +153,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], spain, units['people']],
             targets={total_pop: DENOMINATOR})
         female_pop = OBSColumn(
             id='t2_2',
@@ -160,7 +162,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], spain, units['people']],
             targets={total_pop: DENOMINATOR})
         pop_under_16 = OBSColumn(
             id='t3_1',
@@ -169,7 +171,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], spain, units['people']],
             targets={total_pop: DENOMINATOR})
         pop_16_to_64 = OBSColumn(
             id='t3_2',
@@ -178,7 +180,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], spain, units['people']],
             targets={total_pop: DENOMINATOR})
         pop_over_64 = OBSColumn(
             id='t3_3',
@@ -187,7 +189,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], spain, units['people']],
             targets={total_pop: DENOMINATOR})
         spanish_nationality = OBSColumn(
             id='t6_1',
@@ -196,7 +198,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], spain, units['people']],
             targets={total_pop: DENOMINATOR})
         foreign_nationality = OBSColumn(
             id='t6_2',
@@ -205,7 +207,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         spain_born = OBSColumn(
             id='t4_1',
@@ -214,7 +216,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         eu_born = OBSColumn(
             id='t4_2',
@@ -223,7 +225,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         europe_non_eu_born = OBSColumn(
             id='t4_3',
@@ -232,7 +234,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         african_born = OBSColumn(
             id='t4_4',
@@ -241,7 +243,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         central_south_american_caribbean_born = OBSColumn(
             id='t4_5',
@@ -250,7 +252,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         north_american_born = OBSColumn(
             id='t4_6',
@@ -259,7 +261,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         asian_born = OBSColumn(
             id='t4_7',
@@ -268,7 +270,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         oceania_born = OBSColumn(
             id='t4_8',
@@ -277,7 +279,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         spain_born_spanish_nationality = OBSColumn(
             id='t5_1',
@@ -286,7 +288,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={spain_born: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         spain_born_foreign_nationality = OBSColumn(
@@ -296,7 +298,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={spain_born: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         eu_born_spanish_nationality = OBSColumn(
@@ -306,7 +308,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={eu_born: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         eu_born_foreign_nationality = OBSColumn(
@@ -316,7 +318,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={eu_born: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         europe_non_eu_born_spanish_nationality = OBSColumn(
@@ -326,7 +328,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={europe_non_eu_born: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         europe_non_eu_born_foreign_nationality = OBSColumn(
@@ -336,7 +338,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={europe_non_eu_born: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         african_born_spanish_nationality = OBSColumn(
@@ -346,7 +348,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={african_born: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         african_born_foreign_nationality = OBSColumn(
@@ -356,7 +358,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={african_born: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         central_south_american_caribbean_born_spanish_nationality = OBSColumn(
@@ -366,7 +368,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={central_south_american_caribbean_born: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         central_south_american_caribbean_born_foreign_nationality = OBSColumn(
@@ -376,7 +378,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={central_south_american_caribbean_born: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         north_american_born_spanish_nationality = OBSColumn(
@@ -386,7 +388,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={north_american_born: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         north_american_born_foreign_nationality = OBSColumn(
@@ -396,7 +398,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={north_american_born: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         asian_born_spanish_nationality = OBSColumn(
@@ -406,7 +408,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={asian_born: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         asian_born_foreign_nationality = OBSColumn(
@@ -416,7 +418,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={asian_born: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         oceania_born_spanish_nationality = OBSColumn(
@@ -426,7 +428,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={oceania_born: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         oceania_born_foreign_nationality = OBSColumn(
@@ -436,7 +438,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], spain],
+            tags=[tags['nationality'], units['people'], spain],
             targets={oceania_born: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         males_under_16 = OBSColumn(
@@ -446,7 +448,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      pop_under_16: DENOMINATOR})
         males_16_to_64 = OBSColumn(
@@ -456,7 +458,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      pop_16_to_64: DENOMINATOR})
         males_over_64 = OBSColumn(
@@ -466,7 +468,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      pop_over_64: DENOMINATOR})
         females_under_16 = OBSColumn(
@@ -476,7 +478,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      pop_under_16: DENOMINATOR})
         females_16_to_64 = OBSColumn(
@@ -486,7 +488,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      pop_16_to_64: DENOMINATOR})
         females_over_64 = OBSColumn(
@@ -496,7 +498,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['age_gender'], spain],
+            tags=[tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      pop_over_64: DENOMINATOR})
         males_spanish_nationality = OBSColumn(
@@ -506,7 +508,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         males_foreign_nationality = OBSColumn(
@@ -516,7 +518,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         females_spanish_nationality = OBSColumn(
@@ -526,7 +528,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         females_foreign_nationality = OBSColumn(
@@ -536,7 +538,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         spanish_nationality_under_16 = OBSColumn(
@@ -546,7 +548,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={spanish_nationality: DENOMINATOR,
                      pop_under_16: DENOMINATOR})
         foreign_nationality_under_16 = OBSColumn(
@@ -556,7 +558,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={foreign_nationality: DENOMINATOR,
                      pop_under_16: DENOMINATOR})
         spanish_nationality_16_to_64 = OBSColumn(
@@ -566,7 +568,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={spanish_nationality: DENOMINATOR,
                      pop_16_to_64: DENOMINATOR})
         foreign_nationality_16_to_64 = OBSColumn(
@@ -576,7 +578,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={foreign_nationality: DENOMINATOR,
                      pop_16_to_64: DENOMINATOR})
         spanish_nationality_over_64 = OBSColumn(
@@ -586,7 +588,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={spanish_nationality: DENOMINATOR,
                      pop_over_64: DENOMINATOR})
         foreign_nationality_over_64 = OBSColumn(
@@ -596,7 +598,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={foreign_nationality: DENOMINATOR,
                      pop_over_64: DENOMINATOR})
         unmarried = OBSColumn(
@@ -606,7 +608,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         married = OBSColumn(
             id='t10_2',
@@ -615,7 +617,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         separated = OBSColumn(
             id='t10_3',
@@ -624,7 +626,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         divorced = OBSColumn(
             id='t10_4',
@@ -633,7 +635,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         widowed = OBSColumn(
             id='t10_5',
@@ -642,7 +644,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         unmarried_under_16 = OBSColumn(
             id='t11_1',
@@ -651,7 +653,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_under_16: DENOMINATOR,
                      unmarried: DENOMINATOR})
         unmarried_16_to_64 = OBSColumn(
@@ -661,7 +663,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      unmarried: DENOMINATOR})
         unmarried_over_64 = OBSColumn(
@@ -671,7 +673,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      unmarried: DENOMINATOR})
         married_under_16 = OBSColumn(
@@ -681,7 +683,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_under_16: DENOMINATOR,
                      married: DENOMINATOR})
         married_16_to_64 = OBSColumn(
@@ -691,7 +693,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      married: DENOMINATOR})
         married_over_64 = OBSColumn(
@@ -701,7 +703,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      married: DENOMINATOR})
         separated_under_16 = OBSColumn(
@@ -711,7 +713,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_under_16: DENOMINATOR,
                      separated: DENOMINATOR})
         separated_16_to_64 = OBSColumn(
@@ -721,7 +723,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      separated: DENOMINATOR})
         separated_over_64 = OBSColumn(
@@ -731,7 +733,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      separated: DENOMINATOR})
         divorced_under_16 = OBSColumn(
@@ -741,7 +743,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_under_16: DENOMINATOR,
                      divorced: DENOMINATOR})
         divorced_16_to_64 = OBSColumn(
@@ -751,7 +753,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      divorced: DENOMINATOR})
         divorced_over_64 = OBSColumn(
@@ -761,7 +763,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      divorced: DENOMINATOR})
         widowed_under_16 = OBSColumn(
@@ -771,7 +773,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_under_16: DENOMINATOR,
                      widowed: DENOMINATOR})
         widowed_16_to_64 = OBSColumn(
@@ -781,7 +783,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      widowed: DENOMINATOR})
         widowed_over_64 = OBSColumn(
@@ -791,7 +793,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], tags['age_gender'], spain],
+            tags=[tags['families'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      widowed: DENOMINATOR})
         illiterate = OBSColumn(
@@ -801,7 +803,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], spain],
+            tags=[tags['education'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         without_studies = OBSColumn(
             id='t12_2',
@@ -810,7 +812,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], spain],
+            tags=[tags['education'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         first_level_studies = OBSColumn(
             id='t12_3',
@@ -819,7 +821,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], spain],
+            tags=[tags['education'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         second_level_studies = OBSColumn(
             id='t12_4',
@@ -828,7 +830,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], spain],
+            tags=[tags['education'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         third_level_studies = OBSColumn(
             id='t12_5',
@@ -837,7 +839,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], spain],
+            tags=[tags['education'], units['people'], spain],
             targets={total_pop: DENOMINATOR})
         no_education_info_under_16 = OBSColumn(
             id='t12_6',
@@ -846,7 +848,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_under_16: DENOMINATOR})
         illiterate_male_pop = OBSColumn(
             id='t13_1',
@@ -855,7 +857,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      illiterate: DENOMINATOR})
         illiterate_female_pop = OBSColumn(
@@ -865,7 +867,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      illiterate: DENOMINATOR})
         male_without_studies = OBSColumn(
@@ -875,7 +877,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      without_studies: DENOMINATOR})
         female_without_studies = OBSColumn(
@@ -885,7 +887,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      without_studies: DENOMINATOR})
         male_first_level_studies = OBSColumn(
@@ -895,7 +897,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      first_level_studies: DENOMINATOR})
         female_first_level_studies = OBSColumn(
@@ -905,7 +907,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      first_level_studies: DENOMINATOR})
         male_second_level_studies = OBSColumn(
@@ -915,7 +917,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      second_level_studies: DENOMINATOR})
         female_second_level_studies = OBSColumn(
@@ -925,7 +927,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      second_level_studies: DENOMINATOR})
         male_third_level_studies = OBSColumn(
@@ -935,7 +937,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      third_level_studies: DENOMINATOR})
         female_third_level_studies = OBSColumn(
@@ -945,7 +947,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      third_level_studies: DENOMINATOR})
         male_no_education_info_under_16 = OBSColumn(
@@ -955,7 +957,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={male_pop: DENOMINATOR,
                      no_education_info_under_16: DENOMINATOR})
         female_no_education_info_under_16 = OBSColumn(
@@ -965,7 +967,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={female_pop: DENOMINATOR,
                      no_education_info_under_16: DENOMINATOR})
         illiterate_spanish_nationality = OBSColumn(
@@ -975,7 +977,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={illiterate: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         illiterate_foreign_nationality = OBSColumn(
@@ -985,7 +987,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={illiterate: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         without_studies_spanish_nationality = OBSColumn(
@@ -995,7 +997,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={without_studies: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         without_studies_foreign_nationality = OBSColumn(
@@ -1005,7 +1007,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={without_studies: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         first_level_studies_spanish_nationality = OBSColumn(
@@ -1015,7 +1017,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={first_level_studies: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         first_level_studies_foreign_nationality = OBSColumn(
@@ -1025,7 +1027,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={first_level_studies: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         second_level_studies_spanish_nationality = OBSColumn(
@@ -1035,7 +1037,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={second_level_studies: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         second_level_studies_foreign_nationality = OBSColumn(
@@ -1045,7 +1047,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={second_level_studies: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         third_level_studies_spanish_nationality = OBSColumn(
@@ -1055,7 +1057,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={third_level_studies: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         third_level_studies_foreign_nationality = OBSColumn(
@@ -1065,7 +1067,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['nationality'], spain],
+            tags=[tags['education'], tags['nationality'], units['people'], spain],
             targets={third_level_studies: DENOMINATOR,
                      foreign_nationality: DENOMINATOR})
         no_education_info_spanish_nationality_under_16 = OBSColumn(
@@ -1076,7 +1078,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=1,
-            tags=[tags['education'], tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={no_education_info_under_16: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         no_education_info_foreign_nationality_under_16 = OBSColumn(
@@ -1087,7 +1089,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=1,
-            tags=[tags['education'], tags['nationality'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['nationality'], tags['age_gender'], units['people'], spain],
             targets={no_education_info_under_16: DENOMINATOR,
                      spanish_nationality: DENOMINATOR})
         illiterate_16_to_64 = OBSColumn(
@@ -1097,7 +1099,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      illiterate: DENOMINATOR})
         illiterate_over_64 = OBSColumn(
@@ -1107,7 +1109,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      illiterate: DENOMINATOR})
         without_studies_16_to_64 = OBSColumn(
@@ -1117,7 +1119,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      without_studies: DENOMINATOR})
         without_studies_over_64 = OBSColumn(
@@ -1127,7 +1129,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      without_studies: DENOMINATOR})
         first_level_studies_16_to_64 = OBSColumn(
@@ -1137,7 +1139,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      first_level_studies: DENOMINATOR})
         first_level_studies_over_64 = OBSColumn(
@@ -1147,7 +1149,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      first_level_studies: DENOMINATOR})
         second_level_studies_16_to_64 = OBSColumn(
@@ -1157,7 +1159,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      first_level_studies: DENOMINATOR})
         second_level_studies_over_64 = OBSColumn(
@@ -1167,7 +1169,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      first_level_studies: DENOMINATOR})
         third_level_studies_16_to_64 = OBSColumn(
@@ -1177,7 +1179,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_16_to_64: DENOMINATOR,
                      first_level_studies: DENOMINATOR})
         third_level_studies_over_64 = OBSColumn(
@@ -1187,7 +1189,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_over_64: DENOMINATOR,
                      first_level_studies: DENOMINATOR})
         no_education_info_under_16_2 = OBSColumn(
@@ -1197,7 +1199,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=0,
-            tags=[tags['education'], tags['age_gender'], spain],
+            tags=[tags['education'], tags['age_gender'], units['people'], spain],
             targets={pop_under_16: DENOMINATOR})
         dwellings = OBSColumn(
             id='t16_1',
@@ -1206,7 +1208,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain])
+            tags=[tags['housing'], units['housing_units'], spain])
         main_dwellings = OBSColumn(
             id='t17_1',
             name='Main dwellings',
@@ -1214,7 +1216,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         secondary_dwellings = OBSColumn(
             id='t17_2',
@@ -1223,7 +1225,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         empty_dwellings = OBSColumn(
             id='t17_3',
@@ -1232,7 +1234,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_owned_purchased_paid = OBSColumn(
             id='t18_1',
@@ -1241,7 +1243,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_owned_purchased_outstanding = OBSColumn(
             id='t18_2',
@@ -1250,7 +1252,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_owned_inherited_donated = OBSColumn(
             id='t18_3',
@@ -1259,7 +1261,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_rented = OBSColumn(
             id='t18_4',
@@ -1268,7 +1270,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_transferred_free_low_cost = OBSColumn(
             id='t18_5',
@@ -1277,7 +1279,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_other_tenancy = OBSColumn(
             id='t18_6',
@@ -1286,7 +1288,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_less_30m2 = OBSColumn(
             id='t19_1',
@@ -1295,7 +1297,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_30_to_45m2 = OBSColumn(
             id='t19_2',
@@ -1304,7 +1306,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_46_to_60m2 = OBSColumn(
             id='t19_3',
@@ -1313,7 +1315,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_61_to_75m2 = OBSColumn(
             id='t19_4',
@@ -1322,7 +1324,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_76_to_90m2 = OBSColumn(
             id='t19_5',
@@ -1331,7 +1333,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_91_to_105m2 = OBSColumn(
             id='t19_6',
@@ -1340,7 +1342,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_106_to_120m2 = OBSColumn(
             id='t19_7',
@@ -1349,7 +1351,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_121_to_150m2 = OBSColumn(
             id='t19_8',
@@ -1358,7 +1360,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_151_to_180m2 = OBSColumn(
             id='t19_9',
@@ -1367,7 +1369,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_180m2_more = OBSColumn(
             id='t19_10',
@@ -1376,7 +1378,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_1_room = OBSColumn(
             id='t20_1',
@@ -1385,7 +1387,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_2_rooms = OBSColumn(
             id='t20_2',
@@ -1394,7 +1396,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_3_rooms = OBSColumn(
             id='t20_3',
@@ -1403,7 +1405,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_4_rooms = OBSColumn(
             id='t20_4',
@@ -1412,7 +1414,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_5_rooms = OBSColumn(
             id='t20_5',
@@ -1421,7 +1423,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_6_rooms = OBSColumn(
             id='t20_6',
@@ -1430,7 +1432,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_7_rooms = OBSColumn(
             id='t20_7',
@@ -1439,7 +1441,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_8_rooms = OBSColumn(
             id='t20_8',
@@ -1448,7 +1450,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         dwellings_9_rooms_more = OBSColumn(
             id='t20_9',
@@ -1457,7 +1459,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['housing'], spain],
+            tags=[tags['housing'], units['housing_units'], spain],
             targets={dwellings: DENOMINATOR})
         households = OBSColumn(
             id='t21_1',
@@ -1466,7 +1468,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain])
+            tags=[tags['families'], units['households'], spain])
         households_1_person = OBSColumn(
             id='t22_1',
             name='Households with 1 person',
@@ -1474,7 +1476,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
         households_2_people = OBSColumn(
             id='t22_2',
@@ -1483,7 +1485,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
         households_3_people = OBSColumn(
             id='t22_3',
@@ -1492,7 +1494,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
         households_4_people = OBSColumn(
             id='t22_4',
@@ -1501,7 +1503,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
         households_5_people = OBSColumn(
             id='t22_5',
@@ -1510,7 +1512,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
         households_6_more_people = OBSColumn(
             id='t22_6',
@@ -1519,7 +1521,7 @@ class SeccionColumns(ColumnsTask):
             aggregate='sum',
             type='Numeric',
             weight=5,
-            tags=[tags['families'], spain],
+            tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
         return OrderedDict([
             ('total_pop', total_pop),
@@ -1813,18 +1815,20 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
             'seccion_columns': SeccionColumns(),
             'tags': SubsectionTags(),
             'sections': SectionTags(),
+            'units': UnitTags(),
         }
 
     def columns(self):
         spain = self.input()['sections']['spain']
         tags = self.input()['tags']
+        units = self.input()['units']
         session = current_session()
         total_pop = self.input()['seccion_columns']['total_pop'].get(session)
         columns = OrderedDict([
@@ -1845,7 +1849,7 @@ class FiveYearPopulationColumns(ColumnsTask):
                 targets={total_pop: DENOMINATOR},
                 description='',
                 weight=3,
-                tags=[spain, tags['age_gender']]
+                tags=[spain, tags['age_gender'], units['people']]
             )
         columns['pop_100_more'] = OBSColumn(
             type='Numeric',
@@ -1854,7 +1858,7 @@ class FiveYearPopulationColumns(ColumnsTask):
             targets={total_pop: DENOMINATOR},
             description='',
             weight=3,
-            tags=[tags['age_gender'], spain]
+            tags=[tags['age_gender'], units['people'], spain]
         )
 
         return columns
