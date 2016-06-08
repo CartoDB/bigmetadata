@@ -53,7 +53,7 @@ class RawGeometry(TempTableTask):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {
@@ -1879,10 +1879,10 @@ class RawFiveYearPopulation(TableTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def timespan(self):
-        return '2011'
+        return '2015'
 
     def bounds(self):
         if not self.input()['geotable'].exists():
@@ -1924,7 +1924,7 @@ class FiveYearPopulation(TableTask):
         }
 
     def version(self):
-        return 1
+        return 2
 
     def columns(self):
         '''
