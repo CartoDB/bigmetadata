@@ -2,9 +2,11 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import current_session, OBSTable, Base, OBSColumn
+from tasks.meta import (current_session, OBSTable, Base, OBSColumn,
+                        OBS_META_QUERY)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
-                        classpath, shell, PostgresTarget, TempTableTask)
+                        classpath, shell, PostgresTarget, TempTableTask,
+                        CartoDBTarget)
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter, FloatParameter)
@@ -18,6 +20,7 @@ from PIL import Image, ImageOps
 
 import requests
 
+import time
 import os
 import json
 import requests
@@ -95,6 +98,49 @@ class Import(TempTableTask):
         ))
 
 
+
+class ObsMetaSummaryTable(Task):
+
+    force = BooleanParameter(default=True)
+
+    def run(self):
+        outname = 'obs_meta'
+        api_key = os.environ['CARTODB_API_KEY']
+        resp = requests.post('{url}/api/v1/imports/?api_key={api_key}'.format(
+            url=os.environ['CARTODB_URL'],
+            api_key=api_key
+        ), json={
+            'table_name': outname,
+            'sql': OBS_META_QUERY.replace('\n', ' '),
+            'privacy': 'public'
+        })
+        assert resp.status_code == 200
+        import_id = resp.json()["item_queue_id"]
+        while True:
+            resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
+                url=os.environ['CARTODB_URL'],
+                import_id=import_id,
+                api_key=api_key
+            ))
+            if resp.json()['state'] == 'complete':
+                break
+            elif resp.json()['state'] == 'failure':
+                raise Exception('Import failed: {}'.format(resp.json()))
+            print resp.json()['state']
+            time.sleep(1)
+
+        # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
+        assert resp.json()['table_name'] == outname # the copy should not have a
+                                                    # mutilated name (like '_1', '_2' etc)
+
+    def output(self):
+        target = CartoDBTarget(tablename='obs_meta')
+        if self.force and target.exists():
+            target.remove()
+            self.force = False
+        return target
+
+
 class SyncMetadata(WrapperTask):
 
     force = BooleanParameter(default=True)
@@ -104,6 +150,7 @@ class SyncMetadata(WrapperTask):
             schema, tablename = tablename.split('.')
             yield TableToCarto(table=tablename, outname=tablename, force=self.force,
                                schema=schema)
+        yield ObsMetaSummaryTable()
 
 
 def should_upload(table):
