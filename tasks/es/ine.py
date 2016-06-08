@@ -1815,7 +1815,7 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return 8
+        return 9
 
     def requires(self):
         return {
@@ -1848,6 +1848,7 @@ class FiveYearPopulationColumns(ColumnsTask):
                     start=start, end=end),
                 targets={total_pop: DENOMINATOR},
                 description='',
+                aggregate='sum',
                 weight=3,
                 tags=[spain, tags['age_gender'], units['people']]
             )
@@ -1857,6 +1858,7 @@ class FiveYearPopulationColumns(ColumnsTask):
                 start=start, end=end),
             targets={total_pop: DENOMINATOR},
             description='',
+            aggregate='sum',
             weight=3,
             tags=[tags['age_gender'], units['people'], spain]
         )

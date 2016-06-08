@@ -99,7 +99,7 @@ class Import(TempTableTask):
 
 
 
-class ObsMetaSummaryTable(Task):
+class MetaSummaryTable(Task):
 
     force = BooleanParameter(default=True)
 
@@ -150,7 +150,9 @@ class SyncMetadata(WrapperTask):
             schema, tablename = tablename.split('.')
             yield TableToCarto(table=tablename, outname=tablename, force=self.force,
                                schema=schema)
-        yield ObsMetaSummaryTable()
+
+    def run(self):
+        yield MetaSummaryTable()
 
 
 def should_upload(table):

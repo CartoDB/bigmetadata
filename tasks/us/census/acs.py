@@ -61,7 +61,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 11
+        return 14
 
     def columns(self):
         input_ = self.input()
@@ -354,6 +354,7 @@ class Columns(ColumnsTask):
             description='People in formal marriages, as well as people in common-law marriages, are included. Does not include same-sex marriages.',
             weight=1,
             targets={households: 'denominator'},
+            aggregate='sum',
             tags=[subsections['families'], unit_households]
         )
         male_male_households = OBSColumn(
@@ -363,6 +364,7 @@ class Columns(ColumnsTask):
             description='An unmarried partner is a person age 15 years and over, who is not related to the householder, who shares living quarters, and who has an intimate relationship with the householder.',
             weight=1,
             targets={households: 'denominator'},
+            aggregate='sum',
             tags=[subsections['families'], unit_households]
         )
         female_female_households = OBSColumn(
@@ -371,6 +373,7 @@ class Columns(ColumnsTask):
             name='Households with two female partners',
             description='An unmarried partner is a person age 15 years and over, who is not related to the householder, who shares living quarters, and who has an intimate relationship with the householder.',
             weight=1,
+            aggregate='sum',
             targets={households: 'denominator'},
             tags=[subsections['families'], unit_households]
         )
@@ -822,7 +825,7 @@ class Columns(ColumnsTask):
         dwellings_1_units_attached = OBSColumn(
             id='B25024003',
             type='Numeric',
-            name='Single-family (one unit) detached dwellings',
+            name='Single-family (one unit) attached dwellings',
             description='',
             weight=0,
             aggregate='sum',
@@ -2584,6 +2587,7 @@ class Columns(ColumnsTask):
             name='Population 1 year and over',
             description='All people, male and female, child and adult, living in a given geographic area that are 1 year and older.',
             weight=1,
+            aggregate='sum',
             tags=[subsections['age_gender'], unit_people],
         )
         different_house_year_ago_same_city = OBSColumn(
@@ -2593,6 +2597,7 @@ class Columns(ColumnsTask):
             description='All people in a geographic area who lived in the same city but moved to a different unit within the year prior to the survey.',
             weight=1,
             targets={population_1_year_and_over: 'denominator'},
+            aggregate='sum',
             tags=[subsections['housing'], unit_people],
         )
         different_house_year_ago_different_city = OBSColumn(
@@ -2601,6 +2606,7 @@ class Columns(ColumnsTask):
             name='Lived in a different house one year ago in a different city',
             description='All people in a geographic area who lived in a different city within the year prior to the survey.',
             weight=1,
+            aggregate='sum',
             targets={population_1_year_and_over: 'denominator'},
             tags=[subsections['housing'], unit_people],
         )
@@ -2610,6 +2616,7 @@ class Columns(ColumnsTask):
             type='Numeric',
             name='Population living in group quarters',
             description='',
+            aggregate='sum',
             weight=0,
             tags=[subsections['housing'], unit_people],
         )
@@ -2619,6 +2626,7 @@ class Columns(ColumnsTask):
             name='Workers age 16 and over with no vehicle',
             description='All people in a geographic area over the age of 16 who do not own a car.',
             weight=1,
+            aggregate='sum',
             targets={workers_16_and_over: 'denominator'},
             tags=[subsections['transportation'], unit_people],
         )
