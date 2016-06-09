@@ -431,6 +431,7 @@ WHERE numer_c.id = numer_data_ct.column_id
   AND s_ctag.tag_id = s_tag.id
   AND (denom_c2c.reltype = 'denominator' OR denom_c2c.reltype IS NULL)
   AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
+  AND (denom_t.timespan = numer_t.timespan OR denom_t.timespan IS NULL)
 GROUP BY numer_c.id, denom_c.id, geom_c.id,
          numer_t.id, denom_t.id, geom_t.id
 '''
