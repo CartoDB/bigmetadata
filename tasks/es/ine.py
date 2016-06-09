@@ -1866,7 +1866,7 @@ class FiveYearPopulationColumns(ColumnsTask):
         return columns
 
 
-class RawFiveYearPopulation(TableTask):
+class RawFiveYearPopulation(TempTableTask):
     '''
     Load csv into postgres
     '''
@@ -1877,21 +1877,7 @@ class RawFiveYearPopulation(TableTask):
             'meta': FiveYearPopulationColumns(),
             'seccion_columns': SeccionColumns(),
             'geometa': GeometryColumns(),
-            'geotable': Geometry()
         }
-
-    def version(self):
-        return 3
-
-    def timespan(self):
-        return '2015'
-
-    def bounds(self):
-        if not self.input()['geotable'].exists():
-            return
-        else:
-            session = current_session()
-            return self.input()['geotable'].get(session).bounds
 
     def columns(self):
         '''
@@ -1906,8 +1892,18 @@ class RawFiveYearPopulation(TableTask):
             cols[key] = col
         return cols
 
-    def populate(self):
+    def run(self):
         session = current_session()
+        cols = ['{colname} {coltype}'.format(colname=colname,
+                                             coltype=coltarget.get(session).type)
+                for colname, coltarget in self.columns().iteritems()]
+        create_table = 'CREATE TABLE {output} ({cols})'.format(
+            cols=', '.join(cols),
+            output=self.output().table
+        )
+        session.execute(create_table)
+        session.commit()
+
         shell("cat '{input}' | psql -c '\\copy {output} FROM STDIN WITH CSV "
               "HEADER ENCODING '\"'\"'latin1'\"'\"".format(
                   output=self.output().table,
@@ -1923,10 +1919,11 @@ class FiveYearPopulation(TableTask):
     def requires(self):
         return {
             'data': RawFiveYearPopulation(),
+            'geotable': Geometry()
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         '''
@@ -1937,10 +1934,14 @@ class FiveYearPopulation(TableTask):
         return cols
 
     def timespan(self):
-        return self.requires()['data'].timespan()
+        return '2015'
 
     def bounds(self):
-        return self.requires()['data'].bounds()
+        if not self.input()['geotable'].exists():
+            return
+        else:
+            session = current_session()
+            return self.input()['geotable'].get(session).bounds
 
     def populate(self):
         session = current_session()
