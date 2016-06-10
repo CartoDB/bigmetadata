@@ -2,6 +2,19 @@ from tasks.meta import OBSTag
 from tasks.util import TagsTask
 
 
+class LicenseTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='cc-by-4',
+                   name='CC-BY 4.0',
+                   description=''),
+        ]
+
+
 class UnitTags(TagsTask):
 
     def version(self):

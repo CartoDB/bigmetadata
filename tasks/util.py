@@ -591,6 +591,7 @@ def camel_to_underscore(name):
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
 
+
 class TempTableTask(Task):
     '''
     A Task that generates a table that will not be referred to in metadata.
@@ -607,6 +608,27 @@ class TempTableTask(Task):
         shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=classpath(self)))
         return PostgresTarget(classpath(self), self.task_id)
+
+
+class Shp2TempTableTask(TempTableTask):
+    '''
+    A task that loads `input_shapefile` into a temporary postgres table.
+    '''
+
+    def input_shp(self):
+        raise NotImplementedError("Must specify `input_shp` method")
+
+    def run(self):
+        cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
+                'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
+                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
+                '-lco OVERWRITE=yes ' \
+                '-lco SCHEMA={schema} -lco PRECISION=no ' \
+                '{input} '.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                    input=self.input_shp())
+        shell(cmd)
 
 
 class LoadPostgresFromURL(TempTableTask):
