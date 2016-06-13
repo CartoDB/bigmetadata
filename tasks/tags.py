@@ -56,7 +56,7 @@ class UnitTags(TagsTask):
 class SectionTags(TagsTask):
 
     def version(self):
-        return 1
+        return 2
 
     def tags(self):
         return [
@@ -70,6 +70,10 @@ class SectionTags(TagsTask):
                    description=''),
             OBSTag(id='spain',
                    name='Spain',
+                   type='section',
+                   description=''),
+            OBSTag(id='uk',
+                   name='United Kingdom',
                    type='section',
                    description=''),
         ]

@@ -592,6 +592,28 @@ def camel_to_underscore(name):
 
 
 
+class DownloadUnzipTask(Task):
+    '''
+    Download a zip file to location {output}.zip and unzip it to the folder
+    {output}.  Subclasses only need to define a `download` method.
+    '''
+
+    def download(self):
+        '''
+        Subclasses should override this, probably with something that uses
+        shell('wget -O {output}.zip {url}')
+        '''
+        raise NotImplementedError('DownloadUnzipTask must define download()')
+
+    def run(self):
+        os.makedirs(self.output().path)
+        self.download()
+        shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
+
 class TempTableTask(Task):
     '''
     A Task that generates a table that will not be referred to in metadata.
@@ -624,7 +646,7 @@ class Shp2TempTableTask(TempTableTask):
                 '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
                 '-lco OVERWRITE=yes ' \
                 '-lco SCHEMA={schema} -lco PRECISION=no ' \
-                '{input} '.format(
+                '\'{input}\' '.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
                     input=self.input_shp())
