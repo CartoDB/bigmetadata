@@ -82,7 +82,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 15
+        return 16
 
     def tags(self):
         return [
@@ -156,4 +156,12 @@ How much people earn.
                    name='Boundaries',
                    type='subsection',
                    description='Political, administrative, and census-based boundaries.'),
+            OBSTag(id='religion',
+                   name='Religion',
+                   type='subsection',
+                   description='Breakdowns of the population by religion.'),
+            OBSTag(id='health',
+                   name='Health',
+                   type='subsection',
+                   description='Breakdowns of the population by health'),
         ]
