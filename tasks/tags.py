@@ -18,7 +18,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 2
+        return 3
 
     def tags(self):
         return [
@@ -48,6 +48,18 @@ class UnitTags(TagsTask):
                    description=''),
             OBSTag(id='years',
                    name='Years',
+                   type='unit',
+                   description=''),
+            OBSTag(id='telephones',
+                   name='Telephones',
+                   type='unit',
+                   description=''),
+            OBSTag(id='vehicles',
+                   name='Vehicles',
+                   type='unit',
+                   description=''),
+            OBSTag(id='businesses',
+                   name='Businesses',
                    type='unit',
                    description=''),
         ]
@@ -82,7 +94,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 16
+        return 17
 
     def tags(self):
         return [
@@ -164,4 +176,8 @@ How much people earn.
                    name='Health',
                    type='subsection',
                    description='Breakdowns of the population by health'),
+            OBSTag(id='commerce_economy',
+                   name='Commerce & Economy',
+                   type='subsection',
+                   description='Broader measures of economic and commercial activity.'),
         ]
