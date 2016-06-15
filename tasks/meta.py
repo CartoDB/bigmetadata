@@ -348,6 +348,7 @@ def fromkeys(d, l):
 
 DENOMINATOR = 'denominator'
 GEOM_REF = 'geom_ref'
+GEOM_NAME = 'geom_name'
 
 Base.metadata.create_all()
 
