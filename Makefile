@@ -74,4 +74,4 @@ run:
 	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
 
 dump:
-	docker-compose run --rm bigmetadata luigi --module tasks.carto Dump
+	docker-compose run --rm bigmetadata luigi --module tasks.carto DumpS3
