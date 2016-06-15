@@ -12,3 +12,4 @@ sphinx
 rst2pdf
 xlrd
 awscli
+boto

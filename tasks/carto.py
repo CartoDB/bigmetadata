@@ -11,6 +11,7 @@ from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter, FloatParameter)
 from luigi.task_register import Register
+from luigi.s3 import S3Target
 from nose.tools import assert_equal
 from urllib import quote_plus
 from datetime import date
@@ -929,3 +930,27 @@ class Dump(Task):
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id + '.dump'))
+
+
+class DumpS3(Task):
+    '''
+    Upload dump to S3
+    '''
+    timestamp = DateParameter(default=date.today())
+
+    def requires(self):
+        return Dump(timestamp=self.timestamp)
+
+    def run(self):
+        shell('aws s3 cp {input} {output}'.format(
+            input=self.input().path,
+            output=self.output().path
+        ))
+
+    def output(self):
+        path = self.input().path.replace('tmp/carto/Dump_', 'do-release-')
+        path = path.replace('.dump', '/obs.dump')
+
+        return S3Target('s3://cartodb-observatory-data/{path}'.format(
+            path=path
+        ))

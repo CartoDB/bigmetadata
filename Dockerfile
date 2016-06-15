@@ -7,8 +7,6 @@ RUN apt-get -yq install python-pip python-dev libpq-dev postgresql-client-common
                         texlive-fonts-recommended texlive-fonts-extra \
                         texlive-latex-extra libjpeg-dev
 
-COPY ./requirements.txt /bigmetadata/requirements.txt
-
 ENV GDAL_VERSION 2.0.1
 ADD http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz /usr/local/src/
 
@@ -20,6 +18,8 @@ RUN cd /usr/local/src && tar -xvf gdal-${GDAL_VERSION}.tar.gz && cd gdal-${GDAL_
 RUN apt-get -yq remove python-pip
 RUN easy_install pip
 RUN apt-get -yq install git
+
+COPY ./requirements.txt /bigmetadata/requirements.txt
 RUN pip install -r /bigmetadata/requirements.txt
 
 EXPOSE 8082
