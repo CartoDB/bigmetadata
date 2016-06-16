@@ -380,7 +380,7 @@ SELECT numer_c.id numer_id,
        MAX(numer_t.timespan) numer_timespan,
        MAX(denom_t.timespan) denom_timespan,
        MAX(geom_t.timespan) geom_timespan,
-       MAX(geom_t.the_geom)::box2d the_geom,
+       MAX(geom_t.the_geom) the_geom,
        ARRAY_AGG(DISTINCT s_tag.id) section_tags,
        ARRAY_AGG(DISTINCT ss_tag.id) subsection_tags,
        ARRAY_AGG(DISTINCT unit_tag.id) unit_tags
