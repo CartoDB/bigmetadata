@@ -702,8 +702,25 @@ class TableTask(Task):
     def timespan(self):
         raise NotImplementedError('Must define timespan for table')
 
-    def bounds(self):
-        raise NotImplementedError('Must define bounds for table')
+    def the_geom(self):
+        geometry_columns = [(colname, coltarget) for colname, coltarget in
+                            self.columns().iteritems() if coltarget._column.type.lower() == 'geometry']
+        if len(geometry_columns) == 0:
+            return None
+        elif len(geometry_columns) == 1:
+            session = current_session()
+            return session.execute(
+                'SELECT ST_AsText( '
+                '  ST_SimplifyPreserveTopology( '
+                '    ST_Union( ' # ST_UnaryUnion?
+                '      {geom_colname}), 0.1)) the_geom '
+                'FROM {output}'.format(
+                    geom_colname=geometry_columns[0][0],
+                    output=self.output().table
+                )).fetchone()['the_geom']
+        else:
+            raise Exception('Having more than one geometry column in one table '
+                            'could lead to problematic behavior ')
 
     def run(self):
         output = self.output()
@@ -711,6 +728,7 @@ class TableTask(Task):
         self.populate()
         output.update_or_create_metadata()
         self.create_indexes()
+        output._obs_table.the_geom = self.the_geom()
 
     def create_indexes(self):
         session = current_session()
@@ -734,7 +752,6 @@ class TableTask(Task):
         self._output = TableTarget(classpath(self),
                                    underscore_slugify(self.task_id),
                                    OBSTable(description=self.description(),
-                                            bounds=self.bounds(),
                                             version=self.version(),
                                             timespan=self.timespan()),
                                    self._columns, self)

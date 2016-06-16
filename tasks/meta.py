@@ -213,14 +213,14 @@ class OBSColumn(Base):
 class OBSTable(Base):
     __tablename__ = 'obs_table'
 
-    id = Column(Text, primary_key=True) # fully-qualified id like '"us.census.acs".extract_year_2013_sample_5yr'
+    id = Column(Text, primary_key=True) # fully-qualified id like 'us.census.acs.extract_2013_5yr_state_18357fba'
 
     columns = relationship("OBSColumnTable", back_populates="table",
                            cascade="all,delete")
 
     tablename = Column(Text, nullable=False)
     timespan = Column(Text)
-    bounds = Column(Text)
+    the_geom = Column(Geometry)
     description = Column(Text)
 
     version = Column(Numeric, default=0, nullable=False)

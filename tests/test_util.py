@@ -321,9 +321,6 @@ class TestTableTask(TableTask):
             'foobar': self.input()['meta']['foobar']
         }
 
-    def bounds(self):
-        return None
-
     def timespan(self):
         return ''
 

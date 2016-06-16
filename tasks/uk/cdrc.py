@@ -104,8 +104,8 @@ class OutputAreas(TableTask):
             'data': ImportOutputAreas(),
         }
 
-    def bounds(self):
-        return 'BOX(-8.65000722593824 49.864684534748,1.76291594680378 60.8607627192102)'
+    def version(self):
+        return 3
 
     def timespan(self):
         return 2011
@@ -120,7 +120,7 @@ class OutputAreas(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT wkb_geometry, oa_sa, sprgrp, grp, subgrp '
+                        'SELECT ST_MakeValid(wkb_geometry), oa_sa, sprgrp, grp, subgrp '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input()['data'].table,

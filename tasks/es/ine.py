@@ -86,7 +86,7 @@ class GeometryColumns(ColumnsTask):
 class Geometry(TableTask):
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
@@ -99,15 +99,6 @@ class Geometry(TableTask):
 
     def timespan(self):
         return '2011'
-
-    def bounds(self):
-        if not self.input()['data'].exists():
-            return
-        session = current_session()
-        return session.execute(
-            'SELECT ST_EXTENT(wkb_geometry) FROM '
-            '{input}'.format(input=self.input()['data'].table)
-        ).first()[0]
 
     def populate(self):
         session = current_session()
@@ -1711,9 +1702,6 @@ class PopulationHouseholdsHousing(TableTask):
     def timespan(self):
         return '2011'
 
-    def bounds(self):
-        return 'BOX(-18.1608741903971 27.6377376448416,4.32788958435346 43.7899939997615)'
-
     def columns(self):
         '''
         Add the geoid (cusec_id) column into first position as expected
@@ -1918,8 +1906,7 @@ class FiveYearPopulation(TableTask):
 
     def requires(self):
         return {
-            'data': RawFiveYearPopulation(),
-            'geotable': Geometry()
+            'data': RawFiveYearPopulation()
         }
 
     def version(self):
@@ -1935,13 +1922,6 @@ class FiveYearPopulation(TableTask):
 
     def timespan(self):
         return '2015'
-
-    def bounds(self):
-        if not self.input()['geotable'].exists():
-            return
-        else:
-            session = current_session()
-            return self.input()['geotable'].get(session).bounds
 
     def populate(self):
         session = current_session()

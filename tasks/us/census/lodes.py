@@ -599,9 +599,6 @@ class WorkplaceAreaCharacteristics(TableTask):
     def timespan(self):
         return unicode(self.year)
 
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
     def columns(self):
         data_columns = self.input()['data_meta']
         tiger_columns = self.input()['tiger_meta']

@@ -2985,9 +2985,6 @@ class Quantiles(TableTask):
         columns.update(input_['columns'])
         return columns
 
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
     def timespan(self):
         sample = int(self.sample[0])
         return '{start} - {end}'.format(start=int(self.year) - sample + 1,
@@ -3041,12 +3038,6 @@ class Extract(TableTask):
         sample = int(self.sample[0])
         return '{start} - {end}'.format(start=int(self.year) - sample + 1,
                                         end=int(self.year))
-
-    def bounds(self):
-        session = current_session()
-        input_ = self.input()
-        if input_['tigerdata'].exists():
-            return input_['tigerdata'].get(session).bounds
 
     def columns(self):
         input_ = self.input()

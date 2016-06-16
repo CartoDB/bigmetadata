@@ -128,9 +128,6 @@ class SpielmanSingletonTable(TableTask):
     def timespan(self):
         return '2010 - 2014'
 
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
     def populate(self):
         table_name = self.output().table
         shell(r"psql -c '\copy {table} FROM {file_path} WITH CSV HEADER'".format(

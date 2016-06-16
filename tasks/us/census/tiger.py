@@ -536,6 +536,26 @@ class UnionTigerWaterGeoms(TempTableTask):
                             input=self.input().table))
 
 
+class USBounds(TempTableTask):
+    '''
+    Simple US-wide boundaries
+    '''
+
+    def requires(self):
+        return DownloadTiger(year=2014)
+
+    def run(self):
+        session = current_session()
+        session.execute('CREATE TABLE {output} (the_geom GEOMETRY)'.format(
+            output=self.output().table
+        ))
+        session.execute('INSERT INTO {output} '
+                        'SELECT ST_SimplifyPreserveTopology(ST_Union(geom), 0.1) '
+                        'FROM tiger2014.state'.format(
+                            output=self.output().table
+                        ))
+
+
 class ShorelineClip(TableTask):
     '''
     Clip the provided geography to shoreline.
@@ -556,6 +576,7 @@ class ShorelineClip(TableTask):
             'geoms': ClippedGeomColumns(),
             'geoids': GeoidColumns(),
             'attributes': Attributes(),
+            'coverage': USBounds(),
         }
 
     def columns(self):
@@ -568,11 +589,11 @@ class ShorelineClip(TableTask):
     def timespan(self):
         return self.year
 
-    def bounds(self):
-        # TODO currently obtained from
-        # SELECT ST_Extent(the_geom) FROM observatory.obs_624e5d2362e08aaa5463d7671e7748432262719c 
-        # WHERE geoid NOT IN ( '02', '69', '66');
-        return 'BOX(-178.443593 -14.601813,-64.512674 49.384358)'
+    def the_geom(self):
+        session = current_session()
+        return session.execute('SELECT ST_AsText(the_geom) FROM {bounds}'.format(
+            bounds=self.input()['bounds'].table
+        )).fetchone()['the_geom']
 
     def populate(self):
         session = current_session()
@@ -615,7 +636,7 @@ class SumLevel(TableTask):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         tiger = DownloadTiger(year=self.year)
@@ -623,7 +644,8 @@ class SumLevel(TableTask):
             'data': tiger,
             'attributes': Attributes(),
             'geoids': GeoidColumns(),
-            'geoms': GeomColumns()
+            'geoms': GeomColumns(),
+            'bounds': USBounds(),
         }
 
     def columns(self):
@@ -637,16 +659,11 @@ class SumLevel(TableTask):
     def timespan(self):
         return self.year
 
-    def bounds(self):
-        from_clause = '{inputschema}.{input_tablename}'.format(
-            inputschema='tiger' + str(self.year),
-            input_tablename=self.input_tablename,
-        )
+    def the_geom(self):
         session = current_session()
-        return session.execute('SELECT ST_EXTENT(geom) FROM '
-                               '{from_clause}'.format(
-                                   from_clause=from_clause
-                               )).first()[0]
+        return session.execute('SELECT ST_AsText(the_geom) the_geom FROM {bounds}'.format(
+            bounds=self.input()['bounds'].table
+        )).fetchone()['the_geom']
 
     def populate(self):
         session = current_session()

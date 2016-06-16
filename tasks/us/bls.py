@@ -44,9 +44,6 @@ class NAICS(TableTask):
     def timespan(self):
         return None
 
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
     def columns(self):
         return self.input()
 
@@ -403,9 +400,6 @@ class RawQCEW(TableTask):
     def timespan(self):
         return self.year
 
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
     def requires(self):
         return {
             'data': DownloadQCEW(year=self.year),
@@ -508,9 +502,6 @@ class SimpleQCEW(TableTask):
         return '{year}Q{quarter}'.format(year=self.year,
                                          quarter=self.qtr)
 
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
     def columns(self):
         return RawQCEW(year=self.year).columns()
 
@@ -551,9 +542,6 @@ class QCEW(TableTask):
         columns['county_fips'] = self.input()['tiger_meta']['county_geoid']
         columns.update(self.input()['qcew_meta'])
         return columns
-
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
 
     def timespan(self):
         return '{year}Q{qtr}'.format(year=self.year, qtr=self.qtr)

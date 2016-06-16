@@ -568,10 +568,7 @@ class Anuario(TableTask):
         return os.path.join(base, fname)
 
     def version(self):
-        return 3
-
-    def bounds(self):
-        return 'BOX(-18.1608741903971 27.6377376448416,4.32788958435346 43.7899939997615)'
+        return 4
 
     def timespan(self):
         return self.year

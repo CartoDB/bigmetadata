@@ -1120,9 +1120,6 @@ class EnglandWalesLocal(TableTask):
             'data_columns': CensusColumns(),
         }
 
-    def bounds(self):
-        return 'BOX(-8.65000722593824 49.864684534748,1.76291594680378 60.8607627192102)'
-
     def timespan(self):
         return 2011
 
@@ -1173,4 +1170,3 @@ class EnglandWalesLocal(TableTask):
                             output=self.output().table,
                             input=intable)
                 session.execute(stmt)
-

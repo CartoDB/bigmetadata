@@ -264,9 +264,6 @@ class WideZillow(TableTask):
             'geoids': GeoidColumns()
         }
 
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
-
     def timespan(self):
         return None
 
@@ -335,9 +332,6 @@ class Zillow(TableTask):
                 geography=self.geography, hometype=hometype, measure=measure)
 
         return requirements
-
-    def bounds(self):
-        return 'BOX(0 0,0 0)'
 
     def timespan(self):
         return '{year}-{month}'.format(year=str(self.year).zfill(2),

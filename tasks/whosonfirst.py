@@ -116,14 +116,11 @@ class WOF(TableTask):
 
     resolution = Parameter()
 
-    def bounds(self):
-        return 'BOX(-180 -90,180 90)'
-
     def timespan(self):
         return '2016'
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         requirements = {

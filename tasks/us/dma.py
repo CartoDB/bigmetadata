@@ -74,8 +74,8 @@ class DMA(TableTask):
             'data': ImportDMA(),
         }
 
-    def bounds(self):
-        return 'BOX(-178.443593 -14.601813,-64.512674 49.384358)'
+    def version(self):
+        return 2
 
     def timespan(self):
         return '2013'

@@ -118,7 +118,7 @@ class Geometry(TableTask):
     timestamp = Parameter(default='20150101')
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
@@ -127,9 +127,6 @@ class Geometry(TableTask):
             'data': ImportGeometry(resolution=self.resolution,
                                    timestamp=self.timestamp)
         }
-
-    def bounds(self):
-        return 'BOX(-18.1608741903971 27.6377376448416,4.32788958435346 43.7899939997615)'
 
     def timespan(self):
         return self.timestamp
