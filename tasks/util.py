@@ -78,18 +78,8 @@ def query_cartodb(query):
     return resp
 
 
-def sql_to_cartodb_table(outname, localname, json_column_names=None,
-                         schema='observatory'):
-    '''
-    Move the specified table to cartodb
-
-    If json_column_names are specified, then those columns will be altered to
-    JSON after the fact (they get smushed to TEXT at some point in the import
-    process)
-    '''
-    json_column_names = json_column_names or []
+def upload_via_ogr2ogr(outname, localname, schema):
     api_key = os.environ['CARTODB_API_KEY']
-    private_outname = outname + '_private'
     cmd = u'''
 ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -f CartoDB "CartoDB:observatory" \
@@ -97,21 +87,23 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         -nlt GEOMETRY \
         -nln "{private_outname}" \
         PG:dbname=$PGDATABASE' active_schema={schema}' '{tablename}'
-    '''.format(private_outname=private_outname, tablename=localname,
+    '''.format(private_outname=outname, tablename=localname,
                schema=schema)
     print cmd
     shell(cmd)
-    print 'copying via import api'
+
+
+def import_api(request, json_column_names=None):
+    '''
+    Run the import api with `request`.  Optional `json_column_names` will
+    convert those columns to JSON type after the fact.
+    '''
+    api_key = os.environ['CARTODB_API_KEY']
+    json_column_names = json_column_names or []
     resp = requests.post('{url}/api/v1/imports/?api_key={api_key}'.format(
         url=os.environ['CARTODB_URL'],
         api_key=api_key
-    ), json={
-        'table_name': outname,
-        'table_copy': private_outname,
-        'create_vis': False,
-        'type_guessing': False,
-        'privacy': 'public'
-    })
+    ), json=request)
     assert resp.status_code == 200
     import_id = resp.json()["item_queue_id"]
     while True:
@@ -128,20 +120,42 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
         time.sleep(1)
 
     # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
-    assert resp.json()['table_name'] == outname # the copy should not have a
-                                                # mutilated name (like '_1', '_2' etc)
-
-    resp = query_cartodb('DROP TABLE "{}" CASCADE'.format(private_outname))
-    assert resp.status_code == 200
+    assert resp.json()['table_name'] == request['table_name'] # the copy should not have a
+                                                             # mutilated name (like '_1', '_2' etc)
 
     for colname in json_column_names:
         query = 'ALTER TABLE {outname} ALTER COLUMN {colname} ' \
                 'SET DATA TYPE json USING {colname}::json'.format(
-                    outname=outname, colname=colname
+                    outname=resp['tablename'], colname=colname
                 )
         print query
         resp = query_cartodb(query)
         assert resp.status_code == 200
+
+
+
+def sql_to_cartodb_table(outname, localname, json_column_names=None,
+                         schema='observatory'):
+    '''
+    Move the specified table to cartodb
+
+    If json_column_names are specified, then those columns will be altered to
+    JSON after the fact (they get smushed to TEXT at some point in the import
+    process)
+    '''
+    private_outname = outname + '_private'
+    upload_via_ogr2ogr(private_outname, localname, schema)
+
+    print 'copying via import api'
+    import_api({
+        'table_name': outname,
+        'table_copy': private_outname,
+        'create_vis': False,
+        'type_guessing': False,
+        'privacy': 'public'
+    }, json_column_names=json_column_names)
+    resp = query_cartodb('DROP TABLE "{}" CASCADE'.format(private_outname))
+    assert resp.status_code == 200
 
 
 class PostgresTarget(Target):

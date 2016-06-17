@@ -5,7 +5,7 @@ Tasks to sync data locally to CartoDB
 from tasks.meta import (current_session, OBSTable, Base, OBSColumn,)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, TempTableTask,
-                        CartoDBTarget)
+                        CartoDBTarget, import_api)
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter, FloatParameter)
@@ -911,11 +911,12 @@ class DumpS3(Task):
         ))
 
 
-class OBSMetaView(TempTableTask):
+class OBSMetaView(Task):
+
+    force = BooleanParameter(default=True)
 
     QUERY = '''
-    DROP VIEW IF EXISTS {output};
-    CREATE VIEW {output} AS SELECT  numer_c.id numer_id,
+    SELECT numer_c.id numer_id,
            denom_c.id denom_id,
            geom_c.id geom_id,
            MAX(numer_c.name) numer_name,
@@ -943,6 +944,8 @@ class OBSMetaView(TempTableTask):
            MAX(denom_t.timespan) denom_timespan,
            MAX(geom_t.timespan) geom_timespan,
            ST_SetSRID(MAX(geom_t.the_geom), 4326) the_geom,
+           ST_Transform(ST_SetSRID(MAX(geom_t.the_geom), 4326), 3857) the_geom_webmercator,
+           MAX(geom_t.bounds)::box2d geom_bounds,
            ARRAY_AGG(DISTINCT s_tag.id) section_tags,
            ARRAY_AGG(DISTINCT ss_tag.id) subsection_tags,
            ARRAY_AGG(DISTINCT unit_tag.id) unit_tags
@@ -1003,51 +1006,15 @@ class OBSMetaView(TempTableTask):
     '''
 
     def run(self):
-        session = current_session()
-        session.execute(self.QUERY.format(output=self.output().table))
+        import_api({
+            'table_name': 'obs_meta',
+            'sql': self.QUERY.replace('\n', ' '),
+            'privacy': 'public'
+        })
 
     def output(self):
-        return PostgresTarget('observatory', 'obs_meta')
-
-#class MetaSummaryTable(Task):
-#
-#    force = BooleanParameter(default=True)
-#
-#    def run(self):
-#        outname = 'obs_meta'
-#        api_key = os.environ['CARTODB_API_KEY']
-#        resp = requests.post('{url}/api/v1/imports/?api_key={api_key}'.format(
-#            url=os.environ['CARTODB_URL'],
-#            api_key=api_key
-#        ), json={
-#            'table_name': outname,
-#            'sql': OBS_META_QUERY.replace('\n', ' '),
-#            'privacy': 'public'
-#        })
-#        assert resp.status_code == 200
-#        import_id = resp.json()["item_queue_id"]
-#        while True:
-#            resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
-#                url=os.environ['CARTODB_URL'],
-#                import_id=import_id,
-#                api_key=api_key
-#            ))
-#            if resp.json()['state'] == 'complete':
-#                break
-#            elif resp.json()['state'] == 'failure':
-#                raise Exception('Import failed: {}'.format(resp.json()))
-#            print resp.json()['state']
-#            time.sleep(1)
-#
-#        # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
-#        assert resp.json()['table_name'] == outname # the copy should not have a
-#                                                    # mutilated name (like '_1', '_2' etc)
-#
-#    def output(self):
-#        target = CartoDBTarget(tablename='obs_meta')
-#        if self.force and target.exists():
-#            target.remove()
-#            self.force = False
-#        return target
-
-
+        target = CartoDBTarget(tablename='obs_meta')
+        if self.force and target.exists():
+            target.remove()
+            self.force = False
+        return target
