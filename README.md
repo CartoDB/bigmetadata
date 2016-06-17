@@ -22,11 +22,10 @@ Docker is available.
   underlying data from.
 
 * __Metadata__: human and machine-readable descriptions of the data in the
-  observatory.  Currently structured as
-  [a large hierarchy of JSON blobs](https://github.com/talos/bmd-data), but
-  I am moving towards a simpler tabular relational store in postgres based off
-  of `information_schema`.  While tables have some minimal metadata, for the
-  most part what is described are columns in tables.
+  observatory.  Table schema can be found in
+  [tasks/meta.py](https://github.com/CartoDB/bigmetadata/blob/master/tasks/meta.py#L76).
+  There are six related tables, `obs_table`, `obs_column_table`, `obs_column`,
+  `obs_column_tag`, `obs_tag`, and `obs_column_to_column`.
 
 * __Catalog__: a [static HTML guide](https://cartodb.github.io/bigmetadata) to
   data in the observatory generated from the metadata.  Docs are generated
