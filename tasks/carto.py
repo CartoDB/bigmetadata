@@ -2,8 +2,7 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import (current_session, OBSTable, Base, OBSColumn,
-                        OBS_META_QUERY)
+from tasks.meta import (current_session, OBSTable, Base, OBSColumn,)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, TempTableTask,
                         CartoDBTarget)
@@ -99,49 +98,6 @@ class Import(TempTableTask):
         ))
 
 
-
-class MetaSummaryTable(Task):
-
-    force = BooleanParameter(default=True)
-
-    def run(self):
-        outname = 'obs_meta'
-        api_key = os.environ['CARTODB_API_KEY']
-        resp = requests.post('{url}/api/v1/imports/?api_key={api_key}'.format(
-            url=os.environ['CARTODB_URL'],
-            api_key=api_key
-        ), json={
-            'table_name': outname,
-            'sql': OBS_META_QUERY.replace('\n', ' '),
-            'privacy': 'public'
-        })
-        assert resp.status_code == 200
-        import_id = resp.json()["item_queue_id"]
-        while True:
-            resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
-                url=os.environ['CARTODB_URL'],
-                import_id=import_id,
-                api_key=api_key
-            ))
-            if resp.json()['state'] == 'complete':
-                break
-            elif resp.json()['state'] == 'failure':
-                raise Exception('Import failed: {}'.format(resp.json()))
-            print resp.json()['state']
-            time.sleep(1)
-
-        # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
-        assert resp.json()['table_name'] == outname # the copy should not have a
-                                                    # mutilated name (like '_1', '_2' etc)
-
-    def output(self):
-        target = CartoDBTarget(tablename='obs_meta')
-        if self.force and target.exists():
-            target.remove()
-            self.force = False
-        return target
-
-
 class SyncMetadata(WrapperTask):
 
     force = BooleanParameter(default=True)
@@ -151,9 +107,8 @@ class SyncMetadata(WrapperTask):
             schema, tablename = tablename.split('.')
             yield TableToCarto(table=tablename, outname=tablename, force=self.force,
                                schema=schema)
-
-    def run(self):
-        yield MetaSummaryTable()
+        yield TableToCarto(table='obs_meta', outname='obs_meta', force=self.force,
+                           schema='observatory')
 
 
 def should_upload(table):
@@ -954,3 +909,145 @@ class DumpS3(Task):
         return S3Target('s3://cartodb-observatory-data/{path}'.format(
             path=path
         ))
+
+
+class OBSMetaView(TempTableTask):
+
+    QUERY = '''
+    DROP VIEW IF EXISTS {output};
+    CREATE VIEW {output} AS SELECT  numer_c.id numer_id,
+           denom_c.id denom_id,
+           geom_c.id geom_id,
+           MAX(numer_c.name) numer_name,
+           MAX(denom_c.name) denom_name,
+           MAX(geom_c.name) geom_name,
+           MAX(numer_c.description) numer_description,
+           MAX(denom_c.description) denom_description,
+           MAX(geom_c.description) geom_description,
+           MAX(numer_c.aggregate) numer_aggregate,
+           MAX(denom_c.aggregate) denom_aggregate,
+           MAX(geom_c.aggregate) geom_aggregate,
+           MAX(numer_c.type) numer_type,
+           MAX(denom_c.type) denom_type,
+           MAX(geom_c.type) geom_type,
+           MAX(numer_data_ct.colname) numer_colname,
+           MAX(denom_data_ct.colname) denom_colname,
+           MAX(geom_geom_ct.colname) geom_colname,
+           MAX(numer_geomref_ct.colname) numer_geomref_colname,
+           MAX(denom_geomref_ct.colname) denom_geomref_colname,
+           MAX(geom_geomref_ct.colname) geom_geomref_colname,
+           MAX(numer_t.tablename) numer_tablename,
+           MAX(denom_t.tablename) denom_tablename,
+           MAX(geom_t.tablename) geom_tablename,
+           MAX(numer_t.timespan) numer_timespan,
+           MAX(denom_t.timespan) denom_timespan,
+           MAX(geom_t.timespan) geom_timespan,
+           ST_SetSRID(MAX(geom_t.the_geom), 4326) the_geom,
+           ARRAY_AGG(DISTINCT s_tag.id) section_tags,
+           ARRAY_AGG(DISTINCT ss_tag.id) subsection_tags,
+           ARRAY_AGG(DISTINCT unit_tag.id) unit_tags
+    FROM observatory.obs_column_table numer_data_ct,
+         observatory.obs_table numer_t,
+         observatory.obs_column_table numer_geomref_ct,
+         observatory.obs_column geomref_c,
+         observatory.obs_column_to_column geomref_c2c,
+         observatory.obs_column geom_c,
+         observatory.obs_column_table geom_geom_ct,
+         observatory.obs_column_table geom_geomref_ct,
+         observatory.obs_table geom_t,
+         observatory.obs_column_tag ss_ctag,
+         observatory.obs_tag ss_tag,
+         observatory.obs_column_tag s_ctag,
+         observatory.obs_tag s_tag,
+         observatory.obs_column numer_c
+      LEFT JOIN (
+        observatory.obs_column_to_column denom_c2c
+        JOIN observatory.obs_column denom_c ON denom_c2c.target_id = denom_c.id
+        JOIN observatory.obs_column_table denom_data_ct ON denom_data_ct.column_id = denom_c.id
+        JOIN observatory.obs_table denom_t ON denom_data_ct.table_id = denom_t.id
+        JOIN observatory.obs_column_table denom_geomref_ct ON denom_geomref_ct.table_id = denom_t.id
+      ) ON denom_c2c.source_id = numer_c.id
+      LEFT JOIN (
+         observatory.obs_column_tag unit_ctag
+         JOIN observatory.obs_tag unit_tag ON unit_tag.id = unit_ctag.tag_id
+      ) ON numer_c.id = unit_ctag.column_id
+    WHERE numer_c.id = numer_data_ct.column_id
+      AND numer_data_ct.table_id = numer_t.id
+      AND numer_t.id = numer_geomref_ct.table_id
+      AND numer_geomref_ct.column_id = geomref_c.id
+      AND geomref_c2c.reltype = 'geom_ref'
+      AND geomref_c.id = geomref_c2c.source_id
+      AND geom_c.id = geomref_c2c.target_id
+      AND geom_geomref_ct.column_id = geomref_c.id
+      AND geom_geomref_ct.table_id = geom_t.id
+      AND geom_geom_ct.column_id = geom_c.id
+      AND geom_geom_ct.table_id = geom_t.id
+      AND geom_c.type ILIKE 'geometry'
+      AND numer_c.type NOT ILIKE 'geometry'
+      AND numer_t.id != geom_t.id
+      AND numer_c.id != geomref_c.id
+      AND (unit_tag.type = 'unit' OR unit_tag.type IS NULL)
+      AND ss_tag.type = 'subsection'
+      AND s_tag.type = 'section'
+      AND unit_ctag.column_id = numer_c.id
+      AND unit_ctag.tag_id = unit_tag.id
+      AND ss_ctag.column_id = numer_c.id
+      AND ss_ctag.tag_id = ss_tag.id
+      AND s_ctag.column_id = numer_c.id
+      AND s_ctag.tag_id = s_tag.id
+      AND (denom_c2c.reltype = 'denominator' OR denom_c2c.reltype IS NULL)
+      AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
+      AND (denom_t.timespan = numer_t.timespan OR denom_t.timespan IS NULL)
+    GROUP BY numer_c.id, denom_c.id, geom_c.id,
+             numer_t.id, denom_t.id, geom_t.id
+    '''
+
+    def run(self):
+        session = current_session()
+        session.execute(self.QUERY.format(output=self.output().table))
+
+    def output(self):
+        return PostgresTarget('observatory', 'obs_meta')
+
+#class MetaSummaryTable(Task):
+#
+#    force = BooleanParameter(default=True)
+#
+#    def run(self):
+#        outname = 'obs_meta'
+#        api_key = os.environ['CARTODB_API_KEY']
+#        resp = requests.post('{url}/api/v1/imports/?api_key={api_key}'.format(
+#            url=os.environ['CARTODB_URL'],
+#            api_key=api_key
+#        ), json={
+#            'table_name': outname,
+#            'sql': OBS_META_QUERY.replace('\n', ' '),
+#            'privacy': 'public'
+#        })
+#        assert resp.status_code == 200
+#        import_id = resp.json()["item_queue_id"]
+#        while True:
+#            resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
+#                url=os.environ['CARTODB_URL'],
+#                import_id=import_id,
+#                api_key=api_key
+#            ))
+#            if resp.json()['state'] == 'complete':
+#                break
+#            elif resp.json()['state'] == 'failure':
+#                raise Exception('Import failed: {}'.format(resp.json()))
+#            print resp.json()['state']
+#            time.sleep(1)
+#
+#        # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
+#        assert resp.json()['table_name'] == outname # the copy should not have a
+#                                                    # mutilated name (like '_1', '_2' etc)
+#
+#    def output(self):
+#        target = CartoDBTarget(tablename='obs_meta')
+#        if self.force and target.exists():
+#            target.remove()
+#            self.force = False
+#        return target
+
+
