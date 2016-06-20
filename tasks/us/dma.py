@@ -75,7 +75,7 @@ class DMA(TableTask):
         }
 
     def version(self):
-        return 2
+        return 5
 
     def timespan(self):
         return '2013'

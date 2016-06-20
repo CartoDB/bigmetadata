@@ -105,6 +105,7 @@ def import_api(request, json_column_names=None):
         api_key=api_key
     ), json=request)
     assert resp.status_code == 200
+
     import_id = resp.json()["item_queue_id"]
     while True:
         resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
@@ -126,12 +127,11 @@ def import_api(request, json_column_names=None):
     for colname in json_column_names:
         query = 'ALTER TABLE {outname} ALTER COLUMN {colname} ' \
                 'SET DATA TYPE json USING {colname}::json'.format(
-                    outname=resp['tablename'], colname=colname
+                    outname=resp.json()['table_name'], colname=colname
                 )
         print query
         resp = query_cartodb(query)
         assert resp.status_code == 200
-
 
 
 def sql_to_cartodb_table(outname, localname, json_column_names=None,
@@ -145,6 +145,17 @@ def sql_to_cartodb_table(outname, localname, json_column_names=None,
     '''
     private_outname = outname + '_private'
     upload_via_ogr2ogr(private_outname, localname, schema)
+
+    # populate the_geom_webmercator
+    # if you try to use the import API to copy a table with the_geom populated
+    # but not the_geom_webmercator, we get an error for unpopulated column
+    resp = query_cartodb(
+        'UPDATE {tablename} '
+        'SET the_geom_webmercator = CDB_TransformToWebmercator(the_geom) '.format(
+            tablename=private_outname
+        )
+    )
+    assert resp.status_code == 200
 
     print 'copying via import api'
     import_api({
@@ -725,9 +736,20 @@ class TableTask(Task):
             session = current_session()
             return session.execute(
                 'SELECT ST_AsText( '
-                '  ST_SimplifyPreserveTopology( '
-                '    ST_Union( ' # ST_UnaryUnion?
-                '      {geom_colname}), 0.1)) the_geom '
+                '  ST_MakeValid( '
+                '    ST_SnapToGrid( '
+                '      ST_Buffer( '
+                '        ST_Union( '
+                '          ST_MakeValid( '
+                '            ST_Simplify( '
+                '              ST_SnapToGrid({geom_colname}, 0.3) '
+                '            , 0) '
+                '          ) '
+                '        ) '
+                '      , 0.3, 2) '
+                '    , 0.3) '
+                '  ) '
+                ') the_geom '
                 'FROM {output}'.format(
                     geom_colname=geometry_columns[0][0],
                     output=self.output().table
