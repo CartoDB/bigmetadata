@@ -107,8 +107,9 @@ class SyncMetadata(WrapperTask):
             schema, tablename = tablename.split('.')
             yield TableToCarto(table=tablename, outname=tablename, force=self.force,
                                schema=schema)
-        yield TableToCarto(table='obs_meta', outname='obs_meta', force=self.force,
-                           schema='observatory')
+
+    def run(self):
+        yield OBSMetaToCarto()
 
 
 def should_upload(table):
@@ -787,6 +788,7 @@ class ConfirmTablesDescribedExist(Task):
     def run(self):
         session = current_session()
         for table in session.query(OBSTable):
+            print table.tablename
             target = PostgresTarget('observatory', table.tablename)
             assert target.exists()
             assert session.execute(
@@ -876,12 +878,21 @@ class Dump(Task):
     timestamp = DateParameter(default=date.today())
 
     def requires(self):
-        return ConfirmTablesDescribedExist()
+        yield ConfirmTablesDescribedExist()
+        yield OBSMetaToLocal()
 
     def run(self):
-        self.output().makedirs()
-        shell('pg_dump -Fc -Z0 -x -n observatory -f {output}'.format(
-            output=self.output().path))
+        session = current_session()
+        try:
+            self.output().makedirs()
+            session.execute(
+                'INSERT INTO observatory.obs_dump_version (dump_id) '
+                "VALUES ('{task_id}')".format(task_id=self.task_id))
+            shell('pg_dump -Fc -Z0 -x -n observatory -f {output}'.format(
+                output=self.output().path))
+        except Exception as err:
+            session.rollback()
+            raise err
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id + '.dump'))
@@ -911,7 +922,7 @@ class DumpS3(Task):
         ))
 
 
-class OBSMetaView(Task):
+class OBSMeta(Task):
 
     force = BooleanParameter(default=True)
 
@@ -943,9 +954,8 @@ class OBSMetaView(Task):
            MAX(numer_t.timespan) numer_timespan,
            MAX(denom_t.timespan) denom_timespan,
            MAX(geom_t.timespan) geom_timespan,
-           ST_SetSRID(MAX(geom_t.the_geom), 4326) the_geom,
-           ST_Transform(ST_SetSRID(MAX(geom_t.the_geom), 4326), 3857) the_geom_webmercator,
            MAX(geom_t.bounds)::box2d geom_bounds,
+           MAX(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
            ARRAY_AGG(DISTINCT s_tag.id) section_tags,
            ARRAY_AGG(DISTINCT ss_tag.id) subsection_tags,
            ARRAY_AGG(DISTINCT unit_tag.id) unit_tags
@@ -1004,6 +1014,33 @@ class OBSMetaView(Task):
     GROUP BY numer_c.id, denom_c.id, geom_c.id,
              numer_t.id, denom_t.id, geom_t.id
     '''
+
+
+class OBSMetaToLocal(OBSMeta):
+
+    def run(self):
+        session = current_session()
+        session.execute('DROP TABLE IF EXISTS {output}'.format(
+            output=self.output().table
+        ))
+        session.execute('CREATE TABLE {output} AS {select}'.format(
+            output=self.output().table,
+            select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
+        ))
+        session.commit()
+        self.force = False
+
+    def complete(self):
+        if self.force:
+            return False
+        else:
+            return super(OBSMetaToLocal, self).exists()
+
+    def output(self):
+        return PostgresTarget('observatory', 'obs_meta')
+
+
+class OBSMetaToCarto(OBSMeta):
 
     def run(self):
         import_api({

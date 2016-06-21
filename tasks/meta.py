@@ -258,6 +258,12 @@ class OBSColumnTag(Base):
                       )
 
 
+class OBSDumpVersion(Base):
+    __tablename__ = 'obs_dump_version'
+
+    dump_id = Column(Text, primary_key=True)
+
+
 class CurrentSession(object):
 
     def __init__(self):
