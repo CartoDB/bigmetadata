@@ -577,7 +577,7 @@ class TagsTask(Task):
 
 class TableToCarto(Task):
 
-    force = BooleanParameter(default=False)
+    force = BooleanParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
     table = Parameter()
     outname = Parameter(default=None)

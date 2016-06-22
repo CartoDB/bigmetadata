@@ -25,14 +25,9 @@ import os
 import json
 import requests
 
-def extract_dict_a_from_b(a, b):
-    return dict([(k, b[k]) for k in a.keys() if k in b.keys()])
 
-
-def metatables():
-    for tablename, table in Base.metadata.tables.iteritems():
-        if tablename.startswith('observatory.obs_'):
-            yield tablename, table
+META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_column',
+               'obs_column_tag', 'obs_tag', 'obs_dump_version', )
 
 
 class Import(TempTableTask):
@@ -103,10 +98,9 @@ class SyncMetadata(WrapperTask):
     force = BooleanParameter(default=True)
 
     def requires(self):
-        for tablename, _ in metatables():
-            schema, tablename = tablename.split('.')
-            yield TableToCarto(table=tablename, outname=tablename, force=self.force,
-                               schema=schema)
+        for tablename in META_TABLES:
+            yield TableToCarto(table=tablename, outname=tablename,
+                               force=self.force)
 
     def run(self):
         yield OBSMetaToCarto()
@@ -855,38 +849,6 @@ class TestAllData(Task):
     '''
 
     pass
-
-
-class TestMetadata(Task):
-    '''
-    Make sure all metadata is uploaded & in sync
-    '''
-
-    def run(self):
-        session = current_session()
-        for tablename, table in metatables():
-            pkey = [c.name for c in table.primary_key]
-
-            resp = query_cartodb('select * from {tablename}'.format(
-                tablename=tablename))
-            for remote_row in resp.json()['rows']:
-                uid = dict([
-                    (k, remote_row[k]) for k in pkey
-                ])
-                local_vals = [unicode(v) for v in session.query(table).filter_by(**uid).one()]
-                local_row = dict(zip([col.name for col in table.columns], local_vals))
-                remote_row = dict([(k, unicode(v)) for k, v in remote_row.iteritems()])
-                try:
-                    assert_equal(local_row, extract_dict_a_from_b(local_row, remote_row))
-                except Exception as err:
-                    import pdb
-                    pdb.set_trace()
-                    print err
-
-        self._complete = True
-
-    def complete(self):
-        return hasattr(self, '_complete') and self._complete is True
 
 
 class Dump(Task):
