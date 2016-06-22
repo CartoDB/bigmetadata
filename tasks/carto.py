@@ -672,14 +672,33 @@ class GenerateStaticImage(Task):
         return LocalTarget(os.path.join('catalog/source/img', self.task_id + '.png'))
 
 
-class PurgeFunctions(Task):
-    '''
-    Purge remote functions
-    '''
-    pass
+class GenerateThumb(Task):
+
+    measure = Parameter(default=None)
+    viz = Parameter(default=None)
+    force = Parameter(default=False, significant=False)
+
+    def requires(self):
+        if self.viz and self.measure:
+            raise Exception('Specify either viz or measure')
+        elif self.viz:
+            return GenerateStaticImage(viz=self.viz)  #TODO no force option for generatestaticimage
+        elif self.measure:
+            return ImagesForMeasure(measure=self.measure, force=self.force)
+        else:
+            raise Exception('Must specify viz or measure')
+
+    def run(self):
+        self.output().makedirs()
+        img = Image.open(self.input().path)
+        img.resize((img.size[0] / 2, img.size[1] / 2))
+        img.save(self.output().path, format='JPEG', quality=75, optimized=True)
+
+    def output(self):
+        return LocalTarget(self.input().path.replace('/img/', '/img_thumb/'))
 
 
-class PurgeMetadataTags(Task):
+class PurgeMetadataTasks(Task):
     '''
     Purge local metadata tables that no longer have tasks linking to them
     '''

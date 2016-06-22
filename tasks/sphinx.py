@@ -9,7 +9,7 @@ from jinja2 import Environment, PackageLoader
 from luigi import WrapperTask, Task, LocalTarget, BooleanParameter, Parameter
 from tasks.util import shell
 from tasks.meta import current_session, OBSTag
-from tasks.carto import GenerateStaticImage, ImagesForMeasure
+from tasks.carto import GenerateStaticImage, ImagesForMeasure, GenerateThumb
 
 
 ENV = Environment(loader=PackageLoader('catalog', 'templates'))
@@ -33,8 +33,8 @@ class GenerateRST(Task):
         super(GenerateRST, self).__init__(*args, **kwargs)
         if self.force:
             shell('rm -rf catalog/source/*/*')
-        shell('cp -R catalog/img/* catalog/source/img/')
-
+        shell('cp -R catalog/img catalog/source/')
+        shell('cp -R catalog/img_thumb catalog/source/')
 
     def requires(self):
         session = current_session()
@@ -44,11 +44,18 @@ class GenerateRST(Task):
             subsection = session.query(OBSTag).get(subsection_id)
             if '.. cartofigure:: ' in subsection.description:
                 viz_id = re.search(r'\.\. cartofigure:: (\S+)', subsection.description).groups()[0]
-                requirements[viz_id] = GenerateStaticImage(viz_id)
+                if self.format == 'pdf':
+                    img = GenerateThumb(viz=viz_id)
+                else:
+                    img = GenerateStaticImage(viz=viz_id)
+                requirements[viz_id] = img
             for column in subsection.columns:
-                if column.type.lower() == 'numeric' and column.weight > 0:
-                    requirements[column.id] = ImagesForMeasure(
-                        measure=column.id, force=False)
+                if column.type.lower() == 'numeric' and column.weight > 0 and not column.id.startswith('uk'):
+                    if self.format == 'pdf':
+                        img = GenerateThumb(measure=column.id, force=False)
+                    else:
+                        img = ImagesForMeasure(measure=column.id, force=False)
+                    requirements[column.id] = img
 
         return requirements
 
@@ -66,6 +73,12 @@ class GenerateRST(Task):
                         section=section.id,
                         subsection=subsection.id))
         return targets
+
+    def template_globals(self):
+        image_path = '../img_thumb' if self.format == 'pdf' else '../img'
+        return {
+            'IMAGE_PATH': image_path
+        }
 
     def run(self):
         session = current_session()
@@ -107,10 +120,13 @@ class GenerateRST(Task):
             columns.sort(lambda x, y: cmp(x.name, y.name))
 
             with open('catalog/source/{}.rst'.format(section.id), 'w') as section_fhandle:
-                section_fhandle.write(SECTION_TEMPLATE.render(section=section))
+                section_fhandle.write(SECTION_TEMPLATE.render(
+                    section=section, **self.template_globals()))
             if columns:
                 fhandle.write(SUBSECTION_TEMPLATE.render(
-                    subsection=subsection, columns=columns, format=self.format).encode('utf8'))
+                    subsection=subsection, columns=columns, format=self.format,
+                    **self.template_globals()
+                ).encode('utf8'))
             else:
                 fhandle.write('')
             fhandle.close()
