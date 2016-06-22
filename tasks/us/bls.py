@@ -390,7 +390,7 @@ class DownloadQCEW(Task):
 
     def output(self):
         return LocalTarget(path=os.path.join(
-            classpath(self), self.task_id))
+            'tmp', classpath(self), self.task_id))
 
 
 class RawQCEW(TableTask):
