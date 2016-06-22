@@ -1054,7 +1054,7 @@ class OBSMetaToLocal(OBSMeta):
         if self.force:
             return False
         else:
-            return super(OBSMetaToLocal, self).exists()
+            return super(OBSMetaToLocal, self).complete()
 
     def output(self):
         return PostgresTarget('observatory', 'obs_meta')
