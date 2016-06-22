@@ -909,6 +909,7 @@ class Dump(Task):
                 "VALUES ('{task_id}')".format(task_id=self.task_id))
             shell('pg_dump -Fc -Z0 -x -n observatory -f {output}'.format(
                 output=self.output().path))
+            session.commit()
         except Exception as err:
             session.rollback()
             raise err
