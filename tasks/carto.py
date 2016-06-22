@@ -975,8 +975,7 @@ class OBSMeta(Task):
            MAX(denom_t.timespan) denom_timespan,
            MAX(geom_t.timespan) geom_timespan,
            MAX(geom_t.bounds)::box2d geom_bounds,
-           ST_Multi(ST_CollectionExtract(MAX(
-             geom_t.the_geom_webmercator), 3))::geometry AS the_geom_webmercator,
+           MAX(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
            ARRAY_AGG(DISTINCT s_tag.id) section_tags,
            ARRAY_AGG(DISTINCT ss_tag.id) subsection_tags,
            ARRAY_AGG(DISTINCT unit_tag.id) unit_tags
