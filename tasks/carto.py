@@ -237,6 +237,16 @@ class ImagesForMeasure(Task):
         'us.census.tiger.census_tract_clipped',
         'us.census.tiger.block_group_clipped',
     ]
+    UK_CENTERS = [
+        [52.51622086393074, -1.197509765625], # All England
+        [51.50190410761811, -0.120849609375], # London
+        [52.47274306920925, -3.982543945312], # Wales
+        #[53.49784954396767, -2.7410888671875] # Manchester
+        [53.491313790532956, -2.9706787109375] # Manchester
+    ]
+    UK_ZOOMS = [
+        5, 9, 7, 9
+    ]
 
     PALETTES = {
         'tags.people': '''
@@ -366,46 +376,26 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
                     "data.{data_data_colname} / NULLIF(data.{denom_colname}, 0) measure " \
                     "FROM {geom_tablename} as geom, {data_tablename} as data " \
                     "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
-            statssql = "SELECT ST_Xmin(ST_Extent(geom.{geom_geom_colname})) x_min, " \
-                    "ST_Ymin(ST_Extent(geom.{geom_geom_colname})) y_min, " \
-                    "ST_Xmax(ST_Extent(geom.{geom_geom_colname})) x_max, " \
-                    "ST_Ymax(ST_Extent(geom.{geom_geom_colname})) y_max, " \
-                    'MIN(data.{data_data_colname} / NULLIF(data.{denom_colname}, 0)) "min", ' \
-                    'MAX(data.{data_data_colname} / NULLIF(data.{denom_colname}, 0)) "max", ' \
-                    'AVG(data.{data_data_colname} / NULLIF(data.{denom_colname}, 0)) "avg", ' \
-                    'MODE() WITHIN GROUP (ORDER BY data.{data_data_colname} / ' \
-                    '  NULLIF(data.{denom_colname}, 0)) "mode", ' \
-                    'STDDEV_POP(data.{data_data_colname} / ' \
-                    '  NULLIF(data.{denom_colname}, 0)) "stddev_pop", ' \
-                    'PERCENTILE_CONT(0.5) WITHIN ' \
-                    '  GROUP (ORDER BY data.{data_data_colname} / ' \
-                    '  NULLIF(data.{denom_colname}, 0)) "median" ' \
-                    "FROM observatory.{geom_tablename} as geom, " \
-                    "     observatory.{data_tablename} as data " \
+            statssql = "SELECT  " \
+                    'CDB_HeadsTailsBins(array_agg(distinct( ' \
+                    '      (data.{data_data_colname} / ' \
+                    '      NULLIF(data.{denom_colname}, 0))::NUMERIC)), 4) as "headtails" ' \
+                    "FROM {geom_tablename} as geom, " \
+                    "     {data_tablename} as data " \
                     "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
         elif aggregate == 'sum':
             cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
                     "geom.the_geom_webmercator, " \
                     "data.{data_data_colname} / " \
-                    "  ST_Area(ST_Transform(geom.{geom_geom_colname}, 3857)) * 1000000.0 measure " \
+                    "  ST_Area(geom.the_geom_webmercator) * 1000000.0 measure " \
                     "FROM {geom_tablename} as geom, {data_tablename} as data " \
                     "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
-            statssql = "SELECT ST_Xmin(ST_Extent(geom.{geom_geom_colname})) x_min, " \
-                    "ST_Ymin(ST_Extent(geom.{geom_geom_colname})) y_min, " \
-                    "ST_Xmax(ST_Extent(geom.{geom_geom_colname})) x_max, " \
-                    "ST_Ymax(ST_Extent(geom.{geom_geom_colname})) y_max, " \
-                    'MIN(data.{data_data_colname} / {landarea}) "min", ' \
-                    'MAX(data.{data_data_colname} / {landarea}) "max", ' \
-                    'AVG(data.{data_data_colname} / {landarea}) "avg", ' \
-                    'MODE() WITHIN GROUP (ORDER BY data.{data_data_colname} / ' \
-                    '  {landarea}) "mode", ' \
-                    'STDDEV_POP(data.{data_data_colname} / ' \
-                    '  {landarea}) "stddev_pop", ' \
-                    'PERCENTILE_CONT(0.5) WITHIN ' \
-                    '  GROUP (ORDER BY data.{data_data_colname} / ' \
-                    '  {landarea}) "median" ' \
-                    "FROM observatory.{geom_tablename} as geom, " \
-                    "     observatory.{data_tablename} as data " \
+            statssql = "SELECT " \
+                    'CDB_HeadsTailsBins(array_agg(distinct( ' \
+                    '  (data.{data_data_colname} / ' \
+                    '  ST_Area(geom.the_geom_webmercator) * 1000000.0)::NUMERIC)), 4) as "headtails" ' \
+                    "FROM {geom_tablename} as geom, " \
+                    "     {data_tablename} as data " \
                     "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
         else:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
@@ -413,19 +403,11 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
                     "data.{data_data_colname} measure " \
                     "FROM {geom_tablename} as geom, {data_tablename} as data " \
                     "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
-            statssql = "SELECT ST_Xmin(ST_Extent(geom.{geom_geom_colname})) x_min, " \
-                    "ST_Ymin(ST_Extent(geom.{geom_geom_colname})) y_min, " \
-                    "ST_Xmax(ST_Extent(geom.{geom_geom_colname})) x_max, " \
-                    "ST_Ymax(ST_Extent(geom.{geom_geom_colname})) y_max, " \
-                    'MIN(data.{data_data_colname}) "min", ' \
-                    'MAX(data.{data_data_colname}) "max", ' \
-                    'AVG(data.{data_data_colname}) "avg", ' \
-                    'MODE() WITHIN GROUP (ORDER BY data.{data_data_colname}) "mode", ' \
-                    'STDDEV_POP(data.{data_data_colname}) "stddev_pop", ' \
-                    'PERCENTILE_CONT(0.5) WITHIN ' \
-                    '  GROUP (ORDER BY data.{data_data_colname}) "median" ' \
-                    "FROM observatory.{geom_tablename} as geom, " \
-                    "     observatory.{data_tablename} as data " \
+            statssql = "SELECT " \
+                    'CDB_HeadsTailsBins(array_agg( ' \
+                    '  distinct(data.{data_data_colname}::NUMERIC)), 4) as "headtails" ' \
+                    "FROM {geom_tablename} as geom, " \
+                    "     {data_tablename} as data " \
                     "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
 
         if boundary_id.lower().startswith('us.census.tiger'):
@@ -451,8 +433,9 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
                                    denom_colname=denom_colname,
                                    landarea=landarea)
 
-        xmin, ymin, xmax, ymax, min, max, avg, mode, stddev, median = \
-                session.execute(statssql).fetchone()
+        resp = query_cartodb(statssql)
+        assert resp.status_code == 200
+        headtails = resp.json()['rows'][0]['headtails']
 
         if measure.unit():
             ramp = self.PALETTES.get(measure.unit().id, self.PALETTES['tags.ratio'])
@@ -478,28 +461,27 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
   [measure=null]{{
      polygon-fill: #cacdce;
   }}
-  [measure <= {range5}] {{
+  [measure > {range3}] {{
      polygon-fill: @5;
   }}
-  [measure <= {range4}] {{
+  [measure <= {range3}][measure > {range2}] {{
      polygon-fill: @4;
   }}
-  [measure <= {range3}] {{
+  [measure <= {range2}][measure > {range1}] {{
      polygon-fill: @3;
   }}
-  [measure <= {range2}] {{
+  [measure <= {range1}][measure > {range0}] {{
      polygon-fill: @2;
   }}
-  [measure <= {range1}] {{
+  [measure <= {range0}] {{
      polygon-fill: @1;
   }}
 }}'''.format(
     ramp=ramp,
-    range1=min,
-    range2=float(min) + (float(avg - min) / 2.0),
-    range3=avg,
-    range4=float(avg) + (float(max - avg) / 2.0),
-    range5=max),
+    range0=headtails[0],
+    range1=headtails[1],
+    range2=headtails[2],
+    range3=headtails[3]),
                 'cartocss_version': "2.1.1",
                 'sql': cartosql,
                 "table_name": "\"\"."
@@ -530,27 +512,36 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
         if self.measure.lower().startswith('es.ine'):
             zooms = self.SPAIN_ZOOMS
             centers = self.SPAIN_CENTERS
+        elif self.measure.lower().startswith('uk.'):
+            zooms = self.UK_ZOOMS
+            centers = self.UK_CENTERS
         else:
             zooms = self.US_ZOOMS
             centers = self.US_CENTERS
         image_urls = []
         for center, zoom, boundary in zip(centers, zooms, self.US_BOUNDARIES):
             lon, lat = center
+
+            if self.measure.lower().startswith('uk'):
+                image_size = (300, 700, )
+            else:
+                image_size = (500, 500, )
+
             if self.measure.lower().startswith('us.census.acs'):
                 config = self._generate_config(zoom, lon, lat, boundary)
             else:
                 config = self._generate_config(zoom, lon, lat)
+
             named_map = self.get_named_map(config['layers'])
-            #if 'layergroupid' not in named_map:
-            #    import pdb
-            #    pdb.set_trace()
             image_urls.append('{cartodb_url}/api/v1/map/static/center/' \
-                              '{layergroupid}/{zoom}/{center_lon}/{center_lat}/500/500.png'.format(
+                              '{layergroupid}/{zoom}/{center_lon}/{center_lat}/{x}/{y}.png'.format(
                                   cartodb_url=os.environ['CARTODB_URL'],
                                   layergroupid=named_map['layergroupid'],
                                   zoom=zoom,
                                   center_lon=lon,
-                                  center_lat=lat
+                                  center_lat=lat,
+                                  x=image_size[0],
+                                  y=image_size[1],
                               ))
 
         url1 = image_urls.pop(0)
