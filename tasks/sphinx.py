@@ -6,11 +6,14 @@ import os
 import re
 
 from jinja2 import Environment, PackageLoader
-from luigi import WrapperTask, Task, LocalTarget, BooleanParameter, Parameter
+from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
+                   DateParameter)
+from luigi.s3 import S3Target
 from tasks.util import shell
 from tasks.meta import current_session, OBSTag
 from tasks.carto import GenerateStaticImage, ImagesForMeasure, GenerateThumb
 
+from datetime import date
 
 ENV = Environment(loader=PackageLoader('catalog', 'templates'))
 
@@ -146,3 +149,23 @@ class Catalog(Task):
 
     def run(self):
         shell('cd catalog && make {}'.format(self.format))
+
+
+class PDFCatalogToS3(Task):
+
+    timestamp = DateParameter(default=date.today())
+
+    def run(self):
+        for target in self.output():
+            shell('aws s3 cp catalog/build/observatory.pdf {output} '
+                  '--acl public-read'.format(
+                      output=target.path
+                  ))
+
+    def output(self):
+        return [
+            S3Target('s3://data-observatory/observatory.pdf'),
+            S3Target('s3://data-observatory/observatory-{timestamp}.pdf'.format(
+                timestamp=self.timestamp
+            )),
+        ]

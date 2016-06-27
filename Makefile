@@ -33,6 +33,8 @@ pdf-catalog:
 	  --module tasks.sphinx Catalog --format pdf --force
 
 deploy-catalog:
+	docker-compose run --rm bigmetadata luigi \
+	    --module tasks.sphinx PDFCatalogToS3
 	cd catalog/build/html && \
 	sudo chown -R ubuntu:ubuntu . && \
 	touch .nojekyll && \

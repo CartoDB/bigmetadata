@@ -192,6 +192,6 @@ pseudoxml:
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
 
 pdf:
-	$(SPHINXBUILD) -b pdf $(ALLSPHINXOPTS) build/html
+	$(SPHINXBUILD) -b pdf $(ALLSPHINXOPTS) build/
 	@echo
 	@echo "Build finished. The PDF files are in build/html."
