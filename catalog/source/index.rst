@@ -27,7 +27,22 @@ Search
 Terms and Licenses
 ==================
 
-The Data Observatory is a collection of various sources of data with varying licenses. We have worked hard to find you data that will work for the broadest set of use-cases. Please still review the below terms for any dataset you use and please respect the rights of the owners of each dataset. Please use the following link to review third-party data sources that are used in the Data Observatory, along with links to the terms governing the use of each.
+The Data Observatory is a collection of data sources with varying licenses and
+terms of use. We have endeavored to find you data that will work for the
+broadest set of use-cases. The following third-party data sources are used in
+the Data Observatory, and we have included the links to the terms governing
+their use.
+
+*Legal Note: The Data Observatory makes use of a variety of third party data and
+databases (collectively, the “Data”). You acknowledge that the included Data,
+and the licenses and terms of use, may be amended from time to time. Whenever
+you use the Data, you agree to the current relevant terms or license. Some Data
+will require that you provide attribution to the data source. Other Data may be
+protected by US or international copyright laws, treaties, or conventions. The
+Data and associated metadata are provided 'as-is,' without express or implied
+warranty of any kind, including, but not limited to, infringement,
+merchantability and fitness for a particular purpose. CartoDB is not
+responsible for the accuracy, completeness, timeliness or quality of the Data.*
 
 `Data Terms and Licenses 
 <http://docs.cartodb.com/cartodb-platform/data/license/>`_.
