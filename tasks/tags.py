@@ -94,7 +94,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 17
+        return 18
 
     def tags(self):
         return [
