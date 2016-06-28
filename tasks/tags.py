@@ -105,29 +105,15 @@ class SubsectionTags(TagsTask):
             OBSTag(id='income',
                    name='Income',
                    type='subsection',
-                   description='''
-How much people earn.
-
-.. cartofigure:: 5a2f4cc8-e189-11e5-8327-0e5db1731f59
-  :width: 100 %
-  :alt: Median Household Income
-  :align: center
-  :target: https://observatory.cartodb.com/viz/5a2f4cc8-e189-11e5-8327-0e5db1731f59/embed_map
-
-  Median household income in the United States according to the American
-  Community Survey, 5-year estimate from 2014.
-
-'''),
+                   description='''How much people earn.'''),
             OBSTag(id='education',
                    name='Education',
                    type='subsection',
-                   description='Educational attainment and enrollment.'
-                  ),
+                   description='Educational attainment and enrollment.'),
             OBSTag(id='employment',
                    name='Employment',
                    type='subsection',
-                   description='How people are employed.'
-                  ),
+                   description='How people are employed.'),
             OBSTag(id='families',
                    name="Families",
                    type='subsection',
@@ -139,27 +125,15 @@ How much people earn.
             OBSTag(id='age_gender',
                    name='Age and Gender',
                    type='subsection',
-                   description='Population breakdowns by age and gender.'
-                  ),
+                   description='Population breakdowns by age and gender.'),
             OBSTag(id='nationality',
                    name='Nationality',
                    type='subsection',
-                   description='''Population breakdowns by nationality and place of birth.''',
-                  ),
+                   description='''Population breakdowns by nationality and place of birth.''',),
             OBSTag(id='race_ethnicity',
                    name='Race and Ethnicity',
                    type='subsection',
-                   description='''Population breakdowns by race and ethnicity.
-
-.. cartofigure:: 4def78b4-f6c6-11e5-ac8d-0e31c9be1b51
-  :width: 100 %
-  :alt: Median Household Income
-  :align: center
-  :target: https://observatory.cartodb.com/viz/4def78b4-f6c6-11e5-ac8d-0e31c9be1b51/embed_map
-
-  Percent of the population which is white in every United States county.
-
-'''),
+                   description='''Population breakdowns by race and ethnicity. '''),
             OBSTag(id='transportation',
                    name='Transportation',
                    type='subsection',
