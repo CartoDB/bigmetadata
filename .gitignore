@@ -15,3 +15,6 @@ catalog/build/doctrees
 catalog/build/latex
 catalog/build/html
 _build
+catalog/img
+catalog/img_thumb
+catalog/build/*.pdf
