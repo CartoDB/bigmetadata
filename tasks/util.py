@@ -644,6 +644,8 @@ class TempTableTask(Task):
     A Task that generates a table that will not be referred to in metadata.
     '''
 
+    force = BooleanParameter(default=False, significant=False)
+
     def on_failure(self, ex):
         session_rollback(self, ex)
         super(TempTableTask, self).on_failure(ex)
@@ -654,8 +656,12 @@ class TempTableTask(Task):
     def output(self):
         shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=classpath(self)))
-        return PostgresTarget(classpath(self), self.task_id)
-
+        target = PostgresTarget(classpath(self), self.task_id)
+        if self.force and not getattr(self, 'wiped', False) and target.exists():
+            self.wiped = True
+            shell("psql -c 'DROP TABLE \"{schema}\".{tablename}'".format(
+                schema=classpath(self), tablename=self.task_id))
+        return target
 
 class Shp2TempTableTask(TempTableTask):
     '''
@@ -670,17 +676,23 @@ class Shp2TempTableTask(TempTableTask):
             shps = [self.input_shp()]
         else:
             shps = self.input_shp()
+        schema = self.output().schema
+        tablename = self.output().tablename
+        operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no '.format(
+            schema=schema)
         for shp in shps:
             cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
-                    'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
-                    '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
-                    '-lco OVERWRITE=yes ' \
-                    '-lco SCHEMA={schema} -lco PRECISION=no ' \
-                    '\'{input}\' '.format(
-                        schema=self.output().schema,
-                        table=self.output().tablename,
-                        input=shp)
+                    'ogr2ogr -f PostgreSQL PG:"dbname=$PGDATABASE ' \
+                    'active_schema={schema}" -t_srs "EPSG:4326" ' \
+                    '-nlt MultiPolygon -nln {table} ' \
+                    '{operation} \'{input}\' '.format(
+                        schema=schema,
+                        table=tablename,
+                        input=shp,
+                        operation=operation
+                    )
             shell(cmd)
+            operation = '-append '.format(schema=schema)
 
 
 class LoadPostgresFromURL(TempTableTask):
