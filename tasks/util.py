@@ -666,16 +666,21 @@ class Shp2TempTableTask(TempTableTask):
         raise NotImplementedError("Must specify `input_shp` method")
 
     def run(self):
-        cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
-                'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
-                '-lco OVERWRITE=yes ' \
-                '-lco SCHEMA={schema} -lco PRECISION=no ' \
-                '\'{input}\' '.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                    input=self.input_shp())
-        shell(cmd)
+        if isinstance(self.input_shp(), basestring):
+            shps = [self.input_shp()]
+        else:
+            shps = self.input_shp()
+        for shp in shps:
+            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
+                    'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
+                    '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
+                    '-lco OVERWRITE=yes ' \
+                    '-lco SCHEMA={schema} -lco PRECISION=no ' \
+                    '\'{input}\' '.format(
+                        schema=self.output().schema,
+                        table=self.output().tablename,
+                        input=shp)
+            shell(cmd)
 
 
 class LoadPostgresFromURL(TempTableTask):
