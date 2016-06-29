@@ -154,6 +154,15 @@ class Catalog(Task):
 class PDFCatalogToS3(Task):
 
     timestamp = DateParameter(default=date.today())
+    force = BooleanParameter(significant=False)
+
+    def __init__(self, **kwargs):
+        if kwargs.get('force'):
+            try:
+                shell('aws s3 rm s3://data-observatory/observatory.pdf')
+            except:
+                pass
+        super(PDFCatalogToS3, self).__init__()
 
     def run(self):
         for target in self.output():
