@@ -18,7 +18,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def tags(self):
         return [
@@ -62,13 +62,17 @@ class UnitTags(TagsTask):
                    name='Businesses',
                    type='unit',
                    description=''),
+            OBSTag(id='education',
+                   name='Education',
+                   type='unit',
+                   description=''),
         ]
 
 
 class SectionTags(TagsTask):
 
     def version(self):
-        return 2
+        return 3
 
     def tags(self):
         return [
@@ -82,6 +86,10 @@ class SectionTags(TagsTask):
                    description=''),
             OBSTag(id='spain',
                    name='Spain',
+                   type='section',
+                   description=''),
+            OBSTag(id='mx',
+                   name='Mexico',
                    type='section',
                    description=''),
             OBSTag(id='uk',
