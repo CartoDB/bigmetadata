@@ -283,8 +283,10 @@ class ColumnTarget(Target):
             return True
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: cannot run task {task} '
+                            '(id "{id}") '
                             'with ETL version ({etl}) older than what is in '
                             'DB ({db})'.format(task=self._task.task_id,
+                                               id=self._id,
                                                etl=new_version,
                                                db=existing_version))
         return False
@@ -321,8 +323,13 @@ class TagTarget(Target):
         if existing and existing_version == new_version:
             return True
         elif existing and existing_version > new_version:
-            raise Exception('Metadata version mismatch: running tasks with '
-                            'older version than what is in DB')
+            raise Exception('Metadata version mismatch: cannot run task {task} '
+                            '(id "{id}") '
+                            'with ETL version ({etl}) older than what is in '
+                            'DB ({db})'.format(task=self._task.task_id,
+                                               id=self._id,
+                                               etl=new_version,
+                                               db=existing_version))
         return False
 
 
@@ -379,8 +386,13 @@ class TableTarget(Target):
                     tablename=self._obs_table.tablename))
             return int(resp.fetchone()[0]) > 0
         elif existing and existing_version > new_version:
-            raise Exception('Metadata version mismatch: running tasks with '
-                            'older version than what is in DB')
+            raise Exception('Metadata version mismatch: cannot run task {task} '
+                            '(id "{id}") '
+                            'with ETL version ({etl}) older than what is in '
+                            'DB ({db})'.format(task=self._task.task_id,
+                                               id=self._id,
+                                               etl=new_version,
+                                               db=existing_version))
         return False
 
     def get(self, session):
