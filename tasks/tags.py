@@ -18,7 +18,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def tags(self):
         return [
@@ -62,13 +62,17 @@ class UnitTags(TagsTask):
                    name='Businesses',
                    type='unit',
                    description=''),
+            OBSTag(id='education_level',
+                   name='Level of education',
+                   type='unit',
+                   description=''),
         ]
 
 
 class SectionTags(TagsTask):
 
     def version(self):
-        return 2
+        return 3
 
     def tags(self):
         return [
@@ -84,6 +88,10 @@ class SectionTags(TagsTask):
                    name='Spain',
                    type='section',
                    description=''),
+            OBSTag(id='mx',
+                   name='Mexico',
+                   type='section',
+                   description=''),
             OBSTag(id='uk',
                    name='United Kingdom',
                    type='section',
@@ -94,7 +102,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 18
+        return 19
 
     def tags(self):
         return [
@@ -146,6 +154,10 @@ class SubsectionTags(TagsTask):
                    name='Religion',
                    type='subsection',
                    description='Breakdowns of the population by religion.'),
+            OBSTag(id='migration',
+                   name='Migration',
+                   type='subsection',
+                   description='Patterns of migration.'),
             OBSTag(id='health',
                    name='Health',
                    type='subsection',
@@ -154,4 +166,8 @@ class SubsectionTags(TagsTask):
                    name='Commerce & Economy',
                    type='subsection',
                    description='Broader measures of economic and commercial activity.'),
+            OBSTag(id='segments',
+                   name='Population segments',
+                   type='subsection',
+                   description='Segmentations of the population'),
         ]

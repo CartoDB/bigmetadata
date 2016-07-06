@@ -218,6 +218,7 @@ class CartoDBTarget(Target):
         return resp.status_code == 200
 
     def remove(self):
+        assert self.exists()
         api_key = os.environ['CARTODB_API_KEY']
         # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/obs_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
         try:
@@ -239,6 +240,11 @@ class CartoDBTarget(Target):
                     pass
         except ValueError:
             pass
+        try:
+            query_cartodb('DROP TABLE {tablename}'.format(tablename=self.tablename))
+        except Exception:
+            pass
+        assert not self.exists()
 
 
 def grouper(iterable, n, fillvalue=None):
@@ -283,8 +289,10 @@ class ColumnTarget(Target):
             return True
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: cannot run task {task} '
+                            '(id "{id}") '
                             'with ETL version ({etl}) older than what is in '
                             'DB ({db})'.format(task=self._task.task_id,
+                                               id=self._id,
                                                etl=new_version,
                                                db=existing_version))
         return False
@@ -321,8 +329,13 @@ class TagTarget(Target):
         if existing and existing_version == new_version:
             return True
         elif existing and existing_version > new_version:
-            raise Exception('Metadata version mismatch: running tasks with '
-                            'older version than what is in DB')
+            raise Exception('Metadata version mismatch: cannot run task {task} '
+                            '(id "{id}") '
+                            'with ETL version ({etl}) older than what is in '
+                            'DB ({db})'.format(task=self._task.task_id,
+                                               id=self._id,
+                                               etl=new_version,
+                                               db=existing_version))
         return False
 
 
@@ -379,8 +392,13 @@ class TableTarget(Target):
                     tablename=self._obs_table.tablename))
             return int(resp.fetchone()[0]) > 0
         elif existing and existing_version > new_version:
-            raise Exception('Metadata version mismatch: running tasks with '
-                            'older version than what is in DB')
+            raise Exception('Metadata version mismatch: cannot run task {task} '
+                            '(id "{id}") '
+                            'with ETL version ({etl}) older than what is in '
+                            'DB ({db})'.format(task=self._task.task_id,
+                                               id=self._id,
+                                               etl=new_version,
+                                               db=existing_version))
         return False
 
     def get(self, session):
@@ -644,6 +662,8 @@ class TempTableTask(Task):
     A Task that generates a table that will not be referred to in metadata.
     '''
 
+    force = BooleanParameter(default=False, significant=False)
+
     def on_failure(self, ex):
         session_rollback(self, ex)
         super(TempTableTask, self).on_failure(ex)
@@ -654,8 +674,12 @@ class TempTableTask(Task):
     def output(self):
         shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=classpath(self)))
-        return PostgresTarget(classpath(self), self.task_id)
-
+        target = PostgresTarget(classpath(self), self.task_id)
+        if self.force and not getattr(self, 'wiped', False) and target.exists():
+            self.wiped = True
+            shell("psql -c 'DROP TABLE \"{schema}\".{tablename}'".format(
+                schema=classpath(self), tablename=self.task_id))
+        return target
 
 class Shp2TempTableTask(TempTableTask):
     '''
@@ -666,16 +690,27 @@ class Shp2TempTableTask(TempTableTask):
         raise NotImplementedError("Must specify `input_shp` method")
 
     def run(self):
-        cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
-                'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
-                '-lco OVERWRITE=yes ' \
-                '-lco SCHEMA={schema} -lco PRECISION=no ' \
-                '\'{input}\' '.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                    input=self.input_shp())
-        shell(cmd)
+        if isinstance(self.input_shp(), basestring):
+            shps = [self.input_shp()]
+        else:
+            shps = self.input_shp()
+        schema = self.output().schema
+        tablename = self.output().tablename
+        operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no '.format(
+            schema=schema)
+        for shp in shps:
+            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
+                    'ogr2ogr -f PostgreSQL PG:"dbname=$PGDATABASE ' \
+                    'active_schema={schema}" -t_srs "EPSG:4326" ' \
+                    '-nlt MultiPolygon -nln {table} ' \
+                    '{operation} \'{input}\' '.format(
+                        schema=schema,
+                        table=tablename,
+                        input=shp,
+                        operation=operation
+                    )
+            shell(cmd)
+            operation = '-append '.format(schema=schema)
 
 
 class LoadPostgresFromURL(TempTableTask):
