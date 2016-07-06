@@ -102,7 +102,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 18
+        return 19
 
     def tags(self):
         return [
@@ -166,4 +166,8 @@ class SubsectionTags(TagsTask):
                    name='Commerce & Economy',
                    type='subsection',
                    description='Broader measures of economic and commercial activity.'),
+            OBSTag(id='segments',
+                   name='Population segments',
+                   type='subsection',
+                   description='Segmentations of the population'),
         ]
