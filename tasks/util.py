@@ -218,6 +218,7 @@ class CartoDBTarget(Target):
         return resp.status_code == 200
 
     def remove(self):
+        assert self.exists()
         api_key = os.environ['CARTODB_API_KEY']
         # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/obs_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
         try:
@@ -239,6 +240,11 @@ class CartoDBTarget(Target):
                     pass
         except ValueError:
             pass
+        try:
+            query_cartodb('DROP TABLE {tablename}'.format(tablename=self.tablename))
+        except Exception:
+            pass
+        assert not self.exists()
 
 
 def grouper(iterable, n, fillvalue=None):
