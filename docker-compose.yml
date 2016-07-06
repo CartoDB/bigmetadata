@@ -41,7 +41,9 @@
       "PGHOST": "postgres",
       "PGUSER": "docker",
       "PGPASSWORD": "docker",
-      "PGDATABASE": "gis"
+      "PGDATABASE": "gis",
+      "LC_ALL": "C.UTF-8",
+      "LANG": "C.UTF-8"
     },
     "env_file": ".env"
   },
@@ -59,7 +61,9 @@
       "PGHOST": "postgres",
       "PGUSER": "docker",
       "PGPASSWORD": "docker",
-      "PGDATABASE": "gis"
+      "PGDATABASE": "gis",
+      "LC_ALL": "C.UTF-8",
+      "LANG": "C.UTF-8"
     },
     "env_file": ".env"
   },
