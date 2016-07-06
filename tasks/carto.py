@@ -209,44 +209,36 @@ class ImagesForMeasure(Task):
             "subdomains": "abcd",
         }
     }
-
-    SPAIN_CENTERS = [
-        [40.4139017, -3.7350414],
-        [40.4139017, -3.7350414],
-        [40.4139017, -3.7350414],
-        [40.4139017, -3.7050414],
-    ]
-    SPAIN_ZOOMS = [
-        #6, 9, 12, 15
-        #6, 8, 10, 13
-        6, 8, 11, 13
-    ]
-    US_CENTERS = [
-        [37.996162679728116, -97.6904296875],
-        [38.16911413556086, -114.884033203125],
-        #[37.67512527892127, -121.06109619140625],
-        [37.75225820732333, -122.11584777832031],
-        [37.75225820732333, -122.44584777832031],
-    ]
-    US_ZOOMS = [
-        3, 5, 9, 12
-    ]
-    US_BOUNDARIES = [
-        'us.census.tiger.state_clipped',
-        'us.census.tiger.county_clipped',
-        'us.census.tiger.census_tract_clipped',
-        'us.census.tiger.block_group_clipped',
-    ]
-    UK_CENTERS = [
-        [52.51622086393074, -1.197509765625], # All England
-        [51.50190410761811, -0.120849609375], # London
-        [52.47274306920925, -3.982543945312], # Wales
-        #[53.49784954396767, -2.7410888671875] # Manchester
-        [53.491313790532956, -2.9706787109375] # Manchester
-    ]
-    UK_ZOOMS = [
-        5, 9, 7, 9
-    ]
+    CENTER_ZOOM_BOUNDS = {
+        'es': [
+            ((40.4139017, -3.7350414), 6, None,),
+            ((40.4139017, -3.7350414), 8, None, ),
+            ((40.4139017, -3.7350414), 11, None, ),
+            ((40.4139017, -3.7050414), 13, None, ),
+        ],
+        'mx': [
+            ((22.979, -101.777), 4, 'mx.inegi.entidad', ),
+            ((19.316, -99.152), 7, 'mx.inegi.localidad_urbana', ),
+            ((19.316, -99.152), 9, 'mx.inegi.municipio', ),
+            ((19.4282, -99.1344), 12, 'mx.inegi.manzana', ),
+        ],
+        'uk': [
+            ((52.51622086393074, -1.197509765625), 5, None, ), # All England
+            ((51.50190410761811, -0.120849609375), 9, None, ), # London
+            ((52.47274306920925, -3.982543945312), 7, None, ), # Wales
+            ((53.491313790532956, -2.9706787109375), 9, None, ), # Manchester
+        ],
+        'us': [
+            ((37.996162679728116, -97.6904296875), 3,
+             'us.census.tiger.state_clipped', ),
+            ((38.16911413556086, -114.884033203125), 5,
+             'us.census.tiger.county_clipped', ),
+            ((37.75225820732333, -122.11584777832031), 9,
+             'us.census.tiger.census_tract_clipped', ),
+            ((37.75225820732333, -122.44584777832031), 12,
+             'us.census.tiger.block_group_clipped', ),
+        ],
+    }
 
     PALETTES = {
         'tags.people': '''
@@ -299,139 +291,90 @@ class ImagesForMeasure(Task):
         session = current_session()
         measure = session.query(OBSColumn).get(self.measure)
         mainquery = '''
-SELECT data_t.timespan, data_c.aggregate, target_c.id boundary_id,
-       (data_ct.extra->'stats'->>'stddev')::NUMERIC "stddev",
-       (data_ct.extra->'stats'->>'avg')::NUMERIC "avg",
-       (data_ct.extra->'stats'->>'min')::NUMERIC "min",
-       (data_ct.extra->'stats'->>'max')::NUMERIC "max",
-       data_ct.colname as data_colname, data_geoid_ct.colname data_geoid_colname,
-       data_t.tablename as data_tablename,
-       geom_geoid_ct.colname geom_geoid_colname,
-       geom_ct.colname geom_geom_colname, geom_t.tablename as geom_tablename,
-       denom_ct.colname denominator_colname
-       --target_c.weight, target_c.id
-FROM observatory.obs_column_to_column geom_ref_c2c
- JOIN observatory.obs_column target_c
-   ON geom_ref_c2c.target_id = target_c.id
- JOIN observatory.obs_column source_c
-   ON geom_ref_c2c.source_id = source_c.id
- JOIN observatory.obs_column_table data_geoid_ct
-   ON source_c.id = data_geoid_ct.column_id
- JOIN observatory.obs_column_table geom_geoid_ct
-   ON source_c.id = geom_geoid_ct.column_id
- JOIN observatory.obs_column_table geom_ct
-   ON geom_ct.column_id = target_c.id
- JOIN observatory.obs_table geom_t
-   ON geom_ct.table_id = geom_t.id
-   AND geom_geoid_ct.table_id = geom_t.id
- JOIN observatory.obs_table data_t
-   ON data_geoid_ct.table_id = data_t.id
- JOIN observatory.obs_column_table data_ct
-   ON data_ct.table_id = data_t.id
- JOIN observatory.obs_column data_c
-   ON data_ct.column_id = data_c.id
- LEFT JOIN
-   (observatory.obs_column_to_column denom_c2c
-       JOIN observatory.obs_column_table denom_ct
-         ON denom_c2c.target_id = denom_ct.column_id) -- force denom in same table
-   ON denom_c2c.source_id = data_ct.column_id
-WHERE
-  data_ct.column_id = '{measure}'
-  {boundary_clause}
-  AND geom_ref_c2c.reltype = 'geom_ref'
-  AND target_c.type ILIKE 'geometry'
-  AND (data_ct.extra->'stats'->>'avg')::NUMERIC IS NOT NULL
-  AND (data_ct.extra->'stats'->>'stddev')::NUMERIC IS NOT NULL
-  AND (data_ct.extra->'stats'->>'min')::NUMERIC IS NOT NULL
-  AND (data_ct.extra->'stats'->>'max')::NUMERIC IS NOT NULL
-  AND (denom_c2c.reltype IS NULL OR denom_c2c.reltype = 'denominator')
-  AND (denom_ct.table_id IS NULL OR denom_ct.table_id = data_t.id)
-ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
-'''
+SELECT numer_aggregate,
+       numer_colname, numer_geomref_colname,
+       numer_tablename,
+       geom_geomref_colname,
+       geom_colname, geom_tablename,
+       denom_colname, denom_tablename, denom_geomref_colname
+FROM observatory.obs_meta
+WHERE numer_id = '{measure}' {boundary_clause}
+ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
+        '''
         query = mainquery.format(
             measure=self.measure,
-            boundary_clause="AND target_c.id = '{}'".format(boundary) if boundary else '')
+            boundary_clause="AND geom_id = '{}'".format(boundary) if boundary else '')
+
         resp = session.execute(query)
         results = resp.fetchone()
-        if not results:
-            # give up boundary clause if no results
-            query = mainquery.format(measure=self.measure, boundary_clause='')
-            resp = session.execute(query)
-            results = resp.fetchone()
-        try:
-            timespan, aggregate, boundary_id, stddev, avg, min, max, data_data_colname, \
-                    data_geoid_colname, data_tablename, geom_geoid_colname, \
-                    geom_geom_colname, geom_tablename, denom_colname = results
-        except TypeError:
+        if results is None:
             import pdb
             pdb.set_trace()
-        calcmax = avg + (stddev * 3)
-        max = max if max < calcmax else calcmax
-        calcmin = avg - (stddev * 3)
-        min = min if min > calcmin else calcmin
+        numer_aggregate, numer_colname, numer_geomref_colname, numer_tablename, \
+                geom_geomref_colname, geom_colname, geom_tablename, denom_colname, \
+                denom_tablename, denom_geomref_colname = results
 
         if denom_colname:
-            cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
+            cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
                     "geom.the_geom_webmercator, " \
-                    "data.{data_data_colname} / NULLIF(data.{denom_colname}, 0) measure " \
-                    "FROM {geom_tablename} as geom, {data_tablename} as data " \
-                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+                    "numer.{numer_colname} / NULLIF(denom.{denom_colname}, 0) measure " \
+                    "FROM {geom_tablename} as geom, {numer_tablename} as numer, " \
+                    "     {denom_tablename} as denom " \
+                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} " \
+                    "  AND numer.{numer_geomref_colname} = denom.{denom_geomref_colname} "
             statssql = "SELECT  " \
                     'CDB_HeadsTailsBins(array_agg(distinct( ' \
-                    '      (data.{data_data_colname} / ' \
-                    '      NULLIF(data.{denom_colname}, 0))::NUMERIC)), 4) as "headtails" ' \
+                    '      (numer.{numer_colname} / ' \
+                    '      NULLIF(denom.{denom_colname}, 0))::NUMERIC)), 4) as "headtails" ' \
                     "FROM {geom_tablename} as geom, " \
-                    "     {data_tablename} as data " \
-                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
-        elif aggregate == 'sum':
-            cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
+                    "     {numer_tablename} as numer, " \
+                    "     {denom_tablename} as denom " \
+                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} " \
+                    "  AND numer.{numer_geomref_colname} = denom.{denom_geomref_colname} "
+        elif numer_aggregate == 'sum':
+            cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
                     "geom.the_geom_webmercator, " \
-                    "data.{data_data_colname} / " \
+                    "numer.{numer_colname} / " \
                     "  ST_Area(geom.the_geom_webmercator) * 1000000.0 measure " \
-                    "FROM {geom_tablename} as geom, {data_tablename} as data " \
-                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
-            statssql = "SELECT " \
-                    'CDB_HeadsTailsBins(array_agg(distinct( ' \
-                    '  (data.{data_data_colname} / ' \
-                    '  ST_Area(geom.the_geom_webmercator) * 1000000.0)::NUMERIC)), 4) as "headtails" ' \
+                    "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
+                    "WHERE geom.{geom_geomref_colname} = data.{numer_geomref_colname} "
+            statssql = "SELECT CDB_HeadsTailsBins(array_agg(distinct( " \
+                    '  (numer.{numer_colname} / ST_Area(geom.the_geom_webmercator) ' \
+                    '      * 1000000.0)::NUMERIC)), 4) as "headtails" ' \
                     "FROM {geom_tablename} as geom, " \
-                    "     {data_tablename} as data " \
-                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+                    "     {numer_tablename} as numer " \
+                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
         else:
-            cartosql = "SELECT geom.cartodb_id, geom.{geom_geom_colname} as the_geom, " \
-                    "geom.the_geom_webmercator, " \
-                    "data.{data_data_colname} measure " \
-                    "FROM {geom_tablename} as geom, {data_tablename} as data " \
-                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+            cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
+                    "  geom.the_geom_webmercator, " \
+                    "  numer.{numer_colname} measure " \
+                    "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
+                    "  WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
             statssql = "SELECT " \
                     'CDB_HeadsTailsBins(array_agg( ' \
-                    '  distinct(data.{data_data_colname}::NUMERIC)), 4) as "headtails" ' \
+                    '  distinct(numer.{numer_colname}::NUMERIC)), 4) as "headtails" ' \
                     "FROM {geom_tablename} as geom, " \
-                    "     {data_tablename} as data " \
-                    "WHERE geom.{geom_geoid_colname} = data.{data_geoid_colname} "
+                    "     {numer_tablename} as numer " \
+                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
 
-        if boundary_id.lower().startswith('us.census.tiger'):
-            landarea = 'aland * 1000000.0'
-        else:
-            landarea = 'ST_Area(ST_Transform(geom.{geom_geom_colname}, 3857))' \
-                    ' * 1000000.0'.format(geom_geom_colname=geom_geom_colname)
-
-        cartosql = cartosql.format(geom_geom_colname=geom_geom_colname,
-                                   data_data_colname=data_data_colname,
+        cartosql = cartosql.format(geom_colname=geom_colname,
+                                   numer_colname=numer_colname,
                                    geom_tablename=geom_tablename,
-                                   data_tablename=data_tablename,
-                                   geom_geoid_colname=geom_geoid_colname,
-                                   data_geoid_colname=data_geoid_colname,
+                                   numer_tablename=numer_tablename,
+                                   geom_geomref_colname=geom_geomref_colname,
+                                   numer_geomref_colname=numer_geomref_colname,
                                    denom_colname=denom_colname,
-                                   landarea=landarea)
-        statssql = statssql.format(geom_geom_colname=geom_geom_colname,
-                                   data_data_colname=data_data_colname,
+                                   denom_tablename=denom_tablename,
+                                   denom_geomref_colname=denom_geomref_colname)
+        statssql = statssql.format(geom_colname=geom_colname,
+                                   numer_colname=numer_colname,
                                    geom_tablename=geom_tablename,
-                                   data_tablename=data_tablename,
-                                   geom_geoid_colname=geom_geoid_colname,
-                                   data_geoid_colname=data_geoid_colname,
+                                   numer_tablename=numer_tablename,
+                                   geom_geomref_colname=geom_geomref_colname,
+                                   numer_geomref_colname=numer_geomref_colname,
                                    denom_colname=denom_colname,
-                                   landarea=landarea)
+                                   denom_tablename=denom_tablename,
+                                   denom_geomref_colname=denom_geomref_colname)
 
         resp = query_cartodb(statssql)
         assert resp.status_code == 200
@@ -445,7 +388,7 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
         layers.append({
             'type': 'mapnik',
             'options': {
-                'layer_name': data_tablename,
+                'layer_name': numer_tablename,
                 'cartocss': '''/** choropleth visualization */
 
 {ramp}
@@ -509,28 +452,17 @@ ORDER BY target_c.weight DESC, data_t.timespan DESC, geom_ct.column_id DESC;
     def run(self):
         self.output().makedirs()
 
-        if self.measure.lower().startswith('es.ine'):
-            zooms = self.SPAIN_ZOOMS
-            centers = self.SPAIN_CENTERS
-        elif self.measure.lower().startswith('uk.'):
-            zooms = self.UK_ZOOMS
-            centers = self.UK_CENTERS
-        else:
-            zooms = self.US_ZOOMS
-            centers = self.US_CENTERS
         image_urls = []
-        for center, zoom, boundary in zip(centers, zooms, self.US_BOUNDARIES):
+        country = self.measure.split('.')[0]
+        for center, zoom, boundary in self.CENTER_ZOOM_BOUNDS[country]:
             lon, lat = center
 
-            if self.measure.lower().startswith('uk'):
+            if country == 'uk':
                 image_size = (300, 700, )
             else:
                 image_size = (500, 500, )
 
-            if self.measure.lower().startswith('us.census.acs'):
-                config = self._generate_config(zoom, lon, lat, boundary)
-            else:
-                config = self._generate_config(zoom, lon, lat)
+            config = self._generate_config(zoom, lon, lat, boundary)
 
             named_map = self.get_named_map(config['layers'])
             image_urls.append('{cartodb_url}/api/v1/map/static/center/' \
@@ -860,7 +792,7 @@ class Dump(Task):
             session.execute(
                 'INSERT INTO observatory.obs_dump_version (dump_id) '
                 "VALUES ('{task_id}')".format(task_id=self.task_id))
-            shell('pg_dump -Fc -Z0 -x -n observatory -f {output}'.format(
+            shell('pg_dump -j6 -Fc -Z0 -x -n observatory -f {output}'.format(
                 output=self.output().path))
             session.commit()
         except Exception as err:
@@ -926,6 +858,9 @@ class OBSMeta(Task):
            MAX(geom_t.tablename) geom_tablename,
            MAX(numer_t.timespan) numer_timespan,
            MAX(denom_t.timespan) denom_timespan,
+           MAX(numer_c.weight) numer_weight,
+           MAX(denom_c.weight) denom_weight,
+           MAX(geom_c.weight) geom_weight,
            MAX(geom_t.timespan) geom_timespan,
            MAX(geom_t.bounds)::box2d geom_bounds,
            MAX(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
