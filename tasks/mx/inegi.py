@@ -224,7 +224,7 @@ class Census(TableTask):
     table = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def timespan(self):
         return 2010
@@ -252,6 +252,7 @@ class Census(TableTask):
         out_colnames = columns.keys()
         in_table = self.input()['data']
         in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
+        in_colnames[0] = 'cvegeo'
         for i, in_c in enumerate(in_colnames):
             cmd = 'SELECT COUNT(*) FROM information_schema.columns ' \
                     "WHERE table_schema = '{schema}' " \
