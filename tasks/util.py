@@ -4,6 +4,7 @@ Util functions for luigi bigmetadata tasks.
 
 from collections import OrderedDict
 
+import json
 import os
 import subprocess
 import logging
@@ -591,6 +592,64 @@ class TagsTask(Task):
             output[orig_id] = TagTarget(tag, self)
         self._output = output
         return self._output
+
+
+class TableToCartoViaImportAPI(Task):
+
+    force = BooleanParameter(default=False, significant=False)
+    schema = Parameter(default='observatory')
+    table = Parameter()
+
+    def run(self):
+        url = os.environ['CARTODB_URL']
+        api_key = os.environ['CARTODB_API_KEY']
+        try:
+            os.makedirs(os.path.join('tmp', classpath(self)))
+        except OSError:
+            pass
+        tmp_file_path = os.path.join('tmp', classpath(self), self.table + '.csv')
+        shell('psql -c "\\copy {schema}.{tablename} TO \'{tmp_file_path}\' '
+              'WITH CSV HEADER"'.format(
+                  schema=self.schema,
+                  tablename=self.table,
+                  tmp_file_path=tmp_file_path,
+              ))
+        curl_resp = shell(
+            'curl -s -F privacy=public '
+            '  -F file=@{tmp_file_path} "{url}/api/v1/imports/?api_key={api_key}"'.format(
+                tmp_file_path=tmp_file_path,
+                url=url,
+                api_key=api_key
+            ))
+        import_id = json.loads(curl_resp)["item_queue_id"]
+        while True:
+            resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
+                url=os.environ['CARTODB_URL'],
+                import_id=import_id,
+                api_key=api_key
+            ))
+            if resp.json()['state'] == 'complete':
+                break
+            elif resp.json()['state'] == 'failure':
+                raise Exception('Import failed: {}'.format(resp.json()))
+
+            print resp.json()['state']
+            time.sleep(1)
+
+        # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
+        assert resp.json()['table_name'] == self.table # the copy should not have a
+                                                       # mutilated name (like '_1', '_2' etc)
+
+    def output(self):
+        if self.schema != 'observatory':
+            table = '.'.join([self.schema, self.table])
+        else:
+            table = self.table
+        target = CartoDBTarget(self.table)
+        if self.force and target.exists():
+            target.remove()
+            self.force = False
+        return target
 
 
 class TableToCarto(Task):
