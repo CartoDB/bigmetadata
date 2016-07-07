@@ -307,8 +307,11 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
         resp = session.execute(query)
         results = resp.fetchone()
         if results is None:
-            import pdb
-            pdb.set_trace()
+            query = mainquery.format(
+                measure=self.measure,
+                boundary_clause="")
+            resp = session.execute(query)
+            results = resp.fetchone()
         numer_aggregate, numer_colname, numer_geomref_colname, numer_tablename, \
                 geom_geomref_colname, geom_colname, geom_tablename, denom_colname, \
                 denom_tablename, denom_geomref_colname = results
@@ -376,8 +379,16 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                                    denom_geomref_colname=denom_geomref_colname)
 
         resp = query_cartodb(statssql)
+        #try:
         assert resp.status_code == 200
+        #except:
+        #    import pdb
+        #    pdb.set_trace()
+        #    print resp.text
         headtails = resp.json()['rows'][0]['headtails']
+        #if not headtails:
+        #    import pdb
+        #    pdb.set_trace()
 
         if measure.unit():
             ramp = self.PALETTES.get(measure.unit().id, self.PALETTES['tags.ratio'])
