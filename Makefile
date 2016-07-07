@@ -26,7 +26,8 @@ tiger:
 
 catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --force
+	  --module tasks.sphinx Catalog --force \
+	  --parallel-scheduling --workers=3
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
@@ -50,13 +51,13 @@ sync: sync-data sync-meta
 
 sync-data:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.carto SyncAllData
-#	  --parallel-scheduling --workers=3
+	  --module tasks.carto SyncAllData \
+	  --parallel-scheduling --workers=3
 
 sync-meta:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.carto SyncMetadata
-#	  --parallel-scheduling --workers=3
+	  --module tasks.carto SyncMetadata \
+	  --parallel-scheduling --workers=3
 
 kill:
 	docker-compose ps | grep _run_ | cut -c 1-34 | xargs docker stop
