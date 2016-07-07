@@ -219,9 +219,21 @@ class CartoDBTarget(Target):
         return resp.status_code == 200
 
     def remove(self):
-        assert self.exists()
         api_key = os.environ['CARTODB_API_KEY']
+        url = os.environ['CARTODB_URL']
+        session = os.environ['CARTODB_SESSION']
+
+        resp = requests.get('{url}/dashboard/datasets'.format(
+            url=url
+        ), cookies={
+            '_cartodb_session': session
+        })
+        if not self.exists():
+            time.sleep(2)
+            return
+
         # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/obs_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
+
         try:
             while True:
                 resp = requests.get('{url}/api/v1/tables/{tablename}?api_key={api_key}'.format(
@@ -245,6 +257,12 @@ class CartoDBTarget(Target):
             query_cartodb('DROP TABLE {tablename}'.format(tablename=self.tablename))
         except Exception:
             pass
+        resp = requests.get('{url}/dashboard/datasets'.format(
+            url=url
+        ), cookies={
+            '_cartodb_session': session
+        })
+        time.sleep(2)
         assert not self.exists()
 
 
@@ -646,7 +664,7 @@ class TableToCartoViaImportAPI(Task):
         else:
             table = self.table
         target = CartoDBTarget(self.table)
-        if self.force and target.exists():
+        if self.force: #and target.exists():
             target.remove()
             self.force = False
         return target
