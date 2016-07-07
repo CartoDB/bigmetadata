@@ -5,7 +5,7 @@ Tasks to sync data locally to CartoDB
 from tasks.meta import (current_session, OBSTable, Base, OBSColumn,)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, TempTableTask,
-                        CartoDBTarget, import_api)
+                        CartoDBTarget, import_api, TableToCartoViaImportAPI)
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter, FloatParameter)
@@ -99,8 +99,7 @@ class SyncMetadata(WrapperTask):
 
     def requires(self):
         for tablename in META_TABLES:
-            yield TableToCarto(table=tablename, outname=tablename,
-                               force=self.force)
+            yield TableToCartoViaImportAPI(table=tablename, force=self.force)
 
     def run(self):
         yield OBSMetaToCarto()
@@ -183,7 +182,7 @@ class SyncAllData(WrapperTask):
                 tables[table.id] = table.tablename
 
         for table_id, tablename in tables.iteritems():
-            yield TableToCarto(table=tablename, outname=tablename, force=self.force)
+            yield TableToCartoViaImportAPI(table=tablename, force=self.force)
 
 
 class ImagesForMeasure(Task):
@@ -700,16 +699,6 @@ class PurgeMetadataTables(Task):
                 import pdb
                 pdb.set_trace()
                 print table
-            #task_classes = dict([(underscore_slugify(kls), getattr(module, kls))
-            #                     for kls in dir(module)
-            #                     if isinstance(getattr(module, kls), Register)])
-            #try:
-            #    import pdb
-            #    pdb.set_trace()
-            #    module = __import__(modname)
-            #except ImportError:
-            #    # drop table
-            #    pass
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
 
@@ -862,7 +851,6 @@ class OBSMeta(Task):
            MAX(denom_c.weight) denom_weight,
            MAX(geom_c.weight) geom_weight,
            MAX(geom_t.timespan) geom_timespan,
-           MAX(geom_t.bounds)::box2d geom_bounds,
            MAX(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
            ARRAY_AGG(DISTINCT s_tag.id) section_tags,
            ARRAY_AGG(DISTINCT ss_tag.id) subsection_tags,
