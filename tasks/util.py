@@ -74,6 +74,8 @@ def query_cartodb(query):
     })
     #assert resp.status_code == 200
     #if resp.status_code != 200:
+    #    import pdb
+    #    pdb.set_trace()
     #    raise Exception(u'Non-200 response ({}) from carto: {}'.format(
     #        resp.status_code, resp.text))
     return resp
@@ -633,7 +635,7 @@ class TableToCartoViaImportAPI(Task):
                   tmp_file_path=tmp_file_path,
               ))
         curl_resp = shell(
-            'curl -s -F privacy=public '
+            'curl -s -F privacy=public -F type_guessing=false '
             '  -F file=@{tmp_file_path} "{url}/api/v1/imports/?api_key={api_key}"'.format(
                 tmp_file_path=tmp_file_path,
                 url=url,
@@ -658,13 +660,31 @@ class TableToCartoViaImportAPI(Task):
         assert resp.json()['table_name'] == self.table # the copy should not have a
                                                        # mutilated name (like '_1', '_2' etc)
 
+        # fix broken column data types -- alter everything that's not character
+        # varying back to it
+        session = current_session()
+        resp = session.execute('SELECT column_name, data_type '
+                               'FROM information_schema.columns '
+                               "WHERE table_schema='{schema}' "
+                               "AND table_name='{tablename}' ".format(
+                                   schema=self.schema,
+                                   tablename=self.table)).fetchall()
+        alter = ', '.join(['ALTER COLUMN {colname} SET DATA TYPE {data_type} USING {colname}::{data_type}'.format(
+            colname=colname, data_type=data_type
+        ) for colname, data_type in resp if data_type.lower() not in ('character varying', 'text',)])
+        if alter:
+            resp = query_cartodb('ALTER TABLE {tablename} {alter}'.format(
+                tablename=self.table,
+                alter=alter)
+            )
+            if resp.status_code != 200:
+                import pdb
+                pdb.set_trace()
+                print resp.text
+
     def output(self):
-        if self.schema != 'observatory':
-            table = '.'.join([self.schema, self.table])
-        else:
-            table = self.table
         target = CartoDBTarget(self.table)
-        if self.force: #and target.exists():
+        if self.force:
             target.remove()
             self.force = False
         return target
