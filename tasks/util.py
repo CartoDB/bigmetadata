@@ -129,7 +129,7 @@ def import_api(request, json_column_names=None):
 
     for colname in json_column_names:
         query = 'ALTER TABLE {outname} ALTER COLUMN {colname} ' \
-                'SET DATA TYPE json USING {colname}::json'.format(
+                'SET DATA TYPE json USING NULLIF({colname}, '')::json'.format(
                     outname=resp.json()['table_name'], colname=colname
                 )
         print query
@@ -669,18 +669,19 @@ class TableToCartoViaImportAPI(Task):
                                "AND table_name='{tablename}' ".format(
                                    schema=self.schema,
                                    tablename=self.table)).fetchall()
-        alter = ', '.join(['ALTER COLUMN {colname} SET DATA TYPE {data_type} USING {colname}::{data_type}'.format(
+        alter = ', '.join(["ALTER COLUMN {colname} SET DATA TYPE {data_type} USING NULLIF({colname}, '')::{data_type}".format(
             colname=colname, data_type=data_type
-        ) for colname, data_type in resp if data_type.lower() not in ('character varying', 'text',)])
+        ) for colname, data_type in resp if data_type.lower() not in ('character varying', 'text', 'user-defined')])
         if alter:
-            resp = query_cartodb('ALTER TABLE {tablename} {alter}'.format(
-                tablename=self.table,
-                alter=alter)
+            resp = query_cartodb(
+                'ALTER TABLE {tablename} {alter}'.format(
+                    tablename=self.table,
+                    alter=alter)
             )
             if resp.status_code != 200:
-                import pdb
-                pdb.set_trace()
-                print resp.text
+                raise Exception('could not alter columns for "{tablename}":'
+                                '{err}'.format(tablename=self.table,
+                                               err=resp.text))
 
     def output(self):
         target = CartoDBTarget(self.table)
