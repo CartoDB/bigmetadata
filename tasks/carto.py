@@ -217,8 +217,8 @@ class ImagesForMeasure(Task):
         ],
         'mx': [
             ((22.979, -101.777), 4, 'mx.inegi.entidad', ),
-            ((19.316, -99.152), 7, 'mx.inegi.localidad_urbana_y_rural_amanzanada', ),
-            ((19.316, -99.152), 9, 'mx.inegi.municipio', ),
+            ((19.316, -99.152), 7, 'mx.inegi.municipio', ),
+            ((19.316, -99.152), 9, 'mx.inegi.ageb', ),
             ((19.4282, -99.1344), 12, 'mx.inegi.manzana', ),
         ],
         'uk': [
