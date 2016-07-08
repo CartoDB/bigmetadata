@@ -230,10 +230,11 @@ class OutputAreaClassificationColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'units': UnitTags(),
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         input_ = self.input()
@@ -242,6 +243,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
         gen_cats = lambda d: OrderedDict([
             (catname, {'description': '', 'details': {}}) for catname in d.keys()
         ])
+        segmentation = input_['units']['segmentation']
         return OrderedDict([
             ('sprgrp', OBSColumn(
                 type='Text',
@@ -257,7 +259,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.sprgrp_mapping)},
-                tags=[uk, segments, ],
+                tags=[uk, segments, segmentation],
             )),
             ('grp', OBSColumn(
                 type='Text',
@@ -273,7 +275,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.grp_mapping)},
-                tags=[uk, segments, ],
+                tags=[uk, segments, segmentation],
             )),
             ('subgrp', OBSColumn(
                 type='Text',
@@ -289,7 +291,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.subgrp_mapping)},
-                tags=[uk, segments, ],
+                tags=[uk, segments, segmentation],
             )),
         ])
 

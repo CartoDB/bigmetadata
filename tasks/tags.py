@@ -18,7 +18,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 4
+        return 5
 
     def tags(self):
         return [
@@ -66,6 +66,10 @@ class UnitTags(TagsTask):
                    name='Level of education',
                    type='unit',
                    description=''),
+            OBSTag(id='segmentation',
+                   name='Segmentation',
+                   type='unit',
+                   description='')
         ]
 
 

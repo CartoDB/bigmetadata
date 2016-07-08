@@ -11,7 +11,7 @@ from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag, current_sessi
 from tasks.util import shell, classpath, ColumnsTask, TableTask
 from tasks.us.census.tiger import GeoidColumns
 from tasks.us.census.acs import ACSTags
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 
 from luigi import Task, Parameter, LocalTarget, BooleanParameter
@@ -1065,18 +1065,26 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 11
+        return 12
 
     def requires(self):
         return {
             'acs_tags': ACSTags(),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'units': UnitTags(),
         }
 
     def columns(self):
         segments_tag = self.input()['acs_tags']['segments']
         usa = self.input()['sections']['united_states']
+        segmentation = self.input()['units']['segmentation']
+        x2 = OBSColumn(
+            id='X2',
+            type='Text',
+            name="Spielman-Singleton Segments: 2 Clusters",
+            description="Sociodemographic classes from Spielman and Singleton 2015, 2 clusters"
+        )
         x10 = OBSColumn(
             id='X10',
             type='Text',
@@ -1084,13 +1092,7 @@ class SpielmanSingletonColumns(ColumnsTask):
             description='Sociodemographic classes from Spielman and Singleton 2015, 10 clusters',
             weight=4,
             extra={'categories': self.x10_categories},
-            tags=[segments_tag, usa],
-        )
-        x2 = OBSColumn(
-            id='X2',
-            type='Text',
-            name="Spielman-Singleton Segments: 2 Clusters",
-            description="Sociodemographic classes from Spielman and Singleton 2015, 2 clusters"
+            tags=[segments_tag, usa, segmentation],
         )
         x31 = OBSColumn(
             id='X31',
@@ -1105,7 +1107,7 @@ class SpielmanSingletonColumns(ColumnsTask):
             description="Sociodemographic classes from Spielman and Singleton 2015, 55 clusters",
             weight=7,
             extra={'categories': self.x55_categories},
-            tags=[segments_tag, usa],
+            tags=[segments_tag, usa, segmentation],
         )
 
         return OrderedDict([
