@@ -56,6 +56,7 @@ DEMOGRAPHIC_TABLES = {
     'hogar': 'hogares_censales',
     'viv': 'viviendas',
     'fec': 'fecundidad',
+    'pob': ''
 }
 
 
