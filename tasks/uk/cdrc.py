@@ -232,6 +232,9 @@ class OutputAreaClassificationColumns(ColumnsTask):
             'subsections': SubsectionTags(),
         }
 
+    def version(self):
+        return 2
+
     def columns(self):
         input_ = self.input()
         uk = input_['sections']['uk']
@@ -253,7 +256,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 'classifications/index.html>`_ or `here '
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
-                extra=gen_cats(self.sprgrp_mapping),
+                extra={'categories': gen_cats(self.sprgrp_mapping)},
                 tags=[uk, segments, ],
             )),
             ('grp', OBSColumn(
@@ -269,7 +272,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 'classifications/index.html>`_ or `here '
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
-                extra=gen_cats(self.grp_mapping),
+                extra={'categories': gen_cats(self.grp_mapping)},
                 tags=[uk, segments, ],
             )),
             ('subgrp', OBSColumn(
@@ -285,7 +288,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 'classifications/index.html>`_ or `here '
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
-                extra=gen_cats(self.subgrp_mapping),
+                extra={'categories': gen_cats(self.subgrp_mapping)},
                 tags=[uk, segments, ],
             )),
         ])
