@@ -662,26 +662,32 @@ class TableToCartoViaImportAPI(Task):
 
         # fix broken column data types -- alter everything that's not character
         # varying back to it
-        session = current_session()
-        resp = session.execute('SELECT column_name, data_type '
-                               'FROM information_schema.columns '
-                               "WHERE table_schema='{schema}' "
-                               "AND table_name='{tablename}' ".format(
-                                   schema=self.schema,
-                                   tablename=self.table)).fetchall()
-        alter = ', '.join(["ALTER COLUMN {colname} SET DATA TYPE {data_type} USING NULLIF({colname}, '')::{data_type}".format(
-            colname=colname, data_type=data_type
-        ) for colname, data_type in resp if data_type.lower() not in ('character varying', 'text', 'user-defined')])
-        if alter:
-            resp = query_cartodb(
-                'ALTER TABLE {tablename} {alter}'.format(
-                    tablename=self.table,
-                    alter=alter)
-            )
-            if resp.status_code != 200:
-                raise Exception('could not alter columns for "{tablename}":'
-                                '{err}'.format(tablename=self.table,
-                                               err=resp.text))
+        try:
+            session = current_session()
+            resp = session.execute('SELECT column_name, data_type '
+                                   'FROM information_schema.columns '
+                                   "WHERE table_schema='{schema}' "
+                                   "AND table_name='{tablename}' ".format(
+                                       schema=self.schema,
+                                       tablename=self.table)).fetchall()
+            alter = ', '.join(["ALTER COLUMN {colname} SET DATA TYPE {data_type} USING NULLIF({colname}, '')::{data_type}".format(
+                colname=colname, data_type=data_type
+            ) for colname, data_type in resp if data_type.lower() not in ('character varying', 'text', 'user-defined')])
+            if alter:
+                resp = query_cartodb(
+                    'ALTER TABLE {tablename} {alter}'.format(
+                        tablename=self.table,
+                        alter=alter)
+                )
+                if resp.status_code != 200:
+                    raise Exception('could not alter columns for "{tablename}":'
+                                    '{err}'.format(tablename=self.table,
+                                                   err=resp.text))
+        except Exception as err:
+            # in case of error, delete the uploaded but not-yet-properly typed
+            # table
+            self.output().remove()
+            raise err
 
     def output(self):
         target = CartoDBTarget(self.table)
