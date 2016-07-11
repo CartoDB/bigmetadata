@@ -19,7 +19,7 @@
   :align: center
 {% endif %}
 
-{{ col.description }}
+{% if col.description %}{{ col.description }}{% endif %}
 
 {% if col.extra.categories %}
   {% for catname, category in col.extra.categories.items() %}
