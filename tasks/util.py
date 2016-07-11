@@ -525,6 +525,8 @@ class TableTarget(Target):
                 if stats['notnull'] == 0:
                     if coltable_existed:
                         session.delete(coltable)
+                    elif coltable in session:
+                        session.expunge(coltable)
                     continue
                 for k in stats.keys():
                     if stats[k] is not None:
