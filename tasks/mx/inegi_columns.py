@@ -15,6 +15,9 @@ class DemographicColumns(ColumnsTask):
             'unittags': UnitTags(),
         }
 
+    def version(self):
+        return 2
+
     def columns(self):
         input_ = self.input()
 
@@ -2902,7 +2905,7 @@ class DemographicColumns(ColumnsTask):
             weight=3,
             aggregate='ratio',
             tags=[mexico, unit_ratio, subsections['age_gender'],
-                  subsections['migration']],
+                  subsections['migration'], ],
             targets={},
         )
         average_education_level = OBSColumn(
@@ -2911,7 +2914,7 @@ class DemographicColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate=None,
-            tags=[mexico, unit_education, ],
+            tags=[mexico, unit_education, subsections['education'], ],
             targets={},
         )
         female_average_education_level = OBSColumn(
@@ -2920,7 +2923,7 @@ class DemographicColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate=None,
-            tags=[mexico, unit_education, ],
+            tags=[mexico, unit_education, subsections['education'], ],
             targets={},
         )
         male_average_education = OBSColumn(
@@ -2929,7 +2932,7 @@ class DemographicColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate=None,
-            tags=[mexico, unit_education, ],
+            tags=[mexico, unit_education, subsections['education'], ],
             targets={},
         )
         people_per_dwelling = OBSColumn(
@@ -2938,7 +2941,7 @@ class DemographicColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate=None,
-            tags=[mexico, unit_ratio, ],
+            tags=[mexico, unit_ratio, subsections['housing'], ],
             targets={},
         )
         people_per_room = OBSColumn(
@@ -2947,7 +2950,7 @@ class DemographicColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate=None,
-            tags=[mexico, unit_ratio, ],
+            tags=[mexico, unit_ratio, subsections['housing'], ],
             targets={},
         )
 
