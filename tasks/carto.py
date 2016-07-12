@@ -218,8 +218,8 @@ class ImagesForMeasure(Task):
         'mx': [
             ((22.979, -101.777), 4, 'mx.inegi.entidad', ),
             ((19.316, -99.152), 7, 'mx.inegi.municipio', ),
-            ((19.316, -99.152), 9, 'mx.inegi.ageb', ),
-            ((19.4282, -99.1344), 12, 'mx.inegi.manzana', ),
+            ((19.316, -99.152), 11, 'mx.inegi.ageb', ),
+            ((19.4282, -99.1344), 13, 'mx.inegi.manzana', ),
         ],
         'uk': [
             ((52.51622086393074, -1.197509765625), 5, None, ), # All England
@@ -306,6 +306,8 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
         resp = session.execute(query)
         results = resp.fetchone()
+
+        # how should we determine fallback resolution?
         if results is None:
             query = mainquery.format(
                 measure=self.measure,
@@ -380,7 +382,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
         resp = query_cartodb(statssql)
         #try:
-        assert resp.status_code == 200
+        #    assert resp.status_code == 200
         #except:
         #    import pdb
         #    pdb.set_trace()
@@ -879,6 +881,8 @@ class OBSMeta(Task):
          observatory.obs_tag ss_tag,
          observatory.obs_column_tag s_ctag,
          observatory.obs_tag s_tag,
+         observatory.obs_column_tag unit_ctag,
+         observatory.obs_tag unit_tag,
          observatory.obs_column numer_c
       LEFT JOIN (
         observatory.obs_column_to_column denom_c2c
@@ -887,10 +891,6 @@ class OBSMeta(Task):
         JOIN observatory.obs_table denom_t ON denom_data_ct.table_id = denom_t.id
         JOIN observatory.obs_column_table denom_geomref_ct ON denom_geomref_ct.table_id = denom_t.id
       ) ON denom_c2c.source_id = numer_c.id
-      LEFT JOIN (
-         observatory.obs_column_tag unit_ctag
-         JOIN observatory.obs_tag unit_tag ON unit_tag.id = unit_ctag.tag_id
-      ) ON numer_c.id = unit_ctag.column_id
     WHERE numer_c.id = numer_data_ct.column_id
       AND numer_data_ct.table_id = numer_t.id
       AND numer_t.id = numer_geomref_ct.table_id
@@ -906,7 +906,7 @@ class OBSMeta(Task):
       AND numer_c.type NOT ILIKE 'geometry'
       AND numer_t.id != geom_t.id
       AND numer_c.id != geomref_c.id
-      AND (unit_tag.type = 'unit' OR unit_tag.type IS NULL)
+      AND unit_tag.type = 'unit'
       AND ss_tag.type = 'subsection'
       AND s_tag.type = 'section'
       AND unit_ctag.column_id = numer_c.id
