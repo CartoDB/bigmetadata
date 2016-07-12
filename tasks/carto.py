@@ -794,7 +794,7 @@ class Dump(Task):
             session.execute(
                 'INSERT INTO observatory.obs_dump_version (dump_id) '
                 "VALUES ('{task_id}')".format(task_id=self.task_id))
-            shell('pg_dump -j6 -Fc -Z0 -x -n observatory -f {output}'.format(
+            shell('pg_dump -Fc -Z0 -x -n observatory -f {output}'.format(
                 output=self.output().path))
             session.commit()
         except Exception as err:
