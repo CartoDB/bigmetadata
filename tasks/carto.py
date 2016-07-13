@@ -314,6 +314,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                 boundary_clause="")
             resp = session.execute(query)
             results = resp.fetchone()
+
         numer_aggregate, numer_colname, numer_geomref_colname, numer_tablename, \
                 geom_geomref_colname, geom_colname, geom_tablename, denom_colname, \
                 denom_tablename, denom_geomref_colname = results
@@ -341,7 +342,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "numer.{numer_colname} / " \
                     "  ST_Area(geom.the_geom_webmercator) * 1000000.0 measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
-                    "WHERE geom.{geom_geomref_colname} = data.{numer_geomref_colname} "
+                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
             statssql = "SELECT CDB_HeadsTailsBins(array_agg(distinct( " \
                     '  (numer.{numer_colname} / ST_Area(geom.the_geom_webmercator) ' \
                     '      * 1000000.0)::NUMERIC)), 4) as "headtails" ' \
@@ -381,21 +382,21 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                                    denom_geomref_colname=denom_geomref_colname)
 
         resp = query_cartodb(statssql)
-        #try:
-        #    assert resp.status_code == 200
-        #except:
-        #    import pdb
-        #    pdb.set_trace()
-        #    print resp.text
+        assert resp.status_code == 200
         headtails = resp.json()['rows'][0]['headtails']
-        #if not headtails:
-        #    import pdb
-        #    pdb.set_trace()
 
         if measure.unit():
             ramp = self.PALETTES.get(measure.unit().id, self.PALETTES['tags.ratio'])
         else:
             ramp = self.PALETTES['tags.ratio']
+
+        bucket_css = u''
+        for i, bucket in enumerate(headtails):
+            bucket_css = u'''
+[measure <= {bucket}] {{
+   polygon-fill: @{i};
+}}
+            '''.format(bucket=bucket, i=i+1) + bucket_css
 
         layers.append({
             'type': 'mapnik',
@@ -412,31 +413,16 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
   line-width: 0.25;
   line-opacity: 0.2;
   line-comp-op: hard-light;
+  polygon-fill: @{bucketlen};
 
   [measure=null]{{
      polygon-fill: #cacdce;
   }}
-  [measure > {range3}] {{
-     polygon-fill: @5;
-  }}
-  [measure <= {range3}][measure > {range2}] {{
-     polygon-fill: @4;
-  }}
-  [measure <= {range2}][measure > {range1}] {{
-     polygon-fill: @3;
-  }}
-  [measure <= {range1}][measure > {range0}] {{
-     polygon-fill: @2;
-  }}
-  [measure <= {range0}] {{
-     polygon-fill: @1;
-  }}
+  {bucket_css}
 }}'''.format(
     ramp=ramp,
-    range0=headtails[0],
-    range1=headtails[1],
-    range2=headtails[2],
-    range3=headtails[3]),
+    bucketlen=len(headtails) + 1,
+    bucket_css=bucket_css),
                 'cartocss_version': "2.1.1",
                 'sql': cartosql,
                 "table_name": "\"\"."
