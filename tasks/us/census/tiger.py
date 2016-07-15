@@ -58,7 +58,7 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 10
+        return 11
 
     def requires(self):
         return {
@@ -157,15 +157,15 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='Core Based Statistical Area (CBSA)',
                 description=self._generate_desc("cbsa"),
-                weight=0,
-                tags=[]
+                weight=1,
+                tags=[sections['united_states'], subsections['boundary']]
             ),
             'place': OBSColumn(
                 type='Geometry',
                 name='Incorporated Places',
                 description=self._generate_desc("place"),
-                weight=0,
-                tags=[]
+                weight=1,
+                tags=[sections['united_states'], subsections['boundary']]
             ),
         }
 
