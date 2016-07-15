@@ -16,7 +16,7 @@ class DemographicColumns(ColumnsTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         input_ = self.input()
@@ -2714,7 +2714,7 @@ class DemographicColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[mexico, unit_housing, subsections['housing'], ],
+            tags=[mexico, unit_housing, subsections['housing'], subsections['transportation']],
             targets={occupied_private_dwellings: DENOMINATOR, },
         )
         no_fridge_washer = OBSColumn(
@@ -2732,7 +2732,7 @@ class DemographicColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[mexico, unit_housing, subsections['housing'], ],
+            tags=[mexico, unit_housing, subsections['housing'], subsections['transportation']],
             targets={occupied_private_dwellings: DENOMINATOR, },
         )
         with_radio = OBSColumn(
