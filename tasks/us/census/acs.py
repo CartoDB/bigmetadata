@@ -61,7 +61,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 14
+        return 15
 
     def columns(self):
         input_ = self.input()
@@ -75,11 +75,24 @@ class Columns(ColumnsTask):
         #segmenttags = input_['segmenttags']
         #tag_middle_aged_men = segmenttags['middle_aged_men']
         #tag_families_with_young_children = segmenttags['families_with_young_children']
+        households = OBSColumn(
+            id='B11001001',
+            type='Numeric',
+            name='Households',
+            description='A count of the number of households in each geography. '
+            'A household consists of one or more people who live in the same '
+            'dwelling and also share at meals or living accommodation, and may '
+            'consist of a single family or some other grouping of people. ',
+            weight=8,
+            aggregate='sum',
+            tags=[subsections['housing'], unit_households])
         total_pop = OBSColumn(
             id='B01003001',
             type='Numeric',
             name="Total Population",
-            description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
+            description='The total number of all people living in a given '
+            'geographic area.  This is a very useful catch-all denominator '
+            'when calculating rates.',
             aggregate='sum',
             weight=10,
             tags=[subsections['age_gender'], subsections['race_ethnicity'], unit_people]
@@ -256,6 +269,87 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={commuters_by_car_truck_van: 'denominator'},
             tags=[subsections['transportation'], unit_people])
+        no_cars = OBSColumn(
+            id='B08201002',
+            type='Numeric',
+            name='Car-free households',
+            description='The number of households without passenger cars, vans, '
+            'and pickup or panel trucks of one-ton capacity or less kept at '
+            'home and available for the use of household members. Vehicles '
+            'rented or leased for one month or more, company vehicles, and '
+            'police and government vehicles are included if kept at home and '
+            'used for non-business purposes. Dismantled or immobile vehicles '
+            'ware excluded. Vehicles kept at home but used only for business '
+            'purposes also are excluded.',
+            weight=2,
+            aggregate='sum',
+            targets={households: 'denominator'},
+            tags=[subsections['transportation'], unit_households])
+        one_car = OBSColumn(
+            id='B08201003',
+            type='Numeric',
+            name='One car households',
+            description='The number of households with one passenger car, van, '
+            ', pickup or panel trucks of one-ton capacity or less kept at '
+            'home and available for the use of household members. Vehicles '
+            'rented or leased for one month or more, company vehicles, and '
+            'police and government vehicles are included if kept at home and '
+            'used for non-business purposes. Dismantled or immobile vehicles '
+            'ware excluded. Vehicles kept at home but used only for business '
+            'purposes also are excluded.',
+            weight=2,
+            aggregate='sum',
+            targets={households: 'denominator'},
+            tags=[subsections['transportation'], unit_households])
+        two_cars = OBSColumn(
+            id='B08201004',
+            type='Numeric',
+            name='Two car households',
+            description='The number of households with two passenger cars, vans, '
+            'pickup or panel trucks of one-ton capacity or less kept at '
+            'home and available for the use of household members. Vehicles '
+            'rented or leased for one month or more, company vehicles, and '
+            'police and government vehicles are included if kept at home and '
+            'used for non-business purposes. Dismantled or immobile vehicles '
+            'ware excluded. Vehicles kept at home but used only for business '
+            'purposes also are excluded.',
+            weight=2,
+            aggregate='sum',
+            targets={households: 'denominator'},
+            tags=[subsections['transportation'], unit_households])
+        three_cars = OBSColumn(
+            id='B08201005',
+            type='Numeric',
+            name='Three car households',
+            description='The number of households with one passenger cars, vans, '
+            'pickup or panel trucks of one-ton capacity or less kept at '
+            'home and available for the use of household members. Vehicles '
+            'rented or leased for one month or more, company vehicles, and '
+            'police and government vehicles are included if kept at home and '
+            'used for non-business purposes. Dismantled or immobile vehicles '
+            'ware excluded. Vehicles kept at home but used only for business '
+            'purposes also are excluded.',
+            weight=2,
+            aggregate='sum',
+            targets={households: 'denominator'},
+            tags=[subsections['transportation'], unit_households])
+        four_more_cars = OBSColumn(
+            id='B08201006',
+            type='Numeric',
+            name='Four car households',
+            description='The number of households with four or more '
+            'passenger cars, vans, '
+            'pickup or panel trucks of one-ton capacity or less kept at '
+            'home and available for the use of household members. Vehicles '
+            'rented or leased for one month or more, company vehicles, and '
+            'police and government vehicles are included if kept at home and '
+            'used for non-business purposes. Dismantled or immobile vehicles '
+            'ware excluded. Vehicles kept at home but used only for business '
+            'purposes also are excluded.',
+            weight=2,
+            aggregate='sum',
+            targets={households: 'denominator'},
+            tags=[subsections['transportation'], unit_households])
         commuters_by_public_transportation = OBSColumn(
             id='B08301010',
             type='Numeric',
@@ -336,17 +430,6 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={children: 'denominator'}
         )
-        households = OBSColumn(
-            id='B11001001',
-            type='Numeric',
-            name='Households',
-            description='A count of the number of households in each geography. '
-            'A household consists of one or more people who live in the same '
-            'dwelling and also share at meals or living accommodation, and may '
-            'consist of a single family or some other grouping of people. ',
-            weight=8,
-            aggregate='sum',
-            tags=[subsections['housing'], unit_households])
         married_households = OBSColumn(
             id='B11001003',
             type='Numeric',
@@ -2648,6 +2731,11 @@ class Columns(ColumnsTask):
             ("workers_16_and_over", workers_16_and_over),
             ("commuters_by_car_truck_van", commuters_by_car_truck_van),
             ('commuters_drove_alone', commuters_drove_alone),
+            ('no_cars', no_cars),
+            ('one_car', one_car),
+            ('two_cars', two_cars),
+            ('three_cars', three_cars),
+            ('four_more_cars', four_more_cars),
             ('commuters_by_carpool', commuters_by_carpool),
             ("commuters_by_public_transportation", commuters_by_public_transportation),
             ("commuters_by_bus", commuters_by_bus),
@@ -2937,7 +3025,7 @@ class QuantileColumns(ColumnsTask):
         return Columns()
 
     def version(self):
-        return 4
+        return 5
 
     def columns(self):
         quantile_columns = OrderedDict()
@@ -2975,7 +3063,7 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 8
+        return 9
 
     def columns(self):
         input_ = self.input()
@@ -3024,7 +3112,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 8
+        return 9
 
     def requires(self):
         return {
@@ -3111,5 +3199,6 @@ class ExtractAll(WrapperTask):
     def requires(self):
         for geo in ('state', 'county', 'census_tract', 'block_group', 'puma',
                     'zcta5', 'school_district_elementary', 'congressional_district',
-                    'school_district_secondary', 'school_district_unified'):
+                    'school_district_secondary', 'school_district_unified',
+                    'cbsa', 'place'):
             yield Quantiles(geography=geo, year=self.year, sample=self.sample)
