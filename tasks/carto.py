@@ -716,8 +716,8 @@ class ConfirmTablesDescribedExist(Task):
             target = PostgresTarget('observatory', table.tablename)
             assert target.exists()
             assert session.execute(
-                'SELECT COUNT(*) FROM observatory.{tablename}'.format(
-                    tablename=table.tablename)).fetchone()[0] > 0
+                'SELECT row_number() over () FROM observatory.{tablename} LIMIT 1'.format(
+                    tablename=table.tablename)).fetchone()[0] == 1
         self._complete = True
 
 
