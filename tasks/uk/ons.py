@@ -57,7 +57,7 @@ class CensusColumns(ColumnsTask):
         }
 
     def version(self):
-        return 1
+        return 2
 
     def columns(self):
         input_ = self.input()
@@ -71,7 +71,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=10,
             aggregate='sum',
-            tags=[uk, units['people'], ],
+            tags=[uk, units['people'], subsections['age_gender']],
         )
         pop_0_to_24 = OBSColumn(
             id='LC2102EW0016',
