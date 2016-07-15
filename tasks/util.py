@@ -991,3 +991,29 @@ class RenameTables(Task):
 
     def complete(self):
         return hasattr(self, '_complete')
+
+
+class DropOrphanTables(Task):
+    '''
+    Remove tables that aren't documented anywhere in metadata.
+    '''
+
+    def run(self):
+        session = current_session()
+        resp = session.execute('''
+SELECT table_name
+FROM information_schema.tables
+WHERE table_name LIKE 'obs_%'
+  AND table_schema = 'observatory'
+  AND table_name NOT IN (SELECT tablename FROM observatory.obs_table)
+  AND LENGTH(table_name) = 44
+''')
+        for row in resp:
+            tablename = row[0]
+            cnt = session.execute(
+                'select count(*) from observatory.{}'.format(tablename)).fetchone()[0]
+            if cnt > 0:
+                raise Exception('not automatically dropping {}, it has {} rows'.format(
+                    tablename, cnt))
+            else:
+                session.execute('drop table observatory.{}'.format(tablename))
