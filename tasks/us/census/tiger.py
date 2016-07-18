@@ -21,12 +21,13 @@ from tasks.carto import Import as CartoImport
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
                    IntParameter)
 from psycopg2 import ProgrammingError
+from decimal import Decimal
 
 
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 8
+        return 10
 
     def requires(self):
         return {
@@ -45,7 +46,7 @@ class ClippedGeomColumns(ColumnsTask):
             cols[colname + '_clipped'] = OBSColumn(
                 type='Geometry',
                 name='Shoreline clipped ' + col.name,
-                weight=col.weight,
+                weight=col.weight + Decimal(0.01),
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
                 targets={col: 'cartography'},
@@ -58,7 +59,7 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 11
+        return 13
 
     def requires(self):
         return {
@@ -101,7 +102,7 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='US Congressional Districts',
                 description=self._generate_desc("congressional_district"),
-                weight=5,
+                weight=5.4,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'county': OBSColumn(
@@ -115,7 +116,7 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='US Census Public Use Microdata Areas',
                 description=self._generate_desc("puma"),
-                weight=6,
+                weight=5.5,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'state': OBSColumn(
@@ -136,14 +137,14 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='Elementary School District',
                 description=self._generate_desc('school_district_elementary'),
-                weight=3,
+                weight=2.8,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_secondary': OBSColumn(
                 type='Geometry',
                 name='Secondary School District',
                 description=self._generate_desc('school_district_secondary'),
-                weight=3,
+                weight=2.9,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_unified': OBSColumn(
@@ -164,7 +165,7 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='Incorporated Places',
                 description=self._generate_desc("place"),
-                weight=1,
+                weight=1.1,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
         }
