@@ -809,10 +809,11 @@ class DumpS3(Task):
     def output(self):
         path = self.input().path.replace('tmp/carto/Dump_', 'do-release-')
         path = path.replace('.dump', '/obs.dump')
-
-        return S3Target('s3://cartodb-observatory-data/{path}'.format(
+        path = 's3://cartodb-observatory-data/{path}'.format(
             path=path
-        ))
+        )
+        print path
+        return S3Target(path)
 
 
 class OBSMeta(Task):
