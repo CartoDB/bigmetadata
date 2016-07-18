@@ -920,6 +920,9 @@ class OBSMetaToLocal(OBSMeta):
             output=self.output().table,
             select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
         ))
+        # confirm that there won't be ambiguity with selection of geom
+        session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
+                        '(numer_id, denom_id, geom_weight)')
         session.commit()
         self.force = False
 
