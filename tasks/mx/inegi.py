@@ -161,8 +161,17 @@ class GeographyColumns(ColumnsTask):
 
     resolution = Parameter()
 
+    weights = {
+        'manzana': 8,
+        'ageb': 7,
+        'municipio': 6,
+        'entidad': 5,
+        'localidad_urbana_y_rural_amanzanada': 4,
+        'servicios_area': 3,
+    }
+
     def version(self):
-        return 1
+        return 6
 
     def columns(self):
         geom = OBSColumn(
@@ -170,7 +179,7 @@ class GeographyColumns(ColumnsTask):
             type='Geometry',
             name=RESNAMES[self.resolution],
             description=RESDESCS[self.resolution],
-            weight=4,
+            weight=self.weights[self.resolution],
         )
         geom_ref = OBSColumn(
             id=self.resolution + '_cvegeo',
@@ -225,7 +234,7 @@ class Census(TableTask):
     table = Parameter()
 
     def version(self):
-        return 2
+        return 4
 
     def timespan(self):
         return 2010
@@ -255,19 +264,20 @@ class Census(TableTask):
         in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
         in_colnames[0] = 'cvegeo'
         for i, in_c in enumerate(in_colnames):
-            cmd = 'SELECT COUNT(*) FROM information_schema.columns ' \
+            cmd = "SELECT 'exists' FROM information_schema.columns " \
                     "WHERE table_schema = '{schema}' " \
                     "  AND table_name = '{tablename}' " \
-                    "  AND column_name = '{colname}' ".format(
+                    "  AND column_name = '{colname}' " \
+                    "  LIMIT 1".format(
                         schema=in_table.schema,
                         tablename=in_table.tablename.lower(),
                         colname=in_c.lower())
-            val = session.execute(cmd).fetchone()[0]
             # remove columns that aren't in input table
-            if val == 0:
+            if session.execute(cmd).fetchone() is None:
                 in_colnames[i] = None
                 out_colnames[i] = None
-        in_colnames = [ic for ic in in_colnames if ic is not None]
+        in_colnames = [
+            "CASE {ic}::TEXT WHEN '-6' THEN NULL ELSE {ic} END".format(ic=ic) for ic in in_colnames if ic is not None]
         out_colnames = [oc for oc in out_colnames if oc is not None]
 
         cmd = 'INSERT INTO {output} ({out_colnames}) ' \
