@@ -136,7 +136,7 @@ class ImportDemographicData(Shp2TempTableTask):
         elif self.resolution == 'entidad':
             resolution = 'estatal'
         elif self.resolution == 'localidad_urbana_y_rural_amanzanada':
-            resolution = 'loc'
+            resolution = 'loc_urb'
         else:
             resolution = self.resolution
         for ent in shell(cmd).strip().split('\n'):
