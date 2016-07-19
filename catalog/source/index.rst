@@ -45,6 +45,6 @@ merchantability and fitness for a particular purpose. CartoDB is not
 responsible for the accuracy, completeness, timeliness or quality of the Data.*
 
 `Data Terms and Licenses 
-<http://docs.cartodb.com/cartodb-platform/data/license/>`_.
+<https://carto.com/docs/carto-engine/data/license/>`_.
 
 
