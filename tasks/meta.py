@@ -159,8 +159,11 @@ class OBSColumn(Base):
             sources[c2c.source] = c2c.reltype
         return sources
 
-    def should_index(self):
-        return 'geom_ref' in self.targets.values()
+    def index_type(self):
+        if 'geom_ref' in self.targets.values():
+            return 'btree'
+        elif self.type.lower() == 'geometry':
+            return 'gist'
 
     def children(self):
         children = [col for col, reltype in self.sources.iteritems() if reltype == 'denominator']

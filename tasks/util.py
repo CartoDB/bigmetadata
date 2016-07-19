@@ -913,11 +913,17 @@ class TableTask(Task):
 
     def create_indexes(self):
         session = current_session()
+        tablename = self.output().table
         for colname, coltarget in self.columns().iteritems():
             col = coltarget.get(session)
-            if col.should_index():
-                session.execute('CREATE INDEX ON {table} ({colname})'.format(
-                    table=self.output().table, colname=colname))
+            index_type = col.index_type()
+            if index_type:
+                index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
+                session.execute('CREATE INDEX {index_name} ON {table} '
+                                'USING {index_type} ({colname})'.format(
+                                    index_type=index_type,
+                                    index_name=index_name,
+                                    table=tablename, colname=colname))
 
     #def complete(self):
     #    for dep in self.deps():
