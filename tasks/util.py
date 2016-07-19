@@ -993,6 +993,33 @@ class RenameTables(Task):
         return hasattr(self, '_complete')
 
 
+class CreateGeomIndexes(Task):
+    '''
+    Make sure every table has a `the_geom` index.
+    '''
+
+    def run(self):
+        session = current_session()
+        resp = session.execute('SELECT DISTINCT geom_colname, geom_tablename '
+                               'FROM observatory.obs_meta ')
+        for colname, tablename in resp:
+            index_name = '{}_{}_idx'.format(tablename, colname)
+            resp = session.execute("SELECT to_regclass('observatory.{}')".format(
+                index_name))
+            print index_name
+            if not resp.fetchone()[0]:
+                session.execute('CREATE INDEX {index_name} ON observatory.{tablename} '
+                                'USING GIST ({colname})'.format(
+                                    index_name=index_name,
+                                    tablename=tablename,
+                                    colname=colname))
+        session.commit()
+        self._complete = True
+
+    def complete(self):
+        return getattr(self, '_complete', False)
+
+
 class DropOrphanTables(Task):
     '''
     Remove tables that aren't documented anywhere in metadata.
