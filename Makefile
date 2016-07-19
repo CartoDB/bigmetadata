@@ -2,7 +2,7 @@ sh:
 	docker-compose run --rm bigmetadata /bin/bash
 
 test:
-	docker-compose run --rm -e PGDATABASE=test bigmetadata nosetests -s tests/
+	docker-compose run --rm bigmetadata nosetests tests/autotest.py
 
 python:
 	docker-compose run --rm bigmetadata python
