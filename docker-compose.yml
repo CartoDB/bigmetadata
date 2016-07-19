@@ -5,8 +5,9 @@
     "build": "postgres",
     "volumes": [
       "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf",
-      "./postgres/data:/var/lib/postgresql"  # commented to work on mac --
+      "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
                                               # will cause persistence issues!!
+      "../observatory-extension:/observatory-extension"
     ],
     "ports": [
       "5432:5432"
@@ -20,9 +21,9 @@
       "./browser/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
       "./catalog/build/html:/usr/share/nginx/html/catalog/:ro"
     ],
-   "ports": [
-      "80:80"
-   ]
+    "ports": [
+       "80:80"
+    ],
   },
   "bigmetadata_daemon": {
     "build": ".",
