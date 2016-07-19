@@ -76,5 +76,5 @@ endif
 run:
 	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
 
-dump:
+dump: test
 	docker-compose run --rm bigmetadata luigi --module tasks.carto DumpS3
