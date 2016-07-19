@@ -4,6 +4,8 @@ pylint
 psycopg2
 ujson
 nose
+nose-parameterized
+nose-timer
 mock
 python-daemon
 python-slugify
