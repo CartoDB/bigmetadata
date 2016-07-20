@@ -1,5 +1,5 @@
 requests==2.8.1
-luigi==2.1.0
+luigi==2.2.0
 pylint
 psycopg2
 ujson
