@@ -1070,7 +1070,7 @@ class CustomTable(TempTableTask):
         '''.format(measures="', '".join(self.measures),
                    boundary=self.boundary)
 
-        qualified_colnames = set()
+        colnames = set()
         tables = set()
         where = set()
         coldefs = set()
@@ -1078,8 +1078,8 @@ class CustomTable(TempTableTask):
         for row in session.execute(meta):
             numer_colname, numer_type, numer_geomref_colname, numer_tablename, \
                     geom_colname, geom_type, geom_geomref_colname, geom_tablename = row
-            qualified_colnames.add('{}.{}'.format(numer_tablename, numer_colname))
-            qualified_colnames.add('{}.{}'.format(geom_tablename, geom_colname))
+            colnames.add('{}.{}'.format(numer_tablename, numer_colname))
+            colnames.add('{}.{}'.format(geom_tablename, geom_colname))
             coldefs.add('{} {}'.format(numer_colname, numer_type))
             coldefs.add('{} {}'.format(geom_colname, geom_type))
             tables.add('observatory."{}"'.format(numer_tablename))
@@ -1087,24 +1087,15 @@ class CustomTable(TempTableTask):
             where.add('{}.{} = {}.{}'.format(numer_tablename, numer_geomref_colname,
                                              geom_tablename, geom_geomref_colname))
 
-        qualified_colnames = list(qualified_colnames)
-        colnames = [qc.split('.')[-1] for qc in qualified_colnames]
-
         create = '''
-        CREATE TABLE {output} ({coldefs})
-        '''.format(output=self.output().table, coldefs=', '.join(coldefs))
-        session.execute(create)
-
-        insert = '''
-        INSERT INTO {output} ({colnames})
-        SELECT {qualified_colnames}
+        CREATE TABLE {output} AS
+        SELECT {colnames}
         FROM {tables}
         WHERE {where}
         '''.format(
             output=self.output().table,
             colnames=', '.join(colnames),
-            qualified_colnames=', '.join(qualified_colnames),
             tables=', '.join(tables),
             where=' AND '.join(where),
         )
-        session.execute(insert)
+        session.execute(create)
