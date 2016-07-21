@@ -84,3 +84,6 @@ dump: test
 extension:
 	docker exec $$(docker-compose ps -q postgres) sh -c 'cd observatory-extension && make install'
 	docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS observatory; CREATE EXTENSION observatory WITH VERSION 'dev';"
+
+sh-sql:
+	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
