@@ -87,3 +87,11 @@ extension:
 
 sh-sql:
 	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
+
+unittest:
+	docker exec -it \
+	  $$(docker-compose ps -q postgres) \
+	  /bin/bash -c "cd observatory-extension \
+	                && chmod -R a+w src/pg/test/results \
+	                && make install \
+	                && su postgres -c 'make test'"
