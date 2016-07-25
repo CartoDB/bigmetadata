@@ -2,7 +2,8 @@
 # https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
 {
   "postgres": {
-    "build": "postgres",
+    "image": "kartoza/postgis:latest", # No explicit tag for 9.5-2.2 yet, but
+                                       # that's what we use
     "volumes": [
       "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf",
       "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
