@@ -359,4 +359,5 @@ DENOMINATOR = 'denominator'
 GEOM_REF = 'geom_ref'
 GEOM_NAME = 'geom_name'
 
+_engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
 Base.metadata.create_all()
