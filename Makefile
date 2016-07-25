@@ -1,8 +1,13 @@
 sh:
 	docker-compose run --rm bigmetadata /bin/bash
 
-test: extension
+perftest: extension
+	docker-compose run --rm bigmetadata nosetests -s tests/perftest.py
+
+autotest: extension
 	docker-compose run --rm bigmetadata nosetests tests/autotest.py
+
+test: perftest autotest
 
 python:
 	docker-compose run --rm bigmetadata python
