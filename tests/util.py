@@ -43,7 +43,12 @@ def runtask(task):
         return
     for dep in task.deps():
         runtask(dep)
-    task.run()
+        assert dep.complete() is True
+    try:
+        task.run()
+        task.on_success()
+    except:
+        task.on_failure()
 
 
 @contextmanager
