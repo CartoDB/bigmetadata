@@ -956,24 +956,29 @@ class TableTask(Task):
                                     index_name=index_name,
                                     table=tablename, colname=colname))
 
-    #def complete(self):
+    def output(self):
+        if self.deps() and not all([d.complete() for d in self.deps()]):
+            raise Exception('Must run prerequisites first')
+        if not hasattr(self, '_columns'):
+            self._columns = self.columns()
+
+        return TableTarget(classpath(self),
+                           underscore_slugify(self.task_id),
+                           OBSTable(description=self.description(),
+                                    version=self.version(),
+                                    timespan=self.timespan()),
+                           self._columns, self)
+
+    def complete(self):
+        if self.deps() and not all([d.complete() for d in self.deps()]):
+            return False
+        else:
+            return super(TableTask, self).complete()
     #    for dep in self.deps():
     #        if not dep.complete():
     #            return False
 
     #    return super(TableTask, self).complete()
-
-    def output(self):
-        if not hasattr(self, '_columns'):
-            self._columns = self.columns()
-
-        self._output = TableTarget(classpath(self),
-                                   underscore_slugify(self.task_id),
-                                   OBSTable(description=self.description(),
-                                            version=self.version(),
-                                            timespan=self.timespan()),
-                                   self._columns, self)
-        return self._output
 
 
 class RenameTables(Task):
