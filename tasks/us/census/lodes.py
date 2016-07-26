@@ -80,7 +80,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
 
     def requires(self):
         return {
-            'tags': CategoryTags()
+            'tags': SubsectionTags()
         }
 
     def version(self):
@@ -94,7 +94,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
             description='Total number of jobs',
             weight=8,
             aggregate='sum',
-            tags=[tags['income_education_employment'], tags['denominator']]
+            tags=[tags['employment']]
         )
         return OrderedDict([
             #work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code
@@ -106,7 +106,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=3,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment'], tags['race_age_gender']]
+                tags=[tags['employment'], tags['age_gender']]
             )),
             ('jobs_age_30_to_54', OBSColumn(
                 type='Integer',
@@ -115,7 +115,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=3,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment'], tags['race_age_gender']]
+                tags=[tags['employment'], tags['age_gender']]
             )),
             ('jobs_age_55_or_older', OBSColumn(
                 type='Integer',
@@ -124,7 +124,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=3,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment'], tags['race_age_gender']]
+                tags=[tags['employment'], tags['age_gender']]
             )),
             ('jobs_earning_15000_or_less', OBSColumn(
                 type='Integer',
@@ -133,7 +133,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=3,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['income']]
             )),
             ('jobs_earning_15001_to_40000', OBSColumn(
                 type='Integer',
@@ -142,7 +142,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=5,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['income']]
             )),
             ('jobs_earning_40001_or_more', OBSColumn(
                 type='Integer',
@@ -151,7 +151,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=5,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['income']]
             )),
             ('jobs_11_agriculture_forestry_fishing', OBSColumn(
                 type='Integer',
@@ -160,7 +160,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_21_mining_quarrying_oil_gas', OBSColumn(
                 type='Integer',
@@ -169,7 +169,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_22_utilities', OBSColumn(
                 type='Integer',
@@ -178,7 +178,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_23_construction', OBSColumn(
                 type='Integer',
@@ -187,7 +187,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_31_33_manufacturing', OBSColumn(
                 type='Integer',
@@ -196,7 +196,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_42_wholesale_trade', OBSColumn(
                 type='Integer',
@@ -205,7 +205,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_44_45_retail_trade', OBSColumn(
                 type='Integer',
@@ -214,7 +214,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_48_49_transport_warehousing', OBSColumn(
                 type='Integer',
@@ -223,7 +223,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_51_information', OBSColumn(
                 type='Integer',
@@ -232,7 +232,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_52_finance_and_insurance', OBSColumn(
                 type='Integer',
@@ -241,7 +241,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_53_real_estate_rental_leasing', OBSColumn(
                 type='Integer',
@@ -250,7 +250,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_54_professional_scientific_tech_services', OBSColumn(
                 type='Integer',
@@ -259,7 +259,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_55_management_of_companies_enterprises', OBSColumn(
                 type='Integer',
@@ -268,7 +268,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_56_admin_support_waste_management', OBSColumn(
                 type='Integer',
@@ -277,7 +277,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_61_educational_services', OBSColumn(
                 type='Integer',
@@ -286,7 +286,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_62_healthcare_social_assistance', OBSColumn(
                 type='Integer',
@@ -295,7 +295,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_71_arts_entertainment_recreation', OBSColumn(
                 type='Integer',
@@ -304,7 +304,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_72_accommodation_and_food', OBSColumn(
                 type='Integer',
@@ -313,7 +313,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_81_other_services_except_public_admin', OBSColumn(
                 type='Integer',
@@ -322,7 +322,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_92_public_administration', OBSColumn(
                 type='Integer',
@@ -331,7 +331,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment']]
             )),
             ('jobs_white', OBSColumn(
                 type='Integer',
@@ -340,7 +340,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=2,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment'], tags['race_age_gender']]
+                tags=[tags['employment'], tags['race_ethnicity']]
             )),
             ('jobs_black', OBSColumn(
                 type='Integer',
@@ -349,7 +349,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=2,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment'], tags['race_age_gender']]
+                tags=[tags['employment'], tags['race_ethnicity']]
             )),
             ('jobs_amerindian', OBSColumn(
                 type='Integer',
@@ -365,7 +365,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=2,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment'], tags['race_age_gender']]
+                tags=[tags['employment'], tags['race_ethnicity']]
             )),
             ('jobs_hawaiian', OBSColumn(
                 type='Integer',
@@ -395,7 +395,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment'], tags['race_age_gender']]
+                tags=[tags['employment'], tags['race_ethnicity']]
             )),
             ('jobs_less_than_high_school', OBSColumn(
                 type='Integer',
@@ -404,7 +404,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['education']]
             )),
             ('jobs_high_school', OBSColumn(
                 type='Integer',
@@ -413,7 +413,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['education']]
             )),
             ('jobs_some_college', OBSColumn(
                 type='Integer',
@@ -422,7 +422,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['education']]
             )),
             ('jobs_bachelors_or_advanced', OBSColumn(
                 type='Integer',
@@ -431,7 +431,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=4,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['education']]
             )),
             ('jobs_male', OBSColumn(
                 type='Integer',
@@ -440,7 +440,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=2,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['race_age_gender'], tags['income_education_employment']]
+                tags=[tags['age_gender'], tags['employment']]
             )),
             ('jobs_female', OBSColumn(
                 type='Integer',
@@ -449,7 +449,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=2,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['race_age_gender'], tags['income_education_employment']]
+                tags=[tags['age_gender'], tags['employment']]
             )),
             ('jobs_firm_age_0_1_years', OBSColumn(
                 type='Integer',
@@ -458,7 +458,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
             ('jobs_firm_age_2_3_years', OBSColumn(
                 type='Integer',
@@ -467,7 +467,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
             ('jobs_firm_age_4_5_years', OBSColumn(
                 type='Integer',
@@ -476,7 +476,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
             ('jobs_firm_age_6_10_years', OBSColumn(
                 type='Integer',
@@ -485,7 +485,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
             ('jobs_firm_age_11_more_years', OBSColumn(
                 type='Integer',
@@ -494,52 +494,52 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
-            ('jobs_firm_age_0_19_employees', OBSColumn(
+            ('jobs_firm_0_19_employees', OBSColumn(
                 type='Integer',
                 name='Jobs at firms with 0-19 Employees',
                 description='Number of jobs for workers at firms with Firm Size: 0-19 Employees',
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
-            ('jobs_firm_age_20_49_employees', OBSColumn(
+            ('jobs_firm_20_49_employees', OBSColumn(
                 type='Integer',
                 name='Jobs at firms with 20-49 Employees',
                 description='Number of jobs for workers at firms with Firm Size: 20-49 Employees',
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
-            ('jobs_firm_age_50_249_employees', OBSColumn(
+            ('jobs_firm_50_249_employees', OBSColumn(
                 type='Integer',
                 name='Jobs at firms with 0-249 Employees',
                 description='Number of jobs for workers at firms with Firm Size: 50-249 Employees',
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
-            ('jobs_firm_age_250_499_employees', OBSColumn(
+            ('jobs_firm_250_499_employees', OBSColumn(
                 type='Integer',
                 name='Jobs at firms with 250-499 Employees',
                 description='Number of jobs for workers at firms with Firm Size: 250-499 Employees',
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
-            ('jobs_firm_age_500_more_employees', OBSColumn(
+            ('jobs_firm_500_more_employees', OBSColumn(
                 type='Integer',
                 name='Jobs at firms with 500 or more Employees',
                 description='Number of jobs for workers at firms with Firm Size: 500 or more Employees',
                 weight=1,
                 aggregate='sum',
                 targets={total_jobs: 'denominator'},
-                tags=[tags['income_education_employment']]
+                tags=[tags['employment'], tags['commerce_economy']]
             )),
             ('createdate', OBSColumn(
                 type='Date',
