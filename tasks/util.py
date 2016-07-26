@@ -586,7 +586,7 @@ class ColumnsTask(Task):
         missing dependency could result in exception on `output`).
         '''
         try:
-            return super(TagsTask, self).complete()
+            return super(ColumnsTask, self).complete()
         except:
             for dep in self.deps():
                 if not dep.complete():
@@ -637,12 +637,12 @@ class TagsTask(Task):
         missing dependency could result in exception on `output`).
         '''
         try:
-            return super(ColumnsTask, self).complete()
+            return super(TagsTask, self).complete()
         except:
             for dep in self.deps():
                 if not dep.complete():
                     return False
-                raise
+            raise
 
 
 class TableToCartoViaImportAPI(Task):
