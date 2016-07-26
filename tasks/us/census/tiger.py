@@ -46,7 +46,7 @@ class ClippedGeomColumns(ColumnsTask):
             cols[colname + '_clipped'] = OBSColumn(
                 type='Geometry',
                 name='Shoreline clipped ' + col.name,
-                weight=col.weight + Decimal(0.01),
+                weight=Decimal(col.weight) + Decimal(0.01),
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
                 targets={col: 'cartography'},

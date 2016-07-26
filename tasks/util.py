@@ -586,7 +586,7 @@ class ColumnsTask(Task):
         missing dependency could result in exception on `output`).
         '''
         try:
-            return super(ColumnsTask, self).complete()
+            return super(TagsTask, self).complete()
         except:
             for dep in self.deps():
                 if not dep.complete():
@@ -629,6 +629,20 @@ class TagsTask(Task):
             output[orig_id] = TagTarget(tag, self)
         self._output = output
         return self._output
+
+    def complete(self):
+        '''
+        Custom complete method that attempts to check if output exists, as is
+        default, but in case of failure allows attempt to run dependencies (a
+        missing dependency could result in exception on `output`).
+        '''
+        try:
+            return super(ColumnsTask, self).complete()
+        except:
+            for dep in self.deps():
+                if not dep.complete():
+                    return False
+                raise
 
 
 class TableToCartoViaImportAPI(Task):
