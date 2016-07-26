@@ -564,6 +564,8 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
+        if self.deps() and not all([d.complete() for d in self.deps()]):
+            raise Exception('Must run prerequisites first')
         output = OrderedDict({})
         session = current_session()
         already_in_session = [obj for obj in session]
@@ -576,8 +578,7 @@ class ColumnsTask(Task):
             if obj not in already_in_session:
                 if obj in session:
                     session.expunge(obj)
-        self._output = output
-        return self._output
+        return output
 
     def complete(self):
         '''
@@ -585,13 +586,10 @@ class ColumnsTask(Task):
         default, but in case of failure allows attempt to run dependencies (a
         missing dependency could result in exception on `output`).
         '''
-        try:
+        if self.deps() and not all([d.complete() for d in self.deps()]):
+            return False
+        else:
             return super(ColumnsTask, self).complete()
-        except:
-            for dep in self.deps():
-                if not dep.complete():
-                    return False
-                raise
 
 
 class TagsTask(Task):
@@ -619,7 +617,8 @@ class TagsTask(Task):
         return 0
 
     def output(self):
-        #if not hasattr(self, '_output'):
+        if self.deps() and not all([d.complete() for d in self.deps()]):
+            raise Exception('Must run prerequisites first')
         output = {}
         for tag in self.tags():
             orig_id = tag.id
@@ -627,8 +626,7 @@ class TagsTask(Task):
             if not tag.version:
                 tag.version = self.version()
             output[orig_id] = TagTarget(tag, self)
-        self._output = output
-        return self._output
+        return output
 
     def complete(self):
         '''
@@ -636,13 +634,10 @@ class TagsTask(Task):
         default, but in case of failure allows attempt to run dependencies (a
         missing dependency could result in exception on `output`).
         '''
-        try:
+        if self.deps() and not all([d.complete() for d in self.deps()]):
+            return False
+        else:
             return super(TagsTask, self).complete()
-        except:
-            for dep in self.deps():
-                if not dep.complete():
-                    return False
-            raise
 
 
 class TableToCartoViaImportAPI(Task):

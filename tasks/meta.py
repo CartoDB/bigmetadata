@@ -91,6 +91,8 @@ class OBSColumnTable(Base):
 
 
 def tag_creator(tagtarget):
+    if tagtarget is None:
+        raise Exception('None passed to tagtarget')
     tag = tagtarget.get(current_session()) or tagtarget._tag
     coltag = OBSColumnTag(tag=tag, tag_id=tag.id)
     if tag in current_session():
