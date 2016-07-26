@@ -21,14 +21,3 @@ class SegmentTags(TagsTask):
                    type='segment',
                    description='')
         ]
-
-
-class SegmentColumns(ColumnsTask):
-
-    def columns(self):
-
-        pass
-
-
-class SegmentTable(TableTask):
-    pass
