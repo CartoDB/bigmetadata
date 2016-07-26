@@ -20,6 +20,7 @@ import os
 
 
 def column_tasks():
+    tasks = set()
     for dirpath, _, files in os.walk('tasks'):
         for filename in files:
             if filename.endswith('.py'):
@@ -30,7 +31,8 @@ def column_tasks():
                 module = importlib.import_module(modulename)
                 for _, obj in inspect.getmembers(module):
                     if inspect.isclass(obj) and issubclass(obj, ColumnsTask) and obj != ColumnsTask:
-                        yield obj,
+                        tasks.add((obj, ))
+    return tasks
 
 
 
