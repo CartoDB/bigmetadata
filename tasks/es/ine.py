@@ -1906,7 +1906,10 @@ class FiveYearPopulation(TableTask):
 
     def requires(self):
         return {
-            'data': RawFiveYearPopulation()
+            'data': RawFiveYearPopulation(),
+            'meta': FiveYearPopulationColumns(),
+            'seccion_columns': SeccionColumns(),
+            'geometa': GeometryColumns(),
         }
 
     def version(self):
@@ -1916,8 +1919,14 @@ class FiveYearPopulation(TableTask):
         '''
         Add the geoid (cusec_id) column into the second position as expected
         '''
-        cols = self.requires()['data'].columns()
-        cols.pop('gender')
+        metacols = self.input()['meta']
+        cols = OrderedDict()
+        cols['cusec_id'] = self.input()['geometa']['cusec_id']
+        cols['total_pop'] = self.input()['seccion_columns']['total_pop']
+        for key, col in metacols.iteritems():
+            if key == 'gender':
+                continue
+            cols[key] = col
         return cols
 
     def timespan(self):
