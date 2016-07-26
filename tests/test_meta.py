@@ -11,10 +11,6 @@ from tasks.util import ColumnTarget, TagTarget, shell
 from tests.util import setup, teardown
 
 # TODO clean this up in a more general init script
-try:
-    shell('createdb test')
-except:
-    pass
 from tests.util import session_scope
 
 

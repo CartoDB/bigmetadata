@@ -100,3 +100,6 @@ unittest:
 	                && chmod -R a+w src/pg/test/results \
 	                && make install \
 	                && su postgres -c 'make test'"
+
+test-classes:
+	docker-compose run --rm bigmetadata /bin/bash -c "PGDATABASE=test nosetests -v tests/test_columntasks.py"
