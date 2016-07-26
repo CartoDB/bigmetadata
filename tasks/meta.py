@@ -103,8 +103,7 @@ def targets_creator(coltarget_or_col, reltype):
     # being run before parent tasks can generate requirements
     # they would violate constraints
     if coltarget_or_col is None:
-        reltype = None
-        col = None
+        raise Exception('None passed to coltarget_or_col')
     # internal to task
     elif isinstance(coltarget_or_col, OBSColumn):
         col = coltarget_or_col
