@@ -99,8 +99,14 @@ def tag_creator(tagtarget):
 
 
 def targets_creator(coltarget_or_col, reltype):
+    # we should never see these committed, they are a side effect of output()
+    # being run before parent tasks can generate requirements
+    # they would violate constraints
+    if coltarget_or_col is None:
+        reltype = None
+        col = None
     # internal to task
-    if isinstance(coltarget_or_col, OBSColumn):
+    elif isinstance(coltarget_or_col, OBSColumn):
         col = coltarget_or_col
     # from required task
     else:
