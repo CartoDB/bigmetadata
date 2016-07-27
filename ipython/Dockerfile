@@ -6,4 +6,7 @@ RUN apt-get install -yq libpq-dev postgresql-client-common postgresql-client-9.3
 
 USER ds
 COPY requirements.txt /bigmetadata/ipython/requirements.txt
+COPY ../requirements.txt /bigmetadata/ipython/etl-requirements.txt
+
 RUN /opt/ds/bin/pip install -r /bigmetadata/ipython/requirements.txt
+RUN /opt/ds/bin/pip install -r /bigmetadata/ipython/etl-requirements.txt

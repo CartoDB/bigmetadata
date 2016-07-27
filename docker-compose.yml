@@ -75,11 +75,21 @@
       "8888:8888"
     ],
     "links": [
+      "bigmetadata_daemon",
       "postgres"
     ],
     "volumes": [
       ".:/bigmetadata"
     ],
+    "environment": {
+      "PYTHONPATH": "/bigmetadata",
+      "PGHOST": "postgres",
+      "PGUSER": "docker",
+      "PGPASSWORD": "docker",
+      "PGDATABASE": "gis",
+      "LC_ALL": "C.UTF-8",
+      "LANG": "C.UTF-8"
+    },
     "working_dir": "/tmp/ipython",
     "command": "sh -c /bigmetadata/ipython/start.sh"
   },
