@@ -47,8 +47,8 @@ def runtask(task):
     try:
         task.run()
         task.on_success()
-    except:
-        task.on_failure()
+    except Exception as exc:
+        task.on_failure(exc)
 
 
 @contextmanager
