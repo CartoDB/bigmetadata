@@ -63,7 +63,8 @@ def classpath(obj):
     '''
     Path to this task, suitable for the current OS.
     '''
-    return '.'.join(obj.__module__.split('.')[1:])
+    classpath_ = '.'.join(obj.__module__.split('.')[1:])
+    return classpath_ if classpath_ else 'tmp'
 
 
 def query_cartodb(query):
@@ -848,6 +849,60 @@ class Shp2TempTableTask(TempTableTask):
                     )
             shell(cmd)
             operation = '-append '.format(schema=schema)
+
+
+class CSV2TempTableTask(TempTableTask):
+    '''
+    A task that loads `input_csv` into a temporary postgres table.
+    '''
+
+    delimiter = Parameter(default=',', significant=False)
+    has_header = BooleanParameter(default=True, significant=False)
+
+    def input_csv(self):
+        raise NotImplementedError("Must specify `input_csv` method")
+
+    def coldef(self):
+        '''
+        Override this function to customize the column definitions in the table.
+        Expected is an iterable of two-tuples.
+        '''
+        if isinstance(self.input_csv(), basestring):
+            csv = self.input_csv()
+        else:
+            raise NotImplementedError("Cannot automatically determine colnames "
+                                      "if several input CSVs.")
+        header_row = shell('head -n 1 {csv}'.format(csv=csv))
+        return [(h, 'Text') for h in header_row.split(self.delimiter)]
+
+    def run(self):
+        if isinstance(self.input_csv(), basestring):
+            csvs = [self.input_csv()]
+        else:
+            csvs = self.input_csv()
+        #schema = self.output().schema
+        #tablename = self.output().tablename
+
+        session = current_session()
+        session.execute('CREATE TABLE {output} ({coldef})'.format(
+            output=self.output().table,
+            coldef=', '.join(['{} {}'.format(*c) for c in self.coldef()])
+        ))
+        session.commit()
+        options = ["DELIMITER '{}'".format(self.delimiter)]
+        if self.has_header:
+            options.append('CSV HEADER')
+        try:
+            for csv in csvs:
+                shell('psql -c "\\copy {table} FROM \'{input}\' {options}"'.format(
+                    input=csv,
+                    table=self.output().table,
+                    options=' '.join(options)
+                ))
+        except:
+            session.execute('DROP TABLE {output}'.format(
+                output=self.output().table))
+            raise
 
 
 class LoadPostgresFromURL(TempTableTask):
