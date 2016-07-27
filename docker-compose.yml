@@ -86,7 +86,7 @@
       "PGHOST": "postgres",
       "PGUSER": "docker",
       "PGPASSWORD": "docker",
-      "PGDATABASE": "gis",
+      "PGDATABASE": "test",
       "LC_ALL": "C.UTF-8",
       "LANG": "C.UTF-8"
     },
