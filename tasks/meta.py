@@ -337,7 +337,7 @@ def session_commit(task):
     '''
     commit the global session
     '''
-    print 'commit'
+    print 'commit {}'.format(task.task_id)
     try:
         _current_session.commit()
     except Exception as err:
@@ -350,7 +350,7 @@ def session_rollback(task, exception):
     '''
     rollback the global session
     '''
-    print 'rollback: {}'.format(exception)
+    print 'rollback {}: {}'.format(task.task_id, exception)
     _current_session.rollback()
 
 
