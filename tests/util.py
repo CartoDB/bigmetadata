@@ -4,11 +4,13 @@ Util functions for tests
 
 from subprocess import check_output
 
+
 try:
-    check_output('createdb test -E UTF8 -T template0', shell=True)
-except:
+    check_output('dropdb test', shell=True)
+except Exception as exc:
     pass
 
+check_output('createdb test -E UTF8 -T template0', shell=True)
 check_output('psql -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
 
 
