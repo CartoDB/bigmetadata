@@ -1,588 +1,308 @@
-#!/usr/bin/env python
+from tasks.util import (TempTableTask, TableTask, ColumnsTask,
+                        DownloadUnzipTask, CSV2TempTableTask,
+                        underscore_slugify, shell, classpath)
+from tasks.meta import current_session
 
-'''
-Bigmetadata tasks
-
-tasks to download and create metadata
-'''
-
-import os
-import requests
-
+# We like OrderedDict because it makes it easy to pass dicts
+# like {column name : column definition, ..} where order still
+# can matter in SQL
 from collections import OrderedDict
-from luigi import Task, IntParameter, LocalTarget, BooleanParameter
-from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
-                        CartoDBTarget, sql_to_cartodb_table,
-                        TableTask, ColumnsTask)
-from tasks.meta import OBSColumn, current_session
-from tasks.us.census.tiger import GeoidColumns
-from psycopg2 import ProgrammingError
+from luigi import IntParameter, Parameter
+import os
 
 
-class NAICSColumns(ColumnsTask):
+# In[3]:
 
-    def columns(self):
-        return {
-            'industry_code': OBSColumn(type='Text',
-                                       name='Six-digit NAICS Industry Code',
-                                       description="6-character Industry Code (NAICS SuperSector)",
-                                       weight=0),
-            'industry_title': OBSColumn(type='Text',
-                                        name='NAICS Industry Title',
-                                        description='Title of NAICS industry',
-                                        weight=0)
-        }
+# These imports are useful for checking the database
+
+from tasks.meta import OBSTable, OBSColumn, OBSTag
 
 
-class NAICS(TableTask):
+# In[4]:
 
-    URL = 'http://www.bls.gov/cew/doc/titles/industry/industry_titles.csv'
+# We'll also want these tags for metadata
 
-    def requires(self):
-        return NAICSColumns()
+from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
-    def timespan(self):
-        return None
 
-    def columns(self):
-        return self.input()
+# In[5]:
 
-    def populate(self):
-        tablename = self.output().table
-        shell("curl '{url}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
-            output=tablename,
-            url=self.URL
+# The first step of most ETLs is going to be downloading the source
+# and saving it to a temporary folder.
+
+# `DownloadUnzipTask` is a utility class that handles the file naming
+# and unzipping of the temporary output for you.  You just have to
+# write the code which will do the download to the output file name.
+
+class DownloadQCEW(DownloadUnzipTask):
+    
+    year = IntParameter()
+    
+    URL = 'http://www.bls.gov/cew/data/files/{year}/csv/{year}_qtrly_singlefile.zip'
+    
+    def download(self):
+        shell('wget -O {output}.zip {url}'.format(
+           output=self.output().path,
+           url=self.URL.format(year=self.year)
         ))
 
 
-class RawQCEWColumns(ColumnsTask):
+# In[9]:
 
-    def columns(self):
-        return OrderedDict([
-            ("own_code", OBSColumn(
-                type='Text',
-                name='Ownership Code',
-                description="1-character ownership code: "
-                            "http://www.bls.gov/cew/doc/titles/ownership/"
-                            "ownership_titles.htm", # 5 for private
-                weight=0
-            )),
-            ("agglvl_code", OBSColumn(
-                type='Text',
-                name='Aggregation Level Code',
-                description="2-character aggregation level code: "
-                            "http://www.bls.gov/cew/doc/titles/agglevel/agglevel_titles.htm",
-                weight=0
-            )),
-            ("size_code", OBSColumn(
-                type='Text',
-                description="1-character size code: "
-                            "http://www.bls.gov/cew/doc/titles/size/size_titles.htm",
-                name='Size code',
-                weight=0
-            )),
-            ("year", OBSColumn(
-                type='Text',
-                description="4-character year",
-                name='Year',
-                weight=0
-            )),
-            ("qtr", OBSColumn(
-                type='Text',
-                description="1-character quarter (always A for annual)",
-                name='Quarter',
-                weight=0
-            )),
-            ("disclosure_code", OBSColumn(
-                type='Text',
-                description="1-character disclosure code (either ' '(blank)), or 'N' not disclosed)",
-                name='Disclosure code',
-                weight=0
-            )),
-            ("qtrly_estabs", OBSColumn(
-                type='Numeric',
-                description="Count of establishments for a given quarter",
-                name='Establishment count',
-                aggregate='sum',
-                weight=0
-            )),
-            ("month1_emplvl", OBSColumn(
-                type='Numeric',
-                description="Employment level for the first month of a given quarter",
-                name='First month employment',
-                aggregate='sum',
-                weight=0
-            )),
-            ("month2_emplvl", OBSColumn(
-                type='Numeric',
-                description="Employment level for the second month of a given quarter",
-                name='Second month employment',
-                aggregate='sum',
-                weight=0
-            )),
-            ("month3_emplvl", OBSColumn(
-                type='Numeric',
-                description="Employment level for the third month of a  given quarter",
-                name='Third month employment',
-                aggregate='sum',
-                weight=0
-            )),
-            ("total_qtrly_wages", OBSColumn(
-                type='Numeric',
-                description="Total wages for a given quarter",
-                name='Total wages',
-                aggregate='sum',
-                weight=0
-            )),
-            ("taxable_qtrly_wages", OBSColumn(
-                type='Numeric',
-                description="Taxable wages for a given quarter",
-                name='Taxable wages',
-                aggregate='sum',
-                weight=0
-            )),
-            ("qtrly_contributions", OBSColumn(
-                type='Numeric',
-                description="Quarterly contributions for a given quarter",
-                name='Total contributions',
-                aggregate='sum',
-                weight=0
-            )),
-            ("avg_wkly_wage", OBSColumn(
-                type='Numeric',
-                description="Average weekly wage for a given quarter",
-                name='Average weekly wage',
-                aggregate='sum',
-                weight=0
-            )),
-            ("lq_disclosure_code", OBSColumn(
-                type='Text',
-                description="1-character location-quotient disclosure code "
-                            "(either ' '(blank)), or 'N' not disclosed",
-                name='Location quotient disclosure code',
-                aggregate='sum',
-                weight=0
-            )),
-            ("lq_qtrly_estabs", OBSColumn(
-                type='Numeric',
-                description="Location quotient of the quarterly establishment "
-                            "count relative to the U.S. (Rounded to hundredths place)",
-                name='Location quotient',
-                aggregate='sum',
-                weight=0
-            )),
-            ("lq_month1_emplvl", OBSColumn(
-                type='Numeric',
-                description="Location quotient of the employment level for the "
-                            "first month of a given quarter relative to the "
-                            "U.S. (Rounded to hundredths place)),",
-                name="Location quotient first month",
-                aggregate='sum',
-                weight=0
-            )),
-            ("lq_month2_emplvl", OBSColumn(
-                type='Numeric',
-                description="Location quotient of the employment level for the "
-                            "second month of a given quarter relative to the "
-                            "U.S. (Rounded to hundredths place)),",
-                name="Location quotient second month",
-                aggregate='sum',
-                weight=0
-            )),
-            ("lq_month3_emplvl", OBSColumn(
-                type='Numeric',
-                description="Location quotient of the employment level for the "
-                            "third month of a given quarter relative to the "
-                            "U.S. (Rounded to hundredths place)),",
-                name="Location quotient third month",
-                aggregate='sum',
-                weight=0
-            )),
-            ("lq_total_qtrly_wages", OBSColumn(
-                type='Numeric',
-                description="Location quotient of the total wages for a given "
-                            "quarter relative to the U.S. (Rounded to hundredths place)",
-                name="Location quotient quarterly",
-                aggregate='sum',
-                weight=0
-            )),
-            ("lq_taxable_qtrly_wages", OBSColumn(
-                type='Numeric',
-                description="Location quotient of the total taxable wages for "
-                            "a given quarter relative to the U.S. (Rounded to hundredths "
-                            "place)",
-                weight=0,
-                aggregate='sum',
-                name="Quarterly location quotient taxable wages"
-            )),
-            ("lq_qtrly_contributions", OBSColumn(
-                type='Numeric',
-                description="Location quotient of the total contributions for "
-                            "a given quarter relative to the U.S. (Rounded to "
-                            "hundredths place)",
-                weight=0,
-                aggregate='sum',
-                name="Quarterly location quotient contributions"
-            )),
-            ("lq_avg_wkly_wage", OBSColumn(
-                type='Numeric',
-                description="Location quotient of the average weekly wage for "
-                            "a given quarter relative to the U.S. (Rounded to "
-                            "hundredths place)",
-                weight=0,
-                aggregate='sum',
-                name="Quarterly location quotient weekly wage"
-            )),
-            ("oty_disclosure_code", OBSColumn(
-                type='Text',
-                description="1-character over-the-year disclosure code (either "
-                            "' '(blank)), or 'N' not disclosed)",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year Disclosure code"
-            )),
-            ("oty_qtrly_estabs_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year change in the count of "
-                            "establishments for a given quarter",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year change in establishment count"
-            )),
-            ("oty_qtrly_estabs_pct_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year percent change in the count of "
-                            "establishments for a given quarter (Rounded to "
-                            "the tenths place)",
-                weight=0,
-                name="Over-the-year percent change in establishment count"
-            )),
-            ("oty_month1_emplvl_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year change in the first month's "
-                            "employment level of a given quarter",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year change in first month employment level"
-            )),
-            ("oty_month1_emplvl_pct_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year percent change in the first month's "
-                            "employment level of a given quarter (Rounded to "
-                            "the tenths place)),",
-                weight=0,
-                name="Over-the-year percent change in first month employment level"
-            )),
-            ("oty_month2_emplvl_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year change in the second month's "
-                            "employment level of a given quarter",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year change in second month employment level"
-            )),
-            ("oty_month2_emplvl_pct_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year percent change in the second "
-                            "month's employment level of a given quarter "
-                            "(Rounded to the tenths place)",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year percent change in second month employment level"
-            )),
-            ("oty_month3_emplvl_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year change in the third month's "
-                            "employment level of a given quarter",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year change in third month employment level"
-            )),
-            ("oty_month3_emplvl_pct_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year percent change in the third month's "
-                            "employment level of a given quarter (Rounded to "
-                            "the tenths place)",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year percent change in third month employment level"
-            )),
-            ("oty_total_qtrly_wages_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year change in total quarterly wages for a given quarter",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year change in total quarterly wages"
-            )),
-            ("oty_total_qtrly_wages_pct_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year percent change in total quarterly "
-                            "wages for a given quarter (Rounded to the tenths place)",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year percent change in total quarterly wages"
-            )),
-            ("oty_taxable_qtrly_wages_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year change in taxable quarterly wages "
-                            "for a given quarter",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year change in taxable quarterly wages"
-            )),
-            ("oty_taxable_qtrly_wages_pct_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year percent change in taxable quarterly "
-                            "wages for a given quarter (Rounded to the tenths "
-                            "place)",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year percent change in taxable quarterly wages"
-            )),
-            ("oty_qtrly_contributions_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year change in quarterly contributions "
-                            "for a given quarter",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year change in quarterly contributions"
-            )),
-            ("oty_qtrly_contributions_pct_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year percent change in quarterly "
-                            "contributions for a given quarter (Rounded to the "
-                            "tenths place)",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year percent change in quarterly contributions"
-            )),
-            ("oty_avg_wkly_wage_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year change in average weekly wage for a "
-                            "given quarter",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year change in average weekly wage"
-            )),
-            ("oty_avg_wkly_wage_pct_chg", OBSColumn(
-                type='Numeric',
-                description="Over-the-year percent change in average weekly "
-                            "wage for a given quarter (Rounded to the tenths "
-                            "place)",
-                weight=0,
-                aggregate='sum',
-                name="Over-the-year percent change in average weekly wage"
-            ))
-        ])
+# A lot of processing can be done in PostgreSQL quite easily.
+# We have utility classes to more easily bring both Shapefiles
+# and CSVs into PostgreSQL.
 
-
-class DownloadQCEW(Task):
-
+class RawQCEW(CSV2TempTableTask):
+    
     year = IntParameter()
-    URL = 'http://www.bls.gov/cew/data/files/{year}/csv/{year}_qtrly_singlefile.zip'
-
-    def run(self):
-        self.output().makedirs()
-        shell('wget \'{url}\' -O {output}.zip'.format(
-            url=self.URL.format(year=self.year), output=self.output().path))
-        shell('unzip -o {output}.zip -d $(dirname {output})'.format(output=self.output().path))
-        shell('mv $(dirname {output})/*.csv {output}'.format(output=self.output().path))
-
-    def output(self):
-        return LocalTarget(path=os.path.join(
-            'tmp', classpath(self), self.task_id))
-
-
-class RawQCEW(TableTask):
-
-    year = IntParameter()
-
-    def timespan(self):
-        return self.year
-
+    
     def requires(self):
-        return {
-            'data': DownloadQCEW(year=self.year),
-            'metadata': RawQCEWColumns(),
-            'geoids': GeoidColumns(),
-            'naics': NAICSColumns()
-        }
-
-    def columns(self):
-        columns = OrderedDict()
-        columns['county_fips'] = self.input()['geoids']['county_geoid']
-        qcew_columns = self.input()['metadata']
-        columns['own_code'] = qcew_columns.pop('own_code')
-        columns['naics_industry_code'] = self.input()['naics']['industry_code']
-        columns.update(qcew_columns)
-        return columns
-
-    def populate(self):
-        session = current_session()
-        shell("psql -c '\\copy {table} FROM {input} WITH CSV HEADER'".format(
-            table=self.output().table, input=self.input()['data'].path))
+        return DownloadQCEW(year=self.year)
+        
+    def input_csv(self):
+        return self.input().path
 
 
-class SimpleQCEWColumns(ColumnsTask):
 
-    year = IntParameter()
+# In[13]:
 
-    def requires(self):
-        return {
-            'naics': NAICS(),
-            'qcew_meta': RawQCEWColumns(),
-            'qcew_data': RawQCEW(year=self.year)
-        }
+# QCEW data has a lot of rows we don't actually need --
+# these can be filtered out in SQL easily
 
-    def columns(self):
-        session = current_session()
-        columns = OrderedDict()
-
-        inputcols = OrderedDict([(k, self.input()['qcew_meta'][k].get(session))
-                                 for k in ('avg_wkly_wage', 'qtrly_estabs',
-                                           'month3_emplvl', 'lq_avg_wkly_wage',
-                                           'lq_qtrly_estabs', 'lq_month3_emplvl')])
-
-        code_to_name = dict([(code, category) for code, category in session.execute(
-            'select industry_code, industry_title from {naics}'.format(
-                naics=self.input()['naics'].table))])
-
-        # TODO implement shared column on industry_code
-        codes = session.execute('SELECT DISTINCT naics_industry_code '
-                                'FROM {qcew} '
-                                'WHERE (LENGTH(naics_industry_code) = 4 '
-                                '  AND naics_industry_code LIKE \'10%\') '
-                                '  OR LENGTH(naics_industry_code) = 2 '
-                                '  OR naics_industry_code LIKE \'%-%\' ' # 2-digit codes sometimes hyphenated
-                                'ORDER BY naics_industry_code'.format(
-                                    qcew=self.input()['qcew_data'].table))
-        for code, in codes:
-            name = code_to_name[code]
-            for inputkey, inputcol in inputcols.iteritems():
-                key = '{key}_naics{code}'.format(code=underscore_slugify(code),
-                                            key=inputkey)
-                columns[key] = OBSColumn(
-                    type=inputcol.type,
-                    description='{inputdescription} for {name}'.format(
-                        inputdescription=inputcol.description,
-                        name=name
-                    ),
-                    weight=inputcol.weight,
-                    aggregate=inputcol.aggregate,
-                    name='{inputname} for {name}'.format(
-                        inputname=inputcol.name,
-                        name=name
-                    )
-                )
-        return columns
-
-
-class SimpleQCEW(TableTask):
-    '''
-    Isolate the rows of QCEW we actually care about without significantly
-    modifying the schema.  Brings us down to one quarter.
-
-    We pull out private employment at the county level, divided by three-digit
-    NAICS code and supercategory (four-digits, but simpler).
-
-    agglvl 74: 2-digit by ownership
-    agglvl 73: superlevel by ownership
-    agglvl 71: total
-    '''
+class SimpleQCEW(TempTableTask):
+    
     year = IntParameter()
     qtr = IntParameter()
-
-    def version(self):
-        return 1
-
+    
     def requires(self):
         return RawQCEW(year=self.year)
-
-    def timespan(self):
-        return '{year}Q{quarter}'.format(year=self.year,
-                                         quarter=self.qtr)
-
-    def columns(self):
-        return RawQCEW(year=self.year).columns()
-
-    def populate(self):
+    
+    def run(self):
         session = current_session()
-        session.execute('INSERT INTO {output} '
-                        'SELECT * FROM {qcew} '
-                        "WHERE agglvl_code IN ('74', '73', '71')"
-                        "      AND year = '{year}'"
-                        "      AND qtr = '{qtr}'"
-                        "      AND own_code = '5'".format(
-                            qtr=self.qtr,
-                            year=self.year,
+        session.execute("CREATE TABLE {output} AS "
+                        "SELECT * FROM {input} "
+                        "WHERE agglvl_code IN ('74', '73', '71') "
+                        "  AND year = '{year}' "
+                        "  AND qtr = '{qtr}' "
+                        "  AND own_code = '5' ".format(
+                            input=self.input().table,
                             output=self.output().table,
-                            qcew=self.input().table))
+                            year=self.year,
+                            qtr=self.qtr,
+                       ))
 
 
-class QCEW(TableTask):
-    '''
-    Turn QCEW data into a columnar format that works better for upload
-    '''
+# In[16]:
 
-    year = IntParameter()
-    qtr = IntParameter()
+# We have to create metadata for the measures we're interested
+# in from QCEW.  Often metadata tasks aren't parameterized, but
+# this one is, since we have to reorganize the table from one row
+# per NAICS code to one column per NAICS code, which is easiest
+# done programmatically.
 
-    def version(self):
-        return 1
-
+class QCEWColumns(ColumnsTask):
+    
+    naics_code = Parameter()
+    naics_name = Parameter()
+    naics_description = Parameter()
+    
     def requires(self):
         return {
-            'tiger_meta': GeoidColumns(),
-            'qcew_meta': SimpleQCEWColumns(self.year),
-            'qcew_data': SimpleQCEW(self.year, qtr=self.qtr),
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'units': UnitTags(),
         }
-
+    
     def columns(self):
-        columns = OrderedDict()
-        columns['county_fips'] = self.input()['tiger_meta']['county_geoid']
-        columns.update(self.input()['qcew_meta'])
-        return columns
+        cols = OrderedDict()
+        code, name, description = self.naics_code, self.naics_name, self.naics_description
+        
+        # This gives us easier access to the tags we defined as dependencies
+        units = self.input()['units']
+        sections = self.input()['sections']
+        subsections = self.input()['subsections']
+        cols['avg_wkly_wage'] = OBSColumn(
+            # Make sure the column ID is unique within this module
+            # If left blank, will be taken from this column's key in the output OrderedDict
+            id=underscore_slugify(u'avg_wkly_wage_{}'.format(code)),
+            # The PostgreSQL type of this column.  Generally Numeric for numbers and Text
+            # for categories.
+            type='Numeric',
+            # Human-readable name.  Will be used as header in the catalog
+            name=u'Average weekly wage for {} establishments'.format(name),
+            # Human-readable description.  Will be used as content in the catalog.
+            description=u'Average weekly wage for a given quarter in the {name} industry (NAICS {code}).'
+                        u'{name} is {description}.'.format(name=name, code=code, description=description),
+            # Ranking of importance, sometimes used to favor certain measures in auto-selection
+            # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
+            weight=5,
+            # How this measure was derived, for example "sum", "median", "average", etc.
+            # In cases of "sum", this means functions downstream can construct estimates
+            # for arbitrary geographies
+            aggregate='average',
+            # Tags are our way of noting aspects of this measure like its unit, the country
+            # it's relevant to, and which section(s) of the catalog it should appear in.
+            tags=[units['money'], sections['united_states'], subsections['income']],
+        )
+        cols['qtrly_estabs'] = OBSColumn(
+            id=underscore_slugify(u'qtrly_estabs_{}'.format(code)),
+            type='Numeric',
+            name=u'Establishments in {}'.format(name),
+            description=u'Count of establishments in a given quarter in the {name} industry (NAICS {code}).'
+                        u'{name} is {description}.'.format(name=name, code=code, description=description),
+            weight=5,
+            aggregate='sum',
+            tags=[units['businesses'], sections['united_states'], subsections['commerce_economy']],
+        )
+        cols['month3_emplvl'] = OBSColumn(
+            id=underscore_slugify(u'month3_emplvl_{}'.format(code)),
+            type='Numeric',
+            name=u'Employees in {} establishments'.format(name),
+            description=u'Number of employees in the third month of a given quarter with the {name} '
+                        u'industry (NAICS {code}). {name} is {description}.'.format(
+                            name=name, code=code, description=description),
+            weight=5,
+            aggregate='sum',
+            tags=[units['people'], sections['united_states'], subsections['employment']],
+        )
+        cols['lq_avg_wkly_wage'] = OBSColumn(
+            id=underscore_slugify(u'lq_avg_wkly_wage_{}'.format(code)),
+            type='Numeric',
+            name=u'Average weekly wage location quotient for {} establishments'.format(name),
+            description=u'Location quotient of the average weekly wage for a given quarter relative to '
+                        u'the U.S. (Rounded to the hundredths place) within the {name} industry (NAICS {code}).'
+                        u'{name} is {description}.'.format(name=name, code=code, description=description),
+            weight=3,
+            aggregate=None,
+            tags=[units['ratio'], sections['united_states'], subsections['income']],
+        )
+        cols['lq_qtrly_estabs'] = OBSColumn(
+            id=underscore_slugify(u'lq_qtrly_estabs_{}'.format(code)),
+            type='Numeric',
+            name=u'Location quotient of establishments in {}'.format(name),
+            description=u'Location quotient of the quarterly establishment count relative to '
+                        u'the U.S. (Rounded to the hundredths place) within the {name} industry (NAICS {code}).'
+                        u'{name} is {description}.'.format(name=name, code=code, description=description),
+            weight=3,
+            aggregate=None,
+            tags=[units['ratio'], sections['united_states'], subsections['commerce_economy']],
+        )
+        cols['lq_month3_emplvl'] = OBSColumn(
+            id=underscore_slugify(u'lq_month3_emplvl_{}'.format(code)),
+            type='Numeric',
+            name=u'Employment level location quotient in {} establishments'.format(name),
+            description=u'Location quotient of the employment level for the third month of a given quarter '
+                        u'relative to the U.S. (Rounded to the hundredths place) within the {name} '
+                        u'industry (NAICS {code}). {name} is {description}.'.format(
+                            name=name, code=code, description=description),
+            weight=3,
+            aggregate=None,
+            tags=[units['ratio'], sections['united_states'], subsections['employment']],
+        )
+        return cols
 
+
+
+
+from tasks.us.naics import NAICS_CODES, is_supersector, is_sector
+
+
+# In[23]:
+
+# Now that we have our data in a format similar to what we'll need,
+# and our metadata lined up, we can tie it together with a `TableTask`.
+# Under the hood, `TableTask` handles the relational lifting between
+# columns and actual data, and assigns a hash number to the dataset.
+#
+# Several methods must be overriden for `TableTask` to work:
+#
+#     `version()`: a version control number, which is useful for
+#                  forcing a re-run/overwrite without having to track
+#                  down and delete output artifacts.
+#
+#     `timespan()`: the timespan (for example, '2014', or '2012Q4')
+#                   that identifies the date range or point-in-time
+#                   for this table.
+#
+#     `columns()`: an OrderedDict of (colname, ColumnTarget) pairs.
+#                  This should be constructed by pulling the
+#                  desired columns from required `ColumnsTask` classes.
+#
+#     `populate()`: a method that should populate (most often via)
+#                   INSERT the output table.
+#
+
+# Since we have a column ('area_fips') that is a shared reference to
+# geometries ('geom_ref') we have to import that column.
+from tasks.us.census.tiger import GeoidColumns
+
+class QCEW(TableTask):
+    
+    year = IntParameter()
+    qtr = IntParameter()
+    
+    def version(self):
+        return 1
+    
+    def requires(self):
+        requirements = {
+            'data': SimpleQCEW(year=self.year, qtr=self.qtr),
+            'geoid_cols': GeoidColumns(),
+            'naics': OrderedDict()
+        }
+        for naics_code, naics_name in NAICS_CODES.iteritems():
+            # Only include the more general NAICS codes
+            if is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10':
+                requirements['naics'][naics_code] = QCEWColumns(
+                    naics_code=naics_code,
+                    naics_name=naics_name,
+                    naics_description='' # TODO these seem to be locked in a PDF
+                )
+        return requirements
+    
     def timespan(self):
         return '{year}Q{qtr}'.format(year=self.year, qtr=self.qtr)
-
-
+    
+    def columns(self):
+        # Here we assemble an OrderedDict using our requirements to specify the
+        # columns that go into this table.
+        # The column name 
+        input_ = self.input()
+        cols = OrderedDict([
+            ('area_fips', input_['geoid_cols']['county_geoid'])
+        ])
+        for naics_code, naics_cols in input_['naics'].iteritems():
+            for key, coltarget in naics_cols.iteritems():
+                naics_name = NAICS_CODES[naics_code]
+                colname = underscore_slugify(u'{}_{}_{}'.format(
+                        key, naics_code, naics_name))
+                cols[colname] = coltarget
+        return cols
+    
     def populate(self):
+        # This select statement transforms the input table, taking advantage of our
+        # new column names.
+        # The session is automatically committed if there are no errors.
         session = current_session()
-        input_table = self.input()['qcew_data'].table
-        output_table = self.output().table
-        session.execute('INSERT INTO {output} (county_fips) '
-                        'SELECT distinct county_fips FROM {qcew} '.format(
-                            output=output_table,
-                            qcew=input_table,
-                        ))
+        columns = self.columns()
+        colnames = columns.keys()
+        select_colnames = []
+        for naics_code, naics_columns in self.input()['naics'].iteritems():
+            for colname, coltarget in naics_columns.iteritems():
+                select_colnames.append('''MAX(CASE
+                    WHEN industry_code = '{naics_code}' THEN {colname} ELSE NULL
+                END)::Numeric'''.format(naics_code=naics_code,
+                            colname=colname
+                          ))
+        insert = '''INSERT INTO {output} ({colnames})
+                    SELECT area_fips, {select_colnames}
+                    FROM {input}
+                    GROUP BY area_fips '''.format(
+                        output=self.output().table,
+                        input=self.input()['data'].table,
+                        colnames=', '.join(colnames),
+                        select_colnames=', '.join(select_colnames),
+                    )
+        session.execute(insert)
 
-        #for col in self.input()['qcew'].table.columns:
-
-        # prepare updates by naics code
-        cols = SimpleQCEWColumns(self.year).columns()
-        updates = {}
-        for colname, col in cols.iteritems():
-            if '_naics' not in colname:
-                pass
-            old_colname, naics_code = colname.split('_naics')
-            if naics_code not in updates:
-                updates[naics_code] = []
-            updates[naics_code].append((colname, old_colname, ))
-
-        for naics_code, columns in updates.iteritems():
-            setstatement = ','.join([
-                '{colname} = input.{old_colname}'.format(colname=colname,
-                                                         old_colname=old_colname)
-                for colname, old_colname in columns])
-            query = ('UPDATE {output} SET {setstatement} '
-                     'FROM {qcew} as input '
-                     'WHERE naics_industry_code = \'{code}\' AND '
-                     'input.county_fips = {output}.county_fips'.format(
-                         output=output_table,
-                         setstatement=setstatement,
-                         qcew=input_table,
-                         code=naics_code
-                     ), )[0]
-            print query
-            session.execute(query)
