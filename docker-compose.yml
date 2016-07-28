@@ -90,6 +90,7 @@
       "LC_ALL": "C.UTF-8",
       "LANG": "C.UTF-8"
     },
+    "env_file": ".env",
     "working_dir": "/tmp/ipython",
     "command": "sh -c /bigmetadata/ipython/start.sh"
   },
