@@ -59,7 +59,7 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 13
+        return 14
 
     def requires(self):
         return {
