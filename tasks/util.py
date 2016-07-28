@@ -655,8 +655,8 @@ class TableToCartoViaImportAPI(Task):
         except OSError:
             pass
         tmp_file_path = os.path.join('tmp', classpath(self), self.table + '.csv')
-        shell('psql -c "\\copy {schema}.{tablename} TO \'{tmp_file_path}\' '
-              'WITH CSV HEADER"'.format(
+        shell(r'''psql -c '\copy {schema}.{tablename} TO '"'"{tmp_file_path}"'"'
+              WITH CSV HEADER' '''.format(
                   schema=self.schema,
                   tablename=self.table,
                   tmp_file_path=tmp_file_path,
@@ -889,12 +889,12 @@ class CSV2TempTableTask(TempTableTask):
             coldef=', '.join(['{} {}'.format(*c) for c in self.coldef()])
         ))
         session.commit()
-        options = ["DELIMITER '{}'".format(self.delimiter)]
+        options = ['''DELIMITER '"'{}'"' '''.format(self.delimiter)]
         if self.has_header:
             options.append('CSV HEADER')
         try:
             for csv in csvs:
-                shell('psql -c "\\copy {table} FROM \'{input}\' {options}"'.format(
+                shell(r'''psql -c '\copy {table} FROM '"'{input}'"' {options}' '''.format(
                     input=csv,
                     table=self.output().table,
                     options=' '.join(options)
@@ -994,15 +994,15 @@ class TableTask(Task):
         output.update_or_create_table()
         self.populate()
         output.update_or_create_metadata()
-        self.create_indexes()
+        self.create_indexes(output)
         output._obs_table.the_geom = self.the_geom()
 
-    def create_indexes(self):
+    def create_indexes(self, output):
         session = current_session()
-        tablename = self.output().table
-        for colname, coltarget in self.columns().iteritems():
-            col = coltarget.get(session)
-            index_type = col.index_type()
+        tablename = output.table
+        for colname, coltarget in self._columns.iteritems():
+            col = coltarget._column
+            index_type = col.index_type
             if index_type:
                 index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
                 session.execute('CREATE INDEX {index_name} ON {table} '
