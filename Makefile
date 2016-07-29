@@ -76,8 +76,7 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
 endif
 
 .PHONY: run catalog
-#run : prog
-#	@echo prog $(RUN_ARGS)
+
 run:
 	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
 
@@ -103,3 +102,6 @@ unittest:
 
 test-classes:
 	docker-compose run --rm bigmetadata /bin/bash -c "PGDATABASE=test nosetests -v tests/test_columntasks.py"
+
+restore:
+	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
