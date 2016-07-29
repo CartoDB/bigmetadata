@@ -13,12 +13,14 @@ import time
 import re
 from hashlib import sha1
 from itertools import izip_longest
+from datetime import date
 
 from slugify import slugify
 import requests
 
 from luigi import (Task, Parameter, LocalTarget, Target, BooleanParameter,
-                   ListParameter)
+                   ListParameter, DateParameter)
+from luigi.s3 import S3Target
 
 from sqlalchemy import Table, types, Column
 from sqlalchemy.dialects.postgresql import JSON
@@ -1189,3 +1191,39 @@ class CustomTable(TempTableTask):
             where=' AND '.join(where),
         )
         session.execute(create)
+
+
+class ArchiveIPython(Task):
+
+    timestamp = DateParameter(default=date.today())
+
+    def run(self):
+        self.output().makedirs()
+        shell('tar -zcvf {output} --exclude=*.pdf --exclude=*.xml '
+              '--exclude=*.gz --exclude=*.zip --exclude=*/tmp/* '
+              'tmp/ipython'.format(
+                  output=self.output().path))
+
+    def output(self):
+        return LocalTarget(os.path.join(
+            'tmp', classpath(self), underscore_slugify(self.task_id) + '.gz'))
+
+
+class BackupIPython(Task):
+
+    timestamp = DateParameter(default=date.today())
+
+    def requires(self):
+        return ArchiveIPython(timestamp=self.timestamp)
+
+    def run(self):
+        shell('aws s3 cp {input} {output}'.format(
+            input=self.input().path,
+            output=self.output().path
+        ))
+
+    def output(self):
+        path = 's3://cartodb-observatory-data/ipython/{}'.format(
+            self.input().path.split(os.path.sep)[-1])
+        print path
+        return S3Target(path)
