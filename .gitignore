@@ -14,7 +14,11 @@ catalog/source/*
 catalog/build/doctrees
 catalog/build/latex
 catalog/build/html
+catalog/build/pdf
+catalog/build/markdown
+catalog/build/text
 _build
 catalog/img
 catalog/img_thumb
 catalog/build/*.pdf
+.buildinfo
