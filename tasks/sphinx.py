@@ -17,13 +17,17 @@ from datetime import date
 
 ENV = Environment(loader=PackageLoader('catalog', 'templates'))
 
-#def test_filter(arg):
-#    pass
-#
-#env.filters['test'] = test_filter
+def strip_tag_id(tag_id):
+    '''
+    Strip leading `tags.` when it exists.
+    '''
+    return tag_id.replace('tags.', '')
+
+ENV.filters['strip_tag_id'] = strip_tag_id
 
 SECTION_TEMPLATE = ENV.get_template('section.html')
 SUBSECTION_TEMPLATE = ENV.get_template('subsection.html')
+
 
 
 class GenerateRST(Task):
@@ -73,8 +77,8 @@ class GenerateRST(Task):
                     break
                 targets[(section.id, subsection.id)] = LocalTarget(
                     'catalog/source/{section}/{subsection}.rst'.format(
-                        section=section.id,
-                        subsection=subsection.id))
+                        section=strip_tag_id(section.id),
+                        subsection=strip_tag_id(subsection.id)))
         return targets
 
     def template_globals(self):
@@ -122,7 +126,7 @@ class GenerateRST(Task):
 
             columns.sort(lambda x, y: cmp(x.name, y.name))
 
-            with open('catalog/source/{}.rst'.format(section.id), 'w') as section_fhandle:
+            with open('catalog/source/{}.rst'.format(strip_tag_id(section.id)), 'w') as section_fhandle:
                 section_fhandle.write(SECTION_TEMPLATE.render(
                     section=section, **self.template_globals()))
             if columns:

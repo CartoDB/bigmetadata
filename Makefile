@@ -38,6 +38,11 @@ pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Catalog --format pdf --force
 
+md-catalog:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.sphinx Catalog --format markdown --force \
+	  --local-scheduler
+
 deploy-catalog:
 	docker-compose run --rm bigmetadata luigi \
 	    --module tasks.sphinx PDFCatalogToS3
