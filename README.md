@@ -34,7 +34,7 @@ Docker is available.
 
 ### Installation
 
-See [QUICKSTART](quickstart.md).
+See [QUICKSTART](docs/source/quickstart.rst).
 
 ### Tasks
 

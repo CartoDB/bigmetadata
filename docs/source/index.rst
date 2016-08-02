@@ -9,11 +9,12 @@ Welcome to Bigmetadata's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
-   :glob:
 
-   *
+    :maxdepth: 2
 
+    quickstart
+    development
+    convenience
 
 
 Indices and tables
