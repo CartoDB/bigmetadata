@@ -22,3 +22,5 @@ catalog/img
 catalog/img_thumb
 catalog/build/*.pdf
 .buildinfo
+carto/
+docs/build

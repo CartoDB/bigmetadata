@@ -20,7 +20,8 @@
     "volumes": [
       "./browser:/usr/share/nginx/html/browser/:ro",
       "./browser/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
-      "./catalog/build/html:/usr/share/nginx/html/catalog/:ro"
+      "./catalog/build/html:/usr/share/nginx/html/catalog/:ro",
+      "./docs/build/html:/usr/share/nginx/html/docs/:ro",
     ],
     "ports": [
        "80:80"

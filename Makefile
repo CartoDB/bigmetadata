@@ -80,7 +80,7 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
-.PHONY: run catalog
+.PHONY: run catalog docs
 
 run:
 	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
@@ -110,3 +110,7 @@ test-classes:
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
+
+docs:
+	docker-compose run --rm bigmetadata sphinx-apidoc -o docs/source tasks
+	docker-compose run --rm bigmetadata /bin/bash -c 'cd docs && make html'
