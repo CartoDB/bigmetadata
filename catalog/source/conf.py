@@ -18,6 +18,7 @@ import shlex
 
 from docutils import nodes
 from sphinx import addnodes
+from catalog.markdown import setup as markdown_setup
 
 class env(nodes.literal):
     pass
@@ -40,7 +41,8 @@ html_context = {
 
 # "Inline" extension to allow use of Sphinx-specific (vs docutils/ReST)
 # methods.
-#def setup(app):
+def setup(app):
+    markdown_setup(app)
 #    app.add_node(env)
 #    # 'env' object type for Fabric env var referencing
 #    # (not to be confused with Sphinx' builtin :envvar:)

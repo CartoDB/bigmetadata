@@ -19,7 +19,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) sou
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest coverage gettext
+.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest coverage gettext md
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -195,3 +195,8 @@ pdf:
 	$(SPHINXBUILD) -b pdf $(ALLSPHINXOPTS) build/
 	@echo
 	@echo "Build finished. The PDF files are in build/html."
+
+markdown:
+	$(SPHINXBUILD) -b markdown $(ALLSPHINXOPTS) build/markdown
+	@echo
+	@echo "Build finished. The Markdown files are in build/markdown."
