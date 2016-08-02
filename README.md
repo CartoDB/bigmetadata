@@ -17,40 +17,24 @@ Docker is available.
 
 * __Observatory__: transformed and standardized datasets living on a [CartoDB
   instance](https://observatory.cartodb.com).  This is where we can pull our
-  actual data from, whether shuffling bytes or using a FDW.  This is also where
-  preview visuals using widgets or other CartoDB JS interfaces can get their
-  underlying data from.
+  actual data from, whether shuffling bytes or using PL/Proxy.  This is also
+  where preview visuals using widgets or other Carto JS interfaces can get
+  their underlying data from.
 
 * __Metadata__: human and machine-readable descriptions of the data in the
   observatory.  Table schema can be found in
   [tasks/meta.py](https://github.com/CartoDB/bigmetadata/blob/master/tasks/meta.py#L76).
   There are six related tables, `obs_table`, `obs_column_table`, `obs_column`,
-  `obs_column_tag`, `obs_tag`, and `obs_column_to_column`.
+  `obs_column_tag`, `obs_tag`, and `obs_column_to_column`.  An overarching
+  denomralized view can be found in `obs_meta`.
 
 * __Catalog__: a [static HTML guide](https://cartodb.github.io/bigmetadata) to
   data in the observatory generated from the metadata.  Docs are generated
   using [Sphinx](http://sphinx-doc.org/) and hosted on GitHub pages.
 
-
 ### Installation
 
-You'll need [docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) to get
-started.
-
-You'll then need to configure `CARTODB_API_KEY` and `CARTODB_URL` in the
-`.env` file in order to upload to CartoDB.
-
-    cp .env.sample .env
-    vim .env
-
-Most of the requirements are available as images, but you will need
-to build the postgres and bigmetadata containers before gettings tarted:
-
-    docker-compose build
-
-Then get all your containers running in the background:
-
-    docker-compose up -d
+See [QUICKSTART](quickstart.md).
 
 ### Tasks
 
@@ -74,9 +58,13 @@ Any other task can be run using `docker-compose`:
     docker-compose run bigmetadata luigi --module tasks.path.to.task \
       TaskName --param1 val1 --param2 val2
 
+Or, more conveniently, `make -- run` (which will use the local scheduler):
+
+    make -- run path.to.task TaskName --param1 val1 --param2 val2
+
 For example, to run QCEW numbers for one quarter:
 
-    docker-compose run bigmetadata luigi --module tasks.us.bls QCEW --year 2014 --qtr 4
+    make -- run us.bls QCEW --year 2014 --qtr 4
 
 ### Naming conventions
 
