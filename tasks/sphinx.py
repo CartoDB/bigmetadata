@@ -35,12 +35,14 @@ class GenerateRST(Task):
     force = BooleanParameter(default=False)
     format = Parameter()
     preview = BooleanParameter(default=False)
+    images = BooleanParameter(default=True)
 
     def __init__(self, *args, **kwargs):
         super(GenerateRST, self).__init__(*args, **kwargs)
         if self.force:
             shell('rm -rf catalog/source/*/*')
         shell('cp -R catalog/img catalog/source/')
+        shell('mkdir -p catalog/img_thumb')
         shell('cp -R catalog/img_thumb catalog/source/')
 
     def requires(self):
@@ -49,20 +51,21 @@ class GenerateRST(Task):
         for section_subsection, _ in self.output().iteritems():
             section_id, subsection_id = section_subsection
             subsection = session.query(OBSTag).get(subsection_id)
-            if '.. cartofigure:: ' in subsection.description:
-                viz_id = re.search(r'\.\. cartofigure:: (\S+)', subsection.description).groups()[0]
-                if self.format == 'pdf':
-                    img = GenerateThumb(viz=viz_id)
-                else:
-                    img = GenerateStaticImage(viz=viz_id)
-                requirements[viz_id] = img
-            for column in subsection.columns:
-                if column.type.lower() == 'numeric' and column.weight > 0 and not column.id.startswith('uk'):
+            if self.images:
+                if '.. cartofigure:: ' in subsection.description:
+                    viz_id = re.search(r'\.\. cartofigure:: (\S+)', subsection.description).groups()[0]
                     if self.format == 'pdf':
-                        img = GenerateThumb(measure=column.id, force=False)
+                        img = GenerateThumb(viz=viz_id)
                     else:
-                        img = ImagesForMeasure(measure=column.id, force=False)
-                    requirements[column.id] = img
+                        img = GenerateStaticImage(viz=viz_id)
+                    requirements[viz_id] = img
+                for column in subsection.columns:
+                    if column.type.lower() == 'numeric' and column.weight > 0 and not column.id.startswith('uk'):
+                        if self.format == 'pdf':
+                            img = GenerateThumb(measure=column.id, force=False)
+                        else:
+                            img = ImagesForMeasure(measure=column.id, force=False)
+                        requirements[column.id] = img
 
         return requirements
 
