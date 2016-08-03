@@ -336,6 +336,11 @@ _current_session = CurrentSession()
 
 
 def current_session():
+    '''
+    Returns the session relevant to the currently operating :class:`Task`, if
+    any.  Outside the context of a :class:`Task`, this can still be used for
+    manual session management.
+    '''
     return _current_session.get()
 
 

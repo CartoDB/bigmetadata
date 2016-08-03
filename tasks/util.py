@@ -47,7 +47,11 @@ LOGGER = get_logger(__name__)
 
 def shell(cmd):
     '''
-    Run a shell command. Returns the STDOUT output.
+    Run a shell command, uses :py:func:`subprocess.check_output(cmd,
+    shell=True)` under the hood.
+
+    Returns the ``STDOUT`` output, and raises an error if there is a
+    none-zero exit code.
     '''
     try:
         return subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
@@ -57,19 +61,55 @@ def shell(cmd):
 
 
 def underscore_slugify(txt):
+    '''
+    Given a string, converts from camelcase to underscore style, and then
+    slugifies.
+
+    >>> underscore_slugify('FooBarBaz')
+    'foo_bar_baz'
+
+    >>> underscore_slugify('Foo, bar, baz')
+    'foo_bar_baz'
+
+    >>> underscore_slugify('Foo_Bar_Baz')
+    'foo_bar_baz'
+
+    >>> underscore_slugify('Foo:barBaz')
+    'foo_bar_baz'
+    '''
     return slugify(camel_to_underscore(re.sub(
         r'[^a-zA-Z0-9]+', '_', txt))).replace('-', '_')
 
 
 def classpath(obj):
     '''
-    Path to this task, suitable for the current OS.
+    Returns the path to this object's class, relevant to current working dir.
+    Excludes the first element of the path.  If there is only one element,
+    returns ``tmp``.
+
+    >>> classpath(object)
+    'tmp'
+    >>> from tasks.util import ColumnsTask
+    >>> classpath(ColumnsTask())
+    'util'
+    >>> from tasks.es.ine import FiveYearPopulation
+    >>> classpath(FiveYearPopulation())
+    'es.ine'
     '''
     classpath_ = '.'.join(obj.__module__.split('.')[1:])
     return classpath_ if classpath_ else 'tmp'
 
 
 def query_cartodb(query):
+    '''
+    Convenience function to query CARTO's SQL API with an arbitrary SQL string.
+    The account connected via ``.env`` is queried.
+
+    Returns the raw ``Response`` object.  Will not raise an exception in case
+    of non-200 response.
+
+    :param query: The query to execute on CARTO.
+    '''
     #carto_url = 'https://{}/api/v2/sql'.format(os.environ['CARTODB_DOMAIN'])
     carto_url = os.environ['CARTODB_URL'] + '/api/v2/sql'
     resp = requests.post(carto_url, data={
@@ -102,8 +142,17 @@ ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
 
 def import_api(request, json_column_names=None):
     '''
-    Run the import api with `request`.  Optional `json_column_names` will
-    convert those columns to JSON type after the fact.
+    Run CARTO's `import API <https://carto.com/docs/carto-engine/import-api/importing-geospatial-data/>`_
+    The account connected via ``.env`` will be the target.
+
+    Although the import API is asynchronous, this function will block until
+    the request is complete, and raise an exception if it fails.
+
+    :param request: A ``dict`` that will be the body of the request to the
+                    import api.
+    :param json_column_names:  Optional iterable of column names that will
+                               be converted to ``JSON`` type after the fact.
+                               Otherwise those columns would be ``Text``.
     '''
     api_key = os.environ['CARTODB_API_KEY']
     json_column_names = json_column_names or []
@@ -144,11 +193,15 @@ def import_api(request, json_column_names=None):
 def sql_to_cartodb_table(outname, localname, json_column_names=None,
                          schema='observatory'):
     '''
-    Move the specified table to cartodb
+    Move a table to CARTO using the `import API <https://carto.com/docs/carto-engine/import-api/importing-geospatial-data/>`_
 
-    If json_column_names are specified, then those columns will be altered to
-    JSON after the fact (they get smushed to TEXT at some point in the import
-    process)
+    :param outname: The destination name of the table.
+    :param localname: The local name of the table, exclusive of schema.
+    :param json_column_names:  Optional iterable of column names that will
+                               be converted to ``JSON`` type after the fact.
+                               Otherwise those columns would be ``Text``.
+    :param schema: Optional schema for the local table.  Defaults to
+                   ``observatory``.
     '''
     private_outname = outname + '_private'
     upload_via_ogr2ogr(private_outname, localname, schema)
@@ -544,11 +597,31 @@ class TableTarget(Target):
 
 class ColumnsTask(Task):
     '''
-    This will update-or-create columns defined in it when run
+    The ColumnsTask provides a structure for generating metadata. The only
+    required method is :meth:`~.ColumnsTask.columns`.
+    The keys may be used as human-readable column names in tables based off
+    this metadata, although that is not always the case. If the id of the
+    :class:`OBSColumn <tasks.meta.OBSColumn>` is left blank, the dict's key will be used to
+    generate it (qualified by the module).
+
+    Also, conventionally there will be a requires method that brings in our
+    standard tags: :class:`SectionTags <tasks.tags.SectionTags>`,
+    :class:`SubsectionTags <tasks.tags.SubsectionTags>`, and
+    :class:`UnitTags <tasks.tags.UnitTags>`.
+    This is an example of defining several tasks as prerequisites: the outputs
+    of those tasks will be accessible via ``self.input()[<key>]`` in other
+    methods.
+
+    This will update-or-create columns defined in it when run.  Whether a
+    column is updated or not depends on whether it exists in the database with
+    the same :meth:`~.ColumnsTask.version` number.
     '''
 
     def columns(self):
         '''
+        This method must be overriden in subclasses.  It must return a
+        :py:class:`collections.OrderedDict` whose values are all instances of
+        :class:`OBSColumn <tasks.meta.OBSColumn>` and whose keys are all strings.
         '''
         raise NotImplementedError('Must return iterable of OBSColumns')
 
@@ -564,6 +637,12 @@ class ColumnsTask(Task):
             coltarget.update_or_create()
 
     def version(self):
+        '''
+        Returns a number that will be linked to the all
+        :py:attr:`tasks.meta.OBSColumn.version` objects resulting from this
+        task.  If this is identical to what's already in the database, the
+        :class:`OBSColumn <tasks.meta.OBSColumn>` will not be replaced.
+        '''
         return 0
 
     def output(self):
@@ -597,11 +676,20 @@ class ColumnsTask(Task):
 
 class TagsTask(Task):
     '''
-    This will update-or-create tags defined in it when run
+    This will update-or-create :class:`OBSTag <tasks.meta.OBSTag>` objects
+    int the database when run.
+
+    The :meth:`~.TagsTask.tags` method must be overwritten.
+
+    :meth:`~TagsTask.version` is used to control updates to the database.
     '''
 
     def tags(self):
         '''
+        This method must be overwritten in subclasses.
+
+        The return value must be an iterable of instances of
+        :class:`OBSTag <tasks.meta.OBSTag>`.
         '''
         raise NotImplementedError('Must return iterable of OBSTags')
 
@@ -644,6 +732,17 @@ class TagsTask(Task):
 
 
 class TableToCartoViaImportAPI(Task):
+    '''
+    This task wraps :func:`~.util.sql_to_cartodb_table` to upload a table to
+    a CARTO account specified in the ``.env`` file quickly using the Import
+    API.
+
+    :param table: The name of the table to upload, exclusive of schema.
+    :param schema: Optional. The schema of the table to upload, defaults to
+                   ``observatory``.
+    :param force: Optional boolean.  Defaults to ``False``.  If ``True``, a
+                  table of the same name existing remotely will be overwritten.
+    '''
 
     force = BooleanParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
@@ -771,13 +870,20 @@ def camel_to_underscore(name):
 class DownloadUnzipTask(Task):
     '''
     Download a zip file to location {output}.zip and unzip it to the folder
-    {output}.  Subclasses only need to define a `download` method.
+    {output}.  Subclasses only need to define a
+    :meth:`~.util.DownloadUnzipTask.download` method.
     '''
 
     def download(self):
         '''
-        Subclasses should override this, probably with something that uses
-        shell('wget -O {output}.zip {url}')
+        Subclasses must override this.  A good starting point is:
+
+        .. code:: python
+
+            shell('wget -O {output}.zip {url}'.format(
+              output=self.output().path,
+              url=<URL>
+            )
         '''
         raise NotImplementedError('DownloadUnzipTask must define download()')
 
@@ -787,6 +893,11 @@ class DownloadUnzipTask(Task):
         shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
 
     def output(self):
+        '''
+        The default output location is in the ``tmp`` folder, in a subfolder
+        derived from the subclass's :meth:`~.util.classpath` and its
+        :attr:`~.task_id`.
+        '''
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 
@@ -797,8 +908,8 @@ class TempTableTask(Task):
     This is useful for intermediate processing steps that can benefit from the
     session guarantees of the ETL, as well as automatic table naming.
 
-    `self.output()` from a subclass of `TempTableTask` will be a `TableTarget`
-    with an autogenerated schema (from the path to this module).
+    :param force: Optional Boolean, ``False`` by default.  If ``True``, will
+                  overwrite output table even if it exists already.
     '''
 
     force = BooleanParameter(default=False, significant=False)
@@ -810,7 +921,22 @@ class TempTableTask(Task):
     def on_success(self):
         session_commit(self)
 
+    def run(self):
+        '''
+        Must be overriden by subclass.  Should create and populate a table
+        named from ``self.output().table``
+
+        If this completes without exceptions, the :func:`~.util.current_session
+        will be committed; if there is an exception, it will be rolled back.
+        '''
+        raise Exception('Must override `run`')
+
     def output(self):
+        '''
+        By default, returns a :class:`~.util.TableTarget` whose associated
+        table lives in a special-purpose schema in Postgres derived using
+        :func:`~.util.classpath`.
+        '''
         shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=classpath(self)))
         target = PostgresTarget(classpath(self), self.task_id)
@@ -823,10 +949,16 @@ class TempTableTask(Task):
 
 class Shp2TempTableTask(TempTableTask):
     '''
-    A task that loads `input_shapefile` into a temporary postgres table.
+    A task that loads :meth:`~.util.Shp2TempTableTask.input_shp()` into a
+    temporary Postgres table.  That method must be overriden.
     '''
 
     def input_shp(self):
+        '''
+        This method must be implemented by subclasses.  Should return either
+        a path to a single shapefile, or an iterable of paths to shapefiles.
+        In that case, the first in the list will determine the schema.
+        '''
         raise NotImplementedError("Must specify `input_shp` method")
 
     def run(self):
@@ -855,19 +987,41 @@ class Shp2TempTableTask(TempTableTask):
 
 class CSV2TempTableTask(TempTableTask):
     '''
-    A task that loads `input_csv` into a temporary postgres table.
+    A task that loads :meth:`~.util.CSV2TempTableTask.input_csv` into a
+    temporary Postgres table.  That method must be overriden.
+
+    Optionally, :meth:`~util.CSV2TempTableTask.coldef` can be overriden.
+
+    Under the hood, uses postgres's ``COPY``.
+
+    :param delimiter: Delimiter separating fields in the CSV.  Defaults to
+                      ``,``.  Must be one character.
+    :param has_header: Boolean as to whether first row has column names.
+                       Defaults to ``True``.
     '''
 
     delimiter = Parameter(default=',', significant=False)
     has_header = BooleanParameter(default=True, significant=False)
 
     def input_csv(self):
+        '''
+        Must be overriden with a method that returns either a path to a CSV
+        or an iterable of paths to CSVs.
+        '''
         raise NotImplementedError("Must specify `input_csv` method")
 
     def coldef(self):
         '''
         Override this function to customize the column definitions in the table.
         Expected is an iterable of two-tuples.
+
+        If not overriden:
+
+        * All column types will be ``Text``
+        * If :attr:`~.util.CSV2TempTableTask.has_header` is ``True``, then
+          column names will come from the headers.
+        * If :attr:`~.util.CSV2TempTableTask.has_header` is ``False``, then
+          column names will be the postgres defaults.
         '''
         if isinstance(self.input_csv(), basestring):
             csv = self.input_csv()
@@ -882,8 +1036,6 @@ class CSV2TempTableTask(TempTableTask):
             csvs = [self.input_csv()]
         else:
             csvs = self.input_csv()
-        #schema = self.output().schema
-        #tablename = self.output().tablename
 
         session = current_session()
         session.execute('CREATE TABLE {output} ({coldef})'.format(
@@ -927,12 +1079,23 @@ class LoadPostgresFromURL(TempTableTask):
 
 class TableTask(Task):
     '''
-    A Task whose `populate` and `columns` methods should be overriden, and
-    executes creating a single output table defined by its name, path, and
+    This task creates a single output table defined by its name, path, and
     defined columns.
+
+    :meth:`~.TableTask.timespan`, :meth:`~.TableTask.columns`, and
+    :meth:`~.TableTask.populate` must be overwritten in subclasses.
+
+    When run, this task will automatically create the table with a schema
+    corresponding to the defined columns, with a unique name.  It will also
+    generate all relevant metadata for the table, and link it to the columns.
     '''
 
     def version(self):
+        '''
+        Must return a version control number, which is useful for forcing a
+        re-run/overwrite without having to track down and delete output
+        artifacts.
+        '''
         return 0
 
     def on_failure(self, ex):
@@ -943,17 +1106,43 @@ class TableTask(Task):
         session_commit(self)
 
     def columns(self):
+        '''
+        Must be overriden by subclasses.  Columns returned from this function
+        determine the schema of the resulting :class:`~tasks.util.TableTarget`.
+
+        The return for this function should be constructed by selecting the
+        desired columns from :class:`~tasks.util.ColumnTask`s, specified as
+        inputs in :meth:`~.util.TableTask.requires()`
+
+        Must return a :py:class:`~collections.OrderedDict` of
+        (colname, :class:`~tasks.util.ColumnTarget`) pairs.
+
+        '''
         raise NotImplementedError('Must implement columns method that returns '
                                    'a dict of ColumnTargets')
 
     def populate(self):
+        '''
+        This method must populate (most often via ``INSERT``) the output table.
+
+        For example: 
+        '''
         raise NotImplementedError('Must implement populate method that '
                                    'populates the table')
 
     def description(self):
+        '''
+        Optional description for the :class:`~tasks.util.OBSTable`.  Not
+        currently used anywhere.
+        '''
         return None
 
     def timespan(self):
+        '''
+        Must return an arbitrary string timespan (for example, ``2014``, or
+        ``2012Q4``) that identifies the date range or point-in-time for this
+        table.  Must be implemented by subclass.
+        '''
         raise NotImplementedError('Must define timespan for table')
 
     def the_geom(self):

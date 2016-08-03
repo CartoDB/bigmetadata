@@ -13,8 +13,10 @@ Contents:
     :maxdepth: 2
 
     quickstart
+    example
     development
     convenience
+    metadata
 
 
 Indices and tables
