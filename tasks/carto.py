@@ -32,10 +32,13 @@ META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_col
 
 class Import(TempTableTask):
     '''
-    Import a table from a CartoDB account
+    Import a table from a CARTO account into a temporary table.
+
+    :params subdomain: Optional. The subdomain the table resides in. Defaults
+                       to ``observatory``.
+    :params table: The name of the table to be imported.
     '''
 
-    username = Parameter(default='')
     subdomain = Parameter(default='observatory')
     table = Parameter()
 
@@ -47,8 +50,7 @@ class Import(TempTableTask):
 
     @property
     def _url(self):
-        return 'https://{subdomain}.cartodb.com/{username}api/v2/sql'.format(
-            username=self.username + '/' if self.username else '',
+        return 'https://{subdomain}.cartodb.com/api/v2/sql'.format(
             subdomain=self.subdomain
         )
 
@@ -152,7 +154,7 @@ class SyncData(WrapperTask):
     '''
     Upload a single OBS table to cartodb by fuzzy ID
     '''
-    force = BooleanParameter(default=True)
+    force = BooleanParameter(default=True, significant=False)
     id = Parameter(default=None)
     exact_id = Parameter(default=None)
     tablename = Parameter(default=None)
@@ -171,8 +173,11 @@ class SyncData(WrapperTask):
 
 
 class SyncAllData(WrapperTask):
+    '''
+    Sync all 
+    '''
 
-    force = BooleanParameter(default=False)
+    force = BooleanParameter(default=False, significant=False)
 
     def requires(self):
         tables = {}
@@ -764,7 +769,13 @@ class TestAllData(Task):
 
 class Dump(Task):
     '''
-    Dump of the entire observatory schema
+    Dumps the entire ``observatory`` schema to a local file using the
+    `binary <https://www.postgresql.org/docs/9.4/static/app-pgdump.html>`_
+    Postgres dump format.
+
+    Automatically updates :class:`~.meta.OBSDumpVersion`.
+
+    :param timestamp: Optional date parameter, defaults to today.
     '''
 
     timestamp = DateParameter(default=date.today())
@@ -793,7 +804,12 @@ class Dump(Task):
 
 class DumpS3(Task):
     '''
-    Upload dump to S3
+    Uploads ``observatory`` schema dumped from :class:`~.carto.Dump` to
+    `Amazon S3 <https://aws.amazon.com/s3/>`_, using credentials from ``.env``.
+
+    Automatically updates :class:`~.meta.OBSDumpVersion`.
+
+    :param timestamp: Optional date parameter, defaults to today.
     '''
     timestamp = DateParameter(default=date.today())
 

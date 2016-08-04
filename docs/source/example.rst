@@ -17,12 +17,8 @@ geography considered.
 The process of building a Python module to bring a new dataset into the
 Data Observatory can be broadly divided into six steps:
 
-1. Import libraries
-2. Download the data
-3. Import data into PostgreSQL
-4. Preprocess data in PostgreSQL
-5. Write metadata
-6. Populate output table
+.. contents ::
+   :local:
 
 We use `Luigi <https://luigi.readthedocs.io/en/stable/>`__ to isolate
 each step into a ``Task``. A ``Task`` has well-defined inputs (other

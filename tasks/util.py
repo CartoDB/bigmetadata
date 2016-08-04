@@ -542,8 +542,6 @@ class TableTarget(Target):
         self._obs_table = session.merge(self._obs_table)
         obs_table = self._obs_table
 
-        obs_table = self._obs_table
-
         for i, colname_coltarget in enumerate(self._columns.iteritems()):
             colname, coltarget = colname_coltarget
             colname = colname.lower()

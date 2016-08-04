@@ -3,13 +3,24 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Bigmetadata's documentation!
-=======================================
+Bigmetadata ETL Docs
+====================
+
+All data for CARTO's `Data Observatory <https://carto.com/data-observatory/>`_
+is obtained through tasks built subclassing Bigmetadata ETL classes.
+
+The classes themselves are derived from `Luigi
+<http://luigi.readthedocs.org/>`_ tasks.
+
+By performing the ETL using these classes, we gain a few guarantees:
+
+* Reproduceability, and avoidance of duplicate work
+* Generation of high-quality metadata consumable by the Observatory API
+* Scalability across multiple processes
 
 Contents:
 
 .. toctree::
-
     :maxdepth: 2
 
     quickstart
