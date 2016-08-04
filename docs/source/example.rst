@@ -30,6 +30,30 @@ tasks) and outputs (files, tables on disk, etc.) In a nutshell:
 
 Each of the steps except (1) corresponds to a ``Task``.
 
+The actual flow of ``Task`` dependencies could be charted like this:
+
+.. blockdiag::
+   :desctable:
+
+   {
+      default_fontsize = 16;
+      node_width = 240;
+      node_height = 60;
+
+      download_data [ label = "Download data", description = ":class:`~.util.DownloadUnzipTask`, :class:`Task` " ];
+      import_data [ label = "Import data", description = ":class:`~.util.CSV2TempTableTask`, :class:`~.util.Shp2TempTableTask`, :class:`~.util.TempTableTask` "];
+      process_data [ label = "Preprocess data", description = ":class:`~.util.TempTableTask`", stacked ];
+      generate_metadata [ label = "Write metadata", description = ":class:`~.util.ColumnsTask`" ];
+      output_table [ label = "Output table", description = ":class:`~.util.TableTask`" ];
+
+      process_data -> process_data;
+      download_data -> import_data -> process_data -> output_table;
+      generate_metadata -> output_table;
+   }
+
+Where each step should be a ``Task`` subclassed from the noted Bigmetadata
+utility class.
+
 We use a set of utility classes to avoid writing repetitive code.
 
 1. Import libraries

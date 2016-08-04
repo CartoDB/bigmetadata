@@ -33,9 +33,21 @@ Other tasks
 
 * ``make dump``: Runs :class:`~.carto.DumpS3`
 
+* ``make restore <path/to/dump>``: Restore database from a ``dump``.
+
 * ``make sync-meta``: Runs :class:`~.carto.SyncMetadata`
 
 * ``make sync-data``: Runs :class:`~.carto.SyncAllData`
+
+* ``make sh``: Drop into an interactive shell in the Docker container
+
+* ``make psql``: Drop into an interactive psql session in the database
+
+* ``make kill``: Kill all Docker processes
+
+* ``make docs``: Regenerate all documentation
+
+* ``make catalog``: Regenerate the HTML catalog
 
 Tasks
 -----
