@@ -60,6 +60,14 @@ Then log out, and log in.
 Build
 -----
 
+.. caution::
+
+   On Docker for Mac, it's not possible to link a local volume into Postgres.
+   You'll need to comment out the line
+   ``"./postgres/data:/var/lib/postgresql"`` in ``docker-compose.yml`` in
+   order to get the ``postgres`` container running.  However, this also means
+   you'll lose data if you rebuild the ``postgres`` container.
+
 Most of the requirements are available as images, but you will need
 to build the postgres and bigmetadata containers before getting started.
 
