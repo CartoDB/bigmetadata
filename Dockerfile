@@ -17,7 +17,8 @@ RUN apt-get -yq install libpq-dev postgresql-client-common \
                         postgresql-client-9.4 wget curl unzip \
                         libcurl4-gnutls-dev texlive-latex-base \
                         texlive-fonts-recommended texlive-fonts-extra \
-                        texlive-latex-extra libjpeg-dev git libfreetype6-dev
+                        texlive-latex-extra libjpeg-dev git libfreetype6-dev \
+                        cron
 
 RUN apt-get -yq remove python-pip
 RUN easy_install pip
@@ -26,4 +27,4 @@ RUN pip install --upgrade -r /bigmetadata/requirements.txt
 EXPOSE 8082
 
 WORKDIR /bigmetadata
-CMD luigid
+CMD ["true"]

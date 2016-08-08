@@ -48,7 +48,8 @@
       "LC_ALL": "C.UTF-8",
       "LANG": "C.UTF-8"
     },
-    "env_file": ".env"
+    "env_file": ".env",
+    "command": "/bin/bash -c 'cron && crontab crontab && luigid'"
   },
   "bigmetadata": {
     "image": "bigmetadata_bigmetadata_daemon",

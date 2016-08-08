@@ -1,0 +1,4 @@
+
+# This updates our crontab every minute automatically
+* * * * * crontab /bigmetadata/crontab
+
