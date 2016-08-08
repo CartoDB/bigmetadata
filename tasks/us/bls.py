@@ -34,7 +34,7 @@ class RawQCEW(CSV2TempTableTask):
         return DownloadQCEW(year=self.year)
 
     def input_csv(self):
-        return self.input().path
+        return os.path.join(self.input().path, '{}.q1-q4.singlefile.csv'.format(self.year))
 
 
 class SimpleQCEW(TempTableTask):
