@@ -48,8 +48,8 @@ You can leave ``CARTODB_SESSION`` alone, but including allows for page reloads
 to automatically refresh remote metadata, which can help with the reliability
 of pushes to Carto.
 
-Because docker requires commands be run at root privilege, you may want to give
-your existing user docker (which is equivalent to root) privileges:
+If you're on Linux instead of Mac, you may want to give your existing user
+docker (which is equivalent to root) privileges:
 
 .. code:: shell
 
