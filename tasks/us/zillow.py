@@ -325,7 +325,7 @@ class Zillow(TableTask):
             'metadata': ZillowValueColumns(),
             'geoids': GeoidColumns()
         }
-        for hometype, _, measure, _ in hometype_measures():
+        for hometype, _, measure, _, _ in hometype_measures():
             table_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                      measure=measure)
             requirements[table_id] = WideZillow(
@@ -348,7 +348,7 @@ class Zillow(TableTask):
         columns = OrderedDict([
             ('region_name', input_['geoids'][tiger_geo + '_geoid']),
         ])
-        for hometype, _, measure, _ in hometype_measures():
+        for hometype, _, measure, _, _ in hometype_measures():
             col_id = hometype + '_' + measure
             columns[col_id] = input_['metadata'][col_id]
         return columns
@@ -357,7 +357,7 @@ class Zillow(TableTask):
         session = current_session()
 
         insert = True
-        for hometype, _, measure, _ in hometype_measures():
+        for hometype, _, measure, _, _ in hometype_measures():
             col_id = hometype + '_' + measure
             input_table = self.input()[col_id].table
             if insert:
