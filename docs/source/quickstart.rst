@@ -39,14 +39,9 @@ brackets and execute each line below.
 
   echo CARTODB_API_KEY=<YOUR_API_KEY> > .env
   echo CARTODB_URL=<YOUR_CARTO_URL> >> .env
-  echo CARTODB_SESSION=<OPTIONAL_YOUR_SESSION_COOKIE> >> .env
 
 The ``CARTODB_URL`` should be the one you use for the SQL API, generally of the
 format ``<USERNAME>.carto.com``.
-
-You can leave ``CARTODB_SESSION`` alone, but including allows for page reloads
-to automatically refresh remote metadata, which can help with the reliability
-of pushes to Carto.
 
 If you're on Linux instead of Mac, you may want to give your existing user
 docker (which is equivalent to root) privileges:

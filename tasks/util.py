@@ -280,13 +280,8 @@ class CartoDBTarget(Target):
     def remove(self):
         api_key = os.environ['CARTODB_API_KEY']
         url = os.environ['CARTODB_URL']
-        session = os.environ['CARTODB_SESSION']
 
-        resp = requests.get('{url}/dashboard/datasets'.format(
-            url=url
-        ), cookies={
-            '_cartodb_session': session
-        })
+        requests.get('{url}/api/v1/viz/'.format(url=url))
         if not self.exists():
             time.sleep(2)
             return
@@ -938,10 +933,11 @@ class TempTableTask(Task):
         shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=classpath(self)))
         target = PostgresTarget(classpath(self), self.task_id)
-        if self.force and not getattr(self, 'wiped', False) and target.exists():
+        if self.force and not getattr(self, 'wiped', False):
+            if target.exists():
+                shell("psql -c 'DROP TABLE \"{schema}\".{tablename}'".format(
+                    schema=classpath(self), tablename=self.task_id))
             self.wiped = True
-            shell("psql -c 'DROP TABLE \"{schema}\".{tablename}'".format(
-                schema=classpath(self), tablename=self.task_id))
         return target
 
 
@@ -996,6 +992,8 @@ class CSV2TempTableTask(TempTableTask):
                       ``,``.  Must be one character.
     :param has_header: Boolean as to whether first row has column names.
                        Defaults to ``True``.
+    :param force: Boolean as to whether the task should be run even if the
+                  temporary output already exists.
     '''
 
     delimiter = Parameter(default=',', significant=False)
@@ -1052,7 +1050,7 @@ class CSV2TempTableTask(TempTableTask):
                     options=' '.join(options)
                 ))
         except:
-            session.execute('DROP TABLE {output}'.format(
+            session.execute('DROP TABLE IF EXISTS {output}'.format(
                 output=self.output().table))
             raise
 
@@ -1218,11 +1216,6 @@ class TableTask(Task):
             return False
         else:
             return super(TableTask, self).complete()
-    #    for dep in self.deps():
-    #        if not dep.complete():
-    #            return False
-
-    #    return super(TableTask, self).complete()
 
 
 class RenameTables(Task):
