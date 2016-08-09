@@ -34,7 +34,8 @@
       "postgres"
     ],
     "volumes": [
-      ".:/bigmetadata"
+      ".:/bigmetadata",
+      "./crontab:/etc/cron.d/cron",
     ],
     "ports": [
       "8082:8082"
