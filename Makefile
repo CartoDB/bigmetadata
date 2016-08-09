@@ -81,7 +81,7 @@ sync-data:
 
 sync-meta:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.carto SyncMetadata --force \
+	  --module tasks.carto SyncMetadata \
 	  --parallel-scheduling --workers=3
 
 kill:

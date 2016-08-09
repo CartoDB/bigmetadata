@@ -942,11 +942,11 @@ class OBSMetaToLocal(OBSMeta):
 
 class SyncMetadata(OBSMeta):
 
-    force = BooleanParameter(default=True)
+    force = BooleanParameter(default=True, significant=False)
 
     def requires(self):
         for tablename in META_TABLES:
-            yield TableToCartoViaImportAPI(table=tablename, force=self.force)
+            yield TableToCartoViaImportAPI(table=tablename, force=True)
 
     def run(self):
         import_api({
