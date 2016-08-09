@@ -3162,8 +3162,8 @@ class Extract(TableTask):
                 if int(resp.fetchone()[0]) == 0:
                     continue
                 colids.append(coltarget.name)
+                tableids.add(tableid)
             colnames.append(colname)
-            tableids.add(tableid)
 
         tableclause = '{inputschema}.{inputtable} '.format(
             inputschema=inputschema, inputtable=tableids.pop())
