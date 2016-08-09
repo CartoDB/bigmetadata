@@ -51,6 +51,7 @@ def runtask(task):
         task.on_success()
     except Exception as exc:
         task.on_failure(exc)
+        raise
 
 
 @contextmanager
