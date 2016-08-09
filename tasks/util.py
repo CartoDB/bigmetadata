@@ -267,6 +267,12 @@ class CartoDBTarget(Target):
     '''
 
     def __init__(self, tablename):
+        resp = requests.get('{url}/dashboard/datasets'.format(
+             url=os.environ['CARTODB_URL']
+        ), cookies={
+            '_cartodb_session': os.environ['CARTODB_SESSION']
+        }).content
+
         self.tablename = tablename
 
     def __str__(self):
@@ -280,13 +286,6 @@ class CartoDBTarget(Target):
     def remove(self):
         api_key = os.environ['CARTODB_API_KEY']
         url = os.environ['CARTODB_URL']
-
-        requests.get('{url}/api/v1/viz/'.format(url=url))
-        if not self.exists():
-            time.sleep(2)
-            return
-
-        # get dataset id: GET https://observatory.cartodb.com/api/v1/tables/obs_column_table_3?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
 
         try:
             while True:
@@ -307,16 +306,7 @@ class CartoDBTarget(Target):
                     pass
         except ValueError:
             pass
-        try:
-            query_cartodb('DROP TABLE {tablename}'.format(tablename=self.tablename))
-        except Exception:
-            pass
-        resp = requests.get('{url}/dashboard/datasets'.format(
-            url=url
-        ), cookies={
-            '_cartodb_session': session
-        })
-        time.sleep(2)
+        query_cartodb('DROP TABLE IF EXISTS {tablename}'.format(tablename=self.tablename))
         assert not self.exists()
 
 

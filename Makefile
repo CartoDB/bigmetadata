@@ -43,9 +43,11 @@ md-catalog:
 	  --module tasks.sphinx Catalog --format markdown --force \
 	  --local-scheduler
 
-deploy-catalog:
+deploy-pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
 	    --module tasks.sphinx PDFCatalogToS3
+
+deploy-html-catalog:
 	cd catalog/build/html && \
 	sudo chown -R ubuntu:ubuntu . && \
 	touch .nojekyll && \
@@ -55,6 +57,19 @@ deploy-catalog:
 	git commit -m "updating catalog" && \
 	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
 	git push -f origin gh-pages
+
+deploy-md-catalog:
+	cd catalog/build/markdown && \
+	sudo chown -R ubuntu:ubuntu . && \
+	touch .nojekyll && \
+	git init && \
+	git checkout -B markdown-catalog && \
+	git add . && \
+	git commit -m "updating catalog" && \
+	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
+	git push -f origin markdown-catalog
+
+deploy-catalog: deploy-pdf-catalog deploy-html-catalog deploy-md-catalog
 
 # do not exceed three slots available for import api
 sync: sync-data sync-meta
@@ -66,7 +81,7 @@ sync-data:
 
 sync-meta:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.carto SyncMetadata \
+	  --module tasks.carto SyncMetadata --force \
 	  --parallel-scheduling --workers=3
 
 kill:
@@ -80,7 +95,7 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
-.PHONY: run catalog docs
+.PHONY: run catalog docs carto
 
 run:
 	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)

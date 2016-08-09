@@ -95,18 +95,6 @@ class Import(TempTableTask):
         ))
 
 
-class SyncMetadata(WrapperTask):
-
-    force = BooleanParameter(default=True)
-
-    def requires(self):
-        for tablename in META_TABLES:
-            yield TableToCartoViaImportAPI(table=tablename, force=self.force)
-
-    def run(self):
-        yield OBSMetaToCarto()
-
-
 def should_upload(table):
     '''
     Determine whether a table has any important columns.  If so, it should be
@@ -732,7 +720,6 @@ class PurgeMetadata(WrapperTask):
     '''
 
     def requires(self):
-        yield PurgeMetadataTags()
         yield PurgeMetadataColumns()
         yield PurgeMetadataTables()
 
@@ -953,7 +940,13 @@ class OBSMetaToLocal(OBSMeta):
         return PostgresTarget('observatory', 'obs_meta')
 
 
-class OBSMetaToCarto(OBSMeta):
+class SyncMetadata(OBSMeta):
+
+    force = BooleanParameter(default=True)
+
+    def requires(self):
+        for tablename in META_TABLES:
+            yield TableToCartoViaImportAPI(table=tablename, force=self.force)
 
     def run(self):
         import_api({
