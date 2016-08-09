@@ -939,7 +939,7 @@ class OBSMetaToLocal(OBSMeta):
         ))
         # confirm that there won't be ambiguity with selection of geom
         session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
-                        '(numer_id, denom_id, geom_weight)')
+                        '(numer_id, denom_id, numer_timespan, geom_weight)')
         session.commit()
         self.force = False
 
