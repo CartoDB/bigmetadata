@@ -12,7 +12,7 @@ from luigi import (Task, IntParameter, LocalTarget, BooleanParameter, Parameter,
                    WrapperTask)
 from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
                         CartoDBTarget, sql_to_cartodb_table,
-                        TableTask, ColumnsTask, TagsTask)
+                        TableTask, ColumnsTask, TagsTask, CSV2TempTableTask)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.us.census.tiger import GeoidColumns
@@ -249,66 +249,58 @@ class ZillowGeoColumns(ColumnsTask):
         return columns
 
 
-class WideZillow(TableTask):
+class WideZillow(CSV2TempTableTask):
 
     geography = Parameter() # example: Zip
     hometype = Parameter() # example: SingleFamilyResidence
     measure = Parameter()
 
     def requires(self):
-        return {
-            'data': DownloadZillow(geography=self.geography, hometype=self.hometype,
-                                   measure=self.measure),
-            'zillow_geo': ZillowGeoColumns(),
-            'zillow_time_value': ZillowTimeValueColumns(),
-            'geoids': GeoidColumns()
-        }
+        return  DownloadZillow(geography=self.geography, hometype=self.hometype,
+                               measure=self.measure)
 
-    def timespan(self):
-        return None
+    def input_csv(self):
+        return self.input().path
 
-    def version(self):
-        return 2
+    #def columns(self):
+    #    if self.geography == 'Zip':
+    #        tiger_geo = 'zcta5'
+    #    #elif self.geography == 'State':
+    #    #    tiger_geo = 'geoid'
+    #    #elif self.geography == 'County':
+    #    #    tiger_geom = 'county'
+    #    else:
+    #        ## will happen for metro areas, cities, neighborhoods, state, county
+    #        raise Exception('unrecognized geography {}'.format(self.geography))
 
-    def columns(self):
-        if self.geography == 'Zip':
-            tiger_geo = 'zcta5'
-        #elif self.geography == 'State':
-        #    tiger_geo = 'geoid'
-        #elif self.geography == 'County':
-        #    tiger_geom = 'county'
-        else:
-            ## will happen for metro areas, cities, neighborhoods, state, county
-            raise Exception('unrecognized geography {}'.format(self.geography))
+    #    columns = OrderedDict()
 
-        columns = OrderedDict()
+    #    input_ = self.input()
+    #    with input_['data'].open() as fhandle:
+    #        first_row = fhandle.next().strip().split(',')
 
-        input_ = self.input()
-        with input_['data'].open() as fhandle:
-            first_row = fhandle.next().strip().split(',')
+    #    for headercell in first_row:
+    #        headercell = headercell.strip('"').replace('-', '_')
+    #        if headercell == 'RegionName':
+    #            columns['region_name'] = input_['geoids'][tiger_geo + '_geoid']
+    #        else:
+    #            colname = underscore_slugify(headercell)
+    #            if colname[0:2] in ('19', '20'):
+    #                colname = 'value_' + colname
+    #                columns[colname] = input_['zillow_time_value'][headercell]
+    #            else:
+    #                columns[colname] = input_['zillow_geo'][headercell]
 
-        for headercell in first_row:
-            headercell = headercell.strip('"').replace('-', '_')
-            if headercell == 'RegionName':
-                columns['region_name'] = input_['geoids'][tiger_geo + '_geoid']
-            else:
-                colname = underscore_slugify(headercell)
-                if colname[0:2] in ('19', '20'):
-                    colname = 'value_' + colname
-                    columns[colname] = input_['zillow_time_value'][headercell]
-                else:
-                    columns[colname] = input_['zillow_geo'][headercell]
+    #    return columns
 
-        return columns
-
-    def populate(self):
-        shell(r"psql -c '\copy {table} FROM {file_path} WITH CSV HEADER'".format(
-            table=self.output().table,
-            file_path=self.input()['data'].path
-        ))
-        session = current_session()
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
-            output=self.output().table))
+    #def populate(self):
+    #    shell(r"psql -c '\copy {table} FROM {file_path} WITH CSV HEADER'".format(
+    #        table=self.output().table,
+    #        file_path=self.input()['data'].path
+    #    ))
+    #    session = current_session()
+    #    session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
+    #        output=self.output().table))
 
 
 class Zillow(TableTask):
@@ -362,13 +354,13 @@ class Zillow(TableTask):
             input_table = self.input()[col_id].table
             if insert:
                 stmt = 'INSERT INTO {output} (region_name, {col_id}) ' \
-                        'SELECT region_name, value_{year}_{month} ' \
+                        'SELECT "RegionName", "{year}-{month}" ' \
                         'FROM {input_table} '
             else:
                 stmt = 'UPDATE {output} ' \
-                        'SET {col_id} = value_{year}_{month} ' \
+                        'SET {col_id} = "{year}-{month}" ' \
                         'FROM {input_table} WHERE ' \
-                        '{input_table}.region_name = {output}.region_name '
+                        '{input_table}."RegionName" = {output}.region_name '
             session.execute(stmt.format(
                 output=self.output().table,
                 year=str(self.year).zfill(2),
