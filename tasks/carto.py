@@ -694,24 +694,30 @@ class PurgeMetadataTables(Task):
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
 
-class ConfirmTablesDescribedExist(Task):
+class ConfirmTableExists(Task):
+    '''
+    Confirm a table exists
+    '''
+
+    schema = Parameter(default='observatory')
+    tablename = Parameter()
+
+    def run(self):
+        raise Exception('Table {} does not exist'.format(self.tablename))
+
+    def output(self):
+        return PostgresTarget(self.schema, self.tablename)
+
+
+class ConfirmTablesDescribedExist(WrapperTask):
     '''
     Confirm that all tables described in obs_table actually exist.
     '''
 
-    def complete(self):
-        return getattr(self, '_complete', False)
-
-    def run(self):
+    def requires(self):
         session = current_session()
         for table in session.query(OBSTable):
-            print table.tablename
-            target = PostgresTarget('observatory', table.tablename)
-            assert target.exists()
-            assert session.execute(
-                'SELECT row_number() over () FROM observatory.{tablename} LIMIT 1'.format(
-                    tablename=table.tablename)).fetchone()[0] == 1
-        self._complete = True
+            yield ConfirmTableExists(tablename=table.tablename)
 
 
 class PurgeMetadata(WrapperTask):
