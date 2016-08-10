@@ -18,8 +18,7 @@
   "browser": {
     "image": "nginx:latest",
     "volumes": [
-      "./browser:/usr/share/nginx/html/browser/:ro",
-      "./browser/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
+      "./conf/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
       "./catalog/build/html:/usr/share/nginx/html/catalog/:ro",
       "./docs/build/html:/usr/share/nginx/html/docs/:ro",
     ],
@@ -47,7 +46,8 @@
       "PGPASSWORD": "docker",
       "PGDATABASE": "gis",
       "LC_ALL": "C.UTF-8",
-      "LANG": "C.UTF-8"
+      "LANG": "C.UTF-8",
+      "LUIGI_CONFIG_PATH": "/bigmetadata/conf/luigi_daemon.cfg",
     },
     "env_file": ".env",
     "command": "/bin/bash -c 'cron && crontab ./crontab && luigid'"
@@ -68,7 +68,8 @@
       "PGPASSWORD": "docker",
       "PGDATABASE": "gis",
       "LC_ALL": "C.UTF-8",
-      "LANG": "C.UTF-8"
+      "LANG": "C.UTF-8",
+      "LUIGI_CONFIG_PATH": "/bigmetadata/conf/luigi_client.cfg",
     },
     "env_file": ".env"
   },

@@ -1,0 +1,9 @@
+[core]
+
+smtp_host = None # smtp.gmail.com
+smtp_login = None
+smtp_password = None
+smtp_port = None # 465
+smtp_ssl = None # True
+email-sender = None # Sender email
+error-email = None # Receipient of emails
