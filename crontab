@@ -6,7 +6,7 @@ PYTHONPATH=/bigmetadata
 # This updates our crontab every minute automatically
 #* * * * * crontab /bigmetadata/crontab
 
-* * * * * cd /bigmetadata && luigi --module tasks.sched TestTask --time "$(date +\%s)" >>/var/log/cron.log 2>>/var/log/cron.err
+#* * * * * cd /bigmetadata && luigi --module tasks.sched TestTask --time "$(date +\%s)" >>/var/log/cron.log 2>>/var/log/cron.err
 
 0 0 * * * cd /bigmetadata && luigi --module tasks.us.zillow AllZillow --parallel-scheduling --workers=3
 
