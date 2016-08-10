@@ -3,11 +3,11 @@ Test ColumnTask classes
 '''
 
 
-from tests.util import session_scope, runtask, setup, teardown
+from tests.util import session_scope, runtask
 from tasks.es.ine import FiveYearPopulationColumns
 from tasks.meta import (get_engine, current_session, Base, session_commit,
                         session_rollback, OBSColumn)
-from tasks.util import shell, ColumnsTask, TableTask, classpath
+from tasks.util import ColumnsTask, TableTask, classpath
 
 from nose import with_setup
 from nose.tools import assert_greater
@@ -36,7 +36,6 @@ def collect_tasks(TaskClass):
 
 
 
-@with_setup(setup, teardown)
 @parameterized(collect_tasks(ColumnsTask))
 def test_column_task(klass):
     # Ensure every column task runs and produces some kind of independent
@@ -52,7 +51,6 @@ def test_column_task(klass):
                 OBSColumn.id.startswith(classpath(task))).count(), 0)
 
 
-#@with_setup(setup, teardown)
 #@parameterized(collect_tasks(TableTask))
 #def test_table_task(klass):
 #    # Ensure every column task runs and produces some kind of independent

@@ -5,15 +5,19 @@ Util functions for tests
 from subprocess import check_output
 
 
-check_output('''
-psql -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
-         FROM pg_stat_activity
-         WHERE pg_stat_activity.datname = 'test'
-           AND pid <> pg_backend_pid();"
-''', shell=True)
-check_output('dropdb --if-exists test', shell=True)
-check_output('createdb test -E UTF8 -T template0', shell=True)
-check_output('psql -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
+def recreate_db():
+    check_output('''
+    psql -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
+             FROM pg_stat_activity
+             WHERE pg_stat_activity.datname = 'test'
+               AND pid <> pg_backend_pid();"
+    ''', shell=True)
+    check_output('dropdb --if-exists test', shell=True)
+    check_output('createdb test -E UTF8 -T template0', shell=True)
+    check_output('psql -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
+    check_output('psql -c "CREATE SCHEMA IF NOT EXISTS observatory"', shell=True)
+
+recreate_db()
 
 
 from tasks.util import shell
@@ -27,15 +31,13 @@ from luigi.scheduler import CentralPlannerScheduler
 def setup():
     if Base.metadata.bind.url.database != 'test':
         raise Exception('Can only run tests on database "test"')
-    Base.metadata.drop_all()
     Base.metadata.create_all()
 
 
 def teardown():
     if Base.metadata.bind.url.database != 'test':
         raise Exception('Can only run tests on database "test"')
-    current_session().close()
-    #Base.metadata.drop_all()
+    Base.metadata.drop_all()
 
 
 

@@ -1103,14 +1103,7 @@ class TableTask(Task):
 
     def on_success(self):
         session_commit(self)
-        try:
-            session = current_session()
-            table = self.output().get(session)
-            table.the_geom = self.the_geom()
-            session_commit(self)
-        except Exception as ex:
-            session_rollback(self, ex)
-            super(TableTask, self).on_failure(ex)
+        super(TableTask, self).on_success()
 
     def columns(self):
         '''
@@ -1152,7 +1145,7 @@ class TableTask(Task):
         '''
         raise NotImplementedError('Must define timespan for table')
 
-    def the_geom(self):
+    def the_geom(self, output):
         geometry_columns = [(colname, coltarget) for colname, coltarget in
                             self.columns().iteritems() if coltarget._column.type.lower() == 'geometry']
         if len(geometry_columns) == 0:
@@ -1181,7 +1174,7 @@ class TableTask(Task):
                 ') the_geom '
                 'FROM {output}'.format(
                     geom_colname=geometry_columns[0][0],
-                    output=self.output().table
+                    output=output.table
                 )).fetchone()['the_geom']
         else:
             raise Exception('Having more than one geometry column in one table '
@@ -1193,6 +1186,7 @@ class TableTask(Task):
         self.populate()
         output.update_or_create_metadata()
         self.create_indexes(output)
+        output._obs_table.the_geom = self.the_geom(output)
 
     def create_indexes(self, output):
         session = current_session()

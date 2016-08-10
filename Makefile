@@ -112,7 +112,7 @@ extension:
 sh-sql:
 	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
 
-unittest:
+api-unittest:
 	docker exec -it \
 	  $$(docker-compose ps -q postgres) \
 	  /bin/bash -c "cd observatory-extension \
@@ -120,8 +120,8 @@ unittest:
 	                && make install \
 	                && su postgres -c 'make test'"
 
-test-classes:
-	docker-compose run --rm bigmetadata /bin/bash -c "PGDATABASE=test nosetests -v tests/test_columntasks.py"
+etl-unittest:
+	docker-compose run --rm bigmetadata /bin/bash -c "PGDATABASE=test nosetests -v tests/test_columntasks.py tests/test_tabletasks.py"
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
