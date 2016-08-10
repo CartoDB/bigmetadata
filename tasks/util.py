@@ -263,7 +263,7 @@ class PostgresTarget(Target):
         resp = session.execute(
             'SELECT row_number() over () FROM "{schema}".{tablename} LIMIT 1'.format(
                 schema=self._schema, tablename=self._tablename))
-        return resp is not None
+        return resp.fetchone() is not None
 
 
 class CartoDBTarget(Target):
@@ -1064,7 +1064,9 @@ class LoadPostgresFromURL(TempTableTask):
 
     def mark_done(self):
         session = current_session()
-        session.execute('CREATE TABLE {table} ()'.format(
+        session.execute('DROP TABLE IF EXISTS {table}'.format(
+            table=self.output().table))
+        session.execute('CREATE TABLE {table} AS SELECT now() creation_time'.format(
             table=self.output().table))
 
 
