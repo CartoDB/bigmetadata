@@ -5,11 +5,13 @@ Util functions for tests
 from subprocess import check_output
 
 
-try:
-    check_output('dropdb test', shell=True)
-except Exception as exc:
-    pass
-
+check_output('''
+psql -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
+         FROM pg_stat_activity
+         WHERE pg_stat_activity.datname = 'test'
+           AND pid <> pg_backend_pid();"
+''', shell=True)
+check_output('dropdb --if-exists test', shell=True)
 check_output('createdb test -E UTF8 -T template0', shell=True)
 check_output('psql -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
 
