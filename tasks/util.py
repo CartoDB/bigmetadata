@@ -458,7 +458,12 @@ class TableTarget(Target):
                 "  AND table_name = '{tablename}' ".format(
                     schema='observatory',
                     tablename=self._obs_table.tablename))
-            return int(resp.fetchone()[0]) > 0
+            if int(resp.fetchone()[0]) == 0:
+                return False
+            resp = session.execute(
+                'SELECT row_number() over () FROM "{schema}".{tablename} LIMIT 1'.format(
+                    schema=self._schema, tablename=self._tablename))
+            return resp.fetchone() is not None
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: cannot run task {task} '
                             '(id "{id}") '
@@ -580,7 +585,6 @@ class TableTarget(Target):
                     'stats': stats
                 }
             session.add(coltable)
-
 
 
 class ColumnsTask(Task):
