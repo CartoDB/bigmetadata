@@ -461,8 +461,10 @@ class TableTarget(Target):
             if int(resp.fetchone()[0]) == 0:
                 return False
             resp = session.execute(
-                'SELECT row_number() over () FROM "{schema}".{tablename} LIMIT 1'.format(
-                    schema=self._schema, tablename=self._tablename))
+                'SELECT row_number() over () '
+                'FROM "{schema}".{tablename} LIMIT 1 '.format(
+                    schema='observatory',
+                    tablename=self._obs_table.tablename))
             return resp.fetchone() is not None
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: cannot run task {task} '
@@ -1101,6 +1103,14 @@ class TableTask(Task):
 
     def on_success(self):
         session_commit(self)
+        try:
+            session = current_session()
+            table = self.output().get(session)
+            table.the_geom = self.the_geom()
+            session_commit(self)
+        except Exception as ex:
+            session_rollback(self, ex)
+            super(TableTask, self).on_failure(ex)
 
     def columns(self):
         '''
@@ -1183,7 +1193,6 @@ class TableTask(Task):
         self.populate()
         output.update_or_create_metadata()
         self.create_indexes(output)
-        output._obs_table.the_geom = self.the_geom()
 
     def create_indexes(self, output):
         session = current_session()
