@@ -1,4 +1,5 @@
 from nose.tools import assert_equal, assert_is_not_none
+from nose.plugins.skip import SkipTest
 from nose_parameterized import parameterized
 
 from tasks.meta import current_session
@@ -58,6 +59,33 @@ AND 'us.census.acs.acs' = ANY (subsection_tags)
 AND numer_weight > 0
 ''').fetchall()]
 
+SKIP_COLUMNS = set([
+    u'mx.inegi_columns.INDI18',
+    u'mx.inegi_columns.ECO40',
+    u'mx.inegi_columns.POB34',
+    u'mx.inegi_columns.POB63',
+    u'mx.inegi_columns.INDI7',
+    u'mx.inegi_columns.EDU28',
+    u'mx.inegi_columns.SCONY10',
+    u'mx.inegi_columns.EDU31',
+    u'mx.inegi_columns.POB7',
+    u'mx.inegi_columns.VIV30',
+    u'mx.inegi_columns.INDI12',
+    u'mx.inegi_columns.EDU13',
+    u'mx.inegi_columns.ECO43',
+    u'mx.inegi_columns.VIV9',
+    u'mx.inegi_columns.HOGAR25',
+    u'mx.inegi_columns.POB32',
+    u'mx.inegi_columns.ECO7',
+    u'mx.inegi_columns.INDI19',
+    u'mx.inegi_columns.INDI16',
+    u'mx.inegi_columns.POB65',
+    u'mx.inegi_columns.INDI3',
+    u'mx.inegi_columns.INDI9',
+    u'mx.inegi_columns.POB36',
+    u'mx.inegi_columns.POB33',
+    u'mx.inegi_columns.POB58',
+])
 
 def default_geometry_id(column_id):
     '''
@@ -119,7 +147,6 @@ def default_area(column_id):
 
 @parameterized(US_CENSUS_MEASURE_COLUMNS)
 def test_get_us_census_measure_points(name):
-    print 'test_get_us_census_measure_points, ', name
     resp = query('''
 SELECT * FROM {schema}OBS_GetUSCensusMeasure({point}, '{name}')
                  '''.format(name=name.replace("'", "''"),
@@ -132,7 +159,8 @@ SELECT * FROM {schema}OBS_GetUSCensusMeasure({point}, '{name}')
 
 @parameterized(MEASURE_COLUMNS)
 def test_get_measure_areas(column_id, point_only):
-    print 'test_get_measure_areas, ', column_id, point_only
+    if column_id in SKIP_COLUMNS:
+        raise SkipTest('Column {} should be skipped'.format(column_id))
     if point_only:
         return
     resp = query('''
@@ -147,7 +175,8 @@ SELECT * FROM {schema}OBS_GetMeasure({area}, '{column_id}')
 
 @parameterized(MEASURE_COLUMNS)
 def test_get_measure_points(column_id, point_only):
-    print 'test_get_measure_points, ', column_id, point_only
+    if column_id in SKIP_COLUMNS:
+        raise SkipTest('Column {} should be skipped'.format(column_id))
     resp = query('''
 SELECT * FROM {schema}OBS_GetMeasure({point}, '{column_id}')
                  '''.format(column_id=column_id,
@@ -171,7 +200,8 @@ SELECT * FROM {schema}OBS_GetMeasure({point}, '{column_id}')
 
 @parameterized(CATEGORY_COLUMNS)
 def test_get_category_points(column_id):
-    print 'test_get_category_points, ', column_id
+    if column_id in SKIP_COLUMNS:
+        raise SkipTest('Column {} should be skipped'.format(column_id))
     resp = query('''
 SELECT * FROM {schema}OBS_GetCategory({point}, '{column_id}')
                  '''.format(column_id=column_id,
