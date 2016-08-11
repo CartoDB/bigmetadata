@@ -877,7 +877,7 @@ class DownloadUnzipTask(Task):
             shell('wget -O {output}.zip {url}'.format(
               output=self.output().path,
               url=<URL>
-            )
+            ))
         '''
         raise NotImplementedError('DownloadUnzipTask must define download()')
 

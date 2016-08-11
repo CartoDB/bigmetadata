@@ -7,7 +7,7 @@ from subprocess import check_output
 
 def recreate_db():
     check_output('''
-    psql -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
+    psql -d gis -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
              FROM pg_stat_activity
              WHERE pg_stat_activity.datname = 'test'
                AND pid <> pg_backend_pid();"
