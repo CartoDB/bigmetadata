@@ -1,0 +1,6 @@
+{
+  "sudo": "required",
+  "before_script": "docker-compose up -d",
+  "script": "make etl-unittest",
+  "after_script": "docker-compose down"
+}
