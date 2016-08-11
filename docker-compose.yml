@@ -24,8 +24,8 @@
     ],
   },
   "bigmetadata_daemon": {
-    "build": ".",
-    #"image": "bigmetadata_bigmetadata_daemon",
+    #"build": ".",
+    "image": "recessionporn/bigmetadata",
     "links": [
       "postgres"
     ],
@@ -50,7 +50,7 @@
     "command": "/bin/bash -c 'cron && crontab ./crontab && luigid'"
   },
   "bigmetadata": {
-    "image": "bigmetadata_bigmetadata_daemon",
+    "image": "recessionporn/bigmetadata",
     "links": [
       "bigmetadata_daemon",
       "postgres"
