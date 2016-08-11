@@ -4,10 +4,7 @@
   ],
   "language": "python",
   "sudo": "required",
-  "before_script": [
-    "cp .env.sample .env",
-    "docker-compose up -d",
-  ]
+  "before_script": "cp .env.sample .env && docker-compose up -d",
   "script": "make etl-unittest",
   "after_script": "docker-compose down"
 }
