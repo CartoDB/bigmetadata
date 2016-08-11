@@ -1,4 +1,8 @@
 {
+  "services": [
+    "docker"
+  ],
+  "language": "python",
   "sudo": "required",
   "before_script": "docker-compose up -d",
   "script": "make etl-unittest",
