@@ -14,6 +14,7 @@ import re
 from hashlib import sha1
 from itertools import izip_longest
 from datetime import date
+from urllib import quote_plus
 
 from slugify import slugify
 import requests
@@ -1327,6 +1328,71 @@ WHERE table_name LIKE 'obs_%'
                     tablename, cnt))
             else:
                 session.execute('drop table observatory.{}'.format(tablename))
+
+
+class Carto2TempTableTask(TempTableTask):
+    '''
+    Import a table from a CARTO account into a temporary table.
+
+    :param subdomain: Optional. The subdomain the table resides in. Defaults
+                       to ``observatory``.
+    :param table: The name of the table to be imported.
+    '''
+
+    subdomain = Parameter(default='observatory')
+    table = Parameter()
+
+    TYPE_MAP = {
+        'string': 'TEXT',
+        'number': 'NUMERIC',
+        'geometry': 'GEOMETRY',
+    }
+
+    @property
+    def _url(self):
+        return 'https://{subdomain}.cartodb.com/api/v2/sql'.format(
+            subdomain=self.subdomain
+        )
+
+    def _query(self, **params):
+        return requests.get(self._url, params=params)
+
+    def _create_table(self):
+        resp = self._query(
+            q='SELECT * FROM {table} LIMIT 0'.format(table=self.table)
+        )
+        coltypes = dict([
+            (k, self.TYPE_MAP[v['type']]) for k, v in resp.json()['fields'].iteritems()
+        ])
+        resp = self._query(
+            q='SELECT * FROM {table} LIMIT 0'.format(table=self.table),
+            format='csv'
+        )
+        colnames = resp.text.strip().split(',')
+        columns = ', '.join(['{colname} {type}'.format(
+            colname=c,
+            type=coltypes[c]
+        ) for c in colnames])
+        stmt = 'CREATE TABLE {table} ({columns})'.format(table=self.output().table,
+                                                         columns=columns)
+        shell("psql -c '{stmt}'".format(stmt=stmt))
+
+    def _load_rows(self):
+        url = self._url + '?q={q}&format={format}'.format(
+            q=quote_plus('SELECT * FROM {table}'.format(table=self.table)),
+            format='csv'
+        )
+        shell(r"curl '{url}' | "
+              r"psql -c '\copy {table} FROM STDIN WITH CSV HEADER'".format(
+                  table=self.output().table,
+                  url=url))
+
+    def run(self):
+        self._create_table()
+        self._load_rows()
+        shell("psql -c 'CREATE INDEX ON {table} USING gist (the_geom)'".format(
+            table=self.output().table,
+        ))
 
 
 class CustomTable(TempTableTask):

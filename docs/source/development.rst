@@ -57,3 +57,7 @@ over again.  These tasks are meant to take care of the most repetitive aspects.
 .. autoclass:: tasks.util.CSV2TempTableTask
    :members:
    :show-inheritance:
+
+.. autoclass:: tasks.util.Carto2TempTableTask
+   :members:
+   :show-inheritance:

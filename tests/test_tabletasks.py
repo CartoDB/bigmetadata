@@ -12,7 +12,8 @@ from tests.util import session_scope, runtask
 
 from tasks.meta import OBSColumn, OBSTable, current_session
 from tasks.util import ColumnsTask, TableTask, Shp2TempTableTask, classpath, \
-                       shell, DownloadUnzipTask, CSV2TempTableTask
+                       shell, DownloadUnzipTask, CSV2TempTableTask, \
+                       Carto2TempTableTask
 
 
 class TestColumnsTask(ColumnsTask):
@@ -69,9 +70,15 @@ class TestDownloadUnzipTask(DownloadUnzipTask):
 
     def download(self):
         shell('wget -O {output}.zip "{url}"'.format(
-          output=self.output().path,
-          url='http://andrew.carto.com/api/v2/sql?q=select%20*%20from%20dma_master_polygons%20limit%201&format=shp'
+            output=self.output().path,
+            url='http://andrew.carto.com/api/v2/sql?q=select%20*%20from%20dma_master_polygons%20limit%201&format=shp'
         ))
+
+
+class TestCarto2TempTableTask(Carto2TempTableTask):
+
+    subdomain = 'andrew'
+    table = 'dma_master_polygons'
 
 
 class TestCSV2TempTableTask(CSV2TempTableTask):
@@ -160,3 +167,21 @@ def test_download_unzip_task():
     assert_false(task.output().exists())
     runtask(task)
     assert_true(task.output().exists())
+
+
+def test_carto_2_temp_table_task():
+    '''
+    Convert a table on CARTO to a temp table.
+    '''
+    with session_scope() as session:
+        task = TestCSV2TempTableTask()
+        before_table_count = session.execute(
+            'SELECT COUNT(*) FROM observatory.obs_table').fetchone()[0]
+        runtask(task)
+        table = task.output()
+        assert_equal(session.execute(
+            'SELECT COUNT(*) FROM {}'.format(
+                table.table)).fetchone()[0], 10)
+        after_table_count = session.execute(
+            'SELECT COUNT(*) FROM observatory.obs_table').fetchone()[0]
+        assert_equal(before_table_count, after_table_count)
