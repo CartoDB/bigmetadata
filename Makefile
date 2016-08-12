@@ -5,7 +5,7 @@ perftest: extension
 	docker-compose run --rm bigmetadata nosetests -s tests/perftest.py
 
 autotest: extension
-	docker-compose run --rm bigmetadata nosetests tests/autotest.py
+	docker-compose run --rm bigmetadata nosetests -x observatory-extension/src/python/test/autotest.py
 
 test: perftest autotest
 
