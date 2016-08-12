@@ -10,9 +10,6 @@
                                               # will cause persistence issues!!
       "./observatory-extension:/observatory-extension"
     ],
-    "ports": [
-      "5432"
-    ],
     "privileged": true
   },
   "browser": {
@@ -55,7 +52,6 @@
   "bigmetadata": {
     "image": "recessionporn/bigmetadata",
     "links": [
-      "bigmetadata_daemon",
       "postgres"
     ],
     "volumes": [

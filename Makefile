@@ -121,7 +121,9 @@ api-unittest:
 	                && su postgres -c 'make test'"
 
 etl-unittest:
-	docker-compose run --rm bigmetadata /bin/bash -c 'PGPORT=$$POSTGRES_1_PORT_5432_TCP_PORT PGDATABASE=test nosetests -v tests/test_columntasks.py tests/test_tabletasks.py'
+	docker-compose run --rm bigmetadata /bin/bash -c \
+	  'while : ; do pg_isready -t 1 && break; done && \
+	  PGDATABASE=test nosetests -v tests/test_columntasks.py tests/test_tabletasks.py'
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
