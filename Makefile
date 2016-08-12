@@ -129,5 +129,4 @@ restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
 
 docs:
-	docker-compose run --rm bigmetadata sphinx-apidoc -o docs/source tasks
 	docker-compose run --rm bigmetadata /bin/bash -c 'cd docs && make html'
