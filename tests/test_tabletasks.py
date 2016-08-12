@@ -155,7 +155,8 @@ def test_download_unzip_task():
     Download unzip task should download remote assets and unzip them locally.
     '''
     task = TestDownloadUnzipTask()
-    shell('rm -r {}'.format(task.output().path))
+    if task.output().exists():
+        shell('rm -r {}'.format(task.output().path))
     assert_false(task.output().exists())
     runtask(task)
     assert_true(task.output().exists())
