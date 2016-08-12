@@ -805,6 +805,7 @@ class DumpS3(Task):
     :param timestamp: Optional date parameter, defaults to today.
     '''
     timestamp = DateParameter(default=date.today())
+    force = BooleanParameter(default=False, significant=False)
 
     def requires(self):
         return Dump(timestamp=self.timestamp)
@@ -822,7 +823,13 @@ class DumpS3(Task):
             path=path
         )
         print path
-        return S3Target(path)
+        target = S3Target(path)
+        if self.force:
+            shell('aws s3 rm {output}'.format(
+                output=path
+            ))
+            self.force = False
+        return target
 
 
 class OBSMeta(Task):
