@@ -352,7 +352,7 @@ blockdiag_antialias = True
 # Cribbed from https://github.com/rtfd/readthedocs.org/issues/1139
 
 def run_apidoc(_):
-    modules = ['tasks']
+    modules = ['../../tasks']
     for module in modules:
         cur_dir = os.path.abspath(os.path.dirname(__file__))
         output_path = os.path.join(cur_dir, module, 'doc')
