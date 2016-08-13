@@ -68,7 +68,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 2
+        return 4
 
     def requires(self):
         return {
@@ -87,15 +87,14 @@ class GeographyColumns(ColumnsTask):
             weight=self.weights[self.geog_lvl],
             tags=[sections['ca'], subsections['boundary']],
         )
-        geom_ref = OBSColumn(
-            id=self.geog_lvl + '_geom_id',
+        geom_id = OBSColumn(
             type='Text',
             weight=0,
             targets={geom: GEOM_REF},
         )
         return OrderedDict([
-            ('geom', geom),     # the_geom
-            ('geom_id', geom_ref),   # cvegeo
+            ('geom_id', geom_id),   # cvegeo
+            ('the_geom', geom),     # the_geom
         ])
 
 
@@ -106,7 +105,7 @@ class Geography(TableTask):
     geog_lvl = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
@@ -123,7 +122,7 @@ class Geography(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT pruid as geom_ref, '
+                        'SELECT pruid as geom_id, '
                         '       wkb_geometry as geom '
                         'FROM {input} '.format(
                             output=self.output().table,
