@@ -11,12 +11,11 @@ from collections import OrderedDict
 from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                         sql_to_cartodb_table, grouper, shell,
                         underscore_slugify, TableTask, ColumnTarget,
-                        ColumnsTask
+                        ColumnsTask, Carto2TempTableTask
                        )
 from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
                         OBSColumnTag, OBSColumnToColumn, current_session)
 from tasks.tags import SectionTags, SubsectionTags
-from tasks.carto import Import as CartoImport
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
                    IntParameter)
@@ -360,7 +359,7 @@ class SimpleShoreline(TempTableTask):
     def requires(self):
         return {
             'data': TigerGeographyShapefileToSQL(geography='AREAWATER', year=self.year),
-            'us_landmask': CartoImport(table='us_landmask_union'),
+            'us_landmask': Carto2TempTableTask(table='us_landmask_union'),
         }
 
     def run(self):

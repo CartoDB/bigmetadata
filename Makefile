@@ -2,10 +2,10 @@ sh:
 	docker-compose run --rm bigmetadata /bin/bash
 
 perftest: extension
-	docker-compose run --rm bigmetadata nosetests -s tests/perftest.py
+	docker-compose run --rm bigmetadata nosetests -s observatory-extension/src/python/test/perftest.py
 
 autotest: extension
-	docker-compose run --rm bigmetadata nosetests tests/autotest.py
+	docker-compose run --rm bigmetadata nosetests observatory-extension/src/python/test/autotest.py
 
 test: perftest autotest
 
@@ -43,9 +43,11 @@ md-catalog:
 	  --module tasks.sphinx Catalog --format markdown --force \
 	  --local-scheduler
 
-deploy-catalog:
+deploy-pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
 	    --module tasks.sphinx PDFCatalogToS3
+
+deploy-html-catalog:
 	cd catalog/build/html && \
 	sudo chown -R ubuntu:ubuntu . && \
 	touch .nojekyll && \
@@ -55,6 +57,19 @@ deploy-catalog:
 	git commit -m "updating catalog" && \
 	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
 	git push -f origin gh-pages
+
+deploy-md-catalog:
+	cd catalog/build/markdown && \
+	sudo chown -R ubuntu:ubuntu . && \
+	touch .nojekyll && \
+	git init && \
+	git checkout -B markdown-catalog && \
+	git add . && \
+	git commit -m "updating catalog" && \
+	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
+	git push -f origin markdown-catalog
+
+deploy-catalog: deploy-pdf-catalog deploy-html-catalog deploy-md-catalog
 
 # do not exceed three slots available for import api
 sync: sync-data sync-meta
@@ -80,7 +95,7 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
-.PHONY: run catalog docs
+.PHONY: run catalog docs carto
 
 run:
 	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
@@ -97,7 +112,7 @@ extension:
 sh-sql:
 	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
 
-unittest:
+api-unittest:
 	docker exec -it \
 	  $$(docker-compose ps -q postgres) \
 	  /bin/bash -c "cd observatory-extension \
@@ -105,12 +120,13 @@ unittest:
 	                && make install \
 	                && su postgres -c 'make test'"
 
-test-classes:
-	docker-compose run --rm bigmetadata /bin/bash -c "PGDATABASE=test nosetests -v tests/test_columntasks.py"
+etl-unittest:
+	docker-compose run --rm bigmetadata /bin/bash -c \
+	  'while : ; do pg_isready -t 1 && break; done && \
+	  PGDATABASE=test nosetests -v tests/test_columntasks.py tests/test_tabletasks.py'
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
 
 docs:
-	docker-compose run --rm bigmetadata sphinx-apidoc -o docs/source tasks
 	docker-compose run --rm bigmetadata /bin/bash -c 'cd docs && make html'

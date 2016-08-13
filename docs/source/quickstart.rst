@@ -7,7 +7,7 @@ Requirements
 You'll need:
 
 * `git <https://git-scm.com/>`_
-* `docker <https://www.docker.com>`_ and
+* `docker <https://www.docker.com>`_
 * `docker-compose <https://docs.docker.com/compose/>`_
 
 You should also install `make <https://www.gnu.org/software/make/>`_ to
@@ -26,26 +26,27 @@ Clone & configure
 
 Once your prerequisites are set up, clone the repo:
 
+.. code:: shell
+
   git clone https://github.com/cartodb/bigmetadata.git
   cd bigmetadata
 
-You'll then need to configure `CARTODB_API_KEY` and `CARTODB_URL` in the
-`.env` file in order to upload to Carto.  Replace the variable values in
+You'll then need to configure ``CARTODB_API_KEY`` and ``CARTODB_URL`` in the
+``.env`` file in order to upload to Carto.  Replace the variable values in
 brackets and execute each line below.
+
+.. code:: shell
 
   echo CARTODB_API_KEY=<YOUR_API_KEY> > .env
   echo CARTODB_URL=<YOUR_CARTO_URL> >> .env
-  echo CARTODB_SESSION=<OPTIONAL_YOUR_SESSION_COOKIE> >> .env
 
-The `CARTODB_URL` should be the one you use for the SQL API, generally of the
-format `<USERNAME>.carto.com`.
+The ``CARTODB_URL`` should be the one you use for the SQL API, generally of the
+format ``<USERNAME>.carto.com``.
 
-You can leave `CARTODB_SESSION` alone, but including allows for page reloads
-to automatically refresh remote metadata, which can help with the reliability
-of pushes to Carto.
+If you're on Linux instead of Mac, you may want to give your existing user
+docker (which is equivalent to root) privileges:
 
-Because docker requires commands be run at root privilege, you may want to give
-your existing user docker (which is equivalent to root) privileges:
+.. code:: shell
 
   sudo gpasswd -a $(whoami) docker
 
@@ -54,13 +55,25 @@ Then log out, and log in.
 Build
 -----
 
+.. caution::
+
+   On Docker for Mac, it's not possible to link a local volume into Postgres.
+   You'll need to comment out the line
+   ``"./postgres/data:/var/lib/postgresql"`` in ``docker-compose.yml`` in
+   order to get the ``postgres`` container running.  However, this also means
+   you'll lose data if you rebuild the ``postgres`` container.
+
 Most of the requirements are available as images, but you will need
 to build the postgres and bigmetadata containers before getting started.
+
+.. code:: shell
 
   docker-compose build
 
 If you're running into errors related to missing packages in the build, try
 building without the cache:
+
+.. code:: shell
 
   docker-compose build --no-cache
 
@@ -69,21 +82,25 @@ Run
 
 Then get all your containers running in the background:
 
+.. code:: shell
+
   docker-compose up -d
 
 Once everything is up and running, you should be able to run a task.
 
+.. code:: shell
+
   make -- run es.ine FiveYearPopulation
 
-That will run the
-`FiveYearPopulation <https://github.com/CartoDB/bigmetadata/blob/master/tasks/es/ine.py#L1857>`_
-task.  This includes downloading all the source data files if they don't
-already exist locally, and generating all the metadata necessary to make this
-dataset work with
+That will run :class:`~.es.ine.FiveYearPopulation`.  This includes downloading
+all the source data files if they don't already exist locally, and generating
+all the metadata necessary to make this dataset work with
 `observatory-extension <https://github.com/CartoDB/observatory-extension>`_
 functions.
 
 You can take a look at the data:
+
+.. code:: shell
 
   make psql
 

@@ -8,11 +8,12 @@ import os
 import requests
 
 from collections import OrderedDict
+from datetime import datetime
 from luigi import (Task, IntParameter, LocalTarget, BooleanParameter, Parameter,
                    WrapperTask)
 from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
                         CartoDBTarget, sql_to_cartodb_table,
-                        TableTask, ColumnsTask, TagsTask)
+                        TableTask, ColumnsTask, TagsTask, CSV2TempTableTask)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.us.census.tiger import GeoidColumns
@@ -136,14 +137,25 @@ class DownloadZillow(Task):
 
     URL = 'http://files.zillowstatic.com/research/public/{geography}/{geography}_{measure}_{hometype}.csv'
 
+    def url(self):
+        return self.URL.format(geography=self.geography, hometype=self.hometype,
+                               measure=self.measure)
+
+    @property
+    def last_time(self):
+        if not hasattr(self, '_last_time'):
+            last_time = shell('curl -s {url} | head -n 1'.format(url=self.url()))
+            self._last_time = last_time.strip().split(',')[-1].strip('"')
+        return self._last_time
+
     def run(self):
         self.output().makedirs()
-        shell('wget \'{url}\' -O {output}'.format(
-            url=self.URL.format(geography=self.geography, hometype=self.hometype,
-                                measure=self.measure), output=self.output().path))
+        shell('wget \'{url}\' -O {output}'.format(url=self.url(),
+                                                  output=self.output().path))
 
     def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) + '.csv')
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) +
+                           '_' + underscore_slugify(self.last_time) + '.csv')
 
 
 class ZillowValueColumns(ColumnsTask):
@@ -249,72 +261,25 @@ class ZillowGeoColumns(ColumnsTask):
         return columns
 
 
-class WideZillow(TableTask):
+class WideZillow(CSV2TempTableTask):
 
     geography = Parameter() # example: Zip
     hometype = Parameter() # example: SingleFamilyResidence
     measure = Parameter()
+    force = BooleanParameter(default=True, significant=False)
 
     def requires(self):
-        return {
-            'data': DownloadZillow(geography=self.geography, hometype=self.hometype,
-                                   measure=self.measure),
-            'zillow_geo': ZillowGeoColumns(),
-            'zillow_time_value': ZillowTimeValueColumns(),
-            'geoids': GeoidColumns()
-        }
+        return DownloadZillow(geography=self.geography, hometype=self.hometype,
+                               measure=self.measure)
 
-    def timespan(self):
-        return None
-
-    def version(self):
-        return 2
-
-    def columns(self):
-        if self.geography == 'Zip':
-            tiger_geo = 'zcta5'
-        #elif self.geography == 'State':
-        #    tiger_geo = 'geoid'
-        #elif self.geography == 'County':
-        #    tiger_geom = 'county'
-        else:
-            ## will happen for metro areas, cities, neighborhoods, state, county
-            raise Exception('unrecognized geography {}'.format(self.geography))
-
-        columns = OrderedDict()
-
-        input_ = self.input()
-        with input_['data'].open() as fhandle:
-            first_row = fhandle.next().strip().split(',')
-
-        for headercell in first_row:
-            headercell = headercell.strip('"').replace('-', '_')
-            if headercell == 'RegionName':
-                columns['region_name'] = input_['geoids'][tiger_geo + '_geoid']
-            else:
-                colname = underscore_slugify(headercell)
-                if colname[0:2] in ('19', '20'):
-                    colname = 'value_' + colname
-                    columns[colname] = input_['zillow_time_value'][headercell]
-                else:
-                    columns[colname] = input_['zillow_geo'][headercell]
-
-        return columns
-
-    def populate(self):
-        shell(r"psql -c '\copy {table} FROM {file_path} WITH CSV HEADER'".format(
-            table=self.output().table,
-            file_path=self.input()['data'].path
-        ))
-        session = current_session()
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
-            output=self.output().table))
+    def input_csv(self):
+        return self.input().path
 
 
 class Zillow(TableTask):
 
-    year = Parameter()
-    month = Parameter()
+    year = IntParameter()
+    month = IntParameter()
     geography = Parameter() # example: Zip
 
     def version(self):
@@ -325,7 +290,7 @@ class Zillow(TableTask):
             'metadata': ZillowValueColumns(),
             'geoids': GeoidColumns()
         }
-        for hometype, _, measure, _ in hometype_measures():
+        for hometype, _, measure, _, _ in hometype_measures():
             table_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                      measure=measure)
             requirements[table_id] = WideZillow(
@@ -348,7 +313,7 @@ class Zillow(TableTask):
         columns = OrderedDict([
             ('region_name', input_['geoids'][tiger_geo + '_geoid']),
         ])
-        for hometype, _, measure, _ in hometype_measures():
+        for hometype, _, measure, _, _ in hometype_measures():
             col_id = hometype + '_' + measure
             columns[col_id] = input_['metadata'][col_id]
         return columns
@@ -357,18 +322,18 @@ class Zillow(TableTask):
         session = current_session()
 
         insert = True
-        for hometype, _, measure, _ in hometype_measures():
+        for hometype, _, measure, _, _ in hometype_measures():
             col_id = hometype + '_' + measure
             input_table = self.input()[col_id].table
             if insert:
                 stmt = 'INSERT INTO {output} (region_name, {col_id}) ' \
-                        'SELECT region_name, value_{year}_{month} ' \
+                        'SELECT "RegionName", "{year}-{month}"::NUMERIC ' \
                         'FROM {input_table} '
             else:
                 stmt = 'UPDATE {output} ' \
-                        'SET {col_id} = value_{year}_{month} ' \
+                        'SET {col_id} = "{year}-{month}"::NUMERIC ' \
                         'FROM {input_table} WHERE ' \
-                        '{input_table}.region_name = {output}.region_name '
+                        '{input_table}."RegionName" = {output}.region_name '
             session.execute(stmt.format(
                 output=self.output().table,
                 year=str(self.year).zfill(2),
@@ -385,6 +350,11 @@ class AllZillow(WrapperTask):
 
     def requires(self):
         for geography in ('Zip', ):
-            for year in xrange(1996, 2017):
+            for year in xrange(2010, 2030):
                 for month in xrange(1, 13):
+                    now = datetime.now()
+                    if now.year < year:
+                        continue
+                    elif now.year == year and now.month <= month:
+                        continue
                     yield Zillow(geography=geography, year=year, month=month)

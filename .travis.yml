@@ -1,0 +1,8 @@
+{
+  "services": [
+    "docker"
+  ],
+  "sudo": "required",
+  "before_script": "cp .env.sample .env",
+  "script": "make etl-unittest",
+}
