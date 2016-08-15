@@ -1,0 +1,35 @@
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+HOME=/bigmetadata
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PYTHONPATH=/bigmetadata
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+
+# string         meaning
+# ------         -------
+# @reboot        Run once, at startup.
+# @yearly        Run once a year, "0 0 1 1 *".
+# @annually      (same as @yearly)
+# @monthly       Run once a month, "0 0 1 * *".
+# @weekly        Run once a week, "0 0 * * 0".
+# @daily         Run once a day, "0 0 * * *".
+# @midnight      (same as @daily)
+# @hourly        Run once an hour, "0 * * * *".
+
+* * * * * root luigi --module tasks.sched TestTask --time "$(date +\%s)"
+
+@daily root luigi --module tasks.us.zillow AllZillow --parallel-scheduling --workers=3
+
+@weekly root luigi --module tasks.carto DumpS3
+

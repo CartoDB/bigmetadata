@@ -6,15 +6,14 @@ Bigmetadata tasks
 tasks to download and create metadata
 '''
 
-from tasks.carto import Import as CartoImport
 from tasks.tags import SubsectionTags, SectionTags
 from tasks.meta import (GEOM_REF, current_session, GEOM_NAME, OBSColumn)
-from tasks.util import ColumnsTask, TableTask
+from tasks.util import ColumnsTask, TableTask, Carto2TempTableTask
 
 from collections import OrderedDict
 
 
-class ImportDMA(CartoImport):
+class ImportDMA(Carto2TempTableTask):
 
     subdomain = 'andrew'
     table = 'dma_master_polygons'

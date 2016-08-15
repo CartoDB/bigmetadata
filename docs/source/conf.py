@@ -17,8 +17,13 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
+import subprocess
 import sys
+
+sys.path.insert(0, os.path.abspath('../../tasks'))
 sys.path.insert(0, os.path.abspath('../tasks'))
+sys.path.insert(0, os.path.abspath('tasks'))
+sys.path.insert(0, os.path.abspath('bigmetadata/tasks'))
 
 # -- General configuration ------------------------------------------------
 
@@ -33,6 +38,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.githubpages',
+    'sphinxcontrib.blockdiag',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -178,7 +184,7 @@ html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
 #
-# html_sidebars = {}
+html_sidebars = {'**': ['localtoc.html', 'sourcelink.html', 'searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
@@ -340,3 +346,28 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
 # texinfo_no_detailmenu = False
+
+blockdiag_fontpath = '/usr/share/texlive/texmf-dist/fonts/truetype/public/opensans/OpenSans-Regular.ttf'
+
+blockdiag_debug = True
+blockdiag_antialias = True
+
+# Cribbed from https://github.com/rtfd/readthedocs.org/issues/1139
+
+def run_apidoc(_):
+    modules = ['../../tasks']
+    for module in modules:
+        cur_dir = os.path.abspath(os.path.dirname(__file__))
+        output_path = os.path.join(cur_dir, module, 'doc')
+        cmd_path = 'sphinx-apidoc'
+        if hasattr(sys, 'real_prefix'):  # Check to see if we are in a virtualenv
+            # If we are, assemble the path manually
+            cmd_path = os.path.abspath(os.path.join(sys.prefix, 'bin', 'sphinx-apidoc'))
+        subprocess.check_call(['PYTHONPATH=' + ':'.join([
+            os.path.abspath('../../tasks'),
+            os.path.abspath('../tasks'),
+            os.path.abspath('tasks'),
+        ]), cmd_path, '-e', '-o', output_path, module, '--force'])
+
+def setup(app):
+    app.connect('builder-inited', run_apidoc)

@@ -2,24 +2,19 @@
 # https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
 {
   "postgres": {
-    "image": "kartoza/postgis:latest", # No explicit tag for 9.5-2.2 yet, but
-                                       # that's what we use
+    "image": "recessionporn/bigmetadata_postgres",
     "volumes": [
       "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf",
       "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
                                               # will cause persistence issues!!
-      "../observatory-extension:/observatory-extension"
-    ],
-    "ports": [
-      "5432:5432"
+      "./observatory-extension:/observatory-extension"
     ],
     "privileged": true
   },
-  "browser": {
+  "nginx": {
     "image": "nginx:latest",
     "volumes": [
-      "./browser:/usr/share/nginx/html/browser/:ro",
-      "./browser/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
+      "./conf/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
       "./catalog/build/html:/usr/share/nginx/html/catalog/:ro",
       "./docs/build/html:/usr/share/nginx/html/docs/:ro",
     ],
@@ -28,13 +23,14 @@
     ],
   },
   "bigmetadata_daemon": {
-    "build": ".",
-    #"image": "bigmetadata_bigmetadata_daemon",
+    #"build": ".",
+    "image": "recessionporn/bigmetadata",
     "links": [
       "postgres"
     ],
     "volumes": [
-      ".:/bigmetadata"
+      ".:/bigmetadata",
+      "./crontab:/etc/cron.d/cron",
     ],
     "ports": [
       "8082:8082"
@@ -46,14 +42,15 @@
       "PGPASSWORD": "docker",
       "PGDATABASE": "gis",
       "LC_ALL": "C.UTF-8",
-      "LANG": "C.UTF-8"
+      "LANG": "C.UTF-8",
+      "LUIGI_CONFIG_PATH": "/bigmetadata/conf/luigi_daemon.cfg",
     },
-    "env_file": ".env"
+    "env_file": ".env",
+    "command": "/bin/bash -c 'cron && crontab ./crontab && luigid'"
   },
   "bigmetadata": {
-    "image": "bigmetadata_bigmetadata_daemon",
+    "image": "recessionporn/bigmetadata",
     "links": [
-      "bigmetadata_daemon",
       "postgres"
     ],
     "volumes": [
@@ -66,7 +63,8 @@
       "PGPASSWORD": "docker",
       "PGDATABASE": "gis",
       "LC_ALL": "C.UTF-8",
-      "LANG": "C.UTF-8"
+      "LANG": "C.UTF-8",
+      "LUIGI_CONFIG_PATH": "/bigmetadata/conf/luigi_client.cfg",
     },
     "env_file": ".env"
   },

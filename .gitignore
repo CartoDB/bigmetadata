@@ -24,3 +24,5 @@ catalog/build/*.pdf
 .buildinfo
 carto/
 docs/build
+luigi.cfg
+observatory-extension
