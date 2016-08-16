@@ -9,26 +9,54 @@ from util import underscore_slugify
 
 
 class StatCanParser(object):
+    # Geography id column
     GEO_COLUMN = 'Geo_Code'
+
+    # Column used to split for defining
+    # output file.
     PARSE_COLUMN = 'Topic'
-    TRANSFORM_COLUMN = 'Characteristic'
+
+    # TRANSPOSE_COLUMN_PREFIX column value is added as
+    # a prefix to each TRANSPOSE_COLUMNS
+    # example:
+    #   TRANSPOSE_COLUMN_PREFIX value == 'Household total income in 2010'
+    #   Output columns:
+    #   - household_total_income_in_2010_note
+    #   - household_total_income_in_2010_total
+    #   - household_total_income_in_2010_male
+    #   - household_total_income_in_2010_female
+    TRANSPOSE_COLUMN_PREFIX = 'Characteristic'
+    TRANSPOSE_COLUMNS = ('Note', 'Total', 'Male', 'Female',)
+
+    # Only use these columns when parsing file
+    COLUMNS = (
+        GEO_COLUMN,
+        PARSE_COLUMN,
+        TRANSPOSE_COLUMN_PREFIX,
+    ) + TRANSPOSE_COLUMNS
 
     def _transpose_row(self, row):
-        char_val = row[self.TRANSFORM_COLUMN]
+        '''
+        Only transpose columns that are defined in TRANSPOSE_COLUMNS
+        '''
+        char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
+        # Level tracks how indented the TRANSPOSE_COLUMN_PREFIX
+        # 2 spaces == 1 level
         level = (len(char_val) - len(char_val.lstrip())) / 2
         char_val = underscore_slugify(char_val.strip())
-        return (
-            ('{}_level'.format(char_val),  level),
-            ('{}_note'.format(char_val),  row['Note']),
-            ('{}_total'.format(char_val),  row['Total']),
-            ('{}_male'.format(char_val),  row['Male']),
-            ('{}_female'.format(char_val),  row['Female']),
-        )
+        vals = [('{}_level'.format(char_val),  level)]
+        for col in self.TRANSPOSE_COLUMNS:
+            vals.append((underscore_slugify('{}_{}'.format(char_val, col)), row[col]),)
+
+        return tuple(vals)
 
     def _group_record(self, record):
-        common_cols = tuple([(h, record[0][h]) for h in self._common_col_names])
+        # Columns not transposed
+        geo_col = ((self.GEO_COLUMN, record[0][self.GEO_COLUMN],),)
+        # For each row in record transpose columns defined
+        # in TRANSPOSE_COLUMNS.
         transposed_cols = tuple(itertools.chain.from_iterable(map(self._transpose_row, record)))
-        return OrderedDict(common_cols + transposed_cols)
+        return OrderedDict(geo_col + transposed_cols)
 
     def _write_record_to_csv(self, parse_col, record):
         if len(record) == 0:
@@ -40,36 +68,65 @@ class StatCanParser(object):
                                      '{}.csv'.format(underscore_slugify(parse_col)))
             file_handle = file(file_path, 'w')
             self._file_handlers[parse_col] = file(file_path, 'w')
-            print(','.join(formatted_record.keys()), file=self._file_handlers[parse_col])
+            print('"{}"'.format('","'.join(formatted_record.keys())),
+                  file=self._file_handlers[parse_col])
 
-        print(','.join([str(v) for v in formatted_record.values()]),
+        print(','.join(map(str, formatted_record.values())),
               file=self._file_handlers[parse_col])
 
-    def get_header(self, csv_path):
-        with file(csv_path, 'rb') as csvfile:
-            reader = csv.reader(csvfile)
-            return reader.next()
+    def _map_row(self, row):
+        '''
+        Convert list row to dict row
+        '''
+        try:
+            row_dict = {}
+            for col_name in self.COLUMNS:
+                idx = self._header.get(col_name)
+                if idx is None:
+                    continue
+                row_dict[col_name] = row[idx]
+
+            return row_dict
+        except IndexError:
+            return None
+
+    def get_header_row(self, csvfile):
+        '''
+        Get row index (0-based) and list of column names.
+        '''
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for i, row in enumerate(reader):
+            if len([c for c in row if c in self.COLUMNS]) == len(self.COLUMNS):
+                return i, {col_name: i for i, col_name in enumerate(row)}
+
+        return -1, None
 
     def parse_csv_to_files(self, csv_paths, output_dir):
         self._file_handlers = {}
         self._output_dir = output_dir
-        self._header = None
-        self._common_col_names = None
 
         try:
             if isinstance(csv_paths, (str, unicode,)):
                 csv_paths = [csv_paths]
 
             for csv_path in csv_paths:
+                self._header = None
                 with file(csv_path, 'rb') as csvfile:
-                    reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
-                    self._header = self.get_header(csv_path)
-                    end_common_cols = self._header.index(self.TRANSFORM_COLUMN) + 1
-                    self._common_col_names = self._header[0:end_common_cols]
+                    # Need to handle csv files where header row isn't row #1
+                    header_row_index, self._header = self.get_header_row(csvfile)
+                    if header_row_index == -1:
+                        raise ValueError('Invalid file')
+
+                    reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+
                     uid = None
                     parse_col_val = None
                     record = []
                     for row in reader:
+                        row = self._map_row(row)
+                        if row is None:
+                            continue
+
                         if uid != row[self.GEO_COLUMN] or parse_col_val != row[self.PARSE_COLUMN]:
                             self._write_record_to_csv(parse_col_val, record)
                             record = []
@@ -77,16 +134,12 @@ class StatCanParser(object):
                             parse_col_val = row[self.PARSE_COLUMN]
 
                         record.append(row)
-                    else:
-                        self._write_record_to_csv(parse_col_val, record)
 
-                print(csv_path)
+                    self._write_record_to_csv(parse_col_val, record)
 
         finally:
             for file_handler in self._file_handlers.values():
                 file_handler.close()
 
             self._output_dir = None
-            self._header = None
             self._file_handlers = None
-            self._common_col_names = None
