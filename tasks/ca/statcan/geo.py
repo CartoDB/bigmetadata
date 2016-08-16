@@ -1,10 +1,9 @@
-from luigi import Task, Parameter, WrapperTask
+from luigi import Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
-                        ColumnsTask, TableTask, TempTableTask)
+                        ColumnsTask, TableTask)
 from tasks.meta import GEOM_REF, OBSColumn, current_session
-# from tasks.mx.inegi_columns import DemographicColumns
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags
 
 from collections import OrderedDict
 
@@ -13,8 +12,8 @@ GEOGRAPHIES = (
     'ct_',
     'pr_',
     'cd_',
-    'cds_',
-    'cma_',
+    'csd',
+    'cma',
 )
 
 
@@ -83,12 +82,12 @@ class GeographyColumns(ColumnsTask):
         'ct_': 5,
         'pr_': 4,
         'cd_': 4,
-        'cds_': 4,
-        'cma_': 4,
+        'csd': 4,
+        'cma': 4,
     }
 
     def version(self):
-        return 4
+        return 6
 
     def requires(self):
         return {

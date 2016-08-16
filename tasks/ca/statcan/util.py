@@ -5,7 +5,7 @@ import itertools
 import os
 from collections import OrderedDict
 
-from util import underscore_slugify
+from tasks.util import underscore_slugify
 
 
 class StatCanParser(object):
