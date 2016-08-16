@@ -10,19 +10,36 @@ from collections import OrderedDict
 
 
 GEOGRAPHIES = (
-    'ct',
-    'pr',
+    'ct_',
+    'pr_',
+    'cd_',
+    'cds_',
+    'cma_',
 )
 
 
 GEOGRAPHY_NAMES = {
-    'ct': 'Census Tracts',
-    'pr': 'Provinces/Territories',
+    'ct_': 'Census Tracts',
+    'pr_': 'Canada, provinces and territories',
+    'cd_': 'Census divisions',
+    'csd': 'Census subdivisions',
+    'cma': 'Census metropolitan areas and census agglomerations',
 }
 
 GEOGRAPHY_DESCS = {
-    'ct': '',
-    'pr': '',
+    'ct_': '',
+    'pr_': '',
+    'cd_': '',
+    'csd': '',
+    'cma': '',
+}
+
+GEOGRAPHY_CODES = {
+    'ct_': 401,
+    'pr_': 101,
+    'cd_': 701,
+    'csd': 301,
+    'cma': 201,
 }
 
 
@@ -30,9 +47,9 @@ GEOGRAPHY_DESCS = {
 # 2011 Boundary Files
 class DownloadGeography(DownloadUnzipTask):
 
-    geog_lvl = Parameter()
+    geog_lvl = Parameter(default='pr_')
 
-    URL = 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/g{geog_lvl}_000b11a_e.zip'
+    URL = 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/g{geog_lvl}000b11a_e.zip'
 
     def download(self):
         shell('wget -O {output}.zip {url}'.format(
@@ -45,7 +62,7 @@ class ImportGeography(Shp2TempTableTask):
     Import geographies into postgres by geography level
     '''
 
-    geog_lvl = Parameter()
+    geog_lvl = Parameter(default='pr_')
 
     def requires(self):
         return DownloadGeography(geog_lvl=self.geog_lvl)
@@ -60,11 +77,14 @@ class ImportGeography(Shp2TempTableTask):
 
 class GeographyColumns(ColumnsTask):
 
-    geog_lvl = Parameter()
+    geog_lvl = Parameter(default='pr_')
 
     weights = {
-        'ct': 5,
-        'pr': 4,
+        'ct_': 5,
+        'pr_': 4,
+        'cd_': 4,
+        'cds_': 4,
+        'cma_': 4,
     }
 
     def version(self):
@@ -102,7 +122,7 @@ class Geography(TableTask):
     '''
     '''
 
-    geog_lvl = Parameter()
+    geog_lvl = Parameter(default='pr_')
 
     def version(self):
         return 2
