@@ -61,7 +61,6 @@ class SplitAndTransposeData(BaseParams, Task):
         ))
         in_csv_files = infiles.strip().split('\n')
         os.makedirs(self.output().path)
-        # print in_csv_files
         StatCanParser().parse_csv_to_files(in_csv_files, self.output().path)
 
     def output(self):
@@ -112,34 +111,3 @@ class ImportData(BaseParams, Task):
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
-# class DownloadData(BaseParams, Task):
-
-#     def run(self):
-#         self.output().makedirs()
-#         urllib.urlretrieve(url=URL.format(
-#                            survey_url=SURVEY_URLS[self.survey],
-#                            survey_code=SURVEY_CODES[self.survey],
-#                            geo_code=GEOGRAPHY_CODES[self.resolution],
-#                            ),
-#                            filename=self.output().path)
-
-#     def output(self):
-#         return LocalTarget(os.path.join('tmp', classpath(self),
-#                                         SURVEY_CODES[self.survey] + '-' + str(GEOGRAPHY_CODES[self.resolution]) + '.zip'))
-
-
-# class UnzipData(BaseParams, Task):
-#     def requires(self):
-#         return DownloadData(resolution=self.resolution, survey=self.survey)
-
-#     def run(self):
-#         cmd = 'unzip -o {input} -d {output_dir}'.format(
-#             input=self.input().path,
-#             output_dir=self.input().path.replace('.zip', ''))
-#         shell(cmd)
-
-#     def output(self):
-#         path, folder = os.path.split(self.input().path)
-#         folder = folder.replace('.zip', '')
-#         csv_file = folder + '.CSV'
-#         return LocalTarget(os.path.join(path, folder, csv_file))

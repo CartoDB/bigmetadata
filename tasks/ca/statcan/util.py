@@ -26,6 +26,8 @@ class StatCanParser(object):
     #   - household_total_income_in_2010_male
     #   - household_total_income_in_2010_female
     TRANSPOSE_COLUMN_PREFIX = 'Characteristic'
+
+    # !!!be careful when changing the order of these!!!
     TRANSPOSE_COLUMNS = (
         # 'Note',
         'Total',
@@ -72,7 +74,8 @@ class StatCanParser(object):
         geo_col = ((self.GEO_COLUMN, record[0][self.GEO_COLUMN],),)
         # For each row in record transpose columns defined
         # in TRANSPOSE_COLUMNS.
-        transposed_cols = tuple(itertools.chain.from_iterable(map(self._transpose_row, record)))
+        transposed_row = map(self._transpose_row, record)
+        transposed_cols = tuple(itertools.chain.from_iterable(transposed_row))
         return OrderedDict(geo_col + transposed_cols)
 
     def _write_record_to_csv(self, parse_col, record):
