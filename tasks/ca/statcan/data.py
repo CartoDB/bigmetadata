@@ -56,7 +56,7 @@ class SplitAndTransposeData(BaseParams, Task):
         return DownloadData(resolution=self.resolution, survey=self.survey)
 
     def run(self):
-        infiles = shell('ls {input}/*[0-9].CSV'.format(
+        infiles = shell('ls {input}/*[0-9].[cC][sS][vV]'.format(
             input=self.input().path
         ))
         in_csv_files = infiles.strip().split('\n')
