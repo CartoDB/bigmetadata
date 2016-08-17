@@ -132,7 +132,7 @@ class StatCanParser(object):
             return
 
         record = sorted(record, key=itemgetter(self.PARSE_COLUMN))
-        parse_col_val = record[0][sel.PARSE_COLUMN]
+        parse_col_val = record[0][self.PARSE_COLUMN]
         group = []
         for row in record:
             if parse_col_val != row[self.PARSE_COLUMN]:
