@@ -12,7 +12,7 @@ from tasks.meta import GEOM_REF, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 from collections import OrderedDict
-from geo import GEOGRAPHY_CODES
+from geo import GEOGRAPHY_CODES, GEOGRAPHIES
 from util import StatCanParser
 
 
@@ -111,3 +111,25 @@ class ImportData(BaseParams, Task):
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
+
+class ImportAllResolutions(WrapperTask):
+    survey = Parameter(default='census')
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            yield ImportData(resolution=resolution, survey=self.survey)
+
+
+class ImportAllSurveys(WrapperTask):
+    resolution = Parameter(default='pr_')
+
+    def requires(self):
+        for survey in SURVEYS:
+            yield ImportData(resolution=self.resolution, survey=survey)
+
+
+class ImportAll(WrapperTask):
+    def requires(self):
+        for survey in SURVEYS:
+            for resolution in GEOGRAPHIES:
+                yield ImportData(resolution=resolution, survey=survey)
