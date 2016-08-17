@@ -134,6 +134,7 @@ class StatCanParser(object):
                         if row is None:
                             continue
 
+                        # got a new Geo_Code or Topic
                         if uid != row[self.GEO_COLUMN] or parse_col_val != row[self.PARSE_COLUMN]:
                             self._write_record_to_csv(parse_col_val, record)
                             record = []
@@ -143,6 +144,7 @@ class StatCanParser(object):
                         record.append(row)
 
                     self._write_record_to_csv(parse_col_val, record)
+                    # write the last record
 
         finally:
             for file_handler in self._file_handlers.values():
