@@ -56,16 +56,18 @@ class StatCanParser(object):
         '''
         Only transpose columns that are defined in TRANSPOSE_COLUMNS
         '''
-        char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
+        # char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
+        char_val = 't{:03d}c{:03d}'.format(self._topic_idx, self._char_idx)
+        self._char_idx += 1
         # Level tracks how indented the TRANSPOSE_COLUMN_PREFIX
         # 2 spaces == 1 level
         # level = (len(char_val) - len(char_val.lstrip())) / 2
-        char_val = self.shorten_col(char_val.strip())
+        # char_val = self.shorten_col(char_val.strip())
         vals = []
         # vals.append(('{}_level'.format(char_val), level),)
 
         for col in self.TRANSPOSE_COLUMNS:
-            vals.append((underscore_slugify('{}_{}'.format(char_val, col)), row[col]),)
+            vals.append((underscore_slugify('{}_{}'.format(char_val, col[:1])), row[col]),)
 
         return tuple(vals)
 
@@ -85,11 +87,12 @@ class StatCanParser(object):
         formatted_record = self._group_record(record)
         if parse_col not in self._file_handlers:
             file_path = os.path.join(self._output_dir,
-                                     '{}_{}.csv'.format(
-                                        len(self._file_handlers.values())+1,
-                                        underscore_slugify(parse_col)))
+                                     't{:03d}.csv'.format(
+                                        self._topic_idx))
             file_handle = file(file_path, 'w')
             self._file_handlers[parse_col] = file_handle
+            self._topic_idx += 1
+            self._char_idx = 1
             print('"{}"'.format('","'.join(formatted_record.keys())),
                   file=self._file_handlers[parse_col])
 
@@ -126,6 +129,8 @@ class StatCanParser(object):
     def parse_csv_to_files(self, csv_paths, output_dir):
         self._file_handlers = {}
         self._output_dir = output_dir
+        self._char_idx = 1
+        self._topic_idx = 1
 
         try:
             if isinstance(csv_paths, (str, unicode,)):
