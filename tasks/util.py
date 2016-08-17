@@ -647,6 +647,10 @@ class ColumnsTask(Task):
         session = current_session()
         already_in_session = [obj for obj in session]
         for col_key, col in self.columns().iteritems():
+            if not isinstance(col, OBSColumn):
+                raise RuntimeError(
+                    'Values in `.columns()` must be of type OBSColumn, but '
+                    '"{col}" is type {type}'.format(col=col_key, type=type(col)))
             if not col.version:
                 col.version = self.version()
             output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
