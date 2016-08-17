@@ -1350,7 +1350,7 @@ class Carto2TempTableTask(TempTableTask):
 
     @property
     def _url(self):
-        return 'https://{subdomain}.cartodb.com/api/v2/sql'.format(
+        return 'https://{subdomain}.carto.com/api/v2/sql'.format(
             subdomain=self.subdomain
         )
 
