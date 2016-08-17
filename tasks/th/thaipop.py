@@ -23,13 +23,13 @@ class ThaiColumns(ColumnsTask):
         }
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         inputs = self.input()
         age_gender = inputs['subsections']['age_gender']
         boundaries = inputs['subsections']['boundary']
-        thailand = inputs['sections']['global']
+        thailand = inputs['sections']['th']
         people = inputs['units']['people']
 
         the_geom = OBSColumn(
