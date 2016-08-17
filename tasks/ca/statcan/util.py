@@ -26,7 +26,12 @@ class StatCanParser(object):
     #   - household_total_income_in_2010_male
     #   - household_total_income_in_2010_female
     TRANSPOSE_COLUMN_PREFIX = 'Characteristic'
-    TRANSPOSE_COLUMNS = ('Note', 'Total', 'Male', 'Female',)
+    TRANSPOSE_COLUMNS = (
+        # 'Note',
+        'Total',
+        'Male',
+        'Female',
+    )
 
     # Only use these columns when parsing file
     COLUMNS = (
@@ -42,9 +47,11 @@ class StatCanParser(object):
         char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
         # Level tracks how indented the TRANSPOSE_COLUMN_PREFIX
         # 2 spaces == 1 level
-        level = (len(char_val) - len(char_val.lstrip())) / 2
+        # level = (len(char_val) - len(char_val.lstrip())) / 2
         char_val = underscore_slugify(char_val.strip())
-        vals = [('{}_level'.format(char_val),  level)]
+        vals = []
+        # vals.append(('{}_level'.format(char_val), level),)
+
         for col in self.TRANSPOSE_COLUMNS:
             vals.append((underscore_slugify('{}_{}'.format(char_val, col)), row[col]),)
 
@@ -67,7 +74,7 @@ class StatCanParser(object):
             file_path = os.path.join(self._output_dir,
                                      '{}.csv'.format(underscore_slugify(parse_col)))
             file_handle = file(file_path, 'w')
-            self._file_handlers[parse_col] = file(file_path, 'w')
+            self._file_handlers[parse_col] = file_handle
             print('"{}"'.format('","'.join(formatted_record.keys())),
                   file=self._file_handlers[parse_col])
 
