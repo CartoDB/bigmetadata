@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[ ]:
-
 '''
 Bigmetadata tasks
 tasks to download and create metadata
@@ -17,9 +12,6 @@ class ImportThai(Carto2TempTableTask):
 
     subdomain = 'solutions'
     table = 'thai_districts'
-
-
-# In[ ]:
 
 class ThaiColumns(ColumnsTask):
 
@@ -47,13 +39,13 @@ class ThaiColumns(ColumnsTask):
             weight=5,
             tags=[thailand, population],
         )
-        pop2010 = OBSColumn(
+        pop = OBSColumn(
             name='Population in 2010',
             type='Numeric',
             aggregate = 'sum',
             weight=5,
         )
-        name_2 = OBSColumn(
+        name = OBSColumn(
             name='Name of District',
             type='Text',
             weight=5,
@@ -62,12 +54,9 @@ class ThaiColumns(ColumnsTask):
 
         return OrderedDict([
             ('the_geom', the_geom),
-            ('pop2010', pop2010),
-            ('name_2', name_2),
+            ('pop', population),
+            ('name', name),
         ])
-
-
-# In[ ]:
 
 class ThaiDistricts(TableTask):
 
@@ -89,34 +78,8 @@ class ThaiDistricts(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT the_geom, pop2010, name_2 '
+                        'SELECT the_geom, pop, name'
                         'FROM {input} '.format(
                             output=self.output().table,
                             input=self.input()['data'].table
                         ))
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
