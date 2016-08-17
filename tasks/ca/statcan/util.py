@@ -40,6 +40,16 @@ class StatCanParser(object):
         TRANSPOSE_COLUMN_PREFIX,
     ) + TRANSPOSE_COLUMNS
 
+    def shorten_col(self, text):
+        text = text.lower()
+        words = text.split()
+
+        short_list = []
+        for word in words:
+            short_list.append(word[:2])
+
+        return ''.join(short_list)
+
     def _transpose_row(self, row):
         '''
         Only transpose columns that are defined in TRANSPOSE_COLUMNS
@@ -48,7 +58,7 @@ class StatCanParser(object):
         # Level tracks how indented the TRANSPOSE_COLUMN_PREFIX
         # 2 spaces == 1 level
         # level = (len(char_val) - len(char_val.lstrip())) / 2
-        char_val = underscore_slugify(char_val.strip())
+        char_val = self.shorten_col(char_val.strip())
         vals = []
         # vals.append(('{}_level'.format(char_val), level),)
 
@@ -72,7 +82,9 @@ class StatCanParser(object):
         formatted_record = self._group_record(record)
         if parse_col not in self._file_handlers:
             file_path = os.path.join(self._output_dir,
-                                     '{}.csv'.format(underscore_slugify(parse_col)))
+                                     '{}_{}.csv'.format(
+                                        len(self._file_handlers.values())+1,
+                                        underscore_slugify(parse_col)))
             file_handle = file(file_path, 'w')
             self._file_handlers[parse_col] = file_handle
             print('"{}"'.format('","'.join(formatted_record.keys())),

@@ -67,6 +67,51 @@ class SplitAndTransposeData(BaseParams, Task):
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
+
+class CopyDataToTable(BaseParams, TempTableTask):
+
+    table = Parameter()
+
+    def requires(self):
+        return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
+
+    def run(self):
+        infile = os.path.join(self.input().path, self.table + '.csv')
+        headers = shell('head -n 1 {csv}'.format(csv=infile))
+        cols = ['{} NUMERIC'.format(h) for h in headers.split(',')[1:]]
+
+        session = current_session()
+        session.execute('CREATE TABLE {output} (Geo_Code TEXT, {cols})'.format(
+            output=self.output().table,
+            cols=', '.join(cols)
+        ))
+        session.commit()
+        shell("cat '{infile}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
+            output=self.output().table,
+            infile=infile,
+        ))
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geo_code)'.format(
+            output=self.output().table
+        ))
+
+
+class ImportData(BaseParams, Task):
+    def requires(self):
+        return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
+
+    def run(self):
+        infiles = shell('ls {input}/*.csv'.format(
+            input=self.input().path))
+        fhandle = self.output().open('w')
+        for infile in infiles.strip().split('\n'):
+            table = os.path.split(infile)[-1].split('.csv')[0]
+            data = yield CopyDataToTable(table=table)
+            fhandle.write('{table}\n'.format(table=data.table))
+        fhandle.close()
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
 # class DownloadData(BaseParams, Task):
 
 #     def run(self):
