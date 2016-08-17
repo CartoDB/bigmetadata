@@ -4,6 +4,7 @@ import csv
 import itertools
 import os
 from collections import OrderedDict
+from operator import itemgetter
 
 from tasks.util import underscore_slugify
 
@@ -80,11 +81,11 @@ class StatCanParser(object):
         transposed_cols = tuple(itertools.chain.from_iterable(transposed_row))
         return OrderedDict(geo_col + transposed_cols)
 
-    def _write_record_to_csv(self, parse_col, record):
-        if len(record) == 0:
+    def _write_group_to_csv(self, parse_col, group):
+        if len(group) == 0:
             return
 
-        formatted_record = self._group_record(record)
+        formatted_record = self._group_record(group)
         if parse_col not in self._file_handlers:
             file_path = os.path.join(self._output_dir,
                                      't{:03d}.csv'.format(
@@ -126,6 +127,23 @@ class StatCanParser(object):
 
         return -1, None
 
+    def _write_record(self, record):
+        if len(record) == 0:
+            return
+
+        record = sorted(record, key=itemgetter(self.PARSE_COLUMN))
+        parse_col_val = record[0][sel.PARSE_COLUMN]
+        group = []
+        for row in record:
+            if parse_col_val != row[self.PARSE_COLUMN]:
+                self._write_group_to_csv(parse_col_val, group)
+                parse_col_val = row[self.PARSE_COLUMN]
+                group = []
+
+            group.append(row)
+
+        self._write_group_to_csv(parse_col_val, group)
+
     def parse_csv_to_files(self, csv_paths, output_dir):
         self._file_handlers = {}
         self._output_dir = output_dir
@@ -155,16 +173,16 @@ class StatCanParser(object):
                             continue
 
                         # got a new Geo_Code or Topic
-                        if uid != row[self.GEO_COLUMN] or parse_col_val != row[self.PARSE_COLUMN]:
-                            self._write_record_to_csv(parse_col_val, record)
+                        if uid != row[self.GEO_COLUMN]:
+                            self._write_record(record)
                             record = []
                             uid = row[self.GEO_COLUMN]
-                            parse_col_val = row[self.PARSE_COLUMN]
 
                         record.append(row)
 
-                    self._write_record_to_csv(parse_col_val, record)
-                    # write the last record
+                    # parse the last record
+                    self._write_record(record)
+
 
         finally:
             for file_handler in self._file_handlers.values():
