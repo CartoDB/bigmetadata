@@ -3,7 +3,7 @@ Bigmetadata tasks
 tasks to download and create metadata
 '''
 
-from tasks.tags import SubsectionTags, SectionTags
+from tasks.tags import SubsectionTags, SectionTags, UnitTags
 from tasks.meta import (GEOM_REF, current_session, GEOM_NAME, OBSColumn)
 from tasks.util import ColumnsTask, TableTask, Carto2TempTableTask
 from collections import OrderedDict
@@ -19,16 +19,18 @@ class ThaiColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'units': UnitTags(),
         }
 
     def version(self):
-        return 1
+        return 3
 
     def columns(self):
         inputs = self.input()
         age_gender = inputs['subsections']['age_gender']
         boundaries = inputs['subsections']['boundary']
         thailand = inputs['sections']['global']
+        people = inputs['units']['people']
 
         the_geom = OBSColumn(
             name='District',
@@ -40,12 +42,18 @@ class ThaiColumns(ColumnsTask):
             weight=5,
             tags=[thailand, boundaries],
         )
+        id_2 = OBSColumn(
+            type='Text',
+            weight=0,
+            tags=[],
+            targets={the_geom: GEOM_REF},
+        )
         pop = OBSColumn(
             name='Population in 2010',
             type='Numeric',
             aggregate='sum',
             weight=5,
-            tags=[thailand, age_gender],
+            tags=[thailand, age_gender, people],
         )
         name = OBSColumn(
             name='Name of District',
@@ -56,6 +64,7 @@ class ThaiColumns(ColumnsTask):
 
         return OrderedDict([
             ('the_geom', the_geom),
+            ('id_2', id_2),
             ('pop', pop),
             ('name', name),
         ])
@@ -69,7 +78,7 @@ class ThaiDistricts(TableTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def timespan(self):
         return '2010'
@@ -80,7 +89,7 @@ class ThaiDistricts(TableTask):
     def populate(self):
         session = current_session()
         session.execute(' INSERT INTO {output} '
-                        ' SELECT the_geom, pop2010, name_2 '
+                        ' SELECT the_geom, id_2, pop2010, name_2 '
                         ' FROM {input} '.format(
                             output=self.output().table,
                             input=self.input()['data'].table
