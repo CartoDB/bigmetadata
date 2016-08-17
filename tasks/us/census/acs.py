@@ -75,7 +75,157 @@ class Columns(ColumnsTask):
         #segmenttags = input_['segmenttags']
         #tag_middle_aged_men = segmenttags['middle_aged_men']
         #tag_families_with_young_children = segmenttags['families_with_young_children']
-        households = OBSColumn(
+        rent_burden_not_computed = OBSColumn(
+            id='B25070011',
+            type='Numeric',
+            name='Housing units without rent as percentage of income computed',
+            description='Gross rent from over 50 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],subsections['income'],unit_housing)   
+        rent_over_50_percent = OBSColumn(
+            id='B25070010',
+            type='Numeric',
+            name='Housing units spending over 50 percent income on rent',
+            description='Gross rent over 50 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],subsections['income'],unit_housing)
+        rent_40_to_50_percent = OBSColumn(
+            id='B25070009',
+            type='Numeric',
+            name='40.0 To 49.9 Percent',
+            description='Gross rent from 40.0 to 49.9 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],subsections['income'],unit_housing)
+        rent_35_to_40_percent = OBSColumn(
+            id='B25070008',
+            type='Numeric',
+            name='35.0 To 39.9 Percent',
+            description='Gross rent from 35.0 to 39.9 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],subsections['income'],unit_housing)
+        rent_30_to_35_percent = OBSColumn(
+            id='B25070007',
+            type='Numeric',
+            name='30.0 To 34.9 Percent',
+            description='Gross rent from 30.0 to 34.9 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],unit_housing])
+        rent_25_to_30_percent = OBSColumn(
+            id='B25070006',
+            type='Numeric',
+            name='25.0 To 29.9 Percent',
+            description='Gross rent from 25.0 to 29.9 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],unit_housing])
+        rent_20_to_25_percent = OBSColumn(
+            id='B25070005',
+            type='Numeric',
+            name='20.0 To 24.9 Percent',
+            description='Gross rent from 20.0 to 24.9 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],unit_housing])
+        rent_15_to_20_percent = OBSColumn(
+            id='B25070004',
+            type='Numeric',
+            name='15.0 To 19.9 Percent',
+            description='Gross rent from 15.0 to 19.9 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],unit_housing])
+    	rent_10_to_15_percent = OBSColumn(
+    		id='B25070003',
+    		type='Numeric',
+    		name='10.0 To 14.9 Percent',
+    		description='Gross rent from 10.0 to 14.9 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+    		weight=5,
+    		aggregate='sum',
+    		targets={housing_units_renter_occupied:'denominator'},
+    		tags=[subsections['housing'],unit_housing])
+    	rent_under_10_percent = OBSColumn(
+            id='B25070002',
+            type='Numeric',
+            name='Less Than 10.0 Percent',
+            description='Gross rent less than 10 percent of household income. '
+            'Computed ratio of monthly gross rent to monthly household income '
+            '(total household income divided by 12). ' 
+            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
+            'Units for which no rent is paid and units occupied by households that report no income or a net '
+            'loss comprise the category, "Not computed". /n/n'
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],unit_housing])
+    	households = OBSColumn(
             id='B11001001',
             type='Numeric',
             name='Households',
@@ -2715,6 +2865,16 @@ class Columns(ColumnsTask):
         )
 
         columns = OrderedDict([
+            ("rent_burden_not_computed", rent_burden_not_computed),
+            ("rent_over_50_percent", rent_over_50_percent),
+            ("rent_40_to_50_percent", rent_40_to_50_percent),
+            ("rent_35_to_40_percent", rent_35_to_40_percent),
+            ("rent_30_to_35_percent", rent_30_to_35_percent),
+            ("rent_25_to_30_percent", rent_25_to_30_percent),
+            ("rent_20_to_25_percent", rent_20_to_25_percent),
+            ("rent_15_to_20_percent", rent_15_to_20_percent),
+            ("rent_10_to_15_percent", rent_10_to_15_percent),
+            ("rent_under_10_percent", rent_under_10_percent),
             ("total_pop", total_pop),
             ("male_pop", male_pop),
             ("female_pop", female_pop),
