@@ -104,7 +104,7 @@ class ImportData(BaseParams, Task):
         fhandle = self.output().open('w')
         for infile in infiles.strip().split('\n'):
             table = os.path.split(infile)[-1].split('.csv')[0]
-            data = yield CopyDataToTable(table=table)
+            data = yield CopyDataToTable(resolution=self.resolution, survey=self.survey, table=table)
             fhandle.write('{table}\n'.format(table=data.table))
         fhandle.close()
 
