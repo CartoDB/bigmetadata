@@ -98,7 +98,7 @@ class OutputAreas(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT ST_MakeValid(wkb_geometry), oa_sa, sprgrp, grp, subgrp '
+                        'SELECT ST_MakeValid(wkb_geometry), oa_sa '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input()['data'].table,

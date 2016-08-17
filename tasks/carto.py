@@ -842,7 +842,6 @@ class OBSMeta(Task):
       AND geom_geom_ct.table_id = geom_t.id
       AND geom_c.type ILIKE 'geometry'
       AND numer_c.type NOT ILIKE 'geometry'
-      AND numer_t.id != geom_t.id
       AND numer_c.id != geomref_c.id
       AND unit_tag.type = 'unit'
       AND ss_tag.type = 'subsection'
@@ -853,6 +852,7 @@ class OBSMeta(Task):
       AND ss_ctag.tag_id = ss_tag.id
       AND s_ctag.column_id = numer_c.id
       AND s_ctag.tag_id = s_tag.id
+      AND (numer_c.id != denom_c.id OR denom_c.id IS NULL)
       AND (denom_c2c.reltype = 'denominator' OR denom_c2c.reltype IS NULL)
       AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
       AND (denom_t.timespan = numer_t.timespan OR denom_t.timespan IS NULL)
