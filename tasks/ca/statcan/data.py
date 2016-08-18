@@ -3,32 +3,30 @@ import urllib
 
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
+from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath,
+from tasks.meta import current_session
+from tasks.ca.statcan.geo import (
+    GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
+    GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns)
+from tasks.ca.statcan.util import StatCanParser
 
-from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
-                        ColumnsTask, TableTask, TempTableTask, classpath,
-                        underscore_slugify)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
-# from tasks.mx.inegi_columns import DemographicColumns
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
-from collections import OrderedDict
-from geo import GEOGRAPHY_CODES, GEOGRAPHIES
-from util import StatCanParser
-
+SURVEY_CEN = 'census'
+SURVEY_NHS = 'nhs'
 
 SURVEYS = (
-    'census',
-    'nhs',
+    SURVEY_CEN,
+    SURVEY_NHS,
 )
 
 SURVEY_CODES = {
-    'census': '98-316-XWE2011001',
-    'nhs': '99-004-XWE2011001',
+    SURVEY_CEN: '98-316-XWE2011001',
+    SURVEY_NHS: '99-004-XWE2011001',
 }
 
 SURVEY_URLS = {
-    'census': 'census-recensement',
-    'nhs': 'nhs-enm',
+    SURVEY_CEN: 'census-recensement',
+    SURVEY_NHS: 'nhs-enm',
 }
 
 URL = 'http://www12.statcan.gc.ca/{survey_url}/2011/dp-pd/prof/details/download-telecharger/comprehensive/comp_download.cfm?CTLG={survey_code}&FMT=CSV{geo_code}'
@@ -37,8 +35,8 @@ URL = 'http://www12.statcan.gc.ca/{survey_url}/2011/dp-pd/prof/details/download-
 class BaseParams:
     __metaclass__ = ABCMeta
 
-    resolution = Parameter(default='pr_')
-    survey = Parameter(default='census')
+    resolution = Parameter(default=GEO_PR)
+    survey = Parameter(default=SURVEY_CEN)
 
 
 class DownloadData(BaseParams, DownloadUnzipTask):
@@ -115,7 +113,7 @@ class ImportData(BaseParams, Task):
 
 
 class ImportAllResolutions(WrapperTask):
-    survey = Parameter(default='census')
+    survey = Parameter(default=SURVEY_CEN)
 
     def requires(self):
         for resolution in GEOGRAPHIES:
@@ -123,7 +121,7 @@ class ImportAllResolutions(WrapperTask):
 
 
 class ImportAllSurveys(WrapperTask):
-    resolution = Parameter(default='pr_')
+    resolution = Parameter(default=GEO_PR)
 
     def requires(self):
         for survey in SURVEYS:
