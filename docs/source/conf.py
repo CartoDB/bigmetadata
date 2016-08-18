@@ -22,8 +22,8 @@ import sys
 
 sys.path.insert(0, os.path.abspath('../../tasks'))
 sys.path.insert(0, os.path.abspath('../tasks'))
-sys.path.insert(0, os.path.abspath('tasks'))
-sys.path.insert(0, os.path.abspath('bigmetadata/tasks'))
+sys.path.insert(0, os.path.abspath('./tasks'))
+sys.path.insert(0, os.path.abspath('./bigmetadata/tasks'))
 
 # -- General configuration ------------------------------------------------
 
@@ -366,7 +366,8 @@ def run_apidoc(_):
         subprocess.check_call(['PYTHONPATH=' + ':'.join([
             os.path.abspath('../../tasks'),
             os.path.abspath('../tasks'),
-            os.path.abspath('tasks'),
+            os.path.abspath('./tasks'),
+            os.path.abspath('./bigmetadata/tasks'),
         ]), cmd_path, '-e', '-o', output_path, module, '--force'])
 
 def setup(app):
