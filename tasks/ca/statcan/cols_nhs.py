@@ -36,7 +36,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t001c002 = OBSColumn(
             id='t001c002',
@@ -44,7 +45,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c001: DENOMINATOR },)
 
         t001c003 = OBSColumn(
             id='t001c003',
@@ -52,7 +54,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c002: DENOMINATOR },)
 
         t001c004 = OBSColumn(
             id='t001c004',
@@ -60,7 +63,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c002: DENOMINATOR },)
 
         t001c005 = OBSColumn(
             id='t001c005',
@@ -68,7 +72,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c002: DENOMINATOR },)
 
         t001c006 = OBSColumn(
             id='t001c006',
@@ -76,7 +81,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c002: DENOMINATOR },)
 
         t001c007 = OBSColumn(
             id='t001c007',
@@ -84,7 +90,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c002: DENOMINATOR },)
 
         t001c008 = OBSColumn(
             id='t001c008',
@@ -92,7 +99,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c001: DENOMINATOR },)
 
         t001c009 = OBSColumn(
             id='t001c009',
@@ -100,7 +108,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t001c010 = OBSColumn(
             id='t001c010',
@@ -108,7 +117,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c009: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c009: DENOMINATOR },)
 
         t001c011 = OBSColumn(
             id='t001c011',
@@ -116,7 +126,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c009: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c009: DENOMINATOR },)
 
         t001c012 = OBSColumn(
             id='t001c012',
@@ -124,7 +135,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t001c013 = OBSColumn(
             id='t001c013',
@@ -132,7 +144,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c012: DENOMINATOR },)
 
         t001c014 = OBSColumn(
             id='t001c014',
@@ -140,7 +153,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c013: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c013: DENOMINATOR },)
 
         t001c015 = OBSColumn(
             id='t001c015',
@@ -148,7 +162,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c013: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c013: DENOMINATOR },)
 
         t001c016 = OBSColumn(
             id='t001c016',
@@ -156,7 +171,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c013: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c013: DENOMINATOR },)
 
         t001c017 = OBSColumn(
             id='t001c017',
@@ -164,7 +180,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t001c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t001c012: DENOMINATOR },)
 
         t002c001 = OBSColumn(
             id='t002c001',
@@ -172,7 +189,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t002c002 = OBSColumn(
             id='t002c002',
@@ -180,7 +198,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t002c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t002c001: DENOMINATOR },)
 
         t002c003 = OBSColumn(
             id='t002c003',
@@ -188,7 +207,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t002c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t002c001: DENOMINATOR },)
 
         t002c004 = OBSColumn(
             id='t002c004',
@@ -196,7 +216,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t002c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t002c001: DENOMINATOR },)
 
         t002c005 = OBSColumn(
             id='t002c005',
@@ -204,7 +225,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t002c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t002c001: DENOMINATOR },)
 
         t002c006 = OBSColumn(
             id='t002c006',
@@ -212,7 +234,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t002c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t002c001: DENOMINATOR },)
 
         t003c001 = OBSColumn(
             id='t003c001',
@@ -220,7 +243,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t003c002 = OBSColumn(
             id='t003c002',
@@ -228,7 +252,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t003c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t003c001: DENOMINATOR },)
 
         t003c003 = OBSColumn(
             id='t003c003',
@@ -236,7 +261,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t003c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t003c002: DENOMINATOR },)
 
         t003c004 = OBSColumn(
             id='t003c004',
@@ -244,7 +270,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t003c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t003c002: DENOMINATOR },)
 
         t003c005 = OBSColumn(
             id='t003c005',
@@ -252,7 +279,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t003c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t003c001: DENOMINATOR },)
 
         t004c001 = OBSColumn(
             id='t004c001',
@@ -260,7 +288,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t004c002 = OBSColumn(
             id='t004c002',
@@ -268,7 +297,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t004c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t004c001: DENOMINATOR },)
 
         t004c003 = OBSColumn(
             id='t004c003',
@@ -276,7 +306,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t004c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t004c001: DENOMINATOR },)
 
         t004c004 = OBSColumn(
             id='t004c004',
@@ -284,7 +315,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t004c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t004c003: DENOMINATOR },)
 
         t004c005 = OBSColumn(
             id='t004c005',
@@ -292,7 +324,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t004c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t004c003: DENOMINATOR },)
 
         t005c001 = OBSColumn(
             id='t005c001',
@@ -300,7 +333,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t005c002 = OBSColumn(
             id='t005c002',
@@ -308,7 +342,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c001: DENOMINATOR },)
 
         t005c003 = OBSColumn(
             id='t005c003',
@@ -316,7 +351,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c001: DENOMINATOR },)
 
         t005c004 = OBSColumn(
             id='t005c004',
@@ -324,7 +360,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c001: DENOMINATOR },)
 
         t005c005 = OBSColumn(
             id='t005c005',
@@ -332,7 +369,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c004: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c004: DENOMINATOR },)
 
         t005c006 = OBSColumn(
             id='t005c006',
@@ -340,7 +378,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c004: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c004: DENOMINATOR },)
 
         t005c007 = OBSColumn(
             id='t005c007',
@@ -348,7 +387,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c004: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c004: DENOMINATOR },)
 
         t005c008 = OBSColumn(
             id='t005c008',
@@ -356,7 +396,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c004: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c004: DENOMINATOR },)
 
         t005c009 = OBSColumn(
             id='t005c009',
@@ -364,7 +405,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c008: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c008: DENOMINATOR },)
 
         t005c010 = OBSColumn(
             id='t005c010',
@@ -372,7 +414,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c008: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c008: DENOMINATOR },)
 
         t005c011 = OBSColumn(
             id='t005c011',
@@ -380,7 +423,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t005c012 = OBSColumn(
             id='t005c012',
@@ -388,7 +432,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c011: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c011: DENOMINATOR },)
 
         t005c013 = OBSColumn(
             id='t005c013',
@@ -396,7 +441,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c011: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c011: DENOMINATOR },)
 
         t005c014 = OBSColumn(
             id='t005c014',
@@ -404,7 +450,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c011: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c011: DENOMINATOR },)
 
         t005c015 = OBSColumn(
             id='t005c015',
@@ -412,7 +459,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c014: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c014: DENOMINATOR },)
 
         t005c016 = OBSColumn(
             id='t005c016',
@@ -420,7 +468,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c014: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c014: DENOMINATOR },)
 
         t005c017 = OBSColumn(
             id='t005c017',
@@ -428,7 +477,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c014: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c014: DENOMINATOR },)
 
         t005c018 = OBSColumn(
             id='t005c018',
@@ -436,7 +486,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c014: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c014: DENOMINATOR },)
 
         t005c019 = OBSColumn(
             id='t005c019',
@@ -444,7 +495,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c018: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c018: DENOMINATOR },)
 
         t005c020 = OBSColumn(
             id='t005c020',
@@ -452,7 +504,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c018: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c018: DENOMINATOR },)
 
         t005c021 = OBSColumn(
             id='t005c021',
@@ -460,7 +513,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t005c022 = OBSColumn(
             id='t005c022',
@@ -468,7 +522,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c023 = OBSColumn(
             id='t005c023',
@@ -476,7 +531,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c024 = OBSColumn(
             id='t005c024',
@@ -484,7 +540,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c025 = OBSColumn(
             id='t005c025',
@@ -492,7 +549,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c026 = OBSColumn(
             id='t005c026',
@@ -500,7 +558,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c027 = OBSColumn(
             id='t005c027',
@@ -508,7 +567,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c028 = OBSColumn(
             id='t005c028',
@@ -516,7 +576,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c029 = OBSColumn(
             id='t005c029',
@@ -524,7 +585,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c030 = OBSColumn(
             id='t005c030',
@@ -532,7 +594,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c031 = OBSColumn(
             id='t005c031',
@@ -540,7 +603,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c032 = OBSColumn(
             id='t005c032',
@@ -548,7 +612,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c033 = OBSColumn(
             id='t005c033',
@@ -556,7 +621,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c034 = OBSColumn(
             id='t005c034',
@@ -564,7 +630,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c021: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c021: DENOMINATOR },)
 
         t005c035 = OBSColumn(
             id='t005c035',
@@ -572,7 +639,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t005c036 = OBSColumn(
             id='t005c036',
@@ -580,7 +648,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c035: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c035: DENOMINATOR },)
 
         t005c037 = OBSColumn(
             id='t005c037',
@@ -588,7 +657,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c035: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c035: DENOMINATOR },)
 
         t005c038 = OBSColumn(
             id='t005c038',
@@ -596,7 +666,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c037: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c037: DENOMINATOR },)
 
         t005c039 = OBSColumn(
             id='t005c039',
@@ -604,7 +675,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c038: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c038: DENOMINATOR },)
 
         t005c040 = OBSColumn(
             id='t005c040',
@@ -612,7 +684,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c038: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c038: DENOMINATOR },)
 
         t005c041 = OBSColumn(
             id='t005c041',
@@ -620,7 +693,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t005c037: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t005c037: DENOMINATOR },)
 
         t006c001 = OBSColumn(
             id='t006c001',
@@ -628,7 +702,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t006c002 = OBSColumn(
             id='t006c002',
@@ -636,7 +711,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c001: DENOMINATOR },)
 
         t006c003 = OBSColumn(
             id='t006c003',
@@ -644,7 +720,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c002: DENOMINATOR },)
 
         t006c004 = OBSColumn(
             id='t006c004',
@@ -652,7 +729,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c002: DENOMINATOR },)
 
         t006c005 = OBSColumn(
             id='t006c005',
@@ -660,7 +738,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c002: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c002: DENOMINATOR },)
 
         t006c006 = OBSColumn(
             id='t006c006',
@@ -668,7 +747,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c001: DENOMINATOR },)
 
         t006c007 = OBSColumn(
             id='t006c007',
@@ -676,7 +756,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c008 = OBSColumn(
             id='t006c008',
@@ -684,7 +765,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c009 = OBSColumn(
             id='t006c009',
@@ -692,7 +774,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c010 = OBSColumn(
             id='t006c010',
@@ -700,7 +783,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c011 = OBSColumn(
             id='t006c011',
@@ -708,7 +792,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c012 = OBSColumn(
             id='t006c012',
@@ -716,7 +801,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c013 = OBSColumn(
             id='t006c013',
@@ -724,7 +810,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c014 = OBSColumn(
             id='t006c014',
@@ -732,7 +819,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c015 = OBSColumn(
             id='t006c015',
@@ -740,7 +828,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c006: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c006: DENOMINATOR },)
 
         t006c016 = OBSColumn(
             id='t006c016',
@@ -748,7 +837,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c001: DENOMINATOR },)
 
         t006c017 = OBSColumn(
             id='t006c017',
@@ -756,7 +846,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c016: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c016: DENOMINATOR },)
 
         t006c018 = OBSColumn(
             id='t006c018',
@@ -764,7 +855,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c017: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c017: DENOMINATOR },)
 
         t006c019 = OBSColumn(
             id='t006c019',
@@ -772,7 +864,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c017: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c017: DENOMINATOR },)
 
         t006c020 = OBSColumn(
             id='t006c020',
@@ -780,7 +873,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c017: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c017: DENOMINATOR },)
 
         t006c021 = OBSColumn(
             id='t006c021',
@@ -788,7 +882,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c017: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c017: DENOMINATOR },)
 
         t006c022 = OBSColumn(
             id='t006c022',
@@ -796,7 +891,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c017: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c017: DENOMINATOR },)
 
         t006c023 = OBSColumn(
             id='t006c023',
@@ -804,7 +900,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c017: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c017: DENOMINATOR },)
 
         t006c024 = OBSColumn(
             id='t006c024',
@@ -812,7 +909,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c017: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c017: DENOMINATOR },)
 
         t006c025 = OBSColumn(
             id='t006c025',
@@ -820,7 +918,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c017: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c017: DENOMINATOR },)
 
         t006c026 = OBSColumn(
             id='t006c026',
@@ -828,7 +927,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c016: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c016: DENOMINATOR },)
 
         t006c027 = OBSColumn(
             id='t006c027',
@@ -836,7 +936,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c026: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c026: DENOMINATOR },)
 
         t006c028 = OBSColumn(
             id='t006c028',
@@ -844,7 +945,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c026: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c026: DENOMINATOR },)
 
         t006c029 = OBSColumn(
             id='t006c029',
@@ -852,7 +954,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c026: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c026: DENOMINATOR },)
 
         t006c030 = OBSColumn(
             id='t006c030',
@@ -860,7 +963,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c016: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c016: DENOMINATOR },)
 
         t006c031 = OBSColumn(
             id='t006c031',
@@ -868,7 +972,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c032 = OBSColumn(
             id='t006c032',
@@ -876,7 +981,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c033 = OBSColumn(
             id='t006c033',
@@ -884,7 +990,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c034 = OBSColumn(
             id='t006c034',
@@ -892,7 +999,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c035 = OBSColumn(
             id='t006c035',
@@ -900,7 +1008,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c036 = OBSColumn(
             id='t006c036',
@@ -908,7 +1017,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c037 = OBSColumn(
             id='t006c037',
@@ -916,7 +1026,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c038 = OBSColumn(
             id='t006c038',
@@ -924,7 +1035,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c039 = OBSColumn(
             id='t006c039',
@@ -932,7 +1044,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c030: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c030: DENOMINATOR },)
 
         t006c040 = OBSColumn(
             id='t006c040',
@@ -940,7 +1053,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c016: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c016: DENOMINATOR },)
 
         t006c041 = OBSColumn(
             id='t006c041',
@@ -948,7 +1062,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c040: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c040: DENOMINATOR },)
 
         t006c042 = OBSColumn(
             id='t006c042',
@@ -956,7 +1071,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c040: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c040: DENOMINATOR },)
 
         t006c043 = OBSColumn(
             id='t006c043',
@@ -964,7 +1080,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c040: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c040: DENOMINATOR },)
 
         t006c044 = OBSColumn(
             id='t006c044',
@@ -972,7 +1089,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c040: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c040: DENOMINATOR },)
 
         t006c045 = OBSColumn(
             id='t006c045',
@@ -980,7 +1098,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c040: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c040: DENOMINATOR },)
 
         t006c046 = OBSColumn(
             id='t006c046',
@@ -988,7 +1107,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c040: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c040: DENOMINATOR },)
 
         t006c047 = OBSColumn(
             id='t006c047',
@@ -996,7 +1116,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c016: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c016: DENOMINATOR },)
 
         t006c048 = OBSColumn(
             id='t006c048',
@@ -1004,7 +1125,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c049 = OBSColumn(
             id='t006c049',
@@ -1012,7 +1134,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c050 = OBSColumn(
             id='t006c050',
@@ -1020,7 +1143,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c051 = OBSColumn(
             id='t006c051',
@@ -1028,7 +1152,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c052 = OBSColumn(
             id='t006c052',
@@ -1036,7 +1161,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c053 = OBSColumn(
             id='t006c053',
@@ -1044,7 +1170,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c054 = OBSColumn(
             id='t006c054',
@@ -1052,7 +1179,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c055 = OBSColumn(
             id='t006c055',
@@ -1060,7 +1188,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c056 = OBSColumn(
             id='t006c056',
@@ -1068,7 +1197,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c057 = OBSColumn(
             id='t006c057',
@@ -1076,7 +1206,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c058 = OBSColumn(
             id='t006c058',
@@ -1084,7 +1215,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c059 = OBSColumn(
             id='t006c059',
@@ -1092,7 +1224,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c060 = OBSColumn(
             id='t006c060',
@@ -1100,7 +1233,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c061 = OBSColumn(
             id='t006c061',
@@ -1108,7 +1242,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c062 = OBSColumn(
             id='t006c062',
@@ -1116,7 +1251,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c047: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c047: DENOMINATOR },)
 
         t006c063 = OBSColumn(
             id='t006c063',
@@ -1124,7 +1260,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c016: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c016: DENOMINATOR },)
 
         t006c064 = OBSColumn(
             id='t006c064',
@@ -1132,7 +1269,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c065 = OBSColumn(
             id='t006c065',
@@ -1140,7 +1278,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c066 = OBSColumn(
             id='t006c066',
@@ -1148,7 +1287,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c067 = OBSColumn(
             id='t006c067',
@@ -1156,7 +1296,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c068 = OBSColumn(
             id='t006c068',
@@ -1164,7 +1305,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c069 = OBSColumn(
             id='t006c069',
@@ -1172,7 +1314,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c070 = OBSColumn(
             id='t006c070',
@@ -1180,7 +1323,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c071 = OBSColumn(
             id='t006c071',
@@ -1188,7 +1332,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c072 = OBSColumn(
             id='t006c072',
@@ -1196,7 +1341,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c073 = OBSColumn(
             id='t006c073',
@@ -1204,7 +1350,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c074 = OBSColumn(
             id='t006c074',
@@ -1212,7 +1359,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c075 = OBSColumn(
             id='t006c075',
@@ -1220,7 +1368,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c076 = OBSColumn(
             id='t006c076',
@@ -1228,7 +1377,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c077 = OBSColumn(
             id='t006c077',
@@ -1236,7 +1386,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c078 = OBSColumn(
             id='t006c078',
@@ -1244,7 +1395,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c079 = OBSColumn(
             id='t006c079',
@@ -1252,7 +1404,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c080 = OBSColumn(
             id='t006c080',
@@ -1260,7 +1413,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c063: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c063: DENOMINATOR },)
 
         t006c081 = OBSColumn(
             id='t006c081',
@@ -1268,7 +1422,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c016: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c016: DENOMINATOR },)
 
         t006c082 = OBSColumn(
             id='t006c082',
@@ -1276,7 +1431,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c081: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c081: DENOMINATOR },)
 
         t006c083 = OBSColumn(
             id='t006c083',
@@ -1284,7 +1440,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c081: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c081: DENOMINATOR },)
 
         t006c084 = OBSColumn(
             id='t006c084',
@@ -1292,7 +1449,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c081: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c081: DENOMINATOR },)
 
         t006c085 = OBSColumn(
             id='t006c085',
@@ -1300,7 +1458,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c081: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c081: DENOMINATOR },)
 
         t006c086 = OBSColumn(
             id='t006c086',
@@ -1308,7 +1467,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c081: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c081: DENOMINATOR },)
 
         t006c087 = OBSColumn(
             id='t006c087',
@@ -1316,7 +1476,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c001: DENOMINATOR },)
 
         t006c088 = OBSColumn(
             id='t006c088',
@@ -1324,7 +1485,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c089 = OBSColumn(
             id='t006c089',
@@ -1332,7 +1494,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c090 = OBSColumn(
             id='t006c090',
@@ -1340,7 +1503,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c091 = OBSColumn(
             id='t006c091',
@@ -1348,7 +1512,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c092 = OBSColumn(
             id='t006c092',
@@ -1356,7 +1521,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c093 = OBSColumn(
             id='t006c093',
@@ -1364,7 +1530,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c094 = OBSColumn(
             id='t006c094',
@@ -1372,7 +1539,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c095 = OBSColumn(
             id='t006c095',
@@ -1380,7 +1548,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c096 = OBSColumn(
             id='t006c096',
@@ -1388,7 +1557,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c097 = OBSColumn(
             id='t006c097',
@@ -1396,7 +1566,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c098 = OBSColumn(
             id='t006c098',
@@ -1404,7 +1575,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c099 = OBSColumn(
             id='t006c099',
@@ -1412,7 +1584,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c100 = OBSColumn(
             id='t006c100',
@@ -1420,7 +1593,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c101 = OBSColumn(
             id='t006c101',
@@ -1428,7 +1602,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c102 = OBSColumn(
             id='t006c102',
@@ -1436,7 +1611,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c103 = OBSColumn(
             id='t006c103',
@@ -1444,7 +1620,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c104 = OBSColumn(
             id='t006c104',
@@ -1452,7 +1629,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c105 = OBSColumn(
             id='t006c105',
@@ -1460,7 +1638,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c106 = OBSColumn(
             id='t006c106',
@@ -1468,7 +1647,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c087: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c087: DENOMINATOR },)
 
         t006c107 = OBSColumn(
             id='t006c107',
@@ -1476,7 +1656,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c001: DENOMINATOR },)
 
         t006c108 = OBSColumn(
             id='t006c108',
@@ -1484,7 +1665,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c109 = OBSColumn(
             id='t006c109',
@@ -1492,7 +1674,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c110 = OBSColumn(
             id='t006c110',
@@ -1500,7 +1683,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c111 = OBSColumn(
             id='t006c111',
@@ -1508,7 +1692,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c112 = OBSColumn(
             id='t006c112',
@@ -1516,7 +1701,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c113 = OBSColumn(
             id='t006c113',
@@ -1524,7 +1710,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c114 = OBSColumn(
             id='t006c114',
@@ -1532,7 +1719,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c115 = OBSColumn(
             id='t006c115',
@@ -1540,7 +1728,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c116 = OBSColumn(
             id='t006c116',
@@ -1548,7 +1737,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c117 = OBSColumn(
             id='t006c117',
@@ -1556,7 +1746,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c118 = OBSColumn(
             id='t006c118',
@@ -1564,7 +1755,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c119 = OBSColumn(
             id='t006c119',
@@ -1572,7 +1764,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c120 = OBSColumn(
             id='t006c120',
@@ -1580,7 +1773,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c121 = OBSColumn(
             id='t006c121',
@@ -1588,7 +1782,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c122 = OBSColumn(
             id='t006c122',
@@ -1596,7 +1791,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c123 = OBSColumn(
             id='t006c123',
@@ -1604,7 +1800,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c124 = OBSColumn(
             id='t006c124',
@@ -1612,7 +1809,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c125 = OBSColumn(
             id='t006c125',
@@ -1620,7 +1818,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c126 = OBSColumn(
             id='t006c126',
@@ -1628,7 +1827,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c127 = OBSColumn(
             id='t006c127',
@@ -1636,7 +1836,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c128 = OBSColumn(
             id='t006c128',
@@ -1644,7 +1845,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c129 = OBSColumn(
             id='t006c129',
@@ -1652,7 +1854,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c130 = OBSColumn(
             id='t006c130',
@@ -1660,7 +1863,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c107: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c107: DENOMINATOR },)
 
         t006c131 = OBSColumn(
             id='t006c131',
@@ -1668,7 +1872,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c001: DENOMINATOR },)
 
         t006c132 = OBSColumn(
             id='t006c132',
@@ -1676,7 +1881,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c131: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c131: DENOMINATOR },)
 
         t006c133 = OBSColumn(
             id='t006c133',
@@ -1684,7 +1890,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c134 = OBSColumn(
             id='t006c134',
@@ -1692,7 +1899,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c135 = OBSColumn(
             id='t006c135',
@@ -1700,7 +1908,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c136 = OBSColumn(
             id='t006c136',
@@ -1708,7 +1917,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c137 = OBSColumn(
             id='t006c137',
@@ -1716,7 +1926,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c138 = OBSColumn(
             id='t006c138',
@@ -1724,7 +1935,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c139 = OBSColumn(
             id='t006c139',
@@ -1732,7 +1944,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c140 = OBSColumn(
             id='t006c140',
@@ -1740,7 +1953,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c141 = OBSColumn(
             id='t006c141',
@@ -1748,7 +1962,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c142 = OBSColumn(
             id='t006c142',
@@ -1756,7 +1971,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c143 = OBSColumn(
             id='t006c143',
@@ -1764,7 +1980,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c144 = OBSColumn(
             id='t006c144',
@@ -1772,7 +1989,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c145 = OBSColumn(
             id='t006c145',
@@ -1780,7 +1998,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c146 = OBSColumn(
             id='t006c146',
@@ -1788,7 +2007,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c147 = OBSColumn(
             id='t006c147',
@@ -1796,7 +2016,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c148 = OBSColumn(
             id='t006c148',
@@ -1804,7 +2025,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c149 = OBSColumn(
             id='t006c149',
@@ -1812,7 +2034,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c150 = OBSColumn(
             id='t006c150',
@@ -1820,7 +2043,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c151 = OBSColumn(
             id='t006c151',
@@ -1828,7 +2052,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c152 = OBSColumn(
             id='t006c152',
@@ -1836,7 +2061,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c153 = OBSColumn(
             id='t006c153',
@@ -1844,7 +2070,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c154 = OBSColumn(
             id='t006c154',
@@ -1852,7 +2079,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c155 = OBSColumn(
             id='t006c155',
@@ -1860,7 +2088,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c132: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c132: DENOMINATOR },)
 
         t006c156 = OBSColumn(
             id='t006c156',
@@ -1868,7 +2097,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c131: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c131: DENOMINATOR },)
 
         t006c157 = OBSColumn(
             id='t006c157',
@@ -1876,7 +2106,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c158 = OBSColumn(
             id='t006c158',
@@ -1884,7 +2115,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c159 = OBSColumn(
             id='t006c159',
@@ -1892,7 +2124,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c160 = OBSColumn(
             id='t006c160',
@@ -1900,7 +2133,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c161 = OBSColumn(
             id='t006c161',
@@ -1908,7 +2142,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c162 = OBSColumn(
             id='t006c162',
@@ -1916,7 +2151,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c163 = OBSColumn(
             id='t006c163',
@@ -1924,7 +2160,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c164 = OBSColumn(
             id='t006c164',
@@ -1932,7 +2169,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c165 = OBSColumn(
             id='t006c165',
@@ -1940,7 +2178,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c166 = OBSColumn(
             id='t006c166',
@@ -1948,7 +2187,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c167 = OBSColumn(
             id='t006c167',
@@ -1956,7 +2196,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c156: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c156: DENOMINATOR },)
 
         t006c168 = OBSColumn(
             id='t006c168',
@@ -1964,7 +2205,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c131: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c131: DENOMINATOR },)
 
         t006c169 = OBSColumn(
             id='t006c169',
@@ -1972,7 +2214,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c170 = OBSColumn(
             id='t006c170',
@@ -1980,7 +2223,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c171 = OBSColumn(
             id='t006c171',
@@ -1988,7 +2232,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c172 = OBSColumn(
             id='t006c172',
@@ -1996,7 +2241,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c173 = OBSColumn(
             id='t006c173',
@@ -2004,7 +2250,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c174 = OBSColumn(
             id='t006c174',
@@ -2012,7 +2259,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c175 = OBSColumn(
             id='t006c175',
@@ -2020,7 +2268,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c176 = OBSColumn(
             id='t006c176',
@@ -2028,7 +2277,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c177 = OBSColumn(
             id='t006c177',
@@ -2036,7 +2286,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c178 = OBSColumn(
             id='t006c178',
@@ -2044,7 +2295,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c179 = OBSColumn(
             id='t006c179',
@@ -2052,7 +2304,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c180 = OBSColumn(
             id='t006c180',
@@ -2060,7 +2313,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c181 = OBSColumn(
             id='t006c181',
@@ -2068,7 +2322,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c182 = OBSColumn(
             id='t006c182',
@@ -2076,7 +2331,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c183 = OBSColumn(
             id='t006c183',
@@ -2084,7 +2340,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c184 = OBSColumn(
             id='t006c184',
@@ -2092,7 +2349,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c185 = OBSColumn(
             id='t006c185',
@@ -2100,7 +2358,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c186 = OBSColumn(
             id='t006c186',
@@ -2108,7 +2367,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c187 = OBSColumn(
             id='t006c187',
@@ -2116,7 +2376,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c188 = OBSColumn(
             id='t006c188',
@@ -2124,7 +2385,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c189 = OBSColumn(
             id='t006c189',
@@ -2132,7 +2394,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c190 = OBSColumn(
             id='t006c190',
@@ -2140,7 +2403,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c168: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c168: DENOMINATOR },)
 
         t006c191 = OBSColumn(
             id='t006c191',
@@ -2148,7 +2412,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c131: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c131: DENOMINATOR },)
 
         t006c192 = OBSColumn(
             id='t006c192',
@@ -2156,7 +2421,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c191: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c191: DENOMINATOR },)
 
         t006c193 = OBSColumn(
             id='t006c193',
@@ -2164,7 +2430,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c191: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c191: DENOMINATOR },)
 
         t006c194 = OBSColumn(
             id='t006c194',
@@ -2172,7 +2439,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c001: DENOMINATOR },)
 
         t006c195 = OBSColumn(
             id='t006c195',
@@ -2180,7 +2448,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c194: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c194: DENOMINATOR },)
 
         t006c196 = OBSColumn(
             id='t006c196',
@@ -2188,7 +2457,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c197 = OBSColumn(
             id='t006c197',
@@ -2196,7 +2466,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c198 = OBSColumn(
             id='t006c198',
@@ -2204,7 +2475,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c199 = OBSColumn(
             id='t006c199',
@@ -2212,7 +2484,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c200 = OBSColumn(
             id='t006c200',
@@ -2220,7 +2493,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c201 = OBSColumn(
             id='t006c201',
@@ -2228,7 +2502,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c202 = OBSColumn(
             id='t006c202',
@@ -2236,7 +2511,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c203 = OBSColumn(
             id='t006c203',
@@ -2244,7 +2520,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c204 = OBSColumn(
             id='t006c204',
@@ -2252,7 +2529,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c205 = OBSColumn(
             id='t006c205',
@@ -2260,7 +2538,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c206 = OBSColumn(
             id='t006c206',
@@ -2268,7 +2547,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c207 = OBSColumn(
             id='t006c207',
@@ -2276,7 +2556,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c208 = OBSColumn(
             id='t006c208',
@@ -2284,7 +2565,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c209 = OBSColumn(
             id='t006c209',
@@ -2292,7 +2574,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c210 = OBSColumn(
             id='t006c210',
@@ -2300,7 +2583,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c211 = OBSColumn(
             id='t006c211',
@@ -2308,7 +2592,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c212 = OBSColumn(
             id='t006c212',
@@ -2316,7 +2601,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c213 = OBSColumn(
             id='t006c213',
@@ -2324,7 +2610,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c214 = OBSColumn(
             id='t006c214',
@@ -2332,7 +2619,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c215 = OBSColumn(
             id='t006c215',
@@ -2340,7 +2628,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c216 = OBSColumn(
             id='t006c216',
@@ -2348,7 +2637,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c217 = OBSColumn(
             id='t006c217',
@@ -2356,7 +2646,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c218 = OBSColumn(
             id='t006c218',
@@ -2364,7 +2655,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c219 = OBSColumn(
             id='t006c219',
@@ -2372,7 +2664,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c220 = OBSColumn(
             id='t006c220',
@@ -2380,7 +2673,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c195: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c195: DENOMINATOR },)
 
         t006c221 = OBSColumn(
             id='t006c221',
@@ -2388,7 +2682,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c194: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c194: DENOMINATOR },)
 
         t006c222 = OBSColumn(
             id='t006c222',
@@ -2396,7 +2691,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c223 = OBSColumn(
             id='t006c223',
@@ -2404,7 +2700,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c224 = OBSColumn(
             id='t006c224',
@@ -2412,7 +2709,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c225 = OBSColumn(
             id='t006c225',
@@ -2420,7 +2718,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c226 = OBSColumn(
             id='t006c226',
@@ -2428,7 +2727,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c227 = OBSColumn(
             id='t006c227',
@@ -2436,7 +2736,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c228 = OBSColumn(
             id='t006c228',
@@ -2444,7 +2745,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c229 = OBSColumn(
             id='t006c229',
@@ -2452,7 +2754,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c230 = OBSColumn(
             id='t006c230',
@@ -2460,7 +2763,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c231 = OBSColumn(
             id='t006c231',
@@ -2468,7 +2772,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c232 = OBSColumn(
             id='t006c232',
@@ -2476,7 +2781,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c233 = OBSColumn(
             id='t006c233',
@@ -2484,7 +2790,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c234 = OBSColumn(
             id='t006c234',
@@ -2492,7 +2799,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c221: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c221: DENOMINATOR },)
 
         t006c235 = OBSColumn(
             id='t006c235',
@@ -2500,7 +2808,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c194: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c194: DENOMINATOR },)
 
         t006c236 = OBSColumn(
             id='t006c236',
@@ -2508,7 +2817,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c237 = OBSColumn(
             id='t006c237',
@@ -2516,7 +2826,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c238 = OBSColumn(
             id='t006c238',
@@ -2524,7 +2835,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c239 = OBSColumn(
             id='t006c239',
@@ -2532,7 +2844,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c240 = OBSColumn(
             id='t006c240',
@@ -2540,7 +2853,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c241 = OBSColumn(
             id='t006c241',
@@ -2548,7 +2862,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c242 = OBSColumn(
             id='t006c242',
@@ -2556,7 +2871,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c243 = OBSColumn(
             id='t006c243',
@@ -2564,7 +2880,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c244 = OBSColumn(
             id='t006c244',
@@ -2572,7 +2889,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c245 = OBSColumn(
             id='t006c245',
@@ -2580,7 +2898,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c246 = OBSColumn(
             id='t006c246',
@@ -2588,7 +2907,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c247 = OBSColumn(
             id='t006c247',
@@ -2596,7 +2916,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c248 = OBSColumn(
             id='t006c248',
@@ -2604,7 +2925,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c249 = OBSColumn(
             id='t006c249',
@@ -2612,7 +2934,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c250 = OBSColumn(
             id='t006c250',
@@ -2620,7 +2943,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c251 = OBSColumn(
             id='t006c251',
@@ -2628,7 +2952,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c252 = OBSColumn(
             id='t006c252',
@@ -2636,7 +2961,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c235: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c235: DENOMINATOR },)
 
         t006c253 = OBSColumn(
             id='t006c253',
@@ -2644,7 +2970,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c194: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c194: DENOMINATOR },)
 
         t006c254 = OBSColumn(
             id='t006c254',
@@ -2652,7 +2979,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c253: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c253: DENOMINATOR },)
 
         t006c255 = OBSColumn(
             id='t006c255',
@@ -2660,7 +2988,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c001: DENOMINATOR },)
 
         t006c256 = OBSColumn(
             id='t006c256',
@@ -2668,7 +2997,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c255: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c255: DENOMINATOR },)
 
         t006c257 = OBSColumn(
             id='t006c257',
@@ -2676,7 +3006,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c255: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c255: DENOMINATOR },)
 
         t006c258 = OBSColumn(
             id='t006c258',
@@ -2684,7 +3015,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c255: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c255: DENOMINATOR },)
 
         t006c259 = OBSColumn(
             id='t006c259',
@@ -2692,7 +3024,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c258: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c258: DENOMINATOR },)
 
         t006c260 = OBSColumn(
             id='t006c260',
@@ -2700,7 +3033,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c258: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c258: DENOMINATOR },)
 
         t006c261 = OBSColumn(
             id='t006c261',
@@ -2708,7 +3042,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c258: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c258: DENOMINATOR },)
 
         t006c262 = OBSColumn(
             id='t006c262',
@@ -2716,7 +3051,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c258: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c258: DENOMINATOR },)
 
         t006c263 = OBSColumn(
             id='t006c263',
@@ -2724,7 +3060,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c258: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c258: DENOMINATOR },)
 
         t006c264 = OBSColumn(
             id='t006c264',
@@ -2732,7 +3069,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t006c258: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t006c258: DENOMINATOR },)
 
         t007c001 = OBSColumn(
             id='t007c001',
@@ -2740,7 +3078,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t007c002 = OBSColumn(
             id='t007c002',
@@ -2748,7 +3087,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t007c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t007c001: DENOMINATOR },)
 
         t007c003 = OBSColumn(
             id='t007c003',
@@ -2756,7 +3096,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t007c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t007c001: DENOMINATOR },)
 
         t007c004 = OBSColumn(
             id='t007c004',
@@ -2764,7 +3105,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t007c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t007c003: DENOMINATOR },)
 
         t007c005 = OBSColumn(
             id='t007c005',
@@ -2772,7 +3114,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t007c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t007c003: DENOMINATOR },)
 
         t008c001 = OBSColumn(
             id='t008c001',
@@ -2780,7 +3123,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t008c002 = OBSColumn(
             id='t008c002',
@@ -2788,7 +3132,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t008c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t008c001: DENOMINATOR },)
 
         t008c003 = OBSColumn(
             id='t008c003',
@@ -2796,7 +3141,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t008c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t008c001: DENOMINATOR },)
 
         t008c004 = OBSColumn(
             id='t008c004',
@@ -2804,7 +3150,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t008c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t008c001: DENOMINATOR },)
 
         t009c001 = OBSColumn(
             id='t009c001',
@@ -2812,7 +3159,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t009c002 = OBSColumn(
             id='t009c002',
@@ -2820,7 +3168,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c001: DENOMINATOR },)
 
         t009c003 = OBSColumn(
             id='t009c003',
@@ -2828,7 +3177,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c001: DENOMINATOR },)
 
         t009c004 = OBSColumn(
             id='t009c004',
@@ -2836,7 +3186,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c001: DENOMINATOR },)
 
         t009c005 = OBSColumn(
             id='t009c005',
@@ -2844,7 +3195,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t009c006 = OBSColumn(
             id='t009c006',
@@ -2852,7 +3204,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c005: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c005: DENOMINATOR },)
 
         t009c007 = OBSColumn(
             id='t009c007',
@@ -2860,7 +3213,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c005: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c005: DENOMINATOR },)
 
         t009c008 = OBSColumn(
             id='t009c008',
@@ -2868,7 +3222,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t009c009 = OBSColumn(
             id='t009c009',
@@ -2876,7 +3231,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c008: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c008: DENOMINATOR },)
 
         t009c010 = OBSColumn(
             id='t009c010',
@@ -2884,7 +3240,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c008: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c008: DENOMINATOR },)
 
         t009c011 = OBSColumn(
             id='t009c011',
@@ -2892,7 +3249,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c008: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c008: DENOMINATOR },)
 
         t009c012 = OBSColumn(
             id='t009c012',
@@ -2900,7 +3258,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t009c013 = OBSColumn(
             id='t009c013',
@@ -2908,7 +3267,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c012: DENOMINATOR },)
 
         t009c014 = OBSColumn(
             id='t009c014',
@@ -2916,7 +3276,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c012: DENOMINATOR },)
 
         t009c015 = OBSColumn(
             id='t009c015',
@@ -2924,7 +3285,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c012: DENOMINATOR },)
 
         t009c016 = OBSColumn(
             id='t009c016',
@@ -2932,7 +3294,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c012: DENOMINATOR },)
 
         t009c017 = OBSColumn(
             id='t009c017',
@@ -2940,7 +3303,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c012: DENOMINATOR },)
 
         t009c018 = OBSColumn(
             id='t009c018',
@@ -2948,7 +3312,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c012: DENOMINATOR },)
 
         t009c019 = OBSColumn(
             id='t009c019',
@@ -2956,7 +3321,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c012: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c012: DENOMINATOR },)
 
         t009c020 = OBSColumn(
             id='t009c020',
@@ -2964,7 +3330,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t009c021 = OBSColumn(
             id='t009c021',
@@ -2972,7 +3339,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c020: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c020: DENOMINATOR },)
 
         t009c022 = OBSColumn(
             id='t009c022',
@@ -2980,7 +3348,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c020: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c020: DENOMINATOR },)
 
         t009c023 = OBSColumn(
             id='t009c023',
@@ -2988,7 +3357,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t009c024 = OBSColumn(
             id='t009c024',
@@ -2996,7 +3366,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c023: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c023: DENOMINATOR },)
 
         t009c025 = OBSColumn(
             id='t009c025',
@@ -3004,7 +3375,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t009c023: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t009c023: DENOMINATOR },)
 
         t010c001 = OBSColumn(
             id='t010c001',
@@ -3012,7 +3384,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={},)
+            aggregate='sum',
+            targets={},)
 
         t010c002 = OBSColumn(
             id='t010c002',
@@ -3020,7 +3393,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c001: DENOMINATOR },)
 
         t010c003 = OBSColumn(
             id='t010c003',
@@ -3028,7 +3402,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c001: DENOMINATOR },)
 
         t010c004 = OBSColumn(
             id='t010c004',
@@ -3036,7 +3411,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c003: DENOMINATOR },)
 
         t010c005 = OBSColumn(
             id='t010c005',
@@ -3044,7 +3420,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c003: DENOMINATOR },)
 
         t010c006 = OBSColumn(
             id='t010c006',
@@ -3052,7 +3429,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c003: DENOMINATOR },)
 
         t010c007 = OBSColumn(
             id='t010c007',
@@ -3060,7 +3438,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c003: DENOMINATOR },)
 
         t010c008 = OBSColumn(
             id='t010c008',
@@ -3068,7 +3447,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c003: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c003: DENOMINATOR },)
 
         t010c009 = OBSColumn(
             id='t010c009',
@@ -3076,7 +3456,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c008: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c008: DENOMINATOR },)
 
         t010c010 = OBSColumn(
             id='t010c010',
@@ -3084,7 +3465,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c008: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c008: DENOMINATOR },)
 
         t010c011 = OBSColumn(
             id='t010c011',
@@ -3092,7 +3474,8 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['age_gender']],
-        targets={ t010c001: DENOMINATOR },)
+            aggregate='sum',
+            targets={ t010c001: DENOMINATOR },)
 
         return OrderedDict([
             ('t001c001', t001c001),
