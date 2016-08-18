@@ -8,37 +8,43 @@ from tasks.tags import SectionTags, SubsectionTags
 from collections import OrderedDict
 
 
+GEO_CT = 'ct_'
+GEO_PR = 'pr_'
+GEO_CD = 'cd_'
+GEO_CSD = 'csd'
+GEO_CMA = 'cma'
+
 GEOGRAPHIES = (
-    'ct_',
-    'pr_',
-    'cd_',
-    'csd',
-    'cma',
+    GEO_CT,
+    GEO_PR,
+    GEO_CD,
+    GEO_CSD,
+    GEO_CMA,
 )
 
 
 GEOGRAPHY_NAMES = {
-    'ct_': 'Census Tracts',
-    'pr_': 'Canada, provinces and territories',
-    'cd_': 'Census divisions',
-    'csd': 'Census subdivisions',
-    'cma': 'Census metropolitan areas and census agglomerations',
+    GEO_CT: 'Census Tracts',
+    GEO_PR: 'Canada, provinces and territories',
+    GEO_CD: 'Census divisions',
+    GEO_CSD: 'Census subdivisions',
+    GEO_CMA: 'Census metropolitan areas and census agglomerations',
 }
 
 GEOGRAPHY_DESCS = {
-    'ct_': '',
-    'pr_': '',
-    'cd_': '',
-    'csd': '',
-    'cma': '',
+    GEO_CT: '',
+    GEO_PR: '',
+    GEO_CD: '',
+    GEO_CSD: '',
+    GEO_CMA: '',
 }
 
 GEOGRAPHY_CODES = {
-    'ct_': 401,
-    'pr_': 101,
-    'cd_': 701,
-    'csd': 301,
-    'cma': 201,
+    GEO_CT: 401,
+    GEO_PR: 101,
+    GEO_CD: 701,
+    GEO_CSD: 301,
+    GEO_CMA: 201,
 }
 
 
@@ -46,13 +52,13 @@ GEOGRAPHY_CODES = {
 # 2011 Boundary Files
 class DownloadGeography(DownloadUnzipTask):
 
-    geog_lvl = Parameter(default='pr_')
+    resolution = Parameter(default=GEO_PR)
 
-    URL = 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/g{geog_lvl}000b11a_e.zip'
+    URL = 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
 
     def download(self):
         shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL.format(geog_lvl=self.geog_lvl)
+            output=self.output().path, url=self.URL.format(resolution=self.resolution)
         ))
 
 
@@ -61,10 +67,10 @@ class ImportGeography(Shp2TempTableTask):
     Import geographies into postgres by geography level
     '''
 
-    geog_lvl = Parameter(default='pr_')
+    resolution = Parameter(default=GEO_PR)
 
     def requires(self):
-        return DownloadGeography(geog_lvl=self.geog_lvl)
+        return DownloadGeography(resolution=self.resolution)
 
     def input_shp(self):
         cmd = 'ls {input}/*.shp'.format(
@@ -76,14 +82,14 @@ class ImportGeography(Shp2TempTableTask):
 
 class GeographyColumns(ColumnsTask):
 
-    geog_lvl = Parameter(default='pr_')
+    resolution = Parameter(default=GEO_PR)
 
     weights = {
-        'ct_': 5,
-        'pr_': 4,
-        'cd_': 4,
-        'csd': 4,
-        'cma': 4,
+        GEO_CT: 5,
+        GEO_PR: 4,
+        GEO_CD: 4,
+        GEO_CSD: 4,
+        GEO_CMA: 4,
     }
 
     def version(self):
@@ -99,11 +105,11 @@ class GeographyColumns(ColumnsTask):
         sections = self.input()['sections']
         subsections = self.input()['subsections']
         geom = OBSColumn(
-            id=self.geog_lvl,
+            id=self.resolution,
             type='Geometry',
-            name=GEOGRAPHY_NAMES[self.geog_lvl],
-            description=GEOGRAPHY_DESCS[self.geog_lvl],
-            weight=self.weights[self.geog_lvl],
+            name=GEOGRAPHY_NAMES[self.resolution],
+            description=GEOGRAPHY_DESCS[self.resolution],
+            weight=self.weights[self.resolution],
             tags=[sections['ca'], subsections['boundary']],
         )
         geom_id = OBSColumn(
@@ -121,15 +127,15 @@ class Geography(TableTask):
     '''
     '''
 
-    geog_lvl = Parameter(default='pr_')
+    resolution = Parameter(default=GEO_PR)
 
     def version(self):
         return 2
 
     def requires(self):
         return {
-            'data': ImportGeography(geog_lvl=self.geog_lvl),
-            'columns': GeographyColumns(geog_lvl=self.geog_lvl)
+            'data': ImportGeography(resolution=self.resolution),
+            'columns': GeographyColumns(resolution=self.resolution)
         }
 
     def timespan(self):
@@ -151,5 +157,5 @@ class Geography(TableTask):
 class AllGeographies(WrapperTask):
 
     def requires(self):
-        for geog_lvl in GEOGRAPHIES:
-            yield Geography(geog_lvl=geog_lvl)
+        for resolution in GEOGRAPHIES:
+            yield Geography(resolution=resolution)
