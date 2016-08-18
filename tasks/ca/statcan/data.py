@@ -56,8 +56,10 @@ class SplitAndTransposeData(BaseParams, Task):
         return DownloadData(resolution=self.resolution, survey=self.survey)
 
     def run(self):
-        infiles = shell('ls {input}/*[0-9].[cC][sS][vV]'.format(
-            input=self.input().path
+        infiles = shell('ls {input}/{survey_code}-{geo_code}*.[cC][sS][vV]'.format(
+            input=self.input().path,
+            survey_code=SURVEY_CODES[self.survey],
+            geo_code=GEOGRAPHY_CODES[self.resolution]
         ))
         in_csv_files = infiles.strip().split('\n')
         os.makedirs(self.output().path)
