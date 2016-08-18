@@ -199,7 +199,7 @@ class StatCanParser(object):
                     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
                     uid = None
-                    parse_col_val = None
+                    # parse_col_val = None
                     record = []
                     for row in reader:
                         row = self._map_row(row)
