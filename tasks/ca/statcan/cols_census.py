@@ -10,23 +10,23 @@ class CensusColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'unittags': UnitTags(),
+            'units': UnitTags(),
         }
 
     def version(self):
-        return 3
+        return 1
 
     def columns(self):
         input_ = self.input()
 
         subsections = input_['subsections']
 
-        unit_people = input_['unittags']['people']
-        unit_housing = input_['unittags']['housing_units']
-        unit_household = input_['unittags']['households']
-        unit_years = input_['unittags']['years']
-        unit_ratio = input_['unittags']['ratio']
-        unit_education = input_['unittags']['education_level']
+        unit_people = input_['units']['people']
+        unit_housing = input_['units']['housing_units']
+        unit_household = input_['units']['households']
+        unit_years = input_['units']['years']
+        unit_ratio = input_['units']['ratio']
+        unit_education = input_['units']['education_level']
 
         ca = input_['sections']['ca']
 
