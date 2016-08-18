@@ -70,6 +70,9 @@ class SplitAndTransposeData(BaseParams, Task):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 
+#####################################
+# IMPORT TO TEMP TABLES
+#####################################
 class CopyDataToTable(BaseParams, TempTableTask):
 
     table = Parameter()
@@ -138,7 +141,13 @@ class ImportAll(WrapperTask):
                 yield ImportData(resolution=resolution, survey=survey)
 
 
+#####################################
+# COPY TO OBSERVATORY
+#####################################
 class Survey(BaseParams, TableTask):
+
+    topic = Parameter(default='t001')
+
     def requires(self):
         '''
         Subclasses must override this.
@@ -154,68 +163,72 @@ class Survey(BaseParams, TableTask):
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
-        cols['Geo_Code'] = input_['geom_columns']['geom_id']
-        cols.update(input_['data_columns'])
+        cols['Geo_Code'] = input_['geometa']['geom_id']
+        for colname, coltarget in input_['meta'].iteritems():
+            if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
+                cols[colname] = coltarget
         return cols
 
     def populate(self):
         session = current_session()
-        cols = self.columns()
-        inserted = False
-        for line in self.input()['data'].open():
-            intable = line.strip()
-            table = intable.split('_')[1]
-            cols_for_table = OrderedDict([
-                (n, t,) for n, t in cols.iteritems() if table in t._id
-            ])
-            out_colnames = cols_for_table.keys()
-            in_colnames = [t._id.split('.')[-1] for t in cols_for_table.values()]
-            assert len(out_colnames) == len(in_colnames)
-            if not out_colnames:
-                continue
-            if not inserted:
-                stmt =  'INSERT INTO {output} (geo_code, {out_colnames}) ' \
-                        'SELECT geo_code, {in_colnames} ' \
-                        'FROM {input} '.format(
-                            output=self.output().table,
-                            out_colnames=', '.join(out_colnames),
-                            in_colnames=', '.join(in_colnames),
-                            input=intable)
-                session.execute(stmt)
-                inserted = True
-            else:
-                stmt =  'UPDATE {output} out ' \
-                        'SET {set} ' \
-                        'FROM {input} intable ' \
-                        'WHERE intable.geo_code = out.geo_code ' \
-                        .format(
-                            set=', '.join([
-                                '{} = {}'.format(a, b) for a, b in zip(
-                                    out_colnames, in_colnames)
-                            ]),
-                            output=self.output().table,
-                            input=intable)
-                session.execute(stmt)
+        columns = self.columns()
+        out_colnames = columns.keys()
+        in_table = self.input()['data']
+        in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
+        in_colnames[0] = 'geom_id'
+        for i, in_c in enumerate(in_colnames):
+            cmd =   "SELECT 'exists' FROM information_schema.columns " \
+                    "WHERE table_schema = '{schema}' " \
+                    "  AND table_name = '{tablename}' " \
+                    "  AND column_name = '{colname}' " \
+                    "  LIMIT 1".format(
+                        schema=in_table.schema,
+                        tablename=in_table.tablename.lower(),
+                        colname=in_c.lower())
+            # remove columns that aren't in input table
+            if session.execute(cmd).fetchone() is None:
+                in_colnames[i] = None
+                out_colnames[i] = None
+        in_colnames = [
+            "CASE {ic}::TEXT WHEN '-6' THEN NULL ELSE {ic} END".format(ic=ic) for ic in in_colnames if ic is not None]
+        out_colnames = [oc for oc in out_colnames if oc is not None]
+
+        cmd =   'INSERT INTO {output} ({out_colnames}) ' \
+                'SELECT {in_colnames} FROM {input} '.format(
+                    output=self.output().table,
+                    input=in_table.table,
+                    in_colnames=', '.join(in_colnames),
+                    out_colnames=', '.join(out_colnames))
+        session.execute(cmd)
 
 
 class Census(Survey):
     def requires(self):
         return {
             'data': ImportData(resolution=self.resolution, survey=SURVEY_CEN),
-            'geom_columns': GeographyColumns(resolution=self.resolution),
-            'data_columns': CensusColumns(),
+            'geometa': GeographyColumns(resolution=self.resolution),
+            'meta': CensusColumns(),
         }
 
     def timespan(self):
         return 2011
 
 
+class AllCensusTopics(BaseParams, WrapperTask):
+    def requires(self):
+        topic_range = range(1, 11)   # 1-10
+
+        for count in topic_range:
+            topic = 't{:03d}'.format(count)
+            yield Census(resolution=self.resolution, topic=topic)
+
+
 class NHS(Survey):
     def requires(self):
         return {
             'data': ImportData(resolution=self.resolution, survey=SURVEY_NHS),
-            'geom_columns': GeographyColumns(resolution=self.resolution),
-            'data_columns': NHSColumns(),
+            'geometa': GeographyColumns(resolution=self.resolution),
+            'meta': NHSColumns(),
         }
 
     def timespan(self):
