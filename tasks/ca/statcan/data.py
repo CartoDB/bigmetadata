@@ -3,7 +3,8 @@ import urllib
 
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
-from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath,
+from collections import OrderedDict
+from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath
 from tasks.meta import current_session
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
@@ -219,4 +220,3 @@ class NHS(Survey):
 
     def timespan(self):
         return 2011
-
