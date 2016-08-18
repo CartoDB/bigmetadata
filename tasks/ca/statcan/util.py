@@ -94,39 +94,49 @@ class StatCanParser(object):
         else:
             parent_id = self._topic_lineage[-1]    # parent is the last id in the lineage
 
-        # testing - TODO remove me
-        if self._topic_idx <= 10:
-            col = '''
-                {char_key} = OBSColumn(
-                    id=\'{char_id}\',
-                    name=\'{char_val}\',
-                    type=\'Numeric\',
-                    weight=3,
-                    tags=[ca, unit_people, subsections['age_gender']],
-                '''.format(char_key=char_id, char_id=char_id, char_val=char_val.strip().replace('\'', '\\\''))
-            if parent_id is None:
-                col += 'targets={},'
-            else:
-                col += 'targets={{ {}: DENOMINATOR }},'.format(parent_id)
-
-            col += ')'
-
-            filename = 'cols.py'
-            self._write_to_file(filename, col)
-
-            # write the 2nd part of the columns
-            col2 = '(\'{}\', {}),'.format(char_id, char_id)
-
-            filename = 'dict.py'
-            self._write_to_file(filename, col2)
-
-            # print('{cur_generation:02d}:[{num_spaces}][{char_val}], {char_id}, {parent_id}'.format(num_spaces=num_spaces, cur_generation=cur_generation, char_val=char_val, char_id=char_id, parent_id=parent_id))
-
-        self._char_idx += 1
-
         vals = []
         for col in self.TRANSPOSE_COLUMNS:
-            vals.append((underscore_slugify('{}_{}'.format(char_id, col[:1])), row[col]),)
+            new_char_id = '{}_{}'.format(char_id, col[:1])
+            vals.append((new_char_id, row[col]),)
+
+            #####################################
+            # testing - TODO remove me
+            #####################################
+            if parent_id is not None:
+                new_parent_id = '{}_{}'.format(parent_id, col[:1])
+
+            if self._topic_idx <= 10:
+                str1 = '''
+                    {char_key} = OBSColumn(
+                        id=\'{char_id}\',
+                        name=\'{char_val} ({gender})\',
+                        type=\'Numeric\',
+                        weight=3,
+                        tags=[ca, unit_people, subsections['age_gender']],
+                    '''.format(
+                            char_key=new_char_id,
+                            char_id=new_char_id,
+                            char_val=char_val.strip().replace('\'', '\\\''),
+                            gender=col,
+                        )
+                if parent_id is None:
+                    str1 += 'targets={},'
+                else:
+                    str1 += 'targets={{ {}: DENOMINATOR }},'.format(new_parent_id)
+
+                str1 += ')'
+
+                filename = 'cols.py'
+                self._write_to_file(filename, str1)
+
+                # write the 2nd part of the columns
+                str2 = '(\'{}\', {}),'.format(new_char_id, new_char_id)
+
+                filename = 'dict.py'
+                self._write_to_file(filename, str2)
+            #####################################
+
+        self._char_idx += 1
 
         return tuple(vals)
 
