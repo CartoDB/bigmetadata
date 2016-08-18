@@ -9,6 +9,8 @@ from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
     GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns)
 from tasks.ca.statcan.util import StatCanParser
+from tasks.ca.statcan.cols_census import CensusColumns
+from tasks.ca.statcan.cols_nhs import NHSColumns
 
 
 SURVEY_CEN = 'census'
@@ -133,3 +135,88 @@ class ImportAll(WrapperTask):
         for survey in SURVEYS:
             for resolution in GEOGRAPHIES:
                 yield ImportData(resolution=resolution, survey=survey)
+
+
+class Survey(BaseParams, TableTask):
+    def requires(self):
+        '''
+        Subclasses must override this.
+        '''
+        raise NotImplementedError('Survey must define requires()')
+
+    def timespan(self):
+        '''
+        Subclasses must override this.
+        '''
+        raise NotImplementedError('Survey must define timespan()')
+
+    def columns(self):
+        cols = OrderedDict()
+        input_ = self.input()
+        cols['Geo_Code'] = input_['geom_columns']['geom_id']
+        cols.update(input_['data_columns'])
+        return cols
+
+    def populate(self):
+        session = current_session()
+        cols = self.columns()
+        inserted = False
+        for line in self.input()['data'].open():
+            intable = line.strip()
+            table = intable.split('_')[1]
+            cols_for_table = OrderedDict([
+                (n, t,) for n, t in cols.iteritems() if table in t._id
+            ])
+            out_colnames = cols_for_table.keys()
+            in_colnames = [t._id.split('.')[-1] for t in cols_for_table.values()]
+            assert len(out_colnames) == len(in_colnames)
+            if not out_colnames:
+                continue
+            if not inserted:
+                stmt =  'INSERT INTO {output} (geo_code, {out_colnames}) ' \
+                        'SELECT geo_code, {in_colnames} ' \
+                        'FROM {input} '.format(
+                            output=self.output().table,
+                            out_colnames=', '.join(out_colnames),
+                            in_colnames=', '.join(in_colnames),
+                            input=intable)
+                session.execute(stmt)
+                inserted = True
+            else:
+                stmt =  'UPDATE {output} out ' \
+                        'SET {set} ' \
+                        'FROM {input} intable ' \
+                        'WHERE intable.geo_code = out.geo_code ' \
+                        .format(
+                            set=', '.join([
+                                '{} = {}'.format(a, b) for a, b in zip(
+                                    out_colnames, in_colnames)
+                            ]),
+                            output=self.output().table,
+                            input=intable)
+                session.execute(stmt)
+
+
+class Census(Survey):
+    def requires(self):
+        return {
+            'data': ImportData(resolution=self.resolution, survey=SURVEY_CEN),
+            'geom_columns': GeographyColumns(resolution=self.resolution),
+            'data_columns': CensusColumns(),
+        }
+
+    def timespan(self):
+        return 2011
+
+
+class NHS(Survey):
+    def requires(self):
+        return {
+            'data': ImportData(resolution=self.resolution, survey=SURVEY_NHS),
+            'geom_columns': GeographyColumns(resolution=self.resolution),
+            'data_columns': NHSColumns(),
+        }
+
+    def timespan(self):
+        return 2011
+
