@@ -12,11 +12,11 @@ from tasks.util import underscore_slugify
 
 class StatCanParser(object):
     # Geography id column
-    GEO_COLUMN = 'Geo_Code'
+    GEO_COLUMN = 'geo_code'
 
     # Column used to split for defining
     # output file.
-    PARSE_COLUMN = 'Topic'
+    PARSE_COLUMN = 'topic'
 
     # TRANSPOSE_COLUMN_PREFIX column value is added as
     # a prefix to each TRANSPOSE_COLUMNS
@@ -27,14 +27,14 @@ class StatCanParser(object):
     #   - household_total_income_in_2010_total
     #   - household_total_income_in_2010_male
     #   - household_total_income_in_2010_female
-    TRANSPOSE_COLUMN_PREFIX = 'Characteristic'
+    TRANSPOSE_COLUMN_PREFIX = 'characteristic'
 
     # !!!be careful when changing the order of these!!!
     TRANSPOSE_COLUMNS = (
         # 'Note',
-        'Total',
-        'Male',
-        'Female',
+        'total',
+        'male',
+        'female',
     )
 
     # Only use these columns when parsing file
@@ -43,6 +43,8 @@ class StatCanParser(object):
         PARSE_COLUMN,
         TRANSPOSE_COLUMN_PREFIX,
     ) + TRANSPOSE_COLUMNS
+
+    COLUMN_MATCH_PATTERNS = {c: re.compile(c, re.IGNORECASE) for c in COLUMNS}
 
     def shorten_col(self, text):
         text = text.lower()
@@ -148,14 +150,35 @@ class StatCanParser(object):
         except IndexError:
             return None
 
+    def _match_col(self, col):
+        '''
+        Check if a column ~matches one of the predefined columns.
+        -> case insensitive
+        -> match has to be at the beginning of the string
+        '''
+
+        for col_key, pat in self.COLUMN_MATCH_PATTERNS.items():
+            r = pat.match(col)
+            if r is not None and r.start() == 0:
+                return col_key
+        return
+
     def get_header_row(self, csvfile):
         '''
-        Get row index (0-based) and list of column names.
+        Get row index (0-based) in csv and column index
+        for each predefined column.
         '''
+
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        col_count = len(self.COLUMNS)
         for i, row in enumerate(reader):
-            if len([c for c in row if c in self.COLUMNS]) == len(self.COLUMNS):
-                return i, {col_name: i for i, col_name in enumerate(row)}
+            # index column locations in csv
+            col_indices = {self._match_col(col): n for n, col in enumerate(row)}
+            # Remove unmatched result
+            col_indices.pop(None)
+
+            if len(col_indices) == col_count:
+                return i, col_indices
 
         return -1, None
 
@@ -199,7 +222,6 @@ class StatCanParser(object):
                     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
                     uid = None
-                    # parse_col_val = None
                     record = []
                     for row in reader:
                         row = self._map_row(row)
