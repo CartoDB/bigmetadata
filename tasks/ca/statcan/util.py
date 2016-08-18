@@ -93,8 +93,8 @@ class StatCanParser(object):
             parent_id = self._topic_lineage[-1]    # parent is the last id in the lineage
 
         # testing - TODO remove me
-        if self._topic_idx == 1:
-            print('{char_val}, {cur_generation}, {char_id}, {parent_id}'.format(char_val=char_val, cur_generation=cur_generation, char_id=char_id, parent_id=parent_id))
+        # if self._topic_idx == 2 or self._topic_idx == 1 or self._topic_idx == 5:
+        #     print('{cur_generation:02d}:[{num_spaces}][{char_val}], {char_id}, {parent_id}'.format(num_spaces=num_spaces, cur_generation=cur_generation, char_val=char_val, char_id=char_id, parent_id=parent_id))
 
         self._char_idx += 1
 
