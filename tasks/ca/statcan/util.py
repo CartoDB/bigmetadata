@@ -71,8 +71,14 @@ class StatCanParser(object):
         # Level tracks how indented the TRANSPOSE_COLUMN_PREFIX
         # 3 spaces == 1 cur_generation
         char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
-        cur_generation = (len(char_val) - len(char_val.lstrip())) / 3
         char_val = re.sub('[^\s!-~]', ' ', char_val)   # remove gremlins
+        num_spaces = (len(char_val) - len(char_val.lstrip()))
+        if num_spaces == 1:
+            raise Exception('num_spaces == 1')
+        if num_spaces % 2 == 0:
+            cur_generation = num_spaces / 2
+        else:
+            cur_generation = num_spaces / 3
 
         if cur_generation > len(self._topic_lineage):
             self._topic_lineage.append(self._prev_char_id)     # add prev id to the lineage
