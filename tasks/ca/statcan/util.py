@@ -3,6 +3,7 @@ from __future__ import print_function
 import csv
 import itertools
 import os
+import re
 from collections import OrderedDict
 from operator import itemgetter
 
@@ -71,6 +72,7 @@ class StatCanParser(object):
         # 3 spaces == 1 cur_generation
         char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
         cur_generation = (len(char_val) - len(char_val.lstrip())) / 3
+        char_val = re.sub('[^\s!-~]', ' ', char_val)   # remove gremlins
 
         if cur_generation > len(self._topic_lineage):
             self._topic_lineage.append(self._prev_char_id)     # add prev id to the lineage
