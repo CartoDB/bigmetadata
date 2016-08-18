@@ -8,7 +8,7 @@ from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, class
 from tasks.meta import current_session
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
-    GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns)
+    GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.ca.statcan.util import StatCanParser
 from tasks.ca.statcan.cols_census import CensusColumns
 from tasks.ca.statcan.cols_nhs import NHSColumns
@@ -163,7 +163,7 @@ class Survey(BaseParams, TableTask):
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
-        cols['Geo_Code'] = input_['geometa']['geom_id']
+        cols['geo_code'] = input_['geometa']['geom_id']
         for colname, coltarget in input_['meta'].iteritems():
             if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
                 cols[colname] = coltarget
@@ -175,7 +175,7 @@ class Survey(BaseParams, TableTask):
         out_colnames = columns.keys()
         in_table = self.input()['data']
         in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
-        in_colnames[0] = 'geom_id'
+        in_colnames[0] = 'geo_code'
         for i, in_c in enumerate(in_colnames):
             cmd =   "SELECT 'exists' FROM information_schema.columns " \
                     "WHERE table_schema = '{schema}' " \
@@ -206,6 +206,7 @@ class Census(Survey):
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
+            'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': CensusColumns(),
         }
@@ -227,6 +228,7 @@ class NHS(Survey):
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),
+            'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': NHSColumns(),
         }
