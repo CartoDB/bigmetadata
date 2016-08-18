@@ -73,12 +73,12 @@ class StatCanParser(object):
         char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
         char_val = re.sub('[^\s!-~]', ' ', char_val)   # remove gremlins
         num_spaces = (len(char_val) - len(char_val.lstrip()))
+        if num_spaces == 2 or num_spaces == 3:
+            self._space_divisor = num_spaces
+
         if num_spaces == 1:
             raise Exception('num_spaces == 1')
-        if num_spaces % 2 == 0:
-            cur_generation = num_spaces / 2
-        else:
-            cur_generation = num_spaces / 3
+        cur_generation = num_spaces / self._space_divisor
 
         if cur_generation > len(self._topic_lineage):
             self._topic_lineage.append(self._prev_char_id)     # add prev id to the lineage
@@ -181,6 +181,7 @@ class StatCanParser(object):
         self._char_idx = 1
         self._topic_idx = 1
         self._topic_lineage = []
+        self._space_divisor = 2
 
         try:
             if isinstance(csv_paths, (str, unicode,)):
