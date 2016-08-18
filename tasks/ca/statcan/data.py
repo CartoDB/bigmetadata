@@ -75,13 +75,13 @@ class SplitAndTransposeData(BaseParams, Task):
 #####################################
 class CopyDataToTable(BaseParams, TempTableTask):
 
-    table = Parameter()
+    topic = Parameter()
 
     def requires(self):
         return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
 
     def run(self):
-        infile = os.path.join(self.input().path, self.table + '.csv')
+        infile = os.path.join(self.input().path, self.topic + '.csv')
         headers = shell('head -n 1 {csv}'.format(csv=infile))
         cols = ['{} NUMERIC'.format(h) for h in headers.split(',')[1:]]
 
@@ -109,8 +109,8 @@ class ImportData(BaseParams, Task):
             input=self.input().path))
         fhandle = self.output().open('w')
         for infile in infiles.strip().split('\n'):
-            table = os.path.split(infile)[-1].split('.csv')[0]
-            data = yield CopyDataToTable(resolution=self.resolution, survey=self.survey, table=table)
+            topic = os.path.split(infile)[-1].split('.csv')[0]
+            data = yield CopyDataToTable(resolution=self.resolution, survey=self.survey, topic=topic)
             fhandle.write('{table}\n'.format(table=data.table))
         fhandle.close()
 
@@ -205,7 +205,7 @@ class Survey(BaseParams, TableTask):
 class Census(Survey):
     def requires(self):
         return {
-            'data': ImportData(resolution=self.resolution, survey=SURVEY_CEN),
+            'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': CensusColumns(),
         }
@@ -226,7 +226,7 @@ class AllCensusTopics(BaseParams, WrapperTask):
 class NHS(Survey):
     def requires(self):
         return {
-            'data': ImportData(resolution=self.resolution, survey=SURVEY_NHS),
+            'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': NHSColumns(),
         }
