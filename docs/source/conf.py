@@ -20,10 +20,8 @@ import os
 import subprocess
 import sys
 
-sys.path.insert(0, os.path.abspath('../../tasks'))
-sys.path.insert(0, os.path.abspath('../tasks'))
-sys.path.insert(0, os.path.abspath('./tasks'))
-sys.path.insert(0, os.path.abspath('./bigmetadata/tasks'))
+cur_dir = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(cur_dir, '..', '..', 'tasks'))
 
 # -- General configuration ------------------------------------------------
 
