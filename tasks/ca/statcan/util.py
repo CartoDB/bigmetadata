@@ -57,18 +57,41 @@ class StatCanParser(object):
         '''
         Only transpose columns that are defined in TRANSPOSE_COLUMNS
         '''
-        # char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
-        char_val = 't{:03d}c{:03d}'.format(self._topic_idx, self._char_idx)
-        self._char_idx += 1
-        # Level tracks how indented the TRANSPOSE_COLUMN_PREFIX
-        # 2 spaces == 1 level
-        # level = (len(char_val) - len(char_val.lstrip())) / 2
-        # char_val = self.shorten_col(char_val.strip())
-        vals = []
-        # vals.append(('{}_level'.format(char_val), level),)
+        # create the id
+        char_id = 't{:03d}c{:03d}'.format(self._topic_idx, self._char_idx)
 
+        # if the first Characteristic, then reset the lineage and record the parent
+        if self._char_idx == 1:
+            self._prev_char_id = None
+            self._topic_lineage = []
+        else:
+            self._prev_char_id = 't{:03d}c{:03d}'.format(self._topic_idx, self._char_idx - 1)
+
+        # Level tracks how indented the TRANSPOSE_COLUMN_PREFIX
+        # 3 spaces == 1 cur_generation
+        char_val = row[self.TRANSPOSE_COLUMN_PREFIX]
+        cur_generation = (len(char_val) - len(char_val.lstrip())) / 3
+
+        if cur_generation > len(self._topic_lineage):
+            self._topic_lineage.append(self._prev_char_id)     # add prev id to the lineage
+
+        elif cur_generation < len(self._topic_lineage):
+            self._topic_lineage.pop()
+
+        if len(self._topic_lineage) == 0:
+            parent_id = None
+        else:
+            parent_id = self._topic_lineage[-1]    # parent is the last id in the lineage
+
+        # testing - TODO remove me
+        if self._topic_idx == 1:
+            print('{char_val}, {cur_generation}, {char_id}, {parent_id}'.format(char_val=char_val, cur_generation=cur_generation, char_id=char_id, parent_id=parent_id))
+
+        self._char_idx += 1
+
+        vals = []
         for col in self.TRANSPOSE_COLUMNS:
-            vals.append((underscore_slugify('{}_{}'.format(char_val, col[:1])), row[col]),)
+            vals.append((underscore_slugify('{}_{}'.format(char_id, col[:1])), row[col]),)
 
         return tuple(vals)
 
@@ -149,6 +172,7 @@ class StatCanParser(object):
         self._output_dir = output_dir
         self._char_idx = 1
         self._topic_idx = 1
+        self._topic_lineage = []
 
         try:
             if isinstance(csv_paths, (str, unicode,)):
@@ -172,7 +196,7 @@ class StatCanParser(object):
                         if row is None:
                             continue
 
-                        # got a new Geo_Code or Topic
+                        # got a new Geo_Code
                         if uid != row[self.GEO_COLUMN]:
                             self._write_record(record)
                             record = []
@@ -182,7 +206,6 @@ class StatCanParser(object):
 
                     # parse the last record
                     self._write_record(record)
-
 
         finally:
             for file_handler in self._file_handlers.values():
