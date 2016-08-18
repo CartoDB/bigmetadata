@@ -83,7 +83,8 @@ class StatCanParser(object):
         if cur_generation > len(self._topic_lineage):
             self._topic_lineage.append(self._prev_char_id)     # add prev id to the lineage
 
-        elif cur_generation < len(self._topic_lineage):
+        # remove all ancestors until we're at cur_generation
+        while cur_generation < len(self._topic_lineage):
             self._topic_lineage.pop()
 
         if len(self._topic_lineage) == 0:
