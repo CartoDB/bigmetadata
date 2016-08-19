@@ -26,3 +26,4 @@ carto/
 docs/build
 luigi.cfg
 observatory-extension
+*.key

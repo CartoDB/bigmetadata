@@ -11,38 +11,12 @@ Subpackages
 Submodules
 ----------
 
-tasks.us.bls module
--------------------
+.. toctree::
 
-.. automodule:: tasks.us.bls
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-tasks.us.dma module
--------------------
-
-.. automodule:: tasks.us.dma
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-tasks.us.naics module
----------------------
-
-.. automodule:: tasks.us.naics
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-tasks.us.zillow module
-----------------------
-
-.. automodule:: tasks.us.zillow
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+   tasks.us.bls
+   tasks.us.dma
+   tasks.us.naics
+   tasks.us.zillow
 
 Module contents
 ---------------

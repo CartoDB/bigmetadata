@@ -240,7 +240,8 @@ class OBSColumn(Base):
     .. py:attribute:: weight
 
        A numeric weight for this column.  Higher weights are favored
-       in certain rankings done by the API.
+       in certain rankings done by the API. Defaults to zero, which hides
+       the column from catalog.
 
     .. py:attribute:: aggregate
 
