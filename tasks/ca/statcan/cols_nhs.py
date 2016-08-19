@@ -22,6 +22,7 @@ class NHSColumns(ColumnsTask):
         subsections = input_['subsections']
 
         unit_people = input_['units']['people']
+        unit_money = input_['units']['money']
         unit_housing = input_['units']['housing_units']
         unit_household = input_['units']['households']
         unit_years = input_['units']['years']
