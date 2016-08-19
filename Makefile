@@ -31,16 +31,16 @@ tiger:
 
 catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --force \
+	  --module tasks.sphinx Catalog --force --images \
 	  --parallel-scheduling --workers=3
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format pdf --force
+	  --module tasks.sphinx Catalog --format pdf --force --images
 
 md-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format markdown --force \
+	  --module tasks.sphinx Catalog --format markdown --force --images \
 	  --local-scheduler
 
 deploy-pdf-catalog:

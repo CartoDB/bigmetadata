@@ -147,7 +147,7 @@ class Catalog(Task):
     force = BooleanParameter(default=False)
     format = Parameter(default='html')
     preview = BooleanParameter(default=False)
-    images = BooleanParameter(default=True)
+    images = BooleanParameter(default=False)
 
     def requires(self):
         return GenerateRST(force=self.force, format=self.format, preview=self.preview,
