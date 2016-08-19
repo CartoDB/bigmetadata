@@ -54,7 +54,8 @@
   "bigmetadata": {
     "image": "recessionporn/bigmetadata",
     "links": [
-      "postgres"
+      "postgres",
+      "bigmetadata_daemon",
     ],
     "volumes": [
       ".:/bigmetadata"

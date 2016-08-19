@@ -1,4 +1,4 @@
-tasks.es package
+tasks.th package
 ================
 
 Submodules
@@ -6,14 +6,12 @@ Submodules
 
 .. toctree::
 
-   tasks.es.cnig
-   tasks.es.ine
-   tasks.es.lacaixa
+   tasks.th.thaipop
 
 Module contents
 ---------------
 
-.. automodule:: tasks.es
+.. automodule:: tasks.th
     :members:
     :undoc-members:
     :show-inheritance:

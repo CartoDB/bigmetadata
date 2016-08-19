@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/CartoDB/bigmetadata.svg?branch=master)](https://travis-ci.org/CartoDB/bigmetadata/branches#) [![Documentation Status](https://readthedocs.org/projects/bigmetadata/badge/?version=latest)](http://bigmetadata.readthedocs.io/en/latest/?badge=latest)
+
 ## Bigmetadata
 
 ### What it is
