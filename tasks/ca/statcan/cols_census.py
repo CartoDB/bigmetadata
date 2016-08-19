@@ -14,7 +14,7 @@ class CensusColumns(ColumnsTask):
         }
 
     def version(self):
-        return 1
+        return 2
 
     def columns(self):
         input_ = self.input()

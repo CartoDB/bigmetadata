@@ -14,7 +14,7 @@ class NHSColumns(ColumnsTask):
         }
 
     def version(self):
-        return 1
+        return 2
 
     def columns(self):
         input_ = self.input()
@@ -25,6 +25,7 @@ class NHSColumns(ColumnsTask):
         unit_housing = input_['units']['housing_units']
         unit_household = input_['units']['households']
         unit_years = input_['units']['years']
+        unit_minutes = input_['units']['minutes']
         unit_ratio = input_['units']['ratio']
         unit_education = input_['units']['education_level']
 
@@ -8363,7 +8364,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by tenure (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c001_m = OBSColumn(
@@ -8371,7 +8372,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by tenure (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c001_f = OBSColumn(
@@ -8379,7 +8380,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by tenure (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c002_t = OBSColumn(
@@ -8387,7 +8388,7 @@ class NHSColumns(ColumnsTask):
             name='Owner (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
         t009c002_m = OBSColumn(
@@ -8395,7 +8396,7 @@ class NHSColumns(ColumnsTask):
             name='Owner (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_m: DENOMINATOR },)
 
         t009c002_f = OBSColumn(
@@ -8403,7 +8404,7 @@ class NHSColumns(ColumnsTask):
             name='Owner (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_f: DENOMINATOR },)
 
         t009c003_t = OBSColumn(
@@ -8411,7 +8412,7 @@ class NHSColumns(ColumnsTask):
             name='Renter (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
         t009c003_m = OBSColumn(
@@ -8419,7 +8420,7 @@ class NHSColumns(ColumnsTask):
             name='Renter (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_m: DENOMINATOR },)
 
         t009c003_f = OBSColumn(
@@ -8427,7 +8428,7 @@ class NHSColumns(ColumnsTask):
             name='Renter (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_f: DENOMINATOR },)
 
         t009c004_t = OBSColumn(
@@ -8435,7 +8436,7 @@ class NHSColumns(ColumnsTask):
             name='Band housing (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
         t009c004_m = OBSColumn(
@@ -8443,7 +8444,7 @@ class NHSColumns(ColumnsTask):
             name='Band housing (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_m: DENOMINATOR },)
 
         t009c004_f = OBSColumn(
@@ -8451,7 +8452,7 @@ class NHSColumns(ColumnsTask):
             name='Band housing (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_f: DENOMINATOR },)
 
         t009c005_t = OBSColumn(
@@ -8459,7 +8460,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by condominium status (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c005_m = OBSColumn(
@@ -8467,7 +8468,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by condominium status (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c005_f = OBSColumn(
@@ -8475,7 +8476,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by condominium status (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c006_t = OBSColumn(
@@ -8483,7 +8484,7 @@ class NHSColumns(ColumnsTask):
             name='Part of a condominium development (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_t: DENOMINATOR },)
 
         t009c006_m = OBSColumn(
@@ -8491,7 +8492,7 @@ class NHSColumns(ColumnsTask):
             name='Part of a condominium development (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_m: DENOMINATOR },)
 
         t009c006_f = OBSColumn(
@@ -8499,7 +8500,7 @@ class NHSColumns(ColumnsTask):
             name='Part of a condominium development (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_f: DENOMINATOR },)
 
         t009c007_t = OBSColumn(
@@ -8507,7 +8508,7 @@ class NHSColumns(ColumnsTask):
             name='Not part of a condominium development (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_t: DENOMINATOR },)
 
         t009c007_m = OBSColumn(
@@ -8515,7 +8516,7 @@ class NHSColumns(ColumnsTask):
             name='Not part of a condominium development (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_m: DENOMINATOR },)
 
         t009c007_f = OBSColumn(
@@ -8523,7 +8524,7 @@ class NHSColumns(ColumnsTask):
             name='Not part of a condominium development (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_f: DENOMINATOR },)
 
         t009c008_t = OBSColumn(
@@ -8531,7 +8532,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by number of household maintainers (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c008_m = OBSColumn(
@@ -8539,7 +8540,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by number of household maintainers (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c008_f = OBSColumn(
@@ -8547,7 +8548,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by number of household maintainers (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c009_t = OBSColumn(
@@ -8555,7 +8556,7 @@ class NHSColumns(ColumnsTask):
             name='1 household maintainer (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
 
         t009c009_m = OBSColumn(
@@ -8563,7 +8564,7 @@ class NHSColumns(ColumnsTask):
             name='1 household maintainer (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_m: DENOMINATOR },)
 
         t009c009_f = OBSColumn(
@@ -8571,7 +8572,7 @@ class NHSColumns(ColumnsTask):
             name='1 household maintainer (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_f: DENOMINATOR },)
 
         t009c010_t = OBSColumn(
@@ -8579,7 +8580,7 @@ class NHSColumns(ColumnsTask):
             name='2 household maintainers (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
 
         t009c010_m = OBSColumn(
@@ -8587,7 +8588,7 @@ class NHSColumns(ColumnsTask):
             name='2 household maintainers (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_m: DENOMINATOR },)
 
         t009c010_f = OBSColumn(
@@ -8595,7 +8596,7 @@ class NHSColumns(ColumnsTask):
             name='2 household maintainers (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_f: DENOMINATOR },)
 
         t009c011_t = OBSColumn(
@@ -8603,7 +8604,7 @@ class NHSColumns(ColumnsTask):
             name='3 or more household maintainers (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
 
         t009c011_m = OBSColumn(
@@ -8611,7 +8612,7 @@ class NHSColumns(ColumnsTask):
             name='3 or more household maintainers (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_m: DENOMINATOR },)
 
         t009c011_f = OBSColumn(
@@ -8619,7 +8620,7 @@ class NHSColumns(ColumnsTask):
             name='3 or more household maintainers (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_f: DENOMINATOR },)
 
         t009c012_t = OBSColumn(
@@ -8627,7 +8628,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by age group of primary household maintainers (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c012_m = OBSColumn(
@@ -8635,7 +8636,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by age group of primary household maintainers (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c012_f = OBSColumn(
@@ -8643,7 +8644,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by age group of primary household maintainers (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c013_t = OBSColumn(
@@ -8651,7 +8652,7 @@ class NHSColumns(ColumnsTask):
             name='Under 25 years (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
         t009c013_m = OBSColumn(
@@ -8659,7 +8660,7 @@ class NHSColumns(ColumnsTask):
             name='Under 25 years (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_m: DENOMINATOR },)
 
         t009c013_f = OBSColumn(
@@ -8667,7 +8668,7 @@ class NHSColumns(ColumnsTask):
             name='Under 25 years (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_f: DENOMINATOR },)
 
         t009c014_t = OBSColumn(
@@ -8675,7 +8676,7 @@ class NHSColumns(ColumnsTask):
             name='25 to 34 years (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
         t009c014_m = OBSColumn(
@@ -8683,7 +8684,7 @@ class NHSColumns(ColumnsTask):
             name='25 to 34 years (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_m: DENOMINATOR },)
 
         t009c014_f = OBSColumn(
@@ -8691,7 +8692,7 @@ class NHSColumns(ColumnsTask):
             name='25 to 34 years (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_f: DENOMINATOR },)
 
         t009c015_t = OBSColumn(
@@ -8699,7 +8700,7 @@ class NHSColumns(ColumnsTask):
             name='35 to 44 years (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
         t009c015_m = OBSColumn(
@@ -8707,7 +8708,7 @@ class NHSColumns(ColumnsTask):
             name='35 to 44 years (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_m: DENOMINATOR },)
 
         t009c015_f = OBSColumn(
@@ -8715,7 +8716,7 @@ class NHSColumns(ColumnsTask):
             name='35 to 44 years (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_f: DENOMINATOR },)
 
         t009c016_t = OBSColumn(
@@ -8723,7 +8724,7 @@ class NHSColumns(ColumnsTask):
             name='45 to 54 years (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
         t009c016_m = OBSColumn(
@@ -8731,7 +8732,7 @@ class NHSColumns(ColumnsTask):
             name='45 to 54 years (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_m: DENOMINATOR },)
 
         t009c016_f = OBSColumn(
@@ -8739,7 +8740,7 @@ class NHSColumns(ColumnsTask):
             name='45 to 54 years (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_f: DENOMINATOR },)
 
         t009c017_t = OBSColumn(
@@ -8747,7 +8748,7 @@ class NHSColumns(ColumnsTask):
             name='55 to 64 years (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
         t009c017_m = OBSColumn(
@@ -8755,7 +8756,7 @@ class NHSColumns(ColumnsTask):
             name='55 to 64 years (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_m: DENOMINATOR },)
 
         t009c017_f = OBSColumn(
@@ -8763,7 +8764,7 @@ class NHSColumns(ColumnsTask):
             name='55 to 64 years (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_f: DENOMINATOR },)
 
         t009c018_t = OBSColumn(
@@ -8771,7 +8772,7 @@ class NHSColumns(ColumnsTask):
             name='65 to 74 years (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
         t009c018_m = OBSColumn(
@@ -8779,7 +8780,7 @@ class NHSColumns(ColumnsTask):
             name='65 to 74 years (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_m: DENOMINATOR },)
 
         t009c018_f = OBSColumn(
@@ -8787,7 +8788,7 @@ class NHSColumns(ColumnsTask):
             name='65 to 74 years (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_f: DENOMINATOR },)
 
         t009c019_t = OBSColumn(
@@ -8795,7 +8796,7 @@ class NHSColumns(ColumnsTask):
             name='75 years and over (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
         t009c019_m = OBSColumn(
@@ -8803,7 +8804,7 @@ class NHSColumns(ColumnsTask):
             name='75 years and over (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_m: DENOMINATOR },)
 
         t009c019_f = OBSColumn(
@@ -8811,7 +8812,7 @@ class NHSColumns(ColumnsTask):
             name='75 years and over (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_f: DENOMINATOR },)
 
         t009c020_t = OBSColumn(
@@ -8819,7 +8820,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by number of persons per room (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c020_m = OBSColumn(
@@ -8827,7 +8828,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by number of persons per room (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c020_f = OBSColumn(
@@ -8835,7 +8836,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by number of persons per room (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c021_t = OBSColumn(
@@ -8843,7 +8844,7 @@ class NHSColumns(ColumnsTask):
             name='One person or fewer per room (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_t: DENOMINATOR },)
 
         t009c021_m = OBSColumn(
@@ -8851,7 +8852,7 @@ class NHSColumns(ColumnsTask):
             name='One person or fewer per room (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_m: DENOMINATOR },)
 
         t009c021_f = OBSColumn(
@@ -8859,7 +8860,7 @@ class NHSColumns(ColumnsTask):
             name='One person or fewer per room (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_f: DENOMINATOR },)
 
         t009c022_t = OBSColumn(
@@ -8867,7 +8868,7 @@ class NHSColumns(ColumnsTask):
             name='More than one person per room (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_t: DENOMINATOR },)
 
         t009c022_m = OBSColumn(
@@ -8875,7 +8876,7 @@ class NHSColumns(ColumnsTask):
             name='More than one person per room (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_m: DENOMINATOR },)
 
         t009c022_f = OBSColumn(
@@ -8883,7 +8884,7 @@ class NHSColumns(ColumnsTask):
             name='More than one person per room (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_f: DENOMINATOR },)
 
         t009c023_t = OBSColumn(
@@ -8891,7 +8892,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by housing suitability (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c023_m = OBSColumn(
@@ -8899,7 +8900,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by housing suitability (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c023_f = OBSColumn(
@@ -8907,7 +8908,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by housing suitability (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
         t009c024_t = OBSColumn(
@@ -8915,7 +8916,7 @@ class NHSColumns(ColumnsTask):
             name='Suitable (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_t: DENOMINATOR },)
 
         t009c024_m = OBSColumn(
@@ -8923,7 +8924,7 @@ class NHSColumns(ColumnsTask):
             name='Suitable (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_m: DENOMINATOR },)
 
         t009c024_f = OBSColumn(
@@ -8931,7 +8932,7 @@ class NHSColumns(ColumnsTask):
             name='Suitable (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_f: DENOMINATOR },)
 
         t009c025_t = OBSColumn(
@@ -8939,7 +8940,7 @@ class NHSColumns(ColumnsTask):
             name='Not suitable (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_t: DENOMINATOR },)
 
         t009c025_m = OBSColumn(
@@ -8947,7 +8948,7 @@ class NHSColumns(ColumnsTask):
             name='Not suitable (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_m: DENOMINATOR },)
 
         t009c025_f = OBSColumn(
@@ -8955,7 +8956,7 @@ class NHSColumns(ColumnsTask):
             name='Not suitable (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_f: DENOMINATOR },)
 
         t010c001_t = OBSColumn(
@@ -11507,7 +11508,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
         t012c030_m = OBSColumn(
@@ -11515,7 +11516,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_m: DENOMINATOR },)
 
         t012c030_f = OBSColumn(
@@ -11523,7 +11524,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_f: DENOMINATOR },)
 
         t012c031_t = OBSColumn(
@@ -11531,7 +11532,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
         t012c031_m = OBSColumn(
@@ -11539,7 +11540,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_m: DENOMINATOR },)
 
         t012c031_f = OBSColumn(
@@ -11547,7 +11548,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_f: DENOMINATOR },)
 
         t012c032_t = OBSColumn(
@@ -11555,7 +11556,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
         t012c032_m = OBSColumn(
@@ -11563,7 +11564,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_m: DENOMINATOR },)
 
         t012c032_f = OBSColumn(
@@ -11571,7 +11572,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_f: DENOMINATOR },)
 
         t012c033_t = OBSColumn(
@@ -11579,7 +11580,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
         t012c033_m = OBSColumn(
@@ -11587,7 +11588,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_m: DENOMINATOR },)
 
         t012c033_f = OBSColumn(
@@ -11595,7 +11596,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_f: DENOMINATOR },)
 
         t012c034_t = OBSColumn(
@@ -11627,7 +11628,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
         t012c035_m = OBSColumn(
@@ -11635,7 +11636,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_m: DENOMINATOR },)
 
         t012c035_f = OBSColumn(
@@ -11643,7 +11644,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_f: DENOMINATOR },)
 
         t012c036_t = OBSColumn(
@@ -11651,7 +11652,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
         t012c036_m = OBSColumn(
@@ -11659,7 +11660,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_m: DENOMINATOR },)
 
         t012c036_f = OBSColumn(
@@ -11667,7 +11668,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_f: DENOMINATOR },)
 
         t012c037_t = OBSColumn(
@@ -11675,7 +11676,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
         t012c037_m = OBSColumn(
@@ -11683,7 +11684,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_m: DENOMINATOR },)
 
         t012c037_f = OBSColumn(
@@ -11691,7 +11692,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_f: DENOMINATOR },)
 
         t012c038_t = OBSColumn(
@@ -11699,7 +11700,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
         t012c038_m = OBSColumn(
@@ -11707,7 +11708,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_m: DENOMINATOR },)
 
         t012c038_f = OBSColumn(
@@ -11715,7 +11716,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_f: DENOMINATOR },)
 
         t012c039_t = OBSColumn(
@@ -11747,7 +11748,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
 
         t012c040_m = OBSColumn(
@@ -11755,7 +11756,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_m: DENOMINATOR },)
 
         t012c040_f = OBSColumn(
@@ -11763,7 +11764,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_f: DENOMINATOR },)
 
         t012c041_t = OBSColumn(
@@ -11771,7 +11772,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
 
         t012c041_m = OBSColumn(
@@ -11779,7 +11780,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_m: DENOMINATOR },)
 
         t012c041_f = OBSColumn(
@@ -11787,7 +11788,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_f: DENOMINATOR },)
 
         t012c042_t = OBSColumn(
@@ -11795,7 +11796,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
 
         t012c042_m = OBSColumn(
@@ -11803,7 +11804,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_m: DENOMINATOR },)
 
         t012c042_f = OBSColumn(
@@ -11811,7 +11812,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_f: DENOMINATOR },)
 
         t012c043_t = OBSColumn(
@@ -11819,7 +11820,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
 
         t012c043_m = OBSColumn(
@@ -11827,7 +11828,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_m: DENOMINATOR },)
 
         t012c043_f = OBSColumn(
@@ -11835,7 +11836,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_f: DENOMINATOR },)
 
         t013c001_t = OBSColumn(
@@ -12227,7 +12228,7 @@ class NHSColumns(ColumnsTask):
             name='Median income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_t: DENOMINATOR },)
 
         t013c017_m = OBSColumn(
@@ -12235,7 +12236,7 @@ class NHSColumns(ColumnsTask):
             name='Median income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_m: DENOMINATOR },)
 
         t013c017_f = OBSColumn(
@@ -12243,7 +12244,7 @@ class NHSColumns(ColumnsTask):
             name='Median income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_f: DENOMINATOR },)
 
         t013c018_t = OBSColumn(
@@ -12251,7 +12252,7 @@ class NHSColumns(ColumnsTask):
             name='Average income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_t: DENOMINATOR },)
 
         t013c018_m = OBSColumn(
@@ -12259,7 +12260,7 @@ class NHSColumns(ColumnsTask):
             name='Average income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_m: DENOMINATOR },)
 
         t013c018_f = OBSColumn(
@@ -12267,7 +12268,7 @@ class NHSColumns(ColumnsTask):
             name='Average income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_f: DENOMINATOR },)
 
         t013c019_t = OBSColumn(
@@ -12611,7 +12612,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_t: DENOMINATOR },)
 
         t013c033_m = OBSColumn(
@@ -12619,7 +12620,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_m: DENOMINATOR },)
 
         t013c033_f = OBSColumn(
@@ -12627,7 +12628,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_f: DENOMINATOR },)
 
         t013c034_t = OBSColumn(
@@ -12635,7 +12636,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_t: DENOMINATOR },)
 
         t013c034_m = OBSColumn(
@@ -12643,7 +12644,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_m: DENOMINATOR },)
 
         t013c034_f = OBSColumn(
@@ -12651,7 +12652,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_f: DENOMINATOR },)
 
         t013c035_t = OBSColumn(
@@ -12659,7 +12660,7 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c035_m = OBSColumn(
@@ -12667,7 +12668,7 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c035_f = OBSColumn(
@@ -12675,7 +12676,7 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c036_t = OBSColumn(
@@ -12683,7 +12684,7 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
         t013c036_m = OBSColumn(
@@ -12691,7 +12692,7 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
         t013c036_f = OBSColumn(
@@ -12699,7 +12700,7 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
         t013c037_t = OBSColumn(
@@ -12707,7 +12708,7 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
         t013c037_m = OBSColumn(
@@ -12715,7 +12716,7 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
         t013c037_f = OBSColumn(
@@ -12723,7 +12724,7 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
         t013c038_t = OBSColumn(
@@ -12731,7 +12732,7 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_t: DENOMINATOR },)
 
         t013c038_m = OBSColumn(
@@ -12739,7 +12740,7 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_m: DENOMINATOR },)
 
         t013c038_f = OBSColumn(
@@ -12747,7 +12748,7 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_f: DENOMINATOR },)
 
         t013c039_t = OBSColumn(
@@ -12755,7 +12756,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_t: DENOMINATOR },)
 
         t013c039_m = OBSColumn(
@@ -12763,7 +12764,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_m: DENOMINATOR },)
 
         t013c039_f = OBSColumn(
@@ -12771,7 +12772,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_f: DENOMINATOR },)
 
         t013c040_t = OBSColumn(
@@ -12779,7 +12780,7 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
         t013c040_m = OBSColumn(
@@ -12787,7 +12788,7 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
         t013c040_f = OBSColumn(
@@ -12795,7 +12796,7 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
         t013c041_t = OBSColumn(
@@ -12803,7 +12804,7 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
         t013c041_m = OBSColumn(
@@ -12811,7 +12812,7 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
         t013c041_f = OBSColumn(
@@ -12819,7 +12820,7 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
         t013c042_t = OBSColumn(
@@ -12827,7 +12828,7 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
         t013c042_m = OBSColumn(
@@ -12835,7 +12836,7 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
         t013c042_f = OBSColumn(
@@ -12843,7 +12844,7 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
         t013c043_t = OBSColumn(
@@ -12851,7 +12852,7 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
         t013c043_m = OBSColumn(
@@ -12859,7 +12860,7 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
         t013c043_f = OBSColumn(
@@ -12867,7 +12868,7 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
         t013c044_t = OBSColumn(
@@ -12875,7 +12876,7 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
         t013c044_m = OBSColumn(
@@ -12883,7 +12884,7 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
         t013c044_f = OBSColumn(
@@ -12891,7 +12892,7 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
         t013c045_t = OBSColumn(
@@ -12899,7 +12900,7 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
         t013c045_m = OBSColumn(
@@ -12907,7 +12908,7 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
         t013c045_f = OBSColumn(
@@ -12915,7 +12916,7 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
         t013c046_t = OBSColumn(
@@ -12923,7 +12924,7 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
         t013c046_m = OBSColumn(
@@ -12931,7 +12932,7 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
         t013c046_f = OBSColumn(
@@ -12939,7 +12940,7 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
         t013c047_t = OBSColumn(
@@ -12947,7 +12948,7 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
         t013c047_m = OBSColumn(
@@ -12955,7 +12956,7 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
         t013c047_f = OBSColumn(
@@ -12963,7 +12964,7 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
         t013c048_t = OBSColumn(
@@ -12971,7 +12972,7 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
         t013c048_m = OBSColumn(
@@ -12979,7 +12980,7 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
         t013c048_f = OBSColumn(
@@ -12987,7 +12988,7 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
         t013c049_t = OBSColumn(
@@ -12995,7 +12996,7 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
         t013c049_m = OBSColumn(
@@ -13003,7 +13004,7 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
         t013c049_f = OBSColumn(
@@ -13011,7 +13012,7 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
         t013c050_t = OBSColumn(
@@ -13019,7 +13020,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
         t013c050_m = OBSColumn(
@@ -13027,7 +13028,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
         t013c050_f = OBSColumn(
@@ -13035,7 +13036,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
         t013c051_t = OBSColumn(
@@ -13043,7 +13044,7 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c051_m = OBSColumn(
@@ -13051,7 +13052,7 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c051_f = OBSColumn(
@@ -13059,7 +13060,7 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c052_t = OBSColumn(
@@ -13091,7 +13092,7 @@ class NHSColumns(ColumnsTask):
             name='Median employment income in 2010 ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_t: DENOMINATOR },)
 
         t013c053_m = OBSColumn(
@@ -13099,7 +13100,7 @@ class NHSColumns(ColumnsTask):
             name='Median employment income in 2010 ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_m: DENOMINATOR },)
 
         t013c053_f = OBSColumn(
@@ -13107,7 +13108,7 @@ class NHSColumns(ColumnsTask):
             name='Median employment income in 2010 ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_f: DENOMINATOR },)
 
         t013c054_t = OBSColumn(
@@ -13115,7 +13116,7 @@ class NHSColumns(ColumnsTask):
             name='Average employment income in 2010 ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_t: DENOMINATOR },)
 
         t013c054_m = OBSColumn(
@@ -13123,7 +13124,7 @@ class NHSColumns(ColumnsTask):
             name='Average employment income in 2010 ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_m: DENOMINATOR },)
 
         t013c054_f = OBSColumn(
@@ -13131,7 +13132,7 @@ class NHSColumns(ColumnsTask):
             name='Average employment income in 2010 ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_f: DENOMINATOR },)
 
         t013c055_t = OBSColumn(
@@ -13163,7 +13164,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
         t013c056_m = OBSColumn(
@@ -13171,7 +13172,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_m: DENOMINATOR },)
 
         t013c056_f = OBSColumn(
@@ -13179,7 +13180,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_f: DENOMINATOR },)
 
         t013c057_t = OBSColumn(
@@ -13187,7 +13188,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
         t013c057_m = OBSColumn(
@@ -13195,7 +13196,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_m: DENOMINATOR },)
 
         t013c057_f = OBSColumn(
@@ -13203,7 +13204,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_f: DENOMINATOR },)
 
         t013c058_t = OBSColumn(
@@ -13211,7 +13212,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
         t013c058_m = OBSColumn(
@@ -13219,7 +13220,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_m: DENOMINATOR },)
 
         t013c058_f = OBSColumn(
@@ -13227,7 +13228,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_f: DENOMINATOR },)
 
         t013c059_t = OBSColumn(
@@ -13235,7 +13236,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
         t013c059_m = OBSColumn(
@@ -13243,7 +13244,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_m: DENOMINATOR },)
 
         t013c059_f = OBSColumn(
@@ -13251,7 +13252,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_f: DENOMINATOR },)
 
         t013c060_t = OBSColumn(
@@ -13307,7 +13308,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
         t013c062_m = OBSColumn(
@@ -13315,7 +13316,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_m: DENOMINATOR },)
 
         t013c062_f = OBSColumn(
@@ -13323,7 +13324,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_f: DENOMINATOR },)
 
         t013c063_t = OBSColumn(
@@ -13331,7 +13332,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
         t013c063_m = OBSColumn(
@@ -13339,7 +13340,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_m: DENOMINATOR },)
 
         t013c063_f = OBSColumn(
@@ -13347,7 +13348,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_f: DENOMINATOR },)
 
         t013c064_t = OBSColumn(
@@ -13355,7 +13356,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
         t013c064_m = OBSColumn(
@@ -13363,7 +13364,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_m: DENOMINATOR },)
 
         t013c064_f = OBSColumn(
@@ -13371,7 +13372,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_f: DENOMINATOR },)
 
         t013c065_t = OBSColumn(
@@ -13379,7 +13380,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
         t013c065_m = OBSColumn(
@@ -13387,7 +13388,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_m: DENOMINATOR },)
 
         t013c065_f = OBSColumn(
@@ -13395,7 +13396,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_f: DENOMINATOR },)
 
         t013c066_t = OBSColumn(
@@ -13451,7 +13452,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
         t013c068_m = OBSColumn(
@@ -13459,7 +13460,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_m: DENOMINATOR },)
 
         t013c068_f = OBSColumn(
@@ -13467,7 +13468,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_f: DENOMINATOR },)
 
         t013c069_t = OBSColumn(
@@ -13475,7 +13476,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
         t013c069_m = OBSColumn(
@@ -13483,7 +13484,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_m: DENOMINATOR },)
 
         t013c069_f = OBSColumn(
@@ -13491,7 +13492,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_f: DENOMINATOR },)
 
         t013c070_t = OBSColumn(
@@ -13499,7 +13500,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
         t013c070_m = OBSColumn(
@@ -13507,7 +13508,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_m: DENOMINATOR },)
 
         t013c070_f = OBSColumn(
@@ -13515,7 +13516,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_f: DENOMINATOR },)
 
         t013c071_t = OBSColumn(
@@ -13523,7 +13524,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
         t013c071_m = OBSColumn(
@@ -13531,7 +13532,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_m: DENOMINATOR },)
 
         t013c071_f = OBSColumn(
@@ -13539,7 +13540,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_f: DENOMINATOR },)
 
         t013c072_t = OBSColumn(
@@ -13595,7 +13596,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
         t013c074_m = OBSColumn(
@@ -13603,7 +13604,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_m: DENOMINATOR },)
 
         t013c074_f = OBSColumn(
@@ -13611,7 +13612,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_f: DENOMINATOR },)
 
         t013c075_t = OBSColumn(
@@ -13619,7 +13620,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
         t013c075_m = OBSColumn(
@@ -13627,7 +13628,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_m: DENOMINATOR },)
 
         t013c075_f = OBSColumn(
@@ -13635,7 +13636,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_f: DENOMINATOR },)
 
         t013c076_t = OBSColumn(
@@ -13643,7 +13644,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
         t013c076_m = OBSColumn(
@@ -13651,7 +13652,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_m: DENOMINATOR },)
 
         t013c076_f = OBSColumn(
@@ -13659,7 +13660,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_f: DENOMINATOR },)
 
         t013c077_t = OBSColumn(
@@ -13667,7 +13668,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
         t013c077_m = OBSColumn(
@@ -13675,7 +13676,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_m: DENOMINATOR },)
 
         t013c077_f = OBSColumn(
@@ -13683,7 +13684,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_f: DENOMINATOR },)
 
         t013c078_t = OBSColumn(
@@ -13739,7 +13740,7 @@ class NHSColumns(ColumnsTask):
             name='Median total income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_t: DENOMINATOR },)
 
         t013c080_m = OBSColumn(
@@ -13747,7 +13748,7 @@ class NHSColumns(ColumnsTask):
             name='Median total income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_m: DENOMINATOR },)
 
         t013c080_f = OBSColumn(
@@ -13755,7 +13756,7 @@ class NHSColumns(ColumnsTask):
             name='Median total income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: DENOMINATOR },)
 
         t013c081_t = OBSColumn(
@@ -13763,7 +13764,7 @@ class NHSColumns(ColumnsTask):
             name='Average total income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_t: DENOMINATOR },)
 
         t013c081_m = OBSColumn(
@@ -13771,7 +13772,7 @@ class NHSColumns(ColumnsTask):
             name='Average total income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_m: DENOMINATOR },)
 
         t013c081_f = OBSColumn(
@@ -13779,7 +13780,7 @@ class NHSColumns(ColumnsTask):
             name='Average total income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: DENOMINATOR },)
 
         t013c082_t = OBSColumn(
@@ -13787,7 +13788,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_t: DENOMINATOR },)
 
         t013c082_m = OBSColumn(
@@ -13795,7 +13796,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_m: DENOMINATOR },)
 
         t013c082_f = OBSColumn(
@@ -13803,7 +13804,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: DENOMINATOR },)
 
         t013c083_t = OBSColumn(
@@ -13811,7 +13812,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_t: DENOMINATOR },)
 
         t013c083_m = OBSColumn(
@@ -13819,7 +13820,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_m: DENOMINATOR },)
 
         t013c083_f = OBSColumn(
@@ -13827,7 +13828,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: DENOMINATOR },)
 
         t013c084_t = OBSColumn(
@@ -14387,7 +14388,7 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c107_m = OBSColumn(
@@ -14395,7 +14396,7 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c107_f = OBSColumn(
@@ -14403,7 +14404,7 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
         t013c108_t = OBSColumn(
@@ -14411,7 +14412,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
         t013c108_m = OBSColumn(
@@ -14419,7 +14420,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
         t013c108_f = OBSColumn(
@@ -14427,7 +14428,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
         t013c109_t = OBSColumn(
@@ -14435,7 +14436,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_t: DENOMINATOR },)
 
         t013c109_m = OBSColumn(
@@ -14443,7 +14444,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_m: DENOMINATOR },)
 
         t013c109_f = OBSColumn(
@@ -14451,7 +14452,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_f: DENOMINATOR },)
 
         t013c110_t = OBSColumn(
@@ -14459,7 +14460,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
         t013c110_m = OBSColumn(
@@ -14467,7 +14468,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
         t013c110_f = OBSColumn(
@@ -14475,7 +14476,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
         t013c111_t = OBSColumn(
@@ -14483,7 +14484,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
         t013c111_m = OBSColumn(
@@ -14491,7 +14492,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
         t013c111_f = OBSColumn(
@@ -14499,7 +14500,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
         t014c001_t = OBSColumn(
@@ -16019,7 +16020,7 @@ class NHSColumns(ColumnsTask):
             name='Median commuting duration (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['transportation']],
+            tags=[ca, unit_minutes, subsections['transportation']],
             targets={},)
 
         t017c002_m = OBSColumn(
@@ -16027,7 +16028,7 @@ class NHSColumns(ColumnsTask):
             name='Median commuting duration (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['transportation']],
+            tags=[ca, unit_minutes, subsections['transportation']],
             targets={},)
 
         t017c002_f = OBSColumn(
@@ -16035,7 +16036,7 @@ class NHSColumns(ColumnsTask):
             name='Median commuting duration (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['transportation']],
+            tags=[ca, unit_minutes, subsections['transportation']],
             targets={},)
 
         t018c001_t = OBSColumn(
@@ -22139,7 +22140,7 @@ class NHSColumns(ColumnsTask):
             name='% of owner households with a mortgage (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
         t026c006_m = OBSColumn(
@@ -22147,7 +22148,7 @@ class NHSColumns(ColumnsTask):
             name='% of owner households with a mortgage (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_m: DENOMINATOR },)
 
         t026c006_f = OBSColumn(
@@ -22155,7 +22156,7 @@ class NHSColumns(ColumnsTask):
             name='% of owner households with a mortgage (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_f: DENOMINATOR },)
 
         t026c007_t = OBSColumn(
@@ -22163,7 +22164,7 @@ class NHSColumns(ColumnsTask):
             name='% of owner households spending 30% or more of household total income on shelter costs (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
         t026c007_m = OBSColumn(
@@ -22171,7 +22172,7 @@ class NHSColumns(ColumnsTask):
             name='% of owner households spending 30% or more of household total income on shelter costs (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_m: DENOMINATOR },)
 
         t026c007_f = OBSColumn(
@@ -22179,7 +22180,7 @@ class NHSColumns(ColumnsTask):
             name='% of owner households spending 30% or more of household total income on shelter costs (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_f: DENOMINATOR },)
 
         t026c008_t = OBSColumn(
@@ -22187,7 +22188,7 @@ class NHSColumns(ColumnsTask):
             name='Median monthly shelter costs for owned dwellings ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
         t026c008_m = OBSColumn(
@@ -22195,7 +22196,7 @@ class NHSColumns(ColumnsTask):
             name='Median monthly shelter costs for owned dwellings ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_m: DENOMINATOR },)
 
         t026c008_f = OBSColumn(
@@ -22203,7 +22204,7 @@ class NHSColumns(ColumnsTask):
             name='Median monthly shelter costs for owned dwellings ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_f: DENOMINATOR },)
 
         t026c009_t = OBSColumn(
@@ -22211,7 +22212,7 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for owned dwellings ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
         t026c009_m = OBSColumn(
@@ -22219,7 +22220,7 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for owned dwellings ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_m: DENOMINATOR },)
 
         t026c009_f = OBSColumn(
@@ -22227,7 +22228,7 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for owned dwellings ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_f: DENOMINATOR },)
 
         t026c010_t = OBSColumn(
@@ -22235,7 +22236,7 @@ class NHSColumns(ColumnsTask):
             name='Median value of dwellings ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
         t026c010_m = OBSColumn(
@@ -22243,7 +22244,7 @@ class NHSColumns(ColumnsTask):
             name='Median value of dwellings ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_m: DENOMINATOR },)
 
         t026c010_f = OBSColumn(
@@ -22251,7 +22252,7 @@ class NHSColumns(ColumnsTask):
             name='Median value of dwellings ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_f: DENOMINATOR },)
 
         t026c011_t = OBSColumn(
@@ -22259,7 +22260,7 @@ class NHSColumns(ColumnsTask):
             name='Average value of dwellings ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
         t026c011_m = OBSColumn(
@@ -22267,7 +22268,7 @@ class NHSColumns(ColumnsTask):
             name='Average value of dwellings ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_m: DENOMINATOR },)
 
         t026c011_f = OBSColumn(
@@ -22275,7 +22276,7 @@ class NHSColumns(ColumnsTask):
             name='Average value of dwellings ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_f: DENOMINATOR },)
 
         t026c012_t = OBSColumn(
@@ -22307,7 +22308,7 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households in subsidized housing (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
         t026c013_m = OBSColumn(
@@ -22315,7 +22316,7 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households in subsidized housing (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_m: DENOMINATOR },)
 
         t026c013_f = OBSColumn(
@@ -22323,7 +22324,7 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households in subsidized housing (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_f: DENOMINATOR },)
 
         t026c014_t = OBSColumn(
@@ -22331,7 +22332,7 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households spending 30% or more of household total income on shelter costs (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
         t026c014_m = OBSColumn(
@@ -22339,7 +22340,7 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households spending 30% or more of household total income on shelter costs (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_m: DENOMINATOR },)
 
         t026c014_f = OBSColumn(
@@ -22347,7 +22348,7 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households spending 30% or more of household total income on shelter costs (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_f: DENOMINATOR },)
 
         t026c015_t = OBSColumn(
@@ -22355,7 +22356,7 @@ class NHSColumns(ColumnsTask):
             name='Median monthly shelter costs for rented dwellings ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
         t026c015_m = OBSColumn(
@@ -22363,7 +22364,7 @@ class NHSColumns(ColumnsTask):
             name='Median monthly shelter costs for rented dwellings ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_m: DENOMINATOR },)
 
         t026c015_f = OBSColumn(
@@ -22371,7 +22372,7 @@ class NHSColumns(ColumnsTask):
             name='Median monthly shelter costs for rented dwellings ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_f: DENOMINATOR },)
 
         t026c016_t = OBSColumn(
@@ -22379,7 +22380,7 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for rented dwellings ($) (total)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
         t026c016_m = OBSColumn(
@@ -22387,7 +22388,7 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for rented dwellings ($) (male)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_m: DENOMINATOR },)
 
         t026c016_f = OBSColumn(
@@ -22395,7 +22396,7 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for rented dwellings ($) (female)',
             type='Numeric',
             weight=3,
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_f: DENOMINATOR },)
 
         t027c001_t = OBSColumn(
