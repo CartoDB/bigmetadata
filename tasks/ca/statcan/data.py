@@ -235,3 +235,12 @@ class NHS(Survey):
 
     def timespan(self):
         return 2011
+
+
+class AllNHSTopics(BaseParams, WrapperTask):
+    def requires(self):
+        topic_range = range(1, 30)   # 1-29
+
+        for count in topic_range:
+            topic = 't{:03d}'.format(count)
+            yield NHS(resolution=self.resolution, topic=topic)
