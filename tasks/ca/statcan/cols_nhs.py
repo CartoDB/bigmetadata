@@ -8362,23 +8362,7 @@ class NHSColumns(ColumnsTask):
 
         t009c001_t = OBSColumn(
             id='t009c001_t',
-            name='Total number of private households by tenure (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c001_m = OBSColumn(
-            id='t009c001_m',
-            name='Total number of private households by tenure (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c001_f = OBSColumn(
-            id='t009c001_f',
-            name='Total number of private households by tenure (female)',
+            name='Total number of private households by tenure',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
@@ -8386,95 +8370,31 @@ class NHSColumns(ColumnsTask):
 
         t009c002_t = OBSColumn(
             id='t009c002_t',
-            name='Owner (total)',
+            name='Owner',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
-
-        t009c002_m = OBSColumn(
-            id='t009c002_m',
-            name='Owner (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c001_m: DENOMINATOR },)
-
-        t009c002_f = OBSColumn(
-            id='t009c002_f',
-            name='Owner (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c001_f: DENOMINATOR },)
 
         t009c003_t = OBSColumn(
             id='t009c003_t',
-            name='Renter (total)',
+            name='Renter',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
-
-        t009c003_m = OBSColumn(
-            id='t009c003_m',
-            name='Renter (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c001_m: DENOMINATOR },)
-
-        t009c003_f = OBSColumn(
-            id='t009c003_f',
-            name='Renter (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c001_f: DENOMINATOR },)
 
         t009c004_t = OBSColumn(
             id='t009c004_t',
-            name='Band housing (total)',
+            name='Band housing',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
-        t009c004_m = OBSColumn(
-            id='t009c004_m',
-            name='Band housing (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c001_m: DENOMINATOR },)
-
-        t009c004_f = OBSColumn(
-            id='t009c004_f',
-            name='Band housing (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c001_f: DENOMINATOR },)
-
         t009c005_t = OBSColumn(
             id='t009c005_t',
-            name='Total number of private households by condominium status (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c005_m = OBSColumn(
-            id='t009c005_m',
-            name='Total number of private households by condominium status (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c005_f = OBSColumn(
-            id='t009c005_f',
-            name='Total number of private households by condominium status (female)',
+            name='Total number of private households by condominium status',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
@@ -8482,71 +8402,23 @@ class NHSColumns(ColumnsTask):
 
         t009c006_t = OBSColumn(
             id='t009c006_t',
-            name='Part of a condominium development (total)',
+            name='Part of a condominium development',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_t: DENOMINATOR },)
-
-        t009c006_m = OBSColumn(
-            id='t009c006_m',
-            name='Part of a condominium development (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c005_m: DENOMINATOR },)
-
-        t009c006_f = OBSColumn(
-            id='t009c006_f',
-            name='Part of a condominium development (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c005_f: DENOMINATOR },)
 
         t009c007_t = OBSColumn(
             id='t009c007_t',
-            name='Not part of a condominium development (total)',
+            name='Not part of a condominium development',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_t: DENOMINATOR },)
 
-        t009c007_m = OBSColumn(
-            id='t009c007_m',
-            name='Not part of a condominium development (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c005_m: DENOMINATOR },)
-
-        t009c007_f = OBSColumn(
-            id='t009c007_f',
-            name='Not part of a condominium development (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c005_f: DENOMINATOR },)
-
         t009c008_t = OBSColumn(
             id='t009c008_t',
-            name='Total number of private households by number of household maintainers (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c008_m = OBSColumn(
-            id='t009c008_m',
-            name='Total number of private households by number of household maintainers (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c008_f = OBSColumn(
-            id='t009c008_f',
-            name='Total number of private households by number of household maintainers (female)',
+            name='Total number of private households by number of household maintainers',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
@@ -8554,95 +8426,31 @@ class NHSColumns(ColumnsTask):
 
         t009c009_t = OBSColumn(
             id='t009c009_t',
-            name='1 household maintainer (total)',
+            name='1 household maintainer',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
-
-        t009c009_m = OBSColumn(
-            id='t009c009_m',
-            name='1 household maintainer (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c008_m: DENOMINATOR },)
-
-        t009c009_f = OBSColumn(
-            id='t009c009_f',
-            name='1 household maintainer (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c008_f: DENOMINATOR },)
 
         t009c010_t = OBSColumn(
             id='t009c010_t',
-            name='2 household maintainers (total)',
+            name='2 household maintainers',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
-
-        t009c010_m = OBSColumn(
-            id='t009c010_m',
-            name='2 household maintainers (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c008_m: DENOMINATOR },)
-
-        t009c010_f = OBSColumn(
-            id='t009c010_f',
-            name='2 household maintainers (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c008_f: DENOMINATOR },)
 
         t009c011_t = OBSColumn(
             id='t009c011_t',
-            name='3 or more household maintainers (total)',
+            name='3 or more household maintainers',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
 
-        t009c011_m = OBSColumn(
-            id='t009c011_m',
-            name='3 or more household maintainers (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c008_m: DENOMINATOR },)
-
-        t009c011_f = OBSColumn(
-            id='t009c011_f',
-            name='3 or more household maintainers (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c008_f: DENOMINATOR },)
-
         t009c012_t = OBSColumn(
             id='t009c012_t',
-            name='Total number of private households by age group of primary household maintainers (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c012_m = OBSColumn(
-            id='t009c012_m',
-            name='Total number of private households by age group of primary household maintainers (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c012_f = OBSColumn(
-            id='t009c012_f',
-            name='Total number of private households by age group of primary household maintainers (female)',
+            name='Total number of private households by age group of primary household maintainers',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
@@ -8650,191 +8458,63 @@ class NHSColumns(ColumnsTask):
 
         t009c013_t = OBSColumn(
             id='t009c013_t',
-            name='Under 25 years (total)',
+            name='Under 25 years',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
-
-        t009c013_m = OBSColumn(
-            id='t009c013_m',
-            name='Under 25 years (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_m: DENOMINATOR },)
-
-        t009c013_f = OBSColumn(
-            id='t009c013_f',
-            name='Under 25 years (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_f: DENOMINATOR },)
 
         t009c014_t = OBSColumn(
             id='t009c014_t',
-            name='25 to 34 years (total)',
+            name='25 to 34 years',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
-
-        t009c014_m = OBSColumn(
-            id='t009c014_m',
-            name='25 to 34 years (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_m: DENOMINATOR },)
-
-        t009c014_f = OBSColumn(
-            id='t009c014_f',
-            name='25 to 34 years (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_f: DENOMINATOR },)
 
         t009c015_t = OBSColumn(
             id='t009c015_t',
-            name='35 to 44 years (total)',
+            name='35 to 44 years',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
-
-        t009c015_m = OBSColumn(
-            id='t009c015_m',
-            name='35 to 44 years (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_m: DENOMINATOR },)
-
-        t009c015_f = OBSColumn(
-            id='t009c015_f',
-            name='35 to 44 years (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_f: DENOMINATOR },)
 
         t009c016_t = OBSColumn(
             id='t009c016_t',
-            name='45 to 54 years (total)',
+            name='45 to 54 years',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
-
-        t009c016_m = OBSColumn(
-            id='t009c016_m',
-            name='45 to 54 years (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_m: DENOMINATOR },)
-
-        t009c016_f = OBSColumn(
-            id='t009c016_f',
-            name='45 to 54 years (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_f: DENOMINATOR },)
 
         t009c017_t = OBSColumn(
             id='t009c017_t',
-            name='55 to 64 years (total)',
+            name='55 to 64 years',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
-
-        t009c017_m = OBSColumn(
-            id='t009c017_m',
-            name='55 to 64 years (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_m: DENOMINATOR },)
-
-        t009c017_f = OBSColumn(
-            id='t009c017_f',
-            name='55 to 64 years (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_f: DENOMINATOR },)
 
         t009c018_t = OBSColumn(
             id='t009c018_t',
-            name='65 to 74 years (total)',
+            name='65 to 74 years',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
-
-        t009c018_m = OBSColumn(
-            id='t009c018_m',
-            name='65 to 74 years (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_m: DENOMINATOR },)
-
-        t009c018_f = OBSColumn(
-            id='t009c018_f',
-            name='65 to 74 years (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_f: DENOMINATOR },)
 
         t009c019_t = OBSColumn(
             id='t009c019_t',
-            name='75 years and over (total)',
+            name='75 years and over',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
-        t009c019_m = OBSColumn(
-            id='t009c019_m',
-            name='75 years and over (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_m: DENOMINATOR },)
-
-        t009c019_f = OBSColumn(
-            id='t009c019_f',
-            name='75 years and over (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c012_f: DENOMINATOR },)
-
         t009c020_t = OBSColumn(
             id='t009c020_t',
-            name='Total number of private households by number of persons per room (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c020_m = OBSColumn(
-            id='t009c020_m',
-            name='Total number of private households by number of persons per room (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c020_f = OBSColumn(
-            id='t009c020_f',
-            name='Total number of private households by number of persons per room (female)',
+            name='Total number of private households by number of persons per room',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
@@ -8842,51 +8522,19 @@ class NHSColumns(ColumnsTask):
 
         t009c021_t = OBSColumn(
             id='t009c021_t',
-            name='One person or fewer per room (total)',
+            name='One person or fewer per room',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_t: DENOMINATOR },)
-
-        t009c021_m = OBSColumn(
-            id='t009c021_m',
-            name='One person or fewer per room (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c020_m: DENOMINATOR },)
-
-        t009c021_f = OBSColumn(
-            id='t009c021_f',
-            name='One person or fewer per room (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c020_f: DENOMINATOR },)
 
         t009c022_t = OBSColumn(
             id='t009c022_t',
-            name='More than one person per room (total)',
+            name='More than one person per room',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_t: DENOMINATOR },)
-
-        t009c022_m = OBSColumn(
-            id='t009c022_m',
-            name='More than one person per room (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c020_m: DENOMINATOR },)
-
-        t009c022_f = OBSColumn(
-            id='t009c022_f',
-            name='More than one person per room (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c020_f: DENOMINATOR },)
 
         t009c023_t = OBSColumn(
             id='t009c023_t',
@@ -8896,17 +8544,7 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
-        t009c023_m = OBSColumn(
-            id='t009c023_m',
-            name='Total number of private households by housing suitability (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
-        t009c023_f = OBSColumn(
-            id='t009c023_f',
-            name='Total number of private households by housing suitability (female)',
+            name='Total number of private households by housing suitability',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
@@ -8914,51 +8552,19 @@ class NHSColumns(ColumnsTask):
 
         t009c024_t = OBSColumn(
             id='t009c024_t',
-            name='Suitable (total)',
+            name='Suitable',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_t: DENOMINATOR },)
-
-        t009c024_m = OBSColumn(
-            id='t009c024_m',
-            name='Suitable (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c023_m: DENOMINATOR },)
-
-        t009c024_f = OBSColumn(
-            id='t009c024_f',
-            name='Suitable (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c023_f: DENOMINATOR },)
 
         t009c025_t = OBSColumn(
             id='t009c025_t',
-            name='Not suitable (total)',
+            name='Not suitable',
             type='Numeric',
             weight=3,
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_t: DENOMINATOR },)
-
-        t009c025_m = OBSColumn(
-            id='t009c025_m',
-            name='Not suitable (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c023_m: DENOMINATOR },)
-
-        t009c025_f = OBSColumn(
-            id='t009c025_f',
-            name='Not suitable (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={ t009c023_f: DENOMINATOR },)
 
         t010c001_t = OBSColumn(
             id='t010c001_t',
@@ -24115,80 +23721,30 @@ class NHSColumns(ColumnsTask):
             ('t008c004_m', t008c004_m),
             ('t008c004_f', t008c004_f),
             ('t009c001_t', t009c001_t),
-            ('t009c001_m', t009c001_m),
-            ('t009c001_f', t009c001_f),
             ('t009c002_t', t009c002_t),
-            ('t009c002_m', t009c002_m),
-            ('t009c002_f', t009c002_f),
             ('t009c003_t', t009c003_t),
-            ('t009c003_m', t009c003_m),
-            ('t009c003_f', t009c003_f),
             ('t009c004_t', t009c004_t),
-            ('t009c004_m', t009c004_m),
-            ('t009c004_f', t009c004_f),
             ('t009c005_t', t009c005_t),
-            ('t009c005_m', t009c005_m),
-            ('t009c005_f', t009c005_f),
             ('t009c006_t', t009c006_t),
-            ('t009c006_m', t009c006_m),
-            ('t009c006_f', t009c006_f),
             ('t009c007_t', t009c007_t),
-            ('t009c007_m', t009c007_m),
-            ('t009c007_f', t009c007_f),
             ('t009c008_t', t009c008_t),
-            ('t009c008_m', t009c008_m),
-            ('t009c008_f', t009c008_f),
             ('t009c009_t', t009c009_t),
-            ('t009c009_m', t009c009_m),
-            ('t009c009_f', t009c009_f),
             ('t009c010_t', t009c010_t),
-            ('t009c010_m', t009c010_m),
-            ('t009c010_f', t009c010_f),
             ('t009c011_t', t009c011_t),
-            ('t009c011_m', t009c011_m),
-            ('t009c011_f', t009c011_f),
             ('t009c012_t', t009c012_t),
-            ('t009c012_m', t009c012_m),
-            ('t009c012_f', t009c012_f),
             ('t009c013_t', t009c013_t),
-            ('t009c013_m', t009c013_m),
-            ('t009c013_f', t009c013_f),
             ('t009c014_t', t009c014_t),
-            ('t009c014_m', t009c014_m),
-            ('t009c014_f', t009c014_f),
             ('t009c015_t', t009c015_t),
-            ('t009c015_m', t009c015_m),
-            ('t009c015_f', t009c015_f),
             ('t009c016_t', t009c016_t),
-            ('t009c016_m', t009c016_m),
-            ('t009c016_f', t009c016_f),
             ('t009c017_t', t009c017_t),
-            ('t009c017_m', t009c017_m),
-            ('t009c017_f', t009c017_f),
             ('t009c018_t', t009c018_t),
-            ('t009c018_m', t009c018_m),
-            ('t009c018_f', t009c018_f),
             ('t009c019_t', t009c019_t),
-            ('t009c019_m', t009c019_m),
-            ('t009c019_f', t009c019_f),
             ('t009c020_t', t009c020_t),
-            ('t009c020_m', t009c020_m),
-            ('t009c020_f', t009c020_f),
             ('t009c021_t', t009c021_t),
-            ('t009c021_m', t009c021_m),
-            ('t009c021_f', t009c021_f),
             ('t009c022_t', t009c022_t),
-            ('t009c022_m', t009c022_m),
-            ('t009c022_f', t009c022_f),
             ('t009c023_t', t009c023_t),
-            ('t009c023_m', t009c023_m),
-            ('t009c023_f', t009c023_f),
             ('t009c024_t', t009c024_t),
-            ('t009c024_m', t009c024_m),
-            ('t009c024_f', t009c024_f),
             ('t009c025_t', t009c025_t),
-            ('t009c025_m', t009c025_m),
-            ('t009c025_f', t009c025_f),
             ('t010c001_t', t010c001_t),
             ('t010c001_m', t010c001_m),
             ('t010c001_f', t010c001_f),
