@@ -710,7 +710,6 @@ class CensusColumns(ColumnsTask):
             name='% of the population aged 15 and over (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['age_gender']],
             targets={},)
 
@@ -719,7 +718,6 @@ class CensusColumns(ColumnsTask):
             name='% of the population aged 15 and over (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['age_gender']],
             targets={},)
 
@@ -728,7 +726,6 @@ class CensusColumns(ColumnsTask):
             name='% of the population aged 15 and over (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['age_gender']],
             targets={},)
 
@@ -11312,7 +11309,6 @@ class CensusColumns(ColumnsTask):
             name='2006 to 2011 population change (%)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['segments']],
             targets={},)
 
