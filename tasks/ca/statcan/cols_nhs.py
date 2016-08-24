@@ -11980,9 +11980,9 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_t: DENOMINATOR },)
+            targets={ t012c029_t: UNIVERSE },)
 
         t012c032_t = OBSColumn(
             id='t012c032_t',
@@ -11998,9 +11998,9 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_t: DENOMINATOR },)
+            targets={ t012c029_t: UNIVERSE },)
 
         t012c034_t = OBSColumn(
             id='t012c034_t',
@@ -12025,9 +12025,9 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_t: DENOMINATOR },)
+            targets={ t012c034_t: UNIVERSE },)
 
         t012c037_t = OBSColumn(
             id='t012c037_t',
@@ -12043,9 +12043,9 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_t: DENOMINATOR },)
+            targets={ t012c034_t: UNIVERSE },)
 
         t012c039_t = OBSColumn(
             id='t012c039_t',
@@ -12070,9 +12070,9 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_t: DENOMINATOR },)
+            targets={ t012c039_t: UNIVERSE },)
 
         t012c042_t = OBSColumn(
             id='t012c042_t',
@@ -12088,9 +12088,9 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_t: DENOMINATOR },)
+            targets={ t012c039_t: UNIVERSE },)
 
         t013c001_t = OBSColumn(
             id='t013c001_t',
@@ -12556,27 +12556,27 @@ class NHSColumns(ColumnsTask):
             name='Average income ($) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_t: DENOMINATOR },)
+            targets={ t013c001_t: UNIVERSE },)
 
         t013c018_m = OBSColumn(
             id='t013c018_m',
             name='Average income ($) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_m: DENOMINATOR },)
+            targets={ t013c001_m: UNIVERSE },)
 
         t013c018_f = OBSColumn(
             id='t013c018_f',
             name='Average income ($) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_f: DENOMINATOR },)
+            targets={ t013c001_f: UNIVERSE },)
 
         t013c019_t = OBSColumn(
             id='t013c019_t',
@@ -12988,27 +12988,27 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_t: DENOMINATOR },)
+            targets={ t013c019_t: UNIVERSE },)
 
         t013c034_m = OBSColumn(
             id='t013c034_m',
             name='Average after-tax income ($) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_m: DENOMINATOR },)
+            targets={ t013c019_m: UNIVERSE },)
 
         t013c034_f = OBSColumn(
             id='t013c034_f',
             name='Average after-tax income ($) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_f: DENOMINATOR },)
+            targets={ t013c019_f: UNIVERSE },)
 
         t013c035_t = OBSColumn(
             id='t013c035_t',
@@ -13477,27 +13477,27 @@ class NHSColumns(ColumnsTask):
             name='Average employment income in 2010 ($) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c052_t: DENOMINATOR },)
+            targets={ t013c052_t: UNIVERSE },)
 
         t013c054_m = OBSColumn(
             id='t013c054_m',
             name='Average employment income in 2010 ($) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c052_m: DENOMINATOR },)
+            targets={ t013c052_m: UNIVERSE },)
 
         t013c054_f = OBSColumn(
             id='t013c054_f',
             name='Average employment income in 2010 ($) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c052_f: DENOMINATOR },)
+            targets={ t013c052_f: UNIVERSE },)
 
         t013c055_t = OBSColumn(
             id='t013c055_t',
@@ -13522,9 +13522,9 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_t: DENOMINATOR },)
+            targets={ t013c055_t: UNIVERSE },)
 
         t013c058_t = OBSColumn(
             id='t013c058_t',
@@ -13540,18 +13540,18 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_t: DENOMINATOR },)
+            targets={ t013c055_t: UNIVERSE },)
 
         t013c060_t = OBSColumn(
             id='t013c060_t',
             name='Average family size',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_t: DENOMINATOR },)
+            targets={ t013c055_t: UNIVERSE },)
 
         t013c061_t = OBSColumn(
             id='t013c061_t',
@@ -13576,9 +13576,9 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_t: DENOMINATOR },)
+            targets={ t013c061_t: UNIVERSE },)
 
         t013c064_t = OBSColumn(
             id='t013c064_t',
@@ -13594,18 +13594,18 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_t: DENOMINATOR },)
+            targets={ t013c061_t: UNIVERSE },)
 
         t013c066_t = OBSColumn(
             id='t013c066_t',
             name='Average family size',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c061_t: DENOMINATOR },)
+            targets={ t013c061_t: UNIVERSE },)
 
         t013c067_t = OBSColumn(
             id='t013c067_t',
@@ -13630,9 +13630,9 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_t: DENOMINATOR },)
+            targets={ t013c067_t: UNIVERSE },)
 
         t013c070_t = OBSColumn(
             id='t013c070_t',
@@ -13648,18 +13648,18 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_t: DENOMINATOR },)
+            targets={ t013c067_t: UNIVERSE },)
 
         t013c072_t = OBSColumn(
             id='t013c072_t',
             name='Average family size',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c067_t: DENOMINATOR },)
+            targets={ t013c067_t: UNIVERSE },)
 
         t013c073_t = OBSColumn(
             id='t013c073_t',
@@ -13684,9 +13684,9 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_t: DENOMINATOR },)
+            targets={ t013c073_t: UNIVERSE },)
 
         t013c076_t = OBSColumn(
             id='t013c076_t',
@@ -13702,18 +13702,18 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_t: DENOMINATOR },)
+            targets={ t013c073_t: UNIVERSE },)
 
         t013c078_t = OBSColumn(
             id='t013c078_t',
             name='Average family size',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c073_t: DENOMINATOR },)
+            targets={ t013c073_t: UNIVERSE },)
 
         t013c079_t = OBSColumn(
             id='t013c079_t',
@@ -13774,27 +13774,27 @@ class NHSColumns(ColumnsTask):
             name='Average total income ($) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c079_t: DENOMINATOR },)
+            targets={ t013c079_t: UNIVERSE },)
 
         t013c081_m = OBSColumn(
             id='t013c081_m',
             name='Average total income ($) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c079_m: DENOMINATOR },)
+            targets={ t013c079_m: UNIVERSE },)
 
         t013c081_f = OBSColumn(
             id='t013c081_f',
             name='Average total income ($) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c079_f: DENOMINATOR },)
+            targets={ t013c079_f: UNIVERSE },)
 
         t013c082_t = OBSColumn(
             id='t013c082_t',
@@ -13828,27 +13828,27 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c079_t: DENOMINATOR },)
+            targets={ t013c079_t: UNIVERSE },)
 
         t013c083_m = OBSColumn(
             id='t013c083_m',
             name='Average after-tax income ($) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c079_m: DENOMINATOR },)
+            targets={ t013c079_m: UNIVERSE },)
 
         t013c083_f = OBSColumn(
             id='t013c083_f',
             name='Average after-tax income ($) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c079_f: DENOMINATOR },)
+            targets={ t013c079_f: UNIVERSE },)
 
         t013c084_t = OBSColumn(
             id='t013c084_t',
@@ -20329,7 +20329,7 @@ class NHSColumns(ColumnsTask):
             name='Average number of rooms per dwelling',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -22721,9 +22721,9 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for owned dwellings ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_t: DENOMINATOR },)
+            targets={ t026c005_t: UNIVERSE },)
 
         t026c010_t = OBSColumn(
             id='t026c010_t',
@@ -22739,9 +22739,9 @@ class NHSColumns(ColumnsTask):
             name='Average value of dwellings ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_t: DENOMINATOR },)
+            targets={ t026c005_t: UNIVERSE },)
 
         t026c012_t = OBSColumn(
             id='t026c012_t',
@@ -22782,9 +22782,9 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for rented dwellings ($)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c012_t: DENOMINATOR },)
+            targets={ t026c012_t: UNIVERSE },)
 
         t027c001_t = OBSColumn(
             id='t027c001_t',
@@ -23520,7 +23520,7 @@ class NHSColumns(ColumnsTask):
             name='Average weeks worked in 2010 (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -23529,7 +23529,7 @@ class NHSColumns(ColumnsTask):
             name='Average weeks worked in 2010 (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -23538,7 +23538,7 @@ class NHSColumns(ColumnsTask):
             name='Average weeks worked in 2010 (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 

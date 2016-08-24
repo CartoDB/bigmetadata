@@ -10058,7 +10058,7 @@ class CensusColumns(ColumnsTask):
             name='Average number of children at home per census family',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_households, subsections['families']],
             targets={},)
 
@@ -10418,7 +10418,7 @@ class CensusColumns(ColumnsTask):
             name='Average number of persons per census family',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -10904,7 +10904,7 @@ class CensusColumns(ColumnsTask):
             name='Average number of persons in private households',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='average',
             tags=[ca, unit_households, subsections['housing']],
             targets={},)
 
