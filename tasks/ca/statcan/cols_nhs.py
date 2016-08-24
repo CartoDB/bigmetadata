@@ -12050,7 +12050,7 @@ class NHSColumns(ColumnsTask):
 
         t013c055_t = OBSColumn(
             id='t013c055_t',
-            name='Family income in 2010 of economic families (total)',
+            name='Family income in 2010 of economic families',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -12242,7 +12242,7 @@ class NHSColumns(ColumnsTask):
 
         t013c079_t = OBSColumn(
             id='t013c079_t',
-            name='Income in 2010 of population aged 15 years and over not in economic families',
+            name='Income in 2010 of population aged 15 years and over not in economic families (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
