@@ -8538,12 +8538,6 @@ class NHSColumns(ColumnsTask):
 
         t009c023_t = OBSColumn(
             id='t009c023_t',
-            name='Total number of private households by housing suitability (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_household, subsections['housing']],
-            targets={},)
-
             name='Total number of private households by housing suitability',
             type='Numeric',
             weight=3,
