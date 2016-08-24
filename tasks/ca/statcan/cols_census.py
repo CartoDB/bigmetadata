@@ -10040,23 +10040,7 @@ class CensusColumns(ColumnsTask):
 
         t010c001_t = OBSColumn(
             id='t010c001_t',
-            name='Population in 2011 (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c001_m = OBSColumn(
-            id='t010c001_m',
-            name='Population in 2011 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c001_f = OBSColumn(
-            id='t010c001_f',
-            name='Population in 2011 (female)',
+            name='Population in 2011',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['segments']],
@@ -10064,23 +10048,7 @@ class CensusColumns(ColumnsTask):
 
         t010c002_t = OBSColumn(
             id='t010c002_t',
-            name='Population in 2006 (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c002_m = OBSColumn(
-            id='t010c002_m',
-            name='Population in 2006 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c002_f = OBSColumn(
-            id='t010c002_f',
-            name='Population in 2006 (female)',
+            name='Population in 2006',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['segments']],
@@ -10088,23 +10056,7 @@ class CensusColumns(ColumnsTask):
 
         t010c003_t = OBSColumn(
             id='t010c003_t',
-            name='2006 to 2011 population change (%) (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c003_m = OBSColumn(
-            id='t010c003_m',
-            name='2006 to 2011 population change (%) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c003_f = OBSColumn(
-            id='t010c003_f',
-            name='2006 to 2011 population change (%) (female)',
+            name='2006 to 2011 population change (%)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['segments']],
@@ -10112,23 +10064,7 @@ class CensusColumns(ColumnsTask):
 
         t010c004_t = OBSColumn(
             id='t010c004_t',
-            name='Total private dwellings (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c004_m = OBSColumn(
-            id='t010c004_m',
-            name='Total private dwellings (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c004_f = OBSColumn(
-            id='t010c004_f',
-            name='Total private dwellings (female)',
+            name='Total private dwellings',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['segments']],
@@ -10136,23 +10072,7 @@ class CensusColumns(ColumnsTask):
 
         t010c005_t = OBSColumn(
             id='t010c005_t',
-            name='Private dwellings occupied by usual residents (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c005_m = OBSColumn(
-            id='t010c005_m',
-            name='Private dwellings occupied by usual residents (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c005_f = OBSColumn(
-            id='t010c005_f',
-            name='Private dwellings occupied by usual residents (female)',
+            name='Private dwellings occupied by usual residents',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['segments']],
@@ -10160,23 +10080,7 @@ class CensusColumns(ColumnsTask):
 
         t010c006_t = OBSColumn(
             id='t010c006_t',
-            name='Population density per square kilometre (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c006_m = OBSColumn(
-            id='t010c006_m',
-            name='Population density per square kilometre (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c006_f = OBSColumn(
-            id='t010c006_f',
-            name='Population density per square kilometre (female)',
+            name='Population density per square kilometre',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['segments']],
@@ -10184,23 +10088,7 @@ class CensusColumns(ColumnsTask):
 
         t010c007_t = OBSColumn(
             id='t010c007_t',
-            name='Land area (square km) (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c007_m = OBSColumn(
-            id='t010c007_m',
-            name='Land area (square km) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
-        t010c007_f = OBSColumn(
-            id='t010c007_f',
-            name='Land area (square km) (female)',
+            name='Land area (square km)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['segments']],
@@ -11459,25 +11347,11 @@ class CensusColumns(ColumnsTask):
             ('t009c009_m', t009c009_m),
             ('t009c009_f', t009c009_f),
             ('t010c001_t', t010c001_t),
-            ('t010c001_m', t010c001_m),
-            ('t010c001_f', t010c001_f),
             ('t010c002_t', t010c002_t),
-            ('t010c002_m', t010c002_m),
-            ('t010c002_f', t010c002_f),
             ('t010c003_t', t010c003_t),
-            ('t010c003_m', t010c003_m),
-            ('t010c003_f', t010c003_f),
             ('t010c004_t', t010c004_t),
-            ('t010c004_m', t010c004_m),
-            ('t010c004_f', t010c004_f),
             ('t010c005_t', t010c005_t),
-            ('t010c005_m', t010c005_m),
-            ('t010c005_f', t010c005_f),
             ('t010c006_t', t010c006_t),
-            ('t010c006_m', t010c006_m),
-            ('t010c006_f', t010c006_f),
             ('t010c007_t', t010c007_t),
-            ('t010c007_m', t010c007_m),
-            ('t010c007_f', t010c007_f),
         ])
 
