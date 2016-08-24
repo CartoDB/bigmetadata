@@ -20200,22 +20200,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
-        t026c001_m = OBSColumn(
-            id='t026c001_m',
-            name='Total number of owner and tenant households with household total income greater than zero, in non-farm, non-reserve private dwellings by shelter-cost-to-income ratio (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={},)
-
-        t026c001_f = OBSColumn(
-            id='t026c001_f',
-            name='Total number of owner and tenant households with household total income greater than zero, in non-farm, non-reserve private dwellings by shelter-cost-to-income ratio (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={},)
-
         t026c002_t = OBSColumn(
             id='t026c002_t',
             name='Spending less than 30% of household total income on shelter costs (total)',
@@ -20223,22 +20207,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
             targets={ t026c001_t: DENOMINATOR },)
-
-        t026c002_m = OBSColumn(
-            id='t026c002_m',
-            name='Spending less than 30% of household total income on shelter costs (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={ t026c001_m: DENOMINATOR },)
-
-        t026c002_f = OBSColumn(
-            id='t026c002_f',
-            name='Spending less than 30% of household total income on shelter costs (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={ t026c001_f: DENOMINATOR },)
 
         t026c003_t = OBSColumn(
             id='t026c003_t',
@@ -20248,22 +20216,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['housing']],
             targets={ t026c001_t: DENOMINATOR },)
 
-        t026c003_m = OBSColumn(
-            id='t026c003_m',
-            name='Spending 30% or more of household total income on shelter costs (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={ t026c001_m: DENOMINATOR },)
-
-        t026c003_f = OBSColumn(
-            id='t026c003_f',
-            name='Spending 30% or more of household total income on shelter costs (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={ t026c001_f: DENOMINATOR },)
-
         t026c004_t = OBSColumn(
             id='t026c004_t',
             name='Spending 30% to less than 100% of household total income on shelter costs (total)',
@@ -20272,41 +20224,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['housing']],
             targets={ t026c003_t: DENOMINATOR },)
 
-        t026c004_m = OBSColumn(
-            id='t026c004_m',
-            name='Spending 30% to less than 100% of household total income on shelter costs (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={ t026c003_m: DENOMINATOR },)
-
-        t026c004_f = OBSColumn(
-            id='t026c004_f',
-            name='Spending 30% to less than 100% of household total income on shelter costs (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={ t026c003_f: DENOMINATOR },)
-
         t026c005_t = OBSColumn(
             id='t026c005_t',
             name='Number of owner households in non-farm, non-reserve private dwellings (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={},)
-
-        t026c005_m = OBSColumn(
-            id='t026c005_m',
-            name='Number of owner households in non-farm, non-reserve private dwellings (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={},)
-
-        t026c005_f = OBSColumn(
-            id='t026c005_f',
-            name='Number of owner households in non-farm, non-reserve private dwellings (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -20320,22 +20240,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
-        t026c006_m = OBSColumn(
-            id='t026c006_m',
-            name='% of owner households with a mortgage (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c005_m: DENOMINATOR },)
-
-        t026c006_f = OBSColumn(
-            id='t026c006_f',
-            name='% of owner households with a mortgage (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c005_f: DENOMINATOR },)
-
         t026c007_t = OBSColumn(
             id='t026c007_t',
             name='% of owner households spending 30% or more of household total income on shelter costs (total)',
@@ -20343,22 +20247,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
-
-        t026c007_m = OBSColumn(
-            id='t026c007_m',
-            name='% of owner households spending 30% or more of household total income on shelter costs (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c005_m: DENOMINATOR },)
-
-        t026c007_f = OBSColumn(
-            id='t026c007_f',
-            name='% of owner households spending 30% or more of household total income on shelter costs (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c005_f: DENOMINATOR },)
 
         t026c008_t = OBSColumn(
             id='t026c008_t',
@@ -20368,22 +20256,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
-        t026c008_m = OBSColumn(
-            id='t026c008_m',
-            name='Median monthly shelter costs for owned dwellings ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_m: DENOMINATOR },)
-
-        t026c008_f = OBSColumn(
-            id='t026c008_f',
-            name='Median monthly shelter costs for owned dwellings ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_f: DENOMINATOR },)
-
         t026c009_t = OBSColumn(
             id='t026c009_t',
             name='Average monthly shelter costs for owned dwellings ($) (total)',
@@ -20391,22 +20263,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
-
-        t026c009_m = OBSColumn(
-            id='t026c009_m',
-            name='Average monthly shelter costs for owned dwellings ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_m: DENOMINATOR },)
-
-        t026c009_f = OBSColumn(
-            id='t026c009_f',
-            name='Average monthly shelter costs for owned dwellings ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_f: DENOMINATOR },)
 
         t026c010_t = OBSColumn(
             id='t026c010_t',
@@ -20416,22 +20272,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
-        t026c010_m = OBSColumn(
-            id='t026c010_m',
-            name='Median value of dwellings ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_m: DENOMINATOR },)
-
-        t026c010_f = OBSColumn(
-            id='t026c010_f',
-            name='Median value of dwellings ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_f: DENOMINATOR },)
-
         t026c011_t = OBSColumn(
             id='t026c011_t',
             name='Average value of dwellings ($) (total)',
@@ -20440,41 +20280,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
-        t026c011_m = OBSColumn(
-            id='t026c011_m',
-            name='Average value of dwellings ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_m: DENOMINATOR },)
-
-        t026c011_f = OBSColumn(
-            id='t026c011_f',
-            name='Average value of dwellings ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c005_f: DENOMINATOR },)
-
         t026c012_t = OBSColumn(
             id='t026c012_t',
             name='Number of tenant households in non-farm, non-reserve private dwellings (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={},)
-
-        t026c012_m = OBSColumn(
-            id='t026c012_m',
-            name='Number of tenant households in non-farm, non-reserve private dwellings (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={},)
-
-        t026c012_f = OBSColumn(
-            id='t026c012_f',
-            name='Number of tenant households in non-farm, non-reserve private dwellings (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -20488,22 +20296,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
-        t026c013_m = OBSColumn(
-            id='t026c013_m',
-            name='% of tenant households in subsidized housing (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c012_m: DENOMINATOR },)
-
-        t026c013_f = OBSColumn(
-            id='t026c013_f',
-            name='% of tenant households in subsidized housing (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c012_f: DENOMINATOR },)
-
         t026c014_t = OBSColumn(
             id='t026c014_t',
             name='% of tenant households spending 30% or more of household total income on shelter costs (total)',
@@ -20511,22 +20303,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
-
-        t026c014_m = OBSColumn(
-            id='t026c014_m',
-            name='% of tenant households spending 30% or more of household total income on shelter costs (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c012_m: DENOMINATOR },)
-
-        t026c014_f = OBSColumn(
-            id='t026c014_f',
-            name='% of tenant households spending 30% or more of household total income on shelter costs (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c012_f: DENOMINATOR },)
 
         t026c015_t = OBSColumn(
             id='t026c015_t',
@@ -20536,22 +20312,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
-        t026c015_m = OBSColumn(
-            id='t026c015_m',
-            name='Median monthly shelter costs for rented dwellings ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c012_m: DENOMINATOR },)
-
-        t026c015_f = OBSColumn(
-            id='t026c015_f',
-            name='Median monthly shelter costs for rented dwellings ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c012_f: DENOMINATOR },)
-
         t026c016_t = OBSColumn(
             id='t026c016_t',
             name='Average monthly shelter costs for rented dwellings ($) (total)',
@@ -20559,22 +20319,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
-
-        t026c016_m = OBSColumn(
-            id='t026c016_m',
-            name='Average monthly shelter costs for rented dwellings ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c012_m: DENOMINATOR },)
-
-        t026c016_f = OBSColumn(
-            id='t026c016_f',
-            name='Average monthly shelter costs for rented dwellings ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['housing']],
-            targets={ t026c012_f: DENOMINATOR },)
 
         t027c001_t = OBSColumn(
             id='t027c001_t',
