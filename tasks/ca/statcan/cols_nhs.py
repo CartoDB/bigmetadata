@@ -18002,7 +18002,7 @@ class NHSColumns(ColumnsTask):
 
         t022c001_t = OBSColumn(
             id='t022c001_t',
-            name='Total number of occupied private dwellings by condition of dwelling (total)',
+            name='Total number of occupied private dwellings by condition of dwelling',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18010,7 +18010,7 @@ class NHSColumns(ColumnsTask):
 
         t022c002_t = OBSColumn(
             id='t022c002_t',
-            name='Only regular maintenance or minor repairs needed (total)',
+            name='Only regular maintenance or minor repairs needed',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18018,7 +18018,7 @@ class NHSColumns(ColumnsTask):
 
         t022c003_t = OBSColumn(
             id='t022c003_t',
-            name='Major repairs needed (total)',
+            name='Major repairs needed',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18026,7 +18026,7 @@ class NHSColumns(ColumnsTask):
 
         t022c004_t = OBSColumn(
             id='t022c004_t',
-            name='Total number of occupied private dwellings by period of construction (total)',
+            name='Total number of occupied private dwellings by period of construction',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18034,7 +18034,7 @@ class NHSColumns(ColumnsTask):
 
         t022c005_t = OBSColumn(
             id='t022c005_t',
-            name='1960 or before (total)',
+            name='1960 or before',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18042,7 +18042,7 @@ class NHSColumns(ColumnsTask):
 
         t022c006_t = OBSColumn(
             id='t022c006_t',
-            name='1961 to 1980 (total)',
+            name='1961 to 1980',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18050,7 +18050,7 @@ class NHSColumns(ColumnsTask):
 
         t022c007_t = OBSColumn(
             id='t022c007_t',
-            name='1981 to 1990 (total)',
+            name='1981 to 1990',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18058,7 +18058,7 @@ class NHSColumns(ColumnsTask):
 
         t022c008_t = OBSColumn(
             id='t022c008_t',
-            name='1991 to 2000 (total)',
+            name='1991 to 2000',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18066,7 +18066,7 @@ class NHSColumns(ColumnsTask):
 
         t022c009_t = OBSColumn(
             id='t022c009_t',
-            name='2001 to 2005 (total)',
+            name='2001 to 2005',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18074,7 +18074,7 @@ class NHSColumns(ColumnsTask):
 
         t022c010_t = OBSColumn(
             id='t022c010_t',
-            name='2006 to 2011 (total)',
+            name='2006 to 2011',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18082,7 +18082,7 @@ class NHSColumns(ColumnsTask):
 
         t022c011_t = OBSColumn(
             id='t022c011_t',
-            name='Total number of occupied private dwellings by number of rooms (total)',
+            name='Total number of occupied private dwellings by number of rooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18090,7 +18090,7 @@ class NHSColumns(ColumnsTask):
 
         t022c012_t = OBSColumn(
             id='t022c012_t',
-            name='1 to 4 rooms (total)',
+            name='1 to 4 rooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18098,7 +18098,7 @@ class NHSColumns(ColumnsTask):
 
         t022c013_t = OBSColumn(
             id='t022c013_t',
-            name='5 rooms (total)',
+            name='5 rooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18106,7 +18106,7 @@ class NHSColumns(ColumnsTask):
 
         t022c014_t = OBSColumn(
             id='t022c014_t',
-            name='6 rooms (total)',
+            name='6 rooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18114,7 +18114,7 @@ class NHSColumns(ColumnsTask):
 
         t022c015_t = OBSColumn(
             id='t022c015_t',
-            name='7 rooms (total)',
+            name='7 rooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18122,7 +18122,7 @@ class NHSColumns(ColumnsTask):
 
         t022c016_t = OBSColumn(
             id='t022c016_t',
-            name='8 or more rooms (total)',
+            name='8 or more rooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18130,7 +18130,7 @@ class NHSColumns(ColumnsTask):
 
         t022c017_t = OBSColumn(
             id='t022c017_t',
-            name='Average number of rooms per dwelling (total)',
+            name='Average number of rooms per dwelling',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18138,7 +18138,7 @@ class NHSColumns(ColumnsTask):
 
         t022c018_t = OBSColumn(
             id='t022c018_t',
-            name='Total number of occupied private dwellings by number of bedrooms (total)',
+            name='Total number of occupied private dwellings by number of bedrooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18146,7 +18146,7 @@ class NHSColumns(ColumnsTask):
 
         t022c019_t = OBSColumn(
             id='t022c019_t',
-            name='0 to 1 bedroom (total)',
+            name='0 to 1 bedroom',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18154,7 +18154,7 @@ class NHSColumns(ColumnsTask):
 
         t022c020_t = OBSColumn(
             id='t022c020_t',
-            name='2 bedrooms (total)',
+            name='2 bedrooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18162,7 +18162,7 @@ class NHSColumns(ColumnsTask):
 
         t022c021_t = OBSColumn(
             id='t022c021_t',
-            name='3 bedrooms (total)',
+            name='3 bedrooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -18170,7 +18170,7 @@ class NHSColumns(ColumnsTask):
 
         t022c022_t = OBSColumn(
             id='t022c022_t',
-            name='4 or more bedrooms (total)',
+            name='4 or more bedrooms',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
