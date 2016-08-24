@@ -10229,8 +10229,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (percentage) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_ratio, subsections['language']],
             targets={},)
 
         t006c007_m = OBSColumn(
@@ -10238,8 +10237,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (percentage) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_ratio, subsections['language']],
             targets={},)
 
         t006c007_f = OBSColumn(
@@ -10247,8 +10245,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (percentage) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_ratio, subsections['language']],
             targets={},)
 
         t007c001_t = OBSColumn(
