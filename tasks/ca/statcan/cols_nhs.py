@@ -13015,7 +13015,6 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -13024,7 +13023,6 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -13033,7 +13031,6 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -13042,7 +13039,6 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
@@ -13051,7 +13047,6 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
@@ -13060,7 +13055,6 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
@@ -13069,7 +13063,6 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
@@ -13078,7 +13071,6 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
@@ -13087,7 +13079,6 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
@@ -13096,7 +13087,6 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_t: DENOMINATOR },)
 
@@ -13105,7 +13095,6 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_m: DENOMINATOR },)
 
@@ -13114,7 +13103,6 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_f: DENOMINATOR },)
 
@@ -13123,7 +13111,6 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_t: DENOMINATOR },)
 
@@ -13132,7 +13119,6 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_m: DENOMINATOR },)
 
@@ -13141,7 +13127,6 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_f: DENOMINATOR },)
 
@@ -13150,7 +13135,6 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
@@ -13159,7 +13143,6 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
@@ -13168,7 +13151,6 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
@@ -13177,7 +13159,6 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
@@ -13186,7 +13167,6 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
@@ -13195,7 +13175,6 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
@@ -13204,7 +13183,6 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
@@ -13213,7 +13191,6 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
@@ -13222,7 +13199,6 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
@@ -13231,7 +13207,6 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
@@ -13240,7 +13215,6 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
@@ -13249,7 +13223,6 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
@@ -13258,7 +13231,6 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -13267,7 +13239,6 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -13276,7 +13247,6 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -13285,7 +13255,6 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -13294,7 +13263,6 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -13303,7 +13271,6 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -13312,7 +13279,6 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -13321,7 +13287,6 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -13330,7 +13295,6 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -13339,7 +13303,6 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -13348,7 +13311,6 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -13357,7 +13319,6 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -13366,7 +13327,6 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -13375,7 +13335,6 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -13384,7 +13343,6 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -13393,7 +13351,6 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
@@ -13402,7 +13359,6 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
@@ -13411,7 +13367,6 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
@@ -13420,7 +13375,6 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
@@ -13429,7 +13383,6 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
@@ -13438,7 +13391,6 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
@@ -13447,7 +13399,6 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -13456,7 +13407,6 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -13465,7 +13415,6 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -14527,7 +14476,6 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -14536,7 +14484,6 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -14545,7 +14492,6 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -14554,7 +14500,6 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
@@ -14563,7 +14508,6 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
@@ -14572,7 +14516,6 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
@@ -14581,7 +14524,6 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_t: DENOMINATOR },)
 
@@ -14590,7 +14532,6 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_m: DENOMINATOR },)
 
@@ -14599,7 +14540,6 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_f: DENOMINATOR },)
 
@@ -14608,7 +14548,6 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
@@ -14617,7 +14556,6 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
@@ -14626,7 +14564,6 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
@@ -14635,7 +14572,6 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
@@ -14644,7 +14580,6 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
@@ -14653,7 +14588,6 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
@@ -22762,7 +22696,6 @@ class NHSColumns(ColumnsTask):
             name='% of owner households with a mortgage',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
@@ -22771,7 +22704,6 @@ class NHSColumns(ColumnsTask):
             name='% of owner households spending 30% or more of household total income on shelter costs',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
@@ -22825,7 +22757,6 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households in subsidized housing',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
@@ -22834,7 +22765,6 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households spending 30% or more of household total income on shelter costs',
             type='Numeric',
             weight=3,
-            aggregate='sum',
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
