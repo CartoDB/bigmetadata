@@ -1,4 +1,4 @@
-from tasks.meta import OBSColumn, DENOMINATOR
+from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 from tasks.util import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
@@ -13040,7 +13040,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_t: DENOMINATOR },)
+            targets={ t013c035_t: UNIVERSE },)
 
         t013c036_m = OBSColumn(
             id='t013c036_m',
@@ -13048,7 +13048,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_m: DENOMINATOR },)
+            targets={ t013c035_m: UNIVERSE },)
 
         t013c036_f = OBSColumn(
             id='t013c036_f',
@@ -13056,7 +13056,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_f: DENOMINATOR },)
+            targets={ t013c035_f: UNIVERSE },)
 
         t013c037_t = OBSColumn(
             id='t013c037_t',
@@ -13064,7 +13064,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_t: DENOMINATOR },)
+            targets={ t013c036_t: UNIVERSE },)
 
         t013c037_m = OBSColumn(
             id='t013c037_m',
@@ -13072,7 +13072,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_m: DENOMINATOR },)
+            targets={ t013c036_m: UNIVERSE },)
 
         t013c037_f = OBSColumn(
             id='t013c037_f',
@@ -13080,7 +13080,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_f: DENOMINATOR },)
+            targets={ t013c036_f: UNIVERSE },)
 
         t013c038_t = OBSColumn(
             id='t013c038_t',
@@ -13088,7 +13088,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c037_t: DENOMINATOR },)
+            targets={ t013c037_t: UNIVERSE },)
 
         t013c038_m = OBSColumn(
             id='t013c038_m',
@@ -13096,7 +13096,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c037_m: DENOMINATOR },)
+            targets={ t013c037_m: UNIVERSE },)
 
         t013c038_f = OBSColumn(
             id='t013c038_f',
@@ -13104,7 +13104,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c037_f: DENOMINATOR },)
+            targets={ t013c037_f: UNIVERSE },)
 
         t013c039_t = OBSColumn(
             id='t013c039_t',
@@ -13112,7 +13112,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c037_t: DENOMINATOR },)
+            targets={ t013c037_t: UNIVERSE },)
 
         t013c039_m = OBSColumn(
             id='t013c039_m',
@@ -13120,7 +13120,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c037_m: DENOMINATOR },)
+            targets={ t013c037_m: UNIVERSE },)
 
         t013c039_f = OBSColumn(
             id='t013c039_f',
@@ -13128,7 +13128,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c037_f: DENOMINATOR },)
+            targets={ t013c037_f: UNIVERSE },)
 
         t013c040_t = OBSColumn(
             id='t013c040_t',
@@ -13136,7 +13136,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_t: DENOMINATOR },)
+            targets={ t013c036_t: UNIVERSE },)
 
         t013c040_m = OBSColumn(
             id='t013c040_m',
@@ -13144,7 +13144,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_m: DENOMINATOR },)
+            targets={ t013c036_m: UNIVERSE },)
 
         t013c040_f = OBSColumn(
             id='t013c040_f',
@@ -13152,7 +13152,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_f: DENOMINATOR },)
+            targets={ t013c036_f: UNIVERSE },)
 
         t013c041_t = OBSColumn(
             id='t013c041_t',
@@ -13160,7 +13160,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_t: DENOMINATOR },)
+            targets={ t013c036_t: UNIVERSE },)
 
         t013c041_m = OBSColumn(
             id='t013c041_m',
@@ -13168,7 +13168,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_m: DENOMINATOR },)
+            targets={ t013c036_m: UNIVERSE },)
 
         t013c041_f = OBSColumn(
             id='t013c041_f',
@@ -13176,7 +13176,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_f: DENOMINATOR },)
+            targets={ t013c036_f: UNIVERSE },)
 
         t013c042_t = OBSColumn(
             id='t013c042_t',
@@ -13184,7 +13184,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_t: DENOMINATOR },)
+            targets={ t013c036_t: UNIVERSE },)
 
         t013c042_m = OBSColumn(
             id='t013c042_m',
@@ -13192,7 +13192,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_m: DENOMINATOR },)
+            targets={ t013c036_m: UNIVERSE },)
 
         t013c042_f = OBSColumn(
             id='t013c042_f',
@@ -13200,7 +13200,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c036_f: DENOMINATOR },)
+            targets={ t013c036_f: UNIVERSE },)
 
         t013c043_t = OBSColumn(
             id='t013c043_t',
@@ -13208,7 +13208,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_t: DENOMINATOR },)
+            targets={ t013c035_t: UNIVERSE },)
 
         t013c043_m = OBSColumn(
             id='t013c043_m',
@@ -13216,7 +13216,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_m: DENOMINATOR },)
+            targets={ t013c035_m: UNIVERSE },)
 
         t013c043_f = OBSColumn(
             id='t013c043_f',
@@ -13224,7 +13224,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_f: DENOMINATOR },)
+            targets={ t013c035_f: UNIVERSE },)
 
         t013c044_t = OBSColumn(
             id='t013c044_t',
@@ -13232,7 +13232,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_t: DENOMINATOR },)
+            targets={ t013c043_t: UNIVERSE },)
 
         t013c044_m = OBSColumn(
             id='t013c044_m',
@@ -13240,7 +13240,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_m: DENOMINATOR },)
+            targets={ t013c043_m: UNIVERSE },)
 
         t013c044_f = OBSColumn(
             id='t013c044_f',
@@ -13248,7 +13248,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_f: DENOMINATOR },)
+            targets={ t013c043_f: UNIVERSE },)
 
         t013c045_t = OBSColumn(
             id='t013c045_t',
@@ -13256,7 +13256,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_t: DENOMINATOR },)
+            targets={ t013c043_t: UNIVERSE },)
 
         t013c045_m = OBSColumn(
             id='t013c045_m',
@@ -13264,7 +13264,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_m: DENOMINATOR },)
+            targets={ t013c043_m: UNIVERSE },)
 
         t013c045_f = OBSColumn(
             id='t013c045_f',
@@ -13272,7 +13272,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_f: DENOMINATOR },)
+            targets={ t013c043_f: UNIVERSE },)
 
         t013c046_t = OBSColumn(
             id='t013c046_t',
@@ -13280,7 +13280,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_t: DENOMINATOR },)
+            targets={ t013c043_t: UNIVERSE },)
 
         t013c046_m = OBSColumn(
             id='t013c046_m',
@@ -13288,7 +13288,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_m: DENOMINATOR },)
+            targets={ t013c043_m: UNIVERSE },)
 
         t013c046_f = OBSColumn(
             id='t013c046_f',
@@ -13296,7 +13296,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_f: DENOMINATOR },)
+            targets={ t013c043_f: UNIVERSE },)
 
         t013c047_t = OBSColumn(
             id='t013c047_t',
@@ -13304,7 +13304,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_t: DENOMINATOR },)
+            targets={ t013c043_t: UNIVERSE },)
 
         t013c047_m = OBSColumn(
             id='t013c047_m',
@@ -13312,7 +13312,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_m: DENOMINATOR },)
+            targets={ t013c043_m: UNIVERSE },)
 
         t013c047_f = OBSColumn(
             id='t013c047_f',
@@ -13320,7 +13320,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_f: DENOMINATOR },)
+            targets={ t013c043_f: UNIVERSE },)
 
         t013c048_t = OBSColumn(
             id='t013c048_t',
@@ -13328,7 +13328,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_t: DENOMINATOR },)
+            targets={ t013c043_t: UNIVERSE },)
 
         t013c048_m = OBSColumn(
             id='t013c048_m',
@@ -13336,7 +13336,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_m: DENOMINATOR },)
+            targets={ t013c043_m: UNIVERSE },)
 
         t013c048_f = OBSColumn(
             id='t013c048_f',
@@ -13344,7 +13344,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c043_f: DENOMINATOR },)
+            targets={ t013c043_f: UNIVERSE },)
 
         t013c049_t = OBSColumn(
             id='t013c049_t',
@@ -13352,7 +13352,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_t: DENOMINATOR },)
+            targets={ t013c035_t: UNIVERSE },)
 
         t013c049_m = OBSColumn(
             id='t013c049_m',
@@ -13360,7 +13360,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_m: DENOMINATOR },)
+            targets={ t013c035_m: UNIVERSE },)
 
         t013c049_f = OBSColumn(
             id='t013c049_f',
@@ -13368,7 +13368,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_f: DENOMINATOR },)
+            targets={ t013c035_f: UNIVERSE },)
 
         t013c050_t = OBSColumn(
             id='t013c050_t',
@@ -13376,7 +13376,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_t: DENOMINATOR },)
+            targets={ t013c035_t: UNIVERSE },)
 
         t013c050_m = OBSColumn(
             id='t013c050_m',
@@ -13384,7 +13384,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_m: DENOMINATOR },)
+            targets={ t013c035_m: UNIVERSE },)
 
         t013c050_f = OBSColumn(
             id='t013c050_f',
@@ -13392,7 +13392,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_f: DENOMINATOR },)
+            targets={ t013c035_f: UNIVERSE },)
 
         t013c051_t = OBSColumn(
             id='t013c051_t',
@@ -14501,7 +14501,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_t: DENOMINATOR },)
+            targets={ t013c107_t: UNIVERSE },)
 
         t013c108_m = OBSColumn(
             id='t013c108_m',
@@ -14509,7 +14509,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_m: DENOMINATOR },)
+            targets={ t013c107_m: UNIVERSE },)
 
         t013c108_f = OBSColumn(
             id='t013c108_f',
@@ -14517,7 +14517,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_f: DENOMINATOR },)
+            targets={ t013c107_f: UNIVERSE },)
 
         t013c109_t = OBSColumn(
             id='t013c109_t',
@@ -14525,7 +14525,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c108_t: DENOMINATOR },)
+            targets={ t013c108_t: UNIVERSE },)
 
         t013c109_m = OBSColumn(
             id='t013c109_m',
@@ -14533,7 +14533,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c108_m: DENOMINATOR },)
+            targets={ t013c108_m: UNIVERSE },)
 
         t013c109_f = OBSColumn(
             id='t013c109_f',
@@ -14541,7 +14541,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c108_f: DENOMINATOR },)
+            targets={ t013c108_f: UNIVERSE },)
 
         t013c110_t = OBSColumn(
             id='t013c110_t',
@@ -14549,7 +14549,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_t: DENOMINATOR },)
+            targets={ t013c107_t: UNIVERSE },)
 
         t013c110_m = OBSColumn(
             id='t013c110_m',
@@ -14557,7 +14557,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_m: DENOMINATOR },)
+            targets={ t013c107_m: UNIVERSE },)
 
         t013c110_f = OBSColumn(
             id='t013c110_f',
@@ -14565,7 +14565,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_f: DENOMINATOR },)
+            targets={ t013c107_f: UNIVERSE },)
 
         t013c111_t = OBSColumn(
             id='t013c111_t',
@@ -14573,7 +14573,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_t: DENOMINATOR },)
+            targets={ t013c107_t: UNIVERSE },)
 
         t013c111_m = OBSColumn(
             id='t013c111_m',
@@ -14581,7 +14581,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_m: DENOMINATOR },)
+            targets={ t013c107_m: UNIVERSE },)
 
         t013c111_f = OBSColumn(
             id='t013c111_f',
@@ -14589,7 +14589,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c107_f: DENOMINATOR },)
+            targets={ t013c107_f: UNIVERSE },)
 
         t014c001_t = OBSColumn(
             id='t014c001_t',
@@ -22697,7 +22697,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c005_t: DENOMINATOR },)
+            targets={ t026c005_t: UNIVERSE },)
 
         t026c007_t = OBSColumn(
             id='t026c007_t',
@@ -22705,7 +22705,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c005_t: DENOMINATOR },)
+            targets={ t026c005_t: UNIVERSE },)
 
         t026c008_t = OBSColumn(
             id='t026c008_t',
@@ -22758,7 +22758,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c012_t: DENOMINATOR },)
+            targets={ t026c012_t: UNIVERSE },)
 
         t026c014_t = OBSColumn(
             id='t026c014_t',
@@ -22766,7 +22766,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
-            targets={ t026c012_t: DENOMINATOR },)
+            targets={ t026c012_t: UNIVERSE },)
 
         t026c015_t = OBSColumn(
             id='t026c015_t',
