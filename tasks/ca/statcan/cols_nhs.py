@@ -12058,7 +12058,7 @@ class NHSColumns(ColumnsTask):
 
         t013c056_t = OBSColumn(
             id='t013c056_t',
-            name='Median family income ($) (total)',
+            name='Median family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12066,7 +12066,7 @@ class NHSColumns(ColumnsTask):
 
         t013c057_t = OBSColumn(
             id='t013c057_t',
-            name='Average family income ($) (total)',
+            name='Average family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12074,7 +12074,7 @@ class NHSColumns(ColumnsTask):
 
         t013c058_t = OBSColumn(
             id='t013c058_t',
-            name='Median after-tax family income ($) (total)',
+            name='Median after-tax family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12082,7 +12082,7 @@ class NHSColumns(ColumnsTask):
 
         t013c059_t = OBSColumn(
             id='t013c059_t',
-            name='Average after-tax family income ($) (total)',
+            name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12090,7 +12090,7 @@ class NHSColumns(ColumnsTask):
 
         t013c060_t = OBSColumn(
             id='t013c060_t',
-            name='Average family size (total)',
+            name='Average family size',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -12098,7 +12098,7 @@ class NHSColumns(ColumnsTask):
 
         t013c061_t = OBSColumn(
             id='t013c061_t',
-            name='Couple-only economic families (total)',
+            name='Couple-only economic families',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -12106,7 +12106,7 @@ class NHSColumns(ColumnsTask):
 
         t013c062_t = OBSColumn(
             id='t013c062_t',
-            name='Median family income ($) (total)',
+            name='Median family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12114,7 +12114,7 @@ class NHSColumns(ColumnsTask):
 
         t013c063_t = OBSColumn(
             id='t013c063_t',
-            name='Average family income ($) (total)',
+            name='Average family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12122,7 +12122,7 @@ class NHSColumns(ColumnsTask):
 
         t013c064_t = OBSColumn(
             id='t013c064_t',
-            name='Median after-tax family income ($) (total)',
+            name='Median after-tax family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12130,7 +12130,7 @@ class NHSColumns(ColumnsTask):
 
         t013c065_t = OBSColumn(
             id='t013c065_t',
-            name='Average after-tax family income ($) (total)',
+            name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12138,7 +12138,7 @@ class NHSColumns(ColumnsTask):
 
         t013c066_t = OBSColumn(
             id='t013c066_t',
-            name='Average family size (total)',
+            name='Average family size',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -12146,7 +12146,7 @@ class NHSColumns(ColumnsTask):
 
         t013c067_t = OBSColumn(
             id='t013c067_t',
-            name='Couple-with-children economic families (total)',
+            name='Couple-with-children economic families',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -12154,7 +12154,7 @@ class NHSColumns(ColumnsTask):
 
         t013c068_t = OBSColumn(
             id='t013c068_t',
-            name='Median family income ($) (total)',
+            name='Median family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12162,7 +12162,7 @@ class NHSColumns(ColumnsTask):
 
         t013c069_t = OBSColumn(
             id='t013c069_t',
-            name='Average family income ($) (total)',
+            name='Average family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12170,7 +12170,7 @@ class NHSColumns(ColumnsTask):
 
         t013c070_t = OBSColumn(
             id='t013c070_t',
-            name='Median after-tax family income ($) (total)',
+            name='Median after-tax family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12178,7 +12178,7 @@ class NHSColumns(ColumnsTask):
 
         t013c071_t = OBSColumn(
             id='t013c071_t',
-            name='Average after-tax family income ($) (total)',
+            name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12186,7 +12186,7 @@ class NHSColumns(ColumnsTask):
 
         t013c072_t = OBSColumn(
             id='t013c072_t',
-            name='Average family size (total)',
+            name='Average family size',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -12194,7 +12194,7 @@ class NHSColumns(ColumnsTask):
 
         t013c073_t = OBSColumn(
             id='t013c073_t',
-            name='Lone-parent economic families (total)',
+            name='Lone-parent economic families',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -12202,7 +12202,7 @@ class NHSColumns(ColumnsTask):
 
         t013c074_t = OBSColumn(
             id='t013c074_t',
-            name='Median family income ($) (total)',
+            name='Median family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12210,7 +12210,7 @@ class NHSColumns(ColumnsTask):
 
         t013c075_t = OBSColumn(
             id='t013c075_t',
-            name='Average family income ($) (total)',
+            name='Average family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12218,7 +12218,7 @@ class NHSColumns(ColumnsTask):
 
         t013c076_t = OBSColumn(
             id='t013c076_t',
-            name='Median after-tax family income ($) (total)',
+            name='Median after-tax family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12226,7 +12226,7 @@ class NHSColumns(ColumnsTask):
 
         t013c077_t = OBSColumn(
             id='t013c077_t',
-            name='Average after-tax family income ($) (total)',
+            name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
@@ -12234,7 +12234,7 @@ class NHSColumns(ColumnsTask):
 
         t013c078_t = OBSColumn(
             id='t013c078_t',
-            name='Average family size (total)',
+            name='Average family size',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -12242,7 +12242,7 @@ class NHSColumns(ColumnsTask):
 
         t013c079_t = OBSColumn(
             id='t013c079_t',
-            name='Income in 2010 of population aged 15 years and over not in economic families (total)',
+            name='Income in 2010 of population aged 15 years and over not in economic families',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
