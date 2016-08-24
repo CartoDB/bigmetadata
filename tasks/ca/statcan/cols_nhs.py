@@ -12056,22 +12056,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
-        t013c055_m = OBSColumn(
-            id='t013c055_m',
-            name='Family income in 2010 of economic families (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t013c055_f = OBSColumn(
-            id='t013c055_f',
-            name='Family income in 2010 of economic families (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
         t013c056_t = OBSColumn(
             id='t013c056_t',
             name='Median family income ($) (total)',
@@ -12079,22 +12063,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
-
-        t013c056_m = OBSColumn(
-            id='t013c056_m',
-            name='Median family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_m: DENOMINATOR },)
-
-        t013c056_f = OBSColumn(
-            id='t013c056_f',
-            name='Median family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_f: DENOMINATOR },)
 
         t013c057_t = OBSColumn(
             id='t013c057_t',
@@ -12104,22 +12072,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
-        t013c057_m = OBSColumn(
-            id='t013c057_m',
-            name='Average family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_m: DENOMINATOR },)
-
-        t013c057_f = OBSColumn(
-            id='t013c057_f',
-            name='Average family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_f: DENOMINATOR },)
-
         t013c058_t = OBSColumn(
             id='t013c058_t',
             name='Median after-tax family income ($) (total)',
@@ -12127,22 +12079,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
-
-        t013c058_m = OBSColumn(
-            id='t013c058_m',
-            name='Median after-tax family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_m: DENOMINATOR },)
-
-        t013c058_f = OBSColumn(
-            id='t013c058_f',
-            name='Median after-tax family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_f: DENOMINATOR },)
 
         t013c059_t = OBSColumn(
             id='t013c059_t',
@@ -12152,22 +12088,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
-        t013c059_m = OBSColumn(
-            id='t013c059_m',
-            name='Average after-tax family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_m: DENOMINATOR },)
-
-        t013c059_f = OBSColumn(
-            id='t013c059_f',
-            name='Average after-tax family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c055_f: DENOMINATOR },)
-
         t013c060_t = OBSColumn(
             id='t013c060_t',
             name='Average family size (total)',
@@ -12175,22 +12095,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
-
-        t013c060_m = OBSColumn(
-            id='t013c060_m',
-            name='Average family size (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_m: DENOMINATOR },)
-
-        t013c060_f = OBSColumn(
-            id='t013c060_f',
-            name='Average family size (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_f: DENOMINATOR },)
 
         t013c061_t = OBSColumn(
             id='t013c061_t',
@@ -12200,22 +12104,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
-        t013c061_m = OBSColumn(
-            id='t013c061_m',
-            name='Couple-only economic families (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_m: DENOMINATOR },)
-
-        t013c061_f = OBSColumn(
-            id='t013c061_f',
-            name='Couple-only economic families (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_f: DENOMINATOR },)
-
         t013c062_t = OBSColumn(
             id='t013c062_t',
             name='Median family income ($) (total)',
@@ -12223,22 +12111,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
-
-        t013c062_m = OBSColumn(
-            id='t013c062_m',
-            name='Median family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_m: DENOMINATOR },)
-
-        t013c062_f = OBSColumn(
-            id='t013c062_f',
-            name='Median family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_f: DENOMINATOR },)
 
         t013c063_t = OBSColumn(
             id='t013c063_t',
@@ -12248,22 +12120,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
-        t013c063_m = OBSColumn(
-            id='t013c063_m',
-            name='Average family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_m: DENOMINATOR },)
-
-        t013c063_f = OBSColumn(
-            id='t013c063_f',
-            name='Average family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_f: DENOMINATOR },)
-
         t013c064_t = OBSColumn(
             id='t013c064_t',
             name='Median after-tax family income ($) (total)',
@@ -12271,22 +12127,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
-
-        t013c064_m = OBSColumn(
-            id='t013c064_m',
-            name='Median after-tax family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_m: DENOMINATOR },)
-
-        t013c064_f = OBSColumn(
-            id='t013c064_f',
-            name='Median after-tax family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_f: DENOMINATOR },)
 
         t013c065_t = OBSColumn(
             id='t013c065_t',
@@ -12296,22 +12136,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
-        t013c065_m = OBSColumn(
-            id='t013c065_m',
-            name='Average after-tax family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_m: DENOMINATOR },)
-
-        t013c065_f = OBSColumn(
-            id='t013c065_f',
-            name='Average after-tax family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c061_f: DENOMINATOR },)
-
         t013c066_t = OBSColumn(
             id='t013c066_t',
             name='Average family size (total)',
@@ -12319,22 +12143,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
-
-        t013c066_m = OBSColumn(
-            id='t013c066_m',
-            name='Average family size (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c061_m: DENOMINATOR },)
-
-        t013c066_f = OBSColumn(
-            id='t013c066_f',
-            name='Average family size (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c061_f: DENOMINATOR },)
 
         t013c067_t = OBSColumn(
             id='t013c067_t',
@@ -12344,22 +12152,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
-        t013c067_m = OBSColumn(
-            id='t013c067_m',
-            name='Couple-with-children economic families (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_m: DENOMINATOR },)
-
-        t013c067_f = OBSColumn(
-            id='t013c067_f',
-            name='Couple-with-children economic families (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_f: DENOMINATOR },)
-
         t013c068_t = OBSColumn(
             id='t013c068_t',
             name='Median family income ($) (total)',
@@ -12367,22 +12159,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
-
-        t013c068_m = OBSColumn(
-            id='t013c068_m',
-            name='Median family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_m: DENOMINATOR },)
-
-        t013c068_f = OBSColumn(
-            id='t013c068_f',
-            name='Median family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_f: DENOMINATOR },)
 
         t013c069_t = OBSColumn(
             id='t013c069_t',
@@ -12392,22 +12168,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
-        t013c069_m = OBSColumn(
-            id='t013c069_m',
-            name='Average family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_m: DENOMINATOR },)
-
-        t013c069_f = OBSColumn(
-            id='t013c069_f',
-            name='Average family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_f: DENOMINATOR },)
-
         t013c070_t = OBSColumn(
             id='t013c070_t',
             name='Median after-tax family income ($) (total)',
@@ -12415,22 +12175,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
-
-        t013c070_m = OBSColumn(
-            id='t013c070_m',
-            name='Median after-tax family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_m: DENOMINATOR },)
-
-        t013c070_f = OBSColumn(
-            id='t013c070_f',
-            name='Median after-tax family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_f: DENOMINATOR },)
 
         t013c071_t = OBSColumn(
             id='t013c071_t',
@@ -12440,22 +12184,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
-        t013c071_m = OBSColumn(
-            id='t013c071_m',
-            name='Average after-tax family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_m: DENOMINATOR },)
-
-        t013c071_f = OBSColumn(
-            id='t013c071_f',
-            name='Average after-tax family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c067_f: DENOMINATOR },)
-
         t013c072_t = OBSColumn(
             id='t013c072_t',
             name='Average family size (total)',
@@ -12463,22 +12191,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
-
-        t013c072_m = OBSColumn(
-            id='t013c072_m',
-            name='Average family size (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c067_m: DENOMINATOR },)
-
-        t013c072_f = OBSColumn(
-            id='t013c072_f',
-            name='Average family size (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c067_f: DENOMINATOR },)
 
         t013c073_t = OBSColumn(
             id='t013c073_t',
@@ -12488,22 +12200,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
-        t013c073_m = OBSColumn(
-            id='t013c073_m',
-            name='Lone-parent economic families (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_m: DENOMINATOR },)
-
-        t013c073_f = OBSColumn(
-            id='t013c073_f',
-            name='Lone-parent economic families (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c055_f: DENOMINATOR },)
-
         t013c074_t = OBSColumn(
             id='t013c074_t',
             name='Median family income ($) (total)',
@@ -12511,22 +12207,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
-
-        t013c074_m = OBSColumn(
-            id='t013c074_m',
-            name='Median family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_m: DENOMINATOR },)
-
-        t013c074_f = OBSColumn(
-            id='t013c074_f',
-            name='Median family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_f: DENOMINATOR },)
 
         t013c075_t = OBSColumn(
             id='t013c075_t',
@@ -12536,22 +12216,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
-        t013c075_m = OBSColumn(
-            id='t013c075_m',
-            name='Average family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_m: DENOMINATOR },)
-
-        t013c075_f = OBSColumn(
-            id='t013c075_f',
-            name='Average family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_f: DENOMINATOR },)
-
         t013c076_t = OBSColumn(
             id='t013c076_t',
             name='Median after-tax family income ($) (total)',
@@ -12559,22 +12223,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
-
-        t013c076_m = OBSColumn(
-            id='t013c076_m',
-            name='Median after-tax family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_m: DENOMINATOR },)
-
-        t013c076_f = OBSColumn(
-            id='t013c076_f',
-            name='Median after-tax family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_f: DENOMINATOR },)
 
         t013c077_t = OBSColumn(
             id='t013c077_t',
@@ -12584,22 +12232,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
-        t013c077_m = OBSColumn(
-            id='t013c077_m',
-            name='Average after-tax family income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_m: DENOMINATOR },)
-
-        t013c077_f = OBSColumn(
-            id='t013c077_f',
-            name='Average after-tax family income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t013c073_f: DENOMINATOR },)
-
         t013c078_t = OBSColumn(
             id='t013c078_t',
             name='Average family size (total)',
@@ -12607,22 +12239,6 @@ class NHSColumns(ColumnsTask):
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
-
-        t013c078_m = OBSColumn(
-            id='t013c078_m',
-            name='Average family size (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c073_m: DENOMINATOR },)
-
-        t013c078_f = OBSColumn(
-            id='t013c078_f',
-            name='Average family size (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c073_f: DENOMINATOR },)
 
         t013c079_t = OBSColumn(
             id='t013c079_t',
