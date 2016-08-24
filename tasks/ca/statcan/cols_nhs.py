@@ -37,6 +37,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Aboriginal identity (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -45,6 +46,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Aboriginal identity (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -53,6 +55,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Aboriginal identity (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -61,6 +64,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal identity (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -69,6 +73,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal identity (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -77,6 +82,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal identity (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -85,6 +91,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) single identity (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_t: DENOMINATOR },)
 
@@ -93,6 +100,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) single identity (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_m: DENOMINATOR },)
 
@@ -101,6 +109,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) single identity (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_f: DENOMINATOR },)
 
@@ -109,6 +118,7 @@ class NHSColumns(ColumnsTask):
             name='M tis single identity (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_t: DENOMINATOR },)
 
@@ -117,6 +127,7 @@ class NHSColumns(ColumnsTask):
             name='M tis single identity (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_m: DENOMINATOR },)
 
@@ -125,6 +136,7 @@ class NHSColumns(ColumnsTask):
             name='M tis single identity (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_f: DENOMINATOR },)
 
@@ -133,6 +145,7 @@ class NHSColumns(ColumnsTask):
             name='Inuk (Inuit) single identity (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_t: DENOMINATOR },)
 
@@ -141,6 +154,7 @@ class NHSColumns(ColumnsTask):
             name='Inuk (Inuit) single identity (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_m: DENOMINATOR },)
 
@@ -149,6 +163,7 @@ class NHSColumns(ColumnsTask):
             name='Inuk (Inuit) single identity (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_f: DENOMINATOR },)
 
@@ -157,6 +172,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple Aboriginal identities (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_t: DENOMINATOR },)
 
@@ -165,6 +181,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple Aboriginal identities (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_m: DENOMINATOR },)
 
@@ -173,6 +190,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple Aboriginal identities (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_f: DENOMINATOR },)
 
@@ -181,6 +199,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal identities not included elsewhere (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_t: DENOMINATOR },)
 
@@ -189,6 +208,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal identities not included elsewhere (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_m: DENOMINATOR },)
 
@@ -197,6 +217,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal identities not included elsewhere (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_f: DENOMINATOR },)
 
@@ -205,6 +226,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal identity (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -213,6 +235,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal identity (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -221,6 +244,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal identity (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -229,6 +253,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Registered or Treaty Indian status (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -237,6 +262,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Registered or Treaty Indian status (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -245,6 +271,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Registered or Treaty Indian status (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -253,6 +280,7 @@ class NHSColumns(ColumnsTask):
             name='Registered or Treaty Indian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c009_t: DENOMINATOR },)
 
@@ -261,6 +289,7 @@ class NHSColumns(ColumnsTask):
             name='Registered or Treaty Indian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c009_m: DENOMINATOR },)
 
@@ -269,6 +298,7 @@ class NHSColumns(ColumnsTask):
             name='Registered or Treaty Indian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c009_f: DENOMINATOR },)
 
@@ -277,6 +307,7 @@ class NHSColumns(ColumnsTask):
             name='Not a Registered or Treaty Indian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c009_t: DENOMINATOR },)
 
@@ -285,6 +316,7 @@ class NHSColumns(ColumnsTask):
             name='Not a Registered or Treaty Indian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c009_m: DENOMINATOR },)
 
@@ -293,6 +325,7 @@ class NHSColumns(ColumnsTask):
             name='Not a Registered or Treaty Indian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c009_f: DENOMINATOR },)
 
@@ -301,6 +334,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Aboriginal ancestry (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -309,6 +343,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Aboriginal ancestry (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -317,6 +352,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by Aboriginal ancestry (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -325,6 +361,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal ancestry (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c012_t: DENOMINATOR },)
 
@@ -333,6 +370,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal ancestry (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c012_m: DENOMINATOR },)
 
@@ -341,6 +379,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal ancestry (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c012_f: DENOMINATOR },)
 
@@ -349,6 +388,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) Aboriginal ancestry (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_t: DENOMINATOR },)
 
@@ -357,6 +397,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) Aboriginal ancestry (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_m: DENOMINATOR },)
 
@@ -365,6 +406,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) Aboriginal ancestry (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_f: DENOMINATOR },)
 
@@ -373,6 +415,7 @@ class NHSColumns(ColumnsTask):
             name='M tis ancestry (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_t: DENOMINATOR },)
 
@@ -381,6 +424,7 @@ class NHSColumns(ColumnsTask):
             name='M tis ancestry (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_m: DENOMINATOR },)
 
@@ -389,6 +433,7 @@ class NHSColumns(ColumnsTask):
             name='M tis ancestry (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_f: DENOMINATOR },)
 
@@ -397,6 +442,7 @@ class NHSColumns(ColumnsTask):
             name='Inuit ancestry (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_t: DENOMINATOR },)
 
@@ -405,6 +451,7 @@ class NHSColumns(ColumnsTask):
             name='Inuit ancestry (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_m: DENOMINATOR },)
 
@@ -413,6 +460,7 @@ class NHSColumns(ColumnsTask):
             name='Inuit ancestry (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_f: DENOMINATOR },)
 
@@ -421,6 +469,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal ancestry only (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c012_t: DENOMINATOR },)
 
@@ -429,6 +478,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal ancestry only (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c012_m: DENOMINATOR },)
 
@@ -437,6 +487,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal ancestry only (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c012_f: DENOMINATOR },)
 
@@ -445,6 +496,7 @@ class NHSColumns(ColumnsTask):
             name='Total immigrant population in private households by age at immigration (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -453,6 +505,7 @@ class NHSColumns(ColumnsTask):
             name='Total immigrant population in private households by age at immigration (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -461,6 +514,7 @@ class NHSColumns(ColumnsTask):
             name='Total immigrant population in private households by age at immigration (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -469,6 +523,7 @@ class NHSColumns(ColumnsTask):
             name='Under 5 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_t: DENOMINATOR },)
 
@@ -477,6 +532,7 @@ class NHSColumns(ColumnsTask):
             name='Under 5 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_m: DENOMINATOR },)
 
@@ -485,6 +541,7 @@ class NHSColumns(ColumnsTask):
             name='Under 5 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_f: DENOMINATOR },)
 
@@ -493,6 +550,7 @@ class NHSColumns(ColumnsTask):
             name='5 to 14 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_t: DENOMINATOR },)
 
@@ -501,6 +559,7 @@ class NHSColumns(ColumnsTask):
             name='5 to 14 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_m: DENOMINATOR },)
 
@@ -509,6 +568,7 @@ class NHSColumns(ColumnsTask):
             name='5 to 14 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_f: DENOMINATOR },)
 
@@ -517,6 +577,7 @@ class NHSColumns(ColumnsTask):
             name='15 to 24 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_t: DENOMINATOR },)
 
@@ -525,6 +586,7 @@ class NHSColumns(ColumnsTask):
             name='15 to 24 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_m: DENOMINATOR },)
 
@@ -533,6 +595,7 @@ class NHSColumns(ColumnsTask):
             name='15 to 24 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_f: DENOMINATOR },)
 
@@ -541,6 +604,7 @@ class NHSColumns(ColumnsTask):
             name='25 to 44 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_t: DENOMINATOR },)
 
@@ -549,6 +613,7 @@ class NHSColumns(ColumnsTask):
             name='25 to 44 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_m: DENOMINATOR },)
 
@@ -557,6 +622,7 @@ class NHSColumns(ColumnsTask):
             name='25 to 44 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_f: DENOMINATOR },)
 
@@ -565,6 +631,7 @@ class NHSColumns(ColumnsTask):
             name='45 years and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_t: DENOMINATOR },)
 
@@ -573,6 +640,7 @@ class NHSColumns(ColumnsTask):
             name='45 years and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_m: DENOMINATOR },)
 
@@ -581,6 +649,7 @@ class NHSColumns(ColumnsTask):
             name='45 years and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_f: DENOMINATOR },)
 
@@ -589,6 +658,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by citizenship (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -597,6 +667,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by citizenship (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -605,6 +676,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by citizenship (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -613,6 +685,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c001_t: DENOMINATOR },)
 
@@ -621,6 +694,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c001_m: DENOMINATOR },)
 
@@ -629,6 +703,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c001_f: DENOMINATOR },)
 
@@ -637,6 +712,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens aged under 18 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c002_t: DENOMINATOR },)
 
@@ -645,6 +721,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens aged under 18 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c002_m: DENOMINATOR },)
 
@@ -653,6 +730,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens aged under 18 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c002_f: DENOMINATOR },)
 
@@ -661,6 +739,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens aged 18 and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c002_t: DENOMINATOR },)
 
@@ -669,6 +748,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens aged 18 and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c002_m: DENOMINATOR },)
 
@@ -677,6 +757,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian citizens aged 18 and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c002_f: DENOMINATOR },)
 
@@ -685,6 +766,7 @@ class NHSColumns(ColumnsTask):
             name='Not Canadian citizens (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c001_t: DENOMINATOR },)
 
@@ -693,6 +775,7 @@ class NHSColumns(ColumnsTask):
             name='Not Canadian citizens (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c001_m: DENOMINATOR },)
 
@@ -701,6 +784,7 @@ class NHSColumns(ColumnsTask):
             name='Not Canadian citizens (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t003c001_f: DENOMINATOR },)
 
@@ -709,6 +793,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force aged 15 years and over by class of worker (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -717,6 +802,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force aged 15 years and over by class of worker (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -725,6 +811,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force aged 15 years and over by class of worker (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -733,6 +820,7 @@ class NHSColumns(ColumnsTask):
             name='Class of worker - not applicable (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_t: DENOMINATOR },)
 
@@ -741,6 +829,7 @@ class NHSColumns(ColumnsTask):
             name='Class of worker - not applicable (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_m: DENOMINATOR },)
 
@@ -749,6 +838,7 @@ class NHSColumns(ColumnsTask):
             name='Class of worker - not applicable (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
@@ -757,6 +847,7 @@ class NHSColumns(ColumnsTask):
             name='All classes of worker (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_t: DENOMINATOR },)
 
@@ -765,6 +856,7 @@ class NHSColumns(ColumnsTask):
             name='All classes of worker (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_m: DENOMINATOR },)
 
@@ -773,6 +865,7 @@ class NHSColumns(ColumnsTask):
             name='All classes of worker (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
@@ -781,6 +874,7 @@ class NHSColumns(ColumnsTask):
             name='Employee (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_t: DENOMINATOR },)
 
@@ -789,6 +883,7 @@ class NHSColumns(ColumnsTask):
             name='Employee (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_m: DENOMINATOR },)
 
@@ -797,6 +892,7 @@ class NHSColumns(ColumnsTask):
             name='Employee (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_f: DENOMINATOR },)
 
@@ -805,6 +901,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employed (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_t: DENOMINATOR },)
 
@@ -813,6 +910,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employed (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_m: DENOMINATOR },)
 
@@ -821,6 +919,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employed (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_f: DENOMINATOR },)
 
@@ -829,6 +928,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by highest certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -837,6 +937,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by highest certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -845,6 +946,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by highest certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -853,6 +955,7 @@ class NHSColumns(ColumnsTask):
             name='No certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_t: DENOMINATOR },)
 
@@ -861,6 +964,7 @@ class NHSColumns(ColumnsTask):
             name='No certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_m: DENOMINATOR },)
 
@@ -869,6 +973,7 @@ class NHSColumns(ColumnsTask):
             name='No certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
@@ -877,6 +982,7 @@ class NHSColumns(ColumnsTask):
             name='High school diploma or equivalent (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_t: DENOMINATOR },)
 
@@ -885,6 +991,7 @@ class NHSColumns(ColumnsTask):
             name='High school diploma or equivalent (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_m: DENOMINATOR },)
 
@@ -893,6 +1000,7 @@ class NHSColumns(ColumnsTask):
             name='High school diploma or equivalent (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
@@ -901,6 +1009,7 @@ class NHSColumns(ColumnsTask):
             name='Postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_t: DENOMINATOR },)
 
@@ -909,6 +1018,7 @@ class NHSColumns(ColumnsTask):
             name='Postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_m: DENOMINATOR },)
 
@@ -917,6 +1027,7 @@ class NHSColumns(ColumnsTask):
             name='Postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
@@ -925,6 +1036,7 @@ class NHSColumns(ColumnsTask):
             name='Apprenticeship or trades certificate or diploma (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_t: DENOMINATOR },)
 
@@ -933,6 +1045,7 @@ class NHSColumns(ColumnsTask):
             name='Apprenticeship or trades certificate or diploma (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_m: DENOMINATOR },)
 
@@ -941,6 +1054,7 @@ class NHSColumns(ColumnsTask):
             name='Apprenticeship or trades certificate or diploma (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_f: DENOMINATOR },)
 
@@ -949,6 +1063,7 @@ class NHSColumns(ColumnsTask):
             name='College, CEGEP or other non-university certificate or diploma (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_t: DENOMINATOR },)
 
@@ -957,6 +1072,7 @@ class NHSColumns(ColumnsTask):
             name='College, CEGEP or other non-university certificate or diploma (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_m: DENOMINATOR },)
 
@@ -965,6 +1081,7 @@ class NHSColumns(ColumnsTask):
             name='College, CEGEP or other non-university certificate or diploma (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_f: DENOMINATOR },)
 
@@ -973,6 +1090,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate or diploma below bachelor level (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_t: DENOMINATOR },)
 
@@ -981,6 +1099,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate or diploma below bachelor level (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_m: DENOMINATOR },)
 
@@ -989,6 +1108,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate or diploma below bachelor level (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_f: DENOMINATOR },)
 
@@ -997,6 +1117,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree at bachelor level or above (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_t: DENOMINATOR },)
 
@@ -1005,6 +1126,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree at bachelor level or above (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_m: DENOMINATOR },)
 
@@ -1013,6 +1135,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree at bachelor level or above (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c004_f: DENOMINATOR },)
 
@@ -1021,6 +1144,7 @@ class NHSColumns(ColumnsTask):
             name='Bachelor\'s degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c008_t: DENOMINATOR },)
 
@@ -1029,6 +1153,7 @@ class NHSColumns(ColumnsTask):
             name='Bachelor\'s degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c008_m: DENOMINATOR },)
 
@@ -1037,6 +1162,7 @@ class NHSColumns(ColumnsTask):
             name='Bachelor\'s degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c008_f: DENOMINATOR },)
 
@@ -1045,6 +1171,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree above bachelor level (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c008_t: DENOMINATOR },)
 
@@ -1053,6 +1180,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree above bachelor level (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c008_m: DENOMINATOR },)
 
@@ -1061,6 +1189,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree above bachelor level (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c008_f: DENOMINATOR },)
 
@@ -1069,6 +1198,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 25 to 64 years by highest certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1077,6 +1207,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 25 to 64 years by highest certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1085,6 +1216,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 25 to 64 years by highest certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1093,6 +1225,7 @@ class NHSColumns(ColumnsTask):
             name='No certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_t: DENOMINATOR },)
 
@@ -1101,6 +1234,7 @@ class NHSColumns(ColumnsTask):
             name='No certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_m: DENOMINATOR },)
 
@@ -1109,6 +1243,7 @@ class NHSColumns(ColumnsTask):
             name='No certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_f: DENOMINATOR },)
 
@@ -1117,6 +1252,7 @@ class NHSColumns(ColumnsTask):
             name='High school diploma or equivalent (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_t: DENOMINATOR },)
 
@@ -1125,6 +1261,7 @@ class NHSColumns(ColumnsTask):
             name='High school diploma or equivalent (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_m: DENOMINATOR },)
 
@@ -1133,6 +1270,7 @@ class NHSColumns(ColumnsTask):
             name='High school diploma or equivalent (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_f: DENOMINATOR },)
 
@@ -1141,6 +1279,7 @@ class NHSColumns(ColumnsTask):
             name='Postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_t: DENOMINATOR },)
 
@@ -1149,6 +1288,7 @@ class NHSColumns(ColumnsTask):
             name='Postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_m: DENOMINATOR },)
 
@@ -1157,6 +1297,7 @@ class NHSColumns(ColumnsTask):
             name='Postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c011_f: DENOMINATOR },)
 
@@ -1165,6 +1306,7 @@ class NHSColumns(ColumnsTask):
             name='Apprenticeship or trades certificate or diploma (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_t: DENOMINATOR },)
 
@@ -1173,6 +1315,7 @@ class NHSColumns(ColumnsTask):
             name='Apprenticeship or trades certificate or diploma (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_m: DENOMINATOR },)
 
@@ -1181,6 +1324,7 @@ class NHSColumns(ColumnsTask):
             name='Apprenticeship or trades certificate or diploma (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_f: DENOMINATOR },)
 
@@ -1189,6 +1333,7 @@ class NHSColumns(ColumnsTask):
             name='College, CEGEP or other non-university certificate or diploma (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_t: DENOMINATOR },)
 
@@ -1197,6 +1342,7 @@ class NHSColumns(ColumnsTask):
             name='College, CEGEP or other non-university certificate or diploma (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_m: DENOMINATOR },)
 
@@ -1205,6 +1351,7 @@ class NHSColumns(ColumnsTask):
             name='College, CEGEP or other non-university certificate or diploma (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_f: DENOMINATOR },)
 
@@ -1213,6 +1360,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate or diploma below bachelor level (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_t: DENOMINATOR },)
 
@@ -1221,6 +1369,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate or diploma below bachelor level (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_m: DENOMINATOR },)
 
@@ -1229,6 +1378,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate or diploma below bachelor level (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_f: DENOMINATOR },)
 
@@ -1237,6 +1387,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree at bachelor level or above (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_t: DENOMINATOR },)
 
@@ -1245,6 +1396,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree at bachelor level or above (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_m: DENOMINATOR },)
 
@@ -1253,6 +1405,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree at bachelor level or above (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c014_f: DENOMINATOR },)
 
@@ -1261,6 +1414,7 @@ class NHSColumns(ColumnsTask):
             name='Bachelor\'s degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_t: DENOMINATOR },)
 
@@ -1269,6 +1423,7 @@ class NHSColumns(ColumnsTask):
             name='Bachelor\'s degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_m: DENOMINATOR },)
 
@@ -1277,6 +1432,7 @@ class NHSColumns(ColumnsTask):
             name='Bachelor\'s degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_f: DENOMINATOR },)
 
@@ -1285,6 +1441,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree above bachelor level (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_t: DENOMINATOR },)
 
@@ -1293,6 +1450,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree above bachelor level (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_m: DENOMINATOR },)
 
@@ -1301,6 +1459,7 @@ class NHSColumns(ColumnsTask):
             name='University certificate, diploma or degree above bachelor level (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_f: DENOMINATOR },)
 
@@ -1309,6 +1468,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by major field of study - Classification of Instructional Programs (CIP) 2011 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1317,6 +1477,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by major field of study - Classification of Instructional Programs (CIP) 2011 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1325,6 +1486,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by major field of study - Classification of Instructional Programs (CIP) 2011 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1333,6 +1495,7 @@ class NHSColumns(ColumnsTask):
             name='No postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1341,6 +1504,7 @@ class NHSColumns(ColumnsTask):
             name='No postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1349,6 +1513,7 @@ class NHSColumns(ColumnsTask):
             name='No postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1357,6 +1522,7 @@ class NHSColumns(ColumnsTask):
             name='Education (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1365,6 +1531,7 @@ class NHSColumns(ColumnsTask):
             name='Education (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1373,6 +1540,7 @@ class NHSColumns(ColumnsTask):
             name='Education (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1381,6 +1549,7 @@ class NHSColumns(ColumnsTask):
             name='Visual and performing arts, and communications technologies (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1389,6 +1558,7 @@ class NHSColumns(ColumnsTask):
             name='Visual and performing arts, and communications technologies (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1397,6 +1567,7 @@ class NHSColumns(ColumnsTask):
             name='Visual and performing arts, and communications technologies (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1405,6 +1576,7 @@ class NHSColumns(ColumnsTask):
             name='Humanities (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1413,6 +1585,7 @@ class NHSColumns(ColumnsTask):
             name='Humanities (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1421,6 +1594,7 @@ class NHSColumns(ColumnsTask):
             name='Humanities (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1429,6 +1603,7 @@ class NHSColumns(ColumnsTask):
             name='Social and behavioural sciences and law (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1437,6 +1612,7 @@ class NHSColumns(ColumnsTask):
             name='Social and behavioural sciences and law (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1445,6 +1621,7 @@ class NHSColumns(ColumnsTask):
             name='Social and behavioural sciences and law (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1453,6 +1630,7 @@ class NHSColumns(ColumnsTask):
             name='Business, management and public administration (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1461,6 +1639,7 @@ class NHSColumns(ColumnsTask):
             name='Business, management and public administration (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1469,6 +1648,7 @@ class NHSColumns(ColumnsTask):
             name='Business, management and public administration (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1477,6 +1657,7 @@ class NHSColumns(ColumnsTask):
             name='Physical and life sciences and technologies (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1485,6 +1666,7 @@ class NHSColumns(ColumnsTask):
             name='Physical and life sciences and technologies (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1493,6 +1675,7 @@ class NHSColumns(ColumnsTask):
             name='Physical and life sciences and technologies (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1501,6 +1684,7 @@ class NHSColumns(ColumnsTask):
             name='Mathematics, computer and information sciences (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1509,6 +1693,7 @@ class NHSColumns(ColumnsTask):
             name='Mathematics, computer and information sciences (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1517,6 +1702,7 @@ class NHSColumns(ColumnsTask):
             name='Mathematics, computer and information sciences (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1525,6 +1711,7 @@ class NHSColumns(ColumnsTask):
             name='Architecture, engineering, and related technologies (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1533,6 +1720,7 @@ class NHSColumns(ColumnsTask):
             name='Architecture, engineering, and related technologies (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1541,6 +1729,7 @@ class NHSColumns(ColumnsTask):
             name='Architecture, engineering, and related technologies (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1549,6 +1738,7 @@ class NHSColumns(ColumnsTask):
             name='Agriculture, natural resources and conservation (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1557,6 +1747,7 @@ class NHSColumns(ColumnsTask):
             name='Agriculture, natural resources and conservation (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1565,6 +1756,7 @@ class NHSColumns(ColumnsTask):
             name='Agriculture, natural resources and conservation (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1573,6 +1765,7 @@ class NHSColumns(ColumnsTask):
             name='Health and related fields (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1581,6 +1774,7 @@ class NHSColumns(ColumnsTask):
             name='Health and related fields (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1589,6 +1783,7 @@ class NHSColumns(ColumnsTask):
             name='Health and related fields (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1597,6 +1792,7 @@ class NHSColumns(ColumnsTask):
             name='Personal, protective and transportation services (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1605,6 +1801,7 @@ class NHSColumns(ColumnsTask):
             name='Personal, protective and transportation services (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1613,6 +1810,7 @@ class NHSColumns(ColumnsTask):
             name='Personal, protective and transportation services (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1621,6 +1819,7 @@ class NHSColumns(ColumnsTask):
             name='Other fields of study (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -1629,6 +1828,7 @@ class NHSColumns(ColumnsTask):
             name='Other fields of study (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_m: DENOMINATOR },)
 
@@ -1637,6 +1837,7 @@ class NHSColumns(ColumnsTask):
             name='Other fields of study (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c021_f: DENOMINATOR },)
 
@@ -1645,6 +1846,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by location of study compared with province or territory of residence (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1653,6 +1855,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by location of study compared with province or territory of residence (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1661,6 +1864,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by location of study compared with province or territory of residence (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
@@ -1669,6 +1873,7 @@ class NHSColumns(ColumnsTask):
             name='No postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c035_t: DENOMINATOR },)
 
@@ -1677,6 +1882,7 @@ class NHSColumns(ColumnsTask):
             name='No postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c035_m: DENOMINATOR },)
 
@@ -1685,6 +1891,7 @@ class NHSColumns(ColumnsTask):
             name='No postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c035_f: DENOMINATOR },)
 
@@ -1693,6 +1900,7 @@ class NHSColumns(ColumnsTask):
             name='With postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c035_t: DENOMINATOR },)
 
@@ -1701,6 +1909,7 @@ class NHSColumns(ColumnsTask):
             name='With postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c035_m: DENOMINATOR },)
 
@@ -1709,6 +1918,7 @@ class NHSColumns(ColumnsTask):
             name='With postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c035_f: DENOMINATOR },)
 
@@ -1717,6 +1927,7 @@ class NHSColumns(ColumnsTask):
             name='Location of study inside Canada (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_t: DENOMINATOR },)
 
@@ -1725,6 +1936,7 @@ class NHSColumns(ColumnsTask):
             name='Location of study inside Canada (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_m: DENOMINATOR },)
 
@@ -1733,6 +1945,7 @@ class NHSColumns(ColumnsTask):
             name='Location of study inside Canada (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_f: DENOMINATOR },)
 
@@ -1741,6 +1954,7 @@ class NHSColumns(ColumnsTask):
             name='Same as province or territory of residence (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c038_t: DENOMINATOR },)
 
@@ -1749,6 +1963,7 @@ class NHSColumns(ColumnsTask):
             name='Same as province or territory of residence (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c038_m: DENOMINATOR },)
 
@@ -1757,6 +1972,7 @@ class NHSColumns(ColumnsTask):
             name='Same as province or territory of residence (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c038_f: DENOMINATOR },)
 
@@ -1765,6 +1981,7 @@ class NHSColumns(ColumnsTask):
             name='Another province or territory (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c038_t: DENOMINATOR },)
 
@@ -1773,6 +1990,7 @@ class NHSColumns(ColumnsTask):
             name='Another province or territory (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c038_m: DENOMINATOR },)
 
@@ -1781,6 +1999,7 @@ class NHSColumns(ColumnsTask):
             name='Another province or territory (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c038_f: DENOMINATOR },)
 
@@ -1789,6 +2008,7 @@ class NHSColumns(ColumnsTask):
             name='Location of study outside Canada (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_t: DENOMINATOR },)
 
@@ -1797,6 +2017,7 @@ class NHSColumns(ColumnsTask):
             name='Location of study outside Canada (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_m: DENOMINATOR },)
 
@@ -1805,6 +2026,7 @@ class NHSColumns(ColumnsTask):
             name='Location of study outside Canada (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_f: DENOMINATOR },)
 
@@ -1813,6 +2035,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by ethnic origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -1821,6 +2044,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by ethnic origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -1829,6 +2053,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by ethnic origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -1837,6 +2062,7 @@ class NHSColumns(ColumnsTask):
             name='North American Aboriginal origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -1845,6 +2071,7 @@ class NHSColumns(ColumnsTask):
             name='North American Aboriginal origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -1853,6 +2080,7 @@ class NHSColumns(ColumnsTask):
             name='North American Aboriginal origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -1861,6 +2089,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_t: DENOMINATOR },)
 
@@ -1869,6 +2098,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_m: DENOMINATOR },)
 
@@ -1877,6 +2107,7 @@ class NHSColumns(ColumnsTask):
             name='First Nations (North American Indian) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_f: DENOMINATOR },)
 
@@ -1885,6 +2116,7 @@ class NHSColumns(ColumnsTask):
             name='Inuit (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_t: DENOMINATOR },)
 
@@ -1893,6 +2125,7 @@ class NHSColumns(ColumnsTask):
             name='Inuit (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_m: DENOMINATOR },)
 
@@ -1901,6 +2134,7 @@ class NHSColumns(ColumnsTask):
             name='Inuit (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_f: DENOMINATOR },)
 
@@ -1909,6 +2143,7 @@ class NHSColumns(ColumnsTask):
             name='M tis (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_t: DENOMINATOR },)
 
@@ -1917,6 +2152,7 @@ class NHSColumns(ColumnsTask):
             name='M tis (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_m: DENOMINATOR },)
 
@@ -1925,6 +2161,7 @@ class NHSColumns(ColumnsTask):
             name='M tis (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c002_f: DENOMINATOR },)
 
@@ -1933,6 +2170,7 @@ class NHSColumns(ColumnsTask):
             name='Other North American origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -1941,6 +2179,7 @@ class NHSColumns(ColumnsTask):
             name='Other North American origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -1949,6 +2188,7 @@ class NHSColumns(ColumnsTask):
             name='Other North American origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -1957,6 +2197,7 @@ class NHSColumns(ColumnsTask):
             name='Acadian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -1965,6 +2206,7 @@ class NHSColumns(ColumnsTask):
             name='Acadian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -1973,6 +2215,7 @@ class NHSColumns(ColumnsTask):
             name='Acadian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -1981,6 +2224,7 @@ class NHSColumns(ColumnsTask):
             name='American (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -1989,6 +2233,7 @@ class NHSColumns(ColumnsTask):
             name='American (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -1997,6 +2242,7 @@ class NHSColumns(ColumnsTask):
             name='American (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -2005,6 +2251,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -2013,6 +2260,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -2021,6 +2269,7 @@ class NHSColumns(ColumnsTask):
             name='Canadian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -2029,6 +2278,7 @@ class NHSColumns(ColumnsTask):
             name='New Brunswicker (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -2037,6 +2287,7 @@ class NHSColumns(ColumnsTask):
             name='New Brunswicker (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -2045,6 +2296,7 @@ class NHSColumns(ColumnsTask):
             name='New Brunswicker (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -2053,6 +2305,7 @@ class NHSColumns(ColumnsTask):
             name='Newfoundlander (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -2061,6 +2314,7 @@ class NHSColumns(ColumnsTask):
             name='Newfoundlander (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -2069,6 +2323,7 @@ class NHSColumns(ColumnsTask):
             name='Newfoundlander (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -2077,6 +2332,7 @@ class NHSColumns(ColumnsTask):
             name='Nova Scotian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -2085,6 +2341,7 @@ class NHSColumns(ColumnsTask):
             name='Nova Scotian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -2093,6 +2350,7 @@ class NHSColumns(ColumnsTask):
             name='Nova Scotian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -2101,6 +2359,7 @@ class NHSColumns(ColumnsTask):
             name='Ontarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -2109,6 +2368,7 @@ class NHSColumns(ColumnsTask):
             name='Ontarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -2117,6 +2377,7 @@ class NHSColumns(ColumnsTask):
             name='Ontarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -2125,6 +2386,7 @@ class NHSColumns(ColumnsTask):
             name='Qu b cois (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -2133,6 +2395,7 @@ class NHSColumns(ColumnsTask):
             name='Qu b cois (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -2141,6 +2404,7 @@ class NHSColumns(ColumnsTask):
             name='Qu b cois (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -2149,6 +2413,7 @@ class NHSColumns(ColumnsTask):
             name='Other North American origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_t: DENOMINATOR },)
 
@@ -2157,6 +2422,7 @@ class NHSColumns(ColumnsTask):
             name='Other North American origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_m: DENOMINATOR },)
 
@@ -2165,6 +2431,7 @@ class NHSColumns(ColumnsTask):
             name='Other North American origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
@@ -2173,6 +2440,7 @@ class NHSColumns(ColumnsTask):
             name='European origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -2181,6 +2449,7 @@ class NHSColumns(ColumnsTask):
             name='European origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -2189,6 +2458,7 @@ class NHSColumns(ColumnsTask):
             name='European origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -2197,6 +2467,7 @@ class NHSColumns(ColumnsTask):
             name='British Isles origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_t: DENOMINATOR },)
 
@@ -2205,6 +2476,7 @@ class NHSColumns(ColumnsTask):
             name='British Isles origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_m: DENOMINATOR },)
 
@@ -2213,6 +2485,7 @@ class NHSColumns(ColumnsTask):
             name='British Isles origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_f: DENOMINATOR },)
 
@@ -2221,6 +2494,7 @@ class NHSColumns(ColumnsTask):
             name='Channel Islander (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_t: DENOMINATOR },)
 
@@ -2229,6 +2503,7 @@ class NHSColumns(ColumnsTask):
             name='Channel Islander (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_m: DENOMINATOR },)
 
@@ -2237,6 +2512,7 @@ class NHSColumns(ColumnsTask):
             name='Channel Islander (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_f: DENOMINATOR },)
 
@@ -2245,6 +2521,7 @@ class NHSColumns(ColumnsTask):
             name='Cornish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_t: DENOMINATOR },)
 
@@ -2253,6 +2530,7 @@ class NHSColumns(ColumnsTask):
             name='Cornish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_m: DENOMINATOR },)
 
@@ -2261,6 +2539,7 @@ class NHSColumns(ColumnsTask):
             name='Cornish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_f: DENOMINATOR },)
 
@@ -2269,6 +2548,7 @@ class NHSColumns(ColumnsTask):
             name='English (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_t: DENOMINATOR },)
 
@@ -2277,6 +2557,7 @@ class NHSColumns(ColumnsTask):
             name='English (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_m: DENOMINATOR },)
 
@@ -2285,6 +2566,7 @@ class NHSColumns(ColumnsTask):
             name='English (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_f: DENOMINATOR },)
 
@@ -2293,6 +2575,7 @@ class NHSColumns(ColumnsTask):
             name='Irish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_t: DENOMINATOR },)
 
@@ -2301,6 +2584,7 @@ class NHSColumns(ColumnsTask):
             name='Irish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_m: DENOMINATOR },)
 
@@ -2309,6 +2593,7 @@ class NHSColumns(ColumnsTask):
             name='Irish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_f: DENOMINATOR },)
 
@@ -2317,6 +2602,7 @@ class NHSColumns(ColumnsTask):
             name='Manx (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_t: DENOMINATOR },)
 
@@ -2325,6 +2611,7 @@ class NHSColumns(ColumnsTask):
             name='Manx (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_m: DENOMINATOR },)
 
@@ -2333,6 +2620,7 @@ class NHSColumns(ColumnsTask):
             name='Manx (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_f: DENOMINATOR },)
 
@@ -2341,6 +2629,7 @@ class NHSColumns(ColumnsTask):
             name='Scottish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_t: DENOMINATOR },)
 
@@ -2349,6 +2638,7 @@ class NHSColumns(ColumnsTask):
             name='Scottish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_m: DENOMINATOR },)
 
@@ -2357,6 +2647,7 @@ class NHSColumns(ColumnsTask):
             name='Scottish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_f: DENOMINATOR },)
 
@@ -2365,6 +2656,7 @@ class NHSColumns(ColumnsTask):
             name='Welsh (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_t: DENOMINATOR },)
 
@@ -2373,6 +2665,7 @@ class NHSColumns(ColumnsTask):
             name='Welsh (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_m: DENOMINATOR },)
 
@@ -2381,6 +2674,7 @@ class NHSColumns(ColumnsTask):
             name='Welsh (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_f: DENOMINATOR },)
 
@@ -2389,6 +2683,7 @@ class NHSColumns(ColumnsTask):
             name='British Isles origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_t: DENOMINATOR },)
 
@@ -2397,6 +2692,7 @@ class NHSColumns(ColumnsTask):
             name='British Isles origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_m: DENOMINATOR },)
 
@@ -2405,6 +2701,7 @@ class NHSColumns(ColumnsTask):
             name='British Isles origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c017_f: DENOMINATOR },)
 
@@ -2413,6 +2710,7 @@ class NHSColumns(ColumnsTask):
             name='French origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_t: DENOMINATOR },)
 
@@ -2421,6 +2719,7 @@ class NHSColumns(ColumnsTask):
             name='French origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_m: DENOMINATOR },)
 
@@ -2429,6 +2728,7 @@ class NHSColumns(ColumnsTask):
             name='French origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_f: DENOMINATOR },)
 
@@ -2437,6 +2737,7 @@ class NHSColumns(ColumnsTask):
             name='Alsatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_t: DENOMINATOR },)
 
@@ -2445,6 +2746,7 @@ class NHSColumns(ColumnsTask):
             name='Alsatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_m: DENOMINATOR },)
 
@@ -2453,6 +2755,7 @@ class NHSColumns(ColumnsTask):
             name='Alsatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_f: DENOMINATOR },)
 
@@ -2461,6 +2764,7 @@ class NHSColumns(ColumnsTask):
             name='Breton (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_t: DENOMINATOR },)
 
@@ -2469,6 +2773,7 @@ class NHSColumns(ColumnsTask):
             name='Breton (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_m: DENOMINATOR },)
 
@@ -2477,6 +2782,7 @@ class NHSColumns(ColumnsTask):
             name='Breton (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_f: DENOMINATOR },)
 
@@ -2485,6 +2791,7 @@ class NHSColumns(ColumnsTask):
             name='French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_t: DENOMINATOR },)
 
@@ -2493,6 +2800,7 @@ class NHSColumns(ColumnsTask):
             name='French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_m: DENOMINATOR },)
 
@@ -2501,6 +2809,7 @@ class NHSColumns(ColumnsTask):
             name='French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c026_f: DENOMINATOR },)
 
@@ -2509,6 +2818,7 @@ class NHSColumns(ColumnsTask):
             name='Western European origins (except French origins) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_t: DENOMINATOR },)
 
@@ -2517,6 +2827,7 @@ class NHSColumns(ColumnsTask):
             name='Western European origins (except French origins) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_m: DENOMINATOR },)
 
@@ -2525,6 +2836,7 @@ class NHSColumns(ColumnsTask):
             name='Western European origins (except French origins) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_f: DENOMINATOR },)
 
@@ -2533,6 +2845,7 @@ class NHSColumns(ColumnsTask):
             name='Austrian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2541,6 +2854,7 @@ class NHSColumns(ColumnsTask):
             name='Austrian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2549,6 +2863,7 @@ class NHSColumns(ColumnsTask):
             name='Austrian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2557,6 +2872,7 @@ class NHSColumns(ColumnsTask):
             name='Belgian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2565,6 +2881,7 @@ class NHSColumns(ColumnsTask):
             name='Belgian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2573,6 +2890,7 @@ class NHSColumns(ColumnsTask):
             name='Belgian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2581,6 +2899,7 @@ class NHSColumns(ColumnsTask):
             name='Dutch (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2589,6 +2908,7 @@ class NHSColumns(ColumnsTask):
             name='Dutch (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2597,6 +2917,7 @@ class NHSColumns(ColumnsTask):
             name='Dutch (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2605,6 +2926,7 @@ class NHSColumns(ColumnsTask):
             name='Flemish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2613,6 +2935,7 @@ class NHSColumns(ColumnsTask):
             name='Flemish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2621,6 +2944,7 @@ class NHSColumns(ColumnsTask):
             name='Flemish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2629,6 +2953,7 @@ class NHSColumns(ColumnsTask):
             name='Frisian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2637,6 +2962,7 @@ class NHSColumns(ColumnsTask):
             name='Frisian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2645,6 +2971,7 @@ class NHSColumns(ColumnsTask):
             name='Frisian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2653,6 +2980,7 @@ class NHSColumns(ColumnsTask):
             name='German (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2661,6 +2989,7 @@ class NHSColumns(ColumnsTask):
             name='German (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2669,6 +2998,7 @@ class NHSColumns(ColumnsTask):
             name='German (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2677,6 +3007,7 @@ class NHSColumns(ColumnsTask):
             name='Luxembourger (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2685,6 +3016,7 @@ class NHSColumns(ColumnsTask):
             name='Luxembourger (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2693,6 +3025,7 @@ class NHSColumns(ColumnsTask):
             name='Luxembourger (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2701,6 +3034,7 @@ class NHSColumns(ColumnsTask):
             name='Swiss (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2709,6 +3043,7 @@ class NHSColumns(ColumnsTask):
             name='Swiss (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2717,6 +3052,7 @@ class NHSColumns(ColumnsTask):
             name='Swiss (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2725,6 +3061,7 @@ class NHSColumns(ColumnsTask):
             name='Western European origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_t: DENOMINATOR },)
 
@@ -2733,6 +3070,7 @@ class NHSColumns(ColumnsTask):
             name='Western European origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_m: DENOMINATOR },)
 
@@ -2741,6 +3079,7 @@ class NHSColumns(ColumnsTask):
             name='Western European origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c030_f: DENOMINATOR },)
 
@@ -2749,6 +3088,7 @@ class NHSColumns(ColumnsTask):
             name='Northern European origins (except British Isles origins) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_t: DENOMINATOR },)
 
@@ -2757,6 +3097,7 @@ class NHSColumns(ColumnsTask):
             name='Northern European origins (except British Isles origins) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_m: DENOMINATOR },)
 
@@ -2765,6 +3106,7 @@ class NHSColumns(ColumnsTask):
             name='Northern European origins (except British Isles origins) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_f: DENOMINATOR },)
 
@@ -2773,6 +3115,7 @@ class NHSColumns(ColumnsTask):
             name='Danish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_t: DENOMINATOR },)
 
@@ -2781,6 +3124,7 @@ class NHSColumns(ColumnsTask):
             name='Danish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_m: DENOMINATOR },)
 
@@ -2789,6 +3133,7 @@ class NHSColumns(ColumnsTask):
             name='Danish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_f: DENOMINATOR },)
 
@@ -2797,6 +3142,7 @@ class NHSColumns(ColumnsTask):
             name='Finnish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_t: DENOMINATOR },)
 
@@ -2805,6 +3151,7 @@ class NHSColumns(ColumnsTask):
             name='Finnish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_m: DENOMINATOR },)
 
@@ -2813,6 +3160,7 @@ class NHSColumns(ColumnsTask):
             name='Finnish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_f: DENOMINATOR },)
 
@@ -2821,6 +3169,7 @@ class NHSColumns(ColumnsTask):
             name='Icelandic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_t: DENOMINATOR },)
 
@@ -2829,6 +3178,7 @@ class NHSColumns(ColumnsTask):
             name='Icelandic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_m: DENOMINATOR },)
 
@@ -2837,6 +3187,7 @@ class NHSColumns(ColumnsTask):
             name='Icelandic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_f: DENOMINATOR },)
 
@@ -2845,6 +3196,7 @@ class NHSColumns(ColumnsTask):
             name='Norwegian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_t: DENOMINATOR },)
 
@@ -2853,6 +3205,7 @@ class NHSColumns(ColumnsTask):
             name='Norwegian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_m: DENOMINATOR },)
 
@@ -2861,6 +3214,7 @@ class NHSColumns(ColumnsTask):
             name='Norwegian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_f: DENOMINATOR },)
 
@@ -2869,6 +3223,7 @@ class NHSColumns(ColumnsTask):
             name='Swedish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_t: DENOMINATOR },)
 
@@ -2877,6 +3232,7 @@ class NHSColumns(ColumnsTask):
             name='Swedish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_m: DENOMINATOR },)
 
@@ -2885,6 +3241,7 @@ class NHSColumns(ColumnsTask):
             name='Swedish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_f: DENOMINATOR },)
 
@@ -2893,6 +3250,7 @@ class NHSColumns(ColumnsTask):
             name='Northern European origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_t: DENOMINATOR },)
 
@@ -2901,6 +3259,7 @@ class NHSColumns(ColumnsTask):
             name='Northern European origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_m: DENOMINATOR },)
 
@@ -2909,6 +3268,7 @@ class NHSColumns(ColumnsTask):
             name='Northern European origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c040_f: DENOMINATOR },)
 
@@ -2917,6 +3277,7 @@ class NHSColumns(ColumnsTask):
             name='Eastern European origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_t: DENOMINATOR },)
 
@@ -2925,6 +3286,7 @@ class NHSColumns(ColumnsTask):
             name='Eastern European origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_m: DENOMINATOR },)
 
@@ -2933,6 +3295,7 @@ class NHSColumns(ColumnsTask):
             name='Eastern European origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_f: DENOMINATOR },)
 
@@ -2941,6 +3304,7 @@ class NHSColumns(ColumnsTask):
             name='Bulgarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -2949,6 +3313,7 @@ class NHSColumns(ColumnsTask):
             name='Bulgarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -2957,6 +3322,7 @@ class NHSColumns(ColumnsTask):
             name='Bulgarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -2965,6 +3331,7 @@ class NHSColumns(ColumnsTask):
             name='Byelorussian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -2973,6 +3340,7 @@ class NHSColumns(ColumnsTask):
             name='Byelorussian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -2981,6 +3349,7 @@ class NHSColumns(ColumnsTask):
             name='Byelorussian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -2989,6 +3358,7 @@ class NHSColumns(ColumnsTask):
             name='Czech (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -2997,6 +3367,7 @@ class NHSColumns(ColumnsTask):
             name='Czech (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3005,6 +3376,7 @@ class NHSColumns(ColumnsTask):
             name='Czech (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3013,6 +3385,7 @@ class NHSColumns(ColumnsTask):
             name='Czechoslovakian, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3021,6 +3394,7 @@ class NHSColumns(ColumnsTask):
             name='Czechoslovakian, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3029,6 +3403,7 @@ class NHSColumns(ColumnsTask):
             name='Czechoslovakian, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3037,6 +3412,7 @@ class NHSColumns(ColumnsTask):
             name='Estonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3045,6 +3421,7 @@ class NHSColumns(ColumnsTask):
             name='Estonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3053,6 +3430,7 @@ class NHSColumns(ColumnsTask):
             name='Estonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3061,6 +3439,7 @@ class NHSColumns(ColumnsTask):
             name='Hungarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3069,6 +3448,7 @@ class NHSColumns(ColumnsTask):
             name='Hungarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3077,6 +3457,7 @@ class NHSColumns(ColumnsTask):
             name='Hungarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3085,6 +3466,7 @@ class NHSColumns(ColumnsTask):
             name='Latvian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3093,6 +3475,7 @@ class NHSColumns(ColumnsTask):
             name='Latvian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3101,6 +3484,7 @@ class NHSColumns(ColumnsTask):
             name='Latvian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3109,6 +3493,7 @@ class NHSColumns(ColumnsTask):
             name='Lithuanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3117,6 +3502,7 @@ class NHSColumns(ColumnsTask):
             name='Lithuanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3125,6 +3511,7 @@ class NHSColumns(ColumnsTask):
             name='Lithuanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3133,6 +3520,7 @@ class NHSColumns(ColumnsTask):
             name='Moldovan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3141,6 +3529,7 @@ class NHSColumns(ColumnsTask):
             name='Moldovan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3149,6 +3538,7 @@ class NHSColumns(ColumnsTask):
             name='Moldovan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3157,6 +3547,7 @@ class NHSColumns(ColumnsTask):
             name='Polish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3165,6 +3556,7 @@ class NHSColumns(ColumnsTask):
             name='Polish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3173,6 +3565,7 @@ class NHSColumns(ColumnsTask):
             name='Polish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3181,6 +3574,7 @@ class NHSColumns(ColumnsTask):
             name='Romanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3189,6 +3583,7 @@ class NHSColumns(ColumnsTask):
             name='Romanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3197,6 +3592,7 @@ class NHSColumns(ColumnsTask):
             name='Romanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3205,6 +3601,7 @@ class NHSColumns(ColumnsTask):
             name='Russian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3213,6 +3610,7 @@ class NHSColumns(ColumnsTask):
             name='Russian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3221,6 +3619,7 @@ class NHSColumns(ColumnsTask):
             name='Russian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3229,6 +3628,7 @@ class NHSColumns(ColumnsTask):
             name='Slovak (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3237,6 +3637,7 @@ class NHSColumns(ColumnsTask):
             name='Slovak (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3245,6 +3646,7 @@ class NHSColumns(ColumnsTask):
             name='Slovak (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3253,6 +3655,7 @@ class NHSColumns(ColumnsTask):
             name='Ukrainian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3261,6 +3664,7 @@ class NHSColumns(ColumnsTask):
             name='Ukrainian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3269,6 +3673,7 @@ class NHSColumns(ColumnsTask):
             name='Ukrainian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3277,6 +3682,7 @@ class NHSColumns(ColumnsTask):
             name='Eastern European origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_t: DENOMINATOR },)
 
@@ -3285,6 +3691,7 @@ class NHSColumns(ColumnsTask):
             name='Eastern European origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_m: DENOMINATOR },)
 
@@ -3293,6 +3700,7 @@ class NHSColumns(ColumnsTask):
             name='Eastern European origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c047_f: DENOMINATOR },)
 
@@ -3301,6 +3709,7 @@ class NHSColumns(ColumnsTask):
             name='Southern European origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_t: DENOMINATOR },)
 
@@ -3309,6 +3718,7 @@ class NHSColumns(ColumnsTask):
             name='Southern European origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_m: DENOMINATOR },)
 
@@ -3317,6 +3727,7 @@ class NHSColumns(ColumnsTask):
             name='Southern European origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_f: DENOMINATOR },)
 
@@ -3325,6 +3736,7 @@ class NHSColumns(ColumnsTask):
             name='Albanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3333,6 +3745,7 @@ class NHSColumns(ColumnsTask):
             name='Albanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3341,6 +3754,7 @@ class NHSColumns(ColumnsTask):
             name='Albanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3349,6 +3763,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3357,6 +3772,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3365,6 +3781,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3373,6 +3790,7 @@ class NHSColumns(ColumnsTask):
             name='Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3381,6 +3799,7 @@ class NHSColumns(ColumnsTask):
             name='Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3389,6 +3808,7 @@ class NHSColumns(ColumnsTask):
             name='Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3397,6 +3817,7 @@ class NHSColumns(ColumnsTask):
             name='Cypriot (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3405,6 +3826,7 @@ class NHSColumns(ColumnsTask):
             name='Cypriot (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3413,6 +3835,7 @@ class NHSColumns(ColumnsTask):
             name='Cypriot (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3421,6 +3844,7 @@ class NHSColumns(ColumnsTask):
             name='Greek (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3429,6 +3853,7 @@ class NHSColumns(ColumnsTask):
             name='Greek (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3437,6 +3862,7 @@ class NHSColumns(ColumnsTask):
             name='Greek (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3445,6 +3871,7 @@ class NHSColumns(ColumnsTask):
             name='Italian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3453,6 +3880,7 @@ class NHSColumns(ColumnsTask):
             name='Italian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3461,6 +3889,7 @@ class NHSColumns(ColumnsTask):
             name='Italian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3469,6 +3898,7 @@ class NHSColumns(ColumnsTask):
             name='Kosovar (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3477,6 +3907,7 @@ class NHSColumns(ColumnsTask):
             name='Kosovar (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3485,6 +3916,7 @@ class NHSColumns(ColumnsTask):
             name='Kosovar (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3493,6 +3925,7 @@ class NHSColumns(ColumnsTask):
             name='Macedonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3501,6 +3934,7 @@ class NHSColumns(ColumnsTask):
             name='Macedonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3509,6 +3943,7 @@ class NHSColumns(ColumnsTask):
             name='Macedonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3517,6 +3952,7 @@ class NHSColumns(ColumnsTask):
             name='Maltese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3525,6 +3961,7 @@ class NHSColumns(ColumnsTask):
             name='Maltese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3533,6 +3970,7 @@ class NHSColumns(ColumnsTask):
             name='Maltese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3541,6 +3979,7 @@ class NHSColumns(ColumnsTask):
             name='Montenegrin (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3549,6 +3988,7 @@ class NHSColumns(ColumnsTask):
             name='Montenegrin (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3557,6 +3997,7 @@ class NHSColumns(ColumnsTask):
             name='Montenegrin (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3565,6 +4006,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3573,6 +4015,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3581,6 +4024,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3589,6 +4033,7 @@ class NHSColumns(ColumnsTask):
             name='Serbian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3597,6 +4042,7 @@ class NHSColumns(ColumnsTask):
             name='Serbian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3605,6 +4051,7 @@ class NHSColumns(ColumnsTask):
             name='Serbian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3613,6 +4060,7 @@ class NHSColumns(ColumnsTask):
             name='Sicilian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3621,6 +4069,7 @@ class NHSColumns(ColumnsTask):
             name='Sicilian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3629,6 +4078,7 @@ class NHSColumns(ColumnsTask):
             name='Sicilian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3637,6 +4087,7 @@ class NHSColumns(ColumnsTask):
             name='Slovenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3645,6 +4096,7 @@ class NHSColumns(ColumnsTask):
             name='Slovenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3653,6 +4105,7 @@ class NHSColumns(ColumnsTask):
             name='Slovenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3661,6 +4114,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3669,6 +4123,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3677,6 +4132,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3685,6 +4141,7 @@ class NHSColumns(ColumnsTask):
             name='Yugoslavian, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3693,6 +4150,7 @@ class NHSColumns(ColumnsTask):
             name='Yugoslavian, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3701,6 +4159,7 @@ class NHSColumns(ColumnsTask):
             name='Yugoslavian, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3709,6 +4168,7 @@ class NHSColumns(ColumnsTask):
             name='Southern European origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_t: DENOMINATOR },)
 
@@ -3717,6 +4177,7 @@ class NHSColumns(ColumnsTask):
             name='Southern European origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_m: DENOMINATOR },)
 
@@ -3725,6 +4186,7 @@ class NHSColumns(ColumnsTask):
             name='Southern European origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c063_f: DENOMINATOR },)
 
@@ -3733,6 +4195,7 @@ class NHSColumns(ColumnsTask):
             name='Other European origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_t: DENOMINATOR },)
 
@@ -3741,6 +4204,7 @@ class NHSColumns(ColumnsTask):
             name='Other European origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_m: DENOMINATOR },)
 
@@ -3749,6 +4213,7 @@ class NHSColumns(ColumnsTask):
             name='Other European origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c016_f: DENOMINATOR },)
 
@@ -3757,6 +4222,7 @@ class NHSColumns(ColumnsTask):
             name='Basque (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_t: DENOMINATOR },)
 
@@ -3765,6 +4231,7 @@ class NHSColumns(ColumnsTask):
             name='Basque (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_m: DENOMINATOR },)
 
@@ -3773,6 +4240,7 @@ class NHSColumns(ColumnsTask):
             name='Basque (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_f: DENOMINATOR },)
 
@@ -3781,6 +4249,7 @@ class NHSColumns(ColumnsTask):
             name='Jewish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_t: DENOMINATOR },)
 
@@ -3789,6 +4258,7 @@ class NHSColumns(ColumnsTask):
             name='Jewish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_m: DENOMINATOR },)
 
@@ -3797,6 +4267,7 @@ class NHSColumns(ColumnsTask):
             name='Jewish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_f: DENOMINATOR },)
 
@@ -3805,6 +4276,7 @@ class NHSColumns(ColumnsTask):
             name='Roma (Gypsy) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_t: DENOMINATOR },)
 
@@ -3813,6 +4285,7 @@ class NHSColumns(ColumnsTask):
             name='Roma (Gypsy) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_m: DENOMINATOR },)
 
@@ -3821,6 +4294,7 @@ class NHSColumns(ColumnsTask):
             name='Roma (Gypsy) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_f: DENOMINATOR },)
 
@@ -3829,6 +4303,7 @@ class NHSColumns(ColumnsTask):
             name='Slavic, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_t: DENOMINATOR },)
 
@@ -3837,6 +4312,7 @@ class NHSColumns(ColumnsTask):
             name='Slavic, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_m: DENOMINATOR },)
 
@@ -3845,6 +4321,7 @@ class NHSColumns(ColumnsTask):
             name='Slavic, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_f: DENOMINATOR },)
 
@@ -3853,6 +4330,7 @@ class NHSColumns(ColumnsTask):
             name='Other European origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_t: DENOMINATOR },)
 
@@ -3861,6 +4339,7 @@ class NHSColumns(ColumnsTask):
             name='Other European origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_m: DENOMINATOR },)
 
@@ -3869,6 +4348,7 @@ class NHSColumns(ColumnsTask):
             name='Other European origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c081_f: DENOMINATOR },)
 
@@ -3877,6 +4357,7 @@ class NHSColumns(ColumnsTask):
             name='Caribbean origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -3885,6 +4366,7 @@ class NHSColumns(ColumnsTask):
             name='Caribbean origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -3893,6 +4375,7 @@ class NHSColumns(ColumnsTask):
             name='Caribbean origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -3901,6 +4384,7 @@ class NHSColumns(ColumnsTask):
             name='Antiguan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -3909,6 +4393,7 @@ class NHSColumns(ColumnsTask):
             name='Antiguan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -3917,6 +4402,7 @@ class NHSColumns(ColumnsTask):
             name='Antiguan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -3925,6 +4411,7 @@ class NHSColumns(ColumnsTask):
             name='Bahamian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -3933,6 +4420,7 @@ class NHSColumns(ColumnsTask):
             name='Bahamian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -3941,6 +4429,7 @@ class NHSColumns(ColumnsTask):
             name='Bahamian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -3949,6 +4438,7 @@ class NHSColumns(ColumnsTask):
             name='Barbadian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -3957,6 +4447,7 @@ class NHSColumns(ColumnsTask):
             name='Barbadian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -3965,6 +4456,7 @@ class NHSColumns(ColumnsTask):
             name='Barbadian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -3973,6 +4465,7 @@ class NHSColumns(ColumnsTask):
             name='Bermudan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -3981,6 +4474,7 @@ class NHSColumns(ColumnsTask):
             name='Bermudan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -3989,6 +4483,7 @@ class NHSColumns(ColumnsTask):
             name='Bermudan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -3997,6 +4492,7 @@ class NHSColumns(ColumnsTask):
             name='Carib (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4005,6 +4501,7 @@ class NHSColumns(ColumnsTask):
             name='Carib (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4013,6 +4510,7 @@ class NHSColumns(ColumnsTask):
             name='Carib (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4021,6 +4519,7 @@ class NHSColumns(ColumnsTask):
             name='Cuban (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4029,6 +4528,7 @@ class NHSColumns(ColumnsTask):
             name='Cuban (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4037,6 +4537,7 @@ class NHSColumns(ColumnsTask):
             name='Cuban (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4045,6 +4546,7 @@ class NHSColumns(ColumnsTask):
             name='Dominican (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4053,6 +4555,7 @@ class NHSColumns(ColumnsTask):
             name='Dominican (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4061,6 +4564,7 @@ class NHSColumns(ColumnsTask):
             name='Dominican (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4069,6 +4573,7 @@ class NHSColumns(ColumnsTask):
             name='Grenadian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4077,6 +4582,7 @@ class NHSColumns(ColumnsTask):
             name='Grenadian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4085,6 +4591,7 @@ class NHSColumns(ColumnsTask):
             name='Grenadian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4093,6 +4600,7 @@ class NHSColumns(ColumnsTask):
             name='Haitian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4101,6 +4609,7 @@ class NHSColumns(ColumnsTask):
             name='Haitian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4109,6 +4618,7 @@ class NHSColumns(ColumnsTask):
             name='Haitian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4117,6 +4627,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaican (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4125,6 +4636,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaican (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4133,6 +4645,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaican (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4141,6 +4654,7 @@ class NHSColumns(ColumnsTask):
             name='Kittitian/Nevisian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4149,6 +4663,7 @@ class NHSColumns(ColumnsTask):
             name='Kittitian/Nevisian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4157,6 +4672,7 @@ class NHSColumns(ColumnsTask):
             name='Kittitian/Nevisian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4165,6 +4681,7 @@ class NHSColumns(ColumnsTask):
             name='Martinican (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4173,6 +4690,7 @@ class NHSColumns(ColumnsTask):
             name='Martinican (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4181,6 +4699,7 @@ class NHSColumns(ColumnsTask):
             name='Martinican (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4189,6 +4708,7 @@ class NHSColumns(ColumnsTask):
             name='Montserratan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4197,6 +4717,7 @@ class NHSColumns(ColumnsTask):
             name='Montserratan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4205,6 +4726,7 @@ class NHSColumns(ColumnsTask):
             name='Montserratan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4213,6 +4735,7 @@ class NHSColumns(ColumnsTask):
             name='Puerto Rican (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4221,6 +4744,7 @@ class NHSColumns(ColumnsTask):
             name='Puerto Rican (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4229,6 +4753,7 @@ class NHSColumns(ColumnsTask):
             name='Puerto Rican (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4237,6 +4762,7 @@ class NHSColumns(ColumnsTask):
             name='St. Lucian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4245,6 +4771,7 @@ class NHSColumns(ColumnsTask):
             name='St. Lucian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4253,6 +4780,7 @@ class NHSColumns(ColumnsTask):
             name='St. Lucian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4261,6 +4789,7 @@ class NHSColumns(ColumnsTask):
             name='Trinidadian/Tobagonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4269,6 +4798,7 @@ class NHSColumns(ColumnsTask):
             name='Trinidadian/Tobagonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4277,6 +4807,7 @@ class NHSColumns(ColumnsTask):
             name='Trinidadian/Tobagonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4285,6 +4816,7 @@ class NHSColumns(ColumnsTask):
             name='Vincentian/Grenadinian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4293,6 +4825,7 @@ class NHSColumns(ColumnsTask):
             name='Vincentian/Grenadinian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4301,6 +4834,7 @@ class NHSColumns(ColumnsTask):
             name='Vincentian/Grenadinian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4309,6 +4843,7 @@ class NHSColumns(ColumnsTask):
             name='West Indian, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4317,6 +4852,7 @@ class NHSColumns(ColumnsTask):
             name='West Indian, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4325,6 +4861,7 @@ class NHSColumns(ColumnsTask):
             name='West Indian, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4333,6 +4870,7 @@ class NHSColumns(ColumnsTask):
             name='Caribbean origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_t: DENOMINATOR },)
 
@@ -4341,6 +4879,7 @@ class NHSColumns(ColumnsTask):
             name='Caribbean origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_m: DENOMINATOR },)
 
@@ -4349,6 +4888,7 @@ class NHSColumns(ColumnsTask):
             name='Caribbean origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c087_f: DENOMINATOR },)
 
@@ -4357,6 +4897,7 @@ class NHSColumns(ColumnsTask):
             name='Latin, Central and South American origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -4365,6 +4906,7 @@ class NHSColumns(ColumnsTask):
             name='Latin, Central and South American origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -4373,6 +4915,7 @@ class NHSColumns(ColumnsTask):
             name='Latin, Central and South American origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -4381,6 +4924,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal from Central/South America (except Maya) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4389,6 +4933,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal from Central/South America (except Maya) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4397,6 +4942,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal from Central/South America (except Maya) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4405,6 +4951,7 @@ class NHSColumns(ColumnsTask):
             name='Argentinian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4413,6 +4960,7 @@ class NHSColumns(ColumnsTask):
             name='Argentinian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4421,6 +4969,7 @@ class NHSColumns(ColumnsTask):
             name='Argentinian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4429,6 +4978,7 @@ class NHSColumns(ColumnsTask):
             name='Belizean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4437,6 +4987,7 @@ class NHSColumns(ColumnsTask):
             name='Belizean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4445,6 +4996,7 @@ class NHSColumns(ColumnsTask):
             name='Belizean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4453,6 +5005,7 @@ class NHSColumns(ColumnsTask):
             name='Bolivian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4461,6 +5014,7 @@ class NHSColumns(ColumnsTask):
             name='Bolivian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4469,6 +5023,7 @@ class NHSColumns(ColumnsTask):
             name='Bolivian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4477,6 +5032,7 @@ class NHSColumns(ColumnsTask):
             name='Brazilian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4485,6 +5041,7 @@ class NHSColumns(ColumnsTask):
             name='Brazilian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4493,6 +5050,7 @@ class NHSColumns(ColumnsTask):
             name='Brazilian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4501,6 +5059,7 @@ class NHSColumns(ColumnsTask):
             name='Chilean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4509,6 +5068,7 @@ class NHSColumns(ColumnsTask):
             name='Chilean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4517,6 +5077,7 @@ class NHSColumns(ColumnsTask):
             name='Chilean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4525,6 +5086,7 @@ class NHSColumns(ColumnsTask):
             name='Colombian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4533,6 +5095,7 @@ class NHSColumns(ColumnsTask):
             name='Colombian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4541,6 +5104,7 @@ class NHSColumns(ColumnsTask):
             name='Colombian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4549,6 +5113,7 @@ class NHSColumns(ColumnsTask):
             name='Costa Rican (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4557,6 +5122,7 @@ class NHSColumns(ColumnsTask):
             name='Costa Rican (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4565,6 +5131,7 @@ class NHSColumns(ColumnsTask):
             name='Costa Rican (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4573,6 +5140,7 @@ class NHSColumns(ColumnsTask):
             name='Ecuadorian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4581,6 +5149,7 @@ class NHSColumns(ColumnsTask):
             name='Ecuadorian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4589,6 +5158,7 @@ class NHSColumns(ColumnsTask):
             name='Ecuadorian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4597,6 +5167,7 @@ class NHSColumns(ColumnsTask):
             name='Guatemalan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4605,6 +5176,7 @@ class NHSColumns(ColumnsTask):
             name='Guatemalan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4613,6 +5185,7 @@ class NHSColumns(ColumnsTask):
             name='Guatemalan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4621,6 +5194,7 @@ class NHSColumns(ColumnsTask):
             name='Guyanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4629,6 +5203,7 @@ class NHSColumns(ColumnsTask):
             name='Guyanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4637,6 +5212,7 @@ class NHSColumns(ColumnsTask):
             name='Guyanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4645,6 +5221,7 @@ class NHSColumns(ColumnsTask):
             name='Hispanic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4653,6 +5230,7 @@ class NHSColumns(ColumnsTask):
             name='Hispanic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4661,6 +5239,7 @@ class NHSColumns(ColumnsTask):
             name='Hispanic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4669,6 +5248,7 @@ class NHSColumns(ColumnsTask):
             name='Honduran (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4677,6 +5257,7 @@ class NHSColumns(ColumnsTask):
             name='Honduran (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4685,6 +5266,7 @@ class NHSColumns(ColumnsTask):
             name='Honduran (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4693,6 +5275,7 @@ class NHSColumns(ColumnsTask):
             name='Maya (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4701,6 +5284,7 @@ class NHSColumns(ColumnsTask):
             name='Maya (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4709,6 +5293,7 @@ class NHSColumns(ColumnsTask):
             name='Maya (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4717,6 +5302,7 @@ class NHSColumns(ColumnsTask):
             name='Mexican (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4725,6 +5311,7 @@ class NHSColumns(ColumnsTask):
             name='Mexican (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4733,6 +5320,7 @@ class NHSColumns(ColumnsTask):
             name='Mexican (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4741,6 +5329,7 @@ class NHSColumns(ColumnsTask):
             name='Nicaraguan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4749,6 +5338,7 @@ class NHSColumns(ColumnsTask):
             name='Nicaraguan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4757,6 +5347,7 @@ class NHSColumns(ColumnsTask):
             name='Nicaraguan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4765,6 +5356,7 @@ class NHSColumns(ColumnsTask):
             name='Panamanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4773,6 +5365,7 @@ class NHSColumns(ColumnsTask):
             name='Panamanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4781,6 +5374,7 @@ class NHSColumns(ColumnsTask):
             name='Panamanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4789,6 +5383,7 @@ class NHSColumns(ColumnsTask):
             name='Paraguayan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4797,6 +5392,7 @@ class NHSColumns(ColumnsTask):
             name='Paraguayan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4805,6 +5401,7 @@ class NHSColumns(ColumnsTask):
             name='Paraguayan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4813,6 +5410,7 @@ class NHSColumns(ColumnsTask):
             name='Peruvian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4821,6 +5419,7 @@ class NHSColumns(ColumnsTask):
             name='Peruvian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4829,6 +5428,7 @@ class NHSColumns(ColumnsTask):
             name='Peruvian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4837,6 +5437,7 @@ class NHSColumns(ColumnsTask):
             name='Salvadorean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4845,6 +5446,7 @@ class NHSColumns(ColumnsTask):
             name='Salvadorean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4853,6 +5455,7 @@ class NHSColumns(ColumnsTask):
             name='Salvadorean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4861,6 +5464,7 @@ class NHSColumns(ColumnsTask):
             name='Uruguayan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4869,6 +5473,7 @@ class NHSColumns(ColumnsTask):
             name='Uruguayan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4877,6 +5482,7 @@ class NHSColumns(ColumnsTask):
             name='Uruguayan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4885,6 +5491,7 @@ class NHSColumns(ColumnsTask):
             name='Venezuelan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4893,6 +5500,7 @@ class NHSColumns(ColumnsTask):
             name='Venezuelan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4901,6 +5509,7 @@ class NHSColumns(ColumnsTask):
             name='Venezuelan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4909,6 +5518,7 @@ class NHSColumns(ColumnsTask):
             name='Latin, Central and South American origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_t: DENOMINATOR },)
 
@@ -4917,6 +5527,7 @@ class NHSColumns(ColumnsTask):
             name='Latin, Central and South American origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_m: DENOMINATOR },)
 
@@ -4925,6 +5536,7 @@ class NHSColumns(ColumnsTask):
             name='Latin, Central and South American origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c107_f: DENOMINATOR },)
 
@@ -4933,6 +5545,7 @@ class NHSColumns(ColumnsTask):
             name='African origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -4941,6 +5554,7 @@ class NHSColumns(ColumnsTask):
             name='African origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -4949,6 +5563,7 @@ class NHSColumns(ColumnsTask):
             name='African origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -4957,6 +5572,7 @@ class NHSColumns(ColumnsTask):
             name='Central and West African origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_t: DENOMINATOR },)
 
@@ -4965,6 +5581,7 @@ class NHSColumns(ColumnsTask):
             name='Central and West African origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_m: DENOMINATOR },)
 
@@ -4973,6 +5590,7 @@ class NHSColumns(ColumnsTask):
             name='Central and West African origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_f: DENOMINATOR },)
 
@@ -4981,6 +5599,7 @@ class NHSColumns(ColumnsTask):
             name='Akan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -4989,6 +5608,7 @@ class NHSColumns(ColumnsTask):
             name='Akan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -4997,6 +5617,7 @@ class NHSColumns(ColumnsTask):
             name='Akan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5005,6 +5626,7 @@ class NHSColumns(ColumnsTask):
             name='Angolan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5013,6 +5635,7 @@ class NHSColumns(ColumnsTask):
             name='Angolan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5021,6 +5644,7 @@ class NHSColumns(ColumnsTask):
             name='Angolan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5029,6 +5653,7 @@ class NHSColumns(ColumnsTask):
             name='Ashanti (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5037,6 +5662,7 @@ class NHSColumns(ColumnsTask):
             name='Ashanti (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5045,6 +5671,7 @@ class NHSColumns(ColumnsTask):
             name='Ashanti (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5053,6 +5680,7 @@ class NHSColumns(ColumnsTask):
             name='Beninese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5061,6 +5689,7 @@ class NHSColumns(ColumnsTask):
             name='Beninese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5069,6 +5698,7 @@ class NHSColumns(ColumnsTask):
             name='Beninese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5077,6 +5707,7 @@ class NHSColumns(ColumnsTask):
             name='Burkinabe (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5085,6 +5716,7 @@ class NHSColumns(ColumnsTask):
             name='Burkinabe (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5093,6 +5725,7 @@ class NHSColumns(ColumnsTask):
             name='Burkinabe (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5101,6 +5734,7 @@ class NHSColumns(ColumnsTask):
             name='Cameroonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5109,6 +5743,7 @@ class NHSColumns(ColumnsTask):
             name='Cameroonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5117,6 +5752,7 @@ class NHSColumns(ColumnsTask):
             name='Cameroonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5125,6 +5761,7 @@ class NHSColumns(ColumnsTask):
             name='Chadian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5133,6 +5770,7 @@ class NHSColumns(ColumnsTask):
             name='Chadian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5141,6 +5779,7 @@ class NHSColumns(ColumnsTask):
             name='Chadian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5149,6 +5788,7 @@ class NHSColumns(ColumnsTask):
             name='Congolese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5157,6 +5797,7 @@ class NHSColumns(ColumnsTask):
             name='Congolese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5165,6 +5806,7 @@ class NHSColumns(ColumnsTask):
             name='Congolese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5173,6 +5815,7 @@ class NHSColumns(ColumnsTask):
             name='Gabonese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5181,6 +5824,7 @@ class NHSColumns(ColumnsTask):
             name='Gabonese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5189,6 +5833,7 @@ class NHSColumns(ColumnsTask):
             name='Gabonese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5197,6 +5842,7 @@ class NHSColumns(ColumnsTask):
             name='Gambian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5205,6 +5851,7 @@ class NHSColumns(ColumnsTask):
             name='Gambian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5213,6 +5860,7 @@ class NHSColumns(ColumnsTask):
             name='Gambian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5221,6 +5869,7 @@ class NHSColumns(ColumnsTask):
             name='Ghanaian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5229,6 +5878,7 @@ class NHSColumns(ColumnsTask):
             name='Ghanaian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5237,6 +5887,7 @@ class NHSColumns(ColumnsTask):
             name='Ghanaian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5245,6 +5896,7 @@ class NHSColumns(ColumnsTask):
             name='Guinean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5253,6 +5905,7 @@ class NHSColumns(ColumnsTask):
             name='Guinean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5261,6 +5914,7 @@ class NHSColumns(ColumnsTask):
             name='Guinean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5269,6 +5923,7 @@ class NHSColumns(ColumnsTask):
             name='Ibo (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5277,6 +5932,7 @@ class NHSColumns(ColumnsTask):
             name='Ibo (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5285,6 +5941,7 @@ class NHSColumns(ColumnsTask):
             name='Ibo (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5293,6 +5950,7 @@ class NHSColumns(ColumnsTask):
             name='Ivorian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5301,6 +5959,7 @@ class NHSColumns(ColumnsTask):
             name='Ivorian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5309,6 +5968,7 @@ class NHSColumns(ColumnsTask):
             name='Ivorian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5317,6 +5977,7 @@ class NHSColumns(ColumnsTask):
             name='Liberian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5325,6 +5986,7 @@ class NHSColumns(ColumnsTask):
             name='Liberian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5333,6 +5995,7 @@ class NHSColumns(ColumnsTask):
             name='Liberian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5341,6 +6004,7 @@ class NHSColumns(ColumnsTask):
             name='Malian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5349,6 +6013,7 @@ class NHSColumns(ColumnsTask):
             name='Malian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5357,6 +6022,7 @@ class NHSColumns(ColumnsTask):
             name='Malian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5365,6 +6031,7 @@ class NHSColumns(ColumnsTask):
             name='Nigerian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5373,6 +6040,7 @@ class NHSColumns(ColumnsTask):
             name='Nigerian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5381,6 +6049,7 @@ class NHSColumns(ColumnsTask):
             name='Nigerian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5389,6 +6058,7 @@ class NHSColumns(ColumnsTask):
             name='Peulh (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5397,6 +6067,7 @@ class NHSColumns(ColumnsTask):
             name='Peulh (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5405,6 +6076,7 @@ class NHSColumns(ColumnsTask):
             name='Peulh (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5413,6 +6085,7 @@ class NHSColumns(ColumnsTask):
             name='Senegalese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5421,6 +6094,7 @@ class NHSColumns(ColumnsTask):
             name='Senegalese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5429,6 +6103,7 @@ class NHSColumns(ColumnsTask):
             name='Senegalese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5437,6 +6112,7 @@ class NHSColumns(ColumnsTask):
             name='Sierra Leonean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5445,6 +6121,7 @@ class NHSColumns(ColumnsTask):
             name='Sierra Leonean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5453,6 +6130,7 @@ class NHSColumns(ColumnsTask):
             name='Sierra Leonean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5461,6 +6139,7 @@ class NHSColumns(ColumnsTask):
             name='Togolese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5469,6 +6148,7 @@ class NHSColumns(ColumnsTask):
             name='Togolese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5477,6 +6157,7 @@ class NHSColumns(ColumnsTask):
             name='Togolese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5485,6 +6166,7 @@ class NHSColumns(ColumnsTask):
             name='Yoruba (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5493,6 +6175,7 @@ class NHSColumns(ColumnsTask):
             name='Yoruba (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5501,6 +6184,7 @@ class NHSColumns(ColumnsTask):
             name='Yoruba (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5509,6 +6193,7 @@ class NHSColumns(ColumnsTask):
             name='Central and West African origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_t: DENOMINATOR },)
 
@@ -5517,6 +6202,7 @@ class NHSColumns(ColumnsTask):
             name='Central and West African origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_m: DENOMINATOR },)
 
@@ -5525,6 +6211,7 @@ class NHSColumns(ColumnsTask):
             name='Central and West African origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c132_f: DENOMINATOR },)
 
@@ -5533,6 +6220,7 @@ class NHSColumns(ColumnsTask):
             name='North African origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_t: DENOMINATOR },)
 
@@ -5541,6 +6229,7 @@ class NHSColumns(ColumnsTask):
             name='North African origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_m: DENOMINATOR },)
 
@@ -5549,6 +6238,7 @@ class NHSColumns(ColumnsTask):
             name='North African origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_f: DENOMINATOR },)
 
@@ -5557,6 +6247,7 @@ class NHSColumns(ColumnsTask):
             name='Algerian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5565,6 +6256,7 @@ class NHSColumns(ColumnsTask):
             name='Algerian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5573,6 +6265,7 @@ class NHSColumns(ColumnsTask):
             name='Algerian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5581,6 +6274,7 @@ class NHSColumns(ColumnsTask):
             name='Berber (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5589,6 +6283,7 @@ class NHSColumns(ColumnsTask):
             name='Berber (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5597,6 +6292,7 @@ class NHSColumns(ColumnsTask):
             name='Berber (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5605,6 +6301,7 @@ class NHSColumns(ColumnsTask):
             name='Coptic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5613,6 +6310,7 @@ class NHSColumns(ColumnsTask):
             name='Coptic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5621,6 +6319,7 @@ class NHSColumns(ColumnsTask):
             name='Coptic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5629,6 +6328,7 @@ class NHSColumns(ColumnsTask):
             name='Dinka (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5637,6 +6337,7 @@ class NHSColumns(ColumnsTask):
             name='Dinka (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5645,6 +6346,7 @@ class NHSColumns(ColumnsTask):
             name='Dinka (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5653,6 +6355,7 @@ class NHSColumns(ColumnsTask):
             name='Egyptian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5661,6 +6364,7 @@ class NHSColumns(ColumnsTask):
             name='Egyptian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5669,6 +6373,7 @@ class NHSColumns(ColumnsTask):
             name='Egyptian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5677,6 +6382,7 @@ class NHSColumns(ColumnsTask):
             name='Libyan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5685,6 +6391,7 @@ class NHSColumns(ColumnsTask):
             name='Libyan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5693,6 +6400,7 @@ class NHSColumns(ColumnsTask):
             name='Libyan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5701,6 +6409,7 @@ class NHSColumns(ColumnsTask):
             name='Maure (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5709,6 +6418,7 @@ class NHSColumns(ColumnsTask):
             name='Maure (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5717,6 +6427,7 @@ class NHSColumns(ColumnsTask):
             name='Maure (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5725,6 +6436,7 @@ class NHSColumns(ColumnsTask):
             name='Moroccan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5733,6 +6445,7 @@ class NHSColumns(ColumnsTask):
             name='Moroccan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5741,6 +6454,7 @@ class NHSColumns(ColumnsTask):
             name='Moroccan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5749,6 +6463,7 @@ class NHSColumns(ColumnsTask):
             name='Sudanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5757,6 +6472,7 @@ class NHSColumns(ColumnsTask):
             name='Sudanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5765,6 +6481,7 @@ class NHSColumns(ColumnsTask):
             name='Sudanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5773,6 +6490,7 @@ class NHSColumns(ColumnsTask):
             name='Tunisian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5781,6 +6499,7 @@ class NHSColumns(ColumnsTask):
             name='Tunisian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5789,6 +6508,7 @@ class NHSColumns(ColumnsTask):
             name='Tunisian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5797,6 +6517,7 @@ class NHSColumns(ColumnsTask):
             name='North African origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_t: DENOMINATOR },)
 
@@ -5805,6 +6526,7 @@ class NHSColumns(ColumnsTask):
             name='North African origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_m: DENOMINATOR },)
 
@@ -5813,6 +6535,7 @@ class NHSColumns(ColumnsTask):
             name='North African origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c156_f: DENOMINATOR },)
 
@@ -5821,6 +6544,7 @@ class NHSColumns(ColumnsTask):
             name='Southern and East African origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_t: DENOMINATOR },)
 
@@ -5829,6 +6553,7 @@ class NHSColumns(ColumnsTask):
             name='Southern and East African origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_m: DENOMINATOR },)
 
@@ -5837,6 +6562,7 @@ class NHSColumns(ColumnsTask):
             name='Southern and East African origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_f: DENOMINATOR },)
 
@@ -5845,6 +6571,7 @@ class NHSColumns(ColumnsTask):
             name='Afrikaner (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -5853,6 +6580,7 @@ class NHSColumns(ColumnsTask):
             name='Afrikaner (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -5861,6 +6589,7 @@ class NHSColumns(ColumnsTask):
             name='Afrikaner (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -5869,6 +6598,7 @@ class NHSColumns(ColumnsTask):
             name='Amhara (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -5877,6 +6607,7 @@ class NHSColumns(ColumnsTask):
             name='Amhara (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -5885,6 +6616,7 @@ class NHSColumns(ColumnsTask):
             name='Amhara (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -5893,6 +6625,7 @@ class NHSColumns(ColumnsTask):
             name='Bantu, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -5901,6 +6634,7 @@ class NHSColumns(ColumnsTask):
             name='Bantu, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -5909,6 +6643,7 @@ class NHSColumns(ColumnsTask):
             name='Bantu, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -5917,6 +6652,7 @@ class NHSColumns(ColumnsTask):
             name='Burundian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -5925,6 +6661,7 @@ class NHSColumns(ColumnsTask):
             name='Burundian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -5933,6 +6670,7 @@ class NHSColumns(ColumnsTask):
             name='Burundian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -5941,6 +6679,7 @@ class NHSColumns(ColumnsTask):
             name='Eritrean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -5949,6 +6688,7 @@ class NHSColumns(ColumnsTask):
             name='Eritrean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -5957,6 +6697,7 @@ class NHSColumns(ColumnsTask):
             name='Eritrean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -5965,6 +6706,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -5973,6 +6715,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -5981,6 +6724,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -5989,6 +6733,7 @@ class NHSColumns(ColumnsTask):
             name='Harari (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -5997,6 +6742,7 @@ class NHSColumns(ColumnsTask):
             name='Harari (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6005,6 +6751,7 @@ class NHSColumns(ColumnsTask):
             name='Harari (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6013,6 +6760,7 @@ class NHSColumns(ColumnsTask):
             name='Kenyan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6021,6 +6769,7 @@ class NHSColumns(ColumnsTask):
             name='Kenyan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6029,6 +6778,7 @@ class NHSColumns(ColumnsTask):
             name='Kenyan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6037,6 +6787,7 @@ class NHSColumns(ColumnsTask):
             name='Malagasy (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6045,6 +6796,7 @@ class NHSColumns(ColumnsTask):
             name='Malagasy (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6053,6 +6805,7 @@ class NHSColumns(ColumnsTask):
             name='Malagasy (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6061,6 +6814,7 @@ class NHSColumns(ColumnsTask):
             name='Mauritian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6069,6 +6823,7 @@ class NHSColumns(ColumnsTask):
             name='Mauritian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6077,6 +6832,7 @@ class NHSColumns(ColumnsTask):
             name='Mauritian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6085,6 +6841,7 @@ class NHSColumns(ColumnsTask):
             name='Oromo (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6093,6 +6850,7 @@ class NHSColumns(ColumnsTask):
             name='Oromo (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6101,6 +6859,7 @@ class NHSColumns(ColumnsTask):
             name='Oromo (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6109,6 +6868,7 @@ class NHSColumns(ColumnsTask):
             name='Rwandan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6117,6 +6877,7 @@ class NHSColumns(ColumnsTask):
             name='Rwandan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6125,6 +6886,7 @@ class NHSColumns(ColumnsTask):
             name='Rwandan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6133,6 +6895,7 @@ class NHSColumns(ColumnsTask):
             name='Seychellois (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6141,6 +6904,7 @@ class NHSColumns(ColumnsTask):
             name='Seychellois (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6149,6 +6913,7 @@ class NHSColumns(ColumnsTask):
             name='Seychellois (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6157,6 +6922,7 @@ class NHSColumns(ColumnsTask):
             name='Somali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6165,6 +6931,7 @@ class NHSColumns(ColumnsTask):
             name='Somali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6173,6 +6940,7 @@ class NHSColumns(ColumnsTask):
             name='Somali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6181,6 +6949,7 @@ class NHSColumns(ColumnsTask):
             name='South African (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6189,6 +6958,7 @@ class NHSColumns(ColumnsTask):
             name='South African (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6197,6 +6967,7 @@ class NHSColumns(ColumnsTask):
             name='South African (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6205,6 +6976,7 @@ class NHSColumns(ColumnsTask):
             name='Tanzanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6213,6 +6985,7 @@ class NHSColumns(ColumnsTask):
             name='Tanzanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6221,6 +6994,7 @@ class NHSColumns(ColumnsTask):
             name='Tanzanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6229,6 +7003,7 @@ class NHSColumns(ColumnsTask):
             name='Tigrian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6237,6 +7012,7 @@ class NHSColumns(ColumnsTask):
             name='Tigrian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6245,6 +7021,7 @@ class NHSColumns(ColumnsTask):
             name='Tigrian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6253,6 +7030,7 @@ class NHSColumns(ColumnsTask):
             name='Ugandan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6261,6 +7039,7 @@ class NHSColumns(ColumnsTask):
             name='Ugandan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6269,6 +7048,7 @@ class NHSColumns(ColumnsTask):
             name='Ugandan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6277,6 +7057,7 @@ class NHSColumns(ColumnsTask):
             name='Zambian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6285,6 +7066,7 @@ class NHSColumns(ColumnsTask):
             name='Zambian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6293,6 +7075,7 @@ class NHSColumns(ColumnsTask):
             name='Zambian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6301,6 +7084,7 @@ class NHSColumns(ColumnsTask):
             name='Zimbabwean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6309,6 +7093,7 @@ class NHSColumns(ColumnsTask):
             name='Zimbabwean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6317,6 +7102,7 @@ class NHSColumns(ColumnsTask):
             name='Zimbabwean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6325,6 +7111,7 @@ class NHSColumns(ColumnsTask):
             name='Zulu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6333,6 +7120,7 @@ class NHSColumns(ColumnsTask):
             name='Zulu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6341,6 +7129,7 @@ class NHSColumns(ColumnsTask):
             name='Zulu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6349,6 +7138,7 @@ class NHSColumns(ColumnsTask):
             name='Southern and East African origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_t: DENOMINATOR },)
 
@@ -6357,6 +7147,7 @@ class NHSColumns(ColumnsTask):
             name='Southern and East African origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_m: DENOMINATOR },)
 
@@ -6365,6 +7156,7 @@ class NHSColumns(ColumnsTask):
             name='Southern and East African origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c168_f: DENOMINATOR },)
 
@@ -6373,6 +7165,7 @@ class NHSColumns(ColumnsTask):
             name='Other African origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_t: DENOMINATOR },)
 
@@ -6381,6 +7174,7 @@ class NHSColumns(ColumnsTask):
             name='Other African origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_m: DENOMINATOR },)
 
@@ -6389,6 +7183,7 @@ class NHSColumns(ColumnsTask):
             name='Other African origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c131_f: DENOMINATOR },)
 
@@ -6397,6 +7192,7 @@ class NHSColumns(ColumnsTask):
             name='Black, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c191_t: DENOMINATOR },)
 
@@ -6405,6 +7201,7 @@ class NHSColumns(ColumnsTask):
             name='Black, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c191_m: DENOMINATOR },)
 
@@ -6413,6 +7210,7 @@ class NHSColumns(ColumnsTask):
             name='Black, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c191_f: DENOMINATOR },)
 
@@ -6421,6 +7219,7 @@ class NHSColumns(ColumnsTask):
             name='Other African origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c191_t: DENOMINATOR },)
 
@@ -6429,6 +7228,7 @@ class NHSColumns(ColumnsTask):
             name='Other African origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c191_m: DENOMINATOR },)
 
@@ -6437,6 +7237,7 @@ class NHSColumns(ColumnsTask):
             name='Other African origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c191_f: DENOMINATOR },)
 
@@ -6445,6 +7246,7 @@ class NHSColumns(ColumnsTask):
             name='Asian origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -6453,6 +7255,7 @@ class NHSColumns(ColumnsTask):
             name='Asian origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -6461,6 +7264,7 @@ class NHSColumns(ColumnsTask):
             name='Asian origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -6469,6 +7273,7 @@ class NHSColumns(ColumnsTask):
             name='West Central Asian and Middle Eastern origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_t: DENOMINATOR },)
 
@@ -6477,6 +7282,7 @@ class NHSColumns(ColumnsTask):
             name='West Central Asian and Middle Eastern origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_m: DENOMINATOR },)
 
@@ -6485,6 +7291,7 @@ class NHSColumns(ColumnsTask):
             name='West Central Asian and Middle Eastern origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_f: DENOMINATOR },)
 
@@ -6493,6 +7300,7 @@ class NHSColumns(ColumnsTask):
             name='Afghan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6501,6 +7309,7 @@ class NHSColumns(ColumnsTask):
             name='Afghan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6509,6 +7318,7 @@ class NHSColumns(ColumnsTask):
             name='Afghan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6517,6 +7327,7 @@ class NHSColumns(ColumnsTask):
             name='Arab, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6525,6 +7336,7 @@ class NHSColumns(ColumnsTask):
             name='Arab, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6533,6 +7345,7 @@ class NHSColumns(ColumnsTask):
             name='Arab, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6541,6 +7354,7 @@ class NHSColumns(ColumnsTask):
             name='Armenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6549,6 +7363,7 @@ class NHSColumns(ColumnsTask):
             name='Armenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6557,6 +7372,7 @@ class NHSColumns(ColumnsTask):
             name='Armenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6565,6 +7381,7 @@ class NHSColumns(ColumnsTask):
             name='Assyrian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6573,6 +7390,7 @@ class NHSColumns(ColumnsTask):
             name='Assyrian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6581,6 +7399,7 @@ class NHSColumns(ColumnsTask):
             name='Assyrian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6589,6 +7408,7 @@ class NHSColumns(ColumnsTask):
             name='Azerbaijani (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6597,6 +7417,7 @@ class NHSColumns(ColumnsTask):
             name='Azerbaijani (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6605,6 +7426,7 @@ class NHSColumns(ColumnsTask):
             name='Azerbaijani (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6613,6 +7435,7 @@ class NHSColumns(ColumnsTask):
             name='Georgian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6621,6 +7444,7 @@ class NHSColumns(ColumnsTask):
             name='Georgian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6629,6 +7453,7 @@ class NHSColumns(ColumnsTask):
             name='Georgian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6637,6 +7462,7 @@ class NHSColumns(ColumnsTask):
             name='Iranian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6645,6 +7471,7 @@ class NHSColumns(ColumnsTask):
             name='Iranian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6653,6 +7480,7 @@ class NHSColumns(ColumnsTask):
             name='Iranian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6661,6 +7489,7 @@ class NHSColumns(ColumnsTask):
             name='Iraqi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6669,6 +7498,7 @@ class NHSColumns(ColumnsTask):
             name='Iraqi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6677,6 +7507,7 @@ class NHSColumns(ColumnsTask):
             name='Iraqi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6685,6 +7516,7 @@ class NHSColumns(ColumnsTask):
             name='Israeli (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6693,6 +7525,7 @@ class NHSColumns(ColumnsTask):
             name='Israeli (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6701,6 +7534,7 @@ class NHSColumns(ColumnsTask):
             name='Israeli (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6709,6 +7543,7 @@ class NHSColumns(ColumnsTask):
             name='Jordanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6717,6 +7552,7 @@ class NHSColumns(ColumnsTask):
             name='Jordanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6725,6 +7561,7 @@ class NHSColumns(ColumnsTask):
             name='Jordanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6733,6 +7570,7 @@ class NHSColumns(ColumnsTask):
             name='Kazakh (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6741,6 +7579,7 @@ class NHSColumns(ColumnsTask):
             name='Kazakh (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6749,6 +7588,7 @@ class NHSColumns(ColumnsTask):
             name='Kazakh (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6757,6 +7597,7 @@ class NHSColumns(ColumnsTask):
             name='Kurd (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6765,6 +7606,7 @@ class NHSColumns(ColumnsTask):
             name='Kurd (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6773,6 +7615,7 @@ class NHSColumns(ColumnsTask):
             name='Kurd (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6781,6 +7624,7 @@ class NHSColumns(ColumnsTask):
             name='Kuwaiti (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6789,6 +7633,7 @@ class NHSColumns(ColumnsTask):
             name='Kuwaiti (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6797,6 +7642,7 @@ class NHSColumns(ColumnsTask):
             name='Kuwaiti (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6805,6 +7651,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6813,6 +7660,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6821,6 +7669,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6829,6 +7678,7 @@ class NHSColumns(ColumnsTask):
             name='Palestinian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6837,6 +7687,7 @@ class NHSColumns(ColumnsTask):
             name='Palestinian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6845,6 +7696,7 @@ class NHSColumns(ColumnsTask):
             name='Palestinian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6853,6 +7705,7 @@ class NHSColumns(ColumnsTask):
             name='Pashtun (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6861,6 +7714,7 @@ class NHSColumns(ColumnsTask):
             name='Pashtun (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6869,6 +7723,7 @@ class NHSColumns(ColumnsTask):
             name='Pashtun (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6877,6 +7732,7 @@ class NHSColumns(ColumnsTask):
             name='Saudi Arabian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6885,6 +7741,7 @@ class NHSColumns(ColumnsTask):
             name='Saudi Arabian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6893,6 +7750,7 @@ class NHSColumns(ColumnsTask):
             name='Saudi Arabian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6901,6 +7759,7 @@ class NHSColumns(ColumnsTask):
             name='Syrian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6909,6 +7768,7 @@ class NHSColumns(ColumnsTask):
             name='Syrian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6917,6 +7777,7 @@ class NHSColumns(ColumnsTask):
             name='Syrian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6925,6 +7786,7 @@ class NHSColumns(ColumnsTask):
             name='Tajik (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6933,6 +7795,7 @@ class NHSColumns(ColumnsTask):
             name='Tajik (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6941,6 +7804,7 @@ class NHSColumns(ColumnsTask):
             name='Tajik (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6949,6 +7813,7 @@ class NHSColumns(ColumnsTask):
             name='Tatar (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6957,6 +7822,7 @@ class NHSColumns(ColumnsTask):
             name='Tatar (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6965,6 +7831,7 @@ class NHSColumns(ColumnsTask):
             name='Tatar (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6973,6 +7840,7 @@ class NHSColumns(ColumnsTask):
             name='Turk (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -6981,6 +7849,7 @@ class NHSColumns(ColumnsTask):
             name='Turk (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -6989,6 +7858,7 @@ class NHSColumns(ColumnsTask):
             name='Turk (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -6997,6 +7867,7 @@ class NHSColumns(ColumnsTask):
             name='Uighur (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -7005,6 +7876,7 @@ class NHSColumns(ColumnsTask):
             name='Uighur (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -7013,6 +7885,7 @@ class NHSColumns(ColumnsTask):
             name='Uighur (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -7021,6 +7894,7 @@ class NHSColumns(ColumnsTask):
             name='Uzbek (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -7029,6 +7903,7 @@ class NHSColumns(ColumnsTask):
             name='Uzbek (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -7037,6 +7912,7 @@ class NHSColumns(ColumnsTask):
             name='Uzbek (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -7045,6 +7921,7 @@ class NHSColumns(ColumnsTask):
             name='Yemeni (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -7053,6 +7930,7 @@ class NHSColumns(ColumnsTask):
             name='Yemeni (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -7061,6 +7939,7 @@ class NHSColumns(ColumnsTask):
             name='Yemeni (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -7069,6 +7948,7 @@ class NHSColumns(ColumnsTask):
             name='West Central Asian and Middle Eastern origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_t: DENOMINATOR },)
 
@@ -7077,6 +7957,7 @@ class NHSColumns(ColumnsTask):
             name='West Central Asian and Middle Eastern origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_m: DENOMINATOR },)
 
@@ -7085,6 +7966,7 @@ class NHSColumns(ColumnsTask):
             name='West Central Asian and Middle Eastern origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c195_f: DENOMINATOR },)
 
@@ -7093,6 +7975,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_t: DENOMINATOR },)
 
@@ -7101,6 +7984,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_m: DENOMINATOR },)
 
@@ -7109,6 +7993,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_f: DENOMINATOR },)
 
@@ -7117,6 +8002,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladeshi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7125,6 +8011,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladeshi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7133,6 +8020,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladeshi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7141,6 +8029,7 @@ class NHSColumns(ColumnsTask):
             name='Bengali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7149,6 +8038,7 @@ class NHSColumns(ColumnsTask):
             name='Bengali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7157,6 +8047,7 @@ class NHSColumns(ColumnsTask):
             name='Bengali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7165,6 +8056,7 @@ class NHSColumns(ColumnsTask):
             name='East Indian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7173,6 +8065,7 @@ class NHSColumns(ColumnsTask):
             name='East Indian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7181,6 +8074,7 @@ class NHSColumns(ColumnsTask):
             name='East Indian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7189,6 +8083,7 @@ class NHSColumns(ColumnsTask):
             name='Goan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7197,6 +8092,7 @@ class NHSColumns(ColumnsTask):
             name='Goan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7205,6 +8101,7 @@ class NHSColumns(ColumnsTask):
             name='Goan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7213,6 +8110,7 @@ class NHSColumns(ColumnsTask):
             name='Gujarati (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7221,6 +8119,7 @@ class NHSColumns(ColumnsTask):
             name='Gujarati (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7229,6 +8128,7 @@ class NHSColumns(ColumnsTask):
             name='Gujarati (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7237,6 +8137,7 @@ class NHSColumns(ColumnsTask):
             name='Kashmiri (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7245,6 +8146,7 @@ class NHSColumns(ColumnsTask):
             name='Kashmiri (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7253,6 +8155,7 @@ class NHSColumns(ColumnsTask):
             name='Kashmiri (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7261,6 +8164,7 @@ class NHSColumns(ColumnsTask):
             name='Nepali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7269,6 +8173,7 @@ class NHSColumns(ColumnsTask):
             name='Nepali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7277,6 +8182,7 @@ class NHSColumns(ColumnsTask):
             name='Nepali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7285,6 +8191,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistani (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7293,6 +8200,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistani (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7301,6 +8209,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistani (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7309,6 +8218,7 @@ class NHSColumns(ColumnsTask):
             name='Punjabi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7317,6 +8227,7 @@ class NHSColumns(ColumnsTask):
             name='Punjabi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7325,6 +8236,7 @@ class NHSColumns(ColumnsTask):
             name='Punjabi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7333,6 +8245,7 @@ class NHSColumns(ColumnsTask):
             name='Sinhalese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7341,6 +8254,7 @@ class NHSColumns(ColumnsTask):
             name='Sinhalese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7349,6 +8263,7 @@ class NHSColumns(ColumnsTask):
             name='Sinhalese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7357,6 +8272,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lankan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7365,6 +8281,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lankan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7373,6 +8290,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lankan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7381,6 +8299,7 @@ class NHSColumns(ColumnsTask):
             name='Tamil (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7389,6 +8308,7 @@ class NHSColumns(ColumnsTask):
             name='Tamil (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7397,6 +8317,7 @@ class NHSColumns(ColumnsTask):
             name='Tamil (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7405,6 +8326,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_t: DENOMINATOR },)
 
@@ -7413,6 +8335,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_m: DENOMINATOR },)
 
@@ -7421,6 +8344,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c221_f: DENOMINATOR },)
 
@@ -7429,6 +8353,7 @@ class NHSColumns(ColumnsTask):
             name='East and Southeast Asian origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_t: DENOMINATOR },)
 
@@ -7437,6 +8362,7 @@ class NHSColumns(ColumnsTask):
             name='East and Southeast Asian origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_m: DENOMINATOR },)
 
@@ -7445,6 +8371,7 @@ class NHSColumns(ColumnsTask):
             name='East and Southeast Asian origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_f: DENOMINATOR },)
 
@@ -7453,6 +8380,7 @@ class NHSColumns(ColumnsTask):
             name='Burmese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7461,6 +8389,7 @@ class NHSColumns(ColumnsTask):
             name='Burmese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7469,6 +8398,7 @@ class NHSColumns(ColumnsTask):
             name='Burmese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7477,6 +8407,7 @@ class NHSColumns(ColumnsTask):
             name='Cambodian (Khmer) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7485,6 +8416,7 @@ class NHSColumns(ColumnsTask):
             name='Cambodian (Khmer) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7493,6 +8425,7 @@ class NHSColumns(ColumnsTask):
             name='Cambodian (Khmer) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7501,6 +8434,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7509,6 +8443,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7517,6 +8452,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7525,6 +8461,7 @@ class NHSColumns(ColumnsTask):
             name='Filipino (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7533,6 +8470,7 @@ class NHSColumns(ColumnsTask):
             name='Filipino (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7541,6 +8479,7 @@ class NHSColumns(ColumnsTask):
             name='Filipino (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7549,6 +8488,7 @@ class NHSColumns(ColumnsTask):
             name='Hmong (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7557,6 +8497,7 @@ class NHSColumns(ColumnsTask):
             name='Hmong (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7565,6 +8506,7 @@ class NHSColumns(ColumnsTask):
             name='Hmong (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7573,6 +8515,7 @@ class NHSColumns(ColumnsTask):
             name='Indonesian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7581,6 +8524,7 @@ class NHSColumns(ColumnsTask):
             name='Indonesian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7589,6 +8533,7 @@ class NHSColumns(ColumnsTask):
             name='Indonesian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7597,6 +8542,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7605,6 +8551,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7613,6 +8560,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7621,6 +8569,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7629,6 +8578,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7637,6 +8587,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7645,6 +8596,7 @@ class NHSColumns(ColumnsTask):
             name='Laotian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7653,6 +8605,7 @@ class NHSColumns(ColumnsTask):
             name='Laotian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7661,6 +8614,7 @@ class NHSColumns(ColumnsTask):
             name='Laotian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7669,6 +8623,7 @@ class NHSColumns(ColumnsTask):
             name='Malaysian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7677,6 +8632,7 @@ class NHSColumns(ColumnsTask):
             name='Malaysian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7685,6 +8641,7 @@ class NHSColumns(ColumnsTask):
             name='Malaysian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7693,6 +8650,7 @@ class NHSColumns(ColumnsTask):
             name='Mongolian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7701,6 +8659,7 @@ class NHSColumns(ColumnsTask):
             name='Mongolian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7709,6 +8668,7 @@ class NHSColumns(ColumnsTask):
             name='Mongolian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7717,6 +8677,7 @@ class NHSColumns(ColumnsTask):
             name='Singaporean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7725,6 +8686,7 @@ class NHSColumns(ColumnsTask):
             name='Singaporean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7733,6 +8695,7 @@ class NHSColumns(ColumnsTask):
             name='Singaporean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7741,6 +8704,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7749,6 +8713,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7757,6 +8722,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7765,6 +8731,7 @@ class NHSColumns(ColumnsTask):
             name='Thai (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7773,6 +8740,7 @@ class NHSColumns(ColumnsTask):
             name='Thai (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7781,6 +8749,7 @@ class NHSColumns(ColumnsTask):
             name='Thai (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7789,6 +8758,7 @@ class NHSColumns(ColumnsTask):
             name='Tibetan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7797,6 +8767,7 @@ class NHSColumns(ColumnsTask):
             name='Tibetan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7805,6 +8776,7 @@ class NHSColumns(ColumnsTask):
             name='Tibetan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7813,6 +8785,7 @@ class NHSColumns(ColumnsTask):
             name='Vietnamese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7821,6 +8794,7 @@ class NHSColumns(ColumnsTask):
             name='Vietnamese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7829,6 +8803,7 @@ class NHSColumns(ColumnsTask):
             name='Vietnamese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7837,6 +8812,7 @@ class NHSColumns(ColumnsTask):
             name='East and Southeast Asian origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_t: DENOMINATOR },)
 
@@ -7845,6 +8821,7 @@ class NHSColumns(ColumnsTask):
             name='East and Southeast Asian origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_m: DENOMINATOR },)
 
@@ -7853,6 +8830,7 @@ class NHSColumns(ColumnsTask):
             name='East and Southeast Asian origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c235_f: DENOMINATOR },)
 
@@ -7861,6 +8839,7 @@ class NHSColumns(ColumnsTask):
             name='Other Asian origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_t: DENOMINATOR },)
 
@@ -7869,6 +8848,7 @@ class NHSColumns(ColumnsTask):
             name='Other Asian origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_m: DENOMINATOR },)
 
@@ -7877,6 +8857,7 @@ class NHSColumns(ColumnsTask):
             name='Other Asian origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c194_f: DENOMINATOR },)
 
@@ -7885,6 +8866,7 @@ class NHSColumns(ColumnsTask):
             name='Other Asian origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c253_t: DENOMINATOR },)
 
@@ -7893,6 +8875,7 @@ class NHSColumns(ColumnsTask):
             name='Other Asian origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c253_m: DENOMINATOR },)
 
@@ -7901,6 +8884,7 @@ class NHSColumns(ColumnsTask):
             name='Other Asian origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c253_f: DENOMINATOR },)
 
@@ -7909,6 +8893,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -7917,6 +8902,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -7925,6 +8911,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -7933,6 +8920,7 @@ class NHSColumns(ColumnsTask):
             name='Australian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_t: DENOMINATOR },)
 
@@ -7941,6 +8929,7 @@ class NHSColumns(ColumnsTask):
             name='Australian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_m: DENOMINATOR },)
 
@@ -7949,6 +8938,7 @@ class NHSColumns(ColumnsTask):
             name='Australian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_f: DENOMINATOR },)
 
@@ -7957,6 +8947,7 @@ class NHSColumns(ColumnsTask):
             name='New Zealander (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_t: DENOMINATOR },)
 
@@ -7965,6 +8956,7 @@ class NHSColumns(ColumnsTask):
             name='New Zealander (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_m: DENOMINATOR },)
 
@@ -7973,6 +8965,7 @@ class NHSColumns(ColumnsTask):
             name='New Zealander (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_f: DENOMINATOR },)
 
@@ -7981,6 +8974,7 @@ class NHSColumns(ColumnsTask):
             name='Pacific Islands origins (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_t: DENOMINATOR },)
 
@@ -7989,6 +8983,7 @@ class NHSColumns(ColumnsTask):
             name='Pacific Islands origins (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_m: DENOMINATOR },)
 
@@ -7997,6 +8992,7 @@ class NHSColumns(ColumnsTask):
             name='Pacific Islands origins (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c255_f: DENOMINATOR },)
 
@@ -8005,6 +9001,7 @@ class NHSColumns(ColumnsTask):
             name='Fijian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_t: DENOMINATOR },)
 
@@ -8013,6 +9010,7 @@ class NHSColumns(ColumnsTask):
             name='Fijian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_m: DENOMINATOR },)
 
@@ -8021,6 +9019,7 @@ class NHSColumns(ColumnsTask):
             name='Fijian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_f: DENOMINATOR },)
 
@@ -8029,6 +9028,7 @@ class NHSColumns(ColumnsTask):
             name='Hawaiian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_t: DENOMINATOR },)
 
@@ -8037,6 +9037,7 @@ class NHSColumns(ColumnsTask):
             name='Hawaiian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_m: DENOMINATOR },)
 
@@ -8045,6 +9046,7 @@ class NHSColumns(ColumnsTask):
             name='Hawaiian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_f: DENOMINATOR },)
 
@@ -8053,6 +9055,7 @@ class NHSColumns(ColumnsTask):
             name='Maori (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_t: DENOMINATOR },)
 
@@ -8061,6 +9064,7 @@ class NHSColumns(ColumnsTask):
             name='Maori (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_m: DENOMINATOR },)
 
@@ -8069,6 +9073,7 @@ class NHSColumns(ColumnsTask):
             name='Maori (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_f: DENOMINATOR },)
 
@@ -8077,6 +9082,7 @@ class NHSColumns(ColumnsTask):
             name='Polynesian, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_t: DENOMINATOR },)
 
@@ -8085,6 +9091,7 @@ class NHSColumns(ColumnsTask):
             name='Polynesian, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_m: DENOMINATOR },)
 
@@ -8093,6 +9100,7 @@ class NHSColumns(ColumnsTask):
             name='Polynesian, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_f: DENOMINATOR },)
 
@@ -8101,6 +9109,7 @@ class NHSColumns(ColumnsTask):
             name='Samoan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_t: DENOMINATOR },)
 
@@ -8109,6 +9118,7 @@ class NHSColumns(ColumnsTask):
             name='Samoan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_m: DENOMINATOR },)
 
@@ -8117,6 +9127,7 @@ class NHSColumns(ColumnsTask):
             name='Samoan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_f: DENOMINATOR },)
 
@@ -8125,6 +9136,7 @@ class NHSColumns(ColumnsTask):
             name='Pacific Islands origins, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_t: DENOMINATOR },)
 
@@ -8133,6 +9145,7 @@ class NHSColumns(ColumnsTask):
             name='Pacific Islands origins, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_m: DENOMINATOR },)
 
@@ -8141,6 +9154,7 @@ class NHSColumns(ColumnsTask):
             name='Pacific Islands origins, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_f: DENOMINATOR },)
 
@@ -8149,6 +9163,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by full-time or part-time weeks worked in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -8157,6 +9172,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by full-time or part-time weeks worked in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -8165,6 +9181,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by full-time or part-time weeks worked in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -8173,6 +9190,7 @@ class NHSColumns(ColumnsTask):
             name='Did not work in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c001_t: DENOMINATOR },)
 
@@ -8181,6 +9199,7 @@ class NHSColumns(ColumnsTask):
             name='Did not work in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c001_m: DENOMINATOR },)
 
@@ -8189,6 +9208,7 @@ class NHSColumns(ColumnsTask):
             name='Did not work in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c001_f: DENOMINATOR },)
 
@@ -8197,6 +9217,7 @@ class NHSColumns(ColumnsTask):
             name='Worked in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c001_t: DENOMINATOR },)
 
@@ -8205,6 +9226,7 @@ class NHSColumns(ColumnsTask):
             name='Worked in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c001_m: DENOMINATOR },)
 
@@ -8213,6 +9235,7 @@ class NHSColumns(ColumnsTask):
             name='Worked in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c001_f: DENOMINATOR },)
 
@@ -8221,6 +9244,7 @@ class NHSColumns(ColumnsTask):
             name='Worked full-time in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_t: DENOMINATOR },)
 
@@ -8229,6 +9253,7 @@ class NHSColumns(ColumnsTask):
             name='Worked full-time in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_m: DENOMINATOR },)
 
@@ -8237,6 +9262,7 @@ class NHSColumns(ColumnsTask):
             name='Worked full-time in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
@@ -8245,6 +9271,7 @@ class NHSColumns(ColumnsTask):
             name='Worked part-time in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_t: DENOMINATOR },)
 
@@ -8253,6 +9280,7 @@ class NHSColumns(ColumnsTask):
             name='Worked part-time in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_m: DENOMINATOR },)
 
@@ -8261,6 +9289,7 @@ class NHSColumns(ColumnsTask):
             name='Worked part-time in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
@@ -8269,6 +9298,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by generation status (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
@@ -8277,6 +9307,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by generation status (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
@@ -8285,6 +9316,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by generation status (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
@@ -8293,6 +9325,7 @@ class NHSColumns(ColumnsTask):
             name='First generation (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_t: DENOMINATOR },)
 
@@ -8301,6 +9334,7 @@ class NHSColumns(ColumnsTask):
             name='First generation (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_m: DENOMINATOR },)
 
@@ -8309,6 +9343,7 @@ class NHSColumns(ColumnsTask):
             name='First generation (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_f: DENOMINATOR },)
 
@@ -8317,6 +9352,7 @@ class NHSColumns(ColumnsTask):
             name='Second generation (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_t: DENOMINATOR },)
 
@@ -8325,6 +9361,7 @@ class NHSColumns(ColumnsTask):
             name='Second generation (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_m: DENOMINATOR },)
 
@@ -8333,6 +9370,7 @@ class NHSColumns(ColumnsTask):
             name='Second generation (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_f: DENOMINATOR },)
 
@@ -8341,6 +9379,7 @@ class NHSColumns(ColumnsTask):
             name='Third generation or more (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_t: DENOMINATOR },)
 
@@ -8349,6 +9388,7 @@ class NHSColumns(ColumnsTask):
             name='Third generation or more (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_m: DENOMINATOR },)
 
@@ -8357,6 +9397,7 @@ class NHSColumns(ColumnsTask):
             name='Third generation or more (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t008c001_f: DENOMINATOR },)
 
@@ -8365,6 +9406,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by tenure',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
@@ -8373,6 +9415,7 @@ class NHSColumns(ColumnsTask):
             name='Owner',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
@@ -8381,6 +9424,7 @@ class NHSColumns(ColumnsTask):
             name='Renter',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
@@ -8389,6 +9433,7 @@ class NHSColumns(ColumnsTask):
             name='Band housing',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
@@ -8397,6 +9442,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by condominium status',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
@@ -8405,6 +9451,7 @@ class NHSColumns(ColumnsTask):
             name='Part of a condominium development',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_t: DENOMINATOR },)
 
@@ -8413,6 +9460,7 @@ class NHSColumns(ColumnsTask):
             name='Not part of a condominium development',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c005_t: DENOMINATOR },)
 
@@ -8421,6 +9469,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by number of household maintainers',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
@@ -8429,6 +9478,7 @@ class NHSColumns(ColumnsTask):
             name='1 household maintainer',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
 
@@ -8437,6 +9487,7 @@ class NHSColumns(ColumnsTask):
             name='2 household maintainers',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
 
@@ -8445,6 +9496,7 @@ class NHSColumns(ColumnsTask):
             name='3 or more household maintainers',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c008_t: DENOMINATOR },)
 
@@ -8453,6 +9505,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by age group of primary household maintainers',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
@@ -8461,6 +9514,7 @@ class NHSColumns(ColumnsTask):
             name='Under 25 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
@@ -8469,6 +9523,7 @@ class NHSColumns(ColumnsTask):
             name='25 to 34 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
@@ -8477,6 +9532,7 @@ class NHSColumns(ColumnsTask):
             name='35 to 44 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
@@ -8485,6 +9541,7 @@ class NHSColumns(ColumnsTask):
             name='45 to 54 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
@@ -8493,6 +9550,7 @@ class NHSColumns(ColumnsTask):
             name='55 to 64 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
@@ -8501,6 +9559,7 @@ class NHSColumns(ColumnsTask):
             name='65 to 74 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
@@ -8509,6 +9568,7 @@ class NHSColumns(ColumnsTask):
             name='75 years and over',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c012_t: DENOMINATOR },)
 
@@ -8517,6 +9577,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by number of persons per room',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
@@ -8525,6 +9586,7 @@ class NHSColumns(ColumnsTask):
             name='One person or fewer per room',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_t: DENOMINATOR },)
 
@@ -8533,6 +9595,7 @@ class NHSColumns(ColumnsTask):
             name='More than one person per room',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c020_t: DENOMINATOR },)
 
@@ -8541,6 +9604,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of private households by housing suitability',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={},)
 
@@ -8549,6 +9613,7 @@ class NHSColumns(ColumnsTask):
             name='Suitable',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_t: DENOMINATOR },)
 
@@ -8557,6 +9622,7 @@ class NHSColumns(ColumnsTask):
             name='Not suitable',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_t: DENOMINATOR },)
 
@@ -8565,6 +9631,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by immigrant status and period of immigration (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -8573,6 +9640,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by immigrant status and period of immigration (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -8581,6 +9649,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by immigrant status and period of immigration (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -8589,6 +9658,7 @@ class NHSColumns(ColumnsTask):
             name='Non-immigrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_t: DENOMINATOR },)
 
@@ -8597,6 +9667,7 @@ class NHSColumns(ColumnsTask):
             name='Non-immigrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_m: DENOMINATOR },)
 
@@ -8605,6 +9676,7 @@ class NHSColumns(ColumnsTask):
             name='Non-immigrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_f: DENOMINATOR },)
 
@@ -8613,6 +9685,7 @@ class NHSColumns(ColumnsTask):
             name='Immigrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_t: DENOMINATOR },)
 
@@ -8621,6 +9694,7 @@ class NHSColumns(ColumnsTask):
             name='Immigrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_m: DENOMINATOR },)
 
@@ -8629,6 +9703,7 @@ class NHSColumns(ColumnsTask):
             name='Immigrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_f: DENOMINATOR },)
 
@@ -8637,6 +9712,7 @@ class NHSColumns(ColumnsTask):
             name='Before 1971 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_t: DENOMINATOR },)
 
@@ -8645,6 +9721,7 @@ class NHSColumns(ColumnsTask):
             name='Before 1971 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_m: DENOMINATOR },)
 
@@ -8653,6 +9730,7 @@ class NHSColumns(ColumnsTask):
             name='Before 1971 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_f: DENOMINATOR },)
 
@@ -8661,6 +9739,7 @@ class NHSColumns(ColumnsTask):
             name='1971 to 1980 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_t: DENOMINATOR },)
 
@@ -8669,6 +9748,7 @@ class NHSColumns(ColumnsTask):
             name='1971 to 1980 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_m: DENOMINATOR },)
 
@@ -8677,6 +9757,7 @@ class NHSColumns(ColumnsTask):
             name='1971 to 1980 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_f: DENOMINATOR },)
 
@@ -8685,6 +9766,7 @@ class NHSColumns(ColumnsTask):
             name='1981 to 1990 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_t: DENOMINATOR },)
 
@@ -8693,6 +9775,7 @@ class NHSColumns(ColumnsTask):
             name='1981 to 1990 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_m: DENOMINATOR },)
 
@@ -8701,6 +9784,7 @@ class NHSColumns(ColumnsTask):
             name='1981 to 1990 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_f: DENOMINATOR },)
 
@@ -8709,6 +9793,7 @@ class NHSColumns(ColumnsTask):
             name='1991 to 2000 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_t: DENOMINATOR },)
 
@@ -8717,6 +9802,7 @@ class NHSColumns(ColumnsTask):
             name='1991 to 2000 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_m: DENOMINATOR },)
 
@@ -8725,6 +9811,7 @@ class NHSColumns(ColumnsTask):
             name='1991 to 2000 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_f: DENOMINATOR },)
 
@@ -8733,6 +9820,7 @@ class NHSColumns(ColumnsTask):
             name='2001 to 2011 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_t: DENOMINATOR },)
 
@@ -8741,6 +9829,7 @@ class NHSColumns(ColumnsTask):
             name='2001 to 2011 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_m: DENOMINATOR },)
 
@@ -8749,6 +9838,7 @@ class NHSColumns(ColumnsTask):
             name='2001 to 2011 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c003_f: DENOMINATOR },)
 
@@ -8757,6 +9847,7 @@ class NHSColumns(ColumnsTask):
             name='2001 to 2005 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c008_t: DENOMINATOR },)
 
@@ -8765,6 +9856,7 @@ class NHSColumns(ColumnsTask):
             name='2001 to 2005 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c008_m: DENOMINATOR },)
 
@@ -8773,6 +9865,7 @@ class NHSColumns(ColumnsTask):
             name='2001 to 2005 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c008_f: DENOMINATOR },)
 
@@ -8781,6 +9874,7 @@ class NHSColumns(ColumnsTask):
             name='2006 to 2011 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c008_t: DENOMINATOR },)
 
@@ -8789,6 +9883,7 @@ class NHSColumns(ColumnsTask):
             name='2006 to 2011 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c008_m: DENOMINATOR },)
 
@@ -8797,6 +9892,7 @@ class NHSColumns(ColumnsTask):
             name='2006 to 2011 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c008_f: DENOMINATOR },)
 
@@ -8805,6 +9901,7 @@ class NHSColumns(ColumnsTask):
             name='Non-permanent residents (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_t: DENOMINATOR },)
 
@@ -8813,6 +9910,7 @@ class NHSColumns(ColumnsTask):
             name='Non-permanent residents (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_m: DENOMINATOR },)
 
@@ -8821,6 +9919,7 @@ class NHSColumns(ColumnsTask):
             name='Non-permanent residents (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t010c001_f: DENOMINATOR },)
 
@@ -8829,6 +9928,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by immigrant status and selected places of birth (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -8837,6 +9937,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by immigrant status and selected places of birth (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -8845,6 +9946,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by immigrant status and selected places of birth (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -8853,6 +9955,7 @@ class NHSColumns(ColumnsTask):
             name='Non-immigrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_t: DENOMINATOR },)
 
@@ -8861,6 +9964,7 @@ class NHSColumns(ColumnsTask):
             name='Non-immigrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_m: DENOMINATOR },)
 
@@ -8869,6 +9973,7 @@ class NHSColumns(ColumnsTask):
             name='Non-immigrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_f: DENOMINATOR },)
 
@@ -8877,6 +9982,7 @@ class NHSColumns(ColumnsTask):
             name='Born in province of residence (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c002_t: DENOMINATOR },)
 
@@ -8885,6 +9991,7 @@ class NHSColumns(ColumnsTask):
             name='Born in province of residence (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c002_m: DENOMINATOR },)
 
@@ -8893,6 +10000,7 @@ class NHSColumns(ColumnsTask):
             name='Born in province of residence (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c002_f: DENOMINATOR },)
 
@@ -8901,6 +10009,7 @@ class NHSColumns(ColumnsTask):
             name='Born outside province of residence (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c002_t: DENOMINATOR },)
 
@@ -8909,6 +10018,7 @@ class NHSColumns(ColumnsTask):
             name='Born outside province of residence (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c002_m: DENOMINATOR },)
 
@@ -8917,6 +10027,7 @@ class NHSColumns(ColumnsTask):
             name='Born outside province of residence (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c002_f: DENOMINATOR },)
 
@@ -8925,6 +10036,7 @@ class NHSColumns(ColumnsTask):
             name='Immigrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_t: DENOMINATOR },)
 
@@ -8933,6 +10045,7 @@ class NHSColumns(ColumnsTask):
             name='Immigrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_m: DENOMINATOR },)
 
@@ -8941,6 +10054,7 @@ class NHSColumns(ColumnsTask):
             name='Immigrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_f: DENOMINATOR },)
 
@@ -8949,6 +10063,7 @@ class NHSColumns(ColumnsTask):
             name='Americas (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_t: DENOMINATOR },)
 
@@ -8957,6 +10072,7 @@ class NHSColumns(ColumnsTask):
             name='Americas (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_m: DENOMINATOR },)
 
@@ -8965,6 +10081,7 @@ class NHSColumns(ColumnsTask):
             name='Americas (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_f: DENOMINATOR },)
 
@@ -8973,6 +10090,7 @@ class NHSColumns(ColumnsTask):
             name='United States (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -8981,6 +10099,7 @@ class NHSColumns(ColumnsTask):
             name='United States (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -8989,6 +10108,7 @@ class NHSColumns(ColumnsTask):
             name='United States (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -8997,6 +10117,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaica (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9005,6 +10126,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaica (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9013,6 +10135,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaica (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9021,6 +10144,7 @@ class NHSColumns(ColumnsTask):
             name='Guyana (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9029,6 +10153,7 @@ class NHSColumns(ColumnsTask):
             name='Guyana (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9037,6 +10162,7 @@ class NHSColumns(ColumnsTask):
             name='Guyana (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9045,6 +10171,7 @@ class NHSColumns(ColumnsTask):
             name='Haiti (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9053,6 +10180,7 @@ class NHSColumns(ColumnsTask):
             name='Haiti (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9061,6 +10189,7 @@ class NHSColumns(ColumnsTask):
             name='Haiti (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9069,6 +10198,7 @@ class NHSColumns(ColumnsTask):
             name='Mexico (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9077,6 +10207,7 @@ class NHSColumns(ColumnsTask):
             name='Mexico (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9085,6 +10216,7 @@ class NHSColumns(ColumnsTask):
             name='Mexico (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9093,6 +10225,7 @@ class NHSColumns(ColumnsTask):
             name='Trinidad and Tobago (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9101,6 +10234,7 @@ class NHSColumns(ColumnsTask):
             name='Trinidad and Tobago (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9109,6 +10243,7 @@ class NHSColumns(ColumnsTask):
             name='Trinidad and Tobago (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9117,6 +10252,7 @@ class NHSColumns(ColumnsTask):
             name='Colombia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9125,6 +10261,7 @@ class NHSColumns(ColumnsTask):
             name='Colombia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9133,6 +10270,7 @@ class NHSColumns(ColumnsTask):
             name='Colombia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9141,6 +10279,7 @@ class NHSColumns(ColumnsTask):
             name='El Salvador (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9149,6 +10288,7 @@ class NHSColumns(ColumnsTask):
             name='El Salvador (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9157,6 +10297,7 @@ class NHSColumns(ColumnsTask):
             name='El Salvador (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9165,6 +10306,7 @@ class NHSColumns(ColumnsTask):
             name='Peru (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9173,6 +10315,7 @@ class NHSColumns(ColumnsTask):
             name='Peru (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9181,6 +10324,7 @@ class NHSColumns(ColumnsTask):
             name='Peru (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9189,6 +10333,7 @@ class NHSColumns(ColumnsTask):
             name='Chile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9197,6 +10342,7 @@ class NHSColumns(ColumnsTask):
             name='Chile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9205,6 +10351,7 @@ class NHSColumns(ColumnsTask):
             name='Chile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9213,6 +10360,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Americas (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_t: DENOMINATOR },)
 
@@ -9221,6 +10369,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Americas (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_m: DENOMINATOR },)
 
@@ -9229,6 +10378,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Americas (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c006_f: DENOMINATOR },)
 
@@ -9237,6 +10387,7 @@ class NHSColumns(ColumnsTask):
             name='Europe (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_t: DENOMINATOR },)
 
@@ -9245,6 +10396,7 @@ class NHSColumns(ColumnsTask):
             name='Europe (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_m: DENOMINATOR },)
 
@@ -9253,6 +10405,7 @@ class NHSColumns(ColumnsTask):
             name='Europe (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_f: DENOMINATOR },)
 
@@ -9261,6 +10414,7 @@ class NHSColumns(ColumnsTask):
             name='United Kingdom (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9269,6 +10423,7 @@ class NHSColumns(ColumnsTask):
             name='United Kingdom (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9277,6 +10432,7 @@ class NHSColumns(ColumnsTask):
             name='United Kingdom (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9285,6 +10441,7 @@ class NHSColumns(ColumnsTask):
             name='Italy (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9293,6 +10450,7 @@ class NHSColumns(ColumnsTask):
             name='Italy (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9301,6 +10459,7 @@ class NHSColumns(ColumnsTask):
             name='Italy (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9309,6 +10468,7 @@ class NHSColumns(ColumnsTask):
             name='Germany (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9317,6 +10477,7 @@ class NHSColumns(ColumnsTask):
             name='Germany (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9325,6 +10486,7 @@ class NHSColumns(ColumnsTask):
             name='Germany (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9333,6 +10495,7 @@ class NHSColumns(ColumnsTask):
             name='Poland (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9341,6 +10504,7 @@ class NHSColumns(ColumnsTask):
             name='Poland (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9349,6 +10513,7 @@ class NHSColumns(ColumnsTask):
             name='Poland (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9357,6 +10522,7 @@ class NHSColumns(ColumnsTask):
             name='Portugal (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9365,6 +10531,7 @@ class NHSColumns(ColumnsTask):
             name='Portugal (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9373,6 +10540,7 @@ class NHSColumns(ColumnsTask):
             name='Portugal (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9381,6 +10549,7 @@ class NHSColumns(ColumnsTask):
             name='Netherlands (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9389,6 +10558,7 @@ class NHSColumns(ColumnsTask):
             name='Netherlands (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9397,6 +10567,7 @@ class NHSColumns(ColumnsTask):
             name='Netherlands (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9405,6 +10576,7 @@ class NHSColumns(ColumnsTask):
             name='France (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9413,6 +10585,7 @@ class NHSColumns(ColumnsTask):
             name='France (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9421,6 +10594,7 @@ class NHSColumns(ColumnsTask):
             name='France (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9429,6 +10603,7 @@ class NHSColumns(ColumnsTask):
             name='Romania (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9437,6 +10612,7 @@ class NHSColumns(ColumnsTask):
             name='Romania (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9445,6 +10621,7 @@ class NHSColumns(ColumnsTask):
             name='Romania (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9453,6 +10630,7 @@ class NHSColumns(ColumnsTask):
             name='Russian Federation (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9461,6 +10639,7 @@ class NHSColumns(ColumnsTask):
             name='Russian Federation (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9469,6 +10648,7 @@ class NHSColumns(ColumnsTask):
             name='Russian Federation (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9477,6 +10657,7 @@ class NHSColumns(ColumnsTask):
             name='Greece (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9485,6 +10666,7 @@ class NHSColumns(ColumnsTask):
             name='Greece (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9493,6 +10675,7 @@ class NHSColumns(ColumnsTask):
             name='Greece (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9501,6 +10684,7 @@ class NHSColumns(ColumnsTask):
             name='Ukraine (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9509,6 +10693,7 @@ class NHSColumns(ColumnsTask):
             name='Ukraine (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9517,6 +10702,7 @@ class NHSColumns(ColumnsTask):
             name='Ukraine (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9525,6 +10711,7 @@ class NHSColumns(ColumnsTask):
             name='Croatia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9533,6 +10720,7 @@ class NHSColumns(ColumnsTask):
             name='Croatia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9541,6 +10729,7 @@ class NHSColumns(ColumnsTask):
             name='Croatia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9549,6 +10738,7 @@ class NHSColumns(ColumnsTask):
             name='Hungary (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9557,6 +10747,7 @@ class NHSColumns(ColumnsTask):
             name='Hungary (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9565,6 +10756,7 @@ class NHSColumns(ColumnsTask):
             name='Hungary (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9573,6 +10765,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnia and Herzegovina (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9581,6 +10774,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnia and Herzegovina (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9589,6 +10783,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnia and Herzegovina (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9597,6 +10792,7 @@ class NHSColumns(ColumnsTask):
             name='Serbia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9605,6 +10801,7 @@ class NHSColumns(ColumnsTask):
             name='Serbia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9613,6 +10810,7 @@ class NHSColumns(ColumnsTask):
             name='Serbia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9621,6 +10819,7 @@ class NHSColumns(ColumnsTask):
             name='Ireland, Republic of (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9629,6 +10828,7 @@ class NHSColumns(ColumnsTask):
             name='Ireland, Republic of (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9637,6 +10837,7 @@ class NHSColumns(ColumnsTask):
             name='Ireland, Republic of (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9645,6 +10846,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Europe (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_t: DENOMINATOR },)
 
@@ -9653,6 +10855,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Europe (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_m: DENOMINATOR },)
 
@@ -9661,6 +10864,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Europe (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c018_f: DENOMINATOR },)
 
@@ -9669,6 +10873,7 @@ class NHSColumns(ColumnsTask):
             name='Africa (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_t: DENOMINATOR },)
 
@@ -9677,6 +10882,7 @@ class NHSColumns(ColumnsTask):
             name='Africa (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_m: DENOMINATOR },)
 
@@ -9685,6 +10891,7 @@ class NHSColumns(ColumnsTask):
             name='Africa (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_f: DENOMINATOR },)
 
@@ -9693,6 +10900,7 @@ class NHSColumns(ColumnsTask):
             name='Morocco (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_t: DENOMINATOR },)
 
@@ -9701,6 +10909,7 @@ class NHSColumns(ColumnsTask):
             name='Morocco (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_m: DENOMINATOR },)
 
@@ -9709,6 +10918,7 @@ class NHSColumns(ColumnsTask):
             name='Morocco (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_f: DENOMINATOR },)
 
@@ -9717,6 +10927,7 @@ class NHSColumns(ColumnsTask):
             name='Algeria (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_t: DENOMINATOR },)
 
@@ -9725,6 +10936,7 @@ class NHSColumns(ColumnsTask):
             name='Algeria (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_m: DENOMINATOR },)
 
@@ -9733,6 +10945,7 @@ class NHSColumns(ColumnsTask):
             name='Algeria (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_f: DENOMINATOR },)
 
@@ -9741,6 +10954,7 @@ class NHSColumns(ColumnsTask):
             name='Egypt (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_t: DENOMINATOR },)
 
@@ -9749,6 +10963,7 @@ class NHSColumns(ColumnsTask):
             name='Egypt (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_m: DENOMINATOR },)
 
@@ -9757,6 +10972,7 @@ class NHSColumns(ColumnsTask):
             name='Egypt (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_f: DENOMINATOR },)
 
@@ -9765,6 +10981,7 @@ class NHSColumns(ColumnsTask):
             name='South Africa, Republic of (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_t: DENOMINATOR },)
 
@@ -9773,6 +10990,7 @@ class NHSColumns(ColumnsTask):
             name='South Africa, Republic of (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_m: DENOMINATOR },)
 
@@ -9781,6 +10999,7 @@ class NHSColumns(ColumnsTask):
             name='South Africa, Republic of (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_f: DENOMINATOR },)
 
@@ -9789,6 +11008,7 @@ class NHSColumns(ColumnsTask):
             name='Nigeria (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_t: DENOMINATOR },)
 
@@ -9797,6 +11017,7 @@ class NHSColumns(ColumnsTask):
             name='Nigeria (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_m: DENOMINATOR },)
 
@@ -9805,6 +11026,7 @@ class NHSColumns(ColumnsTask):
             name='Nigeria (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_f: DENOMINATOR },)
 
@@ -9813,6 +11035,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_t: DENOMINATOR },)
 
@@ -9821,6 +11044,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_m: DENOMINATOR },)
 
@@ -9829,6 +11053,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_f: DENOMINATOR },)
 
@@ -9837,6 +11062,7 @@ class NHSColumns(ColumnsTask):
             name='Kenya (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_t: DENOMINATOR },)
 
@@ -9845,6 +11071,7 @@ class NHSColumns(ColumnsTask):
             name='Kenya (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_m: DENOMINATOR },)
 
@@ -9853,6 +11080,7 @@ class NHSColumns(ColumnsTask):
             name='Kenya (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_f: DENOMINATOR },)
 
@@ -9861,6 +11089,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Africa (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_t: DENOMINATOR },)
 
@@ -9869,6 +11098,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Africa (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_m: DENOMINATOR },)
 
@@ -9877,6 +11107,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Africa (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c036_f: DENOMINATOR },)
 
@@ -9885,6 +11116,7 @@ class NHSColumns(ColumnsTask):
             name='Asia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_t: DENOMINATOR },)
 
@@ -9893,6 +11125,7 @@ class NHSColumns(ColumnsTask):
             name='Asia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_m: DENOMINATOR },)
 
@@ -9901,6 +11134,7 @@ class NHSColumns(ColumnsTask):
             name='Asia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_f: DENOMINATOR },)
 
@@ -9909,6 +11143,7 @@ class NHSColumns(ColumnsTask):
             name='India (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -9917,6 +11152,7 @@ class NHSColumns(ColumnsTask):
             name='India (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -9925,6 +11161,7 @@ class NHSColumns(ColumnsTask):
             name='India (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -9933,6 +11170,7 @@ class NHSColumns(ColumnsTask):
             name='China (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -9941,6 +11179,7 @@ class NHSColumns(ColumnsTask):
             name='China (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -9949,6 +11188,7 @@ class NHSColumns(ColumnsTask):
             name='China (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -9957,6 +11197,7 @@ class NHSColumns(ColumnsTask):
             name='Philippines (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -9965,6 +11206,7 @@ class NHSColumns(ColumnsTask):
             name='Philippines (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -9973,6 +11215,7 @@ class NHSColumns(ColumnsTask):
             name='Philippines (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -9981,6 +11224,7 @@ class NHSColumns(ColumnsTask):
             name='Hong Kong Special Administrative Region (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -9989,6 +11233,7 @@ class NHSColumns(ColumnsTask):
             name='Hong Kong Special Administrative Region (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -9997,6 +11242,7 @@ class NHSColumns(ColumnsTask):
             name='Hong Kong Special Administrative Region (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10005,6 +11251,7 @@ class NHSColumns(ColumnsTask):
             name='Viet Nam (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10013,6 +11260,7 @@ class NHSColumns(ColumnsTask):
             name='Viet Nam (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10021,6 +11269,7 @@ class NHSColumns(ColumnsTask):
             name='Viet Nam (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10029,6 +11278,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10037,6 +11287,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10045,6 +11296,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10053,6 +11305,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lanka (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10061,6 +11314,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lanka (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10069,6 +11323,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lanka (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10077,6 +11332,7 @@ class NHSColumns(ColumnsTask):
             name='Iran (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10085,6 +11341,7 @@ class NHSColumns(ColumnsTask):
             name='Iran (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10093,6 +11350,7 @@ class NHSColumns(ColumnsTask):
             name='Iran (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10101,6 +11359,7 @@ class NHSColumns(ColumnsTask):
             name='Korea, South (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10109,6 +11368,7 @@ class NHSColumns(ColumnsTask):
             name='Korea, South (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10117,6 +11377,7 @@ class NHSColumns(ColumnsTask):
             name='Korea, South (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10125,6 +11386,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanon (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10133,6 +11395,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanon (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10141,6 +11404,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanon (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10149,6 +11413,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10157,6 +11422,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10165,6 +11431,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10173,6 +11440,7 @@ class NHSColumns(ColumnsTask):
             name='Iraq (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10181,6 +11449,7 @@ class NHSColumns(ColumnsTask):
             name='Iraq (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10189,6 +11458,7 @@ class NHSColumns(ColumnsTask):
             name='Iraq (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10197,6 +11467,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladesh (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10205,6 +11476,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladesh (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10213,6 +11485,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladesh (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10221,6 +11494,7 @@ class NHSColumns(ColumnsTask):
             name='Afghanistan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10229,6 +11503,7 @@ class NHSColumns(ColumnsTask):
             name='Afghanistan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10237,6 +11512,7 @@ class NHSColumns(ColumnsTask):
             name='Afghanistan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10245,6 +11521,7 @@ class NHSColumns(ColumnsTask):
             name='Japan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10253,6 +11530,7 @@ class NHSColumns(ColumnsTask):
             name='Japan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10261,6 +11539,7 @@ class NHSColumns(ColumnsTask):
             name='Japan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10269,6 +11548,7 @@ class NHSColumns(ColumnsTask):
             name='Turkey (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10277,6 +11557,7 @@ class NHSColumns(ColumnsTask):
             name='Turkey (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10285,6 +11566,7 @@ class NHSColumns(ColumnsTask):
             name='Turkey (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10293,6 +11575,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Asia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_t: DENOMINATOR },)
 
@@ -10301,6 +11584,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Asia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_m: DENOMINATOR },)
 
@@ -10309,6 +11593,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Asia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c045_f: DENOMINATOR },)
 
@@ -10317,6 +11602,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania and other (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_t: DENOMINATOR },)
 
@@ -10325,6 +11611,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania and other (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_m: DENOMINATOR },)
 
@@ -10333,6 +11620,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania and other (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c005_f: DENOMINATOR },)
 
@@ -10341,6 +11629,7 @@ class NHSColumns(ColumnsTask):
             name='Fiji (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c063_t: DENOMINATOR },)
 
@@ -10349,6 +11638,7 @@ class NHSColumns(ColumnsTask):
             name='Fiji (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c063_m: DENOMINATOR },)
 
@@ -10357,6 +11647,7 @@ class NHSColumns(ColumnsTask):
             name='Fiji (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c063_f: DENOMINATOR },)
 
@@ -10365,6 +11656,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c063_t: DENOMINATOR },)
 
@@ -10373,6 +11665,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c063_m: DENOMINATOR },)
 
@@ -10381,6 +11674,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c063_f: DENOMINATOR },)
 
@@ -10389,6 +11683,7 @@ class NHSColumns(ColumnsTask):
             name='Non-permanent residents (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_t: DENOMINATOR },)
 
@@ -10397,6 +11692,7 @@ class NHSColumns(ColumnsTask):
             name='Non-permanent residents (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_m: DENOMINATOR },)
 
@@ -10405,6 +11701,7 @@ class NHSColumns(ColumnsTask):
             name='Non-permanent residents (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t011c001_f: DENOMINATOR },)
 
@@ -10413,6 +11710,7 @@ class NHSColumns(ColumnsTask):
             name='Household total income in 2010 of private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -10421,6 +11719,7 @@ class NHSColumns(ColumnsTask):
             name='Under $5,000',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10429,6 +11728,7 @@ class NHSColumns(ColumnsTask):
             name='$5,000 to $9,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10437,6 +11737,7 @@ class NHSColumns(ColumnsTask):
             name='$10,000 to $14,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10445,6 +11746,7 @@ class NHSColumns(ColumnsTask):
             name='$15,000 to $19,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10453,6 +11755,7 @@ class NHSColumns(ColumnsTask):
             name='$20,000 to $29,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10461,6 +11764,7 @@ class NHSColumns(ColumnsTask):
             name='$30,000 to $39,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10469,6 +11773,7 @@ class NHSColumns(ColumnsTask):
             name='$40,000 to $49,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10477,6 +11782,7 @@ class NHSColumns(ColumnsTask):
             name='$50,000 to $59,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10485,6 +11791,7 @@ class NHSColumns(ColumnsTask):
             name='$60,000 to $79,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10493,6 +11800,7 @@ class NHSColumns(ColumnsTask):
             name='$80,000 to $99,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10501,6 +11809,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 to $124,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10509,6 +11818,7 @@ class NHSColumns(ColumnsTask):
             name='$125,000 to $149,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10517,6 +11827,7 @@ class NHSColumns(ColumnsTask):
             name='$150,000 and over',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
@@ -10525,6 +11836,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income of households in 2010 of private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -10533,6 +11845,7 @@ class NHSColumns(ColumnsTask):
             name='Under $5,000',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10541,6 +11854,7 @@ class NHSColumns(ColumnsTask):
             name='$5,000 to $9,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10549,6 +11863,7 @@ class NHSColumns(ColumnsTask):
             name='$10,000 to $14,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10557,6 +11872,7 @@ class NHSColumns(ColumnsTask):
             name='$15,000 to $19,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10565,6 +11881,7 @@ class NHSColumns(ColumnsTask):
             name='$20,000 to $29,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10573,6 +11890,7 @@ class NHSColumns(ColumnsTask):
             name='$30,000 to $39,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10581,6 +11899,7 @@ class NHSColumns(ColumnsTask):
             name='$40,000 to $49,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10589,6 +11908,7 @@ class NHSColumns(ColumnsTask):
             name='$50,000 to $59,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10597,6 +11917,7 @@ class NHSColumns(ColumnsTask):
             name='$60,000 to $79,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10605,6 +11926,7 @@ class NHSColumns(ColumnsTask):
             name='$80,000 to $99,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10613,6 +11935,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 and over',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
@@ -10621,6 +11944,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 to $124,999',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c026_t: DENOMINATOR },)
 
@@ -10629,6 +11953,7 @@ class NHSColumns(ColumnsTask):
             name='$125,000 and over',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c026_t: DENOMINATOR },)
 
@@ -10637,6 +11962,7 @@ class NHSColumns(ColumnsTask):
             name='Household income in 2010 of private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -10645,6 +11971,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
@@ -10653,6 +11980,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
@@ -10661,6 +11989,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
@@ -10669,6 +11998,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
@@ -10677,6 +12007,7 @@ class NHSColumns(ColumnsTask):
             name='One-person private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
@@ -10685,6 +12016,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
@@ -10693,6 +12025,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
@@ -10701,6 +12034,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
@@ -10709,6 +12043,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
@@ -10717,6 +12052,7 @@ class NHSColumns(ColumnsTask):
             name='Two-or-more-persons private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
@@ -10725,6 +12061,7 @@ class NHSColumns(ColumnsTask):
             name='Median household total income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
 
@@ -10733,6 +12070,7 @@ class NHSColumns(ColumnsTask):
             name='Average household total income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
 
@@ -10741,6 +12079,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax household income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
 
@@ -10749,6 +12088,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
 
@@ -10757,6 +12097,7 @@ class NHSColumns(ColumnsTask):
             name='Total income in 2010 of population aged 15 years and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -10765,6 +12106,7 @@ class NHSColumns(ColumnsTask):
             name='Total income in 2010 of population aged 15 years and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -10773,6 +12115,7 @@ class NHSColumns(ColumnsTask):
             name='Total income in 2010 of population aged 15 years and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -10781,6 +12124,7 @@ class NHSColumns(ColumnsTask):
             name='Without income (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c001_t: DENOMINATOR },)
 
@@ -10789,6 +12133,7 @@ class NHSColumns(ColumnsTask):
             name='Without income (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c001_m: DENOMINATOR },)
 
@@ -10797,6 +12142,7 @@ class NHSColumns(ColumnsTask):
             name='Without income (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c001_f: DENOMINATOR },)
 
@@ -10805,6 +12151,7 @@ class NHSColumns(ColumnsTask):
             name='With income (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c001_t: DENOMINATOR },)
 
@@ -10813,6 +12160,7 @@ class NHSColumns(ColumnsTask):
             name='With income (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c001_m: DENOMINATOR },)
 
@@ -10821,6 +12169,7 @@ class NHSColumns(ColumnsTask):
             name='With income (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c001_f: DENOMINATOR },)
 
@@ -10829,6 +12178,7 @@ class NHSColumns(ColumnsTask):
             name='Under $5,000 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -10837,6 +12187,7 @@ class NHSColumns(ColumnsTask):
             name='Under $5,000 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -10845,6 +12196,7 @@ class NHSColumns(ColumnsTask):
             name='Under $5,000 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -10853,6 +12205,7 @@ class NHSColumns(ColumnsTask):
             name='$5,000 to $9,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -10861,6 +12214,7 @@ class NHSColumns(ColumnsTask):
             name='$5,000 to $9,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -10869,6 +12223,7 @@ class NHSColumns(ColumnsTask):
             name='$5,000 to $9,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -10877,6 +12232,7 @@ class NHSColumns(ColumnsTask):
             name='$10,000 to $14,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -10885,6 +12241,7 @@ class NHSColumns(ColumnsTask):
             name='$10,000 to $14,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -10893,6 +12250,7 @@ class NHSColumns(ColumnsTask):
             name='$10,000 to $14,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -10901,6 +12259,7 @@ class NHSColumns(ColumnsTask):
             name='$15,000 to $19,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -10909,6 +12268,7 @@ class NHSColumns(ColumnsTask):
             name='$15,000 to $19,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -10917,6 +12277,7 @@ class NHSColumns(ColumnsTask):
             name='$15,000 to $19,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -10925,6 +12286,7 @@ class NHSColumns(ColumnsTask):
             name='$20,000 to $29,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -10933,6 +12295,7 @@ class NHSColumns(ColumnsTask):
             name='$20,000 to $29,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -10941,6 +12304,7 @@ class NHSColumns(ColumnsTask):
             name='$20,000 to $29,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -10949,6 +12313,7 @@ class NHSColumns(ColumnsTask):
             name='$30,000 to $39,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -10957,6 +12322,7 @@ class NHSColumns(ColumnsTask):
             name='$30,000 to $39,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -10965,6 +12331,7 @@ class NHSColumns(ColumnsTask):
             name='$30,000 to $39,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -10973,6 +12340,7 @@ class NHSColumns(ColumnsTask):
             name='$40,000 to $49,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -10981,6 +12349,7 @@ class NHSColumns(ColumnsTask):
             name='$40,000 to $49,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -10989,6 +12358,7 @@ class NHSColumns(ColumnsTask):
             name='$40,000 to $49,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -10997,6 +12367,7 @@ class NHSColumns(ColumnsTask):
             name='$50,000 to $59,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -11005,6 +12376,7 @@ class NHSColumns(ColumnsTask):
             name='$50,000 to $59,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -11013,6 +12385,7 @@ class NHSColumns(ColumnsTask):
             name='$50,000 to $59,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -11021,6 +12394,7 @@ class NHSColumns(ColumnsTask):
             name='$60,000 to $79,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -11029,6 +12403,7 @@ class NHSColumns(ColumnsTask):
             name='$60,000 to $79,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -11037,6 +12412,7 @@ class NHSColumns(ColumnsTask):
             name='$60,000 to $79,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -11045,6 +12421,7 @@ class NHSColumns(ColumnsTask):
             name='$80,000 to $99,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -11053,6 +12430,7 @@ class NHSColumns(ColumnsTask):
             name='$80,000 to $99,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -11061,6 +12439,7 @@ class NHSColumns(ColumnsTask):
             name='$80,000 to $99,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -11069,6 +12448,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_t: DENOMINATOR },)
 
@@ -11077,6 +12457,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_m: DENOMINATOR },)
 
@@ -11085,6 +12466,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c003_f: DENOMINATOR },)
 
@@ -11093,6 +12475,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 to $124,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c014_t: DENOMINATOR },)
 
@@ -11101,6 +12484,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 to $124,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c014_m: DENOMINATOR },)
 
@@ -11109,6 +12493,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 to $124,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c014_f: DENOMINATOR },)
 
@@ -11117,6 +12502,7 @@ class NHSColumns(ColumnsTask):
             name='$125,000 and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c014_t: DENOMINATOR },)
 
@@ -11125,6 +12511,7 @@ class NHSColumns(ColumnsTask):
             name='$125,000 and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c014_m: DENOMINATOR },)
 
@@ -11133,6 +12520,7 @@ class NHSColumns(ColumnsTask):
             name='$125,000 and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c014_f: DENOMINATOR },)
 
@@ -11141,6 +12529,7 @@ class NHSColumns(ColumnsTask):
             name='Median income ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_t: DENOMINATOR },)
 
@@ -11149,6 +12538,7 @@ class NHSColumns(ColumnsTask):
             name='Median income ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_m: DENOMINATOR },)
 
@@ -11157,6 +12547,7 @@ class NHSColumns(ColumnsTask):
             name='Median income ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_f: DENOMINATOR },)
 
@@ -11165,6 +12556,7 @@ class NHSColumns(ColumnsTask):
             name='Average income ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_t: DENOMINATOR },)
 
@@ -11173,6 +12565,7 @@ class NHSColumns(ColumnsTask):
             name='Average income ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_m: DENOMINATOR },)
 
@@ -11181,6 +12574,7 @@ class NHSColumns(ColumnsTask):
             name='Average income ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_f: DENOMINATOR },)
 
@@ -11189,6 +12583,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income in 2010 of population 15 years and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -11197,6 +12592,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income in 2010 of population 15 years and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -11205,6 +12601,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income in 2010 of population 15 years and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -11213,6 +12610,7 @@ class NHSColumns(ColumnsTask):
             name='Without after-tax income (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c019_t: DENOMINATOR },)
 
@@ -11221,6 +12619,7 @@ class NHSColumns(ColumnsTask):
             name='Without after-tax income (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c019_m: DENOMINATOR },)
 
@@ -11229,6 +12628,7 @@ class NHSColumns(ColumnsTask):
             name='Without after-tax income (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c019_f: DENOMINATOR },)
 
@@ -11237,6 +12637,7 @@ class NHSColumns(ColumnsTask):
             name='With after-tax income (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c019_t: DENOMINATOR },)
 
@@ -11245,6 +12646,7 @@ class NHSColumns(ColumnsTask):
             name='With after-tax income (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c019_m: DENOMINATOR },)
 
@@ -11253,6 +12655,7 @@ class NHSColumns(ColumnsTask):
             name='With after-tax income (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c019_f: DENOMINATOR },)
 
@@ -11261,6 +12664,7 @@ class NHSColumns(ColumnsTask):
             name='Under $5,000 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11269,6 +12673,7 @@ class NHSColumns(ColumnsTask):
             name='Under $5,000 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11277,6 +12682,7 @@ class NHSColumns(ColumnsTask):
             name='Under $5,000 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11285,6 +12691,7 @@ class NHSColumns(ColumnsTask):
             name='$5,000 to $9,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11293,6 +12700,7 @@ class NHSColumns(ColumnsTask):
             name='$5,000 to $9,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11301,6 +12709,7 @@ class NHSColumns(ColumnsTask):
             name='$5,000 to $9,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11309,6 +12718,7 @@ class NHSColumns(ColumnsTask):
             name='$10,000 to $14,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11317,6 +12727,7 @@ class NHSColumns(ColumnsTask):
             name='$10,000 to $14,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11325,6 +12736,7 @@ class NHSColumns(ColumnsTask):
             name='$10,000 to $14,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11333,6 +12745,7 @@ class NHSColumns(ColumnsTask):
             name='$15,000 to $19,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11341,6 +12754,7 @@ class NHSColumns(ColumnsTask):
             name='$15,000 to $19,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11349,6 +12763,7 @@ class NHSColumns(ColumnsTask):
             name='$15,000 to $19,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11357,6 +12772,7 @@ class NHSColumns(ColumnsTask):
             name='$20,000 to $29,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11365,6 +12781,7 @@ class NHSColumns(ColumnsTask):
             name='$20,000 to $29,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11373,6 +12790,7 @@ class NHSColumns(ColumnsTask):
             name='$20,000 to $29,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11381,6 +12799,7 @@ class NHSColumns(ColumnsTask):
             name='$30,000 to $39,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11389,6 +12808,7 @@ class NHSColumns(ColumnsTask):
             name='$30,000 to $39,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11397,6 +12817,7 @@ class NHSColumns(ColumnsTask):
             name='$30,000 to $39,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11405,6 +12826,7 @@ class NHSColumns(ColumnsTask):
             name='$40,000 to $49,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11413,6 +12835,7 @@ class NHSColumns(ColumnsTask):
             name='$40,000 to $49,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11421,6 +12844,7 @@ class NHSColumns(ColumnsTask):
             name='$40,000 to $49,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11429,6 +12853,7 @@ class NHSColumns(ColumnsTask):
             name='$50,000 to $59,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11437,6 +12862,7 @@ class NHSColumns(ColumnsTask):
             name='$50,000 to $59,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11445,6 +12871,7 @@ class NHSColumns(ColumnsTask):
             name='$50,000 to $59,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11453,6 +12880,7 @@ class NHSColumns(ColumnsTask):
             name='$60,000 to $79,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11461,6 +12889,7 @@ class NHSColumns(ColumnsTask):
             name='$60,000 to $79,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11469,6 +12898,7 @@ class NHSColumns(ColumnsTask):
             name='$60,000 to $79,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11477,6 +12907,7 @@ class NHSColumns(ColumnsTask):
             name='$80,000 to $99,999 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11485,6 +12916,7 @@ class NHSColumns(ColumnsTask):
             name='$80,000 to $99,999 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11493,6 +12925,7 @@ class NHSColumns(ColumnsTask):
             name='$80,000 to $99,999 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11501,6 +12934,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_t: DENOMINATOR },)
 
@@ -11509,6 +12943,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_m: DENOMINATOR },)
 
@@ -11517,6 +12952,7 @@ class NHSColumns(ColumnsTask):
             name='$100,000 and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c021_f: DENOMINATOR },)
 
@@ -11525,6 +12961,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_t: DENOMINATOR },)
 
@@ -11533,6 +12970,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_m: DENOMINATOR },)
 
@@ -11541,6 +12979,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_f: DENOMINATOR },)
 
@@ -11549,6 +12988,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_t: DENOMINATOR },)
 
@@ -11557,6 +12997,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_m: DENOMINATOR },)
 
@@ -11565,6 +13006,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c019_f: DENOMINATOR },)
 
@@ -11573,6 +13015,7 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -11581,6 +13024,7 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -11589,6 +13033,7 @@ class NHSColumns(ColumnsTask):
             name='Composition of total income in 2010 of population 15 years and over (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -11597,6 +13042,7 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
@@ -11605,6 +13051,7 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
@@ -11613,6 +13060,7 @@ class NHSColumns(ColumnsTask):
             name='Market income (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
@@ -11621,6 +13069,7 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
@@ -11629,6 +13078,7 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
@@ -11637,6 +13087,7 @@ class NHSColumns(ColumnsTask):
             name='Employment income (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
@@ -11645,6 +13096,7 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_t: DENOMINATOR },)
 
@@ -11653,6 +13105,7 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_m: DENOMINATOR },)
 
@@ -11661,6 +13114,7 @@ class NHSColumns(ColumnsTask):
             name='Wages and salaries (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_f: DENOMINATOR },)
 
@@ -11669,6 +13123,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_t: DENOMINATOR },)
 
@@ -11677,6 +13132,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_m: DENOMINATOR },)
 
@@ -11685,6 +13141,7 @@ class NHSColumns(ColumnsTask):
             name='Self-employment income (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c037_f: DENOMINATOR },)
 
@@ -11693,6 +13150,7 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
@@ -11701,6 +13159,7 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
@@ -11709,6 +13168,7 @@ class NHSColumns(ColumnsTask):
             name='Investment income (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
@@ -11717,6 +13177,7 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
@@ -11725,6 +13186,7 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
@@ -11733,6 +13195,7 @@ class NHSColumns(ColumnsTask):
             name='Retirement pensions, superannuation and annuities (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
@@ -11741,6 +13204,7 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_t: DENOMINATOR },)
 
@@ -11749,6 +13213,7 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_m: DENOMINATOR },)
 
@@ -11757,6 +13222,7 @@ class NHSColumns(ColumnsTask):
             name='Other money income (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c036_f: DENOMINATOR },)
 
@@ -11765,6 +13231,7 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
@@ -11773,6 +13240,7 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
@@ -11781,6 +13249,7 @@ class NHSColumns(ColumnsTask):
             name='Government transfer payments (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
@@ -11789,6 +13258,7 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -11797,6 +13267,7 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -11805,6 +13276,7 @@ class NHSColumns(ColumnsTask):
             name='Canada/Quebec Pension Plan benefits (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -11813,6 +13285,7 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -11821,6 +13294,7 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -11829,6 +13303,7 @@ class NHSColumns(ColumnsTask):
             name='Old Age Security pensions and Guaranteed Income Supplement (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -11837,6 +13312,7 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -11845,6 +13321,7 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -11853,6 +13330,7 @@ class NHSColumns(ColumnsTask):
             name='Employment Insurance benefits (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -11861,6 +13339,7 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -11869,6 +13348,7 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -11877,6 +13357,7 @@ class NHSColumns(ColumnsTask):
             name='Child benefits (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -11885,6 +13366,7 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_t: DENOMINATOR },)
 
@@ -11893,6 +13375,7 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_m: DENOMINATOR },)
 
@@ -11901,6 +13384,7 @@ class NHSColumns(ColumnsTask):
             name='Other income from government sources (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c043_f: DENOMINATOR },)
 
@@ -11909,6 +13393,7 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
@@ -11917,6 +13402,7 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
@@ -11925,6 +13411,7 @@ class NHSColumns(ColumnsTask):
             name='Income taxes paid as a % of total income (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
@@ -11933,6 +13420,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_t: DENOMINATOR },)
 
@@ -11941,6 +13429,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_m: DENOMINATOR },)
 
@@ -11949,6 +13438,7 @@ class NHSColumns(ColumnsTask):
             name='After-tax income as a % of total income (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c035_f: DENOMINATOR },)
 
@@ -11957,6 +13447,7 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -11965,6 +13456,7 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -11973,6 +13465,7 @@ class NHSColumns(ColumnsTask):
             name='Net capital gains or losses as a % of total income (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -11981,6 +13474,7 @@ class NHSColumns(ColumnsTask):
             name='Population aged 15 years and over who worked full year, full time and with employment income in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -11989,6 +13483,7 @@ class NHSColumns(ColumnsTask):
             name='Population aged 15 years and over who worked full year, full time and with employment income in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -11997,6 +13492,7 @@ class NHSColumns(ColumnsTask):
             name='Population aged 15 years and over who worked full year, full time and with employment income in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12005,6 +13501,7 @@ class NHSColumns(ColumnsTask):
             name='Median employment income in 2010 ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_t: DENOMINATOR },)
 
@@ -12013,6 +13510,7 @@ class NHSColumns(ColumnsTask):
             name='Median employment income in 2010 ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_m: DENOMINATOR },)
 
@@ -12021,6 +13519,7 @@ class NHSColumns(ColumnsTask):
             name='Median employment income in 2010 ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_f: DENOMINATOR },)
 
@@ -12029,6 +13528,7 @@ class NHSColumns(ColumnsTask):
             name='Average employment income in 2010 ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_t: DENOMINATOR },)
 
@@ -12037,6 +13537,7 @@ class NHSColumns(ColumnsTask):
             name='Average employment income in 2010 ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_m: DENOMINATOR },)
 
@@ -12045,6 +13546,7 @@ class NHSColumns(ColumnsTask):
             name='Average employment income in 2010 ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_f: DENOMINATOR },)
 
@@ -12053,6 +13555,7 @@ class NHSColumns(ColumnsTask):
             name='Family income in 2010 of economic families',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12061,6 +13564,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
@@ -12069,6 +13573,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
@@ -12077,6 +13582,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
@@ -12085,6 +13591,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
@@ -12093,6 +13600,7 @@ class NHSColumns(ColumnsTask):
             name='Average family size',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
@@ -12101,6 +13609,7 @@ class NHSColumns(ColumnsTask):
             name='Couple-only economic families',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
@@ -12109,6 +13618,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
@@ -12117,6 +13627,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
@@ -12125,6 +13636,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
@@ -12133,6 +13645,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
@@ -12141,6 +13654,7 @@ class NHSColumns(ColumnsTask):
             name='Average family size',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c061_t: DENOMINATOR },)
 
@@ -12149,6 +13663,7 @@ class NHSColumns(ColumnsTask):
             name='Couple-with-children economic families',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
@@ -12157,6 +13672,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
@@ -12165,6 +13681,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
@@ -12173,6 +13690,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
@@ -12181,6 +13699,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
@@ -12189,6 +13708,7 @@ class NHSColumns(ColumnsTask):
             name='Average family size',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c067_t: DENOMINATOR },)
 
@@ -12197,6 +13717,7 @@ class NHSColumns(ColumnsTask):
             name='Lone-parent economic families',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
@@ -12205,6 +13726,7 @@ class NHSColumns(ColumnsTask):
             name='Median family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
@@ -12213,6 +13735,7 @@ class NHSColumns(ColumnsTask):
             name='Average family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
@@ -12221,6 +13744,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
@@ -12229,6 +13753,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax family income ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
@@ -12237,6 +13762,7 @@ class NHSColumns(ColumnsTask):
             name='Average family size',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c073_t: DENOMINATOR },)
 
@@ -12245,6 +13771,7 @@ class NHSColumns(ColumnsTask):
             name='Income in 2010 of population aged 15 years and over not in economic families (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12253,6 +13780,7 @@ class NHSColumns(ColumnsTask):
             name='Income in 2010 of population aged 15 years and over not in economic families (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12261,6 +13789,7 @@ class NHSColumns(ColumnsTask):
             name='Income in 2010 of population aged 15 years and over not in economic families (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12269,6 +13798,7 @@ class NHSColumns(ColumnsTask):
             name='Median total income ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_t: DENOMINATOR },)
 
@@ -12277,6 +13807,7 @@ class NHSColumns(ColumnsTask):
             name='Median total income ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_m: DENOMINATOR },)
 
@@ -12285,6 +13816,7 @@ class NHSColumns(ColumnsTask):
             name='Median total income ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: DENOMINATOR },)
 
@@ -12293,6 +13825,7 @@ class NHSColumns(ColumnsTask):
             name='Average total income ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_t: DENOMINATOR },)
 
@@ -12301,6 +13834,7 @@ class NHSColumns(ColumnsTask):
             name='Average total income ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_m: DENOMINATOR },)
 
@@ -12309,6 +13843,7 @@ class NHSColumns(ColumnsTask):
             name='Average total income ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: DENOMINATOR },)
 
@@ -12317,6 +13852,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_t: DENOMINATOR },)
 
@@ -12325,6 +13861,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_m: DENOMINATOR },)
 
@@ -12333,6 +13870,7 @@ class NHSColumns(ColumnsTask):
             name='Median after-tax income ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: DENOMINATOR },)
 
@@ -12341,6 +13879,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_t: DENOMINATOR },)
 
@@ -12349,6 +13888,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_m: DENOMINATOR },)
 
@@ -12357,6 +13897,7 @@ class NHSColumns(ColumnsTask):
             name='Average after-tax income ($) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: DENOMINATOR },)
 
@@ -12365,6 +13906,7 @@ class NHSColumns(ColumnsTask):
             name='Total population by decile of adjusted after-tax family income (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12373,6 +13915,7 @@ class NHSColumns(ColumnsTask):
             name='Total population by decile of adjusted after-tax family income (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12381,6 +13924,7 @@ class NHSColumns(ColumnsTask):
             name='Total population by decile of adjusted after-tax family income (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12389,6 +13933,7 @@ class NHSColumns(ColumnsTask):
             name='In bottom half of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c084_t: DENOMINATOR },)
 
@@ -12397,6 +13942,7 @@ class NHSColumns(ColumnsTask):
             name='In bottom half of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c084_m: DENOMINATOR },)
 
@@ -12405,6 +13951,7 @@ class NHSColumns(ColumnsTask):
             name='In bottom half of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c084_f: DENOMINATOR },)
 
@@ -12413,6 +13960,7 @@ class NHSColumns(ColumnsTask):
             name='In bottom decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_t: DENOMINATOR },)
 
@@ -12421,6 +13969,7 @@ class NHSColumns(ColumnsTask):
             name='In bottom decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_m: DENOMINATOR },)
 
@@ -12429,6 +13978,7 @@ class NHSColumns(ColumnsTask):
             name='In bottom decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_f: DENOMINATOR },)
 
@@ -12437,6 +13987,7 @@ class NHSColumns(ColumnsTask):
             name='In second decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_t: DENOMINATOR },)
 
@@ -12445,6 +13996,7 @@ class NHSColumns(ColumnsTask):
             name='In second decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_m: DENOMINATOR },)
 
@@ -12453,6 +14005,7 @@ class NHSColumns(ColumnsTask):
             name='In second decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_f: DENOMINATOR },)
 
@@ -12461,6 +14014,7 @@ class NHSColumns(ColumnsTask):
             name='In third decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_t: DENOMINATOR },)
 
@@ -12469,6 +14023,7 @@ class NHSColumns(ColumnsTask):
             name='In third decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_m: DENOMINATOR },)
 
@@ -12477,6 +14032,7 @@ class NHSColumns(ColumnsTask):
             name='In third decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_f: DENOMINATOR },)
 
@@ -12485,6 +14041,7 @@ class NHSColumns(ColumnsTask):
             name='In fourth decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_t: DENOMINATOR },)
 
@@ -12493,6 +14050,7 @@ class NHSColumns(ColumnsTask):
             name='In fourth decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_m: DENOMINATOR },)
 
@@ -12501,6 +14059,7 @@ class NHSColumns(ColumnsTask):
             name='In fourth decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_f: DENOMINATOR },)
 
@@ -12509,6 +14068,7 @@ class NHSColumns(ColumnsTask):
             name='In fifth decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_t: DENOMINATOR },)
 
@@ -12517,6 +14077,7 @@ class NHSColumns(ColumnsTask):
             name='In fifth decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_m: DENOMINATOR },)
 
@@ -12525,6 +14086,7 @@ class NHSColumns(ColumnsTask):
             name='In fifth decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c085_f: DENOMINATOR },)
 
@@ -12533,6 +14095,7 @@ class NHSColumns(ColumnsTask):
             name='In top half of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c084_t: DENOMINATOR },)
 
@@ -12541,6 +14104,7 @@ class NHSColumns(ColumnsTask):
             name='In top half of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c084_m: DENOMINATOR },)
 
@@ -12549,6 +14113,7 @@ class NHSColumns(ColumnsTask):
             name='In top half of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c084_f: DENOMINATOR },)
 
@@ -12557,6 +14122,7 @@ class NHSColumns(ColumnsTask):
             name='In sixth decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_t: DENOMINATOR },)
 
@@ -12565,6 +14131,7 @@ class NHSColumns(ColumnsTask):
             name='In sixth decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_m: DENOMINATOR },)
 
@@ -12573,6 +14140,7 @@ class NHSColumns(ColumnsTask):
             name='In sixth decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_f: DENOMINATOR },)
 
@@ -12581,6 +14149,7 @@ class NHSColumns(ColumnsTask):
             name='In seventh decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_t: DENOMINATOR },)
 
@@ -12589,6 +14158,7 @@ class NHSColumns(ColumnsTask):
             name='In seventh decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_m: DENOMINATOR },)
 
@@ -12597,6 +14167,7 @@ class NHSColumns(ColumnsTask):
             name='In seventh decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_f: DENOMINATOR },)
 
@@ -12605,6 +14176,7 @@ class NHSColumns(ColumnsTask):
             name='In eighth decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_t: DENOMINATOR },)
 
@@ -12613,6 +14185,7 @@ class NHSColumns(ColumnsTask):
             name='In eighth decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_m: DENOMINATOR },)
 
@@ -12621,6 +14194,7 @@ class NHSColumns(ColumnsTask):
             name='In eighth decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_f: DENOMINATOR },)
 
@@ -12629,6 +14203,7 @@ class NHSColumns(ColumnsTask):
             name='In ninth decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_t: DENOMINATOR },)
 
@@ -12637,6 +14212,7 @@ class NHSColumns(ColumnsTask):
             name='In ninth decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_m: DENOMINATOR },)
 
@@ -12645,6 +14221,7 @@ class NHSColumns(ColumnsTask):
             name='In ninth decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_f: DENOMINATOR },)
 
@@ -12653,6 +14230,7 @@ class NHSColumns(ColumnsTask):
             name='In top decile (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_t: DENOMINATOR },)
 
@@ -12661,6 +14239,7 @@ class NHSColumns(ColumnsTask):
             name='In top decile (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_m: DENOMINATOR },)
 
@@ -12669,6 +14248,7 @@ class NHSColumns(ColumnsTask):
             name='In top decile (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_f: DENOMINATOR },)
 
@@ -12677,6 +14257,7 @@ class NHSColumns(ColumnsTask):
             name='Population in private households for income status (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12685,6 +14266,7 @@ class NHSColumns(ColumnsTask):
             name='Population in private households for income status (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12693,6 +14275,7 @@ class NHSColumns(ColumnsTask):
             name='Population in private households for income status (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12701,6 +14284,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_t: DENOMINATOR },)
 
@@ -12709,6 +14293,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_m: DENOMINATOR },)
 
@@ -12717,6 +14302,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_f: DENOMINATOR },)
 
@@ -12725,6 +14311,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c098_t: DENOMINATOR },)
 
@@ -12733,6 +14320,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c098_m: DENOMINATOR },)
 
@@ -12741,6 +14329,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c098_f: DENOMINATOR },)
 
@@ -12749,6 +14338,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_t: DENOMINATOR },)
 
@@ -12757,6 +14347,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_m: DENOMINATOR },)
 
@@ -12765,6 +14356,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_f: DENOMINATOR },)
 
@@ -12773,6 +14365,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_t: DENOMINATOR },)
 
@@ -12781,6 +14374,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_m: DENOMINATOR },)
 
@@ -12789,6 +14383,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_f: DENOMINATOR },)
 
@@ -12797,6 +14392,7 @@ class NHSColumns(ColumnsTask):
             name='In low income in 2010 based on after-tax low-income measure (LIM-AT) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12805,6 +14401,7 @@ class NHSColumns(ColumnsTask):
             name='In low income in 2010 based on after-tax low-income measure (LIM-AT) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12813,6 +14410,7 @@ class NHSColumns(ColumnsTask):
             name='In low income in 2010 based on after-tax low-income measure (LIM-AT) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
@@ -12821,6 +14419,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_t: DENOMINATOR },)
 
@@ -12829,6 +14428,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_m: DENOMINATOR },)
 
@@ -12837,6 +14437,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_f: DENOMINATOR },)
 
@@ -12845,6 +14446,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c103_t: DENOMINATOR },)
 
@@ -12853,6 +14455,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c103_m: DENOMINATOR },)
 
@@ -12861,6 +14464,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c103_f: DENOMINATOR },)
 
@@ -12869,6 +14473,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_t: DENOMINATOR },)
 
@@ -12877,6 +14482,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_m: DENOMINATOR },)
 
@@ -12885,6 +14491,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_f: DENOMINATOR },)
 
@@ -12893,6 +14500,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_t: DENOMINATOR },)
 
@@ -12901,6 +14509,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_m: DENOMINATOR },)
 
@@ -12909,6 +14518,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c102_f: DENOMINATOR },)
 
@@ -12917,6 +14527,7 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -12925,6 +14536,7 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -12933,6 +14545,7 @@ class NHSColumns(ColumnsTask):
             name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
@@ -12941,6 +14554,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
@@ -12949,6 +14563,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
@@ -12957,6 +14572,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 18 years (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
@@ -12965,6 +14581,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_t: DENOMINATOR },)
 
@@ -12973,6 +14590,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_m: DENOMINATOR },)
 
@@ -12981,6 +14599,7 @@ class NHSColumns(ColumnsTask):
             name='Less than 6 years (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c108_f: DENOMINATOR },)
 
@@ -12989,6 +14608,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
@@ -12997,6 +14617,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
@@ -13005,6 +14626,7 @@ class NHSColumns(ColumnsTask):
             name='18 to 64 years (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
@@ -13013,6 +14635,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_t: DENOMINATOR },)
 
@@ -13021,6 +14644,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_m: DENOMINATOR },)
 
@@ -13029,6 +14653,7 @@ class NHSColumns(ColumnsTask):
             name='65 years and over (%) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: DENOMINATOR },)
 
@@ -13037,6 +14662,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by industry - North American Industry Classification System (NAICS) 2007 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13045,6 +14671,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by industry - North American Industry Classification System (NAICS) 2007 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13053,6 +14680,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by industry - North American Industry Classification System (NAICS) 2007 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13061,6 +14689,7 @@ class NHSColumns(ColumnsTask):
             name='Industry - not applicable (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c001_t: DENOMINATOR },)
 
@@ -13069,6 +14698,7 @@ class NHSColumns(ColumnsTask):
             name='Industry - not applicable (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c001_m: DENOMINATOR },)
 
@@ -13077,6 +14707,7 @@ class NHSColumns(ColumnsTask):
             name='Industry - not applicable (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c001_f: DENOMINATOR },)
 
@@ -13085,6 +14716,7 @@ class NHSColumns(ColumnsTask):
             name='All industries (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c001_t: DENOMINATOR },)
 
@@ -13093,6 +14725,7 @@ class NHSColumns(ColumnsTask):
             name='All industries (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c001_m: DENOMINATOR },)
 
@@ -13101,6 +14734,7 @@ class NHSColumns(ColumnsTask):
             name='All industries (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c001_f: DENOMINATOR },)
 
@@ -13109,6 +14743,7 @@ class NHSColumns(ColumnsTask):
             name='11 Agriculture, forestry, fishing and hunting (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13117,6 +14752,7 @@ class NHSColumns(ColumnsTask):
             name='11 Agriculture, forestry, fishing and hunting (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13125,6 +14761,7 @@ class NHSColumns(ColumnsTask):
             name='11 Agriculture, forestry, fishing and hunting (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13133,6 +14770,7 @@ class NHSColumns(ColumnsTask):
             name='21 Mining, quarrying, and oil and gas extraction (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13141,6 +14779,7 @@ class NHSColumns(ColumnsTask):
             name='21 Mining, quarrying, and oil and gas extraction (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13149,6 +14788,7 @@ class NHSColumns(ColumnsTask):
             name='21 Mining, quarrying, and oil and gas extraction (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13157,6 +14797,7 @@ class NHSColumns(ColumnsTask):
             name='22 Utilities (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13165,6 +14806,7 @@ class NHSColumns(ColumnsTask):
             name='22 Utilities (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13173,6 +14815,7 @@ class NHSColumns(ColumnsTask):
             name='22 Utilities (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13181,6 +14824,7 @@ class NHSColumns(ColumnsTask):
             name='23 Construction (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13189,6 +14833,7 @@ class NHSColumns(ColumnsTask):
             name='23 Construction (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13197,6 +14842,7 @@ class NHSColumns(ColumnsTask):
             name='23 Construction (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13205,6 +14851,7 @@ class NHSColumns(ColumnsTask):
             name='31-33 Manufacturing (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13213,6 +14860,7 @@ class NHSColumns(ColumnsTask):
             name='31-33 Manufacturing (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13221,6 +14869,7 @@ class NHSColumns(ColumnsTask):
             name='31-33 Manufacturing (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13229,6 +14878,7 @@ class NHSColumns(ColumnsTask):
             name='41 Wholesale trade (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13237,6 +14887,7 @@ class NHSColumns(ColumnsTask):
             name='41 Wholesale trade (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13245,6 +14896,7 @@ class NHSColumns(ColumnsTask):
             name='41 Wholesale trade (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13253,6 +14905,7 @@ class NHSColumns(ColumnsTask):
             name='44-45 Retail trade (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13261,6 +14914,7 @@ class NHSColumns(ColumnsTask):
             name='44-45 Retail trade (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13269,6 +14923,7 @@ class NHSColumns(ColumnsTask):
             name='44-45 Retail trade (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13277,6 +14932,7 @@ class NHSColumns(ColumnsTask):
             name='48-49 Transportation and warehousing (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13285,6 +14941,7 @@ class NHSColumns(ColumnsTask):
             name='48-49 Transportation and warehousing (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13293,6 +14950,7 @@ class NHSColumns(ColumnsTask):
             name='48-49 Transportation and warehousing (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13301,6 +14959,7 @@ class NHSColumns(ColumnsTask):
             name='51 Information and cultural industries (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13309,6 +14968,7 @@ class NHSColumns(ColumnsTask):
             name='51 Information and cultural industries (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13317,6 +14977,7 @@ class NHSColumns(ColumnsTask):
             name='51 Information and cultural industries (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13325,6 +14986,7 @@ class NHSColumns(ColumnsTask):
             name='52 Finance and insurance (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13333,6 +14995,7 @@ class NHSColumns(ColumnsTask):
             name='52 Finance and insurance (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13341,6 +15004,7 @@ class NHSColumns(ColumnsTask):
             name='52 Finance and insurance (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13349,6 +15013,7 @@ class NHSColumns(ColumnsTask):
             name='53 Real estate and rental and leasing (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13357,6 +15022,7 @@ class NHSColumns(ColumnsTask):
             name='53 Real estate and rental and leasing (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13365,6 +15031,7 @@ class NHSColumns(ColumnsTask):
             name='53 Real estate and rental and leasing (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13373,6 +15040,7 @@ class NHSColumns(ColumnsTask):
             name='54 Professional, scientific and technical services (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13381,6 +15049,7 @@ class NHSColumns(ColumnsTask):
             name='54 Professional, scientific and technical services (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13389,6 +15058,7 @@ class NHSColumns(ColumnsTask):
             name='54 Professional, scientific and technical services (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13397,6 +15067,7 @@ class NHSColumns(ColumnsTask):
             name='55 Management of companies and enterprises (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13405,6 +15076,7 @@ class NHSColumns(ColumnsTask):
             name='55 Management of companies and enterprises (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13413,6 +15085,7 @@ class NHSColumns(ColumnsTask):
             name='55 Management of companies and enterprises (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13421,6 +15094,7 @@ class NHSColumns(ColumnsTask):
             name='56 Administrative and support, waste management and remediation services (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13429,6 +15103,7 @@ class NHSColumns(ColumnsTask):
             name='56 Administrative and support, waste management and remediation services (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13437,6 +15112,7 @@ class NHSColumns(ColumnsTask):
             name='56 Administrative and support, waste management and remediation services (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13445,6 +15121,7 @@ class NHSColumns(ColumnsTask):
             name='61 Educational services (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13453,6 +15130,7 @@ class NHSColumns(ColumnsTask):
             name='61 Educational services (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13461,6 +15139,7 @@ class NHSColumns(ColumnsTask):
             name='61 Educational services (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13469,6 +15148,7 @@ class NHSColumns(ColumnsTask):
             name='62 Health care and social assistance (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13477,6 +15157,7 @@ class NHSColumns(ColumnsTask):
             name='62 Health care and social assistance (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13485,6 +15166,7 @@ class NHSColumns(ColumnsTask):
             name='62 Health care and social assistance (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13493,6 +15175,7 @@ class NHSColumns(ColumnsTask):
             name='71 Arts, entertainment and recreation (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13501,6 +15184,7 @@ class NHSColumns(ColumnsTask):
             name='71 Arts, entertainment and recreation (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13509,6 +15193,7 @@ class NHSColumns(ColumnsTask):
             name='71 Arts, entertainment and recreation (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13517,6 +15202,7 @@ class NHSColumns(ColumnsTask):
             name='72 Accommodation and food services (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13525,6 +15211,7 @@ class NHSColumns(ColumnsTask):
             name='72 Accommodation and food services (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13533,6 +15220,7 @@ class NHSColumns(ColumnsTask):
             name='72 Accommodation and food services (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13541,6 +15229,7 @@ class NHSColumns(ColumnsTask):
             name='81 Other services (except public administration) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13549,6 +15238,7 @@ class NHSColumns(ColumnsTask):
             name='81 Other services (except public administration) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13557,6 +15247,7 @@ class NHSColumns(ColumnsTask):
             name='81 Other services (except public administration) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13565,6 +15256,7 @@ class NHSColumns(ColumnsTask):
             name='91 Public administration (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_t: DENOMINATOR },)
 
@@ -13573,6 +15265,7 @@ class NHSColumns(ColumnsTask):
             name='91 Public administration (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_m: DENOMINATOR },)
 
@@ -13581,6 +15274,7 @@ class NHSColumns(ColumnsTask):
             name='91 Public administration (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
@@ -13589,6 +15283,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by labour force status (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13597,6 +15292,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by labour force status (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13605,6 +15301,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by labour force status (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13613,6 +15310,7 @@ class NHSColumns(ColumnsTask):
             name='In the labour force (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c001_t: DENOMINATOR },)
 
@@ -13621,6 +15319,7 @@ class NHSColumns(ColumnsTask):
             name='In the labour force (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c001_m: DENOMINATOR },)
 
@@ -13629,6 +15328,7 @@ class NHSColumns(ColumnsTask):
             name='In the labour force (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c001_f: DENOMINATOR },)
 
@@ -13637,6 +15337,7 @@ class NHSColumns(ColumnsTask):
             name='Employed (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c002_t: DENOMINATOR },)
 
@@ -13645,6 +15346,7 @@ class NHSColumns(ColumnsTask):
             name='Employed (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c002_m: DENOMINATOR },)
 
@@ -13653,6 +15355,7 @@ class NHSColumns(ColumnsTask):
             name='Employed (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c002_f: DENOMINATOR },)
 
@@ -13661,6 +15364,7 @@ class NHSColumns(ColumnsTask):
             name='Unemployed (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c002_t: DENOMINATOR },)
 
@@ -13669,6 +15373,7 @@ class NHSColumns(ColumnsTask):
             name='Unemployed (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c002_m: DENOMINATOR },)
 
@@ -13677,6 +15382,7 @@ class NHSColumns(ColumnsTask):
             name='Unemployed (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c002_f: DENOMINATOR },)
 
@@ -13685,6 +15391,7 @@ class NHSColumns(ColumnsTask):
             name='Not in the labour force (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c001_t: DENOMINATOR },)
 
@@ -13693,6 +15400,7 @@ class NHSColumns(ColumnsTask):
             name='Not in the labour force (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c001_m: DENOMINATOR },)
 
@@ -13701,6 +15409,7 @@ class NHSColumns(ColumnsTask):
             name='Not in the labour force (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t015c001_f: DENOMINATOR },)
 
@@ -13709,6 +15418,7 @@ class NHSColumns(ColumnsTask):
             name='Participation rate (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13717,6 +15427,7 @@ class NHSColumns(ColumnsTask):
             name='Participation rate (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13725,6 +15436,7 @@ class NHSColumns(ColumnsTask):
             name='Participation rate (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13733,6 +15445,7 @@ class NHSColumns(ColumnsTask):
             name='Employment rate (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13741,6 +15454,7 @@ class NHSColumns(ColumnsTask):
             name='Employment rate (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13749,6 +15463,7 @@ class NHSColumns(ColumnsTask):
             name='Employment rate (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13757,6 +15472,7 @@ class NHSColumns(ColumnsTask):
             name='Unemployment rate (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13765,6 +15481,7 @@ class NHSColumns(ColumnsTask):
             name='Unemployment rate (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13773,6 +15490,7 @@ class NHSColumns(ColumnsTask):
             name='Unemployment rate (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -13781,6 +15499,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by language used most often at work (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -13789,6 +15508,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by language used most often at work (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -13797,6 +15517,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by language used most often at work (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -13805,6 +15526,7 @@ class NHSColumns(ColumnsTask):
             name='Single responses (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c001_t: DENOMINATOR },)
 
@@ -13813,6 +15535,7 @@ class NHSColumns(ColumnsTask):
             name='Single responses (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c001_m: DENOMINATOR },)
 
@@ -13821,6 +15544,7 @@ class NHSColumns(ColumnsTask):
             name='Single responses (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c001_f: DENOMINATOR },)
 
@@ -13829,6 +15553,7 @@ class NHSColumns(ColumnsTask):
             name='English (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_t: DENOMINATOR },)
 
@@ -13837,6 +15562,7 @@ class NHSColumns(ColumnsTask):
             name='English (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_m: DENOMINATOR },)
 
@@ -13845,6 +15571,7 @@ class NHSColumns(ColumnsTask):
             name='English (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_f: DENOMINATOR },)
 
@@ -13853,6 +15580,7 @@ class NHSColumns(ColumnsTask):
             name='French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_t: DENOMINATOR },)
 
@@ -13861,6 +15589,7 @@ class NHSColumns(ColumnsTask):
             name='French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_m: DENOMINATOR },)
 
@@ -13869,6 +15598,7 @@ class NHSColumns(ColumnsTask):
             name='French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_f: DENOMINATOR },)
 
@@ -13877,6 +15607,7 @@ class NHSColumns(ColumnsTask):
             name='Non-official languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_t: DENOMINATOR },)
 
@@ -13885,6 +15616,7 @@ class NHSColumns(ColumnsTask):
             name='Non-official languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_m: DENOMINATOR },)
 
@@ -13893,6 +15625,7 @@ class NHSColumns(ColumnsTask):
             name='Non-official languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c002_f: DENOMINATOR },)
 
@@ -13901,6 +15634,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -13909,6 +15643,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -13917,6 +15652,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -13925,6 +15661,7 @@ class NHSColumns(ColumnsTask):
             name='Cantonese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -13933,6 +15670,7 @@ class NHSColumns(ColumnsTask):
             name='Cantonese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -13941,6 +15679,7 @@ class NHSColumns(ColumnsTask):
             name='Cantonese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -13949,6 +15688,7 @@ class NHSColumns(ColumnsTask):
             name='Panjabi (Punjabi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -13957,6 +15697,7 @@ class NHSColumns(ColumnsTask):
             name='Panjabi (Punjabi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -13965,6 +15706,7 @@ class NHSColumns(ColumnsTask):
             name='Panjabi (Punjabi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -13973,6 +15715,7 @@ class NHSColumns(ColumnsTask):
             name='Mandarin (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -13981,6 +15724,7 @@ class NHSColumns(ColumnsTask):
             name='Mandarin (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -13989,6 +15733,7 @@ class NHSColumns(ColumnsTask):
             name='Mandarin (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -13997,6 +15742,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -14005,6 +15751,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -14013,6 +15760,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -14021,6 +15769,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -14029,6 +15778,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -14037,6 +15787,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -14045,6 +15796,7 @@ class NHSColumns(ColumnsTask):
             name='German (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -14053,6 +15805,7 @@ class NHSColumns(ColumnsTask):
             name='German (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -14061,6 +15814,7 @@ class NHSColumns(ColumnsTask):
             name='German (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -14069,6 +15823,7 @@ class NHSColumns(ColumnsTask):
             name='Cree languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -14077,6 +15832,7 @@ class NHSColumns(ColumnsTask):
             name='Cree languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -14085,6 +15841,7 @@ class NHSColumns(ColumnsTask):
             name='Cree languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -14093,6 +15850,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -14101,6 +15859,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -14109,6 +15868,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -14117,6 +15877,7 @@ class NHSColumns(ColumnsTask):
             name='Inuktitut (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -14125,6 +15886,7 @@ class NHSColumns(ColumnsTask):
             name='Inuktitut (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -14133,6 +15895,7 @@ class NHSColumns(ColumnsTask):
             name='Inuktitut (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -14141,6 +15904,7 @@ class NHSColumns(ColumnsTask):
             name='Other languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_t: DENOMINATOR },)
 
@@ -14149,6 +15913,7 @@ class NHSColumns(ColumnsTask):
             name='Other languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_m: DENOMINATOR },)
 
@@ -14157,6 +15922,7 @@ class NHSColumns(ColumnsTask):
             name='Other languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c005_f: DENOMINATOR },)
 
@@ -14165,6 +15931,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple responses (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c001_t: DENOMINATOR },)
 
@@ -14173,6 +15940,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple responses (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c001_m: DENOMINATOR },)
 
@@ -14181,6 +15949,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple responses (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c001_f: DENOMINATOR },)
 
@@ -14189,6 +15958,7 @@ class NHSColumns(ColumnsTask):
             name='English and French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_t: DENOMINATOR },)
 
@@ -14197,6 +15967,7 @@ class NHSColumns(ColumnsTask):
             name='English and French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_m: DENOMINATOR },)
 
@@ -14205,6 +15976,7 @@ class NHSColumns(ColumnsTask):
             name='English and French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_f: DENOMINATOR },)
 
@@ -14213,6 +15985,7 @@ class NHSColumns(ColumnsTask):
             name='English and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_t: DENOMINATOR },)
 
@@ -14221,6 +15994,7 @@ class NHSColumns(ColumnsTask):
             name='English and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_m: DENOMINATOR },)
 
@@ -14229,6 +16003,7 @@ class NHSColumns(ColumnsTask):
             name='English and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_f: DENOMINATOR },)
 
@@ -14237,6 +16012,7 @@ class NHSColumns(ColumnsTask):
             name='French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_t: DENOMINATOR },)
 
@@ -14245,6 +16021,7 @@ class NHSColumns(ColumnsTask):
             name='French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_m: DENOMINATOR },)
 
@@ -14253,6 +16030,7 @@ class NHSColumns(ColumnsTask):
             name='French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_f: DENOMINATOR },)
 
@@ -14261,6 +16039,7 @@ class NHSColumns(ColumnsTask):
             name='English, French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_t: DENOMINATOR },)
 
@@ -14269,6 +16048,7 @@ class NHSColumns(ColumnsTask):
             name='English, French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_m: DENOMINATOR },)
 
@@ -14277,6 +16057,7 @@ class NHSColumns(ColumnsTask):
             name='English, French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_f: DENOMINATOR },)
 
@@ -14285,6 +16066,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by language used most often at work (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -14293,6 +16075,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by language used most often at work (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -14301,6 +16084,7 @@ class NHSColumns(ColumnsTask):
             name='Total population aged 15 years and over by language used most often at work (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -14309,6 +16093,7 @@ class NHSColumns(ColumnsTask):
             name='English (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_t: DENOMINATOR },)
 
@@ -14317,6 +16102,7 @@ class NHSColumns(ColumnsTask):
             name='English (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_m: DENOMINATOR },)
 
@@ -14325,6 +16111,7 @@ class NHSColumns(ColumnsTask):
             name='English (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
@@ -14333,6 +16120,7 @@ class NHSColumns(ColumnsTask):
             name='French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_t: DENOMINATOR },)
 
@@ -14341,6 +16129,7 @@ class NHSColumns(ColumnsTask):
             name='French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_m: DENOMINATOR },)
 
@@ -14349,6 +16138,7 @@ class NHSColumns(ColumnsTask):
             name='French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
@@ -14357,6 +16147,7 @@ class NHSColumns(ColumnsTask):
             name='Non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_t: DENOMINATOR },)
 
@@ -14365,6 +16156,7 @@ class NHSColumns(ColumnsTask):
             name='Non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_m: DENOMINATOR },)
 
@@ -14373,6 +16165,7 @@ class NHSColumns(ColumnsTask):
             name='Non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
@@ -14381,6 +16174,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c025_t: DENOMINATOR },)
 
@@ -14389,6 +16183,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c025_m: DENOMINATOR },)
 
@@ -14397,6 +16192,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c025_f: DENOMINATOR },)
 
@@ -14405,6 +16201,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c025_t: DENOMINATOR },)
 
@@ -14413,6 +16210,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c025_m: DENOMINATOR },)
 
@@ -14421,6 +16219,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c025_f: DENOMINATOR },)
 
@@ -14429,6 +16228,7 @@ class NHSColumns(ColumnsTask):
             name='English and French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_t: DENOMINATOR },)
 
@@ -14437,6 +16237,7 @@ class NHSColumns(ColumnsTask):
             name='English and French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_m: DENOMINATOR },)
 
@@ -14445,6 +16246,7 @@ class NHSColumns(ColumnsTask):
             name='English and French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
@@ -14453,6 +16255,7 @@ class NHSColumns(ColumnsTask):
             name='English and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_t: DENOMINATOR },)
 
@@ -14461,6 +16264,7 @@ class NHSColumns(ColumnsTask):
             name='English and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_m: DENOMINATOR },)
 
@@ -14469,6 +16273,7 @@ class NHSColumns(ColumnsTask):
             name='English and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
@@ -14477,6 +16282,7 @@ class NHSColumns(ColumnsTask):
             name='French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_t: DENOMINATOR },)
 
@@ -14485,6 +16291,7 @@ class NHSColumns(ColumnsTask):
             name='French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_m: DENOMINATOR },)
 
@@ -14493,6 +16300,7 @@ class NHSColumns(ColumnsTask):
             name='French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
@@ -14501,6 +16309,7 @@ class NHSColumns(ColumnsTask):
             name='English, French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_t: DENOMINATOR },)
 
@@ -14509,6 +16318,7 @@ class NHSColumns(ColumnsTask):
             name='English, French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_m: DENOMINATOR },)
 
@@ -14517,6 +16327,7 @@ class NHSColumns(ColumnsTask):
             name='English, French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
@@ -14525,6 +16336,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by median commuting duration (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -14533,6 +16345,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by median commuting duration (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -14541,6 +16354,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by median commuting duration (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -14549,6 +16363,7 @@ class NHSColumns(ColumnsTask):
             name='Median commuting duration (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_minutes, subsections['transportation']],
             targets={},)
 
@@ -14557,6 +16372,7 @@ class NHSColumns(ColumnsTask):
             name='Median commuting duration (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_minutes, subsections['transportation']],
             targets={},)
 
@@ -14565,6 +16381,7 @@ class NHSColumns(ColumnsTask):
             name='Median commuting duration (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_minutes, subsections['transportation']],
             targets={},)
 
@@ -14573,6 +16390,7 @@ class NHSColumns(ColumnsTask):
             name='Total - Mobility status 1 year ago (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -14581,6 +16399,7 @@ class NHSColumns(ColumnsTask):
             name='Total - Mobility status 1 year ago (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -14589,6 +16408,7 @@ class NHSColumns(ColumnsTask):
             name='Total - Mobility status 1 year ago (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -14597,6 +16417,7 @@ class NHSColumns(ColumnsTask):
             name='Non-movers (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c001_t: DENOMINATOR },)
 
@@ -14605,6 +16426,7 @@ class NHSColumns(ColumnsTask):
             name='Non-movers (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c001_m: DENOMINATOR },)
 
@@ -14613,6 +16435,7 @@ class NHSColumns(ColumnsTask):
             name='Non-movers (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c001_f: DENOMINATOR },)
 
@@ -14621,6 +16444,7 @@ class NHSColumns(ColumnsTask):
             name='Movers (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c001_t: DENOMINATOR },)
 
@@ -14629,6 +16453,7 @@ class NHSColumns(ColumnsTask):
             name='Movers (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c001_m: DENOMINATOR },)
 
@@ -14637,6 +16462,7 @@ class NHSColumns(ColumnsTask):
             name='Movers (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c001_f: DENOMINATOR },)
 
@@ -14645,6 +16471,7 @@ class NHSColumns(ColumnsTask):
             name='Non-migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c003_t: DENOMINATOR },)
 
@@ -14653,6 +16480,7 @@ class NHSColumns(ColumnsTask):
             name='Non-migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c003_m: DENOMINATOR },)
 
@@ -14661,6 +16489,7 @@ class NHSColumns(ColumnsTask):
             name='Non-migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c003_f: DENOMINATOR },)
 
@@ -14669,6 +16498,7 @@ class NHSColumns(ColumnsTask):
             name='Migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c003_t: DENOMINATOR },)
 
@@ -14677,6 +16507,7 @@ class NHSColumns(ColumnsTask):
             name='Migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c003_m: DENOMINATOR },)
 
@@ -14685,6 +16516,7 @@ class NHSColumns(ColumnsTask):
             name='Migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c003_f: DENOMINATOR },)
 
@@ -14693,6 +16525,7 @@ class NHSColumns(ColumnsTask):
             name='Internal migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c005_t: DENOMINATOR },)
 
@@ -14701,6 +16534,7 @@ class NHSColumns(ColumnsTask):
             name='Internal migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c005_m: DENOMINATOR },)
 
@@ -14709,6 +16543,7 @@ class NHSColumns(ColumnsTask):
             name='Internal migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c005_f: DENOMINATOR },)
 
@@ -14717,6 +16552,7 @@ class NHSColumns(ColumnsTask):
             name='Intraprovincial migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c006_t: DENOMINATOR },)
 
@@ -14725,6 +16561,7 @@ class NHSColumns(ColumnsTask):
             name='Intraprovincial migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c006_m: DENOMINATOR },)
 
@@ -14733,6 +16570,7 @@ class NHSColumns(ColumnsTask):
             name='Intraprovincial migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c006_f: DENOMINATOR },)
 
@@ -14741,6 +16579,7 @@ class NHSColumns(ColumnsTask):
             name='Interprovincial migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c006_t: DENOMINATOR },)
 
@@ -14749,6 +16588,7 @@ class NHSColumns(ColumnsTask):
             name='Interprovincial migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c006_m: DENOMINATOR },)
 
@@ -14757,6 +16597,7 @@ class NHSColumns(ColumnsTask):
             name='Interprovincial migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c006_f: DENOMINATOR },)
 
@@ -14765,6 +16606,7 @@ class NHSColumns(ColumnsTask):
             name='External migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c005_t: DENOMINATOR },)
 
@@ -14773,6 +16615,7 @@ class NHSColumns(ColumnsTask):
             name='External migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c005_m: DENOMINATOR },)
 
@@ -14781,6 +16624,7 @@ class NHSColumns(ColumnsTask):
             name='External migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c005_f: DENOMINATOR },)
 
@@ -14789,6 +16633,7 @@ class NHSColumns(ColumnsTask):
             name='Total - Mobility status 5 years ago (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -14797,6 +16642,7 @@ class NHSColumns(ColumnsTask):
             name='Total - Mobility status 5 years ago (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -14805,6 +16651,7 @@ class NHSColumns(ColumnsTask):
             name='Total - Mobility status 5 years ago (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
@@ -14813,6 +16660,7 @@ class NHSColumns(ColumnsTask):
             name='Non-movers (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c010_t: DENOMINATOR },)
 
@@ -14821,6 +16669,7 @@ class NHSColumns(ColumnsTask):
             name='Non-movers (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c010_m: DENOMINATOR },)
 
@@ -14829,6 +16678,7 @@ class NHSColumns(ColumnsTask):
             name='Non-movers (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c010_f: DENOMINATOR },)
 
@@ -14837,6 +16687,7 @@ class NHSColumns(ColumnsTask):
             name='Movers (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c010_t: DENOMINATOR },)
 
@@ -14845,6 +16696,7 @@ class NHSColumns(ColumnsTask):
             name='Movers (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c010_m: DENOMINATOR },)
 
@@ -14853,6 +16705,7 @@ class NHSColumns(ColumnsTask):
             name='Movers (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c010_f: DENOMINATOR },)
 
@@ -14861,6 +16714,7 @@ class NHSColumns(ColumnsTask):
             name='Non-migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c012_t: DENOMINATOR },)
 
@@ -14869,6 +16723,7 @@ class NHSColumns(ColumnsTask):
             name='Non-migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c012_m: DENOMINATOR },)
 
@@ -14877,6 +16732,7 @@ class NHSColumns(ColumnsTask):
             name='Non-migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c012_f: DENOMINATOR },)
 
@@ -14885,6 +16741,7 @@ class NHSColumns(ColumnsTask):
             name='Migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c012_t: DENOMINATOR },)
 
@@ -14893,6 +16750,7 @@ class NHSColumns(ColumnsTask):
             name='Migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c012_m: DENOMINATOR },)
 
@@ -14901,6 +16759,7 @@ class NHSColumns(ColumnsTask):
             name='Migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c012_f: DENOMINATOR },)
 
@@ -14909,6 +16768,7 @@ class NHSColumns(ColumnsTask):
             name='Internal migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c014_t: DENOMINATOR },)
 
@@ -14917,6 +16777,7 @@ class NHSColumns(ColumnsTask):
             name='Internal migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c014_m: DENOMINATOR },)
 
@@ -14925,6 +16786,7 @@ class NHSColumns(ColumnsTask):
             name='Internal migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c014_f: DENOMINATOR },)
 
@@ -14933,6 +16795,7 @@ class NHSColumns(ColumnsTask):
             name='Intraprovincial migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c015_t: DENOMINATOR },)
 
@@ -14941,6 +16804,7 @@ class NHSColumns(ColumnsTask):
             name='Intraprovincial migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c015_m: DENOMINATOR },)
 
@@ -14949,6 +16813,7 @@ class NHSColumns(ColumnsTask):
             name='Intraprovincial migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c015_f: DENOMINATOR },)
 
@@ -14957,6 +16822,7 @@ class NHSColumns(ColumnsTask):
             name='Interprovincial migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c015_t: DENOMINATOR },)
 
@@ -14965,6 +16831,7 @@ class NHSColumns(ColumnsTask):
             name='Interprovincial migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c015_m: DENOMINATOR },)
 
@@ -14973,6 +16840,7 @@ class NHSColumns(ColumnsTask):
             name='Interprovincial migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c015_f: DENOMINATOR },)
 
@@ -14981,6 +16849,7 @@ class NHSColumns(ColumnsTask):
             name='External migrants (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c014_t: DENOMINATOR },)
 
@@ -14989,6 +16858,7 @@ class NHSColumns(ColumnsTask):
             name='External migrants (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c014_m: DENOMINATOR },)
 
@@ -14997,6 +16867,7 @@ class NHSColumns(ColumnsTask):
             name='External migrants (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c014_f: DENOMINATOR },)
 
@@ -15005,6 +16876,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by mode of transportation (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -15013,6 +16885,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by mode of transportation (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -15021,6 +16894,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by mode of transportation (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -15029,6 +16903,7 @@ class NHSColumns(ColumnsTask):
             name='Car, truck or van - as a driver (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_t: DENOMINATOR },)
 
@@ -15037,6 +16912,7 @@ class NHSColumns(ColumnsTask):
             name='Car, truck or van - as a driver (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_m: DENOMINATOR },)
 
@@ -15045,6 +16921,7 @@ class NHSColumns(ColumnsTask):
             name='Car, truck or van - as a driver (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_f: DENOMINATOR },)
 
@@ -15053,6 +16930,7 @@ class NHSColumns(ColumnsTask):
             name='Car, truck or van - as a passenger (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_t: DENOMINATOR },)
 
@@ -15061,6 +16939,7 @@ class NHSColumns(ColumnsTask):
             name='Car, truck or van - as a passenger (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_m: DENOMINATOR },)
 
@@ -15069,6 +16948,7 @@ class NHSColumns(ColumnsTask):
             name='Car, truck or van - as a passenger (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_f: DENOMINATOR },)
 
@@ -15077,6 +16957,7 @@ class NHSColumns(ColumnsTask):
             name='Public transit (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_t: DENOMINATOR },)
 
@@ -15085,6 +16966,7 @@ class NHSColumns(ColumnsTask):
             name='Public transit (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_m: DENOMINATOR },)
 
@@ -15093,6 +16975,7 @@ class NHSColumns(ColumnsTask):
             name='Public transit (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_f: DENOMINATOR },)
 
@@ -15101,6 +16984,7 @@ class NHSColumns(ColumnsTask):
             name='Walked (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_t: DENOMINATOR },)
 
@@ -15109,6 +16993,7 @@ class NHSColumns(ColumnsTask):
             name='Walked (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_m: DENOMINATOR },)
 
@@ -15117,6 +17002,7 @@ class NHSColumns(ColumnsTask):
             name='Walked (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_f: DENOMINATOR },)
 
@@ -15125,6 +17011,7 @@ class NHSColumns(ColumnsTask):
             name='Bicycle (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_t: DENOMINATOR },)
 
@@ -15133,6 +17020,7 @@ class NHSColumns(ColumnsTask):
             name='Bicycle (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_m: DENOMINATOR },)
 
@@ -15141,6 +17029,7 @@ class NHSColumns(ColumnsTask):
             name='Bicycle (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_f: DENOMINATOR },)
 
@@ -15149,6 +17038,7 @@ class NHSColumns(ColumnsTask):
             name='Other methods (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_t: DENOMINATOR },)
 
@@ -15157,6 +17047,7 @@ class NHSColumns(ColumnsTask):
             name='Other methods (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_m: DENOMINATOR },)
 
@@ -15165,6 +17056,7 @@ class NHSColumns(ColumnsTask):
             name='Other methods (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_f: DENOMINATOR },)
 
@@ -15173,6 +17065,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by non-official languages spoken (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -15181,6 +17074,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by non-official languages spoken (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -15189,6 +17083,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by non-official languages spoken (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -15197,6 +17092,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c001_t: DENOMINATOR },)
 
@@ -15205,6 +17101,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c001_m: DENOMINATOR },)
 
@@ -15213,6 +17110,7 @@ class NHSColumns(ColumnsTask):
             name='Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c001_f: DENOMINATOR },)
 
@@ -15221,6 +17119,7 @@ class NHSColumns(ColumnsTask):
             name='Algonquin (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15229,6 +17128,7 @@ class NHSColumns(ColumnsTask):
             name='Algonquin (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15237,6 +17137,7 @@ class NHSColumns(ColumnsTask):
             name='Algonquin (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15245,6 +17146,7 @@ class NHSColumns(ColumnsTask):
             name='Atikamekw (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15253,6 +17155,7 @@ class NHSColumns(ColumnsTask):
             name='Atikamekw (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15261,6 +17164,7 @@ class NHSColumns(ColumnsTask):
             name='Atikamekw (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15269,6 +17173,7 @@ class NHSColumns(ColumnsTask):
             name='Blackfoot (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15277,6 +17182,7 @@ class NHSColumns(ColumnsTask):
             name='Blackfoot (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15285,6 +17191,7 @@ class NHSColumns(ColumnsTask):
             name='Blackfoot (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15293,6 +17200,7 @@ class NHSColumns(ColumnsTask):
             name='Cree languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15301,6 +17209,7 @@ class NHSColumns(ColumnsTask):
             name='Cree languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15309,6 +17218,7 @@ class NHSColumns(ColumnsTask):
             name='Cree languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15317,6 +17227,7 @@ class NHSColumns(ColumnsTask):
             name='Mi\'kmaq (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15325,6 +17236,7 @@ class NHSColumns(ColumnsTask):
             name='Mi\'kmaq (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15333,6 +17245,7 @@ class NHSColumns(ColumnsTask):
             name='Mi\'kmaq (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15341,6 +17254,7 @@ class NHSColumns(ColumnsTask):
             name='Innu/Montagnais (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15349,6 +17263,7 @@ class NHSColumns(ColumnsTask):
             name='Innu/Montagnais (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15357,6 +17272,7 @@ class NHSColumns(ColumnsTask):
             name='Innu/Montagnais (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15365,6 +17281,7 @@ class NHSColumns(ColumnsTask):
             name='Ojibway (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15373,6 +17290,7 @@ class NHSColumns(ColumnsTask):
             name='Ojibway (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15381,6 +17299,7 @@ class NHSColumns(ColumnsTask):
             name='Ojibway (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15389,6 +17308,7 @@ class NHSColumns(ColumnsTask):
             name='Oji-Cree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15397,6 +17317,7 @@ class NHSColumns(ColumnsTask):
             name='Oji-Cree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15405,6 +17326,7 @@ class NHSColumns(ColumnsTask):
             name='Oji-Cree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15413,6 +17335,7 @@ class NHSColumns(ColumnsTask):
             name='Carrier (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15421,6 +17344,7 @@ class NHSColumns(ColumnsTask):
             name='Carrier (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15429,6 +17353,7 @@ class NHSColumns(ColumnsTask):
             name='Carrier (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15437,6 +17362,7 @@ class NHSColumns(ColumnsTask):
             name='Dene (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15445,6 +17371,7 @@ class NHSColumns(ColumnsTask):
             name='Dene (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15453,6 +17380,7 @@ class NHSColumns(ColumnsTask):
             name='Dene (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15461,6 +17389,7 @@ class NHSColumns(ColumnsTask):
             name='Tlicho (Dogrib) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15469,6 +17398,7 @@ class NHSColumns(ColumnsTask):
             name='Tlicho (Dogrib) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15477,6 +17407,7 @@ class NHSColumns(ColumnsTask):
             name='Tlicho (Dogrib) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15485,6 +17416,7 @@ class NHSColumns(ColumnsTask):
             name='Slavey, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15493,6 +17425,7 @@ class NHSColumns(ColumnsTask):
             name='Slavey, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15501,6 +17434,7 @@ class NHSColumns(ColumnsTask):
             name='Slavey, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15509,6 +17443,7 @@ class NHSColumns(ColumnsTask):
             name='Stoney (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15517,6 +17452,7 @@ class NHSColumns(ColumnsTask):
             name='Stoney (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15525,6 +17461,7 @@ class NHSColumns(ColumnsTask):
             name='Stoney (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15533,6 +17470,7 @@ class NHSColumns(ColumnsTask):
             name='Inuktitut (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15541,6 +17479,7 @@ class NHSColumns(ColumnsTask):
             name='Inuktitut (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15549,6 +17488,7 @@ class NHSColumns(ColumnsTask):
             name='Inuktitut (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15557,6 +17497,7 @@ class NHSColumns(ColumnsTask):
             name='Other Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_t: DENOMINATOR },)
 
@@ -15565,6 +17506,7 @@ class NHSColumns(ColumnsTask):
             name='Other Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_m: DENOMINATOR },)
 
@@ -15573,6 +17515,7 @@ class NHSColumns(ColumnsTask):
             name='Other Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c002_f: DENOMINATOR },)
 
@@ -15581,6 +17524,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c001_t: DENOMINATOR },)
 
@@ -15589,6 +17533,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c001_m: DENOMINATOR },)
 
@@ -15597,6 +17542,7 @@ class NHSColumns(ColumnsTask):
             name='Non-Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c001_f: DENOMINATOR },)
 
@@ -15605,6 +17551,7 @@ class NHSColumns(ColumnsTask):
             name='Italian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15613,6 +17560,7 @@ class NHSColumns(ColumnsTask):
             name='Italian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15621,6 +17569,7 @@ class NHSColumns(ColumnsTask):
             name='Italian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15629,6 +17578,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15637,6 +17587,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15645,6 +17596,7 @@ class NHSColumns(ColumnsTask):
             name='Portuguese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15653,6 +17605,7 @@ class NHSColumns(ColumnsTask):
             name='Romanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15661,6 +17614,7 @@ class NHSColumns(ColumnsTask):
             name='Romanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15669,6 +17623,7 @@ class NHSColumns(ColumnsTask):
             name='Romanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15677,6 +17632,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15685,6 +17641,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15693,6 +17650,7 @@ class NHSColumns(ColumnsTask):
             name='Spanish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15701,6 +17659,7 @@ class NHSColumns(ColumnsTask):
             name='Dutch (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15709,6 +17668,7 @@ class NHSColumns(ColumnsTask):
             name='Dutch (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15717,6 +17677,7 @@ class NHSColumns(ColumnsTask):
             name='Dutch (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15725,6 +17686,7 @@ class NHSColumns(ColumnsTask):
             name='Flemish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15733,6 +17695,7 @@ class NHSColumns(ColumnsTask):
             name='Flemish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15741,6 +17704,7 @@ class NHSColumns(ColumnsTask):
             name='Flemish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15749,6 +17713,7 @@ class NHSColumns(ColumnsTask):
             name='German (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15757,6 +17722,7 @@ class NHSColumns(ColumnsTask):
             name='German (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15765,6 +17731,7 @@ class NHSColumns(ColumnsTask):
             name='German (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15773,6 +17740,7 @@ class NHSColumns(ColumnsTask):
             name='Yiddish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15781,6 +17749,7 @@ class NHSColumns(ColumnsTask):
             name='Yiddish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15789,6 +17758,7 @@ class NHSColumns(ColumnsTask):
             name='Yiddish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15797,6 +17767,7 @@ class NHSColumns(ColumnsTask):
             name='Danish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15805,6 +17776,7 @@ class NHSColumns(ColumnsTask):
             name='Danish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15813,6 +17785,7 @@ class NHSColumns(ColumnsTask):
             name='Danish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15821,6 +17794,7 @@ class NHSColumns(ColumnsTask):
             name='Norwegian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15829,6 +17803,7 @@ class NHSColumns(ColumnsTask):
             name='Norwegian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15837,6 +17812,7 @@ class NHSColumns(ColumnsTask):
             name='Norwegian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15845,6 +17821,7 @@ class NHSColumns(ColumnsTask):
             name='Swedish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15853,6 +17830,7 @@ class NHSColumns(ColumnsTask):
             name='Swedish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15861,6 +17839,7 @@ class NHSColumns(ColumnsTask):
             name='Swedish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15869,6 +17848,7 @@ class NHSColumns(ColumnsTask):
             name='Afrikaans (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15877,6 +17857,7 @@ class NHSColumns(ColumnsTask):
             name='Afrikaans (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15885,6 +17866,7 @@ class NHSColumns(ColumnsTask):
             name='Afrikaans (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15893,6 +17875,7 @@ class NHSColumns(ColumnsTask):
             name='Gaelic languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15901,6 +17884,7 @@ class NHSColumns(ColumnsTask):
             name='Gaelic languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15909,6 +17893,7 @@ class NHSColumns(ColumnsTask):
             name='Gaelic languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15917,6 +17902,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15925,6 +17911,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15933,6 +17920,7 @@ class NHSColumns(ColumnsTask):
             name='Bosnian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15941,6 +17929,7 @@ class NHSColumns(ColumnsTask):
             name='Bulgarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15949,6 +17938,7 @@ class NHSColumns(ColumnsTask):
             name='Bulgarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15957,6 +17947,7 @@ class NHSColumns(ColumnsTask):
             name='Bulgarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15965,6 +17956,7 @@ class NHSColumns(ColumnsTask):
             name='Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15973,6 +17965,7 @@ class NHSColumns(ColumnsTask):
             name='Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -15981,6 +17974,7 @@ class NHSColumns(ColumnsTask):
             name='Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -15989,6 +17983,7 @@ class NHSColumns(ColumnsTask):
             name='Czech (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -15997,6 +17992,7 @@ class NHSColumns(ColumnsTask):
             name='Czech (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16005,6 +18001,7 @@ class NHSColumns(ColumnsTask):
             name='Czech (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16013,6 +18010,7 @@ class NHSColumns(ColumnsTask):
             name='Macedonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16021,6 +18019,7 @@ class NHSColumns(ColumnsTask):
             name='Macedonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16029,6 +18028,7 @@ class NHSColumns(ColumnsTask):
             name='Macedonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16037,6 +18037,7 @@ class NHSColumns(ColumnsTask):
             name='Polish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16045,6 +18046,7 @@ class NHSColumns(ColumnsTask):
             name='Polish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16053,6 +18055,7 @@ class NHSColumns(ColumnsTask):
             name='Polish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16061,6 +18064,7 @@ class NHSColumns(ColumnsTask):
             name='Russian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16069,6 +18073,7 @@ class NHSColumns(ColumnsTask):
             name='Russian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16077,6 +18082,7 @@ class NHSColumns(ColumnsTask):
             name='Russian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16085,6 +18091,7 @@ class NHSColumns(ColumnsTask):
             name='Serbian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16093,6 +18100,7 @@ class NHSColumns(ColumnsTask):
             name='Serbian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16101,6 +18109,7 @@ class NHSColumns(ColumnsTask):
             name='Serbian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16109,6 +18118,7 @@ class NHSColumns(ColumnsTask):
             name='Serbo-Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16117,6 +18127,7 @@ class NHSColumns(ColumnsTask):
             name='Serbo-Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16125,6 +18136,7 @@ class NHSColumns(ColumnsTask):
             name='Serbo-Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16133,6 +18145,7 @@ class NHSColumns(ColumnsTask):
             name='Slovak (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16141,6 +18154,7 @@ class NHSColumns(ColumnsTask):
             name='Slovak (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16149,6 +18163,7 @@ class NHSColumns(ColumnsTask):
             name='Slovak (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16157,6 +18172,7 @@ class NHSColumns(ColumnsTask):
             name='Slovenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16165,6 +18181,7 @@ class NHSColumns(ColumnsTask):
             name='Slovenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16173,6 +18190,7 @@ class NHSColumns(ColumnsTask):
             name='Slovenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16181,6 +18199,7 @@ class NHSColumns(ColumnsTask):
             name='Ukrainian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16189,6 +18208,7 @@ class NHSColumns(ColumnsTask):
             name='Ukrainian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16197,6 +18217,7 @@ class NHSColumns(ColumnsTask):
             name='Ukrainian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16205,6 +18226,7 @@ class NHSColumns(ColumnsTask):
             name='Latvian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16213,6 +18235,7 @@ class NHSColumns(ColumnsTask):
             name='Latvian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16221,6 +18244,7 @@ class NHSColumns(ColumnsTask):
             name='Latvian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16229,6 +18253,7 @@ class NHSColumns(ColumnsTask):
             name='Lithuanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16237,6 +18262,7 @@ class NHSColumns(ColumnsTask):
             name='Lithuanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16245,6 +18271,7 @@ class NHSColumns(ColumnsTask):
             name='Lithuanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16253,6 +18280,7 @@ class NHSColumns(ColumnsTask):
             name='Greek (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16261,6 +18289,7 @@ class NHSColumns(ColumnsTask):
             name='Greek (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16269,6 +18298,7 @@ class NHSColumns(ColumnsTask):
             name='Greek (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16277,6 +18307,7 @@ class NHSColumns(ColumnsTask):
             name='Armenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16285,6 +18316,7 @@ class NHSColumns(ColumnsTask):
             name='Armenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16293,6 +18325,7 @@ class NHSColumns(ColumnsTask):
             name='Armenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16301,6 +18334,7 @@ class NHSColumns(ColumnsTask):
             name='Albanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16309,6 +18343,7 @@ class NHSColumns(ColumnsTask):
             name='Albanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16317,6 +18352,7 @@ class NHSColumns(ColumnsTask):
             name='Albanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16325,6 +18361,7 @@ class NHSColumns(ColumnsTask):
             name='Estonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16333,6 +18370,7 @@ class NHSColumns(ColumnsTask):
             name='Estonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16341,6 +18379,7 @@ class NHSColumns(ColumnsTask):
             name='Estonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16349,6 +18388,7 @@ class NHSColumns(ColumnsTask):
             name='Finnish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16357,6 +18397,7 @@ class NHSColumns(ColumnsTask):
             name='Finnish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16365,6 +18406,7 @@ class NHSColumns(ColumnsTask):
             name='Finnish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16373,6 +18415,7 @@ class NHSColumns(ColumnsTask):
             name='Hungarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16381,6 +18424,7 @@ class NHSColumns(ColumnsTask):
             name='Hungarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16389,6 +18433,7 @@ class NHSColumns(ColumnsTask):
             name='Hungarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16397,6 +18442,7 @@ class NHSColumns(ColumnsTask):
             name='Turkish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16405,6 +18451,7 @@ class NHSColumns(ColumnsTask):
             name='Turkish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16413,6 +18460,7 @@ class NHSColumns(ColumnsTask):
             name='Turkish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16421,6 +18469,7 @@ class NHSColumns(ColumnsTask):
             name='Berber languages (Kabyle) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16429,6 +18478,7 @@ class NHSColumns(ColumnsTask):
             name='Berber languages (Kabyle) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16437,6 +18487,7 @@ class NHSColumns(ColumnsTask):
             name='Berber languages (Kabyle) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16445,6 +18496,7 @@ class NHSColumns(ColumnsTask):
             name='Oromo (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16453,6 +18505,7 @@ class NHSColumns(ColumnsTask):
             name='Oromo (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16461,6 +18514,7 @@ class NHSColumns(ColumnsTask):
             name='Oromo (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16469,6 +18523,7 @@ class NHSColumns(ColumnsTask):
             name='Somali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16477,6 +18532,7 @@ class NHSColumns(ColumnsTask):
             name='Somali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16485,6 +18541,7 @@ class NHSColumns(ColumnsTask):
             name='Somali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16493,6 +18550,7 @@ class NHSColumns(ColumnsTask):
             name='Amharic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16501,6 +18559,7 @@ class NHSColumns(ColumnsTask):
             name='Amharic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16509,6 +18568,7 @@ class NHSColumns(ColumnsTask):
             name='Amharic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16517,6 +18577,7 @@ class NHSColumns(ColumnsTask):
             name='Arabic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16525,6 +18586,7 @@ class NHSColumns(ColumnsTask):
             name='Arabic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16533,6 +18595,7 @@ class NHSColumns(ColumnsTask):
             name='Arabic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16541,6 +18604,7 @@ class NHSColumns(ColumnsTask):
             name='Hebrew (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16549,6 +18613,7 @@ class NHSColumns(ColumnsTask):
             name='Hebrew (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16557,6 +18622,7 @@ class NHSColumns(ColumnsTask):
             name='Hebrew (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16565,6 +18631,7 @@ class NHSColumns(ColumnsTask):
             name='Maltese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16573,6 +18640,7 @@ class NHSColumns(ColumnsTask):
             name='Maltese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16581,6 +18649,7 @@ class NHSColumns(ColumnsTask):
             name='Maltese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16589,6 +18658,7 @@ class NHSColumns(ColumnsTask):
             name='Tigrigna (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16597,6 +18667,7 @@ class NHSColumns(ColumnsTask):
             name='Tigrigna (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16605,6 +18676,7 @@ class NHSColumns(ColumnsTask):
             name='Tigrigna (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16613,6 +18685,7 @@ class NHSColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16621,6 +18694,7 @@ class NHSColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16629,6 +18703,7 @@ class NHSColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16637,6 +18712,7 @@ class NHSColumns(ColumnsTask):
             name='Bengali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16645,6 +18721,7 @@ class NHSColumns(ColumnsTask):
             name='Bengali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16653,6 +18730,7 @@ class NHSColumns(ColumnsTask):
             name='Bengali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16661,6 +18739,7 @@ class NHSColumns(ColumnsTask):
             name='Gujarati (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16669,6 +18748,7 @@ class NHSColumns(ColumnsTask):
             name='Gujarati (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16677,6 +18757,7 @@ class NHSColumns(ColumnsTask):
             name='Gujarati (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16685,6 +18766,7 @@ class NHSColumns(ColumnsTask):
             name='Hindi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16693,6 +18775,7 @@ class NHSColumns(ColumnsTask):
             name='Hindi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16701,6 +18784,7 @@ class NHSColumns(ColumnsTask):
             name='Hindi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16709,6 +18793,7 @@ class NHSColumns(ColumnsTask):
             name='Konkani (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16717,6 +18802,7 @@ class NHSColumns(ColumnsTask):
             name='Konkani (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16725,6 +18811,7 @@ class NHSColumns(ColumnsTask):
             name='Konkani (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16733,6 +18820,7 @@ class NHSColumns(ColumnsTask):
             name='Marathi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16741,6 +18829,7 @@ class NHSColumns(ColumnsTask):
             name='Marathi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16749,6 +18838,7 @@ class NHSColumns(ColumnsTask):
             name='Marathi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16757,6 +18847,7 @@ class NHSColumns(ColumnsTask):
             name='Panjabi (Punjabi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16765,6 +18856,7 @@ class NHSColumns(ColumnsTask):
             name='Panjabi (Punjabi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16773,6 +18865,7 @@ class NHSColumns(ColumnsTask):
             name='Panjabi (Punjabi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16781,6 +18874,7 @@ class NHSColumns(ColumnsTask):
             name='Sindhi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16789,6 +18883,7 @@ class NHSColumns(ColumnsTask):
             name='Sindhi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16797,6 +18892,7 @@ class NHSColumns(ColumnsTask):
             name='Sindhi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16805,6 +18901,7 @@ class NHSColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16813,6 +18910,7 @@ class NHSColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16821,6 +18919,7 @@ class NHSColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16829,6 +18928,7 @@ class NHSColumns(ColumnsTask):
             name='Urdu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16837,6 +18937,7 @@ class NHSColumns(ColumnsTask):
             name='Urdu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16845,6 +18946,7 @@ class NHSColumns(ColumnsTask):
             name='Urdu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16853,6 +18955,7 @@ class NHSColumns(ColumnsTask):
             name='Nepali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16861,6 +18964,7 @@ class NHSColumns(ColumnsTask):
             name='Nepali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16869,6 +18973,7 @@ class NHSColumns(ColumnsTask):
             name='Nepali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16877,6 +18982,7 @@ class NHSColumns(ColumnsTask):
             name='Kurdish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16885,6 +18991,7 @@ class NHSColumns(ColumnsTask):
             name='Kurdish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16893,6 +19000,7 @@ class NHSColumns(ColumnsTask):
             name='Kurdish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16901,6 +19009,7 @@ class NHSColumns(ColumnsTask):
             name='Pashto (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16909,6 +19018,7 @@ class NHSColumns(ColumnsTask):
             name='Pashto (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16917,6 +19027,7 @@ class NHSColumns(ColumnsTask):
             name='Pashto (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16925,6 +19036,7 @@ class NHSColumns(ColumnsTask):
             name='Persian (Farsi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16933,6 +19045,7 @@ class NHSColumns(ColumnsTask):
             name='Persian (Farsi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16941,6 +19054,7 @@ class NHSColumns(ColumnsTask):
             name='Persian (Farsi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16949,6 +19063,7 @@ class NHSColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16957,6 +19072,7 @@ class NHSColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16965,6 +19081,7 @@ class NHSColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16973,6 +19090,7 @@ class NHSColumns(ColumnsTask):
             name='Kannada (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -16981,6 +19099,7 @@ class NHSColumns(ColumnsTask):
             name='Kannada (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -16989,6 +19108,7 @@ class NHSColumns(ColumnsTask):
             name='Kannada (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -16997,6 +19117,7 @@ class NHSColumns(ColumnsTask):
             name='Malayalam (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17005,6 +19126,7 @@ class NHSColumns(ColumnsTask):
             name='Malayalam (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17013,6 +19135,7 @@ class NHSColumns(ColumnsTask):
             name='Malayalam (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17021,6 +19144,7 @@ class NHSColumns(ColumnsTask):
             name='Tamil (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17029,6 +19153,7 @@ class NHSColumns(ColumnsTask):
             name='Tamil (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17037,6 +19162,7 @@ class NHSColumns(ColumnsTask):
             name='Tamil (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17045,6 +19171,7 @@ class NHSColumns(ColumnsTask):
             name='Telugu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17053,6 +19180,7 @@ class NHSColumns(ColumnsTask):
             name='Telugu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17061,6 +19189,7 @@ class NHSColumns(ColumnsTask):
             name='Telugu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17069,6 +19198,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17077,6 +19207,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17085,6 +19216,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17093,6 +19225,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17101,6 +19234,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17109,6 +19243,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17117,6 +19252,7 @@ class NHSColumns(ColumnsTask):
             name='Cantonese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17125,6 +19261,7 @@ class NHSColumns(ColumnsTask):
             name='Cantonese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17133,6 +19270,7 @@ class NHSColumns(ColumnsTask):
             name='Cantonese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17141,6 +19279,7 @@ class NHSColumns(ColumnsTask):
             name='Fukien (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17149,6 +19288,7 @@ class NHSColumns(ColumnsTask):
             name='Fukien (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17157,6 +19297,7 @@ class NHSColumns(ColumnsTask):
             name='Fukien (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17165,6 +19306,7 @@ class NHSColumns(ColumnsTask):
             name='Hakka (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17173,6 +19315,7 @@ class NHSColumns(ColumnsTask):
             name='Hakka (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17181,6 +19324,7 @@ class NHSColumns(ColumnsTask):
             name='Hakka (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17189,6 +19333,7 @@ class NHSColumns(ColumnsTask):
             name='Mandarin (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17197,6 +19342,7 @@ class NHSColumns(ColumnsTask):
             name='Mandarin (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17205,6 +19351,7 @@ class NHSColumns(ColumnsTask):
             name='Mandarin (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17213,6 +19360,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17221,6 +19369,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17229,6 +19378,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17237,6 +19387,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17245,6 +19396,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17253,6 +19405,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17261,6 +19414,7 @@ class NHSColumns(ColumnsTask):
             name='Lao (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17269,6 +19423,7 @@ class NHSColumns(ColumnsTask):
             name='Lao (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17277,6 +19432,7 @@ class NHSColumns(ColumnsTask):
             name='Lao (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17285,6 +19441,7 @@ class NHSColumns(ColumnsTask):
             name='Thai (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17293,6 +19450,7 @@ class NHSColumns(ColumnsTask):
             name='Thai (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17301,6 +19459,7 @@ class NHSColumns(ColumnsTask):
             name='Thai (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17309,6 +19468,7 @@ class NHSColumns(ColumnsTask):
             name='Khmer (Cambodian) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17317,6 +19477,7 @@ class NHSColumns(ColumnsTask):
             name='Khmer (Cambodian) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17325,6 +19486,7 @@ class NHSColumns(ColumnsTask):
             name='Khmer (Cambodian) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17333,6 +19495,7 @@ class NHSColumns(ColumnsTask):
             name='Vietnamese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17341,6 +19504,7 @@ class NHSColumns(ColumnsTask):
             name='Vietnamese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17349,6 +19513,7 @@ class NHSColumns(ColumnsTask):
             name='Vietnamese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17357,6 +19522,7 @@ class NHSColumns(ColumnsTask):
             name='Bisayan languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17365,6 +19531,7 @@ class NHSColumns(ColumnsTask):
             name='Bisayan languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17373,6 +19540,7 @@ class NHSColumns(ColumnsTask):
             name='Bisayan languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17381,6 +19549,7 @@ class NHSColumns(ColumnsTask):
             name='Ilocano (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17389,6 +19558,7 @@ class NHSColumns(ColumnsTask):
             name='Ilocano (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17397,6 +19567,7 @@ class NHSColumns(ColumnsTask):
             name='Ilocano (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17405,6 +19576,7 @@ class NHSColumns(ColumnsTask):
             name='Malay (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17413,6 +19585,7 @@ class NHSColumns(ColumnsTask):
             name='Malay (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17421,6 +19594,7 @@ class NHSColumns(ColumnsTask):
             name='Malay (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17429,6 +19603,7 @@ class NHSColumns(ColumnsTask):
             name='Tagalog (Pilipino,Filipino) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17437,6 +19612,7 @@ class NHSColumns(ColumnsTask):
             name='Tagalog (Pilipino,Filipino) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17445,6 +19621,7 @@ class NHSColumns(ColumnsTask):
             name='Tagalog (Pilipino,Filipino) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17453,6 +19630,7 @@ class NHSColumns(ColumnsTask):
             name='Akan (Twi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17461,6 +19639,7 @@ class NHSColumns(ColumnsTask):
             name='Akan (Twi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17469,6 +19648,7 @@ class NHSColumns(ColumnsTask):
             name='Akan (Twi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17477,6 +19657,7 @@ class NHSColumns(ColumnsTask):
             name='Lingala (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17485,6 +19666,7 @@ class NHSColumns(ColumnsTask):
             name='Lingala (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17493,6 +19675,7 @@ class NHSColumns(ColumnsTask):
             name='Lingala (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17501,6 +19684,7 @@ class NHSColumns(ColumnsTask):
             name='Rundi (Kirundi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17509,6 +19693,7 @@ class NHSColumns(ColumnsTask):
             name='Rundi (Kirundi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17517,6 +19702,7 @@ class NHSColumns(ColumnsTask):
             name='Rundi (Kirundi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17525,6 +19711,7 @@ class NHSColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17533,6 +19720,7 @@ class NHSColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17541,6 +19729,7 @@ class NHSColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17549,6 +19738,7 @@ class NHSColumns(ColumnsTask):
             name='Swahili (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17557,6 +19747,7 @@ class NHSColumns(ColumnsTask):
             name='Swahili (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17565,6 +19756,7 @@ class NHSColumns(ColumnsTask):
             name='Swahili (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17573,6 +19765,7 @@ class NHSColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17581,6 +19774,7 @@ class NHSColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17589,6 +19783,7 @@ class NHSColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17597,6 +19792,7 @@ class NHSColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17605,6 +19801,7 @@ class NHSColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17613,6 +19810,7 @@ class NHSColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17621,6 +19819,7 @@ class NHSColumns(ColumnsTask):
             name='African languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17629,6 +19828,7 @@ class NHSColumns(ColumnsTask):
             name='African languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17637,6 +19837,7 @@ class NHSColumns(ColumnsTask):
             name='African languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17645,6 +19846,7 @@ class NHSColumns(ColumnsTask):
             name='Creoles (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17653,6 +19855,7 @@ class NHSColumns(ColumnsTask):
             name='Creoles (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17661,6 +19864,7 @@ class NHSColumns(ColumnsTask):
             name='Creoles (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17669,6 +19873,7 @@ class NHSColumns(ColumnsTask):
             name='Other non-Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_t: DENOMINATOR },)
 
@@ -17677,6 +19882,7 @@ class NHSColumns(ColumnsTask):
             name='Other non-Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_m: DENOMINATOR },)
 
@@ -17685,6 +19891,7 @@ class NHSColumns(ColumnsTask):
             name='Other non-Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
@@ -17693,6 +19900,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by occupation - National Occupational Classification (NOC) 2011 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -17701,6 +19909,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by occupation - National Occupational Classification (NOC) 2011 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -17709,6 +19918,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force population aged 15 years and over by occupation - National Occupational Classification (NOC) 2011 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -17717,6 +19927,7 @@ class NHSColumns(ColumnsTask):
             name='Occupation - not applicable (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c001_t: DENOMINATOR },)
 
@@ -17725,6 +19936,7 @@ class NHSColumns(ColumnsTask):
             name='Occupation - not applicable (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c001_m: DENOMINATOR },)
 
@@ -17733,6 +19945,7 @@ class NHSColumns(ColumnsTask):
             name='Occupation - not applicable (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c001_f: DENOMINATOR },)
 
@@ -17741,6 +19954,7 @@ class NHSColumns(ColumnsTask):
             name='All occupations (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c001_t: DENOMINATOR },)
 
@@ -17749,6 +19963,7 @@ class NHSColumns(ColumnsTask):
             name='All occupations (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c001_m: DENOMINATOR },)
 
@@ -17757,6 +19972,7 @@ class NHSColumns(ColumnsTask):
             name='All occupations (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c001_f: DENOMINATOR },)
 
@@ -17765,6 +19981,7 @@ class NHSColumns(ColumnsTask):
             name='0 Management occupations (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17773,6 +19990,7 @@ class NHSColumns(ColumnsTask):
             name='0 Management occupations (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17781,6 +19999,7 @@ class NHSColumns(ColumnsTask):
             name='0 Management occupations (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17789,6 +20008,7 @@ class NHSColumns(ColumnsTask):
             name='1 Business, finance and administration occupations (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17797,6 +20017,7 @@ class NHSColumns(ColumnsTask):
             name='1 Business, finance and administration occupations (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17805,6 +20026,7 @@ class NHSColumns(ColumnsTask):
             name='1 Business, finance and administration occupations (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17813,6 +20035,7 @@ class NHSColumns(ColumnsTask):
             name='2 Natural and applied sciences and related occupations (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17821,6 +20044,7 @@ class NHSColumns(ColumnsTask):
             name='2 Natural and applied sciences and related occupations (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17829,6 +20053,7 @@ class NHSColumns(ColumnsTask):
             name='2 Natural and applied sciences and related occupations (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17837,6 +20062,7 @@ class NHSColumns(ColumnsTask):
             name='3 Health occupations (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17845,6 +20071,7 @@ class NHSColumns(ColumnsTask):
             name='3 Health occupations (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17853,6 +20080,7 @@ class NHSColumns(ColumnsTask):
             name='3 Health occupations (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17861,6 +20089,7 @@ class NHSColumns(ColumnsTask):
             name='4 Occupations in education, law and social, community and government services (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17869,6 +20098,7 @@ class NHSColumns(ColumnsTask):
             name='4 Occupations in education, law and social, community and government services (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17877,6 +20107,7 @@ class NHSColumns(ColumnsTask):
             name='4 Occupations in education, law and social, community and government services (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17885,6 +20116,7 @@ class NHSColumns(ColumnsTask):
             name='5 Occupations in art, culture, recreation and sport (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17893,6 +20125,7 @@ class NHSColumns(ColumnsTask):
             name='5 Occupations in art, culture, recreation and sport (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17901,6 +20134,7 @@ class NHSColumns(ColumnsTask):
             name='5 Occupations in art, culture, recreation and sport (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17909,6 +20143,7 @@ class NHSColumns(ColumnsTask):
             name='6 Sales and service occupations (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17917,6 +20152,7 @@ class NHSColumns(ColumnsTask):
             name='6 Sales and service occupations (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17925,6 +20161,7 @@ class NHSColumns(ColumnsTask):
             name='6 Sales and service occupations (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17933,6 +20170,7 @@ class NHSColumns(ColumnsTask):
             name='7 Trades, transport and equipment operators and related occupations (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17941,6 +20179,7 @@ class NHSColumns(ColumnsTask):
             name='7 Trades, transport and equipment operators and related occupations (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17949,6 +20188,7 @@ class NHSColumns(ColumnsTask):
             name='7 Trades, transport and equipment operators and related occupations (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17957,6 +20197,7 @@ class NHSColumns(ColumnsTask):
             name='8 Natural resources, agriculture and related production occupations (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17965,6 +20206,7 @@ class NHSColumns(ColumnsTask):
             name='8 Natural resources, agriculture and related production occupations (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17973,6 +20215,7 @@ class NHSColumns(ColumnsTask):
             name='8 Natural resources, agriculture and related production occupations (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -17981,6 +20224,7 @@ class NHSColumns(ColumnsTask):
             name='9 Occupations in manufacturing and utilities (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_t: DENOMINATOR },)
 
@@ -17989,6 +20233,7 @@ class NHSColumns(ColumnsTask):
             name='9 Occupations in manufacturing and utilities (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_m: DENOMINATOR },)
 
@@ -17997,6 +20242,7 @@ class NHSColumns(ColumnsTask):
             name='9 Occupations in manufacturing and utilities (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
@@ -18005,6 +20251,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of occupied private dwellings by condition of dwelling',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -18013,6 +20260,7 @@ class NHSColumns(ColumnsTask):
             name='Only regular maintenance or minor repairs needed',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
@@ -18021,6 +20269,7 @@ class NHSColumns(ColumnsTask):
             name='Major repairs needed',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
@@ -18029,6 +20278,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of occupied private dwellings by period of construction',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -18037,6 +20287,7 @@ class NHSColumns(ColumnsTask):
             name='1960 or before',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c004_t: DENOMINATOR },)
 
@@ -18045,6 +20296,7 @@ class NHSColumns(ColumnsTask):
             name='1961 to 1980',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c004_t: DENOMINATOR },)
 
@@ -18053,6 +20305,7 @@ class NHSColumns(ColumnsTask):
             name='1981 to 1990',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c004_t: DENOMINATOR },)
 
@@ -18061,6 +20314,7 @@ class NHSColumns(ColumnsTask):
             name='1991 to 2000',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c004_t: DENOMINATOR },)
 
@@ -18069,6 +20323,7 @@ class NHSColumns(ColumnsTask):
             name='2001 to 2005',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c004_t: DENOMINATOR },)
 
@@ -18077,6 +20332,7 @@ class NHSColumns(ColumnsTask):
             name='2006 to 2011',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c004_t: DENOMINATOR },)
 
@@ -18085,6 +20341,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of occupied private dwellings by number of rooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -18093,6 +20350,7 @@ class NHSColumns(ColumnsTask):
             name='1 to 4 rooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c011_t: DENOMINATOR },)
 
@@ -18101,6 +20359,7 @@ class NHSColumns(ColumnsTask):
             name='5 rooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c011_t: DENOMINATOR },)
 
@@ -18109,6 +20368,7 @@ class NHSColumns(ColumnsTask):
             name='6 rooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c011_t: DENOMINATOR },)
 
@@ -18117,6 +20377,7 @@ class NHSColumns(ColumnsTask):
             name='7 rooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c011_t: DENOMINATOR },)
 
@@ -18125,6 +20386,7 @@ class NHSColumns(ColumnsTask):
             name='8 or more rooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c011_t: DENOMINATOR },)
 
@@ -18133,6 +20395,7 @@ class NHSColumns(ColumnsTask):
             name='Average number of rooms per dwelling',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -18141,6 +20404,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of occupied private dwellings by number of bedrooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -18149,6 +20413,7 @@ class NHSColumns(ColumnsTask):
             name='0 to 1 bedroom',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c018_t: DENOMINATOR },)
 
@@ -18157,6 +20422,7 @@ class NHSColumns(ColumnsTask):
             name='2 bedrooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c018_t: DENOMINATOR },)
 
@@ -18165,6 +20431,7 @@ class NHSColumns(ColumnsTask):
             name='3 bedrooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c018_t: DENOMINATOR },)
 
@@ -18173,6 +20440,7 @@ class NHSColumns(ColumnsTask):
             name='4 or more bedrooms',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c018_t: DENOMINATOR },)
 
@@ -18181,6 +20449,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over by place of work status (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -18189,6 +20458,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over by place of work status (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -18197,6 +20467,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over by place of work status (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -18205,6 +20476,7 @@ class NHSColumns(ColumnsTask):
             name='Worked at home (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_t: DENOMINATOR },)
 
@@ -18213,6 +20485,7 @@ class NHSColumns(ColumnsTask):
             name='Worked at home (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_m: DENOMINATOR },)
 
@@ -18221,6 +20494,7 @@ class NHSColumns(ColumnsTask):
             name='Worked at home (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_f: DENOMINATOR },)
 
@@ -18229,6 +20503,7 @@ class NHSColumns(ColumnsTask):
             name='Worked outside Canada (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_t: DENOMINATOR },)
 
@@ -18237,6 +20512,7 @@ class NHSColumns(ColumnsTask):
             name='Worked outside Canada (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_m: DENOMINATOR },)
 
@@ -18245,6 +20521,7 @@ class NHSColumns(ColumnsTask):
             name='Worked outside Canada (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_f: DENOMINATOR },)
 
@@ -18253,6 +20530,7 @@ class NHSColumns(ColumnsTask):
             name='No fixed workplace address (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_t: DENOMINATOR },)
 
@@ -18261,6 +20539,7 @@ class NHSColumns(ColumnsTask):
             name='No fixed workplace address (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_m: DENOMINATOR },)
 
@@ -18269,6 +20548,7 @@ class NHSColumns(ColumnsTask):
             name='No fixed workplace address (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_f: DENOMINATOR },)
 
@@ -18277,6 +20557,7 @@ class NHSColumns(ColumnsTask):
             name='Worked at usual place (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_t: DENOMINATOR },)
 
@@ -18285,6 +20566,7 @@ class NHSColumns(ColumnsTask):
             name='Worked at usual place (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_m: DENOMINATOR },)
 
@@ -18293,6 +20575,7 @@ class NHSColumns(ColumnsTask):
             name='Worked at usual place (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_f: DENOMINATOR },)
 
@@ -18301,6 +20584,7 @@ class NHSColumns(ColumnsTask):
             name='Total recent immigrant population in private households by selected places of birth (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -18309,6 +20593,7 @@ class NHSColumns(ColumnsTask):
             name='Total recent immigrant population in private households by selected places of birth (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -18317,6 +20602,7 @@ class NHSColumns(ColumnsTask):
             name='Total recent immigrant population in private households by selected places of birth (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={},)
 
@@ -18325,6 +20611,7 @@ class NHSColumns(ColumnsTask):
             name='Americas (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_t: DENOMINATOR },)
 
@@ -18333,6 +20620,7 @@ class NHSColumns(ColumnsTask):
             name='Americas (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_m: DENOMINATOR },)
 
@@ -18341,6 +20629,7 @@ class NHSColumns(ColumnsTask):
             name='Americas (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_f: DENOMINATOR },)
 
@@ -18349,6 +20638,7 @@ class NHSColumns(ColumnsTask):
             name='United States (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18357,6 +20647,7 @@ class NHSColumns(ColumnsTask):
             name='United States (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18365,6 +20656,7 @@ class NHSColumns(ColumnsTask):
             name='United States (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18373,6 +20665,7 @@ class NHSColumns(ColumnsTask):
             name='Mexico (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18381,6 +20674,7 @@ class NHSColumns(ColumnsTask):
             name='Mexico (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18389,6 +20683,7 @@ class NHSColumns(ColumnsTask):
             name='Mexico (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18397,6 +20692,7 @@ class NHSColumns(ColumnsTask):
             name='Cuba (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18405,6 +20701,7 @@ class NHSColumns(ColumnsTask):
             name='Cuba (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18413,6 +20710,7 @@ class NHSColumns(ColumnsTask):
             name='Cuba (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18421,6 +20719,7 @@ class NHSColumns(ColumnsTask):
             name='Haiti (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18429,6 +20728,7 @@ class NHSColumns(ColumnsTask):
             name='Haiti (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18437,6 +20737,7 @@ class NHSColumns(ColumnsTask):
             name='Haiti (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18445,6 +20746,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaica (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18453,6 +20755,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaica (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18461,6 +20764,7 @@ class NHSColumns(ColumnsTask):
             name='Jamaica (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18469,6 +20773,7 @@ class NHSColumns(ColumnsTask):
             name='Brazil (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18477,6 +20782,7 @@ class NHSColumns(ColumnsTask):
             name='Brazil (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18485,6 +20791,7 @@ class NHSColumns(ColumnsTask):
             name='Brazil (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18493,6 +20800,7 @@ class NHSColumns(ColumnsTask):
             name='Colombia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18501,6 +20809,7 @@ class NHSColumns(ColumnsTask):
             name='Colombia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18509,6 +20818,7 @@ class NHSColumns(ColumnsTask):
             name='Colombia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18517,6 +20827,7 @@ class NHSColumns(ColumnsTask):
             name='Guyana (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18525,6 +20836,7 @@ class NHSColumns(ColumnsTask):
             name='Guyana (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18533,6 +20845,7 @@ class NHSColumns(ColumnsTask):
             name='Guyana (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18541,6 +20854,7 @@ class NHSColumns(ColumnsTask):
             name='Peru (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18549,6 +20863,7 @@ class NHSColumns(ColumnsTask):
             name='Peru (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18557,6 +20872,7 @@ class NHSColumns(ColumnsTask):
             name='Peru (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18565,6 +20881,7 @@ class NHSColumns(ColumnsTask):
             name='Venezuela (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18573,6 +20890,7 @@ class NHSColumns(ColumnsTask):
             name='Venezuela (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18581,6 +20899,7 @@ class NHSColumns(ColumnsTask):
             name='Venezuela (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18589,6 +20908,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Americas (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_t: DENOMINATOR },)
 
@@ -18597,6 +20917,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Americas (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_m: DENOMINATOR },)
 
@@ -18605,6 +20926,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Americas (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c002_f: DENOMINATOR },)
 
@@ -18613,6 +20935,7 @@ class NHSColumns(ColumnsTask):
             name='Europe (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_t: DENOMINATOR },)
 
@@ -18621,6 +20944,7 @@ class NHSColumns(ColumnsTask):
             name='Europe (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_m: DENOMINATOR },)
 
@@ -18629,6 +20953,7 @@ class NHSColumns(ColumnsTask):
             name='Europe (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_f: DENOMINATOR },)
 
@@ -18637,6 +20962,7 @@ class NHSColumns(ColumnsTask):
             name='France (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18645,6 +20971,7 @@ class NHSColumns(ColumnsTask):
             name='France (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18653,6 +20980,7 @@ class NHSColumns(ColumnsTask):
             name='France (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18661,6 +20989,7 @@ class NHSColumns(ColumnsTask):
             name='Germany (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18669,6 +20998,7 @@ class NHSColumns(ColumnsTask):
             name='Germany (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18677,6 +21007,7 @@ class NHSColumns(ColumnsTask):
             name='Germany (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18685,6 +21016,7 @@ class NHSColumns(ColumnsTask):
             name='Poland (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18693,6 +21025,7 @@ class NHSColumns(ColumnsTask):
             name='Poland (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18701,6 +21034,7 @@ class NHSColumns(ColumnsTask):
             name='Poland (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18709,6 +21043,7 @@ class NHSColumns(ColumnsTask):
             name='Romania (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18717,6 +21052,7 @@ class NHSColumns(ColumnsTask):
             name='Romania (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18725,6 +21061,7 @@ class NHSColumns(ColumnsTask):
             name='Romania (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18733,6 +21070,7 @@ class NHSColumns(ColumnsTask):
             name='Moldova (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18741,6 +21079,7 @@ class NHSColumns(ColumnsTask):
             name='Moldova (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18749,6 +21088,7 @@ class NHSColumns(ColumnsTask):
             name='Moldova (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18757,6 +21097,7 @@ class NHSColumns(ColumnsTask):
             name='Russian Federation (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18765,6 +21106,7 @@ class NHSColumns(ColumnsTask):
             name='Russian Federation (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18773,6 +21115,7 @@ class NHSColumns(ColumnsTask):
             name='Russian Federation (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18781,6 +21124,7 @@ class NHSColumns(ColumnsTask):
             name='Ukraine (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18789,6 +21133,7 @@ class NHSColumns(ColumnsTask):
             name='Ukraine (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18797,6 +21142,7 @@ class NHSColumns(ColumnsTask):
             name='Ukraine (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18805,6 +21151,7 @@ class NHSColumns(ColumnsTask):
             name='United Kingdom (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18813,6 +21160,7 @@ class NHSColumns(ColumnsTask):
             name='United Kingdom (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18821,6 +21169,7 @@ class NHSColumns(ColumnsTask):
             name='United Kingdom (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18829,6 +21178,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Europe (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_t: DENOMINATOR },)
 
@@ -18837,6 +21187,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Europe (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_m: DENOMINATOR },)
 
@@ -18845,6 +21196,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Europe (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c014_f: DENOMINATOR },)
 
@@ -18853,6 +21205,7 @@ class NHSColumns(ColumnsTask):
             name='Africa (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_t: DENOMINATOR },)
 
@@ -18861,6 +21214,7 @@ class NHSColumns(ColumnsTask):
             name='Africa (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_m: DENOMINATOR },)
 
@@ -18869,6 +21223,7 @@ class NHSColumns(ColumnsTask):
             name='Africa (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_f: DENOMINATOR },)
 
@@ -18877,6 +21232,7 @@ class NHSColumns(ColumnsTask):
             name='Nigeria (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -18885,6 +21241,7 @@ class NHSColumns(ColumnsTask):
             name='Nigeria (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -18893,6 +21250,7 @@ class NHSColumns(ColumnsTask):
             name='Nigeria (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -18901,6 +21259,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -18909,6 +21268,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -18917,6 +21277,7 @@ class NHSColumns(ColumnsTask):
             name='Ethiopia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -18925,6 +21286,7 @@ class NHSColumns(ColumnsTask):
             name='Mauritius (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -18933,6 +21295,7 @@ class NHSColumns(ColumnsTask):
             name='Mauritius (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -18941,6 +21304,7 @@ class NHSColumns(ColumnsTask):
             name='Mauritius (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -18949,6 +21313,7 @@ class NHSColumns(ColumnsTask):
             name='Somalia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -18957,6 +21322,7 @@ class NHSColumns(ColumnsTask):
             name='Somalia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -18965,6 +21331,7 @@ class NHSColumns(ColumnsTask):
             name='Somalia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -18973,6 +21340,7 @@ class NHSColumns(ColumnsTask):
             name='Algeria (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -18981,6 +21349,7 @@ class NHSColumns(ColumnsTask):
             name='Algeria (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -18989,6 +21358,7 @@ class NHSColumns(ColumnsTask):
             name='Algeria (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -18997,6 +21367,7 @@ class NHSColumns(ColumnsTask):
             name='Egypt (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -19005,6 +21376,7 @@ class NHSColumns(ColumnsTask):
             name='Egypt (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -19013,6 +21385,7 @@ class NHSColumns(ColumnsTask):
             name='Egypt (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -19021,6 +21394,7 @@ class NHSColumns(ColumnsTask):
             name='Morocco (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -19029,6 +21403,7 @@ class NHSColumns(ColumnsTask):
             name='Morocco (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -19037,6 +21412,7 @@ class NHSColumns(ColumnsTask):
             name='Morocco (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -19045,6 +21421,7 @@ class NHSColumns(ColumnsTask):
             name='Tunisia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -19053,6 +21430,7 @@ class NHSColumns(ColumnsTask):
             name='Tunisia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -19061,6 +21439,7 @@ class NHSColumns(ColumnsTask):
             name='Tunisia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -19069,6 +21448,7 @@ class NHSColumns(ColumnsTask):
             name='Cameroon (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -19077,6 +21457,7 @@ class NHSColumns(ColumnsTask):
             name='Cameroon (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -19085,6 +21466,7 @@ class NHSColumns(ColumnsTask):
             name='Cameroon (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -19093,6 +21475,7 @@ class NHSColumns(ColumnsTask):
             name='Congo, The Democratic Republic of the (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -19101,6 +21484,7 @@ class NHSColumns(ColumnsTask):
             name='Congo, The Democratic Republic of the (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -19109,6 +21493,7 @@ class NHSColumns(ColumnsTask):
             name='Congo, The Democratic Republic of the (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -19117,6 +21502,7 @@ class NHSColumns(ColumnsTask):
             name='South Africa, Republic of (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -19125,6 +21511,7 @@ class NHSColumns(ColumnsTask):
             name='South Africa, Republic of (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -19133,6 +21520,7 @@ class NHSColumns(ColumnsTask):
             name='South Africa, Republic of (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -19141,6 +21529,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Africa (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_t: DENOMINATOR },)
 
@@ -19149,6 +21538,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Africa (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_m: DENOMINATOR },)
 
@@ -19157,6 +21547,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Africa (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c024_f: DENOMINATOR },)
 
@@ -19165,6 +21556,7 @@ class NHSColumns(ColumnsTask):
             name='Asia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_t: DENOMINATOR },)
 
@@ -19173,6 +21565,7 @@ class NHSColumns(ColumnsTask):
             name='Asia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_m: DENOMINATOR },)
 
@@ -19181,6 +21574,7 @@ class NHSColumns(ColumnsTask):
             name='Asia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_f: DENOMINATOR },)
 
@@ -19189,6 +21583,7 @@ class NHSColumns(ColumnsTask):
             name='Philippines (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19197,6 +21592,7 @@ class NHSColumns(ColumnsTask):
             name='Philippines (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19205,6 +21601,7 @@ class NHSColumns(ColumnsTask):
             name='Philippines (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19213,6 +21610,7 @@ class NHSColumns(ColumnsTask):
             name='China (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19221,6 +21619,7 @@ class NHSColumns(ColumnsTask):
             name='China (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19229,6 +21628,7 @@ class NHSColumns(ColumnsTask):
             name='China (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19237,6 +21637,7 @@ class NHSColumns(ColumnsTask):
             name='India (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19245,6 +21646,7 @@ class NHSColumns(ColumnsTask):
             name='India (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19253,6 +21655,7 @@ class NHSColumns(ColumnsTask):
             name='India (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19261,6 +21664,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19269,6 +21673,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19277,6 +21682,7 @@ class NHSColumns(ColumnsTask):
             name='Pakistan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19285,6 +21691,7 @@ class NHSColumns(ColumnsTask):
             name='Iran (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19293,6 +21700,7 @@ class NHSColumns(ColumnsTask):
             name='Iran (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19301,6 +21709,7 @@ class NHSColumns(ColumnsTask):
             name='Iran (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19309,6 +21718,7 @@ class NHSColumns(ColumnsTask):
             name='South Korea (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19317,6 +21727,7 @@ class NHSColumns(ColumnsTask):
             name='South Korea (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19325,6 +21736,7 @@ class NHSColumns(ColumnsTask):
             name='South Korea (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19333,6 +21745,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lanka (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19341,6 +21754,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lanka (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19349,6 +21763,7 @@ class NHSColumns(ColumnsTask):
             name='Sri Lanka (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19357,6 +21772,7 @@ class NHSColumns(ColumnsTask):
             name='Iraq (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19365,6 +21781,7 @@ class NHSColumns(ColumnsTask):
             name='Iraq (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19373,6 +21790,7 @@ class NHSColumns(ColumnsTask):
             name='Iraq (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19381,6 +21799,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladesh (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19389,6 +21808,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladesh (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19397,6 +21817,7 @@ class NHSColumns(ColumnsTask):
             name='Bangladesh (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19405,6 +21826,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanon (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19413,6 +21835,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanon (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19421,6 +21844,7 @@ class NHSColumns(ColumnsTask):
             name='Lebanon (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19429,6 +21853,7 @@ class NHSColumns(ColumnsTask):
             name='Viet Nam (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19437,6 +21862,7 @@ class NHSColumns(ColumnsTask):
             name='Viet Nam (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19445,6 +21871,7 @@ class NHSColumns(ColumnsTask):
             name='Viet Nam (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19453,6 +21880,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19461,6 +21889,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19469,6 +21898,7 @@ class NHSColumns(ColumnsTask):
             name='Taiwan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19477,6 +21907,7 @@ class NHSColumns(ColumnsTask):
             name='Afghanistan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19485,6 +21916,7 @@ class NHSColumns(ColumnsTask):
             name='Afghanistan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19493,6 +21925,7 @@ class NHSColumns(ColumnsTask):
             name='Afghanistan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19501,6 +21934,7 @@ class NHSColumns(ColumnsTask):
             name='Japan (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19509,6 +21943,7 @@ class NHSColumns(ColumnsTask):
             name='Japan (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19517,6 +21952,7 @@ class NHSColumns(ColumnsTask):
             name='Japan (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19525,6 +21961,7 @@ class NHSColumns(ColumnsTask):
             name='Turkey (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19533,6 +21970,7 @@ class NHSColumns(ColumnsTask):
             name='Turkey (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19541,6 +21979,7 @@ class NHSColumns(ColumnsTask):
             name='Turkey (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19549,6 +21988,7 @@ class NHSColumns(ColumnsTask):
             name='Israel (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19557,6 +21997,7 @@ class NHSColumns(ColumnsTask):
             name='Israel (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19565,6 +22006,7 @@ class NHSColumns(ColumnsTask):
             name='Israel (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19573,6 +22015,7 @@ class NHSColumns(ColumnsTask):
             name='Nepal (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19581,6 +22024,7 @@ class NHSColumns(ColumnsTask):
             name='Nepal (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19589,6 +22033,7 @@ class NHSColumns(ColumnsTask):
             name='Nepal (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19597,6 +22042,7 @@ class NHSColumns(ColumnsTask):
             name='Hong Kong Special Administrative Region (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19605,6 +22051,7 @@ class NHSColumns(ColumnsTask):
             name='Hong Kong Special Administrative Region (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19613,6 +22060,7 @@ class NHSColumns(ColumnsTask):
             name='Hong Kong Special Administrative Region (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19621,6 +22069,7 @@ class NHSColumns(ColumnsTask):
             name='United Arab Emirates (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19629,6 +22078,7 @@ class NHSColumns(ColumnsTask):
             name='United Arab Emirates (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19637,6 +22087,7 @@ class NHSColumns(ColumnsTask):
             name='United Arab Emirates (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19645,6 +22096,7 @@ class NHSColumns(ColumnsTask):
             name='Saudi Arabia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19653,6 +22105,7 @@ class NHSColumns(ColumnsTask):
             name='Saudi Arabia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19661,6 +22114,7 @@ class NHSColumns(ColumnsTask):
             name='Saudi Arabia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19669,6 +22123,7 @@ class NHSColumns(ColumnsTask):
             name='Syria (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19677,6 +22132,7 @@ class NHSColumns(ColumnsTask):
             name='Syria (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19685,6 +22141,7 @@ class NHSColumns(ColumnsTask):
             name='Syria (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19693,6 +22150,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Asia (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_t: DENOMINATOR },)
 
@@ -19701,6 +22159,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Asia (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_m: DENOMINATOR },)
 
@@ -19709,6 +22168,7 @@ class NHSColumns(ColumnsTask):
             name='Other places of birth in Asia (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c037_f: DENOMINATOR },)
 
@@ -19717,6 +22177,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania and other (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_t: DENOMINATOR },)
 
@@ -19725,6 +22186,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania and other (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_m: DENOMINATOR },)
 
@@ -19733,6 +22195,7 @@ class NHSColumns(ColumnsTask):
             name='Oceania and other (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_f: DENOMINATOR },)
 
@@ -19741,6 +22204,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by religion (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={},)
 
@@ -19749,6 +22213,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by religion (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={},)
 
@@ -19757,6 +22222,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by religion (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={},)
 
@@ -19765,6 +22231,7 @@ class NHSColumns(ColumnsTask):
             name='Buddhist (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -19773,6 +22240,7 @@ class NHSColumns(ColumnsTask):
             name='Buddhist (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -19781,6 +22249,7 @@ class NHSColumns(ColumnsTask):
             name='Buddhist (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -19789,6 +22258,7 @@ class NHSColumns(ColumnsTask):
             name='Christian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -19797,6 +22267,7 @@ class NHSColumns(ColumnsTask):
             name='Christian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -19805,6 +22276,7 @@ class NHSColumns(ColumnsTask):
             name='Christian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -19813,6 +22285,7 @@ class NHSColumns(ColumnsTask):
             name='Anglican (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -19821,6 +22294,7 @@ class NHSColumns(ColumnsTask):
             name='Anglican (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -19829,6 +22303,7 @@ class NHSColumns(ColumnsTask):
             name='Anglican (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -19837,6 +22312,7 @@ class NHSColumns(ColumnsTask):
             name='Baptist (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -19845,6 +22321,7 @@ class NHSColumns(ColumnsTask):
             name='Baptist (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -19853,6 +22330,7 @@ class NHSColumns(ColumnsTask):
             name='Baptist (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -19861,6 +22339,7 @@ class NHSColumns(ColumnsTask):
             name='Catholic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -19869,6 +22348,7 @@ class NHSColumns(ColumnsTask):
             name='Catholic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -19877,6 +22357,7 @@ class NHSColumns(ColumnsTask):
             name='Catholic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -19885,6 +22366,7 @@ class NHSColumns(ColumnsTask):
             name='Christian Orthodox (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -19893,6 +22375,7 @@ class NHSColumns(ColumnsTask):
             name='Christian Orthodox (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -19901,6 +22384,7 @@ class NHSColumns(ColumnsTask):
             name='Christian Orthodox (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -19909,6 +22393,7 @@ class NHSColumns(ColumnsTask):
             name='Lutheran (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -19917,6 +22402,7 @@ class NHSColumns(ColumnsTask):
             name='Lutheran (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -19925,6 +22411,7 @@ class NHSColumns(ColumnsTask):
             name='Lutheran (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -19933,6 +22420,7 @@ class NHSColumns(ColumnsTask):
             name='Pentecostal (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -19941,6 +22429,7 @@ class NHSColumns(ColumnsTask):
             name='Pentecostal (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -19949,6 +22438,7 @@ class NHSColumns(ColumnsTask):
             name='Pentecostal (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -19957,6 +22447,7 @@ class NHSColumns(ColumnsTask):
             name='Presbyterian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -19965,6 +22456,7 @@ class NHSColumns(ColumnsTask):
             name='Presbyterian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -19973,6 +22465,7 @@ class NHSColumns(ColumnsTask):
             name='Presbyterian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -19981,6 +22474,7 @@ class NHSColumns(ColumnsTask):
             name='United Church (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -19989,6 +22483,7 @@ class NHSColumns(ColumnsTask):
             name='United Church (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -19997,6 +22492,7 @@ class NHSColumns(ColumnsTask):
             name='United Church (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -20005,6 +22501,7 @@ class NHSColumns(ColumnsTask):
             name='Other Christian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_t: DENOMINATOR },)
 
@@ -20013,6 +22510,7 @@ class NHSColumns(ColumnsTask):
             name='Other Christian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_m: DENOMINATOR },)
 
@@ -20021,6 +22519,7 @@ class NHSColumns(ColumnsTask):
             name='Other Christian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c003_f: DENOMINATOR },)
 
@@ -20029,6 +22528,7 @@ class NHSColumns(ColumnsTask):
             name='Hindu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -20037,6 +22537,7 @@ class NHSColumns(ColumnsTask):
             name='Hindu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -20045,6 +22546,7 @@ class NHSColumns(ColumnsTask):
             name='Hindu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -20053,6 +22555,7 @@ class NHSColumns(ColumnsTask):
             name='Jewish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -20061,6 +22564,7 @@ class NHSColumns(ColumnsTask):
             name='Jewish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -20069,6 +22573,7 @@ class NHSColumns(ColumnsTask):
             name='Jewish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -20077,6 +22582,7 @@ class NHSColumns(ColumnsTask):
             name='Muslim (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -20085,6 +22591,7 @@ class NHSColumns(ColumnsTask):
             name='Muslim (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -20093,6 +22600,7 @@ class NHSColumns(ColumnsTask):
             name='Muslim (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -20101,6 +22609,7 @@ class NHSColumns(ColumnsTask):
             name='Sikh (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -20109,6 +22618,7 @@ class NHSColumns(ColumnsTask):
             name='Sikh (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -20117,6 +22627,7 @@ class NHSColumns(ColumnsTask):
             name='Sikh (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -20125,6 +22636,7 @@ class NHSColumns(ColumnsTask):
             name='Traditional (Aboriginal) Spirituality (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -20133,6 +22645,7 @@ class NHSColumns(ColumnsTask):
             name='Traditional (Aboriginal) Spirituality (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -20141,6 +22654,7 @@ class NHSColumns(ColumnsTask):
             name='Traditional (Aboriginal) Spirituality (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -20149,6 +22663,7 @@ class NHSColumns(ColumnsTask):
             name='Other religions (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -20157,6 +22672,7 @@ class NHSColumns(ColumnsTask):
             name='Other religions (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -20165,6 +22681,7 @@ class NHSColumns(ColumnsTask):
             name='Other religions (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -20173,6 +22690,7 @@ class NHSColumns(ColumnsTask):
             name='No religious affiliation (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_t: DENOMINATOR },)
 
@@ -20181,6 +22699,7 @@ class NHSColumns(ColumnsTask):
             name='No religious affiliation (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_m: DENOMINATOR },)
 
@@ -20189,6 +22708,7 @@ class NHSColumns(ColumnsTask):
             name='No religious affiliation (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
             targets={ t025c001_f: DENOMINATOR },)
 
@@ -20197,6 +22717,7 @@ class NHSColumns(ColumnsTask):
             name='Total number of owner and tenant households with household total income greater than zero, in non-farm, non-reserve private dwellings by shelter-cost-to-income ratio',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -20205,6 +22726,7 @@ class NHSColumns(ColumnsTask):
             name='Spending less than 30% of household total income on shelter costs',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t026c001_t: DENOMINATOR },)
 
@@ -20213,6 +22735,7 @@ class NHSColumns(ColumnsTask):
             name='Spending 30% or more of household total income on shelter costs',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t026c001_t: DENOMINATOR },)
 
@@ -20221,6 +22744,7 @@ class NHSColumns(ColumnsTask):
             name='Spending 30% to less than 100% of household total income on shelter costs',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t026c003_t: DENOMINATOR },)
 
@@ -20229,6 +22753,7 @@ class NHSColumns(ColumnsTask):
             name='Number of owner households in non-farm, non-reserve private dwellings',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -20237,6 +22762,7 @@ class NHSColumns(ColumnsTask):
             name='% of owner households with a mortgage',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
@@ -20245,6 +22771,7 @@ class NHSColumns(ColumnsTask):
             name='% of owner households spending 30% or more of household total income on shelter costs',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
@@ -20253,6 +22780,7 @@ class NHSColumns(ColumnsTask):
             name='Median monthly shelter costs for owned dwellings ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
@@ -20261,6 +22789,7 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for owned dwellings ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
@@ -20269,6 +22798,7 @@ class NHSColumns(ColumnsTask):
             name='Median value of dwellings ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
@@ -20277,6 +22807,7 @@ class NHSColumns(ColumnsTask):
             name='Average value of dwellings ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c005_t: DENOMINATOR },)
 
@@ -20285,6 +22816,7 @@ class NHSColumns(ColumnsTask):
             name='Number of tenant households in non-farm, non-reserve private dwellings',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -20293,6 +22825,7 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households in subsidized housing',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
@@ -20301,6 +22834,7 @@ class NHSColumns(ColumnsTask):
             name='% of tenant households spending 30% or more of household total income on shelter costs',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_ratio, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
@@ -20309,6 +22843,7 @@ class NHSColumns(ColumnsTask):
             name='Median monthly shelter costs for rented dwellings ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
@@ -20317,6 +22852,7 @@ class NHSColumns(ColumnsTask):
             name='Average monthly shelter costs for rented dwellings ($)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_t: DENOMINATOR },)
 
@@ -20325,6 +22861,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over by time leaving for work (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -20333,6 +22870,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over by time leaving for work (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -20341,6 +22879,7 @@ class NHSColumns(ColumnsTask):
             name='Total employed population aged 15 years and over by time leaving for work (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
@@ -20349,6 +22888,7 @@ class NHSColumns(ColumnsTask):
             name='Between 5 and 6:59 a.m. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_t: DENOMINATOR },)
 
@@ -20357,6 +22897,7 @@ class NHSColumns(ColumnsTask):
             name='Between 5 and 6:59 a.m. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_m: DENOMINATOR },)
 
@@ -20365,6 +22906,7 @@ class NHSColumns(ColumnsTask):
             name='Between 5 and 6:59 a.m. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_f: DENOMINATOR },)
 
@@ -20373,6 +22915,7 @@ class NHSColumns(ColumnsTask):
             name='Between 7 and 9:00 a.m. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_t: DENOMINATOR },)
 
@@ -20381,6 +22924,7 @@ class NHSColumns(ColumnsTask):
             name='Between 7 and 9:00 a.m. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_m: DENOMINATOR },)
 
@@ -20389,6 +22933,7 @@ class NHSColumns(ColumnsTask):
             name='Between 7 and 9:00 a.m. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_f: DENOMINATOR },)
 
@@ -20397,6 +22942,7 @@ class NHSColumns(ColumnsTask):
             name='Anytime after 9:00 a.m. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_t: DENOMINATOR },)
 
@@ -20405,6 +22951,7 @@ class NHSColumns(ColumnsTask):
             name='Anytime after 9:00 a.m. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_m: DENOMINATOR },)
 
@@ -20413,6 +22960,7 @@ class NHSColumns(ColumnsTask):
             name='Anytime after 9:00 a.m. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_f: DENOMINATOR },)
 
@@ -20421,6 +22969,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by visible minority (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -20429,6 +22978,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by visible minority (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -20437,6 +22987,7 @@ class NHSColumns(ColumnsTask):
             name='Total population in private households by visible minority (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={},)
 
@@ -20445,6 +22996,7 @@ class NHSColumns(ColumnsTask):
             name='Total visible minority population (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c001_t: DENOMINATOR },)
 
@@ -20453,6 +23005,7 @@ class NHSColumns(ColumnsTask):
             name='Total visible minority population (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c001_m: DENOMINATOR },)
 
@@ -20461,6 +23014,7 @@ class NHSColumns(ColumnsTask):
             name='Total visible minority population (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c001_f: DENOMINATOR },)
 
@@ -20469,6 +23023,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20477,6 +23032,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20485,6 +23041,7 @@ class NHSColumns(ColumnsTask):
             name='South Asian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20493,6 +23050,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20501,6 +23059,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20509,6 +23068,7 @@ class NHSColumns(ColumnsTask):
             name='Chinese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20517,6 +23077,7 @@ class NHSColumns(ColumnsTask):
             name='Black (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20525,6 +23086,7 @@ class NHSColumns(ColumnsTask):
             name='Black (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20533,6 +23095,7 @@ class NHSColumns(ColumnsTask):
             name='Black (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20541,6 +23104,7 @@ class NHSColumns(ColumnsTask):
             name='Filipino (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20549,6 +23113,7 @@ class NHSColumns(ColumnsTask):
             name='Filipino (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20557,6 +23122,7 @@ class NHSColumns(ColumnsTask):
             name='Filipino (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20565,6 +23131,7 @@ class NHSColumns(ColumnsTask):
             name='Latin American (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20573,6 +23140,7 @@ class NHSColumns(ColumnsTask):
             name='Latin American (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20581,6 +23149,7 @@ class NHSColumns(ColumnsTask):
             name='Latin American (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20589,6 +23158,7 @@ class NHSColumns(ColumnsTask):
             name='Arab (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20597,6 +23167,7 @@ class NHSColumns(ColumnsTask):
             name='Arab (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20605,6 +23176,7 @@ class NHSColumns(ColumnsTask):
             name='Arab (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20613,6 +23185,7 @@ class NHSColumns(ColumnsTask):
             name='Southeast Asian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20621,6 +23194,7 @@ class NHSColumns(ColumnsTask):
             name='Southeast Asian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20629,6 +23203,7 @@ class NHSColumns(ColumnsTask):
             name='Southeast Asian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20637,6 +23212,7 @@ class NHSColumns(ColumnsTask):
             name='West Asian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20645,6 +23221,7 @@ class NHSColumns(ColumnsTask):
             name='West Asian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20653,6 +23230,7 @@ class NHSColumns(ColumnsTask):
             name='West Asian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20661,6 +23239,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20669,6 +23248,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20677,6 +23257,7 @@ class NHSColumns(ColumnsTask):
             name='Korean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20685,6 +23266,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20693,6 +23275,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20701,6 +23284,7 @@ class NHSColumns(ColumnsTask):
             name='Japanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20709,6 +23293,7 @@ class NHSColumns(ColumnsTask):
             name='Visible minority, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20717,6 +23302,7 @@ class NHSColumns(ColumnsTask):
             name='Visible minority, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20725,6 +23311,7 @@ class NHSColumns(ColumnsTask):
             name='Visible minority, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20733,6 +23320,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple visible minorities (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_t: DENOMINATOR },)
 
@@ -20741,6 +23329,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple visible minorities (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_m: DENOMINATOR },)
 
@@ -20749,6 +23338,7 @@ class NHSColumns(ColumnsTask):
             name='Multiple visible minorities (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c002_f: DENOMINATOR },)
 
@@ -20757,6 +23347,7 @@ class NHSColumns(ColumnsTask):
             name='Not a visible minority (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c001_t: DENOMINATOR },)
 
@@ -20765,6 +23356,7 @@ class NHSColumns(ColumnsTask):
             name='Not a visible minority (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c001_m: DENOMINATOR },)
 
@@ -20773,6 +23365,7 @@ class NHSColumns(ColumnsTask):
             name='Not a visible minority (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t028c001_f: DENOMINATOR },)
 
@@ -20781,6 +23374,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force aged 15 years and over by work activity in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -20789,6 +23383,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force aged 15 years and over by work activity in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -20797,6 +23392,7 @@ class NHSColumns(ColumnsTask):
             name='Total labour force aged 15 years and over by work activity in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -20805,6 +23401,7 @@ class NHSColumns(ColumnsTask):
             name='Did not work in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c001_t: DENOMINATOR },)
 
@@ -20813,6 +23410,7 @@ class NHSColumns(ColumnsTask):
             name='Did not work in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c001_m: DENOMINATOR },)
 
@@ -20821,6 +23419,7 @@ class NHSColumns(ColumnsTask):
             name='Did not work in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c001_f: DENOMINATOR },)
 
@@ -20829,6 +23428,7 @@ class NHSColumns(ColumnsTask):
             name='Worked in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c001_t: DENOMINATOR },)
 
@@ -20837,6 +23437,7 @@ class NHSColumns(ColumnsTask):
             name='Worked in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c001_m: DENOMINATOR },)
 
@@ -20845,6 +23446,7 @@ class NHSColumns(ColumnsTask):
             name='Worked in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c001_f: DENOMINATOR },)
 
@@ -20853,6 +23455,7 @@ class NHSColumns(ColumnsTask):
             name='1 to 13 weeks (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_t: DENOMINATOR },)
 
@@ -20861,6 +23464,7 @@ class NHSColumns(ColumnsTask):
             name='1 to 13 weeks (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_m: DENOMINATOR },)
 
@@ -20869,6 +23473,7 @@ class NHSColumns(ColumnsTask):
             name='1 to 13 weeks (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_f: DENOMINATOR },)
 
@@ -20877,6 +23482,7 @@ class NHSColumns(ColumnsTask):
             name='14 to 26 weeks (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_t: DENOMINATOR },)
 
@@ -20885,6 +23491,7 @@ class NHSColumns(ColumnsTask):
             name='14 to 26 weeks (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_m: DENOMINATOR },)
 
@@ -20893,6 +23500,7 @@ class NHSColumns(ColumnsTask):
             name='14 to 26 weeks (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_f: DENOMINATOR },)
 
@@ -20901,6 +23509,7 @@ class NHSColumns(ColumnsTask):
             name='27 to 39 weeks (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_t: DENOMINATOR },)
 
@@ -20909,6 +23518,7 @@ class NHSColumns(ColumnsTask):
             name='27 to 39 weeks (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_m: DENOMINATOR },)
 
@@ -20917,6 +23527,7 @@ class NHSColumns(ColumnsTask):
             name='27 to 39 weeks (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_f: DENOMINATOR },)
 
@@ -20925,6 +23536,7 @@ class NHSColumns(ColumnsTask):
             name='40 to 48 weeks (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_t: DENOMINATOR },)
 
@@ -20933,6 +23545,7 @@ class NHSColumns(ColumnsTask):
             name='40 to 48 weeks (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_m: DENOMINATOR },)
 
@@ -20941,6 +23554,7 @@ class NHSColumns(ColumnsTask):
             name='40 to 48 weeks (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_f: DENOMINATOR },)
 
@@ -20949,6 +23563,7 @@ class NHSColumns(ColumnsTask):
             name='49 to 52 weeks (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_t: DENOMINATOR },)
 
@@ -20957,6 +23572,7 @@ class NHSColumns(ColumnsTask):
             name='49 to 52 weeks (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_m: DENOMINATOR },)
 
@@ -20965,6 +23581,7 @@ class NHSColumns(ColumnsTask):
             name='49 to 52 weeks (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_f: DENOMINATOR },)
 
@@ -20973,6 +23590,7 @@ class NHSColumns(ColumnsTask):
             name='Average weeks worked in 2010 (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -20981,6 +23599,7 @@ class NHSColumns(ColumnsTask):
             name='Average weeks worked in 2010 (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
@@ -20989,6 +23608,7 @@ class NHSColumns(ColumnsTask):
             name='Average weeks worked in 2010 (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 

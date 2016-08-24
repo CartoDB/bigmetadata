@@ -35,6 +35,7 @@ class CensusColumns(ColumnsTask):
             name='Total population by age groups (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -43,6 +44,7 @@ class CensusColumns(ColumnsTask):
             name='Total population by age groups (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -51,6 +53,7 @@ class CensusColumns(ColumnsTask):
             name='Total population by age groups (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -59,6 +62,7 @@ class CensusColumns(ColumnsTask):
             name='0 to 4 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -67,6 +71,7 @@ class CensusColumns(ColumnsTask):
             name='0 to 4 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -75,6 +80,7 @@ class CensusColumns(ColumnsTask):
             name='0 to 4 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -83,6 +89,7 @@ class CensusColumns(ColumnsTask):
             name='5 to 9 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -91,6 +98,7 @@ class CensusColumns(ColumnsTask):
             name='5 to 9 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -99,6 +107,7 @@ class CensusColumns(ColumnsTask):
             name='5 to 9 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -107,6 +116,7 @@ class CensusColumns(ColumnsTask):
             name='10 to 14 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -115,6 +125,7 @@ class CensusColumns(ColumnsTask):
             name='10 to 14 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -123,6 +134,7 @@ class CensusColumns(ColumnsTask):
             name='10 to 14 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -131,6 +143,7 @@ class CensusColumns(ColumnsTask):
             name='15 to 19 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -139,6 +152,7 @@ class CensusColumns(ColumnsTask):
             name='15 to 19 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -147,6 +161,7 @@ class CensusColumns(ColumnsTask):
             name='15 to 19 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -155,6 +170,7 @@ class CensusColumns(ColumnsTask):
             name='15 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_t: DENOMINATOR },)
 
@@ -163,6 +179,7 @@ class CensusColumns(ColumnsTask):
             name='15 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_m: DENOMINATOR },)
 
@@ -171,6 +188,7 @@ class CensusColumns(ColumnsTask):
             name='15 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_f: DENOMINATOR },)
 
@@ -179,6 +197,7 @@ class CensusColumns(ColumnsTask):
             name='16 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_t: DENOMINATOR },)
 
@@ -187,6 +206,7 @@ class CensusColumns(ColumnsTask):
             name='16 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_m: DENOMINATOR },)
 
@@ -195,6 +215,7 @@ class CensusColumns(ColumnsTask):
             name='16 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_f: DENOMINATOR },)
 
@@ -203,6 +224,7 @@ class CensusColumns(ColumnsTask):
             name='17 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_t: DENOMINATOR },)
 
@@ -211,6 +233,7 @@ class CensusColumns(ColumnsTask):
             name='17 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_m: DENOMINATOR },)
 
@@ -219,6 +242,7 @@ class CensusColumns(ColumnsTask):
             name='17 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_f: DENOMINATOR },)
 
@@ -227,6 +251,7 @@ class CensusColumns(ColumnsTask):
             name='18 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_t: DENOMINATOR },)
 
@@ -235,6 +260,7 @@ class CensusColumns(ColumnsTask):
             name='18 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_m: DENOMINATOR },)
 
@@ -243,6 +269,7 @@ class CensusColumns(ColumnsTask):
             name='18 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_f: DENOMINATOR },)
 
@@ -251,6 +278,7 @@ class CensusColumns(ColumnsTask):
             name='19 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_t: DENOMINATOR },)
 
@@ -259,6 +287,7 @@ class CensusColumns(ColumnsTask):
             name='19 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_m: DENOMINATOR },)
 
@@ -267,6 +296,7 @@ class CensusColumns(ColumnsTask):
             name='19 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c005_f: DENOMINATOR },)
 
@@ -275,6 +305,7 @@ class CensusColumns(ColumnsTask):
             name='20 to 24 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -283,6 +314,7 @@ class CensusColumns(ColumnsTask):
             name='20 to 24 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -291,6 +323,7 @@ class CensusColumns(ColumnsTask):
             name='20 to 24 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -299,6 +332,7 @@ class CensusColumns(ColumnsTask):
             name='25 to 29 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -307,6 +341,7 @@ class CensusColumns(ColumnsTask):
             name='25 to 29 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -315,6 +350,7 @@ class CensusColumns(ColumnsTask):
             name='25 to 29 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -323,6 +359,7 @@ class CensusColumns(ColumnsTask):
             name='30 to 34 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -331,6 +368,7 @@ class CensusColumns(ColumnsTask):
             name='30 to 34 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -339,6 +377,7 @@ class CensusColumns(ColumnsTask):
             name='30 to 34 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -347,6 +386,7 @@ class CensusColumns(ColumnsTask):
             name='35 to 39 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -355,6 +395,7 @@ class CensusColumns(ColumnsTask):
             name='35 to 39 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -363,6 +404,7 @@ class CensusColumns(ColumnsTask):
             name='35 to 39 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -371,6 +413,7 @@ class CensusColumns(ColumnsTask):
             name='40 to 44 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -379,6 +422,7 @@ class CensusColumns(ColumnsTask):
             name='40 to 44 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -387,6 +431,7 @@ class CensusColumns(ColumnsTask):
             name='40 to 44 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -395,6 +440,7 @@ class CensusColumns(ColumnsTask):
             name='45 to 49 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -403,6 +449,7 @@ class CensusColumns(ColumnsTask):
             name='45 to 49 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -411,6 +458,7 @@ class CensusColumns(ColumnsTask):
             name='45 to 49 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -419,6 +467,7 @@ class CensusColumns(ColumnsTask):
             name='50 to 54 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -427,6 +476,7 @@ class CensusColumns(ColumnsTask):
             name='50 to 54 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -435,6 +485,7 @@ class CensusColumns(ColumnsTask):
             name='50 to 54 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -443,6 +494,7 @@ class CensusColumns(ColumnsTask):
             name='55 to 59 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -451,6 +503,7 @@ class CensusColumns(ColumnsTask):
             name='55 to 59 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -459,6 +512,7 @@ class CensusColumns(ColumnsTask):
             name='55 to 59 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -467,6 +521,7 @@ class CensusColumns(ColumnsTask):
             name='60 to 64 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -475,6 +530,7 @@ class CensusColumns(ColumnsTask):
             name='60 to 64 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -483,6 +539,7 @@ class CensusColumns(ColumnsTask):
             name='60 to 64 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -491,6 +548,7 @@ class CensusColumns(ColumnsTask):
             name='65 to 69 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -499,6 +557,7 @@ class CensusColumns(ColumnsTask):
             name='65 to 69 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -507,6 +566,7 @@ class CensusColumns(ColumnsTask):
             name='65 to 69 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -515,6 +575,7 @@ class CensusColumns(ColumnsTask):
             name='70 to 74 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -523,6 +584,7 @@ class CensusColumns(ColumnsTask):
             name='70 to 74 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -531,6 +593,7 @@ class CensusColumns(ColumnsTask):
             name='70 to 74 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -539,6 +602,7 @@ class CensusColumns(ColumnsTask):
             name='75 to 79 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -547,6 +611,7 @@ class CensusColumns(ColumnsTask):
             name='75 to 79 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -555,6 +620,7 @@ class CensusColumns(ColumnsTask):
             name='75 to 79 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -563,6 +629,7 @@ class CensusColumns(ColumnsTask):
             name='80 to 84 years (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -571,6 +638,7 @@ class CensusColumns(ColumnsTask):
             name='80 to 84 years (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -579,6 +647,7 @@ class CensusColumns(ColumnsTask):
             name='80 to 84 years (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -587,6 +656,7 @@ class CensusColumns(ColumnsTask):
             name='85 years and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_t: DENOMINATOR },)
 
@@ -595,6 +665,7 @@ class CensusColumns(ColumnsTask):
             name='85 years and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_m: DENOMINATOR },)
 
@@ -603,6 +674,7 @@ class CensusColumns(ColumnsTask):
             name='85 years and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={ t001c001_f: DENOMINATOR },)
 
@@ -611,6 +683,7 @@ class CensusColumns(ColumnsTask):
             name='Median age of the population (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -619,6 +692,7 @@ class CensusColumns(ColumnsTask):
             name='Median age of the population (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -627,6 +701,7 @@ class CensusColumns(ColumnsTask):
             name='Median age of the population (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -635,6 +710,7 @@ class CensusColumns(ColumnsTask):
             name='% of the population aged 15 and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -643,6 +719,7 @@ class CensusColumns(ColumnsTask):
             name='% of the population aged 15 and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -651,6 +728,7 @@ class CensusColumns(ColumnsTask):
             name='% of the population aged 15 and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
@@ -659,6 +737,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed language spoken most often at home - Total population excluding institutional residents (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -667,6 +746,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed language spoken most often at home - Total population excluding institutional residents (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -675,6 +755,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed language spoken most often at home - Total population excluding institutional residents (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -683,6 +764,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c001_t: DENOMINATOR },)
 
@@ -691,6 +773,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c001_m: DENOMINATOR },)
 
@@ -699,6 +782,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c001_f: DENOMINATOR },)
 
@@ -707,6 +791,7 @@ class CensusColumns(ColumnsTask):
             name='English (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_t: DENOMINATOR },)
 
@@ -715,6 +800,7 @@ class CensusColumns(ColumnsTask):
             name='English (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_m: DENOMINATOR },)
 
@@ -723,6 +809,7 @@ class CensusColumns(ColumnsTask):
             name='English (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_f: DENOMINATOR },)
 
@@ -731,6 +818,7 @@ class CensusColumns(ColumnsTask):
             name='French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_t: DENOMINATOR },)
 
@@ -739,6 +827,7 @@ class CensusColumns(ColumnsTask):
             name='French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_m: DENOMINATOR },)
 
@@ -747,6 +836,7 @@ class CensusColumns(ColumnsTask):
             name='French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_f: DENOMINATOR },)
 
@@ -755,6 +845,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_t: DENOMINATOR },)
 
@@ -763,6 +854,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_m: DENOMINATOR },)
 
@@ -771,6 +863,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c002_f: DENOMINATOR },)
 
@@ -779,6 +872,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_t: DENOMINATOR },)
 
@@ -787,6 +881,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_m: DENOMINATOR },)
 
@@ -795,6 +890,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_f: DENOMINATOR },)
 
@@ -803,6 +899,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -811,6 +908,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -819,6 +917,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -827,6 +926,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -835,6 +935,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -843,6 +944,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -851,6 +953,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -859,6 +962,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -867,6 +971,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -875,6 +980,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -883,6 +989,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -891,6 +998,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -899,6 +1007,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -907,6 +1016,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -915,6 +1025,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -923,6 +1034,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -931,6 +1043,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -939,6 +1052,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -947,6 +1061,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -955,6 +1070,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -963,6 +1079,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -971,6 +1088,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -979,6 +1097,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -987,6 +1106,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -995,6 +1115,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_t: DENOMINATOR },)
 
@@ -1003,6 +1124,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_m: DENOMINATOR },)
 
@@ -1011,6 +1133,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c006_f: DENOMINATOR },)
 
@@ -1019,6 +1142,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_t: DENOMINATOR },)
 
@@ -1027,6 +1151,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_m: DENOMINATOR },)
 
@@ -1035,6 +1160,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_f: DENOMINATOR },)
 
@@ -1043,6 +1169,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1051,6 +1178,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1059,6 +1187,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1067,6 +1196,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1075,6 +1205,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1083,6 +1214,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1091,6 +1223,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1099,6 +1232,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1107,6 +1241,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1115,6 +1250,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1123,6 +1259,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1131,6 +1268,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1139,6 +1277,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1147,6 +1286,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1155,6 +1295,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1163,6 +1304,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1171,6 +1313,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1179,6 +1322,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1187,6 +1331,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1195,6 +1340,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1203,6 +1349,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1211,6 +1358,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1219,6 +1367,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1227,6 +1376,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1235,6 +1385,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1243,6 +1394,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1251,6 +1403,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1259,6 +1412,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1267,6 +1421,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1275,6 +1430,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1283,6 +1439,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1291,6 +1448,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1299,6 +1457,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1307,6 +1466,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1315,6 +1475,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1323,6 +1484,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1331,6 +1493,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1339,6 +1502,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1347,6 +1511,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1355,6 +1520,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1363,6 +1529,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1371,6 +1538,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1379,6 +1547,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1387,6 +1556,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1395,6 +1565,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1403,6 +1574,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1411,6 +1583,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1419,6 +1592,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1427,6 +1601,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1435,6 +1610,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1443,6 +1619,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1451,6 +1628,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1459,6 +1637,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1467,6 +1646,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1475,6 +1655,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1483,6 +1664,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1491,6 +1673,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1499,6 +1682,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1507,6 +1691,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1515,6 +1700,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1523,6 +1709,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1531,6 +1718,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1539,6 +1727,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1547,6 +1736,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1555,6 +1745,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1563,6 +1754,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1571,6 +1763,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1579,6 +1772,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1587,6 +1781,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1595,6 +1790,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1603,6 +1799,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1611,6 +1808,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1619,6 +1817,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1627,6 +1826,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1635,6 +1835,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1643,6 +1844,7 @@ class CensusColumns(ColumnsTask):
             name='German (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1651,6 +1853,7 @@ class CensusColumns(ColumnsTask):
             name='German (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1659,6 +1862,7 @@ class CensusColumns(ColumnsTask):
             name='German (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1667,6 +1871,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1675,6 +1880,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1683,6 +1889,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1691,6 +1898,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1699,6 +1907,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1707,6 +1916,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1715,6 +1925,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1723,6 +1934,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1731,6 +1943,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1739,6 +1952,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1747,6 +1961,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1755,6 +1970,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1763,6 +1979,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1771,6 +1988,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1779,6 +1997,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1787,6 +2006,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1795,6 +2015,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1803,6 +2024,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1811,6 +2033,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1819,6 +2042,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1827,6 +2051,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1835,6 +2060,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1843,6 +2069,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1851,6 +2078,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1859,6 +2087,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1867,6 +2096,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1875,6 +2105,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1883,6 +2114,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1891,6 +2123,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1899,6 +2132,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1907,6 +2141,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1915,6 +2150,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1923,6 +2159,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1931,6 +2168,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1939,6 +2177,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1947,6 +2186,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1955,6 +2195,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1963,6 +2204,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1971,6 +2213,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -1979,6 +2222,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -1987,6 +2231,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -1995,6 +2240,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2003,6 +2249,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2011,6 +2258,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2019,6 +2267,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2027,6 +2276,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2035,6 +2285,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2043,6 +2294,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2051,6 +2303,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2059,6 +2312,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2067,6 +2321,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2075,6 +2330,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2083,6 +2339,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2091,6 +2348,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2099,6 +2357,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2107,6 +2366,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2115,6 +2375,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2123,6 +2384,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2131,6 +2393,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2139,6 +2402,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2147,6 +2411,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2155,6 +2420,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2163,6 +2429,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2171,6 +2438,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2179,6 +2447,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2187,6 +2456,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2195,6 +2465,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2203,6 +2474,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2211,6 +2483,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2219,6 +2492,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2227,6 +2501,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2235,6 +2510,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2243,6 +2519,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2251,6 +2528,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2259,6 +2537,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2267,6 +2546,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2275,6 +2555,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2283,6 +2564,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2291,6 +2573,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2299,6 +2582,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2307,6 +2591,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2315,6 +2600,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2323,6 +2609,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2331,6 +2618,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2339,6 +2627,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2347,6 +2636,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2355,6 +2645,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2363,6 +2654,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2371,6 +2663,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2379,6 +2672,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2387,6 +2681,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2395,6 +2690,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2403,6 +2699,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2411,6 +2708,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2419,6 +2717,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2427,6 +2726,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2435,6 +2735,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2443,6 +2744,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2451,6 +2753,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2459,6 +2762,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2467,6 +2771,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2475,6 +2780,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2483,6 +2789,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2491,6 +2798,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2499,6 +2807,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2507,6 +2816,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2515,6 +2825,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2523,6 +2834,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2531,6 +2843,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2539,6 +2852,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2547,6 +2861,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2555,6 +2870,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2563,6 +2879,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2571,6 +2888,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2579,6 +2897,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2587,6 +2906,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2595,6 +2915,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2603,6 +2924,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2611,6 +2933,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2619,6 +2942,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2627,6 +2951,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2635,6 +2960,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2643,6 +2969,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2651,6 +2978,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2659,6 +2987,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2667,6 +2996,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2675,6 +3005,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2683,6 +3014,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2691,6 +3023,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2699,6 +3032,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2707,6 +3041,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2715,6 +3050,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2723,6 +3059,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2731,6 +3068,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2739,6 +3077,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2747,6 +3086,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2755,6 +3095,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2763,6 +3104,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2771,6 +3113,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2779,6 +3122,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2787,6 +3131,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2795,6 +3140,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2803,6 +3149,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2811,6 +3158,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2819,6 +3167,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2827,6 +3176,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2835,6 +3185,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2843,6 +3194,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2851,6 +3203,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2859,6 +3212,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2867,6 +3221,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2875,6 +3230,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2883,6 +3239,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2891,6 +3248,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2899,6 +3257,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2907,6 +3266,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2915,6 +3275,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2923,6 +3284,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2931,6 +3293,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2939,6 +3302,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2947,6 +3311,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2955,6 +3320,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2963,6 +3329,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2971,6 +3338,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -2979,6 +3347,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -2987,6 +3356,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -2995,6 +3365,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -3003,6 +3374,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -3011,6 +3383,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -3019,6 +3392,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -3027,6 +3401,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -3035,6 +3410,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -3043,6 +3419,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -3051,6 +3428,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -3059,6 +3437,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -3067,6 +3446,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -3075,6 +3455,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -3083,6 +3464,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -3091,6 +3473,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -3099,6 +3482,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -3107,6 +3491,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -3115,6 +3500,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -3123,6 +3509,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -3131,6 +3518,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -3139,6 +3527,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -3147,6 +3536,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -3155,6 +3545,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_t: DENOMINATOR },)
 
@@ -3163,6 +3554,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_m: DENOMINATOR },)
 
@@ -3171,6 +3563,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c016_f: DENOMINATOR },)
 
@@ -3179,6 +3572,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_t: DENOMINATOR },)
 
@@ -3187,6 +3581,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_m: DENOMINATOR },)
 
@@ -3195,6 +3590,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c005_f: DENOMINATOR },)
 
@@ -3203,6 +3599,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c001_t: DENOMINATOR },)
 
@@ -3211,6 +3608,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c001_m: DENOMINATOR },)
 
@@ -3219,6 +3617,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c001_f: DENOMINATOR },)
 
@@ -3227,6 +3626,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_t: DENOMINATOR },)
 
@@ -3235,6 +3635,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_m: DENOMINATOR },)
 
@@ -3243,6 +3644,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_f: DENOMINATOR },)
 
@@ -3251,6 +3653,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_t: DENOMINATOR },)
 
@@ -3259,6 +3662,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_m: DENOMINATOR },)
 
@@ -3267,6 +3671,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_f: DENOMINATOR },)
 
@@ -3275,6 +3680,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_t: DENOMINATOR },)
 
@@ -3283,6 +3689,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_m: DENOMINATOR },)
 
@@ -3291,6 +3698,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_f: DENOMINATOR },)
 
@@ -3299,6 +3707,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_t: DENOMINATOR },)
 
@@ -3307,6 +3716,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_m: DENOMINATOR },)
 
@@ -3315,6 +3725,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_f: DENOMINATOR },)
 
@@ -3323,6 +3734,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed mother tongue - Total population excluding institutional residents (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -3331,6 +3743,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed mother tongue - Total population excluding institutional residents (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -3339,6 +3752,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed mother tongue - Total population excluding institutional residents (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -3347,6 +3761,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c001_t: DENOMINATOR },)
 
@@ -3355,6 +3770,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c001_m: DENOMINATOR },)
 
@@ -3363,6 +3779,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c001_f: DENOMINATOR },)
 
@@ -3371,6 +3788,7 @@ class CensusColumns(ColumnsTask):
             name='English (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_t: DENOMINATOR },)
 
@@ -3379,6 +3797,7 @@ class CensusColumns(ColumnsTask):
             name='English (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_m: DENOMINATOR },)
 
@@ -3387,6 +3806,7 @@ class CensusColumns(ColumnsTask):
             name='English (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_f: DENOMINATOR },)
 
@@ -3395,6 +3815,7 @@ class CensusColumns(ColumnsTask):
             name='French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_t: DENOMINATOR },)
 
@@ -3403,6 +3824,7 @@ class CensusColumns(ColumnsTask):
             name='French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_m: DENOMINATOR },)
 
@@ -3411,6 +3833,7 @@ class CensusColumns(ColumnsTask):
             name='French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_f: DENOMINATOR },)
 
@@ -3419,6 +3842,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_t: DENOMINATOR },)
 
@@ -3427,6 +3851,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_m: DENOMINATOR },)
 
@@ -3435,6 +3860,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c002_f: DENOMINATOR },)
 
@@ -3443,6 +3869,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_t: DENOMINATOR },)
 
@@ -3451,6 +3878,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_m: DENOMINATOR },)
 
@@ -3459,6 +3887,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_f: DENOMINATOR },)
 
@@ -3467,6 +3896,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3475,6 +3905,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3483,6 +3914,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3491,6 +3923,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3499,6 +3932,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3507,6 +3941,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3515,6 +3950,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3523,6 +3959,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3531,6 +3968,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3539,6 +3977,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3547,6 +3986,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3555,6 +3995,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3563,6 +4004,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3571,6 +4013,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3579,6 +4022,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3587,6 +4031,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3595,6 +4040,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3603,6 +4049,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3611,6 +4058,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3619,6 +4067,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3627,6 +4076,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3635,6 +4085,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3643,6 +4094,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3651,6 +4103,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3659,6 +4112,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_t: DENOMINATOR },)
 
@@ -3667,6 +4121,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_m: DENOMINATOR },)
 
@@ -3675,6 +4130,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c006_f: DENOMINATOR },)
 
@@ -3683,6 +4139,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_t: DENOMINATOR },)
 
@@ -3691,6 +4148,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_m: DENOMINATOR },)
 
@@ -3699,6 +4157,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_f: DENOMINATOR },)
 
@@ -3707,6 +4166,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3715,6 +4175,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3723,6 +4184,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3731,6 +4193,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3739,6 +4202,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3747,6 +4211,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3755,6 +4220,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3763,6 +4229,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3771,6 +4238,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3779,6 +4247,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3787,6 +4256,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3795,6 +4265,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3803,6 +4274,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3811,6 +4283,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3819,6 +4292,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3827,6 +4301,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3835,6 +4310,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3843,6 +4319,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3851,6 +4328,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3859,6 +4337,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3867,6 +4346,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3875,6 +4355,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3883,6 +4364,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3891,6 +4373,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3899,6 +4382,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3907,6 +4391,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3915,6 +4400,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3923,6 +4409,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3931,6 +4418,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3939,6 +4427,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3947,6 +4436,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3955,6 +4445,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3963,6 +4454,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3971,6 +4463,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -3979,6 +4472,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -3987,6 +4481,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -3995,6 +4490,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4003,6 +4499,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4011,6 +4508,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4019,6 +4517,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4027,6 +4526,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4035,6 +4535,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4043,6 +4544,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4051,6 +4553,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4059,6 +4562,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4067,6 +4571,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4075,6 +4580,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4083,6 +4589,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4091,6 +4598,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4099,6 +4607,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4107,6 +4616,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4115,6 +4625,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4123,6 +4634,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4131,6 +4643,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4139,6 +4652,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4147,6 +4661,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4155,6 +4670,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4163,6 +4679,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4171,6 +4688,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4179,6 +4697,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4187,6 +4706,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4195,6 +4715,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4203,6 +4724,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4211,6 +4733,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4219,6 +4742,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4227,6 +4751,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4235,6 +4760,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4243,6 +4769,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4251,6 +4778,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4259,6 +4787,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4267,6 +4796,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4275,6 +4805,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4283,6 +4814,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4291,6 +4823,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4299,6 +4832,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4307,6 +4841,7 @@ class CensusColumns(ColumnsTask):
             name='German (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4315,6 +4850,7 @@ class CensusColumns(ColumnsTask):
             name='German (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4323,6 +4859,7 @@ class CensusColumns(ColumnsTask):
             name='German (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4331,6 +4868,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4339,6 +4877,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4347,6 +4886,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4355,6 +4895,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4363,6 +4904,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4371,6 +4913,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4379,6 +4922,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4387,6 +4931,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4395,6 +4940,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4403,6 +4949,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4411,6 +4958,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4419,6 +4967,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4427,6 +4976,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4435,6 +4985,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4443,6 +4994,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4451,6 +5003,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4459,6 +5012,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4467,6 +5021,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4475,6 +5030,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4483,6 +5039,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4491,6 +5048,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4499,6 +5057,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4507,6 +5066,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4515,6 +5075,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4523,6 +5084,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4531,6 +5093,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4539,6 +5102,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4547,6 +5111,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4555,6 +5120,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4563,6 +5129,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4571,6 +5138,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4579,6 +5147,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4587,6 +5156,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4595,6 +5165,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4603,6 +5174,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4611,6 +5183,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4619,6 +5192,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4627,6 +5201,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4635,6 +5210,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4643,6 +5219,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4651,6 +5228,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4659,6 +5237,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4667,6 +5246,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4675,6 +5255,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4683,6 +5264,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4691,6 +5273,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4699,6 +5282,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4707,6 +5291,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4715,6 +5300,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4723,6 +5309,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4731,6 +5318,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4739,6 +5327,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4747,6 +5336,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4755,6 +5345,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4763,6 +5354,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4771,6 +5363,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4779,6 +5372,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4787,6 +5381,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4795,6 +5390,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4803,6 +5399,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4811,6 +5408,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4819,6 +5417,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4827,6 +5426,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4835,6 +5435,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4843,6 +5444,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4851,6 +5453,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4859,6 +5462,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4867,6 +5471,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4875,6 +5480,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4883,6 +5489,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4891,6 +5498,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4899,6 +5507,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4907,6 +5516,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4915,6 +5525,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4923,6 +5534,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4931,6 +5543,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4939,6 +5552,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4947,6 +5561,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4955,6 +5570,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4963,6 +5579,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4971,6 +5588,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -4979,6 +5597,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -4987,6 +5606,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -4995,6 +5615,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5003,6 +5624,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5011,6 +5633,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5019,6 +5642,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5027,6 +5651,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5035,6 +5660,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5043,6 +5669,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5051,6 +5678,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5059,6 +5687,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5067,6 +5696,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5075,6 +5705,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5083,6 +5714,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5091,6 +5723,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5099,6 +5732,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5107,6 +5741,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5115,6 +5750,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5123,6 +5759,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5131,6 +5768,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5139,6 +5777,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5147,6 +5786,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5155,6 +5795,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5163,6 +5804,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5171,6 +5813,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5179,6 +5822,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5187,6 +5831,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5195,6 +5840,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5203,6 +5849,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5211,6 +5858,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5219,6 +5867,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5227,6 +5876,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5235,6 +5885,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5243,6 +5894,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5251,6 +5903,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5259,6 +5912,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5267,6 +5921,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5275,6 +5930,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5283,6 +5939,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5291,6 +5948,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5299,6 +5957,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5307,6 +5966,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5315,6 +5975,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5323,6 +5984,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5331,6 +5993,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5339,6 +6002,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5347,6 +6011,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5355,6 +6020,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5363,6 +6029,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5371,6 +6038,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5379,6 +6047,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5387,6 +6056,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5395,6 +6065,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5403,6 +6074,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5411,6 +6083,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5419,6 +6092,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5427,6 +6101,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5435,6 +6110,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5443,6 +6119,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5451,6 +6128,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5459,6 +6137,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5467,6 +6146,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5475,6 +6155,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5483,6 +6164,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5491,6 +6173,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5499,6 +6182,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5507,6 +6191,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5515,6 +6200,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5523,6 +6209,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5531,6 +6218,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5539,6 +6227,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5547,6 +6236,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5555,6 +6245,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5563,6 +6254,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5571,6 +6263,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5579,6 +6272,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5587,6 +6281,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5595,6 +6290,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5603,6 +6299,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5611,6 +6308,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5619,6 +6317,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5627,6 +6326,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5635,6 +6335,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5643,6 +6344,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5651,6 +6353,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5659,6 +6362,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5667,6 +6371,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5675,6 +6380,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5683,6 +6389,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5691,6 +6398,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5699,6 +6407,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5707,6 +6416,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5715,6 +6425,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5723,6 +6434,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5731,6 +6443,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5739,6 +6452,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5747,6 +6461,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5755,6 +6470,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5763,6 +6479,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5771,6 +6488,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5779,6 +6497,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5787,6 +6506,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5795,6 +6515,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5803,6 +6524,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5811,6 +6533,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5819,6 +6542,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_t: DENOMINATOR },)
 
@@ -5827,6 +6551,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_m: DENOMINATOR },)
 
@@ -5835,6 +6560,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c016_f: DENOMINATOR },)
 
@@ -5843,6 +6569,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_t: DENOMINATOR },)
 
@@ -5851,6 +6578,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_m: DENOMINATOR },)
 
@@ -5859,6 +6587,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c005_f: DENOMINATOR },)
 
@@ -5867,6 +6596,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c001_t: DENOMINATOR },)
 
@@ -5875,6 +6605,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c001_m: DENOMINATOR },)
 
@@ -5883,6 +6614,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c001_f: DENOMINATOR },)
 
@@ -5891,6 +6623,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_t: DENOMINATOR },)
 
@@ -5899,6 +6632,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_m: DENOMINATOR },)
 
@@ -5907,6 +6641,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_f: DENOMINATOR },)
 
@@ -5915,6 +6650,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_t: DENOMINATOR },)
 
@@ -5923,6 +6659,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_m: DENOMINATOR },)
 
@@ -5931,6 +6668,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_f: DENOMINATOR },)
 
@@ -5939,6 +6677,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_t: DENOMINATOR },)
 
@@ -5947,6 +6686,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_m: DENOMINATOR },)
 
@@ -5955,6 +6695,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_f: DENOMINATOR },)
 
@@ -5963,6 +6704,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_t: DENOMINATOR },)
 
@@ -5971,6 +6713,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_m: DENOMINATOR },)
 
@@ -5979,6 +6722,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_f: DENOMINATOR },)
 
@@ -5987,6 +6731,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed other language spoken regularly at home - Total population excluding institutional residents (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -5995,6 +6740,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed other language spoken regularly at home - Total population excluding institutional residents (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -6003,6 +6749,7 @@ class CensusColumns(ColumnsTask):
             name='Detailed other language spoken regularly at home - Total population excluding institutional residents (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -6011,6 +6758,7 @@ class CensusColumns(ColumnsTask):
             name='None (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_t: DENOMINATOR },)
 
@@ -6019,6 +6767,7 @@ class CensusColumns(ColumnsTask):
             name='None (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_m: DENOMINATOR },)
 
@@ -6027,6 +6776,7 @@ class CensusColumns(ColumnsTask):
             name='None (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_f: DENOMINATOR },)
 
@@ -6035,6 +6785,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_t: DENOMINATOR },)
 
@@ -6043,6 +6794,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_m: DENOMINATOR },)
 
@@ -6051,6 +6803,7 @@ class CensusColumns(ColumnsTask):
             name='Single responses (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_f: DENOMINATOR },)
 
@@ -6059,6 +6812,7 @@ class CensusColumns(ColumnsTask):
             name='English (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_t: DENOMINATOR },)
 
@@ -6067,6 +6821,7 @@ class CensusColumns(ColumnsTask):
             name='English (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_m: DENOMINATOR },)
 
@@ -6075,6 +6830,7 @@ class CensusColumns(ColumnsTask):
             name='English (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_f: DENOMINATOR },)
 
@@ -6083,6 +6839,7 @@ class CensusColumns(ColumnsTask):
             name='French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_t: DENOMINATOR },)
 
@@ -6091,6 +6848,7 @@ class CensusColumns(ColumnsTask):
             name='French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_m: DENOMINATOR },)
 
@@ -6099,6 +6857,7 @@ class CensusColumns(ColumnsTask):
             name='French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_f: DENOMINATOR },)
 
@@ -6107,6 +6866,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_t: DENOMINATOR },)
 
@@ -6115,6 +6875,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_m: DENOMINATOR },)
 
@@ -6123,6 +6884,7 @@ class CensusColumns(ColumnsTask):
             name='Non-official languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c003_f: DENOMINATOR },)
 
@@ -6131,6 +6893,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_t: DENOMINATOR },)
 
@@ -6139,6 +6902,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_m: DENOMINATOR },)
 
@@ -6147,6 +6911,7 @@ class CensusColumns(ColumnsTask):
             name='Selected Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_f: DENOMINATOR },)
 
@@ -6155,6 +6920,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6163,6 +6929,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6171,6 +6938,7 @@ class CensusColumns(ColumnsTask):
             name='Atikamekw (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6179,6 +6947,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6187,6 +6956,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6195,6 +6965,7 @@ class CensusColumns(ColumnsTask):
             name='Cree, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6203,6 +6974,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6211,6 +6983,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6219,6 +6992,7 @@ class CensusColumns(ColumnsTask):
             name='Dene (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6227,6 +7001,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6235,6 +7010,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6243,6 +7019,7 @@ class CensusColumns(ColumnsTask):
             name='Innu/Montagnais (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6251,6 +7028,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6259,6 +7037,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6267,6 +7046,7 @@ class CensusColumns(ColumnsTask):
             name='Inuktitut (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6275,6 +7055,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6283,6 +7064,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6291,6 +7073,7 @@ class CensusColumns(ColumnsTask):
             name='Mi\'kmaq (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6299,6 +7082,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6307,6 +7091,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6315,6 +7100,7 @@ class CensusColumns(ColumnsTask):
             name='Ojibway (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6323,6 +7109,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6331,6 +7118,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6339,6 +7127,7 @@ class CensusColumns(ColumnsTask):
             name='Oji-Cree (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6347,6 +7136,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_t: DENOMINATOR },)
 
@@ -6355,6 +7145,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_m: DENOMINATOR },)
 
@@ -6363,6 +7154,7 @@ class CensusColumns(ColumnsTask):
             name='Stoney (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c007_f: DENOMINATOR },)
 
@@ -6371,6 +7163,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_t: DENOMINATOR },)
 
@@ -6379,6 +7172,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_m: DENOMINATOR },)
 
@@ -6387,6 +7181,7 @@ class CensusColumns(ColumnsTask):
             name='Selected non-Aboriginal languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_f: DENOMINATOR },)
 
@@ -6395,6 +7190,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6403,6 +7199,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6411,6 +7208,7 @@ class CensusColumns(ColumnsTask):
             name='African languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6419,6 +7217,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6427,6 +7226,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6435,6 +7235,7 @@ class CensusColumns(ColumnsTask):
             name='Afrikaans (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6443,6 +7244,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6451,6 +7253,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6459,6 +7262,7 @@ class CensusColumns(ColumnsTask):
             name='Akan (Twi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6467,6 +7271,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6475,6 +7280,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6483,6 +7289,7 @@ class CensusColumns(ColumnsTask):
             name='Albanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6491,6 +7298,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6499,6 +7307,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6507,6 +7316,7 @@ class CensusColumns(ColumnsTask):
             name='Amharic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6515,6 +7325,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6523,6 +7334,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6531,6 +7343,7 @@ class CensusColumns(ColumnsTask):
             name='Arabic (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6539,6 +7352,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6547,6 +7361,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6555,6 +7370,7 @@ class CensusColumns(ColumnsTask):
             name='Armenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6563,6 +7379,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6571,6 +7388,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6579,6 +7397,7 @@ class CensusColumns(ColumnsTask):
             name='Bantu languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6587,6 +7406,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6595,6 +7415,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6603,6 +7424,7 @@ class CensusColumns(ColumnsTask):
             name='Bengali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6611,6 +7433,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6619,6 +7442,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6627,6 +7451,7 @@ class CensusColumns(ColumnsTask):
             name='Berber languages (Kabyle) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6635,6 +7460,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6643,6 +7469,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6651,6 +7478,7 @@ class CensusColumns(ColumnsTask):
             name='Bisayan languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6659,6 +7487,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6667,6 +7496,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6675,6 +7505,7 @@ class CensusColumns(ColumnsTask):
             name='Bosnian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6683,6 +7514,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6691,6 +7523,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6699,6 +7532,7 @@ class CensusColumns(ColumnsTask):
             name='Bulgarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6707,6 +7541,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6715,6 +7550,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6723,6 +7559,7 @@ class CensusColumns(ColumnsTask):
             name='Burmese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6731,6 +7568,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6739,6 +7577,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6747,6 +7586,7 @@ class CensusColumns(ColumnsTask):
             name='Cantonese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6755,6 +7595,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6763,6 +7604,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6771,6 +7613,7 @@ class CensusColumns(ColumnsTask):
             name='Chinese, n.o.s. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6779,6 +7622,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6787,6 +7631,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6795,6 +7640,7 @@ class CensusColumns(ColumnsTask):
             name='Creoles (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6803,6 +7649,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6811,6 +7658,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6819,6 +7667,7 @@ class CensusColumns(ColumnsTask):
             name='Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6827,6 +7676,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6835,6 +7685,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6843,6 +7694,7 @@ class CensusColumns(ColumnsTask):
             name='Czech (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6851,6 +7703,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6859,6 +7712,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6867,6 +7721,7 @@ class CensusColumns(ColumnsTask):
             name='Danish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6875,6 +7730,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6883,6 +7739,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6891,6 +7748,7 @@ class CensusColumns(ColumnsTask):
             name='Dutch (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6899,6 +7757,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6907,6 +7766,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6915,6 +7775,7 @@ class CensusColumns(ColumnsTask):
             name='Estonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6923,6 +7784,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6931,6 +7793,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6939,6 +7802,7 @@ class CensusColumns(ColumnsTask):
             name='Finnish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6947,6 +7811,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6955,6 +7820,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6963,6 +7829,7 @@ class CensusColumns(ColumnsTask):
             name='Flemish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6971,6 +7838,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -6979,6 +7847,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -6987,6 +7856,7 @@ class CensusColumns(ColumnsTask):
             name='Fukien (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -6995,6 +7865,7 @@ class CensusColumns(ColumnsTask):
             name='German (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7003,6 +7874,7 @@ class CensusColumns(ColumnsTask):
             name='German (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7011,6 +7883,7 @@ class CensusColumns(ColumnsTask):
             name='German (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7019,6 +7892,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7027,6 +7901,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7035,6 +7910,7 @@ class CensusColumns(ColumnsTask):
             name='Greek (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7043,6 +7919,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7051,6 +7928,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7059,6 +7937,7 @@ class CensusColumns(ColumnsTask):
             name='Gujarati (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7067,6 +7946,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7075,6 +7955,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7083,6 +7964,7 @@ class CensusColumns(ColumnsTask):
             name='Hakka (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7091,6 +7973,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7099,6 +7982,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7107,6 +7991,7 @@ class CensusColumns(ColumnsTask):
             name='Hebrew (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7115,6 +8000,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7123,6 +8009,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7131,6 +8018,7 @@ class CensusColumns(ColumnsTask):
             name='Hindi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7139,6 +8027,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7147,6 +8036,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7155,6 +8045,7 @@ class CensusColumns(ColumnsTask):
             name='Hungarian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7163,6 +8054,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7171,6 +8063,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7179,6 +8072,7 @@ class CensusColumns(ColumnsTask):
             name='Ilocano (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7187,6 +8081,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7195,6 +8090,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7203,6 +8099,7 @@ class CensusColumns(ColumnsTask):
             name='Indo-Iranian languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7211,6 +8108,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7219,6 +8117,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7227,6 +8126,7 @@ class CensusColumns(ColumnsTask):
             name='Italian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7235,6 +8135,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7243,6 +8144,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7251,6 +8153,7 @@ class CensusColumns(ColumnsTask):
             name='Japanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7259,6 +8162,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7267,6 +8171,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7275,6 +8180,7 @@ class CensusColumns(ColumnsTask):
             name='Khmer (Cambodian) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7283,6 +8189,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7291,6 +8198,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7299,6 +8207,7 @@ class CensusColumns(ColumnsTask):
             name='Korean (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7307,6 +8216,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7315,6 +8225,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7323,6 +8234,7 @@ class CensusColumns(ColumnsTask):
             name='Kurdish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7331,6 +8243,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7339,6 +8252,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7347,6 +8261,7 @@ class CensusColumns(ColumnsTask):
             name='Lao (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7355,6 +8270,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7363,6 +8279,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7371,6 +8288,7 @@ class CensusColumns(ColumnsTask):
             name='Latvian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7379,6 +8297,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7387,6 +8306,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7395,6 +8315,7 @@ class CensusColumns(ColumnsTask):
             name='Lingala (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7403,6 +8324,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7411,6 +8333,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7419,6 +8342,7 @@ class CensusColumns(ColumnsTask):
             name='Lithuanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7427,6 +8351,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7435,6 +8360,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7443,6 +8369,7 @@ class CensusColumns(ColumnsTask):
             name='Macedonian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7451,6 +8378,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7459,6 +8387,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7467,6 +8396,7 @@ class CensusColumns(ColumnsTask):
             name='Malay (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7475,6 +8405,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7483,6 +8414,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7491,6 +8423,7 @@ class CensusColumns(ColumnsTask):
             name='Malayalam (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7499,6 +8432,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7507,6 +8441,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7515,6 +8450,7 @@ class CensusColumns(ColumnsTask):
             name='Maltese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7523,6 +8459,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7531,6 +8468,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7539,6 +8477,7 @@ class CensusColumns(ColumnsTask):
             name='Mandarin (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7547,6 +8486,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7555,6 +8495,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7563,6 +8504,7 @@ class CensusColumns(ColumnsTask):
             name='Marathi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7571,6 +8513,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7579,6 +8522,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7587,6 +8531,7 @@ class CensusColumns(ColumnsTask):
             name='Nepali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7595,6 +8540,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7603,6 +8549,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7611,6 +8558,7 @@ class CensusColumns(ColumnsTask):
             name='Niger-Congo languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7619,6 +8567,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7627,6 +8576,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7635,6 +8585,7 @@ class CensusColumns(ColumnsTask):
             name='Norwegian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7643,6 +8594,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7651,6 +8603,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7659,6 +8612,7 @@ class CensusColumns(ColumnsTask):
             name='Oromo (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7667,6 +8621,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7675,6 +8630,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7683,6 +8639,7 @@ class CensusColumns(ColumnsTask):
             name='Panjabi (Punjabi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7691,6 +8648,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7699,6 +8657,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7707,6 +8666,7 @@ class CensusColumns(ColumnsTask):
             name='Pashto (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7715,6 +8675,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7723,6 +8684,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7731,6 +8693,7 @@ class CensusColumns(ColumnsTask):
             name='Persian (Farsi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7739,6 +8702,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7747,6 +8711,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7755,6 +8720,7 @@ class CensusColumns(ColumnsTask):
             name='Polish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7763,6 +8729,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7771,6 +8738,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7779,6 +8747,7 @@ class CensusColumns(ColumnsTask):
             name='Portuguese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7787,6 +8756,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7795,6 +8765,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7803,6 +8774,7 @@ class CensusColumns(ColumnsTask):
             name='Romanian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7811,6 +8783,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7819,6 +8792,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7827,6 +8801,7 @@ class CensusColumns(ColumnsTask):
             name='Rundi (Kirundi) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7835,6 +8810,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7843,6 +8819,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7851,6 +8828,7 @@ class CensusColumns(ColumnsTask):
             name='Russian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7859,6 +8837,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7867,6 +8846,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7875,6 +8855,7 @@ class CensusColumns(ColumnsTask):
             name='Rwanda (Kinyarwanda) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7883,6 +8864,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7891,6 +8873,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7899,6 +8882,7 @@ class CensusColumns(ColumnsTask):
             name='Semitic languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7907,6 +8891,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7915,6 +8900,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7923,6 +8909,7 @@ class CensusColumns(ColumnsTask):
             name='Serbian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7931,6 +8918,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7939,6 +8927,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7947,6 +8936,7 @@ class CensusColumns(ColumnsTask):
             name='Serbo-Croatian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7955,6 +8945,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7963,6 +8954,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7971,6 +8963,7 @@ class CensusColumns(ColumnsTask):
             name='Shanghainese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -7979,6 +8972,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -7987,6 +8981,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -7995,6 +8990,7 @@ class CensusColumns(ColumnsTask):
             name='Sign languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8003,6 +8999,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8011,6 +9008,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8019,6 +9017,7 @@ class CensusColumns(ColumnsTask):
             name='Sindhi (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8027,6 +9026,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8035,6 +9035,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8043,6 +9044,7 @@ class CensusColumns(ColumnsTask):
             name='Sinhala (Sinhalese) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8051,6 +9053,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8059,6 +9062,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8067,6 +9071,7 @@ class CensusColumns(ColumnsTask):
             name='Sino-Tibetan languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8075,6 +9080,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8083,6 +9089,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8091,6 +9098,7 @@ class CensusColumns(ColumnsTask):
             name='Slavic languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8099,6 +9107,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8107,6 +9116,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8115,6 +9125,7 @@ class CensusColumns(ColumnsTask):
             name='Slovak (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8123,6 +9134,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8131,6 +9143,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8139,6 +9152,7 @@ class CensusColumns(ColumnsTask):
             name='Slovenian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8147,6 +9161,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8155,6 +9170,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8163,6 +9179,7 @@ class CensusColumns(ColumnsTask):
             name='Somali (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8171,6 +9188,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8179,6 +9197,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8187,6 +9206,7 @@ class CensusColumns(ColumnsTask):
             name='Spanish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8195,6 +9215,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8203,6 +9224,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8211,6 +9233,7 @@ class CensusColumns(ColumnsTask):
             name='Swahili (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8219,6 +9242,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8227,6 +9251,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8235,6 +9260,7 @@ class CensusColumns(ColumnsTask):
             name='Swedish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8243,6 +9269,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8251,6 +9278,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8259,6 +9287,7 @@ class CensusColumns(ColumnsTask):
             name='Tagalog (Pilipino, Filipino) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8267,6 +9296,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8275,6 +9305,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8283,6 +9314,7 @@ class CensusColumns(ColumnsTask):
             name='Taiwanese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8291,6 +9323,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8299,6 +9332,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8307,6 +9341,7 @@ class CensusColumns(ColumnsTask):
             name='Tamil (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8315,6 +9350,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8323,6 +9359,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8331,6 +9368,7 @@ class CensusColumns(ColumnsTask):
             name='Telugu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8339,6 +9377,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8347,6 +9386,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8355,6 +9395,7 @@ class CensusColumns(ColumnsTask):
             name='Thai (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8363,6 +9404,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8371,6 +9413,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8379,6 +9422,7 @@ class CensusColumns(ColumnsTask):
             name='Tibetan languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8387,6 +9431,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8395,6 +9440,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8403,6 +9449,7 @@ class CensusColumns(ColumnsTask):
             name='Tigrigna (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8411,6 +9458,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8419,6 +9467,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8427,6 +9476,7 @@ class CensusColumns(ColumnsTask):
             name='Turkish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8435,6 +9485,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8443,6 +9494,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8451,6 +9503,7 @@ class CensusColumns(ColumnsTask):
             name='Ukrainian (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8459,6 +9512,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8467,6 +9521,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8475,6 +9530,7 @@ class CensusColumns(ColumnsTask):
             name='Urdu (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8483,6 +9539,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8491,6 +9548,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8499,6 +9557,7 @@ class CensusColumns(ColumnsTask):
             name='Vietnamese (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8507,6 +9566,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_t: DENOMINATOR },)
 
@@ -8515,6 +9575,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_m: DENOMINATOR },)
 
@@ -8523,6 +9584,7 @@ class CensusColumns(ColumnsTask):
             name='Yiddish (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c017_f: DENOMINATOR },)
 
@@ -8531,6 +9593,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_t: DENOMINATOR },)
 
@@ -8539,6 +9602,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_m: DENOMINATOR },)
 
@@ -8547,6 +9611,7 @@ class CensusColumns(ColumnsTask):
             name='Other languages (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c006_f: DENOMINATOR },)
 
@@ -8555,6 +9620,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_t: DENOMINATOR },)
 
@@ -8563,6 +9629,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_m: DENOMINATOR },)
 
@@ -8571,6 +9638,7 @@ class CensusColumns(ColumnsTask):
             name='Multiple responses (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c001_f: DENOMINATOR },)
 
@@ -8579,6 +9647,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_t: DENOMINATOR },)
 
@@ -8587,6 +9656,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_m: DENOMINATOR },)
 
@@ -8595,6 +9665,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_f: DENOMINATOR },)
 
@@ -8603,6 +9674,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_t: DENOMINATOR },)
 
@@ -8611,6 +9683,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_m: DENOMINATOR },)
 
@@ -8619,6 +9692,7 @@ class CensusColumns(ColumnsTask):
             name='English and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_f: DENOMINATOR },)
 
@@ -8627,6 +9701,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_t: DENOMINATOR },)
 
@@ -8635,6 +9710,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_m: DENOMINATOR },)
 
@@ -8643,6 +9719,7 @@ class CensusColumns(ColumnsTask):
             name='French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_f: DENOMINATOR },)
 
@@ -8651,6 +9728,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_t: DENOMINATOR },)
 
@@ -8659,6 +9737,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_m: DENOMINATOR },)
 
@@ -8667,6 +9746,7 @@ class CensusColumns(ColumnsTask):
             name='English, French and non-official language (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_f: DENOMINATOR },)
 
@@ -8675,6 +9755,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of census families in private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={},)
 
@@ -8683,6 +9764,7 @@ class CensusColumns(ColumnsTask):
             name='Size of census family: 2 persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
@@ -8691,6 +9773,7 @@ class CensusColumns(ColumnsTask):
             name='Size of census family: 3 persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
@@ -8699,6 +9782,7 @@ class CensusColumns(ColumnsTask):
             name='Size of census family: 4 persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
@@ -8707,6 +9791,7 @@ class CensusColumns(ColumnsTask):
             name='Size of census family: 5 or more persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
@@ -8715,6 +9800,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of census families in private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={},)
 
@@ -8723,6 +9809,7 @@ class CensusColumns(ColumnsTask):
             name='Total couple families by family structure and number of children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c006_t: DENOMINATOR },)
 
@@ -8731,6 +9818,7 @@ class CensusColumns(ColumnsTask):
             name='Married couples',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c007_t: DENOMINATOR },)
 
@@ -8739,6 +9827,7 @@ class CensusColumns(ColumnsTask):
             name='Without children at home',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c008_t: DENOMINATOR },)
 
@@ -8747,6 +9836,7 @@ class CensusColumns(ColumnsTask):
             name='With children at home',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c008_t: DENOMINATOR },)
 
@@ -8755,6 +9845,7 @@ class CensusColumns(ColumnsTask):
             name='1 child',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
@@ -8763,6 +9854,7 @@ class CensusColumns(ColumnsTask):
             name='2 children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
@@ -8771,6 +9863,7 @@ class CensusColumns(ColumnsTask):
             name='3 or more children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
@@ -8779,6 +9872,7 @@ class CensusColumns(ColumnsTask):
             name='Common-law couples',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c007_t: DENOMINATOR },)
 
@@ -8787,6 +9881,7 @@ class CensusColumns(ColumnsTask):
             name='Without children at home',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c014_t: DENOMINATOR },)
 
@@ -8795,6 +9890,7 @@ class CensusColumns(ColumnsTask):
             name='With children at home',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c014_t: DENOMINATOR },)
 
@@ -8803,6 +9899,7 @@ class CensusColumns(ColumnsTask):
             name='1 child',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
@@ -8811,6 +9908,7 @@ class CensusColumns(ColumnsTask):
             name='2 children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
@@ -8819,6 +9917,7 @@ class CensusColumns(ColumnsTask):
             name='3 or more children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
@@ -8827,6 +9926,7 @@ class CensusColumns(ColumnsTask):
             name='Total lone-parent families by sex of parent and number of children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c006_t: DENOMINATOR },)
 
@@ -8835,6 +9935,7 @@ class CensusColumns(ColumnsTask):
             name='Female parent',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c020_t: DENOMINATOR },)
 
@@ -8843,6 +9944,7 @@ class CensusColumns(ColumnsTask):
             name='1 child',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -8851,6 +9953,7 @@ class CensusColumns(ColumnsTask):
             name='2 children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -8859,6 +9962,7 @@ class CensusColumns(ColumnsTask):
             name='3 or more children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
@@ -8867,6 +9971,7 @@ class CensusColumns(ColumnsTask):
             name='Male parent',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c020_t: DENOMINATOR },)
 
@@ -8875,6 +9980,7 @@ class CensusColumns(ColumnsTask):
             name='1 child',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
@@ -8883,6 +9989,7 @@ class CensusColumns(ColumnsTask):
             name='2 children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
@@ -8891,6 +9998,7 @@ class CensusColumns(ColumnsTask):
             name='3 or more children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
@@ -8899,6 +10007,7 @@ class CensusColumns(ColumnsTask):
             name='Total children in census families in private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={},)
 
@@ -8907,6 +10016,7 @@ class CensusColumns(ColumnsTask):
             name='Under six years of age',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c029_t: DENOMINATOR },)
 
@@ -8915,6 +10025,7 @@ class CensusColumns(ColumnsTask):
             name='6 to 14 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c029_t: DENOMINATOR },)
 
@@ -8923,6 +10034,7 @@ class CensusColumns(ColumnsTask):
             name='15 to 17 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c029_t: DENOMINATOR },)
 
@@ -8931,6 +10043,7 @@ class CensusColumns(ColumnsTask):
             name='18 to 24 years',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c029_t: DENOMINATOR },)
 
@@ -8939,6 +10052,7 @@ class CensusColumns(ColumnsTask):
             name='25 years and over',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c029_t: DENOMINATOR },)
 
@@ -8947,6 +10061,7 @@ class CensusColumns(ColumnsTask):
             name='Average number of children at home per census family',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={},)
 
@@ -8955,6 +10070,7 @@ class CensusColumns(ColumnsTask):
             name='First official language spoken - Total population excluding institutional residents (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -8963,6 +10079,7 @@ class CensusColumns(ColumnsTask):
             name='First official language spoken - Total population excluding institutional residents (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -8971,6 +10088,7 @@ class CensusColumns(ColumnsTask):
             name='First official language spoken - Total population excluding institutional residents (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -8979,6 +10097,7 @@ class CensusColumns(ColumnsTask):
             name='English (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -8987,6 +10106,7 @@ class CensusColumns(ColumnsTask):
             name='English (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -8995,6 +10115,7 @@ class CensusColumns(ColumnsTask):
             name='English (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -9003,6 +10124,7 @@ class CensusColumns(ColumnsTask):
             name='French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -9011,6 +10133,7 @@ class CensusColumns(ColumnsTask):
             name='French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -9019,6 +10142,7 @@ class CensusColumns(ColumnsTask):
             name='French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -9027,6 +10151,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -9035,6 +10160,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -9043,6 +10169,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -9051,6 +10178,7 @@ class CensusColumns(ColumnsTask):
             name='Neither English nor French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_t: DENOMINATOR },)
 
@@ -9059,6 +10187,7 @@ class CensusColumns(ColumnsTask):
             name='Neither English nor French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_m: DENOMINATOR },)
 
@@ -9067,6 +10196,7 @@ class CensusColumns(ColumnsTask):
             name='Neither English nor French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t006c001_f: DENOMINATOR },)
 
@@ -9075,6 +10205,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (number) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9083,6 +10214,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (number) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9091,6 +10223,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (number) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9099,6 +10232,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (percentage) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9107,6 +10241,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (percentage) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9115,6 +10250,7 @@ class CensusColumns(ColumnsTask):
             name='Official language minority (percentage) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9123,6 +10259,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of persons in private households (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9131,6 +10268,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of persons in private households (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9139,6 +10277,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of persons in private households (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9147,6 +10286,7 @@ class CensusColumns(ColumnsTask):
             name='Number of persons not in census families (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c001_t: DENOMINATOR },)
 
@@ -9155,6 +10295,7 @@ class CensusColumns(ColumnsTask):
             name='Number of persons not in census families (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c001_m: DENOMINATOR },)
 
@@ -9163,6 +10304,7 @@ class CensusColumns(ColumnsTask):
             name='Number of persons not in census families (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c001_f: DENOMINATOR },)
 
@@ -9171,6 +10313,7 @@ class CensusColumns(ColumnsTask):
             name='Living with relatives (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_t: DENOMINATOR },)
 
@@ -9179,6 +10322,7 @@ class CensusColumns(ColumnsTask):
             name='Living with relatives (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_m: DENOMINATOR },)
 
@@ -9187,6 +10331,7 @@ class CensusColumns(ColumnsTask):
             name='Living with relatives (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_f: DENOMINATOR },)
 
@@ -9195,6 +10340,7 @@ class CensusColumns(ColumnsTask):
             name='Living with non-relatives only (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_t: DENOMINATOR },)
 
@@ -9203,6 +10349,7 @@ class CensusColumns(ColumnsTask):
             name='Living with non-relatives only (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_m: DENOMINATOR },)
 
@@ -9211,6 +10358,7 @@ class CensusColumns(ColumnsTask):
             name='Living with non-relatives only (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_f: DENOMINATOR },)
 
@@ -9219,6 +10367,7 @@ class CensusColumns(ColumnsTask):
             name='Living alone (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_t: DENOMINATOR },)
 
@@ -9227,6 +10376,7 @@ class CensusColumns(ColumnsTask):
             name='Living alone (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_m: DENOMINATOR },)
 
@@ -9235,6 +10385,7 @@ class CensusColumns(ColumnsTask):
             name='Living alone (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c002_f: DENOMINATOR },)
 
@@ -9243,6 +10394,7 @@ class CensusColumns(ColumnsTask):
             name='Number of census family persons (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c001_t: DENOMINATOR },)
 
@@ -9251,6 +10403,7 @@ class CensusColumns(ColumnsTask):
             name='Number of census family persons (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c001_m: DENOMINATOR },)
 
@@ -9259,6 +10412,7 @@ class CensusColumns(ColumnsTask):
             name='Number of census family persons (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c001_f: DENOMINATOR },)
 
@@ -9267,6 +10421,7 @@ class CensusColumns(ColumnsTask):
             name='Average number of persons per census family',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9275,6 +10430,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of persons aged 65 years and over in private households (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9283,6 +10439,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of persons aged 65 years and over in private households (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9291,6 +10448,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of persons aged 65 years and over in private households (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9299,6 +10457,7 @@ class CensusColumns(ColumnsTask):
             name='Number of persons not in census families aged 65 years and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c008_t: DENOMINATOR },)
 
@@ -9307,6 +10466,7 @@ class CensusColumns(ColumnsTask):
             name='Number of persons not in census families aged 65 years and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c008_m: DENOMINATOR },)
 
@@ -9315,6 +10475,7 @@ class CensusColumns(ColumnsTask):
             name='Number of persons not in census families aged 65 years and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c008_f: DENOMINATOR },)
 
@@ -9323,6 +10484,7 @@ class CensusColumns(ColumnsTask):
             name='Living with relatives (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_t: DENOMINATOR },)
 
@@ -9331,6 +10493,7 @@ class CensusColumns(ColumnsTask):
             name='Living with relatives (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_m: DENOMINATOR },)
 
@@ -9339,6 +10502,7 @@ class CensusColumns(ColumnsTask):
             name='Living with relatives (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_f: DENOMINATOR },)
 
@@ -9347,6 +10511,7 @@ class CensusColumns(ColumnsTask):
             name='Living with non-relatives only (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_t: DENOMINATOR },)
 
@@ -9355,6 +10520,7 @@ class CensusColumns(ColumnsTask):
             name='Living with non-relatives only (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_m: DENOMINATOR },)
 
@@ -9363,6 +10529,7 @@ class CensusColumns(ColumnsTask):
             name='Living with non-relatives only (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_f: DENOMINATOR },)
 
@@ -9371,6 +10538,7 @@ class CensusColumns(ColumnsTask):
             name='Living alone (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_t: DENOMINATOR },)
 
@@ -9379,6 +10547,7 @@ class CensusColumns(ColumnsTask):
             name='Living alone (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_m: DENOMINATOR },)
 
@@ -9387,6 +10556,7 @@ class CensusColumns(ColumnsTask):
             name='Living alone (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c009_f: DENOMINATOR },)
 
@@ -9395,6 +10565,7 @@ class CensusColumns(ColumnsTask):
             name='Number of census family persons aged 65 years and over (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c008_t: DENOMINATOR },)
 
@@ -9403,6 +10574,7 @@ class CensusColumns(ColumnsTask):
             name='Number of census family persons aged 65 years and over (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c008_m: DENOMINATOR },)
 
@@ -9411,6 +10583,7 @@ class CensusColumns(ColumnsTask):
             name='Number of census family persons aged 65 years and over (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c008_f: DENOMINATOR },)
 
@@ -9419,6 +10592,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of private households by household type',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9427,6 +10601,7 @@ class CensusColumns(ColumnsTask):
             name='Census-family households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c014_t: DENOMINATOR },)
 
@@ -9435,6 +10610,7 @@ class CensusColumns(ColumnsTask):
             name='One-family-only households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c015_t: DENOMINATOR },)
 
@@ -9443,6 +10619,7 @@ class CensusColumns(ColumnsTask):
             name='Couple-family households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c016_t: DENOMINATOR },)
 
@@ -9451,6 +10628,7 @@ class CensusColumns(ColumnsTask):
             name='Without children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c017_t: DENOMINATOR },)
 
@@ -9459,6 +10637,7 @@ class CensusColumns(ColumnsTask):
             name='With children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c017_t: DENOMINATOR },)
 
@@ -9467,6 +10646,7 @@ class CensusColumns(ColumnsTask):
             name='Lone-parent-family households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c016_t: DENOMINATOR },)
 
@@ -9475,6 +10655,7 @@ class CensusColumns(ColumnsTask):
             name='Other family households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c015_t: DENOMINATOR },)
 
@@ -9483,6 +10664,7 @@ class CensusColumns(ColumnsTask):
             name='One-family households with persons not in a census family',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c021_t: DENOMINATOR },)
 
@@ -9491,6 +10673,7 @@ class CensusColumns(ColumnsTask):
             name='Couple-family households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c022_t: DENOMINATOR },)
 
@@ -9499,6 +10682,7 @@ class CensusColumns(ColumnsTask):
             name='Without children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c023_t: DENOMINATOR },)
 
@@ -9507,6 +10691,7 @@ class CensusColumns(ColumnsTask):
             name='With children',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c023_t: DENOMINATOR },)
 
@@ -9515,6 +10700,7 @@ class CensusColumns(ColumnsTask):
             name='Lone-parent-family households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c022_t: DENOMINATOR },)
 
@@ -9523,6 +10709,7 @@ class CensusColumns(ColumnsTask):
             name='Two-or-more-family households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c021_t: DENOMINATOR },)
 
@@ -9531,6 +10718,7 @@ class CensusColumns(ColumnsTask):
             name='Non-census-family households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c014_t: DENOMINATOR },)
 
@@ -9539,6 +10727,7 @@ class CensusColumns(ColumnsTask):
             name='One-person households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c028_t: DENOMINATOR },)
 
@@ -9547,6 +10736,7 @@ class CensusColumns(ColumnsTask):
             name='Two-or-more-person households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c028_t: DENOMINATOR },)
 
@@ -9555,6 +10745,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of occupied private dwellings by structural type of dwelling',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9563,6 +10754,7 @@ class CensusColumns(ColumnsTask):
             name='Single-detached house',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c031_t: DENOMINATOR },)
 
@@ -9571,6 +10763,7 @@ class CensusColumns(ColumnsTask):
             name='Apartment, building that has five or more storeys',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c031_t: DENOMINATOR },)
 
@@ -9579,6 +10772,7 @@ class CensusColumns(ColumnsTask):
             name='Movable dwelling',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c031_t: DENOMINATOR },)
 
@@ -9587,6 +10781,7 @@ class CensusColumns(ColumnsTask):
             name='Other dwelling',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c031_t: DENOMINATOR },)
 
@@ -9595,6 +10790,7 @@ class CensusColumns(ColumnsTask):
             name='Semi-detached house',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c035_t: DENOMINATOR },)
 
@@ -9603,6 +10799,7 @@ class CensusColumns(ColumnsTask):
             name='Row house',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c035_t: DENOMINATOR },)
 
@@ -9611,6 +10808,7 @@ class CensusColumns(ColumnsTask):
             name='Apartment, duplex',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c035_t: DENOMINATOR },)
 
@@ -9619,6 +10817,7 @@ class CensusColumns(ColumnsTask):
             name='Apartment, building that has fewer than five storeys',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c035_t: DENOMINATOR },)
 
@@ -9627,6 +10826,7 @@ class CensusColumns(ColumnsTask):
             name='Other single-attached house',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c035_t: DENOMINATOR },)
 
@@ -9635,6 +10835,7 @@ class CensusColumns(ColumnsTask):
             name='Total number of private households by household size',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9643,6 +10844,7 @@ class CensusColumns(ColumnsTask):
             name='1 person',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c041_t: DENOMINATOR },)
 
@@ -9651,6 +10853,7 @@ class CensusColumns(ColumnsTask):
             name='2 persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c041_t: DENOMINATOR },)
 
@@ -9659,6 +10862,7 @@ class CensusColumns(ColumnsTask):
             name='3 persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c041_t: DENOMINATOR },)
 
@@ -9667,6 +10871,7 @@ class CensusColumns(ColumnsTask):
             name='4 persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c041_t: DENOMINATOR },)
 
@@ -9675,6 +10880,7 @@ class CensusColumns(ColumnsTask):
             name='5 persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c041_t: DENOMINATOR },)
 
@@ -9683,6 +10889,7 @@ class CensusColumns(ColumnsTask):
             name='6 or more persons',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t007c041_t: DENOMINATOR },)
 
@@ -9691,6 +10898,7 @@ class CensusColumns(ColumnsTask):
             name='Number of persons in private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9699,6 +10907,7 @@ class CensusColumns(ColumnsTask):
             name='Average number of persons in private households',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
@@ -9707,6 +10916,7 @@ class CensusColumns(ColumnsTask):
             name='Knowledge of official languages - Total population excluding institutional residents (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9715,6 +10925,7 @@ class CensusColumns(ColumnsTask):
             name='Knowledge of official languages - Total population excluding institutional residents (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9723,6 +10934,7 @@ class CensusColumns(ColumnsTask):
             name='Knowledge of official languages - Total population excluding institutional residents (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
@@ -9731,6 +10943,7 @@ class CensusColumns(ColumnsTask):
             name='English only (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_t: DENOMINATOR },)
 
@@ -9739,6 +10952,7 @@ class CensusColumns(ColumnsTask):
             name='English only (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_m: DENOMINATOR },)
 
@@ -9747,6 +10961,7 @@ class CensusColumns(ColumnsTask):
             name='English only (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_f: DENOMINATOR },)
 
@@ -9755,6 +10970,7 @@ class CensusColumns(ColumnsTask):
             name='French only (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_t: DENOMINATOR },)
 
@@ -9763,6 +10979,7 @@ class CensusColumns(ColumnsTask):
             name='French only (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_m: DENOMINATOR },)
 
@@ -9771,6 +10988,7 @@ class CensusColumns(ColumnsTask):
             name='French only (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_f: DENOMINATOR },)
 
@@ -9779,6 +10997,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_t: DENOMINATOR },)
 
@@ -9787,6 +11006,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_m: DENOMINATOR },)
 
@@ -9795,6 +11015,7 @@ class CensusColumns(ColumnsTask):
             name='English and French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_f: DENOMINATOR },)
 
@@ -9803,6 +11024,7 @@ class CensusColumns(ColumnsTask):
             name='Neither English nor French (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_t: DENOMINATOR },)
 
@@ -9811,6 +11033,7 @@ class CensusColumns(ColumnsTask):
             name='Neither English nor French (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_m: DENOMINATOR },)
 
@@ -9819,6 +11042,7 @@ class CensusColumns(ColumnsTask):
             name='Neither English nor French (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
             targets={ t008c001_f: DENOMINATOR },)
 
@@ -9827,6 +11051,7 @@ class CensusColumns(ColumnsTask):
             name='Total population 15 years and over by marital status (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
@@ -9835,6 +11060,7 @@ class CensusColumns(ColumnsTask):
             name='Total population 15 years and over by marital status (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
@@ -9843,6 +11069,7 @@ class CensusColumns(ColumnsTask):
             name='Total population 15 years and over by marital status (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
@@ -9851,6 +11078,7 @@ class CensusColumns(ColumnsTask):
             name='Married or living with a common-law partner (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c001_t: DENOMINATOR },)
 
@@ -9859,6 +11087,7 @@ class CensusColumns(ColumnsTask):
             name='Married or living with a common-law partner (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c001_m: DENOMINATOR },)
 
@@ -9867,6 +11096,7 @@ class CensusColumns(ColumnsTask):
             name='Married or living with a common-law partner (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c001_f: DENOMINATOR },)
 
@@ -9875,6 +11105,7 @@ class CensusColumns(ColumnsTask):
             name='Married (and not separated) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c002_t: DENOMINATOR },)
 
@@ -9883,6 +11114,7 @@ class CensusColumns(ColumnsTask):
             name='Married (and not separated) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c002_m: DENOMINATOR },)
 
@@ -9891,6 +11123,7 @@ class CensusColumns(ColumnsTask):
             name='Married (and not separated) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c002_f: DENOMINATOR },)
 
@@ -9899,6 +11132,7 @@ class CensusColumns(ColumnsTask):
             name='Living common law (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c002_t: DENOMINATOR },)
 
@@ -9907,6 +11141,7 @@ class CensusColumns(ColumnsTask):
             name='Living common law (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c002_m: DENOMINATOR },)
 
@@ -9915,6 +11150,7 @@ class CensusColumns(ColumnsTask):
             name='Living common law (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c002_f: DENOMINATOR },)
 
@@ -9923,6 +11159,7 @@ class CensusColumns(ColumnsTask):
             name='Not married and not living with a common-law partner (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c001_t: DENOMINATOR },)
 
@@ -9931,6 +11168,7 @@ class CensusColumns(ColumnsTask):
             name='Not married and not living with a common-law partner (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c001_m: DENOMINATOR },)
 
@@ -9939,6 +11177,7 @@ class CensusColumns(ColumnsTask):
             name='Not married and not living with a common-law partner (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c001_f: DENOMINATOR },)
 
@@ -9947,6 +11186,7 @@ class CensusColumns(ColumnsTask):
             name='Single (never legally married) (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_t: DENOMINATOR },)
 
@@ -9955,6 +11195,7 @@ class CensusColumns(ColumnsTask):
             name='Single (never legally married) (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_m: DENOMINATOR },)
 
@@ -9963,6 +11204,7 @@ class CensusColumns(ColumnsTask):
             name='Single (never legally married) (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_f: DENOMINATOR },)
 
@@ -9971,6 +11213,7 @@ class CensusColumns(ColumnsTask):
             name='Separated (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_t: DENOMINATOR },)
 
@@ -9979,6 +11222,7 @@ class CensusColumns(ColumnsTask):
             name='Separated (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_m: DENOMINATOR },)
 
@@ -9987,6 +11231,7 @@ class CensusColumns(ColumnsTask):
             name='Separated (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_f: DENOMINATOR },)
 
@@ -9995,6 +11240,7 @@ class CensusColumns(ColumnsTask):
             name='Divorced (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_t: DENOMINATOR },)
 
@@ -10003,6 +11249,7 @@ class CensusColumns(ColumnsTask):
             name='Divorced (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_m: DENOMINATOR },)
 
@@ -10011,6 +11258,7 @@ class CensusColumns(ColumnsTask):
             name='Divorced (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_f: DENOMINATOR },)
 
@@ -10019,6 +11267,7 @@ class CensusColumns(ColumnsTask):
             name='Widowed (total)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_t: DENOMINATOR },)
 
@@ -10027,6 +11276,7 @@ class CensusColumns(ColumnsTask):
             name='Widowed (male)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_m: DENOMINATOR },)
 
@@ -10035,6 +11285,7 @@ class CensusColumns(ColumnsTask):
             name='Widowed (female)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_f: DENOMINATOR },)
 
@@ -10043,6 +11294,7 @@ class CensusColumns(ColumnsTask):
             name='Population in 2011',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['segments']],
             targets={},)
 
@@ -10051,6 +11303,7 @@ class CensusColumns(ColumnsTask):
             name='Population in 2006',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['segments']],
             targets={},)
 
@@ -10059,6 +11312,7 @@ class CensusColumns(ColumnsTask):
             name='2006 to 2011 population change (%)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['segments']],
             targets={},)
 
@@ -10067,6 +11321,7 @@ class CensusColumns(ColumnsTask):
             name='Total private dwellings',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['segments']],
             targets={},)
 
@@ -10075,6 +11330,7 @@ class CensusColumns(ColumnsTask):
             name='Private dwellings occupied by usual residents',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['segments']],
             targets={},)
 
@@ -10083,6 +11339,7 @@ class CensusColumns(ColumnsTask):
             name='Population density per square kilometre',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['segments']],
             targets={},)
 
@@ -10091,6 +11348,7 @@ class CensusColumns(ColumnsTask):
             name='Land area (square km)',
             type='Numeric',
             weight=3,
+            aggregate='sum',
             tags=[ca, unit_people, subsections['segments']],
             targets={},)
 
