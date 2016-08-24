@@ -10410,23 +10410,7 @@ class NHSColumns(ColumnsTask):
 
         t012c001_t = OBSColumn(
             id='t012c001_t',
-            name='Household total income in 2010 of private households (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t012c001_m = OBSColumn(
-            id='t012c001_m',
-            name='Household total income in 2010 of private households (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t012c001_f = OBSColumn(
-            id='t012c001_f',
-            name='Household total income in 2010 of private households (female)',
+            name='Household total income in 2010 of private households',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -10434,335 +10418,111 @@ class NHSColumns(ColumnsTask):
 
         t012c002_t = OBSColumn(
             id='t012c002_t',
-            name='Under $5,000 (total)',
+            name='Under $5,000',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c002_m = OBSColumn(
-            id='t012c002_m',
-            name='Under $5,000 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c002_f = OBSColumn(
-            id='t012c002_f',
-            name='Under $5,000 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c003_t = OBSColumn(
             id='t012c003_t',
-            name='$5,000 to $9,999 (total)',
+            name='$5,000 to $9,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c003_m = OBSColumn(
-            id='t012c003_m',
-            name='$5,000 to $9,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c003_f = OBSColumn(
-            id='t012c003_f',
-            name='$5,000 to $9,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c004_t = OBSColumn(
             id='t012c004_t',
-            name='$10,000 to $14,999 (total)',
+            name='$10,000 to $14,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c004_m = OBSColumn(
-            id='t012c004_m',
-            name='$10,000 to $14,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c004_f = OBSColumn(
-            id='t012c004_f',
-            name='$10,000 to $14,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c005_t = OBSColumn(
             id='t012c005_t',
-            name='$15,000 to $19,999 (total)',
+            name='$15,000 to $19,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c005_m = OBSColumn(
-            id='t012c005_m',
-            name='$15,000 to $19,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c005_f = OBSColumn(
-            id='t012c005_f',
-            name='$15,000 to $19,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c006_t = OBSColumn(
             id='t012c006_t',
-            name='$20,000 to $29,999 (total)',
+            name='$20,000 to $29,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c006_m = OBSColumn(
-            id='t012c006_m',
-            name='$20,000 to $29,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c006_f = OBSColumn(
-            id='t012c006_f',
-            name='$20,000 to $29,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c007_t = OBSColumn(
             id='t012c007_t',
-            name='$30,000 to $39,999 (total)',
+            name='$30,000 to $39,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c007_m = OBSColumn(
-            id='t012c007_m',
-            name='$30,000 to $39,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c007_f = OBSColumn(
-            id='t012c007_f',
-            name='$30,000 to $39,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c008_t = OBSColumn(
             id='t012c008_t',
-            name='$40,000 to $49,999 (total)',
+            name='$40,000 to $49,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c008_m = OBSColumn(
-            id='t012c008_m',
-            name='$40,000 to $49,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c008_f = OBSColumn(
-            id='t012c008_f',
-            name='$40,000 to $49,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c009_t = OBSColumn(
             id='t012c009_t',
-            name='$50,000 to $59,999 (total)',
+            name='$50,000 to $59,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c009_m = OBSColumn(
-            id='t012c009_m',
-            name='$50,000 to $59,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c009_f = OBSColumn(
-            id='t012c009_f',
-            name='$50,000 to $59,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c010_t = OBSColumn(
             id='t012c010_t',
-            name='$60,000 to $79,999 (total)',
+            name='$60,000 to $79,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c010_m = OBSColumn(
-            id='t012c010_m',
-            name='$60,000 to $79,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c010_f = OBSColumn(
-            id='t012c010_f',
-            name='$60,000 to $79,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c011_t = OBSColumn(
             id='t012c011_t',
-            name='$80,000 to $99,999 (total)',
+            name='$80,000 to $99,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c011_m = OBSColumn(
-            id='t012c011_m',
-            name='$80,000 to $99,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c011_f = OBSColumn(
-            id='t012c011_f',
-            name='$80,000 to $99,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c012_t = OBSColumn(
             id='t012c012_t',
-            name='$100,000 to $124,999 (total)',
+            name='$100,000 to $124,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c012_m = OBSColumn(
-            id='t012c012_m',
-            name='$100,000 to $124,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c012_f = OBSColumn(
-            id='t012c012_f',
-            name='$100,000 to $124,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c013_t = OBSColumn(
             id='t012c013_t',
-            name='$125,000 to $149,999 (total)',
+            name='$125,000 to $149,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
-
-        t012c013_m = OBSColumn(
-            id='t012c013_m',
-            name='$125,000 to $149,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c013_f = OBSColumn(
-            id='t012c013_f',
-            name='$125,000 to $149,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
 
         t012c014_t = OBSColumn(
             id='t012c014_t',
-            name='$150,000 and over (total)',
+            name='$150,000 and over',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
-        t012c014_m = OBSColumn(
-            id='t012c014_m',
-            name='$150,000 and over (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_m: DENOMINATOR },)
-
-        t012c014_f = OBSColumn(
-            id='t012c014_f',
-            name='$150,000 and over (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_f: DENOMINATOR },)
-
         t012c015_t = OBSColumn(
             id='t012c015_t',
-            name='After-tax income of households in 2010 of private households (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t012c015_m = OBSColumn(
-            id='t012c015_m',
-            name='After-tax income of households in 2010 of private households (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t012c015_f = OBSColumn(
-            id='t012c015_f',
-            name='After-tax income of households in 2010 of private households (female)',
+            name='After-tax income of households in 2010 of private households',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -10770,335 +10530,111 @@ class NHSColumns(ColumnsTask):
 
         t012c016_t = OBSColumn(
             id='t012c016_t',
-            name='Under $5,000 (total)',
+            name='Under $5,000',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c016_m = OBSColumn(
-            id='t012c016_m',
-            name='Under $5,000 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c016_f = OBSColumn(
-            id='t012c016_f',
-            name='Under $5,000 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c017_t = OBSColumn(
             id='t012c017_t',
-            name='$5,000 to $9,999 (total)',
+            name='$5,000 to $9,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c017_m = OBSColumn(
-            id='t012c017_m',
-            name='$5,000 to $9,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c017_f = OBSColumn(
-            id='t012c017_f',
-            name='$5,000 to $9,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c018_t = OBSColumn(
             id='t012c018_t',
-            name='$10,000 to $14,999 (total)',
+            name='$10,000 to $14,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c018_m = OBSColumn(
-            id='t012c018_m',
-            name='$10,000 to $14,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c018_f = OBSColumn(
-            id='t012c018_f',
-            name='$10,000 to $14,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c019_t = OBSColumn(
             id='t012c019_t',
-            name='$15,000 to $19,999 (total)',
+            name='$15,000 to $19,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c019_m = OBSColumn(
-            id='t012c019_m',
-            name='$15,000 to $19,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c019_f = OBSColumn(
-            id='t012c019_f',
-            name='$15,000 to $19,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c020_t = OBSColumn(
             id='t012c020_t',
-            name='$20,000 to $29,999 (total)',
+            name='$20,000 to $29,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c020_m = OBSColumn(
-            id='t012c020_m',
-            name='$20,000 to $29,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c020_f = OBSColumn(
-            id='t012c020_f',
-            name='$20,000 to $29,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c021_t = OBSColumn(
             id='t012c021_t',
-            name='$30,000 to $39,999 (total)',
+            name='$30,000 to $39,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c021_m = OBSColumn(
-            id='t012c021_m',
-            name='$30,000 to $39,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c021_f = OBSColumn(
-            id='t012c021_f',
-            name='$30,000 to $39,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c022_t = OBSColumn(
             id='t012c022_t',
-            name='$40,000 to $49,999 (total)',
+            name='$40,000 to $49,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c022_m = OBSColumn(
-            id='t012c022_m',
-            name='$40,000 to $49,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c022_f = OBSColumn(
-            id='t012c022_f',
-            name='$40,000 to $49,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c023_t = OBSColumn(
             id='t012c023_t',
-            name='$50,000 to $59,999 (total)',
+            name='$50,000 to $59,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c023_m = OBSColumn(
-            id='t012c023_m',
-            name='$50,000 to $59,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c023_f = OBSColumn(
-            id='t012c023_f',
-            name='$50,000 to $59,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c024_t = OBSColumn(
             id='t012c024_t',
-            name='$60,000 to $79,999 (total)',
+            name='$60,000 to $79,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c024_m = OBSColumn(
-            id='t012c024_m',
-            name='$60,000 to $79,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c024_f = OBSColumn(
-            id='t012c024_f',
-            name='$60,000 to $79,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c025_t = OBSColumn(
             id='t012c025_t',
-            name='$80,000 to $99,999 (total)',
+            name='$80,000 to $99,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
-
-        t012c025_m = OBSColumn(
-            id='t012c025_m',
-            name='$80,000 to $99,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c025_f = OBSColumn(
-            id='t012c025_f',
-            name='$80,000 to $99,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
 
         t012c026_t = OBSColumn(
             id='t012c026_t',
-            name='$100,000 and over (total)',
+            name='$100,000 and over',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c015_t: DENOMINATOR },)
 
-        t012c026_m = OBSColumn(
-            id='t012c026_m',
-            name='$100,000 and over (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_m: DENOMINATOR },)
-
-        t012c026_f = OBSColumn(
-            id='t012c026_f',
-            name='$100,000 and over (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_f: DENOMINATOR },)
-
         t012c027_t = OBSColumn(
             id='t012c027_t',
-            name='$100,000 to $124,999 (total)',
+            name='$100,000 to $124,999',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c026_t: DENOMINATOR },)
-
-        t012c027_m = OBSColumn(
-            id='t012c027_m',
-            name='$100,000 to $124,999 (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c026_m: DENOMINATOR },)
-
-        t012c027_f = OBSColumn(
-            id='t012c027_f',
-            name='$100,000 to $124,999 (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c026_f: DENOMINATOR },)
 
         t012c028_t = OBSColumn(
             id='t012c028_t',
-            name='$125,000 and over (total)',
+            name='$125,000 and over',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c026_t: DENOMINATOR },)
 
-        t012c028_m = OBSColumn(
-            id='t012c028_m',
-            name='$125,000 and over (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c026_m: DENOMINATOR },)
-
-        t012c028_f = OBSColumn(
-            id='t012c028_f',
-            name='$125,000 and over (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c026_f: DENOMINATOR },)
-
         t012c029_t = OBSColumn(
             id='t012c029_t',
-            name='Household income in 2010 of private households (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t012c029_m = OBSColumn(
-            id='t012c029_m',
-            name='Household income in 2010 of private households (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t012c029_f = OBSColumn(
-            id='t012c029_f',
-            name='Household income in 2010 of private households (female)',
+            name='Household income in 2010 of private households',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
@@ -11106,339 +10642,115 @@ class NHSColumns(ColumnsTask):
 
         t012c030_t = OBSColumn(
             id='t012c030_t',
-            name='Median household total income ($) (total)',
+            name='Median household total income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
-
-        t012c030_m = OBSColumn(
-            id='t012c030_m',
-            name='Median household total income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_m: DENOMINATOR },)
-
-        t012c030_f = OBSColumn(
-            id='t012c030_f',
-            name='Median household total income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_f: DENOMINATOR },)
 
         t012c031_t = OBSColumn(
             id='t012c031_t',
-            name='Average household total income ($) (total)',
+            name='Average household total income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
-
-        t012c031_m = OBSColumn(
-            id='t012c031_m',
-            name='Average household total income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_m: DENOMINATOR },)
-
-        t012c031_f = OBSColumn(
-            id='t012c031_f',
-            name='Average household total income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_f: DENOMINATOR },)
 
         t012c032_t = OBSColumn(
             id='t012c032_t',
-            name='Median after-tax household income ($) (total)',
+            name='Median after-tax household income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
-
-        t012c032_m = OBSColumn(
-            id='t012c032_m',
-            name='Median after-tax household income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_m: DENOMINATOR },)
-
-        t012c032_f = OBSColumn(
-            id='t012c032_f',
-            name='Median after-tax household income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_f: DENOMINATOR },)
 
         t012c033_t = OBSColumn(
             id='t012c033_t',
-            name='Average after-tax household income ($) (total)',
+            name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
-
-        t012c033_m = OBSColumn(
-            id='t012c033_m',
-            name='Average after-tax household income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_m: DENOMINATOR },)
-
-        t012c033_f = OBSColumn(
-            id='t012c033_f',
-            name='Average after-tax household income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_f: DENOMINATOR },)
 
         t012c034_t = OBSColumn(
             id='t012c034_t',
-            name='One-person private households (total)',
+            name='One-person private households',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
-
-        t012c034_m = OBSColumn(
-            id='t012c034_m',
-            name='One-person private households (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c029_m: DENOMINATOR },)
-
-        t012c034_f = OBSColumn(
-            id='t012c034_f',
-            name='One-person private households (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c029_f: DENOMINATOR },)
 
         t012c035_t = OBSColumn(
             id='t012c035_t',
-            name='Median household total income ($) (total)',
+            name='Median household total income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
-
-        t012c035_m = OBSColumn(
-            id='t012c035_m',
-            name='Median household total income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_m: DENOMINATOR },)
-
-        t012c035_f = OBSColumn(
-            id='t012c035_f',
-            name='Median household total income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_f: DENOMINATOR },)
 
         t012c036_t = OBSColumn(
             id='t012c036_t',
-            name='Average household total income ($) (total)',
+            name='Average household total income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
-
-        t012c036_m = OBSColumn(
-            id='t012c036_m',
-            name='Average household total income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_m: DENOMINATOR },)
-
-        t012c036_f = OBSColumn(
-            id='t012c036_f',
-            name='Average household total income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_f: DENOMINATOR },)
 
         t012c037_t = OBSColumn(
             id='t012c037_t',
-            name='Median after-tax household income ($) (total)',
+            name='Median after-tax household income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
-
-        t012c037_m = OBSColumn(
-            id='t012c037_m',
-            name='Median after-tax household income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_m: DENOMINATOR },)
-
-        t012c037_f = OBSColumn(
-            id='t012c037_f',
-            name='Median after-tax household income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_f: DENOMINATOR },)
 
         t012c038_t = OBSColumn(
             id='t012c038_t',
-            name='Average after-tax household income ($) (total)',
+            name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: DENOMINATOR },)
 
-        t012c038_m = OBSColumn(
-            id='t012c038_m',
-            name='Average after-tax household income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_m: DENOMINATOR },)
-
-        t012c038_f = OBSColumn(
-            id='t012c038_f',
-            name='Average after-tax household income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c034_f: DENOMINATOR },)
-
         t012c039_t = OBSColumn(
             id='t012c039_t',
-            name='Two-or-more-persons private households (total)',
+            name='Two-or-more-persons private households',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c029_t: DENOMINATOR },)
 
-        t012c039_m = OBSColumn(
-            id='t012c039_m',
-            name='Two-or-more-persons private households (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c029_m: DENOMINATOR },)
-
-        t012c039_f = OBSColumn(
-            id='t012c039_f',
-            name='Two-or-more-persons private households (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c029_f: DENOMINATOR },)
-
         t012c040_t = OBSColumn(
             id='t012c040_t',
-            name='Median household total income ($) (total)',
+            name='Median household total income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
-
-        t012c040_m = OBSColumn(
-            id='t012c040_m',
-            name='Median household total income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_m: DENOMINATOR },)
-
-        t012c040_f = OBSColumn(
-            id='t012c040_f',
-            name='Median household total income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_f: DENOMINATOR },)
 
         t012c041_t = OBSColumn(
             id='t012c041_t',
-            name='Average household total income ($) (total)',
+            name='Average household total income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
-
-        t012c041_m = OBSColumn(
-            id='t012c041_m',
-            name='Average household total income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_m: DENOMINATOR },)
-
-        t012c041_f = OBSColumn(
-            id='t012c041_f',
-            name='Average household total income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_f: DENOMINATOR },)
 
         t012c042_t = OBSColumn(
             id='t012c042_t',
-            name='Median after-tax household income ($) (total)',
+            name='Median after-tax household income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
-
-        t012c042_m = OBSColumn(
-            id='t012c042_m',
-            name='Median after-tax household income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_m: DENOMINATOR },)
-
-        t012c042_f = OBSColumn(
-            id='t012c042_f',
-            name='Median after-tax household income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_f: DENOMINATOR },)
 
         t012c043_t = OBSColumn(
             id='t012c043_t',
-            name='Average after-tax household income ($) (total)',
+            name='Average after-tax household income ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: DENOMINATOR },)
-
-        t012c043_m = OBSColumn(
-            id='t012c043_m',
-            name='Average after-tax household income ($) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_m: DENOMINATOR },)
-
-        t012c043_f = OBSColumn(
-            id='t012c043_f',
-            name='Average after-tax household income ($) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_money, subsections['income']],
-            targets={ t012c039_f: DENOMINATOR },)
 
         t013c001_t = OBSColumn(
             id='t013c001_t',
@@ -23971,134 +23283,48 @@ class NHSColumns(ColumnsTask):
             ('t011c066_m', t011c066_m),
             ('t011c066_f', t011c066_f),
             ('t012c001_t', t012c001_t),
-            ('t012c001_m', t012c001_m),
-            ('t012c001_f', t012c001_f),
             ('t012c002_t', t012c002_t),
-            ('t012c002_m', t012c002_m),
-            ('t012c002_f', t012c002_f),
             ('t012c003_t', t012c003_t),
-            ('t012c003_m', t012c003_m),
-            ('t012c003_f', t012c003_f),
             ('t012c004_t', t012c004_t),
-            ('t012c004_m', t012c004_m),
-            ('t012c004_f', t012c004_f),
             ('t012c005_t', t012c005_t),
-            ('t012c005_m', t012c005_m),
-            ('t012c005_f', t012c005_f),
             ('t012c006_t', t012c006_t),
-            ('t012c006_m', t012c006_m),
-            ('t012c006_f', t012c006_f),
             ('t012c007_t', t012c007_t),
-            ('t012c007_m', t012c007_m),
-            ('t012c007_f', t012c007_f),
             ('t012c008_t', t012c008_t),
-            ('t012c008_m', t012c008_m),
-            ('t012c008_f', t012c008_f),
             ('t012c009_t', t012c009_t),
-            ('t012c009_m', t012c009_m),
-            ('t012c009_f', t012c009_f),
             ('t012c010_t', t012c010_t),
-            ('t012c010_m', t012c010_m),
-            ('t012c010_f', t012c010_f),
             ('t012c011_t', t012c011_t),
-            ('t012c011_m', t012c011_m),
-            ('t012c011_f', t012c011_f),
             ('t012c012_t', t012c012_t),
-            ('t012c012_m', t012c012_m),
-            ('t012c012_f', t012c012_f),
             ('t012c013_t', t012c013_t),
-            ('t012c013_m', t012c013_m),
-            ('t012c013_f', t012c013_f),
             ('t012c014_t', t012c014_t),
-            ('t012c014_m', t012c014_m),
-            ('t012c014_f', t012c014_f),
             ('t012c015_t', t012c015_t),
-            ('t012c015_m', t012c015_m),
-            ('t012c015_f', t012c015_f),
             ('t012c016_t', t012c016_t),
-            ('t012c016_m', t012c016_m),
-            ('t012c016_f', t012c016_f),
             ('t012c017_t', t012c017_t),
-            ('t012c017_m', t012c017_m),
-            ('t012c017_f', t012c017_f),
             ('t012c018_t', t012c018_t),
-            ('t012c018_m', t012c018_m),
-            ('t012c018_f', t012c018_f),
             ('t012c019_t', t012c019_t),
-            ('t012c019_m', t012c019_m),
-            ('t012c019_f', t012c019_f),
             ('t012c020_t', t012c020_t),
-            ('t012c020_m', t012c020_m),
-            ('t012c020_f', t012c020_f),
             ('t012c021_t', t012c021_t),
-            ('t012c021_m', t012c021_m),
-            ('t012c021_f', t012c021_f),
             ('t012c022_t', t012c022_t),
-            ('t012c022_m', t012c022_m),
-            ('t012c022_f', t012c022_f),
             ('t012c023_t', t012c023_t),
-            ('t012c023_m', t012c023_m),
-            ('t012c023_f', t012c023_f),
             ('t012c024_t', t012c024_t),
-            ('t012c024_m', t012c024_m),
-            ('t012c024_f', t012c024_f),
             ('t012c025_t', t012c025_t),
-            ('t012c025_m', t012c025_m),
-            ('t012c025_f', t012c025_f),
             ('t012c026_t', t012c026_t),
-            ('t012c026_m', t012c026_m),
-            ('t012c026_f', t012c026_f),
             ('t012c027_t', t012c027_t),
-            ('t012c027_m', t012c027_m),
-            ('t012c027_f', t012c027_f),
             ('t012c028_t', t012c028_t),
-            ('t012c028_m', t012c028_m),
-            ('t012c028_f', t012c028_f),
             ('t012c029_t', t012c029_t),
-            ('t012c029_m', t012c029_m),
-            ('t012c029_f', t012c029_f),
             ('t012c030_t', t012c030_t),
-            ('t012c030_m', t012c030_m),
-            ('t012c030_f', t012c030_f),
             ('t012c031_t', t012c031_t),
-            ('t012c031_m', t012c031_m),
-            ('t012c031_f', t012c031_f),
             ('t012c032_t', t012c032_t),
-            ('t012c032_m', t012c032_m),
-            ('t012c032_f', t012c032_f),
             ('t012c033_t', t012c033_t),
-            ('t012c033_m', t012c033_m),
-            ('t012c033_f', t012c033_f),
             ('t012c034_t', t012c034_t),
-            ('t012c034_m', t012c034_m),
-            ('t012c034_f', t012c034_f),
             ('t012c035_t', t012c035_t),
-            ('t012c035_m', t012c035_m),
-            ('t012c035_f', t012c035_f),
             ('t012c036_t', t012c036_t),
-            ('t012c036_m', t012c036_m),
-            ('t012c036_f', t012c036_f),
             ('t012c037_t', t012c037_t),
-            ('t012c037_m', t012c037_m),
-            ('t012c037_f', t012c037_f),
             ('t012c038_t', t012c038_t),
-            ('t012c038_m', t012c038_m),
-            ('t012c038_f', t012c038_f),
             ('t012c039_t', t012c039_t),
-            ('t012c039_m', t012c039_m),
-            ('t012c039_f', t012c039_f),
             ('t012c040_t', t012c040_t),
-            ('t012c040_m', t012c040_m),
-            ('t012c040_f', t012c040_f),
             ('t012c041_t', t012c041_t),
-            ('t012c041_m', t012c041_m),
-            ('t012c041_f', t012c041_f),
             ('t012c042_t', t012c042_t),
-            ('t012c042_m', t012c042_m),
-            ('t012c042_f', t012c042_f),
             ('t012c043_t', t012c043_t),
-            ('t012c043_m', t012c043_m),
-            ('t012c043_f', t012c043_f),
             ('t013c001_t', t013c001_t),
             ('t013c001_m', t013c001_m),
             ('t013c001_f', t013c001_f),
