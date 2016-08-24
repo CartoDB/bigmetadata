@@ -683,7 +683,7 @@ class CensusColumns(ColumnsTask):
             name='Median age of the population (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='median',
             tags=[ca, unit_years, subsections['age_gender']],
             targets={},)
 
@@ -692,7 +692,7 @@ class CensusColumns(ColumnsTask):
             name='Median age of the population (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='median',
             tags=[ca, unit_years, subsections['age_gender']],
             targets={},)
 
@@ -701,7 +701,7 @@ class CensusColumns(ColumnsTask):
             name='Median age of the population (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
+            aggregate='median',
             tags=[ca, unit_years, subsections['age_gender']],
             targets={},)
 
