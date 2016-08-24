@@ -20194,7 +20194,7 @@ class NHSColumns(ColumnsTask):
 
         t026c001_t = OBSColumn(
             id='t026c001_t',
-            name='Total number of owner and tenant households with household total income greater than zero, in non-farm, non-reserve private dwellings by shelter-cost-to-income ratio (total)',
+            name='Total number of owner and tenant households with household total income greater than zero, in non-farm, non-reserve private dwellings by shelter-cost-to-income ratio',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -20202,7 +20202,7 @@ class NHSColumns(ColumnsTask):
 
         t026c002_t = OBSColumn(
             id='t026c002_t',
-            name='Spending less than 30% of household total income on shelter costs (total)',
+            name='Spending less than 30% of household total income on shelter costs',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -20210,7 +20210,7 @@ class NHSColumns(ColumnsTask):
 
         t026c003_t = OBSColumn(
             id='t026c003_t',
-            name='Spending 30% or more of household total income on shelter costs (total)',
+            name='Spending 30% or more of household total income on shelter costs',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -20218,7 +20218,7 @@ class NHSColumns(ColumnsTask):
 
         t026c004_t = OBSColumn(
             id='t026c004_t',
-            name='Spending 30% to less than 100% of household total income on shelter costs (total)',
+            name='Spending 30% to less than 100% of household total income on shelter costs',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -20226,7 +20226,7 @@ class NHSColumns(ColumnsTask):
 
         t026c005_t = OBSColumn(
             id='t026c005_t',
-            name='Number of owner households in non-farm, non-reserve private dwellings (total)',
+            name='Number of owner households in non-farm, non-reserve private dwellings',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -20234,7 +20234,7 @@ class NHSColumns(ColumnsTask):
 
         t026c006_t = OBSColumn(
             id='t026c006_t',
-            name='% of owner households with a mortgage (total)',
+            name='% of owner households with a mortgage',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
@@ -20242,7 +20242,7 @@ class NHSColumns(ColumnsTask):
 
         t026c007_t = OBSColumn(
             id='t026c007_t',
-            name='% of owner households spending 30% or more of household total income on shelter costs (total)',
+            name='% of owner households spending 30% or more of household total income on shelter costs',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
@@ -20250,7 +20250,7 @@ class NHSColumns(ColumnsTask):
 
         t026c008_t = OBSColumn(
             id='t026c008_t',
-            name='Median monthly shelter costs for owned dwellings ($) (total)',
+            name='Median monthly shelter costs for owned dwellings ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['housing']],
@@ -20258,7 +20258,7 @@ class NHSColumns(ColumnsTask):
 
         t026c009_t = OBSColumn(
             id='t026c009_t',
-            name='Average monthly shelter costs for owned dwellings ($) (total)',
+            name='Average monthly shelter costs for owned dwellings ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['housing']],
@@ -20266,7 +20266,7 @@ class NHSColumns(ColumnsTask):
 
         t026c010_t = OBSColumn(
             id='t026c010_t',
-            name='Median value of dwellings ($) (total)',
+            name='Median value of dwellings ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['housing']],
@@ -20274,7 +20274,7 @@ class NHSColumns(ColumnsTask):
 
         t026c011_t = OBSColumn(
             id='t026c011_t',
-            name='Average value of dwellings ($) (total)',
+            name='Average value of dwellings ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['housing']],
@@ -20282,7 +20282,7 @@ class NHSColumns(ColumnsTask):
 
         t026c012_t = OBSColumn(
             id='t026c012_t',
-            name='Number of tenant households in non-farm, non-reserve private dwellings (total)',
+            name='Number of tenant households in non-farm, non-reserve private dwellings',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -20290,7 +20290,7 @@ class NHSColumns(ColumnsTask):
 
         t026c013_t = OBSColumn(
             id='t026c013_t',
-            name='% of tenant households in subsidized housing (total)',
+            name='% of tenant households in subsidized housing',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
@@ -20298,7 +20298,7 @@ class NHSColumns(ColumnsTask):
 
         t026c014_t = OBSColumn(
             id='t026c014_t',
-            name='% of tenant households spending 30% or more of household total income on shelter costs (total)',
+            name='% of tenant households spending 30% or more of household total income on shelter costs',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['housing']],
@@ -20306,7 +20306,7 @@ class NHSColumns(ColumnsTask):
 
         t026c015_t = OBSColumn(
             id='t026c015_t',
-            name='Median monthly shelter costs for rented dwellings ($) (total)',
+            name='Median monthly shelter costs for rented dwellings ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['housing']],
@@ -20314,7 +20314,7 @@ class NHSColumns(ColumnsTask):
 
         t026c016_t = OBSColumn(
             id='t026c016_t',
-            name='Average monthly shelter costs for rented dwellings ($) (total)',
+            name='Average monthly shelter costs for rented dwellings ($)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_money, subsections['housing']],
