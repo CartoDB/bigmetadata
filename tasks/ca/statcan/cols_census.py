@@ -9264,23 +9264,7 @@ class CensusColumns(ColumnsTask):
 
         t007c007_t = OBSColumn(
             id='t007c007_t',
-            name='Average number of persons per census family (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={},)
-
-        t007c007_m = OBSColumn(
-            id='t007c007_m',
-            name='Average number of persons per census family (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_people, subsections['housing']],
-            targets={},)
-
-        t007c007_f = OBSColumn(
-            id='t007c007_f',
-            name='Average number of persons per census family (female)',
+            name='Average number of persons per census family',
             type='Numeric',
             weight=3,
             tags=[ca, unit_people, subsections['housing']],
@@ -11954,8 +11938,6 @@ class CensusColumns(ColumnsTask):
             ('t007c006_m', t007c006_m),
             ('t007c006_f', t007c006_f),
             ('t007c007_t', t007c007_t),
-            ('t007c007_m', t007c007_m),
-            ('t007c007_f', t007c007_f),
             ('t007c008_t', t007c008_t),
             ('t007c008_m', t007c008_m),
             ('t007c008_f', t007c008_f),
