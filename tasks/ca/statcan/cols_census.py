@@ -59,7 +59,7 @@ class CensusColumns(ColumnsTask):
 
         t001c002_t = OBSColumn(
             id='t001c002_t',
-            name='0 to 4 years (total)',
+            name='Population - 0 to 4 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -68,7 +68,7 @@ class CensusColumns(ColumnsTask):
 
         t001c002_m = OBSColumn(
             id='t001c002_m',
-            name='0 to 4 years (male)',
+            name='Population - 0 to 4 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -77,7 +77,7 @@ class CensusColumns(ColumnsTask):
 
         t001c002_f = OBSColumn(
             id='t001c002_f',
-            name='0 to 4 years (female)',
+            name='Population - 0 to 4 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -86,7 +86,7 @@ class CensusColumns(ColumnsTask):
 
         t001c003_t = OBSColumn(
             id='t001c003_t',
-            name='5 to 9 years (total)',
+            name='Population - 5 to 9 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -95,7 +95,7 @@ class CensusColumns(ColumnsTask):
 
         t001c003_m = OBSColumn(
             id='t001c003_m',
-            name='5 to 9 years (male)',
+            name='Population - 5 to 9 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -104,7 +104,7 @@ class CensusColumns(ColumnsTask):
 
         t001c003_f = OBSColumn(
             id='t001c003_f',
-            name='5 to 9 years (female)',
+            name='Population - 5 to 9 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -113,7 +113,7 @@ class CensusColumns(ColumnsTask):
 
         t001c004_t = OBSColumn(
             id='t001c004_t',
-            name='10 to 14 years (total)',
+            name='Population - 10 to 14 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -122,7 +122,7 @@ class CensusColumns(ColumnsTask):
 
         t001c004_m = OBSColumn(
             id='t001c004_m',
-            name='10 to 14 years (male)',
+            name='Population - 10 to 14 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -131,7 +131,7 @@ class CensusColumns(ColumnsTask):
 
         t001c004_f = OBSColumn(
             id='t001c004_f',
-            name='10 to 14 years (female)',
+            name='Population - 10 to 14 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -140,7 +140,7 @@ class CensusColumns(ColumnsTask):
 
         t001c005_t = OBSColumn(
             id='t001c005_t',
-            name='15 to 19 years (total)',
+            name='Population - 15 to 19 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -149,7 +149,7 @@ class CensusColumns(ColumnsTask):
 
         t001c005_m = OBSColumn(
             id='t001c005_m',
-            name='15 to 19 years (male)',
+            name='Population - 15 to 19 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -158,7 +158,7 @@ class CensusColumns(ColumnsTask):
 
         t001c005_f = OBSColumn(
             id='t001c005_f',
-            name='15 to 19 years (female)',
+            name='Population - 15 to 19 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -167,7 +167,7 @@ class CensusColumns(ColumnsTask):
 
         t001c006_t = OBSColumn(
             id='t001c006_t',
-            name='15 years (total)',
+            name='Population - 15 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -176,7 +176,7 @@ class CensusColumns(ColumnsTask):
 
         t001c006_m = OBSColumn(
             id='t001c006_m',
-            name='15 years (male)',
+            name='Population - 15 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -185,7 +185,7 @@ class CensusColumns(ColumnsTask):
 
         t001c006_f = OBSColumn(
             id='t001c006_f',
-            name='15 years (female)',
+            name='Population - 15 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -194,7 +194,7 @@ class CensusColumns(ColumnsTask):
 
         t001c007_t = OBSColumn(
             id='t001c007_t',
-            name='16 years (total)',
+            name='Population - 16 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -203,7 +203,7 @@ class CensusColumns(ColumnsTask):
 
         t001c007_m = OBSColumn(
             id='t001c007_m',
-            name='16 years (male)',
+            name='Population - 16 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -212,7 +212,7 @@ class CensusColumns(ColumnsTask):
 
         t001c007_f = OBSColumn(
             id='t001c007_f',
-            name='16 years (female)',
+            name='Population - 16 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -221,7 +221,7 @@ class CensusColumns(ColumnsTask):
 
         t001c008_t = OBSColumn(
             id='t001c008_t',
-            name='17 years (total)',
+            name='Population - 17 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -230,7 +230,7 @@ class CensusColumns(ColumnsTask):
 
         t001c008_m = OBSColumn(
             id='t001c008_m',
-            name='17 years (male)',
+            name='Population - 17 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -239,7 +239,7 @@ class CensusColumns(ColumnsTask):
 
         t001c008_f = OBSColumn(
             id='t001c008_f',
-            name='17 years (female)',
+            name='Population - 17 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -248,7 +248,7 @@ class CensusColumns(ColumnsTask):
 
         t001c009_t = OBSColumn(
             id='t001c009_t',
-            name='18 years (total)',
+            name='Population - 18 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -257,7 +257,7 @@ class CensusColumns(ColumnsTask):
 
         t001c009_m = OBSColumn(
             id='t001c009_m',
-            name='18 years (male)',
+            name='Population - 18 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -266,7 +266,7 @@ class CensusColumns(ColumnsTask):
 
         t001c009_f = OBSColumn(
             id='t001c009_f',
-            name='18 years (female)',
+            name='Population - 18 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -275,7 +275,7 @@ class CensusColumns(ColumnsTask):
 
         t001c010_t = OBSColumn(
             id='t001c010_t',
-            name='19 years (total)',
+            name='Population - 19 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -284,7 +284,7 @@ class CensusColumns(ColumnsTask):
 
         t001c010_m = OBSColumn(
             id='t001c010_m',
-            name='19 years (male)',
+            name='Population - 19 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -293,7 +293,7 @@ class CensusColumns(ColumnsTask):
 
         t001c010_f = OBSColumn(
             id='t001c010_f',
-            name='19 years (female)',
+            name='Population - 19 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -302,7 +302,7 @@ class CensusColumns(ColumnsTask):
 
         t001c011_t = OBSColumn(
             id='t001c011_t',
-            name='20 to 24 years (total)',
+            name='Population - 20 to 24 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -311,7 +311,7 @@ class CensusColumns(ColumnsTask):
 
         t001c011_m = OBSColumn(
             id='t001c011_m',
-            name='20 to 24 years (male)',
+            name='Population - 20 to 24 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -320,7 +320,7 @@ class CensusColumns(ColumnsTask):
 
         t001c011_f = OBSColumn(
             id='t001c011_f',
-            name='20 to 24 years (female)',
+            name='Population - 20 to 24 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -329,7 +329,7 @@ class CensusColumns(ColumnsTask):
 
         t001c012_t = OBSColumn(
             id='t001c012_t',
-            name='25 to 29 years (total)',
+            name='Population - 25 to 29 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -338,7 +338,7 @@ class CensusColumns(ColumnsTask):
 
         t001c012_m = OBSColumn(
             id='t001c012_m',
-            name='25 to 29 years (male)',
+            name='Population - 25 to 29 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -347,7 +347,7 @@ class CensusColumns(ColumnsTask):
 
         t001c012_f = OBSColumn(
             id='t001c012_f',
-            name='25 to 29 years (female)',
+            name='Population - 25 to 29 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -356,7 +356,7 @@ class CensusColumns(ColumnsTask):
 
         t001c013_t = OBSColumn(
             id='t001c013_t',
-            name='30 to 34 years (total)',
+            name='Population - 30 to 34 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -365,7 +365,7 @@ class CensusColumns(ColumnsTask):
 
         t001c013_m = OBSColumn(
             id='t001c013_m',
-            name='30 to 34 years (male)',
+            name='Population - 30 to 34 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -374,7 +374,7 @@ class CensusColumns(ColumnsTask):
 
         t001c013_f = OBSColumn(
             id='t001c013_f',
-            name='30 to 34 years (female)',
+            name='Population - 30 to 34 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -383,7 +383,7 @@ class CensusColumns(ColumnsTask):
 
         t001c014_t = OBSColumn(
             id='t001c014_t',
-            name='35 to 39 years (total)',
+            name='Population - 35 to 39 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -392,7 +392,7 @@ class CensusColumns(ColumnsTask):
 
         t001c014_m = OBSColumn(
             id='t001c014_m',
-            name='35 to 39 years (male)',
+            name='Population - 35 to 39 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -401,7 +401,7 @@ class CensusColumns(ColumnsTask):
 
         t001c014_f = OBSColumn(
             id='t001c014_f',
-            name='35 to 39 years (female)',
+            name='Population - 35 to 39 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -410,7 +410,7 @@ class CensusColumns(ColumnsTask):
 
         t001c015_t = OBSColumn(
             id='t001c015_t',
-            name='40 to 44 years (total)',
+            name='Population - 40 to 44 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -419,7 +419,7 @@ class CensusColumns(ColumnsTask):
 
         t001c015_m = OBSColumn(
             id='t001c015_m',
-            name='40 to 44 years (male)',
+            name='Population - 40 to 44 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -428,7 +428,7 @@ class CensusColumns(ColumnsTask):
 
         t001c015_f = OBSColumn(
             id='t001c015_f',
-            name='40 to 44 years (female)',
+            name='Population - 40 to 44 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -437,7 +437,7 @@ class CensusColumns(ColumnsTask):
 
         t001c016_t = OBSColumn(
             id='t001c016_t',
-            name='45 to 49 years (total)',
+            name='Population - 45 to 49 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -446,7 +446,7 @@ class CensusColumns(ColumnsTask):
 
         t001c016_m = OBSColumn(
             id='t001c016_m',
-            name='45 to 49 years (male)',
+            name='Population - 45 to 49 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -455,7 +455,7 @@ class CensusColumns(ColumnsTask):
 
         t001c016_f = OBSColumn(
             id='t001c016_f',
-            name='45 to 49 years (female)',
+            name='Population - 45 to 49 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -464,7 +464,7 @@ class CensusColumns(ColumnsTask):
 
         t001c017_t = OBSColumn(
             id='t001c017_t',
-            name='50 to 54 years (total)',
+            name='Population - 50 to 54 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -473,7 +473,7 @@ class CensusColumns(ColumnsTask):
 
         t001c017_m = OBSColumn(
             id='t001c017_m',
-            name='50 to 54 years (male)',
+            name='Population - 50 to 54 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -482,7 +482,7 @@ class CensusColumns(ColumnsTask):
 
         t001c017_f = OBSColumn(
             id='t001c017_f',
-            name='50 to 54 years (female)',
+            name='Population - 50 to 54 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -491,7 +491,7 @@ class CensusColumns(ColumnsTask):
 
         t001c018_t = OBSColumn(
             id='t001c018_t',
-            name='55 to 59 years (total)',
+            name='Population - 55 to 59 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -500,7 +500,7 @@ class CensusColumns(ColumnsTask):
 
         t001c018_m = OBSColumn(
             id='t001c018_m',
-            name='55 to 59 years (male)',
+            name='Population - 55 to 59 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -509,7 +509,7 @@ class CensusColumns(ColumnsTask):
 
         t001c018_f = OBSColumn(
             id='t001c018_f',
-            name='55 to 59 years (female)',
+            name='Population - 55 to 59 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -518,7 +518,7 @@ class CensusColumns(ColumnsTask):
 
         t001c019_t = OBSColumn(
             id='t001c019_t',
-            name='60 to 64 years (total)',
+            name='Population - 60 to 64 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -527,7 +527,7 @@ class CensusColumns(ColumnsTask):
 
         t001c019_m = OBSColumn(
             id='t001c019_m',
-            name='60 to 64 years (male)',
+            name='Population - 60 to 64 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -536,7 +536,7 @@ class CensusColumns(ColumnsTask):
 
         t001c019_f = OBSColumn(
             id='t001c019_f',
-            name='60 to 64 years (female)',
+            name='Population - 60 to 64 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -545,7 +545,7 @@ class CensusColumns(ColumnsTask):
 
         t001c020_t = OBSColumn(
             id='t001c020_t',
-            name='65 to 69 years (total)',
+            name='Population - 65 to 69 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -554,7 +554,7 @@ class CensusColumns(ColumnsTask):
 
         t001c020_m = OBSColumn(
             id='t001c020_m',
-            name='65 to 69 years (male)',
+            name='Population - 65 to 69 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -563,7 +563,7 @@ class CensusColumns(ColumnsTask):
 
         t001c020_f = OBSColumn(
             id='t001c020_f',
-            name='65 to 69 years (female)',
+            name='Population - 65 to 69 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -572,7 +572,7 @@ class CensusColumns(ColumnsTask):
 
         t001c021_t = OBSColumn(
             id='t001c021_t',
-            name='70 to 74 years (total)',
+            name='Population - 70 to 74 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -581,7 +581,7 @@ class CensusColumns(ColumnsTask):
 
         t001c021_m = OBSColumn(
             id='t001c021_m',
-            name='70 to 74 years (male)',
+            name='Population - 70 to 74 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -590,7 +590,7 @@ class CensusColumns(ColumnsTask):
 
         t001c021_f = OBSColumn(
             id='t001c021_f',
-            name='70 to 74 years (female)',
+            name='Population - 70 to 74 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -599,7 +599,7 @@ class CensusColumns(ColumnsTask):
 
         t001c022_t = OBSColumn(
             id='t001c022_t',
-            name='75 to 79 years (total)',
+            name='Population - 75 to 79 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -608,7 +608,7 @@ class CensusColumns(ColumnsTask):
 
         t001c022_m = OBSColumn(
             id='t001c022_m',
-            name='75 to 79 years (male)',
+            name='Population - 75 to 79 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -617,7 +617,7 @@ class CensusColumns(ColumnsTask):
 
         t001c022_f = OBSColumn(
             id='t001c022_f',
-            name='75 to 79 years (female)',
+            name='Population - 75 to 79 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -626,7 +626,7 @@ class CensusColumns(ColumnsTask):
 
         t001c023_t = OBSColumn(
             id='t001c023_t',
-            name='80 to 84 years (total)',
+            name='Population - 80 to 84 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -635,7 +635,7 @@ class CensusColumns(ColumnsTask):
 
         t001c023_m = OBSColumn(
             id='t001c023_m',
-            name='80 to 84 years (male)',
+            name='Population - 80 to 84 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -644,7 +644,7 @@ class CensusColumns(ColumnsTask):
 
         t001c023_f = OBSColumn(
             id='t001c023_f',
-            name='80 to 84 years (female)',
+            name='Population - 80 to 84 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -653,7 +653,7 @@ class CensusColumns(ColumnsTask):
 
         t001c024_t = OBSColumn(
             id='t001c024_t',
-            name='85 years and over (total)',
+            name='Population - 85 years and over (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -662,7 +662,7 @@ class CensusColumns(ColumnsTask):
 
         t001c024_m = OBSColumn(
             id='t001c024_m',
-            name='85 years and over (male)',
+            name='Population - 85 years and over (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -671,7 +671,7 @@ class CensusColumns(ColumnsTask):
 
         t001c024_f = OBSColumn(
             id='t001c024_f',
-            name='85 years and over (female)',
+            name='Population - 85 years and over (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
