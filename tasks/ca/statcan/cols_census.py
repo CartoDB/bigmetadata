@@ -9792,15 +9792,6 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
-        t005c006_t = OBSColumn(
-            id='t005c006_t',
-            name='Total number of census families in private households',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
-            targets={},)
-
         t005c007_t = OBSColumn(
             id='t005c007_t',
             name='Total couple families by family structure and number of children',
@@ -9808,7 +9799,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
-            targets={ t005c006_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c008_t = OBSColumn(
             id='t005c008_t',
@@ -9925,7 +9916,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t005c006_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c021_t = OBSColumn(
             id='t005c021_t',
@@ -12422,7 +12413,6 @@ class CensusColumns(ColumnsTask):
             ('t005c003_t', t005c003_t),
             ('t005c004_t', t005c004_t),
             ('t005c005_t', t005c005_t),
-            ('t005c006_t', t005c006_t),
             ('t005c007_t', t005c007_t),
             ('t005c008_t', t005c008_t),
             ('t005c009_t', t005c009_t),
