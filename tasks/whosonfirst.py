@@ -69,6 +69,7 @@ class WOFColumns(ColumnsTask):
         geom_names = {
             'continent': 'Continents',
             'country': 'Countries',
+            'county': 'Counties',
             'disputed': 'Disputed Areas',
             'marinearea': 'Marine Areas',
             'region': 'Regions (First-level Administrative)',
@@ -169,6 +170,6 @@ class AllWOF(WrapperTask):
 
     def requires(self):
         for resolution in ('continent', 'country', 'disputed', 'marinearea',
-                           'region', ):
+                           'region', 'county', ):
             yield WOFColumns(resolution=resolution)
             yield WOF(resolution=resolution)
