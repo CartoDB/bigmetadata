@@ -3726,33 +3726,6 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c107_f: DENOMINATOR },)
 
-        t003c001_t = OBSColumn(
-            id='t003c001_t',
-            name='Total population excluding institutional residents (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
-        t003c001_m = OBSColumn(
-            id='t003c001_m',
-            name='Total population excluding institutional residents (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
-        t003c001_f = OBSColumn(
-            id='t003c001_f',
-            name='Total population excluding institutional residents (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
         t003c002_t = OBSColumn(
             id='t003c002_t',
             name='Detailed mother tongue - Single responses (total)',
@@ -3760,7 +3733,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t003c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t003c002_m = OBSColumn(
             id='t003c002_m',
@@ -3769,7 +3742,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t003c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t003c002_f = OBSColumn(
             id='t003c002_f',
@@ -3778,7 +3751,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t003c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t003c003_t = OBSColumn(
             id='t003c003_t',
@@ -6595,7 +6568,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t003c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t003c107_m = OBSColumn(
             id='t003c107_m',
@@ -6604,7 +6577,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t003c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t003c107_f = OBSColumn(
             id='t003c107_f',
@@ -6613,7 +6586,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t003c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t003c108_t = OBSColumn(
             id='t003c108_t',
@@ -6723,33 +6696,6 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t003c107_f: DENOMINATOR },)
 
-        t004c001_t = OBSColumn(
-            id='t004c001_t',
-            name='Total population excluding institutional residents (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
-        t004c001_m = OBSColumn(
-            id='t004c001_m',
-            name='Total population excluding institutional residents (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
-        t004c001_f = OBSColumn(
-            id='t004c001_f',
-            name='Total population excluding institutional residents (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
         t004c002_t = OBSColumn(
             id='t004c002_t',
             name='Detailed other language spoken regularly at home - None (total)',
@@ -6757,7 +6703,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t004c002_m = OBSColumn(
             id='t004c002_m',
@@ -6766,7 +6712,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t004c002_f = OBSColumn(
             id='t004c002_f',
@@ -6775,7 +6721,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t004c003_t = OBSColumn(
             id='t004c003_t',
@@ -6784,7 +6730,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t004c003_m = OBSColumn(
             id='t004c003_m',
@@ -6793,7 +6739,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t004c003_f = OBSColumn(
             id='t004c003_f',
@@ -6802,7 +6748,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t004c004_t = OBSColumn(
             id='t004c004_t',
@@ -9619,7 +9565,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t004c108_m = OBSColumn(
             id='t004c108_m',
@@ -9628,7 +9574,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t004c108_f = OBSColumn(
             id='t004c108_f',
@@ -9637,7 +9583,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t004c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t004c109_t = OBSColumn(
             id='t004c109_t',
@@ -10053,33 +9999,6 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
-        t006c001_t = OBSColumn(
-            id='t006c001_t',
-            name='Total population excluding institutional residents (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
-        t006c001_m = OBSColumn(
-            id='t006c001_m',
-            name='Total population excluding institutional residents (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
-        t006c001_f = OBSColumn(
-            id='t006c001_f',
-            name='Total population excluding institutional residents (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
         t006c002_t = OBSColumn(
             id='t006c002_t',
             name='First official language spoken - English (total)',
@@ -10087,7 +10006,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t006c002_m = OBSColumn(
             id='t006c002_m',
@@ -10096,7 +10015,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t006c002_f = OBSColumn(
             id='t006c002_f',
@@ -10105,7 +10024,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t006c003_t = OBSColumn(
             id='t006c003_t',
@@ -10114,7 +10033,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t006c003_m = OBSColumn(
             id='t006c003_m',
@@ -10123,7 +10042,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t006c003_f = OBSColumn(
             id='t006c003_f',
@@ -10132,7 +10051,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t006c004_t = OBSColumn(
             id='t006c004_t',
@@ -10141,7 +10060,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t006c004_m = OBSColumn(
             id='t006c004_m',
@@ -10150,7 +10069,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t006c004_f = OBSColumn(
             id='t006c004_f',
@@ -10159,7 +10078,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t006c005_t = OBSColumn(
             id='t006c005_t',
@@ -10168,7 +10087,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t006c005_m = OBSColumn(
             id='t006c005_m',
@@ -10177,7 +10096,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t006c005_f = OBSColumn(
             id='t006c005_f',
@@ -10186,7 +10105,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t006c006_t = OBSColumn(
             id='t006c006_t',
@@ -10878,33 +10797,6 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_households, subsections['housing']],
             targets={},)
 
-        t008c001_t = OBSColumn(
-            id='t008c001_t',
-            name='Total population excluding institutional residents (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
-        t008c001_m = OBSColumn(
-            id='t008c001_m',
-            name='Total population excluding institutional residents (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
-        t008c001_f = OBSColumn(
-            id='t008c001_f',
-            name='Total population excluding institutional residents (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
-            targets={},)
-
         t008c002_t = OBSColumn(
             id='t008c002_t',
             name='Knowledge of official languages - English only (total)',
@@ -10912,7 +10804,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t008c002_m = OBSColumn(
             id='t008c002_m',
@@ -10921,7 +10813,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t008c002_f = OBSColumn(
             id='t008c002_f',
@@ -10930,7 +10822,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t008c003_t = OBSColumn(
             id='t008c003_t',
@@ -10939,7 +10831,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t008c003_m = OBSColumn(
             id='t008c003_m',
@@ -10948,7 +10840,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t008c003_f = OBSColumn(
             id='t008c003_f',
@@ -10957,7 +10849,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t008c004_t = OBSColumn(
             id='t008c004_t',
@@ -10966,7 +10858,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t008c004_m = OBSColumn(
             id='t008c004_m',
@@ -10975,7 +10867,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t008c004_f = OBSColumn(
             id='t008c004_f',
@@ -10984,7 +10876,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t008c005_t = OBSColumn(
             id='t008c005_t',
@@ -10993,7 +10885,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_t: DENOMINATOR },)
+            targets={ t002c001_t: DENOMINATOR },)
 
         t008c005_m = OBSColumn(
             id='t008c005_m',
@@ -11002,7 +10894,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_m: DENOMINATOR },)
+            targets={ t002c001_m: DENOMINATOR },)
 
         t008c005_f = OBSColumn(
             id='t008c005_f',
@@ -11011,7 +10903,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['language']],
-            targets={ t008c001_f: DENOMINATOR },)
+            targets={ t002c001_f: DENOMINATOR },)
 
         t009c001_t = OBSColumn(
             id='t009c001_t',
@@ -11721,9 +11613,6 @@ class CensusColumns(ColumnsTask):
             ('t002c111_t', t002c111_t),
             ('t002c111_m', t002c111_m),
             ('t002c111_f', t002c111_f),
-            ('t003c001_t', t003c001_t),
-            ('t003c001_m', t003c001_m),
-            ('t003c001_f', t003c001_f),
             ('t003c002_t', t003c002_t),
             ('t003c002_m', t003c002_m),
             ('t003c002_f', t003c002_f),
@@ -12054,9 +11943,6 @@ class CensusColumns(ColumnsTask):
             ('t003c111_t', t003c111_t),
             ('t003c111_m', t003c111_m),
             ('t003c111_f', t003c111_f),
-            ('t004c001_t', t004c001_t),
-            ('t004c001_m', t004c001_m),
-            ('t004c001_f', t004c001_f),
             ('t004c002_t', t004c002_t),
             ('t004c002_m', t004c002_m),
             ('t004c002_f', t004c002_f),
@@ -12424,9 +12310,6 @@ class CensusColumns(ColumnsTask):
             ('t005c033_t', t005c033_t),
             ('t005c034_t', t005c034_t),
             ('t005c035_t', t005c035_t),
-            ('t006c001_t', t006c001_t),
-            ('t006c001_m', t006c001_m),
-            ('t006c001_f', t006c001_f),
             ('t006c002_t', t006c002_t),
             ('t006c002_m', t006c002_m),
             ('t006c002_f', t006c002_f),
@@ -12516,9 +12399,6 @@ class CensusColumns(ColumnsTask):
             ('t007c047_t', t007c047_t),
             ('t007c048_t', t007c048_t),
             ('t007c049_t', t007c049_t),
-            ('t008c001_t', t008c001_t),
-            ('t008c001_m', t008c001_m),
-            ('t008c001_f', t008c001_f),
             ('t008c002_t', t008c002_t),
             ('t008c002_m', t008c002_m),
             ('t008c002_f', t008c002_f),
