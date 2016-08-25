@@ -32,7 +32,7 @@ class CensusColumns(ColumnsTask):
 
         t001c001_t = OBSColumn(
             id='t001c001_t',
-            name='Total population by age groups (total)',
+            name='Total population (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -41,7 +41,7 @@ class CensusColumns(ColumnsTask):
 
         t001c001_m = OBSColumn(
             id='t001c001_m',
-            name='Total population by age groups (male)',
+            name='Total population (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -50,7 +50,7 @@ class CensusColumns(ColumnsTask):
 
         t001c001_f = OBSColumn(
             id='t001c001_f',
-            name='Total population by age groups (female)',
+            name='Total population (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11283,15 +11283,6 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['families']],
             targets={ t009c005_f: DENOMINATOR },)
 
-        t010c001_t = OBSColumn(
-            id='t010c001_t',
-            name='Population in 2011',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['segments']],
-            targets={},)
-
         t010c002_t = OBSColumn(
             id='t010c002_t',
             name='Population in 2006',
@@ -12597,7 +12588,6 @@ class CensusColumns(ColumnsTask):
             ('t009c009_t', t009c009_t),
             ('t009c009_m', t009c009_m),
             ('t009c009_f', t009c009_f),
-            ('t010c001_t', t010c001_t),
             ('t010c002_t', t010c002_t),
             ('t010c003_t', t010c003_t),
             ('t010c004_t', t010c004_t),
