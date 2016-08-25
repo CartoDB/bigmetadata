@@ -10064,7 +10064,7 @@ class CensusColumns(ColumnsTask):
 
         t006c001_t = OBSColumn(
             id='t006c001_t',
-            name='First official language spoken - Total population excluding institutional residents (total)',
+            name='Total population excluding institutional residents (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10073,7 +10073,7 @@ class CensusColumns(ColumnsTask):
 
         t006c001_m = OBSColumn(
             id='t006c001_m',
-            name='First official language spoken - Total population excluding institutional residents (male)',
+            name='Total population excluding institutional residents (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10082,7 +10082,7 @@ class CensusColumns(ColumnsTask):
 
         t006c001_f = OBSColumn(
             id='t006c001_f',
-            name='First official language spoken - Total population excluding institutional residents (female)',
+            name='Total population excluding institutional residents (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10091,7 +10091,7 @@ class CensusColumns(ColumnsTask):
 
         t006c002_t = OBSColumn(
             id='t006c002_t',
-            name='English (total)',
+            name='First official language spoken - English (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10100,7 +10100,7 @@ class CensusColumns(ColumnsTask):
 
         t006c002_m = OBSColumn(
             id='t006c002_m',
-            name='English (male)',
+            name='First official language spoken - English (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10109,7 +10109,7 @@ class CensusColumns(ColumnsTask):
 
         t006c002_f = OBSColumn(
             id='t006c002_f',
-            name='English (female)',
+            name='First official language spoken - English (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10118,7 +10118,7 @@ class CensusColumns(ColumnsTask):
 
         t006c003_t = OBSColumn(
             id='t006c003_t',
-            name='French (total)',
+            name='First official language spoken - French (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10127,7 +10127,7 @@ class CensusColumns(ColumnsTask):
 
         t006c003_m = OBSColumn(
             id='t006c003_m',
-            name='French (male)',
+            name='First official language spoken - French (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10136,7 +10136,7 @@ class CensusColumns(ColumnsTask):
 
         t006c003_f = OBSColumn(
             id='t006c003_f',
-            name='French (female)',
+            name='First official language spoken - French (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10145,7 +10145,7 @@ class CensusColumns(ColumnsTask):
 
         t006c004_t = OBSColumn(
             id='t006c004_t',
-            name='English and French (total)',
+            name='First official language spoken - English and French (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10154,7 +10154,7 @@ class CensusColumns(ColumnsTask):
 
         t006c004_m = OBSColumn(
             id='t006c004_m',
-            name='English and French (male)',
+            name='First official language spoken - English and French (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10163,7 +10163,7 @@ class CensusColumns(ColumnsTask):
 
         t006c004_f = OBSColumn(
             id='t006c004_f',
-            name='English and French (female)',
+            name='First official language spoken - English and French (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10172,7 +10172,7 @@ class CensusColumns(ColumnsTask):
 
         t006c005_t = OBSColumn(
             id='t006c005_t',
-            name='Neither English nor French (total)',
+            name='First official language spoken - Neither English nor French (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10181,7 +10181,7 @@ class CensusColumns(ColumnsTask):
 
         t006c005_m = OBSColumn(
             id='t006c005_m',
-            name='Neither English nor French (male)',
+            name='First official language spoken - Neither English nor French (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10190,7 +10190,7 @@ class CensusColumns(ColumnsTask):
 
         t006c005_f = OBSColumn(
             id='t006c005_f',
-            name='Neither English nor French (female)',
+            name='First official language spoken - Neither English nor French (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10907,7 +10907,7 @@ class CensusColumns(ColumnsTask):
 
         t008c001_t = OBSColumn(
             id='t008c001_t',
-            name='Knowledge of official languages - Total population excluding institutional residents (total)',
+            name='Total population excluding institutional residents (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10916,7 +10916,7 @@ class CensusColumns(ColumnsTask):
 
         t008c001_m = OBSColumn(
             id='t008c001_m',
-            name='Knowledge of official languages - Total population excluding institutional residents (male)',
+            name='Total population excluding institutional residents (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10925,7 +10925,7 @@ class CensusColumns(ColumnsTask):
 
         t008c001_f = OBSColumn(
             id='t008c001_f',
-            name='Knowledge of official languages - Total population excluding institutional residents (female)',
+            name='Total population excluding institutional residents (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10934,7 +10934,7 @@ class CensusColumns(ColumnsTask):
 
         t008c002_t = OBSColumn(
             id='t008c002_t',
-            name='English only (total)',
+            name='Knowledge of official languages - English only (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10943,7 +10943,7 @@ class CensusColumns(ColumnsTask):
 
         t008c002_m = OBSColumn(
             id='t008c002_m',
-            name='English only (male)',
+            name='Knowledge of official languages - English only (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10952,7 +10952,7 @@ class CensusColumns(ColumnsTask):
 
         t008c002_f = OBSColumn(
             id='t008c002_f',
-            name='English only (female)',
+            name='Knowledge of official languages - English only (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10961,7 +10961,7 @@ class CensusColumns(ColumnsTask):
 
         t008c003_t = OBSColumn(
             id='t008c003_t',
-            name='French only (total)',
+            name='Knowledge of official languages - French only (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10970,7 +10970,7 @@ class CensusColumns(ColumnsTask):
 
         t008c003_m = OBSColumn(
             id='t008c003_m',
-            name='French only (male)',
+            name='Knowledge of official languages - French only (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10979,7 +10979,7 @@ class CensusColumns(ColumnsTask):
 
         t008c003_f = OBSColumn(
             id='t008c003_f',
-            name='French only (female)',
+            name='Knowledge of official languages - French only (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10988,7 +10988,7 @@ class CensusColumns(ColumnsTask):
 
         t008c004_t = OBSColumn(
             id='t008c004_t',
-            name='English and French (total)',
+            name='Knowledge of official languages - English and French (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10997,7 +10997,7 @@ class CensusColumns(ColumnsTask):
 
         t008c004_m = OBSColumn(
             id='t008c004_m',
-            name='English and French (male)',
+            name='Knowledge of official languages - English and French (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11006,7 +11006,7 @@ class CensusColumns(ColumnsTask):
 
         t008c004_f = OBSColumn(
             id='t008c004_f',
-            name='English and French (female)',
+            name='Knowledge of official languages - English and French (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11015,7 +11015,7 @@ class CensusColumns(ColumnsTask):
 
         t008c005_t = OBSColumn(
             id='t008c005_t',
-            name='Neither English nor French (total)',
+            name='Knowledge of official languages - Neither English nor French (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11024,7 +11024,7 @@ class CensusColumns(ColumnsTask):
 
         t008c005_m = OBSColumn(
             id='t008c005_m',
-            name='Neither English nor French (male)',
+            name='Knowledge of official languages - Neither English nor French (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11033,7 +11033,7 @@ class CensusColumns(ColumnsTask):
 
         t008c005_f = OBSColumn(
             id='t008c005_f',
-            name='Neither English nor French (female)',
+            name='Knowledge of official languages - Neither English nor French (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
