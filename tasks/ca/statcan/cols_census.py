@@ -6725,7 +6725,7 @@ class CensusColumns(ColumnsTask):
 
         t004c001_t = OBSColumn(
             id='t004c001_t',
-            name='Detailed other language spoken regularly at home - Total population excluding institutional residents (total)',
+            name='Total population excluding institutional residents (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6734,7 +6734,7 @@ class CensusColumns(ColumnsTask):
 
         t004c001_m = OBSColumn(
             id='t004c001_m',
-            name='Detailed other language spoken regularly at home - Total population excluding institutional residents (male)',
+            name='Total population excluding institutional residents (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6743,7 +6743,7 @@ class CensusColumns(ColumnsTask):
 
         t004c001_f = OBSColumn(
             id='t004c001_f',
-            name='Detailed other language spoken regularly at home - Total population excluding institutional residents (female)',
+            name='Total population excluding institutional residents (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6752,7 +6752,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_t = OBSColumn(
             id='t004c002_t',
-            name='None (total)',
+            name='Detailed other language spoken regularly at home - None (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6761,7 +6761,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_m = OBSColumn(
             id='t004c002_m',
-            name='None (male)',
+            name='Detailed other language spoken regularly at home - None (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6770,7 +6770,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_f = OBSColumn(
             id='t004c002_f',
-            name='None (female)',
+            name='Detailed other language spoken regularly at home - None (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6779,7 +6779,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_t = OBSColumn(
             id='t004c003_t',
-            name='Single responses (total)',
+            name='Detailed other language spoken regularly at home - Single responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6788,7 +6788,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_m = OBSColumn(
             id='t004c003_m',
-            name='Single responses (male)',
+            name='Detailed other language spoken regularly at home - Single responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6797,7 +6797,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_f = OBSColumn(
             id='t004c003_f',
-            name='Single responses (female)',
+            name='Detailed other language spoken regularly at home - Single responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9614,7 +9614,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_t = OBSColumn(
             id='t004c108_t',
-            name='Multiple responses (total)',
+            name='Detailed other language spoken regularly at home - Multiple responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9623,7 +9623,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_m = OBSColumn(
             id='t004c108_m',
-            name='Multiple responses (male)',
+            name='Detailed other language spoken regularly at home - Multiple responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9632,7 +9632,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_f = OBSColumn(
             id='t004c108_f',
-            name='Multiple responses (female)',
+            name='Detailed other language spoken regularly at home - Multiple responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
