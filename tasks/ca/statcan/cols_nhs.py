@@ -709,7 +709,7 @@ class NHSColumns(ColumnsTask):
 
         t004c001_t = OBSColumn(
             id='t004c001_t',
-            name='Total labour force aged 15 years and over by class of worker (total)',
+            name='Total labour force aged 15 years and over (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -718,7 +718,7 @@ class NHSColumns(ColumnsTask):
 
         t004c001_m = OBSColumn(
             id='t004c001_m',
-            name='Total labour force aged 15 years and over by class of worker (male)',
+            name='Total labour force aged 15 years and over (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -727,7 +727,7 @@ class NHSColumns(ColumnsTask):
 
         t004c001_f = OBSColumn(
             id='t004c001_f',
-            name='Total labour force aged 15 years and over by class of worker (female)',
+            name='Total labour force aged 15 years and over (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -736,7 +736,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_t = OBSColumn(
             id='t004c002_t',
-            name='Class of worker - not applicable (total)',
+            name='Labour force aged 15+ - Class of worker - not applicable (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -745,7 +745,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_m = OBSColumn(
             id='t004c002_m',
-            name='Class of worker - not applicable (male)',
+            name='Labour force aged 15+ - Class of worker - not applicable (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -754,7 +754,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_f = OBSColumn(
             id='t004c002_f',
-            name='Class of worker - not applicable (female)',
+            name='Labour force aged 15+ - Class of worker - not applicable (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -763,7 +763,7 @@ class NHSColumns(ColumnsTask):
 
         t004c003_t = OBSColumn(
             id='t004c003_t',
-            name='All classes of worker (total)',
+            name='Labour force aged 15+ - All classes of worker (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -772,7 +772,7 @@ class NHSColumns(ColumnsTask):
 
         t004c003_m = OBSColumn(
             id='t004c003_m',
-            name='All classes of worker (male)',
+            name='Labour force aged 15+ - All classes of worker (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -781,7 +781,7 @@ class NHSColumns(ColumnsTask):
 
         t004c003_f = OBSColumn(
             id='t004c003_f',
-            name='All classes of worker (female)',
+            name='Labour force aged 15+ - All classes of worker (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9050,86 +9050,59 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c258_f: DENOMINATOR },)
 
-        t007c001_t = OBSColumn(
-            id='t007c001_t',
-            name='Total labour force population aged 15 years and over by full-time or part-time weeks worked in 2010 (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t007c001_m = OBSColumn(
-            id='t007c001_m',
-            name='Total labour force population aged 15 years and over by full-time or part-time weeks worked in 2010 (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t007c001_f = OBSColumn(
-            id='t007c001_f',
-            name='Total labour force population aged 15 years and over by full-time or part-time weeks worked in 2010 (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
         t007c002_t = OBSColumn(
             id='t007c002_t',
-            name='Did not work in 2010 (total)',
+            name='Labour force aged 15+ - Did not work in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t007c001_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t007c002_m = OBSColumn(
             id='t007c002_m',
-            name='Did not work in 2010 (male)',
+            name='Labour force aged 15+ - Did not work in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t007c001_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t007c002_f = OBSColumn(
             id='t007c002_f',
-            name='Did not work in 2010 (female)',
+            name='Labour force aged 15+ - Did not work in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t007c001_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t007c003_t = OBSColumn(
             id='t007c003_t',
-            name='Worked in 2010 (total)',
+            name='Labour force aged 15+ - Worked in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t007c001_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t007c003_m = OBSColumn(
             id='t007c003_m',
-            name='Worked in 2010 (male)',
+            name='Labour force aged 15+ - Worked in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t007c001_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t007c003_f = OBSColumn(
             id='t007c003_f',
-            name='Worked in 2010 (female)',
+            name='Labour force aged 15+ - Worked in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t007c001_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t007c004_t = OBSColumn(
             id='t007c004_t',
@@ -14375,86 +14348,59 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['income']],
             targets={ t013c107_f: UNIVERSE },)
 
-        t014c001_t = OBSColumn(
-            id='t014c001_t',
-            name='Total labour force population aged 15 years and over by industry - North American Industry Classification System (NAICS) 2007 (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t014c001_m = OBSColumn(
-            id='t014c001_m',
-            name='Total labour force population aged 15 years and over by industry - North American Industry Classification System (NAICS) 2007 (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t014c001_f = OBSColumn(
-            id='t014c001_f',
-            name='Total labour force population aged 15 years and over by industry - North American Industry Classification System (NAICS) 2007 (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
         t014c002_t = OBSColumn(
             id='t014c002_t',
-            name='Industry - not applicable (total)',
+            name='Labour force aged 15+ - Industry - not applicable (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t014c001_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t014c002_m = OBSColumn(
             id='t014c002_m',
-            name='Industry - not applicable (male)',
+            name='Labour force aged 15+ - Industry - not applicable (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t014c001_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t014c002_f = OBSColumn(
             id='t014c002_f',
-            name='Industry - not applicable (female)',
+            name='Labour force aged 15+ - Industry - not applicable (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t014c001_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t014c003_t = OBSColumn(
             id='t014c003_t',
-            name='All industries (total)',
+            name='Labour force aged 15+ - All industries (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t014c001_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t014c003_m = OBSColumn(
             id='t014c003_m',
-            name='All industries (male)',
+            name='Labour force aged 15+ - All industries (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t014c001_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t014c003_f = OBSColumn(
             id='t014c003_f',
-            name='All industries (female)',
+            name='Labour force aged 15+ - All industries (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t014c001_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t014c004_t = OBSColumn(
             id='t014c004_t',
@@ -19613,86 +19559,59 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t020c018_f: DENOMINATOR },)
 
-        t021c001_t = OBSColumn(
-            id='t021c001_t',
-            name='Total labour force population aged 15 years and over by occupation - National Occupational Classification (NOC) 2011 (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t021c001_m = OBSColumn(
-            id='t021c001_m',
-            name='Total labour force population aged 15 years and over by occupation - National Occupational Classification (NOC) 2011 (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t021c001_f = OBSColumn(
-            id='t021c001_f',
-            name='Total labour force population aged 15 years and over by occupation - National Occupational Classification (NOC) 2011 (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
         t021c002_t = OBSColumn(
             id='t021c002_t',
-            name='Occupation - not applicable (total)',
+            name='Labour force aged 15+ - Occupation - not applicable (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t021c001_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t021c002_m = OBSColumn(
             id='t021c002_m',
-            name='Occupation - not applicable (male)',
+            name='Labour force aged 15+ - Occupation - not applicable (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t021c001_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t021c002_f = OBSColumn(
             id='t021c002_f',
-            name='Occupation - not applicable (female)',
+            name='Labour force aged 15+ - Occupation - not applicable (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t021c001_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t021c003_t = OBSColumn(
             id='t021c003_t',
-            name='All occupations (total)',
+            name='Labour force aged 15+ - All occupations (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t021c001_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t021c003_m = OBSColumn(
             id='t021c003_m',
-            name='All occupations (male)',
+            name='Labour force aged 15+ - All occupations (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t021c001_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t021c003_f = OBSColumn(
             id='t021c003_f',
-            name='All occupations (female)',
+            name='Labour force aged 15+ - All occupations (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t021c001_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t021c004_t = OBSColumn(
             id='t021c004_t',
@@ -23029,86 +22948,59 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_f: DENOMINATOR },)
 
-        t029c001_t = OBSColumn(
-            id='t029c001_t',
-            name='Total labour force aged 15 years and over by work activity in 2010 (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t029c001_m = OBSColumn(
-            id='t029c001_m',
-            name='Total labour force aged 15 years and over by work activity in 2010 (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t029c001_f = OBSColumn(
-            id='t029c001_f',
-            name='Total labour force aged 15 years and over by work activity in 2010 (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
         t029c002_t = OBSColumn(
             id='t029c002_t',
-            name='Did not work in 2010 (total)',
+            name='Labour force aged 15+ - Did not work in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t029c001_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t029c002_m = OBSColumn(
             id='t029c002_m',
-            name='Did not work in 2010 (male)',
+            name='Labour force aged 15+ - Did not work in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t029c001_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t029c002_f = OBSColumn(
             id='t029c002_f',
-            name='Did not work in 2010 (female)',
+            name='Labour force aged 15+ - Did not work in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t029c001_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t029c003_t = OBSColumn(
             id='t029c003_t',
-            name='Worked in 2010 (total)',
+            name='Labour force aged 15+ - Worked in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t029c001_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t029c003_m = OBSColumn(
             id='t029c003_m',
-            name='Worked in 2010 (male)',
+            name='Labour force aged 15+ - Worked in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t029c001_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t029c003_f = OBSColumn(
             id='t029c003_f',
-            name='Worked in 2010 (female)',
+            name='Labour force aged 15+ - Worked in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t029c001_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t029c004_t = OBSColumn(
             id='t029c004_t',
@@ -24275,9 +24167,6 @@ class NHSColumns(ColumnsTask):
             ('t006c264_t', t006c264_t),
             ('t006c264_m', t006c264_m),
             ('t006c264_f', t006c264_f),
-            ('t007c001_t', t007c001_t),
-            ('t007c001_m', t007c001_m),
-            ('t007c001_f', t007c001_f),
             ('t007c002_t', t007c002_t),
             ('t007c002_m', t007c002_m),
             ('t007c002_f', t007c002_f),
@@ -24874,9 +24763,6 @@ class NHSColumns(ColumnsTask):
             ('t013c111_t', t013c111_t),
             ('t013c111_m', t013c111_m),
             ('t013c111_f', t013c111_f),
-            ('t014c001_t', t014c001_t),
-            ('t014c001_m', t014c001_m),
-            ('t014c001_f', t014c001_f),
             ('t014c002_t', t014c002_t),
             ('t014c002_m', t014c002_m),
             ('t014c002_f', t014c002_f),
@@ -25456,9 +25342,6 @@ class NHSColumns(ColumnsTask):
             ('t020c105_t', t020c105_t),
             ('t020c105_m', t020c105_m),
             ('t020c105_f', t020c105_f),
-            ('t021c001_t', t021c001_t),
-            ('t021c001_m', t021c001_m),
-            ('t021c001_f', t021c001_f),
             ('t021c002_t', t021c002_t),
             ('t021c002_m', t021c002_m),
             ('t021c002_f', t021c002_f),
@@ -25836,9 +25719,6 @@ class NHSColumns(ColumnsTask):
             ('t028c015_t', t028c015_t),
             ('t028c015_m', t028c015_m),
             ('t028c015_f', t028c015_f),
-            ('t029c001_t', t029c001_t),
-            ('t029c001_m', t029c001_m),
-            ('t029c001_f', t029c001_f),
             ('t029c002_t', t029c002_t),
             ('t029c002_m', t029c002_m),
             ('t029c002_f', t029c002_f),
