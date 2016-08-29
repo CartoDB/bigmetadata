@@ -18,7 +18,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 5
+        return 6
 
     def tags(self):
         return [
