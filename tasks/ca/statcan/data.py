@@ -203,11 +203,9 @@ class Survey(BaseParams, TableTask):
 
 
 class Census(Survey):
-    survey = SURVEY_CEN
-
     def requires(self):
         return {
-            'data': CopyDataToTable(resolution=self.resolution, survey=self.survey, topic=self.topic),
+            'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
             'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': CensusColumns(),
@@ -218,22 +216,18 @@ class Census(Survey):
 
 
 class AllCensusTopics(BaseParams, WrapperTask):
-    survey = SURVEY_CEN
-
     def requires(self):
         topic_range = range(1, 11)   # 1-10
 
         for count in topic_range:
             topic = 't{:03d}'.format(count)
-            yield Census(resolution=self.resolution, survey=self.survey, topic=topic)
+            yield Census(resolution=self.resolution, survey=SURVEY_CEN, topic=topic)
 
 
 class NHS(Survey):
-    survey = SURVEY_NHS
-
     def requires(self):
         return {
-            'data': CopyDataToTable(resolution=self.resolution, survey=self.survey, topic=self.topic),
+            'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),
             'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': NHSColumns(),
@@ -244,11 +238,9 @@ class NHS(Survey):
 
 
 class AllNHSTopics(BaseParams, WrapperTask):
-    survey = SURVEY_NHS
-
     def requires(self):
         topic_range = range(1, 30)   # 1-29
 
         for count in topic_range:
             topic = 't{:03d}'.format(count)
-            yield NHS(resolution=self.resolution, survey=self.survey, topic=topic)
+            yield NHS(resolution=self.resolution, survey=SURVEY_NHS, topic=topic)
