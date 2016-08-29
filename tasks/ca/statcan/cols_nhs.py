@@ -11788,7 +11788,7 @@ class NHSColumns(ColumnsTask):
 
         t013c002_t = OBSColumn(
             id='t013c002_t',
-            name='Without income (total)',
+            name='Income in 2010 of population aged 15+ - Without income (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11797,7 +11797,7 @@ class NHSColumns(ColumnsTask):
 
         t013c002_m = OBSColumn(
             id='t013c002_m',
-            name='Without income (male)',
+            name='Income in 2010 of population aged 15+ - Without income (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11806,7 +11806,7 @@ class NHSColumns(ColumnsTask):
 
         t013c002_f = OBSColumn(
             id='t013c002_f',
-            name='Without income (female)',
+            name='Income in 2010 of population aged 15+ - Without income (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11815,7 +11815,7 @@ class NHSColumns(ColumnsTask):
 
         t013c003_t = OBSColumn(
             id='t013c003_t',
-            name='With income (total)',
+            name='Income in 2010 of population aged 15+ - With income (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11824,7 +11824,7 @@ class NHSColumns(ColumnsTask):
 
         t013c003_m = OBSColumn(
             id='t013c003_m',
-            name='With income (male)',
+            name='Income in 2010 of population aged 15+ - With income (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11833,7 +11833,7 @@ class NHSColumns(ColumnsTask):
 
         t013c003_f = OBSColumn(
             id='t013c003_f',
-            name='With income (female)',
+            name='Income in 2010 of population aged 15+ - With income (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11842,7 +11842,7 @@ class NHSColumns(ColumnsTask):
 
         t013c004_t = OBSColumn(
             id='t013c004_t',
-            name='Under $5,000 (total)',
+            name='Total income ages 15+ - Under $5,000 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11851,7 +11851,7 @@ class NHSColumns(ColumnsTask):
 
         t013c004_m = OBSColumn(
             id='t013c004_m',
-            name='Under $5,000 (male)',
+            name='Total income ages 15+ - Under $5,000 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11860,7 +11860,7 @@ class NHSColumns(ColumnsTask):
 
         t013c004_f = OBSColumn(
             id='t013c004_f',
-            name='Under $5,000 (female)',
+            name='Total income ages 15+ - Under $5,000 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11869,7 +11869,7 @@ class NHSColumns(ColumnsTask):
 
         t013c005_t = OBSColumn(
             id='t013c005_t',
-            name='$5,000 to $9,999 (total)',
+            name='Total income ages 15+ - $5,000 to $9,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11878,7 +11878,7 @@ class NHSColumns(ColumnsTask):
 
         t013c005_m = OBSColumn(
             id='t013c005_m',
-            name='$5,000 to $9,999 (male)',
+            name='Total income ages 15+ - $5,000 to $9,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11887,7 +11887,7 @@ class NHSColumns(ColumnsTask):
 
         t013c005_f = OBSColumn(
             id='t013c005_f',
-            name='$5,000 to $9,999 (female)',
+            name='Total income ages 15+ - $5,000 to $9,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11896,7 +11896,7 @@ class NHSColumns(ColumnsTask):
 
         t013c006_t = OBSColumn(
             id='t013c006_t',
-            name='$10,000 to $14,999 (total)',
+            name='Total income ages 15+ - $10,000 to $14,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11905,7 +11905,7 @@ class NHSColumns(ColumnsTask):
 
         t013c006_m = OBSColumn(
             id='t013c006_m',
-            name='$10,000 to $14,999 (male)',
+            name='Total income ages 15+ - $10,000 to $14,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11914,7 +11914,7 @@ class NHSColumns(ColumnsTask):
 
         t013c006_f = OBSColumn(
             id='t013c006_f',
-            name='$10,000 to $14,999 (female)',
+            name='Total income ages 15+ - $10,000 to $14,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11923,7 +11923,7 @@ class NHSColumns(ColumnsTask):
 
         t013c007_t = OBSColumn(
             id='t013c007_t',
-            name='$15,000 to $19,999 (total)',
+            name='Total income ages 15+ - $15,000 to $19,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11932,7 +11932,7 @@ class NHSColumns(ColumnsTask):
 
         t013c007_m = OBSColumn(
             id='t013c007_m',
-            name='$15,000 to $19,999 (male)',
+            name='Total income ages 15+ - $15,000 to $19,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11941,7 +11941,7 @@ class NHSColumns(ColumnsTask):
 
         t013c007_f = OBSColumn(
             id='t013c007_f',
-            name='$15,000 to $19,999 (female)',
+            name='Total income ages 15+ - $15,000 to $19,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11950,7 +11950,7 @@ class NHSColumns(ColumnsTask):
 
         t013c008_t = OBSColumn(
             id='t013c008_t',
-            name='$20,000 to $29,999 (total)',
+            name='Total income ages 15+ - $20,000 to $29,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11959,7 +11959,7 @@ class NHSColumns(ColumnsTask):
 
         t013c008_m = OBSColumn(
             id='t013c008_m',
-            name='$20,000 to $29,999 (male)',
+            name='Total income ages 15+ - $20,000 to $29,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11968,7 +11968,7 @@ class NHSColumns(ColumnsTask):
 
         t013c008_f = OBSColumn(
             id='t013c008_f',
-            name='$20,000 to $29,999 (female)',
+            name='Total income ages 15+ - $20,000 to $29,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11977,7 +11977,7 @@ class NHSColumns(ColumnsTask):
 
         t013c009_t = OBSColumn(
             id='t013c009_t',
-            name='$30,000 to $39,999 (total)',
+            name='Total income ages 15+ - $30,000 to $39,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11986,7 +11986,7 @@ class NHSColumns(ColumnsTask):
 
         t013c009_m = OBSColumn(
             id='t013c009_m',
-            name='$30,000 to $39,999 (male)',
+            name='Total income ages 15+ - $30,000 to $39,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11995,7 +11995,7 @@ class NHSColumns(ColumnsTask):
 
         t013c009_f = OBSColumn(
             id='t013c009_f',
-            name='$30,000 to $39,999 (female)',
+            name='Total income ages 15+ - $30,000 to $39,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12004,7 +12004,7 @@ class NHSColumns(ColumnsTask):
 
         t013c010_t = OBSColumn(
             id='t013c010_t',
-            name='$40,000 to $49,999 (total)',
+            name='Total income ages 15+ - $40,000 to $49,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12013,7 +12013,7 @@ class NHSColumns(ColumnsTask):
 
         t013c010_m = OBSColumn(
             id='t013c010_m',
-            name='$40,000 to $49,999 (male)',
+            name='Total income ages 15+ - $40,000 to $49,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12022,7 +12022,7 @@ class NHSColumns(ColumnsTask):
 
         t013c010_f = OBSColumn(
             id='t013c010_f',
-            name='$40,000 to $49,999 (female)',
+            name='Total income ages 15+ - $40,000 to $49,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12031,7 +12031,7 @@ class NHSColumns(ColumnsTask):
 
         t013c011_t = OBSColumn(
             id='t013c011_t',
-            name='$50,000 to $59,999 (total)',
+            name='Total income ages 15+ - $50,000 to $59,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12040,7 +12040,7 @@ class NHSColumns(ColumnsTask):
 
         t013c011_m = OBSColumn(
             id='t013c011_m',
-            name='$50,000 to $59,999 (male)',
+            name='Total income ages 15+ - $50,000 to $59,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12049,7 +12049,7 @@ class NHSColumns(ColumnsTask):
 
         t013c011_f = OBSColumn(
             id='t013c011_f',
-            name='$50,000 to $59,999 (female)',
+            name='Total income ages 15+ - $50,000 to $59,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12058,7 +12058,7 @@ class NHSColumns(ColumnsTask):
 
         t013c012_t = OBSColumn(
             id='t013c012_t',
-            name='$60,000 to $79,999 (total)',
+            name='Total income ages 15+ - $60,000 to $79,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12067,7 +12067,7 @@ class NHSColumns(ColumnsTask):
 
         t013c012_m = OBSColumn(
             id='t013c012_m',
-            name='$60,000 to $79,999 (male)',
+            name='Total income ages 15+ - $60,000 to $79,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12076,7 +12076,7 @@ class NHSColumns(ColumnsTask):
 
         t013c012_f = OBSColumn(
             id='t013c012_f',
-            name='$60,000 to $79,999 (female)',
+            name='Total income ages 15+ - $60,000 to $79,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12085,7 +12085,7 @@ class NHSColumns(ColumnsTask):
 
         t013c013_t = OBSColumn(
             id='t013c013_t',
-            name='$80,000 to $99,999 (total)',
+            name='Total income ages 15+ - $80,000 to $99,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12094,7 +12094,7 @@ class NHSColumns(ColumnsTask):
 
         t013c013_m = OBSColumn(
             id='t013c013_m',
-            name='$80,000 to $99,999 (male)',
+            name='Total income ages 15+ - $80,000 to $99,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12103,7 +12103,7 @@ class NHSColumns(ColumnsTask):
 
         t013c013_f = OBSColumn(
             id='t013c013_f',
-            name='$80,000 to $99,999 (female)',
+            name='Total income ages 15+ - $80,000 to $99,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12112,7 +12112,7 @@ class NHSColumns(ColumnsTask):
 
         t013c014_t = OBSColumn(
             id='t013c014_t',
-            name='$100,000 and over (total)',
+            name='Total income ages 15+ - $100,000 and over (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12121,7 +12121,7 @@ class NHSColumns(ColumnsTask):
 
         t013c014_m = OBSColumn(
             id='t013c014_m',
-            name='$100,000 and over (male)',
+            name='Total income ages 15+ - $100,000 and over (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12130,7 +12130,7 @@ class NHSColumns(ColumnsTask):
 
         t013c014_f = OBSColumn(
             id='t013c014_f',
-            name='$100,000 and over (female)',
+            name='Total income ages 15+ - $100,000 and over (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12139,7 +12139,7 @@ class NHSColumns(ColumnsTask):
 
         t013c015_t = OBSColumn(
             id='t013c015_t',
-            name='$100,000 to $124,999 (total)',
+            name='Total income ages 15+ - $100,000 to $124,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12148,7 +12148,7 @@ class NHSColumns(ColumnsTask):
 
         t013c015_m = OBSColumn(
             id='t013c015_m',
-            name='$100,000 to $124,999 (male)',
+            name='Total income ages 15+ - $100,000 to $124,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12157,7 +12157,7 @@ class NHSColumns(ColumnsTask):
 
         t013c015_f = OBSColumn(
             id='t013c015_f',
-            name='$100,000 to $124,999 (female)',
+            name='Total income ages 15+ - $100,000 to $124,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12166,7 +12166,7 @@ class NHSColumns(ColumnsTask):
 
         t013c016_t = OBSColumn(
             id='t013c016_t',
-            name='$125,000 and over (total)',
+            name='Total income ages 15+ - $125,000 and over (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12175,7 +12175,7 @@ class NHSColumns(ColumnsTask):
 
         t013c016_m = OBSColumn(
             id='t013c016_m',
-            name='$125,000 and over (male)',
+            name='Total income ages 15+ - $125,000 and over (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12184,7 +12184,7 @@ class NHSColumns(ColumnsTask):
 
         t013c016_f = OBSColumn(
             id='t013c016_f',
-            name='$125,000 and over (female)',
+            name='Total income ages 15+ - $125,000 and over (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12193,7 +12193,7 @@ class NHSColumns(ColumnsTask):
 
         t013c017_t = OBSColumn(
             id='t013c017_t',
-            name='Median income ($) (total)',
+            name='Income in 2010 of population aged 15+ - Median income ($) (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12202,7 +12202,7 @@ class NHSColumns(ColumnsTask):
 
         t013c017_m = OBSColumn(
             id='t013c017_m',
-            name='Median income ($) (male)',
+            name='Income in 2010 of population aged 15+ - Median income ($) (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12211,7 +12211,7 @@ class NHSColumns(ColumnsTask):
 
         t013c017_f = OBSColumn(
             id='t013c017_f',
-            name='Median income ($) (female)',
+            name='Income in 2010 of population aged 15+ - Median income ($) (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12220,7 +12220,7 @@ class NHSColumns(ColumnsTask):
 
         t013c018_t = OBSColumn(
             id='t013c018_t',
-            name='Average income ($) (total)',
+            name='Income in 2010 of population aged 15+ - Average income ($) (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12229,7 +12229,7 @@ class NHSColumns(ColumnsTask):
 
         t013c018_m = OBSColumn(
             id='t013c018_m',
-            name='Average income ($) (male)',
+            name='Income in 2010 of population aged 15+ - Average income ($) (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12238,39 +12238,12 @@ class NHSColumns(ColumnsTask):
 
         t013c018_f = OBSColumn(
             id='t013c018_f',
-            name='Average income ($) (female)',
+            name='Income in 2010 of population aged 15+ - Average income ($) (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_f: UNIVERSE },)
-
-        t013c019_t = OBSColumn(
-            id='t013c019_t',
-            name='After-tax income in 2010 of population 15 years and over (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t013c019_m = OBSColumn(
-            id='t013c019_m',
-            name='After-tax income in 2010 of population 15 years and over (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t013c019_f = OBSColumn(
-            id='t013c019_f',
-            name='After-tax income in 2010 of population 15 years and over (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
 
         t013c020_t = OBSColumn(
             id='t013c020_t',
@@ -12279,7 +12252,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c019_t: DENOMINATOR },)
+            targets={ t013c001_t: DENOMINATOR },)
 
         t013c020_m = OBSColumn(
             id='t013c020_m',
@@ -12288,7 +12261,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c019_m: DENOMINATOR },)
+            targets={ t013c001_m: DENOMINATOR },)
 
         t013c020_f = OBSColumn(
             id='t013c020_f',
@@ -12297,7 +12270,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c019_f: DENOMINATOR },)
+            targets={ t013c001_f: DENOMINATOR },)
 
         t013c021_t = OBSColumn(
             id='t013c021_t',
@@ -12306,7 +12279,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c019_t: DENOMINATOR },)
+            targets={ t013c001_t: DENOMINATOR },)
 
         t013c021_m = OBSColumn(
             id='t013c021_m',
@@ -12315,7 +12288,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c019_m: DENOMINATOR },)
+            targets={ t013c001_m: DENOMINATOR },)
 
         t013c021_f = OBSColumn(
             id='t013c021_f',
@@ -12324,11 +12297,11 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c019_f: DENOMINATOR },)
+            targets={ t013c001_f: DENOMINATOR },)
 
         t013c022_t = OBSColumn(
             id='t013c022_t',
-            name='Under $5,000 (total)',
+            name='After-tax income ages 15+ - Under $5,000 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12337,7 +12310,7 @@ class NHSColumns(ColumnsTask):
 
         t013c022_m = OBSColumn(
             id='t013c022_m',
-            name='Under $5,000 (male)',
+            name='After-tax income ages 15+ - Under $5,000 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12346,7 +12319,7 @@ class NHSColumns(ColumnsTask):
 
         t013c022_f = OBSColumn(
             id='t013c022_f',
-            name='Under $5,000 (female)',
+            name='After-tax income ages 15+ - Under $5,000 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12355,7 +12328,7 @@ class NHSColumns(ColumnsTask):
 
         t013c023_t = OBSColumn(
             id='t013c023_t',
-            name='$5,000 to $9,999 (total)',
+            name='After-tax income ages 15+ - $5,000 to $9,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12364,7 +12337,7 @@ class NHSColumns(ColumnsTask):
 
         t013c023_m = OBSColumn(
             id='t013c023_m',
-            name='$5,000 to $9,999 (male)',
+            name='After-tax income ages 15+ - $5,000 to $9,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12373,7 +12346,7 @@ class NHSColumns(ColumnsTask):
 
         t013c023_f = OBSColumn(
             id='t013c023_f',
-            name='$5,000 to $9,999 (female)',
+            name='After-tax income ages 15+ - $5,000 to $9,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12382,7 +12355,7 @@ class NHSColumns(ColumnsTask):
 
         t013c024_t = OBSColumn(
             id='t013c024_t',
-            name='$10,000 to $14,999 (total)',
+            name='After-tax income ages 15+ - $10,000 to $14,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12391,7 +12364,7 @@ class NHSColumns(ColumnsTask):
 
         t013c024_m = OBSColumn(
             id='t013c024_m',
-            name='$10,000 to $14,999 (male)',
+            name='After-tax income ages 15+ - $10,000 to $14,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12400,7 +12373,7 @@ class NHSColumns(ColumnsTask):
 
         t013c024_f = OBSColumn(
             id='t013c024_f',
-            name='$10,000 to $14,999 (female)',
+            name='After-tax income ages 15+ - $10,000 to $14,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12409,7 +12382,7 @@ class NHSColumns(ColumnsTask):
 
         t013c025_t = OBSColumn(
             id='t013c025_t',
-            name='$15,000 to $19,999 (total)',
+            name='After-tax income ages 15+ - $15,000 to $19,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12418,7 +12391,7 @@ class NHSColumns(ColumnsTask):
 
         t013c025_m = OBSColumn(
             id='t013c025_m',
-            name='$15,000 to $19,999 (male)',
+            name='After-tax income ages 15+ - $15,000 to $19,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12427,7 +12400,7 @@ class NHSColumns(ColumnsTask):
 
         t013c025_f = OBSColumn(
             id='t013c025_f',
-            name='$15,000 to $19,999 (female)',
+            name='After-tax income ages 15+ - $15,000 to $19,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12436,7 +12409,7 @@ class NHSColumns(ColumnsTask):
 
         t013c026_t = OBSColumn(
             id='t013c026_t',
-            name='$20,000 to $29,999 (total)',
+            name='After-tax income ages 15+ - $20,000 to $29,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12445,7 +12418,7 @@ class NHSColumns(ColumnsTask):
 
         t013c026_m = OBSColumn(
             id='t013c026_m',
-            name='$20,000 to $29,999 (male)',
+            name='After-tax income ages 15+ - $20,000 to $29,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12454,7 +12427,7 @@ class NHSColumns(ColumnsTask):
 
         t013c026_f = OBSColumn(
             id='t013c026_f',
-            name='$20,000 to $29,999 (female)',
+            name='After-tax income ages 15+ - $20,000 to $29,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12463,7 +12436,7 @@ class NHSColumns(ColumnsTask):
 
         t013c027_t = OBSColumn(
             id='t013c027_t',
-            name='$30,000 to $39,999 (total)',
+            name='After-tax income ages 15+ - $30,000 to $39,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12472,7 +12445,7 @@ class NHSColumns(ColumnsTask):
 
         t013c027_m = OBSColumn(
             id='t013c027_m',
-            name='$30,000 to $39,999 (male)',
+            name='After-tax income ages 15+ - $30,000 to $39,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12481,7 +12454,7 @@ class NHSColumns(ColumnsTask):
 
         t013c027_f = OBSColumn(
             id='t013c027_f',
-            name='$30,000 to $39,999 (female)',
+            name='After-tax income ages 15+ - $30,000 to $39,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12490,7 +12463,7 @@ class NHSColumns(ColumnsTask):
 
         t013c028_t = OBSColumn(
             id='t013c028_t',
-            name='$40,000 to $49,999 (total)',
+            name='After-tax income ages 15+ - $40,000 to $49,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12499,7 +12472,7 @@ class NHSColumns(ColumnsTask):
 
         t013c028_m = OBSColumn(
             id='t013c028_m',
-            name='$40,000 to $49,999 (male)',
+            name='After-tax income ages 15+ - $40,000 to $49,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12508,7 +12481,7 @@ class NHSColumns(ColumnsTask):
 
         t013c028_f = OBSColumn(
             id='t013c028_f',
-            name='$40,000 to $49,999 (female)',
+            name='After-tax income ages 15+ - $40,000 to $49,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12517,7 +12490,7 @@ class NHSColumns(ColumnsTask):
 
         t013c029_t = OBSColumn(
             id='t013c029_t',
-            name='$50,000 to $59,999 (total)',
+            name='After-tax income ages 15+ - $50,000 to $59,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12526,7 +12499,7 @@ class NHSColumns(ColumnsTask):
 
         t013c029_m = OBSColumn(
             id='t013c029_m',
-            name='$50,000 to $59,999 (male)',
+            name='After-tax income ages 15+ - $50,000 to $59,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12535,7 +12508,7 @@ class NHSColumns(ColumnsTask):
 
         t013c029_f = OBSColumn(
             id='t013c029_f',
-            name='$50,000 to $59,999 (female)',
+            name='After-tax income ages 15+ - $50,000 to $59,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12544,7 +12517,7 @@ class NHSColumns(ColumnsTask):
 
         t013c030_t = OBSColumn(
             id='t013c030_t',
-            name='$60,000 to $79,999 (total)',
+            name='After-tax income ages 15+ - $60,000 to $79,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12553,7 +12526,7 @@ class NHSColumns(ColumnsTask):
 
         t013c030_m = OBSColumn(
             id='t013c030_m',
-            name='$60,000 to $79,999 (male)',
+            name='After-tax income ages 15+ - $60,000 to $79,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12562,7 +12535,7 @@ class NHSColumns(ColumnsTask):
 
         t013c030_f = OBSColumn(
             id='t013c030_f',
-            name='$60,000 to $79,999 (female)',
+            name='After-tax income ages 15+ - $60,000 to $79,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12571,7 +12544,7 @@ class NHSColumns(ColumnsTask):
 
         t013c031_t = OBSColumn(
             id='t013c031_t',
-            name='$80,000 to $99,999 (total)',
+            name='After-tax income ages 15+ - $80,000 to $99,999 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12580,7 +12553,7 @@ class NHSColumns(ColumnsTask):
 
         t013c031_m = OBSColumn(
             id='t013c031_m',
-            name='$80,000 to $99,999 (male)',
+            name='After-tax income ages 15+ - $80,000 to $99,999 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12589,7 +12562,7 @@ class NHSColumns(ColumnsTask):
 
         t013c031_f = OBSColumn(
             id='t013c031_f',
-            name='$80,000 to $99,999 (female)',
+            name='After-tax income ages 15+ - $80,000 to $99,999 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12598,7 +12571,7 @@ class NHSColumns(ColumnsTask):
 
         t013c032_t = OBSColumn(
             id='t013c032_t',
-            name='$100,000 and over (total)',
+            name='After-tax income ages 15+ - $100,000 and over (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12607,7 +12580,7 @@ class NHSColumns(ColumnsTask):
 
         t013c032_m = OBSColumn(
             id='t013c032_m',
-            name='$100,000 and over (male)',
+            name='After-tax income ages 15+ - $100,000 and over (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12616,7 +12589,7 @@ class NHSColumns(ColumnsTask):
 
         t013c032_f = OBSColumn(
             id='t013c032_f',
-            name='$100,000 and over (female)',
+            name='After-tax income ages 15+ - $100,000 and over (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12630,7 +12603,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_t: UNIVERSE },)
+            targets={ t013c001_t: UNIVERSE },)
 
         t013c033_m = OBSColumn(
             id='t013c033_m',
@@ -12639,7 +12612,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_m: UNIVERSE },)
+            targets={ t013c001_m: UNIVERSE },)
 
         t013c033_f = OBSColumn(
             id='t013c033_f',
@@ -12648,7 +12621,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_f: UNIVERSE },)
+            targets={ t013c001_f: UNIVERSE },)
 
         t013c034_t = OBSColumn(
             id='t013c034_t',
@@ -12657,7 +12630,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_t: UNIVERSE },)
+            targets={ t013c001_t: UNIVERSE },)
 
         t013c034_m = OBSColumn(
             id='t013c034_m',
@@ -12666,7 +12639,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_m: UNIVERSE },)
+            targets={ t013c001_m: UNIVERSE },)
 
         t013c034_f = OBSColumn(
             id='t013c034_f',
@@ -12675,7 +12648,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c019_f: UNIVERSE },)
+            targets={ t013c001_f: UNIVERSE },)
 
         t013c035_t = OBSColumn(
             id='t013c035_t',
@@ -24351,9 +24324,6 @@ class NHSColumns(ColumnsTask):
             ('t013c018_t', t013c018_t),
             ('t013c018_m', t013c018_m),
             ('t013c018_f', t013c018_f),
-            ('t013c019_t', t013c019_t),
-            ('t013c019_m', t013c019_m),
-            ('t013c019_f', t013c019_f),
             ('t013c020_t', t013c020_t),
             ('t013c020_m', t013c020_m),
             ('t013c020_f', t013c020_f),
