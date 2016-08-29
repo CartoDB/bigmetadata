@@ -55,7 +55,7 @@ class TestGeomTableTask(BaseTestTableTask):
 
     def populate(self):
         session = current_session()
-        session.execute("INSERT INTO {output} VALUES (ST_MakePoint(0, 0), 'foo')".format(
+        session.execute("INSERT INTO {output} VALUES (ST_SetSRID(ST_MakePoint(0, 0), 4326), 'foo')".format(
             output=self.output().table
         ))
 
