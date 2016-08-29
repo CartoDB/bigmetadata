@@ -472,7 +472,8 @@ INSERT INTO boundarysummaries
 WITH tables AS (SELECT DISTINCT geom_id id, geom_tablename tablename,
   sqrt((geom_ct_extra->'stats'->>'avg')::NUMERIC)::INTEGER avgdim
   FROM observatory.obs_meta
-  WHERE geom_tablename = 'obs_624e5d2362e08aaa5463d7671e7748432262719c'
+  --WHERE geom_tablename = 'obs_624e5d2362e08aaa5463d7671e7748432262719c'
+  WHERE geom_tablename = 'obs_1babf5a26a1ecda5fb74963e88408f71d0364b81' --county
 )
   --WHERE geom_ct_extra IS NOT NULL)
 SELECT id, tablename, SummarizeBoundary(
@@ -555,15 +556,15 @@ testgeom
 select
  -- name,
   st_area(st_transform(testgeom, 3857)) / 1000000 area,
-  st_value(FIRST(geom), 1, st_centroid(testgeom)) median,
-  st_value(FIRST(geom), 2, st_centroid(testgeom)) cnt,
-  (st_summarystatsagg(st_clip(geom, 1, testgeom, True), 1, True, 0.5)).mean meanmedianarea,
-  (st_summarystatsagg(st_clip(geom, 2, testgeom, True), 1, True, 0.5)).sum numgeoms,
-  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(geom, 1, testgeom, True), 1, True, 0.5)).mean estnumgeoms,
-  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(geom, 2, testgeom, True), 1, True, 0.5)).mean estmeanarea
+  st_value(FIRST(tile), 1, st_centroid(testgeom)) median,
+  st_value(FIRST(tile), 2, st_centroid(testgeom)) cnt,
+  (st_summarystatsagg(st_clip(tile, 1, testgeom, True), 1, True, 0.5)).mean meanmedianarea,
+  (st_summarystatsagg(st_clip(tile, 2, testgeom, True), 1, True, 0.5)).sum numgeoms,
+  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(tile, 1, testgeom, True), 1, True, 0.5)).mean estnumgeoms,
+  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(tile, 2, testgeom, True), 1, True, 0.5)).mean estmeanarea
   --(st_summarystats(geom, 1, True)).*
   --st_value(geom, 1, st_setsrid(st_makepoint(0,0), 4326))
-from testtiles, testgeom
-where st_intersects(testgeom , geom)
+from boundarysummaries, testgeom
+where st_intersects(testgeom , tile)
 group by testgeom
 ;
