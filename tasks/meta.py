@@ -63,7 +63,7 @@ Base = declarative_base(metadata=metadata)
 
 class Geometry(UserDefinedType):
     def get_col_spec(self):
-        return "GEOMETRY"
+        return "GEOMETRY (GEOMETRY, 4326)"
 
     def bind_expression(self, bindvalue):
         return func.ST_GeomFromText(bindvalue, type_=self)
