@@ -11171,7 +11171,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, housing_units, subsections['segments']],
+            tags=[ca, unit_housing, subsections['segments']],
             targets={},)
 
         t010c005_t = OBSColumn(
@@ -11180,7 +11180,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, housing_units, subsections['segments']],
+            tags=[ca, unit_housing, subsections['segments']],
             targets={},)
 
         t010c006_t = OBSColumn(
