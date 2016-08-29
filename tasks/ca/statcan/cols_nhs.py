@@ -14,7 +14,7 @@ class NHSColumns(ColumnsTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         input_ = self.input()
