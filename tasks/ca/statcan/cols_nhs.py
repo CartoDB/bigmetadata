@@ -34,7 +34,7 @@ class NHSColumns(ColumnsTask):
 
         t001c001_t = OBSColumn(
             id='t001c001_t',
-            name='Total population in private households by Aboriginal identity (total)',
+            name='Total population in private households (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -43,7 +43,7 @@ class NHSColumns(ColumnsTask):
 
         t001c001_m = OBSColumn(
             id='t001c001_m',
-            name='Total population in private households by Aboriginal identity (male)',
+            name='Total population in private households (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -52,7 +52,7 @@ class NHSColumns(ColumnsTask):
 
         t001c001_f = OBSColumn(
             id='t001c001_f',
-            name='Total population in private households by Aboriginal identity (female)',
+            name='Total population in private households (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -61,7 +61,7 @@ class NHSColumns(ColumnsTask):
 
         t001c002_t = OBSColumn(
             id='t001c002_t',
-            name='Aboriginal identity (total)',
+            name='Total population - Aboriginal identity (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -70,7 +70,7 @@ class NHSColumns(ColumnsTask):
 
         t001c002_m = OBSColumn(
             id='t001c002_m',
-            name='Aboriginal identity (male)',
+            name='Total population - Aboriginal identity (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -79,7 +79,7 @@ class NHSColumns(ColumnsTask):
 
         t001c002_f = OBSColumn(
             id='t001c002_f',
-            name='Aboriginal identity (female)',
+            name='Total population - Aboriginal identity (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -223,7 +223,7 @@ class NHSColumns(ColumnsTask):
 
         t001c008_t = OBSColumn(
             id='t001c008_t',
-            name='Non-Aboriginal identity (total)',
+            name='Total population - Non-Aboriginal identity (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -232,7 +232,7 @@ class NHSColumns(ColumnsTask):
 
         t001c008_m = OBSColumn(
             id='t001c008_m',
-            name='Non-Aboriginal identity (male)',
+            name='Total population - Non-Aboriginal identity (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -241,147 +241,93 @@ class NHSColumns(ColumnsTask):
 
         t001c008_f = OBSColumn(
             id='t001c008_f',
-            name='Non-Aboriginal identity (female)',
+            name='Total population - Non-Aboriginal identity (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_f: DENOMINATOR },)
 
-        t001c009_t = OBSColumn(
-            id='t001c009_t',
-            name='Total population in private households by Registered or Treaty Indian status (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t001c009_m = OBSColumn(
-            id='t001c009_m',
-            name='Total population in private households by Registered or Treaty Indian status (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t001c009_f = OBSColumn(
-            id='t001c009_f',
-            name='Total population in private households by Registered or Treaty Indian status (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
         t001c010_t = OBSColumn(
             id='t001c010_t',
-            name='Registered or Treaty Indian (total)',
+            name='Total population - Registered or Treaty Indian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c009_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t001c010_m = OBSColumn(
             id='t001c010_m',
-            name='Registered or Treaty Indian (male)',
+            name='Total population - Registered or Treaty Indian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c009_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t001c010_f = OBSColumn(
             id='t001c010_f',
-            name='Registered or Treaty Indian (female)',
+            name='Total population - Registered or Treaty Indian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c009_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t001c011_t = OBSColumn(
             id='t001c011_t',
-            name='Not a Registered or Treaty Indian (total)',
+            name='Total population - Not a Registered or Treaty Indian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c009_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t001c011_m = OBSColumn(
             id='t001c011_m',
-            name='Not a Registered or Treaty Indian (male)',
+            name='Total population - Not a Registered or Treaty Indian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c009_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t001c011_f = OBSColumn(
             id='t001c011_f',
-            name='Not a Registered or Treaty Indian (female)',
+            name='Total population - Not a Registered or Treaty Indian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c009_f: DENOMINATOR },)
-
-        t001c012_t = OBSColumn(
-            id='t001c012_t',
-            name='Total population in private households by Aboriginal ancestry (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t001c012_m = OBSColumn(
-            id='t001c012_m',
-            name='Total population in private households by Aboriginal ancestry (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t001c012_f = OBSColumn(
-            id='t001c012_f',
-            name='Total population in private households by Aboriginal ancestry (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t001c013_t = OBSColumn(
             id='t001c013_t',
-            name='Aboriginal ancestry (total)',
+            name='Total population - Aboriginal ancestry (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c012_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t001c013_m = OBSColumn(
             id='t001c013_m',
-            name='Aboriginal ancestry (male)',
+            name='Total population - Aboriginal ancestry (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c012_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t001c013_f = OBSColumn(
             id='t001c013_f',
-            name='Aboriginal ancestry (female)',
+            name='Total population - Aboriginal ancestry (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c012_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t001c014_t = OBSColumn(
             id='t001c014_t',
@@ -412,7 +358,7 @@ class NHSColumns(ColumnsTask):
 
         t001c015_t = OBSColumn(
             id='t001c015_t',
-            name='M tis ancestry (total)',
+            name='Metis ancestry (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -421,7 +367,7 @@ class NHSColumns(ColumnsTask):
 
         t001c015_m = OBSColumn(
             id='t001c015_m',
-            name='M tis ancestry (male)',
+            name='Metis ancestry (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -430,7 +376,7 @@ class NHSColumns(ColumnsTask):
 
         t001c015_f = OBSColumn(
             id='t001c015_f',
-            name='M tis ancestry (female)',
+            name='Metis ancestry (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -466,30 +412,30 @@ class NHSColumns(ColumnsTask):
 
         t001c017_t = OBSColumn(
             id='t001c017_t',
-            name='Non-Aboriginal ancestry only (total)',
+            name='Total population - Non-Aboriginal ancestry only (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c012_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t001c017_m = OBSColumn(
             id='t001c017_m',
-            name='Non-Aboriginal ancestry only (male)',
+            name='Total population - Non-Aboriginal ancestry only (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c012_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t001c017_f = OBSColumn(
             id='t001c017_f',
-            name='Non-Aboriginal ancestry only (female)',
+            name='Total population - Non-Aboriginal ancestry only (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t001c012_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t002c001_t = OBSColumn(
             id='t002c001_t',
@@ -653,59 +599,32 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={ t002c001_f: DENOMINATOR },)
 
-        t003c001_t = OBSColumn(
-            id='t003c001_t',
-            name='Total population in private households by citizenship (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={},)
-
-        t003c001_m = OBSColumn(
-            id='t003c001_m',
-            name='Total population in private households by citizenship (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={},)
-
-        t003c001_f = OBSColumn(
-            id='t003c001_f',
-            name='Total population in private households by citizenship (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={},)
-
         t003c002_t = OBSColumn(
             id='t003c002_t',
-            name='Canadian citizens (total)',
+            name='Total population - Canadian citizens (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t003c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t003c002_m = OBSColumn(
             id='t003c002_m',
-            name='Canadian citizens (male)',
+            name='Total population - Canadian citizens (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t003c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t003c002_f = OBSColumn(
             id='t003c002_f',
-            name='Canadian citizens (female)',
+            name='Total population - Canadian citizens (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t003c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t003c003_t = OBSColumn(
             id='t003c003_t',
@@ -763,30 +682,30 @@ class NHSColumns(ColumnsTask):
 
         t003c005_t = OBSColumn(
             id='t003c005_t',
-            name='Not Canadian citizens (total)',
+            name='Total population - Not Canadian citizens (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t003c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t003c005_m = OBSColumn(
             id='t003c005_m',
-            name='Not Canadian citizens (male)',
+            name='Total population - Not Canadian citizens (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t003c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t003c005_f = OBSColumn(
             id='t003c005_f',
-            name='Not Canadian citizens (female)',
+            name='Total population - Not Canadian citizens (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t003c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t004c001_t = OBSColumn(
             id='t004c001_t',
@@ -2030,41 +1949,14 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_f: DENOMINATOR },)
 
-        t006c001_t = OBSColumn(
-            id='t006c001_t',
-            name='Total population in private households by ethnic origins (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t006c001_m = OBSColumn(
-            id='t006c001_m',
-            name='Total population in private households by ethnic origins (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t006c001_f = OBSColumn(
-            id='t006c001_f',
-            name='Total population in private households by ethnic origins (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
         t006c002_t = OBSColumn(
             id='t006c002_t',
-            name='North American Aboriginal origins (total)',
+            name='Total population - North American Aboriginal origins (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t006c002_m = OBSColumn(
             id='t006c002_m',
@@ -2073,7 +1965,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t006c002_f = OBSColumn(
             id='t006c002_f',
@@ -2082,7 +1974,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t006c003_t = OBSColumn(
             id='t006c003_t',
@@ -2167,12 +2059,12 @@ class NHSColumns(ColumnsTask):
 
         t006c006_t = OBSColumn(
             id='t006c006_t',
-            name='Other North American origins (total)',
+            name='Total population - Other North American origins (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t006c006_m = OBSColumn(
             id='t006c006_m',
@@ -2181,7 +2073,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t006c006_f = OBSColumn(
             id='t006c006_f',
@@ -2190,7 +2082,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t006c007_t = OBSColumn(
             id='t006c007_t',
@@ -2437,12 +2329,12 @@ class NHSColumns(ColumnsTask):
 
         t006c016_t = OBSColumn(
             id='t006c016_t',
-            name='European origins (total)',
+            name='Total population - European origins (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t006c016_m = OBSColumn(
             id='t006c016_m',
@@ -2451,7 +2343,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t006c016_f = OBSColumn(
             id='t006c016_f',
@@ -2460,7 +2352,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t006c017_t = OBSColumn(
             id='t006c017_t',
@@ -4354,12 +4246,12 @@ class NHSColumns(ColumnsTask):
 
         t006c087_t = OBSColumn(
             id='t006c087_t',
-            name='Caribbean origins (total)',
+            name='Total population - Caribbean origins (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t006c087_m = OBSColumn(
             id='t006c087_m',
@@ -4368,7 +4260,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t006c087_f = OBSColumn(
             id='t006c087_f',
@@ -4377,7 +4269,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t006c088_t = OBSColumn(
             id='t006c088_t',
@@ -4894,12 +4786,12 @@ class NHSColumns(ColumnsTask):
 
         t006c107_t = OBSColumn(
             id='t006c107_t',
-            name='Latin, Central and South American origins (total)',
+            name='Total population - Latin, Central and South American origins (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t006c107_m = OBSColumn(
             id='t006c107_m',
@@ -4908,7 +4800,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t006c107_f = OBSColumn(
             id='t006c107_f',
@@ -4917,7 +4809,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t006c108_t = OBSColumn(
             id='t006c108_t',
@@ -5542,12 +5434,12 @@ class NHSColumns(ColumnsTask):
 
         t006c131_t = OBSColumn(
             id='t006c131_t',
-            name='African origins (total)',
+            name='Total population - African origins (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t006c131_m = OBSColumn(
             id='t006c131_m',
@@ -5556,7 +5448,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t006c131_f = OBSColumn(
             id='t006c131_f',
@@ -5565,7 +5457,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t006c132_t = OBSColumn(
             id='t006c132_t',
@@ -7243,12 +7135,12 @@ class NHSColumns(ColumnsTask):
 
         t006c194_t = OBSColumn(
             id='t006c194_t',
-            name='Asian origins (total)',
+            name='Total population - Asian origins (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t006c194_m = OBSColumn(
             id='t006c194_m',
@@ -7257,7 +7149,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t006c194_f = OBSColumn(
             id='t006c194_f',
@@ -7266,7 +7158,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t006c195_t = OBSColumn(
             id='t006c195_t',
@@ -8890,12 +8782,12 @@ class NHSColumns(ColumnsTask):
 
         t006c255_t = OBSColumn(
             id='t006c255_t',
-            name='Oceania origins (total)',
+            name='Total population - Oceania origins (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t006c255_m = OBSColumn(
             id='t006c255_m',
@@ -8904,7 +8796,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t006c255_f = OBSColumn(
             id='t006c255_f',
@@ -8913,7 +8805,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t006c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t006c256_t = OBSColumn(
             id='t006c256_t',
@@ -9293,113 +9185,86 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
-        t008c001_t = OBSColumn(
-            id='t008c001_t',
-            name='Total population in private households by generation status (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
-            targets={},)
-
-        t008c001_m = OBSColumn(
-            id='t008c001_m',
-            name='Total population in private households by generation status (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
-            targets={},)
-
-        t008c001_f = OBSColumn(
-            id='t008c001_f',
-            name='Total population in private households by generation status (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
-            targets={},)
-
         t008c002_t = OBSColumn(
             id='t008c002_t',
-            name='First generation (total)',
+            name='Total population - First generation (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t008c002_m = OBSColumn(
             id='t008c002_m',
-            name='First generation (male)',
+            name='Total population - First generation (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t008c002_f = OBSColumn(
             id='t008c002_f',
-            name='First generation (female)',
+            name='Total population - First generation (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t008c003_t = OBSColumn(
             id='t008c003_t',
-            name='Second generation (total)',
+            name='Total population - Second generation (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t008c003_m = OBSColumn(
             id='t008c003_m',
-            name='Second generation (male)',
+            name='Total population - Second generation (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t008c003_f = OBSColumn(
             id='t008c003_f',
-            name='Second generation (female)',
+            name='Total population - Second generation (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t008c004_t = OBSColumn(
             id='t008c004_t',
-            name='Third generation or more (total)',
+            name='Total population - Third generation or more (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t008c004_m = OBSColumn(
             id='t008c004_m',
-            name='Third generation or more (male)',
+            name='Total population - Third generation or more (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t008c004_f = OBSColumn(
             id='t008c004_f',
-            name='Third generation or more (female)',
+            name='Total population - Third generation or more (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['families']],
-            targets={ t008c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t009c001_t = OBSColumn(
             id='t009c001_t',
@@ -9626,86 +9491,59 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c023_t: DENOMINATOR },)
 
-        t010c001_t = OBSColumn(
-            id='t010c001_t',
-            name='Total population in private households by immigrant status and period of immigration (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['migration']],
-            targets={},)
-
-        t010c001_m = OBSColumn(
-            id='t010c001_m',
-            name='Total population in private households by immigrant status and period of immigration (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['migration']],
-            targets={},)
-
-        t010c001_f = OBSColumn(
-            id='t010c001_f',
-            name='Total population in private households by immigrant status and period of immigration (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['migration']],
-            targets={},)
-
         t010c002_t = OBSColumn(
             id='t010c002_t',
-            name='Non-immigrants (total)',
+            name='Total population - Non-immigrants (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t010c002_m = OBSColumn(
             id='t010c002_m',
-            name='Non-immigrants (male)',
+            name='Total population - Non-immigrants (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t010c002_f = OBSColumn(
             id='t010c002_f',
-            name='Non-immigrants (female)',
+            name='Total population - Non-immigrants (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t010c003_t = OBSColumn(
             id='t010c003_t',
-            name='Immigrants (total)',
+            name='Total population - Immigrants (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t010c003_m = OBSColumn(
             id='t010c003_m',
-            name='Immigrants (male)',
+            name='Total population - Immigrants (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t010c003_f = OBSColumn(
             id='t010c003_f',
-            name='Immigrants (female)',
+            name='Total population - Immigrants (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t010c004_t = OBSColumn(
             id='t010c004_t',
@@ -9898,84 +9736,57 @@ class NHSColumns(ColumnsTask):
 
         t010c011_t = OBSColumn(
             id='t010c011_t',
-            name='Non-permanent residents (total)',
+            name='Total population - Non-permanent residents (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t010c011_m = OBSColumn(
             id='t010c011_m',
-            name='Non-permanent residents (male)',
+            name='Total population - Non-permanent residents (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t010c011_f = OBSColumn(
             id='t010c011_f',
-            name='Non-permanent residents (female)',
+            name='Total population - Non-permanent residents (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
-            targets={ t010c001_f: DENOMINATOR },)
-
-        t011c001_t = OBSColumn(
-            id='t011c001_t',
-            name='Total population in private households by immigrant status and selected places of birth (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={},)
-
-        t011c001_m = OBSColumn(
-            id='t011c001_m',
-            name='Total population in private households by immigrant status and selected places of birth (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={},)
-
-        t011c001_f = OBSColumn(
-            id='t011c001_f',
-            name='Total population in private households by immigrant status and selected places of birth (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={},)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t011c002_t = OBSColumn(
             id='t011c002_t',
-            name='Non-immigrants (total)',
+            name='Total population - Non-immigrants (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t011c002_m = OBSColumn(
             id='t011c002_m',
-            name='Non-immigrants (male)',
+            name='Total population - Non-immigrants (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t011c002_f = OBSColumn(
             id='t011c002_f',
-            name='Non-immigrants (female)',
+            name='Total population - Non-immigrants (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t011c003_t = OBSColumn(
             id='t011c003_t',
@@ -10033,30 +9844,30 @@ class NHSColumns(ColumnsTask):
 
         t011c005_t = OBSColumn(
             id='t011c005_t',
-            name='Immigrants (total)',
+            name='Total population - Immigrants (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t011c005_m = OBSColumn(
             id='t011c005_m',
-            name='Immigrants (male)',
+            name='Total population - Immigrants (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t011c005_f = OBSColumn(
             id='t011c005_f',
-            name='Immigrants (female)',
+            name='Total population - Immigrants (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t011c006_t = OBSColumn(
             id='t011c006_t',
@@ -11680,30 +11491,30 @@ class NHSColumns(ColumnsTask):
 
         t011c066_t = OBSColumn(
             id='t011c066_t',
-            name='Non-permanent residents (total)',
+            name='Total population - Non-permanent residents (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t011c066_m = OBSColumn(
             id='t011c066_m',
-            name='Non-permanent residents (male)',
+            name='Total population - Non-permanent residents (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t011c066_f = OBSColumn(
             id='t011c066_f',
-            name='Non-permanent residents (female)',
+            name='Total population - Non-permanent residents (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t012c001_t = OBSColumn(
             id='t012c001_t',
@@ -13850,59 +13661,32 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: UNIVERSE },)
 
-        t013c084_t = OBSColumn(
-            id='t013c084_t',
-            name='Total population by decile of adjusted after-tax family income (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t013c084_m = OBSColumn(
-            id='t013c084_m',
-            name='Total population by decile of adjusted after-tax family income (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t013c084_f = OBSColumn(
-            id='t013c084_f',
-            name='Total population by decile of adjusted after-tax family income (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
         t013c085_t = OBSColumn(
             id='t013c085_t',
-            name='In bottom half of the Canadian distribution (total)',
+            name='Total population - In bottom half of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c084_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t013c085_m = OBSColumn(
             id='t013c085_m',
-            name='In bottom half of the Canadian distribution (male)',
+            name='Total population - In bottom half of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c084_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t013c085_f = OBSColumn(
             id='t013c085_f',
-            name='In bottom half of the Canadian distribution (female)',
+            name='Total population - In bottom half of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c084_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t013c086_t = OBSColumn(
             id='t013c086_t',
@@ -14041,30 +13825,30 @@ class NHSColumns(ColumnsTask):
 
         t013c091_t = OBSColumn(
             id='t013c091_t',
-            name='In top half of the Canadian distribution (total)',
+            name='Total population - In top half of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c084_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t013c091_m = OBSColumn(
             id='t013c091_m',
-            name='In top half of the Canadian distribution (male)',
+            name='Total population - In top half of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c084_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t013c091_f = OBSColumn(
             id='t013c091_f',
-            name='In top half of the Canadian distribution (female)',
+            name='Total population - In top half of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c084_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t013c092_t = OBSColumn(
             id='t013c092_t',
@@ -22133,86 +21917,59 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t024c001_f: DENOMINATOR },)
 
-        t025c001_t = OBSColumn(
-            id='t025c001_t',
-            name='Total population in private households by religion (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['religion']],
-            targets={},)
-
-        t025c001_m = OBSColumn(
-            id='t025c001_m',
-            name='Total population in private households by religion (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['religion']],
-            targets={},)
-
-        t025c001_f = OBSColumn(
-            id='t025c001_f',
-            name='Total population in private households by religion (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['religion']],
-            targets={},)
-
         t025c002_t = OBSColumn(
             id='t025c002_t',
-            name='Buddhist (total)',
+            name='Total population - Buddhist (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c002_m = OBSColumn(
             id='t025c002_m',
-            name='Buddhist (male)',
+            name='Total population - Buddhist (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c002_f = OBSColumn(
             id='t025c002_f',
-            name='Buddhist (female)',
+            name='Total population - Buddhist (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t025c003_t = OBSColumn(
             id='t025c003_t',
-            name='Christian (total)',
+            name='Total population - Christian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c003_m = OBSColumn(
             id='t025c003_m',
-            name='Christian (male)',
+            name='Total population - Christian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c003_f = OBSColumn(
             id='t025c003_f',
-            name='Christian (female)',
+            name='Total population - Christian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t025c004_t = OBSColumn(
             id='t025c004_t',
@@ -22459,192 +22216,192 @@ class NHSColumns(ColumnsTask):
 
         t025c013_t = OBSColumn(
             id='t025c013_t',
-            name='Hindu (total)',
+            name='Total population - Hindu (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c013_m = OBSColumn(
             id='t025c013_m',
-            name='Hindu (male)',
+            name='Total population - Hindu (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c013_f = OBSColumn(
             id='t025c013_f',
-            name='Hindu (female)',
+            name='Total population - Hindu (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t025c014_t = OBSColumn(
             id='t025c014_t',
-            name='Jewish (total)',
+            name='Total population - Jewish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c014_m = OBSColumn(
             id='t025c014_m',
-            name='Jewish (male)',
+            name='Total population - Jewish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c014_f = OBSColumn(
             id='t025c014_f',
-            name='Jewish (female)',
+            name='Total population - Jewish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t025c015_t = OBSColumn(
             id='t025c015_t',
-            name='Muslim (total)',
+            name='Total population - Muslim (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c015_m = OBSColumn(
             id='t025c015_m',
-            name='Muslim (male)',
+            name='Total population - Muslim (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c015_f = OBSColumn(
             id='t025c015_f',
-            name='Muslim (female)',
+            name='Total population - Muslim (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t025c016_t = OBSColumn(
             id='t025c016_t',
-            name='Sikh (total)',
+            name='Total population - Sikh (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c016_m = OBSColumn(
             id='t025c016_m',
-            name='Sikh (male)',
+            name='Total population - Sikh (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c016_f = OBSColumn(
             id='t025c016_f',
-            name='Sikh (female)',
+            name='Total population - Sikh (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t025c017_t = OBSColumn(
             id='t025c017_t',
-            name='Traditional (Aboriginal) Spirituality (total)',
+            name='Total population - Traditional (Aboriginal) Spirituality (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c017_m = OBSColumn(
             id='t025c017_m',
-            name='Traditional (Aboriginal) Spirituality (male)',
+            name='Total population - Traditional (Aboriginal) Spirituality (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c017_f = OBSColumn(
             id='t025c017_f',
-            name='Traditional (Aboriginal) Spirituality (female)',
+            name='Total population - Traditional (Aboriginal) Spirituality (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t025c018_t = OBSColumn(
             id='t025c018_t',
-            name='Other religions (total)',
+            name='Total population - Other religions (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c018_m = OBSColumn(
             id='t025c018_m',
-            name='Other religions (male)',
+            name='Total population - Other religions (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c018_f = OBSColumn(
             id='t025c018_f',
-            name='Other religions (female)',
+            name='Total population - Other religions (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t025c019_t = OBSColumn(
             id='t025c019_t',
-            name='No religious affiliation (total)',
+            name='Total population - No religious affiliation (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t025c019_m = OBSColumn(
             id='t025c019_m',
-            name='No religious affiliation (male)',
+            name='Total population - No religious affiliation (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t025c019_f = OBSColumn(
             id='t025c019_f',
-            name='No religious affiliation (female)',
+            name='Total population - No religious affiliation (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['religion']],
-            targets={ t025c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t026c001_t = OBSColumn(
             id='t026c001_t',
@@ -22894,59 +22651,32 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_f: DENOMINATOR },)
 
-        t028c001_t = OBSColumn(
-            id='t028c001_t',
-            name='Total population in private households by visible minority (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t028c001_m = OBSColumn(
-            id='t028c001_m',
-            name='Total population in private households by visible minority (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t028c001_f = OBSColumn(
-            id='t028c001_f',
-            name='Total population in private households by visible minority (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
         t028c002_t = OBSColumn(
             id='t028c002_t',
-            name='Total visible minority population (total)',
+            name='Total population - Total visible minority population (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t028c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t028c002_m = OBSColumn(
             id='t028c002_m',
-            name='Total visible minority population (male)',
+            name='Total population - Total visible minority population (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t028c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t028c002_f = OBSColumn(
             id='t028c002_f',
-            name='Total visible minority population (female)',
+            name='Total population - Total visible minority population (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t028c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t028c003_t = OBSColumn(
             id='t028c003_t',
@@ -23274,30 +23004,30 @@ class NHSColumns(ColumnsTask):
 
         t028c015_t = OBSColumn(
             id='t028c015_t',
-            name='Not a visible minority (total)',
+            name='Total population - Not a visible minority (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t028c001_t: DENOMINATOR },)
+            targets={ t001c001_t: DENOMINATOR },)
 
         t028c015_m = OBSColumn(
             id='t028c015_m',
-            name='Not a visible minority (male)',
+            name='Total population - Not a visible minority (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t028c001_m: DENOMINATOR },)
+            targets={ t001c001_m: DENOMINATOR },)
 
         t028c015_f = OBSColumn(
             id='t028c015_f',
-            name='Not a visible minority (female)',
+            name='Total population - Not a visible minority (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={ t028c001_f: DENOMINATOR },)
+            targets={ t001c001_f: DENOMINATOR },)
 
         t029c001_t = OBSColumn(
             id='t029c001_t',
@@ -23567,18 +23297,12 @@ class NHSColumns(ColumnsTask):
             ('t001c008_t', t001c008_t),
             ('t001c008_m', t001c008_m),
             ('t001c008_f', t001c008_f),
-            ('t001c009_t', t001c009_t),
-            ('t001c009_m', t001c009_m),
-            ('t001c009_f', t001c009_f),
             ('t001c010_t', t001c010_t),
             ('t001c010_m', t001c010_m),
             ('t001c010_f', t001c010_f),
             ('t001c011_t', t001c011_t),
             ('t001c011_m', t001c011_m),
             ('t001c011_f', t001c011_f),
-            ('t001c012_t', t001c012_t),
-            ('t001c012_m', t001c012_m),
-            ('t001c012_f', t001c012_f),
             ('t001c013_t', t001c013_t),
             ('t001c013_m', t001c013_m),
             ('t001c013_f', t001c013_f),
@@ -23612,9 +23336,6 @@ class NHSColumns(ColumnsTask):
             ('t002c006_t', t002c006_t),
             ('t002c006_m', t002c006_m),
             ('t002c006_f', t002c006_f),
-            ('t003c001_t', t003c001_t),
-            ('t003c001_m', t003c001_m),
-            ('t003c001_f', t003c001_f),
             ('t003c002_t', t003c002_t),
             ('t003c002_m', t003c002_m),
             ('t003c002_f', t003c002_f),
@@ -23765,9 +23486,6 @@ class NHSColumns(ColumnsTask):
             ('t005c041_t', t005c041_t),
             ('t005c041_m', t005c041_m),
             ('t005c041_f', t005c041_f),
-            ('t006c001_t', t006c001_t),
-            ('t006c001_m', t006c001_m),
-            ('t006c001_f', t006c001_f),
             ('t006c002_t', t006c002_t),
             ('t006c002_m', t006c002_m),
             ('t006c002_f', t006c002_f),
@@ -24572,9 +24290,6 @@ class NHSColumns(ColumnsTask):
             ('t007c005_t', t007c005_t),
             ('t007c005_m', t007c005_m),
             ('t007c005_f', t007c005_f),
-            ('t008c001_t', t008c001_t),
-            ('t008c001_m', t008c001_m),
-            ('t008c001_f', t008c001_f),
             ('t008c002_t', t008c002_t),
             ('t008c002_m', t008c002_m),
             ('t008c002_f', t008c002_f),
@@ -24609,9 +24324,6 @@ class NHSColumns(ColumnsTask):
             ('t009c023_t', t009c023_t),
             ('t009c024_t', t009c024_t),
             ('t009c025_t', t009c025_t),
-            ('t010c001_t', t010c001_t),
-            ('t010c001_m', t010c001_m),
-            ('t010c001_f', t010c001_f),
             ('t010c002_t', t010c002_t),
             ('t010c002_m', t010c002_m),
             ('t010c002_f', t010c002_f),
@@ -24642,9 +24354,6 @@ class NHSColumns(ColumnsTask):
             ('t010c011_t', t010c011_t),
             ('t010c011_m', t010c011_m),
             ('t010c011_f', t010c011_f),
-            ('t011c001_t', t011c001_t),
-            ('t011c001_m', t011c001_m),
-            ('t011c001_f', t011c001_f),
             ('t011c002_t', t011c002_t),
             ('t011c002_m', t011c002_m),
             ('t011c002_f', t011c002_f),
@@ -25084,9 +24793,6 @@ class NHSColumns(ColumnsTask):
             ('t013c083_t', t013c083_t),
             ('t013c083_m', t013c083_m),
             ('t013c083_f', t013c083_f),
-            ('t013c084_t', t013c084_t),
-            ('t013c084_m', t013c084_m),
-            ('t013c084_f', t013c084_f),
             ('t013c085_t', t013c085_t),
             ('t013c085_m', t013c085_m),
             ('t013c085_f', t013c085_f),
@@ -26006,9 +25712,6 @@ class NHSColumns(ColumnsTask):
             ('t024c060_t', t024c060_t),
             ('t024c060_m', t024c060_m),
             ('t024c060_f', t024c060_f),
-            ('t025c001_t', t025c001_t),
-            ('t025c001_m', t025c001_m),
-            ('t025c001_f', t025c001_f),
             ('t025c002_t', t025c002_t),
             ('t025c002_m', t025c002_m),
             ('t025c002_f', t025c002_f),
@@ -26091,9 +25794,6 @@ class NHSColumns(ColumnsTask):
             ('t027c004_t', t027c004_t),
             ('t027c004_m', t027c004_m),
             ('t027c004_f', t027c004_f),
-            ('t028c001_t', t028c001_t),
-            ('t028c001_m', t028c001_m),
-            ('t028c001_f', t028c001_f),
             ('t028c002_t', t028c002_t),
             ('t028c002_m', t028c002_m),
             ('t028c002_f', t028c002_f),
