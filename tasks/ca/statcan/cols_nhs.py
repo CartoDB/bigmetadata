@@ -844,7 +844,7 @@ class NHSColumns(ColumnsTask):
 
         t005c001_t = OBSColumn(
             id='t005c001_t',
-            name='Total population aged 15 years and over by highest certificate, diploma or degree (total)',
+            name='Total population aged 15+ (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -853,7 +853,7 @@ class NHSColumns(ColumnsTask):
 
         t005c001_m = OBSColumn(
             id='t005c001_m',
-            name='Total population aged 15 years and over by highest certificate, diploma or degree (male)',
+            name='Total population aged 15+ (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -862,7 +862,7 @@ class NHSColumns(ColumnsTask):
 
         t005c001_f = OBSColumn(
             id='t005c001_f',
-            name='Total population aged 15 years and over by highest certificate, diploma or degree (female)',
+            name='Total population aged 15+ (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -871,7 +871,7 @@ class NHSColumns(ColumnsTask):
 
         t005c002_t = OBSColumn(
             id='t005c002_t',
-            name='No certificate, diploma or degree (total)',
+            name='Total population aged 15+ - No certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -880,7 +880,7 @@ class NHSColumns(ColumnsTask):
 
         t005c002_m = OBSColumn(
             id='t005c002_m',
-            name='No certificate, diploma or degree (male)',
+            name='Total population aged 15+ - No certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -889,7 +889,7 @@ class NHSColumns(ColumnsTask):
 
         t005c002_f = OBSColumn(
             id='t005c002_f',
-            name='No certificate, diploma or degree (female)',
+            name='Total population aged 15+ - No certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -898,7 +898,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_t = OBSColumn(
             id='t005c003_t',
-            name='High school diploma or equivalent (total)',
+            name='Total population aged 15+ - High school diploma or equivalent (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -907,7 +907,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_m = OBSColumn(
             id='t005c003_m',
-            name='High school diploma or equivalent (male)',
+            name='Total population aged 15+ - High school diploma or equivalent (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -916,7 +916,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_f = OBSColumn(
             id='t005c003_f',
-            name='High school diploma or equivalent (female)',
+            name='Total population aged 15+ - High school diploma or equivalent (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -925,7 +925,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_t = OBSColumn(
             id='t005c004_t',
-            name='Postsecondary certificate, diploma or degree (total)',
+            name='Total population aged 15+ - Postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -934,7 +934,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_m = OBSColumn(
             id='t005c004_m',
-            name='Postsecondary certificate, diploma or degree (male)',
+            name='Total population aged 15+ - Postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -943,7 +943,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_f = OBSColumn(
             id='t005c004_f',
-            name='Postsecondary certificate, diploma or degree (female)',
+            name='Total population aged 15+ - Postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1382,464 +1382,410 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_f: DENOMINATOR },)
 
-        t005c021_t = OBSColumn(
-            id='t005c021_t',
-            name='Total population aged 15 years and over by major field of study - Classification of Instructional Programs (CIP) 2011 (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
-        t005c021_m = OBSColumn(
-            id='t005c021_m',
-            name='Total population aged 15 years and over by major field of study - Classification of Instructional Programs (CIP) 2011 (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
-        t005c021_f = OBSColumn(
-            id='t005c021_f',
-            name='Total population aged 15 years and over by major field of study - Classification of Instructional Programs (CIP) 2011 (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
         t005c022_t = OBSColumn(
             id='t005c022_t',
-            name='No postsecondary certificate, diploma or degree (total)',
+            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c022_m = OBSColumn(
             id='t005c022_m',
-            name='No postsecondary certificate, diploma or degree (male)',
+            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c022_f = OBSColumn(
             id='t005c022_f',
-            name='No postsecondary certificate, diploma or degree (female)',
+            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c023_t = OBSColumn(
             id='t005c023_t',
-            name='Education (total)',
+            name='Total population aged 15+ - Education (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c023_m = OBSColumn(
             id='t005c023_m',
-            name='Education (male)',
+            name='Total population aged 15+ - Education (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c023_f = OBSColumn(
             id='t005c023_f',
-            name='Education (female)',
+            name='Total population aged 15+ - Education (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c024_t = OBSColumn(
             id='t005c024_t',
-            name='Visual and performing arts, and communications technologies (total)',
+            name='Total population aged 15+ - Visual and performing arts, and communications technologies (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c024_m = OBSColumn(
             id='t005c024_m',
-            name='Visual and performing arts, and communications technologies (male)',
+            name='Total population aged 15+ - Visual and performing arts, and communications technologies (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c024_f = OBSColumn(
             id='t005c024_f',
-            name='Visual and performing arts, and communications technologies (female)',
+            name='Total population aged 15+ - Visual and performing arts, and communications technologies (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c025_t = OBSColumn(
             id='t005c025_t',
-            name='Humanities (total)',
+            name='Total population aged 15+ - Humanities (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c025_m = OBSColumn(
             id='t005c025_m',
-            name='Humanities (male)',
+            name='Total population aged 15+ - Humanities (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c025_f = OBSColumn(
             id='t005c025_f',
-            name='Humanities (female)',
+            name='Total population aged 15+ - Humanities (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c026_t = OBSColumn(
             id='t005c026_t',
-            name='Social and behavioural sciences and law (total)',
+            name='Total population aged 15+ - Social and behavioural sciences and law (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c026_m = OBSColumn(
             id='t005c026_m',
-            name='Social and behavioural sciences and law (male)',
+            name='Total population aged 15+ - Social and behavioural sciences and law (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c026_f = OBSColumn(
             id='t005c026_f',
-            name='Social and behavioural sciences and law (female)',
+            name='Total population aged 15+ - Social and behavioural sciences and law (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c027_t = OBSColumn(
             id='t005c027_t',
-            name='Business, management and public administration (total)',
+            name='Total population aged 15+ - Business, management and public administration (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c027_m = OBSColumn(
             id='t005c027_m',
-            name='Business, management and public administration (male)',
+            name='Total population aged 15+ - Business, management and public administration (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c027_f = OBSColumn(
             id='t005c027_f',
-            name='Business, management and public administration (female)',
+            name='Total population aged 15+ - Business, management and public administration (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c028_t = OBSColumn(
             id='t005c028_t',
-            name='Physical and life sciences and technologies (total)',
+            name='Total population aged 15+ - Physical and life sciences and technologies (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c028_m = OBSColumn(
             id='t005c028_m',
-            name='Physical and life sciences and technologies (male)',
+            name='Total population aged 15+ - Physical and life sciences and technologies (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c028_f = OBSColumn(
             id='t005c028_f',
-            name='Physical and life sciences and technologies (female)',
+            name='Total population aged 15+ - Physical and life sciences and technologies (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c029_t = OBSColumn(
             id='t005c029_t',
-            name='Mathematics, computer and information sciences (total)',
+            name='Total population aged 15+ - Mathematics, computer and information sciences (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c029_m = OBSColumn(
             id='t005c029_m',
-            name='Mathematics, computer and information sciences (male)',
+            name='Total population aged 15+ - Mathematics, computer and information sciences (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c029_f = OBSColumn(
             id='t005c029_f',
-            name='Mathematics, computer and information sciences (female)',
+            name='Total population aged 15+ - Mathematics, computer and information sciences (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c030_t = OBSColumn(
             id='t005c030_t',
-            name='Architecture, engineering, and related technologies (total)',
+            name='Total population aged 15+ - Architecture, engineering, and related technologies (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c030_m = OBSColumn(
             id='t005c030_m',
-            name='Architecture, engineering, and related technologies (male)',
+            name='Total population aged 15+ - Architecture, engineering, and related technologies (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c030_f = OBSColumn(
             id='t005c030_f',
-            name='Architecture, engineering, and related technologies (female)',
+            name='Total population aged 15+ - Architecture, engineering, and related technologies (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c031_t = OBSColumn(
             id='t005c031_t',
-            name='Agriculture, natural resources and conservation (total)',
+            name='Total population aged 15+ - Agriculture, natural resources and conservation (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c031_m = OBSColumn(
             id='t005c031_m',
-            name='Agriculture, natural resources and conservation (male)',
+            name='Total population aged 15+ - Agriculture, natural resources and conservation (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c031_f = OBSColumn(
             id='t005c031_f',
-            name='Agriculture, natural resources and conservation (female)',
+            name='Total population aged 15+ - Agriculture, natural resources and conservation (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c032_t = OBSColumn(
             id='t005c032_t',
-            name='Health and related fields (total)',
+            name='Total population aged 15+ - Health and related fields (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c032_m = OBSColumn(
             id='t005c032_m',
-            name='Health and related fields (male)',
+            name='Total population aged 15+ - Health and related fields (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c032_f = OBSColumn(
             id='t005c032_f',
-            name='Health and related fields (female)',
+            name='Total population aged 15+ - Health and related fields (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c033_t = OBSColumn(
             id='t005c033_t',
-            name='Personal, protective and transportation services (total)',
+            name='Total population aged 15+ - Personal, protective and transportation services (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c033_m = OBSColumn(
             id='t005c033_m',
-            name='Personal, protective and transportation services (male)',
+            name='Total population aged 15+ - Personal, protective and transportation services (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c033_f = OBSColumn(
             id='t005c033_f',
-            name='Personal, protective and transportation services (female)',
+            name='Total population aged 15+ - Personal, protective and transportation services (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c034_t = OBSColumn(
             id='t005c034_t',
-            name='Other fields of study (total)',
+            name='Total population aged 15+ - Other fields of study (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c034_m = OBSColumn(
             id='t005c034_m',
-            name='Other fields of study (male)',
+            name='Total population aged 15+ - Other fields of study (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c034_f = OBSColumn(
             id='t005c034_f',
-            name='Other fields of study (female)',
+            name='Total population aged 15+ - Other fields of study (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c021_f: DENOMINATOR },)
-
-        t005c035_t = OBSColumn(
-            id='t005c035_t',
-            name='Total population aged 15 years and over by location of study compared with province or territory of residence (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
-        t005c035_m = OBSColumn(
-            id='t005c035_m',
-            name='Total population aged 15 years and over by location of study compared with province or territory of residence (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
-        t005c035_f = OBSColumn(
-            id='t005c035_f',
-            name='Total population aged 15 years and over by location of study compared with province or territory of residence (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c036_t = OBSColumn(
             id='t005c036_t',
-            name='No postsecondary certificate, diploma or degree (total)',
+            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c035_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c036_m = OBSColumn(
             id='t005c036_m',
-            name='No postsecondary certificate, diploma or degree (male)',
+            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c035_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c036_f = OBSColumn(
             id='t005c036_f',
-            name='No postsecondary certificate, diploma or degree (female)',
+            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c035_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c037_t = OBSColumn(
             id='t005c037_t',
-            name='With postsecondary certificate, diploma or degree (total)',
+            name='Total population aged 15+ - With postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c035_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t005c037_m = OBSColumn(
             id='t005c037_m',
-            name='With postsecondary certificate, diploma or degree (male)',
+            name='Total population aged 15+ - With postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c035_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t005c037_f = OBSColumn(
             id='t005c037_f',
-            name='With postsecondary certificate, diploma or degree (female)',
+            name='Total population aged 15+ - With postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c035_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t005c038_t = OBSColumn(
             id='t005c038_t',
@@ -14942,59 +14888,32 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t014c003_f: DENOMINATOR },)
 
-        t015c001_t = OBSColumn(
-            id='t015c001_t',
-            name='Total population aged 15 years and over by labour force status (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t015c001_m = OBSColumn(
-            id='t015c001_m',
-            name='Total population aged 15 years and over by labour force status (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t015c001_f = OBSColumn(
-            id='t015c001_f',
-            name='Total population aged 15 years and over by labour force status (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
         t015c002_t = OBSColumn(
             id='t015c002_t',
-            name='In the labour force (total)',
+            name='Total population aged 15+ - In the labour force (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t015c001_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t015c002_m = OBSColumn(
             id='t015c002_m',
-            name='In the labour force (male)',
+            name='Total population aged 15+ - In the labour force (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t015c001_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t015c002_f = OBSColumn(
             id='t015c002_f',
-            name='In the labour force (female)',
+            name='Total population aged 15+ - In the labour force (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t015c001_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t015c003_t = OBSColumn(
             id='t015c003_t',
@@ -15052,30 +14971,30 @@ class NHSColumns(ColumnsTask):
 
         t015c005_t = OBSColumn(
             id='t015c005_t',
-            name='Not in the labour force (total)',
+            name='Total population aged 15+ - Not in the labour force (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t015c001_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t015c005_m = OBSColumn(
             id='t015c005_m',
-            name='Not in the labour force (male)',
+            name='Total population aged 15+ - Not in the labour force (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t015c001_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t015c005_f = OBSColumn(
             id='t015c005_f',
-            name='Not in the labour force (female)',
+            name='Total population aged 15+ - Not in the labour force (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t015c001_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t015c006_t = OBSColumn(
             id='t015c006_t',
@@ -23315,9 +23234,6 @@ class NHSColumns(ColumnsTask):
             ('t005c020_t', t005c020_t),
             ('t005c020_m', t005c020_m),
             ('t005c020_f', t005c020_f),
-            ('t005c021_t', t005c021_t),
-            ('t005c021_m', t005c021_m),
-            ('t005c021_f', t005c021_f),
             ('t005c022_t', t005c022_t),
             ('t005c022_m', t005c022_m),
             ('t005c022_f', t005c022_f),
@@ -23357,9 +23273,6 @@ class NHSColumns(ColumnsTask):
             ('t005c034_t', t005c034_t),
             ('t005c034_m', t005c034_m),
             ('t005c034_f', t005c034_f),
-            ('t005c035_t', t005c035_t),
-            ('t005c035_m', t005c035_m),
-            ('t005c035_f', t005c035_f),
             ('t005c036_t', t005c036_t),
             ('t005c036_m', t005c036_m),
             ('t005c036_f', t005c036_f),
@@ -24829,9 +24742,6 @@ class NHSColumns(ColumnsTask):
             ('t014c023_t', t014c023_t),
             ('t014c023_m', t014c023_m),
             ('t014c023_f', t014c023_f),
-            ('t015c001_t', t015c001_t),
-            ('t015c001_m', t015c001_m),
-            ('t015c001_f', t015c001_f),
             ('t015c002_t', t015c002_t),
             ('t015c002_m', t015c002_m),
             ('t015c002_f', t015c002_f),
