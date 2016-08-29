@@ -11392,7 +11392,7 @@ class NHSColumns(ColumnsTask):
 
         t012c001_t = OBSColumn(
             id='t012c001_t',
-            name='Household total income in 2010 of private households',
+            name='Household income in 2010 of private households',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11401,7 +11401,7 @@ class NHSColumns(ColumnsTask):
 
         t012c002_t = OBSColumn(
             id='t012c002_t',
-            name='Under $5,000',
+            name='Household total income - Under $5,000',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11410,7 +11410,7 @@ class NHSColumns(ColumnsTask):
 
         t012c003_t = OBSColumn(
             id='t012c003_t',
-            name='$5,000 to $9,999',
+            name='Household total income - $5,000 to $9,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11419,7 +11419,7 @@ class NHSColumns(ColumnsTask):
 
         t012c004_t = OBSColumn(
             id='t012c004_t',
-            name='$10,000 to $14,999',
+            name='Household total income - $10,000 to $14,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11428,7 +11428,7 @@ class NHSColumns(ColumnsTask):
 
         t012c005_t = OBSColumn(
             id='t012c005_t',
-            name='$15,000 to $19,999',
+            name='Household total income - $15,000 to $19,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11437,7 +11437,7 @@ class NHSColumns(ColumnsTask):
 
         t012c006_t = OBSColumn(
             id='t012c006_t',
-            name='$20,000 to $29,999',
+            name='Household total income - $20,000 to $29,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11446,7 +11446,7 @@ class NHSColumns(ColumnsTask):
 
         t012c007_t = OBSColumn(
             id='t012c007_t',
-            name='$30,000 to $39,999',
+            name='Household total income - $30,000 to $39,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11455,7 +11455,7 @@ class NHSColumns(ColumnsTask):
 
         t012c008_t = OBSColumn(
             id='t012c008_t',
-            name='$40,000 to $49,999',
+            name='Household total income - $40,000 to $49,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11464,7 +11464,7 @@ class NHSColumns(ColumnsTask):
 
         t012c009_t = OBSColumn(
             id='t012c009_t',
-            name='$50,000 to $59,999',
+            name='Household total income - $50,000 to $59,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11473,7 +11473,7 @@ class NHSColumns(ColumnsTask):
 
         t012c010_t = OBSColumn(
             id='t012c010_t',
-            name='$60,000 to $79,999',
+            name='Household total income - $60,000 to $79,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11482,7 +11482,7 @@ class NHSColumns(ColumnsTask):
 
         t012c011_t = OBSColumn(
             id='t012c011_t',
-            name='$80,000 to $99,999',
+            name='Household total income - $80,000 to $99,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11491,7 +11491,7 @@ class NHSColumns(ColumnsTask):
 
         t012c012_t = OBSColumn(
             id='t012c012_t',
-            name='$100,000 to $124,999',
+            name='Household total income - $100,000 to $124,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11500,7 +11500,7 @@ class NHSColumns(ColumnsTask):
 
         t012c013_t = OBSColumn(
             id='t012c013_t',
-            name='$125,000 to $149,999',
+            name='Household total income - $125,000 to $149,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11509,124 +11509,115 @@ class NHSColumns(ColumnsTask):
 
         t012c014_t = OBSColumn(
             id='t012c014_t',
-            name='$150,000 and over',
+            name='Household total income - $150,000 and over',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c001_t: DENOMINATOR },)
 
-        t012c015_t = OBSColumn(
-            id='t012c015_t',
-            name='After-tax income of households in 2010 of private households',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
         t012c016_t = OBSColumn(
             id='t012c016_t',
-            name='Under $5,000',
+            name='Household after-tax income - Under $5,000',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c017_t = OBSColumn(
             id='t012c017_t',
-            name='$5,000 to $9,999',
+            name='Household after-tax income - $5,000 to $9,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c018_t = OBSColumn(
             id='t012c018_t',
-            name='$10,000 to $14,999',
+            name='Household after-tax income - $10,000 to $14,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c019_t = OBSColumn(
             id='t012c019_t',
-            name='$15,000 to $19,999',
+            name='Household after-tax income - $15,000 to $19,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c020_t = OBSColumn(
             id='t012c020_t',
-            name='$20,000 to $29,999',
+            name='Household after-tax income - $20,000 to $29,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c021_t = OBSColumn(
             id='t012c021_t',
-            name='$30,000 to $39,999',
+            name='Household after-tax income - $30,000 to $39,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c022_t = OBSColumn(
             id='t012c022_t',
-            name='$40,000 to $49,999',
+            name='Household after-tax income - $40,000 to $49,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c023_t = OBSColumn(
             id='t012c023_t',
-            name='$50,000 to $59,999',
+            name='Household after-tax income - $50,000 to $59,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c024_t = OBSColumn(
             id='t012c024_t',
-            name='$60,000 to $79,999',
+            name='Household after-tax income - $60,000 to $79,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c025_t = OBSColumn(
             id='t012c025_t',
-            name='$80,000 to $99,999',
+            name='Household after-tax income - $80,000 to $99,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c026_t = OBSColumn(
             id='t012c026_t',
-            name='$100,000 and over',
+            name='Household after-tax income - $100,000 and over',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c015_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c027_t = OBSColumn(
             id='t012c027_t',
-            name='$100,000 to $124,999',
+            name='Household after-tax income - $100,000 to $124,999',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11635,21 +11626,12 @@ class NHSColumns(ColumnsTask):
 
         t012c028_t = OBSColumn(
             id='t012c028_t',
-            name='$125,000 and over',
+            name='Household after-tax income - $125,000 and over',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c026_t: DENOMINATOR },)
-
-        t012c029_t = OBSColumn(
-            id='t012c029_t',
-            name='Household income in 2010 of private households',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
 
         t012c030_t = OBSColumn(
             id='t012c030_t',
@@ -11658,7 +11640,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_t: UNIVERSE },)
+            targets={ t012c001_t: UNIVERSE },)
 
         t012c031_t = OBSColumn(
             id='t012c031_t',
@@ -11667,7 +11649,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_t: UNIVERSE },)
+            targets={ t012c001_t: UNIVERSE },)
 
         t012c032_t = OBSColumn(
             id='t012c032_t',
@@ -11676,7 +11658,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_t: UNIVERSE },)
+            targets={ t012c001_t: UNIVERSE },)
 
         t012c033_t = OBSColumn(
             id='t012c033_t',
@@ -11685,7 +11667,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c029_t: UNIVERSE },)
+            targets={ t012c001_t: UNIVERSE },)
 
         t012c034_t = OBSColumn(
             id='t012c034_t',
@@ -11694,7 +11676,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c029_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c035_t = OBSColumn(
             id='t012c035_t',
@@ -11739,7 +11721,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c029_t: DENOMINATOR },)
+            targets={ t012c001_t: DENOMINATOR },)
 
         t012c040_t = OBSColumn(
             id='t012c040_t',
@@ -24315,7 +24297,6 @@ class NHSColumns(ColumnsTask):
             ('t012c012_t', t012c012_t),
             ('t012c013_t', t012c013_t),
             ('t012c014_t', t012c014_t),
-            ('t012c015_t', t012c015_t),
             ('t012c016_t', t012c016_t),
             ('t012c017_t', t012c017_t),
             ('t012c018_t', t012c018_t),
@@ -24329,7 +24310,6 @@ class NHSColumns(ColumnsTask):
             ('t012c026_t', t012c026_t),
             ('t012c027_t', t012c027_t),
             ('t012c028_t', t012c028_t),
-            ('t012c029_t', t012c029_t),
             ('t012c030_t', t012c030_t),
             ('t012c031_t', t012c031_t),
             ('t012c032_t', t012c032_t),
