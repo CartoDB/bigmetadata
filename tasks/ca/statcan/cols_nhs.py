@@ -15082,8 +15082,8 @@ class NHSColumns(ColumnsTask):
             name='Participation rate (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t015c006_m = OBSColumn(
@@ -15091,8 +15091,8 @@ class NHSColumns(ColumnsTask):
             name='Participation rate (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t015c006_f = OBSColumn(
@@ -15100,8 +15100,8 @@ class NHSColumns(ColumnsTask):
             name='Participation rate (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t015c007_t = OBSColumn(
@@ -15109,8 +15109,8 @@ class NHSColumns(ColumnsTask):
             name='Employment rate (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t015c007_m = OBSColumn(
@@ -15118,8 +15118,8 @@ class NHSColumns(ColumnsTask):
             name='Employment rate (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t015c007_f = OBSColumn(
@@ -15127,8 +15127,8 @@ class NHSColumns(ColumnsTask):
             name='Employment rate (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t015c008_t = OBSColumn(
@@ -15136,8 +15136,8 @@ class NHSColumns(ColumnsTask):
             name='Unemployment rate (total)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t015c008_m = OBSColumn(
@@ -15145,8 +15145,8 @@ class NHSColumns(ColumnsTask):
             name='Unemployment rate (male)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t015c008_f = OBSColumn(
@@ -15154,8 +15154,8 @@ class NHSColumns(ColumnsTask):
             name='Unemployment rate (female)',
             type='Numeric',
             weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            aggregate='percent',
+            tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
         t016c001_t = OBSColumn(
