@@ -12,6 +12,11 @@ class LicenseTags(TagsTask):
             OBSTag(id='cc-by-4',
                    name='CC-BY 4.0',
                    description=''),
+            OBSTag(id='no-restrictions',
+                   name='Unrestricted',
+                   description='You may do whatever you want with this information'
+                  ),
+
         ]
 
 
