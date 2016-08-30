@@ -818,8 +818,8 @@ class OBSMeta(Task):
            FIRST(geom_c.weight) geom_weight,
            FIRST(geom_t.timespan) geom_timespan,
            FIRST(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
-           ARRAY_AGG(
-             numer_tag.type || '/' || numer_tag.id
+           JSONB_OBJECT_AGG(
+             numer_tag.type || '/' || numer_tag.id, numer_tag.name
            ) numer_tags,
            ARRAY_AGG(
              CASE WHEN numer_tag.type = 'section' THEN numer_tag.id ELSE NULL END
