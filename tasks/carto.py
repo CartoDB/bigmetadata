@@ -821,15 +821,12 @@ class OBSMeta(Task):
            JSONB_OBJECT_AGG(
              numer_tag.type || '/' || numer_tag.id, numer_tag.name
            ) numer_tags,
-           ARRAY_AGG(
-             CASE WHEN numer_tag.type = 'section' THEN numer_tag.id ELSE NULL END
-           ) section_tags,
-           ARRAY_AGG(
-             CASE WHEN numer_tag.type = 'subsection' THEN numer_tag.id ELSE NULL END
-           ) subsection_tags,
-           ARRAY_AGG(
-             CASE WHEN numer_tag.type = 'unit' THEN numer_tag.id ELSE NULL END
-           ) unit_tags,
+           ARRAY_AGG(DISTINCT numer_tag.id)
+             FILTER (WHERE numer_tag.type = 'section') section_tags,
+           ARRAY_AGG(DISTINCT numer_tag.id)
+             FILTER (WHERE numer_tag.type = 'subsection') subsection_tags,
+           ARRAY_AGG(DISTINCT numer_tag.id)
+             FILTER (WHERE numer_tag.type = 'unit') unit_tags,
            FIRST(numer_c.extra)::JSONB numer_extra,
            FIRST(numer_data_ct.extra)::JSONB numer_ct_extra,
            FIRST(denom_c.extra)::JSONB denom_extra,
