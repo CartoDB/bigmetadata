@@ -2,7 +2,7 @@
 
 from luigi import Task, Parameter, LocalTarget
 
-from tasks.util import (shell, classpath, TableTask, ColumnsTask,
+from tasks.util import (shell, classpath, TagsTask, TableTask, ColumnsTask,
                         DownloadUnzipTask)
 from tasks.es.cnig import GeomRefColumns
 from tasks.meta import OBSColumn, DENOMINATOR, current_session
@@ -29,13 +29,14 @@ class DownloadAnuario(DownloadUnzipTask):
 class AnuarioColumns(ColumnsTask):
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'censustags': LaCaixaTags()
         }
 
     def columns(self):
@@ -450,6 +451,7 @@ class AnuarioColumns(ColumnsTask):
             extra={'source': {
                 'name': u'Act. com. grandes almacenes'
             }},
+
             targets={mixed_integrated_trade_businesses: DENOMINATOR},
         )
         superstores = OBSColumn(
@@ -508,7 +510,7 @@ class AnuarioColumns(ColumnsTask):
             }},
         )
 
-        return OrderedDict([
+        columns =  OrderedDict([
             ('telephones', telephones),
             ('motor_vehicles', motor_vehicles),
             ('automobiles', automobiles),
@@ -547,6 +549,24 @@ class AnuarioColumns(ColumnsTask):
             ('street_vendors', street_vendors),
             ('malls', malls),
         ])
+	
+	lacaixa_source = input_['censustags']['lacaixa']
+	for _, col in columns,iteritems():
+		col.tags.append(lacaixa_source)
+	return columns
+
+class LaCaixaTags(TagsTask):
+	def version(self):
+		return 1
+	
+	def tags(self):
+		return [
+			OBSTag(
+                id='lacaixa',
+                name='Spain Economic Yearbook',
+                type='source',
+                description='The la Caixa publication of the Spain Economic Yearbook http://www.caixabankresearch.com/')
+            ]
 
 
 class Anuario(TableTask):
