@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+e!nusr/bin/env python
 
 '''
 Bigmetadata tasks
@@ -41,7 +41,7 @@ class ACSTags(TagsTask):
             OBSTag(id='acs',
                    name='US American Community Survey',
                    type='source',
-                   description='The United States American Community Survey'),
+                   description='The United States American Community Survey, 2014 5-year sample. https://www.census.gov/programs-surveys/acs/'),
             OBSTag(id='segments',
                    name='US Population Segments',
                    type='subsection',
