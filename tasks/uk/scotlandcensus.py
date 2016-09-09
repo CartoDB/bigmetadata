@@ -2,10 +2,20 @@
 
 from luigi import Task, Parameter, LocalTarget
 
-from tasks.util import (TableTask, ColumnsTask, classpath, shell,
+from tasks.util import (TableTask, TagsTask, ColumnsTask, classpath, shell,
                         DownloadUnzipTask)
 
 import os
+
+class SourceTags(TagsTask):
+	def version(self):
+		return 1
+
+	def tags(self):
+		return [
+			OBSTag(id='scotland'.
+					name="Scotland's Census Data Warehouse by National Records of Scotland",
+					description="http://www.scotlandscensus.gov.uk/")]
 
 class DownloadScotlandLocal(DownloadUnzipTask):
 
