@@ -2,7 +2,7 @@
 # #http://centrodedescargas.cnig.es/CentroDescargas/inicio.do
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
-from tasks.util import (ColumnsTask, TableTask, shell, classpath,
+from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
@@ -44,6 +44,16 @@ class ImportGeometry(Shp2TempTableTask):
                                 resolution=self.resolution.upper()))
         return os.path.join(self.input().path, path)
 
+class CNIG(TagsTask):
+    def version(self):
+        return 1
+    def tags(self):
+        return [
+            OBSTAG(id='CNIG'
+                    name='National Center for Geographic Information (CNIG)',
+                    type='source',
+                    description='The National Center for Geographic Information (CNIG)'
+                    )]
 
 class GeometryColumns(ColumnsTask):
 
@@ -54,6 +64,7 @@ class GeometryColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'geotags': CNIG()
         }
 
     def columns(self):
@@ -84,12 +95,16 @@ class GeometryColumns(ColumnsTask):
                         'Municipal boundaries do not cross between provinces. ',
             tags=[sections['spain'], subsections['boundary']],
         )
-        return OrderedDict([
+        columns = OrderedDict([
             ('ccaa', ccaa),
             ('prov', prov),
             ('muni', muni),
         ])
 
+        cnig_source = input_['censustags']['cnig']
+        for _, col in columns,iteritems():
+            col.tags.append(cnig_source)
+        return columns
 
 class GeomRefColumns(ColumnsTask):
 
