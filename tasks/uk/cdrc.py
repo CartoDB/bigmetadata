@@ -10,6 +10,18 @@ from tasks.tags import LicenseTags, SectionTags, SubsectionTags, UnitTags
 from collections import OrderedDict
 import os
 
+class SourceTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return[
+            OBSTag(id='cdrc',
+                    name= 'Consumer Data Research Centre',
+                    type='source',
+                    description='The 2011 Area Classification for Output Areas (2011 OAC) is a UK geodemographic classification produced as a collaboration between the Office for National Statistics and University College London. For further information regarding the 2011 OAC please visit: http://www.ons.gov.uk/ons/guide-method/geography/products/area-classifications/ns-area-classifications/ns-2011-area-classifications/index.html or http://www.opengeodemographics.com. CDRC 2011 OAC Geodata Pack by the ESRC Consumer Data Research Centre; Contains National Statistics data Crown copyright and database right 2015; Contains Ordnance Survey data Crown copyright and database right 2015')
+                    ]        
 
 class DownloadOutputAreas(DownloadUnzipTask):
 
@@ -40,6 +52,7 @@ class OutputAreaColumns(ColumnsTask):
         return {
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
+            'sourcetag': SourceTags()
         }
 
     def columns(self):
@@ -60,7 +73,7 @@ class OutputAreaColumns(ColumnsTask):
                         'changed). -`Wikipedia <https://en.wikipedia.org/'
                         'wiki/ONS_coding_system#Geography_of_the_UK_Census>`_',
             weight=8,
-            tags=[input_['subsections']['boundary'], input_['sections']['uk']]
+            tags=[input_['subsections']['boundary'], input_['sections']['uk'], input_['sourcetag']['cdrc']]
         )
         geomref = OBSColumn(
             type='Text',
@@ -73,7 +86,6 @@ class OutputAreaColumns(ColumnsTask):
             ('the_geom', geom),
             ('oa_sa', geomref)
         ])
-
 
 class OutputAreas(TableTask):
 
