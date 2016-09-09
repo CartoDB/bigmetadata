@@ -11,7 +11,7 @@ from collections import OrderedDict
 from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                         sql_to_cartodb_table, grouper, shell,
                         underscore_slugify, TableTask, ColumnTarget,
-                        ColumnsTask, Carto2TempTableTask
+                        ColumnsTask, TagsTask, Carto2TempTableTask
                        )
 from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
                         OBSColumnTag, OBSColumnToColumn, current_session)
@@ -21,6 +21,19 @@ from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
                    IntParameter)
 from psycopg2 import ProgrammingError
 from decimal import Decimal
+
+class SourceTags(TagsTask)
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='tiger',
+                   name='TIGER/Line® Shapefiles ',
+                   type='source',
+                   description='https://www.census.gov/geo/maps-data/data/tiger-line.html')
+        ]
+
 
 
 class ClippedGeomColumns(ColumnsTask):
@@ -64,6 +77,7 @@ class GeomColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'sourcetag': SourceTags()
         }
 
     def _generate_desc(self, sumlevel):
@@ -75,7 +89,7 @@ class GeomColumns(ColumnsTask):
     def columns(self):
         sections = self.input()['sections']
         subsections = self.input()['subsections']
-        return {
+        columns = {
             'block_group': OBSColumn(
                 type='Geometry',
                 name='US Census Block Groups',
@@ -168,6 +182,11 @@ class GeomColumns(ColumnsTask):
                 tags=[sections['united_states'], subsections['boundary']]
             ),
         }
+
+        tiger_source = input_['sourcetag']['tiger']
+        for _,col in columns.iteritems():
+            col.tags.append(acs_source)
+        return columns
 
 
 class Attributes(ColumnsTask):
