@@ -119,6 +119,7 @@ class SeccionColumns(ColumnsTask):
             'tags': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'censustags': INE()
         }
 
     def version(self):
@@ -1514,7 +1515,7 @@ class SeccionColumns(ColumnsTask):
             weight=5,
             tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
-        return OrderedDict([
+        columns = OrderedDict([
             ('total_pop', total_pop),
             ('male_pop', male_pop),
             ('female_pop', female_pop),
@@ -1665,6 +1666,25 @@ class SeccionColumns(ColumnsTask):
             ('households_5_people', households_5_people),
             ('households_6_more_people', households_6_more_people),
         ])
+
+    ine_source = input_['censustags']['ine']
+    for _, col in columns,iteritems():
+        col.tags.append(ine_source)
+    return columns
+
+
+class INE(TagsTask):
+    def version(self):
+        return 1
+    
+    def tags(self):
+        return [
+            OBSTag(
+                id='ine',
+                name='National Statistics Institute (INE)',
+                type='source',
+                description='INE website: www.ine.es')
+            ]
 
 
 class SeccionDataDownload(Task):
