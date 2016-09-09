@@ -2,15 +2,25 @@
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 
-from tasks.meta import OBSColumn, DENOMINATOR, current_session
+from tasks.meta import OBSColumn, DENOMINATOR, current_session, OBSTag
 from tasks.util import (TableTask, ColumnsTask, classpath, shell,
-                        DownloadUnzipTask, TempTableTask)
+                        DownloadUnzipTask, TagsTask, TempTableTask)
 from tasks.uk.cdrc import OutputAreaColumns
 from tasks.tags import UnitTags, SectionTags, SubsectionTags
 
 from collections import OrderedDict
 import os
 
+class SourcesTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='ons',
+                    name='Office for National Statistics (ONS)',
+                    description='All material on the Office for National Statistics (ONS) website is subject to Crown Copyright protection unless otherwise indicated.')]
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
@@ -54,6 +64,7 @@ class CensusColumns(ColumnsTask):
             'units': UnitTags(),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'sources': SourcesTags()
         }
 
     def version(self):
@@ -995,7 +1006,7 @@ class CensusColumns(ColumnsTask):
             tags=[uk, units['people'], subsections['employment'], ],
         )
 
-        return OrderedDict([
+        columns = OrderedDict([
             ('total_pop', total_pop),
             ('pop_0_to_24', pop_0_to_24),
             ('pop_25_to_49', pop_25_to_49),
@@ -1090,7 +1101,10 @@ class CensusColumns(ColumnsTask):
             ('never_worked', never_worked),
             ('long_term_unemployed', long_term_unemployed),
         ])
-
+    ons_source = input_['sources']['ons']
+    for _, col in columns,iteritems():
+        col.tags.append(ons_source)
+    return columns
 
 class ImportAllEnglandWalesLocal(Task):
 
