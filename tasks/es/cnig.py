@@ -101,7 +101,7 @@ class GeometryColumns(ColumnsTask):
             ('muni', muni),
         ])
 
-        cnig_source = input_['censustags']['cnig']
+        cnig_source = input_['geotags']['CNIG']
         for _, col in columns,iteritems():
             col.tags.append(cnig_source)
         return columns
