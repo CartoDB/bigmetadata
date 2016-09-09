@@ -16,6 +16,15 @@ class LicenseTags(TagsTask):
                    name='Unrestricted',
                    description='You may do whatever you want with this information'
                   ),
+            OBSTAG(id='uk_ogl',
+                    name='UK Open Government Licence (OGL)',
+                    description='http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/'),
+            OBSTag(id='ine_property',
+                    name='National Statistics Institute (INE) Property',
+                    description='http://www.ine.es/ss/Satellite?L=1&c=Page&cid=1254735849170&p=1254735849170&pagename=Ayuda%2FINELayout#'),
+            OBSTag(id='zillow',
+                    name='Zillow Group Data',
+                    description='http://www.zillow.com/research/data/. All data accessed and downloaded from this page is free for public use by consumers, media, analysts, academics etc., consistent with our published Terms of Use. Proper and clear attribution of all data to Zillow is required.')
 
         ]
 
