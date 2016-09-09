@@ -1,5 +1,5 @@
 from tasks.util import (TempTableTask, TableTask, ColumnsTask,
-                        DownloadUnzipTask, CSV2TempTableTask,
+                        DownloadUnzipTask, TagsTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath)
 from tasks.meta import current_session, DENOMINATOR
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector,
@@ -59,6 +59,15 @@ class SimpleQCEW(TempTableTask):
                             qtr=self.qtr,
                         ))
 
+class SourceTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='qcew',
+                    name='Quartery Census of Employment and Wages (QCEW)',
+                    description='http://www.bls.gov/cew/home.htm')]
 
 class QCEWColumns(ColumnsTask):
 
@@ -72,6 +81,7 @@ class QCEWColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'sources': SourceTags()
         }
         parent_code = get_parent_code(self.naics_code)
         if parent_code:
@@ -169,10 +179,12 @@ class QCEWColumns(ColumnsTask):
             aggregate=None,
             tags=[units['ratio'], sections['united_states'], subsections['employment']],
         )
+
+        qcew_source = input_['sources']['qcew']
+        for col in cols:
+            for i in col:
+                i.tags.append(qcew_source)
         return cols
-
-
-
 
 class QCEW(TableTask):
 
