@@ -22,7 +22,7 @@ from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
 from psycopg2 import ProgrammingError
 from decimal import Decimal
 
-class SourceTags(TagsTask)
+class SourceTags(TagsTask):
     def version(self):
         return 1
 
