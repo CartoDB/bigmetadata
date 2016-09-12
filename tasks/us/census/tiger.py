@@ -29,7 +29,7 @@ class SourceTags(TagsTask):
     def tags(self):
         return [
             OBSTag(id='tiger',
-                   name='TIGER/Line® Shapefiles ',
+                   name='TIGER/Line Shapefiles',
                    type='source',
                    description='https://www.census.gov/geo/maps-data/data/tiger-line.html')
         ]
