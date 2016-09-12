@@ -14,7 +14,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                         ColumnsTask, TagsTask, Carto2TempTableTask
                        )
 from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
-                        OBSColumnTag, OBSColumnToColumn, current_session)
+                        OBSColumnTag, OBSTag, OBSColumnToColumn, current_session)
 from tasks.tags import SectionTags, SubsectionTags
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
