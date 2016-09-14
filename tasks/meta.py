@@ -20,6 +20,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, composite, backref
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm.collections import attribute_mapped_collection
+from sqlalchemy.sql import expression
 from sqlalchemy.types import UserDefinedType
 
 
@@ -57,19 +58,20 @@ def get_engine():
     return _engine
 
 
-metadata = MetaData(bind=get_engine(), schema='observatory')
-Base = declarative_base(metadata=metadata)
-
-
 class Geometry(UserDefinedType):
+
     def get_col_spec(self):
-        return "GEOMETRY"
+        return "GEOMETRY (GEOMETRY, 4326)"
 
     def bind_expression(self, bindvalue):
-        return func.ST_GeomFromText(bindvalue, type_=self)
+        return func.ST_GeomFromText(bindvalue, 4326, type_=self)
 
     def column_expression(self, col):
         return func.ST_AsText(col, type_=self)
+
+
+metadata = MetaData(bind=get_engine(), schema='observatory')
+Base = declarative_base(metadata=metadata)
 
 
 # A connection between a table and a column

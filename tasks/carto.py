@@ -771,41 +771,68 @@ class OBSMeta(Task):
 
     force = BooleanParameter(default=True)
 
+    FIRST_AGGREGATE = '''
+    CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
+    RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
+            SELECT $1;
+    $$;
+
+    -- And then wrap an aggregate around it
+    DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
+    CREATE AGGREGATE public.FIRST (
+            sfunc    = public.first_agg,
+            basetype = anyelement,
+            stype    = anyelement
+    );
+    '''
+
     QUERY = '''
     SELECT numer_c.id numer_id,
            denom_c.id denom_id,
            geom_c.id geom_id,
-           MAX(numer_c.name) numer_name,
-           MAX(denom_c.name) denom_name,
-           MAX(geom_c.name) geom_name,
-           MAX(numer_c.description) numer_description,
-           MAX(denom_c.description) denom_description,
-           MAX(geom_c.description) geom_description,
-           MAX(numer_c.aggregate) numer_aggregate,
-           MAX(denom_c.aggregate) denom_aggregate,
-           MAX(geom_c.aggregate) geom_aggregate,
-           MAX(numer_c.type) numer_type,
-           MAX(denom_c.type) denom_type,
-           MAX(geom_c.type) geom_type,
-           MAX(numer_data_ct.colname) numer_colname,
-           MAX(denom_data_ct.colname) denom_colname,
-           MAX(geom_geom_ct.colname) geom_colname,
-           MAX(numer_geomref_ct.colname) numer_geomref_colname,
-           MAX(denom_geomref_ct.colname) denom_geomref_colname,
-           MAX(geom_geomref_ct.colname) geom_geomref_colname,
-           MAX(numer_t.tablename) numer_tablename,
-           MAX(denom_t.tablename) denom_tablename,
-           MAX(geom_t.tablename) geom_tablename,
-           MAX(numer_t.timespan) numer_timespan,
-           MAX(denom_t.timespan) denom_timespan,
-           MAX(numer_c.weight) numer_weight,
-           MAX(denom_c.weight) denom_weight,
-           MAX(geom_c.weight) geom_weight,
-           MAX(geom_t.timespan) geom_timespan,
-           MAX(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
-           ARRAY_AGG(DISTINCT s_tag.id) section_tags,
-           ARRAY_AGG(DISTINCT ss_tag.id) subsection_tags,
-           ARRAY_AGG(DISTINCT unit_tag.id) unit_tags
+           FIRST(numer_c.name) numer_name,
+           FIRST(denom_c.name) denom_name,
+           FIRST(geom_c.name) geom_name,
+           FIRST(numer_c.description) numer_description,
+           FIRST(denom_c.description) denom_description,
+           FIRST(geom_c.description) geom_description,
+           FIRST(numer_c.aggregate) numer_aggregate,
+           FIRST(denom_c.aggregate) denom_aggregate,
+           FIRST(geom_c.aggregate) geom_aggregate,
+           FIRST(numer_c.type) numer_type,
+           FIRST(denom_c.type) denom_type,
+           FIRST(geom_c.type) geom_type,
+           FIRST(numer_data_ct.colname) numer_colname,
+           FIRST(denom_data_ct.colname) denom_colname,
+           FIRST(geom_geom_ct.colname) geom_colname,
+           FIRST(numer_geomref_ct.colname) numer_geomref_colname,
+           FIRST(denom_geomref_ct.colname) denom_geomref_colname,
+           FIRST(geom_geomref_ct.colname) geom_geomref_colname,
+           FIRST(numer_t.tablename) numer_tablename,
+           FIRST(denom_t.tablename) denom_tablename,
+           FIRST(geom_t.tablename) geom_tablename,
+           FIRST(numer_t.timespan) numer_timespan,
+           FIRST(denom_t.timespan) denom_timespan,
+           FIRST(numer_c.weight) numer_weight,
+           FIRST(denom_c.weight) denom_weight,
+           FIRST(geom_c.weight) geom_weight,
+           FIRST(geom_t.timespan) geom_timespan,
+           FIRST(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
+           JSONB_OBJECT_AGG(
+             numer_tag.type || '/' || numer_tag.id, numer_tag.name
+           ) numer_tags,
+           ARRAY_AGG(DISTINCT numer_tag.id)
+             FILTER (WHERE numer_tag.type = 'section') section_tags,
+           ARRAY_AGG(DISTINCT numer_tag.id)
+             FILTER (WHERE numer_tag.type = 'subsection') subsection_tags,
+           ARRAY_AGG(DISTINCT numer_tag.id)
+             FILTER (WHERE numer_tag.type = 'unit') unit_tags,
+           FIRST(numer_c.extra)::JSONB numer_extra,
+           FIRST(numer_data_ct.extra)::JSONB numer_ct_extra,
+           FIRST(denom_c.extra)::JSONB denom_extra,
+           FIRST(denom_data_ct.extra)::JSONB denom_ct_extra,
+           FIRST(geom_c.extra)::JSONB geom_extra,
+           FIRST(geom_geom_ct.extra)::JSONB geom_ct_extra
     FROM observatory.obs_column_table numer_data_ct,
          observatory.obs_table numer_t,
          observatory.obs_column_table numer_geomref_ct,
@@ -815,12 +842,8 @@ class OBSMeta(Task):
          observatory.obs_column_table geom_geom_ct,
          observatory.obs_column_table geom_geomref_ct,
          observatory.obs_table geom_t,
-         observatory.obs_column_tag ss_ctag,
-         observatory.obs_tag ss_tag,
-         observatory.obs_column_tag s_ctag,
-         observatory.obs_tag s_tag,
-         observatory.obs_column_tag unit_ctag,
-         observatory.obs_tag unit_tag,
+         observatory.obs_column_tag numer_ctag,
+         observatory.obs_tag numer_tag,
          observatory.obs_column numer_c
       LEFT JOIN (
         observatory.obs_column_to_column denom_c2c
@@ -843,15 +866,8 @@ class OBSMeta(Task):
       AND geom_c.type ILIKE 'geometry'
       AND numer_c.type NOT ILIKE 'geometry'
       AND numer_c.id != geomref_c.id
-      AND unit_tag.type = 'unit'
-      AND ss_tag.type = 'subsection'
-      AND s_tag.type = 'section'
-      AND unit_ctag.column_id = numer_c.id
-      AND unit_ctag.tag_id = unit_tag.id
-      AND ss_ctag.column_id = numer_c.id
-      AND ss_ctag.tag_id = ss_tag.id
-      AND s_ctag.column_id = numer_c.id
-      AND s_ctag.tag_id = s_tag.id
+      AND numer_ctag.column_id = numer_c.id
+      AND numer_ctag.tag_id = numer_tag.id
       AND (numer_c.id != denom_c.id OR denom_c.id IS NULL)
       AND (denom_c2c.reltype = 'denominator' OR denom_c2c.reltype IS NULL)
       AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
@@ -868,6 +884,7 @@ class OBSMetaToLocal(OBSMeta):
         session.execute('DROP TABLE IF EXISTS {output}'.format(
             output=self.output().table
         ))
+        session.execute(self.FIRST_AGGREGATE)
         session.execute('CREATE TABLE {output} AS {select}'.format(
             output=self.output().table,
             select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
@@ -875,6 +892,8 @@ class OBSMetaToLocal(OBSMeta):
         # confirm that there won't be ambiguity with selection of geom
         session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
                         '(numer_id, denom_id, numer_timespan, geom_weight)')
+        session.execute('CREATE INDEX ON observatory.obs_meta USING gist '
+                        '(the_geom)')
         session.commit()
         self.force = False
 
@@ -897,6 +916,7 @@ class SyncMetadata(OBSMeta):
             yield TableToCartoViaImportAPI(table=tablename, force=True)
 
     def run(self):
+        query_cartodb(self.FIRST_AGGREGATE)
         import_api({
             'table_name': 'obs_meta',
             'sql': self.QUERY.replace('\n', ' '),

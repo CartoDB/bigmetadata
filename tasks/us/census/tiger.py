@@ -536,26 +536,6 @@ class UnionTigerWaterGeoms(TempTableTask):
                             input=self.input().table))
 
 
-class USBounds(TempTableTask):
-    '''
-    Simple US-wide boundaries
-    '''
-
-    def requires(self):
-        return DownloadTiger(year=2014)
-
-    def run(self):
-        session = current_session()
-        session.execute('CREATE TABLE {output} (the_geom GEOMETRY)'.format(
-            output=self.output().table
-        ))
-        session.execute('INSERT INTO {output} '
-                        'SELECT ST_SimplifyPreserveTopology(ST_Union(geom), 0.1) '
-                        'FROM tiger2014.state'.format(
-                            output=self.output().table
-                        ))
-
-
 class ShorelineClip(TableTask):
     '''
     Clip the provided geography to shoreline.
@@ -576,7 +556,6 @@ class ShorelineClip(TableTask):
             'geoms': ClippedGeomColumns(),
             'geoids': GeoidColumns(),
             'attributes': Attributes(),
-            'coverage': USBounds(),
         }
 
     def columns(self):
@@ -588,12 +567,6 @@ class ShorelineClip(TableTask):
 
     def timespan(self):
         return self.year
-
-    def the_geom(self):
-        session = current_session()
-        return session.execute('SELECT ST_AsText(the_geom) FROM {bounds}'.format(
-            bounds=self.input()['bounds'].table
-        )).fetchone()['the_geom']
 
     def populate(self):
         session = current_session()
@@ -636,7 +609,7 @@ class SumLevel(TableTask):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
-        return 8
+        return 9
 
     def requires(self):
         tiger = DownloadTiger(year=self.year)
@@ -645,7 +618,6 @@ class SumLevel(TableTask):
             'attributes': Attributes(),
             'geoids': GeoidColumns(),
             'geoms': GeomColumns(),
-            'bounds': USBounds(),
         }
 
     def columns(self):
@@ -658,12 +630,6 @@ class SumLevel(TableTask):
 
     def timespan(self):
         return self.year
-
-    def the_geom(self):
-        session = current_session()
-        return session.execute('SELECT ST_AsText(the_geom) the_geom FROM {bounds}'.format(
-            bounds=self.input()['bounds'].table
-        )).fetchone()['the_geom']
 
     def populate(self):
         session = current_session()
