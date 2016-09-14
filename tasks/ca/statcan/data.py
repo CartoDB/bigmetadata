@@ -219,9 +219,10 @@ class AllCensusTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = range(1, 11)   # 1-10
 
-        for count in topic_range:
-            topic = 't{:03d}'.format(count)
-            yield Census(resolution=self.resolution, survey=SURVEY_CEN, topic=topic)
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+            for count in topic_range:
+                topic = 't{:03d}'.format(count)
+                yield Census(resolution=resolution, survey=SURVEY_CEN, topic=topic)
 
 
 class NHS(Survey):
@@ -241,6 +242,7 @@ class AllNHSTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = range(1, 30)   # 1-29
 
-        for count in topic_range:
-            topic = 't{:03d}'.format(count)
-            yield NHS(resolution=self.resolution, survey=SURVEY_NHS, topic=topic)
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+            for count in topic_range:
+                topic = 't{:03d}'.format(count)
+                yield NHS(resolution=resolution, survey=SURVEY_NHS, topic=topic)
