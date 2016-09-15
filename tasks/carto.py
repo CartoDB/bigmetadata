@@ -105,12 +105,21 @@ class SyncAllData(WrapperTask):
     def requires(self):
         tables = {}
         session = current_session()
+        existing_table_versions = dict([
+            (r['tablename'], r['version']) for r in query_cartodb(
+                'SELECT * FROM obs_table'
+            ).json()['rows']
+        ])
         for table in session.query(OBSTable):
             if should_upload(table):
-                tables[table.id] = table.tablename
+                tables[table.tablename] = table.version
 
-        for table_id, tablename in tables.iteritems():
-            yield TableToCartoViaImportAPI(table=tablename, force=self.force)
+        for tablename, version in tables.iteritems():
+            if version > existing_table_versions[tablename]:
+                force = True
+            else:
+                force = self.force
+            yield TableToCartoViaImportAPI(table=tablename, force=force)
 
 
 class ImagesForMeasure(Task):
