@@ -32,32 +32,15 @@ class NHSColumns(ColumnsTask):
 
         ca = input_['sections']['ca']
 
-        t001c001_t = OBSColumn(
-            id='t001c001_t',
-            name='Total population in private households (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t001c001_m = OBSColumn(
-            id='t001c001_m',
-            name='Total population in private households (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t001c001_f = OBSColumn(
-            id='t001c001_f',
-            name='Total population in private households (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
+        # FIXME
+        # There appear to be many columns in here that are direct duplicates,
+        # both by content and by ID, of columns in cols_census.py.  Those
+        # duplicates should be eliminated from here, and the Survey TableTask
+        # should pull from both NHSColumns and CensusColumns for those columns
+        # removed from here.
+        #
+        # The relevant duplicate columns below have been removed, butthe
+        # TableTask still needs to be fixed.
 
         t001c002_t = OBSColumn(
             id='t001c002_t',
@@ -113,6 +96,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_f: DENOMINATOR },)
 
+        # FIXME
+        # It looks like the é of Métis was dropped?
         t001c004_t = OBSColumn(
             id='t001c004_t',
             name='M tis single identity (total)',
@@ -356,6 +341,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_f: DENOMINATOR },)
 
+        # FIXME
+        # accents are missing below
         t001c015_t = OBSColumn(
             id='t001c015_t',
             name='Metis ancestry (total)',
@@ -437,6 +424,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_f: DENOMINATOR },)
 
+        # FIXME
+        # all subcolumns of this need to be qualified -- so that it's clear
+        # it's "Immigrant population under 5 years old", and not just the
+        # total population under 5 years old, for example.
         t002c001_t = OBSColumn(
             id='t002c001_t',
             name='Total immigrant population in private households by age at immigration (total)',
@@ -457,7 +448,7 @@ class NHSColumns(ColumnsTask):
 
         t002c001_f = OBSColumn(
             id='t002c001_f',
-            name='Total immigrant population in private households by age at immigration (female)',
+            name='Total immigrant population in private households',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -707,6 +698,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t001c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Some description of what comprises the labour force according to
+        # the NHS should be here.
         t004c001_t = OBSColumn(
             id='t004c001_t',
             name='Total labour force aged 15 years and over (total)',
@@ -788,6 +782,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Some description of what the NHS considers an "Employee" should be
+        # here.
         t004c004_t = OBSColumn(
             id='t004c004_t',
             name='Employee (total)',
@@ -842,36 +839,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_f: DENOMINATOR },)
 
-        t005c001_t = OBSColumn(
-            id='t005c001_t',
-            name='Total population aged 15+ (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
-        t005c001_m = OBSColumn(
-            id='t005c001_m',
-            name='Total population aged 15+ (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
-        t005c001_f = OBSColumn(
-            id='t005c001_f',
-            name='Total population aged 15+ (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
+        # FIXME
+        # deleted t005c001, should use `ca.statcan.cols_census.t009c001` instead.
         t005c002_t = OBSColumn(
             id='t005c002_t',
-            name='Total population aged 15+ - No certificate, diploma or degree (total)',
+            name='People with no certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -880,7 +852,7 @@ class NHSColumns(ColumnsTask):
 
         t005c002_m = OBSColumn(
             id='t005c002_m',
-            name='Total population aged 15+ - No certificate, diploma or degree (male)',
+            name='People with no certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -889,7 +861,7 @@ class NHSColumns(ColumnsTask):
 
         t005c002_f = OBSColumn(
             id='t005c002_f',
-            name='Total population aged 15+ - No certificate, diploma or degree (female)',
+            name='People with no certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -898,7 +870,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_t = OBSColumn(
             id='t005c003_t',
-            name='Total population aged 15+ - High school diploma or equivalent (total)',
+            name='People with high school diploma or equivalent (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -907,7 +879,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_m = OBSColumn(
             id='t005c003_m',
-            name='Total population aged 15+ - High school diploma or equivalent (male)',
+            name='People with high school diploma or equivalent (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -916,7 +888,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_f = OBSColumn(
             id='t005c003_f',
-            name='Total population aged 15+ - High school diploma or equivalent (female)',
+            name='People with high school diploma or equivalent (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -925,7 +897,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_t = OBSColumn(
             id='t005c004_t',
-            name='Total population aged 15+ - Postsecondary certificate, diploma or degree (total)',
+            name='People with postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -934,7 +906,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_m = OBSColumn(
             id='t005c004_m',
-            name='Total population aged 15+ - Postsecondary certificate, diploma or degree (male)',
+            name='People with postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -943,7 +915,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_f = OBSColumn(
             id='t005c004_f',
-            name='Total population aged 15+ - Postsecondary certificate, diploma or degree (female)',
+            name='People with postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -952,7 +924,7 @@ class NHSColumns(ColumnsTask):
 
         t005c005_t = OBSColumn(
             id='t005c005_t',
-            name='Apprenticeship or trades certificate or diploma (total)',
+            name='People with apprenticeship or trades certificate or diploma (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -961,7 +933,7 @@ class NHSColumns(ColumnsTask):
 
         t005c005_m = OBSColumn(
             id='t005c005_m',
-            name='Apprenticeship or trades certificate or diploma (male)',
+            name='People with apprenticeship or trades certificate or diploma (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -970,7 +942,7 @@ class NHSColumns(ColumnsTask):
 
         t005c005_f = OBSColumn(
             id='t005c005_f',
-            name='Apprenticeship or trades certificate or diploma (female)',
+            name='People with apprenticeship or trades certificate or diploma (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -979,7 +951,7 @@ class NHSColumns(ColumnsTask):
 
         t005c006_t = OBSColumn(
             id='t005c006_t',
-            name='College, CEGEP or other non-university certificate or diploma (total)',
+            name='People with college, CEGEP or other non-university certificate or diploma (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -988,7 +960,7 @@ class NHSColumns(ColumnsTask):
 
         t005c006_m = OBSColumn(
             id='t005c006_m',
-            name='College, CEGEP or other non-university certificate or diploma (male)',
+            name='People with college, CEGEP or other non-university certificate or diploma (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -997,7 +969,7 @@ class NHSColumns(ColumnsTask):
 
         t005c006_f = OBSColumn(
             id='t005c006_f',
-            name='College, CEGEP or other non-university certificate or diploma (female)',
+            name='People with college, CEGEP or other non-university certificate or diploma (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1006,7 +978,7 @@ class NHSColumns(ColumnsTask):
 
         t005c007_t = OBSColumn(
             id='t005c007_t',
-            name='University certificate or diploma below bachelor level (total)',
+            name='People with university certificate or diploma below bachelor level (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1015,7 +987,7 @@ class NHSColumns(ColumnsTask):
 
         t005c007_m = OBSColumn(
             id='t005c007_m',
-            name='University certificate or diploma below bachelor level (male)',
+            name='People with university certificate or diploma below bachelor level (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1024,7 +996,7 @@ class NHSColumns(ColumnsTask):
 
         t005c007_f = OBSColumn(
             id='t005c007_f',
-            name='University certificate or diploma below bachelor level (female)',
+            name='People with university certificate or diploma below bachelor level (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1033,7 +1005,7 @@ class NHSColumns(ColumnsTask):
 
         t005c008_t = OBSColumn(
             id='t005c008_t',
-            name='University certificate, diploma or degree at bachelor level or above (total)',
+            name='People with university certificate, diploma or degree at bachelor level or above (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1042,7 +1014,7 @@ class NHSColumns(ColumnsTask):
 
         t005c008_m = OBSColumn(
             id='t005c008_m',
-            name='University certificate, diploma or degree at bachelor level or above (male)',
+            name='People with university certificate, diploma or degree at bachelor level or above (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1051,7 +1023,7 @@ class NHSColumns(ColumnsTask):
 
         t005c008_f = OBSColumn(
             id='t005c008_f',
-            name='University certificate, diploma or degree at bachelor level or above (female)',
+            name='People with university certificate, diploma or degree at bachelor level or above (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1060,7 +1032,7 @@ class NHSColumns(ColumnsTask):
 
         t005c009_t = OBSColumn(
             id='t005c009_t',
-            name='Bachelor\'s degree (total)',
+            name='People with bachelor\'s degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1069,7 +1041,7 @@ class NHSColumns(ColumnsTask):
 
         t005c009_m = OBSColumn(
             id='t005c009_m',
-            name='Bachelor\'s degree (male)',
+            name='People with bachelor\'s degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1078,7 +1050,7 @@ class NHSColumns(ColumnsTask):
 
         t005c009_f = OBSColumn(
             id='t005c009_f',
-            name='Bachelor\'s degree (female)',
+            name='People with bachelor\'s degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1087,7 +1059,7 @@ class NHSColumns(ColumnsTask):
 
         t005c010_t = OBSColumn(
             id='t005c010_t',
-            name='University certificate, diploma or degree above bachelor level (total)',
+            name='People with university certificate, diploma or degree above bachelor level (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1096,7 +1068,7 @@ class NHSColumns(ColumnsTask):
 
         t005c010_m = OBSColumn(
             id='t005c010_m',
-            name='University certificate, diploma or degree above bachelor level (male)',
+            name='People with university certificate, diploma or degree above bachelor level (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1105,7 +1077,7 @@ class NHSColumns(ColumnsTask):
 
         t005c010_f = OBSColumn(
             id='t005c010_f',
-            name='University certificate, diploma or degree above bachelor level (female)',
+            name='People with university certificate, diploma or degree above bachelor level (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1114,7 +1086,7 @@ class NHSColumns(ColumnsTask):
 
         t005c011_t = OBSColumn(
             id='t005c011_t',
-            name='Total population aged 25 to 64 years by highest certificate, diploma or degree (total)',
+            name='Total population aged 25 to 64 years',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1123,7 +1095,7 @@ class NHSColumns(ColumnsTask):
 
         t005c011_m = OBSColumn(
             id='t005c011_m',
-            name='Total population aged 25 to 64 years by highest certificate, diploma or degree (male)',
+            name='Total population aged 25 to 64 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1132,13 +1104,16 @@ class NHSColumns(ColumnsTask):
 
         t005c011_f = OBSColumn(
             id='t005c011_f',
-            name='Total population aged 25 to 64 years by highest certificate, diploma or degree (female)',
+            name='Total population aged 25 to 64 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
+        # FIXME
+        # Like the above, the below should be modified to make it clearer it's
+        # referring to "People with..."
         t005c012_t = OBSColumn(
             id='t005c012_t',
             name='No certificate, diploma or degree (total)',
@@ -1303,7 +1278,7 @@ class NHSColumns(ColumnsTask):
 
         t005c018_t = OBSColumn(
             id='t005c018_t',
-            name='University certificate, diploma or degree at bachelor level or above (total)',
+            name='People with university certificate, diploma or degree at bachelor level or above (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1312,7 +1287,7 @@ class NHSColumns(ColumnsTask):
 
         t005c018_m = OBSColumn(
             id='t005c018_m',
-            name='University certificate, diploma or degree at bachelor level or above (male)',
+            name='People with university certificate, diploma or degree at bachelor level or above (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1321,7 +1296,7 @@ class NHSColumns(ColumnsTask):
 
         t005c018_f = OBSColumn(
             id='t005c018_f',
-            name='University certificate, diploma or degree at bachelor level or above (female)',
+            name='People with university certificate, diploma or degree at bachelor level or above (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1330,7 +1305,7 @@ class NHSColumns(ColumnsTask):
 
         t005c019_t = OBSColumn(
             id='t005c019_t',
-            name='Bachelor\'s degree (total)',
+            name='People with bachelor\'s degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1339,7 +1314,7 @@ class NHSColumns(ColumnsTask):
 
         t005c019_m = OBSColumn(
             id='t005c019_m',
-            name='Bachelor\'s degree (male)',
+            name='People with bachelor\'s degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1348,7 +1323,7 @@ class NHSColumns(ColumnsTask):
 
         t005c019_f = OBSColumn(
             id='t005c019_f',
-            name='Bachelor\'s degree (female)',
+            name='People with bachelor\'s degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1357,7 +1332,7 @@ class NHSColumns(ColumnsTask):
 
         t005c020_t = OBSColumn(
             id='t005c020_t',
-            name='University certificate, diploma or degree above bachelor level (total)',
+            name='People with University certificate, diploma or degree above bachelor level (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1366,7 +1341,7 @@ class NHSColumns(ColumnsTask):
 
         t005c020_m = OBSColumn(
             id='t005c020_m',
-            name='University certificate, diploma or degree above bachelor level (male)',
+            name='People with university certificate, diploma or degree above bachelor level (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1375,7 +1350,7 @@ class NHSColumns(ColumnsTask):
 
         t005c020_f = OBSColumn(
             id='t005c020_f',
-            name='University certificate, diploma or degree above bachelor level (female)',
+            name='People with university certificate, diploma or degree above bachelor level (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1384,7 +1359,7 @@ class NHSColumns(ColumnsTask):
 
         t005c022_t = OBSColumn(
             id='t005c022_t',
-            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (total)',
+            name='People with no postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1393,7 +1368,7 @@ class NHSColumns(ColumnsTask):
 
         t005c022_m = OBSColumn(
             id='t005c022_m',
-            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (male)',
+            name='People with no postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1402,40 +1377,18 @@ class NHSColumns(ColumnsTask):
 
         t005c022_f = OBSColumn(
             id='t005c022_f',
-            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (female)',
+            name='People with no postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
-        t005c023_t = OBSColumn(
-            id='t005c023_t',
-            name='Total population aged 15+ - Education (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={ t005c001_t: DENOMINATOR },)
+        # FIXME
+        # Removed columns duplicate with `ca.statcan.cols_census.t009c001_t`
 
-        t005c023_m = OBSColumn(
-            id='t005c023_m',
-            name='Total population aged 15+ - Education (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={ t005c001_m: DENOMINATOR },)
-
-        t005c023_f = OBSColumn(
-            id='t005c023_f',
-            name='Total population aged 15+ - Education (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={ t005c001_f: DENOMINATOR },)
-
+        # In the below columns, "Total population aged 15 +..." is overly verbose,
+        # perhaps "People with a degree in..." would be accurate & clear?
         t005c024_t = OBSColumn(
             id='t005c024_t',
             name='Total population aged 15+ - Visual and performing arts, and communications technologies (total)',
@@ -1787,6 +1740,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Are the following three actually different than t005c037?  Is this
+        # the subset of postsecondary certificate holders whose location of
+        # study is known?
         t005c038_t = OBSColumn(
             id='t005c038_t',
             name='Location of study inside Canada (total)',
@@ -1814,6 +1771,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_f: DENOMINATOR },)
 
+        # FIXME
+        # Name needs to be clearer for these that the location is where
+        # they studied
         t005c039_t = OBSColumn(
             id='t005c039_t',
             name='Same as province or territory of residence (total)',
@@ -2219,6 +2179,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
+        # FIXME
+        # Missing é for Québécois
         t006c014_t = OBSColumn(
             id='t006c014_t',
             name='Qu b cois (total)',
@@ -9077,6 +9039,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
+        # FIXME
+        # Some definition of how NHS counts "part-time" would be good.
         t007c005_t = OBSColumn(
             id='t007c005_t',
             name='Worked part-time in 2010 (total)',
@@ -9104,6 +9068,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
+        # FIXME
+        # The "first generation", "second generation", etc. measures need
+        # a clearer name, and possibly a description as well.  Is it first
+        # generation immigrants?  If so, should they have the "immigration"
+        # tag?
         t008c002_t = OBSColumn(
             id='t008c002_t',
             name='Total population - First generation (total)',
@@ -9185,6 +9154,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['families']],
             targets={ t001c001_f: DENOMINATOR },)
 
+        # FIXME
+        # This should have a description of households according to the NHS.
         t009c001_t = OBSColumn(
             id='t009c001_t',
             name='Total number of private households',
@@ -9212,6 +9183,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
+        # FIXME
+        # This should have a definition of Band Housing in the description.
         t009c004_t = OBSColumn(
             id='t009c004_t',
             name='Total number of private households - Band housing',
@@ -9266,6 +9239,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
+        # FIXME
+        # The names for these should be a little clearer -- is it that the
+        # head of household is in the age band?
         t009c013_t = OBSColumn(
             id='t009c013_t',
             name='Total number of private households - Under 25 years',
@@ -9347,6 +9323,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
+        # FIXME
+        # What does suitable/not suitable mean?  Needs a clearer name and
+        # possibly a description.
         t009c024_t = OBSColumn(
             id='t009c024_t',
             name='Total number of private households - Suitable',
@@ -9419,6 +9398,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={ t001c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Names for immigration year need qualification, like
+        # "Total population - immigrated before 1971 (total)", etc.
         t010c004_t = OBSColumn(
             id='t010c004_t',
             name='Before 1971 (total)',
@@ -9743,6 +9725,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t001c001_f: DENOMINATOR },)
 
+        # FIXME
+        # The below need to be qualified that the area/country specified is
+        # where they immigrated from.
         t011c006_t = OBSColumn(
             id='t011c006_t',
             name='Americas (total)',
@@ -11390,6 +11375,20 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t001c001_f: DENOMINATOR },)
 
+        # FIXME
+        # According to the name, this looks like it should be median/average
+        # income.
+        #
+        # But having looked at the data, it looks like this is actually the
+        # number of households, likely slightly less since the number of
+        # households reporting income (what I think this is)
+        # seems to be slightly less than `ca.statcan.cols_nhs.t009c001_t`.
+        #
+        # If it's the case that this very similar to `ca.statcan.cols_nhs.t009c001_t`,
+        # either the name of this should be modified to make it clearer that
+        # it's the number of households reporting income in 2010, or this
+        # should simply be eliminated and the denominator for all the income
+        # bands should be set to `ca.statcan.cols_nhs.t009c001_t`.
         t012c001_t = OBSColumn(
             id='t012c001_t',
             name='Household income in 2010 of private households',
@@ -11633,6 +11632,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c026_t: DENOMINATOR },)
 
+        # FIXME
+        # Everything with universe isn't coming through right now, but this
+        # seems to be an issue unrelated to metadata.  Made an issue #96.
+        #
+        # Since we define a unit money, the ($) are not necessary.
         t012c030_t = OBSColumn(
             id='t012c030_t',
             name='Median household total income ($)',
@@ -11669,15 +11673,12 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c001_t: UNIVERSE },)
 
-        t012c034_t = OBSColumn(
-            id='t012c034_t',
-            name='One-person private households',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
-
+        # FIXME
+        # t012c034_t was redundant with ca.statcan.cols_census.t007c029_t,
+        # removed.
+        #
+        # Its subcolumns should be renamed to clearly specify in their
+        # names that the income is for one-person households
         t012c035_t = OBSColumn(
             id='t012c035_t',
             name='Median household total income ($)',
@@ -11714,15 +11715,12 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: UNIVERSE },)
 
-        t012c039_t = OBSColumn(
-            id='t012c039_t',
-            name='Two-or-more-persons private households',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
-
+        # FIXME
+        # t012c039_t was redundant with ca.statcan.cols_census.t007c030_t,
+        # removed.
+        #
+        # Its subcolumns should be renamed to clearly specify in their
+        # names that the income is for two-or-more-persons households
         t012c040_t = OBSColumn(
             id='t012c040_t',
             name='Median household total income ($)',
@@ -11759,6 +11757,12 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: UNIVERSE },)
 
+        # FIXME
+        # Are the three below the populations for which income was reported?
+        # If so, that should either be more clearly specified, or they should
+        # be removed, and their subcolumns instead pointed to a more generic
+        # total population aged 15 years and over (like
+        # `ca.statcan.cols_census.t009c001_t`)
         t013c001_t = OBSColumn(
             id='t013c001_t',
             name='Total income in 2010 of population aged 15 years and over (total)',
@@ -11786,6 +11790,7 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
+        # Clearer titles for these would be "Population without income", etc.
         t013c002_t = OBSColumn(
             id='t013c002_t',
             name='Income in 2010 of population aged 15+ - Without income (total)',
@@ -11840,6 +11845,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c001_f: DENOMINATOR },)
 
+        # FIXME
+        # The below should be more clearly indicated as the population with an
+        # income in that band, rather than a household.
         t013c004_t = OBSColumn(
             id='t013c004_t',
             name='Total income ages 15+ - Under $5,000 (total)',
@@ -12191,6 +12199,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c014_f: DENOMINATOR },)
 
+        # FIXME
+        # Needs clearer name that this is the median individual income, as
+        # opposed to median household income.
+        #
+        # Same goes for the similar columns below.
         t013c017_t = OBSColumn(
             id='t013c017_t',
             name='Income in 2010 of population aged 15+ - Median income ($) (total)',
@@ -12245,6 +12258,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_f: UNIVERSE },)
 
+        # FIXME
+        # The below need clearer names like "Population without after-tax income", ...
         t013c020_t = OBSColumn(
             id='t013c020_t',
             name='Without after-tax income (total)',
@@ -12299,6 +12314,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Same edits needed as above for Total income
         t013c022_t = OBSColumn(
             id='t013c022_t',
             name='After-tax income ages 15+ - Under $5,000 (total)',
@@ -12650,6 +12667,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c001_f: UNIVERSE },)
 
+        #FIXME
+        # The three below again appear to be repetitive with a count of
+        # population over the age 15 upon whom income data can be reported,
+        # and should be removed.
         t013c035_t = OBSColumn(
             id='t013c035_t',
             name='Composition of total income in 2010 of population 15 years and over (%) (total)',
@@ -13085,6 +13106,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
+        # FIXME
+        # As above, the ($) is redundant because of the unit.
         t013c053_t = OBSColumn(
             id='t013c053_t',
             name='Median employment income in 2010 ($) (total)',
@@ -13139,6 +13162,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_f: UNIVERSE },)
 
+        # FIXME
+        # Is this a count of "Economic families"?  What does this mean --
+        # families who reported economic data?
+        #
+        # Should the unit be families instead of people?
         t013c055_t = OBSColumn(
             id='t013c055_t',
             name='Family income in 2010 of economic families',
@@ -13148,6 +13176,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
+        # FIXME
+        # The below need to be qualified as for the population in economic
+        # families
         t013c056_t = OBSColumn(
             id='t013c056_t',
             name='Median family income ($)',
@@ -13202,6 +13233,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
+        # FIXME
+        # The below need to be qualified as for the population in couple-only
+        # economic families
         t013c062_t = OBSColumn(
             id='t013c062_t',
             name='Median family income ($)',
@@ -13256,6 +13290,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
+        # FIXME
+        # The below need to be qualified as for the population in
+        # couple-with-children economic families
         t013c068_t = OBSColumn(
             id='t013c068_t',
             name='Median family income ($)',
@@ -13310,6 +13347,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
+        # FIXME
+        # The below need to be qualified as for the population in
+        # lone-parent economic families
         t013c074_t = OBSColumn(
             id='t013c074_t',
             name='Median family income ($)',
@@ -13382,6 +13422,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
+        # FIXME
+        # The below need to be qualified as for the population not in economic
+        # families
         t013c080_t = OBSColumn(
             id='t013c080_t',
             name='Median total income ($) (total)',
@@ -13490,6 +13533,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: UNIVERSE },)
 
+        # FIXME
+        # These need a description of what the "Canadian distribution" is.
         t013c085_t = OBSColumn(
             id='t013c085_t',
             name='Total population - In bottom half of the Canadian distribution (total)',
@@ -13517,6 +13562,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t001c001_f: DENOMINATOR },)
 
+        # FIXME
+        # The below need more clear names -- probably "In bottom decile of the Canadian distribution", etc.
         t013c086_t = OBSColumn(
             id='t013c086_t',
             name='In bottom decile (total)',
@@ -13661,6 +13708,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t001c001_t: DENOMINATOR },)
 
+        # FIXME
+        # Same comments as for the bottom half and bottom decile columns
         t013c091_m = OBSColumn(
             id='t013c091_m',
             name='Total population - In top half of the Canadian distribution (male)',
@@ -13814,6 +13863,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_f: DENOMINATOR },)
 
+        # FIXME
+        # What is being indicated in the columns below is unclear --
+        # what does "for income status" mean, and why are the subcolumns ages?
         t013c097_t = OBSColumn(
             id='t013c097_t',
             name='Population in private households for income status (total)',
@@ -13949,6 +14001,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_f: DENOMINATOR },)
 
+        # FIXME
+        # These need a description or link to description of LIM-AT.
         t013c102_t = OBSColumn(
             id='t013c102_t',
             name='In low income in 2010 based on after-tax low-income measure (LIM-AT) (total)',
@@ -13976,6 +14030,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
+        # FIXME the below need to be qualified as to what the age means --
+        # is it the age of the head of household for a household in LIM-AT?
+        # It must be something else, since less than 6 years is one of the
+        # measures.
         t013c103_t = OBSColumn(
             id='t013c103_t',
             name='Less than 18 years (total)',
@@ -14108,6 +14166,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
+        # FIXME
+        # Names below need to clearly indicate that they refer to the
+        # percentage of the population in an age band in poverty.
         t013c108_t = OBSColumn(
             id='t013c108_t',
             name='Less than 18 years (%) (total)',
@@ -14258,6 +14319,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
+        #FIXME
+        # Below should be more clearly named "Labour force employeed in
+        # Agriculture, forestry, fishing and hunting (total)", etc.
+        #
+        # The NAICS code could be mentioned in the description.
         t014c004_t = OBSColumn(
             id='t014c004_t',
             name='11 Agriculture, forestry, fishing and hunting (total)',
@@ -14906,6 +14972,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t005c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Needs clearer name that this is the participation rate in the labour
+        # fource (if that's what it is).
         t015c006_t = OBSColumn(
             id='t015c006_t',
             name='Participation rate (total)',
@@ -14987,6 +15056,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['employment']],
             targets={},)
 
+        # FIXME
+        # The below should be eliminated, and instead the more standard
+        # "Population aged 15 years and over" used instead.
         t016c001_t = OBSColumn(
             id='t016c001_t',
             name='Total population aged 15 years and over by language used most often at work (total)',
@@ -15014,6 +15086,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
+        # FIXME
+        # The below should have clearer names, specifying that this is the
+        # language they "use most often at work".
         t016c002_t = OBSColumn(
             id='t016c002_t',
             name='Single responses (total)',
@@ -15554,6 +15629,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c017_f: DENOMINATOR },)
 
+        # FIXME
+        # How are the below different than t016c001_t and the following?
+        # Names are the same, and subcolumns look identical.
         t016c022_t = OBSColumn(
             id='t016c022_t',
             name='Total population aged 15 years and over by language used most often at work (total)',
@@ -15824,6 +15902,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
+        # FIXME
+        # The below three should be replaced with a shorter name specifying
+        # that this is the employed population with a commute of some kind.
         t017c001_t = OBSColumn(
             id='t017c001_t',
             name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by median commuting duration (total)',
@@ -15851,6 +15932,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
+        # FIXME
+        # Universe should be specified for these as the above.
         t017c002_t = OBSColumn(
             id='t017c002_t',
             name='Median commuting duration (total)',
@@ -15878,6 +15961,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_minutes, subsections['transportation']],
             targets={},)
 
+        # FIXME
+        # This should be replaced with a clearer name, and possibly eliminated
+        # if the population used for move status overlaps with another, simpler
+        # to understand column.
         t018c001_t = OBSColumn(
             id='t018c001_t',
             name='Total - Mobility status 1 year ago (total)',
@@ -15905,6 +15992,15 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
+        # FIXME
+        # The below need slightly clearer names, and possibly descriptions
+        # about what "Movers" and "Non-movers" are -- are they people who
+        # simply had some kind of change of dwelling place, or is it more
+        # specific that they moved from one region to another?
+        #
+        # They also need to specify this is status as of 1 year ago.
+        #
+        # The same applies for migrants/non-migrants.
         t018c002_t = OBSColumn(
             id='t018c002_t',
             name='Non-movers (total)',
@@ -16121,6 +16217,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c005_f: DENOMINATOR },)
 
+        # FIXME
+        # Same comments as above for move status as of 1 year ago.
         t018c010_t = OBSColumn(
             id='t018c010_t',
             name='Total - Mobility status 5 years ago (total)',
@@ -16148,6 +16246,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
+        # FIXME
+        # The below columns need names that specify the status is as of where
+        # they were 5 years ago.
         t018c011_t = OBSColumn(
             id='t018c011_t',
             name='Non-movers (total)',
@@ -16364,6 +16465,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c014_f: DENOMINATOR },)
 
+        # FIXME
+        # This is redundant with a column above and should be combined.
         t019c001_t = OBSColumn(
             id='t019c001_t',
             name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by mode of transportation (total)',
@@ -16391,6 +16494,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
+        # FIXME
+        # The below should specify in their name that the mode of transport
+        # was for commuting to/from work.
         t019c002_t = OBSColumn(
             id='t019c002_t',
             name='Car, truck or van - as a driver (total)',
@@ -16553,6 +16659,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t019c001_f: DENOMINATOR },)
 
+        # FIXME
+        # The below three are redundant with another total population column
+        # and should be eliminated.
         t020c001_t = OBSColumn(
             id='t020c001_t',
             name='Total population in private households by non-official languages spoken (total)',
@@ -16580,6 +16689,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
+        # FIXME
+        # The below should specify in their name that this is the population
+        # in households speaking a non-official language.
         t020c002_t = OBSColumn(
             id='t020c002_t',
             name='Aboriginal languages (total)',
@@ -19442,6 +19554,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
+        # FIXME
+        # The below should have a name that specifies this is the labour force
+        # in that occupation, for example "Labour force in management
+        # occupations (Total)".
         t021c004_t = OBSColumn(
             id='t021c004_t',
             name='0 Management occupations (total)',
@@ -19712,6 +19828,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
+        # FIXME
+        # Are the below the number of people in occupied private dwellings,
+        # or the actual number of private dwellings?  Unit or name should
+        # be adjusted accordingly.
         t022c001_t = OBSColumn(
             id='t022c001_t',
             name='Total number of occupied private dwellings',
@@ -19721,6 +19841,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
+        # FIXME
+        # Depending on the resolution of issue above, these should be either
+        # renamed "Dwellings with only regular maintenance or minor repair
+        # needed" or "Population in dwellings with...", etc.
         t022c002_t = OBSColumn(
             id='t022c002_t',
             name='Dwelling condition - Only regular maintenance or minor repairs needed',
@@ -19739,6 +19863,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
+        # FIXME
+        # Below also need clarification with either unit or name referring to
+        # population, and should also specify the date is referring to
+        # construction.
         t022c005_t = OBSColumn(
             id='t022c005_t',
             name='Dwelling year - 1960 or before',
@@ -19793,6 +19921,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
+        # FIXME
+        # Same unit/population issue as above. Dashes could be replaced with
+        # "with".
         t022c012_t = OBSColumn(
             id='t022c012_t',
             name='Dwelling - 1 to 4 rooms',
@@ -19883,6 +20014,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
+        # FIXME
+        # The below three seem to be redundant with a previous column.
         t023c001_t = OBSColumn(
             id='t023c001_t',
             name='Total employed population aged 15 years and over by place of work status (total)',
@@ -20018,6 +20151,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_f: DENOMINATOR },)
 
+        # FIXME
+        # The "by" portions of the below should be eliminated, and the subcolumns
+        # should clearly specify that the country is referring to the immigrant
+        # population from that place, like "Total recent immigrant population
+        # in private households from Americas (total)".
         t024c001_t = OBSColumn(
             id='t024c001_t',
             name='Total recent immigrant population in private households by selected places of birth (total)',
@@ -22264,6 +22402,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_t: UNIVERSE },)
 
+        # FIXME
+        # The below three should be eliminated, and columns targeting them
+        # should instead refer to a previous "Total employed population"
+        # column
         t027c001_t = OBSColumn(
             id='t027c001_t',
             name='Total employed population aged 15 years and over by time leaving for work (total)',
@@ -22291,6 +22433,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
+        # FIXME
+        # The below should be clear in their name that the times refer to
+        # the employed population leaving for work at that time.
         t027c002_t = OBSColumn(
             id='t027c002_t',
             name='Between 5 and 6:59 a.m. (total)',
@@ -22372,6 +22517,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_f: DENOMINATOR },)
 
+        # FIXME
+        # These need a description of what "visible minority population" means.
         t028c002_t = OBSColumn(
             id='t028c002_t',
             name='Total population - Total visible minority population (total)',
@@ -22399,6 +22546,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_f: DENOMINATOR },)
 
+        # FIXME
+        # The below need more context in their name, which may be clearer with
+        # a definition of "visible minority population".
         t028c003_t = OBSColumn(
             id='t028c003_t',
             name='South Asian (total)',
@@ -22804,6 +22954,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Below columns need clearer context in their name that they refer
+        # to the number of weeks worked.
         t029c004_t = OBSColumn(
             id='t029c004_t',
             name='1 to 13 weeks (total)',
@@ -22939,6 +23092,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_f: DENOMINATOR },)
 
+        # FIXME
+        # Units below should be "weeks"
         t029c009_t = OBSColumn(
             id='t029c009_t',
             name='Average weeks worked in 2010 (total)',

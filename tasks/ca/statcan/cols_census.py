@@ -735,7 +735,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
         t002c001_m = OBSColumn(
@@ -744,7 +744,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
         t002c001_f = OBSColumn(
@@ -753,12 +753,12 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
         t002c002_t = OBSColumn(
             id='t002c002_t',
-            name='Detailed language spoken most often at home - Single responses (total)',
+            name='Language spoken most often at home - Single responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -767,7 +767,7 @@ class CensusColumns(ColumnsTask):
 
         t002c002_m = OBSColumn(
             id='t002c002_m',
-            name='Detailed language spoken most often at home - Single responses (male)',
+            name='Language spoken most often at home - Single responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -776,7 +776,7 @@ class CensusColumns(ColumnsTask):
 
         t002c002_f = OBSColumn(
             id='t002c002_f',
-            name='Detailed language spoken most often at home - Single responses (female)',
+            name='Language spoken most often at home - Single responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -3593,7 +3593,7 @@ class CensusColumns(ColumnsTask):
 
         t002c107_t = OBSColumn(
             id='t002c107_t',
-            name='Detailed language spoken most often at home - Multiple responses (total)',
+            name='Language spoken most often at home - Multiple responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -3602,7 +3602,7 @@ class CensusColumns(ColumnsTask):
 
         t002c107_m = OBSColumn(
             id='t002c107_m',
-            name='Detailed language spoken most often at home - Multiple responses (male)',
+            name='Language spoken most often at home - Multiple responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -3611,7 +3611,7 @@ class CensusColumns(ColumnsTask):
 
         t002c107_f = OBSColumn(
             id='t002c107_f',
-            name='Detailed language spoken most often at home - Multiple responses (female)',
+            name='Language spoken most often at home - Multiple responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6698,7 +6698,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_t = OBSColumn(
             id='t004c002_t',
-            name='Detailed other language spoken regularly at home - None (total)',
+            name='Other language spoken regularly at home - None (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6707,7 +6707,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_m = OBSColumn(
             id='t004c002_m',
-            name='Detailed other language spoken regularly at home - None (male)',
+            name='Other language spoken regularly at home - None (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6716,7 +6716,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_f = OBSColumn(
             id='t004c002_f',
-            name='Detailed other language spoken regularly at home - None (female)',
+            name='Other language spoken regularly at home - None (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6725,7 +6725,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_t = OBSColumn(
             id='t004c003_t',
-            name='Detailed other language spoken regularly at home - Single responses (total)',
+            name='Other language spoken regularly at home - Single responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6734,7 +6734,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_m = OBSColumn(
             id='t004c003_m',
-            name='Detailed other language spoken regularly at home - Single responses (male)',
+            name='Other language spoken regularly at home - Single responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6743,7 +6743,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_f = OBSColumn(
             id='t004c003_f',
-            name='Detailed other language spoken regularly at home - Single responses (female)',
+            name='Other language spoken regularly at home - Single responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9560,7 +9560,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_t = OBSColumn(
             id='t004c108_t',
-            name='Detailed other language spoken regularly at home - Multiple responses (total)',
+            name='Other language spoken regularly at home - Multiple responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9569,7 +9569,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_m = OBSColumn(
             id='t004c108_m',
-            name='Detailed other language spoken regularly at home - Multiple responses (male)',
+            name='Other language spoken regularly at home - Multiple responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9578,7 +9578,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_f = OBSColumn(
             id='t004c108_f',
-            name='Detailed other language spoken regularly at home - Multiple responses (female)',
+            name='Other language spoken regularly at home - Multiple responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9693,6 +9693,12 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_f: DENOMINATOR },)
 
+        # FIXME
+        # How is this different from ca.statcan.cols_nhs.t009c001_t?  Do we
+        # need a new unit for "family"?
+        #
+        # This should also have a description of family according to the
+        # Census.
         t005c001_t = OBSColumn(
             id='t005c001_t',
             name='Total number of census families in private households',
@@ -9740,7 +9746,7 @@ class CensusColumns(ColumnsTask):
 
         t005c007_t = OBSColumn(
             id='t005c007_t',
-            name='Total couple families by family structure and number of children',
+            name='Couple families by family structure and number of children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9758,7 +9764,7 @@ class CensusColumns(ColumnsTask):
 
         t005c009_t = OBSColumn(
             id='t005c009_t',
-            name='Without children at home',
+            name='Households without children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9767,7 +9773,7 @@ class CensusColumns(ColumnsTask):
 
         t005c010_t = OBSColumn(
             id='t005c010_t',
-            name='With children at home',
+            name='Households with children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9776,7 +9782,7 @@ class CensusColumns(ColumnsTask):
 
         t005c011_t = OBSColumn(
             id='t005c011_t',
-            name='1 child',
+            name='Households with 1 child',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9785,7 +9791,7 @@ class CensusColumns(ColumnsTask):
 
         t005c012_t = OBSColumn(
             id='t005c012_t',
-            name='2 children',
+            name='Households with 2 children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9794,7 +9800,7 @@ class CensusColumns(ColumnsTask):
 
         t005c013_t = OBSColumn(
             id='t005c013_t',
-            name='3 or more children',
+            name='Households with 3 or more children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9812,7 +9818,7 @@ class CensusColumns(ColumnsTask):
 
         t005c015_t = OBSColumn(
             id='t005c015_t',
-            name='Without children at home',
+            name='Households with without children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9821,7 +9827,7 @@ class CensusColumns(ColumnsTask):
 
         t005c016_t = OBSColumn(
             id='t005c016_t',
-            name='With children at home',
+            name='Households with with children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9830,7 +9836,7 @@ class CensusColumns(ColumnsTask):
 
         t005c017_t = OBSColumn(
             id='t005c017_t',
-            name='1 child',
+            name='Households with 1 child',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9839,7 +9845,7 @@ class CensusColumns(ColumnsTask):
 
         t005c018_t = OBSColumn(
             id='t005c018_t',
-            name='2 children',
+            name='Households with 2 children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9848,16 +9854,19 @@ class CensusColumns(ColumnsTask):
 
         t005c019_t = OBSColumn(
             id='t005c019_t',
-            name='3 or more children',
+            name='Households with 3 or more children',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_households, subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
+        # FIXME
+        # shouldn't the below be unit_households instead of unit_people?
+        # in that case should be renamed "Lone-parent households", "Female lone-parent households", etc.
         t005c020_t = OBSColumn(
             id='t005c020_t',
-            name='Total lone-parent families by sex of parent and number of children',
+            name='Lone-parent families by sex of parent and number of children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9873,6 +9882,10 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['families']],
             targets={ t005c020_t: DENOMINATOR },)
 
+        # FIXME
+        # Names in cases where there is nesting need to be identifiable on their
+        # own -- this should be 1 child female single-parent households, I think.
+        # '1 child' is ambiguous with the male counterpart, for example.
         t005c022_t = OBSColumn(
             id='t005c022_t',
             name='1 child',
@@ -9945,6 +9958,8 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
+        # FIXME
+        # Ditto with above RE nesting and names (these are children in census families in private households under six years of age)
         t005c030_t = OBSColumn(
             id='t005c030_t',
             name='Under six years of age',
@@ -10158,6 +10173,12 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['language']],
             targets={},)
 
+        # FIXME
+        # what's the difference between this column and
+        # 'ca.statcan.cols_nhs.t001c001_t'?
+
+        # a single column can exist in multiple tables.  if the data is
+        # identical, then these should be combined.
         t007c001_t = OBSColumn(
             id='t007c001_t',
             name='Total number of persons in private households (total)',
@@ -10500,6 +10521,9 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_households, subsections['housing']],
             targets={},)
 
+        # FIXME
+        # A description of what a census-family household should be included
+        # here.  Links can be made using restructured text formatting.
         t007c015_t = OBSColumn(
             id='t007c015_t',
             name='Household Type - Census-family households',
@@ -10527,6 +10551,8 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_households, subsections['housing']],
             targets={ t007c016_t: DENOMINATOR },)
 
+        # FIXME
+        # Names below are ambiguous due to nesting
         t007c018_t = OBSColumn(
             id='t007c018_t',
             name='Without children',
@@ -10644,6 +10670,11 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_households, subsections['housing']],
             targets={ t007c028_t: DENOMINATOR },)
 
+        # FIXME
+        # If the below are counts of households within those dwelling types,
+        # as opposed to counts of the dwellings themselves, they should be
+        # retitled along the lines of "Households in single-detached houses",
+        # "Households in apartment buildings of five or more stories", etc.
         t007c032_t = OBSColumn(
             id='t007c032_t',
             name='Dwelling Type - Single-detached house',
@@ -10785,7 +10816,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
         t007c049_t = OBSColumn(
@@ -10794,7 +10825,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, unit_households, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
         t008c002_t = OBSColumn(
@@ -10905,9 +10936,22 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Generally, we should never have "by" in a the name of a measurement,
+        # and any columns targetting an OBSColumn that had a "by" in its name
+        # need more qualification to not be ambiguous.
+        #
+        # For example, the columns below this should be prepended with
+        # "Population" (like "Population married or living...") to avoid
+        # name ambiguity with the number of Households with that same
+        # marital status.
+        #
+        # These are duplicative of `ca.statcan.cols_nhs.t005c001`, which has
+        # been removed.  Any column and table depending on that should use this
+        # instead.
         t009c001_t = OBSColumn(
             id='t009c001_t',
-            name='Total population 15 years and over by marital status (total)',
+            name='Total population 15 years and over',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10916,7 +10960,7 @@ class CensusColumns(ColumnsTask):
 
         t009c001_m = OBSColumn(
             id='t009c001_m',
-            name='Total population 15 years and over by marital status (male)',
+            name='Male population 15 years and over',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10925,7 +10969,7 @@ class CensusColumns(ColumnsTask):
 
         t009c001_f = OBSColumn(
             id='t009c001_f',
-            name='Total population 15 years and over by marital status (female)',
+            name='Female Population 15 years and over',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11165,6 +11209,8 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['segments']],
             targets={},)
 
+        # FIXME
+        # A description of what a "private dwelling" is should be here.
         t010c004_t = OBSColumn(
             id='t010c004_t',
             name='Total private dwellings',
@@ -11174,6 +11220,8 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_housing, subsections['segments']],
             targets={},)
 
+        # FIXME
+        # A description of what "usual residents" are should be here
         t010c005_t = OBSColumn(
             id='t010c005_t',
             name='Private dwellings occupied by usual residents',
@@ -11192,6 +11240,8 @@ class CensusColumns(ColumnsTask):
             tags=[ca, subsections['segments']],
             targets={},)
 
+        # FIXME
+        # There should be a "unit_sq_km" added for this
         t010c007_t = OBSColumn(
             id='t010c007_t',
             name='Land area (square km)',
