@@ -5,6 +5,10 @@ Util functions for tests
 from subprocess import check_output
 
 
+EMPTY_RASTER = '0100000000000000000000F03F000000000000F0BF0000000000000000' \
+        '000000000000000000000000000000000000000000000000000000000A000A00'
+
+
 def recreate_db():
     check_output('''
     psql -d gis -c "SELECT pg_terminate_backend(pg_stat_activity.pid)

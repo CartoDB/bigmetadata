@@ -11,7 +11,7 @@ import weakref
 import luigi
 from luigi import Task, BooleanParameter, Target, Event
 
-from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric,
+from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric, cast,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
                         ForeignKeyConstraint, Table, exc, func, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import JSON
@@ -20,6 +20,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, composite, backref
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm.collections import attribute_mapped_collection
+from sqlalchemy.schema import ForeignKeyConstraint
 from sqlalchemy.sql import expression
 from sqlalchemy.types import UserDefinedType
 
@@ -56,6 +57,18 @@ def get_engine():
                 (connection_record.info['pid'], pid)
             )
     return _engine
+
+
+class Raster(UserDefinedType):
+
+    def get_col_spec(self):
+        return "Raster"
+
+    def bind_expression(self, bindvalue):
+        return cast(bindvalue, Raster)
+
+    def column_expression(self, col):
+        return cast(col, Raster)
 
 
 class Geometry(UserDefinedType):
@@ -122,6 +135,9 @@ class OBSColumnTable(Base):
 
     column = relationship("OBSColumn", back_populates="tables")
     table = relationship("OBSTable", back_populates="columns")
+
+    #tiles = relationship("OBSColumnTableTile", back_populates='column_table',
+    #                     cascade='all,delete')
 
     extra = Column(JSON)
 
@@ -527,6 +543,27 @@ class OBSDumpVersion(Base):
     __tablename__ = 'obs_dump_version'
 
     dump_id = Column(Text, primary_key=True)
+
+
+class OBSColumnTableTile(Base):
+    '''
+    This table contains column/table summary data using raster tiles.
+    '''
+    __tablename__ = 'obs_column_table_tile'
+
+    table_id = Column(Text, primary_key=True)
+    column_id = Column(Text, primary_key=True)
+    tile_id = Column(Integer, primary_key=True)
+
+    tile = Column(Raster)
+
+    #column_table = relationship('OBSColumnTable', back_populates="tiles")
+
+    constraint = ForeignKeyConstraint(
+        ('table_id', 'column_id', ),
+        ('obs_column_table.table_id', 'obs_column_table.column_id', ),
+        ondelete='cascade'
+    )
 
 
 class CurrentSession(object):

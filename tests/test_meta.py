@@ -5,7 +5,7 @@ Test metadata functions
 
 from nose.tools import assert_equals, with_setup, assert_raises
 
-from tests.util import setup, teardown, session_scope
+from tests.util import setup, teardown, session_scope, EMPTY_RASTER
 
 from tasks.meta import (OBSColumnTable, OBSColumn, OBSTable, OBSColumnTableTile,
                         OBSTag, OBSColumnTag, Base, current_session)
@@ -36,18 +36,33 @@ def populate():
             session.add(datacol)
         tract_geoid = OBSColumn(id='"us.census.acs".tract_2013_geoid', type='text')
         puma_geoid = OBSColumn(id='"us.census.acs".puma_2013_geoid', type='text')
+        tract_geom = OBSColumn(id='"us.census.tiger".tract', type='geometry')
         tables = {
             'tract': OBSTable(id='"us.census.acs".extract_2013_5yr_tract',
                               tablename='us_census_acs2013_5yr_tract'),
             'puma': OBSTable(id='"us.census.acs".extract_2013_5yr_puma',
                              tablename='us_census_acs2013_5yr_puma')
         }
+        geom_table = OBSTable(id='"us.census.acs".tract_geoms',
+                              tablename='tract_geoms')
         session.add(OBSColumnTable(table=tables['tract'],
                                    column=tract_geoid,
                                    colname='geoid'))
         session.add(OBSColumnTable(table=tables['puma'],
                                    column=puma_geoid,
                                    colname='geoid'))
+        session.add(OBSColumnTable(table=geom_table,
+                                   column=tract_geoid,
+                                   colname='geoid'))
+        geom_coltable = OBSColumnTable(table=geom_table,
+                                       column=tract_geom,
+                                       colname='the_geom')
+        session.add(geom_coltable)
+        session.add(OBSColumnTableTile(column_id=geom_coltable.column.id,
+                                       table_id=geom_coltable.table.id,
+                                       tile_id=1,
+                                       tile=EMPTY_RASTER
+                                      ))
         for colname, datacol in datacols.iteritems():
             if colname.endswith('pop'):
                 datacol.tags.append(TagTarget(population_tag, FakeTask()))
@@ -130,35 +145,45 @@ def test_column_to_column_target():
 def test_delete_column_deletes_relevant_related_objects():
     populate()
     with session_scope() as session:
-        assert_equals(session.query(OBSColumn).count(), 6)
-        assert_equals(session.query(OBSTable).count(), 2)
-        assert_equals(session.query(OBSColumnTable).count(), 10)
+        assert_equals(session.query(OBSColumn).count(), 7)
+        assert_equals(session.query(OBSTable).count(), 3)
+        assert_equals(session.query(OBSColumnTable).count(), 12)
         session.delete(session.query(OBSColumn).get('"us.census.acs".median_rent'))
-        assert_equals(session.query(OBSColumn).count(), 5)
-        assert_equals(session.query(OBSTable).count(), 2)
-        assert_equals(session.query(OBSColumnTable).count(), 8)
+        assert_equals(session.query(OBSColumn).count(), 6)
+        assert_equals(session.query(OBSTable).count(), 3)
+        assert_equals(session.query(OBSColumnTable).count(), 10)
 
 @with_setup(setup, teardown)
 def test_delete_table_deletes_relevant_related_objects():
     populate()
     with session_scope() as session:
-        assert_equals(session.query(OBSColumn).count(), 6)
-        assert_equals(session.query(OBSTable).count(), 2)
-        assert_equals(session.query(OBSColumnTable).count(), 10)
+        assert_equals(session.query(OBSColumn).count(), 7)
+        assert_equals(session.query(OBSTable).count(), 3)
+        assert_equals(session.query(OBSColumnTable).count(), 12)
         session.delete(session.query(OBSTable).get('"us.census.acs".extract_2013_5yr_tract'))
-        assert_equals(session.query(OBSColumn).count(), 6)
-        assert_equals(session.query(OBSTable).count(), 1)
-        assert_equals(session.query(OBSColumnTable).count(), 5)
+        assert_equals(session.query(OBSColumn).count(), 7)
+        assert_equals(session.query(OBSTable).count(), 2)
+        assert_equals(session.query(OBSColumnTable).count(), 7)
 
 
 @with_setup(setup, teardown)
 def test_delete_tag_deletes_relevant_related_objects():
     populate()
     with session_scope() as session:
-        assert_equals(session.query(OBSColumn).count(), 6)
+        assert_equals(session.query(OBSColumn).count(), 7)
         assert_equals(session.query(OBSColumnTag).count(), 6)
         assert_equals(session.query(OBSTag).count(), 2)
         session.delete(session.query(OBSTag).get('population'))
-        assert_equals(session.query(OBSColumn).count(), 6)
+        assert_equals(session.query(OBSColumn).count(), 7)
         assert_equals(session.query(OBSColumnTag).count(), 3)
         assert_equals(session.query(OBSTag).count(), 1)
+
+
+@with_setup(setup, teardown)
+def test_delete_columntable_removes_tiles():
+    populate()
+    with session_scope() as session:
+        assert_equals(session.query(OBSColumnTableTile).count(), 1)
+        session.delete(session.query(OBSColumnTableTile).get(
+            ('"us.census.acs".tract_geoms', '"us.census.tiger".tract', 1, )))
+        assert_equals(session.query(OBSColumnTableTile).count(), 0)
