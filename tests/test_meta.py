@@ -4,14 +4,18 @@ Test metadata functions
 
 
 from nose.tools import assert_equals, with_setup, assert_raises
-from tasks.meta import (OBSColumnTable, OBSColumn, OBSTable,
+
+from tests.util import setup, teardown, session_scope
+
+from tasks.meta import (OBSColumnTable, OBSColumn, OBSTable, OBSColumnTableTile,
                         OBSTag, OBSColumnTag, Base, current_session)
 from tasks.util import ColumnTarget, TagTarget, shell
 
-from tests.util import setup, teardown
 
-# TODO clean this up in a more general init script
-from tests.util import session_scope
+
+class FakeTask(object):
+
+    task_id = 'fake'
 
 
 def populate():
@@ -28,8 +32,7 @@ def populate():
         }
         for numerator_col in ('male_pop', 'female_pop', ):
             datacol = datacols[numerator_col]
-            datacol.targets[ColumnTarget(
-                'us.census.acs', 'total_pop', datacols['total_pop'])] = 'denominator'
+            datacol.targets[datacols['total_pop']] = 'denominator'
             session.add(datacol)
         tract_geoid = OBSColumn(id='"us.census.acs".tract_2013_geoid', type='text')
         puma_geoid = OBSColumn(id='"us.census.acs".puma_2013_geoid', type='text')
@@ -47,8 +50,8 @@ def populate():
                                    colname='geoid'))
         for colname, datacol in datacols.iteritems():
             if colname.endswith('pop'):
-                datacol.tags.append(TagTarget(population_tag))
-                datacol.tags.append(TagTarget(source_tag))
+                datacol.tags.append(TagTarget(population_tag, FakeTask()))
+                datacol.tags.append(TagTarget(source_tag, FakeTask()))
             for table in tables.values():
                 coltable = OBSColumnTable(column=datacol,
                                           table=table,
@@ -159,8 +162,3 @@ def test_delete_tag_deletes_relevant_related_objects():
         assert_equals(session.query(OBSColumn).count(), 6)
         assert_equals(session.query(OBSColumnTag).count(), 3)
         assert_equals(session.query(OBSTag).count(), 1)
-
-
-def test_global_session_raises():
-    with assert_raises(Exception):
-        current_session()
