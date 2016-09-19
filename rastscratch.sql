@@ -470,14 +470,11 @@ CREATE INDEX ON boundarysummaries USING GIST (ST_ConvexHull(tile));
 
 INSERT INTO boundarysummaries
 WITH tables AS (SELECT DISTINCT geom_id id, geom_tablename tablename,
-  sqrt((geom_ct_extra->'stats'->>'avg')::NUMERIC)::INTEGER avgdim
+  (geom_ct_extra->'stats'->>'avg')::NUMERIC avgsize
   FROM observatory.obs_meta
-  --WHERE geom_tablename = 'obs_624e5d2362e08aaa5463d7671e7748432262719c'
-  WHERE geom_tablename = 'obs_1babf5a26a1ecda5fb74963e88408f71d0364b81' --county
-)
-  --WHERE geom_ct_extra IS NOT NULL)
+  WHERE geom_ct_extra IS NOT NULL)
 SELECT id, tablename, SummarizeBoundary(
-  'observatory.' || tablename, 'the_geom', avgdim, avgdim, 100, 100) tile
+  'observatory.' || tablename, 'the_geom', sqrt(avgsize), sqrt(avgsize), 100, 100) tile
 FROM tables;
 
 
@@ -490,6 +487,8 @@ FROM tables;
 
 --
 
+
+-- create census tracts
 DROP TABLE IF EXISTS testtiles;
 CREATE TABLE testtiles AS
 WITH emptyraster as (
@@ -501,17 +500,24 @@ WITH emptyraster as (
     / (50000),
     (st_ymax(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857))
       - st_ymin(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857)))::INT
-    / (50000), ARRAY['32BUI', '32BUI'], ARRAY[1, 1], ARRAY[0, 0]
+    / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
   ), ARRAY[1, 2], 50, 50) rast
-  --FROM observatory.obs_1babf5a26a1ecda5fb74963e88408f71d0364b81 tiger
   FROM observatory.obs_fc050f0b8673cfe3c6aa1040f749eb40975691b7 tiger
   ) foo
 ),
 pixelspertile AS (
   SELECT id, ARRAY_AGG(median) medians, ARRAY_AGG(cnt) counts FROM (
-  SELECT id, ROW(FIRST(geom), percentile_cont(0.5) within group (
-          order by st_area(st_transform(tiger.the_geom, 3857)) / 1000000))::geomval median,
-             ROW(FIRST(geom), COUNT(tiger.the_geom))::geomval cnt
+  SELECT id, ROW(
+              FIRST(geom),
+                -- determine median area of tiger geometries
+                percentile_cont(0.5) within group (
+                order by st_area(st_transform(tiger.the_geom, 3857)) / 1000000)
+             )::geomval median,
+             ROW(FIRST(geom),
+              -- determine number of geoms, including fractions
+              SUM(ST_Area(ST_Intersection(tiger.the_geom, foo.geom)) /
+                  ST_Area(tiger.the_geom))
+             )::geomval cnt
          --id, x, y, FIRST(geom) pixelgeom,
          --count(tiger.the_geom) numtigergeoms,
          --max(st_area(st_transform(tiger.the_geom, 3857)) / 1000000) maxtigergeomarea,
@@ -527,23 +533,171 @@ pixelspertile AS (
     WHERE emptyraster.rast && tiger.the_geom
     GROUP BY id
   ) foo,
-    --observatory.obs_1babf5a26a1ecda5fb74963e88408f71d0364b81 tiger
     observatory.obs_fc050f0b8673cfe3c6aa1040f749eb40975691b7 tiger
     WHERE foo.geom && tiger.the_geom
     GROUP BY id, x, y
   ) bar
   GROUP BY id
 )
-SELECT er.id, ST_SetValues(ST_SetValues(er.rast, 1, medians), 2, counts) geom
+SELECT 'us.census.tiger.census_tract'::text res, er.id,
+       ST_SetValues(ST_SetValues(er.rast, 1, medians), 2, counts) geom
 FROM emptyraster er, pixelspertile ppt
 WHERE er.id = ppt.id
 ;
-CREATE INDEX ON testtiles USING GIST (ST_ConvexHull(geom));
-CREATE UNIQUE INDEX ON testtiles (id);
+
+DELETE FROM testtiles WHERE res = 'us.census.tiger.county';
+INSERT INTO testtiles
+WITH emptyraster as (
+  SELECT ROW_NUMBER() OVER () AS id, rast FROM (
+  SELECT ST_Tile(ST_AsRaster(
+  st_setsrid(st_extent(the_geom), 4326),
+    (st_xmax(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857))
+      - st_xmin(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857)))::INT
+    / (50000),
+    (st_ymax(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857))
+      - st_ymin(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857)))::INT
+    / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
+  ), ARRAY[1, 2], 100000000, 100000000) rast
+  FROM observatory.obs_1babf5a26a1ecda5fb74963e88408f71d0364b81 tiger
+  ) foo
+),
+pixelspertile AS (
+  SELECT id, ARRAY_AGG(median) medians, ARRAY_AGG(cnt) counts FROM (
+  SELECT id, ROW(
+              FIRST(geom),
+                -- determine median area of tiger geometries
+                percentile_cont(0.5) within group (
+                order by st_area(st_transform(tiger.the_geom, 3857)) / 1000000)
+             )::geomval median,
+             ROW(FIRST(geom),
+              -- determine number of geoms, including fractions
+              SUM(ST_Area(ST_Intersection(tiger.the_geom, foo.geom)) /
+                  ST_Area(tiger.the_geom))
+             )::geomval cnt
+  FROM
+  (
+    SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
+    FROM emptyraster,
+         observatory.obs_1babf5a26a1ecda5fb74963e88408f71d0364b81 tiger
+    WHERE emptyraster.rast && tiger.the_geom
+    GROUP BY id
+  ) foo,
+    observatory.obs_1babf5a26a1ecda5fb74963e88408f71d0364b81 tiger
+    WHERE foo.geom && tiger.the_geom
+    GROUP BY id, x, y
+  ) bar
+  GROUP BY id
+)
+SELECT 'us.census.tiger.county'::text res, er.id,
+       ST_SetValues(ST_SetValues(er.rast, 1, medians), 2, counts) geom
+FROM emptyraster er, pixelspertile ppt
+WHERE er.id = ppt.id
+;
+
+DELETE FROM testtiles WHERE res = 'us.census.tiger.block_group';
+INSERT INTO testtiles
+WITH emptyraster as (
+  SELECT ROW_NUMBER() OVER () AS id, rast FROM (
+  SELECT ST_Tile(ST_AsRaster(
+  st_setsrid(st_extent(the_geom), 4326),
+    (st_xmax(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857))
+      - st_xmin(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857)))::INT
+    / (50000),
+    (st_ymax(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857))
+      - st_ymin(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857)))::INT
+    / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
+  ), ARRAY[1, 2], 50, 50) rast
+  FROM observatory.obs_c6fb99c47d61289fbb8e561ff7773799d3fcc308 tiger
+  ) foo
+),
+pixelspertile AS (
+  SELECT id, ARRAY_AGG(median) medians, ARRAY_AGG(cnt) counts FROM (
+  SELECT id, ROW(
+              FIRST(geom),
+                -- determine median area of tiger geometries
+                percentile_cont(0.5) within group (
+                order by st_area(st_transform(tiger.the_geom, 3857)) / 1000000)
+             )::geomval median,
+             ROW(FIRST(geom),
+              -- determine number of geoms, including fractions
+              SUM(ST_Area(ST_Intersection(tiger.the_geom, foo.geom)) /
+                  ST_Area(tiger.the_geom))
+             )::geomval cnt
+  FROM
+  (
+    SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
+    FROM emptyraster,
+         observatory.obs_c6fb99c47d61289fbb8e561ff7773799d3fcc308 tiger
+    WHERE emptyraster.rast && tiger.the_geom
+    GROUP BY id
+  ) foo,
+    observatory.obs_c6fb99c47d61289fbb8e561ff7773799d3fcc308 tiger
+    WHERE foo.geom && tiger.the_geom
+    GROUP BY id, x, y
+  ) bar
+  GROUP BY id
+)
+SELECT 'us.census.tiger.block_group'::text res, er.id,
+       ST_SetValues(ST_SetValues(er.rast, 1, medians), 2, counts) geom
+FROM emptyraster er, pixelspertile ppt
+WHERE er.id = ppt.id
+;
+
+INSERT INTO testtiles
+WITH emptyraster as (
+  SELECT ROW_NUMBER() OVER () AS id, rast FROM (
+  SELECT ST_Tile(ST_AsRaster(
+  st_setsrid(st_extent(the_geom), 4326),
+    (st_xmax(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857))
+      - st_xmin(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857)))::INT
+    / (50000),
+    (st_ymax(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857))
+      - st_ymin(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857)))::INT
+    / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
+  ), ARRAY[1, 2], 50, 50) rast
+  FROM observatory.obs_624e5d2362e08aaa5463d7671e7748432262719c tiger
+  ) foo
+),
+pixelspertile AS (
+  SELECT id, ARRAY_AGG(median) medians, ARRAY_AGG(cnt) counts FROM (
+  SELECT id, ROW(
+              FIRST(geom),
+                -- determine median area of tiger geometries
+                percentile_cont(0.5) within group (
+                order by st_area(st_transform(tiger.the_geom, 3857)) / 1000000)
+             )::geomval median,
+             ROW(FIRST(geom),
+              -- determine number of geoms, including fractions
+              SUM(ST_Area(ST_Intersection(tiger.the_geom, foo.geom)) /
+                  ST_Area(tiger.the_geom))
+             )::geomval cnt
+  FROM
+  (
+    SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
+    FROM emptyraster,
+         observatory.obs_624e5d2362e08aaa5463d7671e7748432262719c tiger
+    WHERE st_intersects(emptyraster.rast, tiger.the_geom)
+    GROUP BY id
+  ) foo,
+    observatory.obs_624e5d2362e08aaa5463d7671e7748432262719c tiger
+    WHERE st_intersects(foo.geom, tiger.the_geom)
+    GROUP BY id, x, y
+  ) bar
+  GROUP BY id
+)
+SELECT 'us.census.tiger.state'::text res, er.id,
+       ST_SetValues(ST_SetValues(er.rast, 1, medians), 2, counts) geom
+FROM emptyraster er, pixelspertile ppt
+WHERE er.id = ppt.id
+;
+--CREATE INDEX ON testtiles USING GIST (ST_ConvexHull(geom));
+--CREATE UNIQUE INDEX ON testtiles (id);
 
 
 with testgeom as (
   SELECT UNNEST(ARRAY[
+    st_makeenvelope(-15.1171875, -56.36525013685607,8.7890625, -44.087585028245165),
+    st_makeenvelope(-179,-89,179,89, 4326),
     st_makeenvelope(-74.124755859375,40.61994644839496,-73.59603881835938,40.81926563675481, 4326),
     st_makeenvelope(-74.44267272949219,40.506490449822046,-73.31932067871094,40.9052096972736, 4326),
     st_makeenvelope(-75.003662109375,40.306759936589636,-72.7569580078125,41.104190944576466, 4326),
@@ -554,17 +708,39 @@ with testgeom as (
 testgeom
 )
 select
- -- name,
+  res,
   st_area(st_transform(testgeom, 3857)) / 1000000 area,
-  st_value(FIRST(tile), 1, st_centroid(testgeom)) median,
-  st_value(FIRST(tile), 2, st_centroid(testgeom)) cnt,
-  (st_summarystatsagg(st_clip(tile, 1, testgeom, True), 1, True, 0.5)).mean meanmedianarea,
-  (st_summarystatsagg(st_clip(tile, 2, testgeom, True), 1, True, 0.5)).sum numgeoms,
-  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(tile, 1, testgeom, True), 1, True, 0.5)).mean estnumgeoms,
-  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(tile, 2, testgeom, True), 1, True, 0.5)).mean estmeanarea
+  -- median geom area of first pixel
+  st_value(FIRST(geom), 1, st_centroid(testgeom)) median,
+  -- median count of geoms of first pixel
+  st_value(FIRST(geom), 2, st_centroid(testgeom)) cnt,
+  -- mean of the median area for these pixels
+  (st_summarystatsagg(st_clip(geom, 1, testgeom, True), 1, True, 0.5)).mean meanmedianarea,
+  -- total number of geoms in this area
+  (st_summarystatsagg(st_clip(geom, 2, testgeom, True), 1, True, 0.5)).sum numgeoms,
+  -- estimate of the number of these geoms that would fit in the current arae
+  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(geom, 1, testgeom, True), 1, True, 0.5)).mean estnumgeoms,
+  -- estimate of the area in this area
+  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(geom, 2, testgeom, True), 1, True, 0.5)).mean estmeanarea
   --(st_summarystats(geom, 1, True)).*
   --st_value(geom, 1, st_setsrid(st_makepoint(0,0), 4326))
-from boundarysummaries, testgeom
-where st_intersects(testgeom , tile)
-group by testgeom
+from testtiles, testgeom
+where st_intersects(testgeom , geom)
+group by res, testgeom
 ;
+
+with testgeom as (
+  SELECT UNNEST(ARRAY[
+    st_makeenvelope(-75.003662109375,40.306759936589636,-72.7569580078125,41.104190944576466, 4326)
+  ])
+testgeom
+)
+select
+  res,
+  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(geom, 1, testgeom, True), 1, True, 0.5)).mean estnumgeoms
+from testtiles, testgeom
+where st_intersects(testgeom, geom)
+group by res, testgeom
+;
+
+
