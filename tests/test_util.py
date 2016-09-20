@@ -1,7 +1,7 @@
 from collections import OrderedDict
 from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
-                        assert_is_none)
+                        assert_is_none, assert_true, assert_false)
 from tests.util import runtask, session_scope, setup, teardown, FakeTask
 
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
@@ -162,27 +162,23 @@ def test_table_target_many_inits():
     pop_col.update_or_create()
     foo_col.update_or_create()
 
-    with session_scope() as session:
-        assert_equals(session.query(OBSColumn).count(), 2)
+    assert_equals(current_session().query(OBSColumn).count(), 2)
 
     columns = {
         'population': pop_col,
         'foobar': foo_col
     }
     table_target = TableTarget('test', 'foobar', OBSTable(), columns, FakeTask())
-    table_id = 'test.foobar'
 
     assert_equals(False, table_target.exists())
-    with session_scope() as session:
-        assert_equals(session.query(OBSTable).count(), 0)
-        assert_equals(session.query(OBSColumn).count(), 2)
+    assert_equals(current_session().query(OBSTable).count(), 0)
+    assert_equals(current_session().query(OBSColumn).count(), 2)
     table_target.update_or_create_table()
     table_target.update_or_create_metadata()
-    with session_scope() as session:
-        assert_equals(session.query(OBSColumn).count(), 2)
-        assert_equals(session.query(OBSTable).count(), 1)
-        obs_table = table_target.get(session)
-        tablename = 'observatory.' + obs_table.tablename
+    assert_equals(current_session().query(OBSColumn).count(), 2)
+    assert_equals(current_session().query(OBSTable).count(), 1)
+    obs_table = table_target.get(current_session())
+    tablename = 'observatory.' + obs_table.tablename
     assert_in(tablename, metadata.tables)
     sqlalchemy_table = metadata.tables[tablename]
     assert_equals(len(sqlalchemy_table.columns), 2)
@@ -190,21 +186,20 @@ def test_table_target_many_inits():
     assert_equals(table_target.exists(), False)
 
     # should 'exist' once rows inserted
-    with session_scope() as session:
-        session.execute('INSERT INTO {tablename} VALUES (0, 0)'.format(
-            tablename=tablename))
+    current_session().execute('INSERT INTO {tablename} VALUES (0, 0)'.format(
+        tablename=tablename))
+    current_session().commit()
 
     assert_equals(table_target.exists(), True)
 
     # new session, old object
     assert_equals(True, table_target.exists())
-    with session_scope() as session:
-        assert_equals(session.query(OBSTable).count(), 1)
+    assert_equals(current_session().query(OBSTable).count(), 1)
 
+    current_session().rollback()
     table_target.update_or_create_table()
     table_target.update_or_create_metadata()
-    with session_scope() as session:
-        assert_equals(session.query(OBSTable).count(), 1)
+    assert_equals(current_session().query(OBSTable).count(), 1)
     assert_in(tablename, metadata.tables)
     sqlalchemy_table = metadata.tables[tablename]
     assert_equals(len(sqlalchemy_table.columns), 2)
@@ -362,3 +357,19 @@ def test_table_task_replaces_data():
     with session_scope() as session:
         assert_equals(session.execute(
             'select count(*) from ' + table).fetchone()[0], 1)
+
+@with_setup(setup, teardown)
+def test_table_task_increment_version_runs_again():
+    task = TestTableTask()
+    runtask(task)
+    output = task.output()
+    assert_true(output.exists())
+
+    task = TestTableTask()
+    task.version = lambda: 10
+    output = task.output()
+    assert_false(output.exists())
+
+    current_session().rollback()
+    runtask(task)
+    assert_true(output.exists())

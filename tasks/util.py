@@ -246,7 +246,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
             (st_ymax(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857))
               - st_ymin(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857)))::INT
             / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
-          ), ARRAY[1, 2], 100000000, 100000000) rast
+          ), ARRAY[1, 2], 50, 50) rast
           FROM {tablename} tiger
           ) foo
         ),
@@ -500,8 +500,8 @@ class TableTarget(Target):
         regenerate tabular data from scratch.
         '''
         session = current_session()
-        existing = self.get(session) or self._obs_table
-        new_version = float(existing.version or 0.0)
+        existing = self.get(session)
+        new_version = float(self._obs_table.version or 0.0)
         if existing:
             existing_version = float(existing.version or 0.0)
             if existing in session:
