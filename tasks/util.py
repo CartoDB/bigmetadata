@@ -230,6 +230,13 @@ def sql_to_cartodb_table(outname, localname, json_column_names=None,
     assert resp.status_code == 200
 
 
+def construct_tile_summary(session, table, column):
+    '''
+    Add entries to obs_column_table_tile for the given table and column.
+    '''
+    pass
+
+
 class PostgresTarget(Target):
     '''
     PostgresTarget which by default uses command-line specified login.
@@ -348,9 +355,9 @@ class ColumnTarget(Target):
 
     def exists(self):
         existing = self.get(current_session())
-        new_version = float(self._column.version) or 0.0
+        new_version = float(self._column.version or 0.0)
         if existing:
-            existing_version = float(existing.version)
+            existing_version = float(existing.version or 0.0)
             current_session().expunge(existing)
         else:
             existing_version = 0.0
@@ -389,9 +396,9 @@ class TagTarget(Target):
     def exists(self):
         session = current_session()
         existing = self.get(session)
-        new_version = float(self._tag.version) or 0.0
+        new_version = float(self._tag.version or 0.0)
         if existing:
-            existing_version = float(existing.version)
+            existing_version = float(existing.version or 0.0)
             current_session().expunge(existing)
         else:
             existing_version = 0.0
@@ -418,6 +425,7 @@ class TableTarget(Target):
         self._id = '.'.join([schema, name])
         obs_table.id = self._id
         obs_table.tablename = 'obs_' + sha1(underscore_slugify(self._id)).hexdigest()
+        self.table = 'observatory.' + obs_table.tablename
         self._schema = schema
         self._name = name
         self._obs_table = obs_table
@@ -428,10 +436,6 @@ class TableTarget(Target):
             self._table = metadata.tables[obs_table.tablename]
         else:
             self._table = None
-
-    @property
-    def table(self):
-        return 'observatory.' + self._obs_table.tablename
 
     def sync(self):
         '''
@@ -445,11 +449,12 @@ class TableTarget(Target):
         regenerate tabular data from scratch.
         '''
         session = current_session()
-        existing = self.get(session)
-        new_version = float(self._obs_table.version) or 0.0
+        existing = self.get(session) or self._obs_table
+        new_version = float(existing.version or 0.0)
         if existing:
-            existing_version = float(existing.version)
-            session.expunge(existing)
+            existing_version = float(existing.version or 0.0)
+            if existing in session:
+                session.expunge(existing)
         else:
             existing_version = 0.0
         if existing and existing_version == new_version:
@@ -458,14 +463,14 @@ class TableTarget(Target):
                 "WHERE table_schema = '{schema}'  "
                 "  AND table_name = '{tablename}' ".format(
                     schema='observatory',
-                    tablename=self._obs_table.tablename))
+                    tablename=existing.tablename))
             if int(resp.fetchone()[0]) == 0:
                 return False
             resp = session.execute(
                 'SELECT row_number() over () '
                 'FROM "{schema}".{tablename} LIMIT 1 '.format(
                     schema='observatory',
-                    tablename=self._obs_table.tablename))
+                    tablename=existing.tablename))
             return resp.fetchone() is not None
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: cannot run task {task} '
@@ -505,11 +510,11 @@ class TableTarget(Target):
                 coltype = getattr(types, col.type.capitalize())
             columns.append(Column(colname, coltype))
 
-        obs_table = self._obs_table
+        obs_table = self.get(session) or self._obs_table
         # replace local data table
         if obs_table.id in metadata.tables:
             metadata.tables[obs_table.id].drop()
-        self._table = Table(self._obs_table.tablename, metadata, *columns,
+        self._table = Table(obs_table.tablename, metadata, *columns,
                             extend_existing=True, schema='observatory')
         self._table.drop(checkfirst=True)
         self._table.create()
@@ -519,7 +524,8 @@ class TableTarget(Target):
         select = []
         for i, colname_coltarget in enumerate(self._columns.iteritems()):
             colname, coltarget = colname_coltarget
-            coltype = coltarget._column.type.lower()
+            col = coltarget.get(session)
+            coltype = col.type.lower()
             if coltype == 'numeric':
                 select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
                               'max({colname}) col{i}_max, '
@@ -530,6 +536,8 @@ class TableTarget(Target):
                               'stddev_pop({colname}) col{i}_stddev'.format(
                                   i=i, colname=colname.lower()))
             elif coltype == 'geometry':
+                construct_tile_summary(session, self._obs_table, col)
+                # construct tile summaries
                 select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
                               'max(st_area({colname}::geography)) col{i}_max, '
                               'min(st_area({colname}::geography)) col{i}_min, '

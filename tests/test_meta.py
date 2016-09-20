@@ -5,17 +5,11 @@ Test metadata functions
 
 from nose.tools import assert_equals, with_setup, assert_raises
 
-from tests.util import setup, teardown, session_scope, EMPTY_RASTER
+from tests.util import setup, teardown, session_scope, EMPTY_RASTER, FakeTask
 
 from tasks.meta import (OBSColumnTable, OBSColumn, OBSTable, OBSColumnTableTile,
                         OBSTag, OBSColumnTag, Base, current_session)
 from tasks.util import ColumnTarget, TagTarget, shell
-
-
-
-class FakeTask(object):
-
-    task_id = 'fake'
 
 
 def populate():

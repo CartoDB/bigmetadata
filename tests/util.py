@@ -9,6 +9,11 @@ EMPTY_RASTER = '0100000000000000000000F03F000000000000F0BF0000000000000000' \
         '000000000000000000000000000000000000000000000000000000000A000A00'
 
 
+class FakeTask(object):
+
+    task_id = 'fake'
+
+
 def recreate_db():
     check_output('''
     psql -d gis -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
@@ -35,12 +40,16 @@ from luigi.scheduler import CentralPlannerScheduler
 def setup():
     if Base.metadata.bind.url.database != 'test':
         raise Exception('Can only run tests on database "test"')
+    session = current_session()
+    session.rollback()
     Base.metadata.create_all()
 
 
 def teardown():
     if Base.metadata.bind.url.database != 'test':
         raise Exception('Can only run tests on database "test"')
+    session = current_session()
+    session.rollback()
     Base.metadata.drop_all()
 
 
