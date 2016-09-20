@@ -20,7 +20,7 @@ from slugify import slugify
 import requests
 
 from luigi import (Task, Parameter, LocalTarget, Target, BooleanParameter,
-                   ListParameter, DateParameter)
+                   ListParameter, DateParameter, WrapperTask)
 from luigi.s3 import S3Target
 
 from sqlalchemy import Table, types, Column
@@ -1553,3 +1553,46 @@ class BackupIPython(Task):
             self.input().path.split(os.path.sep)[-1])
         print path
         return S3Target(path)
+
+
+class GenerateRasterTiles(Task):
+
+    table_id = Parameter()
+    column_id = Parameter()
+    tablename = Parameter()
+    colname = Parameter()
+
+    def run(self):
+        session = current_session()
+        LOGGER.info('table_id: %s, column_id: %s, tablename: %s, colname: %s',
+                    self.table_id, self.column_id, self.tablename, self.colname)
+        generate_tile_summary(session, self.table_id, self.column_id,
+                              'observatory.' + self.tablename, self.colname)
+
+    def complete(self):
+        session = current_session()
+        resp = session.execute('''
+            SELECT COUNT(*)
+            FROM observatory.obs_column_table_tile
+            WHERE table_id = '{table_id}'
+              AND column_id = '{column_id}'
+        '''.format(table_id=self.table_id, column_id=self.column_id))
+        return resp.fetchone()[0] > 0
+
+
+class GenerateAllRasterTiles(WrapperTask):
+
+    def requires(self):
+        session = current_session()
+        resp = session.execute('''
+            SELECT table_id, column_id, tablename, colname
+            FROM observatory.obs_table t,
+                 observatory.obs_column_table ct,
+                 observatory.obs_column c
+            WHERE t.id = ct.table_id
+              AND c.id = ct.column_id
+              AND c.type ILIKE 'geometry'
+        ''')
+        for table_id, column_id, tablename, colname in resp:
+            yield GenerateRasterTiles(table_id=table_id, column_id=column_id,
+                                      tablename=tablename, colname=colname)
