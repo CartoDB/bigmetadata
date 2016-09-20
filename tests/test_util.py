@@ -6,7 +6,7 @@ from tests.util import runtask, session_scope, setup, teardown, FakeTask
 
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
                         TableTarget, TagTarget, TagsTask)
-from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag,
+from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
 
 
@@ -187,7 +187,7 @@ def test_table_target_many_inits():
     sqlalchemy_table = metadata.tables[tablename]
     assert_equals(len(sqlalchemy_table.columns), 2)
 
-    assert_equals(table_target.exists(), False) # False until any rows inserted
+    assert_equals(table_target.exists(), False)
 
     # should 'exist' once rows inserted
     with session_scope() as session:
@@ -212,179 +212,153 @@ def test_table_target_many_inits():
     # forcing update_or_create_table again will end up wiping the table
     assert_equals(False, table_target.exists())
 
-    # should 'exist' once rows inserted
+
+@with_setup(setup, teardown)
+def test_columns_task_fails_no_columns():
+    class TestColumnsTask(ColumnsTask):
+        pass
+
+    task = TestColumnsTask()
+    with assert_raises(NotImplementedError):
+        runtask(task)
+
+
+@with_setup(setup, teardown)
+def test_columns_task_creates_columns_only_when_run():
+
+    task = TestColumnsTask()
     with session_scope() as session:
-        session.execute('INSERT INTO {tablename} VALUES (0, 0)'.format(
-            tablename=tablename))
+        assert_equals(session.query(OBSColumn).count(), 0)
+    runtask(task)
+    with session_scope() as session:
+        assert_equals(session.query(OBSColumn).count(), 2)
+        assert_equals(session.query(OBSColumnToColumn).count(), 1)
+        assert_equals(task.output()['pop'].get(session).id, 'test_util.population')
+        assert_equals(task.output()['foobar'].get(session).id, 'test_util.foobar')
+        pop = session.query(OBSColumn).get('test_util.population')
+        foobar = session.query(OBSColumn).get('test_util.foobar')
+        assert_equals(len(pop.sources), 1)
+        assert_equals(len(foobar.targets), 1)
+        assert_equals(pop.sources.keys()[0].id, foobar.id)
+        assert_equals(foobar.targets.keys()[0].id, pop.id)
 
-    assert_equals(table_target.exists(), True)
+    assert_equals(True, task.complete())
+
+    table = OBSTable(id='table', tablename='tablename')
+    with session_scope() as session:
+        coltable = OBSColumnTable(column=task.output()['pop'].get(session),
+                                  table=table, colname='colnamaste')
+        session.add(table)
+        session.add(coltable)
+
+    with session_scope() as session:
+        assert_equals(session.query(OBSColumnTable).count(), 1)
 
 
-#@with_setup(setup, teardown)
-#def test_columns_task_fails_no_columns():
-#    class TestColumnsTask(ColumnsTask):
-#        pass
-#
-#    task = TestColumnsTask()
-#    with assert_raises(NotImplementedError):
-#        runtask(task)
-#
-#
-#@with_setup(setup, teardown)
-#def test_columns_task_creates_columns_only_when_run():
-#
-#    task = TestColumnsTask()
-#    with session_scope() as session:
-#        assert_equals(session.query(OBSColumn).count(), 0)
-#    runtask(task)
-#    with session_scope() as session:
-#        assert_equals(session.query(OBSColumn).count(), 2)
-#        assert_equals(session.query(OBSColumnToColumn).count(), 1)
-#        assert_equals(task.output()['pop'].get(session).id, '"test_util".population')
-#        assert_equals(task.output()['foobar'].get(session).id, '"test_util".foobar')
-#        pop = session.query(OBSColumn).get('"test_util".population')
-#        foobar = session.query(OBSColumn).get('"test_util".foobar')
-#        assert_equals(len(pop.sources), 1)
-#        assert_equals(len(foobar.targets), 1)
-#        assert_equals(pop.sources.keys()[0].id, foobar.id)
-#        assert_equals(foobar.targets.keys()[0].id, pop.id)
-#
-#    assert_equals(True, task.complete())
-#
-#    table = OBSTable(id='table', tablename='tablename')
-#    with session_scope() as session:
-#        coltable = OBSColumnTable(column=task.output()['pop'].get(session),
-#                                  table=table, colname='colnamaste')
-#        session.add(table)
-#        session.add(coltable)
-#
-#    with session_scope() as session:
-#        assert_equals(session.query(OBSColumnTable).count(), 1)
-#
-#
-#
-#class TestTagsTask(TagsTask):
-#    def tags(self):
-#        return [
-#            OBSTag(id='denominator',
-#                   name='Denominator',
-#                   type='catalog',
-#                   description='Use these to provide a baseline for comparison between different areas.'),
-#            OBSTag(id='population',
-#                   name='Population',
-#                   type='catalog',
-#                   description='')
-#        ]
-#
-#
-#class TestColumnsTask(ColumnsTask):
-#
-#    def requires(self):
-#        return {
-#            'tags': TestTagsTask()
-#        }
-#
-#    def columns(self):
-#        tags = self.input()['tags']
-#        pop_column = OBSColumn(id='population',
-#                               type='Numeric',
-#                               name="Total Population",
-#                               description='The total number of all',
-#                               aggregate='sum',
-#                               tags=[
-#                                   tags['denominator'],
-#                                   tags['population']
-#                               ],
-#                               weight=10)
-#        return OrderedDict({
-#            'pop': pop_column,
-#            'foobar': OBSColumn(id='foobar',
-#                                type='Numeric',
-#                                name="Foo Bar",
-#                                description='moo boo foo',
-#                                aggregate='median',
-#                                weight=8,
-#                                tags=[tags['population']],
-#                                targets={
-#                                    pop_column: 'denominator'
-#                                }
-#                               ),
-#        })
-#
-#
-#class TestTableTask(TableTask):
-#
-#    alpha = Parameter(default='1996')
-#    beta = Parameter(default='5000')
-#
-#    def requires(self):
-#        return {
-#            'meta': TestColumnsTask()
-#        }
-#
-#    def columns(self):
-#        return {
-#            'population': self.input()['meta']['pop'],
-#            'foobar': self.input()['meta']['foobar']
-#        }
-#
-#    def timespan(self):
-#        return ''
-#
-#    def populate(self):
-#        pass
-#
-#
-#@with_setup(setup, teardown)
-#def test_table_task_creates_columns_when_run():
-#
-#    task = TestTableTask()
-#    assert_equals(False, task.complete())
-#    runtask(task)
-#    assert_equals(True, task.complete())
-#
-#    with session_scope() as session:
-#        assert_equals(session.query(OBSColumn).count(), 2)
-#        assert_equals(session.query(OBSColumnTable).count(), 2)
-#        assert_equals(session.query(OBSTable).count(), 1)
-#        assert_in(task.table.fullname, metadata.tables)
-#
-#
-#@with_setup(setup, teardown)
-#def test_table_task_table():
-#
-#    task = TestTableTask()
-#    runtask(task)
-#
-#    with session_scope() as session:
-#        assert_equals('"{schema}".{name}'.format(schema=task.table.schema,
-#                                                 name=task.table.name),
-#                      task.output().get(session).id)
-#
-#
-#@with_setup(setup, teardown)
-#def test_table_task_replaces_data():
-#
-#    task = TestTableTask()
-#    runtask(task)
-#
-#    with session_scope() as session:
-#        assert_equals(session.query(task.table).count(), 0)
-#        session.execute('INSERT INTO "{schema}"."{tablename}" VALUES (100, 100)'.format(
-#            schema=task.table.schema,
-#            tablename=task.table.name))
-#        assert_equals(session.query(task.table).count(), 1)
-#
-#    runtask(task)
-#
-#    with session_scope() as session:
-#        assert_equals(session.query(task.table).count(), 1)
-#
-#@with_setup(setup, teardown)
-#def test_table_task_qualifies_table_name_schema():
-#
-#    task = TestTableTask()
-#    runtask(task)
-#
-#    assert_equals(task.table.schema, 'test_util')
-#    assert_equals(task.table.name, 'test_table_task_alpha_1996_beta_5000')
+
+class TestTagsTask(TagsTask):
+    def tags(self):
+        return [
+            OBSTag(id='denominator',
+                   name='Denominator',
+                   type='catalog',
+                   description='Use these to provide a baseline for comparison between different areas.'),
+            OBSTag(id='population',
+                   name='Population',
+                   type='catalog',
+                   description='')
+        ]
+
+
+class TestColumnsTask(ColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': TestTagsTask()
+        }
+
+    def columns(self):
+        tags = self.input()['tags']
+        pop_column = OBSColumn(id='population',
+                               type='Numeric',
+                               name="Total Population",
+                               description='The total number of all',
+                               aggregate='sum',
+                               tags=[
+                                   tags['denominator'],
+                                   tags['population']
+                               ],
+                               weight=10)
+        return OrderedDict({
+            'pop': pop_column,
+            'foobar': OBSColumn(id='foobar',
+                                type='Numeric',
+                                name="Foo Bar",
+                                description='moo boo foo',
+                                aggregate='median',
+                                weight=8,
+                                tags=[tags['population']],
+                                targets={
+                                    pop_column: 'denominator'
+                                }
+                               ),
+        })
+
+
+class TestTableTask(TableTask):
+
+    alpha = Parameter(default='1996')
+    beta = Parameter(default='5000')
+
+    def requires(self):
+        return {
+            'meta': TestColumnsTask()
+        }
+
+    def columns(self):
+        return {
+            'population': self.input()['meta']['pop'],
+            'foobar': self.input()['meta']['foobar']
+        }
+
+    def timespan(self):
+        return ''
+
+    def populate(self):
+        session = current_session()
+        session.execute('INSERT INTO {output} VALUES (100, 100)'.format(
+            output=self.output().table))
+
+
+@with_setup(setup, teardown)
+def test_table_task_creates_columns_when_run():
+
+    task = TestTableTask()
+    assert_equals(False, task.complete())
+    runtask(task)
+    assert_equals(True, task.complete())
+
+    with session_scope() as session:
+        assert_equals(session.query(OBSColumn).count(), 2)
+        assert_equals(session.query(OBSColumnTable).count(), 2)
+        assert_equals(session.query(OBSTable).count(), 1)
+        assert_in(task.output().table, metadata.tables)
+
+
+@with_setup(setup, teardown)
+def test_table_task_replaces_data():
+
+    task = TestTableTask()
+    runtask(task)
+
+    table = task.output().table
+
+    with session_scope() as session:
+        assert_equals(session.execute(
+            'select count(*) from ' + table).fetchone()[0], 1)
+
+    runtask(task)
+
+    with session_scope() as session:
+        assert_equals(session.execute(
+            'select count(*) from ' + table).fetchone()[0], 1)
