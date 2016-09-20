@@ -1564,11 +1564,15 @@ class GenerateRasterTiles(Task):
 
     def run(self):
         session = current_session()
-        LOGGER.info('table_id: %s, column_id: %s, tablename: %s, colname: %s',
-                    self.table_id, self.column_id, self.tablename, self.colname)
-        generate_tile_summary(session, self.table_id, self.column_id,
-                              'observatory.' + self.tablename, self.colname)
-        session.commit()
+        try:
+            LOGGER.info('table_id: %s, column_id: %s, tablename: %s, colname: %s',
+                        self.table_id, self.column_id, self.tablename, self.colname)
+            generate_tile_summary(session, self.table_id, self.column_id,
+                                  'observatory.' + self.tablename, self.colname)
+            session.commit()
+        except:
+            session.rollback()
+            raise
 
     def complete(self):
         session = current_session()
