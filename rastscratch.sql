@@ -744,3 +744,17 @@ group by res, testgeom
 ;
 
 
+with testgeom as (
+  SELECT UNNEST(ARRAY[
+    st_makeenvelope(-75.003662109375,40.306759936589636,-72.7569580078125,41.104190944576466, 4326),
+    st_makeenvelope(-5.6304931640625, 39.2832938689385, -1.768798828125, 41.43860847395721, 4326)
+  ])
+testgeom
+)
+select
+  table_id, column_id,
+  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(tile, 1, testgeom, True), 1, True, 0.5)).mean estnumgeoms
+from observatory.obs_column_table_tile, testgeom
+where st_intersects(testgeom, tile)
+group by table_id, column_id, testgeom
+;
