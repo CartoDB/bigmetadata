@@ -1568,6 +1568,7 @@ class GenerateRasterTiles(Task):
                     self.table_id, self.column_id, self.tablename, self.colname)
         generate_tile_summary(session, self.table_id, self.column_id,
                               'observatory.' + self.tablename, self.colname)
+        session.commit()
 
     def complete(self):
         session = current_session()
