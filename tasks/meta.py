@@ -665,4 +665,18 @@ GEOM_REF = 'geom_ref'
 GEOM_NAME = 'geom_name'
 
 _engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
+_engine.execute('''
+    CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
+    RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
+            SELECT $1;
+    $$;
+
+    -- And then wrap an aggregate around it
+    DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
+    CREATE AGGREGATE public.FIRST (
+            sfunc    = public.first_agg,
+            basetype = anyelement,
+            stype    = anyelement
+    );
+''')
 Base.metadata.create_all()

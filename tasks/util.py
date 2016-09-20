@@ -230,11 +230,62 @@ def sql_to_cartodb_table(outname, localname, json_column_names=None,
     assert resp.status_code == 200
 
 
-def construct_tile_summary(session, table, column):
+def generate_tile_summary(session, table_id, column_id, tablename, colname):
     '''
     Add entries to obs_column_table_tile for the given table and column.
     '''
-    pass
+    query = '''
+        INSERT INTO observatory.obs_column_table_tile
+        WITH emptyraster as (
+          SELECT ROW_NUMBER() OVER () AS id, rast FROM (
+          SELECT ST_Tile(ST_AsRaster(
+          st_setsrid(st_extent({colname}), 4326),
+            (st_xmax(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857))
+              - st_xmin(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857)))::INT
+            / (50000),
+            (st_ymax(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857))
+              - st_ymin(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857)))::INT
+            / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
+          ), ARRAY[1, 2], 100000000, 100000000) rast
+          FROM {tablename} tiger
+          ) foo
+        ),
+        pixelspertile AS (
+          SELECT id, ARRAY_AGG(median) medians, ARRAY_AGG(cnt) counts FROM (
+          SELECT id, ROW(
+                      FIRST(geom),
+                        -- determine median area of tiger geometries
+                        percentile_cont(0.5) within group (
+                        order by st_area(st_transform(tiger.{colname}, 3857)) / 1000000)
+                     )::geomval median,
+                     ROW(FIRST(geom),
+                      -- determine number of geoms, including fractions
+                      SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
+                          ST_Area(tiger.{colname}))
+                     )::geomval cnt
+          FROM
+          (
+            SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
+            FROM emptyraster,
+                 {tablename} tiger
+            WHERE emptyraster.rast && tiger.{colname}
+            GROUP BY id
+          ) foo,
+            {tablename} tiger
+            WHERE foo.geom && tiger.{colname}
+            GROUP BY id, x, y
+          ) bar
+          GROUP BY id
+        )
+        SELECT '{table_id}', '{column_id}', er.id,
+               ST_SetValues(ST_SetValues(er.rast, 1, medians), 2, counts) geom
+        FROM emptyraster er, pixelspertile ppt
+        WHERE er.id = ppt.id
+        ;
+    '''.format(table_id=table_id, column_id=column_id,
+               colname=colname, tablename=tablename)
+    resp = session.execute(query)
+    assert resp.rowcount > 0
 
 
 class PostgresTarget(Target):
@@ -536,8 +587,7 @@ class TableTarget(Target):
                               'stddev_pop({colname}) col{i}_stddev'.format(
                                   i=i, colname=colname.lower()))
             elif coltype == 'geometry':
-                construct_tile_summary(session, self._obs_table, col)
-                # construct tile summaries
+                generate_tile_summary(session, self._id, col.id, self.table, colname)
                 select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
                               'max(st_area({colname}::geography)) col{i}_max, '
                               'min(st_area({colname}::geography)) col{i}_min, '

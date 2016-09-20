@@ -6,11 +6,11 @@ import os
 from collections import OrderedDict
 from nose import with_setup
 from nose.tools import (assert_equal, assert_is_not_none, assert_is_none,
-                        assert_true, assert_false, with_setup)
+                        assert_true, assert_false, with_setup, assert_greater)
 
 from tests.util import runtask, setup, teardown, current_session
 
-from tasks.meta import OBSColumn, OBSTable, current_session
+from tasks.meta import OBSColumn, OBSTable, OBSColumnTableTile, current_session
 from tasks.util import ColumnsTask, TableTask, Shp2TempTableTask, classpath, \
                        shell, DownloadUnzipTask, CSV2TempTableTask, \
                        Carto2TempTableTask
@@ -22,6 +22,7 @@ class TestColumnsTask(ColumnsTask):
         return OrderedDict([
             ('the_geom', OBSColumn(name='', type='Geometry')),
             ('col', OBSColumn(name='', type='Text')),
+            ('measure', OBSColumn(name='', type='Numeric')),
         ])
 
 
@@ -43,7 +44,7 @@ class TestTableTask(BaseTestTableTask):
 
     def populate(self):
         session = current_session()
-        session.execute("INSERT INTO {output} VALUES ('foo')".format(
+        session.execute("INSERT INTO {output} VALUES ('foo', 100)".format(
             output=self.output().table
         ))
 
@@ -55,9 +56,11 @@ class TestGeomTableTask(BaseTestTableTask):
 
     def populate(self):
         session = current_session()
-        session.execute("INSERT INTO {output} VALUES (ST_SetSRID(ST_MakePoint(0, 0), 4326), 'foo')".format(
-            output=self.output().table
-        ))
+        session.execute(
+            "INSERT INTO {output} VALUES "
+            "(ST_SetSRID(ST_MakeEnvelope(-10, 10, 10, -10), 4326), 'foo', 100)".format(
+                output=self.output().table
+            ))
 
 
 class TestShp2TempTableTask(Shp2TempTableTask):
@@ -108,6 +111,8 @@ def test_geom_table_task():
     '''
     Table task with geoms should run and generate an entry in OBSTable with
     a summary geom, plus a physical table with rows in observatory schema.
+
+    It should also generate a tile summary.
     '''
     task = TestGeomTableTask()
     runtask(task)
@@ -117,6 +122,7 @@ def test_geom_table_task():
     assert_equal(current_session().execute(
         'SELECT COUNT(*) FROM observatory.{}'.format(
             table.tablename)).fetchone()[0], 1)
+    assert_greater(current_session().query(OBSColumnTableTile).count(), 0)
 
 
 @with_setup(setup, teardown)
