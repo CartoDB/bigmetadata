@@ -358,6 +358,7 @@ def test_table_task_replaces_data():
         assert_equals(session.execute(
             'select count(*) from ' + table).fetchone()[0], 1)
 
+
 @with_setup(setup, teardown)
 def test_table_task_increment_version_runs_again():
     task = TestTableTask()

@@ -557,7 +557,7 @@ WITH emptyraster as (
     (st_ymax(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857))
       - st_ymin(st_transform(st_setsrid(st_extent(the_geom)::geometry, 4326), 3857)))::INT
     / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
-  ), ARRAY[1, 2], 100000000, 100000000) rast
+  ), ARRAY[1, 2], 50, 50) rast
   FROM observatory.obs_1babf5a26a1ecda5fb74963e88408f71d0364b81 tiger
   ) foo
 ),

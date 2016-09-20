@@ -126,6 +126,23 @@ def test_geom_table_task():
 
 
 @with_setup(setup, teardown)
+def test_geom_table_task_update():
+    '''
+    Should be possible to generate a new version of a table by incrementing
+    the version number.
+    '''
+    task = TestGeomTableTask()
+    runtask(task)
+    assert_true(task.complete())
+    task = TestGeomTableTask()
+    task.version = lambda: 10
+    assert_false(task.complete())
+    current_session().commit()
+    runtask(task)
+    assert_true(task.complete())
+
+
+@with_setup(setup, teardown)
 def test_shp_2_temp_table_task():
     '''
     Shp to temp table task should run and generate no entry in OBSTable, but

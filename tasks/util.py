@@ -235,6 +235,9 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     Add entries to obs_column_table_tile for the given table and column.
     '''
     query = '''
+        DELETE FROM observatory.obs_column_table_tile
+        WHERE table_id = '{table_id}'
+          AND column_id = '{column_id}';
         INSERT INTO observatory.obs_column_table_tile
         WITH emptyraster as (
           SELECT ROW_NUMBER() OVER () AS id, rast FROM (
