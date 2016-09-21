@@ -112,7 +112,7 @@ def test_geom_table_task():
     Table task with geoms should run and generate an entry in OBSTable with
     a summary geom, plus a physical table with rows in observatory schema.
 
-    It should also generate a tile summary.
+    It should also generate a raster tile summary.
     '''
     task = TestGeomTableTask()
     runtask(task)

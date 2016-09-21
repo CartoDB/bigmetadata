@@ -132,3 +132,8 @@ restore:
 
 docs:
 	docker-compose run --rm bigmetadata /bin/bash -c 'cd docs && make html'
+
+tiles:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.util GenerateAllRasterTiles \
+	  --parallel-scheduling --workers=5

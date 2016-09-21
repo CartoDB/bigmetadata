@@ -242,15 +242,16 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
         WITH emptyraster as (
           SELECT ROW_NUMBER() OVER () AS id, rast FROM (
           SELECT ST_Tile(ST_AsRaster(
-          st_setsrid(st_extent({colname}), 4326),
-            (st_xmax(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857))
-              - st_xmin(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857)))::INT
+            the_geom,
+            (st_xmax(st_transform(the_geom, 3857))
+              - st_xmin(st_transform(the_geom, 3857)))::INT
             / (50000),
-            (st_ymax(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857))
-              - st_ymin(st_transform(st_setsrid(st_extent({colname})::geometry, 4326), 3857)))::INT
+            (st_ymax(st_transform(the_geom, 3857))
+              - st_ymin(st_transform(the_geom, 3857)))::INT
             / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
           ), ARRAY[1, 2], 50, 50) rast
-          FROM {tablename} tiger
+          FROM observatory.obs_table
+          WHERE id = '{table_id}'
           ) foo
         ),
         pixelspertile AS (
@@ -590,7 +591,6 @@ class TableTarget(Target):
                               'stddev_pop({colname}) col{i}_stddev'.format(
                                   i=i, colname=colname.lower()))
             elif coltype == 'geometry':
-                generate_tile_summary(session, self._id, col.id, self.table, colname)
                 select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
                               'max(st_area({colname}::geography)) col{i}_max, '
                               'min(st_area({colname}::geography)) col{i}_min, '
@@ -1222,40 +1222,32 @@ class TableTask(Task):
         '''
         raise NotImplementedError('Must define timespan for table')
 
-    def the_geom(self, output):
-        geometry_columns = [(colname, coltarget) for colname, coltarget in
-                            self.columns().iteritems() if coltarget._column.type.lower() == 'geometry']
-        if len(geometry_columns) == 0:
-            return None
-        elif len(geometry_columns) == 1:
-            session = current_session()
-            return session.execute(
-                'SELECT ST_AsText('
-                '  ST_Multi( '
-                '    ST_CollectionExtract( '
-                '      ST_MakeValid( '
-                '        ST_SnapToGrid( '
-                '          ST_Buffer( '
-                '            ST_Union( '
-                '              ST_MakeValid( '
-                '                ST_Simplify( '
-                '                  ST_SnapToGrid({geom_colname}, 0.3) '
-                '                , 0) '
-                '              ) '
-                '            ) '
-                '          , 0.3, 2) '
-                '        , 0.3) '
-                '      ) '
-                '    , 3) '
-                '  ) '
-                ') the_geom '
-                'FROM {output}'.format(
-                    geom_colname=geometry_columns[0][0],
-                    output=output.table
-                )).fetchone()['the_geom']
-        else:
-            raise Exception('Having more than one geometry column in one table '
-                            'could lead to problematic behavior ')
+    def the_geom(self, output, colname):
+        session = current_session()
+        return session.execute(
+            'SELECT ST_AsText('
+            '  ST_Multi( '
+            '    ST_CollectionExtract( '
+            '      ST_MakeValid( '
+            '        ST_SnapToGrid( '
+            '          ST_Buffer( '
+            '            ST_Union( '
+            '              ST_MakeValid( '
+            '                ST_Simplify( '
+            '                  ST_SnapToGrid({geom_colname}, 0.3) '
+            '                , 0) '
+            '              ) '
+            '            ) '
+            '          , 0.3, 2) '
+            '        , 0.3) '
+            '      ) '
+            '    , 3) '
+            '  ) '
+            ') the_geom '
+            'FROM {output}'.format(
+                geom_colname=colname,
+                output=output.table
+            )).fetchone()['the_geom']
 
     def run(self):
         output = self.output()
@@ -1263,7 +1255,7 @@ class TableTask(Task):
         self.populate()
         output.update_or_create_metadata()
         self.create_indexes(output)
-        output._obs_table.the_geom = self.the_geom(output)
+        self.create_geom_summaries(output)
 
     def create_indexes(self, output):
         session = current_session()
@@ -1278,6 +1270,29 @@ class TableTask(Task):
                                     index_type=index_type,
                                     index_name=index_name,
                                     table=tablename, colname=colname))
+
+    def create_geom_summaries(self, output):
+        geometry_columns = [
+            (colname, coltarget._id) for colname, coltarget in
+            self.columns().iteritems() if coltarget._column.type.lower() == 'geometry'
+        ]
+
+        if len(geometry_columns) == 0:
+            return
+        elif len(geometry_columns) > 1:
+            raise Exception('Having more than one geometry column in one table '
+                            'could lead to problematic behavior ')
+        colname, colid = geometry_columns[0]
+        # Use SQL directly instead of SQLAlchemy because we need the_geom set
+        # on obs_table in this session
+        current_session().execute("UPDATE observatory.obs_table "
+                                  "SET the_geom = ST_GeomFromText('{the_geom}', 4326) "
+                                  "WHERE id = '{id}'".format(
+                                      the_geom=self.the_geom(output, colname),
+                                      id=output._id
+                                  ))
+        generate_tile_summary(current_session(),
+                              output._id, colid, output.table, colname)
 
     def output(self):
         if self.deps() and not all([d.complete() for d in self.deps()]):
@@ -1559,22 +1574,38 @@ class GenerateRasterTiles(Task):
 
     table_id = Parameter()
     column_id = Parameter()
-    tablename = Parameter()
-    colname = Parameter()
+
+    force = BooleanParameter(default=False, significant=False)
 
     def run(self):
+        self._ran = True
         session = current_session()
         try:
+            resp = session.execute('''SELECT tablename, colname
+                               FROM observatory.obs_table t,
+                                    observatory.obs_column_table ct,
+                                    observatory.obs_column c
+                               WHERE c.type ILIKE 'geometry'
+                                 AND c.id = '{column_id}'
+                                 AND t.id = '{table_id}'
+                                 AND c.id = ct.column_id
+                                 AND t.id = ct.table_id'''.format(
+                                     column_id=self.column_id,
+                                     table_id=self.table_id
+                                 ))
+            tablename, colname = resp.fetchone()
             LOGGER.info('table_id: %s, column_id: %s, tablename: %s, colname: %s',
-                        self.table_id, self.column_id, self.tablename, self.colname)
+                        self.table_id, self.column_id, tablename, colname)
             generate_tile_summary(session, self.table_id, self.column_id,
-                                  'observatory.' + self.tablename, self.colname)
+                                  'observatory.' + tablename, colname)
             session.commit()
         except:
             session.rollback()
             raise
 
     def complete(self):
+        if self.force and not hasattr(self, '_ran'):
+            return False
         session = current_session()
         resp = session.execute('''
             SELECT COUNT(*)
@@ -1590,7 +1621,7 @@ class GenerateAllRasterTiles(WrapperTask):
     def requires(self):
         session = current_session()
         resp = session.execute('''
-            SELECT table_id, column_id, tablename, colname
+            SELECT table_id, column_id
             FROM observatory.obs_table t,
                  observatory.obs_column_table ct,
                  observatory.obs_column c
@@ -1598,6 +1629,5 @@ class GenerateAllRasterTiles(WrapperTask):
               AND c.id = ct.column_id
               AND c.type ILIKE 'geometry'
         ''')
-        for table_id, column_id, tablename, colname in resp:
-            yield GenerateRasterTiles(table_id=table_id, column_id=column_id,
-                                      tablename=tablename, colname=colname)
+        for table_id, column_id in resp:
+            yield GenerateRasterTiles(table_id=table_id, column_id=column_id)
