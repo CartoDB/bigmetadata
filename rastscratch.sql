@@ -746,15 +746,122 @@ group by res, testgeom
 
 with testgeom as (
   SELECT UNNEST(ARRAY[
-    st_makeenvelope(-75.003662109375,40.306759936589636,-72.7569580078125,41.104190944576466, 4326),
-    st_makeenvelope(-5.6304931640625, 39.2832938689385, -1.768798828125, 41.43860847395721, 4326)
-  ])
-testgeom
+    ST_MakeEnvelope(-99.30953979492188, 19.269665296502332, -98.975830078125, 19.618011504700913, 4326),
+    ST_MakeEnvelope(-124.1015625, 11.523087506868514, -84.0234375, 35.31736632923788, 4326),
+    ST_MakeEnvelope(-129.0234375, 20.96143961409684, -60.1171875, 51.6180165487737, 4326),
+    ST_MakeEnvelope(-148.359375, 41.77131167976407, -136.7578125, 50.064191736659104, 4326),
+    ST_MakeEnvelope(-75.003662109375,40.306759936589636,-72.7569580078125,41.104190944576466, 4326),
+    ST_MakeEnvelope(-5.6304931640625, 39.2832938689385, -1.768798828125, 41.43860847395721, 4326),
+    ST_MakeEnvelope(-9.8876953125, 35.782170703266075, 3.515625, 44.05601169578525, 4326),
+    ST_MakeEnvelope(-9.07470703125, 40.60144147645398, -8.1134033203125, 41.545589036668105, 4326)
+  ]) AS extent, UNNEST(ARRAY['DF, MX', 'MX', 'US', 'north pacific', 'nyc, US',
+                             'madrid, ES', 'ES', 'porto, PT']) AS name
 )
 select
-  table_id, column_id,
-  (st_area(st_transform(testgeom, 3857)) / 1000000) / (st_summarystatsagg(st_clip(tile, 1, testgeom, True), 1, True, 0.5)).mean estnumgeoms
+  count(*), name, --table_id,
+  column_id,
+  COALESCE(
+    ((ST_SummaryStatsAgg(st_clip(tile, extent, True), 2, True, 1)).sum),
+    ST_Value(FIRST(tile), 2, ST_PointOnSurface(extent))
+  )::Numeric(20, 2) AS numgeoms,
+  COALESCE(
+    ((ST_SummaryStatsAgg(st_clip(tile, extent, True), 1, True, 1)).mean),
+    ST_Value(FIRST(tile), 1, ST_PointOnSurface(extent))
+  )::Numeric(10, 2) AS meanmediansize,
+  COALESCE(
+    ((ST_Area(st_transform(extent, 3857)) / 1000000) /
+     (ST_SummaryStatsAgg(st_clip(tile, extent, True), 1, True, 1)).mean),
+    ((ST_Area(st_transform(extent, 3857)) / 1000000) /
+      ST_Value(FIRST(tile), 1, ST_PointOnSurface(extent)))
+  )::Numeric(10, 2) AS estnumgeoms
 from observatory.obs_column_table_tile, testgeom
-where st_intersects(testgeom, tile)
-group by table_id, column_id, testgeom
+where st_intersects(extent, tile)
+group by name, column_id, table_id, extent
+order by name, column_id, table_id
 ;
+
+
+-- determine why we're getting high 'numgeoms'
+
+/*
+
+ count |     name      |               column_id                |   numgeoms   | meanmediansize | estnumgeoms
+-------+---------------+----------------------------------------+--------------+----------------+-------------
+     9 | US            | ca.statcan.geo.cd_                     | 369391772.68 |      226822.49 |      146.91
+     9 | US            | us.census.tiger.block_group            |   1388790.03 |        2172.91 |    15335.07
+     9 | US            | us.census.tiger.census_tract_clipped   |   2318571.55 |        2217.43 |    15027.16
+     9 | US            | us.census.tiger.congressional_district | 104930690.29 |      193245.89 |      172.43
+     9 | US            | us.census.tiger.county                 |   7879804.30 |        6897.40 |     4831.04
+     9 | US            | us.census.tiger.state                  | 645297566.30 |      348881.21 |       95.51
+     7 | US            | us.census.tiger.zcta5_clipped          |    910576.24 |         653.40 |    50997.56
+     7 | US            | us.dma.the_geom                        | 298421206.11 |       81487.75 |      408.92
+     1 | madrid, ES    | es.cnig.prov                           |         2.55 |       21745.34 |        6.23
+     1 | madrid, ES    | es.ine.the_geom                        |      2186.24 |          52.15 |     2595.81
+     1 | madrid, ES    | us.census.tiger.block_group            |        23.00 |           1.00 |   135378.63
+     1 | madrid, ES    | us.census.tiger.census_tract_clipped   |        23.00 |           1.00 |   135378.63
+     1 | madrid, ES    | us.census.tiger.congressional_district |        23.00 |           1.00 |   135378.63
+     1 | madrid, ES    | us.census.tiger.county                 |        23.00 |           1.00 |   135378.63
+     1 | madrid, ES    | us.census.tiger.state                  |        23.00 |           1.00 |   135378.63
+     1 | north pacific | ca.statcan.geo.cd_                     |       207.00 |           1.00 |  1718463.72
+     1 | north pacific | us.census.tiger.block_group            |       338.00 |           1.00 |  1718463.72
+     1 | north pacific | us.census.tiger.census_tract_clipped   |       325.00 |           1.00 |  1718463.72
+     1 | north pacific | us.census.tiger.congressional_district |       338.00 |           1.00 |  1718463.72
+     1 | north pacific | us.census.tiger.county                 |       338.00 |           1.00 |  1718463.72
+     1 | north pacific | us.census.tiger.state                  |       338.00 |           1.00 |  1718463.72
+     1 | north pacific | us.census.tiger.zcta5_clipped          |       324.00 |           1.00 |  1718463.72
+     1 | nyc, US       | us.census.tiger.block_group            |      7861.02 |          39.16 |      747.91
+     1 | nyc, US       | us.census.tiger.census_tract_clipped   |      2515.70 |          11.45 |     2558.50
+     1 | nyc, US       | us.census.tiger.congressional_district |        12.79 |        2719.64 |       10.77
+     1 | nyc, US       | us.census.tiger.county                 |         8.42 |        3537.02 |        8.28
+     1 | nyc, US       | us.census.tiger.state                  |         0.15 |      161481.11 |        0.18
+     1 | nyc, US       | us.census.tiger.zcta5_clipped          |       289.44 |          48.34 |      605.89
+     1 | nyc, US       | us.dma.the_geom                        |         0.13 |       50789.46 |        0.58
+     1 | porto, PT     | es.cnig.prov                           |              |                |
+     1 | porto, PT     | es.ine.the_geom                        |         3.00 |           1.00 |    14919.71
+     1 | porto, PT     | us.census.tiger.block_group            |         2.00 |           1.00 |    14919.71
+     1 | porto, PT     | us.census.tiger.census_tract_clipped   |         2.00 |           1.00 |    14919.71
+     1 | porto, PT     | us.census.tiger.congressional_district |         2.00 |           1.00 |    14919.71
+     1 | porto, PT     | us.census.tiger.county                 |         2.00 |           1.00 |    14919.71
+     1 | porto, PT     | us.census.tiger.state                  |         2.00 |           1.00 |    14919.71
+(36 rows)
+*/
+
+
+-- after having eliminated "blank area" artifacts by using the summary geom
+-- instead of extent
+
+/*
+ count |    name    |                     column_id                      |   numgeoms    | meanmediansize | estnumgeoms
+-------+------------+----------------------------------------------------+---------------+----------------+-------------
+     1 | DF, MX     | mx.inegi.ageb                                      |      68751.87 |         248.51 |        6.15
+     1 | DF, MX     | mx.inegi.localidad_urbana_y_rural_amanzanada       |      24253.73 |           4.13 |      370.17
+     2 | MX         | mx.inegi.ageb                                      |     264771.39 |         221.57 |    58709.11
+     2 | MX         | mx.inegi.localidad_urbana_y_rural_amanzanada       |        867.92 |           3.36 |  3866790.86
+     4 | MX         | us.census.tiger.cbsa                               |        317.17 |       15971.21 |      814.46
+     4 | MX         | us.census.tiger.cbsa_clipped                       |        318.08 |       15541.01 |      837.01
+     4 | MX         | us.census.tiger.county                             |        675.94 |       10612.89 |     1225.67
+     3 | MX         | us.census.tiger.school_district_elementary         |       1307.16 |         281.96 |    46133.43
+     3 | MX         | us.census.tiger.school_district_elementary_clipped |       1308.78 |         280.19 |    46425.79
+     4 | MX         | us.census.tiger.state                              |         22.11 |      574681.47 |       22.64
+     3 | US         | ca.statcan.geo.ct_                                 |       5083.50 |        2713.64 |    12279.32
+     2 | US         | mx.inegi.ageb                                      |      35916.76 |         302.70 |   110082.57
+     2 | US         | mx.inegi.localidad_urbana_y_rural_amanzanada       |       4302.07 |           8.02 |  4155980.35
+     8 | US         | us.census.tiger.cbsa                               |   21948308.07 |       15481.78 |     2152.31
+     8 | US         | us.census.tiger.cbsa_clipped                       |   21170270.11 |       14808.59 |     2250.16
+     9 | US         | us.census.tiger.county                             |   16189719.70 |       11719.01 |     2843.38
+     6 | US         | us.census.tiger.school_district_elementary         |     173906.23 |         408.11 |    81649.55
+     6 | US         | us.census.tiger.school_district_elementary_clipped |     173239.39 |         388.22 |    85831.16
+     9 | US         | us.census.tiger.state                              | 1041894321.92 |      432983.66 |       76.96
+     1 | madrid, ES | es.cnig.prov                                       |          6.10 |       22959.58 |        5.90
+     1 | madrid, ES | es.ine.the_geom                                    |       6280.25 |          53.71 |     2520.76
+     1 | nyc, US    | us.census.tiger.cbsa                               |          0.62 |       30254.30 |        0.97
+     1 | nyc, US    | us.census.tiger.cbsa_clipped                       |          0.59 |       24464.75 |        1.20
+     1 | nyc, US    | us.census.tiger.county                             |         16.05 |        2960.54 |        9.89
+     1 | nyc, US    | us.census.tiger.school_district_elementary         |         69.38 |          37.03 |      790.92
+     1 | nyc, US    | us.census.tiger.school_district_elementary_clipped |         69.33 |          39.35 |      744.35
+     1 | nyc, US    | us.census.tiger.state                              |          0.35 |      183990.58 |        0.16
+     1 | porto, PT  | es.cnig.prov                                       |         59.00 |       19185.25 |        0.78
+     1 | porto, PT  | es.ine.the_geom                                    |      35650.74 |          53.99 |      276.36
+(29 rows)
+
+*/
