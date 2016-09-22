@@ -420,13 +420,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_f: DENOMINATOR },)
 
-        # FIXME
-        # all subcolumns of this need to be qualified -- so that it's clear
-        # it's "Immigrant population under 5 years old", and not just the
-        # total population under 5 years old, for example.
         t002c001_t = OBSColumn(
             id='t002c001_t',
-            name='Total immigrant population in private households by age at immigration (total)',
+            name='Total immigrant population in private households (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -435,7 +431,7 @@ class NHSColumns(ColumnsTask):
 
         t002c001_m = OBSColumn(
             id='t002c001_m',
-            name='Total immigrant population in private households by age at immigration (male)',
+            name='Total immigrant population in private households (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -444,7 +440,7 @@ class NHSColumns(ColumnsTask):
 
         t002c001_f = OBSColumn(
             id='t002c001_f',
-            name='Total immigrant population in private households',
+            name='Total immigrant population in private households (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -453,7 +449,7 @@ class NHSColumns(ColumnsTask):
 
         t002c002_t = OBSColumn(
             id='t002c002_t',
-            name='Under 5 years (total)',
+            name='Total immigrant population in private households - Under 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -462,7 +458,7 @@ class NHSColumns(ColumnsTask):
 
         t002c002_m = OBSColumn(
             id='t002c002_m',
-            name='Under 5 years (male)',
+            name='Total immigrant population in private households - Under 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -471,7 +467,7 @@ class NHSColumns(ColumnsTask):
 
         t002c002_f = OBSColumn(
             id='t002c002_f',
-            name='Under 5 years (female)',
+            name='Total immigrant population in private households - Under 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -480,7 +476,7 @@ class NHSColumns(ColumnsTask):
 
         t002c003_t = OBSColumn(
             id='t002c003_t',
-            name='5 to 14 years (total)',
+            name='Total immigrant population in private households - 5 to 14 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -489,7 +485,7 @@ class NHSColumns(ColumnsTask):
 
         t002c003_m = OBSColumn(
             id='t002c003_m',
-            name='5 to 14 years (male)',
+            name='Total immigrant population in private households - 5 to 14 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -498,7 +494,7 @@ class NHSColumns(ColumnsTask):
 
         t002c003_f = OBSColumn(
             id='t002c003_f',
-            name='5 to 14 years (female)',
+            name='Total immigrant population in private households - 5 to 14 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -507,7 +503,7 @@ class NHSColumns(ColumnsTask):
 
         t002c004_t = OBSColumn(
             id='t002c004_t',
-            name='15 to 24 years (total)',
+            name='Total immigrant population in private households - 15 to 24 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -516,7 +512,7 @@ class NHSColumns(ColumnsTask):
 
         t002c004_m = OBSColumn(
             id='t002c004_m',
-            name='15 to 24 years (male)',
+            name='Total immigrant population in private households - 15 to 24 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -525,7 +521,7 @@ class NHSColumns(ColumnsTask):
 
         t002c004_f = OBSColumn(
             id='t002c004_f',
-            name='15 to 24 years (female)',
+            name='Total immigrant population in private households - 15 to 24 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -534,7 +530,7 @@ class NHSColumns(ColumnsTask):
 
         t002c005_t = OBSColumn(
             id='t002c005_t',
-            name='25 to 44 years (total)',
+            name='Total immigrant population in private households - 25 to 44 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -543,7 +539,7 @@ class NHSColumns(ColumnsTask):
 
         t002c005_m = OBSColumn(
             id='t002c005_m',
-            name='25 to 44 years (male)',
+            name='Total immigrant population in private households - 25 to 44 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -552,7 +548,7 @@ class NHSColumns(ColumnsTask):
 
         t002c005_f = OBSColumn(
             id='t002c005_f',
-            name='25 to 44 years (female)',
+            name='Total immigrant population in private households - 25 to 44 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -561,7 +557,7 @@ class NHSColumns(ColumnsTask):
 
         t002c006_t = OBSColumn(
             id='t002c006_t',
-            name='45 years and over (total)',
+            name='Total immigrant population in private households - 45 years and over (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -570,7 +566,7 @@ class NHSColumns(ColumnsTask):
 
         t002c006_m = OBSColumn(
             id='t002c006_m',
-            name='45 years and over (male)',
+            name='Total immigrant population in private households - 45 years and over (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -579,7 +575,7 @@ class NHSColumns(ColumnsTask):
 
         t002c006_f = OBSColumn(
             id='t002c006_f',
-            name='45 years and over (female)',
+            name='Total immigrant population in private households - 45 years and over (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
