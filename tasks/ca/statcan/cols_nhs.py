@@ -96,8 +96,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c002_f: DENOMINATOR },)
 
-        # FIXME
-        # It looks like the é of Métis was dropped?
         t001c004_t = OBSColumn(
             id='t001c004_t',
             name='Métis single identity (total)',
@@ -341,11 +339,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c013_f: DENOMINATOR },)
 
-        # FIXME
-        # accents are missing below
         t001c015_t = OBSColumn(
             id='t001c015_t',
-            name='Metis ancestry (total)',
+            name='Métis ancestry (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -354,7 +350,7 @@ class NHSColumns(ColumnsTask):
 
         t001c015_m = OBSColumn(
             id='t001c015_m',
-            name='Metis ancestry (male)',
+            name='Métis ancestry (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -363,7 +359,7 @@ class NHSColumns(ColumnsTask):
 
         t001c015_f = OBSColumn(
             id='t001c015_f',
-            name='Metis ancestry (female)',
+            name='Métis ancestry (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
