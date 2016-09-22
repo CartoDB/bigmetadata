@@ -10510,13 +10510,10 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_households, subsections['housing']],
             targets={},)
 
-        # FIXME
-        # A description of what a census-family household should be included
-        # here.  Links can be made using restructured text formatting.
-        # `link here <https://www12.statcan.gc.ca/census-recensement/2011/ref/dict/fam004-eng.cfm>`_
         t007c015_t = OBSColumn(
             id='t007c015_t',
             name='Number of private households - Census-family',
+            description='`Census-family <https://www12.statcan.gc.ca/census-recensement/2011/ref/dict/fam004-eng.cfm>`_ - Refers to a married couple (with or without children) a common-law couple (with or without children) or a lone parent family.',
             type='Numeric',
             weight=3,
             aggregate='sum',
