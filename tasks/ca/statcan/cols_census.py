@@ -10926,17 +10926,14 @@ class CensusColumns(ColumnsTask):
         # and any columns targetting an OBSColumn that had a "by" in its name
         # need more qualification to not be ambiguous.
         #
-        # For example, the columns below this should be prepended with
-        # "Population" (like "Population married or living...") to avoid
-        # name ambiguity with the number of Households with that same
-        # marital status.
+
         #
         # These are duplicative of `ca.statcan.cols_nhs.t005c001`, which has
         # been removed.  Any column and table depending on that should use this
         # instead.
         t009c001_t = OBSColumn(
             id='t009c001_t',
-            name='Total population 15 years and over',
+            name='Population 15+ (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10945,7 +10942,7 @@ class CensusColumns(ColumnsTask):
 
         t009c001_m = OBSColumn(
             id='t009c001_m',
-            name='Male population 15 years and over',
+            name='Population 15+ (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10954,7 +10951,7 @@ class CensusColumns(ColumnsTask):
 
         t009c001_f = OBSColumn(
             id='t009c001_f',
-            name='Female Population 15 years and over',
+            name='Population 15+ (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10963,7 +10960,7 @@ class CensusColumns(ColumnsTask):
 
         t009c002_t = OBSColumn(
             id='t009c002_t',
-            name='Married or living with a common-law partner (total)',
+            name='Population 15+ - Married or Common-law (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10972,7 +10969,7 @@ class CensusColumns(ColumnsTask):
 
         t009c002_m = OBSColumn(
             id='t009c002_m',
-            name='Married or living with a common-law partner (male)',
+            name='Population 15+ - Married or Common-law (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10981,7 +10978,7 @@ class CensusColumns(ColumnsTask):
 
         t009c002_f = OBSColumn(
             id='t009c002_f',
-            name='Married or living with a common-law partner (female)',
+            name='Population 15+ - Married or Common-law (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10990,7 +10987,7 @@ class CensusColumns(ColumnsTask):
 
         t009c003_t = OBSColumn(
             id='t009c003_t',
-            name='Married (and not separated) (total)',
+            name='Population 15+ - Married (and not separated) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10999,7 +10996,7 @@ class CensusColumns(ColumnsTask):
 
         t009c003_m = OBSColumn(
             id='t009c003_m',
-            name='Married (and not separated) (male)',
+            name='Population 15+ - Married (and not separated) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11008,7 +11005,7 @@ class CensusColumns(ColumnsTask):
 
         t009c003_f = OBSColumn(
             id='t009c003_f',
-            name='Married (and not separated) (female)',
+            name='Population 15+ - Married (and not separated) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11017,7 +11014,7 @@ class CensusColumns(ColumnsTask):
 
         t009c004_t = OBSColumn(
             id='t009c004_t',
-            name='Living common law (total)',
+            name='Population 15+ - Common-law (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11026,7 +11023,7 @@ class CensusColumns(ColumnsTask):
 
         t009c004_m = OBSColumn(
             id='t009c004_m',
-            name='Living common law (male)',
+            name='Population 15+ - Common-law (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11035,7 +11032,7 @@ class CensusColumns(ColumnsTask):
 
         t009c004_f = OBSColumn(
             id='t009c004_f',
-            name='Living common law (female)',
+            name='Population 15+ - Common-law (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11044,7 +11041,7 @@ class CensusColumns(ColumnsTask):
 
         t009c005_t = OBSColumn(
             id='t009c005_t',
-            name='Not married and not living with a common-law partner (total)',
+            name='Population 15+ - Not married and not Common-law (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11053,7 +11050,7 @@ class CensusColumns(ColumnsTask):
 
         t009c005_m = OBSColumn(
             id='t009c005_m',
-            name='Not married and not living with a common-law partner (male)',
+            name='Population 15+ - Not married and not Common-law (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11062,7 +11059,7 @@ class CensusColumns(ColumnsTask):
 
         t009c005_f = OBSColumn(
             id='t009c005_f',
-            name='Not married and not living with a common-law partner (female)',
+            name='Population 15+ - Not married and not Common-law (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11071,7 +11068,7 @@ class CensusColumns(ColumnsTask):
 
         t009c006_t = OBSColumn(
             id='t009c006_t',
-            name='Single (never legally married) (total)',
+            name='Population 15+ - Single (never legally married) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11080,7 +11077,7 @@ class CensusColumns(ColumnsTask):
 
         t009c006_m = OBSColumn(
             id='t009c006_m',
-            name='Single (never legally married) (male)',
+            name='Population 15+ - Single (never legally married) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11089,7 +11086,7 @@ class CensusColumns(ColumnsTask):
 
         t009c006_f = OBSColumn(
             id='t009c006_f',
-            name='Single (never legally married) (female)',
+            name='Population 15+ - Single (never legally married) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11098,7 +11095,7 @@ class CensusColumns(ColumnsTask):
 
         t009c007_t = OBSColumn(
             id='t009c007_t',
-            name='Separated (total)',
+            name='Population 15+ - Separated (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11107,7 +11104,7 @@ class CensusColumns(ColumnsTask):
 
         t009c007_m = OBSColumn(
             id='t009c007_m',
-            name='Separated (male)',
+            name='Population 15+ - Separated (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11116,7 +11113,7 @@ class CensusColumns(ColumnsTask):
 
         t009c007_f = OBSColumn(
             id='t009c007_f',
-            name='Separated (female)',
+            name='Population 15+ - Separated (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11125,7 +11122,7 @@ class CensusColumns(ColumnsTask):
 
         t009c008_t = OBSColumn(
             id='t009c008_t',
-            name='Divorced (total)',
+            name='Population 15+ - Divorced (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11134,7 +11131,7 @@ class CensusColumns(ColumnsTask):
 
         t009c008_m = OBSColumn(
             id='t009c008_m',
-            name='Divorced (male)',
+            name='Population 15+ - Divorced (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11143,7 +11140,7 @@ class CensusColumns(ColumnsTask):
 
         t009c008_f = OBSColumn(
             id='t009c008_f',
-            name='Divorced (female)',
+            name='Population 15+ - Divorced (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11152,7 +11149,7 @@ class CensusColumns(ColumnsTask):
 
         t009c009_t = OBSColumn(
             id='t009c009_t',
-            name='Widowed (total)',
+            name='Population 15+ - Widowed (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11161,7 +11158,7 @@ class CensusColumns(ColumnsTask):
 
         t009c009_m = OBSColumn(
             id='t009c009_m',
-            name='Widowed (male)',
+            name='Population 15+ - Widowed (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11170,7 +11167,7 @@ class CensusColumns(ColumnsTask):
 
         t009c009_f = OBSColumn(
             id='t009c009_f',
-            name='Widowed (female)',
+            name='Population 15+ - Widowed (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
