@@ -10505,7 +10505,7 @@ class CensusColumns(ColumnsTask):
 
         t007c014_t = OBSColumn(
             id='t007c014_t',
-            name='Total number of occupied private households',
+            name='Number of private households',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10518,7 +10518,7 @@ class CensusColumns(ColumnsTask):
         # `link here <https://www12.statcan.gc.ca/census-recensement/2011/ref/dict/fam004-eng.cfm>`_
         t007c015_t = OBSColumn(
             id='t007c015_t',
-            name='Household Type - Census-family households',
+            name='Number of private households - Census-family',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10527,7 +10527,7 @@ class CensusColumns(ColumnsTask):
 
         t007c016_t = OBSColumn(
             id='t007c016_t',
-            name='One-family-only households',
+            name='Number of private households - Census-family - One family only',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10536,7 +10536,7 @@ class CensusColumns(ColumnsTask):
 
         t007c017_t = OBSColumn(
             id='t007c017_t',
-            name='Couple-family households',
+            name='Number of private households - Census-family - One family only - Couple',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10547,7 +10547,7 @@ class CensusColumns(ColumnsTask):
         # Names below are ambiguous due to nesting
         t007c018_t = OBSColumn(
             id='t007c018_t',
-            name='Without children',
+            name='Number of private households - Census-family - One family only - Couple - w/o children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10556,7 +10556,7 @@ class CensusColumns(ColumnsTask):
 
         t007c019_t = OBSColumn(
             id='t007c019_t',
-            name='With children',
+            name='Number of private households - Census-family - One family only - Couple - w/ children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10565,7 +10565,7 @@ class CensusColumns(ColumnsTask):
 
         t007c020_t = OBSColumn(
             id='t007c020_t',
-            name='Lone-parent-family households',
+            name='Number of private households - Census-family - One family only - Lone-parent',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10574,7 +10574,7 @@ class CensusColumns(ColumnsTask):
 
         t007c021_t = OBSColumn(
             id='t007c021_t',
-            name='Other family households',
+            name='Number of private households - Census-family - Other family',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10583,7 +10583,7 @@ class CensusColumns(ColumnsTask):
 
         t007c022_t = OBSColumn(
             id='t007c022_t',
-            name='One-family households with persons not in a census family',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10592,7 +10592,7 @@ class CensusColumns(ColumnsTask):
 
         t007c023_t = OBSColumn(
             id='t007c023_t',
-            name='Couple-family households',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family - Couple',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10601,7 +10601,7 @@ class CensusColumns(ColumnsTask):
 
         t007c024_t = OBSColumn(
             id='t007c024_t',
-            name='Without children',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family - Couple - w/o children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10610,7 +10610,7 @@ class CensusColumns(ColumnsTask):
 
         t007c025_t = OBSColumn(
             id='t007c025_t',
-            name='With children',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family - Couple - w/ children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10619,7 +10619,7 @@ class CensusColumns(ColumnsTask):
 
         t007c026_t = OBSColumn(
             id='t007c026_t',
-            name='Lone-parent-family households',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family - Lone-parent',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10628,7 +10628,7 @@ class CensusColumns(ColumnsTask):
 
         t007c027_t = OBSColumn(
             id='t007c027_t',
-            name='Two-or-more-family households',
+            name='Number of private households - Census-family - Other family - 2+ family households',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10637,7 +10637,7 @@ class CensusColumns(ColumnsTask):
 
         t007c028_t = OBSColumn(
             id='t007c028_t',
-            name='Household Type - Non-census-family households',
+            name='Number of private households - Non-census-family',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10646,7 +10646,7 @@ class CensusColumns(ColumnsTask):
 
         t007c029_t = OBSColumn(
             id='t007c029_t',
-            name='One-person households',
+            name='Number of private households - Non-census-family - 1 person',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10655,7 +10655,7 @@ class CensusColumns(ColumnsTask):
 
         t007c030_t = OBSColumn(
             id='t007c030_t',
-            name='Two-or-more-person households',
+            name='Number of private households - Non-census-family - 2+ person',
             type='Numeric',
             weight=3,
             aggregate='sum',
