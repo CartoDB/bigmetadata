@@ -9958,11 +9958,9 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['families']],
             targets={},)
 
-        # FIXME
-        # Ditto with above RE nesting and names (these are children in census families in private households under six years of age)
         t005c030_t = OBSColumn(
             id='t005c030_t',
-            name='Under six years of age',
+            name='Total children in census families in private households (<6 years)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9971,7 +9969,7 @@ class CensusColumns(ColumnsTask):
 
         t005c031_t = OBSColumn(
             id='t005c031_t',
-            name='6 to 14 years',
+            name='Total children in census families in private households (6-14 years)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9980,7 +9978,7 @@ class CensusColumns(ColumnsTask):
 
         t005c032_t = OBSColumn(
             id='t005c032_t',
-            name='15 to 17 years',
+            name='Total children in census families in private households (15-17 years)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9989,7 +9987,7 @@ class CensusColumns(ColumnsTask):
 
         t005c033_t = OBSColumn(
             id='t005c033_t',
-            name='18 to 24 years',
+            name='Total children in census families in private households (18-24 years)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9998,7 +9996,7 @@ class CensusColumns(ColumnsTask):
 
         t005c034_t = OBSColumn(
             id='t005c034_t',
-            name='25 years and over',
+            name='Total children in census families in private households (25+ years)',
             type='Numeric',
             weight=3,
             aggregate='sum',
