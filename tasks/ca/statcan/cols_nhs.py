@@ -695,7 +695,8 @@ class NHSColumns(ColumnsTask):
         # the NHS should be here.
         t004c001_t = OBSColumn(
             id='t004c001_t',
-            name='Total labour force aged 15 years and over (total)',
+            name='Labour force aged 15+ (total)',
+            description='Refers to whether an employed person is an employee or is self-employed. The self-employed include persons with or without a business, as well as unpaid family workers.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -704,7 +705,8 @@ class NHSColumns(ColumnsTask):
 
         t004c001_m = OBSColumn(
             id='t004c001_m',
-            name='Total labour force aged 15 years and over (male)',
+            name='Labour force aged 15+ (male)',
+            description='Refers to whether an employed person is an employee or is self-employed. The self-employed include persons with or without a business, as well as unpaid family workers.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -713,7 +715,8 @@ class NHSColumns(ColumnsTask):
 
         t004c001_f = OBSColumn(
             id='t004c001_f',
-            name='Total labour force aged 15 years and over (female)',
+            name='Labour force aged 15+ (female)',
+            description='Refers to whether an employed person is an employee or is self-employed. The self-employed include persons with or without a business, as well as unpaid family workers.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -722,7 +725,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_t = OBSColumn(
             id='t004c002_t',
-            name='Labour force aged 15+ - Class of worker - not applicable (total)',
+            name='Labour force aged 15+ - Worker Class n/a (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -731,7 +734,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_m = OBSColumn(
             id='t004c002_m',
-            name='Labour force aged 15+ - Class of worker - not applicable (male)',
+            name='Labour force aged 15+ - Worker Class n/a (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -740,7 +743,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_f = OBSColumn(
             id='t004c002_f',
-            name='Labour force aged 15+ - Class of worker - not applicable (female)',
+            name='Labour force aged 15+ - Worker Class n/a (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -749,7 +752,8 @@ class NHSColumns(ColumnsTask):
 
         t004c003_t = OBSColumn(
             id='t004c003_t',
-            name='Labour force aged 15+ - All classes of worker (total)',
+            name='Labour force aged 15+ - Worker Class (total)',
+            description='Experienced labour force refers to persons who were employed and the unemployed who had last worked for pay or in self-employment',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -758,7 +762,8 @@ class NHSColumns(ColumnsTask):
 
         t004c003_m = OBSColumn(
             id='t004c003_m',
-            name='Labour force aged 15+ - All classes of worker (male)',
+            name='Labour force aged 15+ - Worker Class (male)',
+            description='Experienced labour force refers to persons who were employed and the unemployed who had last worked for pay or in self-employment',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -767,19 +772,17 @@ class NHSColumns(ColumnsTask):
 
         t004c003_f = OBSColumn(
             id='t004c003_f',
-            name='Labour force aged 15+ - All classes of worker (female)',
+            name='Labour force aged 15+ - Worker Class (female)',
+            description='Experienced labour force refers to persons who were employed and the unemployed who had last worked for pay or in self-employment',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
-        # FIXME
-        # Some description of what the NHS considers an "Employee" should be
-        # here.
         t004c004_t = OBSColumn(
             id='t004c004_t',
-            name='Employee (total)',
+            name='Labour force aged 15+ - Worker Class - Employee (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -788,7 +791,7 @@ class NHSColumns(ColumnsTask):
 
         t004c004_m = OBSColumn(
             id='t004c004_m',
-            name='Employee (male)',
+            name='Labour force aged 15+ - Worker Class - Employee (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -797,7 +800,7 @@ class NHSColumns(ColumnsTask):
 
         t004c004_f = OBSColumn(
             id='t004c004_f',
-            name='Employee (female)',
+            name='Labour force aged 15+ - Worker Class - Employee (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -806,7 +809,7 @@ class NHSColumns(ColumnsTask):
 
         t004c005_t = OBSColumn(
             id='t004c005_t',
-            name='Self-employed (total)',
+            name='Labour force aged 15+ - Worker Class - Self-employed (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -815,7 +818,7 @@ class NHSColumns(ColumnsTask):
 
         t004c005_m = OBSColumn(
             id='t004c005_m',
-            name='Self-employed (male)',
+            name='Labour force aged 15+ - Worker Class - Self-employed (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -824,7 +827,7 @@ class NHSColumns(ColumnsTask):
 
         t004c005_f = OBSColumn(
             id='t004c005_f',
-            name='Self-employed (female)',
+            name='Labour force aged 15+ - Worker Class - Self-employed (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
