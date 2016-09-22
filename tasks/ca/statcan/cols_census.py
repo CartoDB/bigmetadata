@@ -21,13 +21,13 @@ class CensusColumns(ColumnsTask):
 
         subsections = input_['subsections']
 
-        unit_people = input_['units']['people']
-        unit_housing = input_['units']['housing_units']
-        unit_households = input_['units']['households']
-        unit_years = input_['units']['years']
-        unit_ratio = input_['units']['ratio']
-        unit_education = input_['units']['education_level']
-        unit_sq_km = input_['units']['sq_km']
+        units = input_['units']
+        unit_people = units['people']
+        unit_housing = units['housing_units']
+        unit_households = units['households']
+        unit_years = units['years']
+        unit_ratio = units['ratio']
+        unit_education = units['education_level']
 
         ca = input_['sections']['ca']
 
@@ -11221,7 +11221,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_sq_km, subsections['segments']],
+            tags=[ca, units['sq_km'], subsections['segments']],
             targets={},)
 
         return OrderedDict([
