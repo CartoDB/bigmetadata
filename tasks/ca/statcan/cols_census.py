@@ -9695,8 +9695,7 @@ class CensusColumns(ColumnsTask):
             targets={ t004c108_f: DENOMINATOR },)
 
         # FIXME
-        # How is this different from ca.statcan.cols_nhs.t009c001_t?  Do we
-        # need a new unit for "family"?
+        # How is this different from ca.statcan.cols_nhs.t009c001_t?
         #
         # This should also have a description of family according to the
         # Census.
@@ -9706,7 +9705,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={},)
 
         t005c002_t = OBSColumn(
@@ -9715,7 +9714,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c003_t = OBSColumn(
@@ -9724,7 +9723,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c004_t = OBSColumn(
@@ -9733,7 +9732,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c005_t = OBSColumn(
@@ -9742,7 +9741,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c007_t = OBSColumn(
@@ -9751,7 +9750,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c008_t = OBSColumn(
@@ -9760,7 +9759,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c007_t: DENOMINATOR },)
 
         t005c009_t = OBSColumn(
@@ -9769,7 +9768,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c008_t: DENOMINATOR },)
 
         t005c010_t = OBSColumn(
@@ -9778,7 +9777,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c008_t: DENOMINATOR },)
 
         t005c011_t = OBSColumn(
@@ -9787,7 +9786,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
         t005c012_t = OBSColumn(
@@ -9796,7 +9795,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
         t005c013_t = OBSColumn(
@@ -9805,7 +9804,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
         t005c014_t = OBSColumn(
@@ -9814,7 +9813,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c007_t: DENOMINATOR },)
 
         t005c015_t = OBSColumn(
@@ -9823,7 +9822,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c014_t: DENOMINATOR },)
 
         t005c016_t = OBSColumn(
@@ -9832,7 +9831,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c014_t: DENOMINATOR },)
 
         t005c017_t = OBSColumn(
@@ -9841,7 +9840,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
         t005c018_t = OBSColumn(
@@ -9850,7 +9849,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
         t005c019_t = OBSColumn(
@@ -9859,7 +9858,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
         t005c020_t = OBSColumn(
@@ -9868,7 +9867,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c021_t = OBSColumn(
@@ -9877,7 +9876,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c020_t: DENOMINATOR },)
 
         t005c022_t = OBSColumn(
@@ -9886,7 +9885,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
         t005c023_t = OBSColumn(
@@ -9895,7 +9894,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
         t005c024_t = OBSColumn(
@@ -9904,7 +9903,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
         t005c025_t = OBSColumn(
@@ -9913,7 +9912,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c020_t: DENOMINATOR },)
 
         t005c026_t = OBSColumn(
@@ -9922,7 +9921,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
         t005c027_t = OBSColumn(
@@ -9931,7 +9930,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
         t005c028_t = OBSColumn(
@@ -9940,7 +9939,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, units['families'], subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
         t005c029_t = OBSColumn(
