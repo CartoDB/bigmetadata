@@ -27,6 +27,7 @@ class CensusColumns(ColumnsTask):
         unit_years = input_['units']['years']
         unit_ratio = input_['units']['ratio']
         unit_education = input_['units']['education_level']
+        unit_sq_km = input_['units']['sq_km']
 
         ca = input_['sections']['ca']
 
@@ -11214,15 +11215,13 @@ class CensusColumns(ColumnsTask):
             tags=[ca, subsections['segments']],
             targets={},)
 
-        # FIXME
-        # There should be a "unit_sq_km" added for this
         t010c007_t = OBSColumn(
             id='t010c007_t',
             name='Land area (square km)',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, subsections['segments']],
+            tags=[ca, unit_sq_km, subsections['segments']],
             targets={},)
 
         return OrderedDict([

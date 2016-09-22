@@ -73,6 +73,10 @@ class UnitTags(TagsTask):
             OBSTag(id='segmentation',
                    name='Segmentation',
                    type='unit',
+                   description=''),
+            OBSTag(id='sq_km',
+                   name='Square Kilometer',
+                   type='unit',
                    description='')
         ]
 
