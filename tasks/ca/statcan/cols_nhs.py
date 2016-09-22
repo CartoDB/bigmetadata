@@ -100,7 +100,7 @@ class NHSColumns(ColumnsTask):
         # It looks like the é of Métis was dropped?
         t001c004_t = OBSColumn(
             id='t001c004_t',
-            name='M tis single identity (total)',
+            name='Métis single identity (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -109,7 +109,7 @@ class NHSColumns(ColumnsTask):
 
         t001c004_m = OBSColumn(
             id='t001c004_m',
-            name='M tis single identity (male)',
+            name='Métis single identity (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -118,7 +118,7 @@ class NHSColumns(ColumnsTask):
 
         t001c004_f = OBSColumn(
             id='t001c004_f',
-            name='M tis single identity (female)',
+            name='Métis single identity (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
