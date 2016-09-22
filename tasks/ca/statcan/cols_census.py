@@ -10922,12 +10922,6 @@ class CensusColumns(ColumnsTask):
             targets={ t002c001_f: DENOMINATOR },)
 
         # FIXME
-        # Generally, we should never have "by" in a the name of a measurement,
-        # and any columns targetting an OBSColumn that had a "by" in its name
-        # need more qualification to not be ambiguous.
-        #
-
-        #
         # These are duplicative of `ca.statcan.cols_nhs.t005c001`, which has
         # been removed.  Any column and table depending on that should use this
         # instead.
@@ -11191,22 +11185,20 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['segments']],
             targets={},)
 
-        # FIXME
-        # A description of what a "private dwelling" is should be here.
         t010c004_t = OBSColumn(
             id='t010c004_t',
             name='Total private dwellings',
+            description='A separate set of living quarters designed for or converted for human habitation in which a person or group of persons reside or could reside. In addition a private dwelling must have a source of heat or power and must be an enclosed space that provides shelter from the elements as evidenced by complete and enclosed walls and roof and by doors and windows that provide protection from wind rain and snow.',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_housing, subsections['segments']],
             targets={},)
 
-        # FIXME
-        # A description of what "usual residents" are should be here
         t010c005_t = OBSColumn(
             id='t010c005_t',
             name='Private dwellings occupied by usual residents',
+            description='A separate set of living quarters which has a private entrance either directly from outside or from a common hall lobby vestibule or stairway leading to the outside and in which a person or a group of persons live permanently.',
             type='Numeric',
             weight=3,
             aggregate='sum',
