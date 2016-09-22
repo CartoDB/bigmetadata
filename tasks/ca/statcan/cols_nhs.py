@@ -98,7 +98,7 @@ class NHSColumns(ColumnsTask):
 
         t001c004_t = OBSColumn(
             id='t001c004_t',
-            name='Métis single identity (total)',
+            name=u'Métis single identity (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -107,7 +107,7 @@ class NHSColumns(ColumnsTask):
 
         t001c004_m = OBSColumn(
             id='t001c004_m',
-            name='Métis single identity (male)',
+            name=u'Métis single identity (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -116,7 +116,7 @@ class NHSColumns(ColumnsTask):
 
         t001c004_f = OBSColumn(
             id='t001c004_f',
-            name='Métis single identity (female)',
+            name=u'Métis single identity (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -341,7 +341,7 @@ class NHSColumns(ColumnsTask):
 
         t001c015_t = OBSColumn(
             id='t001c015_t',
-            name='Métis ancestry (total)',
+            name=u'Métis ancestry (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -350,7 +350,7 @@ class NHSColumns(ColumnsTask):
 
         t001c015_m = OBSColumn(
             id='t001c015_m',
-            name='Métis ancestry (male)',
+            name=u'Métis ancestry (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -359,7 +359,7 @@ class NHSColumns(ColumnsTask):
 
         t001c015_f = OBSColumn(
             id='t001c015_f',
-            name='Métis ancestry (female)',
+            name=u'Métis ancestry (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
