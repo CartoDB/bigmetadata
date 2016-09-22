@@ -32,6 +32,32 @@ class NHSColumns(ColumnsTask):
 
         ca = input_['sections']['ca']
 
+        t001c001_t = OBSColumn(
+            id='t001c001_t',
+            name='Total population in private households (total)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['race_ethnicity']],
+            targets={},)
+
+        t001c001_m = OBSColumn(
+            id='t001c001_m',
+            name='Total population in private households (male)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['race_ethnicity']],
+            targets={},)
+
+        t001c001_f = OBSColumn(
+            id='t001c001_f',
+            name='Total population in private households (female)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['race_ethnicity']],
+            targets={},)
         # FIXME
         # There appear to be many columns in here that are direct duplicates,
         # both by content and by ID, of columns in cols_census.py.  Those
@@ -834,6 +860,33 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_f: DENOMINATOR },)
 
+        t005c001_t = OBSColumn(
+            id='t005c001_t',
+            name='Total population aged 15+ (total)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['education']],
+            targets={},)
+
+        t005c001_m = OBSColumn(
+            id='t005c001_m',
+            name='Total population aged 15+ (male)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['education']],
+            targets={},)
+
+        t005c001_f = OBSColumn(
+            id='t005c001_f',
+            name='Total population aged 15+ (female)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['education']],
+            targets={},)
+
         # FIXME
         # deleted t005c001, should use `ca.statcan.cols_census.t009c001` instead.
         t005c002_t = OBSColumn(
@@ -1379,6 +1432,32 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
+        t005c023_t = OBSColumn(
+            id='t005c023_t',
+            name='Total population aged 15+ - Education (total)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['education']],
+            targets={ t005c001_t: DENOMINATOR },)
+
+        t005c023_m = OBSColumn(
+            id='t005c023_m',
+            name='Total population aged 15+ - Education (male)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['education']],
+            targets={ t005c001_m: DENOMINATOR },)
+
+        t005c023_f = OBSColumn(
+            id='t005c023_f',
+            name='Total population aged 15+ - Education (female)',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['education']],
+            targets={ t005c001_f: DENOMINATOR },)
         # FIXME
         # Removed columns duplicate with `ca.statcan.cols_census.t009c001_t`
 
@@ -11668,6 +11747,15 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c001_t: UNIVERSE },)
 
+        t012c034_t = OBSColumn(
+            id='t012c034_t',
+            name='One-person private households',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['income']],
+            targets={ t012c001_t: DENOMINATOR },)
+
         # FIXME
         # t012c034_t was redundant with ca.statcan.cols_census.t007c029_t,
         # removed.
@@ -11709,6 +11797,15 @@ class NHSColumns(ColumnsTask):
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: UNIVERSE },)
+
+        t012c039_t = OBSColumn(
+            id='t012c039_t',
+            name='Two-or-more-persons private households',
+            type='Numeric',
+            weight=3,
+            aggregate='sum',
+            tags=[ca, unit_people, subsections['income']],
+            targets={ t012c001_t: DENOMINATOR },)
 
         # FIXME
         # t012c039_t was redundant with ca.statcan.cols_census.t007c030_t,
