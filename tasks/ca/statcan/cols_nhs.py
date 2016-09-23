@@ -9394,9 +9394,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={ t001c001_f: DENOMINATOR },)
 
-        # FIXME
-        # Names for immigration year need qualification, like
-        # "Total population - immigrated before 1971 (total)", etc.
         t010c004_t = OBSColumn(
             id='t010c004_t',
             name='People who immigrated before 1971 (total)',
@@ -9588,7 +9585,7 @@ class NHSColumns(ColumnsTask):
 
         t010c011_t = OBSColumn(
             id='t010c011_t',
-            name='Total population - Non-permanent residents (total)',
+            name='People who are non-permanent residents (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9597,7 +9594,7 @@ class NHSColumns(ColumnsTask):
 
         t010c011_m = OBSColumn(
             id='t010c011_m',
-            name='Total population - Non-permanent residents (male)',
+            name='People who are non-permanent residents (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9606,7 +9603,7 @@ class NHSColumns(ColumnsTask):
 
         t010c011_f = OBSColumn(
             id='t010c011_f',
-            name='Total population - Non-permanent residents (female)',
+            name='People who are non-permanent residents (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
