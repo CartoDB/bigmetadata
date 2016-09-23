@@ -1453,8 +1453,7 @@ class NHSColumns(ColumnsTask):
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
-        # FIXME
-        # Removed columns duplicate with `ca.statcan.cols_census.t009c001_t`
+
         t005c024_t = OBSColumn(
             id='t005c024_t',
             name='People aged 15+ majoring in Visual and performing arts, and communications technologies (total)',
@@ -2184,11 +2183,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t006c006_f: DENOMINATOR },)
 
-        # FIXME
-        # Missing é for Québécois
         t006c014_t = OBSColumn(
             id='t006c014_t',
-            name='Qu b cois (total)',
+            name=u'Québécois (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -2197,7 +2194,7 @@ class NHSColumns(ColumnsTask):
 
         t006c014_m = OBSColumn(
             id='t006c014_m',
-            name='Qu b cois (male)',
+            name=u'Québécois (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -2206,7 +2203,7 @@ class NHSColumns(ColumnsTask):
 
         t006c014_f = OBSColumn(
             id='t006c014_f',
-            name='Qu b cois (female)',
+            name=u'Québécois (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
