@@ -12933,7 +12933,7 @@ class NHSColumns(ColumnsTask):
 
         t013c052_t = OBSColumn(
             id='t013c052_t',
-            name='Population aged 15 years and over who worked full year, full time and with employment income in 2010 (total)',
+            name='People aged 15+ who worked full year, full time and with employment income in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12942,7 +12942,7 @@ class NHSColumns(ColumnsTask):
 
         t013c052_m = OBSColumn(
             id='t013c052_m',
-            name='Population aged 15 years and over who worked full year, full time and with employment income in 2010 (male)',
+            name='People aged 15+ who worked full year, full time and with employment income in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12951,7 +12951,7 @@ class NHSColumns(ColumnsTask):
 
         t013c052_f = OBSColumn(
             id='t013c052_f',
-            name='Population aged 15 years and over who worked full year, full time and with employment income in 2010 (female)',
+            name='People aged 15+ who worked full year, full time and with employment income in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12962,7 +12962,7 @@ class NHSColumns(ColumnsTask):
         # As above, the is redundant because of the unit.
         t013c053_t = OBSColumn(
             id='t013c053_t',
-            name='Median employment income in 2010 (total)',
+            name='Median employment income of people aged 15+ who worked full year, full time in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12971,7 +12971,7 @@ class NHSColumns(ColumnsTask):
 
         t013c053_m = OBSColumn(
             id='t013c053_m',
-            name='Median employment income in 2010 (male)',
+            name='Median employment income of people aged 15+ who worked full year, full time in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12980,7 +12980,7 @@ class NHSColumns(ColumnsTask):
 
         t013c053_f = OBSColumn(
             id='t013c053_f',
-            name='Median employment income in 2010 (female)',
+            name='Median employment income of people aged 15+ who worked full year, full time in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12989,7 +12989,7 @@ class NHSColumns(ColumnsTask):
 
         t013c054_t = OBSColumn(
             id='t013c054_t',
-            name='Average employment income in 2010 (total)',
+            name='Average employment income of people aged 15+ who worked full year, full time in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12998,7 +12998,7 @@ class NHSColumns(ColumnsTask):
 
         t013c054_m = OBSColumn(
             id='t013c054_m',
-            name='Average employment income in 2010 (male)',
+            name='Average employment income of people aged 15+ who worked full year, full time in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13007,7 +13007,7 @@ class NHSColumns(ColumnsTask):
 
         t013c054_f = OBSColumn(
             id='t013c054_f',
-            name='Average employment income in 2010 (female)',
+            name='Average employment income of people aged 15+ who worked full year, full time in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
