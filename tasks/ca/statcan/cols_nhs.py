@@ -1813,13 +1813,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
-        # FIXME
-        # Are the following three actually different than t005c037?  Is this
-        # the subset of postsecondary certificate holders whose location of
-        # study is known?
         t005c038_t = OBSColumn(
             id='t005c038_t',
-            name='Location of study inside Canada (total)',
+            name='People aged 15+ who studied in Canada (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1828,7 +1824,7 @@ class NHSColumns(ColumnsTask):
 
         t005c038_m = OBSColumn(
             id='t005c038_m',
-            name='Location of study inside Canada (male)',
+            name='People aged 15+ who studied in Canada (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1837,19 +1833,16 @@ class NHSColumns(ColumnsTask):
 
         t005c038_f = OBSColumn(
             id='t005c038_f',
-            name='Location of study inside Canada (female)',
+            name='People aged 15+ who studied in Canada (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c037_f: DENOMINATOR },)
 
-        # FIXME
-        # Name needs to be clearer for these that the location is where
-        # they studied
         t005c039_t = OBSColumn(
             id='t005c039_t',
-            name='Same as province or territory of residence (total)',
+            name='People aged 15+ who studied in the same province/territory of residence (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1858,7 +1851,7 @@ class NHSColumns(ColumnsTask):
 
         t005c039_m = OBSColumn(
             id='t005c039_m',
-            name='Same as province or territory of residence (male)',
+            name='People aged 15+ who studied in the same province/territory of residence (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1867,7 +1860,7 @@ class NHSColumns(ColumnsTask):
 
         t005c039_f = OBSColumn(
             id='t005c039_f',
-            name='Same as province or territory of residence (female)',
+            name='People aged 15+ who studied in the same province/territory of residence (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1876,7 +1869,7 @@ class NHSColumns(ColumnsTask):
 
         t005c040_t = OBSColumn(
             id='t005c040_t',
-            name='Another province or territory (total)',
+            name='People aged 15+ who studied in another province/territory (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1885,7 +1878,7 @@ class NHSColumns(ColumnsTask):
 
         t005c040_m = OBSColumn(
             id='t005c040_m',
-            name='Another province or territory (male)',
+            name='People aged 15+ who studied in another province/territory (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1894,7 +1887,7 @@ class NHSColumns(ColumnsTask):
 
         t005c040_f = OBSColumn(
             id='t005c040_f',
-            name='Another province or territory (female)',
+            name='People aged 15+ who studied in another province/territory (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1903,7 +1896,7 @@ class NHSColumns(ColumnsTask):
 
         t005c041_t = OBSColumn(
             id='t005c041_t',
-            name='Location of study outside Canada (total)',
+            name='People aged 15+ who studied outside Canada (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1912,7 +1905,7 @@ class NHSColumns(ColumnsTask):
 
         t005c041_m = OBSColumn(
             id='t005c041_m',
-            name='Location of study outside Canada (male)',
+            name='People aged 15+ who studied outside Canada (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1921,7 +1914,7 @@ class NHSColumns(ColumnsTask):
 
         t005c041_f = OBSColumn(
             id='t005c041_f',
-            name='Location of study outside Canada (female)',
+            name='People aged 15+ who studied outside Canada (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
