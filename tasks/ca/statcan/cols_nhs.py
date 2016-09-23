@@ -20143,14 +20143,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t023c001_f: DENOMINATOR },)
 
-        # FIXME
-        # The "by" portions of the below should be eliminated, and the subcolumns
-        # should clearly specify that the country is referring to the immigrant
-        # population from that place, like "Total recent immigrant population
-        # in private households from Americas (total)".
         t024c001_t = OBSColumn(
             id='t024c001_t',
-            name='Total recent immigrant population in private households by selected places of birth (total)',
+            name='Recent immigrants in private households (total)',
+            description='Recent immigrants are immigrants who landed in Canada since the last census survey',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20159,7 +20155,8 @@ class NHSColumns(ColumnsTask):
 
         t024c001_m = OBSColumn(
             id='t024c001_m',
-            name='Total recent immigrant population in private households by selected places of birth (male)',
+            name='Recent immigrants in private households (male)',
+            description='Recent immigrants are immigrants who landed in Canada since the last census survey',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20168,7 +20165,8 @@ class NHSColumns(ColumnsTask):
 
         t024c001_f = OBSColumn(
             id='t024c001_f',
-            name='Total recent immigrant population in private households by selected places of birth (female)',
+            name='Recent immigrants in private households (female)',
+            description='Recent immigrants are immigrants who landed in Canada since the last census survey',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20177,7 +20175,7 @@ class NHSColumns(ColumnsTask):
 
         t024c002_t = OBSColumn(
             id='t024c002_t',
-            name='Americas (total)',
+            name='Recent immigrants born in Americas (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20186,7 +20184,7 @@ class NHSColumns(ColumnsTask):
 
         t024c002_m = OBSColumn(
             id='t024c002_m',
-            name='Americas (male)',
+            name='Recent immigrants born in Americas (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20195,7 +20193,7 @@ class NHSColumns(ColumnsTask):
 
         t024c002_f = OBSColumn(
             id='t024c002_f',
-            name='Americas (female)',
+            name='Recent immigrants born in Americas (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20204,7 +20202,7 @@ class NHSColumns(ColumnsTask):
 
         t024c003_t = OBSColumn(
             id='t024c003_t',
-            name='United States (total)',
+            name='Recent immigrants born in United States (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20213,7 +20211,7 @@ class NHSColumns(ColumnsTask):
 
         t024c003_m = OBSColumn(
             id='t024c003_m',
-            name='United States (male)',
+            name='Recent immigrants born in United States (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20222,7 +20220,7 @@ class NHSColumns(ColumnsTask):
 
         t024c003_f = OBSColumn(
             id='t024c003_f',
-            name='United States (female)',
+            name='Recent immigrants born in United States (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20231,7 +20229,7 @@ class NHSColumns(ColumnsTask):
 
         t024c004_t = OBSColumn(
             id='t024c004_t',
-            name='Mexico (total)',
+            name='Recent immigrants born in Mexico (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20240,7 +20238,7 @@ class NHSColumns(ColumnsTask):
 
         t024c004_m = OBSColumn(
             id='t024c004_m',
-            name='Mexico (male)',
+            name='Recent immigrants born in Mexico (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20249,7 +20247,7 @@ class NHSColumns(ColumnsTask):
 
         t024c004_f = OBSColumn(
             id='t024c004_f',
-            name='Mexico (female)',
+            name='Recent immigrants born in Mexico (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20258,7 +20256,7 @@ class NHSColumns(ColumnsTask):
 
         t024c005_t = OBSColumn(
             id='t024c005_t',
-            name='Cuba (total)',
+            name='Recent immigrants born in Cuba (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20267,7 +20265,7 @@ class NHSColumns(ColumnsTask):
 
         t024c005_m = OBSColumn(
             id='t024c005_m',
-            name='Cuba (male)',
+            name='Recent immigrants born in Cuba (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20276,7 +20274,7 @@ class NHSColumns(ColumnsTask):
 
         t024c005_f = OBSColumn(
             id='t024c005_f',
-            name='Cuba (female)',
+            name='Recent immigrants born in Cuba (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20285,7 +20283,7 @@ class NHSColumns(ColumnsTask):
 
         t024c006_t = OBSColumn(
             id='t024c006_t',
-            name='Haiti (total)',
+            name='Recent immigrants born in Haiti (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20294,7 +20292,7 @@ class NHSColumns(ColumnsTask):
 
         t024c006_m = OBSColumn(
             id='t024c006_m',
-            name='Haiti (male)',
+            name='Recent immigrants born in Haiti (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20303,7 +20301,7 @@ class NHSColumns(ColumnsTask):
 
         t024c006_f = OBSColumn(
             id='t024c006_f',
-            name='Haiti (female)',
+            name='Recent immigrants born in Haiti (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20312,7 +20310,7 @@ class NHSColumns(ColumnsTask):
 
         t024c007_t = OBSColumn(
             id='t024c007_t',
-            name='Jamaica (total)',
+            name='Recent immigrants born in Jamaica (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20321,7 +20319,7 @@ class NHSColumns(ColumnsTask):
 
         t024c007_m = OBSColumn(
             id='t024c007_m',
-            name='Jamaica (male)',
+            name='Recent immigrants born in Jamaica (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20330,7 +20328,7 @@ class NHSColumns(ColumnsTask):
 
         t024c007_f = OBSColumn(
             id='t024c007_f',
-            name='Jamaica (female)',
+            name='Recent immigrants born in Jamaica (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20339,7 +20337,7 @@ class NHSColumns(ColumnsTask):
 
         t024c008_t = OBSColumn(
             id='t024c008_t',
-            name='Brazil (total)',
+            name='Recent immigrants born in Brazil (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20348,7 +20346,7 @@ class NHSColumns(ColumnsTask):
 
         t024c008_m = OBSColumn(
             id='t024c008_m',
-            name='Brazil (male)',
+            name='Recent immigrants born in Brazil (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20357,7 +20355,7 @@ class NHSColumns(ColumnsTask):
 
         t024c008_f = OBSColumn(
             id='t024c008_f',
-            name='Brazil (female)',
+            name='Recent immigrants born in Brazil (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20366,7 +20364,7 @@ class NHSColumns(ColumnsTask):
 
         t024c009_t = OBSColumn(
             id='t024c009_t',
-            name='Colombia (total)',
+            name='Recent immigrants born in Colombia (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20375,7 +20373,7 @@ class NHSColumns(ColumnsTask):
 
         t024c009_m = OBSColumn(
             id='t024c009_m',
-            name='Colombia (male)',
+            name='Recent immigrants born in Colombia (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20384,7 +20382,7 @@ class NHSColumns(ColumnsTask):
 
         t024c009_f = OBSColumn(
             id='t024c009_f',
-            name='Colombia (female)',
+            name='Recent immigrants born in Colombia (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20393,7 +20391,7 @@ class NHSColumns(ColumnsTask):
 
         t024c010_t = OBSColumn(
             id='t024c010_t',
-            name='Guyana (total)',
+            name='Recent immigrants born in Guyana (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20402,7 +20400,7 @@ class NHSColumns(ColumnsTask):
 
         t024c010_m = OBSColumn(
             id='t024c010_m',
-            name='Guyana (male)',
+            name='Recent immigrants born in Guyana (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20411,7 +20409,7 @@ class NHSColumns(ColumnsTask):
 
         t024c010_f = OBSColumn(
             id='t024c010_f',
-            name='Guyana (female)',
+            name='Recent immigrants born in Guyana (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20420,7 +20418,7 @@ class NHSColumns(ColumnsTask):
 
         t024c011_t = OBSColumn(
             id='t024c011_t',
-            name='Peru (total)',
+            name='Recent immigrants born in Peru (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20429,7 +20427,7 @@ class NHSColumns(ColumnsTask):
 
         t024c011_m = OBSColumn(
             id='t024c011_m',
-            name='Peru (male)',
+            name='Recent immigrants born in Peru (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20438,7 +20436,7 @@ class NHSColumns(ColumnsTask):
 
         t024c011_f = OBSColumn(
             id='t024c011_f',
-            name='Peru (female)',
+            name='Recent immigrants born in Peru (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20447,7 +20445,7 @@ class NHSColumns(ColumnsTask):
 
         t024c012_t = OBSColumn(
             id='t024c012_t',
-            name='Venezuela (total)',
+            name='Recent immigrants born in Venezuela (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20456,7 +20454,7 @@ class NHSColumns(ColumnsTask):
 
         t024c012_m = OBSColumn(
             id='t024c012_m',
-            name='Venezuela (male)',
+            name='Recent immigrants born in Venezuela (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20465,7 +20463,7 @@ class NHSColumns(ColumnsTask):
 
         t024c012_f = OBSColumn(
             id='t024c012_f',
-            name='Venezuela (female)',
+            name='Recent immigrants born in Venezuela (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20474,7 +20472,7 @@ class NHSColumns(ColumnsTask):
 
         t024c013_t = OBSColumn(
             id='t024c013_t',
-            name='Other places of birth in Americas (total)',
+            name='Recent immigrants born in other places in Americas (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20483,7 +20481,7 @@ class NHSColumns(ColumnsTask):
 
         t024c013_m = OBSColumn(
             id='t024c013_m',
-            name='Other places of birth in Americas (male)',
+            name='Recent immigrants born in other places in Americas (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20492,7 +20490,7 @@ class NHSColumns(ColumnsTask):
 
         t024c013_f = OBSColumn(
             id='t024c013_f',
-            name='Other places of birth in Americas (female)',
+            name='Recent immigrants born in other places in Americas (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20501,7 +20499,7 @@ class NHSColumns(ColumnsTask):
 
         t024c014_t = OBSColumn(
             id='t024c014_t',
-            name='Europe (total)',
+            name='Recent immigrants born in Europe (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20510,7 +20508,7 @@ class NHSColumns(ColumnsTask):
 
         t024c014_m = OBSColumn(
             id='t024c014_m',
-            name='Europe (male)',
+            name='Recent immigrants born in Europe (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20519,7 +20517,7 @@ class NHSColumns(ColumnsTask):
 
         t024c014_f = OBSColumn(
             id='t024c014_f',
-            name='Europe (female)',
+            name='Recent immigrants born in Europe (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20528,7 +20526,7 @@ class NHSColumns(ColumnsTask):
 
         t024c015_t = OBSColumn(
             id='t024c015_t',
-            name='France (total)',
+            name='Recent immigrants born in France (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20537,7 +20535,7 @@ class NHSColumns(ColumnsTask):
 
         t024c015_m = OBSColumn(
             id='t024c015_m',
-            name='France (male)',
+            name='Recent immigrants born in France (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20546,7 +20544,7 @@ class NHSColumns(ColumnsTask):
 
         t024c015_f = OBSColumn(
             id='t024c015_f',
-            name='France (female)',
+            name='Recent immigrants born in France (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20555,7 +20553,7 @@ class NHSColumns(ColumnsTask):
 
         t024c016_t = OBSColumn(
             id='t024c016_t',
-            name='Germany (total)',
+            name='Recent immigrants born in Germany (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20564,7 +20562,7 @@ class NHSColumns(ColumnsTask):
 
         t024c016_m = OBSColumn(
             id='t024c016_m',
-            name='Germany (male)',
+            name='Recent immigrants born in Germany (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20573,7 +20571,7 @@ class NHSColumns(ColumnsTask):
 
         t024c016_f = OBSColumn(
             id='t024c016_f',
-            name='Germany (female)',
+            name='Recent immigrants born in Germany (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20582,7 +20580,7 @@ class NHSColumns(ColumnsTask):
 
         t024c017_t = OBSColumn(
             id='t024c017_t',
-            name='Poland (total)',
+            name='Recent immigrants born in Poland (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20591,7 +20589,7 @@ class NHSColumns(ColumnsTask):
 
         t024c017_m = OBSColumn(
             id='t024c017_m',
-            name='Poland (male)',
+            name='Recent immigrants born in Poland (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20600,7 +20598,7 @@ class NHSColumns(ColumnsTask):
 
         t024c017_f = OBSColumn(
             id='t024c017_f',
-            name='Poland (female)',
+            name='Recent immigrants born in Poland (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20609,7 +20607,7 @@ class NHSColumns(ColumnsTask):
 
         t024c018_t = OBSColumn(
             id='t024c018_t',
-            name='Romania (total)',
+            name='Recent immigrants born in Romania (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20618,7 +20616,7 @@ class NHSColumns(ColumnsTask):
 
         t024c018_m = OBSColumn(
             id='t024c018_m',
-            name='Romania (male)',
+            name='Recent immigrants born in Romania (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20627,7 +20625,7 @@ class NHSColumns(ColumnsTask):
 
         t024c018_f = OBSColumn(
             id='t024c018_f',
-            name='Romania (female)',
+            name='Recent immigrants born in Romania (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20636,7 +20634,7 @@ class NHSColumns(ColumnsTask):
 
         t024c019_t = OBSColumn(
             id='t024c019_t',
-            name='Moldova (total)',
+            name='Recent immigrants born in Moldova (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20645,7 +20643,7 @@ class NHSColumns(ColumnsTask):
 
         t024c019_m = OBSColumn(
             id='t024c019_m',
-            name='Moldova (male)',
+            name='Recent immigrants born in Moldova (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20654,7 +20652,7 @@ class NHSColumns(ColumnsTask):
 
         t024c019_f = OBSColumn(
             id='t024c019_f',
-            name='Moldova (female)',
+            name='Recent immigrants born in Moldova (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20663,7 +20661,7 @@ class NHSColumns(ColumnsTask):
 
         t024c020_t = OBSColumn(
             id='t024c020_t',
-            name='Russian Federation (total)',
+            name='Recent immigrants born in Russian Federation (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20672,7 +20670,7 @@ class NHSColumns(ColumnsTask):
 
         t024c020_m = OBSColumn(
             id='t024c020_m',
-            name='Russian Federation (male)',
+            name='Recent immigrants born in Russian Federation (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20681,7 +20679,7 @@ class NHSColumns(ColumnsTask):
 
         t024c020_f = OBSColumn(
             id='t024c020_f',
-            name='Russian Federation (female)',
+            name='Recent immigrants born in Russian Federation (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20690,7 +20688,7 @@ class NHSColumns(ColumnsTask):
 
         t024c021_t = OBSColumn(
             id='t024c021_t',
-            name='Ukraine (total)',
+            name='Recent immigrants born in Ukraine (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20699,7 +20697,7 @@ class NHSColumns(ColumnsTask):
 
         t024c021_m = OBSColumn(
             id='t024c021_m',
-            name='Ukraine (male)',
+            name='Recent immigrants born in Ukraine (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20708,7 +20706,7 @@ class NHSColumns(ColumnsTask):
 
         t024c021_f = OBSColumn(
             id='t024c021_f',
-            name='Ukraine (female)',
+            name='Recent immigrants born in Ukraine (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20717,7 +20715,7 @@ class NHSColumns(ColumnsTask):
 
         t024c022_t = OBSColumn(
             id='t024c022_t',
-            name='United Kingdom (total)',
+            name='Recent immigrants born in United Kingdom (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20726,7 +20724,7 @@ class NHSColumns(ColumnsTask):
 
         t024c022_m = OBSColumn(
             id='t024c022_m',
-            name='United Kingdom (male)',
+            name='Recent immigrants born in United Kingdom (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20735,7 +20733,7 @@ class NHSColumns(ColumnsTask):
 
         t024c022_f = OBSColumn(
             id='t024c022_f',
-            name='United Kingdom (female)',
+            name='Recent immigrants born in United Kingdom (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20744,7 +20742,7 @@ class NHSColumns(ColumnsTask):
 
         t024c023_t = OBSColumn(
             id='t024c023_t',
-            name='Other places of birth in Europe (total)',
+            name='Recent immigrants born in other places in Europe (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20753,7 +20751,7 @@ class NHSColumns(ColumnsTask):
 
         t024c023_m = OBSColumn(
             id='t024c023_m',
-            name='Other places of birth in Europe (male)',
+            name='Recent immigrants born in other places in Europe (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20762,7 +20760,7 @@ class NHSColumns(ColumnsTask):
 
         t024c023_f = OBSColumn(
             id='t024c023_f',
-            name='Other places of birth in Europe (female)',
+            name='Recent immigrants born in other places in Europe (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20771,7 +20769,7 @@ class NHSColumns(ColumnsTask):
 
         t024c024_t = OBSColumn(
             id='t024c024_t',
-            name='Africa (total)',
+            name='Recent immigrants born in Africa (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20780,7 +20778,7 @@ class NHSColumns(ColumnsTask):
 
         t024c024_m = OBSColumn(
             id='t024c024_m',
-            name='Africa (male)',
+            name='Recent immigrants born in Africa (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20789,7 +20787,7 @@ class NHSColumns(ColumnsTask):
 
         t024c024_f = OBSColumn(
             id='t024c024_f',
-            name='Africa (female)',
+            name='Recent immigrants born in Africa (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20798,7 +20796,7 @@ class NHSColumns(ColumnsTask):
 
         t024c025_t = OBSColumn(
             id='t024c025_t',
-            name='Nigeria (total)',
+            name='Recent immigrants born in Nigeria (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20807,7 +20805,7 @@ class NHSColumns(ColumnsTask):
 
         t024c025_m = OBSColumn(
             id='t024c025_m',
-            name='Nigeria (male)',
+            name='Recent immigrants born in Nigeria (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20816,7 +20814,7 @@ class NHSColumns(ColumnsTask):
 
         t024c025_f = OBSColumn(
             id='t024c025_f',
-            name='Nigeria (female)',
+            name='Recent immigrants born in Nigeria (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20825,7 +20823,7 @@ class NHSColumns(ColumnsTask):
 
         t024c026_t = OBSColumn(
             id='t024c026_t',
-            name='Ethiopia (total)',
+            name='Recent immigrants born in Ethiopia (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20834,7 +20832,7 @@ class NHSColumns(ColumnsTask):
 
         t024c026_m = OBSColumn(
             id='t024c026_m',
-            name='Ethiopia (male)',
+            name='Recent immigrants born in Ethiopia (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20843,7 +20841,7 @@ class NHSColumns(ColumnsTask):
 
         t024c026_f = OBSColumn(
             id='t024c026_f',
-            name='Ethiopia (female)',
+            name='Recent immigrants born in Ethiopia (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20852,7 +20850,7 @@ class NHSColumns(ColumnsTask):
 
         t024c027_t = OBSColumn(
             id='t024c027_t',
-            name='Mauritius (total)',
+            name='Recent immigrants born in Mauritius (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20861,7 +20859,7 @@ class NHSColumns(ColumnsTask):
 
         t024c027_m = OBSColumn(
             id='t024c027_m',
-            name='Mauritius (male)',
+            name='Recent immigrants born in Mauritius (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20870,7 +20868,7 @@ class NHSColumns(ColumnsTask):
 
         t024c027_f = OBSColumn(
             id='t024c027_f',
-            name='Mauritius (female)',
+            name='Recent immigrants born in Mauritius (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20879,7 +20877,7 @@ class NHSColumns(ColumnsTask):
 
         t024c028_t = OBSColumn(
             id='t024c028_t',
-            name='Somalia (total)',
+            name='Recent immigrants born in Somalia (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20888,7 +20886,7 @@ class NHSColumns(ColumnsTask):
 
         t024c028_m = OBSColumn(
             id='t024c028_m',
-            name='Somalia (male)',
+            name='Recent immigrants born in Somalia (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20897,7 +20895,7 @@ class NHSColumns(ColumnsTask):
 
         t024c028_f = OBSColumn(
             id='t024c028_f',
-            name='Somalia (female)',
+            name='Recent immigrants born in Somalia (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20906,7 +20904,7 @@ class NHSColumns(ColumnsTask):
 
         t024c029_t = OBSColumn(
             id='t024c029_t',
-            name='Algeria (total)',
+            name='Recent immigrants born in Algeria (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20915,7 +20913,7 @@ class NHSColumns(ColumnsTask):
 
         t024c029_m = OBSColumn(
             id='t024c029_m',
-            name='Algeria (male)',
+            name='Recent immigrants born in Algeria (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20924,7 +20922,7 @@ class NHSColumns(ColumnsTask):
 
         t024c029_f = OBSColumn(
             id='t024c029_f',
-            name='Algeria (female)',
+            name='Recent immigrants born in Algeria (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20933,7 +20931,7 @@ class NHSColumns(ColumnsTask):
 
         t024c030_t = OBSColumn(
             id='t024c030_t',
-            name='Egypt (total)',
+            name='Recent immigrants born in Egypt (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20942,7 +20940,7 @@ class NHSColumns(ColumnsTask):
 
         t024c030_m = OBSColumn(
             id='t024c030_m',
-            name='Egypt (male)',
+            name='Recent immigrants born in Egypt (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20951,7 +20949,7 @@ class NHSColumns(ColumnsTask):
 
         t024c030_f = OBSColumn(
             id='t024c030_f',
-            name='Egypt (female)',
+            name='Recent immigrants born in Egypt (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20960,7 +20958,7 @@ class NHSColumns(ColumnsTask):
 
         t024c031_t = OBSColumn(
             id='t024c031_t',
-            name='Morocco (total)',
+            name='Recent immigrants born in Morocco (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20969,7 +20967,7 @@ class NHSColumns(ColumnsTask):
 
         t024c031_m = OBSColumn(
             id='t024c031_m',
-            name='Morocco (male)',
+            name='Recent immigrants born in Morocco (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20978,7 +20976,7 @@ class NHSColumns(ColumnsTask):
 
         t024c031_f = OBSColumn(
             id='t024c031_f',
-            name='Morocco (female)',
+            name='Recent immigrants born in Morocco (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20987,7 +20985,7 @@ class NHSColumns(ColumnsTask):
 
         t024c032_t = OBSColumn(
             id='t024c032_t',
-            name='Tunisia (total)',
+            name='Recent immigrants born in Tunisia (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -20996,7 +20994,7 @@ class NHSColumns(ColumnsTask):
 
         t024c032_m = OBSColumn(
             id='t024c032_m',
-            name='Tunisia (male)',
+            name='Recent immigrants born in Tunisia (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21005,7 +21003,7 @@ class NHSColumns(ColumnsTask):
 
         t024c032_f = OBSColumn(
             id='t024c032_f',
-            name='Tunisia (female)',
+            name='Recent immigrants born in Tunisia (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21014,7 +21012,7 @@ class NHSColumns(ColumnsTask):
 
         t024c033_t = OBSColumn(
             id='t024c033_t',
-            name='Cameroon (total)',
+            name='Recent immigrants born in Cameroon (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21023,7 +21021,7 @@ class NHSColumns(ColumnsTask):
 
         t024c033_m = OBSColumn(
             id='t024c033_m',
-            name='Cameroon (male)',
+            name='Recent immigrants born in Cameroon (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21032,7 +21030,7 @@ class NHSColumns(ColumnsTask):
 
         t024c033_f = OBSColumn(
             id='t024c033_f',
-            name='Cameroon (female)',
+            name='Recent immigrants born in Cameroon (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21041,7 +21039,7 @@ class NHSColumns(ColumnsTask):
 
         t024c034_t = OBSColumn(
             id='t024c034_t',
-            name='Congo, The Democratic Republic of the (total)',
+            name='Recent immigrants born in Congo, The Democratic Republic of the (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21050,7 +21048,7 @@ class NHSColumns(ColumnsTask):
 
         t024c034_m = OBSColumn(
             id='t024c034_m',
-            name='Congo, The Democratic Republic of the (male)',
+            name='Recent immigrants born in Congo, The Democratic Republic of the (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21059,7 +21057,7 @@ class NHSColumns(ColumnsTask):
 
         t024c034_f = OBSColumn(
             id='t024c034_f',
-            name='Congo, The Democratic Republic of the (female)',
+            name='Recent immigrants born in Congo, The Democratic Republic of the (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21068,7 +21066,7 @@ class NHSColumns(ColumnsTask):
 
         t024c035_t = OBSColumn(
             id='t024c035_t',
-            name='South Africa, Republic of (total)',
+            name='Recent immigrants born in South Africa, Republic of (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21077,7 +21075,7 @@ class NHSColumns(ColumnsTask):
 
         t024c035_m = OBSColumn(
             id='t024c035_m',
-            name='South Africa, Republic of (male)',
+            name='Recent immigrants born in South Africa, Republic of (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21086,7 +21084,7 @@ class NHSColumns(ColumnsTask):
 
         t024c035_f = OBSColumn(
             id='t024c035_f',
-            name='South Africa, Republic of (female)',
+            name='Recent immigrants born in South Africa, Republic of (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21095,7 +21093,7 @@ class NHSColumns(ColumnsTask):
 
         t024c036_t = OBSColumn(
             id='t024c036_t',
-            name='Other places of birth in Africa (total)',
+            name='Recent immigrants born in other places in Africa (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21104,7 +21102,7 @@ class NHSColumns(ColumnsTask):
 
         t024c036_m = OBSColumn(
             id='t024c036_m',
-            name='Other places of birth in Africa (male)',
+            name='Recent immigrants born in other places in Africa (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21113,7 +21111,7 @@ class NHSColumns(ColumnsTask):
 
         t024c036_f = OBSColumn(
             id='t024c036_f',
-            name='Other places of birth in Africa (female)',
+            name='Recent immigrants born in other places in Africa (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21122,7 +21120,7 @@ class NHSColumns(ColumnsTask):
 
         t024c037_t = OBSColumn(
             id='t024c037_t',
-            name='Asia (total)',
+            name='Recent immigrants born in Asia (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21131,7 +21129,7 @@ class NHSColumns(ColumnsTask):
 
         t024c037_m = OBSColumn(
             id='t024c037_m',
-            name='Asia (male)',
+            name='Recent immigrants born in Asia (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21140,7 +21138,7 @@ class NHSColumns(ColumnsTask):
 
         t024c037_f = OBSColumn(
             id='t024c037_f',
-            name='Asia (female)',
+            name='Recent immigrants born in Asia (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21149,7 +21147,7 @@ class NHSColumns(ColumnsTask):
 
         t024c038_t = OBSColumn(
             id='t024c038_t',
-            name='Philippines (total)',
+            name='Recent immigrants born in Philippines (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21158,7 +21156,7 @@ class NHSColumns(ColumnsTask):
 
         t024c038_m = OBSColumn(
             id='t024c038_m',
-            name='Philippines (male)',
+            name='Recent immigrants born in Philippines (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21167,7 +21165,7 @@ class NHSColumns(ColumnsTask):
 
         t024c038_f = OBSColumn(
             id='t024c038_f',
-            name='Philippines (female)',
+            name='Recent immigrants born in Philippines (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21176,7 +21174,7 @@ class NHSColumns(ColumnsTask):
 
         t024c039_t = OBSColumn(
             id='t024c039_t',
-            name='China (total)',
+            name='Recent immigrants born in China (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21185,7 +21183,7 @@ class NHSColumns(ColumnsTask):
 
         t024c039_m = OBSColumn(
             id='t024c039_m',
-            name='China (male)',
+            name='Recent immigrants born in China (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21194,7 +21192,7 @@ class NHSColumns(ColumnsTask):
 
         t024c039_f = OBSColumn(
             id='t024c039_f',
-            name='China (female)',
+            name='Recent immigrants born in China (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21203,7 +21201,7 @@ class NHSColumns(ColumnsTask):
 
         t024c040_t = OBSColumn(
             id='t024c040_t',
-            name='India (total)',
+            name='Recent immigrants born in India (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21212,7 +21210,7 @@ class NHSColumns(ColumnsTask):
 
         t024c040_m = OBSColumn(
             id='t024c040_m',
-            name='India (male)',
+            name='Recent immigrants born in India (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21221,7 +21219,7 @@ class NHSColumns(ColumnsTask):
 
         t024c040_f = OBSColumn(
             id='t024c040_f',
-            name='India (female)',
+            name='Recent immigrants born in India (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21230,7 +21228,7 @@ class NHSColumns(ColumnsTask):
 
         t024c041_t = OBSColumn(
             id='t024c041_t',
-            name='Pakistan (total)',
+            name='Recent immigrants born in Pakistan (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21239,7 +21237,7 @@ class NHSColumns(ColumnsTask):
 
         t024c041_m = OBSColumn(
             id='t024c041_m',
-            name='Pakistan (male)',
+            name='Recent immigrants born in Pakistan (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21248,7 +21246,7 @@ class NHSColumns(ColumnsTask):
 
         t024c041_f = OBSColumn(
             id='t024c041_f',
-            name='Pakistan (female)',
+            name='Recent immigrants born in Pakistan (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21257,7 +21255,7 @@ class NHSColumns(ColumnsTask):
 
         t024c042_t = OBSColumn(
             id='t024c042_t',
-            name='Iran (total)',
+            name='Recent immigrants born in Iran (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21266,7 +21264,7 @@ class NHSColumns(ColumnsTask):
 
         t024c042_m = OBSColumn(
             id='t024c042_m',
-            name='Iran (male)',
+            name='Recent immigrants born in Iran (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21275,7 +21273,7 @@ class NHSColumns(ColumnsTask):
 
         t024c042_f = OBSColumn(
             id='t024c042_f',
-            name='Iran (female)',
+            name='Recent immigrants born in Iran (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21284,7 +21282,7 @@ class NHSColumns(ColumnsTask):
 
         t024c043_t = OBSColumn(
             id='t024c043_t',
-            name='South Korea (total)',
+            name='Recent immigrants born in South Korea (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21293,7 +21291,7 @@ class NHSColumns(ColumnsTask):
 
         t024c043_m = OBSColumn(
             id='t024c043_m',
-            name='South Korea (male)',
+            name='Recent immigrants born in South Korea (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21302,7 +21300,7 @@ class NHSColumns(ColumnsTask):
 
         t024c043_f = OBSColumn(
             id='t024c043_f',
-            name='South Korea (female)',
+            name='Recent immigrants born in South Korea (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21311,7 +21309,7 @@ class NHSColumns(ColumnsTask):
 
         t024c044_t = OBSColumn(
             id='t024c044_t',
-            name='Sri Lanka (total)',
+            name='Recent immigrants born in Sri Lanka (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21320,7 +21318,7 @@ class NHSColumns(ColumnsTask):
 
         t024c044_m = OBSColumn(
             id='t024c044_m',
-            name='Sri Lanka (male)',
+            name='Recent immigrants born in Sri Lanka (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21329,7 +21327,7 @@ class NHSColumns(ColumnsTask):
 
         t024c044_f = OBSColumn(
             id='t024c044_f',
-            name='Sri Lanka (female)',
+            name='Recent immigrants born in Sri Lanka (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21338,7 +21336,7 @@ class NHSColumns(ColumnsTask):
 
         t024c045_t = OBSColumn(
             id='t024c045_t',
-            name='Iraq (total)',
+            name='Recent immigrants born in Iraq (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21347,7 +21345,7 @@ class NHSColumns(ColumnsTask):
 
         t024c045_m = OBSColumn(
             id='t024c045_m',
-            name='Iraq (male)',
+            name='Recent immigrants born in Iraq (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21356,7 +21354,7 @@ class NHSColumns(ColumnsTask):
 
         t024c045_f = OBSColumn(
             id='t024c045_f',
-            name='Iraq (female)',
+            name='Recent immigrants born in Iraq (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21365,7 +21363,7 @@ class NHSColumns(ColumnsTask):
 
         t024c046_t = OBSColumn(
             id='t024c046_t',
-            name='Bangladesh (total)',
+            name='Recent immigrants born in Bangladesh (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21374,7 +21372,7 @@ class NHSColumns(ColumnsTask):
 
         t024c046_m = OBSColumn(
             id='t024c046_m',
-            name='Bangladesh (male)',
+            name='Recent immigrants born in Bangladesh (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21383,7 +21381,7 @@ class NHSColumns(ColumnsTask):
 
         t024c046_f = OBSColumn(
             id='t024c046_f',
-            name='Bangladesh (female)',
+            name='Recent immigrants born in Bangladesh (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21392,7 +21390,7 @@ class NHSColumns(ColumnsTask):
 
         t024c047_t = OBSColumn(
             id='t024c047_t',
-            name='Lebanon (total)',
+            name='Recent immigrants born in Lebanon (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21401,7 +21399,7 @@ class NHSColumns(ColumnsTask):
 
         t024c047_m = OBSColumn(
             id='t024c047_m',
-            name='Lebanon (male)',
+            name='Recent immigrants born in Lebanon (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21410,7 +21408,7 @@ class NHSColumns(ColumnsTask):
 
         t024c047_f = OBSColumn(
             id='t024c047_f',
-            name='Lebanon (female)',
+            name='Recent immigrants born in Lebanon (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21419,7 +21417,7 @@ class NHSColumns(ColumnsTask):
 
         t024c048_t = OBSColumn(
             id='t024c048_t',
-            name='Viet Nam (total)',
+            name='Recent immigrants born in Viet Nam (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21428,7 +21426,7 @@ class NHSColumns(ColumnsTask):
 
         t024c048_m = OBSColumn(
             id='t024c048_m',
-            name='Viet Nam (male)',
+            name='Recent immigrants born in Viet Nam (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21437,7 +21435,7 @@ class NHSColumns(ColumnsTask):
 
         t024c048_f = OBSColumn(
             id='t024c048_f',
-            name='Viet Nam (female)',
+            name='Recent immigrants born in Viet Nam (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21446,7 +21444,7 @@ class NHSColumns(ColumnsTask):
 
         t024c049_t = OBSColumn(
             id='t024c049_t',
-            name='Taiwan (total)',
+            name='Recent immigrants born in Taiwan (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21455,7 +21453,7 @@ class NHSColumns(ColumnsTask):
 
         t024c049_m = OBSColumn(
             id='t024c049_m',
-            name='Taiwan (male)',
+            name='Recent immigrants born in Taiwan (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21464,7 +21462,7 @@ class NHSColumns(ColumnsTask):
 
         t024c049_f = OBSColumn(
             id='t024c049_f',
-            name='Taiwan (female)',
+            name='Recent immigrants born in Taiwan (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21473,7 +21471,7 @@ class NHSColumns(ColumnsTask):
 
         t024c050_t = OBSColumn(
             id='t024c050_t',
-            name='Afghanistan (total)',
+            name='Recent immigrants born in Afghanistan (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21482,7 +21480,7 @@ class NHSColumns(ColumnsTask):
 
         t024c050_m = OBSColumn(
             id='t024c050_m',
-            name='Afghanistan (male)',
+            name='Recent immigrants born in Afghanistan (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21491,7 +21489,7 @@ class NHSColumns(ColumnsTask):
 
         t024c050_f = OBSColumn(
             id='t024c050_f',
-            name='Afghanistan (female)',
+            name='Recent immigrants born in Afghanistan (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21500,7 +21498,7 @@ class NHSColumns(ColumnsTask):
 
         t024c051_t = OBSColumn(
             id='t024c051_t',
-            name='Japan (total)',
+            name='Recent immigrants born in Japan (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21509,7 +21507,7 @@ class NHSColumns(ColumnsTask):
 
         t024c051_m = OBSColumn(
             id='t024c051_m',
-            name='Japan (male)',
+            name='Recent immigrants born in Japan (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21518,7 +21516,7 @@ class NHSColumns(ColumnsTask):
 
         t024c051_f = OBSColumn(
             id='t024c051_f',
-            name='Japan (female)',
+            name='Recent immigrants born in Japan (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21527,7 +21525,7 @@ class NHSColumns(ColumnsTask):
 
         t024c052_t = OBSColumn(
             id='t024c052_t',
-            name='Turkey (total)',
+            name='Recent immigrants born in Turkey (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21536,7 +21534,7 @@ class NHSColumns(ColumnsTask):
 
         t024c052_m = OBSColumn(
             id='t024c052_m',
-            name='Turkey (male)',
+            name='Recent immigrants born in Turkey (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21545,7 +21543,7 @@ class NHSColumns(ColumnsTask):
 
         t024c052_f = OBSColumn(
             id='t024c052_f',
-            name='Turkey (female)',
+            name='Recent immigrants born in Turkey (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21554,7 +21552,7 @@ class NHSColumns(ColumnsTask):
 
         t024c053_t = OBSColumn(
             id='t024c053_t',
-            name='Israel (total)',
+            name='Recent immigrants born in Israel (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21563,7 +21561,7 @@ class NHSColumns(ColumnsTask):
 
         t024c053_m = OBSColumn(
             id='t024c053_m',
-            name='Israel (male)',
+            name='Recent immigrants born in Israel (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21572,7 +21570,7 @@ class NHSColumns(ColumnsTask):
 
         t024c053_f = OBSColumn(
             id='t024c053_f',
-            name='Israel (female)',
+            name='Recent immigrants born in Israel (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21581,7 +21579,7 @@ class NHSColumns(ColumnsTask):
 
         t024c054_t = OBSColumn(
             id='t024c054_t',
-            name='Nepal (total)',
+            name='Recent immigrants born in Nepal (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21590,7 +21588,7 @@ class NHSColumns(ColumnsTask):
 
         t024c054_m = OBSColumn(
             id='t024c054_m',
-            name='Nepal (male)',
+            name='Recent immigrants born in Nepal (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21599,7 +21597,7 @@ class NHSColumns(ColumnsTask):
 
         t024c054_f = OBSColumn(
             id='t024c054_f',
-            name='Nepal (female)',
+            name='Recent immigrants born in Nepal (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21608,7 +21606,7 @@ class NHSColumns(ColumnsTask):
 
         t024c055_t = OBSColumn(
             id='t024c055_t',
-            name='Hong Kong Special Administrative Region (total)',
+            name='Recent immigrants born in Hong Kong Special Administrative Region (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21617,7 +21615,7 @@ class NHSColumns(ColumnsTask):
 
         t024c055_m = OBSColumn(
             id='t024c055_m',
-            name='Hong Kong Special Administrative Region (male)',
+            name='Recent immigrants born in Hong Kong Special Administrative Region (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21626,7 +21624,7 @@ class NHSColumns(ColumnsTask):
 
         t024c055_f = OBSColumn(
             id='t024c055_f',
-            name='Hong Kong Special Administrative Region (female)',
+            name='Recent immigrants born in Hong Kong Special Administrative Region (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21635,7 +21633,7 @@ class NHSColumns(ColumnsTask):
 
         t024c056_t = OBSColumn(
             id='t024c056_t',
-            name='United Arab Emirates (total)',
+            name='Recent immigrants born in United Arab Emirates (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21644,7 +21642,7 @@ class NHSColumns(ColumnsTask):
 
         t024c056_m = OBSColumn(
             id='t024c056_m',
-            name='United Arab Emirates (male)',
+            name='Recent immigrants born in United Arab Emirates (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21653,7 +21651,7 @@ class NHSColumns(ColumnsTask):
 
         t024c056_f = OBSColumn(
             id='t024c056_f',
-            name='United Arab Emirates (female)',
+            name='Recent immigrants born in United Arab Emirates (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21662,7 +21660,7 @@ class NHSColumns(ColumnsTask):
 
         t024c057_t = OBSColumn(
             id='t024c057_t',
-            name='Saudi Arabia (total)',
+            name='Recent immigrants born in Saudi Arabia (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21671,7 +21669,7 @@ class NHSColumns(ColumnsTask):
 
         t024c057_m = OBSColumn(
             id='t024c057_m',
-            name='Saudi Arabia (male)',
+            name='Recent immigrants born in Saudi Arabia (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21680,7 +21678,7 @@ class NHSColumns(ColumnsTask):
 
         t024c057_f = OBSColumn(
             id='t024c057_f',
-            name='Saudi Arabia (female)',
+            name='Recent immigrants born in Saudi Arabia (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21689,7 +21687,7 @@ class NHSColumns(ColumnsTask):
 
         t024c058_t = OBSColumn(
             id='t024c058_t',
-            name='Syria (total)',
+            name='Recent immigrants born in Syria (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21698,7 +21696,7 @@ class NHSColumns(ColumnsTask):
 
         t024c058_m = OBSColumn(
             id='t024c058_m',
-            name='Syria (male)',
+            name='Recent immigrants born in Syria (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21707,7 +21705,7 @@ class NHSColumns(ColumnsTask):
 
         t024c058_f = OBSColumn(
             id='t024c058_f',
-            name='Syria (female)',
+            name='Recent immigrants born in Syria (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21716,7 +21714,7 @@ class NHSColumns(ColumnsTask):
 
         t024c059_t = OBSColumn(
             id='t024c059_t',
-            name='Other places of birth in Asia (total)',
+            name='Recent immigrants born in other places in Asia (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21725,7 +21723,7 @@ class NHSColumns(ColumnsTask):
 
         t024c059_m = OBSColumn(
             id='t024c059_m',
-            name='Other places of birth in Asia (male)',
+            name='Recent immigrants born in other places in Asia (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21734,7 +21732,7 @@ class NHSColumns(ColumnsTask):
 
         t024c059_f = OBSColumn(
             id='t024c059_f',
-            name='Other places of birth in Asia (female)',
+            name='Recent immigrants born in other places in Asia (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21743,7 +21741,7 @@ class NHSColumns(ColumnsTask):
 
         t024c060_t = OBSColumn(
             id='t024c060_t',
-            name='Oceania and other (total)',
+            name='Recent immigrants born in Oceania and other (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21752,7 +21750,7 @@ class NHSColumns(ColumnsTask):
 
         t024c060_m = OBSColumn(
             id='t024c060_m',
-            name='Oceania and other (male)',
+            name='Recent immigrants born in Oceania and other (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21761,7 +21759,7 @@ class NHSColumns(ColumnsTask):
 
         t024c060_f = OBSColumn(
             id='t024c060_f',
-            name='Oceania and other (female)',
+            name='Recent immigrants born in Oceania and other (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
