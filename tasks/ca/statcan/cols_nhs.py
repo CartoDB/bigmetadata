@@ -8962,7 +8962,7 @@ class NHSColumns(ColumnsTask):
 
         t007c002_t = OBSColumn(
             id='t007c002_t',
-            name='People aged 15+ in the labour force - Did not work in 2010 (total)',
+            name='People aged 15+ in the labour force who did not work (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -8971,7 +8971,7 @@ class NHSColumns(ColumnsTask):
 
         t007c002_m = OBSColumn(
             id='t007c002_m',
-            name='People aged 15+ in the labour force - Did not work in 2010 (male)',
+            name='People aged 15+ in the labour force who did not work (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -8980,7 +8980,7 @@ class NHSColumns(ColumnsTask):
 
         t007c002_f = OBSColumn(
             id='t007c002_f',
-            name='People aged 15+ in the labour force - Did not work in 2010 (female)',
+            name='People aged 15+ in the labour force who did not work (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -8989,7 +8989,7 @@ class NHSColumns(ColumnsTask):
 
         t007c003_t = OBSColumn(
             id='t007c003_t',
-            name='People aged 15+ in the labour force - Worked in 2010 (total)',
+            name='People aged 15+ in the labour force who worked (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -8998,7 +8998,7 @@ class NHSColumns(ColumnsTask):
 
         t007c003_m = OBSColumn(
             id='t007c003_m',
-            name='People aged 15+ in the labour force - Worked in 2010 (male)',
+            name='People aged 15+ in the labour force who worked (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9007,7 +9007,7 @@ class NHSColumns(ColumnsTask):
 
         t007c003_f = OBSColumn(
             id='t007c003_f',
-            name='People aged 15+ in the labour force - Worked in 2010 (female)',
+            name='People aged 15+ in the labour force who worked (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9016,7 +9016,7 @@ class NHSColumns(ColumnsTask):
 
         t007c004_t = OBSColumn(
             id='t007c004_t',
-            name='Worked full-time in 2010 (total)',
+            name='People aged 15+ in the labour force who worked full-time (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9025,7 +9025,7 @@ class NHSColumns(ColumnsTask):
 
         t007c004_m = OBSColumn(
             id='t007c004_m',
-            name='Worked full-time in 2010 (male)',
+            name='People aged 15+ in the labour force who worked full-time (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9034,18 +9034,16 @@ class NHSColumns(ColumnsTask):
 
         t007c004_f = OBSColumn(
             id='t007c004_f',
-            name='Worked full-time in 2010 (female)',
+            name='People aged 15+ in the labour force who worked full-time (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
-        # FIXME
-        # Some definition of how NHS counts "part-time" would be good.
         t007c005_t = OBSColumn(
             id='t007c005_t',
-            name='Worked part-time in 2010 (total)',
+            name='People aged 15+ in the labour force who worked part-time (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9054,7 +9052,7 @@ class NHSColumns(ColumnsTask):
 
         t007c005_m = OBSColumn(
             id='t007c005_m',
-            name='Worked part-time in 2010 (male)',
+            name='People aged 15+ in the labour force who worked part-time (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9063,7 +9061,7 @@ class NHSColumns(ColumnsTask):
 
         t007c005_f = OBSColumn(
             id='t007c005_f',
-            name='Worked part-time in 2010 (female)',
+            name='People aged 15+ in the labour force who worked part-time (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
