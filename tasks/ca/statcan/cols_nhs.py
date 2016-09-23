@@ -11557,7 +11557,7 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t009c001_t: UNIVERSE },)
 
-        # FIXME DUP
+        # FIXME DUP?
         # t012c034_t was redundant with ca.statcan.cols_census.t007c029_t
         t012c034_t = OBSColumn(
             id='t012c034_t',
@@ -11573,7 +11573,7 @@ class NHSColumns(ColumnsTask):
         # names that the income is for one-person households
         t012c035_t = OBSColumn(
             id='t012c035_t',
-            name='Median household total income',
+            name='Median total household income of one-person households',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11582,7 +11582,7 @@ class NHSColumns(ColumnsTask):
 
         t012c036_t = OBSColumn(
             id='t012c036_t',
-            name='Average household total income',
+            name='Average total household income of one-person households',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -11591,7 +11591,7 @@ class NHSColumns(ColumnsTask):
 
         t012c037_t = OBSColumn(
             id='t012c037_t',
-            name='Median after-tax household income',
+            name='Median after-tax household income of one-person households',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11600,13 +11600,15 @@ class NHSColumns(ColumnsTask):
 
         t012c038_t = OBSColumn(
             id='t012c038_t',
-            name='Average after-tax household income',
+            name='Average after-tax household income of one-person households',
             type='Numeric',
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: UNIVERSE },)
 
+        # FIXME DUP?
+        # t012c039_t was redundant with ca.statcan.cols_census.t007c030_t,
         t012c039_t = OBSColumn(
             id='t012c039_t',
             name='Two-or-more-persons private households',
@@ -11616,15 +11618,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t009c001_t: DENOMINATOR },)
 
-        # FIXME
-        # t012c039_t was redundant with ca.statcan.cols_census.t007c030_t,
-        # removed.
-        #
         # Its subcolumns should be renamed to clearly specify in their
         # names that the income is for two-or-more-persons households
         t012c040_t = OBSColumn(
             id='t012c040_t',
-            name='Median household total income',
+            name='Median total household income of two-or-more-persons households',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11633,7 +11631,7 @@ class NHSColumns(ColumnsTask):
 
         t012c041_t = OBSColumn(
             id='t012c041_t',
-            name='Average household total income',
+            name='Average total household income of two-or-more-persons households',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -11642,7 +11640,7 @@ class NHSColumns(ColumnsTask):
 
         t012c042_t = OBSColumn(
             id='t012c042_t',
-            name='Median after-tax household income',
+            name='Median after-tax household income of two-or-more-persons households',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11651,7 +11649,7 @@ class NHSColumns(ColumnsTask):
 
         t012c043_t = OBSColumn(
             id='t012c043_t',
-            name='Average after-tax household income',
+            name='Average after-tax household income of two-or-more-persons households',
             type='Numeric',
             weight=3,
             aggregate='average',
