@@ -15931,12 +15931,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t016c022_f: DENOMINATOR },)
 
-        # FIXME
-        # The below three should be replaced with a shorter name specifying
-        # that this is the employed population with a commute of some kind.
         t017c001_t = OBSColumn(
             id='t017c001_t',
-            name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by median commuting duration (total)',
+            name='People aged 15+ with a commute to work (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15945,7 +15942,7 @@ class NHSColumns(ColumnsTask):
 
         t017c001_m = OBSColumn(
             id='t017c001_m',
-            name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by median commuting duration (male)',
+            name='People aged 15+ with a commute to work (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15954,7 +15951,7 @@ class NHSColumns(ColumnsTask):
 
         t017c001_f = OBSColumn(
             id='t017c001_f',
-            name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by median commuting duration (female)',
+            name='People aged 15+ with a commute to work (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
