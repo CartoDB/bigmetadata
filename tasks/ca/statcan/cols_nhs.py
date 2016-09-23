@@ -21770,7 +21770,7 @@ class NHSColumns(ColumnsTask):
 
         t025c002_t = OBSColumn(
             id='t025c002_t',
-            name='Total population - Buddhist (total)',
+            name='People who are Buddhist (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21779,7 +21779,7 @@ class NHSColumns(ColumnsTask):
 
         t025c002_m = OBSColumn(
             id='t025c002_m',
-            name='Total population - Buddhist (male)',
+            name='People who are Buddhist (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21788,7 +21788,7 @@ class NHSColumns(ColumnsTask):
 
         t025c002_f = OBSColumn(
             id='t025c002_f',
-            name='Total population - Buddhist (female)',
+            name='People who are Buddhist (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21797,7 +21797,7 @@ class NHSColumns(ColumnsTask):
 
         t025c003_t = OBSColumn(
             id='t025c003_t',
-            name='Total population - Christian (total)',
+            name='People who are Christian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21806,7 +21806,7 @@ class NHSColumns(ColumnsTask):
 
         t025c003_m = OBSColumn(
             id='t025c003_m',
-            name='Total population - Christian (male)',
+            name='People who are Christian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21815,7 +21815,7 @@ class NHSColumns(ColumnsTask):
 
         t025c003_f = OBSColumn(
             id='t025c003_f',
-            name='Total population - Christian (female)',
+            name='People who are Christian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21824,7 +21824,7 @@ class NHSColumns(ColumnsTask):
 
         t025c004_t = OBSColumn(
             id='t025c004_t',
-            name='Anglican (total)',
+            name='People who are Anglican (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21833,7 +21833,7 @@ class NHSColumns(ColumnsTask):
 
         t025c004_m = OBSColumn(
             id='t025c004_m',
-            name='Anglican (male)',
+            name='People who are Anglican (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21842,7 +21842,7 @@ class NHSColumns(ColumnsTask):
 
         t025c004_f = OBSColumn(
             id='t025c004_f',
-            name='Anglican (female)',
+            name='People who are Anglican (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21851,7 +21851,7 @@ class NHSColumns(ColumnsTask):
 
         t025c005_t = OBSColumn(
             id='t025c005_t',
-            name='Baptist (total)',
+            name='People who are Baptist (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21860,7 +21860,7 @@ class NHSColumns(ColumnsTask):
 
         t025c005_m = OBSColumn(
             id='t025c005_m',
-            name='Baptist (male)',
+            name='People who are Baptist (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21869,7 +21869,7 @@ class NHSColumns(ColumnsTask):
 
         t025c005_f = OBSColumn(
             id='t025c005_f',
-            name='Baptist (female)',
+            name='People who are Baptist (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21878,7 +21878,7 @@ class NHSColumns(ColumnsTask):
 
         t025c006_t = OBSColumn(
             id='t025c006_t',
-            name='Catholic (total)',
+            name='People who are Catholic (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21887,7 +21887,7 @@ class NHSColumns(ColumnsTask):
 
         t025c006_m = OBSColumn(
             id='t025c006_m',
-            name='Catholic (male)',
+            name='People who are Catholic (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21896,7 +21896,7 @@ class NHSColumns(ColumnsTask):
 
         t025c006_f = OBSColumn(
             id='t025c006_f',
-            name='Catholic (female)',
+            name='People who are Catholic (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21905,7 +21905,7 @@ class NHSColumns(ColumnsTask):
 
         t025c007_t = OBSColumn(
             id='t025c007_t',
-            name='Christian Orthodox (total)',
+            name='People who are Christian Orthodox (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21914,7 +21914,7 @@ class NHSColumns(ColumnsTask):
 
         t025c007_m = OBSColumn(
             id='t025c007_m',
-            name='Christian Orthodox (male)',
+            name='People who are Christian Orthodox (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21923,7 +21923,7 @@ class NHSColumns(ColumnsTask):
 
         t025c007_f = OBSColumn(
             id='t025c007_f',
-            name='Christian Orthodox (female)',
+            name='People who are Christian Orthodox (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21932,7 +21932,7 @@ class NHSColumns(ColumnsTask):
 
         t025c008_t = OBSColumn(
             id='t025c008_t',
-            name='Lutheran (total)',
+            name='People who are Lutheran (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21941,7 +21941,7 @@ class NHSColumns(ColumnsTask):
 
         t025c008_m = OBSColumn(
             id='t025c008_m',
-            name='Lutheran (male)',
+            name='People who are Lutheran (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21950,7 +21950,7 @@ class NHSColumns(ColumnsTask):
 
         t025c008_f = OBSColumn(
             id='t025c008_f',
-            name='Lutheran (female)',
+            name='People who are Lutheran (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21959,7 +21959,7 @@ class NHSColumns(ColumnsTask):
 
         t025c009_t = OBSColumn(
             id='t025c009_t',
-            name='Pentecostal (total)',
+            name='People who are Pentecostal (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21968,7 +21968,7 @@ class NHSColumns(ColumnsTask):
 
         t025c009_m = OBSColumn(
             id='t025c009_m',
-            name='Pentecostal (male)',
+            name='People who are Pentecostal (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21977,7 +21977,7 @@ class NHSColumns(ColumnsTask):
 
         t025c009_f = OBSColumn(
             id='t025c009_f',
-            name='Pentecostal (female)',
+            name='People who are Pentecostal (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21986,7 +21986,7 @@ class NHSColumns(ColumnsTask):
 
         t025c010_t = OBSColumn(
             id='t025c010_t',
-            name='Presbyterian (total)',
+            name='People who are Presbyterian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21995,7 +21995,7 @@ class NHSColumns(ColumnsTask):
 
         t025c010_m = OBSColumn(
             id='t025c010_m',
-            name='Presbyterian (male)',
+            name='People who are Presbyterian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22004,7 +22004,7 @@ class NHSColumns(ColumnsTask):
 
         t025c010_f = OBSColumn(
             id='t025c010_f',
-            name='Presbyterian (female)',
+            name='People who are Presbyterian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22013,7 +22013,7 @@ class NHSColumns(ColumnsTask):
 
         t025c011_t = OBSColumn(
             id='t025c011_t',
-            name='United Church (total)',
+            name='People who are United Church (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22022,7 +22022,7 @@ class NHSColumns(ColumnsTask):
 
         t025c011_m = OBSColumn(
             id='t025c011_m',
-            name='United Church (male)',
+            name='People who are United Church (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22031,7 +22031,7 @@ class NHSColumns(ColumnsTask):
 
         t025c011_f = OBSColumn(
             id='t025c011_f',
-            name='United Church (female)',
+            name='People who are United Church (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22040,7 +22040,7 @@ class NHSColumns(ColumnsTask):
 
         t025c012_t = OBSColumn(
             id='t025c012_t',
-            name='Other Christian (total)',
+            name='People who are other Christian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22049,7 +22049,7 @@ class NHSColumns(ColumnsTask):
 
         t025c012_m = OBSColumn(
             id='t025c012_m',
-            name='Other Christian (male)',
+            name='People who are other Christian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22058,7 +22058,7 @@ class NHSColumns(ColumnsTask):
 
         t025c012_f = OBSColumn(
             id='t025c012_f',
-            name='Other Christian (female)',
+            name='People who are other Christian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22067,7 +22067,7 @@ class NHSColumns(ColumnsTask):
 
         t025c013_t = OBSColumn(
             id='t025c013_t',
-            name='Total population - Hindu (total)',
+            name='People who are Hindu (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22076,7 +22076,7 @@ class NHSColumns(ColumnsTask):
 
         t025c013_m = OBSColumn(
             id='t025c013_m',
-            name='Total population - Hindu (male)',
+            name='People who are Hindu (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22085,7 +22085,7 @@ class NHSColumns(ColumnsTask):
 
         t025c013_f = OBSColumn(
             id='t025c013_f',
-            name='Total population - Hindu (female)',
+            name='People who are Hindu (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22094,7 +22094,7 @@ class NHSColumns(ColumnsTask):
 
         t025c014_t = OBSColumn(
             id='t025c014_t',
-            name='Total population - Jewish (total)',
+            name='People who are Jewish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22103,7 +22103,7 @@ class NHSColumns(ColumnsTask):
 
         t025c014_m = OBSColumn(
             id='t025c014_m',
-            name='Total population - Jewish (male)',
+            name='People who are Jewish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22112,7 +22112,7 @@ class NHSColumns(ColumnsTask):
 
         t025c014_f = OBSColumn(
             id='t025c014_f',
-            name='Total population - Jewish (female)',
+            name='People who are Jewish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22121,7 +22121,7 @@ class NHSColumns(ColumnsTask):
 
         t025c015_t = OBSColumn(
             id='t025c015_t',
-            name='Total population - Muslim (total)',
+            name='People who are Muslim (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22130,7 +22130,7 @@ class NHSColumns(ColumnsTask):
 
         t025c015_m = OBSColumn(
             id='t025c015_m',
-            name='Total population - Muslim (male)',
+            name='People who are Muslim (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22139,7 +22139,7 @@ class NHSColumns(ColumnsTask):
 
         t025c015_f = OBSColumn(
             id='t025c015_f',
-            name='Total population - Muslim (female)',
+            name='People who are Muslim (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22148,7 +22148,7 @@ class NHSColumns(ColumnsTask):
 
         t025c016_t = OBSColumn(
             id='t025c016_t',
-            name='Total population - Sikh (total)',
+            name='People who are Sikh (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22157,7 +22157,7 @@ class NHSColumns(ColumnsTask):
 
         t025c016_m = OBSColumn(
             id='t025c016_m',
-            name='Total population - Sikh (male)',
+            name='People who are Sikh (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22166,7 +22166,7 @@ class NHSColumns(ColumnsTask):
 
         t025c016_f = OBSColumn(
             id='t025c016_f',
-            name='Total population - Sikh (female)',
+            name='People who are Sikh (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22175,7 +22175,7 @@ class NHSColumns(ColumnsTask):
 
         t025c017_t = OBSColumn(
             id='t025c017_t',
-            name='Total population - Traditional (Aboriginal) Spirituality (total)',
+            name='People who practice traditional (Aboriginal) Spirituality (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22184,7 +22184,7 @@ class NHSColumns(ColumnsTask):
 
         t025c017_m = OBSColumn(
             id='t025c017_m',
-            name='Total population - Traditional (Aboriginal) Spirituality (male)',
+            name='People who practice traditional (Aboriginal) Spirituality (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22193,7 +22193,7 @@ class NHSColumns(ColumnsTask):
 
         t025c017_f = OBSColumn(
             id='t025c017_f',
-            name='Total population - Traditional (Aboriginal) Spirituality (female)',
+            name='People who practice traditional (Aboriginal) Spirituality (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22202,7 +22202,7 @@ class NHSColumns(ColumnsTask):
 
         t025c018_t = OBSColumn(
             id='t025c018_t',
-            name='Total population - Other religions (total)',
+            name='People who practice other religions (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22211,7 +22211,7 @@ class NHSColumns(ColumnsTask):
 
         t025c018_m = OBSColumn(
             id='t025c018_m',
-            name='Total population - Other religions (male)',
+            name='People who practice other religions (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22220,7 +22220,7 @@ class NHSColumns(ColumnsTask):
 
         t025c018_f = OBSColumn(
             id='t025c018_f',
-            name='Total population - Other religions (female)',
+            name='People who practice other religions (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22229,7 +22229,7 @@ class NHSColumns(ColumnsTask):
 
         t025c019_t = OBSColumn(
             id='t025c019_t',
-            name='Total population - No religious affiliation (total)',
+            name='People who have no religious affiliation (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22238,7 +22238,7 @@ class NHSColumns(ColumnsTask):
 
         t025c019_m = OBSColumn(
             id='t025c019_m',
-            name='Total population - No religious affiliation (male)',
+            name='People who have no religious affiliation (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22247,7 +22247,7 @@ class NHSColumns(ColumnsTask):
 
         t025c019_f = OBSColumn(
             id='t025c019_f',
-            name='Total population - No religious affiliation (female)',
+            name='People who have no religious affiliation (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
