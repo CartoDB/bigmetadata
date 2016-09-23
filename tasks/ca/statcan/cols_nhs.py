@@ -13540,8 +13540,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t001c001_t: DENOMINATOR },)
 
-        # FIXME
-        # Same comments as for the bottom half and bottom decile columns
         t013c091_m = OBSColumn(
             id='t013c091_m',
             name='Total population - In top half of the Canadian distribution (male)',
@@ -13562,7 +13560,7 @@ class NHSColumns(ColumnsTask):
 
         t013c092_t = OBSColumn(
             id='t013c092_t',
-            name='In sixth decile (total)',
+            name='Total population - In sixth decile of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13571,7 +13569,7 @@ class NHSColumns(ColumnsTask):
 
         t013c092_m = OBSColumn(
             id='t013c092_m',
-            name='In sixth decile (male)',
+            name='Total population - In sixth decile of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13580,7 +13578,7 @@ class NHSColumns(ColumnsTask):
 
         t013c092_f = OBSColumn(
             id='t013c092_f',
-            name='In sixth decile (female)',
+            name='Total population - In sixth decile of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13589,7 +13587,7 @@ class NHSColumns(ColumnsTask):
 
         t013c093_t = OBSColumn(
             id='t013c093_t',
-            name='In seventh decile (total)',
+            name='Total population - In seventh decile of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13598,7 +13596,7 @@ class NHSColumns(ColumnsTask):
 
         t013c093_m = OBSColumn(
             id='t013c093_m',
-            name='In seventh decile (male)',
+            name='Total population - In seventh decile of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13607,7 +13605,7 @@ class NHSColumns(ColumnsTask):
 
         t013c093_f = OBSColumn(
             id='t013c093_f',
-            name='In seventh decile (female)',
+            name='Total population - In seventh decile of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13616,7 +13614,7 @@ class NHSColumns(ColumnsTask):
 
         t013c094_t = OBSColumn(
             id='t013c094_t',
-            name='In eighth decile (total)',
+            name='Total population - In eighth decile of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13625,7 +13623,7 @@ class NHSColumns(ColumnsTask):
 
         t013c094_m = OBSColumn(
             id='t013c094_m',
-            name='In eighth decile (male)',
+            name='Total population - In eighth decile of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13634,7 +13632,7 @@ class NHSColumns(ColumnsTask):
 
         t013c094_f = OBSColumn(
             id='t013c094_f',
-            name='In eighth decile (female)',
+            name='Total population - In eighth decile of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13643,7 +13641,7 @@ class NHSColumns(ColumnsTask):
 
         t013c095_t = OBSColumn(
             id='t013c095_t',
-            name='In ninth decile (total)',
+            name='Total population - In ninth decile of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13652,7 +13650,7 @@ class NHSColumns(ColumnsTask):
 
         t013c095_m = OBSColumn(
             id='t013c095_m',
-            name='In ninth decile (male)',
+            name='Total population - In ninth decile of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13661,7 +13659,7 @@ class NHSColumns(ColumnsTask):
 
         t013c095_f = OBSColumn(
             id='t013c095_f',
-            name='In ninth decile (female)',
+            name='Total population - In ninth decile of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13670,7 +13668,7 @@ class NHSColumns(ColumnsTask):
 
         t013c096_t = OBSColumn(
             id='t013c096_t',
-            name='In top decile (total)',
+            name='Total population - In top decile of the Canadian distribution (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13679,7 +13677,7 @@ class NHSColumns(ColumnsTask):
 
         t013c096_m = OBSColumn(
             id='t013c096_m',
-            name='In top decile (male)',
+            name='Total population - In top decile of the Canadian distribution (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13688,7 +13686,7 @@ class NHSColumns(ColumnsTask):
 
         t013c096_f = OBSColumn(
             id='t013c096_f',
-            name='In top decile (female)',
+            name='Total population - In top decile of the Canadian distribution (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
