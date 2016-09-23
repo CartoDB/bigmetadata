@@ -15933,7 +15933,7 @@ class NHSColumns(ColumnsTask):
 
         t017c001_t = OBSColumn(
             id='t017c001_t',
-            name='People aged 15+ with a commute to work (total)',
+            name='People aged 15+ who commute to work (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15942,7 +15942,7 @@ class NHSColumns(ColumnsTask):
 
         t017c001_m = OBSColumn(
             id='t017c001_m',
-            name='People aged 15+ with a commute to work (male)',
+            name='People aged 15+ who commute to work (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15951,18 +15951,16 @@ class NHSColumns(ColumnsTask):
 
         t017c001_f = OBSColumn(
             id='t017c001_f',
-            name='People aged 15+ with a commute to work (female)',
+            name='People aged 15+ who commute to work (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
             targets={},)
 
-        # FIXME
-        # Universe should be specified for these as the above.
         t017c002_t = OBSColumn(
             id='t017c002_t',
-            name='Median commuting duration (total)',
+            name='Median commuting duration for people aged 15+ who commute to work (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -15971,7 +15969,7 @@ class NHSColumns(ColumnsTask):
 
         t017c002_m = OBSColumn(
             id='t017c002_m',
-            name='Median commuting duration (male)',
+            name='Median commuting duration for people aged 15+ who commute to work (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -15980,7 +15978,7 @@ class NHSColumns(ColumnsTask):
 
         t017c002_f = OBSColumn(
             id='t017c002_f',
-            name='Median commuting duration (female)',
+            name='Median commuting duration for people aged 15+ who commute to work (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
