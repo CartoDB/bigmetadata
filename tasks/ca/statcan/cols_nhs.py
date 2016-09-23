@@ -862,7 +862,7 @@ class NHSColumns(ColumnsTask):
 
         t005c001_t = OBSColumn(
             id='t005c001_t',
-            name='Total population aged 15+ (total)',
+            name='People aged 15+ (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -871,7 +871,7 @@ class NHSColumns(ColumnsTask):
 
         t005c001_m = OBSColumn(
             id='t005c001_m',
-            name='Total population aged 15+ (male)',
+            name='People aged 15+ (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -880,18 +880,18 @@ class NHSColumns(ColumnsTask):
 
         t005c001_f = OBSColumn(
             id='t005c001_f',
-            name='Total population aged 15+ (female)',
+            name='People aged 15+ (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={},)
 
-        # FIXME
+        # FIXME - DUP
         # deleted t005c001, should use `ca.statcan.cols_census.t009c001` instead.
         t005c002_t = OBSColumn(
             id='t005c002_t',
-            name='People with no certificate, diploma or degree (total)',
+            name='People aged 15+ with no certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -900,7 +900,7 @@ class NHSColumns(ColumnsTask):
 
         t005c002_m = OBSColumn(
             id='t005c002_m',
-            name='People with no certificate, diploma or degree (male)',
+            name='People aged 15+ with no certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -909,7 +909,7 @@ class NHSColumns(ColumnsTask):
 
         t005c002_f = OBSColumn(
             id='t005c002_f',
-            name='People with no certificate, diploma or degree (female)',
+            name='People aged 15+ with no certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -918,7 +918,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_t = OBSColumn(
             id='t005c003_t',
-            name='People with high school diploma or equivalent (total)',
+            name='People aged 15+ with high school diploma or equivalent (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -927,7 +927,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_m = OBSColumn(
             id='t005c003_m',
-            name='People with high school diploma or equivalent (male)',
+            name='People aged 15+ with high school diploma or equivalent (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -936,7 +936,7 @@ class NHSColumns(ColumnsTask):
 
         t005c003_f = OBSColumn(
             id='t005c003_f',
-            name='People with high school diploma or equivalent (female)',
+            name='People aged 15+ with high school diploma or equivalent (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -945,7 +945,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_t = OBSColumn(
             id='t005c004_t',
-            name='People with postsecondary certificate, diploma or degree (total)',
+            name='People aged 15+ with postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -954,7 +954,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_m = OBSColumn(
             id='t005c004_m',
-            name='People with postsecondary certificate, diploma or degree (male)',
+            name='People aged 15+ with postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -963,7 +963,7 @@ class NHSColumns(ColumnsTask):
 
         t005c004_f = OBSColumn(
             id='t005c004_f',
-            name='People with postsecondary certificate, diploma or degree (female)',
+            name='People aged 15+ with postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -972,7 +972,7 @@ class NHSColumns(ColumnsTask):
 
         t005c005_t = OBSColumn(
             id='t005c005_t',
-            name='People with apprenticeship or trades certificate or diploma (total)',
+            name='People aged 15+ with apprenticeship or trades certificate or diploma (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -981,7 +981,7 @@ class NHSColumns(ColumnsTask):
 
         t005c005_m = OBSColumn(
             id='t005c005_m',
-            name='People with apprenticeship or trades certificate or diploma (male)',
+            name='People aged 15+ with apprenticeship or trades certificate or diploma (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -990,7 +990,7 @@ class NHSColumns(ColumnsTask):
 
         t005c005_f = OBSColumn(
             id='t005c005_f',
-            name='People with apprenticeship or trades certificate or diploma (female)',
+            name='People aged 15+ with apprenticeship or trades certificate or diploma (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -999,7 +999,7 @@ class NHSColumns(ColumnsTask):
 
         t005c006_t = OBSColumn(
             id='t005c006_t',
-            name='People with college, CEGEP or other non-university certificate or diploma (total)',
+            name='People aged 15+ with college, CEGEP or other non-university certificate or diploma (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1008,7 +1008,7 @@ class NHSColumns(ColumnsTask):
 
         t005c006_m = OBSColumn(
             id='t005c006_m',
-            name='People with college, CEGEP or other non-university certificate or diploma (male)',
+            name='People aged 15+ with college, CEGEP or other non-university certificate or diploma (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1017,7 +1017,7 @@ class NHSColumns(ColumnsTask):
 
         t005c006_f = OBSColumn(
             id='t005c006_f',
-            name='People with college, CEGEP or other non-university certificate or diploma (female)',
+            name='People aged 15+ with college, CEGEP or other non-university certificate or diploma (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1026,7 +1026,7 @@ class NHSColumns(ColumnsTask):
 
         t005c007_t = OBSColumn(
             id='t005c007_t',
-            name='People with university certificate or diploma below bachelor level (total)',
+            name='People aged 15+ with university certificate or diploma below bachelor level (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1035,7 +1035,7 @@ class NHSColumns(ColumnsTask):
 
         t005c007_m = OBSColumn(
             id='t005c007_m',
-            name='People with university certificate or diploma below bachelor level (male)',
+            name='People aged 15+ with university certificate or diploma below bachelor level (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1044,7 +1044,7 @@ class NHSColumns(ColumnsTask):
 
         t005c007_f = OBSColumn(
             id='t005c007_f',
-            name='People with university certificate or diploma below bachelor level (female)',
+            name='People aged 15+ with university certificate or diploma below bachelor level (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1053,7 +1053,7 @@ class NHSColumns(ColumnsTask):
 
         t005c008_t = OBSColumn(
             id='t005c008_t',
-            name='People with university certificate, diploma or degree at bachelor level or above (total)',
+            name='People aged 15+ with university certificate, diploma or degree at bachelor level or above (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1062,7 +1062,7 @@ class NHSColumns(ColumnsTask):
 
         t005c008_m = OBSColumn(
             id='t005c008_m',
-            name='People with university certificate, diploma or degree at bachelor level or above (male)',
+            name='People aged 15+ with university certificate, diploma or degree at bachelor level or above (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1071,7 +1071,7 @@ class NHSColumns(ColumnsTask):
 
         t005c008_f = OBSColumn(
             id='t005c008_f',
-            name='People with university certificate, diploma or degree at bachelor level or above (female)',
+            name='People aged 15+ with university certificate, diploma or degree at bachelor level or above (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1080,7 +1080,7 @@ class NHSColumns(ColumnsTask):
 
         t005c009_t = OBSColumn(
             id='t005c009_t',
-            name='People with bachelor\'s degree (total)',
+            name='People aged 15+ with bachelor\'s degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1089,7 +1089,7 @@ class NHSColumns(ColumnsTask):
 
         t005c009_m = OBSColumn(
             id='t005c009_m',
-            name='People with bachelor\'s degree (male)',
+            name='People aged 15+ with bachelor\'s degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1098,7 +1098,7 @@ class NHSColumns(ColumnsTask):
 
         t005c009_f = OBSColumn(
             id='t005c009_f',
-            name='People with bachelor\'s degree (female)',
+            name='People aged 15+ with bachelor\'s degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1107,7 +1107,7 @@ class NHSColumns(ColumnsTask):
 
         t005c010_t = OBSColumn(
             id='t005c010_t',
-            name='People with university certificate, diploma or degree above bachelor level (total)',
+            name='People aged 15+ with university certificate, diploma or degree above bachelor level (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1116,7 +1116,7 @@ class NHSColumns(ColumnsTask):
 
         t005c010_m = OBSColumn(
             id='t005c010_m',
-            name='People with university certificate, diploma or degree above bachelor level (male)',
+            name='People aged 15+ with university certificate, diploma or degree above bachelor level (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1125,7 +1125,7 @@ class NHSColumns(ColumnsTask):
 
         t005c010_f = OBSColumn(
             id='t005c010_f',
-            name='People with university certificate, diploma or degree above bachelor level (female)',
+            name='People aged 15+ with university certificate, diploma or degree above bachelor level (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1134,7 +1134,7 @@ class NHSColumns(ColumnsTask):
 
         t005c011_t = OBSColumn(
             id='t005c011_t',
-            name='Total population aged 25 to 64 years',
+            name='People aged 25-64',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1143,7 +1143,7 @@ class NHSColumns(ColumnsTask):
 
         t005c011_m = OBSColumn(
             id='t005c011_m',
-            name='Total population aged 25 to 64 years (male)',
+            name='People aged 25-64 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1152,7 +1152,7 @@ class NHSColumns(ColumnsTask):
 
         t005c011_f = OBSColumn(
             id='t005c011_f',
-            name='Total population aged 25 to 64 years (female)',
+            name='People aged 25-64 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1161,10 +1161,10 @@ class NHSColumns(ColumnsTask):
 
         # FIXME
         # Like the above, the below should be modified to make it clearer it's
-        # referring to "People with..."
+        # referring to "People aged 15+ with..."
         t005c012_t = OBSColumn(
             id='t005c012_t',
-            name='No certificate, diploma or degree (total)',
+            name='People aged 25-64 with No certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1173,7 +1173,7 @@ class NHSColumns(ColumnsTask):
 
         t005c012_m = OBSColumn(
             id='t005c012_m',
-            name='No certificate, diploma or degree (male)',
+            name='People aged 25-64 with No certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1182,7 +1182,7 @@ class NHSColumns(ColumnsTask):
 
         t005c012_f = OBSColumn(
             id='t005c012_f',
-            name='No certificate, diploma or degree (female)',
+            name='People aged 25-64 with No certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1191,7 +1191,7 @@ class NHSColumns(ColumnsTask):
 
         t005c013_t = OBSColumn(
             id='t005c013_t',
-            name='High school diploma or equivalent (total)',
+            name='People aged 25-64 with High school diploma or equivalent (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1200,7 +1200,7 @@ class NHSColumns(ColumnsTask):
 
         t005c013_m = OBSColumn(
             id='t005c013_m',
-            name='High school diploma or equivalent (male)',
+            name='People aged 25-64 with High school diploma or equivalent (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1209,7 +1209,7 @@ class NHSColumns(ColumnsTask):
 
         t005c013_f = OBSColumn(
             id='t005c013_f',
-            name='High school diploma or equivalent (female)',
+            name='People aged 25-64 with High school diploma or equivalent (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1218,7 +1218,7 @@ class NHSColumns(ColumnsTask):
 
         t005c014_t = OBSColumn(
             id='t005c014_t',
-            name='Postsecondary certificate, diploma or degree (total)',
+            name='People aged 25-64 with Postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1227,7 +1227,7 @@ class NHSColumns(ColumnsTask):
 
         t005c014_m = OBSColumn(
             id='t005c014_m',
-            name='Postsecondary certificate, diploma or degree (male)',
+            name='People aged 25-64 with Postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1236,7 +1236,7 @@ class NHSColumns(ColumnsTask):
 
         t005c014_f = OBSColumn(
             id='t005c014_f',
-            name='Postsecondary certificate, diploma or degree (female)',
+            name='People aged 25-64 with Postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1245,7 +1245,7 @@ class NHSColumns(ColumnsTask):
 
         t005c015_t = OBSColumn(
             id='t005c015_t',
-            name='Apprenticeship or trades certificate or diploma (total)',
+            name='People aged 25-64 with Apprenticeship or trades certificate or diploma (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1254,7 +1254,7 @@ class NHSColumns(ColumnsTask):
 
         t005c015_m = OBSColumn(
             id='t005c015_m',
-            name='Apprenticeship or trades certificate or diploma (male)',
+            name='People aged 25-64 with Apprenticeship or trades certificate or diploma (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1263,7 +1263,7 @@ class NHSColumns(ColumnsTask):
 
         t005c015_f = OBSColumn(
             id='t005c015_f',
-            name='Apprenticeship or trades certificate or diploma (female)',
+            name='People aged 25-64 with Apprenticeship or trades certificate or diploma (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1272,7 +1272,7 @@ class NHSColumns(ColumnsTask):
 
         t005c016_t = OBSColumn(
             id='t005c016_t',
-            name='College, CEGEP or other non-university certificate or diploma (total)',
+            name='People aged 25-64 with College, CEGEP or other non-university certificate or diploma (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1281,7 +1281,7 @@ class NHSColumns(ColumnsTask):
 
         t005c016_m = OBSColumn(
             id='t005c016_m',
-            name='College, CEGEP or other non-university certificate or diploma (male)',
+            name='People aged 25-64 with College, CEGEP or other non-university certificate or diploma (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1290,7 +1290,7 @@ class NHSColumns(ColumnsTask):
 
         t005c016_f = OBSColumn(
             id='t005c016_f',
-            name='College, CEGEP or other non-university certificate or diploma (female)',
+            name='People aged 25-64 with College, CEGEP or other non-university certificate or diploma (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1299,7 +1299,7 @@ class NHSColumns(ColumnsTask):
 
         t005c017_t = OBSColumn(
             id='t005c017_t',
-            name='University certificate or diploma below bachelor level (total)',
+            name='People aged 25-64 with University certificate or diploma below bachelor level (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1308,7 +1308,7 @@ class NHSColumns(ColumnsTask):
 
         t005c017_m = OBSColumn(
             id='t005c017_m',
-            name='University certificate or diploma below bachelor level (male)',
+            name='People aged 25-64 with University certificate or diploma below bachelor level (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1317,7 +1317,7 @@ class NHSColumns(ColumnsTask):
 
         t005c017_f = OBSColumn(
             id='t005c017_f',
-            name='University certificate or diploma below bachelor level (female)',
+            name='People aged 25-64 with University certificate or diploma below bachelor level (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1326,7 +1326,7 @@ class NHSColumns(ColumnsTask):
 
         t005c018_t = OBSColumn(
             id='t005c018_t',
-            name='People with university certificate, diploma or degree at bachelor level or above (total)',
+            name='People aged 25-64 with university certificate, diploma or degree at bachelor level or above (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1335,7 +1335,7 @@ class NHSColumns(ColumnsTask):
 
         t005c018_m = OBSColumn(
             id='t005c018_m',
-            name='People with university certificate, diploma or degree at bachelor level or above (male)',
+            name='People aged 25-64 with university certificate, diploma or degree at bachelor level or above (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1344,7 +1344,7 @@ class NHSColumns(ColumnsTask):
 
         t005c018_f = OBSColumn(
             id='t005c018_f',
-            name='People with university certificate, diploma or degree at bachelor level or above (female)',
+            name='People aged 25-64 with university certificate, diploma or degree at bachelor level or above (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1353,7 +1353,7 @@ class NHSColumns(ColumnsTask):
 
         t005c019_t = OBSColumn(
             id='t005c019_t',
-            name='People with bachelor\'s degree (total)',
+            name='People aged 25-64 with bachelor\'s degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1362,7 +1362,7 @@ class NHSColumns(ColumnsTask):
 
         t005c019_m = OBSColumn(
             id='t005c019_m',
-            name='People with bachelor\'s degree (male)',
+            name='People aged 25-64 with bachelor\'s degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1371,7 +1371,7 @@ class NHSColumns(ColumnsTask):
 
         t005c019_f = OBSColumn(
             id='t005c019_f',
-            name='People with bachelor\'s degree (female)',
+            name='People aged 25-64 with bachelor\'s degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1380,7 +1380,7 @@ class NHSColumns(ColumnsTask):
 
         t005c020_t = OBSColumn(
             id='t005c020_t',
-            name='People with University certificate, diploma or degree above bachelor level (total)',
+            name='People aged 25-64 with University certificate, diploma or degree above bachelor level (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1389,7 +1389,7 @@ class NHSColumns(ColumnsTask):
 
         t005c020_m = OBSColumn(
             id='t005c020_m',
-            name='People with university certificate, diploma or degree above bachelor level (male)',
+            name='People aged 25-64 with university certificate, diploma or degree above bachelor level (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1398,7 +1398,7 @@ class NHSColumns(ColumnsTask):
 
         t005c020_f = OBSColumn(
             id='t005c020_f',
-            name='People with university certificate, diploma or degree above bachelor level (female)',
+            name='People aged 25-64 with university certificate, diploma or degree above bachelor level (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1407,7 +1407,7 @@ class NHSColumns(ColumnsTask):
 
         t005c022_t = OBSColumn(
             id='t005c022_t',
-            name='People with no postsecondary certificate, diploma or degree (total)',
+            name='People aged 15+ majoring in no postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1416,7 +1416,7 @@ class NHSColumns(ColumnsTask):
 
         t005c022_m = OBSColumn(
             id='t005c022_m',
-            name='People with no postsecondary certificate, diploma or degree (male)',
+            name='People aged 15+ majoring in no postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1425,7 +1425,7 @@ class NHSColumns(ColumnsTask):
 
         t005c022_f = OBSColumn(
             id='t005c022_f',
-            name='People with no postsecondary certificate, diploma or degree (female)',
+            name='People aged 15+ majoring in no postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1434,7 +1434,7 @@ class NHSColumns(ColumnsTask):
 
         t005c023_t = OBSColumn(
             id='t005c023_t',
-            name='Total population aged 15+ - Education (total)',
+            name='People aged 15+ majoring in Education (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1443,7 +1443,7 @@ class NHSColumns(ColumnsTask):
 
         t005c023_m = OBSColumn(
             id='t005c023_m',
-            name='Total population aged 15+ - Education (male)',
+            name='People aged 15+ majoring in Education (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1452,7 +1452,7 @@ class NHSColumns(ColumnsTask):
 
         t005c023_f = OBSColumn(
             id='t005c023_f',
-            name='Total population aged 15+ - Education (female)',
+            name='People aged 15+ majoring in Education (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1462,7 +1462,7 @@ class NHSColumns(ColumnsTask):
         # Removed columns duplicate with `ca.statcan.cols_census.t009c001_t`
         t005c024_t = OBSColumn(
             id='t005c024_t',
-            name='People majoring in; Visual and performing arts, and communications technologies (total)',
+            name='People aged 15+ majoring in Visual and performing arts, and communications technologies (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1471,7 +1471,7 @@ class NHSColumns(ColumnsTask):
 
         t005c024_m = OBSColumn(
             id='t005c024_m',
-            name='People majoring in; Visual and performing arts, and communications technologies (male)',
+            name='People aged 15+ majoring in Visual and performing arts, and communications technologies (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1480,7 +1480,7 @@ class NHSColumns(ColumnsTask):
 
         t005c024_f = OBSColumn(
             id='t005c024_f',
-            name='People majoring in; Visual and performing arts, and communications technologies (female)',
+            name='People aged 15+ majoring in Visual and performing arts, and communications technologies (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1489,7 +1489,7 @@ class NHSColumns(ColumnsTask):
 
         t005c025_t = OBSColumn(
             id='t005c025_t',
-            name='People majoring in; Humanities (total)',
+            name='People aged 15+ majoring in Humanities (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1498,7 +1498,7 @@ class NHSColumns(ColumnsTask):
 
         t005c025_m = OBSColumn(
             id='t005c025_m',
-            name='People majoring in; Humanities (male)',
+            name='People aged 15+ majoring in Humanities (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1507,7 +1507,7 @@ class NHSColumns(ColumnsTask):
 
         t005c025_f = OBSColumn(
             id='t005c025_f',
-            name='People majoring in; Humanities (female)',
+            name='People aged 15+ majoring in Humanities (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1516,7 +1516,7 @@ class NHSColumns(ColumnsTask):
 
         t005c026_t = OBSColumn(
             id='t005c026_t',
-            name='People majoring in; Social and behavioural sciences and law (total)',
+            name='People aged 15+ majoring in Social and behavioural sciences and law (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1525,7 +1525,7 @@ class NHSColumns(ColumnsTask):
 
         t005c026_m = OBSColumn(
             id='t005c026_m',
-            name='People majoring in; Social and behavioural sciences and law (male)',
+            name='People aged 15+ majoring in Social and behavioural sciences and law (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1534,7 +1534,7 @@ class NHSColumns(ColumnsTask):
 
         t005c026_f = OBSColumn(
             id='t005c026_f',
-            name='People majoring in; Social and behavioural sciences and law (female)',
+            name='People aged 15+ majoring in Social and behavioural sciences and law (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1543,7 +1543,7 @@ class NHSColumns(ColumnsTask):
 
         t005c027_t = OBSColumn(
             id='t005c027_t',
-            name='People majoring in; Business, management and public administration (total)',
+            name='People aged 15+ majoring in Business, management and public administration (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1552,7 +1552,7 @@ class NHSColumns(ColumnsTask):
 
         t005c027_m = OBSColumn(
             id='t005c027_m',
-            name='People majoring in; Business, management and public administration (male)',
+            name='People aged 15+ majoring in Business, management and public administration (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1561,7 +1561,7 @@ class NHSColumns(ColumnsTask):
 
         t005c027_f = OBSColumn(
             id='t005c027_f',
-            name='People majoring in; Business, management and public administration (female)',
+            name='People aged 15+ majoring in Business, management and public administration (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1570,7 +1570,7 @@ class NHSColumns(ColumnsTask):
 
         t005c028_t = OBSColumn(
             id='t005c028_t',
-            name='People majoring in; Physical and life sciences and technologies (total)',
+            name='People aged 15+ majoring in Physical and life sciences and technologies (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1579,7 +1579,7 @@ class NHSColumns(ColumnsTask):
 
         t005c028_m = OBSColumn(
             id='t005c028_m',
-            name='People majoring in; Physical and life sciences and technologies (male)',
+            name='People aged 15+ majoring in Physical and life sciences and technologies (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1588,7 +1588,7 @@ class NHSColumns(ColumnsTask):
 
         t005c028_f = OBSColumn(
             id='t005c028_f',
-            name='People majoring in; Physical and life sciences and technologies (female)',
+            name='People aged 15+ majoring in Physical and life sciences and technologies (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1597,7 +1597,7 @@ class NHSColumns(ColumnsTask):
 
         t005c029_t = OBSColumn(
             id='t005c029_t',
-            name='People majoring in; Mathematics, computer and information sciences (total)',
+            name='People aged 15+ majoring in Mathematics, computer and information sciences (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1606,7 +1606,7 @@ class NHSColumns(ColumnsTask):
 
         t005c029_m = OBSColumn(
             id='t005c029_m',
-            name='People majoring in; Mathematics, computer and information sciences (male)',
+            name='People aged 15+ majoring in Mathematics, computer and information sciences (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1615,7 +1615,7 @@ class NHSColumns(ColumnsTask):
 
         t005c029_f = OBSColumn(
             id='t005c029_f',
-            name='People majoring in; Mathematics, computer and information sciences (female)',
+            name='People aged 15+ majoring in Mathematics, computer and information sciences (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1624,7 +1624,7 @@ class NHSColumns(ColumnsTask):
 
         t005c030_t = OBSColumn(
             id='t005c030_t',
-            name='People majoring in; Architecture, engineering, and related technologies (total)',
+            name='People aged 15+ majoring in Architecture, engineering, and related technologies (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1633,7 +1633,7 @@ class NHSColumns(ColumnsTask):
 
         t005c030_m = OBSColumn(
             id='t005c030_m',
-            name='People majoring in; Architecture, engineering, and related technologies (male)',
+            name='People aged 15+ majoring in Architecture, engineering, and related technologies (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1642,7 +1642,7 @@ class NHSColumns(ColumnsTask):
 
         t005c030_f = OBSColumn(
             id='t005c030_f',
-            name='People majoring in; Architecture, engineering, and related technologies (female)',
+            name='People aged 15+ majoring in Architecture, engineering, and related technologies (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1651,7 +1651,7 @@ class NHSColumns(ColumnsTask):
 
         t005c031_t = OBSColumn(
             id='t005c031_t',
-            name='People majoring in; Agriculture, natural resources and conservation (total)',
+            name='People aged 15+ majoring in Agriculture, natural resources and conservation (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1660,7 +1660,7 @@ class NHSColumns(ColumnsTask):
 
         t005c031_m = OBSColumn(
             id='t005c031_m',
-            name='People majoring in; Agriculture, natural resources and conservation (male)',
+            name='People aged 15+ majoring in Agriculture, natural resources and conservation (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1669,7 +1669,7 @@ class NHSColumns(ColumnsTask):
 
         t005c031_f = OBSColumn(
             id='t005c031_f',
-            name='People majoring in; Agriculture, natural resources and conservation (female)',
+            name='People aged 15+ majoring in Agriculture, natural resources and conservation (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1678,7 +1678,7 @@ class NHSColumns(ColumnsTask):
 
         t005c032_t = OBSColumn(
             id='t005c032_t',
-            name='People majoring in; Health and related fields (total)',
+            name='People aged 15+ majoring in Health and related fields (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1687,7 +1687,7 @@ class NHSColumns(ColumnsTask):
 
         t005c032_m = OBSColumn(
             id='t005c032_m',
-            name='People majoring in; Health and related fields (male)',
+            name='People aged 15+ majoring in Health and related fields (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1696,7 +1696,7 @@ class NHSColumns(ColumnsTask):
 
         t005c032_f = OBSColumn(
             id='t005c032_f',
-            name='People majoring in; Health and related fields (female)',
+            name='People aged 15+ majoring in Health and related fields (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1705,7 +1705,7 @@ class NHSColumns(ColumnsTask):
 
         t005c033_t = OBSColumn(
             id='t005c033_t',
-            name='People majoring in; Personal, protective and transportation services (total)',
+            name='People aged 15+ majoring in Personal, protective and transportation services (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1714,7 +1714,7 @@ class NHSColumns(ColumnsTask):
 
         t005c033_m = OBSColumn(
             id='t005c033_m',
-            name='People majoring in; Personal, protective and transportation services (male)',
+            name='People aged 15+ majoring in Personal, protective and transportation services (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1723,7 +1723,7 @@ class NHSColumns(ColumnsTask):
 
         t005c033_f = OBSColumn(
             id='t005c033_f',
-            name='People majoring in; Personal, protective and transportation services (female)',
+            name='People aged 15+ majoring in Personal, protective and transportation services (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1732,7 +1732,7 @@ class NHSColumns(ColumnsTask):
 
         t005c034_t = OBSColumn(
             id='t005c034_t',
-            name='People majoring in; Other fields of study (total)',
+            name='People aged 15+ majoring in Other fields of study (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1741,7 +1741,7 @@ class NHSColumns(ColumnsTask):
 
         t005c034_m = OBSColumn(
             id='t005c034_m',
-            name='People majoring in; Other fields of study (male)',
+            name='People aged 15+ majoring in Other fields of study (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1750,16 +1750,17 @@ class NHSColumns(ColumnsTask):
 
         t005c034_f = OBSColumn(
             id='t005c034_f',
-            name='People majoring in; Other fields of study (female)',
+            name='People aged 15+ majoring in Other fields of study (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
+        # FIXME - replace this with t005c022_t
         t005c036_t = OBSColumn(
             id='t005c036_t',
-            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (total)',
+            name='People aged 15+ - No postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1768,7 +1769,7 @@ class NHSColumns(ColumnsTask):
 
         t005c036_m = OBSColumn(
             id='t005c036_m',
-            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (male)',
+            name='People aged 15+ - No postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1777,16 +1778,17 @@ class NHSColumns(ColumnsTask):
 
         t005c036_f = OBSColumn(
             id='t005c036_f',
-            name='Total population aged 15+ - No postsecondary certificate, diploma or degree (female)',
+            name='People aged 15+ - No postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
+        # FIXME - replace with t005c004_t
         t005c037_t = OBSColumn(
             id='t005c037_t',
-            name='Total population aged 15+ - With postsecondary certificate, diploma or degree (total)',
+            name='People aged 15+ - With postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1795,7 +1797,7 @@ class NHSColumns(ColumnsTask):
 
         t005c037_m = OBSColumn(
             id='t005c037_m',
-            name='Total population aged 15+ - With postsecondary certificate, diploma or degree (male)',
+            name='People aged 15+ - With postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1804,7 +1806,7 @@ class NHSColumns(ColumnsTask):
 
         t005c037_f = OBSColumn(
             id='t005c037_f',
-            name='Total population aged 15+ - With postsecondary certificate, diploma or degree (female)',
+            name='People aged 15+ - With postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14955,7 +14957,7 @@ class NHSColumns(ColumnsTask):
 
         t015c002_t = OBSColumn(
             id='t015c002_t',
-            name='Total population aged 15+ - In the labour force (total)',
+            name='People aged 15+ - In the labour force (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14964,7 +14966,7 @@ class NHSColumns(ColumnsTask):
 
         t015c002_m = OBSColumn(
             id='t015c002_m',
-            name='Total population aged 15+ - In the labour force (male)',
+            name='People aged 15+ - In the labour force (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14973,7 +14975,7 @@ class NHSColumns(ColumnsTask):
 
         t015c002_f = OBSColumn(
             id='t015c002_f',
-            name='Total population aged 15+ - In the labour force (female)',
+            name='People aged 15+ - In the labour force (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15036,7 +15038,7 @@ class NHSColumns(ColumnsTask):
 
         t015c005_t = OBSColumn(
             id='t015c005_t',
-            name='Total population aged 15+ - Not in the labour force (total)',
+            name='People aged 15+ - Not in the labour force (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15045,7 +15047,7 @@ class NHSColumns(ColumnsTask):
 
         t015c005_m = OBSColumn(
             id='t015c005_m',
-            name='Total population aged 15+ - Not in the labour force (male)',
+            name='People aged 15+ - Not in the labour force (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15054,7 +15056,7 @@ class NHSColumns(ColumnsTask):
 
         t015c005_f = OBSColumn(
             id='t015c005_f',
-            name='Total population aged 15+ - Not in the labour force (female)',
+            name='People aged 15+ - Not in the labour force (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
