@@ -21,15 +21,15 @@ class NHSColumns(ColumnsTask):
 
         subsections = input_['subsections']
 
-        units = input_['units']
-        unit_people = input_['units']['people']
-        unit_money = input_['units']['money']
-        unit_housing = input_['units']['housing_units']
-        unit_household = input_['units']['households']
-        unit_years = input_['units']['years']
-        unit_minutes = input_['units']['minutes']
-        unit_ratio = input_['units']['ratio']
-        unit_education = input_['units']['education_level']
+        unit = input_['units']
+        unit_people = unit['people']
+        unit_money = unit['money']
+        unit_housing = unit['housing_units']
+        unit_household = unit['households']
+        unit_years = unit['years']
+        unit_minutes = unit['minutes']
+        unit_ratio = unit['ratio']
+        unit_education = unit['education_level']
 
         ca = input_['sections']['ca']
 
@@ -23127,7 +23127,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, units['weeks'], subsections['employment']],
+            tags=[ca, unit['weeks'], subsections['employment']],
             targets={},)
 
         t029c009_m = OBSColumn(
@@ -23136,7 +23136,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, units['weeks'], subsections['employment']],
+            tags=[ca, unit['weeks'], subsections['employment']],
             targets={},)
 
         t029c009_f = OBSColumn(
@@ -23145,7 +23145,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, units['weeks'], subsections['employment']],
+            tags=[ca, unit['weeks'], subsections['employment']],
             targets={},)
 
         return OrderedDict([
