@@ -16490,35 +16490,6 @@ class NHSColumns(ColumnsTask):
             targets={ t018c014_f: DENOMINATOR },)
 
         # FIXME
-        # This is redundant with a column above and should be combined.
-        t019c001_t = OBSColumn(
-            id='t019c001_t',
-            name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by mode of transportation (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['transportation']],
-            targets={},)
-
-        t019c001_m = OBSColumn(
-            id='t019c001_m',
-            name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by mode of transportation (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['transportation']],
-            targets={},)
-
-        t019c001_f = OBSColumn(
-            id='t019c001_f',
-            name='Total employed population aged 15 years and over with a usual place of work or no fixed workplace address by mode of transportation (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['transportation']],
-            targets={},)
-
-        # FIXME
         # The below should specify in their name that the mode of transport
         # was for commuting to/from work.
         t019c002_t = OBSColumn(
@@ -16528,7 +16499,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_t: DENOMINATOR },)
+            targets={ t017c001_t: DENOMINATOR },)
 
         t019c002_m = OBSColumn(
             id='t019c002_m',
@@ -16537,7 +16508,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_m: DENOMINATOR },)
+            targets={ t017c001_m: DENOMINATOR },)
 
         t019c002_f = OBSColumn(
             id='t019c002_f',
@@ -16546,7 +16517,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_f: DENOMINATOR },)
+            targets={ t017c001_f: DENOMINATOR },)
 
         t019c003_t = OBSColumn(
             id='t019c003_t',
@@ -16555,7 +16526,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_t: DENOMINATOR },)
+            targets={ t017c001_t: DENOMINATOR },)
 
         t019c003_m = OBSColumn(
             id='t019c003_m',
@@ -16564,7 +16535,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_m: DENOMINATOR },)
+            targets={ t017c001_m: DENOMINATOR },)
 
         t019c003_f = OBSColumn(
             id='t019c003_f',
@@ -16573,7 +16544,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_f: DENOMINATOR },)
+            targets={ t017c001_f: DENOMINATOR },)
 
         t019c004_t = OBSColumn(
             id='t019c004_t',
@@ -16582,7 +16553,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_t: DENOMINATOR },)
+            targets={ t017c001_t: DENOMINATOR },)
 
         t019c004_m = OBSColumn(
             id='t019c004_m',
@@ -16591,7 +16562,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_m: DENOMINATOR },)
+            targets={ t017c001_m: DENOMINATOR },)
 
         t019c004_f = OBSColumn(
             id='t019c004_f',
@@ -16600,7 +16571,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_f: DENOMINATOR },)
+            targets={ t017c001_f: DENOMINATOR },)
 
         t019c005_t = OBSColumn(
             id='t019c005_t',
@@ -16609,7 +16580,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_t: DENOMINATOR },)
+            targets={ t017c001_t: DENOMINATOR },)
 
         t019c005_m = OBSColumn(
             id='t019c005_m',
@@ -16618,7 +16589,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_m: DENOMINATOR },)
+            targets={ t017c001_m: DENOMINATOR },)
 
         t019c005_f = OBSColumn(
             id='t019c005_f',
@@ -16627,7 +16598,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_f: DENOMINATOR },)
+            targets={ t017c001_f: DENOMINATOR },)
 
         t019c006_t = OBSColumn(
             id='t019c006_t',
@@ -16636,7 +16607,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_t: DENOMINATOR },)
+            targets={ t017c001_t: DENOMINATOR },)
 
         t019c006_m = OBSColumn(
             id='t019c006_m',
@@ -16645,7 +16616,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_m: DENOMINATOR },)
+            targets={ t017c001_m: DENOMINATOR },)
 
         t019c006_f = OBSColumn(
             id='t019c006_f',
@@ -16654,7 +16625,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_f: DENOMINATOR },)
+            targets={ t017c001_f: DENOMINATOR },)
 
         t019c007_t = OBSColumn(
             id='t019c007_t',
@@ -16663,7 +16634,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_t: DENOMINATOR },)
+            targets={ t017c001_t: DENOMINATOR },)
 
         t019c007_m = OBSColumn(
             id='t019c007_m',
@@ -16672,7 +16643,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_m: DENOMINATOR },)
+            targets={ t017c001_m: DENOMINATOR },)
 
         t019c007_f = OBSColumn(
             id='t019c007_f',
@@ -16681,7 +16652,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['transportation']],
-            targets={ t019c001_f: DENOMINATOR },)
+            targets={ t017c001_f: DENOMINATOR },)
 
         # FIXME
         # The below three are redundant with another total population column
@@ -24958,9 +24929,6 @@ class NHSColumns(ColumnsTask):
             ('t018c018_t', t018c018_t),
             ('t018c018_m', t018c018_m),
             ('t018c018_f', t018c018_f),
-            ('t019c001_t', t019c001_t),
-            ('t019c001_m', t019c001_m),
-            ('t019c001_f', t019c001_f),
             ('t019c002_t', t019c002_t),
             ('t019c002_m', t019c002_m),
             ('t019c002_f', t019c002_f),
