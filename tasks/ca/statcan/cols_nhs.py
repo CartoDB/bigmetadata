@@ -20006,142 +20006,113 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
-        # FIXME
-        # The below three seem to be redundant with a previous column.
-        t023c001_t = OBSColumn(
-            id='t023c001_t',
-            name='Total employed population aged 15 years and over by place of work status (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t023c001_m = OBSColumn(
-            id='t023c001_m',
-            name='Total employed population aged 15 years and over by place of work status (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
-        t023c001_f = OBSColumn(
-            id='t023c001_f',
-            name='Total employed population aged 15 years and over by place of work status (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={},)
-
         t023c002_t = OBSColumn(
             id='t023c002_t',
-            name='Worked at home (total)',
+            name='Employed people aged 15+ who worked at home (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_t: DENOMINATOR },)
+            targets={ t015c003_t: DENOMINATOR },)
 
         t023c002_m = OBSColumn(
             id='t023c002_m',
-            name='Worked at home (male)',
+            name='Employed people aged 15+ who worked at home (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_m: DENOMINATOR },)
+            targets={ t015c003_m: DENOMINATOR },)
 
         t023c002_f = OBSColumn(
             id='t023c002_f',
-            name='Worked at home (female)',
+            name='Employed people aged 15+ who worked at home (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_f: DENOMINATOR },)
+            targets={ t015c003_f: DENOMINATOR },)
 
         t023c003_t = OBSColumn(
             id='t023c003_t',
-            name='Worked outside Canada (total)',
+            name='Employed people aged 15+ who worked outside Canada (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_t: DENOMINATOR },)
+            targets={ t015c003_t: DENOMINATOR },)
 
         t023c003_m = OBSColumn(
             id='t023c003_m',
-            name='Worked outside Canada (male)',
+            name='Employed people aged 15+ who worked outside Canada (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_m: DENOMINATOR },)
+            targets={ t015c003_m: DENOMINATOR },)
 
         t023c003_f = OBSColumn(
             id='t023c003_f',
-            name='Worked outside Canada (female)',
+            name='Employed people aged 15+ who worked outside Canada (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_f: DENOMINATOR },)
+            targets={ t015c003_f: DENOMINATOR },)
 
         t023c004_t = OBSColumn(
             id='t023c004_t',
-            name='No fixed workplace address (total)',
+            name='Employed people aged 15+ with no fixed workplace address (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_t: DENOMINATOR },)
+            targets={ t015c003_t: DENOMINATOR },)
 
         t023c004_m = OBSColumn(
             id='t023c004_m',
-            name='No fixed workplace address (male)',
+            name='Employed people aged 15+ with no fixed workplace address (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_m: DENOMINATOR },)
+            targets={ t015c003_m: DENOMINATOR },)
 
         t023c004_f = OBSColumn(
             id='t023c004_f',
-            name='No fixed workplace address (female)',
+            name='Employed people aged 15+ with no fixed workplace address (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_f: DENOMINATOR },)
+            targets={ t015c003_f: DENOMINATOR },)
 
         t023c005_t = OBSColumn(
             id='t023c005_t',
-            name='Worked at usual place (total)',
+            name='Employed people aged 15+ who worked at a usual place (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_t: DENOMINATOR },)
+            targets={ t015c003_t: DENOMINATOR },)
 
         t023c005_m = OBSColumn(
             id='t023c005_m',
-            name='Worked at usual place (male)',
+            name='Employed people aged 15+ who worked at a usual place (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_m: DENOMINATOR },)
+            targets={ t015c003_m: DENOMINATOR },)
 
         t023c005_f = OBSColumn(
             id='t023c005_f',
-            name='Worked at usual place (female)',
+            name='Employed people aged 15+ who worked at a usual place (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t023c001_f: DENOMINATOR },)
+            targets={ t015c003_f: DENOMINATOR },)
 
         t024c001_t = OBSColumn(
             id='t024c001_t',
@@ -25278,9 +25249,6 @@ class NHSColumns(ColumnsTask):
             ('t022c020_t', t022c020_t),
             ('t022c021_t', t022c021_t),
             ('t022c022_t', t022c022_t),
-            ('t023c001_t', t023c001_t),
-            ('t023c001_m', t023c001_m),
-            ('t023c001_f', t023c001_f),
             ('t023c002_t', t023c002_t),
             ('t023c002_m', t023c002_m),
             ('t023c002_f', t023c002_f),
