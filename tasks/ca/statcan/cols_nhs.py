@@ -1785,34 +1785,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c001_f: DENOMINATOR },)
 
-        # FIXME - replace with t005c004_t
-        t005c037_t = OBSColumn(
-            id='t005c037_t',
-            name='People aged 15+ - With postsecondary certificate, diploma or degree (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={ t005c001_t: DENOMINATOR },)
-
-        t005c037_m = OBSColumn(
-            id='t005c037_m',
-            name='People aged 15+ - With postsecondary certificate, diploma or degree (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={ t005c001_m: DENOMINATOR },)
-
-        t005c037_f = OBSColumn(
-            id='t005c037_f',
-            name='People aged 15+ - With postsecondary certificate, diploma or degree (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={ t005c001_f: DENOMINATOR },)
-
         t005c038_t = OBSColumn(
             id='t005c038_t',
             name='People aged 15+ who studied in Canada (total)',
@@ -1820,7 +1792,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c037_t: DENOMINATOR },)
+            targets={ t005c004_t: DENOMINATOR },)
 
         t005c038_m = OBSColumn(
             id='t005c038_m',
@@ -1829,7 +1801,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c037_m: DENOMINATOR },)
+            targets={ t005c004_m: DENOMINATOR },)
 
         t005c038_f = OBSColumn(
             id='t005c038_f',
@@ -1838,7 +1810,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c037_f: DENOMINATOR },)
+            targets={ t005c004_f: DENOMINATOR },)
 
         t005c039_t = OBSColumn(
             id='t005c039_t',
@@ -1901,7 +1873,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c037_t: DENOMINATOR },)
+            targets={ t005c004_t: DENOMINATOR },)
 
         t005c041_m = OBSColumn(
             id='t005c041_m',
@@ -1910,7 +1882,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c037_m: DENOMINATOR },)
+            targets={ t005c004_m: DENOMINATOR },)
 
         t005c041_f = OBSColumn(
             id='t005c041_f',
@@ -1919,7 +1891,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['education']],
-            targets={ t005c037_f: DENOMINATOR },)
+            targets={ t005c004_f: DENOMINATOR },)
 
         t006c002_t = OBSColumn(
             id='t006c002_t',
@@ -23398,9 +23370,6 @@ class NHSColumns(ColumnsTask):
             ('t005c036_t', t005c036_t),
             ('t005c036_m', t005c036_m),
             ('t005c036_f', t005c036_f),
-            ('t005c037_t', t005c037_t),
-            ('t005c037_m', t005c037_m),
-            ('t005c037_f', t005c037_f),
             ('t005c038_t', t005c038_t),
             ('t005c038_m', t005c038_m),
             ('t005c038_f', t005c038_f),
