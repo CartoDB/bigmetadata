@@ -11521,14 +11521,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t012c026_t: DENOMINATOR },)
 
-        # FIXME
-        # Everything with universe isn't coming through right now, but this
-        # seems to be an issue unrelated to metadata.  Made an issue #96.
-        #
-        # Since we define a unit money, the ($) are not necessary.
         t012c030_t = OBSColumn(
             id='t012c030_t',
-            name='Median total household income ($)',
+            name='Median total household income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11537,7 +11532,7 @@ class NHSColumns(ColumnsTask):
 
         t012c031_t = OBSColumn(
             id='t012c031_t',
-            name='Average total household income ($)',
+            name='Average total household income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -11546,7 +11541,7 @@ class NHSColumns(ColumnsTask):
 
         t012c032_t = OBSColumn(
             id='t012c032_t',
-            name='Median after-tax household income ($)',
+            name='Median after-tax household income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11555,7 +11550,7 @@ class NHSColumns(ColumnsTask):
 
         t012c033_t = OBSColumn(
             id='t012c033_t',
-            name='Average after-tax household income ($)',
+            name='Average after-tax household income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -11578,7 +11573,7 @@ class NHSColumns(ColumnsTask):
         # names that the income is for one-person households
         t012c035_t = OBSColumn(
             id='t012c035_t',
-            name='Median household total income ($)',
+            name='Median household total income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11587,7 +11582,7 @@ class NHSColumns(ColumnsTask):
 
         t012c036_t = OBSColumn(
             id='t012c036_t',
-            name='Average household total income ($)',
+            name='Average household total income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -11596,7 +11591,7 @@ class NHSColumns(ColumnsTask):
 
         t012c037_t = OBSColumn(
             id='t012c037_t',
-            name='Median after-tax household income ($)',
+            name='Median after-tax household income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11605,7 +11600,7 @@ class NHSColumns(ColumnsTask):
 
         t012c038_t = OBSColumn(
             id='t012c038_t',
-            name='Average after-tax household income ($)',
+            name='Average after-tax household income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -11629,7 +11624,7 @@ class NHSColumns(ColumnsTask):
         # names that the income is for two-or-more-persons households
         t012c040_t = OBSColumn(
             id='t012c040_t',
-            name='Median household total income ($)',
+            name='Median household total income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11638,7 +11633,7 @@ class NHSColumns(ColumnsTask):
 
         t012c041_t = OBSColumn(
             id='t012c041_t',
-            name='Average household total income ($)',
+            name='Average household total income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -11647,7 +11642,7 @@ class NHSColumns(ColumnsTask):
 
         t012c042_t = OBSColumn(
             id='t012c042_t',
-            name='Median after-tax household income ($)',
+            name='Median after-tax household income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11656,7 +11651,7 @@ class NHSColumns(ColumnsTask):
 
         t012c043_t = OBSColumn(
             id='t012c043_t',
-            name='Average after-tax household income ($)',
+            name='Average after-tax household income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12112,7 +12107,7 @@ class NHSColumns(ColumnsTask):
         # Same goes for the similar columns below.
         t013c017_t = OBSColumn(
             id='t013c017_t',
-            name='Income in 2010 of population aged 15+ - Median income ($) (total)',
+            name='Income in 2010 of population aged 15+ - Median income (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12121,7 +12116,7 @@ class NHSColumns(ColumnsTask):
 
         t013c017_m = OBSColumn(
             id='t013c017_m',
-            name='Income in 2010 of population aged 15+ - Median income ($) (male)',
+            name='Income in 2010 of population aged 15+ - Median income (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12130,7 +12125,7 @@ class NHSColumns(ColumnsTask):
 
         t013c017_f = OBSColumn(
             id='t013c017_f',
-            name='Income in 2010 of population aged 15+ - Median income ($) (female)',
+            name='Income in 2010 of population aged 15+ - Median income (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12139,7 +12134,7 @@ class NHSColumns(ColumnsTask):
 
         t013c018_t = OBSColumn(
             id='t013c018_t',
-            name='Income in 2010 of population aged 15+ - Average income ($) (total)',
+            name='Income in 2010 of population aged 15+ - Average income (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12148,7 +12143,7 @@ class NHSColumns(ColumnsTask):
 
         t013c018_m = OBSColumn(
             id='t013c018_m',
-            name='Income in 2010 of population aged 15+ - Average income ($) (male)',
+            name='Income in 2010 of population aged 15+ - Average income (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12157,7 +12152,7 @@ class NHSColumns(ColumnsTask):
 
         t013c018_f = OBSColumn(
             id='t013c018_f',
-            name='Income in 2010 of population aged 15+ - Average income ($) (female)',
+            name='Income in 2010 of population aged 15+ - Average income (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12521,7 +12516,7 @@ class NHSColumns(ColumnsTask):
 
         t013c033_t = OBSColumn(
             id='t013c033_t',
-            name='Median after-tax income ($) (total)',
+            name='Median after-tax income (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12530,7 +12525,7 @@ class NHSColumns(ColumnsTask):
 
         t013c033_m = OBSColumn(
             id='t013c033_m',
-            name='Median after-tax income ($) (male)',
+            name='Median after-tax income (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12539,7 +12534,7 @@ class NHSColumns(ColumnsTask):
 
         t013c033_f = OBSColumn(
             id='t013c033_f',
-            name='Median after-tax income ($) (female)',
+            name='Median after-tax income (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -12548,7 +12543,7 @@ class NHSColumns(ColumnsTask):
 
         t013c034_t = OBSColumn(
             id='t013c034_t',
-            name='Average after-tax income ($) (total)',
+            name='Average after-tax income (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12557,7 +12552,7 @@ class NHSColumns(ColumnsTask):
 
         t013c034_m = OBSColumn(
             id='t013c034_m',
-            name='Average after-tax income ($) (male)',
+            name='Average after-tax income (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -12566,7 +12561,7 @@ class NHSColumns(ColumnsTask):
 
         t013c034_f = OBSColumn(
             id='t013c034_f',
-            name='Average after-tax income ($) (female)',
+            name='Average after-tax income (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13013,10 +13008,10 @@ class NHSColumns(ColumnsTask):
             targets={},)
 
         # FIXME
-        # As above, the ($) is redundant because of the unit.
+        # As above, the is redundant because of the unit.
         t013c053_t = OBSColumn(
             id='t013c053_t',
-            name='Median employment income in 2010 ($) (total)',
+            name='Median employment income in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13025,7 +13020,7 @@ class NHSColumns(ColumnsTask):
 
         t013c053_m = OBSColumn(
             id='t013c053_m',
-            name='Median employment income in 2010 ($) (male)',
+            name='Median employment income in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13034,7 +13029,7 @@ class NHSColumns(ColumnsTask):
 
         t013c053_f = OBSColumn(
             id='t013c053_f',
-            name='Median employment income in 2010 ($) (female)',
+            name='Median employment income in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13043,7 +13038,7 @@ class NHSColumns(ColumnsTask):
 
         t013c054_t = OBSColumn(
             id='t013c054_t',
-            name='Average employment income in 2010 ($) (total)',
+            name='Average employment income in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13052,7 +13047,7 @@ class NHSColumns(ColumnsTask):
 
         t013c054_m = OBSColumn(
             id='t013c054_m',
-            name='Average employment income in 2010 ($) (male)',
+            name='Average employment income in 2010 (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13061,7 +13056,7 @@ class NHSColumns(ColumnsTask):
 
         t013c054_f = OBSColumn(
             id='t013c054_f',
-            name='Average employment income in 2010 ($) (female)',
+            name='Average employment income in 2010 (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13087,7 +13082,7 @@ class NHSColumns(ColumnsTask):
         # families
         t013c056_t = OBSColumn(
             id='t013c056_t',
-            name='Median family income ($)',
+            name='Median family income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13096,7 +13091,7 @@ class NHSColumns(ColumnsTask):
 
         t013c057_t = OBSColumn(
             id='t013c057_t',
-            name='Average family income ($)',
+            name='Average family income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13105,7 +13100,7 @@ class NHSColumns(ColumnsTask):
 
         t013c058_t = OBSColumn(
             id='t013c058_t',
-            name='Median after-tax family income ($)',
+            name='Median after-tax family income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13114,7 +13109,7 @@ class NHSColumns(ColumnsTask):
 
         t013c059_t = OBSColumn(
             id='t013c059_t',
-            name='Average after-tax family income ($)',
+            name='Average after-tax family income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13144,7 +13139,7 @@ class NHSColumns(ColumnsTask):
         # economic families
         t013c062_t = OBSColumn(
             id='t013c062_t',
-            name='Median family income ($)',
+            name='Median family income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13153,7 +13148,7 @@ class NHSColumns(ColumnsTask):
 
         t013c063_t = OBSColumn(
             id='t013c063_t',
-            name='Average family income ($)',
+            name='Average family income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13162,7 +13157,7 @@ class NHSColumns(ColumnsTask):
 
         t013c064_t = OBSColumn(
             id='t013c064_t',
-            name='Median after-tax family income ($)',
+            name='Median after-tax family income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13171,7 +13166,7 @@ class NHSColumns(ColumnsTask):
 
         t013c065_t = OBSColumn(
             id='t013c065_t',
-            name='Average after-tax family income ($)',
+            name='Average after-tax family income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13201,7 +13196,7 @@ class NHSColumns(ColumnsTask):
         # couple-with-children economic families
         t013c068_t = OBSColumn(
             id='t013c068_t',
-            name='Median family income ($)',
+            name='Median family income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13210,7 +13205,7 @@ class NHSColumns(ColumnsTask):
 
         t013c069_t = OBSColumn(
             id='t013c069_t',
-            name='Average family income ($)',
+            name='Average family income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13219,7 +13214,7 @@ class NHSColumns(ColumnsTask):
 
         t013c070_t = OBSColumn(
             id='t013c070_t',
-            name='Median after-tax family income ($)',
+            name='Median after-tax family income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13228,7 +13223,7 @@ class NHSColumns(ColumnsTask):
 
         t013c071_t = OBSColumn(
             id='t013c071_t',
-            name='Average after-tax family income ($)',
+            name='Average after-tax family income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13258,7 +13253,7 @@ class NHSColumns(ColumnsTask):
         # lone-parent economic families
         t013c074_t = OBSColumn(
             id='t013c074_t',
-            name='Median family income ($)',
+            name='Median family income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13267,7 +13262,7 @@ class NHSColumns(ColumnsTask):
 
         t013c075_t = OBSColumn(
             id='t013c075_t',
-            name='Average family income ($)',
+            name='Average family income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13276,7 +13271,7 @@ class NHSColumns(ColumnsTask):
 
         t013c076_t = OBSColumn(
             id='t013c076_t',
-            name='Median after-tax family income ($)',
+            name='Median after-tax family income',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13285,7 +13280,7 @@ class NHSColumns(ColumnsTask):
 
         t013c077_t = OBSColumn(
             id='t013c077_t',
-            name='Average after-tax family income ($)',
+            name='Average after-tax family income',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13333,7 +13328,7 @@ class NHSColumns(ColumnsTask):
         # families
         t013c080_t = OBSColumn(
             id='t013c080_t',
-            name='Median total income ($) (total)',
+            name='Median total income (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13342,7 +13337,7 @@ class NHSColumns(ColumnsTask):
 
         t013c080_m = OBSColumn(
             id='t013c080_m',
-            name='Median total income ($) (male)',
+            name='Median total income (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13351,7 +13346,7 @@ class NHSColumns(ColumnsTask):
 
         t013c080_f = OBSColumn(
             id='t013c080_f',
-            name='Median total income ($) (female)',
+            name='Median total income (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13360,7 +13355,7 @@ class NHSColumns(ColumnsTask):
 
         t013c081_t = OBSColumn(
             id='t013c081_t',
-            name='Average total income ($) (total)',
+            name='Average total income (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13369,7 +13364,7 @@ class NHSColumns(ColumnsTask):
 
         t013c081_m = OBSColumn(
             id='t013c081_m',
-            name='Average total income ($) (male)',
+            name='Average total income (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13378,7 +13373,7 @@ class NHSColumns(ColumnsTask):
 
         t013c081_f = OBSColumn(
             id='t013c081_f',
-            name='Average total income ($) (female)',
+            name='Average total income (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13387,7 +13382,7 @@ class NHSColumns(ColumnsTask):
 
         t013c082_t = OBSColumn(
             id='t013c082_t',
-            name='Median after-tax income ($) (total)',
+            name='Median after-tax income (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13396,7 +13391,7 @@ class NHSColumns(ColumnsTask):
 
         t013c082_m = OBSColumn(
             id='t013c082_m',
-            name='Median after-tax income ($) (male)',
+            name='Median after-tax income (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13405,7 +13400,7 @@ class NHSColumns(ColumnsTask):
 
         t013c082_f = OBSColumn(
             id='t013c082_f',
-            name='Median after-tax income ($) (female)',
+            name='Median after-tax income (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13414,7 +13409,7 @@ class NHSColumns(ColumnsTask):
 
         t013c083_t = OBSColumn(
             id='t013c083_t',
-            name='Average after-tax income ($) (total)',
+            name='Average after-tax income (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13423,7 +13418,7 @@ class NHSColumns(ColumnsTask):
 
         t013c083_m = OBSColumn(
             id='t013c083_m',
-            name='Average after-tax income ($) (male)',
+            name='Average after-tax income (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13432,7 +13427,7 @@ class NHSColumns(ColumnsTask):
 
         t013c083_f = OBSColumn(
             id='t013c083_f',
-            name='Average after-tax income ($) (female)',
+            name='Average after-tax income (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -22163,7 +22158,7 @@ class NHSColumns(ColumnsTask):
 
         t026c008_t = OBSColumn(
             id='t026c008_t',
-            name='Median monthly shelter costs for owned dwellings ($)',
+            name='Median monthly shelter costs for owned dwellings',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -22172,7 +22167,7 @@ class NHSColumns(ColumnsTask):
 
         t026c009_t = OBSColumn(
             id='t026c009_t',
-            name='Average monthly shelter costs for owned dwellings ($)',
+            name='Average monthly shelter costs for owned dwellings',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -22181,7 +22176,7 @@ class NHSColumns(ColumnsTask):
 
         t026c010_t = OBSColumn(
             id='t026c010_t',
-            name='Median value of dwellings ($)',
+            name='Median value of dwellings',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -22190,7 +22185,7 @@ class NHSColumns(ColumnsTask):
 
         t026c011_t = OBSColumn(
             id='t026c011_t',
-            name='Average value of dwellings ($)',
+            name='Average value of dwellings',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -22224,7 +22219,7 @@ class NHSColumns(ColumnsTask):
 
         t026c015_t = OBSColumn(
             id='t026c015_t',
-            name='Median monthly shelter costs for rented dwellings ($)',
+            name='Median monthly shelter costs for rented dwellings',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -22233,7 +22228,7 @@ class NHSColumns(ColumnsTask):
 
         t026c016_t = OBSColumn(
             id='t026c016_t',
-            name='Average monthly shelter costs for rented dwellings ($)',
+            name='Average monthly shelter costs for rented dwellings',
             type='Numeric',
             weight=3,
             aggregate='average',
