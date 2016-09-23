@@ -11301,15 +11301,6 @@ class NHSColumns(ColumnsTask):
         # it's the number of households reporting income in 2010, or this
         # should simply be eliminated and the denominator for all the income
         # bands should be set to `ca.statcan.cols_nhs.t009c001_t`.
-        t012c001_t = OBSColumn(
-            id='t012c001_t',
-            name='Household income in 2010 of private households',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
         t012c002_t = OBSColumn(
             id='t012c002_t',
             name='Household total income - Under $5,000',
@@ -11317,7 +11308,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c003_t = OBSColumn(
             id='t012c003_t',
@@ -11326,7 +11317,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c004_t = OBSColumn(
             id='t012c004_t',
@@ -11335,7 +11326,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c005_t = OBSColumn(
             id='t012c005_t',
@@ -11344,7 +11335,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c006_t = OBSColumn(
             id='t012c006_t',
@@ -11353,7 +11344,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c007_t = OBSColumn(
             id='t012c007_t',
@@ -11362,7 +11353,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c008_t = OBSColumn(
             id='t012c008_t',
@@ -11371,7 +11362,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c009_t = OBSColumn(
             id='t012c009_t',
@@ -11380,7 +11371,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c010_t = OBSColumn(
             id='t012c010_t',
@@ -11389,7 +11380,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c011_t = OBSColumn(
             id='t012c011_t',
@@ -11398,7 +11389,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c012_t = OBSColumn(
             id='t012c012_t',
@@ -11407,7 +11398,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c013_t = OBSColumn(
             id='t012c013_t',
@@ -11416,7 +11407,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c014_t = OBSColumn(
             id='t012c014_t',
@@ -11425,7 +11416,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c016_t = OBSColumn(
             id='t012c016_t',
@@ -11434,7 +11425,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c017_t = OBSColumn(
             id='t012c017_t',
@@ -11443,7 +11434,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c018_t = OBSColumn(
             id='t012c018_t',
@@ -11452,7 +11443,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c019_t = OBSColumn(
             id='t012c019_t',
@@ -11461,7 +11452,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c020_t = OBSColumn(
             id='t012c020_t',
@@ -11470,7 +11461,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c021_t = OBSColumn(
             id='t012c021_t',
@@ -11479,7 +11470,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c022_t = OBSColumn(
             id='t012c022_t',
@@ -11488,7 +11479,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c023_t = OBSColumn(
             id='t012c023_t',
@@ -11497,7 +11488,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c024_t = OBSColumn(
             id='t012c024_t',
@@ -11506,7 +11497,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c025_t = OBSColumn(
             id='t012c025_t',
@@ -11515,7 +11506,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c026_t = OBSColumn(
             id='t012c026_t',
@@ -11524,7 +11515,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         t012c027_t = OBSColumn(
             id='t012c027_t',
@@ -11556,7 +11547,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c001_t: UNIVERSE },)
+            targets={ t009c001_t: UNIVERSE },)
 
         t012c031_t = OBSColumn(
             id='t012c031_t',
@@ -11565,7 +11556,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c001_t: UNIVERSE },)
+            targets={ t009c001_t: UNIVERSE },)
 
         t012c032_t = OBSColumn(
             id='t012c032_t',
@@ -11574,7 +11565,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c001_t: UNIVERSE },)
+            targets={ t009c001_t: UNIVERSE },)
 
         t012c033_t = OBSColumn(
             id='t012c033_t',
@@ -11583,7 +11574,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t012c001_t: UNIVERSE },)
+            targets={ t009c001_t: UNIVERSE },)
 
         t012c034_t = OBSColumn(
             id='t012c034_t',
@@ -11592,7 +11583,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         # FIXME
         # t012c034_t was redundant with ca.statcan.cols_census.t007c029_t,
@@ -11643,7 +11634,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t012c001_t: DENOMINATOR },)
+            targets={ t009c001_t: DENOMINATOR },)
 
         # FIXME
         # t012c039_t was redundant with ca.statcan.cols_census.t007c030_t,
@@ -24193,7 +24184,6 @@ class NHSColumns(ColumnsTask):
             ('t011c065_t', t011c065_t),
             ('t011c065_m', t011c065_m),
             ('t011c065_f', t011c065_f),
-            ('t012c001_t', t012c001_t),
             ('t012c002_t', t012c002_t),
             ('t012c003_t', t012c003_t),
             ('t012c004_t', t012c004_t),
