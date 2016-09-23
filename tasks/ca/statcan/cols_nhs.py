@@ -21,6 +21,7 @@ class NHSColumns(ColumnsTask):
 
         subsections = input_['subsections']
 
+        units = input_['units']
         unit_people = input_['units']['people']
         unit_money = input_['units']['money']
         unit_housing = input_['units']['housing_units']
@@ -23120,15 +23121,13 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t029c003_f: DENOMINATOR },)
 
-        # FIXME
-        # Units below should be "weeks"
         t029c009_t = OBSColumn(
             id='t029c009_t',
             name='Average weeks worked in 2010 (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, unit_people, subsections['employment']],
+            tags=[ca, units['weeks'], subsections['employment']],
             targets={},)
 
         t029c009_m = OBSColumn(
@@ -23137,7 +23136,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, unit_people, subsections['employment']],
+            tags=[ca, units['weeks'], subsections['employment']],
             targets={},)
 
         t029c009_f = OBSColumn(
@@ -23146,7 +23145,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, unit_people, subsections['employment']],
+            tags=[ca, units['weeks'], subsections['employment']],
             targets={},)
 
         return OrderedDict([
