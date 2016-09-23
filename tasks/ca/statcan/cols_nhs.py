@@ -11656,48 +11656,15 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c039_t: UNIVERSE },)
 
-        # FIXME
-        # Are the three below the populations for which income was reported?
-        # If so, that should either be more clearly specified, or they should
-        # be removed, and their subcolumns instead pointed to a more generic
-        # total population aged 15 years and over (like
-        # `ca.statcan.cols_census.t009c001_t`)
-        t013c001_t = OBSColumn(
-            id='t013c001_t',
-            name='Total income in 2010 of population aged 15 years and over (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t013c001_m = OBSColumn(
-            id='t013c001_m',
-            name='Total income in 2010 of population aged 15 years and over (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
-        t013c001_f = OBSColumn(
-            id='t013c001_f',
-            name='Total income in 2010 of population aged 15 years and over (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={},)
-
         # Clearer titles for these would be "Population without income", etc.
         t013c002_t = OBSColumn(
             id='t013c002_t',
-            name='Income in 2010 of population aged 15+ - Without income (total)',
+            name='People aged 15+ - Without income (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t013c002_m = OBSColumn(
             id='t013c002_m',
@@ -11706,7 +11673,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t013c002_f = OBSColumn(
             id='t013c002_f',
@@ -11715,7 +11682,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t013c003_t = OBSColumn(
             id='t013c003_t',
@@ -11724,7 +11691,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t013c003_m = OBSColumn(
             id='t013c003_m',
@@ -11733,7 +11700,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t013c003_f = OBSColumn(
             id='t013c003_f',
@@ -11742,7 +11709,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         # FIXME
         # The below should be more clearly indicated as the population with an
@@ -12110,7 +12077,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_t: UNIVERSE },)
+            targets={ t005c001_t: UNIVERSE },)
 
         t013c017_m = OBSColumn(
             id='t013c017_m',
@@ -12119,7 +12086,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_m: UNIVERSE },)
+            targets={ t005c001_m: UNIVERSE },)
 
         t013c017_f = OBSColumn(
             id='t013c017_f',
@@ -12128,7 +12095,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_f: UNIVERSE },)
+            targets={ t005c001_f: UNIVERSE },)
 
         t013c018_t = OBSColumn(
             id='t013c018_t',
@@ -12137,7 +12104,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_t: UNIVERSE },)
+            targets={ t005c001_t: UNIVERSE },)
 
         t013c018_m = OBSColumn(
             id='t013c018_m',
@@ -12146,7 +12113,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_m: UNIVERSE },)
+            targets={ t005c001_m: UNIVERSE },)
 
         t013c018_f = OBSColumn(
             id='t013c018_f',
@@ -12155,7 +12122,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_f: UNIVERSE },)
+            targets={ t005c001_f: UNIVERSE },)
 
         # FIXME
         # The below need clearer names like "Population without after-tax income", ...
@@ -12166,7 +12133,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t013c020_m = OBSColumn(
             id='t013c020_m',
@@ -12175,7 +12142,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t013c020_f = OBSColumn(
             id='t013c020_f',
@@ -12184,7 +12151,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         t013c021_t = OBSColumn(
             id='t013c021_t',
@@ -12193,7 +12160,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_t: DENOMINATOR },)
+            targets={ t005c001_t: DENOMINATOR },)
 
         t013c021_m = OBSColumn(
             id='t013c021_m',
@@ -12202,7 +12169,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_m: DENOMINATOR },)
+            targets={ t005c001_m: DENOMINATOR },)
 
         t013c021_f = OBSColumn(
             id='t013c021_f',
@@ -12211,7 +12178,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
-            targets={ t013c001_f: DENOMINATOR },)
+            targets={ t005c001_f: DENOMINATOR },)
 
         # FIXME
         # Same edits needed as above for Total income
@@ -12519,7 +12486,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_t: UNIVERSE },)
+            targets={ t005c001_t: UNIVERSE },)
 
         t013c033_m = OBSColumn(
             id='t013c033_m',
@@ -12528,7 +12495,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_m: UNIVERSE },)
+            targets={ t005c001_m: UNIVERSE },)
 
         t013c033_f = OBSColumn(
             id='t013c033_f',
@@ -12537,7 +12504,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_f: UNIVERSE },)
+            targets={ t005c001_f: UNIVERSE },)
 
         t013c034_t = OBSColumn(
             id='t013c034_t',
@@ -12546,7 +12513,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_t: UNIVERSE },)
+            targets={ t005c001_t: UNIVERSE },)
 
         t013c034_m = OBSColumn(
             id='t013c034_m',
@@ -12555,7 +12522,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_m: UNIVERSE },)
+            targets={ t005c001_m: UNIVERSE },)
 
         t013c034_f = OBSColumn(
             id='t013c034_f',
@@ -12564,7 +12531,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_money, subsections['income']],
-            targets={ t013c001_f: UNIVERSE },)
+            targets={ t005c001_f: UNIVERSE },)
 
         #FIXME
         # The three below again appear to be repetitive with a count of
@@ -24202,9 +24169,6 @@ class NHSColumns(ColumnsTask):
             ('t012c041_t', t012c041_t),
             ('t012c042_t', t012c042_t),
             ('t012c043_t', t012c043_t),
-            ('t013c001_t', t013c001_t),
-            ('t013c001_m', t013c001_m),
-            ('t013c001_f', t013c001_f),
             ('t013c002_t', t013c002_t),
             ('t013c002_m', t013c002_m),
             ('t013c002_f', t013c002_f),
