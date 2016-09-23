@@ -12958,8 +12958,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
-        # FIXME
-        # As above, the is redundant because of the unit.
         t013c053_t = OBSColumn(
             id='t013c053_t',
             name='Median employment income of people aged 15+ who worked full year, full time in 2010 (total)',
@@ -13014,18 +13012,14 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c052_f: UNIVERSE },)
 
-        # FIXME
-        # Is this a count of "Economic families"?  What does this mean --
-        # families who reported economic data?
-        #
-        # Should the unit be families instead of people?
         t013c055_t = OBSColumn(
             id='t013c055_t',
-            name='Family income in 2010 of economic families',
+            name='Families with economic income',
+            description='The total income of an economic family is the sum of the total incomes of all members of that family',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
+            tags=[ca, unit['families'], subsections['income']],
             targets={},)
 
         # FIXME
