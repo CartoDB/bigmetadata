@@ -11528,7 +11528,7 @@ class NHSColumns(ColumnsTask):
         # Since we define a unit money, the ($) are not necessary.
         t012c030_t = OBSColumn(
             id='t012c030_t',
-            name='Median household total income ($)',
+            name='Median total household income ($)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -11537,7 +11537,7 @@ class NHSColumns(ColumnsTask):
 
         t012c031_t = OBSColumn(
             id='t012c031_t',
-            name='Average household total income ($)',
+            name='Average total household income ($)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -11562,6 +11562,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t009c001_t: UNIVERSE },)
 
+        # FIXME DUP
+        # t012c034_t was redundant with ca.statcan.cols_census.t007c029_t
         t012c034_t = OBSColumn(
             id='t012c034_t',
             name='One-person private households',
@@ -11571,9 +11573,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t009c001_t: DENOMINATOR },)
 
-        # FIXME
-        # t012c034_t was redundant with ca.statcan.cols_census.t007c029_t,
-        # removed.
         #
         # Its subcolumns should be renamed to clearly specify in their
         # names that the income is for one-person households
