@@ -16489,12 +16489,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c014_f: DENOMINATOR },)
 
-        # FIXME
-        # The below should specify in their name that the mode of transport
-        # was for commuting to/from work.
         t019c002_t = OBSColumn(
             id='t019c002_t',
-            name='Car, truck or van - as a driver (total)',
+            name='People aged 15+ who commute to work by car, truck or van - as a driver (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16503,7 +16500,7 @@ class NHSColumns(ColumnsTask):
 
         t019c002_m = OBSColumn(
             id='t019c002_m',
-            name='Car, truck or van - as a driver (male)',
+            name='People aged 15+ who commute to work by car, truck or van - as a driver (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16512,7 +16509,7 @@ class NHSColumns(ColumnsTask):
 
         t019c002_f = OBSColumn(
             id='t019c002_f',
-            name='Car, truck or van - as a driver (female)',
+            name='People aged 15+ who commute to work by car, truck or van - as a driver (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16521,7 +16518,7 @@ class NHSColumns(ColumnsTask):
 
         t019c003_t = OBSColumn(
             id='t019c003_t',
-            name='Car, truck or van - as a passenger (total)',
+            name='People aged 15+ who commute to work by car, truck or van - as a passenger (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16530,7 +16527,7 @@ class NHSColumns(ColumnsTask):
 
         t019c003_m = OBSColumn(
             id='t019c003_m',
-            name='Car, truck or van - as a passenger (male)',
+            name='People aged 15+ who commute to work by car, truck or van - as a passenger (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16539,7 +16536,7 @@ class NHSColumns(ColumnsTask):
 
         t019c003_f = OBSColumn(
             id='t019c003_f',
-            name='Car, truck or van - as a passenger (female)',
+            name='People aged 15+ who commute to work by car, truck or van - as a passenger (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16548,7 +16545,7 @@ class NHSColumns(ColumnsTask):
 
         t019c004_t = OBSColumn(
             id='t019c004_t',
-            name='Public transit (total)',
+            name='People aged 15+ who commute to work by public transit (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16557,7 +16554,7 @@ class NHSColumns(ColumnsTask):
 
         t019c004_m = OBSColumn(
             id='t019c004_m',
-            name='Public transit (male)',
+            name='People aged 15+ who commute to work by public transit (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16566,7 +16563,7 @@ class NHSColumns(ColumnsTask):
 
         t019c004_f = OBSColumn(
             id='t019c004_f',
-            name='Public transit (female)',
+            name='People aged 15+ who commute to work by public transit (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16575,7 +16572,7 @@ class NHSColumns(ColumnsTask):
 
         t019c005_t = OBSColumn(
             id='t019c005_t',
-            name='Walked (total)',
+            name='People aged 15+ who commute to work by foot (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16584,7 +16581,7 @@ class NHSColumns(ColumnsTask):
 
         t019c005_m = OBSColumn(
             id='t019c005_m',
-            name='Walked (male)',
+            name='People aged 15+ who commute to work by foot (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16593,7 +16590,7 @@ class NHSColumns(ColumnsTask):
 
         t019c005_f = OBSColumn(
             id='t019c005_f',
-            name='Walked (female)',
+            name='People aged 15+ who commute to work by foot (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16602,7 +16599,7 @@ class NHSColumns(ColumnsTask):
 
         t019c006_t = OBSColumn(
             id='t019c006_t',
-            name='Bicycle (total)',
+            name='People aged 15+ who commute to work by bicycle (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16611,7 +16608,7 @@ class NHSColumns(ColumnsTask):
 
         t019c006_m = OBSColumn(
             id='t019c006_m',
-            name='Bicycle (male)',
+            name='People aged 15+ who commute to work by bicycle (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16620,7 +16617,7 @@ class NHSColumns(ColumnsTask):
 
         t019c006_f = OBSColumn(
             id='t019c006_f',
-            name='Bicycle (female)',
+            name='People aged 15+ who commute to work by bicycle (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16629,7 +16626,7 @@ class NHSColumns(ColumnsTask):
 
         t019c007_t = OBSColumn(
             id='t019c007_t',
-            name='Other methods (total)',
+            name='People aged 15+ who commute to work by another method (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16638,7 +16635,7 @@ class NHSColumns(ColumnsTask):
 
         t019c007_m = OBSColumn(
             id='t019c007_m',
-            name='Other methods (male)',
+            name='People aged 15+ who commute to work by another method (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16647,7 +16644,7 @@ class NHSColumns(ColumnsTask):
 
         t019c007_f = OBSColumn(
             id='t019c007_f',
-            name='Other methods (female)',
+            name='People aged 15+ who commute to work by another method (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22397,12 +22394,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['housing']],
             targets={ t026c012_t: UNIVERSE },)
 
-        # FIXME
-        # The below should be clear in their name that the times refer to
-        # the employed population leaving for work at that time.
         t027c002_t = OBSColumn(
             id='t027c002_t',
-            name='Between 5 and 6:59 a.m. (total)',
+            name='People aged 15+ who commute to work between 5 and 6:59 a.m. (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22411,7 +22405,7 @@ class NHSColumns(ColumnsTask):
 
         t027c002_m = OBSColumn(
             id='t027c002_m',
-            name='Between 5 and 6:59 a.m. (male)',
+            name='People aged 15+ who commute to work between 5 and 6:59 a.m. (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22420,7 +22414,7 @@ class NHSColumns(ColumnsTask):
 
         t027c002_f = OBSColumn(
             id='t027c002_f',
-            name='Between 5 and 6:59 a.m. (female)',
+            name='People aged 15+ who commute to work between 5 and 6:59 a.m. (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22429,7 +22423,7 @@ class NHSColumns(ColumnsTask):
 
         t027c003_t = OBSColumn(
             id='t027c003_t',
-            name='Between 7 and 9:00 a.m. (total)',
+            name='People aged 15+ who commute to work between 7 and 9:00 a.m. (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22438,7 +22432,7 @@ class NHSColumns(ColumnsTask):
 
         t027c003_m = OBSColumn(
             id='t027c003_m',
-            name='Between 7 and 9:00 a.m. (male)',
+            name='People aged 15+ who commute to work between 7 and 9:00 a.m. (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22447,7 +22441,7 @@ class NHSColumns(ColumnsTask):
 
         t027c003_f = OBSColumn(
             id='t027c003_f',
-            name='Between 7 and 9:00 a.m. (female)',
+            name='People aged 15+ who commute to work between 7 and 9:00 a.m. (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22456,7 +22450,7 @@ class NHSColumns(ColumnsTask):
 
         t027c004_t = OBSColumn(
             id='t027c004_t',
-            name='Anytime after 9:00 a.m. (total)',
+            name='People aged 15+ who commute to work anytime after 9:00 a.m. (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22465,7 +22459,7 @@ class NHSColumns(ColumnsTask):
 
         t027c004_m = OBSColumn(
             id='t027c004_m',
-            name='Anytime after 9:00 a.m. (male)',
+            name='People aged 15+ who commute to work anytime after 9:00 a.m. (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22474,7 +22468,7 @@ class NHSColumns(ColumnsTask):
 
         t027c004_f = OBSColumn(
             id='t027c004_f',
-            name='Anytime after 9:00 a.m. (female)',
+            name='People aged 15+ who commute to work anytime after 9:00 a.m. (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
