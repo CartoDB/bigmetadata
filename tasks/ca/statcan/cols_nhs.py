@@ -9160,7 +9160,7 @@ class NHSColumns(ColumnsTask):
 
         t009c001_t = OBSColumn(
             id='t009c001_t',
-            name='Total number of private `households <https://www12.statcan.gc.ca/census-recensement/2011/ref/dict/households-menage007-eng.cfm>`_',
+            name='Number of private `households <https://www12.statcan.gc.ca/census-recensement/2011/ref/dict/households-menage007-eng.cfm>`_',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9169,7 +9169,7 @@ class NHSColumns(ColumnsTask):
 
         t009c002_t = OBSColumn(
             id='t009c002_t',
-            name='Total number of private households - Owner',
+            name='Number of owned private households',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9178,18 +9178,16 @@ class NHSColumns(ColumnsTask):
 
         t009c003_t = OBSColumn(
             id='t009c003_t',
-            name='Total number of private households - Renter',
+            name='Number of rented private households',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
-        # FIXME
-        # This should have a definition of Band Housing in the description.
         t009c004_t = OBSColumn(
             id='t009c004_t',
-            name='Total number of private households - Band housing',
+            name='Number of band housing (on an Indian reserve or settlement)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9198,7 +9196,7 @@ class NHSColumns(ColumnsTask):
 
         t009c006_t = OBSColumn(
             id='t009c006_t',
-            name='Total number of private households - Part of a condominium development',
+            name='Number of private households part of a condominium development',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9207,7 +9205,7 @@ class NHSColumns(ColumnsTask):
 
         t009c007_t = OBSColumn(
             id='t009c007_t',
-            name='Total number of private households - Not part of a condominium development',
+            name='Number of private households not part of a condominium development',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9216,7 +9214,7 @@ class NHSColumns(ColumnsTask):
 
         t009c009_t = OBSColumn(
             id='t009c009_t',
-            name='Total number of private households - 1 household maintainer',
+            name='Number of private households with 1 household maintainer',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9225,7 +9223,7 @@ class NHSColumns(ColumnsTask):
 
         t009c010_t = OBSColumn(
             id='t009c010_t',
-            name='Total number of private households - 2 household maintainers',
+            name='Number of private households with 2 household maintainers',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9234,19 +9232,16 @@ class NHSColumns(ColumnsTask):
 
         t009c011_t = OBSColumn(
             id='t009c011_t',
-            name='Total number of private households - 3 or more household maintainers',
+            name='Number of private households with 3 or more household maintainers',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
-        # FIXME
-        # The names for these should be a little clearer -- is it that the
-        # head of household is in the age band?
         t009c013_t = OBSColumn(
             id='t009c013_t',
-            name='Total number of private households - Under 25 years',
+            name='Number of private households where household maintainer is <25 years old',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9255,7 +9250,7 @@ class NHSColumns(ColumnsTask):
 
         t009c014_t = OBSColumn(
             id='t009c014_t',
-            name='Total number of private households - 25 to 34 years',
+            name='Number of private households where household maintainer is 25-34 years old',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9264,7 +9259,7 @@ class NHSColumns(ColumnsTask):
 
         t009c015_t = OBSColumn(
             id='t009c015_t',
-            name='Total number of private households - 35 to 44 years',
+            name='Number of private households where household maintainer is 35-44 years old',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9273,7 +9268,7 @@ class NHSColumns(ColumnsTask):
 
         t009c016_t = OBSColumn(
             id='t009c016_t',
-            name='Total number of private households - 45 to 54 years',
+            name='Number of private households where household maintainer is 45-54 years old',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9282,7 +9277,7 @@ class NHSColumns(ColumnsTask):
 
         t009c017_t = OBSColumn(
             id='t009c017_t',
-            name='Total number of private households - 55 to 64 years',
+            name='Number of private households where household maintainer is 55-64 years old',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9291,7 +9286,7 @@ class NHSColumns(ColumnsTask):
 
         t009c018_t = OBSColumn(
             id='t009c018_t',
-            name='Total number of private households - 65 to 74 years',
+            name='Number of private households where household maintainer is 65-74 years old',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9300,7 +9295,7 @@ class NHSColumns(ColumnsTask):
 
         t009c019_t = OBSColumn(
             id='t009c019_t',
-            name='Total number of private households - 75 years and over',
+            name='Number of private households where household maintainer is 75+ years old',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9309,7 +9304,7 @@ class NHSColumns(ColumnsTask):
 
         t009c021_t = OBSColumn(
             id='t009c021_t',
-            name='Total number of private households - One person or fewer per room',
+            name='Number of private households with one person or fewer per room',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9318,19 +9313,17 @@ class NHSColumns(ColumnsTask):
 
         t009c022_t = OBSColumn(
             id='t009c022_t',
-            name='Total number of private households - More than one person per room',
+            name='Number of private households with more than one person per room',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_household, subsections['housing']],
             targets={ t009c001_t: DENOMINATOR },)
 
-        # FIXME
-        # What does suitable/not suitable mean?  Needs a clearer name and
-        # possibly a description.
         t009c024_t = OBSColumn(
             id='t009c024_t',
-            name='Total number of private households - Suitable',
+            name='Number of suitable private households',
+            description='Housing suitability refers to whether a private household is living in suitable accommodations according to the National Occupancy Standard (NOS); that is, whether the dwelling has enough bedrooms for the size and composition of the household. A household is deemed to be living in suitable accommodations if its dwelling has enough bedrooms, as calculated using the National Occupancy Standard. Housing suitability assesses the required number of bedrooms for a household based on the age, sex, and relationships among household members. An alternative variable, the number of persons per room, considers all rooms in a private dwelling and the number of household members. Housing suitability and the National Occupancy Standard (NOS) on which it is based were developed by Canada Mortgage and Housing Corporation (CMHC) through consultations with provincial housing agencies.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9339,7 +9332,8 @@ class NHSColumns(ColumnsTask):
 
         t009c025_t = OBSColumn(
             id='t009c025_t',
-            name='Total number of private households - Not suitable',
+            name='Number of unsuitable private households',
+            description='Housing suitability refers to whether a private household is living in suitable accommodations according to the National Occupancy Standard (NOS); that is, whether the dwelling has enough bedrooms for the size and composition of the household. A household is deemed to be living in suitable accommodations if its dwelling has enough bedrooms, as calculated using the National Occupancy Standard. Housing suitability assesses the required number of bedrooms for a household based on the age, sex, and relationships among household members. An alternative variable, the number of persons per room, considers all rooms in a private dwelling and the number of household members. Housing suitability and the National Occupancy Standard (NOS) on which it is based were developed by Canada Mortgage and Housing Corporation (CMHC) through consultations with provincial housing agencies.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9348,7 +9342,7 @@ class NHSColumns(ColumnsTask):
 
         t010c002_t = OBSColumn(
             id='t010c002_t',
-            name='Total population - Non-immigrants (total)',
+            name='People who are non-immigrants (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9357,7 +9351,7 @@ class NHSColumns(ColumnsTask):
 
         t010c002_m = OBSColumn(
             id='t010c002_m',
-            name='Total population - Non-immigrants (male)',
+            name='People who are non-immigrants (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9366,7 +9360,7 @@ class NHSColumns(ColumnsTask):
 
         t010c002_f = OBSColumn(
             id='t010c002_f',
-            name='Total population - Non-immigrants (female)',
+            name='People who are non-immigrants (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9375,7 +9369,7 @@ class NHSColumns(ColumnsTask):
 
         t010c003_t = OBSColumn(
             id='t010c003_t',
-            name='Total population - Immigrants (total)',
+            name='People who are immigrants (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9384,7 +9378,7 @@ class NHSColumns(ColumnsTask):
 
         t010c003_m = OBSColumn(
             id='t010c003_m',
-            name='Total population - Immigrants (male)',
+            name='People who are immigrants (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9393,7 +9387,7 @@ class NHSColumns(ColumnsTask):
 
         t010c003_f = OBSColumn(
             id='t010c003_f',
-            name='Total population - Immigrants (female)',
+            name='People who are immigrants (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9405,7 +9399,7 @@ class NHSColumns(ColumnsTask):
         # "Total population - immigrated before 1971 (total)", etc.
         t010c004_t = OBSColumn(
             id='t010c004_t',
-            name='Before 1971 (total)',
+            name='People who immigrated before 1971 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9414,7 +9408,7 @@ class NHSColumns(ColumnsTask):
 
         t010c004_m = OBSColumn(
             id='t010c004_m',
-            name='Before 1971 (male)',
+            name='People who immigrated before 1971 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9423,7 +9417,7 @@ class NHSColumns(ColumnsTask):
 
         t010c004_f = OBSColumn(
             id='t010c004_f',
-            name='Before 1971 (female)',
+            name='People who immigrated before 1971 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9432,7 +9426,7 @@ class NHSColumns(ColumnsTask):
 
         t010c005_t = OBSColumn(
             id='t010c005_t',
-            name='1971 to 1980 (total)',
+            name='People who immigrated between 1971-1980 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9441,7 +9435,7 @@ class NHSColumns(ColumnsTask):
 
         t010c005_m = OBSColumn(
             id='t010c005_m',
-            name='1971 to 1980 (male)',
+            name='People who immigrated between 1971-1980 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9450,7 +9444,7 @@ class NHSColumns(ColumnsTask):
 
         t010c005_f = OBSColumn(
             id='t010c005_f',
-            name='1971 to 1980 (female)',
+            name='People who immigrated between 1971-1980 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9459,7 +9453,7 @@ class NHSColumns(ColumnsTask):
 
         t010c006_t = OBSColumn(
             id='t010c006_t',
-            name='1981 to 1990 (total)',
+            name='People who immigrated between 1981-1990 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9468,7 +9462,7 @@ class NHSColumns(ColumnsTask):
 
         t010c006_m = OBSColumn(
             id='t010c006_m',
-            name='1981 to 1990 (male)',
+            name='People who immigrated between 1981-1990 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9477,7 +9471,7 @@ class NHSColumns(ColumnsTask):
 
         t010c006_f = OBSColumn(
             id='t010c006_f',
-            name='1981 to 1990 (female)',
+            name='People who immigrated between 1981-1990 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9486,7 +9480,7 @@ class NHSColumns(ColumnsTask):
 
         t010c007_t = OBSColumn(
             id='t010c007_t',
-            name='1991 to 2000 (total)',
+            name='People who immigrated between 1991-2000 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9495,7 +9489,7 @@ class NHSColumns(ColumnsTask):
 
         t010c007_m = OBSColumn(
             id='t010c007_m',
-            name='1991 to 2000 (male)',
+            name='People who immigrated between 1991-2000 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9504,7 +9498,7 @@ class NHSColumns(ColumnsTask):
 
         t010c007_f = OBSColumn(
             id='t010c007_f',
-            name='1991 to 2000 (female)',
+            name='People who immigrated between 1991-2000 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9513,7 +9507,7 @@ class NHSColumns(ColumnsTask):
 
         t010c008_t = OBSColumn(
             id='t010c008_t',
-            name='2001 to 2011 (total)',
+            name='People who immigrated between 2001-2011 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9522,7 +9516,7 @@ class NHSColumns(ColumnsTask):
 
         t010c008_m = OBSColumn(
             id='t010c008_m',
-            name='2001 to 2011 (male)',
+            name='People who immigrated between 2001-2011 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9531,7 +9525,7 @@ class NHSColumns(ColumnsTask):
 
         t010c008_f = OBSColumn(
             id='t010c008_f',
-            name='2001 to 2011 (female)',
+            name='People who immigrated between 2001-2011 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9540,7 +9534,7 @@ class NHSColumns(ColumnsTask):
 
         t010c009_t = OBSColumn(
             id='t010c009_t',
-            name='2001 to 2005 (total)',
+            name='People who immigrated between 2001-2005 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9549,7 +9543,7 @@ class NHSColumns(ColumnsTask):
 
         t010c009_m = OBSColumn(
             id='t010c009_m',
-            name='2001 to 2005 (male)',
+            name='People who immigrated between 2001-2005 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9558,7 +9552,7 @@ class NHSColumns(ColumnsTask):
 
         t010c009_f = OBSColumn(
             id='t010c009_f',
-            name='2001 to 2005 (female)',
+            name='People who immigrated between 2001-2005 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9567,7 +9561,7 @@ class NHSColumns(ColumnsTask):
 
         t010c010_t = OBSColumn(
             id='t010c010_t',
-            name='2006 to 2011 (total)',
+            name='People who immigrated between 2006-2011 (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9576,7 +9570,7 @@ class NHSColumns(ColumnsTask):
 
         t010c010_m = OBSColumn(
             id='t010c010_m',
-            name='2006 to 2011 (male)',
+            name='People who immigrated between 2006-2011 (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9585,7 +9579,7 @@ class NHSColumns(ColumnsTask):
 
         t010c010_f = OBSColumn(
             id='t010c010_f',
-            name='2006 to 2011 (female)',
+            name='People who immigrated between 2006-2011 (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
