@@ -9068,14 +9068,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
-        # FIXME
-        # The "first generation", "second generation", etc. measures need
-        # a clearer name, and possibly a description as well.  Is it first
-        # generation immigrants?  If so, should they have the "immigration"
-        # tag?
-        t008c002_t = OBSColumn(
+       t008c002_t = OBSColumn(
             id='t008c002_t',
             name='Total population - First generation (total)',
+            description='\'First generation\' includes persons who were born outside Canada. For the most part, these are people who are now, or have ever been, immigrants to Canada.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9085,6 +9081,7 @@ class NHSColumns(ColumnsTask):
         t008c002_m = OBSColumn(
             id='t008c002_m',
             name='Total population - First generation (male)',
+            description='\'First generation\' includes persons who were born outside Canada. For the most part, these are people who are now, or have ever been, immigrants to Canada.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9094,6 +9091,7 @@ class NHSColumns(ColumnsTask):
         t008c002_f = OBSColumn(
             id='t008c002_f',
             name='Total population - First generation (female)',
+            description='\'First generation\' includes persons who were born outside Canada. For the most part, these are people who are now, or have ever been, immigrants to Canada.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9103,6 +9101,7 @@ class NHSColumns(ColumnsTask):
         t008c003_t = OBSColumn(
             id='t008c003_t',
             name='Total population - Second generation (total)',
+            description='\'Second generation\' includes persons who were born in Canada and had at least one parent born outside Canada. For the most part, these are the children of immigrants.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9112,6 +9111,7 @@ class NHSColumns(ColumnsTask):
         t008c003_m = OBSColumn(
             id='t008c003_m',
             name='Total population - Second generation (male)',
+            description='\'Second generation\' includes persons who were born in Canada and had at least one parent born outside Canada. For the most part, these are the children of immigrants.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9121,6 +9121,7 @@ class NHSColumns(ColumnsTask):
         t008c003_f = OBSColumn(
             id='t008c003_f',
             name='Total population - Second generation (female)',
+            description='\'Second generation\' includes persons who were born in Canada and had at least one parent born outside Canada. For the most part, these are the children of immigrants.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9130,6 +9131,7 @@ class NHSColumns(ColumnsTask):
         t008c004_t = OBSColumn(
             id='t008c004_t',
             name='Total population - Third generation or more (total)',
+            description='\'Third generation or more\' includes persons who were born in Canada with both parents born in Canada.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9139,6 +9141,7 @@ class NHSColumns(ColumnsTask):
         t008c004_m = OBSColumn(
             id='t008c004_m',
             name='Total population - Third generation or more (male)',
+            description='\'Third generation or more\' includes persons who were born in Canada with both parents born in Canada.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9148,6 +9151,7 @@ class NHSColumns(ColumnsTask):
         t008c004_f = OBSColumn(
             id='t008c004_f',
             name='Total population - Third generation or more (female)',
+            description='\'Third generation or more\' includes persons who were born in Canada with both parents born in Canada.',
             type='Numeric',
             weight=3,
             aggregate='sum',
