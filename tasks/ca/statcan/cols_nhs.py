@@ -22548,7 +22548,7 @@ class NHSColumns(ColumnsTask):
 
         t028c002_t = OBSColumn(
             id='t028c002_t',
-            name='Total population - Total visible minority population (total)',
+            name='People with a visible minority (total)',
             description='The Employment Equity Act defines visible minorities as "persons, other than Aboriginal peoples, who are non-Caucasian in race or non-white in colour."',
             type='Numeric',
             weight=3,
@@ -22558,7 +22558,7 @@ class NHSColumns(ColumnsTask):
 
         t028c002_m = OBSColumn(
             id='t028c002_m',
-            name='Total population - Total visible minority population (male)',
+            name='People with a visible minority (male)',
             description='The Employment Equity Act defines visible minorities as "persons, other than Aboriginal peoples, who are non-Caucasian in race or non-white in colour."',
             type='Numeric',
             weight=3,
@@ -22568,7 +22568,7 @@ class NHSColumns(ColumnsTask):
 
         t028c002_f = OBSColumn(
             id='t028c002_f',
-            name='Total population - Total visible minority population (female)',
+            name='People with a visible minority (female)',
             description='The Employment Equity Act defines visible minorities as "persons, other than Aboriginal peoples, who are non-Caucasian in race or non-white in colour."',
             type='Numeric',
             weight=3,
@@ -22576,12 +22576,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['race_ethnicity']],
             targets={ t001c001_f: DENOMINATOR },)
 
-        # FIXME
-        # The below need more context in their name, which may be clearer with
-        # a definition of "visible minority population".
         t028c003_t = OBSColumn(
             id='t028c003_t',
-            name='South Asian (total)',
+            name='People with a visible minority - South Asian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22590,7 +22587,7 @@ class NHSColumns(ColumnsTask):
 
         t028c003_m = OBSColumn(
             id='t028c003_m',
-            name='South Asian (male)',
+            name='People with a visible minority - South Asian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22599,7 +22596,7 @@ class NHSColumns(ColumnsTask):
 
         t028c003_f = OBSColumn(
             id='t028c003_f',
-            name='South Asian (female)',
+            name='People with a visible minority - South Asian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22608,7 +22605,7 @@ class NHSColumns(ColumnsTask):
 
         t028c004_t = OBSColumn(
             id='t028c004_t',
-            name='Chinese (total)',
+            name='People with a visible minority - Chinese (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22617,7 +22614,7 @@ class NHSColumns(ColumnsTask):
 
         t028c004_m = OBSColumn(
             id='t028c004_m',
-            name='Chinese (male)',
+            name='People with a visible minority - Chinese (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22626,7 +22623,7 @@ class NHSColumns(ColumnsTask):
 
         t028c004_f = OBSColumn(
             id='t028c004_f',
-            name='Chinese (female)',
+            name='People with a visible minority - Chinese (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22635,7 +22632,7 @@ class NHSColumns(ColumnsTask):
 
         t028c005_t = OBSColumn(
             id='t028c005_t',
-            name='Black (total)',
+            name='People with a visible minority - Black (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22644,7 +22641,7 @@ class NHSColumns(ColumnsTask):
 
         t028c005_m = OBSColumn(
             id='t028c005_m',
-            name='Black (male)',
+            name='People with a visible minority - Black (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22653,7 +22650,7 @@ class NHSColumns(ColumnsTask):
 
         t028c005_f = OBSColumn(
             id='t028c005_f',
-            name='Black (female)',
+            name='People with a visible minority - Black (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22662,7 +22659,7 @@ class NHSColumns(ColumnsTask):
 
         t028c006_t = OBSColumn(
             id='t028c006_t',
-            name='Filipino (total)',
+            name='People with a visible minority - Filipino (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22671,7 +22668,7 @@ class NHSColumns(ColumnsTask):
 
         t028c006_m = OBSColumn(
             id='t028c006_m',
-            name='Filipino (male)',
+            name='People with a visible minority - Filipino (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22680,7 +22677,7 @@ class NHSColumns(ColumnsTask):
 
         t028c006_f = OBSColumn(
             id='t028c006_f',
-            name='Filipino (female)',
+            name='People with a visible minority - Filipino (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22689,7 +22686,7 @@ class NHSColumns(ColumnsTask):
 
         t028c007_t = OBSColumn(
             id='t028c007_t',
-            name='Latin American (total)',
+            name='People with a visible minority - Latin American (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22698,7 +22695,7 @@ class NHSColumns(ColumnsTask):
 
         t028c007_m = OBSColumn(
             id='t028c007_m',
-            name='Latin American (male)',
+            name='People with a visible minority - Latin American (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22707,7 +22704,7 @@ class NHSColumns(ColumnsTask):
 
         t028c007_f = OBSColumn(
             id='t028c007_f',
-            name='Latin American (female)',
+            name='People with a visible minority - Latin American (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22716,7 +22713,7 @@ class NHSColumns(ColumnsTask):
 
         t028c008_t = OBSColumn(
             id='t028c008_t',
-            name='Arab (total)',
+            name='People with a visible minority - Arab (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22725,7 +22722,7 @@ class NHSColumns(ColumnsTask):
 
         t028c008_m = OBSColumn(
             id='t028c008_m',
-            name='Arab (male)',
+            name='People with a visible minority - Arab (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22734,7 +22731,7 @@ class NHSColumns(ColumnsTask):
 
         t028c008_f = OBSColumn(
             id='t028c008_f',
-            name='Arab (female)',
+            name='People with a visible minority - Arab (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22743,7 +22740,7 @@ class NHSColumns(ColumnsTask):
 
         t028c009_t = OBSColumn(
             id='t028c009_t',
-            name='Southeast Asian (total)',
+            name='People with a visible minority - Southeast Asian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22752,7 +22749,7 @@ class NHSColumns(ColumnsTask):
 
         t028c009_m = OBSColumn(
             id='t028c009_m',
-            name='Southeast Asian (male)',
+            name='People with a visible minority - Southeast Asian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22761,7 +22758,7 @@ class NHSColumns(ColumnsTask):
 
         t028c009_f = OBSColumn(
             id='t028c009_f',
-            name='Southeast Asian (female)',
+            name='People with a visible minority - Southeast Asian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22770,7 +22767,7 @@ class NHSColumns(ColumnsTask):
 
         t028c010_t = OBSColumn(
             id='t028c010_t',
-            name='West Asian (total)',
+            name='People with a visible minority - West Asian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22779,7 +22776,7 @@ class NHSColumns(ColumnsTask):
 
         t028c010_m = OBSColumn(
             id='t028c010_m',
-            name='West Asian (male)',
+            name='People with a visible minority - West Asian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22788,7 +22785,7 @@ class NHSColumns(ColumnsTask):
 
         t028c010_f = OBSColumn(
             id='t028c010_f',
-            name='West Asian (female)',
+            name='People with a visible minority - West Asian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22797,7 +22794,7 @@ class NHSColumns(ColumnsTask):
 
         t028c011_t = OBSColumn(
             id='t028c011_t',
-            name='Korean (total)',
+            name='People with a visible minority - Korean (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22806,7 +22803,7 @@ class NHSColumns(ColumnsTask):
 
         t028c011_m = OBSColumn(
             id='t028c011_m',
-            name='Korean (male)',
+            name='People with a visible minority - Korean (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22815,7 +22812,7 @@ class NHSColumns(ColumnsTask):
 
         t028c011_f = OBSColumn(
             id='t028c011_f',
-            name='Korean (female)',
+            name='People with a visible minority - Korean (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22824,7 +22821,7 @@ class NHSColumns(ColumnsTask):
 
         t028c012_t = OBSColumn(
             id='t028c012_t',
-            name='Japanese (total)',
+            name='People with a visible minority - Japanese (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22833,7 +22830,7 @@ class NHSColumns(ColumnsTask):
 
         t028c012_m = OBSColumn(
             id='t028c012_m',
-            name='Japanese (male)',
+            name='People with a visible minority - Japanese (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22842,7 +22839,7 @@ class NHSColumns(ColumnsTask):
 
         t028c012_f = OBSColumn(
             id='t028c012_f',
-            name='Japanese (female)',
+            name='People with a visible minority - Japanese (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22851,7 +22848,8 @@ class NHSColumns(ColumnsTask):
 
         t028c013_t = OBSColumn(
             id='t028c013_t',
-            name='Visible minority, n.i.e. (total)',
+            name='People with a visible minority - n.i.e. (total)',
+            description='The abbreviation "n.i.e." means "not included elsewhere." Includes respondents who reported a write-in response such as "Guyanese," "West Indian," "Tibetan," "Polynesian," "Pacific Islander," etc.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22860,7 +22858,8 @@ class NHSColumns(ColumnsTask):
 
         t028c013_m = OBSColumn(
             id='t028c013_m',
-            name='Visible minority, n.i.e. (male)',
+            name='People with a visible minority - n.i.e. (male)',
+            description='The abbreviation "n.i.e." means "not included elsewhere." Includes respondents who reported a write-in response such as "Guyanese," "West Indian," "Tibetan," "Polynesian," "Pacific Islander," etc.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22869,7 +22868,8 @@ class NHSColumns(ColumnsTask):
 
         t028c013_f = OBSColumn(
             id='t028c013_f',
-            name='Visible minority, n.i.e. (female)',
+            name='People with a visible minority - n.i.e. (female)',
+            description='The abbreviation "n.i.e." means "not included elsewhere." Includes respondents who reported a write-in response such as "Guyanese," "West Indian," "Tibetan," "Polynesian," "Pacific Islander," etc.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22878,7 +22878,7 @@ class NHSColumns(ColumnsTask):
 
         t028c014_t = OBSColumn(
             id='t028c014_t',
-            name='Multiple visible minorities (total)',
+            name='People with multiple visible minorities (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22887,7 +22887,7 @@ class NHSColumns(ColumnsTask):
 
         t028c014_m = OBSColumn(
             id='t028c014_m',
-            name='Multiple visible minorities (male)',
+            name='People with multiple visible minorities (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22896,7 +22896,7 @@ class NHSColumns(ColumnsTask):
 
         t028c014_f = OBSColumn(
             id='t028c014_f',
-            name='Multiple visible minorities (female)',
+            name='People with multiple visible minorities (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22905,7 +22905,7 @@ class NHSColumns(ColumnsTask):
 
         t028c015_t = OBSColumn(
             id='t028c015_t',
-            name='Total population - Not a visible minority (total)',
+            name='People without a visible minority (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22914,7 +22914,7 @@ class NHSColumns(ColumnsTask):
 
         t028c015_m = OBSColumn(
             id='t028c015_m',
-            name='Total population - Not a visible minority (male)',
+            name='People without a visible minority (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22923,7 +22923,7 @@ class NHSColumns(ColumnsTask):
 
         t028c015_f = OBSColumn(
             id='t028c015_f',
-            name='Total population - Not a visible minority (female)',
+            name='People without a visible minority (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
