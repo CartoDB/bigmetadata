@@ -22546,11 +22546,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t027c001_f: DENOMINATOR },)
 
-        # FIXME
-        # These need a description of what "visible minority population" means.
         t028c002_t = OBSColumn(
             id='t028c002_t',
             name='Total population - Total visible minority population (total)',
+            description='The Employment Equity Act defines visible minorities as "persons, other than Aboriginal peoples, who are non-Caucasian in race or non-white in colour."',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22560,6 +22559,7 @@ class NHSColumns(ColumnsTask):
         t028c002_m = OBSColumn(
             id='t028c002_m',
             name='Total population - Total visible minority population (male)',
+            description='The Employment Equity Act defines visible minorities as "persons, other than Aboriginal peoples, who are non-Caucasian in race or non-white in colour."',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -22569,6 +22569,7 @@ class NHSColumns(ColumnsTask):
         t028c002_f = OBSColumn(
             id='t028c002_f',
             name='Total population - Total visible minority population (female)',
+            description='The Employment Equity Act defines visible minorities as "persons, other than Aboriginal peoples, who are non-Caucasian in race or non-white in colour."',
             type='Numeric',
             weight=3,
             aggregate='sum',
