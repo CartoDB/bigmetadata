@@ -9610,33 +9610,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['migration']],
             targets={ t001c001_f: DENOMINATOR },)
 
-        t011c002_t = OBSColumn(
-            id='t011c002_t',
-            name='Total population - Non-immigrants (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={ t001c001_t: DENOMINATOR },)
-
-        t011c002_m = OBSColumn(
-            id='t011c002_m',
-            name='Total population - Non-immigrants (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={ t001c001_m: DENOMINATOR },)
-
-        t011c002_f = OBSColumn(
-            id='t011c002_f',
-            name='Total population - Non-immigrants (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['nationality']],
-            targets={ t001c001_f: DENOMINATOR },)
-
         t011c003_t = OBSColumn(
             id='t011c003_t',
             name='Born in province of residence (total)',
@@ -9644,7 +9617,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c002_t: DENOMINATOR },)
+            targets={ t010c002_t: DENOMINATOR },)
 
         t011c003_m = OBSColumn(
             id='t011c003_m',
@@ -9653,7 +9626,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c002_m: DENOMINATOR },)
+            targets={ t010c002_m: DENOMINATOR },)
 
         t011c003_f = OBSColumn(
             id='t011c003_f',
@@ -9662,7 +9635,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c002_f: DENOMINATOR },)
+            targets={ t010c002_f: DENOMINATOR },)
 
         t011c004_t = OBSColumn(
             id='t011c004_t',
@@ -9671,7 +9644,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c002_t: DENOMINATOR },)
+            targets={ t010c002_t: DENOMINATOR },)
 
         t011c004_m = OBSColumn(
             id='t011c004_m',
@@ -9680,7 +9653,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c002_m: DENOMINATOR },)
+            targets={ t010c002_m: DENOMINATOR },)
 
         t011c004_f = OBSColumn(
             id='t011c004_f',
@@ -9689,7 +9662,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['nationality']],
-            targets={ t011c002_f: DENOMINATOR },)
+            targets={ t010c002_f: DENOMINATOR },)
 
         t011c005_t = OBSColumn(
             id='t011c005_t',
@@ -24088,9 +24061,6 @@ class NHSColumns(ColumnsTask):
             ('t010c011_t', t010c011_t),
             ('t010c011_m', t010c011_m),
             ('t010c011_f', t010c011_f),
-            ('t011c002_t', t011c002_t),
-            ('t011c002_m', t011c002_m),
-            ('t011c002_f', t011c002_f),
             ('t011c003_t', t011c003_t),
             ('t011c003_m', t011c003_m),
             ('t011c003_f', t011c003_f),
