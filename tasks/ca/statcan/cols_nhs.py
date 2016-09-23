@@ -9158,11 +9158,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['families']],
             targets={ t001c001_f: DENOMINATOR },)
 
-        # FIXME
-        # This should have a description of households according to the NHS.
         t009c001_t = OBSColumn(
             id='t009c001_t',
-            name='Total number of private households',
+            name='Total number of private `households <https://www12.statcan.gc.ca/census-recensement/2011/ref/dict/households-menage007-eng.cfm>`_',
             type='Numeric',
             weight=3,
             aggregate='sum',
