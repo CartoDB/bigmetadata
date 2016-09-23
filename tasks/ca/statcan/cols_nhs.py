@@ -13014,7 +13014,7 @@ class NHSColumns(ColumnsTask):
 
         t013c055_t = OBSColumn(
             id='t013c055_t',
-            name='Families with economic income',
+            name='All families with economic income',
             description='The total income of an economic family is the sum of the total incomes of all members of that family',
             type='Numeric',
             weight=3,
@@ -13022,12 +13022,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit['families'], subsections['income']],
             targets={},)
 
-        # FIXME
-        # The below need to be qualified as for the population in economic
-        # families
         t013c056_t = OBSColumn(
             id='t013c056_t',
-            name='Median family income',
+            name='Median income of all economic families',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13036,7 +13033,7 @@ class NHSColumns(ColumnsTask):
 
         t013c057_t = OBSColumn(
             id='t013c057_t',
-            name='Average family income',
+            name='Average income of all economic families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13045,7 +13042,7 @@ class NHSColumns(ColumnsTask):
 
         t013c058_t = OBSColumn(
             id='t013c058_t',
-            name='Median after-tax family income',
+            name='Median after-tax income of all economic families',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13054,7 +13051,7 @@ class NHSColumns(ColumnsTask):
 
         t013c059_t = OBSColumn(
             id='t013c059_t',
-            name='Average after-tax family income',
+            name='Average after-tax income of all economic families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13072,19 +13069,16 @@ class NHSColumns(ColumnsTask):
 
         t013c061_t = OBSColumn(
             id='t013c061_t',
-            name='Couple-only economic families',
+            name='Couple-only families with economic income',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
-        # FIXME
-        # The below need to be qualified as for the population in couple-only
-        # economic families
         t013c062_t = OBSColumn(
             id='t013c062_t',
-            name='Median family income',
+            name='Median income of couple-only families',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13093,7 +13087,7 @@ class NHSColumns(ColumnsTask):
 
         t013c063_t = OBSColumn(
             id='t013c063_t',
-            name='Average family income',
+            name='Average income of couple-only families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13102,7 +13096,7 @@ class NHSColumns(ColumnsTask):
 
         t013c064_t = OBSColumn(
             id='t013c064_t',
-            name='Median after-tax family income',
+            name='Median after-tax income of couple-only families',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13111,7 +13105,7 @@ class NHSColumns(ColumnsTask):
 
         t013c065_t = OBSColumn(
             id='t013c065_t',
-            name='Average after-tax family income',
+            name='Average after-tax income of couple-only families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13120,7 +13114,7 @@ class NHSColumns(ColumnsTask):
 
         t013c066_t = OBSColumn(
             id='t013c066_t',
-            name='Average family size',
+            name='Average size of couple-only families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13129,19 +13123,16 @@ class NHSColumns(ColumnsTask):
 
         t013c067_t = OBSColumn(
             id='t013c067_t',
-            name='Couple-with-children economic families',
+            name='Couple-with-children families with economic income',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
-        # FIXME
-        # The below need to be qualified as for the population in
-        # couple-with-children economic families
         t013c068_t = OBSColumn(
             id='t013c068_t',
-            name='Median family income',
+            name='Median income of couple-with-children families',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13150,7 +13141,7 @@ class NHSColumns(ColumnsTask):
 
         t013c069_t = OBSColumn(
             id='t013c069_t',
-            name='Average family income',
+            name='Average income of couple-with-children families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13159,7 +13150,7 @@ class NHSColumns(ColumnsTask):
 
         t013c070_t = OBSColumn(
             id='t013c070_t',
-            name='Median after-tax family income',
+            name='Median after-tax income of couple-with-children families',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13168,7 +13159,7 @@ class NHSColumns(ColumnsTask):
 
         t013c071_t = OBSColumn(
             id='t013c071_t',
-            name='Average after-tax family income',
+            name='Average after-tax income of couple-with-children families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13177,7 +13168,7 @@ class NHSColumns(ColumnsTask):
 
         t013c072_t = OBSColumn(
             id='t013c072_t',
-            name='Average family size',
+            name='Average size of couple-with-children families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13186,7 +13177,7 @@ class NHSColumns(ColumnsTask):
 
         t013c073_t = OBSColumn(
             id='t013c073_t',
-            name='Lone-parent economic families',
+            name='Lone-parent families with economic income',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13198,7 +13189,7 @@ class NHSColumns(ColumnsTask):
         # lone-parent economic families
         t013c074_t = OBSColumn(
             id='t013c074_t',
-            name='Median family income',
+            name='Median income of lone-parent families',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13207,7 +13198,7 @@ class NHSColumns(ColumnsTask):
 
         t013c075_t = OBSColumn(
             id='t013c075_t',
-            name='Average family income',
+            name='Average income of lone-parent families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13216,7 +13207,7 @@ class NHSColumns(ColumnsTask):
 
         t013c076_t = OBSColumn(
             id='t013c076_t',
-            name='Median after-tax family income',
+            name='Median after-tax income of lone-parent families',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13225,7 +13216,7 @@ class NHSColumns(ColumnsTask):
 
         t013c077_t = OBSColumn(
             id='t013c077_t',
-            name='Average after-tax family income',
+            name='Average after-tax income of lone-parent families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13234,7 +13225,7 @@ class NHSColumns(ColumnsTask):
 
         t013c078_t = OBSColumn(
             id='t013c078_t',
-            name='Average family size',
+            name='Average size of lone-parent families',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13243,7 +13234,7 @@ class NHSColumns(ColumnsTask):
 
         t013c079_t = OBSColumn(
             id='t013c079_t',
-            name='Income in 2010 of population aged 15 years and over not in economic families (total)',
+            name='People aged 15+ not in economic families (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13252,7 +13243,7 @@ class NHSColumns(ColumnsTask):
 
         t013c079_m = OBSColumn(
             id='t013c079_m',
-            name='Income in 2010 of population aged 15 years and over not in economic families (male)',
+            name='People aged 15+ not in economic families (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13261,19 +13252,16 @@ class NHSColumns(ColumnsTask):
 
         t013c079_f = OBSColumn(
             id='t013c079_f',
-            name='Income in 2010 of population aged 15 years and over not in economic families (female)',
+            name='People aged 15+ not in economic families (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
-        # FIXME
-        # The below need to be qualified as for the population not in economic
-        # families
         t013c080_t = OBSColumn(
             id='t013c080_t',
-            name='Median total income (total)',
+            name='Median total income of people aged 15+ not in economic families (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13282,7 +13270,7 @@ class NHSColumns(ColumnsTask):
 
         t013c080_m = OBSColumn(
             id='t013c080_m',
-            name='Median total income (male)',
+            name='Median total income of people aged 15+ not in economic families (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13291,7 +13279,7 @@ class NHSColumns(ColumnsTask):
 
         t013c080_f = OBSColumn(
             id='t013c080_f',
-            name='Median total income (female)',
+            name='Median total income of people aged 15+ not in economic families (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13300,7 +13288,7 @@ class NHSColumns(ColumnsTask):
 
         t013c081_t = OBSColumn(
             id='t013c081_t',
-            name='Average total income (total)',
+            name='Average total income of people aged 15+ not in economic families (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13309,7 +13297,7 @@ class NHSColumns(ColumnsTask):
 
         t013c081_m = OBSColumn(
             id='t013c081_m',
-            name='Average total income (male)',
+            name='Average total income of people aged 15+ not in economic families (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13318,7 +13306,7 @@ class NHSColumns(ColumnsTask):
 
         t013c081_f = OBSColumn(
             id='t013c081_f',
-            name='Average total income (female)',
+            name='Average total income of people aged 15+ not in economic families (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13327,7 +13315,7 @@ class NHSColumns(ColumnsTask):
 
         t013c082_t = OBSColumn(
             id='t013c082_t',
-            name='Median after-tax income (total)',
+            name='Median after-tax income of people aged 15+ not in economic families (total)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13336,7 +13324,7 @@ class NHSColumns(ColumnsTask):
 
         t013c082_m = OBSColumn(
             id='t013c082_m',
-            name='Median after-tax income (male)',
+            name='Median after-tax income of people aged 15+ not in economic families (male)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13345,7 +13333,7 @@ class NHSColumns(ColumnsTask):
 
         t013c082_f = OBSColumn(
             id='t013c082_f',
-            name='Median after-tax income (female)',
+            name='Median after-tax income of people aged 15+ not in economic families (female)',
             type='Numeric',
             weight=3,
             aggregate='median',
@@ -13354,7 +13342,7 @@ class NHSColumns(ColumnsTask):
 
         t013c083_t = OBSColumn(
             id='t013c083_t',
-            name='Average after-tax income (total)',
+            name='Average after-tax income of people aged 15+ not in economic families (total)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13363,7 +13351,7 @@ class NHSColumns(ColumnsTask):
 
         t013c083_m = OBSColumn(
             id='t013c083_m',
-            name='Average after-tax income (male)',
+            name='Average after-tax income of people aged 15+ not in economic families (male)',
             type='Numeric',
             weight=3,
             aggregate='average',
@@ -13372,7 +13360,7 @@ class NHSColumns(ColumnsTask):
 
         t013c083_f = OBSColumn(
             id='t013c083_f',
-            name='Average after-tax income (female)',
+            name='Average after-tax income of people aged 15+ not in economic families (female)',
             type='Numeric',
             weight=3,
             aggregate='average',
