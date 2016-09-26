@@ -13693,12 +13693,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c091_f: DENOMINATOR },)
 
-        # FIXME
-        # What is being indicated in the columns below is unclear --
-        # what does "for income status" mean, and why are the subcolumns ages?
         t013c097_t = OBSColumn(
             id='t013c097_t',
-            name='Population in private households for income status (total)',
+            name='People not in low income status based on after-tax low-income measure (LIM-AT) (total)',
+            description='Income status can be measured in several different ways in household surveys. For the standard products of the National Household Survey, the line chosen is a relative measure: the after-tax low-income measure (LIM-AT). For this measure, the income used is after-tax income of households. There are no regional variations to account for prices or cost of living differences: all applicable households in Canada face the same line adjusted for household size. This line is set at half the median of adjusted household after-tax income. To account for potential economies of scale, the income of households with more than one member is divided by the square root of the size of the household. All household members are considered to share the household income and are attributed the same income status. Note: Low-income estimates in the 2011 National Household Survey. For the 2011 National Household Survey (NHS), low-income statistics are presented based on the after-tax low-income measure (LIM-AT). This measure is not related to the low-income cut-offs (LICO) presented in the 2006 Census and prevalence rates are conceptually not comparable. Because of the sensitivity of certain income indicators to differences in methodology and response patterns, direct comparisons to establish trends with low-income estimates from other household surveys, administrative programs or the 2006 Census are discouraged. The prevalence rates observed in the NHS at the national level are generally 1 to 2 percentage points higher than seen for similar concepts in other programs. However, analysis of the NHS data suggests that it is valid to compare low-income data for different sub-populations within the NHS (i.e., for different geographic areas or demographic groups). For more information, refer to the Income Reference Guide, National Household Survey, Catalogue no. 99-014-X2011006. Age - Refers to the age at last birthday before the reference date, that is, before May 10, 2011',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13707,7 +13705,8 @@ class NHSColumns(ColumnsTask):
 
         t013c097_m = OBSColumn(
             id='t013c097_m',
-            name='Population in private households for income status (male)',
+            name='People not in low income status based on after-tax low-income measure (LIM-AT) (male)',
+            description='Income status can be measured in several different ways in household surveys. For the standard products of the National Household Survey, the line chosen is a relative measure: the after-tax low-income measure (LIM-AT). For this measure, the income used is after-tax income of households. There are no regional variations to account for prices or cost of living differences: all applicable households in Canada face the same line adjusted for household size. This line is set at half the median of adjusted household after-tax income. To account for potential economies of scale, the income of households with more than one member is divided by the square root of the size of the household. All household members are considered to share the household income and are attributed the same income status. Note: Low-income estimates in the 2011 National Household Survey. For the 2011 National Household Survey (NHS), low-income statistics are presented based on the after-tax low-income measure (LIM-AT). This measure is not related to the low-income cut-offs (LICO) presented in the 2006 Census and prevalence rates are conceptually not comparable. Because of the sensitivity of certain income indicators to differences in methodology and response patterns, direct comparisons to establish trends with low-income estimates from other household surveys, administrative programs or the 2006 Census are discouraged. The prevalence rates observed in the NHS at the national level are generally 1 to 2 percentage points higher than seen for similar concepts in other programs. However, analysis of the NHS data suggests that it is valid to compare low-income data for different sub-populations within the NHS (i.e., for different geographic areas or demographic groups). For more information, refer to the Income Reference Guide, National Household Survey, Catalogue no. 99-014-X2011006. Age - Refers to the age at last birthday before the reference date, that is, before May 10, 2011',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13716,7 +13715,8 @@ class NHSColumns(ColumnsTask):
 
         t013c097_f = OBSColumn(
             id='t013c097_f',
-            name='Population in private households for income status (female)',
+            name='People not in low income status based on after-tax low-income measure (LIM-AT) (female)',
+            description='Income status can be measured in several different ways in household surveys. For the standard products of the National Household Survey, the line chosen is a relative measure: the after-tax low-income measure (LIM-AT). For this measure, the income used is after-tax income of households. There are no regional variations to account for prices or cost of living differences: all applicable households in Canada face the same line adjusted for household size. This line is set at half the median of adjusted household after-tax income. To account for potential economies of scale, the income of households with more than one member is divided by the square root of the size of the household. All household members are considered to share the household income and are attributed the same income status. Note: Low-income estimates in the 2011 National Household Survey. For the 2011 National Household Survey (NHS), low-income statistics are presented based on the after-tax low-income measure (LIM-AT). This measure is not related to the low-income cut-offs (LICO) presented in the 2006 Census and prevalence rates are conceptually not comparable. Because of the sensitivity of certain income indicators to differences in methodology and response patterns, direct comparisons to establish trends with low-income estimates from other household surveys, administrative programs or the 2006 Census are discouraged. The prevalence rates observed in the NHS at the national level are generally 1 to 2 percentage points higher than seen for similar concepts in other programs. However, analysis of the NHS data suggests that it is valid to compare low-income data for different sub-populations within the NHS (i.e., for different geographic areas or demographic groups). For more information, refer to the Income Reference Guide, National Household Survey, Catalogue no. 99-014-X2011006. Age - Refers to the age at last birthday before the reference date, that is, before May 10, 2011',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13725,7 +13725,7 @@ class NHSColumns(ColumnsTask):
 
         t013c098_t = OBSColumn(
             id='t013c098_t',
-            name='Less than 18 years (total)',
+            name='People not in low income status - Less than 18 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13734,7 +13734,7 @@ class NHSColumns(ColumnsTask):
 
         t013c098_m = OBSColumn(
             id='t013c098_m',
-            name='Less than 18 years (male)',
+            name='People not in low income status - Less than 18 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13743,7 +13743,7 @@ class NHSColumns(ColumnsTask):
 
         t013c098_f = OBSColumn(
             id='t013c098_f',
-            name='Less than 18 years (female)',
+            name='People not in low income status - Less than 18 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13752,7 +13752,7 @@ class NHSColumns(ColumnsTask):
 
         t013c099_t = OBSColumn(
             id='t013c099_t',
-            name='Less than 6 years (total)',
+            name='People not in low income status - Less than 6 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13761,7 +13761,7 @@ class NHSColumns(ColumnsTask):
 
         t013c099_m = OBSColumn(
             id='t013c099_m',
-            name='Less than 6 years (male)',
+            name='People not in low income status - Less than 6 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13770,7 +13770,7 @@ class NHSColumns(ColumnsTask):
 
         t013c099_f = OBSColumn(
             id='t013c099_f',
-            name='Less than 6 years (female)',
+            name='People not in low income status - Less than 6 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13779,7 +13779,7 @@ class NHSColumns(ColumnsTask):
 
         t013c100_t = OBSColumn(
             id='t013c100_t',
-            name='18 to 64 years (total)',
+            name='People not in low income status - 18 to 64 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13788,7 +13788,7 @@ class NHSColumns(ColumnsTask):
 
         t013c100_m = OBSColumn(
             id='t013c100_m',
-            name='18 to 64 years (male)',
+            name='People not in low income status - 18 to 64 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13797,7 +13797,7 @@ class NHSColumns(ColumnsTask):
 
         t013c100_f = OBSColumn(
             id='t013c100_f',
-            name='18 to 64 years (female)',
+            name='People not in low income status - 18 to 64 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13806,7 +13806,7 @@ class NHSColumns(ColumnsTask):
 
         t013c101_t = OBSColumn(
             id='t013c101_t',
-            name='65 years and over (total)',
+            name='People not in low income status - 65 years and over (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13815,7 +13815,7 @@ class NHSColumns(ColumnsTask):
 
         t013c101_m = OBSColumn(
             id='t013c101_m',
-            name='65 years and over (male)',
+            name='People not in low income status - 65 years and over (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13824,18 +13824,17 @@ class NHSColumns(ColumnsTask):
 
         t013c101_f = OBSColumn(
             id='t013c101_f',
-            name='65 years and over (female)',
+            name='People not in low income status - 65 years and over (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_f: DENOMINATOR },)
 
-        # FIXME
-        # These need a description or link to description of LIM-AT.
         t013c102_t = OBSColumn(
             id='t013c102_t',
-            name='In low income in 2010 based on after-tax low-income measure (LIM-AT) (total)',
+            name='People in low income status based on after-tax low-income measure (LIM-AT) (total)',
+            description='Income status can be measured in several different ways in household surveys. For the standard products of the National Household Survey, the line chosen is a relative measure: the after-tax low-income measure (LIM-AT). For this measure, the income used is after-tax income of households. There are no regional variations to account for prices or cost of living differences: all applicable households in Canada face the same line adjusted for household size. This line is set at half the median of adjusted household after-tax income. To account for potential economies of scale, the income of households with more than one member is divided by the square root of the size of the household. All household members are considered to share the household income and are attributed the same income status. Note: Low-income estimates in the 2011 National Household Survey. For the 2011 National Household Survey (NHS), low-income statistics are presented based on the after-tax low-income measure (LIM-AT). This measure is not related to the low-income cut-offs (LICO) presented in the 2006 Census and prevalence rates are conceptually not comparable. Because of the sensitivity of certain income indicators to differences in methodology and response patterns, direct comparisons to establish trends with low-income estimates from other household surveys, administrative programs or the 2006 Census are discouraged. The prevalence rates observed in the NHS at the national level are generally 1 to 2 percentage points higher than seen for similar concepts in other programs. However, analysis of the NHS data suggests that it is valid to compare low-income data for different sub-populations within the NHS (i.e., for different geographic areas or demographic groups). For more information, refer to the Income Reference Guide, National Household Survey, Catalogue no. 99-014-X2011006. Age - Refers to the age at last birthday before the reference date, that is, before May 10, 2011',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13844,7 +13843,8 @@ class NHSColumns(ColumnsTask):
 
         t013c102_m = OBSColumn(
             id='t013c102_m',
-            name='In low income in 2010 based on after-tax low-income measure (LIM-AT) (male)',
+            name='People in low income status based on after-tax low-income measure (LIM-AT) (male)',
+            description='Income status can be measured in several different ways in household surveys. For the standard products of the National Household Survey, the line chosen is a relative measure: the after-tax low-income measure (LIM-AT). For this measure, the income used is after-tax income of households. There are no regional variations to account for prices or cost of living differences: all applicable households in Canada face the same line adjusted for household size. This line is set at half the median of adjusted household after-tax income. To account for potential economies of scale, the income of households with more than one member is divided by the square root of the size of the household. All household members are considered to share the household income and are attributed the same income status. Note: Low-income estimates in the 2011 National Household Survey. For the 2011 National Household Survey (NHS), low-income statistics are presented based on the after-tax low-income measure (LIM-AT). This measure is not related to the low-income cut-offs (LICO) presented in the 2006 Census and prevalence rates are conceptually not comparable. Because of the sensitivity of certain income indicators to differences in methodology and response patterns, direct comparisons to establish trends with low-income estimates from other household surveys, administrative programs or the 2006 Census are discouraged. The prevalence rates observed in the NHS at the national level are generally 1 to 2 percentage points higher than seen for similar concepts in other programs. However, analysis of the NHS data suggests that it is valid to compare low-income data for different sub-populations within the NHS (i.e., for different geographic areas or demographic groups). For more information, refer to the Income Reference Guide, National Household Survey, Catalogue no. 99-014-X2011006. Age - Refers to the age at last birthday before the reference date, that is, before May 10, 2011',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13853,20 +13853,17 @@ class NHSColumns(ColumnsTask):
 
         t013c102_f = OBSColumn(
             id='t013c102_f',
-            name='In low income in 2010 based on after-tax low-income measure (LIM-AT) (female)',
+            name='People in low income status based on after-tax low-income measure (LIM-AT) (female)',
+            description='Income status can be measured in several different ways in household surveys. For the standard products of the National Household Survey, the line chosen is a relative measure: the after-tax low-income measure (LIM-AT). For this measure, the income used is after-tax income of households. There are no regional variations to account for prices or cost of living differences: all applicable households in Canada face the same line adjusted for household size. This line is set at half the median of adjusted household after-tax income. To account for potential economies of scale, the income of households with more than one member is divided by the square root of the size of the household. All household members are considered to share the household income and are attributed the same income status. Note: Low-income estimates in the 2011 National Household Survey. For the 2011 National Household Survey (NHS), low-income statistics are presented based on the after-tax low-income measure (LIM-AT). This measure is not related to the low-income cut-offs (LICO) presented in the 2006 Census and prevalence rates are conceptually not comparable. Because of the sensitivity of certain income indicators to differences in methodology and response patterns, direct comparisons to establish trends with low-income estimates from other household surveys, administrative programs or the 2006 Census are discouraged. The prevalence rates observed in the NHS at the national level are generally 1 to 2 percentage points higher than seen for similar concepts in other programs. However, analysis of the NHS data suggests that it is valid to compare low-income data for different sub-populations within the NHS (i.e., for different geographic areas or demographic groups). For more information, refer to the Income Reference Guide, National Household Survey, Catalogue no. 99-014-X2011006. Age - Refers to the age at last birthday before the reference date, that is, before May 10, 2011',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
-        # FIXME the below need to be qualified as to what the age means --
-        # is it the age of the head of household for a household in LIM-AT?
-        # It must be something else, since less than 6 years is one of the
-        # measures.
         t013c103_t = OBSColumn(
             id='t013c103_t',
-            name='Less than 18 years (total)',
+            name='People in low income status - Less than 18 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13875,7 +13872,7 @@ class NHSColumns(ColumnsTask):
 
         t013c103_m = OBSColumn(
             id='t013c103_m',
-            name='Less than 18 years (male)',
+            name='People in low income status - Less than 18 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13884,7 +13881,7 @@ class NHSColumns(ColumnsTask):
 
         t013c103_f = OBSColumn(
             id='t013c103_f',
-            name='Less than 18 years (female)',
+            name='People in low income status - Less than 18 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13893,7 +13890,7 @@ class NHSColumns(ColumnsTask):
 
         t013c104_t = OBSColumn(
             id='t013c104_t',
-            name='Less than 6 years (total)',
+            name='People in low income status - Less than 6 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13902,7 +13899,7 @@ class NHSColumns(ColumnsTask):
 
         t013c104_m = OBSColumn(
             id='t013c104_m',
-            name='Less than 6 years (male)',
+            name='People in low income status - Less than 6 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13911,7 +13908,7 @@ class NHSColumns(ColumnsTask):
 
         t013c104_f = OBSColumn(
             id='t013c104_f',
-            name='Less than 6 years (female)',
+            name='People in low income status - Less than 6 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13920,7 +13917,7 @@ class NHSColumns(ColumnsTask):
 
         t013c105_t = OBSColumn(
             id='t013c105_t',
-            name='18 to 64 years (total)',
+            name='People in low income status - 18 to 64 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13929,7 +13926,7 @@ class NHSColumns(ColumnsTask):
 
         t013c105_m = OBSColumn(
             id='t013c105_m',
-            name='18 to 64 years (male)',
+            name='People in low income status - 18 to 64 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13938,7 +13935,7 @@ class NHSColumns(ColumnsTask):
 
         t013c105_f = OBSColumn(
             id='t013c105_f',
-            name='18 to 64 years (female)',
+            name='People in low income status - 18 to 64 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13947,7 +13944,7 @@ class NHSColumns(ColumnsTask):
 
         t013c106_t = OBSColumn(
             id='t013c106_t',
-            name='65 years and over (total)',
+            name='People in low income status - 65 years and over (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13956,7 +13953,7 @@ class NHSColumns(ColumnsTask):
 
         t013c106_m = OBSColumn(
             id='t013c106_m',
-            name='65 years and over (male)',
+            name='People in low income status - 65 years and over (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13965,7 +13962,7 @@ class NHSColumns(ColumnsTask):
 
         t013c106_f = OBSColumn(
             id='t013c106_f',
-            name='65 years and over (female)',
+            name='People in low income status - 65 years and over (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -13974,7 +13971,7 @@ class NHSColumns(ColumnsTask):
 
         t013c107_t = OBSColumn(
             id='t013c107_t',
-            name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (total)',
+            name='People with prevalence of low income based on after-tax low-income measure (%) (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -13982,7 +13979,7 @@ class NHSColumns(ColumnsTask):
 
         t013c107_m = OBSColumn(
             id='t013c107_m',
-            name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (male)',
+            name='People with prevalence of low income based on after-tax low-income measure (%) (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -13990,18 +13987,15 @@ class NHSColumns(ColumnsTask):
 
         t013c107_f = OBSColumn(
             id='t013c107_f',
-            name='Prevalence of low income in 2010 based on after-tax low-income measure (%) (female)',
+            name='People with prevalence of low income based on after-tax low-income measure (%) (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
             targets={},)
 
-        # FIXME
-        # Names below need to clearly indicate that they refer to the
-        # percentage of the population in an age band in poverty.
         t013c108_t = OBSColumn(
             id='t013c108_t',
-            name='Less than 18 years (%) (total)',
+            name='People with prevalence of low income - Less than 18 years (%) (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14009,7 +14003,7 @@ class NHSColumns(ColumnsTask):
 
         t013c108_m = OBSColumn(
             id='t013c108_m',
-            name='Less than 18 years (%) (male)',
+            name='People with prevalence of low income - Less than 18 years (%) (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14017,7 +14011,7 @@ class NHSColumns(ColumnsTask):
 
         t013c108_f = OBSColumn(
             id='t013c108_f',
-            name='Less than 18 years (%) (female)',
+            name='People with prevalence of low income - Less than 18 years (%) (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14025,7 +14019,7 @@ class NHSColumns(ColumnsTask):
 
         t013c109_t = OBSColumn(
             id='t013c109_t',
-            name='Less than 6 years (%) (total)',
+            name='People with prevalence of low income - Less than 6 years (%) (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14033,7 +14027,7 @@ class NHSColumns(ColumnsTask):
 
         t013c109_m = OBSColumn(
             id='t013c109_m',
-            name='Less than 6 years (%) (male)',
+            name='People with prevalence of low income - Less than 6 years (%) (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14041,7 +14035,7 @@ class NHSColumns(ColumnsTask):
 
         t013c109_f = OBSColumn(
             id='t013c109_f',
-            name='Less than 6 years (%) (female)',
+            name='People with prevalence of low income - Less than 6 years (%) (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14049,7 +14043,7 @@ class NHSColumns(ColumnsTask):
 
         t013c110_t = OBSColumn(
             id='t013c110_t',
-            name='18 to 64 years (%) (total)',
+            name='People with prevalence of low income - 18 to 64 years (%) (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14057,7 +14051,7 @@ class NHSColumns(ColumnsTask):
 
         t013c110_m = OBSColumn(
             id='t013c110_m',
-            name='18 to 64 years (%) (male)',
+            name='People with prevalence of low income - 18 to 64 years (%) (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14065,7 +14059,7 @@ class NHSColumns(ColumnsTask):
 
         t013c110_f = OBSColumn(
             id='t013c110_f',
-            name='18 to 64 years (%) (female)',
+            name='People with prevalence of low income - 18 to 64 years (%) (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14073,7 +14067,7 @@ class NHSColumns(ColumnsTask):
 
         t013c111_t = OBSColumn(
             id='t013c111_t',
-            name='65 years and over (%) (total)',
+            name='People with prevalence of low income - 65 years and over (%) (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14081,7 +14075,7 @@ class NHSColumns(ColumnsTask):
 
         t013c111_m = OBSColumn(
             id='t013c111_m',
-            name='65 years and over (%) (male)',
+            name='People with prevalence of low income - 65 years and over (%) (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -14089,7 +14083,7 @@ class NHSColumns(ColumnsTask):
 
         t013c111_f = OBSColumn(
             id='t013c111_f',
-            name='65 years and over (%) (female)',
+            name='People with prevalence of low income - 65 years and over (%) (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
