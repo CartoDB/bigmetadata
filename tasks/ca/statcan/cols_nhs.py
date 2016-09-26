@@ -829,35 +829,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_f: DENOMINATOR },)
 
-        t005c001_t = OBSColumn(
-            id='t005c001_t',
-            name='People aged 15+ (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
+        t005c001_t = census_cols.t009c001_t
+        t005c001_m = census_cols.t009c001_m
+        t005c001_f = census_cols.t009c001_f
 
-        t005c001_m = OBSColumn(
-            id='t005c001_m',
-            name='People aged 15+ (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
-        t005c001_f = OBSColumn(
-            id='t005c001_f',
-            name='People aged 15+ (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
-            targets={},)
-
-        # FIXME - DUP
-        # deleted t005c001, should use `ca.statcan.cols_census.t009c001` instead.
         t005c002_t = OBSColumn(
             id='t005c002_t',
             name='People aged 15+ with no certificate, diploma or degree (total)',
