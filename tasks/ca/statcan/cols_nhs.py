@@ -14971,13 +14971,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_minutes, subsections['transportation']],
             targets={},)
 
-        # FIXME
-        # This should be replaced with a clearer name, and possibly eliminated
-        # if the population used for move status overlaps with another, simpler
-        # to understand column.
         t018c001_t = OBSColumn(
             id='t018c001_t',
-            name='Total - Mobility status 1 year ago (total)',
+            name='People aged 1+ (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14986,7 +14982,7 @@ class NHSColumns(ColumnsTask):
 
         t018c001_m = OBSColumn(
             id='t018c001_m',
-            name='Total - Mobility status 1 year ago (male)',
+            name='People aged 1+ (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14995,25 +14991,16 @@ class NHSColumns(ColumnsTask):
 
         t018c001_f = OBSColumn(
             id='t018c001_f',
-            name='Total - Mobility status 1 year ago (female)',
+            name='People aged 1+ (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
-        # FIXME
-        # The below need slightly clearer names, and possibly descriptions
-        # about what "Movers" and "Non-movers" are -- are they people who
-        # simply had some kind of change of dwelling place, or is it more
-        # specific that they moved from one region to another?
-        #
-        # They also need to specify this is status as of 1 year ago.
-        #
-        # The same applies for migrants/non-migrants.
         t018c002_t = OBSColumn(
             id='t018c002_t',
-            name='Non-movers (total)',
+            name='People who did not move in the last year (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15022,7 +15009,7 @@ class NHSColumns(ColumnsTask):
 
         t018c002_m = OBSColumn(
             id='t018c002_m',
-            name='Non-movers (male)',
+            name='People who did not move in the last year (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15031,7 +15018,7 @@ class NHSColumns(ColumnsTask):
 
         t018c002_f = OBSColumn(
             id='t018c002_f',
-            name='Non-movers (female)',
+            name='People who did not move in the last year (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15040,7 +15027,7 @@ class NHSColumns(ColumnsTask):
 
         t018c003_t = OBSColumn(
             id='t018c003_t',
-            name='Movers (total)',
+            name='People who moved in the last year - Movers (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15049,7 +15036,7 @@ class NHSColumns(ColumnsTask):
 
         t018c003_m = OBSColumn(
             id='t018c003_m',
-            name='Movers (male)',
+            name='People who moved in the last year - Movers (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15058,7 +15045,7 @@ class NHSColumns(ColumnsTask):
 
         t018c003_f = OBSColumn(
             id='t018c003_f',
-            name='Movers (female)',
+            name='People who moved in the last year - Movers (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15067,7 +15054,7 @@ class NHSColumns(ColumnsTask):
 
         t018c004_t = OBSColumn(
             id='t018c004_t',
-            name='Non-migrants (total)',
+            name='Non-migrants who moved in the last year (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15076,7 +15063,7 @@ class NHSColumns(ColumnsTask):
 
         t018c004_m = OBSColumn(
             id='t018c004_m',
-            name='Non-migrants (male)',
+            name='Non-migrants who moved in the last year (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15085,7 +15072,7 @@ class NHSColumns(ColumnsTask):
 
         t018c004_f = OBSColumn(
             id='t018c004_f',
-            name='Non-migrants (female)',
+            name='Non-migrants who moved in the last year (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15094,7 +15081,7 @@ class NHSColumns(ColumnsTask):
 
         t018c005_t = OBSColumn(
             id='t018c005_t',
-            name='Migrants (total)',
+            name='Migrants who moved in the last year (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15103,7 +15090,7 @@ class NHSColumns(ColumnsTask):
 
         t018c005_m = OBSColumn(
             id='t018c005_m',
-            name='Migrants (male)',
+            name='Migrants who moved in the last year (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15112,7 +15099,7 @@ class NHSColumns(ColumnsTask):
 
         t018c005_f = OBSColumn(
             id='t018c005_f',
-            name='Migrants (female)',
+            name='Migrants who moved in the last year (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15121,7 +15108,7 @@ class NHSColumns(ColumnsTask):
 
         t018c006_t = OBSColumn(
             id='t018c006_t',
-            name='Internal migrants (total)',
+            name='Internal migrants who moved in the last year (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15130,7 +15117,7 @@ class NHSColumns(ColumnsTask):
 
         t018c006_m = OBSColumn(
             id='t018c006_m',
-            name='Internal migrants (male)',
+            name='Internal migrants who moved in the last year (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15139,7 +15126,7 @@ class NHSColumns(ColumnsTask):
 
         t018c006_f = OBSColumn(
             id='t018c006_f',
-            name='Internal migrants (female)',
+            name='Internal migrants who moved in the last year (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15148,7 +15135,7 @@ class NHSColumns(ColumnsTask):
 
         t018c007_t = OBSColumn(
             id='t018c007_t',
-            name='Intraprovincial migrants (total)',
+            name='Intraprovincial migrants who moved in the last year (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15157,7 +15144,7 @@ class NHSColumns(ColumnsTask):
 
         t018c007_m = OBSColumn(
             id='t018c007_m',
-            name='Intraprovincial migrants (male)',
+            name='Intraprovincial migrants who moved in the last year (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15166,7 +15153,7 @@ class NHSColumns(ColumnsTask):
 
         t018c007_f = OBSColumn(
             id='t018c007_f',
-            name='Intraprovincial migrants (female)',
+            name='Intraprovincial migrants who moved in the last year (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15175,7 +15162,7 @@ class NHSColumns(ColumnsTask):
 
         t018c008_t = OBSColumn(
             id='t018c008_t',
-            name='Interprovincial migrants (total)',
+            name='Interprovincial migrants who moved in the last year (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15184,7 +15171,7 @@ class NHSColumns(ColumnsTask):
 
         t018c008_m = OBSColumn(
             id='t018c008_m',
-            name='Interprovincial migrants (male)',
+            name='Interprovincial migrants who moved in the last year (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15193,7 +15180,7 @@ class NHSColumns(ColumnsTask):
 
         t018c008_f = OBSColumn(
             id='t018c008_f',
-            name='Interprovincial migrants (female)',
+            name='Interprovincial migrants who moved in the last year (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15202,7 +15189,7 @@ class NHSColumns(ColumnsTask):
 
         t018c009_t = OBSColumn(
             id='t018c009_t',
-            name='External migrants (total)',
+            name='External migrants who moved in the last year (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15211,7 +15198,7 @@ class NHSColumns(ColumnsTask):
 
         t018c009_m = OBSColumn(
             id='t018c009_m',
-            name='External migrants (male)',
+            name='External migrants who moved in the last year (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15220,18 +15207,16 @@ class NHSColumns(ColumnsTask):
 
         t018c009_f = OBSColumn(
             id='t018c009_f',
-            name='External migrants (female)',
+            name='External migrants who moved in the last year (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={ t018c005_f: DENOMINATOR },)
 
-        # FIXME
-        # Same comments as above for move status as of 1 year ago.
         t018c010_t = OBSColumn(
             id='t018c010_t',
-            name='Total - Mobility status 5 years ago (total)',
+            name='People aged 5+ (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15240,7 +15225,7 @@ class NHSColumns(ColumnsTask):
 
         t018c010_m = OBSColumn(
             id='t018c010_m',
-            name='Total - Mobility status 5 years ago (male)',
+            name='People aged 5+ (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15249,19 +15234,16 @@ class NHSColumns(ColumnsTask):
 
         t018c010_f = OBSColumn(
             id='t018c010_f',
-            name='Total - Mobility status 5 years ago (female)',
+            name='People aged 5+ (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['migration']],
             targets={},)
 
-        # FIXME
-        # The below columns need names that specify the status is as of where
-        # they were 5 years ago.
         t018c011_t = OBSColumn(
             id='t018c011_t',
-            name='Non-movers (total)',
+            name='People who did not move in the last 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15270,7 +15252,7 @@ class NHSColumns(ColumnsTask):
 
         t018c011_m = OBSColumn(
             id='t018c011_m',
-            name='Non-movers (male)',
+            name='People who did not move in the last 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15279,7 +15261,7 @@ class NHSColumns(ColumnsTask):
 
         t018c011_f = OBSColumn(
             id='t018c011_f',
-            name='Non-movers (female)',
+            name='People who did not move in the last 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15288,7 +15270,7 @@ class NHSColumns(ColumnsTask):
 
         t018c012_t = OBSColumn(
             id='t018c012_t',
-            name='Movers (total)',
+            name='People who moved in the last 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15297,7 +15279,7 @@ class NHSColumns(ColumnsTask):
 
         t018c012_m = OBSColumn(
             id='t018c012_m',
-            name='Movers (male)',
+            name='People who moved in the last 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15306,7 +15288,7 @@ class NHSColumns(ColumnsTask):
 
         t018c012_f = OBSColumn(
             id='t018c012_f',
-            name='Movers (female)',
+            name='People who moved in the last 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15315,7 +15297,7 @@ class NHSColumns(ColumnsTask):
 
         t018c013_t = OBSColumn(
             id='t018c013_t',
-            name='Non-migrants (total)',
+            name='Non-migrants who moved in the last 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15324,7 +15306,7 @@ class NHSColumns(ColumnsTask):
 
         t018c013_m = OBSColumn(
             id='t018c013_m',
-            name='Non-migrants (male)',
+            name='Non-migrants who moved in the last 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15333,7 +15315,7 @@ class NHSColumns(ColumnsTask):
 
         t018c013_f = OBSColumn(
             id='t018c013_f',
-            name='Non-migrants (female)',
+            name='Non-migrants who moved in the last 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15342,7 +15324,7 @@ class NHSColumns(ColumnsTask):
 
         t018c014_t = OBSColumn(
             id='t018c014_t',
-            name='Migrants (total)',
+            name='Migrants who moved in the last 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15351,7 +15333,7 @@ class NHSColumns(ColumnsTask):
 
         t018c014_m = OBSColumn(
             id='t018c014_m',
-            name='Migrants (male)',
+            name='Migrants who moved in the last 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15360,7 +15342,7 @@ class NHSColumns(ColumnsTask):
 
         t018c014_f = OBSColumn(
             id='t018c014_f',
-            name='Migrants (female)',
+            name='Migrants who moved in the last 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15369,7 +15351,7 @@ class NHSColumns(ColumnsTask):
 
         t018c015_t = OBSColumn(
             id='t018c015_t',
-            name='Internal migrants (total)',
+            name='Internal migrants who moved in the last 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15378,7 +15360,7 @@ class NHSColumns(ColumnsTask):
 
         t018c015_m = OBSColumn(
             id='t018c015_m',
-            name='Internal migrants (male)',
+            name='Internal migrants who moved in the last 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15387,7 +15369,7 @@ class NHSColumns(ColumnsTask):
 
         t018c015_f = OBSColumn(
             id='t018c015_f',
-            name='Internal migrants (female)',
+            name='Internal migrants who moved in the last 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15396,7 +15378,7 @@ class NHSColumns(ColumnsTask):
 
         t018c016_t = OBSColumn(
             id='t018c016_t',
-            name='Intraprovincial migrants (total)',
+            name='Intraprovincial migrants who moved in the last 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15405,7 +15387,7 @@ class NHSColumns(ColumnsTask):
 
         t018c016_m = OBSColumn(
             id='t018c016_m',
-            name='Intraprovincial migrants (male)',
+            name='Intraprovincial migrants who moved in the last 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15414,7 +15396,7 @@ class NHSColumns(ColumnsTask):
 
         t018c016_f = OBSColumn(
             id='t018c016_f',
-            name='Intraprovincial migrants (female)',
+            name='Intraprovincial migrants who moved in the last 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15423,7 +15405,7 @@ class NHSColumns(ColumnsTask):
 
         t018c017_t = OBSColumn(
             id='t018c017_t',
-            name='Interprovincial migrants (total)',
+            name='Interprovincial migrants who moved in the last 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15432,7 +15414,7 @@ class NHSColumns(ColumnsTask):
 
         t018c017_m = OBSColumn(
             id='t018c017_m',
-            name='Interprovincial migrants (male)',
+            name='Interprovincial migrants who moved in the last 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15441,7 +15423,7 @@ class NHSColumns(ColumnsTask):
 
         t018c017_f = OBSColumn(
             id='t018c017_f',
-            name='Interprovincial migrants (female)',
+            name='Interprovincial migrants who moved in the last 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15450,7 +15432,7 @@ class NHSColumns(ColumnsTask):
 
         t018c018_t = OBSColumn(
             id='t018c018_t',
-            name='External migrants (total)',
+            name='External migrants who moved in the last 5 years (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15459,7 +15441,7 @@ class NHSColumns(ColumnsTask):
 
         t018c018_m = OBSColumn(
             id='t018c018_m',
-            name='External migrants (male)',
+            name='External migrants who moved in the last 5 years (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15468,7 +15450,7 @@ class NHSColumns(ColumnsTask):
 
         t018c018_f = OBSColumn(
             id='t018c018_f',
-            name='External migrants (female)',
+            name='External migrants who moved in the last 5 years (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
