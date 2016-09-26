@@ -15619,9 +15619,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['transportation']],
             targets={ t017c001_f: DENOMINATOR },)
 
-        # FIXME
-        # The below three are redundant with another total population column
-        # and should be eliminated.
         t020c001_t = OBSColumn(
             id='t020c001_t',
             name='People in private households who speak a non-official language (total)',
@@ -15649,9 +15646,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={},)
 
-        # FIXME
-        # The below should specify in their name that this is the population
-        # in households speaking a non-official language.
         t020c002_t = OBSColumn(
             id='t020c002_t',
             name='People who speak - Aboriginal languages (total)',
