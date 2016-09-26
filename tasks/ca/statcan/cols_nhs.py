@@ -14150,7 +14150,8 @@ class NHSColumns(ColumnsTask):
         # The NAICS code could be mentioned in the description.
         t014c004_t = OBSColumn(
             id='t014c004_t',
-            name='11 Agriculture, forestry, fishing and hunting (total)',
+            name='People aged 15+ in the labour force employed in Agriculture, forestry, fishing and hunting (total)',
+            description='NAICS code: 11',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14159,7 +14160,8 @@ class NHSColumns(ColumnsTask):
 
         t014c004_m = OBSColumn(
             id='t014c004_m',
-            name='11 Agriculture, forestry, fishing and hunting (male)',
+            name='People aged 15+ in the labour force employed in Agriculture, forestry, fishing and hunting (male)',
+            description='NAICS code: 11',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14168,7 +14170,8 @@ class NHSColumns(ColumnsTask):
 
         t014c004_f = OBSColumn(
             id='t014c004_f',
-            name='11 Agriculture, forestry, fishing and hunting (female)',
+            name='People aged 15+ in the labour force employed in Agriculture, forestry, fishing and hunting (female)',
+            description='NAICS code: 11',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14177,7 +14180,8 @@ class NHSColumns(ColumnsTask):
 
         t014c005_t = OBSColumn(
             id='t014c005_t',
-            name='21 Mining, quarrying, and oil and gas extraction (total)',
+            name='People aged 15+ in the labour force employed in Mining, quarrying, and oil and gas extraction (total)',
+            description='NAICS code: 21',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14186,7 +14190,8 @@ class NHSColumns(ColumnsTask):
 
         t014c005_m = OBSColumn(
             id='t014c005_m',
-            name='21 Mining, quarrying, and oil and gas extraction (male)',
+            name='People aged 15+ in the labour force employed in Mining, quarrying, and oil and gas extraction (male)',
+            description='NAICS code: 21',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14195,7 +14200,8 @@ class NHSColumns(ColumnsTask):
 
         t014c005_f = OBSColumn(
             id='t014c005_f',
-            name='21 Mining, quarrying, and oil and gas extraction (female)',
+            name='People aged 15+ in the labour force employed in Mining, quarrying, and oil and gas extraction (female)',
+            description='NAICS code: 21',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14204,7 +14210,8 @@ class NHSColumns(ColumnsTask):
 
         t014c006_t = OBSColumn(
             id='t014c006_t',
-            name='22 Utilities (total)',
+            name='People aged 15+ in the labour force employed in Utilities (total)',
+            description='NAICS code: 22',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14213,7 +14220,8 @@ class NHSColumns(ColumnsTask):
 
         t014c006_m = OBSColumn(
             id='t014c006_m',
-            name='22 Utilities (male)',
+            name='People aged 15+ in the labour force employed in Utilities (male)',
+            description='NAICS code: 22',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14222,7 +14230,8 @@ class NHSColumns(ColumnsTask):
 
         t014c006_f = OBSColumn(
             id='t014c006_f',
-            name='22 Utilities (female)',
+            name='People aged 15+ in the labour force employed in Utilities (female)',
+            description='NAICS code: 22',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14231,7 +14240,8 @@ class NHSColumns(ColumnsTask):
 
         t014c007_t = OBSColumn(
             id='t014c007_t',
-            name='23 Construction (total)',
+            name='People aged 15+ in the labour force employed in Construction (total)',
+            description='NAICS code: 23',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14240,7 +14250,8 @@ class NHSColumns(ColumnsTask):
 
         t014c007_m = OBSColumn(
             id='t014c007_m',
-            name='23 Construction (male)',
+            name='People aged 15+ in the labour force employed in Construction (male)',
+            description='NAICS code: 23',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14249,7 +14260,8 @@ class NHSColumns(ColumnsTask):
 
         t014c007_f = OBSColumn(
             id='t014c007_f',
-            name='23 Construction (female)',
+            name='People aged 15+ in the labour force employed in Construction (female)',
+            description='NAICS code: 23',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14258,7 +14270,8 @@ class NHSColumns(ColumnsTask):
 
         t014c008_t = OBSColumn(
             id='t014c008_t',
-            name='31-33 Manufacturing (total)',
+            name='People aged 15+ in the labour force employed in Manufacturing (total)',
+            description='NAICS code: 31-33',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14267,7 +14280,8 @@ class NHSColumns(ColumnsTask):
 
         t014c008_m = OBSColumn(
             id='t014c008_m',
-            name='31-33 Manufacturing (male)',
+            name='People aged 15+ in the labour force employed in Manufacturing (male)',
+            description='NAICS code: 31-33',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14276,7 +14290,8 @@ class NHSColumns(ColumnsTask):
 
         t014c008_f = OBSColumn(
             id='t014c008_f',
-            name='31-33 Manufacturing (female)',
+            name='People aged 15+ in the labour force employed in Manufacturing (female)',
+            description='NAICS code: 31-33',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14285,7 +14300,8 @@ class NHSColumns(ColumnsTask):
 
         t014c009_t = OBSColumn(
             id='t014c009_t',
-            name='41 Wholesale trade (total)',
+            name='People aged 15+ in the labour force employed in Wholesale trade (total)',
+            description='NAICS code: 41',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14294,7 +14310,8 @@ class NHSColumns(ColumnsTask):
 
         t014c009_m = OBSColumn(
             id='t014c009_m',
-            name='41 Wholesale trade (male)',
+            name='People aged 15+ in the labour force employed in Wholesale trade (male)',
+            description='NAICS code: 41',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14303,7 +14320,8 @@ class NHSColumns(ColumnsTask):
 
         t014c009_f = OBSColumn(
             id='t014c009_f',
-            name='41 Wholesale trade (female)',
+            name='People aged 15+ in the labour force employed in Wholesale trade (female)',
+            description='NAICS code: 41',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14312,7 +14330,8 @@ class NHSColumns(ColumnsTask):
 
         t014c010_t = OBSColumn(
             id='t014c010_t',
-            name='44-45 Retail trade (total)',
+            name='People aged 15+ in the labour force employed in Retail trade (total)',
+            description='NAICS code: 44-45',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14321,7 +14340,8 @@ class NHSColumns(ColumnsTask):
 
         t014c010_m = OBSColumn(
             id='t014c010_m',
-            name='44-45 Retail trade (male)',
+            name='People aged 15+ in the labour force employed in Retail trade (male)',
+            description='NAICS code: 44-45',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14330,7 +14350,8 @@ class NHSColumns(ColumnsTask):
 
         t014c010_f = OBSColumn(
             id='t014c010_f',
-            name='44-45 Retail trade (female)',
+            name='People aged 15+ in the labour force employed in Retail trade (female)',
+            description='NAICS code: 44-45',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14339,7 +14360,8 @@ class NHSColumns(ColumnsTask):
 
         t014c011_t = OBSColumn(
             id='t014c011_t',
-            name='48-49 Transportation and warehousing (total)',
+            name='People aged 15+ in the labour force employed in Transportation and warehousing (total)',
+            description='NAICS code: 48-49',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14348,7 +14370,8 @@ class NHSColumns(ColumnsTask):
 
         t014c011_m = OBSColumn(
             id='t014c011_m',
-            name='48-49 Transportation and warehousing (male)',
+            name='People aged 15+ in the labour force employed in Transportation and warehousing (male)',
+            description='NAICS code: 48-49',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14357,7 +14380,8 @@ class NHSColumns(ColumnsTask):
 
         t014c011_f = OBSColumn(
             id='t014c011_f',
-            name='48-49 Transportation and warehousing (female)',
+            name='People aged 15+ in the labour force employed in Transportation and warehousing (female)',
+            description='NAICS code: 48-49',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14366,7 +14390,8 @@ class NHSColumns(ColumnsTask):
 
         t014c012_t = OBSColumn(
             id='t014c012_t',
-            name='51 Information and cultural industries (total)',
+            name='People aged 15+ in the labour force employed in Information and cultural industries (total)',
+            description='NAICS code: 51',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14375,7 +14400,8 @@ class NHSColumns(ColumnsTask):
 
         t014c012_m = OBSColumn(
             id='t014c012_m',
-            name='51 Information and cultural industries (male)',
+            name='People aged 15+ in the labour force employed in Information and cultural industries (male)',
+            description='NAICS code: 51',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14384,7 +14410,8 @@ class NHSColumns(ColumnsTask):
 
         t014c012_f = OBSColumn(
             id='t014c012_f',
-            name='51 Information and cultural industries (female)',
+            name='People aged 15+ in the labour force employed in Information and cultural industries (female)',
+            description='NAICS code: 51',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14393,7 +14420,8 @@ class NHSColumns(ColumnsTask):
 
         t014c013_t = OBSColumn(
             id='t014c013_t',
-            name='52 Finance and insurance (total)',
+            name='People aged 15+ in the labour force employed in Finance and insurance (total)',
+            description='NAICS code: 52',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14402,7 +14430,8 @@ class NHSColumns(ColumnsTask):
 
         t014c013_m = OBSColumn(
             id='t014c013_m',
-            name='52 Finance and insurance (male)',
+            name='People aged 15+ in the labour force employed in Finance and insurance (male)',
+            description='NAICS code: 52',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14411,7 +14440,8 @@ class NHSColumns(ColumnsTask):
 
         t014c013_f = OBSColumn(
             id='t014c013_f',
-            name='52 Finance and insurance (female)',
+            name='People aged 15+ in the labour force employed in Finance and insurance (female)',
+            description='NAICS code: 52',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14420,7 +14450,8 @@ class NHSColumns(ColumnsTask):
 
         t014c014_t = OBSColumn(
             id='t014c014_t',
-            name='53 Real estate and rental and leasing (total)',
+            name='People aged 15+ in the labour force employed in Real estate and rental and leasing (total)',
+            description='NAICS code: 53',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14429,7 +14460,8 @@ class NHSColumns(ColumnsTask):
 
         t014c014_m = OBSColumn(
             id='t014c014_m',
-            name='53 Real estate and rental and leasing (male)',
+            name='People aged 15+ in the labour force employed in Real estate and rental and leasing (male)',
+            description='NAICS code: 53',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14438,7 +14470,8 @@ class NHSColumns(ColumnsTask):
 
         t014c014_f = OBSColumn(
             id='t014c014_f',
-            name='53 Real estate and rental and leasing (female)',
+            name='People aged 15+ in the labour force employed in Real estate and rental and leasing (female)',
+            description='NAICS code: 53',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14447,7 +14480,8 @@ class NHSColumns(ColumnsTask):
 
         t014c015_t = OBSColumn(
             id='t014c015_t',
-            name='54 Professional, scientific and technical services (total)',
+            name='People aged 15+ in the labour force employed in Professional, scientific and technical services (total)',
+            description='NAICS code: 54',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14456,7 +14490,8 @@ class NHSColumns(ColumnsTask):
 
         t014c015_m = OBSColumn(
             id='t014c015_m',
-            name='54 Professional, scientific and technical services (male)',
+            name='People aged 15+ in the labour force employed in Professional, scientific and technical services (male)',
+            description='NAICS code: 54',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14465,7 +14500,8 @@ class NHSColumns(ColumnsTask):
 
         t014c015_f = OBSColumn(
             id='t014c015_f',
-            name='54 Professional, scientific and technical services (female)',
+            name='People aged 15+ in the labour force employed in Professional, scientific and technical services (female)',
+            description='NAICS code: 54',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14474,7 +14510,8 @@ class NHSColumns(ColumnsTask):
 
         t014c016_t = OBSColumn(
             id='t014c016_t',
-            name='55 Management of companies and enterprises (total)',
+            name='People aged 15+ in the labour force employed in Management of companies and enterprises (total)',
+            description='NAICS code: 55',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14483,7 +14520,8 @@ class NHSColumns(ColumnsTask):
 
         t014c016_m = OBSColumn(
             id='t014c016_m',
-            name='55 Management of companies and enterprises (male)',
+            name='People aged 15+ in the labour force employed in Management of companies and enterprises (male)',
+            description='NAICS code: 55',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14492,7 +14530,8 @@ class NHSColumns(ColumnsTask):
 
         t014c016_f = OBSColumn(
             id='t014c016_f',
-            name='55 Management of companies and enterprises (female)',
+            name='People aged 15+ in the labour force employed in Management of companies and enterprises (female)',
+            description='NAICS code: 55',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14501,7 +14540,8 @@ class NHSColumns(ColumnsTask):
 
         t014c017_t = OBSColumn(
             id='t014c017_t',
-            name='56 Administrative and support, waste management and remediation services (total)',
+            name='People aged 15+ in the labour force employed in Administrative and support, waste management and remediation services (total)',
+            description='NAICS code: 56',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14510,7 +14550,8 @@ class NHSColumns(ColumnsTask):
 
         t014c017_m = OBSColumn(
             id='t014c017_m',
-            name='56 Administrative and support, waste management and remediation services (male)',
+            name='People aged 15+ in the labour force employed in Administrative and support, waste management and remediation services (male)',
+            description='NAICS code: 56',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14519,7 +14560,8 @@ class NHSColumns(ColumnsTask):
 
         t014c017_f = OBSColumn(
             id='t014c017_f',
-            name='56 Administrative and support, waste management and remediation services (female)',
+            name='People aged 15+ in the labour force employed in Administrative and support, waste management and remediation services (female)',
+            description='NAICS code: 56',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14528,7 +14570,8 @@ class NHSColumns(ColumnsTask):
 
         t014c018_t = OBSColumn(
             id='t014c018_t',
-            name='61 Educational services (total)',
+            name='People aged 15+ in the labour force employed in Educational services (total)',
+            description='NAICS code: 61',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14537,7 +14580,8 @@ class NHSColumns(ColumnsTask):
 
         t014c018_m = OBSColumn(
             id='t014c018_m',
-            name='61 Educational services (male)',
+            name='People aged 15+ in the labour force employed in Educational services (male)',
+            description='NAICS code: 61',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14546,7 +14590,8 @@ class NHSColumns(ColumnsTask):
 
         t014c018_f = OBSColumn(
             id='t014c018_f',
-            name='61 Educational services (female)',
+            name='People aged 15+ in the labour force employed in Educational services (female)',
+            description='NAICS code: 61',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14555,7 +14600,8 @@ class NHSColumns(ColumnsTask):
 
         t014c019_t = OBSColumn(
             id='t014c019_t',
-            name='62 Health care and social assistance (total)',
+            name='People aged 15+ in the labour force employed in Health care and social assistance (total)',
+            description='NAICS code: 62',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14564,7 +14610,8 @@ class NHSColumns(ColumnsTask):
 
         t014c019_m = OBSColumn(
             id='t014c019_m',
-            name='62 Health care and social assistance (male)',
+            name='People aged 15+ in the labour force employed in Health care and social assistance (male)',
+            description='NAICS code: 62',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14573,7 +14620,8 @@ class NHSColumns(ColumnsTask):
 
         t014c019_f = OBSColumn(
             id='t014c019_f',
-            name='62 Health care and social assistance (female)',
+            name='People aged 15+ in the labour force employed in Health care and social assistance (female)',
+            description='NAICS code: 62',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14582,7 +14630,8 @@ class NHSColumns(ColumnsTask):
 
         t014c020_t = OBSColumn(
             id='t014c020_t',
-            name='71 Arts, entertainment and recreation (total)',
+            name='People aged 15+ in the labour force employed in Arts, entertainment and recreation (total)',
+            description='NAICS code: 71',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14591,7 +14640,8 @@ class NHSColumns(ColumnsTask):
 
         t014c020_m = OBSColumn(
             id='t014c020_m',
-            name='71 Arts, entertainment and recreation (male)',
+            name='People aged 15+ in the labour force employed in Arts, entertainment and recreation (male)',
+            description='NAICS code: 71',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14600,7 +14650,8 @@ class NHSColumns(ColumnsTask):
 
         t014c020_f = OBSColumn(
             id='t014c020_f',
-            name='71 Arts, entertainment and recreation (female)',
+            name='People aged 15+ in the labour force employed in Arts, entertainment and recreation (female)',
+            description='NAICS code: 71',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14609,7 +14660,8 @@ class NHSColumns(ColumnsTask):
 
         t014c021_t = OBSColumn(
             id='t014c021_t',
-            name='72 Accommodation and food services (total)',
+            name='People aged 15+ in the labour force employed in Accommodation and food services (total)',
+            description='NAICS code: 72',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14618,7 +14670,8 @@ class NHSColumns(ColumnsTask):
 
         t014c021_m = OBSColumn(
             id='t014c021_m',
-            name='72 Accommodation and food services (male)',
+            name='People aged 15+ in the labour force employed in Accommodation and food services (male)',
+            description='NAICS code: 72',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14627,7 +14680,8 @@ class NHSColumns(ColumnsTask):
 
         t014c021_f = OBSColumn(
             id='t014c021_f',
-            name='72 Accommodation and food services (female)',
+            name='People aged 15+ in the labour force employed in Accommodation and food services (female)',
+            description='NAICS code: 72',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14636,7 +14690,8 @@ class NHSColumns(ColumnsTask):
 
         t014c022_t = OBSColumn(
             id='t014c022_t',
-            name='81 Other services (except public administration) (total)',
+            name='People aged 15+ in the labour force employed in Other services (except public administration) (total)',
+            description='NAICS code: 81',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14645,7 +14700,8 @@ class NHSColumns(ColumnsTask):
 
         t014c022_m = OBSColumn(
             id='t014c022_m',
-            name='81 Other services (except public administration) (male)',
+            name='People aged 15+ in the labour force employed in Other services (except public administration) (male)',
+            description='NAICS code: 81',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14654,7 +14710,8 @@ class NHSColumns(ColumnsTask):
 
         t014c022_f = OBSColumn(
             id='t014c022_f',
-            name='81 Other services (except public administration) (female)',
+            name='People aged 15+ in the labour force employed in Other services (except public administration) (female)',
+            description='NAICS code: 81',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14663,7 +14720,8 @@ class NHSColumns(ColumnsTask):
 
         t014c023_t = OBSColumn(
             id='t014c023_t',
-            name='91 Public administration (total)',
+            name='People aged 15+ in the labour force employed in Public administration (total)',
+            description='NAICS code: 91',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14672,7 +14730,8 @@ class NHSColumns(ColumnsTask):
 
         t014c023_m = OBSColumn(
             id='t014c023_m',
-            name='91 Public administration (male)',
+            name='People aged 15+ in the labour force employed in Public administration (male)',
+            description='NAICS code: 91',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14681,7 +14740,8 @@ class NHSColumns(ColumnsTask):
 
         t014c023_f = OBSColumn(
             id='t014c023_f',
-            name='91 Public administration (female)',
+            name='People aged 15+ in the labour force employed in Public administration (female)',
+            description='NAICS code: 91',
             type='Numeric',
             weight=3,
             aggregate='sum',
