@@ -9664,9 +9664,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['nationality']],
             targets={ t010c002_f: DENOMINATOR },)
 
-        # FIXME
-        # The below need to be qualified that the area/country specified is
-        # where they immigrated from.
         t011c006_t = OBSColumn(
             id='t011c006_t',
             name='Immigrants born in Americas (total)',
@@ -11568,9 +11565,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t009c001_t: DENOMINATOR },)
 
-        #
-        # Its subcolumns should be renamed to clearly specify in their
-        # names that the income is for one-person households
         t012c035_t = OBSColumn(
             id='t012c035_t',
             name='Median total household income of one-person households',
@@ -11618,8 +11612,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t009c001_t: DENOMINATOR },)
 
-        # Its subcolumns should be renamed to clearly specify in their
-        # names that the income is for two-or-more-persons households
         t012c040_t = OBSColumn(
             id='t012c040_t',
             name='Median total household income of two-or-more-persons households',
@@ -12170,8 +12162,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t005c001_f: DENOMINATOR },)
 
-        # FIXME
-        # Same edits needed as above for Total income
         t013c022_t = OBSColumn(
             id='t013c022_t',
             name='People aged 15+ with after-tax income under $5,000 (total)',
@@ -13184,9 +13174,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c055_t: DENOMINATOR },)
 
-        # FIXME
-        # The below need to be qualified as for the population in
-        # lone-parent economic families
         t013c074_t = OBSColumn(
             id='t013c074_t',
             name='Median income of lone-parent families',
@@ -13367,8 +13354,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: UNIVERSE },)
 
-        # FIXME
-        # These need a description of what the "Canadian distribution" is.
         t013c085_t = OBSColumn(
             id='t013c085_t',
             name='Total population - In bottom half of the Canadian distribution (total)',
@@ -14143,11 +14128,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
-        #FIXME
-        # Below should be more clearly named "Labour force employeed in
-        # Agriculture, forestry, fishing and hunting (total)", etc.
-        #
-        # The NAICS code could be mentioned in the description.
         t014c004_t = OBSColumn(
             id='t014c004_t',
             name='People aged 15+ in the labour force employed in Agriculture, forestry, fishing and hunting (total)',
