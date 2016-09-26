@@ -15624,7 +15624,7 @@ class NHSColumns(ColumnsTask):
         # and should be eliminated.
         t020c001_t = OBSColumn(
             id='t020c001_t',
-            name='Total population in private households by non-official languages spoken (total)',
+            name='People in private households who speak a non-official language (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15633,7 +15633,7 @@ class NHSColumns(ColumnsTask):
 
         t020c001_m = OBSColumn(
             id='t020c001_m',
-            name='Total population in private households by non-official languages spoken (male)',
+            name='People in private households who speak a non-official language (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15642,7 +15642,7 @@ class NHSColumns(ColumnsTask):
 
         t020c001_f = OBSColumn(
             id='t020c001_f',
-            name='Total population in private households by non-official languages spoken (female)',
+            name='People in private households who speak a non-official language (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15654,7 +15654,7 @@ class NHSColumns(ColumnsTask):
         # in households speaking a non-official language.
         t020c002_t = OBSColumn(
             id='t020c002_t',
-            name='Aboriginal languages (total)',
+            name='People who speak - Aboriginal languages (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15663,7 +15663,7 @@ class NHSColumns(ColumnsTask):
 
         t020c002_m = OBSColumn(
             id='t020c002_m',
-            name='Aboriginal languages (male)',
+            name='People who speak - Aboriginal languages (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15672,7 +15672,7 @@ class NHSColumns(ColumnsTask):
 
         t020c002_f = OBSColumn(
             id='t020c002_f',
-            name='Aboriginal languages (female)',
+            name='People who speak - Aboriginal languages (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15681,7 +15681,7 @@ class NHSColumns(ColumnsTask):
 
         t020c003_t = OBSColumn(
             id='t020c003_t',
-            name='Algonquin (total)',
+            name='People who speak - Algonquin (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15690,7 +15690,7 @@ class NHSColumns(ColumnsTask):
 
         t020c003_m = OBSColumn(
             id='t020c003_m',
-            name='Algonquin (male)',
+            name='People who speak - Algonquin (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15699,7 +15699,7 @@ class NHSColumns(ColumnsTask):
 
         t020c003_f = OBSColumn(
             id='t020c003_f',
-            name='Algonquin (female)',
+            name='People who speak - Algonquin (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15708,7 +15708,7 @@ class NHSColumns(ColumnsTask):
 
         t020c004_t = OBSColumn(
             id='t020c004_t',
-            name='Atikamekw (total)',
+            name='People who speak - Atikamekw (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15717,7 +15717,7 @@ class NHSColumns(ColumnsTask):
 
         t020c004_m = OBSColumn(
             id='t020c004_m',
-            name='Atikamekw (male)',
+            name='People who speak - Atikamekw (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15726,7 +15726,7 @@ class NHSColumns(ColumnsTask):
 
         t020c004_f = OBSColumn(
             id='t020c004_f',
-            name='Atikamekw (female)',
+            name='People who speak - Atikamekw (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15735,7 +15735,7 @@ class NHSColumns(ColumnsTask):
 
         t020c005_t = OBSColumn(
             id='t020c005_t',
-            name='Blackfoot (total)',
+            name='People who speak - Blackfoot (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15744,7 +15744,7 @@ class NHSColumns(ColumnsTask):
 
         t020c005_m = OBSColumn(
             id='t020c005_m',
-            name='Blackfoot (male)',
+            name='People who speak - Blackfoot (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15753,7 +15753,7 @@ class NHSColumns(ColumnsTask):
 
         t020c005_f = OBSColumn(
             id='t020c005_f',
-            name='Blackfoot (female)',
+            name='People who speak - Blackfoot (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15762,7 +15762,7 @@ class NHSColumns(ColumnsTask):
 
         t020c006_t = OBSColumn(
             id='t020c006_t',
-            name='Cree languages (total)',
+            name='People who speak - Cree languages (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15771,7 +15771,7 @@ class NHSColumns(ColumnsTask):
 
         t020c006_m = OBSColumn(
             id='t020c006_m',
-            name='Cree languages (male)',
+            name='People who speak - Cree languages (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15780,7 +15780,7 @@ class NHSColumns(ColumnsTask):
 
         t020c006_f = OBSColumn(
             id='t020c006_f',
-            name='Cree languages (female)',
+            name='People who speak - Cree languages (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15789,7 +15789,7 @@ class NHSColumns(ColumnsTask):
 
         t020c007_t = OBSColumn(
             id='t020c007_t',
-            name='Mi\'kmaq (total)',
+            name='People who speak - Mi\'kmaq (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15798,7 +15798,7 @@ class NHSColumns(ColumnsTask):
 
         t020c007_m = OBSColumn(
             id='t020c007_m',
-            name='Mi\'kmaq (male)',
+            name='People who speak - Mi\'kmaq (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15807,7 +15807,7 @@ class NHSColumns(ColumnsTask):
 
         t020c007_f = OBSColumn(
             id='t020c007_f',
-            name='Mi\'kmaq (female)',
+            name='People who speak - Mi\'kmaq (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15816,7 +15816,7 @@ class NHSColumns(ColumnsTask):
 
         t020c008_t = OBSColumn(
             id='t020c008_t',
-            name='Innu/Montagnais (total)',
+            name='People who speak - Innu/Montagnais (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15825,7 +15825,7 @@ class NHSColumns(ColumnsTask):
 
         t020c008_m = OBSColumn(
             id='t020c008_m',
-            name='Innu/Montagnais (male)',
+            name='People who speak - Innu/Montagnais (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15834,7 +15834,7 @@ class NHSColumns(ColumnsTask):
 
         t020c008_f = OBSColumn(
             id='t020c008_f',
-            name='Innu/Montagnais (female)',
+            name='People who speak - Innu/Montagnais (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15843,7 +15843,7 @@ class NHSColumns(ColumnsTask):
 
         t020c009_t = OBSColumn(
             id='t020c009_t',
-            name='Ojibway (total)',
+            name='People who speak - Ojibway (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15852,7 +15852,7 @@ class NHSColumns(ColumnsTask):
 
         t020c009_m = OBSColumn(
             id='t020c009_m',
-            name='Ojibway (male)',
+            name='People who speak - Ojibway (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15861,7 +15861,7 @@ class NHSColumns(ColumnsTask):
 
         t020c009_f = OBSColumn(
             id='t020c009_f',
-            name='Ojibway (female)',
+            name='People who speak - Ojibway (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15924,7 +15924,7 @@ class NHSColumns(ColumnsTask):
 
         t020c012_t = OBSColumn(
             id='t020c012_t',
-            name='Dene (total)',
+            name='People who speak - Dene (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15933,7 +15933,7 @@ class NHSColumns(ColumnsTask):
 
         t020c012_m = OBSColumn(
             id='t020c012_m',
-            name='Dene (male)',
+            name='People who speak - Dene (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15942,7 +15942,7 @@ class NHSColumns(ColumnsTask):
 
         t020c012_f = OBSColumn(
             id='t020c012_f',
-            name='Dene (female)',
+            name='People who speak - Dene (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15951,7 +15951,7 @@ class NHSColumns(ColumnsTask):
 
         t020c013_t = OBSColumn(
             id='t020c013_t',
-            name='Tlicho (Dogrib) (total)',
+            name='People who speak - Tlicho (Dogrib) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15960,7 +15960,7 @@ class NHSColumns(ColumnsTask):
 
         t020c013_m = OBSColumn(
             id='t020c013_m',
-            name='Tlicho (Dogrib) (male)',
+            name='People who speak - Tlicho (Dogrib) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15969,7 +15969,7 @@ class NHSColumns(ColumnsTask):
 
         t020c013_f = OBSColumn(
             id='t020c013_f',
-            name='Tlicho (Dogrib) (female)',
+            name='People who speak - Tlicho (Dogrib) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15978,7 +15978,7 @@ class NHSColumns(ColumnsTask):
 
         t020c014_t = OBSColumn(
             id='t020c014_t',
-            name='Slavey, n.o.s. (total)',
+            name='People who speak - Slavey, n.o.s. (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15987,7 +15987,7 @@ class NHSColumns(ColumnsTask):
 
         t020c014_m = OBSColumn(
             id='t020c014_m',
-            name='Slavey, n.o.s. (male)',
+            name='People who speak - Slavey, n.o.s. (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -15996,7 +15996,7 @@ class NHSColumns(ColumnsTask):
 
         t020c014_f = OBSColumn(
             id='t020c014_f',
-            name='Slavey, n.o.s. (female)',
+            name='People who speak - Slavey, n.o.s. (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16005,7 +16005,7 @@ class NHSColumns(ColumnsTask):
 
         t020c015_t = OBSColumn(
             id='t020c015_t',
-            name='Stoney (total)',
+            name='People who speak - Stoney (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16014,7 +16014,7 @@ class NHSColumns(ColumnsTask):
 
         t020c015_m = OBSColumn(
             id='t020c015_m',
-            name='Stoney (male)',
+            name='People who speak - Stoney (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16023,7 +16023,7 @@ class NHSColumns(ColumnsTask):
 
         t020c015_f = OBSColumn(
             id='t020c015_f',
-            name='Stoney (female)',
+            name='People who speak - Stoney (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16032,7 +16032,7 @@ class NHSColumns(ColumnsTask):
 
         t020c016_t = OBSColumn(
             id='t020c016_t',
-            name='Inuktitut (total)',
+            name='People who speak - Inuktitut (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16041,7 +16041,7 @@ class NHSColumns(ColumnsTask):
 
         t020c016_m = OBSColumn(
             id='t020c016_m',
-            name='Inuktitut (male)',
+            name='People who speak - Inuktitut (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16050,7 +16050,7 @@ class NHSColumns(ColumnsTask):
 
         t020c016_f = OBSColumn(
             id='t020c016_f',
-            name='Inuktitut (female)',
+            name='People who speak - Inuktitut (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16059,7 +16059,7 @@ class NHSColumns(ColumnsTask):
 
         t020c017_t = OBSColumn(
             id='t020c017_t',
-            name='Other Aboriginal languages (total)',
+            name='People who speak - Other Aboriginal languages (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16068,7 +16068,7 @@ class NHSColumns(ColumnsTask):
 
         t020c017_m = OBSColumn(
             id='t020c017_m',
-            name='Other Aboriginal languages (male)',
+            name='People who speak - Other Aboriginal languages (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16077,7 +16077,7 @@ class NHSColumns(ColumnsTask):
 
         t020c017_f = OBSColumn(
             id='t020c017_f',
-            name='Other Aboriginal languages (female)',
+            name='People who speak - Other Aboriginal languages (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16086,7 +16086,7 @@ class NHSColumns(ColumnsTask):
 
         t020c018_t = OBSColumn(
             id='t020c018_t',
-            name='Non-Aboriginal languages (total)',
+            name='People who speak - Non-Aboriginal languages (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16095,7 +16095,7 @@ class NHSColumns(ColumnsTask):
 
         t020c018_m = OBSColumn(
             id='t020c018_m',
-            name='Non-Aboriginal languages (male)',
+            name='People who speak - Non-Aboriginal languages (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16104,7 +16104,7 @@ class NHSColumns(ColumnsTask):
 
         t020c018_f = OBSColumn(
             id='t020c018_f',
-            name='Non-Aboriginal languages (female)',
+            name='People who speak - Non-Aboriginal languages (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16113,7 +16113,7 @@ class NHSColumns(ColumnsTask):
 
         t020c019_t = OBSColumn(
             id='t020c019_t',
-            name='Italian (total)',
+            name='People who speak - Italian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16122,7 +16122,7 @@ class NHSColumns(ColumnsTask):
 
         t020c019_m = OBSColumn(
             id='t020c019_m',
-            name='Italian (male)',
+            name='People who speak - Italian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16131,7 +16131,7 @@ class NHSColumns(ColumnsTask):
 
         t020c019_f = OBSColumn(
             id='t020c019_f',
-            name='Italian (female)',
+            name='People who speak - Italian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16194,7 +16194,7 @@ class NHSColumns(ColumnsTask):
 
         t020c022_t = OBSColumn(
             id='t020c022_t',
-            name='Spanish (total)',
+            name='People who speak - Spanish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16203,7 +16203,7 @@ class NHSColumns(ColumnsTask):
 
         t020c022_m = OBSColumn(
             id='t020c022_m',
-            name='Spanish (male)',
+            name='People who speak - Spanish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16212,7 +16212,7 @@ class NHSColumns(ColumnsTask):
 
         t020c022_f = OBSColumn(
             id='t020c022_f',
-            name='Spanish (female)',
+            name='People who speak - Spanish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16221,7 +16221,7 @@ class NHSColumns(ColumnsTask):
 
         t020c023_t = OBSColumn(
             id='t020c023_t',
-            name='Dutch (total)',
+            name='People who speak - Dutch (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16230,7 +16230,7 @@ class NHSColumns(ColumnsTask):
 
         t020c023_m = OBSColumn(
             id='t020c023_m',
-            name='Dutch (male)',
+            name='People who speak - Dutch (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16239,7 +16239,7 @@ class NHSColumns(ColumnsTask):
 
         t020c023_f = OBSColumn(
             id='t020c023_f',
-            name='Dutch (female)',
+            name='People who speak - Dutch (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16248,7 +16248,7 @@ class NHSColumns(ColumnsTask):
 
         t020c024_t = OBSColumn(
             id='t020c024_t',
-            name='Flemish (total)',
+            name='People who speak - Flemish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16257,7 +16257,7 @@ class NHSColumns(ColumnsTask):
 
         t020c024_m = OBSColumn(
             id='t020c024_m',
-            name='Flemish (male)',
+            name='People who speak - Flemish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16266,7 +16266,7 @@ class NHSColumns(ColumnsTask):
 
         t020c024_f = OBSColumn(
             id='t020c024_f',
-            name='Flemish (female)',
+            name='People who speak - Flemish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16275,7 +16275,7 @@ class NHSColumns(ColumnsTask):
 
         t020c025_t = OBSColumn(
             id='t020c025_t',
-            name='German (total)',
+            name='People who speak - German (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16284,7 +16284,7 @@ class NHSColumns(ColumnsTask):
 
         t020c025_m = OBSColumn(
             id='t020c025_m',
-            name='German (male)',
+            name='People who speak - German (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16293,7 +16293,7 @@ class NHSColumns(ColumnsTask):
 
         t020c025_f = OBSColumn(
             id='t020c025_f',
-            name='German (female)',
+            name='People who speak - German (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16302,7 +16302,7 @@ class NHSColumns(ColumnsTask):
 
         t020c026_t = OBSColumn(
             id='t020c026_t',
-            name='Yiddish (total)',
+            name='People who speak - Yiddish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16311,7 +16311,7 @@ class NHSColumns(ColumnsTask):
 
         t020c026_m = OBSColumn(
             id='t020c026_m',
-            name='Yiddish (male)',
+            name='People who speak - Yiddish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16320,7 +16320,7 @@ class NHSColumns(ColumnsTask):
 
         t020c026_f = OBSColumn(
             id='t020c026_f',
-            name='Yiddish (female)',
+            name='People who speak - Yiddish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16329,7 +16329,7 @@ class NHSColumns(ColumnsTask):
 
         t020c027_t = OBSColumn(
             id='t020c027_t',
-            name='Danish (total)',
+            name='People who speak - Danish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16338,7 +16338,7 @@ class NHSColumns(ColumnsTask):
 
         t020c027_m = OBSColumn(
             id='t020c027_m',
-            name='Danish (male)',
+            name='People who speak - Danish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16347,7 +16347,7 @@ class NHSColumns(ColumnsTask):
 
         t020c027_f = OBSColumn(
             id='t020c027_f',
-            name='Danish (female)',
+            name='People who speak - Danish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16356,7 +16356,7 @@ class NHSColumns(ColumnsTask):
 
         t020c028_t = OBSColumn(
             id='t020c028_t',
-            name='Norwegian (total)',
+            name='People who speak - Norwegian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16365,7 +16365,7 @@ class NHSColumns(ColumnsTask):
 
         t020c028_m = OBSColumn(
             id='t020c028_m',
-            name='Norwegian (male)',
+            name='People who speak - Norwegian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16374,7 +16374,7 @@ class NHSColumns(ColumnsTask):
 
         t020c028_f = OBSColumn(
             id='t020c028_f',
-            name='Norwegian (female)',
+            name='People who speak - Norwegian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16383,7 +16383,7 @@ class NHSColumns(ColumnsTask):
 
         t020c029_t = OBSColumn(
             id='t020c029_t',
-            name='Swedish (total)',
+            name='People who speak - Swedish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16392,7 +16392,7 @@ class NHSColumns(ColumnsTask):
 
         t020c029_m = OBSColumn(
             id='t020c029_m',
-            name='Swedish (male)',
+            name='People who speak - Swedish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16401,7 +16401,7 @@ class NHSColumns(ColumnsTask):
 
         t020c029_f = OBSColumn(
             id='t020c029_f',
-            name='Swedish (female)',
+            name='People who speak - Swedish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16464,7 +16464,7 @@ class NHSColumns(ColumnsTask):
 
         t020c032_t = OBSColumn(
             id='t020c032_t',
-            name='Bosnian (total)',
+            name='People who speak - Bosnian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16473,7 +16473,7 @@ class NHSColumns(ColumnsTask):
 
         t020c032_m = OBSColumn(
             id='t020c032_m',
-            name='Bosnian (male)',
+            name='People who speak - Bosnian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16482,7 +16482,7 @@ class NHSColumns(ColumnsTask):
 
         t020c032_f = OBSColumn(
             id='t020c032_f',
-            name='Bosnian (female)',
+            name='People who speak - Bosnian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16491,7 +16491,7 @@ class NHSColumns(ColumnsTask):
 
         t020c033_t = OBSColumn(
             id='t020c033_t',
-            name='Bulgarian (total)',
+            name='People who speak - Bulgarian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16500,7 +16500,7 @@ class NHSColumns(ColumnsTask):
 
         t020c033_m = OBSColumn(
             id='t020c033_m',
-            name='Bulgarian (male)',
+            name='People who speak - Bulgarian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16509,7 +16509,7 @@ class NHSColumns(ColumnsTask):
 
         t020c033_f = OBSColumn(
             id='t020c033_f',
-            name='Bulgarian (female)',
+            name='People who speak - Bulgarian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16518,7 +16518,7 @@ class NHSColumns(ColumnsTask):
 
         t020c034_t = OBSColumn(
             id='t020c034_t',
-            name='Croatian (total)',
+            name='People who speak - Croatian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16527,7 +16527,7 @@ class NHSColumns(ColumnsTask):
 
         t020c034_m = OBSColumn(
             id='t020c034_m',
-            name='Croatian (male)',
+            name='People who speak - Croatian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16536,7 +16536,7 @@ class NHSColumns(ColumnsTask):
 
         t020c034_f = OBSColumn(
             id='t020c034_f',
-            name='Croatian (female)',
+            name='People who speak - Croatian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16545,7 +16545,7 @@ class NHSColumns(ColumnsTask):
 
         t020c035_t = OBSColumn(
             id='t020c035_t',
-            name='Czech (total)',
+            name='People who speak - Czech (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16554,7 +16554,7 @@ class NHSColumns(ColumnsTask):
 
         t020c035_m = OBSColumn(
             id='t020c035_m',
-            name='Czech (male)',
+            name='People who speak - Czech (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16563,7 +16563,7 @@ class NHSColumns(ColumnsTask):
 
         t020c035_f = OBSColumn(
             id='t020c035_f',
-            name='Czech (female)',
+            name='People who speak - Czech (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16572,7 +16572,7 @@ class NHSColumns(ColumnsTask):
 
         t020c036_t = OBSColumn(
             id='t020c036_t',
-            name='Macedonian (total)',
+            name='People who speak - Macedonian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16581,7 +16581,7 @@ class NHSColumns(ColumnsTask):
 
         t020c036_m = OBSColumn(
             id='t020c036_m',
-            name='Macedonian (male)',
+            name='People who speak - Macedonian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16590,7 +16590,7 @@ class NHSColumns(ColumnsTask):
 
         t020c036_f = OBSColumn(
             id='t020c036_f',
-            name='Macedonian (female)',
+            name='People who speak - Macedonian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16599,7 +16599,7 @@ class NHSColumns(ColumnsTask):
 
         t020c037_t = OBSColumn(
             id='t020c037_t',
-            name='Polish (total)',
+            name='People who speak - Polish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16608,7 +16608,7 @@ class NHSColumns(ColumnsTask):
 
         t020c037_m = OBSColumn(
             id='t020c037_m',
-            name='Polish (male)',
+            name='People who speak - Polish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16617,7 +16617,7 @@ class NHSColumns(ColumnsTask):
 
         t020c037_f = OBSColumn(
             id='t020c037_f',
-            name='Polish (female)',
+            name='People who speak - Polish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16626,7 +16626,7 @@ class NHSColumns(ColumnsTask):
 
         t020c038_t = OBSColumn(
             id='t020c038_t',
-            name='Russian (total)',
+            name='People who speak - Russian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16635,7 +16635,7 @@ class NHSColumns(ColumnsTask):
 
         t020c038_m = OBSColumn(
             id='t020c038_m',
-            name='Russian (male)',
+            name='People who speak - Russian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16644,7 +16644,7 @@ class NHSColumns(ColumnsTask):
 
         t020c038_f = OBSColumn(
             id='t020c038_f',
-            name='Russian (female)',
+            name='People who speak - Russian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16653,7 +16653,7 @@ class NHSColumns(ColumnsTask):
 
         t020c039_t = OBSColumn(
             id='t020c039_t',
-            name='Serbian (total)',
+            name='People who speak - Serbian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16662,7 +16662,7 @@ class NHSColumns(ColumnsTask):
 
         t020c039_m = OBSColumn(
             id='t020c039_m',
-            name='Serbian (male)',
+            name='People who speak - Serbian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16671,7 +16671,7 @@ class NHSColumns(ColumnsTask):
 
         t020c039_f = OBSColumn(
             id='t020c039_f',
-            name='Serbian (female)',
+            name='People who speak - Serbian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16734,7 +16734,7 @@ class NHSColumns(ColumnsTask):
 
         t020c042_t = OBSColumn(
             id='t020c042_t',
-            name='Slovenian (total)',
+            name='People who speak - Slovenian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16743,7 +16743,7 @@ class NHSColumns(ColumnsTask):
 
         t020c042_m = OBSColumn(
             id='t020c042_m',
-            name='Slovenian (male)',
+            name='People who speak - Slovenian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16752,7 +16752,7 @@ class NHSColumns(ColumnsTask):
 
         t020c042_f = OBSColumn(
             id='t020c042_f',
-            name='Slovenian (female)',
+            name='People who speak - Slovenian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16761,7 +16761,7 @@ class NHSColumns(ColumnsTask):
 
         t020c043_t = OBSColumn(
             id='t020c043_t',
-            name='Ukrainian (total)',
+            name='People who speak - Ukrainian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16770,7 +16770,7 @@ class NHSColumns(ColumnsTask):
 
         t020c043_m = OBSColumn(
             id='t020c043_m',
-            name='Ukrainian (male)',
+            name='People who speak - Ukrainian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16779,7 +16779,7 @@ class NHSColumns(ColumnsTask):
 
         t020c043_f = OBSColumn(
             id='t020c043_f',
-            name='Ukrainian (female)',
+            name='People who speak - Ukrainian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16788,7 +16788,7 @@ class NHSColumns(ColumnsTask):
 
         t020c044_t = OBSColumn(
             id='t020c044_t',
-            name='Latvian (total)',
+            name='People who speak - Latvian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16797,7 +16797,7 @@ class NHSColumns(ColumnsTask):
 
         t020c044_m = OBSColumn(
             id='t020c044_m',
-            name='Latvian (male)',
+            name='People who speak - Latvian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16806,7 +16806,7 @@ class NHSColumns(ColumnsTask):
 
         t020c044_f = OBSColumn(
             id='t020c044_f',
-            name='Latvian (female)',
+            name='People who speak - Latvian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16815,7 +16815,7 @@ class NHSColumns(ColumnsTask):
 
         t020c045_t = OBSColumn(
             id='t020c045_t',
-            name='Lithuanian (total)',
+            name='People who speak - Lithuanian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16824,7 +16824,7 @@ class NHSColumns(ColumnsTask):
 
         t020c045_m = OBSColumn(
             id='t020c045_m',
-            name='Lithuanian (male)',
+            name='People who speak - Lithuanian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16833,7 +16833,7 @@ class NHSColumns(ColumnsTask):
 
         t020c045_f = OBSColumn(
             id='t020c045_f',
-            name='Lithuanian (female)',
+            name='People who speak - Lithuanian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16842,7 +16842,7 @@ class NHSColumns(ColumnsTask):
 
         t020c046_t = OBSColumn(
             id='t020c046_t',
-            name='Greek (total)',
+            name='People who speak - Greek (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16851,7 +16851,7 @@ class NHSColumns(ColumnsTask):
 
         t020c046_m = OBSColumn(
             id='t020c046_m',
-            name='Greek (male)',
+            name='People who speak - Greek (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16860,7 +16860,7 @@ class NHSColumns(ColumnsTask):
 
         t020c046_f = OBSColumn(
             id='t020c046_f',
-            name='Greek (female)',
+            name='People who speak - Greek (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16869,7 +16869,7 @@ class NHSColumns(ColumnsTask):
 
         t020c047_t = OBSColumn(
             id='t020c047_t',
-            name='Armenian (total)',
+            name='People who speak - Armenian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16878,7 +16878,7 @@ class NHSColumns(ColumnsTask):
 
         t020c047_m = OBSColumn(
             id='t020c047_m',
-            name='Armenian (male)',
+            name='People who speak - Armenian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16887,7 +16887,7 @@ class NHSColumns(ColumnsTask):
 
         t020c047_f = OBSColumn(
             id='t020c047_f',
-            name='Armenian (female)',
+            name='People who speak - Armenian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16896,7 +16896,7 @@ class NHSColumns(ColumnsTask):
 
         t020c048_t = OBSColumn(
             id='t020c048_t',
-            name='Albanian (total)',
+            name='People who speak - Albanian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16905,7 +16905,7 @@ class NHSColumns(ColumnsTask):
 
         t020c048_m = OBSColumn(
             id='t020c048_m',
-            name='Albanian (male)',
+            name='People who speak - Albanian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16914,7 +16914,7 @@ class NHSColumns(ColumnsTask):
 
         t020c048_f = OBSColumn(
             id='t020c048_f',
-            name='Albanian (female)',
+            name='People who speak - Albanian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16923,7 +16923,7 @@ class NHSColumns(ColumnsTask):
 
         t020c049_t = OBSColumn(
             id='t020c049_t',
-            name='Estonian (total)',
+            name='People who speak - Estonian (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16932,7 +16932,7 @@ class NHSColumns(ColumnsTask):
 
         t020c049_m = OBSColumn(
             id='t020c049_m',
-            name='Estonian (male)',
+            name='People who speak - Estonian (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -16941,7 +16941,7 @@ class NHSColumns(ColumnsTask):
 
         t020c049_f = OBSColumn(
             id='t020c049_f',
-            name='Estonian (female)',
+            name='People who speak - Estonian (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17004,7 +17004,7 @@ class NHSColumns(ColumnsTask):
 
         t020c052_t = OBSColumn(
             id='t020c052_t',
-            name='Turkish (total)',
+            name='People who speak - Turkish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17013,7 +17013,7 @@ class NHSColumns(ColumnsTask):
 
         t020c052_m = OBSColumn(
             id='t020c052_m',
-            name='Turkish (male)',
+            name='People who speak - Turkish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17022,7 +17022,7 @@ class NHSColumns(ColumnsTask):
 
         t020c052_f = OBSColumn(
             id='t020c052_f',
-            name='Turkish (female)',
+            name='People who speak - Turkish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17031,7 +17031,7 @@ class NHSColumns(ColumnsTask):
 
         t020c053_t = OBSColumn(
             id='t020c053_t',
-            name='Berber languages (Kabyle) (total)',
+            name='People who speak - Berber languages (Kabyle) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17040,7 +17040,7 @@ class NHSColumns(ColumnsTask):
 
         t020c053_m = OBSColumn(
             id='t020c053_m',
-            name='Berber languages (Kabyle) (male)',
+            name='People who speak - Berber languages (Kabyle) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17049,7 +17049,7 @@ class NHSColumns(ColumnsTask):
 
         t020c053_f = OBSColumn(
             id='t020c053_f',
-            name='Berber languages (Kabyle) (female)',
+            name='People who speak - Berber languages (Kabyle) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17058,7 +17058,7 @@ class NHSColumns(ColumnsTask):
 
         t020c054_t = OBSColumn(
             id='t020c054_t',
-            name='Oromo (total)',
+            name='People who speak - Oromo (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17067,7 +17067,7 @@ class NHSColumns(ColumnsTask):
 
         t020c054_m = OBSColumn(
             id='t020c054_m',
-            name='Oromo (male)',
+            name='People who speak - Oromo (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17076,7 +17076,7 @@ class NHSColumns(ColumnsTask):
 
         t020c054_f = OBSColumn(
             id='t020c054_f',
-            name='Oromo (female)',
+            name='People who speak - Oromo (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17085,7 +17085,7 @@ class NHSColumns(ColumnsTask):
 
         t020c055_t = OBSColumn(
             id='t020c055_t',
-            name='Somali (total)',
+            name='People who speak - Somali (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17094,7 +17094,7 @@ class NHSColumns(ColumnsTask):
 
         t020c055_m = OBSColumn(
             id='t020c055_m',
-            name='Somali (male)',
+            name='People who speak - Somali (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17103,7 +17103,7 @@ class NHSColumns(ColumnsTask):
 
         t020c055_f = OBSColumn(
             id='t020c055_f',
-            name='Somali (female)',
+            name='People who speak - Somali (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17112,7 +17112,7 @@ class NHSColumns(ColumnsTask):
 
         t020c056_t = OBSColumn(
             id='t020c056_t',
-            name='Amharic (total)',
+            name='People who speak - Amharic (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17121,7 +17121,7 @@ class NHSColumns(ColumnsTask):
 
         t020c056_m = OBSColumn(
             id='t020c056_m',
-            name='Amharic (male)',
+            name='People who speak - Amharic (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17130,7 +17130,7 @@ class NHSColumns(ColumnsTask):
 
         t020c056_f = OBSColumn(
             id='t020c056_f',
-            name='Amharic (female)',
+            name='People who speak - Amharic (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17139,7 +17139,7 @@ class NHSColumns(ColumnsTask):
 
         t020c057_t = OBSColumn(
             id='t020c057_t',
-            name='Arabic (total)',
+            name='People who speak - Arabic (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17148,7 +17148,7 @@ class NHSColumns(ColumnsTask):
 
         t020c057_m = OBSColumn(
             id='t020c057_m',
-            name='Arabic (male)',
+            name='People who speak - Arabic (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17157,7 +17157,7 @@ class NHSColumns(ColumnsTask):
 
         t020c057_f = OBSColumn(
             id='t020c057_f',
-            name='Arabic (female)',
+            name='People who speak - Arabic (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17166,7 +17166,7 @@ class NHSColumns(ColumnsTask):
 
         t020c058_t = OBSColumn(
             id='t020c058_t',
-            name='Hebrew (total)',
+            name='People who speak - Hebrew (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17175,7 +17175,7 @@ class NHSColumns(ColumnsTask):
 
         t020c058_m = OBSColumn(
             id='t020c058_m',
-            name='Hebrew (male)',
+            name='People who speak - Hebrew (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17184,7 +17184,7 @@ class NHSColumns(ColumnsTask):
 
         t020c058_f = OBSColumn(
             id='t020c058_f',
-            name='Hebrew (female)',
+            name='People who speak - Hebrew (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17193,7 +17193,7 @@ class NHSColumns(ColumnsTask):
 
         t020c059_t = OBSColumn(
             id='t020c059_t',
-            name='Maltese (total)',
+            name='People who speak - Maltese (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17202,7 +17202,7 @@ class NHSColumns(ColumnsTask):
 
         t020c059_m = OBSColumn(
             id='t020c059_m',
-            name='Maltese (male)',
+            name='People who speak - Maltese (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17211,7 +17211,7 @@ class NHSColumns(ColumnsTask):
 
         t020c059_f = OBSColumn(
             id='t020c059_f',
-            name='Maltese (female)',
+            name='People who speak - Maltese (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17274,7 +17274,7 @@ class NHSColumns(ColumnsTask):
 
         t020c062_t = OBSColumn(
             id='t020c062_t',
-            name='Bengali (total)',
+            name='People who speak - Bengali (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17283,7 +17283,7 @@ class NHSColumns(ColumnsTask):
 
         t020c062_m = OBSColumn(
             id='t020c062_m',
-            name='Bengali (male)',
+            name='People who speak - Bengali (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17292,7 +17292,7 @@ class NHSColumns(ColumnsTask):
 
         t020c062_f = OBSColumn(
             id='t020c062_f',
-            name='Bengali (female)',
+            name='People who speak - Bengali (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17301,7 +17301,7 @@ class NHSColumns(ColumnsTask):
 
         t020c063_t = OBSColumn(
             id='t020c063_t',
-            name='Gujarati (total)',
+            name='People who speak - Gujarati (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17310,7 +17310,7 @@ class NHSColumns(ColumnsTask):
 
         t020c063_m = OBSColumn(
             id='t020c063_m',
-            name='Gujarati (male)',
+            name='People who speak - Gujarati (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17319,7 +17319,7 @@ class NHSColumns(ColumnsTask):
 
         t020c063_f = OBSColumn(
             id='t020c063_f',
-            name='Gujarati (female)',
+            name='People who speak - Gujarati (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17328,7 +17328,7 @@ class NHSColumns(ColumnsTask):
 
         t020c064_t = OBSColumn(
             id='t020c064_t',
-            name='Hindi (total)',
+            name='People who speak - Hindi (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17337,7 +17337,7 @@ class NHSColumns(ColumnsTask):
 
         t020c064_m = OBSColumn(
             id='t020c064_m',
-            name='Hindi (male)',
+            name='People who speak - Hindi (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17346,7 +17346,7 @@ class NHSColumns(ColumnsTask):
 
         t020c064_f = OBSColumn(
             id='t020c064_f',
-            name='Hindi (female)',
+            name='People who speak - Hindi (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17355,7 +17355,7 @@ class NHSColumns(ColumnsTask):
 
         t020c065_t = OBSColumn(
             id='t020c065_t',
-            name='Konkani (total)',
+            name='People who speak - Konkani (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17364,7 +17364,7 @@ class NHSColumns(ColumnsTask):
 
         t020c065_m = OBSColumn(
             id='t020c065_m',
-            name='Konkani (male)',
+            name='People who speak - Konkani (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17373,7 +17373,7 @@ class NHSColumns(ColumnsTask):
 
         t020c065_f = OBSColumn(
             id='t020c065_f',
-            name='Konkani (female)',
+            name='People who speak - Konkani (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17382,7 +17382,7 @@ class NHSColumns(ColumnsTask):
 
         t020c066_t = OBSColumn(
             id='t020c066_t',
-            name='Marathi (total)',
+            name='People who speak - Marathi (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17391,7 +17391,7 @@ class NHSColumns(ColumnsTask):
 
         t020c066_m = OBSColumn(
             id='t020c066_m',
-            name='Marathi (male)',
+            name='People who speak - Marathi (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17400,7 +17400,7 @@ class NHSColumns(ColumnsTask):
 
         t020c066_f = OBSColumn(
             id='t020c066_f',
-            name='Marathi (female)',
+            name='People who speak - Marathi (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17409,7 +17409,7 @@ class NHSColumns(ColumnsTask):
 
         t020c067_t = OBSColumn(
             id='t020c067_t',
-            name='Panjabi (Punjabi) (total)',
+            name='People who speak - Panjabi (Punjabi) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17418,7 +17418,7 @@ class NHSColumns(ColumnsTask):
 
         t020c067_m = OBSColumn(
             id='t020c067_m',
-            name='Panjabi (Punjabi) (male)',
+            name='People who speak - Panjabi (Punjabi) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17427,7 +17427,7 @@ class NHSColumns(ColumnsTask):
 
         t020c067_f = OBSColumn(
             id='t020c067_f',
-            name='Panjabi (Punjabi) (female)',
+            name='People who speak - Panjabi (Punjabi) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17436,7 +17436,7 @@ class NHSColumns(ColumnsTask):
 
         t020c068_t = OBSColumn(
             id='t020c068_t',
-            name='Sindhi (total)',
+            name='People who speak - Sindhi (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17445,7 +17445,7 @@ class NHSColumns(ColumnsTask):
 
         t020c068_m = OBSColumn(
             id='t020c068_m',
-            name='Sindhi (male)',
+            name='People who speak - Sindhi (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17454,7 +17454,7 @@ class NHSColumns(ColumnsTask):
 
         t020c068_f = OBSColumn(
             id='t020c068_f',
-            name='Sindhi (female)',
+            name='People who speak - Sindhi (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17463,7 +17463,7 @@ class NHSColumns(ColumnsTask):
 
         t020c069_t = OBSColumn(
             id='t020c069_t',
-            name='Sinhala (Sinhalese) (total)',
+            name='People who speak - Sinhala (Sinhalese) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17472,7 +17472,7 @@ class NHSColumns(ColumnsTask):
 
         t020c069_m = OBSColumn(
             id='t020c069_m',
-            name='Sinhala (Sinhalese) (male)',
+            name='People who speak - Sinhala (Sinhalese) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17481,7 +17481,7 @@ class NHSColumns(ColumnsTask):
 
         t020c069_f = OBSColumn(
             id='t020c069_f',
-            name='Sinhala (Sinhalese) (female)',
+            name='People who speak - Sinhala (Sinhalese) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17544,7 +17544,7 @@ class NHSColumns(ColumnsTask):
 
         t020c072_t = OBSColumn(
             id='t020c072_t',
-            name='Kurdish (total)',
+            name='People who speak - Kurdish (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17553,7 +17553,7 @@ class NHSColumns(ColumnsTask):
 
         t020c072_m = OBSColumn(
             id='t020c072_m',
-            name='Kurdish (male)',
+            name='People who speak - Kurdish (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17562,7 +17562,7 @@ class NHSColumns(ColumnsTask):
 
         t020c072_f = OBSColumn(
             id='t020c072_f',
-            name='Kurdish (female)',
+            name='People who speak - Kurdish (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17571,7 +17571,7 @@ class NHSColumns(ColumnsTask):
 
         t020c073_t = OBSColumn(
             id='t020c073_t',
-            name='Pashto (total)',
+            name='People who speak - Pashto (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17580,7 +17580,7 @@ class NHSColumns(ColumnsTask):
 
         t020c073_m = OBSColumn(
             id='t020c073_m',
-            name='Pashto (male)',
+            name='People who speak - Pashto (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17589,7 +17589,7 @@ class NHSColumns(ColumnsTask):
 
         t020c073_f = OBSColumn(
             id='t020c073_f',
-            name='Pashto (female)',
+            name='People who speak - Pashto (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17598,7 +17598,7 @@ class NHSColumns(ColumnsTask):
 
         t020c074_t = OBSColumn(
             id='t020c074_t',
-            name='Persian (Farsi) (total)',
+            name='People who speak - Persian (Farsi) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17607,7 +17607,7 @@ class NHSColumns(ColumnsTask):
 
         t020c074_m = OBSColumn(
             id='t020c074_m',
-            name='Persian (Farsi) (male)',
+            name='People who speak - Persian (Farsi) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17616,7 +17616,7 @@ class NHSColumns(ColumnsTask):
 
         t020c074_f = OBSColumn(
             id='t020c074_f',
-            name='Persian (Farsi) (female)',
+            name='People who speak - Persian (Farsi) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17625,7 +17625,7 @@ class NHSColumns(ColumnsTask):
 
         t020c075_t = OBSColumn(
             id='t020c075_t',
-            name='Indo-Iranian languages, n.i.e. (total)',
+            name='People who speak - Indo-Iranian languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17634,7 +17634,7 @@ class NHSColumns(ColumnsTask):
 
         t020c075_m = OBSColumn(
             id='t020c075_m',
-            name='Indo-Iranian languages, n.i.e. (male)',
+            name='People who speak - Indo-Iranian languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17643,7 +17643,7 @@ class NHSColumns(ColumnsTask):
 
         t020c075_f = OBSColumn(
             id='t020c075_f',
-            name='Indo-Iranian languages, n.i.e. (female)',
+            name='People who speak - Indo-Iranian languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17652,7 +17652,7 @@ class NHSColumns(ColumnsTask):
 
         t020c076_t = OBSColumn(
             id='t020c076_t',
-            name='Kannada (total)',
+            name='People who speak - Kannada (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17661,7 +17661,7 @@ class NHSColumns(ColumnsTask):
 
         t020c076_m = OBSColumn(
             id='t020c076_m',
-            name='Kannada (male)',
+            name='People who speak - Kannada (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17670,7 +17670,7 @@ class NHSColumns(ColumnsTask):
 
         t020c076_f = OBSColumn(
             id='t020c076_f',
-            name='Kannada (female)',
+            name='People who speak - Kannada (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17679,7 +17679,7 @@ class NHSColumns(ColumnsTask):
 
         t020c077_t = OBSColumn(
             id='t020c077_t',
-            name='Malayalam (total)',
+            name='People who speak - Malayalam (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17688,7 +17688,7 @@ class NHSColumns(ColumnsTask):
 
         t020c077_m = OBSColumn(
             id='t020c077_m',
-            name='Malayalam (male)',
+            name='People who speak - Malayalam (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17697,7 +17697,7 @@ class NHSColumns(ColumnsTask):
 
         t020c077_f = OBSColumn(
             id='t020c077_f',
-            name='Malayalam (female)',
+            name='People who speak - Malayalam (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17706,7 +17706,7 @@ class NHSColumns(ColumnsTask):
 
         t020c078_t = OBSColumn(
             id='t020c078_t',
-            name='Tamil (total)',
+            name='People who speak - Tamil (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17715,7 +17715,7 @@ class NHSColumns(ColumnsTask):
 
         t020c078_m = OBSColumn(
             id='t020c078_m',
-            name='Tamil (male)',
+            name='People who speak - Tamil (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17724,7 +17724,7 @@ class NHSColumns(ColumnsTask):
 
         t020c078_f = OBSColumn(
             id='t020c078_f',
-            name='Tamil (female)',
+            name='People who speak - Tamil (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17733,7 +17733,7 @@ class NHSColumns(ColumnsTask):
 
         t020c079_t = OBSColumn(
             id='t020c079_t',
-            name='Telugu (total)',
+            name='People who speak - Telugu (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17742,7 +17742,7 @@ class NHSColumns(ColumnsTask):
 
         t020c079_m = OBSColumn(
             id='t020c079_m',
-            name='Telugu (male)',
+            name='People who speak - Telugu (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17751,7 +17751,7 @@ class NHSColumns(ColumnsTask):
 
         t020c079_f = OBSColumn(
             id='t020c079_f',
-            name='Telugu (female)',
+            name='People who speak - Telugu (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17814,7 +17814,7 @@ class NHSColumns(ColumnsTask):
 
         t020c082_t = OBSColumn(
             id='t020c082_t',
-            name='Cantonese (total)',
+            name='People who speak - Cantonese (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17823,7 +17823,7 @@ class NHSColumns(ColumnsTask):
 
         t020c082_m = OBSColumn(
             id='t020c082_m',
-            name='Cantonese (male)',
+            name='People who speak - Cantonese (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17832,7 +17832,7 @@ class NHSColumns(ColumnsTask):
 
         t020c082_f = OBSColumn(
             id='t020c082_f',
-            name='Cantonese (female)',
+            name='People who speak - Cantonese (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17841,7 +17841,7 @@ class NHSColumns(ColumnsTask):
 
         t020c083_t = OBSColumn(
             id='t020c083_t',
-            name='Fukien (total)',
+            name='People who speak - Fukien (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17850,7 +17850,7 @@ class NHSColumns(ColumnsTask):
 
         t020c083_m = OBSColumn(
             id='t020c083_m',
-            name='Fukien (male)',
+            name='People who speak - Fukien (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17859,7 +17859,7 @@ class NHSColumns(ColumnsTask):
 
         t020c083_f = OBSColumn(
             id='t020c083_f',
-            name='Fukien (female)',
+            name='People who speak - Fukien (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17868,7 +17868,7 @@ class NHSColumns(ColumnsTask):
 
         t020c084_t = OBSColumn(
             id='t020c084_t',
-            name='Hakka (total)',
+            name='People who speak - Hakka (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17877,7 +17877,7 @@ class NHSColumns(ColumnsTask):
 
         t020c084_m = OBSColumn(
             id='t020c084_m',
-            name='Hakka (male)',
+            name='People who speak - Hakka (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17886,7 +17886,7 @@ class NHSColumns(ColumnsTask):
 
         t020c084_f = OBSColumn(
             id='t020c084_f',
-            name='Hakka (female)',
+            name='People who speak - Hakka (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17895,7 +17895,7 @@ class NHSColumns(ColumnsTask):
 
         t020c085_t = OBSColumn(
             id='t020c085_t',
-            name='Mandarin (total)',
+            name='People who speak - Mandarin (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17904,7 +17904,7 @@ class NHSColumns(ColumnsTask):
 
         t020c085_m = OBSColumn(
             id='t020c085_m',
-            name='Mandarin (male)',
+            name='People who speak - Mandarin (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17913,7 +17913,7 @@ class NHSColumns(ColumnsTask):
 
         t020c085_f = OBSColumn(
             id='t020c085_f',
-            name='Mandarin (female)',
+            name='People who speak - Mandarin (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17922,7 +17922,7 @@ class NHSColumns(ColumnsTask):
 
         t020c086_t = OBSColumn(
             id='t020c086_t',
-            name='Taiwanese (total)',
+            name='People who speak - Taiwanese (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17931,7 +17931,7 @@ class NHSColumns(ColumnsTask):
 
         t020c086_m = OBSColumn(
             id='t020c086_m',
-            name='Taiwanese (male)',
+            name='People who speak - Taiwanese (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17940,7 +17940,7 @@ class NHSColumns(ColumnsTask):
 
         t020c086_f = OBSColumn(
             id='t020c086_f',
-            name='Taiwanese (female)',
+            name='People who speak - Taiwanese (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17949,7 +17949,7 @@ class NHSColumns(ColumnsTask):
 
         t020c087_t = OBSColumn(
             id='t020c087_t',
-            name='Chinese, n.o.s. (total)',
+            name='People who speak - Chinese, n.o.s. (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17958,7 +17958,7 @@ class NHSColumns(ColumnsTask):
 
         t020c087_m = OBSColumn(
             id='t020c087_m',
-            name='Chinese, n.o.s. (male)',
+            name='People who speak - Chinese, n.o.s. (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17967,7 +17967,7 @@ class NHSColumns(ColumnsTask):
 
         t020c087_f = OBSColumn(
             id='t020c087_f',
-            name='Chinese, n.o.s. (female)',
+            name='People who speak - Chinese, n.o.s. (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17976,7 +17976,7 @@ class NHSColumns(ColumnsTask):
 
         t020c088_t = OBSColumn(
             id='t020c088_t',
-            name='Lao (total)',
+            name='People who speak - Lao (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17985,7 +17985,7 @@ class NHSColumns(ColumnsTask):
 
         t020c088_m = OBSColumn(
             id='t020c088_m',
-            name='Lao (male)',
+            name='People who speak - Lao (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -17994,7 +17994,7 @@ class NHSColumns(ColumnsTask):
 
         t020c088_f = OBSColumn(
             id='t020c088_f',
-            name='Lao (female)',
+            name='People who speak - Lao (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18003,7 +18003,7 @@ class NHSColumns(ColumnsTask):
 
         t020c089_t = OBSColumn(
             id='t020c089_t',
-            name='Thai (total)',
+            name='People who speak - Thai (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18012,7 +18012,7 @@ class NHSColumns(ColumnsTask):
 
         t020c089_m = OBSColumn(
             id='t020c089_m',
-            name='Thai (male)',
+            name='People who speak - Thai (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18021,7 +18021,7 @@ class NHSColumns(ColumnsTask):
 
         t020c089_f = OBSColumn(
             id='t020c089_f',
-            name='Thai (female)',
+            name='People who speak - Thai (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18084,7 +18084,7 @@ class NHSColumns(ColumnsTask):
 
         t020c092_t = OBSColumn(
             id='t020c092_t',
-            name='Bisayan languages (total)',
+            name='People who speak - Bisayan languages (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18093,7 +18093,7 @@ class NHSColumns(ColumnsTask):
 
         t020c092_m = OBSColumn(
             id='t020c092_m',
-            name='Bisayan languages (male)',
+            name='People who speak - Bisayan languages (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18102,7 +18102,7 @@ class NHSColumns(ColumnsTask):
 
         t020c092_f = OBSColumn(
             id='t020c092_f',
-            name='Bisayan languages (female)',
+            name='People who speak - Bisayan languages (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18111,7 +18111,7 @@ class NHSColumns(ColumnsTask):
 
         t020c093_t = OBSColumn(
             id='t020c093_t',
-            name='Ilocano (total)',
+            name='People who speak - Ilocano (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18120,7 +18120,7 @@ class NHSColumns(ColumnsTask):
 
         t020c093_m = OBSColumn(
             id='t020c093_m',
-            name='Ilocano (male)',
+            name='People who speak - Ilocano (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18129,7 +18129,7 @@ class NHSColumns(ColumnsTask):
 
         t020c093_f = OBSColumn(
             id='t020c093_f',
-            name='Ilocano (female)',
+            name='People who speak - Ilocano (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18138,7 +18138,7 @@ class NHSColumns(ColumnsTask):
 
         t020c094_t = OBSColumn(
             id='t020c094_t',
-            name='Malay (total)',
+            name='People who speak - Malay (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18147,7 +18147,7 @@ class NHSColumns(ColumnsTask):
 
         t020c094_m = OBSColumn(
             id='t020c094_m',
-            name='Malay (male)',
+            name='People who speak - Malay (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18156,7 +18156,7 @@ class NHSColumns(ColumnsTask):
 
         t020c094_f = OBSColumn(
             id='t020c094_f',
-            name='Malay (female)',
+            name='People who speak - Malay (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18165,7 +18165,7 @@ class NHSColumns(ColumnsTask):
 
         t020c095_t = OBSColumn(
             id='t020c095_t',
-            name='Tagalog (Pilipino,Filipino) (total)',
+            name='People who speak - Tagalog (Pilipino,Filipino) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18174,7 +18174,7 @@ class NHSColumns(ColumnsTask):
 
         t020c095_m = OBSColumn(
             id='t020c095_m',
-            name='Tagalog (Pilipino,Filipino) (male)',
+            name='People who speak - Tagalog (Pilipino,Filipino) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18183,7 +18183,7 @@ class NHSColumns(ColumnsTask):
 
         t020c095_f = OBSColumn(
             id='t020c095_f',
-            name='Tagalog (Pilipino,Filipino) (female)',
+            name='People who speak - Tagalog (Pilipino,Filipino) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18192,7 +18192,7 @@ class NHSColumns(ColumnsTask):
 
         t020c096_t = OBSColumn(
             id='t020c096_t',
-            name='Akan (Twi) (total)',
+            name='People who speak - Akan (Twi) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18201,7 +18201,7 @@ class NHSColumns(ColumnsTask):
 
         t020c096_m = OBSColumn(
             id='t020c096_m',
-            name='Akan (Twi) (male)',
+            name='People who speak - Akan (Twi) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18210,7 +18210,7 @@ class NHSColumns(ColumnsTask):
 
         t020c096_f = OBSColumn(
             id='t020c096_f',
-            name='Akan (Twi) (female)',
+            name='People who speak - Akan (Twi) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18219,7 +18219,7 @@ class NHSColumns(ColumnsTask):
 
         t020c097_t = OBSColumn(
             id='t020c097_t',
-            name='Lingala (total)',
+            name='People who speak - Lingala (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18228,7 +18228,7 @@ class NHSColumns(ColumnsTask):
 
         t020c097_m = OBSColumn(
             id='t020c097_m',
-            name='Lingala (male)',
+            name='People who speak - Lingala (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18237,7 +18237,7 @@ class NHSColumns(ColumnsTask):
 
         t020c097_f = OBSColumn(
             id='t020c097_f',
-            name='Lingala (female)',
+            name='People who speak - Lingala (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18246,7 +18246,7 @@ class NHSColumns(ColumnsTask):
 
         t020c098_t = OBSColumn(
             id='t020c098_t',
-            name='Rundi (Kirundi) (total)',
+            name='People who speak - Rundi (Kirundi) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18255,7 +18255,7 @@ class NHSColumns(ColumnsTask):
 
         t020c098_m = OBSColumn(
             id='t020c098_m',
-            name='Rundi (Kirundi) (male)',
+            name='People who speak - Rundi (Kirundi) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18264,7 +18264,7 @@ class NHSColumns(ColumnsTask):
 
         t020c098_f = OBSColumn(
             id='t020c098_f',
-            name='Rundi (Kirundi) (female)',
+            name='People who speak - Rundi (Kirundi) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18273,7 +18273,7 @@ class NHSColumns(ColumnsTask):
 
         t020c099_t = OBSColumn(
             id='t020c099_t',
-            name='Rwanda (Kinyarwanda) (total)',
+            name='People who speak - Rwanda (Kinyarwanda) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18282,7 +18282,7 @@ class NHSColumns(ColumnsTask):
 
         t020c099_m = OBSColumn(
             id='t020c099_m',
-            name='Rwanda (Kinyarwanda) (male)',
+            name='People who speak - Rwanda (Kinyarwanda) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18291,7 +18291,7 @@ class NHSColumns(ColumnsTask):
 
         t020c099_f = OBSColumn(
             id='t020c099_f',
-            name='Rwanda (Kinyarwanda) (female)',
+            name='People who speak - Rwanda (Kinyarwanda) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18354,7 +18354,7 @@ class NHSColumns(ColumnsTask):
 
         t020c102_t = OBSColumn(
             id='t020c102_t',
-            name='Niger-Congo languages, n.i.e. (total)',
+            name='People who speak - Niger-Congo languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18363,7 +18363,7 @@ class NHSColumns(ColumnsTask):
 
         t020c102_m = OBSColumn(
             id='t020c102_m',
-            name='Niger-Congo languages, n.i.e. (male)',
+            name='People who speak - Niger-Congo languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18372,7 +18372,7 @@ class NHSColumns(ColumnsTask):
 
         t020c102_f = OBSColumn(
             id='t020c102_f',
-            name='Niger-Congo languages, n.i.e. (female)',
+            name='People who speak - Niger-Congo languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18381,7 +18381,7 @@ class NHSColumns(ColumnsTask):
 
         t020c103_t = OBSColumn(
             id='t020c103_t',
-            name='African languages, n.i.e. (total)',
+            name='People who speak - African languages, n.i.e. (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18390,7 +18390,7 @@ class NHSColumns(ColumnsTask):
 
         t020c103_m = OBSColumn(
             id='t020c103_m',
-            name='African languages, n.i.e. (male)',
+            name='People who speak - African languages, n.i.e. (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18399,7 +18399,7 @@ class NHSColumns(ColumnsTask):
 
         t020c103_f = OBSColumn(
             id='t020c103_f',
-            name='African languages, n.i.e. (female)',
+            name='People who speak - African languages, n.i.e. (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18408,7 +18408,7 @@ class NHSColumns(ColumnsTask):
 
         t020c104_t = OBSColumn(
             id='t020c104_t',
-            name='Creoles (total)',
+            name='People who speak - Creoles (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18417,7 +18417,7 @@ class NHSColumns(ColumnsTask):
 
         t020c104_m = OBSColumn(
             id='t020c104_m',
-            name='Creoles (male)',
+            name='People who speak - Creoles (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18426,7 +18426,7 @@ class NHSColumns(ColumnsTask):
 
         t020c104_f = OBSColumn(
             id='t020c104_f',
-            name='Creoles (female)',
+            name='People who speak - Creoles (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18435,7 +18435,7 @@ class NHSColumns(ColumnsTask):
 
         t020c105_t = OBSColumn(
             id='t020c105_t',
-            name='Other non-Aboriginal languages (total)',
+            name='People who speak - Other non-Aboriginal languages (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18444,7 +18444,7 @@ class NHSColumns(ColumnsTask):
 
         t020c105_m = OBSColumn(
             id='t020c105_m',
-            name='Other non-Aboriginal languages (male)',
+            name='People who speak - Other non-Aboriginal languages (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18453,7 +18453,7 @@ class NHSColumns(ColumnsTask):
 
         t020c105_f = OBSColumn(
             id='t020c105_f',
-            name='Other non-Aboriginal languages (female)',
+            name='People who speak - Other non-Aboriginal languages (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
