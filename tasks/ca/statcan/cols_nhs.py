@@ -14750,7 +14750,7 @@ class NHSColumns(ColumnsTask):
 
         t015c002_t = OBSColumn(
             id='t015c002_t',
-            name='People aged 15+ - In the labour force (total)',
+            name='People aged 15+ in the labour force (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14759,7 +14759,7 @@ class NHSColumns(ColumnsTask):
 
         t015c002_m = OBSColumn(
             id='t015c002_m',
-            name='People aged 15+ - In the labour force (male)',
+            name='People aged 15+ in the labour force (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14768,7 +14768,7 @@ class NHSColumns(ColumnsTask):
 
         t015c002_f = OBSColumn(
             id='t015c002_f',
-            name='People aged 15+ - In the labour force (female)',
+            name='People aged 15+ in the labour force (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14777,7 +14777,7 @@ class NHSColumns(ColumnsTask):
 
         t015c003_t = OBSColumn(
             id='t015c003_t',
-            name='Employed (total)',
+            name='People aged 15+ in the labour force - Employed (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14786,7 +14786,7 @@ class NHSColumns(ColumnsTask):
 
         t015c003_m = OBSColumn(
             id='t015c003_m',
-            name='Employed (male)',
+            name='People aged 15+ in the labour force - Employed (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14795,7 +14795,7 @@ class NHSColumns(ColumnsTask):
 
         t015c003_f = OBSColumn(
             id='t015c003_f',
-            name='Employed (female)',
+            name='People aged 15+ in the labour force - Employed (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14804,7 +14804,7 @@ class NHSColumns(ColumnsTask):
 
         t015c004_t = OBSColumn(
             id='t015c004_t',
-            name='Unemployed (total)',
+            name='People aged 15+ in the labour force - Unemployed (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14813,7 +14813,7 @@ class NHSColumns(ColumnsTask):
 
         t015c004_m = OBSColumn(
             id='t015c004_m',
-            name='Unemployed (male)',
+            name='People aged 15+ in the labour force - Unemployed (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14822,7 +14822,7 @@ class NHSColumns(ColumnsTask):
 
         t015c004_f = OBSColumn(
             id='t015c004_f',
-            name='Unemployed (female)',
+            name='People aged 15+ in the labour force - Unemployed (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14831,7 +14831,7 @@ class NHSColumns(ColumnsTask):
 
         t015c005_t = OBSColumn(
             id='t015c005_t',
-            name='People aged 15+ - Not in the labour force (total)',
+            name='People aged 15+ not in the labour force (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14840,7 +14840,7 @@ class NHSColumns(ColumnsTask):
 
         t015c005_m = OBSColumn(
             id='t015c005_m',
-            name='People aged 15+ - Not in the labour force (male)',
+            name='People aged 15+ not in the labour force (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14849,19 +14849,16 @@ class NHSColumns(ColumnsTask):
 
         t015c005_f = OBSColumn(
             id='t015c005_f',
-            name='People aged 15+ - Not in the labour force (female)',
+            name='People aged 15+ not in the labour force (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t005c001_f: DENOMINATOR },)
 
-        # FIXME
-        # Needs clearer name that this is the participation rate in the labour
-        # fource (if that's what it is).
         t015c006_t = OBSColumn(
             id='t015c006_t',
-            name='Participation rate (total)',
+            name='Labour force - Participation rate (total)',
             type='Numeric',
             weight=3,
             aggregate='percent',
@@ -14870,7 +14867,7 @@ class NHSColumns(ColumnsTask):
 
         t015c006_m = OBSColumn(
             id='t015c006_m',
-            name='Participation rate (male)',
+            name='Labour force - Participation rate (male)',
             type='Numeric',
             weight=3,
             aggregate='percent',
@@ -14879,7 +14876,7 @@ class NHSColumns(ColumnsTask):
 
         t015c006_f = OBSColumn(
             id='t015c006_f',
-            name='Participation rate (female)',
+            name='Labour force - Participation rate (female)',
             type='Numeric',
             weight=3,
             aggregate='percent',
@@ -14888,7 +14885,7 @@ class NHSColumns(ColumnsTask):
 
         t015c007_t = OBSColumn(
             id='t015c007_t',
-            name='Employment rate (total)',
+            name='Labour force - Employment rate (total)',
             type='Numeric',
             weight=3,
             aggregate='percent',
@@ -14897,7 +14894,7 @@ class NHSColumns(ColumnsTask):
 
         t015c007_m = OBSColumn(
             id='t015c007_m',
-            name='Employment rate (male)',
+            name='Labour force - Employment rate (male)',
             type='Numeric',
             weight=3,
             aggregate='percent',
@@ -14906,7 +14903,7 @@ class NHSColumns(ColumnsTask):
 
         t015c007_f = OBSColumn(
             id='t015c007_f',
-            name='Employment rate (female)',
+            name='Labour force - Employment rate (female)',
             type='Numeric',
             weight=3,
             aggregate='percent',
@@ -14915,7 +14912,7 @@ class NHSColumns(ColumnsTask):
 
         t015c008_t = OBSColumn(
             id='t015c008_t',
-            name='Unemployment rate (total)',
+            name='Labour force - Unemployment rate (total)',
             type='Numeric',
             weight=3,
             aggregate='percent',
@@ -14924,7 +14921,7 @@ class NHSColumns(ColumnsTask):
 
         t015c008_m = OBSColumn(
             id='t015c008_m',
-            name='Unemployment rate (male)',
+            name='Labour force - Unemployment rate (male)',
             type='Numeric',
             weight=3,
             aggregate='percent',
@@ -14933,7 +14930,7 @@ class NHSColumns(ColumnsTask):
 
         t015c008_f = OBSColumn(
             id='t015c008_f',
-            name='Unemployment rate (female)',
+            name='Labour force - Unemployment rate (female)',
             type='Numeric',
             weight=3,
             aggregate='percent',
