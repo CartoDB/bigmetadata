@@ -9696,6 +9696,7 @@ class CensusColumns(ColumnsTask):
 
         # FIXME
         # How is this different from ca.statcan.cols_nhs.t009c001_t?
+        # Alain: one refers to family units vs households
         t005c001_t = OBSColumn(
             id='t005c001_t',
             name='Total number of census families in private households',
@@ -10162,12 +10163,6 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_ratio, subsections['language']],
             targets={},)
 
-        # FIXME
-        # what's the difference between this column and
-        # 'ca.statcan.cols_nhs.t001c001_t'?
-
-        # a single column can exist in multiple tables.  if the data is
-        # identical, then these should be combined.
         t007c001_t = OBSColumn(
             id='t007c001_t',
             name='Total number of persons in private households (total)',
@@ -10916,10 +10911,6 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t002c001_f: DENOMINATOR },)
 
-        # FIXME
-        # These are duplicative of `ca.statcan.cols_nhs.t005c001`, which has
-        # been removed.  Any column and table depending on that should use this
-        # instead.
         t009c001_t = OBSColumn(
             id='t009c001_t',
             name='Population 15+ (total)',
