@@ -18778,145 +18778,130 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t021c003_f: DENOMINATOR },)
 
-        # FIXME
-        # Are the below the number of people in occupied private dwellings,
-        # or the actual number of private dwellings?  Unit or name should
-        # be adjusted accordingly.
         t022c001_t = OBSColumn(
             id='t022c001_t',
-            name='Total number of occupied private dwellings',
+            name='Number of occupied private dwellings',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={},)
 
-        # FIXME
-        # Depending on the resolution of issue above, these should be either
-        # renamed "Dwellings with only regular maintenance or minor repair
-        # needed" or "Population in dwellings with...", etc.
         t022c002_t = OBSColumn(
             id='t022c002_t',
-            name='Dwelling condition - Only regular maintenance or minor repairs needed',
+            name='Number of dwellings with only regular maintenance or minor repairs needed',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c003_t = OBSColumn(
             id='t022c003_t',
-            name='Dwelling condition - Major repairs needed',
+            name='Number of dwellings with major repairs needed',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
-        # FIXME
-        # Below also need clarification with either unit or name referring to
-        # population, and should also specify the date is referring to
-        # construction.
         t022c005_t = OBSColumn(
             id='t022c005_t',
-            name='Dwelling year - 1960 or before',
+            name='Number of dwellings constructed in 1960 or before',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c006_t = OBSColumn(
             id='t022c006_t',
-            name='Dwelling year - 1961 to 1980',
+            name='Number of dwellings constructed between 1961 to 1980',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c007_t = OBSColumn(
             id='t022c007_t',
-            name='Dwelling year - 1981 to 1990',
+            name='Number of dwellings constructed between 1981 to 1990',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c008_t = OBSColumn(
             id='t022c008_t',
-            name='Dwelling year - 1991 to 2000',
+            name='Number of dwellings constructed between 1991 to 2000',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c009_t = OBSColumn(
             id='t022c009_t',
-            name='Dwelling year - 2001 to 2005',
+            name='Number of dwellings constructed between 2001 to 2005',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c010_t = OBSColumn(
             id='t022c010_t',
-            name='Dwelling year - 2006 to 2011',
+            name='Number of dwellings constructed between 2006 to 2011',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
-        # FIXME
-        # Same unit/population issue as above. Dashes could be replaced with
-        # "with".
         t022c012_t = OBSColumn(
             id='t022c012_t',
-            name='Dwelling - 1 to 4 rooms',
+            name='Number of dwellings with 1 to 4 rooms',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c013_t = OBSColumn(
             id='t022c013_t',
-            name='Dwelling - 5 rooms',
+            name='Number of dwellings with 5 rooms',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c014_t = OBSColumn(
             id='t022c014_t',
-            name='Dwelling - 6 rooms',
+            name='Number of dwellings with 6 rooms',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c015_t = OBSColumn(
             id='t022c015_t',
-            name='Dwelling - 7 rooms',
+            name='Number of dwellings with 7 rooms',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c016_t = OBSColumn(
             id='t022c016_t',
-            name='Dwelling - 8 or more rooms',
+            name='Number of dwellings with 8 or more rooms',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c017_t = OBSColumn(
@@ -18925,21 +18910,21 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={},)
 
         t022c019_t = OBSColumn(
             id='t022c019_t',
-            name='Dwelling - 0 to 1 bedroom',
+            name='Number of dwellings with 0 to 1 bedroom',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c020_t = OBSColumn(
             id='t022c020_t',
-            name='Dwelling - 2 bedrooms',
+            name='Number of dwellings with 2 bedrooms',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18948,20 +18933,20 @@ class NHSColumns(ColumnsTask):
 
         t022c021_t = OBSColumn(
             id='t022c021_t',
-            name='Dwelling - 3 bedrooms',
+            name='Number of dwellings with 3 bedrooms',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c022_t = OBSColumn(
             id='t022c022_t',
-            name='Dwelling - 4 or more bedrooms',
+            name='Number of dwellings with 4 or more bedrooms',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_housing, subsections['housing']],
             targets={ t022c001_t: DENOMINATOR },)
 
         t023c002_t = OBSColumn(
