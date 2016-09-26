@@ -11502,6 +11502,7 @@ class NHSColumns(ColumnsTask):
 
         # FIXME DUP?
         # t012c034_t was redundant with ca.statcan.cols_census.t007c029_t
+        # Alain: The values are close here, but not exact. Don't think they should be combined...
         t012c034_t = OBSColumn(
             id='t012c034_t',
             name='One-person private households',
@@ -11549,6 +11550,7 @@ class NHSColumns(ColumnsTask):
 
         # FIXME DUP?
         # t012c039_t was redundant with ca.statcan.cols_census.t007c030_t,
+        # Alain: The values are off by 9M. Don't think they should be combined...
         t012c039_t = OBSColumn(
             id='t012c039_t',
             name='Two-or-more-persons private households',
