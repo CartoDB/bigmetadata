@@ -18456,7 +18456,7 @@ class NHSColumns(ColumnsTask):
 
         t021c002_t = OBSColumn(
             id='t021c002_t',
-            name='People aged 15+ in the labour force - Occupation - not applicable (total)',
+            name='People aged 15+ in the labour force - Occupation is not applicable (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18465,7 +18465,7 @@ class NHSColumns(ColumnsTask):
 
         t021c002_m = OBSColumn(
             id='t021c002_m',
-            name='People aged 15+ in the labour force - Occupation - not applicable (male)',
+            name='People aged 15+ in the labour force - Occupation is not applicable (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18474,7 +18474,7 @@ class NHSColumns(ColumnsTask):
 
         t021c002_f = OBSColumn(
             id='t021c002_f',
-            name='People aged 15+ in the labour force - Occupation - not applicable (female)',
+            name='People aged 15+ in the labour force - Occupation is not applicable (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18508,13 +18508,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
-        # FIXME
-        # The below should have a name that specifies this is the labour force
-        # in that occupation, for example "Labour force in management
-        # occupations (Total)".
         t021c004_t = OBSColumn(
             id='t021c004_t',
-            name='0 Management occupations (total)',
+            name='People aged 15+ in the labour force - Management occupations (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18523,7 +18519,7 @@ class NHSColumns(ColumnsTask):
 
         t021c004_m = OBSColumn(
             id='t021c004_m',
-            name='0 Management occupations (male)',
+            name='People aged 15+ in the labour force - Management occupations (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18532,7 +18528,7 @@ class NHSColumns(ColumnsTask):
 
         t021c004_f = OBSColumn(
             id='t021c004_f',
-            name='0 Management occupations (female)',
+            name='People aged 15+ in the labour force - Management occupations (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18541,7 +18537,7 @@ class NHSColumns(ColumnsTask):
 
         t021c005_t = OBSColumn(
             id='t021c005_t',
-            name='1 Business, finance and administration occupations (total)',
+            name='People aged 15+ in the labour force - Business, finance and administration occupations (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18550,7 +18546,7 @@ class NHSColumns(ColumnsTask):
 
         t021c005_m = OBSColumn(
             id='t021c005_m',
-            name='1 Business, finance and administration occupations (male)',
+            name='People aged 15+ in the labour force - Business, finance and administration occupations (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18559,7 +18555,7 @@ class NHSColumns(ColumnsTask):
 
         t021c005_f = OBSColumn(
             id='t021c005_f',
-            name='1 Business, finance and administration occupations (female)',
+            name='People aged 15+ in the labour force - Business, finance and administration occupations (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18568,7 +18564,7 @@ class NHSColumns(ColumnsTask):
 
         t021c006_t = OBSColumn(
             id='t021c006_t',
-            name='2 Natural and applied sciences and related occupations (total)',
+            name='People aged 15+ in the labour force - Natural and applied sciences and related occupations (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18577,7 +18573,7 @@ class NHSColumns(ColumnsTask):
 
         t021c006_m = OBSColumn(
             id='t021c006_m',
-            name='2 Natural and applied sciences and related occupations (male)',
+            name='People aged 15+ in the labour force - Natural and applied sciences and related occupations (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18586,7 +18582,7 @@ class NHSColumns(ColumnsTask):
 
         t021c006_f = OBSColumn(
             id='t021c006_f',
-            name='2 Natural and applied sciences and related occupations (female)',
+            name='People aged 15+ in the labour force - Natural and applied sciences and related occupations (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18595,7 +18591,7 @@ class NHSColumns(ColumnsTask):
 
         t021c007_t = OBSColumn(
             id='t021c007_t',
-            name='3 Health occupations (total)',
+            name='People aged 15+ in the labour force - Health occupations (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18604,7 +18600,7 @@ class NHSColumns(ColumnsTask):
 
         t021c007_m = OBSColumn(
             id='t021c007_m',
-            name='3 Health occupations (male)',
+            name='People aged 15+ in the labour force - Health occupations (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18613,7 +18609,7 @@ class NHSColumns(ColumnsTask):
 
         t021c007_f = OBSColumn(
             id='t021c007_f',
-            name='3 Health occupations (female)',
+            name='People aged 15+ in the labour force - Health occupations (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18622,7 +18618,7 @@ class NHSColumns(ColumnsTask):
 
         t021c008_t = OBSColumn(
             id='t021c008_t',
-            name='4 Occupations in education, law and social, community and government services (total)',
+            name='People aged 15+ in the labour force - Occupations in education, law and social, community and government services (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18631,7 +18627,7 @@ class NHSColumns(ColumnsTask):
 
         t021c008_m = OBSColumn(
             id='t021c008_m',
-            name='4 Occupations in education, law and social, community and government services (male)',
+            name='People aged 15+ in the labour force - Occupations in education, law and social, community and government services (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18640,7 +18636,7 @@ class NHSColumns(ColumnsTask):
 
         t021c008_f = OBSColumn(
             id='t021c008_f',
-            name='4 Occupations in education, law and social, community and government services (female)',
+            name='People aged 15+ in the labour force - Occupations in education, law and social, community and government services (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18649,7 +18645,7 @@ class NHSColumns(ColumnsTask):
 
         t021c009_t = OBSColumn(
             id='t021c009_t',
-            name='5 Occupations in art, culture, recreation and sport (total)',
+            name='People aged 15+ in the labour force - Occupations in art, culture, recreation and sport (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18658,7 +18654,7 @@ class NHSColumns(ColumnsTask):
 
         t021c009_m = OBSColumn(
             id='t021c009_m',
-            name='5 Occupations in art, culture, recreation and sport (male)',
+            name='People aged 15+ in the labour force - Occupations in art, culture, recreation and sport (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18667,7 +18663,7 @@ class NHSColumns(ColumnsTask):
 
         t021c009_f = OBSColumn(
             id='t021c009_f',
-            name='5 Occupations in art, culture, recreation and sport (female)',
+            name='People aged 15+ in the labour force - Occupations in art, culture, recreation and sport (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18676,7 +18672,7 @@ class NHSColumns(ColumnsTask):
 
         t021c010_t = OBSColumn(
             id='t021c010_t',
-            name='6 Sales and service occupations (total)',
+            name='People aged 15+ in the labour force - Sales and service occupations (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18685,7 +18681,7 @@ class NHSColumns(ColumnsTask):
 
         t021c010_m = OBSColumn(
             id='t021c010_m',
-            name='6 Sales and service occupations (male)',
+            name='People aged 15+ in the labour force - Sales and service occupations (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18694,7 +18690,7 @@ class NHSColumns(ColumnsTask):
 
         t021c010_f = OBSColumn(
             id='t021c010_f',
-            name='6 Sales and service occupations (female)',
+            name='People aged 15+ in the labour force - Sales and service occupations (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18703,7 +18699,7 @@ class NHSColumns(ColumnsTask):
 
         t021c011_t = OBSColumn(
             id='t021c011_t',
-            name='7 Trades, transport and equipment operators and related occupations (total)',
+            name='People aged 15+ in the labour force - Trades, transport and equipment operators and related occupations (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18712,7 +18708,7 @@ class NHSColumns(ColumnsTask):
 
         t021c011_m = OBSColumn(
             id='t021c011_m',
-            name='7 Trades, transport and equipment operators and related occupations (male)',
+            name='People aged 15+ in the labour force - Trades, transport and equipment operators and related occupations (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18721,7 +18717,7 @@ class NHSColumns(ColumnsTask):
 
         t021c011_f = OBSColumn(
             id='t021c011_f',
-            name='7 Trades, transport and equipment operators and related occupations (female)',
+            name='People aged 15+ in the labour force - Trades, transport and equipment operators and related occupations (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18730,7 +18726,7 @@ class NHSColumns(ColumnsTask):
 
         t021c012_t = OBSColumn(
             id='t021c012_t',
-            name='8 Natural resources, agriculture and related production occupations (total)',
+            name='People aged 15+ in the labour force - Natural resources, agriculture and related production occupations (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18739,7 +18735,7 @@ class NHSColumns(ColumnsTask):
 
         t021c012_m = OBSColumn(
             id='t021c012_m',
-            name='8 Natural resources, agriculture and related production occupations (male)',
+            name='People aged 15+ in the labour force - Natural resources, agriculture and related production occupations (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18748,7 +18744,7 @@ class NHSColumns(ColumnsTask):
 
         t021c012_f = OBSColumn(
             id='t021c012_f',
-            name='8 Natural resources, agriculture and related production occupations (female)',
+            name='People aged 15+ in the labour force - Natural resources, agriculture and related production occupations (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18757,7 +18753,7 @@ class NHSColumns(ColumnsTask):
 
         t021c013_t = OBSColumn(
             id='t021c013_t',
-            name='9 Occupations in manufacturing and utilities (total)',
+            name='People aged 15+ in the labour force - Occupations in manufacturing and utilities (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18766,7 +18762,7 @@ class NHSColumns(ColumnsTask):
 
         t021c013_m = OBSColumn(
             id='t021c013_m',
-            name='9 Occupations in manufacturing and utilities (male)',
+            name='People aged 15+ in the labour force - Occupations in manufacturing and utilities (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -18775,7 +18771,7 @@ class NHSColumns(ColumnsTask):
 
         t021c013_f = OBSColumn(
             id='t021c013_f',
-            name='9 Occupations in manufacturing and utilities (female)',
+            name='People aged 15+ in the labour force - Occupations in manufacturing and utilities (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
