@@ -1,7 +1,7 @@
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 from tasks.util import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-
+from tasks.ca.statcan.cols_census import CensusColumns
 from collections import OrderedDict
 
 class NHSColumns(ColumnsTask):
@@ -11,6 +11,7 @@ class NHSColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'census_cols': CensusColumns(),
         }
 
     def version(self):
@@ -33,41 +34,11 @@ class NHSColumns(ColumnsTask):
 
         ca = input_['sections']['ca']
 
-        t001c001_t = OBSColumn(
-            id='t001c001_t',
-            name='Total population in private households (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
+        census_cols = input_['census_cols']
 
-        t001c001_m = OBSColumn(
-            id='t001c001_m',
-            name='Total population in private households (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-
-        t001c001_f = OBSColumn(
-            id='t001c001_f',
-            name='Total population in private households (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['race_ethnicity']],
-            targets={},)
-        # FIXME
-        # There appear to be many columns in here that are direct duplicates,
-        # both by content and by ID, of columns in cols_census.py.  Those
-        # duplicates should be eliminated from here, and the Survey TableTask
-        # should pull from both NHSColumns and CensusColumns for those columns
-        # removed from here.
-        #
-        # The relevant duplicate columns below have been removed, butthe
-        # TableTask still needs to be fixed.
+        t001c001_t = census_cols.t007c001_t
+        t001c001_m = census_cols.t007c001_m
+        t001c001_f = census_cols.t007c001_f
 
         t001c002_t = OBSColumn(
             id='t001c002_t',
