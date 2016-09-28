@@ -23,7 +23,7 @@ def recreate_db():
                  WHERE pg_stat_activity.datname = 'test'
                    AND pid <> pg_backend_pid();"
         ''', shell=True)
-        check_output('dropdb --if-exists test', shell=True)
+    check_output('dropdb --if-exists test', shell=True)
     check_output('createdb test -E UTF8 -T template0', shell=True)
     check_output('psql -d test -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
     check_output('psql -d test -c "CREATE SCHEMA IF NOT EXISTS observatory"', shell=True)
