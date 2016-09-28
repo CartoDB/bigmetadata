@@ -1667,10 +1667,10 @@ class SeccionColumns(ColumnsTask):
             ('households_6_more_people', households_6_more_people),
         ])
 
-    ine_source = input_['censustags']['ine']
-    for _, col in columns,iteritems():
-        col.tags.append(ine_source)
-    return columns
+        ine_source = self.input['censustags']['ine']
+        for _, col in columns,iteritems():
+            col.tags.append(ine_source)
+        return columns
 
 
 class INE(TagsTask):

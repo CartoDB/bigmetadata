@@ -14,9 +14,10 @@ class LicenseTags(TagsTask):
                    description=''),
             OBSTag(id='no-restrictions',
                    name='Unrestricted',
+                   type='license',
                    description='You may do whatever you want with this information'
                   ),
-            OBSTAG(id='uk_ogl',
+            OBSTag(id='uk_ogl',
                     name='UK Open Government Licence (OGL)',
                     description='http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/'),
             OBSTag(id='ine_property',

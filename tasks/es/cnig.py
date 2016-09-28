@@ -49,7 +49,7 @@ class CNIG(TagsTask):
         return 1
     def tags(self):
         return [
-            OBSTAG(id='CNIG'
+            OBSTag(id='CNIG',
                     name='National Center for Geographic Information (CNIG)',
                     type='source',
                     description='The National Center for Geographic Information (CNIG)'

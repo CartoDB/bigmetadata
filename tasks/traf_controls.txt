@@ -1,0 +1,37 @@
+00 No Controls
+01 Traffic Control Signal (On Colors) Without Pedestrian Signal
+02 Traffic Control (On Colors) With Pedestrian Signal
+03 Traffic Control Signal (On Colors) Not Known if Pedestrian Signal
+04 Flashing Traffic Control Signal
+05 Flashing Beacon
+06 Flashing Highway Traffic Signal, Type Unknown, or Other
+07 Lane Use Control Signal
+08 Other Highway Traffic Signal
+09 Unknown Highway Traffic Signal
+20 Stop Sign
+21 Yield Sign
+28 Other Regulatory Sign
+29 Unknown Type Regulatory Sign
+30 School Speed Limit Sign
+31 School Advance or Crossing Sign
+38 Other School-Related Sign
+39 Unknown Type School Zone Sign
+40 Warning Sign
+41 Electronic Warning Sign (Since 2002)
+50 Officer, Crossing Guard, Flagman, etc.
+60 Gates
+61 Flashing Lights (Railroad Grade Crossing)
+62 Traffic Control Signal
+63 Wigwags
+64 Bells
+68 Other Train-Activated Device
+69 Active Device, Type Unknown
+70 Cross Bucks
+71 Stop Sign (Railroad Grade Crossing)
+72 Other Railroad Crossing Sign
+73 Special Warning Device Watchman, Flagged By Crew
+78 Other Passive Device
+79 Passive Device, Type Unknown
+80 Grade Crossing Controlled, Type Unknown
+98 Other
+99 Unknown

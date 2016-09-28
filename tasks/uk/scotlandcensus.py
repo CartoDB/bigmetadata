@@ -13,7 +13,7 @@ class SourceTags(TagsTask):
 
 	def tags(self):
 		return [
-			OBSTag(id='scotland'.
+			OBSTag(id='scotland',
 					name="Scotland's Census Data Warehouse by National Records of Scotland",
 					description="http://www.scotlandscensus.gov.uk/")]
 

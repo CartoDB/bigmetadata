@@ -1,4 +1,4 @@
-e!nusr/bin/env python
+#!/usr/bin/env python
 
 '''
 Bigmetadata tasks
@@ -23,7 +23,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell,
 from tasks.us.census.tiger import load_sumlevels, SumLevel
 from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
                                    SUMLEVELS_BY_SLUG)
-from tasks.us.census.segments import SegmentTags
+from tasks.us.census.segments import segmenttags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
@@ -38,7 +38,7 @@ class ACSTags(TagsTask):
 
     def tags(self):
         return [
-            OBSTag(id='acs',
+            OBSTAG (id='acs',
                    name='US American Community Survey',
                    type='source',
                    description='The United States American Community Survey, 2014 5-year sample. https://www.census.gov/programs-surveys/acs/'),

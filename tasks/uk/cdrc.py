@@ -2,9 +2,9 @@
 
 from luigi import Task, Parameter, LocalTarget
 
-from tasks.util import (TableTask, ColumnsTask, classpath, shell,
+from tasks.util import (TableTask, TagsTask, ColumnsTask, classpath, shell,
                         DownloadUnzipTask, Shp2TempTableTask)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
+from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
 from tasks.tags import LicenseTags, SectionTags, SubsectionTags, UnitTags
 
 from collections import OrderedDict

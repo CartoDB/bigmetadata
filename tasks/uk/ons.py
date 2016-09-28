@@ -20,7 +20,9 @@ class SourcesTags(TagsTask):
         return [
             OBSTag(id='ons',
                     name='Office for National Statistics (ONS)',
-                    description='All material on the Office for National Statistics (ONS) website is subject to Crown Copyright protection unless otherwise indicated.')]
+                    type='source',
+                    description='All material on the Office for National Statistics (ONS) website is subject to Crown Copyright protection unless otherwise indicated.')
+            ]
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
@@ -1101,10 +1103,10 @@ class CensusColumns(ColumnsTask):
             ('never_worked', never_worked),
             ('long_term_unemployed', long_term_unemployed),
         ])
-    ons_source = input_['sources']['ons']
-    for _, col in columns,iteritems():
-        col.tags.append(ons_source)
-    return columns
+        ons_source = input_['sources']['ons']
+        for _, col in columns,iteritems():
+            col.tags.append(ons_source)
+        return columns
 
 class ImportAllEnglandWalesLocal(Task):
 

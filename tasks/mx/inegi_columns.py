@@ -6,7 +6,7 @@ from collections import OrderedDict
 
 # %s/\(\w\+\d\+_\?R\?\)\t\(.\+\)$/\1 = OBSColumn(\r    id='\1',\r    name='\2',\r    type='Numeric',\r    weight=3,\r    aggregate='sum',\r    tags=[mexico, unit_people, ],\r    targets={},\r)
 
-class INEIGITags(TagsTask)
+class INEIGITags(TagsTask):
     def version(self):
         return 1
 
