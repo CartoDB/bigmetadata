@@ -128,9 +128,13 @@ etl-unittest:
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
 travis-etl-unittest:
-	docker-compose run --no-deps --rm bigmetadata /bin/bash -c \
-	  'PGDATABASE=test PGUSER=postgres PGPASSWORD= PGHOST=localhost \
-	    nosetests -v \
+	docker run \
+	  -v $$PWD:/bigmetadata \
+	  --net=host -e PGHOST=localhost -e PYTHONPATH=/bigmetadata \
+	             -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 \
+	             -e LUIGI_CONFIG_PATH=/bigmetadata/conf/luigi_client.cfg \
+	   recessionporn/bigmetadata /bin/bash -c \
+	   'nosetests -v \
 	    tests/test_meta.py tests/test_util.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
