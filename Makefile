@@ -131,7 +131,7 @@ travis-etl-unittest:
 	docker run \
 	  -v $$PWD:/bigmetadata \
 	  --net=host -e PGHOST=localhost -e PYTHONPATH=/bigmetadata \
-	             -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 \
+	             -e PGUSER=postgres -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 \
 	             -e LUIGI_CONFIG_PATH=/bigmetadata/conf/luigi_client.cfg \
 	   recessionporn/bigmetadata /bin/bash -c \
 	   'nosetests -v \
