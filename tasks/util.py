@@ -328,7 +328,11 @@ class PostgresTarget(Target):
     def schema(self):
         return self._schema
 
-    def exists(self):
+    def _existenceness(self):
+        '''
+        Returns 0 if the table does not exist, 1 if it exists but has no
+        rows (is empty), and 2 if it exists and has one or more rows.
+        '''
         session = current_session()
         resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
                                "WHERE table_schema ILIKE '{schema}'  "
@@ -336,11 +340,26 @@ class PostgresTarget(Target):
                                    schema=self._schema,
                                    tablename=self._tablename))
         if int(resp.fetchone()[0]) == 0:
-            return False
+            return 0
         resp = session.execute(
             'SELECT row_number() over () FROM "{schema}".{tablename} LIMIT 1'.format(
                 schema=self._schema, tablename=self._tablename))
-        return resp.fetchone() is not None
+        if resp.fetchone() is None:
+            return 1
+        else:
+            return 2
+
+    def empty(self):
+        '''
+        Returns True if the table exists but has no rows in it.
+        '''
+        return self._existenceness() == 1
+
+    def exists(self):
+        '''
+        Returns True if the table exists and has at least one row in it.
+        '''
+        return self._existenceness() == 2
 
 
 class CartoDBTarget(Target):
@@ -1025,11 +1044,11 @@ class TempTableTask(Task):
         shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=classpath(self)))
         target = PostgresTarget(classpath(self), self.task_id)
-        if self.force and not getattr(self, 'wiped', False):
-            if target.exists():
-                shell("psql -c 'DROP TABLE \"{schema}\".{tablename}'".format(
-                    schema=classpath(self), tablename=self.task_id))
-            self.wiped = True
+        #if not getattr(self, 'wiped', False) and (self.force or target.empty()):
+        if getattr(self, 'first_time', True) and (self.force or target.empty()):
+            shell("psql -c 'DROP TABLE IF EXISTS \"{schema}\".{tablename}'".format(
+                schema=classpath(self), tablename=self.task_id))
+        self.first_time = False
         return target
 
 
