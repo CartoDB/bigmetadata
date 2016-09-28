@@ -127,6 +127,13 @@ etl-unittest:
 	    tests/test_meta.py tests/test_util.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
+travis-etl-unittest:
+	docker-compose run --no-deps --rm bigmetadata /bin/bash -c \
+	  'PGDATABASE=test PGUSER=postgres PGPASSWORD= PGHOST=localhost \
+	    nosetests -v \
+	    tests/test_meta.py tests/test_util.py \
+	    tests/test_columntasks.py tests/test_tabletasks.py'
+
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
 
