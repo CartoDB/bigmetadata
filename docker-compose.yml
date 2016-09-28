@@ -46,7 +46,7 @@
       "LUIGI_CONFIG_PATH": "/bigmetadata/conf/luigi_daemon.cfg",
     },
     "env_file": ".env",
-    "command": "/bin/bash -c 'cron && crontab ./crontab && luigid'"
+    "command": "/bin/bash -c 'while : ; do pg_isready -t 1 && break; done && cron && crontab ./crontab && luigid'"
   },
   "bigmetadata": {
     "image": "recessionporn/bigmetadata",
