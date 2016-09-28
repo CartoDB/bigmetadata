@@ -248,25 +248,36 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
             / (50000),
             (st_ymax(st_transform(the_geom, 3857))
               - st_ymin(st_transform(the_geom, 3857)))::INT
-            / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
-          ), ARRAY[1, 2], 50, 50) rast
+            / (50000), 0, 0, ARRAY['32BF', '32BF', '32BF'],
+                             ARRAY[-1, -1, -1],
+                             ARRAY[0, 0, 0]
+          ), ARRAY[1, 2, 3], 50, 50) rast
           FROM observatory.obs_table
           WHERE id = '{table_id}'
           ) foo
         ),
         pixelspertile AS (
-          SELECT id, ARRAY_AGG(median) medians, ARRAY_AGG(cnt) counts FROM (
-          SELECT id, ROW(
-                      FIRST(geom),
+          SELECT id,
+                 ARRAY_AGG(median) medians,
+                 ARRAY_AGG(cnt) counts,
+                 ARRAY_AGG(percent_fill) percents FROM (
+          SELECT id, ROW(FIRST(geom),
                         -- determine median area of tiger geometries
-                        percentile_cont(0.5) within group (
-                        order by st_area(st_transform(tiger.{colname}, 3857)) / 1000000)
+                        Coalesce(Nullif(
+                          percentile_cont(0.5) within group (
+                          order by st_area(st_transform(tiger.{colname}, 3857)) / 1000000)
+                          , 0), null)
                      )::geomval median,
                      ROW(FIRST(geom),
                       -- determine number of geoms, including fractions
-                      SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
-                          ST_Area(tiger.{colname}))
-                     )::geomval cnt
+                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
+                          ST_Area(tiger.{colname})), 0), null)
+                     )::geomval cnt,
+                     ROW(FIRST(geom),
+                      -- determine % pixel area filled with geoms
+                      SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom))) /
+                          ST_Area(FIRST(geom))
+                     )::geomval percent_fill
           FROM
           (
             SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
@@ -282,7 +293,10 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
           GROUP BY id
         )
         SELECT '{table_id}', '{column_id}', er.id,
-               ST_SetValues(ST_SetValues(er.rast, 1, medians), 2, counts) geom
+               ST_SetValues(ST_SetValues(ST_SetValues(er.rast,
+               1, medians),
+               2, counts),
+               3, percents) geom
         FROM emptyraster er, pixelspertile ppt
         WHERE er.id = ppt.id
         ;
