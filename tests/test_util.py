@@ -5,7 +5,7 @@ from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
 from tests.util import runtask, session_scope, setup, teardown, FakeTask
 
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
-                        TableTarget, TagTarget, TagsTask)
+                        TableTarget, TagTarget, TagsTask, PostgresTarget)
 from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
 
@@ -374,3 +374,29 @@ def test_table_task_increment_version_runs_again():
     current_session().rollback()
     runtask(task)
     assert_true(output.exists())
+
+
+@with_setup(setup, teardown)
+def test_postgres_target_existencess():
+    '''
+    PostgresTarget existenceness should be 0 if table DNE, 1 if it exists sans \
+    rows, and 2 if it has rows in it.
+    '''
+    session = current_session()
+
+    target = PostgresTarget('public', 'to_be')
+    assert_equals(target._existenceness(), 0)
+    assert_equals(target.empty(), False)
+    assert_equals(target.exists(), False)
+
+    session.execute('CREATE TABLE to_be (id INT)')
+    session.commit()
+    assert_equals(target._existenceness(), 1)
+    assert_equals(target.empty(), True)
+    assert_equals(target.exists(), False)
+
+    session.execute('INSERT INTO to_be VALUES (1)')
+    session.commit()
+    assert_equals(target._existenceness(), 2)
+    assert_equals(target.empty(), False)
+    assert_equals(target.exists(), True)
