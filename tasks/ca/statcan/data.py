@@ -203,6 +203,10 @@ class Survey(BaseParams, TableTask):
 
 
 class Census(Survey):
+
+    def version(self):
+        return 3
+
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
@@ -226,6 +230,10 @@ class AllCensusTopics(BaseParams, WrapperTask):
 
 
 class NHS(Survey):
+
+    def version(self):
+        return 3
+
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),
