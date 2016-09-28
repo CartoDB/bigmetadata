@@ -67,6 +67,7 @@
       "LANG": "C.UTF-8",
       "LUIGI_CONFIG_PATH": "/bigmetadata/conf/luigi_client.cfg",
     },
+    "net": "host",
     "env_file": ".env"
   },
   "ipython": {

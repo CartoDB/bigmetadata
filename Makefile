@@ -129,7 +129,7 @@ etl-unittest:
 
 travis-etl-unittest:
 	docker-compose run --no-deps --rm bigmetadata /bin/bash -c \
-	  'PGDATABASE=test PGUSER=postgres PGPASSWORD= PGHOST= \
+	  'PGDATABASE=test PGUSER=postgres PGPASSWORD= PGHOST=localhost \
 	    nosetests -v \
 	    tests/test_meta.py tests/test_util.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
