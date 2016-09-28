@@ -82,7 +82,7 @@ class UnitTags(TagsTask):
                    name='Square Kilometer',
                    type='unit',
                    description=''),
-            OBSTag(id='families',
+            OBSTag(id='families-unit', # TODO we should qualify these based off class
                    name='Families',
                    type='unit',
                    description='')

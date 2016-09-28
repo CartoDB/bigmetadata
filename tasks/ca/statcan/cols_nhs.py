@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 from tasks.util import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
@@ -36,9 +38,9 @@ class NHSColumns(ColumnsTask):
 
         census_cols = input_['census_cols']
 
-        t001c001_t = census_cols.t007c001_t
-        t001c001_m = census_cols.t007c001_m
-        t001c001_f = census_cols.t007c001_f
+        t001c001_t = census_cols['t007c001_t']
+        t001c001_m = census_cols['t007c001_m']
+        t001c001_f = census_cols['t007c001_f']
 
         t001c002_t = OBSColumn(
             id='t001c002_t',
@@ -745,6 +747,10 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Not quite sure what this means, the description doesn't mention what
+        # "Worker class" means, and the name doesn't include phrase
+        # "Experienced labour force".
         t004c003_t = OBSColumn(
             id='t004c003_t',
             name='People aged 15+ in the labour force - Worker Class (total)',
@@ -775,6 +781,12 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
+        # FIXME
+        # As employee is not redundant with other possible measures, I think
+        # it's the more appropriate name -- the full qualification is noisy.
+        #
+        # The original FIXME had been for a description of what the NHS
+        # considers an "Employee", which is not here.
         t004c004_t = OBSColumn(
             id='t004c004_t',
             name='People aged 15+ in the labour force - Worker Class - Employee (total)',
@@ -802,6 +814,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_f: DENOMINATOR },)
 
+        # FIXME
+        # Like with "Employee" above, the full qualification here is noisy.
         t004c005_t = OBSColumn(
             id='t004c005_t',
             name='People aged 15+ in the labour force - Worker Class - Self-employed (total)',
@@ -829,9 +843,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c003_f: DENOMINATOR },)
 
-        t005c001_t = census_cols.t009c001_t
-        t005c001_m = census_cols.t009c001_m
-        t005c001_f = census_cols.t009c001_f
+        t005c001_t = census_cols['t009c001_t']
+        t005c001_m = census_cols['t009c001_m']
+        t005c001_f = census_cols['t009c001_f']
 
         t005c002_t = OBSColumn(
             id='t005c002_t',
@@ -1346,6 +1360,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_f: DENOMINATOR },)
 
+        # FIXME
+        # Never heard of anyone majoring in a lack of education :)
         t005c022_t = OBSColumn(
             id='t005c022_t',
             name='People aged 15+ majoring in no postsecondary certificate, diploma or degree (total)',
@@ -8987,6 +9003,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
+        # FIXME
+        # still missing description of what qualifies as "part-time"
         t007c005_t = OBSColumn(
             id='t007c005_t',
             name='People aged 15+ in the labour force who worked part-time (total)',
@@ -9014,7 +9032,7 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
-       t008c002_t = OBSColumn(
+        t008c002_t = OBSColumn(
             id='t008c002_t',
             name='Total population - First generation (total)',
             description='\'First generation\' includes persons who were born outside Canada. For the most part, these are people who are now, or have ever been, immigrants to Canada.',
@@ -9133,7 +9151,7 @@ class NHSColumns(ColumnsTask):
 
         t009c004_t = OBSColumn(
             id='t009c004_t',
-            name='Number of band housing (on an Indian reserve or settlement)',
+            name='Number of band households (on an Indian reserve or settlement)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11500,9 +11518,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t009c001_t: UNIVERSE },)
 
-        # FIXME DUP?
-        # t012c034_t was redundant with ca.statcan.cols_census.t007c029_t
-        # Alain: The values are close here, but not exact. Don't think they should be combined...
         t012c034_t = OBSColumn(
             id='t012c034_t',
             name='One-person private households',
@@ -11548,9 +11563,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t012c034_t: UNIVERSE },)
 
-        # FIXME DUP?
-        # t012c039_t was redundant with ca.statcan.cols_census.t007c030_t,
-        # Alain: The values are off by 9M. Don't think they should be combined...
         t012c039_t = OBSColumn(
             id='t012c039_t',
             name='Two-or-more-persons private households',
@@ -12461,6 +12473,16 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t005c001_f: UNIVERSE },)
 
+        # FIXME
+        # I'm still not sure what these three columns actually mean --
+        # is t013c035_t 100%, and t013c035_m the percentage of total income
+        # received by men?
+        #
+        # If so, the term "Income composition" should be jettisoned as it's
+        # confusing.  And any column that's just 100% should be eliminated,
+        # too.  The other should be retitled something like "Percent market
+        # income of total income," "Percent self-employment income of total
+        # income," and the like.
         t013c035_t = OBSColumn(
             id='t013c035_t',
             name='Income composition of people aged 15+ (%) (total)',
@@ -12957,7 +12979,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit['families'], subsections['income']],
+            tags=[ca, unit['families-unit'], subsections['income']],
             targets={},)
 
         t013c056_t = OBSColumn(
@@ -13302,6 +13324,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: UNIVERSE },)
 
+        # FIXME
+        # THere is still no description of "Canadian distribution"
         t013c085_t = OBSColumn(
             id='t013c085_t',
             name='Total population - In bottom half of the Canadian distribution (total)',
@@ -13636,6 +13660,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
+        # FIXME
+        # There appears to be a stray "Age" definition trailing the
+        # descriptions below.
         t013c097_m = OBSColumn(
             id='t013c097_m',
             name='People not in low income status based on after-tax low-income measure (LIM-AT) (male)',
@@ -13764,6 +13791,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_f: DENOMINATOR },)
 
+        # FIXME
+        # Same issue below with trailing "Age" definition
         t013c102_t = OBSColumn(
             id='t013c102_t',
             name='People in low income status based on after-tax low-income measure (LIM-AT) (total)',
@@ -14076,6 +14105,11 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
+        # FIXME
+        # Considering the lengths of the names below, and that there are no
+        # other breakdowns by industrial category, I'd trim the
+        # "People aged 15+ in the labour force..." portion and simply leave it
+        # "Employed in <Industry XYZ>".
         t014c004_t = OBSColumn(
             id='t014c004_t',
             name='People aged 15+ in the labour force employed in Agriculture, forestry, fishing and hunting (total)',
@@ -14703,6 +14737,8 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t005c001_f: DENOMINATOR },)
 
+        # FIXME Employed/Unemployed don't need to be qualified by the "People
+        # aged 15+ in the labour force" boilerplate.
         t015c003_t = OBSColumn(
             id='t015c003_t',
             name='People aged 15+ in the labour force - Employed (total)',
@@ -21936,9 +21972,14 @@ class NHSColumns(ColumnsTask):
             targets={},)
 
         return OrderedDict([
-            ('t001c001_t', t001c001_t),
-            ('t001c001_m', t001c001_m),
-            ('t001c001_f', t001c001_f),
+            # FIXME it's not safe to pass in a column from one columntask
+            # to another. If the number of columns returned is
+            # important to match up to an input file, these should just
+            # be replaced with dummy OBSColumn declarations with minimal
+            # information.
+            #('t001c001_t', t001c001_t),
+            #('t001c001_m', t001c001_m),
+            #('t001c001_f', t001c001_f),
             ('t001c002_t', t001c002_t),
             ('t001c002_m', t001c002_m),
             ('t001c002_f', t001c002_f),
@@ -22026,9 +22067,14 @@ class NHSColumns(ColumnsTask):
             ('t004c005_t', t004c005_t),
             ('t004c005_m', t004c005_m),
             ('t004c005_f', t004c005_f),
-            ('t005c001_t', t005c001_t),
-            ('t005c001_m', t005c001_m),
-            ('t005c001_f', t005c001_f),
+            # FIXME it's not safe to pass in a column from one columntask
+            # to another like this.  If the number of columns returned is
+            # important to match up to an input file, these should just
+            # be replaced with dummy OBSColumn declarations with minimal
+            # information.
+            #('t005c001_t', t005c001_t),
+            #('t005c001_m', t005c001_m),
+            #('t005c001_f', t005c001_f),
             ('t005c002_t', t005c002_t),
             ('t005c002_m', t005c002_m),
             ('t005c002_f', t005c002_f),
