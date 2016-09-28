@@ -11,7 +11,7 @@
     "psql -U postgres -c 'create extension postgis'",
     "cp .env.sample .env",
   ],
-  "script": "make etl-unittest",
+  "script": "make travis-etl-unittest",
   "addons": {
     "postgresql": "9.4",
   },
