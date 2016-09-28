@@ -133,6 +133,7 @@ travis-etl-unittest:
 	  --net=host -e PGHOST=localhost -e PYTHONPATH=/bigmetadata \
 	             -e PGUSER=postgres -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 \
 	             -e LUIGI_CONFIG_PATH=/bigmetadata/conf/luigi_client.cfg \
+	             -e TRAVIS=$$TRAVIS \
 	   recessionporn/bigmetadata /bin/bash -c \
 	   'nosetests -v \
 	    tests/test_meta.py tests/test_util.py \
