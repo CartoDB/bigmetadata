@@ -609,37 +609,45 @@ class TableTarget(Target):
 
     def update_or_create_metadata(self):
         session = current_session()
-        select = []
-        for i, colname_coltarget in enumerate(self._columns.iteritems()):
-            colname, coltarget = colname_coltarget
-            col = coltarget.get(session)
-            coltype = col.type.lower()
-            if coltype == 'numeric':
-                select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                              'max({colname}) col{i}_max, '
-                              'min({colname}) col{i}_min, '
-                              'avg({colname}) col{i}_avg, '
-                              'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
-                              'mode() within group (order by {colname}) col{i}_mode, '
-                              'stddev_pop({colname}) col{i}_stddev'.format(
-                                  i=i, colname=colname.lower()))
-            elif coltype == 'geometry':
-                select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                              'max(st_area({colname}::geography)) col{i}_max, '
-                              'min(st_area({colname}::geography)) col{i}_min, '
-                              'avg(st_area({colname}::geography)) col{i}_avg, '
-                              'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
-                              'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
-                              'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
-                                  i=i, colname=colname.lower()))
 
-        if select:
-            stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
-                select=', '.join(select), output=self.table)
-            resp = session.execute(stmt)
-            colinfo = dict(zip(resp.keys(), resp.fetchone()))
-        else:
-            colinfo = {}
+        colinfo = {}
+
+        postgres_max_cols = 1664
+        query_width = 7
+        maxsize = postgres_max_cols / query_width
+        for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
+            select = []
+            for i, colname_coltarget in enumerate(group):
+                if colname_coltarget is None:
+                    continue
+                colname, coltarget = colname_coltarget
+                col = coltarget.get(session)
+                coltype = col.type.lower()
+                i = i + (groupnum * maxsize)
+                if coltype == 'numeric':
+                    select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                  'max({colname}) col{i}_max, '
+                                  'min({colname}) col{i}_min, '
+                                  'avg({colname}) col{i}_avg, '
+                                  'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
+                                  'mode() within group (order by {colname}) col{i}_mode, '
+                                  'stddev_pop({colname}) col{i}_stddev'.format(
+                                      i=i, colname=colname.lower()))
+                elif coltype == 'geometry':
+                    select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                  'max(st_area({colname}::geography)) col{i}_max, '
+                                  'min(st_area({colname}::geography)) col{i}_min, '
+                                  'avg(st_area({colname}::geography)) col{i}_avg, '
+                                  'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
+                                  'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
+                                  'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
+                                      i=i, colname=colname.lower()))
+
+            if select:
+                stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
+                    select=', '.join(select), output=self.table)
+                resp = session.execute(stmt)
+                colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
