@@ -1,15 +1,14 @@
-from tests.util import runtask
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath)
 from tasks.meta import current_session, DENOMINATOR, GEOM_REF
 from collections import OrderedDict
-from luigi import IntParameter, Parameter
+from luigi import IntParameter, Parameter, WrapperTask
 import os
 from tasks.meta import OBSTable, OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-import pandas as pd
 import csv
+import pandas as pd
 
 class DownloadFranceCensus(DownloadUnzipTask):
 
@@ -61,70 +60,67 @@ class SourceTags(TagsTask):
 
 class FrenchColumns(ColumnsTask):
 
+    table_theme = Parameter()
+
     def requires(self):
-        return {
+        requirements = {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-#             'unittags': UnitTags(),
+            'unittags': UnitTags(),
             'sourcetag': SourceTags()
         }
+        if self.table_theme != 'population':
+            requirements['population_vars'] = FrenchColumns(table_theme='population')
+        return requirements
 
     def version(self):
-        return 1
+        return 6
 
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
 
         subsections = input_['subsections']
-#         unittags = input_['unittags']
+        unittags = input_['unittags']
         france = input_['sections']['fr']
+        pop_columns = input_.get('population_vars', {})
 
-        for root, dirs, files in os.walk("./frenchmetadata"):
-            for file in files:
-                # Only pull in Population IRIS variables for now
-                if file == "POPULATION VARIABLES - IRIS POP.tsv":
-                    filepath = os.path.join(root, file)
-                    # Table_theme is in name of file (ie HOUSING, EDUCATION, POPULATION...)
-                    table_theme = underscore_slugify(file.split()[0])
-                    with open(filepath) as tsvfile:
-                        tsvreader = csv.reader(tsvfile, delimiter="\t")
-                        # Skip first row (header)
-                        next(tsvreader, None)
-                        for line in tsvreader:
-                            # Ignoring "Universe" and "Description" columns for now...
-                            var_code,var_lib,var_lib_long,var_unit,denominators = line[0], line[1], line[2], line[3], line[4]
-                            slugified_lib = underscore_slugify('{}'.format(var_lib))
-                            # There are multiple denominators in variable file, delimited by commas... this needs to be fixed!
-                            for i in denominators:
-                                targets_dict = {}
-                                targets_dict[i] = 'DENOMINATOR'
-                            cols['{}'.format(var_code)] = OBSColumn(
-                                # Make sure the column ID is unique within this module
-                                # If left blank, will be taken from this column's key in the output OrderedDict
-                                id='{}'.format(var_code),
-                                # The PostgreSQL type of this column.  Generally Numeric for numbers and Text
-                                # for categories.
-                                type='Numeric',
-                                # Human-readable name.  Will be used as header in the catalog
-                                name='{}'.format(var_lib_long),
-                                # No description yet, can be added later.
-                                # Ranking of importance, sometimes used to favor certain measures in auto-selection
-                                # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
-                                weight=5,
-                                # How this measure was derived, for example "sum", "median", "average", etc.
-                                # In cases of "sum", this means functions downstream can construct estimates
-                                # for arbitrary geographies
-                                aggregate='sum',
-                                # Tags are our way of noting aspects of this measure like its unit, the country
-                                # it's relevant to, and which section(s) of the catalog it should appear in
-                                # Need to fix Subsection and UnitTags! Problem with unittag "families"
-                                tags=[france]
-                                # targets=targets_dict
-                                # Fix for above target_dict needed
-                            )
+        filepath = "frenchmetadata/{} VARIABLES - IRIS {}.tsv".format(self.table_theme.upper(),self.table_theme.upper())
+        session = current_session()
+        with open(os.path.join(os.path.dirname(__file__),filepath)) as tsvfile:
+            tsvreader = csv.reader(tsvfile, delimiter="\t")
+            # Skip first row (header)
+            next(tsvreader, None)
+            for line in tsvreader:
+                # Ignoring "Universe" and "Description" columns for now...
+                var_code,short_name,long_name,var_unit,denominators = line[0], line[1], line[2], line[3], line[4]
+                denominators = denominators.split(',')
+                # slugified_lib = underscore_slugify('{}'.format(short_name))
+                targets_dict = {}
+                for x in denominators:
+                    x = x.strip()
+                    targets_dict[cols.get(x, pop_columns[x].get(session) if x in pop_columns else None)] = 'denominator'
+                targets_dict.pop(None, None)
+                cols[var_code] = OBSColumn(
+                    id=var_code,
+                    type='Numeric',
+                    name=long_name,
+                    # No description yet, can be added later.
+                    # Ranking of importance, sometimes used to favor certain measures in auto-selection
+                    # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
+                    weight=5,
+                    aggregate='sum',
+                    # Tags are our way of noting aspects of this measure like its unit, the country
+                    # it's relevant to, and which section(s) of the catalog it should appear in
+                    # Need to fix Subsection and UnitTags! Problem with unittag "families"
+                    tags=[france],
+                    targets= targets_dict
+                )
+
+
         insee_source = input_['sourcetag']['insee']
-        for _, col in cols.iteritems():
+
+        for _,col in cols.iteritems():
             col.tags.append(insee_source)
         return cols
 
@@ -228,7 +224,7 @@ class FranceCensus(TableTask):
     def requires(self):
         requirements = {
             'data': RawFRData(table_theme=self.table_theme, resolution=self.resolution),
-            'meta': FrenchColumns(),# comment out table_theme parameter for now: table_theme=self.table_theme)
+            'meta': FrenchColumns(table_theme=self.table_theme),
             'geometa': OutputAreaColumns(),
         }
         return requirements
@@ -254,3 +250,11 @@ class FranceCensus(TableTask):
                             output=self.output().table,
                             input=self.input()['data'].table
                         ))
+
+
+class AllGeomsThemesTables(WrapperTask):
+    def requires(self):
+        topics = ['population', 'housing', 'education', 'household', 'employment']
+        for resolution in ('iris'):
+            for table_theme in topics:
+                yield FranceCensus(table_theme=table_theme, resolution=resolution)
