@@ -127,6 +127,20 @@ etl-unittest:
 	    tests/test_meta.py tests/test_util.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
+travis-etl-unittest:
+	docker run \
+	  -v $$PWD:/bigmetadata \
+	  --net=host --env-file=.env.sample \
+	             -e PGHOST=localhost -e PYTHONPATH=/bigmetadata \
+	             -e PGDATABASE=test -e PGUSER=postgres \
+	             -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 \
+	             -e LUIGI_CONFIG_PATH=/bigmetadata/conf/luigi_client.cfg \
+	             -e TRAVIS=$$TRAVIS \
+	   recessionporn/bigmetadata /bin/bash -c \
+	   'nosetests -v \
+	    tests/test_meta.py tests/test_util.py \
+	    tests/test_columntasks.py tests/test_tabletasks.py'
+
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
 

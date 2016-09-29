@@ -2,6 +2,7 @@
 Util functions for tests
 '''
 
+import os
 from subprocess import check_output
 
 
@@ -15,12 +16,13 @@ class FakeTask(object):
 
 
 def recreate_db():
-    check_output('''
-    psql -d gis -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
-             FROM pg_stat_activity
-             WHERE pg_stat_activity.datname = 'test'
-               AND pid <> pg_backend_pid();"
-    ''', shell=True)
+    if not os.environ.get('TRAVIS'):
+        check_output('''
+        psql -d gis -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
+                 FROM pg_stat_activity
+                 WHERE pg_stat_activity.datname = 'test'
+                   AND pid <> pg_backend_pid();"
+        ''', shell=True)
     check_output('dropdb --if-exists test', shell=True)
     check_output('createdb test -E UTF8 -T template0', shell=True)
     check_output('psql -d test -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
