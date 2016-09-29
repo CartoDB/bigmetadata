@@ -938,3 +938,83 @@ class SyncMetadata(OBSMeta):
             target.remove()
             self.force = False
         return target
+
+
+class OBSMetaDeriv(Task):
+
+    QUERIES = {
+        'numer': '''
+DROP TABLE IF EXISTS observatory.obs_meta_numer;
+CREATE TABLE observatory.obs_meta_numer AS
+SELECT numer_id::TEXT,
+       cdb_observatory.FIRST(numer_name)::TEXT numer_name,
+       cdb_observatory.FIRST(numer_description)::TEXT numer_description,
+       cdb_observatory.FIRST(numer_tags)::JSONB numer_tags,
+       cdb_observatory.FIRST(numer_weight)::NUMERIC numer_weight,
+       cdb_observatory.FIRST(numer_extra)::JSONB numer_extra, -- cannot include ct_extra because it depends on table
+       cdb_observatory.FIRST(numer_type)::TEXT numer_type,
+       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+FROM observatory.obs_meta
+GROUP BY numer_id;
+CREATE INDEX ON observatory.obs_meta_numer USING GIST (the_geom);
+        ''',
+        'denom': '''
+DROP TABLE IF EXISTS observatory.obs_meta_denom;
+CREATE TABLE observatory.obs_meta_denom AS
+SELECT denom_id::TEXT,
+       cdb_observatory.FIRST(denom_name)::TEXT denom_name,
+       cdb_observatory.FIRST(denom_description)::TEXT denom_description,
+       NULL::JSONB denom_tags,
+       cdb_observatory.FIRST(denom_weight)::NUMERIC denom_weight,
+       'denominator'::TEXT reltype,
+       cdb_observatory.FIRST(denom_extra)::JSONB denom_extra,
+       cdb_observatory.FIRST(denom_type)::TEXT denom_type,
+       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+FROM observatory.obs_meta
+GROUP BY denom_id;
+CREATE INDEX ON observatory.obs_meta_denom USING GIST (the_geom);
+        ''',
+        'geom': '''
+DROP TABLE IF EXISTS observatory.obs_meta_geom;
+CREATE TABLE observatory.obs_meta_geom AS
+SELECT geom_id::TEXT,
+       cdb_observatory.FIRST(geom_name)::TEXT geom_name,
+       cdb_observatory.FIRST(geom_description)::TEXT geom_description,
+       NULL::JSONB geom_tags,
+       cdb_observatory.FIRST(geom_weight)::NUMERIC geom_weight,
+       cdb_observatory.FIRST(geom_extra)::JSONB geom_extra,
+       cdb_observatory.FIRST(geom_type)::TEXT geom_type,
+       ST_SetSRID(cdb_observatory.FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
+       NULL::raster summary_geom,
+       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans
+FROM observatory.obs_meta
+GROUP BY geom_id;
+CREATE INDEX ON observatory.obs_meta_geom USING GIST (the_geom);
+        ''',
+        'timespan': '''
+DROP TABLE IF EXISTS observatory.obs_meta_timespan;
+CREATE TABLE observatory.obs_meta_timespan AS
+SELECT numer_timespan::TEXT timespan_id,
+       numer_timespan::TEXT timespan_name,
+       NULL::TEXT timespan_description,
+       NULL::JSONB timespan_tags,
+       NULL::NUMERIC timespan_weight,
+       NULL::JSONB timespan_extra,
+       NULL::TEXT timespan_type,
+       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+FROM observatory.obs_meta
+GROUP BY numer_timespan;
+CREATE INDEX ON observatory.obs_meta_geom USING GIST (the_geom);
+        '''
+    }
