@@ -925,7 +925,6 @@ SELECT geom_id::TEXT,
        FIRST(geom_extra)::JSONB geom_extra,
        FIRST(geom_type)::TEXT geom_type,
        ST_SetSRID(FIRST(the_geom_webmercator), 3857)::GEOMETRY(GEOMETRY, 3857) the_geom_webmercator,
-       NULL::raster summary_geom,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans
