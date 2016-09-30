@@ -1,0 +1,73 @@
+var_code	short_name	long_name	unit	denominators	subsections
+P12_POP	Population en 2012 (princ)	Population	people		age_gender
+P12_POP0002	Pop 0-2 ans en 2012 (princ)	Nombre de personnes de 0 à 2 ans	people	P12_POP	age_gender
+P12_POP0305	Pop 3-5 ans en 2012 (princ)	Nombre de personnes de 3 à 5 ans	people	P12_POP	age_gender
+P12_POP0610	Pop 6-10 ans en 2012 (princ)	Nombre de personnes de 6 à 10 ans	people	P12_POP	age_gender
+P12_POP1117	Pop 11-17 ans en 2012 (princ)	Nombre de personnes de 11 à 17 ans	people	P12_POP	age_gender
+P12_POP1824	Pop 18-24 ans en 2012 (princ)	Nombre de personnes de 18 à 24 ans	people	P12_POP	age_gender
+P12_POP2539	Pop 25-39 ans en 2012 (princ)	Nombre de personnes de 25 à 39 ans	people	P12_POP	age_gender
+P12_POP4054	Pop 40-54 ans en 2012 (princ)	Nombre de personnes de 40 à 54 ans	people	P12_POP	age_gender
+P12_POP5564	Pop 55-64 ans en 2012 (princ)	Nombre de personnes de 55 à 64 ans	people	P12_POP	age_gender
+P12_POP6579	Pop 65-79 ans en 2012 (princ)	Nombre de personnes de 65 à 79 ans	people	P12_POP	age_gender
+P12_POP80P	Pop 80 ans ou plus en 2012 (princ)	Nombre de personnes de 80 ans ou plus	people	P12_POP	age_gender
+P12_POP0014	Pop 0-14 ans en 2012 (princ)	Nombre de personnes de 0 à 14 ans	people	P12_POP	age_gender
+P12_POP1529	Pop 15-29 ans en 2012 (princ)	Nombre de personnes de 15 à 29 ans	people	P12_POP	age_gender
+P12_POP3044	Pop 30-44 ans en 2012 (princ)	Nombre de personnes de 30 à 44 ans	people	P12_POP	age_gender
+P12_POP4559	Pop 45-59 ans en 2012 (princ)	Nombre de personnes de 45 à 59 ans	people	P12_POP	age_gender
+P12_POP6074	Pop 60-74 ans en 2012 (princ)	Nombre de personnes de 60 à 74 ans	people	P12_POP	age_gender
+P12_POP75P	Pop 75 ans ou plus en 2012 (princ)	Nombre de personnes de 75 ans ou plus	people	P12_POP	age_gender
+P12_POP0019	Pop 0-19 ans en 2012 (princ)	Nombre de personnes de 0 à 19 ans	people	P12_POP	age_gender
+P12_POP2064	Pop 20-64 ans en 2012 (princ)	Nombre de personnes de 20 à 64 ans	people	P12_POP	age_gender
+P12_POP65P	Pop 65 ans ou plus en 2012 (princ)	Nombre de personnes de 65 ans ou plus	people	P12_POP	age_gender
+P12_POPH	Pop Hommes en 2012 (princ)	Nombre d'hommes	people	P12_POP	age_gender
+P12_H0014	Pop Hommes 0-14 ans en 2012 (princ)	Nombre d'hommes de 0 à 14 ans	people	P12_POPH, P12_POP0014	age_gender
+P12_H1529	Pop Hommes 15-29 ans en 2012 (princ)	Nombre d'hommes de 15 à 29 ans	people	P12_POPH, P12_POP1529	age_gender
+P12_H3044	Pop Hommes 30-44 ans en 2012 (princ)	Nombre d'hommes de 30 à 44 ans	people	P12_POPH, P12_POP3044	age_gender
+P12_H4559	Pop Hommes 45-59 ans en 2012 (princ)	Nombre d'hommes de 45 à 59 ans	people	P12_POPH, P12_POP4559	age_gender
+P12_H6074	Pop Hommes 60-74 ans en 2012 (princ)	Nombre d'hommes de 60 à 74 ans	people	P12_POPH, P12_POP6074	age_gender
+P12_H75P	Pop Hommes 75 ans ou plus en 2012 (princ)	Nombre d'hommes de 75 ans ou plus	people	P12_POPH, P12_POP75P	age_gender
+P12_H0019	Pop Hommes 0-19 ans en 2012 (princ)	Nombre d'hommes de 0 à 19 ans	people	P12_POPH, P12_POP0019	age_gender
+P12_H2064	Pop Hommes 20-64 ans en 2012 (princ)	Nombre d'hommes de 20 à 64 ans	people	P12_POPH, P12_POP2064	age_gender
+P12_H65P	Pop Hommes 65 ans ou plus en 2012 (princ)	Nombre d'hommes de 65 ans ou plus	people	P12_POPH, P12_POP65P	age_gender
+P12_POPF	Pop Femmes en 2012 (princ)	Nombre de femmes	people	P12_POP	age_gender
+P12_F0014	Pop Femmes 0-14 ans en 2012 (princ)	Nombre de femmes de 0 à 14 ans	people	P12_POPF, P12_POP0014	age_gender
+P12_F1529	Pop Femmes 15-29 ans en 2012 (princ)	Nombre de femmes de 15 à 29 ans	people	P12_POPF, P12_POP1529	age_gender
+P12_F3044	Pop Femmes 30-44 ans en 2012 (princ)	Nombre de femmes de 30 à 44 ans	people	P12_POPF, P12_POP3044	age_gender
+P12_F4559	Pop Femmes 45-59 ans en 2012 (princ)	Nombre de femmes de 45 à 59 ans	people	P12_POPF, P12_POP4559	age_gender
+P12_F6074	Pop Femmes 60-74 ans en 2012 (princ)	Nombre de femmes de 60 à 74 ans	people	P12_POPF, P12_POP6074	age_gender
+P12_F75P	Pop Femmes 75 ans ou plus en 2012 (princ)	Nombre de femmes de 75 ans ou plus	people	P12_POPF, P12_POP75P	age_gender
+P12_F0019	Pop Femmes 0-19 ans en 2012 (princ)	Nombre de femmes de 0 à 19 ans	people	P12_POPF, P12_POP0019	age_gender
+P12_F2064	Pop Femmes 20-64 ans en 2012 (princ)	Nombre de femmes de 20 à 64 ans	people	P12_POPF, P12_POP2064	age_gender
+P12_F65P	Pop Femmes 65 ans ou plus en 2012 (princ)	Nombre de femmes de 65 ans ou plus	people	P12_POPF, P12_POP65P	age_gender
+C12_POP15P	Pop 15 ans ou plus en 2012 (compl)	Nombre de personnes de 15 ans ou plus	people	P12_POP	age_gender
+C12_POP15P_CS1	Pop 15 ans ou plus Agriculteurs exploitants en 2012 (compl)	Nombre de personnes de 15 ans ou plus Agriculteurs exploitants	people	C12_POP15P	employment
+C12_POP15P_CS2	Pop 15 ans ou plus Artisans, Comm., Chefs entr. en 2012 (compl)	Nombre de personnes de 15 ans ou plus Artisans, Commerçants, Chefs d'entreprise	people	C12_POP15P	employment
+C12_POP15P_CS3	Pop 15 ans ou plus Cadres, Prof. intel. sup. en 2012 (compl)	Nombre de personnes de 15 ans ou plus Cadres et Professions intellectuelles supérieures	people	C12_POP15P	employment
+C12_POP15P_CS4	Pop 15 ans ou plus Prof. intermédiaires en 2012 (compl)	Nombre de personnes de 15 ans ou plus Professions intermédiaires	people	C12_POP15P	employment
+C12_POP15P_CS5	Pop 15 ans ou plus Employés en 2012 (compl)	Nombre de personnes de 15 ans ou plus Employés	people	C12_POP15P	employment
+C12_POP15P_CS6	Pop 15 ans ou plus Ouvriers en 2012 (compl)	Nombre de personnes de 15 ans ou plus Ouvriers	people	C12_POP15P	employment
+C12_POP15P_CS7	Pop 15 ans ou plus Retraités en 2012 (compl)	Nombre de personnes de 15 ans ou plus Retraités	people	C12_POP15P	employment
+C12_POP15P_CS8	Pop 15 ans ou plus Autres en 2012 (compl)	Nombre de personnes de 15 ans ou plus Autres sans activité professionnelle	people	C12_POP15P	employment
+C12_H15P	Pop 15 ans ou plus Hommes en 2012 (compl)	Nombre d'hommes de 15 ans ou plus	people	C12_POP15P	age_gender
+C12_H15P_CS1	Pop 15 ans ou plus Hommes Agriculteurs exploitants en 2012 (compl)	Nombre d'hommes de 15 ans ou plus Agriculteurs exploitants	people	C12_H15P, C12_POP15P_CS1	employment
+C12_H15P_CS2	Pop 15 ans ou plus Hommes Artisans, Comm., Chefs entr. en 2012 (compl)	Nombre d'hommes de 15 ans ou plus Artisans, Commerçants, Chefs d'entreprise	people	C12_H15P, C12_POP15P_CS2	employment
+C12_H15P_CS3	Pop 15 ans ou plus Hommes Cadres, Prof. intel. sup. en 2012 (compl)	Nombre d'hommes de 15 ans ou plus Cadres et Professions intellectuelles supérieures	people	C12_H15P, C12_POP15P_CS3	employment
+C12_H15P_CS4	Pop 15 ans ou plus Hommes Prof. intermédiaires en 2012 (compl)	Nombre d'hommes de 15 ans ou plus Professions intermédiaires	people	C12_H15P, C12_POP15P_CS4	employment
+C12_H15P_CS5	Pop 15 ans ou plus Hommes Employés en 2012 (compl)	Nombre d'hommes de 15 ans ou plus Employés	people	C12_H15P, C12_POP15P_CS5	employment
+C12_H15P_CS6	Pop 15 ans ou plus Hommes Ouvriers en 2012 (compl)	Nombre d'hommes de 15 ans ou plus Ouvriers	people	C12_H15P, C12_POP15P_CS6	employment
+C12_H15P_CS7	Pop 15 ans ou plus Hommes Retraités en 2012 (compl)	Nombre d'hommes de 15 ans ou plus Retraités	people	C12_H15P, C12_POP15P_CS7	employment
+C12_H15P_CS8	Pop 15 ans ou plus Hommes Autres en 2012 (compl)	Nombre d'hommes de 15 ans ou plus Autres sans activité professionnelle	people	C12_H15P, C12_POP15P_CS8	employment
+C12_F15P	Pop 15 ans ou plus Femmes en 2012 (compl)	Nombre de femmes de 15 ans ou plus	people	C12_POP15P	age_gender
+C12_F15P_CS1	Pop 15 ans ou plus Femmes Agriculteurs exploitants en 2012 (compl)	Nombre de femmes de 15 ans ou plus Agriculteurs exploitants	people	C12_F15P, C12_POP15P_CS1	employment
+C12_F15P_CS2	Pop 15 ans ou plus Femmes Artisans, Comm., Chefs entr. en 2012 (compl)	Nombre de femmes de 15 ans ou plus Artisans, Commerçants, Chefs d'entreprise	people	C12_F15P, C12_POP15P_CS2	employment
+C12_F15P_CS3	Pop 15 ans ou plus Femmes Cadres, Prof. intel. sup. en 2012 (compl)	Nombre de femmes de 15 ans ou plus Cadres et Professions intellectuelles supérieures	people	C12_F15P, C12_POP15P_CS3	employment
+C12_F15P_CS4	Pop 15 ans ou plus Femmes Prof. intermédiaires en 2012 (compl)	Nombre de femmes de 15 ans ou plus Professions intermédiaires	people	C12_F15P, C12_POP15P_CS4	employment
+C12_F15P_CS5	Pop 15 ans ou plus Femmes Employés en 2012 (compl)	Nombre de femmes de 15 ans ou plus Employés	people	C12_F15P, C12_POP15P_CS5	employment
+C12_F15P_CS6	Pop 15 ans ou plus Femmes Ouvriers en 2012 (compl)	Nombre de femmes de 15 ans ou plus Ouvriers	people	C12_F15P, C12_POP15P_CS6	employment
+C12_F15P_CS7	Pop 15 ans ou plus Femmes Retraités en 2012 (compl)	Nombre de femmes de 15 ans ou plus Retraités	people	C12_F15P, C12_POP15P_CS7	employment
+C12_F15P_CS8	Pop 15 ans ou plus Femmes Autres en 2012 (compl)	Nombre de femmes de 15 ans ou plus Autres sans activité professionnelle	people	C12_F15P, C12_POP15P_CS8	employment
+P12_POP_FR	Pop Français en 2012 (princ)	Nombre de personnes de nationalité française	people	P12_POP	nationality
+P12_POP_ETR	Pop Etrangers en 2012 (princ)	Nombre de personnes étrangères	people	P12_POP	nationality
+P12_POP_IMM	Pop Immigrés en 2012 (princ)	Nombres de personnes immigrées	people	P12_POP	nationality
+P12_PMEN	Pop ménages en 2012 (princ)	Population des ménages	people	P12_POP	housing
+P12_PHORMEN	Pop hors ménages en 2012 (princ)	Population hors ménages	people	P12_POP	housing

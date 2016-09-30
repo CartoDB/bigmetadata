@@ -1,0 +1,78 @@
+var_code	short_name	long_name	unit	denominators	subsections
+P12_LOG	Logements en 2012 (princ)	Nombre de logements	housing_units		housing
+P12_RP	Résidences principales en 2012 (princ)	Nombre de résidences principales	housing_units	P12_LOG	housing
+P12_RSECOCC	Rés secondaires et logts occasionnels en 2012 (princ)	Nombre de résidences secondaires et logements occasionnels	housing_units	P12_LOG	housing
+P12_LOGVAC	Logements vacants en 2012 (princ)	Nombre de logements vacants	housing_units	P12_LOG	housing
+P12_MAISON	Maisons en 2012 (princ)	Nombre de maisons	housing_units	P12_LOG	housing
+P12_APPART	Appartements en 2012 (princ)	Nombre d'appartements	housing_units	P12_LOG	housing
+P12_RP_1P	Rés princ 1 pièce en 2012 (princ)	Nombre de résidences principales d'1 pièce	housing_units	P12_RP	housing
+P12_RP_2P	Rés princ 2 pièces en 2012 (princ)	Nombre de résidences principales de 2 pièces	housing_units	P12_RP	housing
+P12_RP_3P	Rés princ 3 pièces en 2012 (princ)	Nombre de résidences principales de 3 pièces	housing_units	P12_RP	housing
+P12_RP_4P	Rés princ 4 pièces en 2012 (princ)	Nombre de résidences principales de 4 pièces	housing_units	P12_RP	housing
+P12_RP_5PP	Rés princ 5 pièces ou plus en 2012 (princ)	Nombre de résidences principales de 5 pièces ou plus	housing_units	P12_RP	housing
+P12_NBPI_RP	Pièces rés princ en 2012 (princ)	Nombre de pièces des résidences principales	rooms		housing
+P12_RPMAISON	Rés princ type maison en 2012 (princ)	Nombre de résidences principales de type maison	housing_units	P12_RP	housing
+P12_NBPI_RPMAISON	Pièces rés princ type maison en 2012 (princ)	Nombre de pièces des résidences principales de type maison	rooms	P12_NBPI_RP	housing
+P12_RPAPPART	Rés princ type appartement en 2012 (princ)	Nombre de résidences principales de type appartement	housing_units	P12_RP	housing
+P12_NBPI_RPAPPART	Pièces rés princ type appartement en 2012 (princ)	Nombre de pièces des résidences principales de type appartement	rooms	P12_NBPI_RP	housing
+P12_RP_M40M2	Rés princ de moins de 40 m2 en 2012 (princ)	Nombre de résidences principales de moins de 40 m2	housing_units	P12_RP	housing
+P12_RP_4099M2	Rés princ de 40 à 99 m2 en 2012 (princ)	Nombre de résidences principales de 40 à 99 m2	housing_units	P12_RP	housing
+P12_RP_100M2P	Rés princ de 100 m2 ou plus en 2012 (princ)	Nombre de résidences principales de 100 m2 ou plus	housing_units	P12_RP	housing
+P12_RP_ACHTT	Rés princ avt 2010 en 2012 (princ)	Nombre de résidences principales construites avant 2010	housing_units	P12_RP	housing
+P12_RP_ACHT1	Rés princ avt 1946 en 2012 (princ)	Nombre de résidences principales construites avant 1946	housing_units	P12_RP	housing
+P12_RP_ACHT2	Rés princ 1946 à 1990 en 2012 (princ)	Nombre de résidences principales construites de 1946 à 1990	housing_units	P12_RP	housing
+P12_RP_ACHT3	Rés princ 1991 à 2009 en 2012 (princ)	Nombre de résidences principales construites de 1991 à 2009	housing_units	P12_RP	housing
+P12_RPMAISON_ACHTT	Rés princ Type maison avt 2010 en 2012 (princ)	Nombre de résidences principales de type maison construites avant 2010	housing_units	P12_RPMAISON, P12_RP_ACHTT	housing
+P12_RPMAISON_ACHT1	Rés princ Type maison avt 1946 en 2012 (princ)	Nombre de résidences principales de type maison construites avant 1946	housing_units	P12_RPMAISON, P12_RP_ACHT1	housing
+P12_RPMAISON_ACHT2	Rés princ Type maison 1946 à 1990 en 2012 (princ)	Nombre de résidences principales de type maison construites de 1946 à 1990	housing_units	P12_RPMAISON, P12_RP_ACHT2	housing
+P12_RPMAISON_ACHT3	Rés princ Type maison 1991 à 2009 en 2012 (princ)	Nombre de résidences principales de type maison construites de 1991 à 2009	housing_units	P12_RPMAISON, P12_RP_ACHT3	housing
+P12_RPAPPART_ACHTT	Rés princ Type appart avt 2010 en 2012 (princ)	Nombre de résidences principales de type appartement construites avant 2010	housing_units	P12_RPAPPART, P12_RP_ACHTT	housing
+P12_RPAPPART_ACHT1	Rés princ Type appart avt 1946 en 2012 (princ)	Nombre de résidences principales de type appartement construites avant 1946	housing_units	P12_RPAPPART, P12_RP_ACHT1	housing
+P12_RPAPPART_ACHT2	Rés princ Type appart 1946 à 1990 en 2012 (princ)	Nombre de résidences principales de type appartement construites de 1946 à 1990	housing_units	P12_RPAPPART, P12_RP_ACHT2	housing
+P12_RPAPPART_ACHT3	Rés princ Type appart 1991 à 2009 en 2012 (princ)	Nombre de résidences principales de type appartement construites de 1991 à 2009	housing_units	P12_RPAPPART, P12_RP_ACHT3	housing
+P12_MEN	Ménages en 2012 (princ)	Nombre de ménages	households		housing
+P12_MEN_ANEM0002	Ménages emménagés moins 2 ans en 2012 (princ)	Nombre de ménages ayant emménagé depuis moins de 2 ans	households	P12_MEN	housing
+P12_MEN_ANEM0204	Ménages emménagés entre 2-4 ans en 2012 (princ)	Nombre de ménages ayant emménagé entre 2 et 4 ans	households	P12_MEN	housing
+P12_MEN_ANEM0509	Ménages emménagés entre 5-9 ans en 2012 (princ)	Nombre de ménages ayant emménagé entre 5 et 9 ans	households	P12_MEN	housing
+P12_MEN_ANEM10P	Ménages emménagés depuis 10 ans ou plus en 2012 (princ)	Nombre de ménages ayant emménagé depuis 10 ans ou plus	households	P12_MEN	housing
+P12_PMEN	Pop ménages en 2012 (princ)	Population des ménages	people		housing
+P12_PMEN_ANEM0002	Pop mén emménagés moins 2 ans en 2012 (princ)	Population des ménages ayant emménagé depuis moins de 2 ans	people	P12_PMEN	housing
+P12_PMEN_ANEM0204	Pop mén emménagés entre 2-4 ans en 2012 (princ)	Population des ménages ayant emménagé entre 2 et 4 ans	people	P12_PMEN	housing
+P12_PMEN_ANEM0509	Pop mén emménagés entre 5-9 ans en 2012 (princ)	Population des ménages ayant emménagé entre 5 et 9 ans	people	P12_PMEN	housing
+P12_PMEN_ANEM10P	Pop mén emménagés depuis 10 ans ou plus en 2012 (princ)	Population des ménages ayant emménagé depuis 10 ans ou plus	people	P12_PMEN	housing
+P12_NBPI_RP_ANEM0002	Pièces Rés princ Mén. emménagés moins 2 ans en 2012 (princ)	Nombre de pièces des résidences principales dans lesquelles le ménage a emménagé depuis moins de 2 ans	rooms	P12_NBPI_RP	housing
+P12_NBPI_RP_ANEM0204	Pièces Rés princ Mén. emménagés entre 2-4 ans en 2012 (princ)	Nombre de pièces des résidences principales dans lesquelles le ménage a emménagé entre 2 et 4 ans	rooms	P12_NBPI_RP	housing
+P12_NBPI_RP_ANEM0509	Pièces Rés princ Mén. emménagés entre 5-9 ans en 2012 (princ)	Nombre de pièces des résidences principales dans lesquelles le ménage a emménagé entre 5 et 9 ans	rooms	P12_NBPI_RP	housing
+P12_NBPI_RP_ANEM10P	Pièces Rés princ Mén. emménagés depuis 10 ans ou plus en 2012 (princ)	Nombre de pièces des résidences principales dans lesquelles le ménage a emménagé depuis 10 ans ou plus	rooms	P12_NBPI_RP	housing
+P12_RP_PROP	Rés princ occupées Propriétaires en 2012 (princ)	Nombre de résidences principales occupées par des propriétaires	housing_units	P12_RP	housing
+P12_RP_LOC	Rés princ occupées Locataires en 2012 (princ)	Nombre de résidences principales occupées par des locataires	housing_units	P12_RP	housing
+P12_RP_LOCHLMV	Rés princ HLM louée vide en 2012 (princ)	Nombre de résidences principales HLM loué vide	housing_units	P12_RP	housing
+P12_RP_GRAT	Rés princ logé gratuit en 2012 (princ)	Nombre de résidences principales occupées gratuitement	housing_units	P12_RP	housing
+P12_NPER_RP	Personnes Rés princ en 2012 (princ)	Nombre de personnes des résidences principales	people		housing
+P12_NPER_RP_PROP	Pers Rés princ occupées Propriétaires en 2012 (princ)	Nombre de personnes des résidences principales occupées par des propriétaires	people	P12_NPER_RP	housing
+P12_NPER_RP_LOC	Pers Rés princ occupées Locataires en 2012 (princ)	Nombre de personnes des résidences principales occupées par des locataires	people	P12_NPER_RP	housing
+P12_NPER_RP_LOCHLMV	Pers Rés princ HLM louées vides en 2012 (princ)	Nombre de personnes des résidences principales HLM louées vides	people	P12_NPER_RP	housing
+P12_NPER_RP_GRAT	Pers Rés princ occupées gratuit en 2012 (princ)	Nombre de personnes des résidences principales occupées gratuitement	people	P12_NPER_RP	housing
+P12_ANEM_RP	Anc tot Emméngt Rés princ (années) en 2012 (princ)	Ancienneté totale d'emménagement dans les résidences principales en années	years		housing
+P12_ANEM_RP_PROP	Anc tot Emméngt Rés princ occ par Propriétaires (années) en 2012 (princ)	Ancienneté totale d'emménagement dans les résidences principales occupées par des propriétaires en années	years	P12_ANEM_RP	housing
+P12_ANEM_RP_LOC	Anc tot Emméngt Rés princ occ par Locataires (années) en 2012 (princ)	Ancienneté totale d'emménagement dans les résidences principales occupées par des locataires en années	years	P12_ANEM_RP	housing
+P12_ANEM_RP_LOCHLMV	Anc tot Emméngt Rés princ HLM louées vides (années) en 2012 (princ)	Ancienneté totale d'emménagement dans les résidences principales HLM louées vides en années	years	P12_ANEM_RP	housing
+P12_ANEM_RP_GRAT	Anc tot Emméngt Rés princ occ gratuit (années) en 2012 (princ)	Ancienneté totale d'emménagement dans les résidences principales occupées gratuitement en années	years	P12_ANEM_RP	housing
+P12_RP_SDB	Rés princ SDB baignoire douche en 2012 (princ)	Nombre de résidences principales avec salle de bain dotée de baignoire ou douche	housing_units	P12_RP	housing
+P12_RP_CCCOLL	Rés princ Chauffage Central Collectif en 2012 (princ)	Nombre de résidences principales avec chauffage central collectif	housing_units	P12_RP	housing
+P12_RP_CCIND	Rés princ Chauffage Central Individuel en 2012 (princ)	Nombre de résidences principales avec chauffage central individuel	housing_units	P12_RP	housing
+P12_RP_CINDELEC	Rés princ Chauffage Individuel Electrique en 2012 (princ)	Nombre de résidences principales avec chauffage individuel électrique	housing_units	P12_RP	housing
+P12_RP_ELEC	Rés princ avec électricité en 2012 (princ)	Nombre de résidences principales avec électricité dans le logement	housing_units	P12_RP	housing
+P12_RP_EAUCH	Rés princ avec eau chaude en 2012 (princ)	Nombre de résidences principales avec eau chaude dans le logement	housing_units	P12_RP	housing
+P12_RP_BDWC	Rés princ avec Bain/Douche WC en 2012 (princ)	Nombre de résidences principales avec baignoire ou douche et WC à l'intérieur du logement	housing_units	P12_RP	housing
+P12_RP_CHOS	Rés princ avec chauffe-eau solaire en 2012 (princ)	Nombre de résidences principales avec chauffe-eau solaire	housing_units	P12_RP	housing
+P12_RP_CLIM	Rés princ avec pièce climatisée en 2012 (princ)	Nombre de résidences principales avec pièce climatisée	housing_units	P12_RP	housing
+P12_RP_TTEGOU	Rés princ avec tout à l'égout en 2012 (princ)	Nombre de résidences principales avec tout à l'égout	housing_units	P12_RP	housing
+P12_RP_GARL	Ménages au moins un parking en 2012 (princ)	Nombre de ménages disposant au moins d'un emplacement réservé au stationnement	households		housing, transportation
+P12_RP_VOIT1P	Ménages au moins une voiture en 2012 (princ)	Nombre de ménages disposant au moins d'une voiture	households		housing, transportation
+P12_RP_VOIT1	Ménages une voiture en 2012 (princ)	Nombre de ménages disposant d'une voiture	households	P12_RP_VOIT1P	housing, transportation
+P12_RP_VOIT2P	Ménages deux voitures ou plus en 2012 (princ)	Nombre de ménages disposant de deux voitures ou plus	households	P12_RP_VOIT1P	housing, transportation
+P12_RP_HABFOR	Habitations de fortune en 2012 (princ)	Nombre de résidences principales habitations de fortune	housing_units	P12_RP	housing
+P12_RP_CASE	Cases traditionnelles en 2012 (princ)	Nombre de résidences principales cases traditionnelles	housing_units	P12_RP	housing
+P12_RP_MIBOIS	Maisons ou Immeubles en bois en 2012 (princ)	Nombre de résidences principales maisons ou immeubles en bois	housing_units	P12_RP	housing
+P12_RP_MIDUR	Maisons ou Immeubles en dur en 2012 (princ)	Nombre de résidences principales maisons ou immeubles en dur	housing_units	P12_RP	housing

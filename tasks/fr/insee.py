@@ -3,29 +3,82 @@ from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, C
                         underscore_slugify, shell, classpath)
 from tasks.meta import current_session, DENOMINATOR, GEOM_REF
 from collections import OrderedDict
-from luigi import IntParameter, Parameter, WrapperTask
+from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 import os
 from tasks.meta import OBSTable, OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 import csv
 import pandas as pd
 
-class DownloadFranceCensus(DownloadUnzipTask):
+class DownloadUnzipFR(DownloadUnzipTask):
 
     resolution = Parameter()
     table_theme = Parameter()
 
-    URL = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/infra-population-12/infra-population-2012.zip'
+    URL_base = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/'
 
     def download(self):
 
-        resolutions = {'iris':'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/'}
-        table_themes = {'population':'infra-population-12/infra-population-2012.zip'}
+        themes = {
+            'population':'infra-population-12/',
+            'housing':'infra-logement-12/',
+            'education':'infra-formation-12/',
+            'household':'infra-famille-12/',
+            'employment':'infra-activite-resident-12'
+                }
+
+        iris = {
+            'population':'infra-population-2012.zip',
+            'housing':'infra-logement-2012.zip',
+            'education':'infra-formation-2012.zip',
+            'household':'infra-famille-2012.zip',
+            'employment':'infra-activite-resident-2012.zip'
+        }
+
+        URL = self.URL_base + themes.get(self.table_theme) + iris.get(self.table_theme)
 
         shell('wget -O {output}.zip {url}'.format(
            output=self.output().path,
-           url=self.URL
+           url=URL
         ))
+
+class DownloadFR(Task):
+
+    table_theme = Parameter()
+
+    URL_base = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/'
+
+    def download(self):
+
+        themes = {
+            'population':'infra-population-12/',
+            'housing':'infra-logement-12/',
+            'education':'infra-formation-12/',
+            'household':'infra-famille-12/',
+            'employment':'infra-activite-resident-12'
+                }
+
+        iris_overseas = {
+            'population':'base-ic-evol-struct-pop-2012-com.xls',
+            'housing':'base-ic-logement-2012-com.xls',
+            'education':'base-ic-diplomes-formation-2012-com.xls',
+            'household':'base-ic-couples-familles-menages-2012-com.xls',
+            'employment':'base-ic-activite-residents-2012-com.xls'
+                }
+
+        URL = self.URL_base + themes.get(self.table_theme) + iris_overseas.get(self.table_theme)
+
+        shell('wget -O {output} {url}'.format(
+           output=self.output().path,
+           url=URL
+        ))
+
+    def run(self):
+        self.output().makedirs()
+        self.download()
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) + '.xls')
 
 class RawFRData(CSV2TempTableTask):
 
@@ -33,10 +86,14 @@ class RawFRData(CSV2TempTableTask):
     table_theme = Parameter()
 
     def requires(self):
-        return DownloadFranceCensus(table_theme=self.table_theme, resolution=self.resolution)
-
+        if self.resolution == 'iris':
+            return DownloadUnzipFR(table_theme=self.table_theme, resolution=self.resolution)
+        elif self.resolution == 'iris_overseas':
+            return DownloadFR(table_theme=self.table_theme)
+        else:
+            raise Exception('resolution {} is not permitted'.format(self.resolution))
     def input_csv(self):
-        #Read in excel file
+        #Read in excel file, it should be the only file in self.input().path
         xls = pd.ExcelFile(os.path.join(self.input().path,os.listdir(self.input().path)[0]))
 
         #Remove header
@@ -80,12 +137,12 @@ class FrenchColumns(ColumnsTask):
         cols = OrderedDict()
         input_ = self.input()
 
-        subsections = input_['subsections']
+        subsectiontags = input_['subsections']
         unittags = input_['unittags']
         france = input_['sections']['fr']
         pop_columns = input_.get('population_vars', {})
 
-        filepath = "frenchmetadata/{} VARIABLES - IRIS {}.tsv".format(self.table_theme.upper(),self.table_theme.upper())
+        filepath = "frenchmetadata/French Variables - {}.tsv".format(self.table_theme.title())
         session = current_session()
         with open(os.path.join(os.path.dirname(__file__),filepath)) as tsvfile:
             tsvreader = csv.reader(tsvfile, delimiter="\t")
@@ -93,7 +150,7 @@ class FrenchColumns(ColumnsTask):
             next(tsvreader, None)
             for line in tsvreader:
                 # Ignoring "Universe" and "Description" columns for now...
-                var_code,short_name,long_name,var_unit,denominators = line[0], line[1], line[2], line[3], line[4]
+                var_code,short_name,long_name,var_unit,denominators,subsections = line[0], line[1], line[2], line[3], line[4], line[5]
                 denominators = denominators.split(',')
                 # slugified_lib = underscore_slugify('{}'.format(short_name))
                 targets_dict = {}
@@ -104,8 +161,8 @@ class FrenchColumns(ColumnsTask):
                 cols[var_code] = OBSColumn(
                     id=var_code,
                     type='Numeric',
-                    name=long_name,
-                    # No description yet, can be added later.
+                    name=short_name,
+                    description =long_name,
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
@@ -113,10 +170,14 @@ class FrenchColumns(ColumnsTask):
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
                     # Need to fix Subsection and UnitTags! Problem with unittag "families"
-                    tags=[france],
+                    tags=[france, unittags.get(var_unit)],
                     targets= targets_dict
                 )
-
+                subsections = subsections.split(',')
+                for s in subsections:
+                    s = s.strip()
+                    subsection_tag = subsectiontags.get(s)
+                    cols[var_code].tags.append(subsection_tag)
 
         insee_source = input_['sourcetag']['insee']
 
@@ -126,7 +187,7 @@ class FrenchColumns(ColumnsTask):
 
 
 class DownloadOutputAreas(DownloadUnzipTask):
-    # Note that this set of IRIS contours is from 2013
+    # Note that this set of IRIS contours is from 2013, may need to find 2014 contours to match the data
 
     URL = 'https://www.data.gouv.fr/s/resources/contour-des-iris-insee-tout-en-un/20150428-161348/iris-2013-01-01.zip'
 
@@ -216,10 +277,10 @@ class FranceCensus(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def timespan(self):
-        return '2013'
+        return '2012'
 
     def requires(self):
         requirements = {
@@ -255,6 +316,6 @@ class FranceCensus(TableTask):
 class AllGeomsThemesTables(WrapperTask):
     def requires(self):
         topics = ['population', 'housing', 'education', 'household', 'employment']
-        for resolution in ('iris'):
+        for resolution in ('iris', 'iris_overseas'):
             for table_theme in topics:
                 yield FranceCensus(table_theme=table_theme, resolution=resolution)

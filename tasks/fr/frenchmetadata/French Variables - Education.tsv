@@ -1,0 +1,39 @@
+var_code	short_name	long_name	unit	denominators	subsections
+P12_POP0205	Pop 2-5 ans en 2012 (princ)	Nombre de personnes de 2 à 5 ans	people	P12_POP	age_gender
+P12_POP0610	Pop 6-10 ans en 2012 (princ)	Nombre de personnes de 6 à 10 ans	people	P12_POP	age_gender
+P12_POP1114	Pop 11-14 ans en 2012 (princ)	Nombre de personnes de 11 à 14 ans	people	P12_POP	age_gender
+P12_POP1517	Pop 15-17 ans en 2012 (princ)	Nombre de personnes de 15 à 17 ans	people	P12_POP	age_gender
+P12_POP1824	Pop 18-24 ans en 2012 (princ)	Nombre de personnes de 18 à 24 ans	people	P12_POP	age_gender
+P12_POP2529	Pop 25-29 ans en 2012 (princ)	Nombre de personnes de 25 à 29 ans	people	P12_POP	age_gender
+P12_POP30P	Pop 30 ans ou plus en 2012 (princ)	Nombre de personnes de 30 ans ou plus	people	P12_POP	age_gender
+P12_SCOL0205	Pop scolarisée 2-5 ans en 2012 (princ)	Nombre de personnes scolarisées de 2 à 5 ans	people	P12_POP0205	education
+P12_SCOL0610	Pop scolarisée 6-10 ans en 2012 (princ)	Nombre de personnes scolarisées de 6 à 10 ans	people	P12_POP0610	education
+P12_SCOL1114	Pop scolarisée 11-14 ans en 2012 (princ)	Nombre de personnes scolarisées de 11 à 14 ans	people	P12_POP1114	education
+P12_SCOL1517	Pop scolarisée 15-17 ans en 2012 (princ)	Nombre de personnes scolarisées de 15 à 17 ans	people	P12_POP1517	education
+P12_SCOL1824	Pop scolarisée 18-24 ans en 2012 (princ)	Nombre de personnes scolarisées de 18 à 24 ans	people	P12_POP1824	education
+P12_SCOL2529	Pop scolarisée 25-29 ans en 2012 (princ)	Nombre de personnes scolarisées de 25 à 29 ans	people	P12_POP2529	education
+P12_SCOL30P	Pop scolarisée 30 ans ou plus en 2012 (princ)	Nombre de personnes scolarisées de 30 ans ou plus	people	P12_POP30P	education
+P12_NSCOL15P	Pop 15 ans ou plus non scolarisée en 2012 (princ)	Nombre de personnes non scolarisées de 15 ans ou plus	people	P12_POP	education
+P12_NSCOL15P_DIPL0	Pop 15 ans ou plus non scol. Sans diplôme en 2012 (princ)	Nombre de personnes non scolarisées de 15 ans ou plus titulaires d'aucun diplôme	people	P12_NSCOL15P	education
+P12_NSCOL15P_CEP	Pop 15 ans ou plus non scol. CEP en 2012 (princ)	Nombre de personnes non scolarisées de 15 ans ou plus titulaires du certificat d'études primaires	people	P12_NSCOL15P	education
+P12_NSCOL15P_BEPC	Pop 15 ans ou plus non scol. BEPC, brevet collèges en 2012 (princ)	Nombre de personnes non scolarisées de 15 ans ou plus titulaires du BEPC, brevet des collèges	people	P12_NSCOL15P	education
+P12_NSCOL15P_CAPBEP	Pop 15 ans ou plus non scol. CAP-BEP en 2012 (princ)	Nombre de personnes non scolarisées de 15 ans ou plus titulaires d'un CAP ou d'un BEP	people	P12_NSCOL15P	education
+P12_NSCOL15P_BAC	Pop 15 ans ou plus non scol. BAC-BP en 2012 (princ)	Nombre de personnes non scolarisées de 15 ans ou plus titulaires d'un baccalauréat ou d'un brevet professionnel	people	P12_NSCOL15P	education
+P12_NSCOL15P_BACP2	Pop 15 ans ou plus non scol. Enseignement sup court en 2012 (princ)	Nombre de personnes non scolarisées de 15 ans ou plus titulaires d'un diplôme de l'enseignement supérieur court	people	P12_NSCOL15P	education
+P12_NSCOL15P_SUP	Pop 15 ans ou plus non scol. Enseignement sup long en 2012 (princ)	Nombre de personnes non scolarisées de 15 ans ou plus titulaires d'un diplôme de l'enseignement supérieur long	people	P12_NSCOL15P	education
+P12_HNSCOL15P	Hommes 15 ans ou plus non scolarisés en 2012 (princ)	Nombre d'hommes non scolarisés de 15 ans ou plus	people	P12_NSCOL15P	education
+P12_HNSCOL15P_DIPL0	Hommes 15 ans ou plus non scol. Sans diplôme en 2012 (princ)	Nombre d'hommes non scolarisés de 15 ans ou plus titulaires d'aucun diplôme	people	P12_NSCOL15P, P12_NSCOL15P_DIPL0	education
+P12_HNSCOL15P_CEP	Hommes 15 ans ou plus non scol. CEP en 2012 (princ)	Nombre d'hommes non scolarisés de 15 ans ou plus titulaires du certificat d'études primaires	people	P12_NSCOL15P, P12_NSCOL15P_CEP	education
+P12_HNSCOL15P_BEPC	Hommes 15 ans ou plus non scol. BEPC, brevet collèges en 2012 (princ)	Nombre d'hommes non scolarisés de 15 ans ou plus titulaires du BEPC, brevet des collèges	people	P12_NSCOL15P, P12_NSCOL15P_BEPC	education
+P12_HNSCOL15P_CAPBEP	Hommes 15 ans ou plus non scol. CAP-BEP en 2012 (princ)	Nombre d'hommes non scolarisés de 15 ans ou plus titulaires d'un CAP ou d'un BEP	people	P12_NSCOL15P, P12_NSCOL15P_CAPBEP	education
+P12_HNSCOL15P_BAC	Hommes 15 ans ou plus non scol. BAC-BP en 2012 (princ)	Nombre d'hommes non scolarisés de 15 ans ou plus titulaires d'un baccalauréat ou d'un brevet professionnel	people	P12_NSCOL15P, P12_NSCOL15P_BAC	education
+P12_HNSCOL15P_BACP2	Hommes 15 ans ou plus non scol. Enseignement sup court en 2012 (princ)	Nombre d'hommes non scolarisés de 15 ans ou plus titulaires d'un diplôme de l'enseignement supérieur court	people	P12_NSCOL15P, P12_NSCOL15P_BACP2	education
+P12_HNSCOL15P_SUP	Hommes 15 ans ou plus non scol. Enseignement sup long en 2012 (princ)	Nombre d'hommes non scolarisés de 15 ans ou plus titulaires d'un diplôme de l'enseignement supérieur long	people	P12_NSCOL15P, P12_NSCOL15P_SUP	education
+P12_FNSCOL15P	Femmes 15 ans ou plus non scolarisées en 2012 (princ)	Nombre de femmes non scolarisées de 15 ans ou plus	people	P12_NSCOL15P	education
+P12_FNSCOL15P_DIPL0	Femmes 15 ans ou plus non scol. Sans diplôme en 2012 (princ)	Nombre de femmes non scolarisées de 15 ans ou plus titulaires d'aucun diplôme	people	P12_NSCOL15P, P12_NSCOL15P_DIPL0	education
+P12_FNSCOL15P_CEP	Femmes 15 ans ou plus non scol. CEP en 2012 (princ)	Nombre de femmes non scolarisées de 15 ans ou plus titulaires du certificat d'études primaires	people	P12_NSCOL15P, P12_NSCOL15P_CEP	education
+P12_FNSCOL15P_BEPC	Femmes 15 ans ou plus non scol. BEPC, brevet collèges en 2012 (princ)	Nombre de femmes non scolarisées de 15 ans ou plus titulaires du BEPC, brevet des collèges	people	P12_NSCOL15P, P12_NSCOL15P_BEPC	education
+P12_FNSCOL15P_CAPBEP	Femmes 15 ans ou plus non scol. CAP-BEP en 2012 (princ)	Nombre de femmes non scolarisées de 15 ans ou plus titulaires d'un CAP ou d'un BEP	people	P12_NSCOL15P, P12_NSCOL15P_CAPBEP	education
+P12_FNSCOL15P_BAC	Femmes 15 ans ou plus non scol. BAC-BP en 2012 (princ)	Nombre de femmes non scolarisées de 15 ans ou plus titulaires d'un baccalauréat ou d'un brevet professionnel	people	P12_NSCOL15P, P12_NSCOL15P_BAC	education
+P12_FNSCOL15P_BACP2	Femmes 15 ans ou plus non scol. Enseignement sup court en 2012 (princ)	Nombre de femmes non scolarisées de 15 ans ou plus titulaires d'un diplôme de l'enseignement supérieur court	people	P12_NSCOL15P, P12_NSCOL15P_BACP2	education
+P12_FNSCOL15P_SUP	Femmes 15 ans ou plus non scol. Enseignement sup long en 2012 (princ)	Nombre de femmes non scolarisées de 15 ans ou plus titulaires d'un diplôme de l'enseignement supérieur long	people	P12_NSCOL15P, P12_NSCOL15P_SUP	education

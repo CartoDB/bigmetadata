@@ -1,4 +1,0 @@
-VAR_CODE	VAR_LIB	VAR_LIB_LONG	UNIT	DENOMINATOR	UNIVERSE	DESCRIPTION	INSEE_DEFINITION_URL
-P12_MEN_ANEM1019	Ménages emménagés entre 10-19 ans en 2012 (princ)	Nombre de ménages ayant emménagé entre 10 et 19 ans	households	P12_MEN			http://www.insee.fr/fr/methodes/default.asp?page=definitions/menage.htm
-P12_MEN_ANEM2029	Ménages emménagés entre 20-29 ans en 2012 (princ)	Nombre de ménages ayant emménagé entre 20 et 29 ans	households	P12_MEN			http://www.insee.fr/fr/methodes/default.asp?page=definitions/menage.htm
-P12_MEN_ANEM30P	Ménages emménagés depuis 30 ans ou plus en 2012 (princ)	Nombre de ménages ayant emménagé depuis 30 ans ou plus	households	P12_MEN			http://www.insee.fr/fr/methodes/default.asp?page=definitions/menage.htm

@@ -73,7 +73,11 @@ class UnitTags(TagsTask):
             OBSTag(id='segmentation',
                    name='Segmentation',
                    type='unit',
-                   description='')
+                   description=''),
+            OBSTag(id='rooms',
+                   name='Rooms',
+                   type='unit',
+                   description=''),
         ]
 
 
