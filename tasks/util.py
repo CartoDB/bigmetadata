@@ -179,7 +179,7 @@ def import_api(request, json_column_names=None):
 
     # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
     assert resp.json()['table_name'] == request['table_name'] # the copy should not have a
-                                                             # mutilated name (like '_1', '_2' etc)
+                                                              # mutilated name (like '_1', '_2' etc)
 
     for colname in json_column_names:
         query = 'ALTER TABLE {outname} ALTER COLUMN {colname} ' \
@@ -368,19 +368,18 @@ class CartoDBTarget(Target):
     '''
 
     def __init__(self, tablename):
+        self.tablename = tablename
         resp = requests.get('{url}/dashboard/datasets'.format(
-             url=os.environ['CARTODB_URL']
+            url=os.environ['CARTODB_URL']
         ), cookies={
             '_cartodb_session': os.environ['CARTODB_SESSION']
         }).content
-
-        self.tablename = tablename
 
     def __str__(self):
         return self.tablename
 
     def exists(self):
-        resp = query_cartodb('SELECT * FROM "{tablename}" LIMIT 0'.format(
+        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 0'.format(
             tablename=self.tablename))
         return resp.status_code == 200
 
@@ -409,6 +408,11 @@ class CartoDBTarget(Target):
             pass
         query_cartodb('DROP TABLE IF EXISTS {tablename}'.format(tablename=self.tablename))
         assert not self.exists()
+        resp = requests.get('{url}/dashboard/datasets'.format(
+            url=os.environ['CARTODB_URL']
+        ), cookies={
+            '_cartodb_session': os.environ['CARTODB_SESSION']
+        }).content
 
 
 def grouper(iterable, n, fillvalue=None):
