@@ -785,7 +785,6 @@ class OBSMeta(Task):
             SELECT $1;
     $$;
 
-    -- And then wrap an aggregate around it
     DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
     CREATE AGGREGATE public.FIRST (
             sfunc    = public.first_agg,
@@ -891,7 +890,7 @@ SELECT numer_id::TEXT,
        FIRST(numer_description)::TEXT numer_description,
        FIRST(numer_tags)::JSONB numer_tags,
        FIRST(numer_weight)::NUMERIC numer_weight,
-       FIRST(numer_extra)::JSONB numer_extra, -- cannot include ct_extra because it depends on table
+       FIRST(numer_extra)::JSONB numer_extra,
        FIRST(numer_type)::TEXT numer_type,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
