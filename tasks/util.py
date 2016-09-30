@@ -179,7 +179,7 @@ def import_api(request, json_column_names=None):
 
     # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
     assert resp.json()['table_name'] == request['table_name'] # the copy should not have a
-                                                             # mutilated name (like '_1', '_2' etc)
+                                                              # mutilated name (like '_1', '_2' etc)
 
     for colname in json_column_names:
         query = 'ALTER TABLE {outname} ALTER COLUMN {colname} ' \

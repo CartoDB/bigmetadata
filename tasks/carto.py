@@ -11,7 +11,6 @@ from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter, FloatParameter)
 from luigi.task_register import Register
 from luigi.s3 import S3Target
-from nose.tools import assert_equal
 from datetime import date
 from decimal import Decimal
 from cStringIO import StringIO
@@ -888,44 +887,44 @@ class OBSMeta(Task):
     DIMENSIONS = {
         'numer': '''
 SELECT numer_id::TEXT,
-       cdb_observatory.FIRST(numer_name)::TEXT numer_name,
-       cdb_observatory.FIRST(numer_description)::TEXT numer_description,
-       cdb_observatory.FIRST(numer_tags)::JSONB numer_tags,
-       cdb_observatory.FIRST(numer_weight)::NUMERIC numer_weight,
-       cdb_observatory.FIRST(numer_extra)::JSONB numer_extra, -- cannot include ct_extra because it depends on table
-       cdb_observatory.FIRST(numer_type)::TEXT numer_type,
+       FIRST(numer_name)::TEXT numer_name,
+       FIRST(numer_description)::TEXT numer_description,
+       FIRST(numer_tags)::JSONB numer_tags,
+       FIRST(numer_weight)::NUMERIC numer_weight,
+       FIRST(numer_extra)::JSONB numer_extra, -- cannot include ct_extra because it depends on table
+       FIRST(numer_type)::TEXT numer_type,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
-       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
 FROM observatory.obs_meta
 GROUP BY numer_id
         ''',
         'denom': '''
 SELECT denom_id::TEXT,
-       cdb_observatory.FIRST(denom_name)::TEXT denom_name,
-       cdb_observatory.FIRST(denom_description)::TEXT denom_description,
+       FIRST(denom_name)::TEXT denom_name,
+       FIRST(denom_description)::TEXT denom_description,
        NULL::JSONB denom_tags,
-       cdb_observatory.FIRST(denom_weight)::NUMERIC denom_weight,
+       FIRST(denom_weight)::NUMERIC denom_weight,
        'denominator'::TEXT reltype,
-       cdb_observatory.FIRST(denom_extra)::JSONB denom_extra,
-       cdb_observatory.FIRST(denom_type)::TEXT denom_type,
+       FIRST(denom_extra)::JSONB denom_extra,
+       FIRST(denom_type)::TEXT denom_type,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
-       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
 FROM observatory.obs_meta
 GROUP BY denom_id
         ''',
         'geom': '''
 SELECT geom_id::TEXT,
-       cdb_observatory.FIRST(geom_name)::TEXT geom_name,
-       cdb_observatory.FIRST(geom_description)::TEXT geom_description,
+       FIRST(geom_name)::TEXT geom_name,
+       FIRST(geom_description)::TEXT geom_description,
        NULL::JSONB geom_tags,
-       cdb_observatory.FIRST(geom_weight)::NUMERIC geom_weight,
-       cdb_observatory.FIRST(geom_extra)::JSONB geom_extra,
-       cdb_observatory.FIRST(geom_type)::TEXT geom_type,
-       ST_SetSRID(cdb_observatory.FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
+       FIRST(geom_weight)::NUMERIC geom_weight,
+       FIRST(geom_extra)::JSONB geom_extra,
+       FIRST(geom_type)::TEXT geom_type,
+       ST_SetSRID(FIRST(the_geom_webmercator), 3857)::GEOMETRY(GEOMETRY, 3857) the_geom_webmercator,
        NULL::raster summary_geom,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
@@ -944,7 +943,7 @@ SELECT numer_timespan::TEXT timespan_id,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
 FROM observatory.obs_meta
 GROUP BY numer_timespan
         '''
@@ -970,8 +969,11 @@ class OBSMetaToLocal(OBSMeta):
                 session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
                     dimension=dimension))
                 session.execute('CREATE TABLE observatory.obs_meta_{dimension} '
-                                'AS {select}'.format(dimension=dimension,
-                                                     select=query))
+                                'AS {select}'.format(
+                                    dimension=dimension,
+                                    select=query.replace('the_geom_webmercator', 'the_geom') \
+                                                .replace('3857', '4326')
+                                ))
                 session.execute('CREATE INDEX ON observatory.obs_meta_{dimension} USING gist '
                                 '(the_geom)'.format(dimension=dimension))
             session.commit()
