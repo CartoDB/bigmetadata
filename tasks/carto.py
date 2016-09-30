@@ -885,67 +885,8 @@ class OBSMeta(Task):
              numer_t.id, denom_t.id, geom_t.id
     '''
 
-
-class OBSMetaToLocal(OBSMeta):
-
-    def run(self):
-        session = current_session()
-        session.execute('DROP TABLE IF EXISTS {output}'.format(
-            output=self.output().table
-        ))
-        session.execute(self.FIRST_AGGREGATE)
-        session.execute('CREATE TABLE {output} AS {select}'.format(
-            output=self.output().table,
-            select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
-        ))
-        # confirm that there won't be ambiguity with selection of geom
-        session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
-                        '(numer_id, denom_id, numer_timespan, geom_weight)')
-        session.execute('CREATE INDEX ON observatory.obs_meta USING gist '
-                        '(the_geom)')
-        session.commit()
-        self.force = False
-
-    def complete(self):
-        if self.force:
-            return False
-        else:
-            return super(OBSMetaToLocal, self).complete()
-
-    def output(self):
-        return PostgresTarget('observatory', 'obs_meta')
-
-
-class SyncMetadata(OBSMeta):
-
-    force = BooleanParameter(default=True, significant=False)
-
-    def requires(self):
-        for tablename in META_TABLES:
-            yield TableToCartoViaImportAPI(table=tablename, force=True)
-
-    def run(self):
-        query_cartodb(self.FIRST_AGGREGATE)
-        import_api({
-            'table_name': 'obs_meta',
-            'sql': self.QUERY.replace('\n', ' '),
-            'privacy': 'public'
-        })
-
-    def output(self):
-        target = CartoDBTarget(tablename='obs_meta')
-        if self.force and target.exists():
-            target.remove()
-            self.force = False
-        return target
-
-
-class OBSMetaDeriv(Task):
-
-    QUERIES = {
+    DIMENSIONS = {
         'numer': '''
-DROP TABLE IF EXISTS observatory.obs_meta_numer;
-CREATE TABLE observatory.obs_meta_numer AS
 SELECT numer_id::TEXT,
        cdb_observatory.FIRST(numer_name)::TEXT numer_name,
        cdb_observatory.FIRST(numer_description)::TEXT numer_description,
@@ -958,12 +899,9 @@ SELECT numer_id::TEXT,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
        ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
-GROUP BY numer_id;
-CREATE INDEX ON observatory.obs_meta_numer USING GIST (the_geom);
+GROUP BY numer_id
         ''',
         'denom': '''
-DROP TABLE IF EXISTS observatory.obs_meta_denom;
-CREATE TABLE observatory.obs_meta_denom AS
 SELECT denom_id::TEXT,
        cdb_observatory.FIRST(denom_name)::TEXT denom_name,
        cdb_observatory.FIRST(denom_description)::TEXT denom_description,
@@ -977,12 +915,9 @@ SELECT denom_id::TEXT,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
        ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
-GROUP BY denom_id;
-CREATE INDEX ON observatory.obs_meta_denom USING GIST (the_geom);
+GROUP BY denom_id
         ''',
         'geom': '''
-DROP TABLE IF EXISTS observatory.obs_meta_geom;
-CREATE TABLE observatory.obs_meta_geom AS
 SELECT geom_id::TEXT,
        cdb_observatory.FIRST(geom_name)::TEXT geom_name,
        cdb_observatory.FIRST(geom_description)::TEXT geom_description,
@@ -996,12 +931,9 @@ SELECT geom_id::TEXT,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans
 FROM observatory.obs_meta
-GROUP BY geom_id;
-CREATE INDEX ON observatory.obs_meta_geom USING GIST (the_geom);
+GROUP BY geom_id
         ''',
         'timespan': '''
-DROP TABLE IF EXISTS observatory.obs_meta_timespan;
-CREATE TABLE observatory.obs_meta_timespan AS
 SELECT numer_timespan::TEXT timespan_id,
        numer_timespan::TEXT timespan_name,
        NULL::TEXT timespan_description,
@@ -1014,7 +946,68 @@ SELECT numer_timespan::TEXT timespan_id,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
-GROUP BY numer_timespan;
-CREATE INDEX ON observatory.obs_meta_geom USING GIST (the_geom);
+GROUP BY numer_timespan
         '''
     }
+
+
+class OBSMetaToLocal(OBSMeta):
+
+    def run(self):
+        session = current_session()
+        try:
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
+            session.execute(self.FIRST_AGGREGATE)
+            session.execute('CREATE TABLE observatory.obs_meta AS {select}'.format(
+                select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
+            ))
+            # confirm that there won't be ambiguity with selection of geom
+            session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
+                            '(numer_id, denom_id, numer_timespan, geom_weight)')
+            session.execute('CREATE INDEX ON observatory.obs_meta USING gist '
+                            '(the_geom)')
+            for dimension, query in self.DIMENSIONS.iteritems():
+                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
+                    dimension=dimension))
+                session.execute('CREATE TABLE observatory.obs_meta_{dimension} '
+                                'AS {select}'.format(dimension=dimension,
+                                                     select=query))
+                session.execute('CREATE INDEX ON observatory.obs_meta_{dimension} USING gist '
+                                '(the_geom)'.format(dimension=dimension))
+            session.commit()
+            self._complete = True
+        except:
+            session.rollback()
+            raise
+
+    def complete(self):
+        return getattr(self, '_complete', False)
+
+
+class SyncMetadata(OBSMeta):
+
+    force = BooleanParameter(default=True, significant=False)
+
+    def requires(self):
+        for tablename in META_TABLES:
+            yield TableToCartoViaImportAPI(table=tablename, force=True)
+
+    def run(self):
+        query_cartodb(self.FIRST_AGGREGATE)
+        CartoDBTarget(tablename='obs_meta').remove()
+        import_api({
+            'table_name': 'obs_meta',
+            'sql': self.QUERY.replace('\n', ' '),
+            'privacy': 'public',
+        })
+        for dimension, query in self.DIMENSIONS.iteritems():
+            CartoDBTarget(tablename='obs_meta_{}'.format(dimension)).remove()
+            import_api({
+                'table_name': 'obs_meta_{}'.format(dimension),
+                'sql': query.replace('\n', ' '),
+                'privacy': 'public',
+            })
+        self._complete = True
+
+    def complete(self):
+        return getattr(self, '_complete', False)

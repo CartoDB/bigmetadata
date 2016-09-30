@@ -368,19 +368,18 @@ class CartoDBTarget(Target):
     '''
 
     def __init__(self, tablename):
+        self.tablename = tablename
         resp = requests.get('{url}/dashboard/datasets'.format(
-             url=os.environ['CARTODB_URL']
+            url=os.environ['CARTODB_URL']
         ), cookies={
             '_cartodb_session': os.environ['CARTODB_SESSION']
         }).content
-
-        self.tablename = tablename
 
     def __str__(self):
         return self.tablename
 
     def exists(self):
-        resp = query_cartodb('SELECT * FROM "{tablename}" LIMIT 0'.format(
+        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 0'.format(
             tablename=self.tablename))
         return resp.status_code == 200
 
@@ -409,6 +408,11 @@ class CartoDBTarget(Target):
             pass
         query_cartodb('DROP TABLE IF EXISTS {tablename}'.format(tablename=self.tablename))
         assert not self.exists()
+        resp = requests.get('{url}/dashboard/datasets'.format(
+            url=os.environ['CARTODB_URL']
+        ), cookies={
+            '_cartodb_session': os.environ['CARTODB_SESSION']
+        }).content
 
 
 def grouper(iterable, n, fillvalue=None):
