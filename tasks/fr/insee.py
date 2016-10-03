@@ -92,9 +92,13 @@ class RawFRData(CSV2TempTableTask):
             return DownloadFR(table_theme=self.table_theme)
         else:
             raise Exception('resolution {} is not permitted'.format(self.resolution))
+
     def input_csv(self):
-        #Read in excel file, it should be the only file in self.input().path
-        xls = pd.ExcelFile(os.path.join(self.input().path,os.listdir(self.input().path)[0]))
+        #Read in excel file, searching for it in the input path
+        xls = pd.ExcelFile(os.path.join(
+            self.input().path,
+            [p for p in os.listdir(self.input().path) if p.endswith('.xls')][0]
+        ))
 
         #Remove header
         df = xls.parse(skiprows=5,header=0)
