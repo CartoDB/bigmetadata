@@ -179,7 +179,7 @@ def import_api(request, json_column_names=None):
 
     # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
     assert resp.json()['table_name'] == request['table_name'] # the copy should not have a
-                                                             # mutilated name (like '_1', '_2' etc)
+                                                              # mutilated name (like '_1', '_2' etc)
 
     for colname in json_column_names:
         query = 'ALTER TABLE {outname} ALTER COLUMN {colname} ' \
@@ -248,25 +248,36 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
             / (50000),
             (st_ymax(st_transform(the_geom, 3857))
               - st_ymin(st_transform(the_geom, 3857)))::INT
-            / (50000), ARRAY['32BF', '32BF'], ARRAY[1, 1], ARRAY[0, 0]
-          ), ARRAY[1, 2], 50, 50) rast
+            / (50000), 0, 0, ARRAY['32BF', '32BF', '32BF'],
+                             ARRAY[-1, -1, -1],
+                             ARRAY[0, 0, 0]
+          ), ARRAY[1, 2, 3], 50, 50) rast
           FROM observatory.obs_table
           WHERE id = '{table_id}'
           ) foo
         ),
         pixelspertile AS (
-          SELECT id, ARRAY_AGG(median) medians, ARRAY_AGG(cnt) counts FROM (
-          SELECT id, ROW(
-                      FIRST(geom),
+          SELECT id,
+                 ARRAY_AGG(median) medians,
+                 ARRAY_AGG(cnt) counts,
+                 ARRAY_AGG(percent_fill) percents FROM (
+          SELECT id, ROW(FIRST(geom),
                         -- determine median area of tiger geometries
-                        percentile_cont(0.5) within group (
-                        order by st_area(st_transform(tiger.{colname}, 3857)) / 1000000)
+                        Coalesce(Nullif(
+                          percentile_cont(0.5) within group (
+                          order by st_area(st_transform(tiger.{colname}, 3857)) / 1000000)
+                          , 0), null)
                      )::geomval median,
                      ROW(FIRST(geom),
                       -- determine number of geoms, including fractions
-                      SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
-                          ST_Area(tiger.{colname}))
-                     )::geomval cnt
+                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
+                          ST_Area(tiger.{colname})), 0), null)
+                     )::geomval cnt,
+                     ROW(FIRST(geom),
+                      -- determine % pixel area filled with geoms
+                      SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom))) /
+                          ST_Area(FIRST(geom))
+                     )::geomval percent_fill
           FROM
           (
             SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
@@ -282,7 +293,10 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
           GROUP BY id
         )
         SELECT '{table_id}', '{column_id}', er.id,
-               ST_SetValues(ST_SetValues(er.rast, 1, medians), 2, counts) geom
+               ST_SetValues(ST_SetValues(ST_SetValues(er.rast,
+               1, medians),
+               2, counts),
+               3, percents) geom
         FROM emptyraster er, pixelspertile ppt
         WHERE er.id = ppt.id
         ;
@@ -314,7 +328,11 @@ class PostgresTarget(Target):
     def schema(self):
         return self._schema
 
-    def exists(self):
+    def _existenceness(self):
+        '''
+        Returns 0 if the table does not exist, 1 if it exists but has no
+        rows (is empty), and 2 if it exists and has one or more rows.
+        '''
         session = current_session()
         resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
                                "WHERE table_schema ILIKE '{schema}'  "
@@ -322,11 +340,26 @@ class PostgresTarget(Target):
                                    schema=self._schema,
                                    tablename=self._tablename))
         if int(resp.fetchone()[0]) == 0:
-            return False
+            return 0
         resp = session.execute(
             'SELECT row_number() over () FROM "{schema}".{tablename} LIMIT 1'.format(
                 schema=self._schema, tablename=self._tablename))
-        return resp.fetchone() is not None
+        if resp.fetchone() is None:
+            return 1
+        else:
+            return 2
+
+    def empty(self):
+        '''
+        Returns True if the table exists but has no rows in it.
+        '''
+        return self._existenceness() == 1
+
+    def exists(self):
+        '''
+        Returns True if the table exists and has at least one row in it.
+        '''
+        return self._existenceness() == 2
 
 
 class CartoDBTarget(Target):
@@ -335,19 +368,18 @@ class CartoDBTarget(Target):
     '''
 
     def __init__(self, tablename):
+        self.tablename = tablename
         resp = requests.get('{url}/dashboard/datasets'.format(
-             url=os.environ['CARTODB_URL']
+            url=os.environ['CARTODB_URL']
         ), cookies={
             '_cartodb_session': os.environ['CARTODB_SESSION']
         }).content
-
-        self.tablename = tablename
 
     def __str__(self):
         return self.tablename
 
     def exists(self):
-        resp = query_cartodb('SELECT * FROM "{tablename}" LIMIT 0'.format(
+        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 0'.format(
             tablename=self.tablename))
         return resp.status_code == 200
 
@@ -376,6 +408,11 @@ class CartoDBTarget(Target):
             pass
         query_cartodb('DROP TABLE IF EXISTS {tablename}'.format(tablename=self.tablename))
         assert not self.exists()
+        resp = requests.get('{url}/dashboard/datasets'.format(
+            url=os.environ['CARTODB_URL']
+        ), cookies={
+            '_cartodb_session': os.environ['CARTODB_SESSION']
+        }).content
 
 
 def grouper(iterable, n, fillvalue=None):
@@ -576,37 +613,45 @@ class TableTarget(Target):
 
     def update_or_create_metadata(self):
         session = current_session()
-        select = []
-        for i, colname_coltarget in enumerate(self._columns.iteritems()):
-            colname, coltarget = colname_coltarget
-            col = coltarget.get(session)
-            coltype = col.type.lower()
-            if coltype == 'numeric':
-                select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                              'max({colname}) col{i}_max, '
-                              'min({colname}) col{i}_min, '
-                              'avg({colname}) col{i}_avg, '
-                              'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
-                              'mode() within group (order by {colname}) col{i}_mode, '
-                              'stddev_pop({colname}) col{i}_stddev'.format(
-                                  i=i, colname=colname.lower()))
-            elif coltype == 'geometry':
-                select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                              'max(st_area({colname}::geography)) col{i}_max, '
-                              'min(st_area({colname}::geography)) col{i}_min, '
-                              'avg(st_area({colname}::geography)) col{i}_avg, '
-                              'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
-                              'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
-                              'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
-                                  i=i, colname=colname.lower()))
 
-        if select:
-            stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
-                select=', '.join(select), output=self.table)
-            resp = session.execute(stmt)
-            colinfo = dict(zip(resp.keys(), resp.fetchone()))
-        else:
-            colinfo = {}
+        colinfo = {}
+
+        postgres_max_cols = 1664
+        query_width = 7
+        maxsize = postgres_max_cols / query_width
+        for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
+            select = []
+            for i, colname_coltarget in enumerate(group):
+                if colname_coltarget is None:
+                    continue
+                colname, coltarget = colname_coltarget
+                col = coltarget.get(session)
+                coltype = col.type.lower()
+                i = i + (groupnum * maxsize)
+                if coltype == 'numeric':
+                    select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                  'max({colname}) col{i}_max, '
+                                  'min({colname}) col{i}_min, '
+                                  'avg({colname}) col{i}_avg, '
+                                  'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
+                                  'mode() within group (order by {colname}) col{i}_mode, '
+                                  'stddev_pop({colname}) col{i}_stddev'.format(
+                                      i=i, colname=colname.lower()))
+                elif coltype == 'geometry':
+                    select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                  'max(st_area({colname}::geography)) col{i}_max, '
+                                  'min(st_area({colname}::geography)) col{i}_min, '
+                                  'avg(st_area({colname}::geography)) col{i}_avg, '
+                                  'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
+                                  'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
+                                  'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
+                                      i=i, colname=colname.lower()))
+
+            if select:
+                stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
+                    select=', '.join(select), output=self.table)
+                resp = session.execute(stmt)
+                colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
@@ -1011,11 +1056,11 @@ class TempTableTask(Task):
         shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
             schema=classpath(self)))
         target = PostgresTarget(classpath(self), self.task_id)
-        if self.force and not getattr(self, 'wiped', False):
-            if target.exists():
-                shell("psql -c 'DROP TABLE \"{schema}\".{tablename}'".format(
-                    schema=classpath(self), tablename=self.task_id))
-            self.wiped = True
+        #if not getattr(self, 'wiped', False) and (self.force or target.empty()):
+        if getattr(self, 'first_time', True) and (self.force or target.empty()):
+            shell("psql -c 'DROP TABLE IF EXISTS \"{schema}\".{tablename}'".format(
+                schema=classpath(self), tablename=self.task_id))
+        self.first_time = False
         return target
 
 

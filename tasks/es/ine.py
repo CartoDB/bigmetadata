@@ -86,7 +86,7 @@ class GeometryColumns(ColumnsTask):
 class Geometry(TableTask):
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {

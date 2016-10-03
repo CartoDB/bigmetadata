@@ -112,7 +112,12 @@ extension:
 sh-sql:
 	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
 
-api-unittest:
+# Regenerate fixtures for the extension
+extension-fixtures:
+	docker-compose run --rm bigmetadata \
+	  python observatory-extension/scripts/generate_fixtures.py
+
+extension-unittest:
 	docker exec -it \
 	  $$(docker-compose ps -q postgres) \
 	  /bin/bash -c "cd observatory-extension \
@@ -124,6 +129,20 @@ etl-unittest:
 	docker-compose run --rm bigmetadata /bin/bash -c \
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  PGDATABASE=test nosetests -v \
+	    tests/test_meta.py tests/test_util.py \
+	    tests/test_columntasks.py tests/test_tabletasks.py'
+
+travis-etl-unittest:
+	docker run \
+	  -v $$PWD:/bigmetadata \
+	  --net=host --env-file=.env.sample \
+	             -e PGHOST=localhost -e PYTHONPATH=/bigmetadata \
+	             -e PGDATABASE=test -e PGUSER=postgres \
+	             -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 \
+	             -e LUIGI_CONFIG_PATH=/bigmetadata/conf/luigi_client.cfg \
+	             -e TRAVIS=$$TRAVIS \
+	   recessionporn/bigmetadata /bin/bash -c \
+	   'nosetests -v \
 	    tests/test_meta.py tests/test_util.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
