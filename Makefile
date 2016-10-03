@@ -112,7 +112,7 @@ extension:
 sh-sql:
 	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
 
-api-unittest:
+extension-unittest:
 	docker exec -it \
 	  $$(docker-compose ps -q postgres) \
 	  /bin/bash -c "cd observatory-extension \
