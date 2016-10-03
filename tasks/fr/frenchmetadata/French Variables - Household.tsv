@@ -21,17 +21,17 @@ P12_POP15P	Pop 15 ans ou plus en 2012 (princ)	Nombre de personnes de 15 ans ou p
 P12_POP1524	Pop 15-24 ans en 2012 (princ)	Nombre de personnes de 15 à 24 ans	people	P12_POP15P	age_gender
 P12_POP2554	Pop 25-54 ans en 2012 (princ)	Nombre de personnes de 25 à 54 ans	people	P12_POP15P	age_gender
 P12_POP5579	Pop 55-79 ans en 2012 (princ)	Nombre de personnes de 55 à 79 ans	people	P12_POP15P	age_gender
-P12_POP80P	Pop 80 ans ou plus en 2012 (princ)	Nombre de personnes de 80 ans ou plus	families	P12_POP15P	age_gender
-P12_POPMEN15P	Pop mén 15 ans ou plus en 2012 (princ)	Nombre de personnes des ménages de 15 ans ou plus	families	P12_POP15P	housing
-P12_POPMEN1524	Pop mén 15-24 ans en 2012 (princ)	Nombre de personnes des ménages de 15 à 24 ans	families	P12_POP1524	housing
-P12_POPMEN2554	Pop mén 25-54 ans en 2012 (princ)	Nombre de personnes des ménages de 25 à 54 ans	families	P12_POP2554	housing
-P12_POPMEN5579	Pop mén 55-79 ans en 2012 (princ)	Nombre de personnes des ménages de 55 à 79 ans	families	P12_POP5579	housing
-P12_POPMEN80P	Pop mén 80 ans ou plus en 2012 (princ)	Nombre de personnes des ménages de 80 ans ou plus	families	P12_POP80P	housing
+P12_POP80P	Pop 80 ans ou plus en 2012 (princ)	Nombre de personnes de 80 ans ou plus	family_unit	P12_POP15P	age_gender
+P12_POPMEN15P	Pop mén 15 ans ou plus en 2012 (princ)	Nombre de personnes des ménages de 15 ans ou plus	family_unit	P12_POP15P	housing
+P12_POPMEN1524	Pop mén 15-24 ans en 2012 (princ)	Nombre de personnes des ménages de 15 à 24 ans	family_unit	P12_POP1524	housing
+P12_POPMEN2554	Pop mén 25-54 ans en 2012 (princ)	Nombre de personnes des ménages de 25 à 54 ans	family_unit	P12_POP2554	housing
+P12_POPMEN5579	Pop mén 55-79 ans en 2012 (princ)	Nombre de personnes des ménages de 55 à 79 ans	family_unit	P12_POP5579	housing
+P12_POPMEN80P	Pop mén 80 ans ou plus en 2012 (princ)	Nombre de personnes des ménages de 80 ans ou plus	family_unit	P12_POP80P	housing
 P12_POP15P_PSEUL	Pop 15 ans ou plus ans vivant seule en 2012 (princ)	Nombre de personnes de 15 ans ou plus vivant seules	people	P12_POP15P	housing
 P12_POP1524_PSEUL	Pop 15-24 ans vivant seule en 2012 (princ)	Nombre de personnes de 15 à 24 ans vivant seules	people	P12_POP1524	housing
 P12_POP2554_PSEUL	Pop 25-54 ans vivant seule en 2012 (princ)	Nombre de personnes de 25 à 54 ans vivant seules	people	P12_POP2554	housing
 P12_POP5579_PSEUL	Pop 55-79 ans vivant seule en 2012 (princ)	Nombre de personnes de 55 à 79 ans vivant seules	people	P12_POP5579	housing
-P12_POP80P_PSEUL	Pop 80 ans ou plus vivant seule en 2012 (princ)	Nombre de personnes de 80 ans ou plus vivant seules	families	P12_POP80P	housing
+P12_POP80P_PSEUL	Pop 80 ans ou plus vivant seule en 2012 (princ)	Nombre de personnes de 80 ans ou plus vivant seules	family_unit	P12_POP80P	housing
 P12_POP15P_MARIE	Pop 15 ans ou plus Marié en 2012 (princ)	Nombre de personnes de 15 ans ou plus mariées	people	P12_POP15P	families
 P12_POP15P_CELIB	Pop 15 ans ou plus Célibataire en 2012 (princ)	Nombre de personnes de 15 ans ou plus célibataires	people	P12_POP15P	families
 P12_POP15P_VEUF	Pop 15 ans ou plus Veuf en 2012 (princ)	Nombre de personnes de 15 ans ou plus veuves	people	P12_POP15P	families
@@ -52,10 +52,10 @@ C12_PMEN_CS5	Pop mén Pers Réf Employé en 2012 (compl)	Nombre de personnes des
 C12_PMEN_CS6	Pop mén Pers Réf Ouvrier en 2012 (compl)	Nombre de personnes des ménages dont la personne de référence est Ouvrier	people	C12_MEN_CS6, C12_PMEN	housing, employment
 C12_PMEN_CS7	Pop mén Pers Réf Retraité en 2012 (compl)	Nombre de personnes des ménages dont la personne de référence est Retraité	people	C12_MEN_CS7, C12_PMEN	housing, employment
 C12_PMEN_CS8	Pop mén Pers Réf Autre en 2012 (compl)	Nombre de personnes des ménages dont la personne de référence est Autre sans activité professionnelle	people	C12_MEN_CS8, C12_PMEN	housing, employment
-C12_FAM	Familles en 2012 (compl)	Nombre de familles	families		families
-C12_COUPAENF	Fam Couple avec enfant(s) en 2012 (compl)	Nombre de familles formées d'un couple avec enfant(s)	families	C12_FAM	families
-C12_FAMMONO	Fam Monoparentales en 2012 (compl)	Nombre de familles monoparentales	families	C12_FAM	families
-C12_COUPSENF	Fam Couple sans enfant en 2012 (compl)	Nombre de familles formées d'un couple sans enfant	families	C12_FAM	families
+C12_FAM	Familles en 2012 (compl)	Nombre de familles	family_unit		families
+C12_COUPAENF	Fam Couple avec enfant(s) en 2012 (compl)	Nombre de familles formées d'un couple avec enfant(s)	family_unit	C12_FAM	families
+C12_FAMMONO	Fam Monoparentales en 2012 (compl)	Nombre de familles monoparentales	family_unit	C12_FAM	families
+C12_COUPSENF	Fam Couple sans enfant en 2012 (compl)	Nombre de familles formées d'un couple sans enfant	family_unit	C12_FAM	families
 C12_NE24F0	Fam 0 enfant moins 25 ans en 2012 (compl)	Nombre de familles avec 0 enfant de moins de 25 ans	households	C12_FAM	families
 C12_NE24F1	Fam 1 enfant moins 25 ans en 2012 (compl)	Nombre de familles avec 1 enfant de moins de 25 ans	households	C12_FAM	families
 C12_NE24F2	Fam 2 enfants moins 25 ans en 2012 (compl)	Nombre de familles avec 2 enfants de moins de 25 ans	households	C12_FAM	families

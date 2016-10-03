@@ -24,7 +24,7 @@ class DownloadUnzipFR(DownloadUnzipTask):
             'housing':'infra-logement-12/',
             'education':'infra-formation-12/',
             'household':'infra-famille-12/',
-            'employment':'infra-activite-resident-12'
+            'employment':'infra-activite-resident-12/'
                 }
 
         iris = {
@@ -55,7 +55,7 @@ class DownloadFR(Task):
             'housing':'infra-logement-12/',
             'education':'infra-formation-12/',
             'household':'infra-famille-12/',
-            'employment':'infra-activite-resident-12'
+            'employment':'infra-activite-resident-12/'
                 }
 
         iris_overseas = {
@@ -68,7 +68,7 @@ class DownloadFR(Task):
 
         URL = self.URL_base + themes.get(self.table_theme) + iris_overseas.get(self.table_theme)
 
-        shell('wget -O {output} {url}'.format(
+        shell('wget -P {output} {url}'.format(
            output=self.output().path,
            url=URL
         ))
@@ -78,7 +78,7 @@ class DownloadFR(Task):
         self.download()
 
     def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) + '.xls')
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 class RawFRData(CSV2TempTableTask):
 
@@ -131,7 +131,7 @@ class FrenchColumns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
         cols = OrderedDict()
@@ -170,13 +170,13 @@ class FrenchColumns(ColumnsTask):
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
                     # Need to fix Subsection and UnitTags! Problem with unittag "families"
-                    tags=[france, unittags.get(var_unit)],
+                    tags=[france, unittags[var_unit]],
                     targets= targets_dict
                 )
                 subsections = subsections.split(',')
                 for s in subsections:
                     s = s.strip()
-                    subsection_tag = subsectiontags.get(s)
+                    subsection_tag = subsectiontags[s]
                     cols[var_code].tags.append(subsection_tag)
 
         insee_source = input_['sourcetag']['insee']
@@ -277,7 +277,7 @@ class FranceCensus(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 4
+        return 7
 
     def timespan(self):
         return '2012'
@@ -319,3 +319,11 @@ class AllGeomsThemesTables(WrapperTask):
         for resolution in ('iris', 'iris_overseas'):
             for table_theme in topics:
                 yield FranceCensus(table_theme=table_theme, resolution=resolution)
+
+
+class AllGeometries(WrapperTask):
+
+    def requires(self):
+        geom_types = ('iris', 'overseas_iris')
+        for geom in geom_types:
+            yield OutputAreas(geom=geom)
