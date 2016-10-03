@@ -114,7 +114,7 @@ class SyncAllData(WrapperTask):
                 tables[table.tablename] = table.version
 
         for tablename, version in tables.iteritems():
-            if version > existing_table_versions[tablename]:
+            if version > existing_table_versions.get(tablename):
                 force = True
             else:
                 force = self.force
