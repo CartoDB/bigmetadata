@@ -12,7 +12,6 @@ import pandas as pd
 
 class DownloadUnzipFR(DownloadUnzipTask):
 
-    resolution = Parameter()
     table_theme = Parameter()
 
     URL_base = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/'
@@ -87,7 +86,7 @@ class RawFRData(CSV2TempTableTask):
 
     def requires(self):
         if self.resolution == 'iris':
-            return DownloadUnzipFR(table_theme=self.table_theme, resolution=self.resolution)
+            return DownloadUnzipFR(table_theme=self.table_theme)
         elif self.resolution == 'iris_overseas':
             return DownloadFR(table_theme=self.table_theme)
         else:
@@ -209,7 +208,7 @@ class ImportOutputAreas(Shp2TempTableTask):
 class OutputAreaColumns(ColumnsTask):
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
@@ -221,9 +220,10 @@ class OutputAreaColumns(ColumnsTask):
         input_ = self.input()
         geom = OBSColumn(
             type='Geometry',
-            name='IRIS areas',
+            name='IRIS and Commune areas',
             description='IRIS regions are defined by INSEE census for purposes of all municipalities '
-                        'of over 10000 inhabitants and most towns from 5000 to 10000.',
+                        'of over 10000 inhabitants and most towns from 5000 to 10000. For areas in which '
+                        'IRIS is not defined, the commune area is given instead. ',
             weight=5,
             tags=[input_['subsections']['boundary'], input_['sections']['fr']]
         )
@@ -274,17 +274,17 @@ class OutputAreas(TableTask):
 class FranceCensus(TableTask):
 
     table_theme = Parameter()
-    resolution = Parameter()
 
     def version(self):
-        return 7
+        return 8
 
     def timespan(self):
         return '2012'
 
     def requires(self):
         requirements = {
-            'data': RawFRData(table_theme=self.table_theme, resolution=self.resolution),
+            'iris_data': RawFRData(table_theme=self.table_theme, resolution='iris'),
+            'overseas_data': RawFRData(table_theme=self.table_theme, resolution='iris_overseas'),
             'meta': FrenchColumns(table_theme=self.table_theme),
             'geometa': OutputAreaColumns(),
         }
@@ -309,21 +309,20 @@ class FranceCensus(TableTask):
                             ids=colnames,
                             ids_typed=colnames_typed,
                             output=self.output().table,
-                            input=self.input()['data'].table
+                            input=self.input()['iris_data'].table
+                        ))
+        session.execute('INSERT INTO {output} ({ids}) '
+                        'SELECT {ids_typed} '
+                        'FROM {input} '.format(
+                            ids=colnames,
+                            ids_typed=colnames_typed,
+                            output=self.output().table,
+                            input=self.input()['overseas_data'].table
                         ))
 
 
 class AllGeomsThemesTables(WrapperTask):
     def requires(self):
         topics = ['population', 'housing', 'education', 'household', 'employment']
-        for resolution in ('iris', 'iris_overseas'):
-            for table_theme in topics:
-                yield FranceCensus(table_theme=table_theme, resolution=resolution)
-
-
-class AllGeometries(WrapperTask):
-
-    def requires(self):
-        geom_types = ('iris', 'overseas_iris')
-        for geom in geom_types:
-            yield OutputAreas(geom=geom)
+        for table_theme in topics:
+            yield FranceCensus(table_theme=table_theme)
