@@ -722,7 +722,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_t = OBSColumn(
             id='t004c002_t',
-            name='People aged 15+ in the labour force - Worker Class n/a (total)',
+            name='People employed as - Other (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -731,7 +731,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_m = OBSColumn(
             id='t004c002_m',
-            name='People aged 15+ in the labour force - Worker Class n/a (male)',
+            name='People employed as - Other (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -740,7 +740,7 @@ class NHSColumns(ColumnsTask):
 
         t004c002_f = OBSColumn(
             id='t004c002_f',
-            name='People aged 15+ in the labour force - Worker Class n/a (female)',
+            name='People employed as - Other (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -748,100 +748,61 @@ class NHSColumns(ColumnsTask):
             targets={ t004c001_f: DENOMINATOR },)
 
         # FIXME
-        # Not quite sure what this means, the description doesn't mention what
-        # "Worker class" means, and the name doesn't include phrase
-        # "Experienced labour force".
-        t004c003_t = OBSColumn(
-            id='t004c003_t',
-            name='People aged 15+ in the labour force - Worker Class (total)',
-            description='Experienced labour force refers to persons who were employed and the unemployed who had last worked for pay or in self-employment',
+        # The original FIXME had been for a description of what the NHS
+        # considers an "Employee", which is not here.
+        t004c004_t = OBSColumn(
+            id='t004c004_t',
+            name='People employed as - Employee (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_t: DENOMINATOR },)
 
-        t004c003_m = OBSColumn(
-            id='t004c003_m',
-            name='People aged 15+ in the labour force - Worker Class (male)',
-            description='Experienced labour force refers to persons who were employed and the unemployed who had last worked for pay or in self-employment',
+        t004c004_m = OBSColumn(
+            id='t004c004_m',
+            name='People employed as - Employee (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_m: DENOMINATOR },)
 
-        t004c003_f = OBSColumn(
-            id='t004c003_f',
-            name='People aged 15+ in the labour force - Worker Class (female)',
-            description='Experienced labour force refers to persons who were employed and the unemployed who had last worked for pay or in self-employment',
+        t004c004_f = OBSColumn(
+            id='t004c004_f',
+            name='People employed as - Employee (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
-        # FIXME
-        # As employee is not redundant with other possible measures, I think
-        # it's the more appropriate name -- the full qualification is noisy.
-        #
-        # The original FIXME had been for a description of what the NHS
-        # considers an "Employee", which is not here.
-        t004c004_t = OBSColumn(
-            id='t004c004_t',
-            name='People aged 15+ in the labour force - Worker Class - Employee (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={ t004c003_t: DENOMINATOR },)
-
-        t004c004_m = OBSColumn(
-            id='t004c004_m',
-            name='People aged 15+ in the labour force - Worker Class - Employee (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={ t004c003_m: DENOMINATOR },)
-
-        t004c004_f = OBSColumn(
-            id='t004c004_f',
-            name='People aged 15+ in the labour force - Worker Class - Employee (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
-            targets={ t004c003_f: DENOMINATOR },)
-
-        # FIXME
-        # Like with "Employee" above, the full qualification here is noisy.
         t004c005_t = OBSColumn(
             id='t004c005_t',
-            name='People aged 15+ in the labour force - Worker Class - Self-employed (total)',
+            name='People employed as - Self-employed (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t004c003_t: DENOMINATOR },)
+            targets={ t004c001_t: DENOMINATOR },)
 
         t004c005_m = OBSColumn(
             id='t004c005_m',
-            name='People aged 15+ in the labour force - Worker Class - Self-employed (male)',
+            name='People employed as - Self-employed (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t004c003_m: DENOMINATOR },)
+            targets={ t004c001_m: DENOMINATOR },)
 
         t004c005_f = OBSColumn(
             id='t004c005_f',
-            name='People aged 15+ in the labour force - Worker Class - Self-employed (female)',
+            name='People employed as - Self-employed (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
-            targets={ t004c003_f: DENOMINATOR },)
+            targets={ t004c001_f: DENOMINATOR },)
 
         t005c001_t = census_cols['t009c001_t']
         t005c001_m = census_cols['t009c001_m']
@@ -1360,11 +1321,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['education']],
             targets={ t005c018_f: DENOMINATOR },)
 
-        # FIXME
-        # Never heard of anyone majoring in a lack of education :)
         t005c022_t = OBSColumn(
             id='t005c022_t',
-            name='People aged 15+ majoring in no postsecondary certificate, diploma or degree (total)',
+            name='People aged 15+ with no postsecondary certificate, diploma or degree (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1373,7 +1332,7 @@ class NHSColumns(ColumnsTask):
 
         t005c022_m = OBSColumn(
             id='t005c022_m',
-            name='People aged 15+ majoring in no postsecondary certificate, diploma or degree (male)',
+            name='People aged 15+ with no postsecondary certificate, diploma or degree (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -1382,7 +1341,7 @@ class NHSColumns(ColumnsTask):
 
         t005c022_f = OBSColumn(
             id='t005c022_f',
-            name='People aged 15+ majoring in no postsecondary certificate, diploma or degree (female)',
+            name='People aged 15+ with no postsecondary certificate, diploma or degree (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -8979,6 +8938,7 @@ class NHSColumns(ColumnsTask):
         t007c004_t = OBSColumn(
             id='t007c004_t',
             name='People aged 15+ in the labour force who worked full-time (total)',
+            description='This category includes employed persons who usually worked 30 hours or more per week, at their main or only job.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -8988,6 +8948,7 @@ class NHSColumns(ColumnsTask):
         t007c004_m = OBSColumn(
             id='t007c004_m',
             name='People aged 15+ in the labour force who worked full-time (male)',
+            description='This category includes employed persons who usually worked 30 hours or more per week, at their main or only job.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -8997,17 +8958,17 @@ class NHSColumns(ColumnsTask):
         t007c004_f = OBSColumn(
             id='t007c004_f',
             name='People aged 15+ in the labour force who worked full-time (female)',
+            description='This category includes employed persons who usually worked 30 hours or more per week, at their main or only job.',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t007c003_f: DENOMINATOR },)
 
-        # FIXME
-        # still missing description of what qualifies as "part-time"
         t007c005_t = OBSColumn(
             id='t007c005_t',
             name='People aged 15+ in the labour force who worked part-time (total)',
+            description='This category includes employed persons who usually worked less than 30 hours per week, at their main or only job.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9017,6 +8978,7 @@ class NHSColumns(ColumnsTask):
         t007c005_m = OBSColumn(
             id='t007c005_m',
             name='People aged 15+ in the labour force who worked part-time (male)',
+            description='This category includes employed persons who usually worked less than 30 hours per week, at their main or only job.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9026,6 +8988,7 @@ class NHSColumns(ColumnsTask):
         t007c005_f = OBSColumn(
             id='t007c005_f',
             name='People aged 15+ in the labour force who worked part-time (female)',
+            description='This category includes employed persons who usually worked less than 30 hours per week, at their main or only job.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -12473,43 +12436,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t005c001_f: UNIVERSE },)
 
-        # FIXME
-        # I'm still not sure what these three columns actually mean --
-        # is t013c035_t 100%, and t013c035_m the percentage of total income
-        # received by men?
-        #
-        # If so, the term "Income composition" should be jettisoned as it's
-        # confusing.  And any column that's just 100% should be eliminated,
-        # too.  The other should be retitled something like "Percent market
-        # income of total income," "Percent self-employment income of total
-        # income," and the like.
-        t013c035_t = OBSColumn(
-            id='t013c035_t',
-            name='Income composition of people aged 15+ (%) (total)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['income']],
-            targets={},)
-
-        t013c035_m = OBSColumn(
-            id='t013c035_m',
-            name='Income composition of people aged 15+ (%) (male)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['income']],
-            targets={},)
-
-        t013c035_f = OBSColumn(
-            id='t013c035_f',
-            name='Income composition of people aged 15+ (%) (female)',
-            type='Numeric',
-            weight=3,
-            tags=[ca, unit_ratio, subsections['income']],
-            targets={},)
-
         t013c036_t = OBSColumn(
             id='t013c036_t',
-            name='Income composition - Market income (%) (total)',
+            name='Market income as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12517,7 +12446,7 @@ class NHSColumns(ColumnsTask):
 
         t013c036_m = OBSColumn(
             id='t013c036_m',
-            name='Income composition - Market income (%) (male)',
+            name='Market income as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12525,7 +12454,7 @@ class NHSColumns(ColumnsTask):
 
         t013c036_f = OBSColumn(
             id='t013c036_f',
-            name='Income composition - Market income (%) (female)',
+            name='Market income as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12533,7 +12462,7 @@ class NHSColumns(ColumnsTask):
 
         t013c037_t = OBSColumn(
             id='t013c037_t',
-            name='Income composition - Employment income (%) (total)',
+            name='Employment income as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12541,7 +12470,7 @@ class NHSColumns(ColumnsTask):
 
         t013c037_m = OBSColumn(
             id='t013c037_m',
-            name='Income composition - Employment income (%) (male)',
+            name='Employment income as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12549,7 +12478,7 @@ class NHSColumns(ColumnsTask):
 
         t013c037_f = OBSColumn(
             id='t013c037_f',
-            name='Income composition - Employment income (%) (female)',
+            name='Employment income as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12557,7 +12486,7 @@ class NHSColumns(ColumnsTask):
 
         t013c038_t = OBSColumn(
             id='t013c038_t',
-            name='Income composition - Wages and salaries (%) (total)',
+            name='Wages and salaries as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12565,7 +12494,7 @@ class NHSColumns(ColumnsTask):
 
         t013c038_m = OBSColumn(
             id='t013c038_m',
-            name='Income composition - Wages and salaries (%) (male)',
+            name='Wages and salaries as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12573,7 +12502,7 @@ class NHSColumns(ColumnsTask):
 
         t013c038_f = OBSColumn(
             id='t013c038_f',
-            name='Income composition - Wages and salaries (%) (female)',
+            name='Wages and salaries as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12581,7 +12510,7 @@ class NHSColumns(ColumnsTask):
 
         t013c039_t = OBSColumn(
             id='t013c039_t',
-            name='Income composition - Self-employment income (%) (total)',
+            name='Self-employment income as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12589,7 +12518,7 @@ class NHSColumns(ColumnsTask):
 
         t013c039_m = OBSColumn(
             id='t013c039_m',
-            name='Income composition - Self-employment income (%) (male)',
+            name='Self-employment income as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12597,7 +12526,7 @@ class NHSColumns(ColumnsTask):
 
         t013c039_f = OBSColumn(
             id='t013c039_f',
-            name='Income composition - Self-employment income (%) (female)',
+            name='Self-employment income as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12605,7 +12534,7 @@ class NHSColumns(ColumnsTask):
 
         t013c040_t = OBSColumn(
             id='t013c040_t',
-            name='Income composition - Investment income (%) (total)',
+            name='Investment income as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12613,7 +12542,7 @@ class NHSColumns(ColumnsTask):
 
         t013c040_m = OBSColumn(
             id='t013c040_m',
-            name='Income composition - Investment income (%) (male)',
+            name='Investment income as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12621,7 +12550,7 @@ class NHSColumns(ColumnsTask):
 
         t013c040_f = OBSColumn(
             id='t013c040_f',
-            name='Income composition - Investment income (%) (female)',
+            name='Investment income as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12629,7 +12558,7 @@ class NHSColumns(ColumnsTask):
 
         t013c041_t = OBSColumn(
             id='t013c041_t',
-            name='Income composition - Retirement pensions, superannuation and annuities (%) (total)',
+            name='Retirement pensions, superannuation and annuities as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12637,7 +12566,7 @@ class NHSColumns(ColumnsTask):
 
         t013c041_m = OBSColumn(
             id='t013c041_m',
-            name='Income composition - Retirement pensions, superannuation and annuities (%) (male)',
+            name='Retirement pensions, superannuation and annuities as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12645,7 +12574,7 @@ class NHSColumns(ColumnsTask):
 
         t013c041_f = OBSColumn(
             id='t013c041_f',
-            name='Income composition - Retirement pensions, superannuation and annuities (%) (female)',
+            name='Retirement pensions, superannuation and annuities as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12653,7 +12582,7 @@ class NHSColumns(ColumnsTask):
 
         t013c042_t = OBSColumn(
             id='t013c042_t',
-            name='Income composition - Other money income (%) (total)',
+            name='Other money income as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12661,7 +12590,7 @@ class NHSColumns(ColumnsTask):
 
         t013c042_m = OBSColumn(
             id='t013c042_m',
-            name='Income composition - Other money income (%) (male)',
+            name='Other money income as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12669,7 +12598,7 @@ class NHSColumns(ColumnsTask):
 
         t013c042_f = OBSColumn(
             id='t013c042_f',
-            name='Income composition - Other money income (%) (female)',
+            name='Other money income as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12677,7 +12606,7 @@ class NHSColumns(ColumnsTask):
 
         t013c043_t = OBSColumn(
             id='t013c043_t',
-            name='Income composition - Government transfer payments (%) (total)',
+            name='Government transfer payments as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12685,7 +12614,7 @@ class NHSColumns(ColumnsTask):
 
         t013c043_m = OBSColumn(
             id='t013c043_m',
-            name='Income composition - Government transfer payments (%) (male)',
+            name='Government transfer payments as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12693,7 +12622,7 @@ class NHSColumns(ColumnsTask):
 
         t013c043_f = OBSColumn(
             id='t013c043_f',
-            name='Income composition - Government transfer payments (%) (female)',
+            name='Government transfer payments as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12701,7 +12630,7 @@ class NHSColumns(ColumnsTask):
 
         t013c044_t = OBSColumn(
             id='t013c044_t',
-            name='Income composition - Canada/Quebec Pension Plan benefits (%) (total)',
+            name='Canada/Quebec Pension Plan benefits as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12709,7 +12638,7 @@ class NHSColumns(ColumnsTask):
 
         t013c044_m = OBSColumn(
             id='t013c044_m',
-            name='Income composition - Canada/Quebec Pension Plan benefits (%) (male)',
+            name='Canada/Quebec Pension Plan benefits as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12717,7 +12646,7 @@ class NHSColumns(ColumnsTask):
 
         t013c044_f = OBSColumn(
             id='t013c044_f',
-            name='Income composition - Canada/Quebec Pension Plan benefits (%) (female)',
+            name='Canada/Quebec Pension Plan benefits as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12725,7 +12654,7 @@ class NHSColumns(ColumnsTask):
 
         t013c045_t = OBSColumn(
             id='t013c045_t',
-            name='Income composition - Old Age Security pensions and Guaranteed Income Supplement (%) (total)',
+            name='Old Age Security pensions and Guaranteed Income Supplement as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12733,7 +12662,7 @@ class NHSColumns(ColumnsTask):
 
         t013c045_m = OBSColumn(
             id='t013c045_m',
-            name='Income composition - Old Age Security pensions and Guaranteed Income Supplement (%) (male)',
+            name='Old Age Security pensions and Guaranteed Income Supplement as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12741,7 +12670,7 @@ class NHSColumns(ColumnsTask):
 
         t013c045_f = OBSColumn(
             id='t013c045_f',
-            name='Income composition - Old Age Security pensions and Guaranteed Income Supplement (%) (female)',
+            name='Old Age Security pensions and Guaranteed Income Supplement as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12749,7 +12678,7 @@ class NHSColumns(ColumnsTask):
 
         t013c046_t = OBSColumn(
             id='t013c046_t',
-            name='Income composition - Employment Insurance benefits (%) (total)',
+            name='Employment Insurance benefits as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12757,7 +12686,7 @@ class NHSColumns(ColumnsTask):
 
         t013c046_m = OBSColumn(
             id='t013c046_m',
-            name='Income composition - Employment Insurance benefits (%) (male)',
+            name='Employment Insurance benefits as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12765,7 +12694,7 @@ class NHSColumns(ColumnsTask):
 
         t013c046_f = OBSColumn(
             id='t013c046_f',
-            name='Income composition - Employment Insurance benefits (%) (female)',
+            name='Employment Insurance benefits as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12773,7 +12702,7 @@ class NHSColumns(ColumnsTask):
 
         t013c047_t = OBSColumn(
             id='t013c047_t',
-            name='Income composition - Child benefits (%) (total)',
+            name='Child benefits as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12781,7 +12710,7 @@ class NHSColumns(ColumnsTask):
 
         t013c047_m = OBSColumn(
             id='t013c047_m',
-            name='Income composition - Child benefits (%) (male)',
+            name='Child benefits as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12789,7 +12718,7 @@ class NHSColumns(ColumnsTask):
 
         t013c047_f = OBSColumn(
             id='t013c047_f',
-            name='Income composition - Child benefits (%) (female)',
+            name='Child benefits as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12797,7 +12726,7 @@ class NHSColumns(ColumnsTask):
 
         t013c048_t = OBSColumn(
             id='t013c048_t',
-            name='Income composition - Other income from government sources (%) (total)',
+            name='Other income from government sources as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12805,7 +12734,7 @@ class NHSColumns(ColumnsTask):
 
         t013c048_m = OBSColumn(
             id='t013c048_m',
-            name='Income composition - Other income from government sources (%) (male)',
+            name='Other income from government sources as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12813,7 +12742,7 @@ class NHSColumns(ColumnsTask):
 
         t013c048_f = OBSColumn(
             id='t013c048_f',
-            name='Income composition - Other income from government sources (%) (female)',
+            name='Other income from government sources as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12821,7 +12750,7 @@ class NHSColumns(ColumnsTask):
 
         t013c049_t = OBSColumn(
             id='t013c049_t',
-            name='Income composition - Income taxes paid as a % of total income (total)',
+            name='Income taxes paid as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12829,7 +12758,7 @@ class NHSColumns(ColumnsTask):
 
         t013c049_m = OBSColumn(
             id='t013c049_m',
-            name='Income composition - Income taxes paid as a % of total income (male)',
+            name='Income taxes paid as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12837,7 +12766,7 @@ class NHSColumns(ColumnsTask):
 
         t013c049_f = OBSColumn(
             id='t013c049_f',
-            name='Income composition - Income taxes paid as a % of total income (female)',
+            name='Income taxes paid as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12845,7 +12774,7 @@ class NHSColumns(ColumnsTask):
 
         t013c050_t = OBSColumn(
             id='t013c050_t',
-            name='Income composition - After-tax income as a % of total income (total)',
+            name='After-tax income as a % of total income (total)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12853,7 +12782,7 @@ class NHSColumns(ColumnsTask):
 
         t013c050_m = OBSColumn(
             id='t013c050_m',
-            name='Income composition - After-tax income as a % of total income (male)',
+            name='After-tax income as a % of total income (male)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -12861,7 +12790,7 @@ class NHSColumns(ColumnsTask):
 
         t013c050_f = OBSColumn(
             id='t013c050_f',
-            name='Income composition - After-tax income as a % of total income (female)',
+            name='After-tax income as a % of total income (female)',
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
@@ -13324,332 +13253,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_money, subsections['income']],
             targets={ t013c079_f: UNIVERSE },)
 
-        # FIXME
-        # THere is still no description of "Canadian distribution"
-        t013c085_t = OBSColumn(
-            id='t013c085_t',
-            name='Total population - In bottom half of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t001c001_t: DENOMINATOR },)
-
-        t013c085_m = OBSColumn(
-            id='t013c085_m',
-            name='Total population - In bottom half of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t001c001_m: DENOMINATOR },)
-
-        t013c085_f = OBSColumn(
-            id='t013c085_f',
-            name='Total population - In bottom half of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t001c001_f: DENOMINATOR },)
-
-        t013c086_t = OBSColumn(
-            id='t013c086_t',
-            name='Total population - In bottom decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_t: DENOMINATOR },)
-
-        t013c086_m = OBSColumn(
-            id='t013c086_m',
-            name='Total population - In bottom decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_m: DENOMINATOR },)
-
-        t013c086_f = OBSColumn(
-            id='t013c086_f',
-            name='Total population - In bottom decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_f: DENOMINATOR },)
-
-        t013c087_t = OBSColumn(
-            id='t013c087_t',
-            name='Total population - In second decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_t: DENOMINATOR },)
-
-        t013c087_m = OBSColumn(
-            id='t013c087_m',
-            name='Total population - In second decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_m: DENOMINATOR },)
-
-        t013c087_f = OBSColumn(
-            id='t013c087_f',
-            name='Total population - In second decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_f: DENOMINATOR },)
-
-        t013c088_t = OBSColumn(
-            id='t013c088_t',
-            name='Total population - In third decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_t: DENOMINATOR },)
-
-        t013c088_m = OBSColumn(
-            id='t013c088_m',
-            name='Total population - In third decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_m: DENOMINATOR },)
-
-        t013c088_f = OBSColumn(
-            id='t013c088_f',
-            name='Total population - In third decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_f: DENOMINATOR },)
-
-        t013c089_t = OBSColumn(
-            id='t013c089_t',
-            name='Total population - In fourth decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_t: DENOMINATOR },)
-
-        t013c089_m = OBSColumn(
-            id='t013c089_m',
-            name='Total population - In fourth decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_m: DENOMINATOR },)
-
-        t013c089_f = OBSColumn(
-            id='t013c089_f',
-            name='Total population - In fourth decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_f: DENOMINATOR },)
-
-        t013c090_t = OBSColumn(
-            id='t013c090_t',
-            name='Total population - In fifth decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_t: DENOMINATOR },)
-
-        t013c090_m = OBSColumn(
-            id='t013c090_m',
-            name='Total population - In fifth decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_m: DENOMINATOR },)
-
-        t013c090_f = OBSColumn(
-            id='t013c090_f',
-            name='Total population - In fifth decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c085_f: DENOMINATOR },)
-
-        t013c091_t = OBSColumn(
-            id='t013c091_t',
-            name='Total population - In top half of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t001c001_t: DENOMINATOR },)
-
-        t013c091_m = OBSColumn(
-            id='t013c091_m',
-            name='Total population - In top half of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t001c001_m: DENOMINATOR },)
-
-        t013c091_f = OBSColumn(
-            id='t013c091_f',
-            name='Total population - In top half of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t001c001_f: DENOMINATOR },)
-
-        t013c092_t = OBSColumn(
-            id='t013c092_t',
-            name='Total population - In sixth decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_t: DENOMINATOR },)
-
-        t013c092_m = OBSColumn(
-            id='t013c092_m',
-            name='Total population - In sixth decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_m: DENOMINATOR },)
-
-        t013c092_f = OBSColumn(
-            id='t013c092_f',
-            name='Total population - In sixth decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_f: DENOMINATOR },)
-
-        t013c093_t = OBSColumn(
-            id='t013c093_t',
-            name='Total population - In seventh decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_t: DENOMINATOR },)
-
-        t013c093_m = OBSColumn(
-            id='t013c093_m',
-            name='Total population - In seventh decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_m: DENOMINATOR },)
-
-        t013c093_f = OBSColumn(
-            id='t013c093_f',
-            name='Total population - In seventh decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_f: DENOMINATOR },)
-
-        t013c094_t = OBSColumn(
-            id='t013c094_t',
-            name='Total population - In eighth decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_t: DENOMINATOR },)
-
-        t013c094_m = OBSColumn(
-            id='t013c094_m',
-            name='Total population - In eighth decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_m: DENOMINATOR },)
-
-        t013c094_f = OBSColumn(
-            id='t013c094_f',
-            name='Total population - In eighth decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_f: DENOMINATOR },)
-
-        t013c095_t = OBSColumn(
-            id='t013c095_t',
-            name='Total population - In ninth decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_t: DENOMINATOR },)
-
-        t013c095_m = OBSColumn(
-            id='t013c095_m',
-            name='Total population - In ninth decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_m: DENOMINATOR },)
-
-        t013c095_f = OBSColumn(
-            id='t013c095_f',
-            name='Total population - In ninth decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_f: DENOMINATOR },)
-
-        t013c096_t = OBSColumn(
-            id='t013c096_t',
-            name='Total population - In top decile of the Canadian distribution (total)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_t: DENOMINATOR },)
-
-        t013c096_m = OBSColumn(
-            id='t013c096_m',
-            name='Total population - In top decile of the Canadian distribution (male)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_m: DENOMINATOR },)
-
-        t013c096_f = OBSColumn(
-            id='t013c096_f',
-            name='Total population - In top decile of the Canadian distribution (female)',
-            type='Numeric',
-            weight=3,
-            aggregate='sum',
-            tags=[ca, unit_people, subsections['income']],
-            targets={ t013c091_f: DENOMINATOR },)
-
         t013c097_t = OBSColumn(
             id='t013c097_t',
             name='People not in low income status based on after-tax low-income measure (LIM-AT) (total)',
@@ -13660,9 +13263,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={},)
 
-        # FIXME
-        # There appears to be a stray "Age" definition trailing the
-        # descriptions below.
         t013c097_m = OBSColumn(
             id='t013c097_m',
             name='People not in low income status based on after-tax low-income measure (LIM-AT) (male)',
@@ -13791,8 +13391,6 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['income']],
             targets={ t013c097_f: DENOMINATOR },)
 
-        # FIXME
-        # Same issue below with trailing "Age" definition
         t013c102_t = OBSColumn(
             id='t013c102_t',
             name='People in low income status based on after-tax low-income measure (LIM-AT) (total)',
@@ -14105,14 +13703,9 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={ t004c001_f: DENOMINATOR },)
 
-        # FIXME
-        # Considering the lengths of the names below, and that there are no
-        # other breakdowns by industrial category, I'd trim the
-        # "People aged 15+ in the labour force..." portion and simply leave it
-        # "Employed in <Industry XYZ>".
         t014c004_t = OBSColumn(
             id='t014c004_t',
-            name='People aged 15+ in the labour force employed in Agriculture, forestry, fishing and hunting (total)',
+            name='People employed in Agriculture, forestry, fishing and hunting (total)',
             description='NAICS code: 11',
             type='Numeric',
             weight=3,
@@ -14122,7 +13715,7 @@ class NHSColumns(ColumnsTask):
 
         t014c004_m = OBSColumn(
             id='t014c004_m',
-            name='People aged 15+ in the labour force employed in Agriculture, forestry, fishing and hunting (male)',
+            name='People employed in Agriculture, forestry, fishing and hunting (male)',
             description='NAICS code: 11',
             type='Numeric',
             weight=3,
@@ -14132,7 +13725,7 @@ class NHSColumns(ColumnsTask):
 
         t014c004_f = OBSColumn(
             id='t014c004_f',
-            name='People aged 15+ in the labour force employed in Agriculture, forestry, fishing and hunting (female)',
+            name='People employed in Agriculture, forestry, fishing and hunting (female)',
             description='NAICS code: 11',
             type='Numeric',
             weight=3,
@@ -14142,7 +13735,7 @@ class NHSColumns(ColumnsTask):
 
         t014c005_t = OBSColumn(
             id='t014c005_t',
-            name='People aged 15+ in the labour force employed in Mining, quarrying, and oil and gas extraction (total)',
+            name='People employed in Mining, quarrying, and oil and gas extraction (total)',
             description='NAICS code: 21',
             type='Numeric',
             weight=3,
@@ -14152,7 +13745,7 @@ class NHSColumns(ColumnsTask):
 
         t014c005_m = OBSColumn(
             id='t014c005_m',
-            name='People aged 15+ in the labour force employed in Mining, quarrying, and oil and gas extraction (male)',
+            name='People employed in Mining, quarrying, and oil and gas extraction (male)',
             description='NAICS code: 21',
             type='Numeric',
             weight=3,
@@ -14162,7 +13755,7 @@ class NHSColumns(ColumnsTask):
 
         t014c005_f = OBSColumn(
             id='t014c005_f',
-            name='People aged 15+ in the labour force employed in Mining, quarrying, and oil and gas extraction (female)',
+            name='People employed in Mining, quarrying, and oil and gas extraction (female)',
             description='NAICS code: 21',
             type='Numeric',
             weight=3,
@@ -14172,7 +13765,7 @@ class NHSColumns(ColumnsTask):
 
         t014c006_t = OBSColumn(
             id='t014c006_t',
-            name='People aged 15+ in the labour force employed in Utilities (total)',
+            name='People employed in Utilities (total)',
             description='NAICS code: 22',
             type='Numeric',
             weight=3,
@@ -14182,7 +13775,7 @@ class NHSColumns(ColumnsTask):
 
         t014c006_m = OBSColumn(
             id='t014c006_m',
-            name='People aged 15+ in the labour force employed in Utilities (male)',
+            name='People employed in Utilities (male)',
             description='NAICS code: 22',
             type='Numeric',
             weight=3,
@@ -14192,7 +13785,7 @@ class NHSColumns(ColumnsTask):
 
         t014c006_f = OBSColumn(
             id='t014c006_f',
-            name='People aged 15+ in the labour force employed in Utilities (female)',
+            name='People employed in Utilities (female)',
             description='NAICS code: 22',
             type='Numeric',
             weight=3,
@@ -14202,7 +13795,7 @@ class NHSColumns(ColumnsTask):
 
         t014c007_t = OBSColumn(
             id='t014c007_t',
-            name='People aged 15+ in the labour force employed in Construction (total)',
+            name='People employed in Construction (total)',
             description='NAICS code: 23',
             type='Numeric',
             weight=3,
@@ -14212,7 +13805,7 @@ class NHSColumns(ColumnsTask):
 
         t014c007_m = OBSColumn(
             id='t014c007_m',
-            name='People aged 15+ in the labour force employed in Construction (male)',
+            name='People employed in Construction (male)',
             description='NAICS code: 23',
             type='Numeric',
             weight=3,
@@ -14222,7 +13815,7 @@ class NHSColumns(ColumnsTask):
 
         t014c007_f = OBSColumn(
             id='t014c007_f',
-            name='People aged 15+ in the labour force employed in Construction (female)',
+            name='People employed in Construction (female)',
             description='NAICS code: 23',
             type='Numeric',
             weight=3,
@@ -14232,7 +13825,7 @@ class NHSColumns(ColumnsTask):
 
         t014c008_t = OBSColumn(
             id='t014c008_t',
-            name='People aged 15+ in the labour force employed in Manufacturing (total)',
+            name='People employed in Manufacturing (total)',
             description='NAICS code: 31-33',
             type='Numeric',
             weight=3,
@@ -14242,7 +13835,7 @@ class NHSColumns(ColumnsTask):
 
         t014c008_m = OBSColumn(
             id='t014c008_m',
-            name='People aged 15+ in the labour force employed in Manufacturing (male)',
+            name='People employed in Manufacturing (male)',
             description='NAICS code: 31-33',
             type='Numeric',
             weight=3,
@@ -14252,7 +13845,7 @@ class NHSColumns(ColumnsTask):
 
         t014c008_f = OBSColumn(
             id='t014c008_f',
-            name='People aged 15+ in the labour force employed in Manufacturing (female)',
+            name='People employed in Manufacturing (female)',
             description='NAICS code: 31-33',
             type='Numeric',
             weight=3,
@@ -14262,7 +13855,7 @@ class NHSColumns(ColumnsTask):
 
         t014c009_t = OBSColumn(
             id='t014c009_t',
-            name='People aged 15+ in the labour force employed in Wholesale trade (total)',
+            name='People employed in Wholesale trade (total)',
             description='NAICS code: 41',
             type='Numeric',
             weight=3,
@@ -14272,7 +13865,7 @@ class NHSColumns(ColumnsTask):
 
         t014c009_m = OBSColumn(
             id='t014c009_m',
-            name='People aged 15+ in the labour force employed in Wholesale trade (male)',
+            name='People employed in Wholesale trade (male)',
             description='NAICS code: 41',
             type='Numeric',
             weight=3,
@@ -14282,7 +13875,7 @@ class NHSColumns(ColumnsTask):
 
         t014c009_f = OBSColumn(
             id='t014c009_f',
-            name='People aged 15+ in the labour force employed in Wholesale trade (female)',
+            name='People employed in Wholesale trade (female)',
             description='NAICS code: 41',
             type='Numeric',
             weight=3,
@@ -14292,7 +13885,7 @@ class NHSColumns(ColumnsTask):
 
         t014c010_t = OBSColumn(
             id='t014c010_t',
-            name='People aged 15+ in the labour force employed in Retail trade (total)',
+            name='People employed in Retail trade (total)',
             description='NAICS code: 44-45',
             type='Numeric',
             weight=3,
@@ -14302,7 +13895,7 @@ class NHSColumns(ColumnsTask):
 
         t014c010_m = OBSColumn(
             id='t014c010_m',
-            name='People aged 15+ in the labour force employed in Retail trade (male)',
+            name='People employed in Retail trade (male)',
             description='NAICS code: 44-45',
             type='Numeric',
             weight=3,
@@ -14312,7 +13905,7 @@ class NHSColumns(ColumnsTask):
 
         t014c010_f = OBSColumn(
             id='t014c010_f',
-            name='People aged 15+ in the labour force employed in Retail trade (female)',
+            name='People employed in Retail trade (female)',
             description='NAICS code: 44-45',
             type='Numeric',
             weight=3,
@@ -14322,7 +13915,7 @@ class NHSColumns(ColumnsTask):
 
         t014c011_t = OBSColumn(
             id='t014c011_t',
-            name='People aged 15+ in the labour force employed in Transportation and warehousing (total)',
+            name='People employed in Transportation and warehousing (total)',
             description='NAICS code: 48-49',
             type='Numeric',
             weight=3,
@@ -14332,7 +13925,7 @@ class NHSColumns(ColumnsTask):
 
         t014c011_m = OBSColumn(
             id='t014c011_m',
-            name='People aged 15+ in the labour force employed in Transportation and warehousing (male)',
+            name='People employed in Transportation and warehousing (male)',
             description='NAICS code: 48-49',
             type='Numeric',
             weight=3,
@@ -14342,7 +13935,7 @@ class NHSColumns(ColumnsTask):
 
         t014c011_f = OBSColumn(
             id='t014c011_f',
-            name='People aged 15+ in the labour force employed in Transportation and warehousing (female)',
+            name='People employed in Transportation and warehousing (female)',
             description='NAICS code: 48-49',
             type='Numeric',
             weight=3,
@@ -14352,7 +13945,7 @@ class NHSColumns(ColumnsTask):
 
         t014c012_t = OBSColumn(
             id='t014c012_t',
-            name='People aged 15+ in the labour force employed in Information and cultural industries (total)',
+            name='People employed in Information and cultural industries (total)',
             description='NAICS code: 51',
             type='Numeric',
             weight=3,
@@ -14362,7 +13955,7 @@ class NHSColumns(ColumnsTask):
 
         t014c012_m = OBSColumn(
             id='t014c012_m',
-            name='People aged 15+ in the labour force employed in Information and cultural industries (male)',
+            name='People employed in Information and cultural industries (male)',
             description='NAICS code: 51',
             type='Numeric',
             weight=3,
@@ -14372,7 +13965,7 @@ class NHSColumns(ColumnsTask):
 
         t014c012_f = OBSColumn(
             id='t014c012_f',
-            name='People aged 15+ in the labour force employed in Information and cultural industries (female)',
+            name='People employed in Information and cultural industries (female)',
             description='NAICS code: 51',
             type='Numeric',
             weight=3,
@@ -14382,7 +13975,7 @@ class NHSColumns(ColumnsTask):
 
         t014c013_t = OBSColumn(
             id='t014c013_t',
-            name='People aged 15+ in the labour force employed in Finance and insurance (total)',
+            name='People employed in Finance and insurance (total)',
             description='NAICS code: 52',
             type='Numeric',
             weight=3,
@@ -14392,7 +13985,7 @@ class NHSColumns(ColumnsTask):
 
         t014c013_m = OBSColumn(
             id='t014c013_m',
-            name='People aged 15+ in the labour force employed in Finance and insurance (male)',
+            name='People employed in Finance and insurance (male)',
             description='NAICS code: 52',
             type='Numeric',
             weight=3,
@@ -14402,7 +13995,7 @@ class NHSColumns(ColumnsTask):
 
         t014c013_f = OBSColumn(
             id='t014c013_f',
-            name='People aged 15+ in the labour force employed in Finance and insurance (female)',
+            name='People employed in Finance and insurance (female)',
             description='NAICS code: 52',
             type='Numeric',
             weight=3,
@@ -14412,7 +14005,7 @@ class NHSColumns(ColumnsTask):
 
         t014c014_t = OBSColumn(
             id='t014c014_t',
-            name='People aged 15+ in the labour force employed in Real estate and rental and leasing (total)',
+            name='People employed in Real estate and rental and leasing (total)',
             description='NAICS code: 53',
             type='Numeric',
             weight=3,
@@ -14422,7 +14015,7 @@ class NHSColumns(ColumnsTask):
 
         t014c014_m = OBSColumn(
             id='t014c014_m',
-            name='People aged 15+ in the labour force employed in Real estate and rental and leasing (male)',
+            name='People employed in Real estate and rental and leasing (male)',
             description='NAICS code: 53',
             type='Numeric',
             weight=3,
@@ -14432,7 +14025,7 @@ class NHSColumns(ColumnsTask):
 
         t014c014_f = OBSColumn(
             id='t014c014_f',
-            name='People aged 15+ in the labour force employed in Real estate and rental and leasing (female)',
+            name='People employed in Real estate and rental and leasing (female)',
             description='NAICS code: 53',
             type='Numeric',
             weight=3,
@@ -14442,7 +14035,7 @@ class NHSColumns(ColumnsTask):
 
         t014c015_t = OBSColumn(
             id='t014c015_t',
-            name='People aged 15+ in the labour force employed in Professional, scientific and technical services (total)',
+            name='People employed in Professional, scientific and technical services (total)',
             description='NAICS code: 54',
             type='Numeric',
             weight=3,
@@ -14452,7 +14045,7 @@ class NHSColumns(ColumnsTask):
 
         t014c015_m = OBSColumn(
             id='t014c015_m',
-            name='People aged 15+ in the labour force employed in Professional, scientific and technical services (male)',
+            name='People employed in Professional, scientific and technical services (male)',
             description='NAICS code: 54',
             type='Numeric',
             weight=3,
@@ -14462,7 +14055,7 @@ class NHSColumns(ColumnsTask):
 
         t014c015_f = OBSColumn(
             id='t014c015_f',
-            name='People aged 15+ in the labour force employed in Professional, scientific and technical services (female)',
+            name='People employed in Professional, scientific and technical services (female)',
             description='NAICS code: 54',
             type='Numeric',
             weight=3,
@@ -14472,7 +14065,7 @@ class NHSColumns(ColumnsTask):
 
         t014c016_t = OBSColumn(
             id='t014c016_t',
-            name='People aged 15+ in the labour force employed in Management of companies and enterprises (total)',
+            name='People employed in Management of companies and enterprises (total)',
             description='NAICS code: 55',
             type='Numeric',
             weight=3,
@@ -14482,7 +14075,7 @@ class NHSColumns(ColumnsTask):
 
         t014c016_m = OBSColumn(
             id='t014c016_m',
-            name='People aged 15+ in the labour force employed in Management of companies and enterprises (male)',
+            name='People employed in Management of companies and enterprises (male)',
             description='NAICS code: 55',
             type='Numeric',
             weight=3,
@@ -14492,7 +14085,7 @@ class NHSColumns(ColumnsTask):
 
         t014c016_f = OBSColumn(
             id='t014c016_f',
-            name='People aged 15+ in the labour force employed in Management of companies and enterprises (female)',
+            name='People employed in Management of companies and enterprises (female)',
             description='NAICS code: 55',
             type='Numeric',
             weight=3,
@@ -14502,7 +14095,7 @@ class NHSColumns(ColumnsTask):
 
         t014c017_t = OBSColumn(
             id='t014c017_t',
-            name='People aged 15+ in the labour force employed in Administrative and support, waste management and remediation services (total)',
+            name='People employed in Administrative and support, waste management and remediation services (total)',
             description='NAICS code: 56',
             type='Numeric',
             weight=3,
@@ -14512,7 +14105,7 @@ class NHSColumns(ColumnsTask):
 
         t014c017_m = OBSColumn(
             id='t014c017_m',
-            name='People aged 15+ in the labour force employed in Administrative and support, waste management and remediation services (male)',
+            name='People employed in Administrative and support, waste management and remediation services (male)',
             description='NAICS code: 56',
             type='Numeric',
             weight=3,
@@ -14522,7 +14115,7 @@ class NHSColumns(ColumnsTask):
 
         t014c017_f = OBSColumn(
             id='t014c017_f',
-            name='People aged 15+ in the labour force employed in Administrative and support, waste management and remediation services (female)',
+            name='People employed in Administrative and support, waste management and remediation services (female)',
             description='NAICS code: 56',
             type='Numeric',
             weight=3,
@@ -14532,7 +14125,7 @@ class NHSColumns(ColumnsTask):
 
         t014c018_t = OBSColumn(
             id='t014c018_t',
-            name='People aged 15+ in the labour force employed in Educational services (total)',
+            name='People employed in Educational services (total)',
             description='NAICS code: 61',
             type='Numeric',
             weight=3,
@@ -14542,7 +14135,7 @@ class NHSColumns(ColumnsTask):
 
         t014c018_m = OBSColumn(
             id='t014c018_m',
-            name='People aged 15+ in the labour force employed in Educational services (male)',
+            name='People employed in Educational services (male)',
             description='NAICS code: 61',
             type='Numeric',
             weight=3,
@@ -14552,7 +14145,7 @@ class NHSColumns(ColumnsTask):
 
         t014c018_f = OBSColumn(
             id='t014c018_f',
-            name='People aged 15+ in the labour force employed in Educational services (female)',
+            name='People employed in Educational services (female)',
             description='NAICS code: 61',
             type='Numeric',
             weight=3,
@@ -14562,7 +14155,7 @@ class NHSColumns(ColumnsTask):
 
         t014c019_t = OBSColumn(
             id='t014c019_t',
-            name='People aged 15+ in the labour force employed in Health care and social assistance (total)',
+            name='People employed in Health care and social assistance (total)',
             description='NAICS code: 62',
             type='Numeric',
             weight=3,
@@ -14572,7 +14165,7 @@ class NHSColumns(ColumnsTask):
 
         t014c019_m = OBSColumn(
             id='t014c019_m',
-            name='People aged 15+ in the labour force employed in Health care and social assistance (male)',
+            name='People employed in Health care and social assistance (male)',
             description='NAICS code: 62',
             type='Numeric',
             weight=3,
@@ -14582,7 +14175,7 @@ class NHSColumns(ColumnsTask):
 
         t014c019_f = OBSColumn(
             id='t014c019_f',
-            name='People aged 15+ in the labour force employed in Health care and social assistance (female)',
+            name='People employed in Health care and social assistance (female)',
             description='NAICS code: 62',
             type='Numeric',
             weight=3,
@@ -14592,7 +14185,7 @@ class NHSColumns(ColumnsTask):
 
         t014c020_t = OBSColumn(
             id='t014c020_t',
-            name='People aged 15+ in the labour force employed in Arts, entertainment and recreation (total)',
+            name='People employed in Arts, entertainment and recreation (total)',
             description='NAICS code: 71',
             type='Numeric',
             weight=3,
@@ -14602,7 +14195,7 @@ class NHSColumns(ColumnsTask):
 
         t014c020_m = OBSColumn(
             id='t014c020_m',
-            name='People aged 15+ in the labour force employed in Arts, entertainment and recreation (male)',
+            name='People employed in Arts, entertainment and recreation (male)',
             description='NAICS code: 71',
             type='Numeric',
             weight=3,
@@ -14612,7 +14205,7 @@ class NHSColumns(ColumnsTask):
 
         t014c020_f = OBSColumn(
             id='t014c020_f',
-            name='People aged 15+ in the labour force employed in Arts, entertainment and recreation (female)',
+            name='People employed in Arts, entertainment and recreation (female)',
             description='NAICS code: 71',
             type='Numeric',
             weight=3,
@@ -14622,7 +14215,7 @@ class NHSColumns(ColumnsTask):
 
         t014c021_t = OBSColumn(
             id='t014c021_t',
-            name='People aged 15+ in the labour force employed in Accommodation and food services (total)',
+            name='People employed in Accommodation and food services (total)',
             description='NAICS code: 72',
             type='Numeric',
             weight=3,
@@ -14632,7 +14225,7 @@ class NHSColumns(ColumnsTask):
 
         t014c021_m = OBSColumn(
             id='t014c021_m',
-            name='People aged 15+ in the labour force employed in Accommodation and food services (male)',
+            name='People employed in Accommodation and food services (male)',
             description='NAICS code: 72',
             type='Numeric',
             weight=3,
@@ -14642,7 +14235,7 @@ class NHSColumns(ColumnsTask):
 
         t014c021_f = OBSColumn(
             id='t014c021_f',
-            name='People aged 15+ in the labour force employed in Accommodation and food services (female)',
+            name='People employed in Accommodation and food services (female)',
             description='NAICS code: 72',
             type='Numeric',
             weight=3,
@@ -14652,7 +14245,7 @@ class NHSColumns(ColumnsTask):
 
         t014c022_t = OBSColumn(
             id='t014c022_t',
-            name='People aged 15+ in the labour force employed in Other services (except public administration) (total)',
+            name='People employed in Other services (except public administration) (total)',
             description='NAICS code: 81',
             type='Numeric',
             weight=3,
@@ -14662,7 +14255,7 @@ class NHSColumns(ColumnsTask):
 
         t014c022_m = OBSColumn(
             id='t014c022_m',
-            name='People aged 15+ in the labour force employed in Other services (except public administration) (male)',
+            name='People employed in Other services (except public administration) (male)',
             description='NAICS code: 81',
             type='Numeric',
             weight=3,
@@ -14672,7 +14265,7 @@ class NHSColumns(ColumnsTask):
 
         t014c022_f = OBSColumn(
             id='t014c022_f',
-            name='People aged 15+ in the labour force employed in Other services (except public administration) (female)',
+            name='People employed in Other services (except public administration) (female)',
             description='NAICS code: 81',
             type='Numeric',
             weight=3,
@@ -14682,7 +14275,7 @@ class NHSColumns(ColumnsTask):
 
         t014c023_t = OBSColumn(
             id='t014c023_t',
-            name='People aged 15+ in the labour force employed in Public administration (total)',
+            name='People employed in Public administration (total)',
             description='NAICS code: 91',
             type='Numeric',
             weight=3,
@@ -14692,7 +14285,7 @@ class NHSColumns(ColumnsTask):
 
         t014c023_m = OBSColumn(
             id='t014c023_m',
-            name='People aged 15+ in the labour force employed in Public administration (male)',
+            name='People employed in Public administration (male)',
             description='NAICS code: 91',
             type='Numeric',
             weight=3,
@@ -14702,7 +14295,7 @@ class NHSColumns(ColumnsTask):
 
         t014c023_f = OBSColumn(
             id='t014c023_f',
-            name='People aged 15+ in the labour force employed in Public administration (female)',
+            name='People employed in Public administration (female)',
             description='NAICS code: 91',
             type='Numeric',
             weight=3,
@@ -14712,7 +14305,7 @@ class NHSColumns(ColumnsTask):
 
         t015c002_t = OBSColumn(
             id='t015c002_t',
-            name='People aged 15+ in the labour force (total)',
+            name='People in the labour force (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14721,7 +14314,7 @@ class NHSColumns(ColumnsTask):
 
         t015c002_m = OBSColumn(
             id='t015c002_m',
-            name='People aged 15+ in the labour force (male)',
+            name='People in the labour force (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14730,18 +14323,16 @@ class NHSColumns(ColumnsTask):
 
         t015c002_f = OBSColumn(
             id='t015c002_f',
-            name='People aged 15+ in the labour force (female)',
+            name='People in the labour force (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
             tags=[ca, unit_people, subsections['employment']],
             targets={ t005c001_f: DENOMINATOR },)
 
-        # FIXME Employed/Unemployed don't need to be qualified by the "People
-        # aged 15+ in the labour force" boilerplate.
         t015c003_t = OBSColumn(
             id='t015c003_t',
-            name='People aged 15+ in the labour force - Employed (total)',
+            name='People employed (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14750,7 +14341,7 @@ class NHSColumns(ColumnsTask):
 
         t015c003_m = OBSColumn(
             id='t015c003_m',
-            name='People aged 15+ in the labour force - Employed (male)',
+            name='People employed (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14759,7 +14350,7 @@ class NHSColumns(ColumnsTask):
 
         t015c003_f = OBSColumn(
             id='t015c003_f',
-            name='People aged 15+ in the labour force - Employed (female)',
+            name='People employed (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14768,7 +14359,7 @@ class NHSColumns(ColumnsTask):
 
         t015c004_t = OBSColumn(
             id='t015c004_t',
-            name='People aged 15+ in the labour force - Unemployed (total)',
+            name='People unemployed (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14777,7 +14368,7 @@ class NHSColumns(ColumnsTask):
 
         t015c004_m = OBSColumn(
             id='t015c004_m',
-            name='People aged 15+ in the labour force - Unemployed (male)',
+            name='People unemployed (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -14786,7 +14377,7 @@ class NHSColumns(ColumnsTask):
 
         t015c004_f = OBSColumn(
             id='t015c004_f',
-            name='People aged 15+ in the labour force - Unemployed (female)',
+            name='People unemployed (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -21972,14 +21563,6 @@ class NHSColumns(ColumnsTask):
             targets={},)
 
         return OrderedDict([
-            # FIXME it's not safe to pass in a column from one columntask
-            # to another. If the number of columns returned is
-            # important to match up to an input file, these should just
-            # be replaced with dummy OBSColumn declarations with minimal
-            # information.
-            #('t001c001_t', t001c001_t),
-            #('t001c001_m', t001c001_m),
-            #('t001c001_f', t001c001_f),
             ('t001c002_t', t001c002_t),
             ('t001c002_m', t001c002_m),
             ('t001c002_f', t001c002_f),
@@ -22058,23 +21641,12 @@ class NHSColumns(ColumnsTask):
             ('t004c002_t', t004c002_t),
             ('t004c002_m', t004c002_m),
             ('t004c002_f', t004c002_f),
-            ('t004c003_t', t004c003_t),
-            ('t004c003_m', t004c003_m),
-            ('t004c003_f', t004c003_f),
             ('t004c004_t', t004c004_t),
             ('t004c004_m', t004c004_m),
             ('t004c004_f', t004c004_f),
             ('t004c005_t', t004c005_t),
             ('t004c005_m', t004c005_m),
             ('t004c005_f', t004c005_f),
-            # FIXME it's not safe to pass in a column from one columntask
-            # to another like this.  If the number of columns returned is
-            # important to match up to an input file, these should just
-            # be replaced with dummy OBSColumn declarations with minimal
-            # information.
-            #('t005c001_t', t005c001_t),
-            #('t005c001_m', t005c001_m),
-            #('t005c001_f', t005c001_f),
             ('t005c002_t', t005c002_t),
             ('t005c002_m', t005c002_m),
             ('t005c002_f', t005c002_f),
