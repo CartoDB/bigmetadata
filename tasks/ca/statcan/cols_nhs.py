@@ -12442,7 +12442,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_t: UNIVERSE },)
+            targets={ t005c001_t: UNIVERSE },)
 
         t013c036_m = OBSColumn(
             id='t013c036_m',
@@ -12450,7 +12450,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_m: UNIVERSE },)
+            targets={ t005c001_m: UNIVERSE },)
 
         t013c036_f = OBSColumn(
             id='t013c036_f',
@@ -12458,7 +12458,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_f: UNIVERSE },)
+            targets={ t005c001_f: UNIVERSE },)
 
         t013c037_t = OBSColumn(
             id='t013c037_t',
@@ -12610,7 +12610,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_t: UNIVERSE },)
+            targets={ t005c001_t: UNIVERSE },)
 
         t013c043_m = OBSColumn(
             id='t013c043_m',
@@ -12618,7 +12618,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_m: UNIVERSE },)
+            targets={ t005c001_m: UNIVERSE },)
 
         t013c043_f = OBSColumn(
             id='t013c043_f',
@@ -12626,7 +12626,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_f: UNIVERSE },)
+            targets={ t005c001_f: UNIVERSE },)
 
         t013c044_t = OBSColumn(
             id='t013c044_t',
@@ -12754,7 +12754,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_t: UNIVERSE },)
+            targets={ t005c001_t: UNIVERSE },)
 
         t013c049_m = OBSColumn(
             id='t013c049_m',
@@ -12762,7 +12762,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_m: UNIVERSE },)
+            targets={ t005c001_m: UNIVERSE },)
 
         t013c049_f = OBSColumn(
             id='t013c049_f',
@@ -12770,7 +12770,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_f: UNIVERSE },)
+            targets={ t005c001_f: UNIVERSE },)
 
         t013c050_t = OBSColumn(
             id='t013c050_t',
@@ -12778,7 +12778,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_t: UNIVERSE },)
+            targets={ t005c001_t: UNIVERSE },)
 
         t013c050_m = OBSColumn(
             id='t013c050_m',
@@ -12786,7 +12786,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_m: UNIVERSE },)
+            targets={ t005c001_m: UNIVERSE },)
 
         t013c050_f = OBSColumn(
             id='t013c050_f',
@@ -12794,7 +12794,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             tags=[ca, unit_ratio, subsections['income']],
-            targets={ t013c035_f: UNIVERSE },)
+            targets={ t005c001_f: UNIVERSE },)
 
         t013c051_t = OBSColumn(
             id='t013c051_t',
@@ -22937,9 +22937,6 @@ class NHSColumns(ColumnsTask):
             ('t013c034_t', t013c034_t),
             ('t013c034_m', t013c034_m),
             ('t013c034_f', t013c034_f),
-            ('t013c035_t', t013c035_t),
-            ('t013c035_m', t013c035_m),
-            ('t013c035_f', t013c035_f),
             ('t013c036_t', t013c036_t),
             ('t013c036_m', t013c036_m),
             ('t013c036_f', t013c036_f),
