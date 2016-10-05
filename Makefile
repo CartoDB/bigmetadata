@@ -112,7 +112,12 @@ extension:
 sh-sql:
 	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
 
-api-unittest:
+# Regenerate fixtures for the extension
+extension-fixtures:
+	docker-compose run --rm bigmetadata \
+	  python observatory-extension/scripts/generate_fixtures.py
+
+extension-unittest:
 	docker exec -it \
 	  $$(docker-compose ps -q postgres) \
 	  /bin/bash -c "cd observatory-extension \
