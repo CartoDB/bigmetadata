@@ -1,7 +1,7 @@
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath)
-from tasks.meta import current_session, DENOMINATOR, GEOM_REF
+from tasks.meta import current_session, DENOMINATOR, GEOM_REF, UNIVERSE
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 import os
@@ -131,6 +131,9 @@ class FrenchColumns(ColumnsTask):
         }
         if self.table_theme != 'population':
             requirements['population_vars'] = FrenchColumns(table_theme='population')
+
+        if self.table_theme in ('employment', 'education'):
+            requirements['households_vars'] = FrenchColumns(table_theme='household')
         return requirements
 
     def version(self):
@@ -143,7 +146,9 @@ class FrenchColumns(ColumnsTask):
         subsectiontags = input_['subsections']
         unittags = input_['unittags']
         france = input_['sections']['fr']
-        pop_columns = input_.get('population_vars', {})
+        column_reqs = {}
+        column_reqs.update(input_.get('population_vars', {}))
+        column_reqs.update(input_.get('households_vars', {}))
 
         filepath = "frenchmetadata/French Variables - {}.tsv".format(self.table_theme.title())
         session = current_session()
@@ -153,13 +158,20 @@ class FrenchColumns(ColumnsTask):
             next(tsvreader, None)
             for line in tsvreader:
                 # Ignoring "Universe" and "Description" columns for now...
-                var_code,short_name,long_name,var_unit,denominators,subsections = line[0], line[1], line[2], line[3], line[4], line[5]
+                var_code, short_name, long_name, var_unit, denominators, \
+                  subsections, universe  = line
+
                 denominators = denominators.split(',')
+                universes = universe.split(',')
+
                 # slugified_lib = underscore_slugify('{}'.format(short_name))
                 targets_dict = {}
                 for x in denominators:
                     x = x.strip()
-                    targets_dict[cols.get(x, pop_columns[x].get(session) if x in pop_columns else None)] = 'denominator'
+                    targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'denominator'
+                for x in universes:
+                    x = x.strip()
+                    targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'universe'
                 targets_dict.pop(None, None)
                 cols[var_code] = OBSColumn(
                     id=var_code,
@@ -172,7 +184,6 @@ class FrenchColumns(ColumnsTask):
                     aggregate='sum',
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
-                    # Need to fix Subsection and UnitTags! Problem with unittag "families"
                     tags=[france, unittags[var_unit]],
                     targets= targets_dict
                 )
