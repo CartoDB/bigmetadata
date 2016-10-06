@@ -37,8 +37,7 @@ class ImportCommuneAreas(Shp2TempTableTask):
         return DownloadCommuneAreas()
 
     def input_shp(self):
-        return os.path.join(self.input().path, 'GEOFLA/1_DONNEES_LIVRAISON_2013-11-00161/GEOFLA_1-1_SHP_LAMB93_FR-ED131/COMMUNES/COMMUNE.SHP')
-
+        return os.path.join(self.input().path, 'GEOFLA_1-1_SHP_LAMB93_FR-ED131/GEOFLA/1_DONNEES_LIVRAISON_2013-11-00161/GEOFLA_1-1_SHP_LAMB93_FR-ED131/COMMUNES/COMMUNE.SHP')
 class OutputCommuneColumns(ColumnsTask):
 
     def version(self):
@@ -73,7 +72,7 @@ class OutputCommuneColumns(ColumnsTask):
         ])
 
 
-class OutputAreas(TableTask):
+class OutputCommuneAreas(TableTask):
 
     def requires(self):
         return {
