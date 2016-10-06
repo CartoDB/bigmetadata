@@ -1,0 +1,25 @@
+var_code	short_name	long_name	universe	unit	denominators	subsections
+NBMEN12	nombre de ménages fiscaux		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	households		
+NBPERS12	nombre de personnes dans les ménages fiscaux		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	people		
+NBUC12	nbre d'unités de consommation dans les ménages fiscaux		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	tax_consumption_units		
+PMIMP12	Part des ménages fiscaux imposés		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	ratio		
+Q112	1er quartile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+Q212	médiane		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+Q312	3e quartile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+Q3_Q1	Ecart interquartile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+D112	1er décile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+D212	2e décile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+D312	3e décile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+D412	4e décile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+D612	6e décile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+D712	7e décile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+D812	8e décile		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+D912	9e décille		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	money		
+RD	rapport interdécile D9/D1		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	ratio		
+S80S2012	S80/S20		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	ratio		
+GI12	indice de Gini		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	index		
+PTSA12	Part des salaires et traitements hors chômage		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	ratio		
+PCHO12	Part des indemnités chômage		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	ratio		
+PBEN12	Part des revenus d'activités non salariées		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	ratio		
+PPEN12	Part des pensions, retraites et rentes		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	ratio		
+PAUT12	Part des autres revenus		Distribution des revenus déclarés par unité de consommation et composition du revenu déclaré - Ensemble	ratio		
