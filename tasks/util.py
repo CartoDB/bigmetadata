@@ -758,8 +758,8 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
-        if self.deps() and not all([d.complete() for d in self.deps()]):
-            raise Exception('Must run prerequisites first')
+        #if self.deps() and not all([d.complete() for d in self.deps()]):
+        #    raise Exception('Must run prerequisites first')
         output = OrderedDict({})
         session = current_session()
         already_in_session = [obj for obj in session]
@@ -784,10 +784,23 @@ class ColumnsTask(Task):
         default, but in case of failure allows attempt to run dependencies (a
         missing dependency could result in exception on `output`).
         '''
-        if self.deps() and not all([d.complete() for d in self.deps()]):
+        deps = self.deps()
+        if deps and not all([d.complete() for d in deps]):
             return False
         else:
-            return super(ColumnsTask, self).complete()
+            #_complete = super(ColumnsTask, self).complete()
+            # bulk check that all columns exist at proper version
+            colids = ["'{}'".format(ct._id) for ct in self.output().values()]
+            cnt = current_session().execute(
+                '''
+                SELECT COUNT(*)
+                FROM observatory.obs_column
+                WHERE id IN ({ids}) AND version = '{version}'
+                '''.format(
+                    ids=','.join(colids),
+                    version=self.version()
+                )).fetchone()[0]
+            return cnt == len(colids)
 
 
 class TagsTask(Task):
@@ -824,8 +837,8 @@ class TagsTask(Task):
         return 0
 
     def output(self):
-        if self.deps() and not all([d.complete() for d in self.deps()]):
-            raise Exception('Must run prerequisites first')
+        #if self.deps() and not all([d.complete() for d in self.deps()]):
+        #    raise Exception('Must run prerequisites first')
         output = {}
         for tag in self.tags():
             orig_id = tag.id
@@ -841,7 +854,8 @@ class TagsTask(Task):
         default, but in case of failure allows attempt to run dependencies (a
         missing dependency could result in exception on `output`).
         '''
-        if self.deps() and not all([d.complete() for d in self.deps()]):
+        deps = self.deps()
+        if deps and not all([d.complete() for d in deps]):
             return False
         else:
             return super(TagsTask, self).complete()
@@ -908,15 +922,28 @@ class TableToCartoViaImportAPI(Task):
         # varying back to it
         try:
             session = current_session()
-            resp = session.execute('SELECT column_name, data_type '
-                                   'FROM information_schema.columns '
-                                   "WHERE table_schema='{schema}' "
-                                   "AND table_name='{tablename}' ".format(
-                                       schema=self.schema,
-                                       tablename=self.table)).fetchall()
-            alter = ', '.join(["ALTER COLUMN {colname} SET DATA TYPE {data_type} USING NULLIF({colname}, '')::{data_type}".format(
-                colname=colname, data_type=data_type
-            ) for colname, data_type in resp if data_type.lower() not in ('character varying', 'text', 'user-defined')])
+            resp = session.execute(
+                '''
+                SELECT att.attname,
+                       pg_catalog.format_type(atttypid, NULL) AS display_type,
+                       att.attndims
+                FROM pg_attribute att
+                  JOIN pg_class tbl ON tbl.oid = att.attrelid
+                  JOIN pg_namespace ns ON tbl.relnamespace = ns.oid
+                WHERE tbl.relname = '{tablename}'
+                  AND pg_catalog.format_type(atttypid, NULL) NOT IN
+                      ('character varying', 'text', 'user-defined', 'geometry')
+                  AND att.attname IN (SELECT column_name from information_schema.columns
+                                      WHERE table_schema='{schema}'
+                                        AND table_name='{tablename}')
+                  AND ns.nspname = '{schema}';
+                '''.format(schema=self.schema,
+                           tablename=self.table)).fetchall()
+            alter = ', '.join([
+                " ALTER COLUMN {colname} SET DATA TYPE {data_type} "
+                " USING NULLIF({colname}, '')::{data_type}".format(
+                    colname=colname, data_type=data_type
+                ) for colname, data_type, _ in resp])
             if alter:
                 resp = query_cartodb(
                     'ALTER TABLE {tablename} {alter}'.format(
@@ -1300,6 +1327,7 @@ class TableTask(Task):
         self.populate()
         output.update_or_create_metadata()
         self.create_indexes(output)
+        current_session().flush()
         self.create_geom_summaries(output)
 
     def create_indexes(self, output):
@@ -1340,8 +1368,8 @@ class TableTask(Task):
                               output._id, colid, output.table, colname)
 
     def output(self):
-        if self.deps() and not all([d.complete() for d in self.deps()]):
-            raise Exception('Must run prerequisites first')
+        #if self.deps() and not all([d.complete() for d in self.deps()]):
+        #    raise Exception('Must run prerequisites first')
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
@@ -1353,7 +1381,8 @@ class TableTask(Task):
                            self._columns, self)
 
     def complete(self):
-        if self.deps() and not all([d.complete() for d in self.deps()]):
+        deps = self.deps()
+        if deps and not all([d.complete() for d in deps]):
             return False
         else:
             return super(TableTask, self).complete()
