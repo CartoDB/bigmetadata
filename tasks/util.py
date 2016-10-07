@@ -758,8 +758,8 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
-        if self.deps() and not all([d.complete() for d in self.deps()]):
-            raise Exception('Must run prerequisites first')
+        #if self.deps() and not all([d.complete() for d in self.deps()]):
+        #    raise Exception('Must run prerequisites first')
         output = OrderedDict({})
         session = current_session()
         already_in_session = [obj for obj in session]
@@ -784,10 +784,23 @@ class ColumnsTask(Task):
         default, but in case of failure allows attempt to run dependencies (a
         missing dependency could result in exception on `output`).
         '''
-        if self.deps() and not all([d.complete() for d in self.deps()]):
+        deps = self.deps()
+        if deps and not all([d.complete() for d in deps]):
             return False
         else:
-            return super(ColumnsTask, self).complete()
+            #_complete = super(ColumnsTask, self).complete()
+            # bulk check that all columns exist at proper version
+            colids = ["'{}'".format(ct._id) for ct in self.output().values()]
+            cnt = current_session().execute(
+                '''
+                SELECT COUNT(*)
+                FROM observatory.obs_column
+                WHERE id IN ({ids}) AND version = '{version}'
+                '''.format(
+                    ids=','.join(colids),
+                    version=self.version()
+                )).fetchone()[0]
+            return cnt == len(colids)
 
 
 class TagsTask(Task):
@@ -824,8 +837,8 @@ class TagsTask(Task):
         return 0
 
     def output(self):
-        if self.deps() and not all([d.complete() for d in self.deps()]):
-            raise Exception('Must run prerequisites first')
+        #if self.deps() and not all([d.complete() for d in self.deps()]):
+        #    raise Exception('Must run prerequisites first')
         output = {}
         for tag in self.tags():
             orig_id = tag.id
@@ -841,7 +854,8 @@ class TagsTask(Task):
         default, but in case of failure allows attempt to run dependencies (a
         missing dependency could result in exception on `output`).
         '''
-        if self.deps() and not all([d.complete() for d in self.deps()]):
+        deps = self.deps()
+        if deps and not all([d.complete() for d in deps]):
             return False
         else:
             return super(TagsTask, self).complete()
@@ -1354,8 +1368,8 @@ class TableTask(Task):
                               output._id, colid, output.table, colname)
 
     def output(self):
-        if self.deps() and not all([d.complete() for d in self.deps()]):
-            raise Exception('Must run prerequisites first')
+        #if self.deps() and not all([d.complete() for d in self.deps()]):
+        #    raise Exception('Must run prerequisites first')
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
@@ -1367,7 +1381,8 @@ class TableTask(Task):
                            self._columns, self)
 
     def complete(self):
-        if self.deps() and not all([d.complete() for d in self.deps()]):
+        deps = self.deps()
+        if deps and not all([d.complete() for d in deps]):
             return False
         else:
             return super(TableTask, self).complete()
