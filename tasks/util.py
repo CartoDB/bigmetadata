@@ -1313,6 +1313,7 @@ class TableTask(Task):
         self.populate()
         output.update_or_create_metadata()
         self.create_indexes(output)
+        current_session().flush()
         self.create_geom_summaries(output)
 
     def create_indexes(self, output):
