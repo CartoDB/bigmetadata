@@ -29,20 +29,6 @@ META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_col
 
 
 
-def should_upload(table):
-    '''
-    Determine whether a table has any important columns.  If so, it should be
-    uploaded, otherwise it should be ignored.
-    '''
-    # TODO this table doesn't want to upload
-    if table.tablename == 'obs_ffebc3eb689edab4faa757f75ca02c65d7db7327':
-        return False
-    for coltable in table.columns:
-        if coltable.column.weight > 0:
-            return True
-    return False
-
-
 class SyncColumn(WrapperTask):
     '''
     Upload tables relevant to updating a particular column by keyword.
@@ -96,22 +82,29 @@ class SyncData(WrapperTask):
 
 class SyncAllData(WrapperTask):
     '''
-    Sync all 
+    Sync all data to the linked CARTO account.
     '''
 
     force = BooleanParameter(default=False, significant=False)
 
     def requires(self):
-        tables = {}
-        session = current_session()
         existing_table_versions = dict([
             (r['tablename'], r['version']) for r in query_cartodb(
                 'SELECT * FROM obs_table'
             ).json()['rows']
         ])
-        for table in session.query(OBSTable):
-            if should_upload(table):
-                tables[table.tablename] = table.version
+        tables = dict([(k, v) for k, v in current_session().execute(
+            '''
+            SELECT tablename, t.version
+            FROM observatory.obs_table t,
+                 observatory.obs_column_table ct,
+                 observatory.obs_column c
+            WHERE t.id = ct.table_id
+              AND c.id = ct.column_id
+              AND t.tablename NOT IN ('obs_ffebc3eb689edab4faa757f75ca02c65d7db7327')
+              AND c.weight > 0
+            '''
+        )])
 
         for tablename, version in tables.iteritems():
             if version > existing_table_versions.get(tablename):

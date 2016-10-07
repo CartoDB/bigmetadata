@@ -82,10 +82,14 @@ class UnitTags(TagsTask):
                    name='Square Kilometer',
                    type='unit',
                    description=''),
-            OBSTag(id='families-unit', # TODO we should qualify these based off class
+            OBSTag(id='rooms',
+                   name='Rooms',
+                   type='unit',
+                   description=''),
+            OBSTag(id='family_unit',
                    name='Families',
                    type='unit',
-                   description='')
+                   description=''),
         ]
 
 
@@ -114,6 +118,10 @@ class SectionTags(TagsTask):
                    description=''),
             OBSTag(id='uk',
                    name='United Kingdom',
+                   type='section',
+                   description=''),
+            OBSTag(id='fr',
+                   name='France',
                    type='section',
                    description=''),
             OBSTag(id='ca',
