@@ -279,7 +279,7 @@ class OutputAreas(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT ST_MakeValid(wkb_geometry), DCOMIRIS '
+                        'SELECT DISTINCT ST_MakeValid(wkb_geometry), DCOMIRIS '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input()['data'].table,
