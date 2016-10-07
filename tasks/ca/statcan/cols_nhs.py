@@ -12908,7 +12908,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit['families-unit'], subsections['income']],
+            tags=[ca, unit['family_unit'], subsections['income']],
             targets={},)
 
         t013c056_t = OBSColumn(

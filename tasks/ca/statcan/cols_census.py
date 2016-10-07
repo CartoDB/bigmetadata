@@ -30,7 +30,7 @@ class CensusColumns(ColumnsTask):
         unit_years = unit['years']
         unit_ratio = unit['ratio']
         unit_education = unit['education_level']
-        unit_families = unit['families-unit']
+        unit_families = unit['family_unit']
 
         ca = input_['sections']['ca']
 
