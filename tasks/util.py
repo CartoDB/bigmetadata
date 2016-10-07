@@ -1381,11 +1381,12 @@ class TableTask(Task):
                            self._columns, self)
 
     def complete(self):
-        deps = self.deps()
-        if deps and not all([d.complete() for d in deps]):
-            return False
-        else:
-            return super(TableTask, self).complete()
+        return TableTarget(classpath(self),
+                           underscore_slugify(self.task_id),
+                           OBSTable(description=self.description(),
+                                    version=self.version(),
+                                    timespan=self.timespan()),
+                           [], self).exists()
 
 
 class RenameTables(Task):
