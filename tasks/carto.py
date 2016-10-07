@@ -1001,30 +1001,24 @@ class OBSMetaToLocal(OBSMeta):
         return getattr(self, '_complete', False)
 
 
-class SyncMetadata(OBSMeta):
+class SyncOBSMetaDimension(TableToCartoViaImportAPI):
+
+    dimension = Parameter()
+    table = None
+
+    def requires(self):
+        return TableToCartoViaImportAPI(table='obs_meta', force=True)
+
+    def run(self):
+        self.table = 'obs_meta_' + self.dimension
+        super(SyncOBSMetaDimension, self).run()
+
+
+class SyncMetadata(WrapperTask):
 
     force = BooleanParameter(default=True, significant=False)
 
     def requires(self):
-        for tablename in META_TABLES:
-            yield TableToCartoViaImportAPI(table=tablename, force=True)
+        for dim in ('numer', 'denom', 'geom', 'timespan'):
+            yield SyncOBSMetaDimension(dimension=dim, force=True)
 
-    def run(self):
-        query_cartodb(self.FIRST_AGGREGATE)
-        CartoDBTarget(tablename='obs_meta').remove()
-        import_api({
-            'table_name': 'obs_meta',
-            'sql': self.QUERY.replace('\n', ' '),
-            'privacy': 'public',
-        })
-        for dimension, query in self.DIMENSIONS.iteritems():
-            CartoDBTarget(tablename='obs_meta_{}'.format(dimension)).remove()
-            import_api({
-                'table_name': 'obs_meta_{}'.format(dimension),
-                'sql': query.replace('\n', ' '),
-                'privacy': 'public',
-            })
-        self._complete = True
-
-    def complete(self):
-        return getattr(self, '_complete', False)
