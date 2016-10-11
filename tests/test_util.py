@@ -1,13 +1,13 @@
 from collections import OrderedDict
 from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
-                        assert_is_none)
+                        assert_is_none, assert_true, assert_false)
+from tests.util import runtask, session_scope, setup, teardown, FakeTask
+
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
-                        TableTarget, TagTarget, TagsTask)
-from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag,
+                        TableTarget, TagTarget, TagsTask, PostgresTarget)
+from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
-from tests.util import runtask, session_scope
-from tests.util import setup, teardown
 
 
 
@@ -38,18 +38,18 @@ def test_column_target_create_update():
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
         aggregate='sum',
-        weight=10))
+        weight=10), FakeTask())
 
     # Does not exist in DB til we update_or_create
     with session_scope() as session:
         assert_equals(session.query(OBSColumn).count(), 0)
-        col.update_or_create(session)
+        col.update_or_create()
         assert_equals(session.query(OBSColumn).count(), 1)
 
     # Can update_or_create all we want
     with session_scope() as session:
         assert_equals(session.query(OBSColumn).count(), 1)
-        col.update_or_create(session)
+        col.update_or_create()
         assert_equals(session.query(OBSColumn).count(), 1)
 
     # Can overwrite the existing column
@@ -58,18 +58,18 @@ def test_column_target_create_update():
         name="foobar",
         description='foo-bar-baz',
         aggregate='sum',
-        weight=10))
+        weight=10), FakeTask())
 
     with session_scope() as session:
         assert_equals(session.query(OBSColumn).count(), 1)
-        col.update_or_create(session)
+        col.update_or_create()
         assert_equals(col._column.name, 'foobar')
         assert_equals(col._column.description, 'foo-bar-baz')
         assert_equals(session.query(OBSColumn).count(), 1)
 
     # Should auto-qualify column id
     with session_scope() as session:
-        rawcol = session.query(OBSColumn).get('"tests".foobar')
+        rawcol = session.query(OBSColumn).get('tests.foobar')
         assert_equals(rawcol.name, 'foobar')
         assert_equals(rawcol.description, 'foo-bar-baz')
 
@@ -81,15 +81,15 @@ def test_column_target_relations_create_update():
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
         aggregate='sum',
-        weight=10))
+        weight=10), FakeTask())
 
     with session_scope() as session:
         assert_equals(session.query(OBSColumn).count(), 0)
-        col.update_or_create(session)
+        col.update_or_create()
         rawcol = col._column
         tag = OBSTag(id='tag', name='some tag', description='some tag', type='some type')
         session.add(tag)
-        rawcol.tags.append(TagTarget(tag))
+        rawcol.tags.append(TagTarget(tag, FakeTask()))
         session.add(rawcol)
         table = OBSTable(id='table', tablename='foobar')
         session.add(table)
@@ -106,10 +106,10 @@ def test_column_target_relations_create_update():
     col._column.name = 'foo bar baz'
 
     with session_scope() as session:
-        col.update_or_create(session)
+        col.update_or_create()
 
     with session_scope() as session:
-        rawcol = session.query(OBSColumn).get('"tests".foobar')
+        rawcol = session.query(OBSColumn).get('tests.foobar')
         assert_equals(rawcol.name, 'foo bar baz')
         assert_equals(session.query(OBSTag).count(), 1)
         assert_equals(session.query(OBSColumnTag).count(), 1)
@@ -125,11 +125,11 @@ def test_column_target_many_inits():
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
         aggregate='sum',
-        weight=10))
+        weight=10), FakeTask())
 
     with session_scope() as session:
         assert_equals(session.query(OBSColumn).count(), 0)
-        col.update_or_create(session)
+        col.update_or_create()
         assert_equals(session.query(OBSColumn).count(), 1)
 
     col = ColumnTarget("tests", "foobar", OBSColumn(
@@ -137,11 +137,11 @@ def test_column_target_many_inits():
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
         aggregate='sum',
-        weight=10))
+        weight=10), FakeTask())
 
     with session_scope() as session:
         assert_equals(session.query(OBSColumn).count(), 1)
-        col.update_or_create(session)
+        col.update_or_create()
         assert_equals(session.query(OBSColumn).count(), 1)
 
 
@@ -152,65 +152,60 @@ def test_table_target_many_inits():
         name="Total Population",
         description='The total number of all',
         aggregate='sum',
-        weight=10))
+        weight=10), FakeTask())
     foo_col = ColumnTarget("tests", "foo", OBSColumn(
         type='Numeric',
         name="Foo Bar",
         description='moo boo foo',
         aggregate='median',
-        weight=8))
-    with session_scope() as session:
-        pop_col.update_or_create(session)
-        foo_col.update_or_create(session)
+        weight=8), FakeTask())
+    pop_col.update_or_create()
+    foo_col.update_or_create()
 
-    with session_scope() as session:
-        assert_equals(session.query(OBSColumn).count(), 2)
+    assert_equals(current_session().query(OBSColumn).count(), 2)
 
     columns = {
         'population': pop_col,
         'foobar': foo_col
     }
-    table_target = TableTarget('test', 'foobar', OBSTable(), columns)
-    table_id = 'test.foobar'
+    table_target = TableTarget('test', 'foobar', OBSTable(), columns, FakeTask())
 
-    with session_scope() as session:
-        assert_equals(False, table_target.exists())
-        assert_equals(session.query(OBSTable).count(), 0)
-        assert_equals(session.query(OBSColumn).count(), 2)
-        table_target.update_or_create(session)
-        assert_equals(session.query(OBSColumn).count(), 2)
-        assert_equals(session.query(OBSTable).count(), 1)
-        assert_in(table_id, metadata.tables)
-        sqlalchemy_table = metadata.tables[table_id]
-        assert_equals(len(sqlalchemy_table.columns), 2)
+    assert_equals(False, table_target.exists())
+    assert_equals(current_session().query(OBSTable).count(), 0)
+    assert_equals(current_session().query(OBSColumn).count(), 2)
+    table_target.update_or_create_table()
+    table_target.update_or_create_metadata()
+    assert_equals(current_session().query(OBSColumn).count(), 2)
+    assert_equals(current_session().query(OBSTable).count(), 1)
+    obs_table = table_target.get(current_session())
+    tablename = 'observatory.' + obs_table.tablename
+    assert_in(tablename, metadata.tables)
+    sqlalchemy_table = metadata.tables[tablename]
+    assert_equals(len(sqlalchemy_table.columns), 2)
 
-    table_target.exists()
-    assert_equals(True, table_target.exists())
-    assert_equals(table_target.table.schema, 'test')
-    assert_equals(table_target.table.name, 'foobar')
+    assert_equals(table_target.exists(), False)
+
+    # should 'exist' once rows inserted
+    current_session().execute('INSERT INTO {tablename} VALUES (0, 0)'.format(
+        tablename=tablename))
+    current_session().commit()
+
+    assert_equals(table_target.exists(), True)
 
     # new session, old object
-    with session_scope() as session:
-        assert_equals(True, table_target.exists())
-        assert_equals(session.query(OBSTable).count(), 1)
-        table_target.update_or_create(session)
-        assert_equals(session.query(OBSTable).count(), 1)
-        assert_in(table_id, metadata.tables)
-        sqlalchemy_table = metadata.tables[table_id]
-        assert_equals(len(sqlalchemy_table.columns), 2)
-        assert_equals(True, table_target.exists())
+    assert_equals(True, table_target.exists())
+    assert_equals(current_session().query(OBSTable).count(), 1)
 
-    # new session, new object
-    table_target = TableTarget('test', 'foobar', OBSTable(), columns)
-    with session_scope() as session:
-        assert_equals(True, table_target.exists())
-        assert_equals(session.query(OBSTable).count(), 1)
-        table_target.update_or_create(session)
-        assert_equals(session.query(OBSTable).count(), 1)
-        assert_in(table_id, metadata.tables)
-        sqlalchemy_table = metadata.tables[table_id]
-        assert_equals(len(sqlalchemy_table.columns), 2)
-        assert_equals(True, table_target.exists())
+    current_session().rollback()
+    table_target.update_or_create_table()
+    table_target.update_or_create_metadata()
+    assert_equals(current_session().query(OBSTable).count(), 1)
+    assert_in(tablename, metadata.tables)
+    sqlalchemy_table = metadata.tables[tablename]
+    assert_equals(len(sqlalchemy_table.columns), 2)
+
+    # forcing update_or_create_table again will end up wiping the table
+    assert_equals(False, table_target.exists())
 
 
 @with_setup(setup, teardown)
@@ -233,10 +228,10 @@ def test_columns_task_creates_columns_only_when_run():
     with session_scope() as session:
         assert_equals(session.query(OBSColumn).count(), 2)
         assert_equals(session.query(OBSColumnToColumn).count(), 1)
-        assert_equals(task.output()['pop'].get(session).id, '"test_util".population')
-        assert_equals(task.output()['foobar'].get(session).id, '"test_util".foobar')
-        pop = session.query(OBSColumn).get('"test_util".population')
-        foobar = session.query(OBSColumn).get('"test_util".foobar')
+        assert_equals(task.output()['pop'].get(session).id, 'test_util.population')
+        assert_equals(task.output()['foobar'].get(session).id, 'test_util.foobar')
+        pop = session.query(OBSColumn).get('test_util.population')
+        foobar = session.query(OBSColumn).get('test_util.foobar')
         assert_equals(len(pop.sources), 1)
         assert_equals(len(foobar.targets), 1)
         assert_equals(pop.sources.keys()[0].id, foobar.id)
@@ -307,8 +302,8 @@ class TestColumnsTask(ColumnsTask):
 
 class TestTableTask(TableTask):
 
-    alpha = Parameter(default=1996)
-    beta = Parameter(default=5000)
+    alpha = Parameter(default='1996')
+    beta = Parameter(default='5000')
 
     def requires(self):
         return {
@@ -325,7 +320,9 @@ class TestTableTask(TableTask):
         return ''
 
     def populate(self):
-        pass
+        session = current_session()
+        session.execute('INSERT INTO {output} VALUES (100, 100)'.format(
+            output=self.output().table))
 
 
 @with_setup(setup, teardown)
@@ -340,19 +337,7 @@ def test_table_task_creates_columns_when_run():
         assert_equals(session.query(OBSColumn).count(), 2)
         assert_equals(session.query(OBSColumnTable).count(), 2)
         assert_equals(session.query(OBSTable).count(), 1)
-        assert_in(task.table.fullname, metadata.tables)
-
-
-@with_setup(setup, teardown)
-def test_table_task_table():
-
-    task = TestTableTask()
-    runtask(task)
-
-    with session_scope() as session:
-        assert_equals('"{schema}".{name}'.format(schema=task.table.schema,
-                                                 name=task.table.name),
-                      task.output().get(session).id)
+        assert_in(task.output().table, metadata.tables)
 
 
 @with_setup(setup, teardown)
@@ -361,23 +346,57 @@ def test_table_task_replaces_data():
     task = TestTableTask()
     runtask(task)
 
+    table = task.output().table
+
     with session_scope() as session:
-        assert_equals(session.query(task.table).count(), 0)
-        session.execute('INSERT INTO "{schema}"."{tablename}" VALUES (100, 100)'.format(
-            schema=task.table.schema,
-            tablename=task.table.name))
-        assert_equals(session.query(task.table).count(), 1)
+        assert_equals(session.execute(
+            'select count(*) from ' + table).fetchone()[0], 1)
 
     runtask(task)
 
     with session_scope() as session:
-        assert_equals(session.query(task.table).count(), 1)
+        assert_equals(session.execute(
+            'select count(*) from ' + table).fetchone()[0], 1)
+
 
 @with_setup(setup, teardown)
-def test_table_task_qualifies_table_name_schema():
-
+def test_table_task_increment_version_runs_again():
     task = TestTableTask()
     runtask(task)
+    output = task.output()
+    assert_true(output.exists())
 
-    assert_equals(task.table.schema, 'test_util')
-    assert_equals(task.table.name, 'test_table_task_alpha_1996_beta_5000')
+    task = TestTableTask()
+    task.version = lambda: 10
+    output = task.output()
+    assert_false(output.exists())
+
+    current_session().rollback()
+    runtask(task)
+    assert_true(output.exists())
+
+
+@with_setup(setup, teardown)
+def test_postgres_target_existencess():
+    '''
+    PostgresTarget existenceness should be 0 if table DNE, 1 if it exists sans \
+    rows, and 2 if it has rows in it.
+    '''
+    session = current_session()
+
+    target = PostgresTarget('public', 'to_be')
+    assert_equals(target._existenceness(), 0)
+    assert_equals(target.empty(), False)
+    assert_equals(target.exists(), False)
+
+    session.execute('CREATE TABLE to_be (id INT)')
+    session.commit()
+    assert_equals(target._existenceness(), 1)
+    assert_equals(target.empty(), True)
+    assert_equals(target.exists(), False)
+
+    session.execute('INSERT INTO to_be VALUES (1)')
+    session.commit()
+    assert_equals(target._existenceness(), 2)
+    assert_equals(target.empty(), False)
+    assert_equals(target.exists(), True)

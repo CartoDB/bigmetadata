@@ -33,7 +33,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 5
+        return 8
 
     def tags(self):
         return [
@@ -65,6 +65,10 @@ class UnitTags(TagsTask):
                    name='Years',
                    type='unit',
                    description=''),
+            OBSTag(id='minutes',
+                   name='Minutes',
+                   type='unit',
+                   description=''),
             OBSTag(id='telephones',
                    name='Telephones',
                    type='unit',
@@ -84,7 +88,15 @@ class UnitTags(TagsTask):
             OBSTag(id='segmentation',
                    name='Segmentation',
                    type='unit',
-                   description='')
+                   description=''),
+            OBSTag(id='rooms',
+                   name='Rooms',
+                   type='unit',
+                   description=''),
+            OBSTag(id='family_unit',
+                   name='Families',
+                   type='unit',
+                   description=''),
         ]
 
 
@@ -113,6 +125,14 @@ class SectionTags(TagsTask):
                    description=''),
             OBSTag(id='uk',
                    name='United Kingdom',
+                   type='section',
+                   description=''),
+            OBSTag(id='fr',
+                   name='France',
+                   type='section',
+                   description=''),
+            OBSTag(id='ca',
+                   name='Canada',
                    type='section',
                    description=''),
             OBSTag(id='th',

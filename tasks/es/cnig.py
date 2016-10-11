@@ -133,7 +133,7 @@ class Geometry(TableTask):
     timestamp = Parameter(default='20150101')
 
     def version(self):
-        return 4
+        return 9
 
     def requires(self):
         return {
