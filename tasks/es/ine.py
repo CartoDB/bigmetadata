@@ -1678,9 +1678,7 @@ class SourceTags(TagsTask):
         return 1
 
     def tags(self):
-        return [
-            OBSTag(
-                id='ine-source',
+        return [OBSTag(id='ine-source',
                 name='National Statistics Institute (INE)',
                 type='source',
                 description='`INE website <http://www.ine.es>`_')

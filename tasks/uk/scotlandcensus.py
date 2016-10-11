@@ -13,9 +13,9 @@ class SourceTags(TagsTask):
 
 	def tags(self):
 		return [OBSTag(id='scotland-census',
-					name="Scotland's Census Data Warehouse by National Records of Scotland",
-                    type='source',
-					description="`Scotland Census <http://www.scotlandscensus.gov.uk/`_")]
+    			name="Scotland's Census Data Warehouse by National Records of Scotland",
+                type='source',
+    			description="`Scotland Census <http://www.scotlandscensus.gov.uk/`_")]
 
 class DownloadScotlandLocal(DownloadUnzipTask):
 

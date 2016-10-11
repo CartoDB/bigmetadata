@@ -560,9 +560,7 @@ class SourceTags(TagsTask):
 		return 1
 
 	def tags(self):
-		return [
-			OBSTag(
-                id='lacaixa-source',
+		return [OBSTag(id='lacaixa-source',
                 name='Spain Economic Yearbook',
                 type='source',
                 description='The la Caixa publication of the `Spain Economic Yearbook <http://www.caixabankresearch.com/>`_')
