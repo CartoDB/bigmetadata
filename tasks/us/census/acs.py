@@ -1466,7 +1466,7 @@ class Columns(ColumnsTask):
             tags=[subsections['age_gender'], unit_people]
         )
         male_10_to_14 = OBSColumn(
-            id='B01001004',
+            id='B01001005',
             type='Numeric',
             name='Male age 10 to 14',
             description='The male population between the age of ten years to fourteen years within the specified area.',

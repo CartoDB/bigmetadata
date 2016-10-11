@@ -2,20 +2,31 @@
 Util functions for tests
 '''
 
+import os
 from subprocess import check_output
 
 
+EMPTY_RASTER = '0100000000000000000000F03F000000000000F0BF0000000000000000' \
+        '000000000000000000000000000000000000000000000000000000000A000A00'
+
+
+class FakeTask(object):
+
+    task_id = 'fake'
+
+
 def recreate_db():
-    check_output('''
-    psql -d gis -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
-             FROM pg_stat_activity
-             WHERE pg_stat_activity.datname = 'test'
-               AND pid <> pg_backend_pid();"
-    ''', shell=True)
+    if not os.environ.get('TRAVIS'):
+        check_output('''
+        psql -d gis -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
+                 FROM pg_stat_activity
+                 WHERE pg_stat_activity.datname = 'test'
+                   AND pid <> pg_backend_pid();"
+        ''', shell=True)
     check_output('dropdb --if-exists test', shell=True)
     check_output('createdb test -E UTF8 -T template0', shell=True)
-    check_output('psql -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
-    check_output('psql -c "CREATE SCHEMA IF NOT EXISTS observatory"', shell=True)
+    check_output('psql -d test -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
+    check_output('psql -d test -c "CREATE SCHEMA IF NOT EXISTS observatory"', shell=True)
 
 recreate_db()
 
@@ -31,12 +42,16 @@ from luigi.scheduler import CentralPlannerScheduler
 def setup():
     if Base.metadata.bind.url.database != 'test':
         raise Exception('Can only run tests on database "test"')
+    session = current_session()
+    session.rollback()
     Base.metadata.create_all()
 
 
 def teardown():
     if Base.metadata.bind.url.database != 'test':
         raise Exception('Can only run tests on database "test"')
+    session = current_session()
+    session.rollback()
     Base.metadata.drop_all()
 
 

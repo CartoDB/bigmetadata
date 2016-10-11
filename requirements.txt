@@ -18,3 +18,4 @@ boto==2.42.0
 pillow==3.3.0
 six
 sphinxcontrib-blockdiag
+pandas

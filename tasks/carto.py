@@ -11,7 +11,6 @@ from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter, FloatParameter)
 from luigi.task_register import Register
 from luigi.s3 import S3Target
-from nose.tools import assert_equal
 from datetime import date
 from decimal import Decimal
 from cStringIO import StringIO
@@ -28,20 +27,6 @@ import requests
 META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_column',
                'obs_column_tag', 'obs_tag', 'obs_dump_version', )
 
-
-
-def should_upload(table):
-    '''
-    Determine whether a table has any important columns.  If so, it should be
-    uploaded, otherwise it should be ignored.
-    '''
-    # TODO this table doesn't want to upload
-    if table.tablename == 'obs_ffebc3eb689edab4faa757f75ca02c65d7db7327':
-        return False
-    for coltable in table.columns:
-        if coltable.column.weight > 0:
-            return True
-    return False
 
 
 class SyncColumn(WrapperTask):
@@ -97,20 +82,36 @@ class SyncData(WrapperTask):
 
 class SyncAllData(WrapperTask):
     '''
-    Sync all 
+    Sync all data to the linked CARTO account.
     '''
 
     force = BooleanParameter(default=False, significant=False)
 
     def requires(self):
-        tables = {}
-        session = current_session()
-        for table in session.query(OBSTable):
-            if should_upload(table):
-                tables[table.id] = table.tablename
+        existing_table_versions = dict([
+            (r['tablename'], r['version']) for r in query_cartodb(
+                'SELECT * FROM obs_table'
+            ).json()['rows']
+        ])
+        tables = dict([(k, v) for k, v in current_session().execute(
+            '''
+            SELECT tablename, t.version
+            FROM observatory.obs_table t,
+                 observatory.obs_column_table ct,
+                 observatory.obs_column c
+            WHERE t.id = ct.table_id
+              AND c.id = ct.column_id
+              AND t.tablename NOT IN ('obs_ffebc3eb689edab4faa757f75ca02c65d7db7327')
+              AND c.weight > 0
+            '''
+        )])
 
-        for table_id, tablename in tables.iteritems():
-            yield TableToCartoViaImportAPI(table=tablename, force=self.force)
+        for tablename, version in tables.iteritems():
+            if version > existing_table_versions.get(tablename):
+                force = True
+            else:
+                force = self.force
+            yield TableToCartoViaImportAPI(table=tablename, force=force)
 
 
 class ImagesForMeasure(Task):
@@ -777,7 +778,6 @@ class OBSMeta(Task):
             SELECT $1;
     $$;
 
-    -- And then wrap an aggregate around it
     DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
     CREATE AGGREGATE public.FIRST (
             sfunc    = public.first_agg,
@@ -821,6 +821,13 @@ class OBSMeta(Task):
            JSONB_OBJECT_AGG(
              numer_tag.type || '/' || numer_tag.id, numer_tag.name
            ) numer_tags,
+           JSONB_OBJECT_AGG(
+             denom_tag.type || '/' || denom_tag.id, denom_tag.name
+           ) FILTER (WHERE denom_tag.type IS NOT NULL) denom_tags,
+           JSONB_OBJECT_AGG(
+             geom_tag.type || '/' || geom_tag.id, geom_tag.name
+           ) FILTER (WHERE geom_tag.type IS NOT NULL) geom_tags,
+           NULL::JSONB timespan_tags,
            ARRAY_AGG(DISTINCT numer_tag.id)
              FILTER (WHERE numer_tag.type = 'section') section_tags,
            ARRAY_AGG(DISTINCT numer_tag.id)
@@ -844,6 +851,8 @@ class OBSMeta(Task):
          observatory.obs_table geom_t,
          observatory.obs_column_tag numer_ctag,
          observatory.obs_tag numer_tag,
+         observatory.obs_column_tag geom_ctag,
+         observatory.obs_tag geom_tag,
          observatory.obs_column numer_c
       LEFT JOIN (
         observatory.obs_column_to_column denom_c2c
@@ -851,6 +860,8 @@ class OBSMeta(Task):
         JOIN observatory.obs_column_table denom_data_ct ON denom_data_ct.column_id = denom_c.id
         JOIN observatory.obs_table denom_t ON denom_data_ct.table_id = denom_t.id
         JOIN observatory.obs_column_table denom_geomref_ct ON denom_geomref_ct.table_id = denom_t.id
+        JOIN observatory.obs_column_tag denom_ctag ON denom_c.id = denom_ctag.column_id
+        JOIN observatory.obs_tag denom_tag ON denom_ctag.tag_id = denom_tag.id
       ) ON denom_c2c.source_id = numer_c.id
     WHERE numer_c.id = numer_data_ct.column_id
       AND numer_data_ct.table_id = numer_t.id
@@ -868,6 +879,8 @@ class OBSMeta(Task):
       AND numer_c.id != geomref_c.id
       AND numer_ctag.column_id = numer_c.id
       AND numer_ctag.tag_id = numer_tag.id
+      AND geom_ctag.column_id = geom_c.id
+      AND geom_ctag.tag_id = geom_tag.id
       AND (numer_c.id != denom_c.id OR denom_c.id IS NULL)
       AND (denom_c2c.reltype = 'denominator' OR denom_c2c.reltype IS NULL)
       AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
@@ -876,56 +889,129 @@ class OBSMeta(Task):
              numer_t.id, denom_t.id, geom_t.id
     '''
 
+    DIMENSIONS = {
+        'numer': '''
+SELECT numer_id::TEXT,
+       FIRST(numer_name)::TEXT numer_name,
+       FIRST(numer_description)::TEXT numer_description,
+       FIRST(numer_tags)::JSONB numer_tags,
+       FIRST(numer_weight)::NUMERIC numer_weight,
+       FIRST(numer_extra)::JSONB numer_extra,
+       FIRST(numer_type)::TEXT numer_type,
+       FIRST(numer_aggregate)::TEXT numer_aggregate,
+       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
+       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+FROM observatory.obs_meta
+GROUP BY numer_id
+        ''',
+        'denom': '''
+SELECT denom_id::TEXT,
+       FIRST(denom_name)::TEXT denom_name,
+       FIRST(denom_description)::TEXT denom_description,
+       FIRST(denom_tags)::JSONB denom_tags,
+       FIRST(denom_weight)::NUMERIC denom_weight,
+       'denominator'::TEXT reltype,
+       FIRST(denom_extra)::JSONB denom_extra,
+       FIRST(denom_type)::TEXT denom_type,
+       FIRST(denom_aggregate)::TEXT denom_aggregate,
+       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
+       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+FROM observatory.obs_meta
+GROUP BY denom_id
+        ''',
+        'geom': '''
+SELECT geom_id::TEXT,
+       FIRST(geom_name)::TEXT geom_name,
+       FIRST(geom_description)::TEXT geom_description,
+       FIRST(geom_tags)::JSONB geom_tags,
+       FIRST(geom_weight)::NUMERIC geom_weight,
+       FIRST(geom_extra)::JSONB geom_extra,
+       FIRST(geom_type)::TEXT geom_type,
+       FIRST(geom_aggregate)::TEXT geom_aggregate,
+       ST_SetSRID(FIRST(the_geom_webmercator), 3857)::GEOMETRY(GEOMETRY, 3857) the_geom_webmercator,
+       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+       ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
+FROM observatory.obs_meta
+GROUP BY geom_id
+        ''',
+        'timespan': '''
+SELECT numer_timespan::TEXT timespan_id,
+       numer_timespan::TEXT timespan_name,
+       NULL::TEXT timespan_description,
+       FIRST(timespan_tags)::JSONB timespan_tags,
+       NULL::NUMERIC timespan_weight,
+       NULL::JSONB timespan_extra,
+       NULL::TEXT timespan_type,
+       NULL::TEXT timespan_aggregate,
+       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+FROM observatory.obs_meta
+GROUP BY numer_timespan
+        '''
+    }
+
 
 class OBSMetaToLocal(OBSMeta):
 
     def run(self):
         session = current_session()
-        session.execute('DROP TABLE IF EXISTS {output}'.format(
-            output=self.output().table
-        ))
-        session.execute(self.FIRST_AGGREGATE)
-        session.execute('CREATE TABLE {output} AS {select}'.format(
-            output=self.output().table,
-            select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
-        ))
-        # confirm that there won't be ambiguity with selection of geom
-        session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
-                        '(numer_id, denom_id, numer_timespan, geom_weight)')
-        session.execute('CREATE INDEX ON observatory.obs_meta USING gist '
-                        '(the_geom)')
-        session.commit()
-        self.force = False
+        try:
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
+            session.execute(self.FIRST_AGGREGATE)
+            session.execute('CREATE TABLE observatory.obs_meta AS {select}'.format(
+                select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
+            ))
+            # confirm that there won't be ambiguity with selection of geom
+            session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
+                            '(numer_id, denom_id, numer_timespan, geom_weight)')
+            session.execute('CREATE INDEX ON observatory.obs_meta USING gist '
+                            '(the_geom)')
+            for dimension, query in self.DIMENSIONS.iteritems():
+                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
+                    dimension=dimension))
+                session.execute('CREATE TABLE observatory.obs_meta_{dimension} '
+                                'AS {select}'.format(
+                                    dimension=dimension,
+                                    select=query.replace('the_geom_webmercator', 'the_geom') \
+                                                .replace('3857', '4326')
+                                ))
+                session.execute('CREATE INDEX ON observatory.obs_meta_{dimension} USING gist '
+                                '(the_geom)'.format(dimension=dimension))
+            session.commit()
+            self._complete = True
+        except:
+            session.rollback()
+            raise
 
     def complete(self):
-        if self.force:
-            return False
-        else:
-            return super(OBSMetaToLocal, self).complete()
-
-    def output(self):
-        return PostgresTarget('observatory', 'obs_meta')
+        return getattr(self, '_complete', False)
 
 
-class SyncMetadata(OBSMeta):
+class SyncOBSMetaDimension(TableToCartoViaImportAPI):
+
+    dimension = Parameter()
+    table = None
+
+    def requires(self):
+        return TableToCartoViaImportAPI(table='obs_meta', force=True)
+
+    def run(self):
+        self.table = 'obs_meta_' + self.dimension
+        super(SyncOBSMetaDimension, self).run()
+
+
+class SyncMetadata(WrapperTask):
 
     force = BooleanParameter(default=True, significant=False)
 
     def requires(self):
-        for tablename in META_TABLES:
-            yield TableToCartoViaImportAPI(table=tablename, force=True)
+        for dim in ('numer', 'denom', 'geom', 'timespan'):
+            yield SyncOBSMetaDimension(dimension=dim, force=True)
 
-    def run(self):
-        query_cartodb(self.FIRST_AGGREGATE)
-        import_api({
-            'table_name': 'obs_meta',
-            'sql': self.QUERY.replace('\n', ' '),
-            'privacy': 'public'
-        })
-
-    def output(self):
-        target = CartoDBTarget(tablename='obs_meta')
-        if self.force and target.exists():
-            target.remove()
-            self.force = False
-        return target
