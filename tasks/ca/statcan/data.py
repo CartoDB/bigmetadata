@@ -81,22 +81,23 @@ class CopyDataToTable(BaseParams, TempTableTask):
         return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
 
     def run(self):
+        output_ = self.output()
         infile = os.path.join(self.input().path, self.topic + '.csv')
         headers = shell('head -n 1 {csv}'.format(csv=infile))
         cols = ['{} NUMERIC'.format(h) for h in headers.split(',')[1:]]
 
         session = current_session()
         session.execute('CREATE TABLE {output} (Geo_Code TEXT, {cols})'.format(
-            output=self.output().table,
+            output=output_.table,
             cols=', '.join(cols)
         ))
-        session.commit()
-        shell("cat '{infile}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
-            output=self.output().table,
+        session.flush()
+        session.execute("COPY {output} FROM '/bigmetadata/{infile}' WITH CSV HEADER".format(
+            output=output_.table,
             infile=infile,
         ))
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geo_code)'.format(
-            output=self.output().table
+            output=output_.table
         ))
 
 
@@ -209,7 +210,8 @@ class Census(Survey):
 
     def requires(self):
         return {
-            'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
+            'data': CopyDataToTable(resolution=self.resolution,
+                                    survey=SURVEY_CEN, topic=self.topic),
             'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': CensusColumns(),

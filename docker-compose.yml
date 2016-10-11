@@ -7,7 +7,8 @@
       "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf",
       "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
                                               # will cause persistence issues!!
-      "./observatory-extension:/observatory-extension"
+      "./observatory-extension:/observatory-extension",
+      ".:/bigmetadata",
     ],
     "privileged": true
   },
