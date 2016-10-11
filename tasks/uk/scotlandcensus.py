@@ -8,14 +8,14 @@ from tasks.meta import OBSTag
 import os
 
 class SourceTags(TagsTask):
-	def version(self):
-		return 1
+    def version(self):
+        return 1
 
-	def tags(self):
+    def tags(self):
         return [OBSTag(id='scotland-census',
-            name="Scotland's Census Data Warehouse by National Records of Scotland",
-            type='source',
-            description="`Scotland Census <http://www.scotlandscensus.gov.uk/`_")]
+                name="Scotland's Census Data Warehouse by National Records of Scotland",
+                type='source',
+                description="`Scotland Census <http://www.scotlandscensus.gov.uk/`_")]
 
 class DownloadScotlandLocal(DownloadUnzipTask):
 
