@@ -11,18 +11,16 @@ from tasks.tags import UnitTags, SectionTags, SubsectionTags
 from collections import OrderedDict
 import os
 
-class SourcesTags(TagsTask):
+class SourceTags(TagsTask):
 
     def version(self):
         return 1
 
     def tags(self):
-        return [
-            OBSTag(id='ons',
+        return [OBSTag(id='ons',
                     name='Office for National Statistics (ONS)',
                     type='source',
-                    description='All material on the Office for National Statistics (ONS) website is subject to Crown Copyright protection unless otherwise indicated.')
-            ]
+                    description="The UK's largest independent producer of official statistics and the recognised national statistical institute of the UK (`ONS <https://www.ons.gov.uk/>`_)")]
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
@@ -66,7 +64,7 @@ class CensusColumns(ColumnsTask):
             'units': UnitTags(),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'sources': SourcesTags()
+            'sources': SourceTags()
         }
 
     def version(self):

@@ -28,10 +28,10 @@ class SourceTags(TagsTask):
 
     def tags(self):
         return [
-            OBSTag(id='tiger',
-                   name='TIGER/Line Shapefiles',
+            OBSTag(id='tiger-source',
+                   name='US Census TIGER/Line Shapefiles',
                    type='source',
-                   description='https://www.census.gov/geo/maps-data/data/tiger-line.html')
+                   description='`TIGER/Line Shapefiles <https://www.census.gov/geo/maps-data/data/tiger-line.html>`_')
         ]
 
 
@@ -183,7 +183,7 @@ class GeomColumns(ColumnsTask):
             ),
         }
 
-        tiger_source = self.input()['sourcetag']['tiger']
+        tiger_source = self.input()['sourcetag']['tiger-source']
         for _,col in columns.iteritems():
             col.tags.append(tiger_source)
         return columns

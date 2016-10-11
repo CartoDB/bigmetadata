@@ -64,10 +64,9 @@ class SourceTags(TagsTask):
         return 1
 
     def tags(self):
-        return [
-            OBSTag(id='qcew',
+        return [OBSTag(id='qcew',
                     name='Quartery Census of Employment and Wages (QCEW)',
-                    description='http://www.bls.gov/cew/home.htm')]
+                    description='`Bureau of Labor Statistics QCEW <http://www.bls.gov/cew/home.htm>`_')]
 
 class QCEWColumns(ColumnsTask):
 

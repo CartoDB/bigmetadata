@@ -36,7 +36,7 @@ class AnuarioColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
-            'censustags': LaCaixaTags()
+            'censustags': SourceTags()
         }
 
     def columns(self):
@@ -550,22 +550,22 @@ class AnuarioColumns(ColumnsTask):
             ('malls', malls),
         ])
 
-	lacaixa_source = input_['censustags']['lacaixa']
+	lacaixa_source = input_['censustags']['lacaixa-source']
 	for _, col in columns.iteritems():
 		col.tags.append(lacaixa_source)
 	return columns
 
-class LaCaixaTags(TagsTask):
+class SourceTags(TagsTask):
 	def version(self):
 		return 1
 
 	def tags(self):
 		return [
 			OBSTag(
-                id='lacaixa',
+                id='lacaixa-source',
                 name='Spain Economic Yearbook',
                 type='source',
-                description='The la Caixa publication of the Spain Economic Yearbook http://www.caixabankresearch.com/')
+                description='The la Caixa publication of the `Spain Economic Yearbook <http://www.caixabankresearch.com/>`_')
             ]
 
 

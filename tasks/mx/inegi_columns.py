@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from tasks.meta import OBSColumn, DENOMINATOR
 from tasks.util import ColumnsTask, TagsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
@@ -6,14 +8,16 @@ from collections import OrderedDict
 
 # %s/\(\w\+\d\+_\?R\?\)\t\(.\+\)$/\1 = OBSColumn(\r    id='\1',\r    name='\2',\r    type='Numeric',\r    weight=3,\r    aggregate='sum',\r    tags=[mexico, unit_people, ],\r    targets={},\r)
 
-class INEIGITags(TagsTask):
+class SourceTags(TagsTask):
     def version(self):
         return 1
 
     def tags(self):
         return [
-            OBSTag(id='ineigi',
-                name=''
+            OBSTag(id='inegi-source',
+                name=u'Instituto Nacional de Estadística y Geografía (INEGI)',
+                type='source',
+                description='INEGI data provided by `Diego Valle-Jones <https://www.diegovalle.net/>`_'
                 )]
 
 class DemographicColumns(ColumnsTask):

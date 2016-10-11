@@ -44,15 +44,15 @@ class ImportGeometry(Shp2TempTableTask):
                                 resolution=self.resolution.upper()))
         return os.path.join(self.input().path, path)
 
-class CNIG(TagsTask):
+class SourceTags(TagsTask):
     def version(self):
         return 1
     def tags(self):
         return [
-            OBSTag(id='CNIG',
+            OBSTag(id='cnig-source',
                     name='National Center for Geographic Information (CNIG)',
                     type='source',
-                    description='The National Center for Geographic Information (CNIG)'
+                    description='`The National Center for Geographic Information (CNIG) <https://www.cnig.es/>`_'
                     )]
 
 class GeometryColumns(ColumnsTask):
@@ -64,7 +64,7 @@ class GeometryColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'geotags': CNIG()
+            'geotags': SourceTags()
         }
 
     def columns(self):
@@ -101,7 +101,7 @@ class GeometryColumns(ColumnsTask):
             ('muni', muni),
         ])
 
-        cnig_source = self.input()['geotags']['CNIG']
+        cnig_source = self.input()['geotags']['cnig-source']
         for _, col in columns.iteritems():
             col.tags.append(cnig_source)
         return columns
