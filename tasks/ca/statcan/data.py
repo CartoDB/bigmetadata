@@ -212,7 +212,8 @@ class Census(Survey):
         return {
             'data': CopyDataToTable(resolution=self.resolution,
                                     survey=SURVEY_CEN, topic=self.topic),
-            'geo': Geography(resolution=self.resolution),
+            # commented -- long running should be run separately
+            #'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': CensusColumns(),
         }
@@ -225,7 +226,11 @@ class AllCensusTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = range(1, 11)   # 1-10
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        # TODO GEO_CMA is broken, it seems the transposition drops in certain
+        # columns to the CSV that are wider than what they should be (they
+        # should be 79 columns)
+        #for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, ):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield Census(resolution=resolution, survey=SURVEY_CEN, topic=topic)
@@ -239,7 +244,8 @@ class NHS(Survey):
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),
-            'geo': Geography(resolution=self.resolution),
+            # commented -- long running should be run separately
+            #'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': NHSColumns(),
         }
