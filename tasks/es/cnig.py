@@ -6,7 +6,7 @@ from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.meta import OBSColumn, GEOM_REF
+from tasks.meta import OBSColumn, GEOM_REF, OBSTag
 
 from collections import OrderedDict
 import os
@@ -101,8 +101,8 @@ class GeometryColumns(ColumnsTask):
             ('muni', muni),
         ])
 
-        cnig_source = input_['geotags']['CNIG']
-        for _, col in columns,iteritems():
+        cnig_source = self.input()['geotags']['CNIG']
+        for _, col in columns.iteritems():
             col.tags.append(cnig_source)
         return columns
 
@@ -178,4 +178,3 @@ class AllGeometries(WrapperTask):
     def requires(self):
         for resolution in ('ccaa', 'muni', 'prov', ):
             yield Geometry(resolution=resolution)
-

@@ -1665,10 +1665,10 @@ class SeccionColumns(ColumnsTask):
             ('households_4_people', households_4_people),
             ('households_5_people', households_5_people),
             ('households_6_more_people', households_6_more_people),
-        ])
+            ])
 
-        ine_source = self.input['censustags']['ine']
-        for _, col in columns,iteritems():
+        ine_source = self.input()['censustags']['ine']
+        for _, col in columns.iteritems():
             col.tags.append(ine_source)
         return columns
 
@@ -1676,7 +1676,7 @@ class SeccionColumns(ColumnsTask):
 class INE(TagsTask):
     def version(self):
         return 1
-    
+
     def tags(self):
         return [
             OBSTag(

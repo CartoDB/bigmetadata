@@ -5,7 +5,7 @@ from luigi import Task, Parameter, LocalTarget
 from tasks.util import (shell, classpath, TagsTask, TableTask, ColumnsTask,
                         DownloadUnzipTask)
 from tasks.es.cnig import GeomRefColumns
-from tasks.meta import OBSColumn, DENOMINATOR, current_session
+from tasks.meta import OBSColumn, OBSTag, DENOMINATOR, current_session
 from tasks.tags import UnitTags, SubsectionTags, SectionTags
 
 from xlrd import open_workbook
@@ -549,16 +549,16 @@ class AnuarioColumns(ColumnsTask):
             ('street_vendors', street_vendors),
             ('malls', malls),
         ])
-	
+
 	lacaixa_source = input_['censustags']['lacaixa']
-	for _, col in columns,iteritems():
+	for _, col in columns.iteritems():
 		col.tags.append(lacaixa_source)
 	return columns
 
 class LaCaixaTags(TagsTask):
 	def version(self):
 		return 1
-	
+
 	def tags(self):
 		return [
 			OBSTag(

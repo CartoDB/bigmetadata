@@ -183,7 +183,7 @@ class GeomColumns(ColumnsTask):
             ),
         }
 
-        tiger_source = self.input['sourcetag']['tiger']
+        tiger_source = self.input()['sourcetag']['tiger']
         for _,col in columns.iteritems():
             col.tags.append(tiger_source)
         return columns

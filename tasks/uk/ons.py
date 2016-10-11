@@ -1104,7 +1104,7 @@ class CensusColumns(ColumnsTask):
             ('long_term_unemployed', long_term_unemployed),
         ])
         ons_source = input_['sources']['ons']
-        for _, col in columns,iteritems():
+        for _, col in columns.iteritems():
             col.tags.append(ons_source)
         return columns
 
