@@ -258,7 +258,9 @@ class AllNHSTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = range(1, 30)   # 1-29
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        # TODO GEO_CMA is broken, see above
+        #for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, ):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield NHS(resolution=resolution, survey=SURVEY_NHS, topic=topic)
