@@ -969,6 +969,13 @@ class OBSMetaToLocal(OBSMeta):
                 select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
             ))
             # confirm that there won't be ambiguity with selection of geom
+            # a common issue we're running into is that a single geom_ref is
+            # pointing to several different types of geometries-- this isn't
+            # necessarily the end of the world, but causes problems if those
+            # geometries have their own unique data (think of the difference
+            # between a geomref pointing to a shoreline clipped & non shoreline
+            # clipped dataset, vs to two totally different geometries each with
+            # legit but different versions of data columns)
             session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
                             '(numer_id, denom_id, numer_timespan, geom_weight)')
             session.execute('CREATE INDEX ON observatory.obs_meta USING gist '
@@ -994,24 +1001,14 @@ class OBSMetaToLocal(OBSMeta):
         return getattr(self, '_complete', False)
 
 
-class SyncOBSMetaDimension(TableToCartoViaImportAPI):
-
-    dimension = Parameter()
-    table = None
-
-    def requires(self):
-        return TableToCartoViaImportAPI(table='obs_meta', force=True)
-
-    def run(self):
-        self.table = 'obs_meta_' + self.dimension
-        super(SyncOBSMetaDimension, self).run()
-
-
 class SyncMetadata(WrapperTask):
 
     force = BooleanParameter(default=True, significant=False)
 
     def requires(self):
-        for dim in ('numer', 'denom', 'geom', 'timespan'):
-            yield SyncOBSMetaDimension(dimension=dim, force=True)
-
+        for table in ('obs_table', 'obs_column', 'obs_column_table',
+                      'obs_tag', 'obs_column_tag', 'obs_dump_version',
+                      'obs_column_to_column', 'obs_meta', 'obs_meta_numer',
+                      'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan'
+                     ):
+            yield TableToCartoViaImportAPI(table=table, force=True)
