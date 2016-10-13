@@ -2,11 +2,11 @@
 # #http://centrodedescargas.cnig.es/CentroDescargas/inicio.do
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
-from tasks.util import (ColumnsTask, TableTask, shell, classpath,
+from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.meta import OBSColumn, GEOM_REF
+from tasks.meta import OBSColumn, GEOM_REF, OBSTag
 
 from collections import OrderedDict
 import os
@@ -44,6 +44,16 @@ class ImportGeometry(Shp2TempTableTask):
                                 resolution=self.resolution.upper()))
         return os.path.join(self.input().path, path)
 
+class SourceTags(TagsTask):
+    def version(self):
+        return 1
+    def tags(self):
+        return [
+            OBSTag(id='cnig-source',
+                    name='National Center for Geographic Information (CNIG)',
+                    type='source',
+                    description='`The National Center for Geographic Information (CNIG) <https://www.cnig.es/>`_'
+                    )]
 
 class GeometryColumns(ColumnsTask):
 
@@ -54,6 +64,7 @@ class GeometryColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'geotags': SourceTags()
         }
 
     def columns(self):
@@ -84,12 +95,16 @@ class GeometryColumns(ColumnsTask):
                         'Municipal boundaries do not cross between provinces. ',
             tags=[sections['spain'], subsections['boundary']],
         )
-        return OrderedDict([
+        columns = OrderedDict([
             ('ccaa', ccaa),
             ('prov', prov),
             ('muni', muni),
         ])
 
+        cnig_source = self.input()['geotags']['cnig-source']
+        for _, col in columns.iteritems():
+            col.tags.append(cnig_source)
+        return columns
 
 class GeomRefColumns(ColumnsTask):
 
@@ -163,4 +178,3 @@ class AllGeometries(WrapperTask):
     def requires(self):
         for resolution in ('ccaa', 'muni', 'prov', ):
             yield Geometry(resolution=resolution)
-
