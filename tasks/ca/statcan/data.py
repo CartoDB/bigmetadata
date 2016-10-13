@@ -206,7 +206,7 @@ class Survey(BaseParams, TableTask):
 class Census(Survey):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -239,7 +239,7 @@ class AllCensusTopics(BaseParams, WrapperTask):
 class NHS(Survey):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
