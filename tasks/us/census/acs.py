@@ -26,7 +26,7 @@ from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 
 LOGGER = get_logger(__name__)
 
@@ -41,7 +41,7 @@ class ACSTags(TagsTask):
             OBSTag(id='acs',
                    name='US American Community Survey',
                    type='source',
-                   description='The United States American Community Survey'),
+                   description='`The United States American Community Survey <https://www.census.gov/programs-surveys/acs/>`_'),
             OBSTag(id='segments',
                    name='US Population Segments',
                    type='subsection',
@@ -58,10 +58,11 @@ class Columns(ColumnsTask):
             'censustags': ACSTags(),
             'segmenttags': SegmentTags(),
             'unittags': UnitTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
-        return 15
+        return 16
 
     def columns(self):
         input_ = self.input()
@@ -2994,9 +2995,11 @@ class Columns(ColumnsTask):
         ])
         united_states_section = input_['sections']['united_states']
         acs_source = input_['censustags']['acs']
+        no_restrictions = input_['license']['no-restrictions']
         for _, col in columns.iteritems():
             col.tags.append(united_states_section)
             col.tags.append(acs_source)
+            col.tags.append(no_restrictions)
         return columns
 
 
