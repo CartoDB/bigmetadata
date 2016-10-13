@@ -845,14 +845,16 @@ class OBSMeta(Task):
          observatory.obs_column_table numer_geomref_ct,
          observatory.obs_column geomref_c,
          observatory.obs_column_to_column geomref_c2c,
-         observatory.obs_column geom_c,
+         observatory.obs_column geom_c
+          LEFT JOIN (
+             observatory.obs_column_tag geom_ctag
+             JOIN observatory.obs_tag geom_tag ON geom_ctag.tag_id = geom_tag.id
+          ) ON geom_c.id = geom_ctag.column_id,
          observatory.obs_column_table geom_geom_ct,
          observatory.obs_column_table geom_geomref_ct,
          observatory.obs_table geom_t,
          observatory.obs_column_tag numer_ctag,
          observatory.obs_tag numer_tag,
-         observatory.obs_column_tag geom_ctag,
-         observatory.obs_tag geom_tag,
          observatory.obs_column numer_c
       LEFT JOIN (
         observatory.obs_column_to_column denom_c2c
