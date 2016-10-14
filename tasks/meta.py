@@ -59,6 +59,66 @@ def get_engine():
     return _engine
 
 
+def catalog_lonlat(column_id):
+    # TODO we should do this from metadata instead of hardcoding
+    if column_id == 'whosonfirst.wof_disputed_geom':
+        return (76.57, 33.78)
+    elif column_id == 'whosonfirst.wof_marinearea_geom':
+        return (-68.47, 43.33)
+    elif column_id in ('us.census.tiger.school_district_elementary',
+                       'us.census.tiger.school_district_secondary',
+                       'us.census.tiger.school_district_elementary_clipped',
+                       'us.census.tiger.school_district_secondary_clipped'):
+        return (-73.7067, 40.7025)
+    elif column_id.startswith('uk'):
+        if 'WA' in column_id:
+            return (-3.184833526611328, 51.46844551219723)
+        else:
+            return (-0.08883476257324219, 51.51461834694225)
+    elif column_id.startswith('es'):
+        return (-2.51141249535454, 42.8226119029222)
+    elif column_id.startswith('us.zillow'):
+        return (-81.3544048197256, 28.3305906291771)
+    elif column_id.startswith('mx.'):
+        return (-99.17019367218018, 19.41347699386547)
+    elif column_id.startswith('ca.'):
+        return (-79.39716339111328, 43.65694347778308)
+    elif column_id.startswith('th.'):
+        return (100.49263000488281, 13.725377712079784)
+    # cols for French Guyana only
+    elif column_id in ('fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
+                       , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
+                       , 'fr.insee.P12_RP_MIDUR', 'fr.insee.P12_RP_CLIM'
+                       , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
+                       , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
+                       , 'fr.insee.P12_ACTOCC15P_ILT45D'
+                       , 'fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
+                       , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
+                       , 'fr.insee.P12_RP_MIDUR', 'fr.insee.P12_RP_CLIM'
+                       , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
+                       , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
+                       , 'fr.insee.P12_ACTOCC15P_ILT45D'):
+        return (-52.32908248901367, 4.938408371206558)
+    elif column_id.startswith('fr'):
+        return (2.3613739013671875, 48.860875144709475)
+    elif column_id.startswith('ca'):
+        return (-79.37965393066406, 43.65594991256823)
+    elif column_id.startswith('us.census.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.dma.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.ihme.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.bls.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.qcew.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('whosonfirst.'):
+        return (40.7, -73.9)
+    else:
+        raise Exception('No catalog point set for {}'.format(column_id))
+
+
 class Raster(UserDefinedType):
 
     def get_col_spec(self):
@@ -380,6 +440,12 @@ class OBSColumn(Base):
         areas.
         '''
         return self.aggregate == 'sum'
+
+    def catalog_lonlat(self):
+        '''
+        Return tuple (longitude, latitude) for the catalog for this measurement.
+        '''
+        return catalog_lonlat(self.id)
 
 
 class OBSTable(Base):
