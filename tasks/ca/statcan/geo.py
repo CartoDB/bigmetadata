@@ -87,13 +87,13 @@ class GeographyColumns(ColumnsTask):
     weights = {
         GEO_CT: 5,
         GEO_PR: 4,
-        GEO_CD: 4,
-        GEO_CSD: 4,
-        GEO_CMA: 4,
+        GEO_CD: 3,
+        GEO_CSD: 2,
+        GEO_CMA: 1,
     }
 
     def version(self):
-        return 6
+        return 7
 
     def requires(self):
         return {
