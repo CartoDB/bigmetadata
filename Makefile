@@ -34,9 +34,18 @@ catalog:
 	  --module tasks.sphinx Catalog --force --images \
 	  --parallel-scheduling --workers=3
 
+catalog-noimage:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.sphinx Catalog --force \
+	  --parallel-scheduling --workers=3
+
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Catalog --format pdf --force --images
+
+pdf-catalog-noimage:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.sphinx Catalog --format pdf --force
 
 md-catalog:
 	docker-compose run --rm bigmetadata luigi \
