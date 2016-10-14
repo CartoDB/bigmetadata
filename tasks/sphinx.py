@@ -35,7 +35,7 @@ class GenerateRST(Task):
     force = BooleanParameter(default=False)
     format = Parameter()
     preview = BooleanParameter(default=False)
-    images = BooleanParameter(default=True)
+    images = BooleanParameter(default=False)
 
     def __init__(self, *args, **kwargs):
         super(GenerateRST, self).__init__(*args, **kwargs)

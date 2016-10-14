@@ -1,4 +1,4 @@
-{%- macro build_column(col, subsection, image_path, depth=0) %}
+{%- macro build_column(col, subsection, image_path, format, depth=0) %}
 
 .. _{{ col.id }}:
 
@@ -13,10 +13,12 @@
   endif
 %}
 
+{% if format != 'pdf' %}
 {% if col.has_catalog_image() %}
 .. figure:: {{ image_path }}/{{ col.id }}.png
   :width: 100 %
   :align: center
+{% endif %}
 {% endif %}
 
 {% if col.description %}{{ col.description }}{% endif %}
@@ -173,7 +175,7 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
   {% for child in col.children() %}
   {% if child.weight > 0 and subsection in child.tags %}
-  {{ build_column(child, subsection, image_path, depth + 1) }}
+  {{ build_column(child, subsection, image_path, format, depth + 1) }}
   {% endif %}
   {% endfor %}
 {% endif %}
