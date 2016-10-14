@@ -81,22 +81,23 @@ class CopyDataToTable(BaseParams, TempTableTask):
         return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
 
     def run(self):
+        output_ = self.output()
         infile = os.path.join(self.input().path, self.topic + '.csv')
         headers = shell('head -n 1 {csv}'.format(csv=infile))
         cols = ['{} NUMERIC'.format(h) for h in headers.split(',')[1:]]
 
         session = current_session()
         session.execute('CREATE TABLE {output} (Geo_Code TEXT, {cols})'.format(
-            output=self.output().table,
+            output=output_.table,
             cols=', '.join(cols)
         ))
-        session.commit()
-        shell("cat '{infile}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
-            output=self.output().table,
+        session.flush()
+        session.execute("COPY {output} FROM '/bigmetadata/{infile}' WITH CSV HEADER".format(
+            output=output_.table,
             infile=infile,
         ))
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geo_code)'.format(
-            output=self.output().table
+            output=output_.table
         ))
 
 
@@ -203,10 +204,16 @@ class Survey(BaseParams, TableTask):
 
 
 class Census(Survey):
+
+    def version(self):
+        return 4
+
     def requires(self):
         return {
-            'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
-            'geo': Geography(resolution=self.resolution),
+            'data': CopyDataToTable(resolution=self.resolution,
+                                    survey=SURVEY_CEN, topic=self.topic),
+            # commented -- long running should be run separately
+            #'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': CensusColumns(),
         }
@@ -219,17 +226,26 @@ class AllCensusTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = range(1, 11)   # 1-10
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        # TODO GEO_CMA is broken, it seems the transposition drops in certain
+        # columns to the CSV that are wider than what they should be (they
+        # should be 79 columns)
+        #for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, ):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield Census(resolution=resolution, survey=SURVEY_CEN, topic=topic)
 
 
 class NHS(Survey):
+
+    def version(self):
+        return 4
+
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),
-            'geo': Geography(resolution=self.resolution),
+            # commented -- long running should be run separately
+            #'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': NHSColumns(),
         }
@@ -242,7 +258,9 @@ class AllNHSTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = range(1, 30)   # 1-29
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        # TODO GEO_CMA is broken, see above
+        #for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, ):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield NHS(resolution=resolution, survey=SURVEY_NHS, topic=topic)

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 from tasks.util import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
@@ -21,12 +23,14 @@ class CensusColumns(ColumnsTask):
 
         subsections = input_['subsections']
 
-        unit_people = input_['units']['people']
-        unit_housing = input_['units']['housing_units']
-        unit_households = input_['units']['households']
-        unit_years = input_['units']['years']
-        unit_ratio = input_['units']['ratio']
-        unit_education = input_['units']['education_level']
+        unit = input_['units']
+        unit_people = unit['people']
+        unit_housing = unit['housing_units']
+        unit_households = unit['households']
+        unit_years = unit['years']
+        unit_ratio = unit['ratio']
+        unit_education = unit['education_level']
+        unit_families = unit['family_unit']
 
         ca = input_['sections']['ca']
 
@@ -735,7 +739,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
         t002c001_m = OBSColumn(
@@ -744,7 +748,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
         t002c001_f = OBSColumn(
@@ -753,12 +757,12 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['language']],
+            tags=[ca, unit_people, subsections['age_gender']],
             targets={},)
 
         t002c002_t = OBSColumn(
             id='t002c002_t',
-            name='Detailed language spoken most often at home - Single responses (total)',
+            name='Language spoken most often at home - Single responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -767,7 +771,7 @@ class CensusColumns(ColumnsTask):
 
         t002c002_m = OBSColumn(
             id='t002c002_m',
-            name='Detailed language spoken most often at home - Single responses (male)',
+            name='Language spoken most often at home - Single responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -776,7 +780,7 @@ class CensusColumns(ColumnsTask):
 
         t002c002_f = OBSColumn(
             id='t002c002_f',
-            name='Detailed language spoken most often at home - Single responses (female)',
+            name='Language spoken most often at home - Single responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -3593,7 +3597,7 @@ class CensusColumns(ColumnsTask):
 
         t002c107_t = OBSColumn(
             id='t002c107_t',
-            name='Detailed language spoken most often at home - Multiple responses (total)',
+            name='Language spoken most often at home - Multiple responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -3602,7 +3606,7 @@ class CensusColumns(ColumnsTask):
 
         t002c107_m = OBSColumn(
             id='t002c107_m',
-            name='Detailed language spoken most often at home - Multiple responses (male)',
+            name='Language spoken most often at home - Multiple responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -3611,7 +3615,7 @@ class CensusColumns(ColumnsTask):
 
         t002c107_f = OBSColumn(
             id='t002c107_f',
-            name='Detailed language spoken most often at home - Multiple responses (female)',
+            name='Language spoken most often at home - Multiple responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6698,7 +6702,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_t = OBSColumn(
             id='t004c002_t',
-            name='Detailed other language spoken regularly at home - None (total)',
+            name='Other language spoken regularly at home - None (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6707,7 +6711,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_m = OBSColumn(
             id='t004c002_m',
-            name='Detailed other language spoken regularly at home - None (male)',
+            name='Other language spoken regularly at home - None (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6716,7 +6720,7 @@ class CensusColumns(ColumnsTask):
 
         t004c002_f = OBSColumn(
             id='t004c002_f',
-            name='Detailed other language spoken regularly at home - None (female)',
+            name='Other language spoken regularly at home - None (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6725,7 +6729,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_t = OBSColumn(
             id='t004c003_t',
-            name='Detailed other language spoken regularly at home - Single responses (total)',
+            name='Other language spoken regularly at home - Single responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6734,7 +6738,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_m = OBSColumn(
             id='t004c003_m',
-            name='Detailed other language spoken regularly at home - Single responses (male)',
+            name='Other language spoken regularly at home - Single responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -6743,7 +6747,7 @@ class CensusColumns(ColumnsTask):
 
         t004c003_f = OBSColumn(
             id='t004c003_f',
-            name='Detailed other language spoken regularly at home - Single responses (female)',
+            name='Other language spoken regularly at home - Single responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9560,7 +9564,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_t = OBSColumn(
             id='t004c108_t',
-            name='Detailed other language spoken regularly at home - Multiple responses (total)',
+            name='Other language spoken regularly at home - Multiple responses (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9569,7 +9573,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_m = OBSColumn(
             id='t004c108_m',
-            name='Detailed other language spoken regularly at home - Multiple responses (male)',
+            name='Other language spoken regularly at home - Multiple responses (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9578,7 +9582,7 @@ class CensusColumns(ColumnsTask):
 
         t004c108_f = OBSColumn(
             id='t004c108_f',
-            name='Detailed other language spoken regularly at home - Multiple responses (female)',
+            name='Other language spoken regularly at home - Multiple responses (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9693,247 +9697,251 @@ class CensusColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['language']],
             targets={ t004c108_f: DENOMINATOR },)
 
+        # FIXME
+        # How is this different from ca.statcan.cols_nhs.t009c001_t?
+        # Alain: one refers to family units vs households
         t005c001_t = OBSColumn(
             id='t005c001_t',
             name='Total number of census families in private households',
+            description='Census family - Refers to a married couple (with or without children) a common-law couple (with or without children) or a lone parent family. For more information refer to the Census Dictionary: Census family.',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={},)
 
         t005c002_t = OBSColumn(
             id='t005c002_t',
-            name='Size of census family: 2 persons',
+            name='Number of census families in private households - w/ 2 persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c003_t = OBSColumn(
             id='t005c003_t',
-            name='Size of census family: 3 persons',
+            name='Number of census families in private households - w/ 3 persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c004_t = OBSColumn(
             id='t005c004_t',
-            name='Size of census family: 4 persons',
+            name='Number of census families in private households - w/ 4 persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c005_t = OBSColumn(
             id='t005c005_t',
-            name='Size of census family: 5 or more persons',
+            name='Number of census families in private households - w/ 5+ persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c007_t = OBSColumn(
             id='t005c007_t',
-            name='Total couple families by family structure and number of children',
+            name='Number of census families in private households - Couples',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c008_t = OBSColumn(
             id='t005c008_t',
-            name='Married couples',
+            name='Number of census families in private households - Married couples',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c007_t: DENOMINATOR },)
 
         t005c009_t = OBSColumn(
             id='t005c009_t',
-            name='Without children at home',
+            name='Number of census families in private households - Married couples - w/o children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c008_t: DENOMINATOR },)
 
         t005c010_t = OBSColumn(
             id='t005c010_t',
-            name='With children at home',
+            name='Number of census families in private households - Married couples - w/ children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c008_t: DENOMINATOR },)
 
         t005c011_t = OBSColumn(
             id='t005c011_t',
-            name='1 child',
+            name='Number of census families in private households - Married couples - w/ 1 child at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
         t005c012_t = OBSColumn(
             id='t005c012_t',
-            name='2 children',
+            name='Number of census families in private households - Married couples - w/ 2 children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
         t005c013_t = OBSColumn(
             id='t005c013_t',
-            name='3 or more children',
+            name='Number of census families in private households - Married couples - w/ 3+ children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c010_t: DENOMINATOR },)
 
         t005c014_t = OBSColumn(
             id='t005c014_t',
-            name='Common-law couples',
+            name='Number of census families in private households - Common-law couples',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c007_t: DENOMINATOR },)
 
         t005c015_t = OBSColumn(
             id='t005c015_t',
-            name='Without children at home',
+            name='Number of census families in private households - Common-law couples - w/o children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c014_t: DENOMINATOR },)
 
         t005c016_t = OBSColumn(
             id='t005c016_t',
-            name='With children at home',
+            name='Number of census families in private households - Common-law couples - w/ children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c014_t: DENOMINATOR },)
 
         t005c017_t = OBSColumn(
             id='t005c017_t',
-            name='1 child',
+            name='Number of census families in private households - Common-law couples - w/ 1 child at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
         t005c018_t = OBSColumn(
             id='t005c018_t',
-            name='2 children',
+            name='Number of census families in private households - Common-law couples - w/ 2 children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
         t005c019_t = OBSColumn(
             id='t005c019_t',
-            name='3 or more children',
+            name='Number of census families in private households - Common-law couples - w/ 3+ children at home',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c016_t: DENOMINATOR },)
 
         t005c020_t = OBSColumn(
             id='t005c020_t',
-            name='Total lone-parent families by sex of parent and number of children',
+            name='Number of census families in private households - Lone parent',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c021_t = OBSColumn(
             id='t005c021_t',
-            name='Female parent',
+            name='Number of census families in private households - Lone female parent',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c020_t: DENOMINATOR },)
 
         t005c022_t = OBSColumn(
             id='t005c022_t',
-            name='1 child',
+            name='Number of census families in private households - Lone female parent - w/ 1 child',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
         t005c023_t = OBSColumn(
             id='t005c023_t',
-            name='2 children',
+            name='Number of census families in private households - Lone female parent - w/ 2 children',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
         t005c024_t = OBSColumn(
             id='t005c024_t',
-            name='3 or more children',
+            name='Number of census families in private households - Lone female parent - w/ 3+ children',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c021_t: DENOMINATOR },)
 
         t005c025_t = OBSColumn(
             id='t005c025_t',
-            name='Male parent',
+            name='Number of census families in private households - Lone male parent',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c020_t: DENOMINATOR },)
 
         t005c026_t = OBSColumn(
             id='t005c026_t',
-            name='1 child',
+            name='Number of census families in private households - Lone male parent - w/ 1 child',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
         t005c027_t = OBSColumn(
             id='t005c027_t',
-            name='2 children',
+            name='Number of census families in private households - Lone male parent - w/ 2 children',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
         t005c028_t = OBSColumn(
             id='t005c028_t',
-            name='3 or more children',
+            name='Number of census families in private households - Lone male parent - w/ 3+ children',
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['families']],
+            tags=[ca, unit_families, subsections['families']],
             targets={ t005c025_t: DENOMINATOR },)
 
         t005c029_t = OBSColumn(
@@ -9947,7 +9955,7 @@ class CensusColumns(ColumnsTask):
 
         t005c030_t = OBSColumn(
             id='t005c030_t',
-            name='Under six years of age',
+            name='Total children in census families in private households - <6 years',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9956,7 +9964,7 @@ class CensusColumns(ColumnsTask):
 
         t005c031_t = OBSColumn(
             id='t005c031_t',
-            name='6 to 14 years',
+            name='Total children in census families in private households - 6-14 years',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9965,7 +9973,7 @@ class CensusColumns(ColumnsTask):
 
         t005c032_t = OBSColumn(
             id='t005c032_t',
-            name='15 to 17 years',
+            name='Total children in census families in private households - 15-17 years',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9974,7 +9982,7 @@ class CensusColumns(ColumnsTask):
 
         t005c033_t = OBSColumn(
             id='t005c033_t',
-            name='18 to 24 years',
+            name='Total children in census families in private households - 18-24 years',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -9983,7 +9991,7 @@ class CensusColumns(ColumnsTask):
 
         t005c034_t = OBSColumn(
             id='t005c034_t',
-            name='25 years and over',
+            name='Total children in census families in private households - 25+ years',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10187,7 +10195,7 @@ class CensusColumns(ColumnsTask):
 
         t007c002_t = OBSColumn(
             id='t007c002_t',
-            name='Number of persons not in census families (total)',
+            name='Number of persons NOT IN census families (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10196,7 +10204,7 @@ class CensusColumns(ColumnsTask):
 
         t007c002_m = OBSColumn(
             id='t007c002_m',
-            name='Number of persons not in census families (male)',
+            name='Number of persons NOT IN census families (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10205,7 +10213,7 @@ class CensusColumns(ColumnsTask):
 
         t007c002_f = OBSColumn(
             id='t007c002_f',
-            name='Number of persons not in census families (female)',
+            name='Number of persons NOT IN census families (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10214,7 +10222,7 @@ class CensusColumns(ColumnsTask):
 
         t007c003_t = OBSColumn(
             id='t007c003_t',
-            name='Living with relatives (total)',
+            name='Number of persons NOT IN census families - Living with relatives (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10223,7 +10231,7 @@ class CensusColumns(ColumnsTask):
 
         t007c003_m = OBSColumn(
             id='t007c003_m',
-            name='Living with relatives (male)',
+            name='Number of persons NOT IN census families - Living with relatives (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10232,7 +10240,7 @@ class CensusColumns(ColumnsTask):
 
         t007c003_f = OBSColumn(
             id='t007c003_f',
-            name='Living with relatives (female)',
+            name='Number of persons NOT IN census families - Living with relatives (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10241,7 +10249,7 @@ class CensusColumns(ColumnsTask):
 
         t007c004_t = OBSColumn(
             id='t007c004_t',
-            name='Living with non-relatives only (total)',
+            name='Number of persons NOT IN census families - Living with non-relatives only (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10250,7 +10258,7 @@ class CensusColumns(ColumnsTask):
 
         t007c004_m = OBSColumn(
             id='t007c004_m',
-            name='Living with non-relatives only (male)',
+            name='Number of persons NOT IN census families - Living with non-relatives only (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10259,7 +10267,7 @@ class CensusColumns(ColumnsTask):
 
         t007c004_f = OBSColumn(
             id='t007c004_f',
-            name='Living with non-relatives only (female)',
+            name='Number of persons NOT IN census families - Living with non-relatives only (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10268,7 +10276,7 @@ class CensusColumns(ColumnsTask):
 
         t007c005_t = OBSColumn(
             id='t007c005_t',
-            name='Living alone (total)',
+            name='Number of persons NOT IN census families - Living alone (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10277,7 +10285,7 @@ class CensusColumns(ColumnsTask):
 
         t007c005_m = OBSColumn(
             id='t007c005_m',
-            name='Living alone (male)',
+            name='Number of persons NOT IN census families - Living alone (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10286,7 +10294,7 @@ class CensusColumns(ColumnsTask):
 
         t007c005_f = OBSColumn(
             id='t007c005_f',
-            name='Living alone (female)',
+            name='Number of persons NOT IN census families - Living alone (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10295,7 +10303,7 @@ class CensusColumns(ColumnsTask):
 
         t007c006_t = OBSColumn(
             id='t007c006_t',
-            name='Number of census family persons (total)',
+            name='Number of persons IN census families (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10304,7 +10312,7 @@ class CensusColumns(ColumnsTask):
 
         t007c006_m = OBSColumn(
             id='t007c006_m',
-            name='Number of census family persons (male)',
+            name='Number of persons IN census families (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10313,7 +10321,7 @@ class CensusColumns(ColumnsTask):
 
         t007c006_f = OBSColumn(
             id='t007c006_f',
-            name='Number of census family persons (female)',
+            name='Number of persons IN census families (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10331,7 +10339,7 @@ class CensusColumns(ColumnsTask):
 
         t007c008_t = OBSColumn(
             id='t007c008_t',
-            name='Total number of persons aged 65 years and over in private households (total)',
+            name='Number of persons aged 65+ in private households (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10340,7 +10348,7 @@ class CensusColumns(ColumnsTask):
 
         t007c008_m = OBSColumn(
             id='t007c008_m',
-            name='Total number of persons aged 65 years and over in private households (male)',
+            name='Number of persons aged 65+ in private households (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10349,7 +10357,7 @@ class CensusColumns(ColumnsTask):
 
         t007c008_f = OBSColumn(
             id='t007c008_f',
-            name='Total number of persons aged 65 years and over in private households (female)',
+            name='Number of persons aged 65+ in private households (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10358,7 +10366,7 @@ class CensusColumns(ColumnsTask):
 
         t007c009_t = OBSColumn(
             id='t007c009_t',
-            name='Number of persons not in census families aged 65 years and over (total)',
+            name='Number of persons aged 65+ in private households - NOT IN census families (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10367,7 +10375,7 @@ class CensusColumns(ColumnsTask):
 
         t007c009_m = OBSColumn(
             id='t007c009_m',
-            name='Number of persons not in census families aged 65 years and over (male)',
+            name='Number of persons aged 65+ in private households - NOT IN census families (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10376,7 +10384,7 @@ class CensusColumns(ColumnsTask):
 
         t007c009_f = OBSColumn(
             id='t007c009_f',
-            name='Number of persons not in census families aged 65 years and over (female)',
+            name='Number of persons aged 65+ in private households - NOT IN census families (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10385,7 +10393,7 @@ class CensusColumns(ColumnsTask):
 
         t007c010_t = OBSColumn(
             id='t007c010_t',
-            name='Living with relatives (total)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living with relatives (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10394,7 +10402,7 @@ class CensusColumns(ColumnsTask):
 
         t007c010_m = OBSColumn(
             id='t007c010_m',
-            name='Living with relatives (male)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living with relatives (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10403,7 +10411,7 @@ class CensusColumns(ColumnsTask):
 
         t007c010_f = OBSColumn(
             id='t007c010_f',
-            name='Living with relatives (female)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living with relatives (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10412,7 +10420,7 @@ class CensusColumns(ColumnsTask):
 
         t007c011_t = OBSColumn(
             id='t007c011_t',
-            name='Living with non-relatives only (total)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living with non-relatives only (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10421,7 +10429,7 @@ class CensusColumns(ColumnsTask):
 
         t007c011_m = OBSColumn(
             id='t007c011_m',
-            name='Living with non-relatives only (male)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living with non-relatives only (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10430,7 +10438,7 @@ class CensusColumns(ColumnsTask):
 
         t007c011_f = OBSColumn(
             id='t007c011_f',
-            name='Living with non-relatives only (female)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living with non-relatives only (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10439,7 +10447,7 @@ class CensusColumns(ColumnsTask):
 
         t007c012_t = OBSColumn(
             id='t007c012_t',
-            name='Living alone (total)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living alone (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10448,7 +10456,7 @@ class CensusColumns(ColumnsTask):
 
         t007c012_m = OBSColumn(
             id='t007c012_m',
-            name='Living alone (male)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living alone (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10457,7 +10465,7 @@ class CensusColumns(ColumnsTask):
 
         t007c012_f = OBSColumn(
             id='t007c012_f',
-            name='Living alone (female)',
+            name='Number of persons aged 65+ in private households - NOT IN census families - Living alone (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10466,7 +10474,7 @@ class CensusColumns(ColumnsTask):
 
         t007c013_t = OBSColumn(
             id='t007c013_t',
-            name='Number of census family persons aged 65 years and over (total)',
+            name='Number of persons aged 65+ in private households - IN census families (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10475,7 +10483,7 @@ class CensusColumns(ColumnsTask):
 
         t007c013_m = OBSColumn(
             id='t007c013_m',
-            name='Number of census family persons aged 65 years and over (male)',
+            name='Number of persons aged 65+ in private households - IN census families (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10484,7 +10492,7 @@ class CensusColumns(ColumnsTask):
 
         t007c013_f = OBSColumn(
             id='t007c013_f',
-            name='Number of census family persons aged 65 years and over (female)',
+            name='Number of persons aged 65+ in private households - IN census families (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10493,7 +10501,7 @@ class CensusColumns(ColumnsTask):
 
         t007c014_t = OBSColumn(
             id='t007c014_t',
-            name='Total number of occupied private households',
+            name='Number of private households',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10502,7 +10510,8 @@ class CensusColumns(ColumnsTask):
 
         t007c015_t = OBSColumn(
             id='t007c015_t',
-            name='Household Type - Census-family households',
+            name='Number of private households - Census-family',
+            description='`Census-family <https://www12.statcan.gc.ca/census-recensement/2011/ref/dict/fam004-eng.cfm>`_ - Refers to a married couple (with or without children) a common-law couple (with or without children) or a lone parent family.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10511,7 +10520,7 @@ class CensusColumns(ColumnsTask):
 
         t007c016_t = OBSColumn(
             id='t007c016_t',
-            name='One-family-only households',
+            name='Number of private households - Census-family - One family only',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10520,7 +10529,7 @@ class CensusColumns(ColumnsTask):
 
         t007c017_t = OBSColumn(
             id='t007c017_t',
-            name='Couple-family households',
+            name='Number of private households - Census-family - One family only - Couple',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10529,7 +10538,7 @@ class CensusColumns(ColumnsTask):
 
         t007c018_t = OBSColumn(
             id='t007c018_t',
-            name='Without children',
+            name='Number of private households - Census-family - One family only - Couple - w/o children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10538,7 +10547,7 @@ class CensusColumns(ColumnsTask):
 
         t007c019_t = OBSColumn(
             id='t007c019_t',
-            name='With children',
+            name='Number of private households - Census-family - One family only - Couple - w/ children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10547,7 +10556,7 @@ class CensusColumns(ColumnsTask):
 
         t007c020_t = OBSColumn(
             id='t007c020_t',
-            name='Lone-parent-family households',
+            name='Number of private households - Census-family - One family only - Lone-parent',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10556,7 +10565,7 @@ class CensusColumns(ColumnsTask):
 
         t007c021_t = OBSColumn(
             id='t007c021_t',
-            name='Other family households',
+            name='Number of private households - Census-family - Other family',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10565,7 +10574,7 @@ class CensusColumns(ColumnsTask):
 
         t007c022_t = OBSColumn(
             id='t007c022_t',
-            name='One-family households with persons not in a census family',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10574,7 +10583,7 @@ class CensusColumns(ColumnsTask):
 
         t007c023_t = OBSColumn(
             id='t007c023_t',
-            name='Couple-family households',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family - Couple',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10583,7 +10592,7 @@ class CensusColumns(ColumnsTask):
 
         t007c024_t = OBSColumn(
             id='t007c024_t',
-            name='Without children',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family - Couple - w/o children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10592,7 +10601,7 @@ class CensusColumns(ColumnsTask):
 
         t007c025_t = OBSColumn(
             id='t007c025_t',
-            name='With children',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family - Couple - w/ children',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10601,7 +10610,7 @@ class CensusColumns(ColumnsTask):
 
         t007c026_t = OBSColumn(
             id='t007c026_t',
-            name='Lone-parent-family households',
+            name='Number of private households - Census-family - Other family - One family with persons not in a census family - Lone-parent',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10610,7 +10619,7 @@ class CensusColumns(ColumnsTask):
 
         t007c027_t = OBSColumn(
             id='t007c027_t',
-            name='Two-or-more-family households',
+            name='Number of private households - Census-family - Other family - 2+ family households',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10619,7 +10628,7 @@ class CensusColumns(ColumnsTask):
 
         t007c028_t = OBSColumn(
             id='t007c028_t',
-            name='Household Type - Non-census-family households',
+            name='Number of private households - Non-census-family',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10628,7 +10637,7 @@ class CensusColumns(ColumnsTask):
 
         t007c029_t = OBSColumn(
             id='t007c029_t',
-            name='One-person households',
+            name='Number of private households - Non-census-family - 1 person',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10637,7 +10646,7 @@ class CensusColumns(ColumnsTask):
 
         t007c030_t = OBSColumn(
             id='t007c030_t',
-            name='Two-or-more-person households',
+            name='Number of private households - Non-census-family - 2+ person',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10646,7 +10655,7 @@ class CensusColumns(ColumnsTask):
 
         t007c032_t = OBSColumn(
             id='t007c032_t',
-            name='Dwelling Type - Single-detached house',
+            name='Number of private households living in - Single-detached house',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10655,7 +10664,7 @@ class CensusColumns(ColumnsTask):
 
         t007c033_t = OBSColumn(
             id='t007c033_t',
-            name='Dwelling Type - Apartment, building that has five or more storeys',
+            name='Number of private households living in - Apartment, 5+ storeys',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10664,7 +10673,7 @@ class CensusColumns(ColumnsTask):
 
         t007c034_t = OBSColumn(
             id='t007c034_t',
-            name='Dwelling Type - Movable',
+            name='Number of private households living in - Movable dwelling',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10673,7 +10682,7 @@ class CensusColumns(ColumnsTask):
 
         t007c035_t = OBSColumn(
             id='t007c035_t',
-            name='Dwelling Type - Other',
+            name='Number of private households living in - Other',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10682,7 +10691,7 @@ class CensusColumns(ColumnsTask):
 
         t007c036_t = OBSColumn(
             id='t007c036_t',
-            name='Semi-detached house',
+            name='Number of private households living in - Other - Semi-detached house',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10691,7 +10700,7 @@ class CensusColumns(ColumnsTask):
 
         t007c037_t = OBSColumn(
             id='t007c037_t',
-            name='Row house',
+            name='Number of private households living in - Other - Row house',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10700,7 +10709,7 @@ class CensusColumns(ColumnsTask):
 
         t007c038_t = OBSColumn(
             id='t007c038_t',
-            name='Apartment, duplex',
+            name='Number of private households living in - Other - Apartment, duplex',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10709,7 +10718,7 @@ class CensusColumns(ColumnsTask):
 
         t007c039_t = OBSColumn(
             id='t007c039_t',
-            name='Apartment, building that has fewer than five storeys',
+            name='Number of private households living in - Other - Apartment, <5 storeys',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10718,7 +10727,7 @@ class CensusColumns(ColumnsTask):
 
         t007c040_t = OBSColumn(
             id='t007c040_t',
-            name='Other single-attached house',
+            name='Number of private households living in - Other - Other single-attached house',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10727,7 +10736,7 @@ class CensusColumns(ColumnsTask):
 
         t007c042_t = OBSColumn(
             id='t007c042_t',
-            name='Household size - 1 person',
+            name='Number of private households - w/ 1 person',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10736,7 +10745,7 @@ class CensusColumns(ColumnsTask):
 
         t007c043_t = OBSColumn(
             id='t007c043_t',
-            name='Household size - 2 persons',
+            name='Number of private households - w/ 2 persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10745,7 +10754,7 @@ class CensusColumns(ColumnsTask):
 
         t007c044_t = OBSColumn(
             id='t007c044_t',
-            name='Household size - 3 persons',
+            name='Number of private households - w/ 3 persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10754,7 +10763,7 @@ class CensusColumns(ColumnsTask):
 
         t007c045_t = OBSColumn(
             id='t007c045_t',
-            name='Household size - 4 persons',
+            name='Number of private households - w/ 4 persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10763,7 +10772,7 @@ class CensusColumns(ColumnsTask):
 
         t007c046_t = OBSColumn(
             id='t007c046_t',
-            name='Household size - 5 persons',
+            name='Number of private households - w/ 5 persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10772,7 +10781,7 @@ class CensusColumns(ColumnsTask):
 
         t007c047_t = OBSColumn(
             id='t007c047_t',
-            name='Household size - 6 or more persons',
+            name='Number of private households - w/ 6+ persons',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10785,7 +10794,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_households, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
         t007c049_t = OBSColumn(
@@ -10794,7 +10803,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, unit_households, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing']],
             targets={},)
 
         t008c002_t = OBSColumn(
@@ -10907,7 +10916,7 @@ class CensusColumns(ColumnsTask):
 
         t009c001_t = OBSColumn(
             id='t009c001_t',
-            name='Total population 15 years and over by marital status (total)',
+            name='Population 15+ (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10916,7 +10925,7 @@ class CensusColumns(ColumnsTask):
 
         t009c001_m = OBSColumn(
             id='t009c001_m',
-            name='Total population 15 years and over by marital status (male)',
+            name='Population 15+ (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10925,7 +10934,7 @@ class CensusColumns(ColumnsTask):
 
         t009c001_f = OBSColumn(
             id='t009c001_f',
-            name='Total population 15 years and over by marital status (female)',
+            name='Population 15+ (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10934,7 +10943,7 @@ class CensusColumns(ColumnsTask):
 
         t009c002_t = OBSColumn(
             id='t009c002_t',
-            name='Married or living with a common-law partner (total)',
+            name='Population 15+ - Married or Common-law (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10943,7 +10952,7 @@ class CensusColumns(ColumnsTask):
 
         t009c002_m = OBSColumn(
             id='t009c002_m',
-            name='Married or living with a common-law partner (male)',
+            name='Population 15+ - Married or Common-law (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10952,7 +10961,7 @@ class CensusColumns(ColumnsTask):
 
         t009c002_f = OBSColumn(
             id='t009c002_f',
-            name='Married or living with a common-law partner (female)',
+            name='Population 15+ - Married or Common-law (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10961,7 +10970,7 @@ class CensusColumns(ColumnsTask):
 
         t009c003_t = OBSColumn(
             id='t009c003_t',
-            name='Married (and not separated) (total)',
+            name='Population 15+ - Married (and not separated) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10970,7 +10979,7 @@ class CensusColumns(ColumnsTask):
 
         t009c003_m = OBSColumn(
             id='t009c003_m',
-            name='Married (and not separated) (male)',
+            name='Population 15+ - Married (and not separated) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10979,7 +10988,7 @@ class CensusColumns(ColumnsTask):
 
         t009c003_f = OBSColumn(
             id='t009c003_f',
-            name='Married (and not separated) (female)',
+            name='Population 15+ - Married (and not separated) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10988,7 +10997,7 @@ class CensusColumns(ColumnsTask):
 
         t009c004_t = OBSColumn(
             id='t009c004_t',
-            name='Living common law (total)',
+            name='Population 15+ - Common-law (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -10997,7 +11006,7 @@ class CensusColumns(ColumnsTask):
 
         t009c004_m = OBSColumn(
             id='t009c004_m',
-            name='Living common law (male)',
+            name='Population 15+ - Common-law (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11006,7 +11015,7 @@ class CensusColumns(ColumnsTask):
 
         t009c004_f = OBSColumn(
             id='t009c004_f',
-            name='Living common law (female)',
+            name='Population 15+ - Common-law (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11015,7 +11024,7 @@ class CensusColumns(ColumnsTask):
 
         t009c005_t = OBSColumn(
             id='t009c005_t',
-            name='Not married and not living with a common-law partner (total)',
+            name='Population 15+ - Not married and not Common-law (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11024,7 +11033,7 @@ class CensusColumns(ColumnsTask):
 
         t009c005_m = OBSColumn(
             id='t009c005_m',
-            name='Not married and not living with a common-law partner (male)',
+            name='Population 15+ - Not married and not Common-law (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11033,7 +11042,7 @@ class CensusColumns(ColumnsTask):
 
         t009c005_f = OBSColumn(
             id='t009c005_f',
-            name='Not married and not living with a common-law partner (female)',
+            name='Population 15+ - Not married and not Common-law (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11042,7 +11051,7 @@ class CensusColumns(ColumnsTask):
 
         t009c006_t = OBSColumn(
             id='t009c006_t',
-            name='Single (never legally married) (total)',
+            name='Population 15+ - Single (never legally married) (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11051,7 +11060,7 @@ class CensusColumns(ColumnsTask):
 
         t009c006_m = OBSColumn(
             id='t009c006_m',
-            name='Single (never legally married) (male)',
+            name='Population 15+ - Single (never legally married) (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11060,7 +11069,7 @@ class CensusColumns(ColumnsTask):
 
         t009c006_f = OBSColumn(
             id='t009c006_f',
-            name='Single (never legally married) (female)',
+            name='Population 15+ - Single (never legally married) (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11069,7 +11078,7 @@ class CensusColumns(ColumnsTask):
 
         t009c007_t = OBSColumn(
             id='t009c007_t',
-            name='Separated (total)',
+            name='Population 15+ - Separated (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11078,7 +11087,7 @@ class CensusColumns(ColumnsTask):
 
         t009c007_m = OBSColumn(
             id='t009c007_m',
-            name='Separated (male)',
+            name='Population 15+ - Separated (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11087,7 +11096,7 @@ class CensusColumns(ColumnsTask):
 
         t009c007_f = OBSColumn(
             id='t009c007_f',
-            name='Separated (female)',
+            name='Population 15+ - Separated (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11096,7 +11105,7 @@ class CensusColumns(ColumnsTask):
 
         t009c008_t = OBSColumn(
             id='t009c008_t',
-            name='Divorced (total)',
+            name='Population 15+ - Divorced (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11105,7 +11114,7 @@ class CensusColumns(ColumnsTask):
 
         t009c008_m = OBSColumn(
             id='t009c008_m',
-            name='Divorced (male)',
+            name='Population 15+ - Divorced (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11114,7 +11123,7 @@ class CensusColumns(ColumnsTask):
 
         t009c008_f = OBSColumn(
             id='t009c008_f',
-            name='Divorced (female)',
+            name='Population 15+ - Divorced (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11123,7 +11132,7 @@ class CensusColumns(ColumnsTask):
 
         t009c009_t = OBSColumn(
             id='t009c009_t',
-            name='Widowed (total)',
+            name='Population 15+ - Widowed (total)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11132,7 +11141,7 @@ class CensusColumns(ColumnsTask):
 
         t009c009_m = OBSColumn(
             id='t009c009_m',
-            name='Widowed (male)',
+            name='Population 15+ - Widowed (male)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11141,7 +11150,7 @@ class CensusColumns(ColumnsTask):
 
         t009c009_f = OBSColumn(
             id='t009c009_f',
-            name='Widowed (female)',
+            name='Population 15+ - Widowed (female)',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11168,6 +11177,7 @@ class CensusColumns(ColumnsTask):
         t010c004_t = OBSColumn(
             id='t010c004_t',
             name='Total private dwellings',
+            description='A separate set of living quarters designed for or converted for human habitation in which a person or group of persons reside or could reside. In addition a private dwelling must have a source of heat or power and must be an enclosed space that provides shelter from the elements as evidenced by complete and enclosed walls and roof and by doors and windows that provide protection from wind rain and snow.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11177,6 +11187,7 @@ class CensusColumns(ColumnsTask):
         t010c005_t = OBSColumn(
             id='t010c005_t',
             name='Private dwellings occupied by usual residents',
+            description='A separate set of living quarters which has a private entrance either directly from outside or from a common hall lobby vestibule or stairway leading to the outside and in which a person or a group of persons live permanently.',
             type='Numeric',
             weight=3,
             aggregate='sum',
@@ -11198,7 +11209,7 @@ class CensusColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, subsections['segments']],
+            tags=[ca, unit['sq_km'], subsections['segments']],
             targets={},)
 
         return OrderedDict([
