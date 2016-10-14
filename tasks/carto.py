@@ -250,7 +250,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
         if denom_colname:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom_webmercator, " \
+                    "geom.the_geom, " \
                     "numer.{numer_colname} / NULLIF(denom.{denom_colname}, 0) measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer, " \
                     "     {denom_tablename} as denom " \
@@ -267,20 +267,20 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "  AND numer.{numer_geomref_colname} = denom.{denom_geomref_colname} "
         elif numer_aggregate == 'sum':
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom_webmercator, " \
+                    "geom.the_geom, " \
                     "numer.{numer_colname} / " \
-                    "  ST_Area(geom.the_geom_webmercator) * 1000000.0 measure " \
+                    "  ST_Area(geom.the_geom) * 1000000.0 measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
             statssql = "SELECT CDB_HeadsTailsBins(array_agg(distinct( " \
-                    '  (numer.{numer_colname} / ST_Area(geom.the_geom_webmercator) ' \
+                    '  (numer.{numer_colname} / ST_Area(geom.the_geom) ' \
                     '      * 1000000.0)::NUMERIC)), 4) as "headtails" ' \
                     "FROM {geom_tablename} as geom, " \
                     "     {numer_tablename} as numer " \
                     "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
         else:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "  geom.the_geom_webmercator, " \
+                    "  geom.the_geom, " \
                     "  numer.{numer_colname} measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "  WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
@@ -817,7 +817,7 @@ class OBSMeta(Task):
            FIRST(denom_c.weight) denom_weight,
            FIRST(geom_c.weight) geom_weight,
            FIRST(geom_t.timespan) geom_timespan,
-           FIRST(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
+           FIRST(geom_t.the_geom)::geometry AS the_geom,
            JSONB_OBJECT_AGG(
              numer_tag.type || '/' || numer_tag.id, numer_tag.name
            ) numer_tags,
@@ -845,16 +845,14 @@ class OBSMeta(Task):
          observatory.obs_column_table numer_geomref_ct,
          observatory.obs_column geomref_c,
          observatory.obs_column_to_column geomref_c2c,
-         observatory.obs_column geom_c
-          LEFT JOIN (
-             observatory.obs_column_tag geom_ctag
-             JOIN observatory.obs_tag geom_tag ON geom_ctag.tag_id = geom_tag.id
-          ) ON geom_c.id = geom_ctag.column_id,
+         observatory.obs_column geom_c,
          observatory.obs_column_table geom_geom_ct,
          observatory.obs_column_table geom_geomref_ct,
          observatory.obs_table geom_t,
          observatory.obs_column_tag numer_ctag,
          observatory.obs_tag numer_tag,
+         observatory.obs_column_tag geom_ctag,
+         observatory.obs_tag geom_tag,
          observatory.obs_column numer_c
       LEFT JOIN (
         observatory.obs_column_to_column denom_c2c
@@ -904,7 +902,7 @@ SELECT numer_id::TEXT,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
-       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
 GROUP BY numer_id
         ''',
@@ -921,7 +919,7 @@ SELECT denom_id::TEXT,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
-       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
 GROUP BY denom_id
         ''',
@@ -934,7 +932,7 @@ SELECT geom_id::TEXT,
        FIRST(geom_extra)::JSONB geom_extra,
        FIRST(geom_type)::TEXT geom_type,
        FIRST(geom_aggregate)::TEXT geom_aggregate,
-       ST_SetSRID(FIRST(the_geom_webmercator), 3857)::GEOMETRY(GEOMETRY, 3857) the_geom_webmercator,
+       ST_SetSRID(FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
@@ -953,7 +951,7 @@ SELECT numer_timespan::TEXT timespan_id,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
 GROUP BY numer_timespan
         '''
@@ -968,7 +966,7 @@ class OBSMetaToLocal(OBSMeta):
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
             session.execute(self.FIRST_AGGREGATE)
             session.execute('CREATE TABLE observatory.obs_meta AS {select}'.format(
-                select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
+                select=self.QUERY
             ))
             # confirm that there won't be ambiguity with selection of geom
             # a common issue we're running into is that a single geom_ref is
@@ -988,8 +986,7 @@ class OBSMetaToLocal(OBSMeta):
                 session.execute('CREATE TABLE observatory.obs_meta_{dimension} '
                                 'AS {select}'.format(
                                     dimension=dimension,
-                                    select=query.replace('the_geom_webmercator', 'the_geom') \
-                                                .replace('3857', '4326')
+                                    select=query
                                 ))
                 session.execute('CREATE INDEX ON observatory.obs_meta_{dimension} USING gist '
                                 '(the_geom)'.format(dimension=dimension))
