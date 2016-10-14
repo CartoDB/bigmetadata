@@ -86,7 +86,7 @@ class GeometryColumns(ColumnsTask):
 class Geometry(TableTask):
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {
@@ -119,6 +119,7 @@ class SeccionColumns(ColumnsTask):
             'tags': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'censustags': SourceTags()
         }
 
     def version(self):
@@ -1514,7 +1515,7 @@ class SeccionColumns(ColumnsTask):
             weight=5,
             tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
-        return OrderedDict([
+        columns = OrderedDict([
             ('total_pop', total_pop),
             ('male_pop', male_pop),
             ('female_pop', female_pop),
@@ -1664,7 +1665,24 @@ class SeccionColumns(ColumnsTask):
             ('households_4_people', households_4_people),
             ('households_5_people', households_5_people),
             ('households_6_more_people', households_6_more_people),
-        ])
+            ])
+
+        ine_source = self.input()['censustags']['ine-source']
+        for _, col in columns.iteritems():
+            col.tags.append(ine_source)
+        return columns
+
+
+class SourceTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='ine-source',
+                name='National Statistics Institute (INE)',
+                type='source',
+                description='`INE website <http://www.ine.es>`_')
+            ]
 
 
 class SeccionDataDownload(Task):

@@ -11,14 +11,33 @@ class LicenseTags(TagsTask):
         return [
             OBSTag(id='cc-by-4',
                    name='CC-BY 4.0',
+                   type='license',
                    description=''),
+            OBSTag(id='no-restrictions',
+                   name='Unrestricted',
+                   type='license',
+                   description='You may do whatever you want with this information'
+                  ),
+            OBSTag(id='uk_ogl',
+                    name='UK Open Government Licence (OGL)',
+                    type='license',
+                    description='http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/'),
+            OBSTag(id='ine_property',
+                    name='National Statistics Institute (INE) Property',
+                    type='license',
+                    description='http://www.ine.es/ss/Satellite?L=1&c=Page&cid=1254735849170&p=1254735849170&pagename=Ayuda%2FINELayout#'),
+            OBSTag(id='zillow',
+                    name='Zillow Group Data',
+                    type='license',
+                    description='http://www.zillow.com/research/data/. All data accessed and downloaded from this page is free for public use by consumers, media, analysts, academics etc., consistent with our published Terms of Use. Proper and clear attribution of all data to Zillow is required.')
+
         ]
 
 
 class UnitTags(TagsTask):
 
     def version(self):
-        return 6
+        return 8
 
     def tags(self):
         return [
@@ -50,6 +69,10 @@ class UnitTags(TagsTask):
                    name='Years',
                    type='unit',
                    description=''),
+            OBSTag(id='weeks',
+                   name='Weeks',
+                   type='unit',
+                   description=''),
             OBSTag(id='minutes',
                    name='Minutes',
                    type='unit',
@@ -73,7 +96,19 @@ class UnitTags(TagsTask):
             OBSTag(id='segmentation',
                    name='Segmentation',
                    type='unit',
-                   description='')
+                   description=''),
+            OBSTag(id='sq_km',
+                   name='Square Kilometer',
+                   type='unit',
+                   description=''),
+            OBSTag(id='rooms',
+                   name='Rooms',
+                   type='unit',
+                   description=''),
+            OBSTag(id='family_unit',
+                   name='Families',
+                   type='unit',
+                   description=''),
         ]
 
 
@@ -104,6 +139,10 @@ class SectionTags(TagsTask):
                    name='United Kingdom',
                    type='section',
                    description=''),
+            OBSTag(id='fr',
+                   name='France',
+                   type='section',
+                   description=''),
             OBSTag(id='ca',
                    name='Canada',
                    type='section',
@@ -112,6 +151,10 @@ class SectionTags(TagsTask):
                    name='Thailand',
                    type='section',
                    description=''),
+            OBSTag(id='fr',
+                   name='France',
+                   type='section',
+                   description='')
         ]
 
 
