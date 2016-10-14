@@ -1045,6 +1045,7 @@ class SyncMetadata(WrapperTask):
         for table in ('obs_table', 'obs_column', 'obs_column_table',
                       'obs_tag', 'obs_column_tag', 'obs_dump_version',
                       'obs_column_to_column', 'obs_meta', 'obs_meta_numer',
-                      'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan'
+                      'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan',
+                      'obs_column_table_tile',
                      ):
             yield TableToCartoViaImportAPI(table=table, force=True)
