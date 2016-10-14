@@ -41,10 +41,6 @@ catalog-noimage:
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format pdf --force --images
-
-pdf-catalog-noimage:
-	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Catalog --format pdf --force
 
 md-catalog:
