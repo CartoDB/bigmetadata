@@ -10,6 +10,7 @@ from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.fr.communes import OutputCommuneColumns
 import csv
 import pandas as pd
+import itertools
 #
 # dl_code_list = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=dic%2Fen%2F{code}.dic".format(code=code)
 # flag_explanation = "http://ec.europa.eu/eurostat/data/database/information"
@@ -19,7 +20,7 @@ import pandas as pd
 
 class DownloadEurostat(Task):
 
-    table_code = "demo_r_pjangrp3"
+    table_code =  Parameter()
     URL = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=data%2F{}.tsv.gz".format(table_code)
 
     def download(self):
@@ -76,30 +77,128 @@ class FlexEurostatColumns(ColumnsTask):
 
     def columns(self):
         columns = OrderedDict()
-        session = current_session()
-        resp = session.execute('''
-            SELECT DISTINCT {dimnames}, UNIT FROM {input}
-        '''.format(
-            input=self.input()['data'].table,
-            dimnames=', '.join(self.dimnames)
-        ))
-        for row in resp:
-            dimvalues = row[0:-1]
-            unit = row[-1]
 
-            input_ = self.input()
+        input_ = self.input()
 
-            subsectiontags = input_['subsection']
-            unittags = input_['units']
-            eu = input_['section']['eu']
+        subsectiontags = input_['subsection']
+        unittags = input_['units'] #???
+        eu = input_['section']['eu']
 
-            tags = [eu] # ?? figure out appropriate tags here from our unit info
-            aggregate = 'sum' # ?? does not work for Fertility Rate, Business Demographics, Transport...
-            if unit == 'NR': # ?? does not work for Euros, Fertility Rate, Business Demographics, Transport...
-                tags.append(unittags['people'])
-            tags.append(subsectiontags[self.subsection])
+        tags=[eu,subsectiontags[self.subsection]]
 
-            columns['_'.join(dimvalues)] = generate_eurostat_age_gender_column('DEMO_R_PJANGRP3',
-                tags, aggregate,
-                OrderedDict(zip(self.dimnames, dimvalues)))
+        current_code = None
+        codes = {}
+        current_list = []
+        with open(os.path.join(os.path.dirname(__file__),'metabase.txt')) as metabase:
+            reader = csv.reader(metabase,delimiter='\t')
+            for possible_tablenames, code, code_value in reader:
+                if self.tablename.lower() == possible_tablenames.lower():
+                    if code != "geo" and code != "unit" and code != "time":
+                        if current_code == code:
+                            current_list.append(code_value)
+                        elif current_code:
+                            codes[current_code] = current_list
+                            current_list = []
+                            current_list.append(code_value)
+                        else:
+                            current_list.append(code_value)
+                        current_code = code
+                    codes[current_code] = current_list
+
+        product = [x for x in apply(itertools.product, codes.values())]
+        cross_prod = [dict(zip(codes.keys(), p)) for p in product]
+
+        with open(os.path.join(os.path.dirname(__file__),'table_dic.dic')) as tabledicfile:
+            tablereader = csv.reader(tabledicfile,delimiter='\t')
+            for possible_tablenames, table_description in tablereader:
+                if self.tablename.lower() == possible_tablenames.lower():
+                    table_desc = table_description
+                    variable_name = table_description.split('by')[0].strip()
+                    break
+
+        if cross_prod:
+            for i in cross_prod:
+                var_code = underscore_slugify(variable_name+"_".join(i.values()))
+                dimdefs = []
+                for dimname, value in i.iteritems():
+                    with open(os.path.join(os.path.dirname(__file__),'dic_lists/{dimension}.dic'.format(dimension=dimname))) as dimfile:
+                        reader = csv.reader(dimfile, delimiter='\t')
+                        for possible_dimvalue, dimdef in reader:
+                            if value == possible_dimvalue:
+                                dimdefs.append(dimdef)
+                description = "{} ".format(variable_name)+", ".join([str(x) for x in dimdefs])
+
+                columns[var_code] = OBSColumn(
+                    id=var_code,
+                    name=description,
+                    type='Numeric',
+                    description=table_desc,
+                    weight=1,
+                    aggregate=None, #???
+                    targets={}, #???
+                    tags=tags,
+                )
+        else:
+            var_code = underscore_slugify(variable_name)
+            description = variable_name
+            columns[var_code] = OBSColumn(
+                id=var_code,
+                name=variable_name,
+                type='Numeric',
+                description= table_desc,
+                weight=1,
+                aggregate=None, #???
+                targets={}, #???
+                tags=tags,
+            )
+
         return columns
+
+class FranceCensus(TableTask):
+
+    table_name = Parameter()
+    subsection = Parameter()
+
+    def version(self):
+        return 8
+
+    def timespan(self):
+        return '2012'
+
+    def requires(self):
+        requirements = {
+            'data': RawFRData(table_name=self.table_name),
+=            'meta': FlexEurostatColumns(table_name=self.table_theme, subsection = self.subsection),
+            'geometa': OutputAreaColumns(),
+        }
+        return requirements
+
+    def columns(self):
+        cols = OrderedDict()
+        cols['IRIS'] = self.input()['geometa']['dcomiris']
+        cols.update(self.input()['meta'])
+        return cols
+
+    def populate(self):
+        session = current_session()
+
+        column_targets = self.columns()
+        colnames = ', '.join(column_targets.keys())
+        colnames_typed = ','.join(['{}::{}'.format(colname, ct.get(session).type)
+                              for colname, ct in column_targets.iteritems()])
+        session.execute('INSERT INTO {output} ({ids}) '
+                        'SELECT {ids_typed} '
+                        'FROM {input} '.format(
+                            ids=colnames,
+                            ids_typed=colnames_typed,
+                            output=self.output().table,
+                            input=self.input()['iris_data'].table
+                        ))
+        session.execute('INSERT INTO {output} ({ids}) '
+                        'SELECT {ids_typed} '
+                        'FROM {input} '.format(
+                            ids=colnames,
+                            ids_typed=colnames_typed,
+                            output=self.output().table,
+                            input=self.input()['overseas_data'].table
+                        ))
