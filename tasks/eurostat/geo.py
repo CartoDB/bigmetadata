@@ -115,29 +115,82 @@ class NUTSSHNCrosswalk(TempTableTask):
 
     def run(self):
         session = current_session()
-        session.execute('''
+        session.execute(u'''
             CREATE TABLE {output} AS
-            SELECT shn, code as nuts3,
+            with nuts_unprocessed as (
+              SELECT LOWER(CASE
+                WHEN code ILIKE 'BE%' THEN
+                    REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(name,
+                  ' - Deutschsprachige Gemeinschaft', ''),
+                  ' - communes francophones', ''),
+                  'Bezirk ', ''),
+                  'Hoofdstad', 'Hoofstad'),
+                  'Arr. de Bruxelles-Capitale / Arr. van ', ''),
+                  'Arr. ', '')
+                WHEN code ILIKE 'DE%' THEN
+                    REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(name,
+                  ', Kreisfreie Stadt', ''),
+                  ', Landkreis', ''),
+                  ', Stadtkreis', ''),
+                  ' (DE)', ''),
+                  'Landkreis Rostock', 'Rostock')
+                WHEN code ILIKE 'ES%' THEN
+                  REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(name,
+                    'Ávila', 'Avila'), -- wrong spelling to match SHN
+                    ' / Alacant', ''),
+                    'La Palma', 'Las Palmas'),
+                    'A Coruña', 'Coruña, A'),
+                    'Tenerife', 'Santa Cruz de Tenerife'),
+                    ' / ', '/')
+                WHEN code ILIKE 'FI%' THEN
+                  REPLACE(REPLACE(name,
+                    'Åland', 'Landskapet Åland'),
+                    'Helsinki-Uusimaa', 'Uusimaa')
+                WHEN code ILIKE 'FR%' THEN
+                  REPLACE(name, 'Nord (FR)', 'Nord')
+                ELSE name
+                END) as nuts_name, code, name nuts_original
+              FROM {nuts_names}
+              WHERE code not like '%\_%'
+                and code not like '__%Z%'
+                and name not like '%(NUTS%'
+                and length(code) = 5
+                and name not like '%Unknown%'
+            ), nuts as (
+              SELECT ROW_NUMBER() OVER (ORDER BY nuts_name) nuts_row, code,
+              nuts_name, nuts_original
+              FROM nuts_unprocessed
+              ORDER BY nuts_name
+            ), shn AS (
+              SELECT ROW_NUMBER() OVER (ORDER BY namn, ara) shn_row,
+              ara, ppl, shn,
               CASE
-                WHEN icc IN ('LI', 'ME') THEN 1
-                WHEN icc IN ('BG', 'CH', 'CZ', 'HR', 'NO', 'RO', 'SE', 'SK') THEN 2
-                WHEN icc IN ('ES', 'FI', 'FR', 'HU', 'IT', 'PT') THEN 3
-                WHEN icc IN ('DE', 'BE') THEN 4
-              END - 1 AS shn_level
-            FROM {nuts_names} a, {shn_names} b
-            WHERE
-              code NOT LIKE '%\_%'
-              AND code NOT LIKE '__%Z%'
-              AND name NOT LIKE '%(NUTS%'
-              AND LENGTH(code) = 5
-              AND name NOT LIKE '%Unknown%'
-              AND LOWER(name) = LOWER(namn)
-              AND use = CASE
+                WHEN icc ILIKE 'BE' THEN
+                  REPLACE(namn, '#Bruxelles-Capitale', '')
+                WHEN icc ILIKE 'DE' THEN
+                  REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(namn,
+                      ' a.d. ', ' an der '),
+                      ' i.d. ', ' in der '),
+                      'OPf.', 'Oberpfalz'),
+                      '(Oldb)', '(Oldenburg)'),
+                      ' i. ', ' im '),
+                      ' a. ', ' am ')
+                WHEN icc ILIKE 'FI' THEN SPLIT_PART(namn, '#', 1)
+                ELSE namn
+                END shn_name,
+                use - 1 AS shn_level
+              FROM {shn_names}
+              WHERE use = CASE
                 WHEN icc IN ('LI', 'ME') THEN 1
                 WHEN icc IN ('BG', 'CH', 'CZ', 'HR', 'NO', 'RO', 'SE', 'SK') THEN 2
                 WHEN icc IN ('ES', 'FI', 'FR', 'HU', 'IT', 'PT') THEN 3
                 WHEN icc IN ('DE', 'BE') THEN 4
               END
+              ORDER BY namn, ara
+            )
+            SELECT b.shn, a.code as nuts3, b.shn_level
+            FROM nuts a, shn b
+            WHERE LOWER(nuts_name) = LOWER(shn_name)
         '''.format(output=self.output().table,
                    nuts_names=self.input()['nuts_names'].table,
                    shn_names=self.input()['shn_names'].table))
@@ -163,10 +216,10 @@ class NUTSColumns(ColumnsTask):
 
 class NUTSGeometries(TableTask):
 
-    level = IntParameter()
+    level = IntParameter(default=3)
 
     def version(self):
-        return 2
+        return 3
 
     def timespan(self):
         return 2015
