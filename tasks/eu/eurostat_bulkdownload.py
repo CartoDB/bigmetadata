@@ -21,12 +21,13 @@ import itertools
 class DownloadEurostat(Task):
 
     table_code =  Parameter()
-    URL = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=data%2F{}.tsv.gz".format(table_code)
+    URL="http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F{code}.tsv.gz"
 
     def download(self):
+        URL = self.URL.format(code=self.table_code.lower())
         shell('wget -O {output}.gz "{url}"'.format(
         output=self.output().path,
-        url=self.URL))
+        url=URL))
 
     def run(self):
         self.output().makedirs()
@@ -38,12 +39,15 @@ class DownloadEurostat(Task):
 
 
 class EUTempTable(CSV2TempTableTask):
+
     delimiter = Parameter(default='\t', significant=False)
+    table_name = Parameter() # Ex. "DEMO_R_PJANAGGR3"
+
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
-        return DownloadEurostat()
+        return DownloadEurostat(table_code=self.table_name)
 
     def input_csv(self):
         shell("cat {} | tr ',' '\t' > {}.csv".format(self.input().path,self.input().path))
@@ -55,14 +59,11 @@ class EUFormatTable(TempTableTask):
     def requires(self):
         return EUTempTable()
 
-    def run(self):
-        pass
-
 
 class FlexEurostatColumns(ColumnsTask):
 
     subsection = Parameter()
-    tablename = Parameter()  # Ex. "DEMO_R_PJANAGGR3"
+    table_name = Parameter()  # Ex. "DEMO_R_PJANAGGR3"
 
     # From tablename, determine basis of name for columns from table_dic.dic
     # Then, look at metabase.txt to find relevant dimensions (exclude "geo" and "time", utilize "unit")
@@ -74,6 +75,9 @@ class FlexEurostatColumns(ColumnsTask):
             'subsection': SubsectionTags(),
             'section': SectionTags()
         }
+
+    def version(self):
+        return 3
 
     def columns(self):
         columns = OrderedDict()
@@ -92,7 +96,7 @@ class FlexEurostatColumns(ColumnsTask):
         with open(os.path.join(os.path.dirname(__file__),'metabase.txt')) as metabase:
             reader = csv.reader(metabase,delimiter='\t')
             for possible_tablenames, code, code_value in reader:
-                if self.tablename.lower() == possible_tablenames.lower():
+                if self.table_name.lower() == possible_tablenames.lower():
                     if code != "geo" and code != "unit" and code != "time":
                         if current_code == code:
                             current_list.append(code_value)
@@ -111,7 +115,7 @@ class FlexEurostatColumns(ColumnsTask):
         with open(os.path.join(os.path.dirname(__file__),'table_dic.dic')) as tabledicfile:
             tablereader = csv.reader(tabledicfile,delimiter='\t')
             for possible_tablenames, table_description in tablereader:
-                if self.tablename.lower() == possible_tablenames.lower():
+                if self.table_name.lower() == possible_tablenames.lower():
                     table_desc = table_description
                     variable_name = table_description.split('by')[0].strip()
                     break
@@ -127,16 +131,16 @@ class FlexEurostatColumns(ColumnsTask):
                             if value == possible_dimvalue:
                                 dimdefs.append(dimdef)
                 description = "{} ".format(variable_name)+", ".join([str(x) for x in dimdefs])
-
                 columns[var_code] = OBSColumn(
                     id=var_code,
                     name=description,
-                    type='Numeric',
+                    type='Text',
                     description=table_desc,
                     weight=1,
                     aggregate=None, #???
                     targets={}, #???
                     tags=tags,
+                    extra=i
                 )
         else:
             var_code = underscore_slugify(variable_name)
@@ -144,61 +148,77 @@ class FlexEurostatColumns(ColumnsTask):
             columns[var_code] = OBSColumn(
                 id=var_code,
                 name=variable_name,
-                type='Numeric',
+                type='Text',
                 description= table_desc,
                 weight=1,
                 aggregate=None, #???
                 targets={}, #???
                 tags=tags,
+                extra=None
             )
 
         return columns
 
-class FranceCensus(TableTask):
+
+class NUTSMeta(ColumnsTask):
+    def columns(self):
+        columns = OrderedDict()
+        columns['geo'] = OBSColumn(
+            id='geo',
+            type='text',
+            weight=0,
+        )
+        return columns
+
+
+class TableEU(TableTask):
 
     table_name = Parameter()
     subsection = Parameter()
 
     def version(self):
-        return 8
+        return
 
     def timespan(self):
-        return '2012'
+        return '2015'
 
     def requires(self):
         requirements = {
-            'data': RawFRData(table_name=self.table_name),
-=            'meta': FlexEurostatColumns(table_name=self.table_theme, subsection = self.subsection),
-            'geometa': OutputAreaColumns(),
+            'data': EUTempTable(table_name=self.table_name),
+            'meta': FlexEurostatColumns(table_name=self.table_name, subsection = self.subsection),
+            'geometa': NUTSMeta(), #still needed
         }
         return requirements
 
     def columns(self):
         cols = OrderedDict()
-        cols['IRIS'] = self.input()['geometa']['dcomiris']
+        cols['geo'] = self.input()['geometa']['geo'] #still needed
         cols.update(self.input()['meta'])
         return cols
 
     def populate(self):
         session = current_session()
-
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geo)'.format(
+            output=self.output().table))
+        session.flush()
         column_targets = self.columns()
-        colnames = ', '.join(column_targets.keys())
-        colnames_typed = ','.join(['{}::{}'.format(colname, ct.get(session).type)
-                              for colname, ct in column_targets.iteritems()])
-        session.execute('INSERT INTO {output} ({ids}) '
-                        'SELECT {ids_typed} '
-                        'FROM {input} '.format(
-                            ids=colnames,
-                            ids_typed=colnames_typed,
-                            output=self.output().table,
-                            input=self.input()['iris_data'].table
-                        ))
-        session.execute('INSERT INTO {output} ({ids}) '
-                        'SELECT {ids_typed} '
-                        'FROM {input} '.format(
-                            ids=colnames,
-                            ids_typed=colnames_typed,
-                            output=self.output().table,
-                            input=self.input()['overseas_data'].table
-                        ))
+        for k,v in column_targets.iteritems():
+            if k != 'geo':
+                col = v.get(session)
+                extra = col.extra
+                keys = extra.keys()
+                vals = [extra[k_] for k_ in keys]
+                session.execute('INSERT INTO {output} (geo, {id}) '
+                                'SELECT "{geo_id}", Nullif("{year} ", \': \')::Text '
+                                'FROM {input} '
+                                'WHERE ({input_dims}) = (\'{output_dims}\')'
+                                'ON CONFLICT (geo)'
+                                '   DO UPDATE SET {id} = EXCLUDED.{id}'.format(
+                                    geo_id=r"geo\time",
+                                    id=k,
+                                    year=self.timespan(),
+                                    input_dims = ', '.join(keys),
+                                    output_dims = "', '".join(vals),
+                                    output=self.output().table,
+                                    input=self.input()['data'].table
+                                ))
