@@ -1,0 +1,3695 @@
+EUR	Europe
+EU	European Union (EU6-1972, EU9-1980, EU10-1985, EU12-1994, EU15-2004, EU25-2006, EU27-2013, EU28)
+EU_V	European Union (aggregate changing according to the context)
+EU28	European Union (28 countries)
+EU28_IS_K	European Union (28 countries) and Iceland under the Kyoto Protocol
+EU27	European Union (27 countries)
+EU27_X_FR	European Union except France (26 countries)
+EU25	European Union (25 countries)
+EU15	European Union (15 countries)
+EU15_NO	European Union (15 countries) and Norway
+NMS13	New Member States (13 countries)
+NMS12	New Member States (12 countries)
+NMS2	New Member States (2 countries)
+NMS10	New Member States (10 countries)
+EU12	European Community (12 countries)
+EU10	European Community (10 countries)
+EU9	European Community (9 countries)
+EU6	European Community (6 founder countries)
+EA	Euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18-2014, EA19)
+EA19	Euro area (19 countries)
+EA18	Euro area (18 countries)
+EA17	Euro area (17 countries)
+EA16	Euro area (16 countries)
+EA15	Euro area (15 countries)
+EA13	Euro area (13 countries)
+EA12	Euro area (12 countries)
+EA11	Euro area (11 countries)
+BE	Belgium
+BE1_2	Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest and Vlaams Gewest
+BE1	Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest
+BE10_24	Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest and Prov. Vlaams Brabant
+BE10	Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest
+BE100	Arr. de Bruxelles-Capitale / Arr. van Brussel-Hoofdstad
+BE10000004	Bruxelles/Brussel
+BE2	Vlaams Gewest
+BE21	Prov. Antwerpen
+BE211	Arr. Antwerpen
+BE212	Arr. Mechelen
+BE213	Arr. Turnhout
+BE22	Prov. Limburg (BE)
+BE221	Arr. Hasselt
+BE222	Arr. Maaseik
+BE223	Arr. Tongeren
+BE23	Prov. Oost-Vlaanderen
+BE231	Arr. Aalst
+BE232	Arr. Dendermonde
+BE233	Arr. Eeklo
+BE234	Arr. Gent
+BE235	Arr. Oudenaarde
+BE236	Arr. Sint-Niklaas
+BE24	Prov. Vlaams-Brabant
+BE241	Arr. Halle-Vilvoorde
+BE242	Arr. Leuven
+BE25	Prov. West-Vlaanderen
+BE251	Arr. Brugge
+BE252	Arr. Diksmuide
+BE253	Arr. Ieper
+BE254	Arr. Kortrijk
+BE255	Arr. Oostende
+BE256	Arr. Roeselare
+BE257	Arr. Tielt
+BE258	Arr. Veurne
+BE3	Région wallonne
+BE31	Prov. Brabant Wallon
+BE310	Arr. Nivelles
+BE32	Prov. Hainaut
+BE321	Arr. Ath
+BE322	Arr. Charleroi
+BE323	Arr. Mons
+BE324	Arr. Mouscron
+BE325	Arr. Soignies
+BE326	Arr. Thuin
+BE327	Arr. Tournai
+BE33	Prov. Liège
+BE331	Arr. Huy
+BE332	Arr. Liège
+BE334	Arr. Waremme
+BE335_336	Arr. Verviers
+BE335	Arr. Verviers - communes francophones
+BE336	Bezirk Verviers - Deutschsprachige Gemeinschaft
+BE34	Prov. Luxembourg (BE)
+BE341	Arr. Arlon
+BE342	Arr. Bastogne
+BE343	Arr. Marche-en-Famenne
+BE344	Arr. Neufchâteau
+BE345	Arr. Virton
+BE35	Prov. Namur
+BE351	Arr. Dinant
+BE352	Arr. Namur
+BE353	Arr. Philippeville
+BEZ	Extra-Regio NUTS 1
+BEZZ	Extra-Regio NUTS 2
+BEZZZ	Extra-Regio NUTS 3
+BE_FRA	French Community in Belgium (including small German-speaking Community)
+BE_VLA	Flemish Community in Belgium
+BE_CAP	Bruxelles/Brussel
+BEX	Not regionalised / Unknown NUTS 1
+BEXX	Not regionalised / Unknown NUTS 2
+BEXXX	Not regionalised / Unknown NUTS 3
+BE_NAL	Belgium, not allocated
+BG	Bulgaria
+BG3	Severna i yugoiztochna Bulgaria
+BG31	Severozapaden
+BG311	Vidin
+BG312	Montana
+BG313	Vratsa
+BG314	Pleven
+BG315	Lovech
+BG32	Severen tsentralen
+BG321	Veliko Tarnovo
+BG322	Gabrovo
+BG323	Ruse
+BG324	Razgrad
+BG325	Silistra
+BG33	Severoiztochen
+BG331	Varna
+BG332	Dobrich
+BG333	Shumen
+BG334	Targovishte
+BG34	Yugoiztochen
+BG341	Burgas
+BG342	Sliven
+BG343	Yambol
+BG344	Stara Zagora
+BG4	Yugozapadna i yuzhna tsentralna Bulgaria
+BG41	Yugozapaden
+BG411	Sofia (stolitsa)
+BG412	Sofia
+BG413	Blagoevgrad
+BG414	Pernik
+BG415	Kyustendil
+BG42	Yuzhen tsentralen
+BG421	Plovdiv
+BG422	Haskovo
+BG423	Pazardzhik
+BG424	Smolyan
+BG425	Kardzhali
+BGZ	Extra-Regio NUTS 1
+BGZZ	Extra-Regio NUTS 2
+BGZZZ	Extra-Regio NUTS 3
+BG1	Severna Bulgaria (SRE 2005)
+BG11	Severozapaden (SRE 2005)
+BG111	Vidin (SRE 2005)
+BG112	Montana (SRE 2005)
+BG113	Vratsa (SRE 2005)
+BG12	Severen tsentralen (SRE 2005)
+BG121	Pleven (SRE 2005)
+BG122	Lovech (SRE 2005)
+BG123	Veliko Tarnovo (SRE 2005)
+BG124	Gabrovo (SRE 2005)
+BG125	Ruse (SRE 2005)
+BG13	Severoiztochen (SRE 2005)
+BG131	Varna (SRE 2005)
+BG132	Dobrich (SRE 2005)
+BG133	Shumen (SRE 2005)
+BG134	Targovishte (SRE 2005)
+BG135	Razgrad (SRE 2005)
+BG136	Silistra (SRE 2005)
+BG2	Yuzhna Bulgaria (SRE 2005)
+BG21	Yugozapaden (SRE 2005)
+BG211	Sofia (stolitsa) (SRE 2005)
+BG212	Sofia (SRE 2005)
+BG213	Blagoevgrad (SRE 2005)
+BG214	Pernik (SRE 2005)
+BG215	Kyustendil (SRE 2005)
+BG22	Yuzhen tsentralen (SRE 2005)
+BG221	Plovdiv (SRE 2005)
+BG222	Stara Zagora (SRE 2005)
+BG223	Haskovo (SRE 2005)
+BG224	Pazardzhik (SRE 2005)
+BG225	Smolyan (SRE 2005)
+BG226	Kardzhali (SRE 2005)
+BG23	Yugoiztochen (SRE 2005)
+BG231	Burgas (SRE 2005)
+BG232	Sliven (SRE 2005)
+BG233	Yambol (SRE 2005)
+BG_CAP	Sofia
+BGX	Not regionalised / Unknown NUTS 1
+BGXX	Not regionalised / Unknown NUTS 2
+BGXXX	Not regionalised / Unknown NUTS 3
+CZ	Czech Republic
+CZ0	Ceská republika
+CZ01	Praha
+CZ010	Hlavní mesto Praha
+CZ02	Strední Cechy
+CZ020	Stredoceský kraj
+CZ03	Jihozápad
+CZ031	Jihocecký kraj
+CZ032	Plzenský kraj
+CZ04	Severozápad
+CZ041	Karlovarský kraj
+CZ042	Ústecký kraj
+CZ05	Severovýchod
+CZ051	Liberecký kraj
+CZ052	Královéhradecký kraj
+CZ053	Pardubický kraj
+CZ06	Jihovýchod
+CZ061	Vysocina (NUTS 2003)
+CZ062	Jihomoravský (NUTS 2003)
+CZ063	Kraj Vysocina
+CZ064	Jihomoravský kraj
+CZ07	Strední Morava
+CZ071	Olomoucký kraj
+CZ072	Zlínský kraj
+CZ08	Moravskoslezsko
+CZ080	Moravskoslezský kraj
+CZZ	Extra-Regio NUTS 1
+CZZZ	Extra-Regio NUTS 2
+CZZZZ	Extra-Regio NUTS 3
+CZ_CAP	Praha
+CZX	Not regionalised / Unknown NUTS 1
+CZXX	Not regionalised / Unknown NUTS 2
+CZXXX	Not regionalised / Unknown NUTS 3
+CZ_CEC	Cechy
+CZ_MOR	Morava
+DK	Denmark
+DK0	Danmark
+DK01	Hovedstaden
+DK011	Byen København
+DK012	Københavns omegn
+DK00100001	København
+DK013	Nordsjælland
+DK014	Bornholm
+DK02	Sjælland
+DK021	Østsjælland
+DK022	Vest- og Sydsjælland
+DK03	Syddanmark
+DK031	Fyn
+DK032	Sydjylland
+DK04	Midtjylland
+DK041	Vestjylland
+DK042	Østjylland
+DK05	Nordjylland
+DK050	Nordjylland
+DKZ	Extra-Regio NUTS 1
+DKZZ	Extra-Regio NUTS 2
+DKZZZ	Extra-Regio NUTS 3
+DK001-004	København og Frederiksberg Kommuner, Roskilde amt, Københavns amt, Frederiksborg amt (NUTS 1999)
+DK001	København og Frederiksberg Kommuner (NUTS 1999)
+DK002	Københavns amt (NUTS 1999)
+DK003	Frederiksborg amt (NUTS 1999)
+DK004	Roskilde amt (NUTS 1999)
+DK005	Vestsjællands amt (NUTS 1999)
+DK006	Storstrøms amt (NUTS 1999)
+DK007	Bornholms amt (NUTS 1999)
+DK008	Fyns amt (NUTS 1999)
+DK009	Sønderjyllands amt (NUTS 1999)
+DK00A	Ribe amt (NUTS 1999)
+DK00B	Vejle amt (NUTS 1999)
+DK00C	Ringkøbing amt (NUTS 1999)
+DK00D	Århus amt (NUTS 1999)
+DK00E	Viborg amt (NUTS 1999)
+DK00F	Nordjyllands amt (NUTS 1999)
+DK_CAP	København
+DKX	Not regionalised / Unknown NUTS 1
+DKXX	Not regionalised / Unknown NUTS 2
+DKXXX	Not regionalised / Unknown NUTS 3
+DE	Germany (until 1990 former territory of the FRG)
+DE_TOT	Germany (including former GDR)
+DEW	Federal Republic of Germany (former territory of the FRG only)
+EX_DD	Former German Democratic Republic (until 1990) / new Länder (from 1991)
+DE1	Baden-Württemberg
+DE11	Stuttgart
+DE111	Stuttgart, Stadtkreis
+DE11100001	Stuttgart
+DE112	Böblingen
+DE113	Esslingen
+DE114	Göppingen
+DE115	Ludwigsburg
+DE116	Rems-Murr-Kreis
+DE117	Heilbronn, Stadtkreis
+DE118	Heilbronn, Landkreis
+DE119	Hohenlohekreis
+DE11A	Schwäbisch Hall
+DE11B	Main-Tauber-Kreis
+DE11C	Heidenheim
+DE11D	Ostalbkreis
+DE12	Karlsruhe
+DE121	Baden-Baden, Stadtkreis
+DE122	Karlsruhe, Stadtkreis
+DE123	Karlsruhe, Landkreis
+DE124	Rastatt
+DE125	Heidelberg, Stadtkreis
+DE126	Mannheim, Stadtkreis
+DE127	Neckar-Odenwald-Kreis
+DE128	Rhein-Neckar-Kreis
+DE129	Pforzheim, Stadtkreis
+DE12A	Calw
+DE12B	Enzkreis
+DE12C	Freudenstadt
+DE13	Freiburg
+DE131	Freiburg im Breisgau, Stadtkreis
+DE132	Breisgau-Hochschwarzwald
+DE133	Emmendingen
+DE134	Ortenaukreis
+DE135	Rottweil
+DE136	Schwarzwald-Baar-Kreis
+DE137	Tuttlingen
+DE138	Konstanz
+DE139	Lörrach
+DE13A	Waldshut
+DE14	Tübingen
+DE141	Reutlingen
+DE142	Tübingen, Landkreis
+DE143	Zollernalbkreis
+DE144	Ulm, Stadtkreis
+DE145	Alb-Donau-Kreis
+DE146	Biberach
+DE147	Bodenseekreis
+DE148	Ravensburg
+DE149	Sigmaringen
+DE1_E	Baden-Württemberg East
+DE1_N_W	Baden-Württemberg North West
+DE1_S_W	Baden-Württemberg South West
+DE1BA	Baden
+DE1WU	Württemberg
+DE2	Bayern
+DE21	Oberbayern
+DE211	Ingolstadt, Kreisfreie Stadt
+DE212	München, Kreisfreie Stadt
+DE21200001	München
+DE213	Rosenheim, Kreisfreie Stadt
+DE214	Altötting
+DE215	Berchtesgadener Land
+DE216	Bad Tölz-Wolfratshausen
+DE217	Dachau
+DE218	Ebersberg
+DE219	Eichstätt
+DE21A	Erding
+DE21B	Freising
+DE21C	Fürstenfeldbruck
+DE21D	Garmisch-Partenkirchen
+DE21E	Landsberg am Lech
+DE21F	Miesbach
+DE21G	Mühldorf am Inn
+DE21H	München, Landkreis
+DE21I	Neuburg-Schrobenhausen
+DE21J	Pfaffenhofen an der Ilm
+DE21K	Rosenheim, Landkreis
+DE21L	Starnberg
+DE21M	Traunstein
+DE21N	Weilheim-Schongau
+DE22	Niederbayern
+DE221	Landshut, Kreisfreie Stadt
+DE222	Passau, Kreisfreie Stadt
+DE223	Straubing, Kreisfreie Stadt
+DE224	Deggendorf
+DE225	Freyung-Grafenau
+DE226	Kelheim
+DE227	Landshut, Landkreis
+DE228	Passau, Landkreis
+DE229	Regen
+DE22A	Rottal-Inn
+DE22B	Straubing-Bogen
+DE22C	Dingolfing-Landau
+DE23	Oberpfalz
+DE231	Amberg, Kreisfreie Stadt
+DE232	Regensburg, Kreisfreie Stadt
+DE233	Weiden in der Oberpfalz, Kreisfreie Stadt
+DE234	Amberg-Sulzbach
+DE235	Cham
+DE236	Neumarkt in der Oberpfalz
+DE237	Neustadt an der Waldnaab
+DE238	Regensburg, Landkreis
+DE239	Schwandorf
+DE23A	Tirschenreuth
+DE2FRA	Franken
+DE24	Oberfranken
+DE241	Bamberg, Kreisfreie Stadt
+DE242	Bayreuth, Kreisfreie Stadt
+DE243	Coburg, Kreisfreie Stadt
+DE244	Hof, Kreisfreie Stadt
+DE245	Bamberg, Landkreis
+DE246	Bayreuth, Landkreis
+DE247	Coburg, Landkreis
+DE248	Forchheim
+DE249	Hof, Landkreis
+DE24A	Kronach
+DE24B	Kulmbach
+DE24C	Lichtenfels
+DE24D	Wunsiedel im Fichtelgebirge
+DE25	Mittelfranken
+DE251	Ansbach, Kreisfreie Stadt
+DE252	Erlangen, Kreisfreie Stadt
+DE253	Fürth, Kreisfreie Stadt
+DE254	Nürnberg, Kreisfreie Stadt
+DE255	Schwabach, Kreisfreie Stadt
+DE256	Ansbach, Landkreis
+DE257	Erlangen-Höchstadt
+DE258	Fürth, Landkreis
+DE259	Nürnberger Land
+DE25A	Neustadt an der Aisch-Bad Windsheim
+DE25B	Roth
+DE25C	Weißenburg-Gunzenhausen
+DE26	Unterfranken
+DE261	Aschaffenburg, Kreisfreie Stadt
+DE262	Schweinfurt, Kreisfreie Stadt
+DE263	Würzburg, Kreisfreie Stadt
+DE264	Aschaffenburg, Landkreis
+DE265	Bad Kissingen
+DE266	Rhön-Grabfeld
+DE267	Haßberge
+DE268	Kitzingen
+DE269	Miltenberg
+DE26A	Main-Spessart
+DE26B	Schweinfurt, Landkreis
+DE26C	Würzburg, Landkreis
+DE27	Schwaben
+DE271	Augsburg, Kreisfreie Stadt
+DE272	Kaufbeuren, Kreisfreie Stadt
+DE273	Kempten (Allgäu), Kreisfreie Stadt
+DE274	Memmingen, Kreisfreie Stadt
+DE275	Aichach-Friedberg
+DE276	Augsburg, Landkreis
+DE277	Dillingen an der Donau
+DE278	Günzburg
+DE279	Neu-Ulm
+DE27A	Lindau (Bodensee)
+DE27B	Ostallgäu
+DE27C	Unterallgäu
+DE27D	Donau-Ries
+DE27E	Oberallgäu
+DE2_E	Bayern - East
+DE2_N	Bayern - North
+DE2_S	Bayern - South
+DE3_5_6	Berlin, Bremen, Hamburg
+DE3	Berlin
+DE30	Berlin
+DE300	Berlin
+DE301	Berlin-West, Stadt (NUTS99)
+DE302	Berlin-Ost, Stadt (NUTS99)
+DE4	Brandenburg
+DE40	Brandenburg
+DE401	Brandenburg an der Havel, Kreisfreie Stadt
+DE402	Cottbus, Kreisfreie Stadt
+DE403	Frankfurt (Oder), Kreisfreie Stadt
+DE404	Potsdam, Kreisfreie Stadt
+DE405	Barnim
+DE406	Dahme-Spreewald
+DE407	Elbe-Elster
+DE408	Havelland
+DE409	Märkisch-Oderland
+DE40A	Oberhavel
+DE40B	Oberspreewald-Lausitz
+DE40C	Oder-Spree
+DE40D	Ostprignitz-Ruppin
+DE40E	Potsdam-Mittelmark
+DE40F	Prignitz
+DE40G	Spree-Neiße
+DE40H	Teltow-Fläming
+DE40I	Uckermark
+DE41	Brandenburg - Nordost (NUTS 2006)
+DE411	Frankfurt (Oder), Kreisfreie Stadt (NUTS 2006)
+DE412	Barnim (NUTS 2006)
+DE413	Märkisch-Oderland (NUTS 2006)
+DE414	Oberhavel (NUTS 2006)
+DE415	Oder-Spree (NUTS 2006)
+DE416	Ostprignitz-Ruppin (NUTS 2006)
+DE417	Prignitz (NUTS 2006)
+DE418	Uckermark (NUTS 2006)
+DE42	Brandenburg - Südwest (NUTS 2006)
+DE421	Brandenburg an der Havel, Kreisfreie Stadt (NUTS 2006)
+DE422	Cottbus, Kreisfreie Stadt (NUTS 2006)
+DE423	Potsdam, Kreisfreie Stadt (NUTS 2006)
+DE424	Dahme-Spreewald (NUTS 2006)
+DE425	Elbe-Elster (NUTS 2006)
+DE426	Havelland (NUTS 2006)
+DE427	Oberspreewald-Lausitz (NUTS 2006)
+DE428	Potsdam-Mittelmark (NUTS 2006)
+DE429	Spree-Neiße (NUTS 2006)
+DE42A	Teltow-Fläming (NUTS 2006)
+DE5	Bremen
+DE50	Bremen
+DE501	Bremen, Kreisfreie Stadt
+DE502	Bremerhaven, Kreisfreie Stadt
+DE6	Hamburg
+DE60	Hamburg
+DE600	Hamburg
+DE60000001	Hamburg
+DE7	Hessen
+DE71	Darmstadt
+DE711	Darmstadt, Kreisfreie Stadt
+DE712	Frankfurt am Main, Kreisfreie Stadt
+DE71200001	Frankfurt am Main
+DE713	Offenbach am Main, Kreisfreie Stadt
+DE714	Wiesbaden, Kreisfreie Stadt
+DE715	Bergstraße
+DE716	Darmstadt-Dieburg
+DE717	Groß-Gerau
+DE718	Hochtaunuskreis
+DE719	Main-Kinzig-Kreis
+DE71A	Main-Taunus-Kreis
+DE71B	Odenwaldkreis
+DE71C	Offenbach, Landkreis
+DE71D	Rheingau-Taunus-Kreis
+DE71E	Wetteraukreis
+DE72	Gießen
+DE721	Gießen, Landkreis
+DE722	Lahn-Dill-Kreis
+DE723	Limburg-Weilburg
+DE724	Marburg-Biedenkopf
+DE725	Vogelsbergkreis
+DE73	Kassel
+DE731	Kassel, Kreisfreie Stadt
+DE732	Fulda
+DE733	Hersfeld-Rotenburg
+DE734	Kassel, Landkreis
+DE735	Schwalm-Eder-Kreis
+DE736	Waldeck-Frankenberg
+DE737	Werra-Meißner-Kreis
+DE7_N	Hessen - North
+DE7_S	Hessen - South
+DE7HBG	Hessische Bergstraße
+DE7RHE	Rheingau
+DE8	Mecklenburg-Vorpommern
+DE80	Mecklenburg-Vorpommern
+DE801	Greifswald, Kreisfreie Stadt (NUTS 2010)
+DE802	Neubrandenburg, Kreisfreie Stadt (NUTS 2010)
+DE803	Rostock, Kreisfreie Stadt
+DE80300001	Rostock
+DE804	Schwerin, Kreisfreie Stadt
+DE805	Stralsund, Kreisfreie Stadt (NUTS 2010)
+DE806	Wismar, Kreisfreie Stadt (NUTS 2010)
+DE807	Bad Doberan (NUTS 2010)
+DE808	Demmin (NUTS 2010)
+DE809	Güstrow (NUTS 2010)
+DE80A	Ludwigslust (NUTS 2010)
+DE80B	Mecklenburg-Strelitz (NUTS 2010)
+DE80C	Müritz (NUTS 2010)
+DE80D	Nordvorpommern (NUTS 2010)
+DE80E	Nordwestmecklenburg (NUTS 2010)
+DE80F	Ostvorpommern (NUTS 2010)
+DE80G	Parchim (NUTS 2010)
+DE80H	Rügen (NUTS 2010)
+DE80I	Uecker-Randow (NUTS 2010)
+DE80J	Mecklenburgische Seenplatte
+DE80K	Landkreis Rostock
+DE80L	Vorpommern-Rügen
+DE80M	Nordwestmecklenburg
+DE80N	Vorpommern-Greifswald
+DE80O	Ludwigslust-Parchim
+DE9	Niedersachsen
+DE91	Braunschweig
+DE911	Braunschweig, Kreisfreie Stadt
+DE912	Salzgitter, Kreisfreie Stadt
+DE913	Wolfsburg, Kreisfreie Stadt
+DE914	Gifhorn
+DE915	Göttingen
+DE916	Goslar
+DE917	Helmstedt
+DE918	Northeim
+DE919	Osterode am Harz
+DE91A	Peine
+DE91B	Wolfenbüttel
+DE92	Hannover
+DE92100001	Hannover
+DE921	Hannover, Kreisfreie Stadt (NUTS99)
+DE922	Diepholz
+DE923	Hameln-Pyrmont
+DE924	Hannover, Landkreis (NUTS99)
+DE925	Hildesheim
+DE926	Holzminden
+DE927	Nienburg (Weser)
+DE928	Schaumburg
+DE929	Region Hannover
+DE93	Lüneburg
+DE931	Celle
+DE932	Cuxhaven
+DE933	Harburg
+DE934	Lüchow-Dannenberg
+DE935	Lüneburg, Landkreis
+DE936	Osterholz
+DE937	Rotenburg (Wümme)
+DE938	Heidekreis
+DE939	Stade
+DE93A	Uelzen
+DE93B	Verden
+DE94	Weser-Ems
+DE941	Delmenhorst, Kreisfreie Stadt
+DE942	Emden, Kreisfreie Stadt
+DE943	Oldenburg (Oldenburg), Kreisfreie Stadt
+DE944	Osnabrück, Kreisfreie Stadt
+DE945	Wilhelmshaven, Kreisfreie Stadt
+DE946	Ammerland
+DE947	Aurich
+DE948	Cloppenburg
+DE949	Emsland
+DE94A	Friesland (DE)
+DE94B	Grafschaft Bentheim
+DE94C	Leer
+DE94D	Oldenburg, Landkreis
+DE94E	Osnabrück, Landkreis
+DE94F	Vechta
+DE94G	Wesermarsch
+DE94H	Wittmund
+DE9_N	Niedersachsen - North
+DE9_S_E	Niedersachsen - South East
+DE9_W	Niedersachsen - West
+DEA-C	Nordrhein-Westfalen, Rheinland-Pfalz and Saarland
+DEA	Nordrhein-Westfalen
+DEA1	Düsseldorf
+DEA11	Düsseldorf, Kreisfreie Stadt
+DEA1100001	Düsseldorf
+DEA12	Duisburg, Kreisfreie Stadt
+DEA13	Essen, Kreisfreie Stadt
+DEA14	Krefeld, Kreisfreie Stadt
+DEA15	Mönchengladbach, Kreisfreie Stadt
+DEA16	Mülheim an der Ruhr, Kreisfreie Stadt
+DEA17	Oberhausen, Kreisfreie Stadt
+DEA18	Remscheid, Kreisfreie Stadt
+DEA19	Solingen, Kreisfreie Stadt
+DEA1A	Wuppertal, Kreisfreie Stadt
+DEA1B	Kleve
+DEA1C	Mettmann
+DEA1D	Rhein-Kreis Neuss
+DEA1E	Viersen
+DEA1F	Wesel
+DEA2	Köln
+DEA21	Aachen, Kreisfreie Stadt (NUTS 2006)
+DEA22	Bonn, Kreisfreie Stadt
+DEA23	Köln, Kreisfreie Stadt
+DEA24	Leverkusen, Kreisfreie Stadt
+DEA25	Aachen, Kreis (NUTS 2006)
+DEA26	Düren
+DEA27	Rhein-Erft-Kreis
+DEA28	Euskirchen
+DEA29	Heinsberg
+DEA2A	Oberbergischer Kreis
+DEA2B	Rheinisch-Bergischer Kreis
+DEA2C	Rhein-Sieg-Kreis
+DEA2D	Städteregion Aachen
+DEA3	Münster
+DEA31	Bottrop, Kreisfreie Stadt
+DEA32	Gelsenkirchen, Kreisfreie Stadt
+DEA33	Münster, Kreisfreie Stadt
+DEA34	Borken
+DEA35	Coesfeld
+DEA36	Recklinghausen
+DEA37	Steinfurt
+DEA38	Warendorf
+DEA4	Detmold
+DEA41	Bielefeld, Kreisfreie Stadt
+DEA42	Gütersloh
+DEA43	Herford
+DEA44	Höxter
+DEA45	Lippe
+DEA46	Minden-Lübbecke
+DEA47	Paderborn
+DEA5	Arnsberg
+DEA51	Bochum, Kreisfreie Stadt
+DEA52	Dortmund, Kreisfreie Stadt
+DEA5200001	Dortmund
+DEA53	Hagen, Kreisfreie Stadt
+DEA54	Hamm, Kreisfreie Stadt
+DEA55	Herne, Kreisfreie Stadt
+DEA56	Ennepe-Ruhr-Kreis
+DEA57	Hochsauerlandkreis
+DEA58	Märkischer Kreis
+DEA59	Olpe
+DEA5A	Siegen-Wittgenstein
+DEA5B	Soest
+DEA5C	Unna
+DEA_E	Nordrhein-Westfalen - East
+DEA_N	Nordrhein-Westfalen - North
+DEA_S_W	Nordrhein-Westfalen - South West
+DEA_RUHR	Ruhrgebiet
+DEB	Rheinland-Pfalz
+DEB1	Koblenz
+DEB11	Koblenz, Kreisfreie Stadt
+DEB12	Ahrweiler
+DEB13	Altenkirchen (Westerwald)
+DEB14	Bad Kreuznach
+DEB15	Birkenfeld
+DEB16	Cochem-Zell
+DEB17	Mayen-Koblenz
+DEB18	Neuwied
+DEB19	Rhein-Hunsrück-Kreis
+DEB1A	Rhein-Lahn-Kreis
+DEB1B	Westerwaldkreis
+DEB2	Trier
+DEB21	Trier, Kreisfreie Stadt
+DEB22	Bernkastel-Wittlich
+DEB23	Eifelkreis Bitburg-Prüm
+DEB24	Vulkaneifel
+DEB25	Trier-Saarburg
+DEB3	Rheinhessen-Pfalz
+DEB31	Frankenthal (Pfalz), Kreisfreie Stadt
+DEB32	Kaiserslautern, Kreisfreie Stadt
+DEB33	Landau in der Pfalz, Kreisfreie Stadt
+DEB34	Ludwigshafen am Rhein, Kreisfreie Stadt
+DEB35	Mainz, Kreisfreie Stadt
+DEB36	Neustadt an der Weinstraße, Kreisfreie Stadt
+DEB37	Pirmasens, Kreisfreie Stadt
+DEB38	Speyer, Kreisfreie Stadt
+DEB39	Worms, Kreisfreie Stadt
+DEB3A	Zweibrücken, Kreisfreie Stadt
+DEB3B	Alzey-Worms
+DEB3C	Bad Dürkheim
+DEB3D	Donnersbergkreis
+DEB3E	Germersheim
+DEB3F	Kaiserslautern, Landkreis
+DEB3G	Kusel
+DEB3H	Südliche Weinstraße
+DEB3I	Rhein-Pfalz-Kreis
+DEB3J	Mainz-Bingen
+DEB3K	Südwestpfalz
+DEB_N	Rheinland-Pfalz - North
+DEB_S	Rheinland-Pfalz - South
+DEB_AHR	Ahr
+DEB_MTR	Mittelrhein
+DEB_MSR	Mosel-Saar-Ruwer
+DEB_NAH	Nahe
+DEB_RHE	Rheinhessen
+DEB_RPF	Rhein-Pfalz
+DEC	Saarland
+DEC0	Saarland
+DEC01	Regionalverband Saarbrücken
+DEC02	Merzig-Wadern
+DEC03	Neunkirchen
+DEC04	Saarlouis
+DEC05	Saarpfalz-Kreis
+DEC06	St. Wendel
+DED	Sachsen
+DED1	Chemnitz (NUTS 2006)
+DED11	Chemnitz, Kreisfreie Stadt (NUTS 2006)
+DED12	Plauen, Kreisfreie Stadt (NUTS 2006)
+DED13	Zwickau, Kreisfreie Stadt (NUTS 2006)
+DED14	Annaberg (NUTS 2006)
+DED15	Chemnitzer Land (NUTS 2006)
+DED16	Freiberg (NUTS 2006)
+DED17	Vogtlandkreis (NUTS 2006)
+DED18	Mittlerer Erzgebirgskreis (NUTS 2006)
+DED19	Mittweida (NUTS 2006)
+DED1A	Stollberg (NUTS 2006)
+DED1B	Aue-Schwarzenberg (NUTS 2006)
+DED1C	Zwickauer Land (NUTS 2006)
+DED2	Dresden
+DED21	Dresden, Kreisfreie Stadt
+DED0200001	Dresden
+DED22	Görlitz, Kreisfreie Stadt (NUTS 2006)
+DED23	Hoyerswerda, Kreisfreie Stadt (NUTS 2006)
+DED24	Bautzen (NUTS 2006)
+DED25	Meißen (NUTS 2006)
+DED26	Niederschlesischer Oberlausitzkreis (NUTS 2006)
+DED27	Riesa-Großenhain (NUTS 2006)
+DED28	Löbau-Zittau (NUTS 2006)
+DED29	Sächsische Schweiz (NUTS 2006)
+DED2A	Weißeritzkreis (NUTS 2006)
+DED2B	Kamenz (NUTS 2006)
+DED2C	Bautzen
+DED2D	Görlitz
+DED2E	Meißen
+DED2F	Sächsische Schweiz-Osterzgebirge
+DED3	Leipzig (NUTS 2006)
+DED0400001	Leipzig
+DED31	Leipzig, Kreisfreie Stadt (NUTS 2006)
+DED32	Delitzsch (NUTS 2006)
+DED33	Döbeln (NUTS 2006)
+DED34	Leipziger Land (NUTS 2006)
+DED35	Muldentalkreis (NUTS 2006)
+DED36	Torgau-Oschatz (NUTS 2006)
+DED4	Chemnitz
+DED41	Chemnitz, Kreisfreie Stadt
+DED42	Erzgebirgskreis
+DED43	Mittelsachsen
+DED44	Vogtlandkreis
+DED45	Zwickau
+DED5	Leipzig
+DED51	Leipzig, Kreisfreie Stadt
+DED52	Leipzig
+DED53	Nordsachsen
+DEE	Sachsen-Anhalt
+DEE0	Sachsen-Anhalt
+DEE01	Dessau-Roßlau, Kreisfreie Stadt
+DEE02	Halle (Saale), Kreisfreie Stadt
+DEE03	Magdeburg, Kreisfreie Stadt
+DEE04	Altmarkkreis Salzwedel
+DEE05	Anhalt-Bitterfeld
+DEE06	Jerichower Land
+DEE07	Börde
+DEE08	Burgenlandkreis (DE)
+DEE09	Harz
+DEE0A	Mansfeld-Südharz
+DEE0B	Saalekreis
+DEE0C	Salzlandkreis
+DEE0D	Stendal
+DEE0E	Wittenberg
+DEE1	Dessau (NUTS 1999)
+DEE11	Dessau, Kreisfreie Stadt (NUTS 2003)
+DEE12	Anhalt-Zerbst (NUTS 2003)
+DEE13	Bernburg (NUTS 2003)
+DEE14	Bitterfeld (NUTS 2003)
+DEE15	Köthen (NUTS 2003)
+DEE16	Wittenberg (NUTS 2003)
+DEE2	Halle (NUTS 2003)
+DEE22	Burgenlandkreis (NUTS 2003)
+DEE23	Mansfelder Land (NUTS 2003)
+DEE24	Merseburg-Querfurt (NUTS 2003)
+DEE25	Saalkreis (NUTS 2003)
+DEE26	Sangerhausen (NUTS 2003)
+DEE27	Weißenfels (NUTS 2003)
+DEE3	Magdeburg (NUTS 2003)
+DEE32	Aschersleben-Staßfurt (NUTS 2003)
+DEE33	Bördekreis (NUTS 2003)
+DEE34	Halberstadt (NUTS 2003)
+DEE35	Jerichower Land (NUTS 2003)
+DEE36	Ohrekreis (NUTS 2003)
+DEE37	Stendal (NUTS 2003)
+DEE38	Quedlinburg (NUTS 2003)
+DEE39	Schönebeck (NUTS 2003)
+DEE3A	Wernigerode (NUTS 2003)
+DEE_SAU	Saale-Unstrut
+DEF	Schleswig-Holstein
+DEF0	Schleswig-Holstein
+DEF01	Flensburg, Kreisfreie Stadt
+DEF02	Kiel, Kreisfreie Stadt
+DEF03	Lübeck, Kreisfreie Stadt
+DEF04	Neumünster, Kreisfreie Stadt
+DEF05	Dithmarschen
+DEF06	Herzogtum Lauenburg
+DEF07	Nordfriesland
+DEF08	Ostholstein
+DEF09	Pinneberg
+DEF0A	Plön
+DEF0B	Rendsburg-Eckernförde
+DEF0C	Schleswig-Flensburg
+DEF0D	Segeberg
+DEF0E	Steinburg
+DEF0F	Stormarn
+DEG	Thüringen
+DEG0	Thüringen
+DEG01	Erfurt, Kreisfreie Stadt
+DEG0100001	Erfurt
+DEG02	Gera, Kreisfreie Stadt
+DEG03	Jena, Kreisfreie Stadt
+DEG04	Suhl, Kreisfreie Stadt
+DEG05	Weimar, Kreisfreie Stadt
+DEG06	Eichsfeld
+DEG07	Nordhausen
+DEG09	Unstrut-Hainich-Kreis
+DEG0A	Kyffhäuserkreis
+DEG0B	Schmalkalden-Meiningen
+DEG0C	Gotha
+DEG0D	Sömmerda
+DEG0E	Hildburghausen
+DEG0F	Ilm-Kreis
+DEG0G	Weimarer Land
+DEG0H	Sonneberg
+DEG0I	Saalfeld-Rudolstadt
+DEG0J	Saale-Holzland-Kreis
+DEG0K	Saale-Orla-Kreis
+DEG0L	Greiz
+DEG0M	Altenburger Land
+DEG0N	Eisenach, Kreisfreie Stadt
+DEG0P	Wartburgkreis
+DEZ	Extra-Regio NUTS 1
+DEZZ	Extra-Regio NUTS 2
+DEZZZ	Extra-Regio NUTS 3
+DE_E	Germany - East
+DE_N_C	Germany - North Center
+DE_S	Germany - South
+DE_W	Germany - West
+DE_CAP	Berlin
+DE_DEL1	Karlsruhe
+DE_DEL2	München
+DE_DEL3	Bonn
+DEX	Not regionalised / Unknown NUTS 1
+DEXX	Not regionalised / Unknown NUTS 2
+DEXXX	Not regionalised / Unknown NUTS 3
+EE	Estonia
+EE0	Eesti
+EE00	Eesti
+EE001	Põhja-Eesti
+EE004	Lääne-Eesti
+EE006	Kesk-Eesti
+EE007	Kirde-Eesti
+EE008	Lõuna-Eesti
+EEZ	Extra-Regio NUTS 1
+EEZZ	Extra-Regio NUTS 2
+EEZZZ	Extra-Regio NUTS 3
+EE_CAP	Tallinn
+EEX	Not regionalised / Unknown NUTS 1
+EEXX	Not regionalised / Unknown NUTS 2
+EEXXX	Not regionalised / Unknown NUTS 3
+IE	Ireland
+IE0	Éire/Ireland
+IE01	Border, Midland and Western
+IE011	Border
+IE01101	Cavan
+IE01102	Donegal
+IE01103	Leitrim
+IE01104	Louth
+IE01105	Monaghan
+IE01106	Sligo
+IE012	Midland
+IE01201	Laois
+IE01202	Longford
+IE01203	Offaly
+IE01204	Westmeath
+IE013	West
+IE01301_01302	Galway
+IE01303	Mayo
+IE01304	Roscommon
+IE02	Southern and Eastern
+IE021	Dublin
+IE022	Mid-East
+IE02201	Kildare
+IE02202	Meath
+IE02203	Wicklow
+IE023	Mid-West
+IE02301	Clare
+IE02302_02303	Limerick
+IE02304	Tipperary North Riding
+IE024	South-East (IE)
+IE02401	Carlow
+IE02402	Kilkenny
+IE02403	Tipperary South Riding
+IE02404_02405	Waterford
+IE02406	Wexford
+IE025	South-West (IE)
+IE02501_02502	Cork
+IE02503	Kerry
+IEZ	Extra-Regio NUTS 1
+IEZZ	Extra-Regio NUTS 2
+IEZZZ	Extra-Regio NUTS 3
+IE_CAP	Dublin
+IEX	Not regionalised / Unknown NUTS 1
+IEXX	Not regionalised / Unknown NUTS 2
+IEXXX	Not regionalised / Unknown NUTS 3
+EL	Greece
+EL5	Voreia Ellada
+EL51	Anatoliki Makedonia, Thraki
+EL511	Evros
+EL512	Xanthi
+EL513	Rodopi
+EL514	Drama
+EL515	Thasos, Kavala
+EL52	Kentriki Makedonia
+EL521	Imathia
+EL522	Thessaloniki
+EL523	Kilkis
+EL524	Pella
+EL525	Pieria
+EL526	Serres
+EL527	Chalkidiki
+EL53	Dytiki Makedonia
+EL531	Grevena, Kozani
+EL532	Kastoria
+EL533	Florina
+EL54	Ipeiros
+EL541	Arta, Preveza
+EL542	Thesprotia
+EL543	Ioannina
+EL1	Voreia Ellada (NUTS 2010)
+EL11	Anatoliki Makedonia, Thraki (NUTS 2010)
+EL111	Evros (NUTS 2010)
+EL112	Xanthi (NUTS 2010)
+EL113	Rodopi (NUTS 2010)
+EL114	Drama (NUTS 2010)
+EL115	Kavala (NUTS 2010)
+EL12	Kentriki Makedonia (NUTS 2010)
+EL121	Imathia (NUTS 2010)
+EL122	Thessaloniki (NUTS 2010)
+EL123	Kilkis (NUTS 2010)
+EL124	Pella (NUTS 2010)
+EL125	Pieria (NUTS 2010)
+EL126	Serres (NUTS 2010)
+EL127	Chalkidiki (NUTS 2010)
+EL13	Dytiki Makedonia (NUTS 2010)
+EL131	Grevena (NUTS 2010)
+EL132	Kastoria (NUTS 2010)
+EL133	Kozani (NUTS 2010)
+EL134	Florina (NUTS 2010)
+EL14	Thessalia (NUTS 2010)
+EL141	Karditsa (NUTS 2010)
+EL142	Larisa (NUTS 2010)
+EL143	Magnisia (NUTS 2010)
+EL144	Trikala (NUTS 2010)
+EL_MAK	Makedonia
+EL_TRA	Thraki
+EL6	Kentriki Ellada
+EL61	Thessalia
+EL611	Karditsa, Trikala
+EL612	Larisa
+EL613	Magnisia
+EL62	Ionia Nisia
+EL621	Zakynthos
+EL622	Kerkyra
+EL623	Ithaki, Kefallinia
+EL624	Lefkada
+EL63	Dytiki Ellada
+EL631	Aitoloakarnania
+EL632	Achaia
+EL633	Ileia
+EL64	Sterea Ellada
+EL641	Voiotia
+EL642	Evvoia
+EL643	Evrytania
+EL644	Fthiotida
+EL645	Fokida
+EL65	Peloponnisos
+EL651	Argolida, Arkadia
+EL652	Korinthia
+EL653	Lakonia, Messinia
+EL2	Kentriki Ellada (NUTS 2010)
+EL21	Ipeiros (NUTS 2010)
+EL211	Arta (NUTS 2010)
+EL212	Thesprotia (NUTS 2010)
+EL213	Ioannina (NUTS 2010)
+EL214	Preveza (NUTS 2010)
+EL22	Ionia Nisia (NUTS 2010)
+EL221	Zakynthos (NUTS 2010)
+EL222	Kerkyra (NUTS 2010)
+EL223	Kefallinia (NUTS 2010)
+EL224	Lefkada (NUTS 2010)
+EL23	Dytiki Ellada (NUTS 2010)
+EL231	Aitoloakarnania (NUTS 2010)
+EL232	Achaia (NUTS 2010)
+EL233	Ileia (NUTS 2010)
+EL24	Sterea Ellada (NUTS 2010)
+EL241	Voiotia (NUTS 2010)
+EL242	Evvoia (NUTS 2010)
+EL243	Evrytania (NUTS 2010)
+EL244	Fthiotida (NUTS 2010)
+EL245	Fokida (NUTS 2010)
+EL25	Peloponnisos (NUTS 2010)
+EL251	Argolida (NUTS 2010)
+EL252	Arkadia (NUTS 2010)
+EL253	Korinthia (NUTS 2010)
+EL254	Lakonia (NUTS 2010)
+EL255	Messinia (NUTS 2010)
+EL2ATT	Kentriki Ellada, Attiki
+EL2EV	Kentriki Ellada, Evvoia
+EL3	Attiki
+EL30	Attiki
+EL300	Attiki (NUTS 2010)
+EL301	Voreios Tomeas Athinon
+EL302	Dytikos Tomeas Athinon
+EL303	Kentrikos Tomeas Athinon
+EL304	Notios Tomeas Athinon
+EL305	Anatoliki Attiki
+EL306	Dytiki Attiki
+EL307	Peiraias, Nisoi
+EL300A	Attiki -East
+EL300B	Pireas
+EL300C	Attiki - West
+EL25203008	Athina
+EL4	Nisia Aigaiou, Kriti
+EL41_42	Nisia Aigaiou
+EL41	Voreio Aigaio
+EL411	Lesvos, Limnos
+EL412	Ikaria, Samos
+EL413	Chios
+EL42	Notio Aigaio
+EL421	Kalymnos, Karpathos, Kos, Rodos
+EL422	Andros, Thira, Kea, Milos, Mykonos, Naxos, Paros, Syros, Tinos
+EL43	Kriti
+EL431	Irakleio
+EL432	Lasithi
+EL433	Rethymni
+EL434	Chania
+ELS	Self Governed Region NUTS 1
+ELSS	Self Governed Region NUTS 2
+ELSSS	Self Governed Region NUTS 3
+ELZ	Extra-Regio NUTS 1
+ELZZ	Extra-Regio NUTS 2
+ELZZZ	Extra-Regio NUTS 3
+EL_CAP	Athina
+ELX	Not regionalised / Unknown NUTS 1
+ELXX	Not regionalised / Unknown NUTS 2
+ELXXX	Not regionalised / Unknown NUTS 3
+EL_NAL	Greece, not allocated
+ES	Spain
+ES1	Noroeste (ES)
+ES11	Galicia
+ES111	A Coruña
+ES112	Lugo
+ES113	Ourense
+ES114	Pontevedra
+ES12	Principado de Asturias
+ES120	Asturias
+ES13	Cantabria
+ES130	Cantabria
+ES2	Noreste (ES)
+ES21	País Vasco
+ES211	Araba/Álava
+ES212_213	Gipuzkoa, Bizkaia
+ES212	Gipuzkoa
+ES213	Bizkaia
+ES22	Comunidad Foral de Navarra
+ES220	Navarra
+ES23	La Rioja
+ES230	La Rioja
+ES24	Aragón
+ES241_242	Huesca, Teruel
+ES241	Huesca
+ES242	Teruel
+ES243	Zaragoza
+ES3	Comunidad de Madrid
+ES30	Comunidad de Madrid
+ES300	Madrid
+ES30000079	Madrid
+ES4	Centro (ES)
+ES41	Castilla y León
+ES411_414-417	Ávila, Palencia, Salamanca, Segovia, Soria
+ES411	Ávila
+ES412	Burgos
+ES413	León
+ES414	Palencia
+ES415	Salamanca
+ES416	Segovia
+ES417	Soria
+ES418	Valladolid
+ES419	Zamora
+ES42	Castilla-la Mancha
+ES421	Albacete
+ES422	Ciudad Real
+ES423	Cuenca
+ES424	Guadalajara
+ES425	Toledo
+ES43	Extremadura
+ES431	Badajoz
+ES432	Cáceres
+ES5	Este (ES)
+ES51	Cataluña
+ES511	Barcelona
+ES51100020	Barcelona
+ES512_513	Girona, Lleida
+ES512	Girona
+ES513	Lleida
+ES514	Tarragona
+ES52	Comunidad Valenciana
+ES521	Alicante / Alacant
+ES522	Castellón / Castelló
+ES523	Valencia / València
+ES52300250	Valencia / València
+ES53	Illes Balears
+ES530	Illes Balears (NUTS 1999)
+ES531	Eivissa, Formentera
+ES532	Mallorca
+ES533	Menorca
+ES6	Sur (ES)
+ES61_63_64	Andalucía, Ceuta, Melilla
+ES61	Andalucía
+ES611_614_616_618	Almería, Granada, Jaén, Sevilla
+ES611	Almería
+ES612_630	Cádiz, Ceuta
+ES612	Cádiz
+ES613	Córdoba
+ES614	Granada
+ES615	Huelva
+ES616	Jaén
+ES617_640	Málaga, Melilla
+ES617	Málaga
+ES618	Sevilla
+ES62	Región de Murcia
+ES620	Murcia
+ES63	Ciudad Autónoma de Ceuta (ES)
+ES630	Ceuta (ES)
+ES64	Ciudad Autónoma de Melilla (ES)
+ES640	Melilla (ES)
+ES7	Canarias (ES)
+ES70	Canarias (ES)
+ES701	Las Palmas (NUTS 1999)
+ES702	Santa Cruz De Tenerife (NUTS 1999)
+ES703	El Hierro
+ES704	Fuerteventura
+ES705	Gran Canaria
+ES706	La Gomera
+ES707	La Palma
+ES708	Lanzarote
+ES709	Tenerife
+ESZ	Extra-Regio NUTS 1
+ESZZ	Extra-Regio NUTS 2
+ESZZZ	Extra-Regio NUTS 3
+ES_CAP	Madrid
+ESX	Not regionalised / Unknown NUTS 1
+ESXX	Not regionalised / Unknown NUTS 2
+ESXXX	Not regionalised / Unknown NUTS 3
+ES_NAL	Spain, not allocated
+FR	France
+FX	France (metropolitan)
+FR1	Île de France
+FR10	Île de France
+FR101	Paris
+FR10100056	Paris
+FR102	Seine-et-Marne
+FR103	Yvelines
+FR104	Essonne
+FR105	Hauts-de-Seine
+FR106	Seine-Saint-Denis
+FR107	Val-de-Marne
+FR108	Val-d'Oise
+FR2	Bassin Parisien
+FR21	Champagne-Ardenne
+FR211	Ardennes
+FR212	Aube
+FR213	Marne
+FR214	Haute-Marne
+FR22	Picardie
+FR221	Aisne
+FR222	Oise
+FR223	Somme
+FR23	Haute-Normandie
+FR231	Eure
+FR232	Seine-Maritime
+FR24	Centre (FR)
+FR241	Cher
+FR242	Eure-et-Loir
+FR243	Indre
+FR244	Indre-et-Loire
+FR245	Loir-et-Cher
+FR246	Loiret
+FR25	Basse-Normandie
+FR251	Calvados
+FR252	Manche
+FR253	Orne
+FR26	Bourgogne
+FR261	Côte-d'Or
+FR262	Nièvre
+FR263	Saône-et-Loire
+FR264	Yonne
+FR3	Nord - Pas-de-Calais
+FR30	Nord - Pas-de-Calais
+FR301	Nord (FR)
+FR30100350	Lille
+FR302	Pas-de-Calais
+FR4	Est (FR)
+FR41	Lorraine
+FR411	Meurthe-et-Moselle
+FR412	Meuse
+FR413	Moselle
+FR414	Vosges
+FR42	Alsace
+FR421	Bas-Rhin
+FR42100482	Strasbourg
+FR422	Haut-Rhin
+FR43	Franche-Comté
+FR431	Doubs
+FR432	Jura
+FR433	Haute-Saône
+FR434	Territoire de Belfort
+FR5	Ouest (FR)
+FR51	Pays de la Loire
+FR51_X_513	Pays de la Loire except Mayenne
+FR511	Loire-Atlantique
+FR512	Maine-et-Loire
+FR513	Mayenne
+FR514	Sarthe
+FR515	Vendée
+FR52	Bretagne
+FR521	Côtes-d'Armor
+FR522	Finistère
+FR523	Ille-et-Vilaine
+FR524	Morbihan
+FR53	Poitou-Charentes
+FR531	Charente
+FR532	Charente-Maritime
+FR533_534	Deux-Sèvres, Vienne
+FR533	Deux-Sèvres
+FR534	Vienne
+FR6	Sud-Ouest (FR)
+FR61	Aquitaine
+FR61_X_612	Aquitaine except Gironde
+FR611	Dordogne
+FR612	Gironde
+FR613	Landes
+FR614	Lot-et-Garonne
+FR615	Pyrénées-Atlantiques
+FR62	Midi-Pyrénées
+FR62_X_624	Midi-Pyrénées except Gers
+FR621	Ariège
+FR622	Aveyron
+FR623	Haute-Garonne
+FR624	Gers
+FR625	Lot
+FR626	Hautes-Pyrénées
+FR627	Tarn
+FR628	Tarn-et-Garonne
+FR63	Limousin
+FR631_633	Corrèze, Haute-Vienne
+FR631	Corrèze
+FR632	Creuse
+FR633	Haute-Vienne
+FR62300555	Toulouse
+FR7	Centre-Est (FR)
+FR71	Rhône-Alpes
+FR71_X_712	Rhône-Alpes except Ardèche
+FR711	Ain
+FR712	Ardèche
+FR713	Drôme
+FR714	Isère
+FR715	Loire
+FR716	Rhône
+FR717	Savoie
+FR718	Haute-Savoie
+FR72	Auvergne
+FR721	Allier
+FR722	Cantal
+FR723	Haute-Loire
+FR724	Puy-de-Dôme
+FR71600123	Lyon
+FR8	Méditerranée
+FR81	Languedoc-Roussillon
+FR811	Aude
+FR812	Gard
+FR813	Hérault
+FR814	Lozère
+FR815	Pyrénées-Orientales
+FR82	Provence-Alpes-Côte d'Azur
+FR821-823	Alpes-de-Haute-Provence, Hautes-Alpes, Alpes-Maritimes
+FR821	Alpes-de-Haute-Provence
+FR822	Hautes-Alpes
+FR823	Alpes-Maritimes
+FR824	Bouches-du-Rhône
+FR825	Var
+FR826	Vaucluse
+FR83	Corse
+FR831	Corse-du-Sud
+FR832	Haute-Corse
+FR82400055	Marseille
+FRA	Départements d'outre-mer
+FRA1	Guadeloupe
+FRA10	Guadeloupe
+FRA2	Martinique
+FRA20	Martinique
+FRA3	Guyane
+FRA30	Guyane
+FRA4	La Réunion
+FRA40	La Réunion
+FRA5	Mayotte
+FRA50	Mayotte
+FR9	Départements d'outre-mer (NUTS 2010)
+FR91	Guadeloupe (NUTS 2010)
+FR910	Guadeloupe (NUTS 2010)
+FR92	Martinique (NUTS 2010)
+FR920	Martinique (NUTS 2010)
+FR93	Guyane (NUTS 2010)
+FR930	Guyane (NUTS 2010)
+FR94	Réunion (NUTS 2010)
+FR940	Réunion (NUTS 2010)
+YT	Mayotte (FR - part of EU as of 01.01.2014)
+FRZ	Extra-Regio NUTS 1
+FRZZ	Extra-Regio NUTS 2
+FRZZZ	Extra-Regio NUTS 3
+FR_CAP	Paris
+FRX	Not regionalised / Unknown NUTS 1
+FRXX	Not regionalised / Unknown NUTS 2
+FRXXX	Not regionalised / Unknown NUTS 3
+FR_NAL	France, not allocated
+HR	Croatia
+HR0	Hrvatska
+HR03	Jadranska Hrvatska
+HR031	Primorsko-goranska zupanija
+HR032	Licko-senjska zupanija
+HR033	Zadarska zupanija
+HR034	Sibensko-kninska zupanija
+HR035	Splitsko-dalmatinska zupanija
+HR036	Istarska zupanija
+HR037	Dubrovacko-neretvanska zupanija
+HR04	Kontinentalna Hrvatska
+HR041	Grad Zagreb
+HR042	Zagrebacka zupanija
+HR043	Krapinsko-zagorska zupanija
+HR044	Varazdinska zupanija
+HR045	Koprivnicko-krizevacka zupanija
+HR046	Medimurska zupanija
+HR047	Bjelovarsko-bilogorska zupanija
+HR048	Viroviticko-podravska zupanija
+HR049	Pozesko-slavonska zupanija
+HR04A	Brodsko-posavska zupanija
+HR04B	Osjecko-baranjska zupanija
+HR04C	Vukovarsko-srijemska zupanija
+HR04D	Karlovacka zupanija
+HR04E	Sisacko-moslavacka zupanija
+HRZ	Extra-Regio level 1
+HRZZ	Extra-Regio level 2
+HRZZZ	Extra-Regio level 3
+HR_CAP	Zagreb
+HRX	Not regionalised / Unknown NUTS 1
+HRXX	Not regionalised / Unknown NUTS 2
+HRXXX	Not regionalised / Unknown NUTS 3
+HR01	Sjeverozapadna Hrvatska (former statistical region)
+HR011	Grad Zagreb (former statistical region)
+HR012	Zagrebacka zupanija (former statistical region)
+HR013	Krapinsko-zagorska zupanija (former statistical region)
+HR014	Varazdinska zupanija (former statistical region)
+HR015	Koprivnicko-krizevacka zupanija (former statistical region)
+HR016	Medimurska zupanija (former statistical region)
+HR02	Sredisnja i Istocna (Panonska) Hrvatska (former statistical region)
+HR021	Bjelovarsko-bilogorska zupanija (former statistical region)
+HR022	Viroviticko-podravska zupanija (former statistical region)
+HR023	Pozesko-slavonska zupanija (former statistical region)
+HR024	Brodsko-posavska zupanija (former statistical region)
+HR025	Osjecko-baranjska zupanija (former statistical region)
+HR026	Vukovarsko-srijemska zupanija (former statistical region)
+HR027	Karlovacka zupanija (former statistical region)
+HR028	Sisacko-moslavacka zupanija (former statistical region)
+IT	Italy
+ITC-E	Nord-Ovest, Nord-Est, Centro (IT) (NUTS 2006)
+ITC	Nord-Ovest
+ITC1	Piemonte
+ITC11	Torino
+IT11100272	Torino
+ITC12	Vercelli
+ITC13	Biella
+ITC14	Verbano-Cusio-Ossola
+ITC15	Novara
+ITC16	Cuneo
+ITC17	Asti
+ITC18	Alessandria
+ITC2	Valle d'Aosta/Vallée d'Aoste
+ITC20	Valle d'Aosta/Vallée d'Aoste
+ITC3	Liguria
+ITC31	Imperia
+ITC32	Savona
+ITC33	Genova
+IT13300025	Genova
+ITC34	La Spezia
+ITC4	Lombardia
+ITC41	Varese
+ITC42	Como
+ITC43	Lecco
+ITC44	Sondrio
+ITC45	Milano (NUTS 2006)
+IT20500107	Milano
+ITC46	Bergamo
+ITC47	Brescia
+ITC48	Pavia
+ITC49	Lodi
+ITC4A	Cremona
+ITC4B	Mantova
+ITC4C	Milano
+ITC4D	Monza e della Brianza
+ITH	Nord-Est
+ITH1	Provincia Autonoma di Bolzano/Bozen
+ITH10	Bolzano-Bozen
+ITH2	Provincia Autonoma di Trento
+ITH20	Trento
+ITH3	Veneto
+ITH31	Verona
+ITH32	Vicenza
+ITH33	Belluno
+ITH34	Treviso
+ITH35	Venezia
+ITH36	Padova
+ITH37	Rovigo
+ITH4	Friuli-Venezia Giulia
+ITH41	Pordenone
+ITH42	Udine
+ITH43	Gorizia
+ITH44	Trieste
+ITH5	Emilia-Romagna
+ITH51	Piacenza
+ITH52	Parma
+ITH53	Reggio nell'Emilia
+ITH54	Modena
+ITH55	Bologna
+ITH56	Ferrara
+ITH57	Ravenna
+ITH58	Forlì-Cesena
+ITH59	Rimini
+ITD	Nord-Est (NUTS 2006)
+ITD1_D2	Province Autonome Bolzano/Bozen, Trento (NUTS 2006)
+ITD1	Provincia Autonoma Bolzano/Bozen (NUTS 2006)
+ITD10	Bolzano-Bozen (NUTS 2006)
+ITD2	Provincia Autonoma Trento (NUTS 2006)
+ITD20	Trento (NUTS 2006)
+ITD3	Veneto (NUTS 2006)
+ITD31	Verona (NUTS 2006)
+ITD32	Vicenza (NUTS 2006)
+ITD33	Belluno (NUTS 2006)
+ITD34	Treviso (NUTS 2006)
+ITD35	Venezia (NUTS 2006)
+ITD36	Padova (NUTS 2006)
+ITD37	Rovigo (NUTS 2006)
+ITD4	Friuli-Venezia Giulia (NUTS 2006)
+ITD41	Pordenone (NUTS 2006)
+ITD42	Udine (NUTS 2006)
+ITD43	Gorizia (NUTS 2006)
+ITD44	Trieste (NUTS 2006)
+ITD5	Emilia-Romagna (NUTS 2006)
+ITD51	Piacenza (NUTS 2006)
+ITD52	Parma (NUTS 2006)
+ITD53	Reggio nell'Emilia (NUTS 2006)
+ITD54	Modena (NUTS 2006)
+ITD55	Bologna (NUTS 2006)
+ITD56	Ferrara (NUTS 2006)
+ITD57	Ravenna (NUTS 2006)
+ITD58	Forlì-Cesena (NUTS 2006)
+ITD59	Rimini (NUTS 2006)
+ITI	Centro (IT)
+ITI1	Toscana
+ITI11	Massa-Carrara
+ITI12	Lucca
+ITI13	Pistoia
+ITI14	Firenze
+ITI15	Prato
+ITI16	Livorno
+ITI17	Pisa
+ITI18	Arezzo
+ITI19	Siena
+ITI1A	Grosseto
+ITI2	Umbria
+ITI21	Perugia
+ITI22	Terni
+ITI3	Marche
+ITI31	Pesaro e Urbino
+ITI32	Ancona
+ITI33	Macerata
+ITI34	Ascoli Piceno
+ITI35	Fermo
+ITI4	Lazio
+ITI41	Viterbo
+ITI42	Rieti
+ITI43	Roma
+ITI44	Latina
+ITI45	Frosinone
+ITE	Centro (I) (NUTS 2006)
+ITE1	Toscana (NUTS 2006)
+ITE11	Massa-Carrara (NUTS 2006)
+ITE12	Lucca (NUTS 2006)
+ITE13	Pistoia (NUTS 2006)
+ITE14	Firenze (NUTS 2006)
+ITE15	Prato (NUTS 2006)
+ITE16	Livorno (NUTS 2006)
+ITE17	Pisa (NUTS 2006)
+ITE18	Arezzo (NUTS 2006)
+ITE19	Siena (NUTS 2006)
+ITE1A	Grosseto (NUTS 2006)
+ITE2	Umbria (NUTS 2006)
+ITE21	Perugia (NUTS 2006)
+ITE22	Terni (NUTS 2006)
+ITE3	Marche (NUTS 2006)
+ITE31	Pesaro e Urbino (NUTS 2006)
+ITE32	Ancona (NUTS 2006)
+ITE33	Macerata (NUTS 2006)
+ITE34	Ascoli Piceno (NUTS 2006)
+ITE4	Lazio (NUTS 2006)
+ITE41	Viterbo (NUTS 2006)
+ITE42	Rieti (NUTS 2006)
+ITE43	Roma (NUTS 2006)
+IT60300091	Roma
+ITE44	Latina (NUTS 2006)
+ITE45	Frosinone (NUTS 2006)
+ITF_G	Sud, Isole
+ITF	Sud
+ITF1	Abruzzo
+ITF11	L'Aquila
+ITF12	Teramo
+ITF13	Pescara
+ITF14	Chieti
+ITF2	Molise
+ITF21	Isernia
+ITF22	Campobasso
+ITF3	Campania
+ITF31	Caserta
+ITF32	Benevento
+ITF33	Napoli
+IT80300049	Napoli
+ITF34	Avellino
+ITF35	Salerno
+ITF4	Puglia
+ITF41	Foggia (NUTS 2006)
+ITF42	Bari (NUTS 2006)
+ITF43	Taranto
+ITF44	Brindisi
+ITF45	Lecce
+ITF46	Foggia
+ITF47	Bari
+ITF48	Barletta-Andria-Trani
+ITF5	Basilicata
+ITF51	Potenza
+ITF52	Matera
+ITF6	Calabria
+ITF61	Cosenza
+ITF62	Crotone
+ITF63	Catanzaro
+ITF64	Vibo Valentia
+ITF65	Reggio di Calabria
+ITG	Isole
+ITG1	Sicilia
+ITG11	Trapani
+ITG12	Palermo
+ITG13	Messina
+ITG14	Agrigento
+ITG15	Caltanissetta
+ITG16	Enna
+ITG17	Catania
+ITG18	Ragusa
+ITG19	Siracusa
+ITG2	Sardegna
+ITG21	Sassari (NUTS 2003)
+ITG22	Nuoro (NUTS 2003)
+ITG23	Oristano (NUTS 2003)
+ITG24	Cagliari (NUTS 2003)
+ITG25	Sassari
+ITG26	Nuoro
+ITG27	Cagliari
+ITG28	Oristano
+ITG29	Olbia-Tempio
+ITG2A	Ogliastra
+ITG2B	Medio Campidano
+ITG2C	Carbonia-Iglesias
+ITZ	Extra-Regio NUTS 1
+ITZZ	Extra-Regio NUTS 2
+ITZZZ	Extra-Regio NUTS 3
+IT_CAP	Roma
+IT_DEL	Varese
+ITX	Not regionalised / Unknown NUTS 1
+ITXX	Not regionalised / Unknown NUTS 2
+ITXXX	Not regionalised / Unknown NUTS 3
+IT_NAL	Italy, not allocated
+CY	Cyprus
+CY0	Kypros
+CY00	Kypros
+CY000	Kypros
+CYZ	Extra-Regio NUTS 1
+CYZZ	Extra-Regio NUTS 2
+CYZZZ	Extra-Regio NUTS 3
+CY_CAP	Lefkosia
+CYX	Not regionalised / Unknown NUTS 1
+CYXX	Not regionalised / Unknown NUTS 2
+CYXXX	Not regionalised / Unknown NUTS 3
+LV	Latvia
+LV0	Latvija
+LV00	Latvija
+LV001	Riga (SRE 2001)
+LV002	Vidzeme (SRE 2001)
+LV003	Kurzeme
+LV004	Zemgale (SRE 2001)
+LV005	Latgale
+LV006	Riga
+LV007	Pieriga
+LV008	Vidzeme
+LV009	Zemgale
+LVZ	Extra-Regio NUTS 1
+LVZZ	Extra-Regio NUTS 2
+LVZZZ	Extra-Regio NUTS 3
+LV_CAP	Riga
+LVX	Not regionalised / Unknown NUTS 1
+LVXX	Not regionalised / Unknown NUTS 2
+LVXXX	Not regionalised / Unknown NUTS 3
+LT	Lithuania
+LT0	Lietuva
+LT00	Lietuva
+LT001	Alytaus apskritis
+LT002	Kauno apskritis
+LT003	Klaipedos apskritis
+LT004	Marijampoles apskritis
+LT005	Panevezio apskritis
+LT006	Siauliu apskritis
+LT007	Taurages apskritis
+LT008	Telsiu apskritis
+LT009	Utenos apskritis
+LT00A	Vilniaus apskritis
+LTZ	Extra-Regio NUTS 1
+LTZZ	Extra-Regio NUTS 2
+LTZZZ	Extra-Regio NUTS 3
+LT_CAP	Vilnius
+LTX	Not regionalised / Unknown NUTS 1
+LTXX	Not regionalised / Unknown NUTS 2
+LTXXX	Not regionalised / Unknown NUTS 3
+LU	Luxembourg
+LU0	Luxembourg
+LU00	Luxembourg
+LU000	Luxembourg
+LUZ	Extra-Regio NUTS 1
+LUZZ	Extra-Regio NUTS 2
+LUZZZ	Extra-Regio NUTS 3
+LU00011001	Luxembourg-City
+LU_CAP	Luxembourg
+LUX	Not regionalised / Unknown NUTS 1
+LUXX	Not regionalised / Unknown NUTS 2
+LUXXX	Not regionalised / Unknown NUTS 3
+HU	Hungary
+HU1	Közép-Magyarország
+HU10	Közép-Magyarország
+HU101	Budapest
+HU102	Pest
+HU2	Dunántúl
+HU21	Közép-Dunántúl
+HU211	Fejér
+HU212	Komárom-Esztergom
+HU213	Veszprém
+HU22	Nyugat-Dunántúl
+HU221	Gyor-Moson-Sopron
+HU222	Vas
+HU223	Zala
+HU23	Dél-Dunántúl
+HU231	Baranya
+HU232	Somogy
+HU233	Tolna
+HU3	Alföld és Észak
+HU31	Észak-Magyarország
+HU311	Borsod-Abaúj-Zemplén
+HU312	Heves
+HU313	Nógrád
+HU32	Észak-Alföld
+HU321	Hajdú-Bihar
+HU322	Jász-Nagykun-Szolnok
+HU323	Szabolcs-Szatmár-Bereg
+HU33	Dél-Alföld
+HU331	Bács-Kiskun
+HU332	Békés
+HU333	Csongrád
+HUZ	Extra-Regio NUTS 1
+HUZZ	Extra-Regio NUTS 2
+HUZZZ	Extra-Regio NUTS 3
+HU_CAP	Budapest
+HUX	Not regionalised / Unknown NUTS 1
+HUXX	Not regionalised / Unknown NUTS 2
+HUXXX	Not regionalised / Unknown NUTS 3
+HU_ALF	Alföld
+HU_ESDU	Észak-Dunántúl
+MT	Malta
+MT0	Malta
+MT00	Malta
+MT001	Malta
+MT002	Gozo and Comino / Ghawdex u Kemmuna
+MTZ	Extra-Regio NUTS 1
+MTZZ	Extra-Regio NUTS 2
+MTZZZ	Extra-Regio NUTS 3
+MT_CAP	Valletta
+MTX	Not regionalised / Unknown NUTS 1
+MTXX	Not regionalised / Unknown NUTS 2
+MTXXX	Not regionalised / Unknown NUTS 3
+NL	Netherlands
+NL1	Noord-Nederland
+NL11	Groningen
+NL111	Oost-Groningen
+NL112	Delfzijl en omgeving
+NL113	Overig Groningen
+NL12	Friesland (NL)
+NL121	Noord-Friesland
+NL122	Zuidwest-Friesland
+NL123	Zuidoost-Friesland
+NL13	Drenthe
+NL131	Noord-Drenthe
+NL132	Zuidoost-Drenthe
+NL133	Zuidwest-Drenthe
+NL2	Oost-Nederland
+NL21	Overijssel
+NL211	Noord-Overijssel
+NL212	Zuidwest-Overijssel
+NL213	Twente
+NL22	Gelderland
+NL221	Veluwe
+NL222	Achterhoek (NUTS 2003)
+NL223	Arnhem/Nijmegen (NUTS 2003)
+NL224	Zuidwest-Gelderland
+NL225	Achterhoek
+NL226	Arnhem/Nijmegen
+NL23	Flevoland
+NL230	Flevoland
+NL3	West-Nederland
+NL31	Utrecht
+NL310	Utrecht
+NL32	Noord-Holland
+NL321	Kop van Noord-Holland
+NL322	Alkmaar en omgeving
+NL323	IJmond
+NL324	Agglomeratie Haarlem
+NL325	Zaanstreek
+NL326	Groot-Amsterdam
+NL327	Het Gooi en Vechtstreek
+NL33	Zuid-Holland
+NL331	Agglomeratie Leiden en Bollenstreek (NUTS 2006)
+NL332	Agglomeratie 's-Gravenhage
+NL333	Delft en Westland
+NL334	Oost-Zuid-Holland (NUTS 2006)
+NL335	Groot-Rijnmond (NUTS 2006)
+NL336	Zuidoost-Zuid-Holland (NUTS 2006)
+NL337	Agglomeratie Leiden en Bollenstreek
+NL338	Oost-Zuid-Holland
+NL339	Groot-Rijnmond
+NL33A	Zuidoost-Zuid-Holland
+NL34	Zeeland
+NL341	Zeeuwsch-Vlaanderen
+NL342	Overig Zeeland
+NL33500021	Rotterdam
+NL4	Zuid-Nederland
+NL41	Noord-Brabant
+NL411	West-Noord-Brabant
+NL412	Midden-Noord-Brabant
+NL413	Noordoost-Noord-Brabant
+NL414	Zuidoost-Noord-Brabant
+NL42	Limburg (NL)
+NL421	Noord-Limburg
+NL422	Midden-Limburg
+NL423	Zuid-Limburg
+NLZ	Extra-Regio NUTS 1
+NLZZ	Extra-Regio NUTS 2
+NLZZZ	Extra-Regio NUTS 3
+NL_S_W	Zuidwest
+NL_RMD	Rijnmond
+NL_NZKG	Noordzeekanaalgebied
+NL_CAP	Amsterdam
+NLX	Not regionalised / Unknown NUTS 1
+NLXX	Not regionalised / Unknown NUTS 2
+NLXXX	Not regionalised / Unknown NUTS 3
+NL_NAL	Netherlands, not allocated
+AT	Austria
+AT1	Ostösterreich
+AT11	Burgenland (AT)
+AT111	Mittelburgenland
+AT112	Nordburgenland
+AT113	Südburgenland
+AT12	Niederösterreich
+AT121	Mostviertel-Eisenwurzen
+AT122	Niederösterreich-Süd
+AT123	Sankt Pölten
+AT124	Waldviertel
+AT125	Weinviertel
+AT126	Wiener Umland/Nordteil
+AT127	Wiener Umland/Südteil
+AT13_OTHBL	Wien and other Bundesländer
+AT13_31_33	Wien, Oberösterreich, Tirol
+AT13	Wien
+AT130	Wien
+AT2	Südösterreich
+AT21	Kärnten
+AT211	Klagenfurt-Villach
+AT212	Oberkärnten
+AT213	Unterkärnten
+AT22	Steiermark
+AT221	Graz
+AT222	Liezen
+AT223	Östliche Obersteiermark
+AT224	Oststeiermark
+AT225	West- und Südsteiermark
+AT226	Westliche Obersteiermark
+AT3	Westösterreich
+AT31	Oberösterreich
+AT311	Innviertel
+AT312	Linz-Wels
+AT313	Mühlviertel
+AT314	Steyr-Kirchdorf
+AT315	Traunviertel
+AT32	Salzburg
+AT321	Lungau
+AT322	Pinzgau-Pongau
+AT323	Salzburg und Umgebung
+AT33	Tirol
+AT331	Außerfern
+AT332	Innsbruck
+AT333	Osttirol
+AT334	Tiroler Oberland
+AT335	Tiroler Unterland
+AT34	Vorarlberg
+AT341	Bludenz-Bregenzer Wald
+AT342	Rheintal-Bodenseegebiet
+ATZ	Extra-Regio NUTS 1
+ATZZ	Extra-Regio NUTS 2
+ATZZZ	Extra-Regio NUTS 3
+AT_CAP	Wien
+ATX	Not regionalised / Unknown NUTS 1
+ATXX	Not regionalised / Unknown NUTS 2
+ATXXX	Not regionalised / Unknown NUTS 3
+PL	Poland
+PL1	Region Centralny
+PL11	Lódzkie
+PL111	Lódzki (NUTS 2003)
+PL112	Piotrkowsko-skierniewicki (NUTS 2003)
+PL113	Miasto Lódz
+PL114	Lódzki
+PL115	Piotrkowski
+PL116	Sieradzki
+PL117	Skierniewicki
+PL12	Mazowieckie
+PL121	Ciechanowsko-plocki (NUTS 2010)
+PL122	Ostrolecko-siedlecki (NUTS 2010)
+PL124	Radomski (NUTS 2003)
+PL126	Warszawski (NUTS 2003)
+PL127	Miasto Warszawa
+PL128	Radomski
+PL129	Warszawski wschodni
+PL12A	Warszawski zachodni
+PL12B	Ciechanowski
+PL12C	Plocki
+PL12D	Ostrolecki
+PL12E	Siedlecki
+PL2	Region Poludniowy
+PL21	Malopolskie
+PL211	Krakowsko-tarnowski (NUTS 2003)
+PL212	Nowosadecki (NUTS 2003)
+PL213	Miasto Kraków
+PL214	Krakowski
+PL215	Nowosadecki (NUTS 2010)
+PL216	Oswiecimski (NUTS 2010)
+PL217	Tarnowski
+PL218	Nowosadecki
+PL219	Nowotarski
+PL21A	Oswiecimski
+PL22	Slaskie
+PL224	Czestochowski
+PL225	Bielski
+PL226	Centralny slaski (NUTS 2003)
+PL227	Rybnicki
+PL228	Bytomski
+PL229	Gliwicki
+PL22A	Katowicki
+PL22B	Sosnowiecki
+PL22C	Tyski
+PL3	Region Wschodni
+PL31	Lubelskie
+PL311	Bialski
+PL312	Chelmsko-zamojski
+PL313	Lubelski (NUTS 2003)
+PL314	Lubelski
+PL315	Pulawski
+PL32	Podkarpackie
+PL321	Rzeszowsko-tarnobrzeski (NUTS 2003)
+PL322	Krosniensko-przemyski (NUTS 2003)
+PL323	Krosnienski
+PL324	Przemyski
+PL325	Rzeszowski
+PL326	Tarnobrzeski
+PL33	Swietokrzyskie
+PL330	Swietokrzyski (NUTS 2003)
+PL331	Kielecki
+PL332	Sandomiersko-jedrzejowski
+PL34	Podlaskie
+PL341	Bialostocko-suwalski (NUTS 2003)
+PL342	Lomzynski (NUTS 2003)
+PL343	Bialostocki
+PL344	Lomzynski
+PL345	Suwalski
+PL4	Region Pólnocno-Zachodni
+PL41	Wielkopolskie
+PL411	Pilski
+PL412	Poznanski (NUTS 2003)
+PL413	Kaliski (NUTS 2003)
+PL414	Koninski
+PL415	Miasto Poznan
+PL416	Kaliski
+PL417	Leszczynski
+PL418	Poznanski
+PL42	Zachodniopomorskie
+PL421	Szczecinski (NUTS 2003)
+PL422	Koszalinski (NUTS 2010)
+PL423	Stargardzki (NUTS 2010)
+PL424	Miasto Szczecin
+PL425	Szczecinski (NUTS 2010)
+PL426	Koszalinski
+PL427	Szczecinecko-pyrzycki
+PL428	Szczecinski
+PL43	Lubuskie
+PL431	Gorzowski
+PL432	Zielonogórski
+PL5	Region Poludniowo-Zachodni
+PL51	Dolnoslaskie
+PL511	Jeleniogórsko-walbrzyski (NUTS 2003)
+PL512	Legnicki (NUTS 2003)
+PL513	Wroclawski (NUTS 2003)
+PL514	Miasto Wroclaw
+PL515	Jeleniogórski
+PL516	Legnicko-Glogowski
+PL517	Walbrzyski
+PL518	Wroclawski
+PL52	Opolskie
+PL520	Opolski (NUTS 2003)
+PL521	Nyski (NUTS 2010)
+PL522	Opolski (NUTS 2010)
+PL523	Nyski
+PL524	Opolski
+PL6	Region Pólnocny
+PL61	Kujawsko-Pomorskie
+PL611	Bydgoski (NUTS 2003)
+PL612	Torunsko-wloclawski (NUTS 2003)
+PL613	Bydgosko-Torunski
+PL614	Grudziadzki (NUTS 2010)
+PL615	Wloclawski (NUTS 2010)
+PL616	Grudziadzki
+PL617	Inowroclawski
+PL618	Swiecki
+PL619	Wloclawski
+PL62	Warminsko-Mazurskie
+PL621	Elblaski
+PL622	Olsztynski
+PL623	Elcki
+PL63	Pomorskie
+PL631	Slupski (NUTS 2010)
+PL632	Gdanski (NUTS 2003)
+PL633	Trojmiejski
+PL634	Gdanski
+PL635	Starogardzki (NUTS 2010)
+PL636	Slupski
+PL637	Chojnicki
+PL638	Starogardzki
+PL01	Dolnoslaskie (SRE 2001)
+PL02	Kujawsko-Pomorskie (SRE 2001)
+PL03	Lubelskie (SRE 2001)
+PL04	Lubuskie (SRE 2001)
+PL05	Lódzkie (SRE 2001)
+PL06	Malopolskie (SRE 2001)
+PL07	Mazowieckie (SRE 2001)
+PL08	Opolskie (SRE 2001)
+PL09	Podkarpackie (SRE 2001)
+PL0A	Podlaskie (SRE 2001)
+PL0B	Pomorskie (SRE 2001)
+PL0C	Slaskie (SRE 2001)
+PL0D	Swietokrzyskie (SRE 2001)
+PL0E	Warminsko-Mazurskie (SRE 2001)
+PL0F	Wielkopolskie (SRE 2001)
+PL0G	Zachodniopomorskie (SRE 2001)
+PLZ	Extra-Regio NUTS 1
+PLZZ	Extra-Regio NUTS 2
+PLZZZ	Extra-Regio NUTS 3
+PL_CAP	Warszawa
+PLX	Not regionalised / Unknown NUTS 1
+PLXX	Not regionalised / Unknown NUTS 2
+PLXXX	Not regionalised / Unknown NUTS 3
+PT	Portugal
+PT1	Continente
+PT11	Norte
+PT111	Alto Minho
+PT112	Cávado
+PT113	Ave (NUTS 2010)
+PT114	Grande Porto (NUTS 2010)
+PT115	Tâmega (NUTS 2010)
+PT116	Entre Douro e Vouga (NUTS 2010)
+PT117	Douro (NUTS 2010)
+PT118	Alto Trás-os-Montes (NUTS 2010)
+PT119	Ave
+PT11A	Área Metropolitana do Porto
+PT11B	Alto Tâmega
+PT11C	Tâmega e Sousa
+PT11D	Douro
+PT11E	Terras de Trás-os-Montes
+PT11EDM	Entre Douro e Minho
+PT12	Centro (PT) (NUTS95)
+PT12BL	Beira Litoral
+PT12BI	Beira Interior
+PT13	Lisboa e Vale do Tejo (NUTS95)
+PT13203	Lisboa
+PT13RO	Ribatejo e Oeste
+PT14	Alentejo (NUTS95)
+PT15	Algarve
+PT150	Algarve
+PT16	Centro (PT)
+PT161	Baixo Vouga (NUTS 2010)
+PT162	Baixo Mondego (NUTS 2010)
+PT163	Pinhal Litoral (NUTS 2010)
+PT164	Pinhal Interior Norte (NUTS 2010)
+PT165	Dão-Lafões (NUTS 2010)
+PT166	Pinhal Interior Sul (NUTS 2010)
+PT167	Serra da Estrela (NUTS 2010)
+PT168	Beira Interior Norte (NUTS 2010)
+PT169	Beira Interior Sul (NUTS 2010)
+PT16A	Cova da Beira (NUTS 2010)
+PT16B	Oeste
+PT16C	Médio Tejo (NUTS 2010)
+PT16D	Região de Aveiro
+PT16E	Região de Coimbra
+PT16F	Região de Leiria
+PT16G	Viseu Dão Lafões
+PT16H	Beira Baixa
+PT16I	Médio Tejo
+PT16J	Beiras e Serra da Estrela
+PT17	Área Metropolitana de Lisboa
+PT170	Área Metropolitana de Lisboa
+PT171	Grande Lisboa (NUTS 2010)
+PT172	Península de Setúbal (NUTS 2010)
+PT18	Alentejo
+PT181	Alentejo Litoral
+PT182	Alto Alentejo (NUTS 2010)
+PT183	Alentejo Central (NUTS 2010)
+PT184	Baixo Alentejo
+PT185	Lezíria do Tejo
+PT186	Alto Alentejo
+PT187	Alentejo Central
+PT2	Região Autónoma dos Açores (PT)
+PT20	Região Autónoma dos Açores (PT)
+PT200	Região Autónoma dos Açores (PT)
+PT3	Região Autónoma da Madeira (PT)
+PT30	Região Autónoma da Madeira (PT)
+PT300	Região Autónoma da Madeira (PT)
+PTZ	Extra-Regio NUTS 1
+PTZZ	Extra-Regio NUTS 2
+PTZZZ	Extra-Regio NUTS 3
+PT_CAP	Lisboa
+PTX	Not regionalised / Unknown NUTS 1
+PTXX	Not regionalised / Unknown NUTS 2
+PTXXX	Not regionalised / Unknown NUTS 3
+RO	Romania
+RO1	Macroregiunea unu
+RO11	Nord-Vest
+RO111	Bihor
+RO112	Bistrita-Nasaud
+RO113	Cluj
+RO114	Maramures
+RO115	Satu Mare
+RO116	Salaj
+RO12	Centru
+RO121	Alba
+RO122	Brasov
+RO123	Covasna
+RO124	Harghita
+RO125	Mures
+RO126	Sibiu
+RO2	Macroregiunea doi
+RO21	Nord-Est
+RO211	Bacau
+RO212	Botosani
+RO213	Iasi
+RO214	Neamt
+RO215	Suceava
+RO216	Vaslui
+RO22	Sud-Est
+RO221	Braila
+RO222	Buzau
+RO223	Constanta
+RO224	Galati
+RO225	Tulcea
+RO226	Vrancea
+RO3	Macroregiunea trei
+RO31	Sud - Muntenia
+RO311	Arges
+RO312	Calarasi
+RO313	Dâmbovita
+RO314	Giurgiu
+RO315	Ialomita
+RO316	Prahova
+RO317	Teleorman
+RO32	Bucuresti - Ilfov
+RO321	Bucuresti
+RO322	Ilfov
+RO4	Macroregiunea patru
+RO41	Sud-Vest Oltenia
+RO411	Dolj
+RO412	Gorj
+RO413	Mehedinti
+RO414	Olt
+RO415	Vâlcea
+RO42	Vest
+RO421	Arad
+RO422	Caras-Severin
+RO423	Hunedoara
+RO424	Timis
+ROZ	Extra-Regio NUTS 1
+ROZZ	Extra-Regio NUTS 2
+ROZZZ	Extra-Regio NUTS 3
+RO0	Romania (SRE 2002)
+RO01	Nord-Est (SRE 2002)
+RO011	Bacau (SRE 2002)
+RO012	Botosani (SRE 2002)
+RO013	Iasi (SRE 2002)
+RO014	Neamt (SRE 2002)
+RO015	Suceava (SRE 2002)
+RO016	Vaslui (SRE 2002)
+RO02	Sud-Est (SRE 2002)
+RO021	Braila (SRE 2002)
+RO022	Buzau (SRE 2002)
+RO023	Constanta (SRE 2002)
+RO024	Galati (SRE 2002)
+RO025	Tulcea (SRE 2002)
+RO026	Vrancea (SRE 2002)
+RO03	Sud (SRE 2002)
+RO031	Arges (SRE 2002)
+RO032	Calarasi (SRE 2002)
+RO033	Dâmbovita (SRE 2002)
+RO034	Giurgiu (SRE 2002)
+RO035	Ialomita (SRE 2002)
+RO036	Prahova (SRE 2002)
+RO037	Teleorman (SRE 2002)
+RO04	Sud-Vest (SRE 2002)
+RO041	Dolj (SRE 2002)
+RO042	Gorj (SRE 2002)
+RO043	Mehedinti (SRE 2002)
+RO044	Olt (SRE 2002)
+RO045	Vâlcea (SRE 2002)
+RO05	Vest (SRE 2002)
+RO051	Arad (SRE 2002)
+RO052	Caras-Severin (SRE 2002)
+RO053	Hunedoara (SRE 2002)
+RO054	Timis (SRE 2002)
+RO06	Nord-Vest (SRE 2002)
+RO061	Bihor (SRE 2002)
+RO062	Bistrita-Nasaud (SRE 2002)
+RO063	Cluj (SRE 2002)
+RO064	Maramures (SRE 2002)
+RO065	Satu Mare (SRE 2002)
+RO066	Salaj (SRE 2002)
+RO07	Centru (SRE 2002)
+RO071	Alba (SRE 2002)
+RO072	Brasov (SRE 2002)
+RO073	Covasna (SRE 2002)
+RO074	Harghita (SRE 2002)
+RO075	Mures (SRE 2002)
+RO076	Sibiu (SRE 2002)
+RO08	Bucuresti (SRE 2002)
+RO081	Bucuresti (capital) (SRE 2002)
+RO082	Ilfov (SRE 2002)
+RO_CAP	Bucuresti
+ROX	Not regionalised / Unknown NUTS 1
+ROXX	Not regionalised / Unknown NUTS 2
+ROXXX	Not regionalised / Unknown NUTS 3
+SI	Slovenia
+SI_X_021	Slovenia except Osrednjeslovenska (NUTS 2010)
+SI0	Slovenija
+SI03	Vzhodna Slovenija
+SI031	Pomurska
+SI032	Podravska
+SI033	Koroska
+SI034	Savinjska
+SI035	Zasavska
+SI036	Posavska
+SI037	Jugovzhodna Slovenija
+SI038	Primorsko-notranjska
+SI01	Vzhodna Slovenija (NUTS 2010)
+SI011	Pomurska (NUTS 2010)
+SI012	Podravska (NUTS 2010)
+SI013	Koroska (NUTS 2010)
+SI014	Savinjska (NUTS 2010)
+SI015	Zasavska (NUTS 2010)
+SI016	Spodnjeposavska (NUTS 2010)
+SI017	Jugovzhodna Slovenija (NUTS 2010)
+SI018	Notranjsko-kraska (NUTS 2010)
+SI04	Zahodna Slovenija
+SI041	Osrednjeslovenska
+SI042	Gorenjska
+SI043	Goriska
+SI044	Obalno-kraska
+SI02	Zahodna Slovenija (NUTS 2010)
+SI021	Osrednjeslovenska (NUTS 2010)
+SI022	Gorenjska (NUTS 2010)
+SI023	Goriska (NUTS 2010)
+SI024	Obalno-kraska (NUTS 2010)
+SIZ	Extra-Regio NUTS 1
+SIZZ	Extra-Regio NUTS 2
+SIZZZ	Extra-Regio NUTS 3
+SI_CAP	Ljubljana
+SIX	Not regionalised / Unknown NUTS 1
+SIXX	Not regionalised / Unknown NUTS 2
+SIXXX	Not regionalised / Unknown NUTS 3
+SI_POD1	Podravje - Stajerska Slovenija
+SI_POD2	Podravje - Prekmurje
+SI_POS1	Posavje - Dolenjska
+SI_POS2	Posavje - Bela krajina
+SI_POS3	Posavje - Bizeljsko Sremic
+SI_PRI1	Primorje - Kras
+SI_PRI2	Primorje - Slovenska Istra
+SI_PRI3	Primorje - Vipavska dolina (Vipava)
+SI_PRI4	Primorje - Goriska brda (Brda)
+SI_OUTW	Outside wine-growing districts
+SK	Slovakia
+SK0	Slovensko
+SK01	Bratislavský kraj
+SK010	Bratislavský kraj
+SK02	Západné Slovensko
+SK021	Trnavský kraj
+SK022	Trenciansky kraj
+SK023	Nitriansky kraj
+SK03	Stredné Slovensko
+SK031	Zilinský kraj
+SK032	Banskobystrický kraj
+SK04	Východné Slovensko
+SK041	Presovský kraj
+SK042	Kosický kraj
+SKZ	Extra-Regio NUTS 1
+SKZZ	Extra-Regio NUTS 2
+SKZZZ	Extra-Regio NUTS 3
+SK_CAP	Bratislava
+SKX	Not regionalised / Unknown NUTS 1
+SKXX	Not regionalised / Unknown NUTS 2
+SKXXX	Not regionalised / Unknown NUTS 3
+SK_MAL	Malokarpatská
+SK_JUZ	Juznoslovenská
+SK_STR	Stredoslovenská
+SK_NIT	Nitrianska
+SK_VYC	Východoslovenská
+SK_TOK	Tokajská
+FI	Finland
+FI1	Manner-Suomi
+FI11_12_2	Uusimaa, Etelä-Suomi, Åland (NUTS95)
+FI11	Uusimaa (NUTS95)
+FI12	Etelä-Suomi (NUTS95)
+FI13	Itä-Suomi (NUTS 2006)
+FI131	Etelä-Savo (NUTS 2006)
+FI132	Pohjois-Savo (NUTS 2006)
+FI133	Pohjois-Karjala (NUTS 2006)
+FI134	Kainuu (NUTS 2006)
+FI14	Väli-Suomi (NUTS95)
+FI15	Pohjois-Suomi (NUTS95)
+FI16	Uusimaa (suuralue)(NUTS95)
+FI18_20	Etelä-Suomi, Åland (NUTS 2006)
+FI18	Etelä-Suomi (NUTS 2006)
+FI181_182	Uusimaa, Itä-Uusimaa (NUTS 2006)
+FI181	Uusimaa (NUTS 2006)
+FI182	Itä-Uusimaa (NUTS 2006)
+FI183	Varsinais-Suomi (NUTS 2006)
+FI184	Kanta-Häme (NUTS 2006)
+FI185	Päijät-Häme (NUTS 2006)
+FI186	Kymenlaakso (NUTS 2006)
+FI187	Etelä-Karjala (NUTS 2006)
+FI19_20	Länsi-Suomi, Åland
+FI19	Länsi-Suomi
+FI191	Satakunta (NUTS 2003)
+FI192	Pirkanmaa (NUTS 2003)
+FI193	Keski-Suomi
+FI194	Etelä-Pohjanmaa
+FI195	Pohjanmaa
+FI196	Satakunta
+FI197	Pirkanmaa
+FI1A	Pohjois-Suomi (NUTS 2006)
+FI1A1	Keski-Pohjanmaa (NUTS 2006)
+FI1A2	Pohjois-Pohjanmaa (NUTS 2006)
+FI1A3	Lappi (NUTS 2006)
+FI1B	Helsinki-Uusimaa
+FI1B1	Helsinki-Uusimaa
+FI1C	Etelä-Suomi
+FI1C1	Varsinais-Suomi
+FI1C2	Kanta-Häme
+FI1C3	Päijät-Häme
+FI1C4	Kymenlaakso
+FI1C5	Etelä-Karjala
+FI1D	Pohjois- ja Itä-Suomi
+FI1D1	Etelä-Savo
+FI1D2	Pohjois-Savo
+FI1D3	Pohjois-Karjala
+FI1D4	Kainuu
+FI1D5	Keski-Pohjanmaa
+FI1D6	Pohjois-Pohjanmaa
+FI1D7	Lappi
+FI2	Åland
+FI20	Åland
+FI200	Åland
+FIZ	Extra-Regio NUTS 1
+FIZZ	Extra-Regio NUTS 2
+FIZZZ	Extra-Regio NUTS 3
+FI_CAP	Helsinki
+FIX	Not regionalised / Unknown NUTS 1
+FIXX	Not regionalised / Unknown NUTS 2
+FIXXX	Not regionalised / Unknown NUTS 3
+FI_NAL	Finland, not allocated
+SE	Sweden
+SE1	Östra Sverige
+SE11	Stockholm
+SE110	Stockholms län
+SE12	Östra Mellansverige
+SE121	Uppsala län
+SE122	Södermanlands län
+SE123	Östergötlands län
+SE124	Örebro län
+SE125	Västmanlands län
+SE2	Södra Sverige
+SE21	Småland med öarna
+SE211	Jönköpings län
+SE212	Kronobergs län
+SE213	Kalmar län
+SE214	Gotlands län
+SE22	Sydsverige
+SE221	Blekinge län
+SE224	Skåne län
+SE23	Västsverige
+SE231	Hallands län
+SE232	Västra Götalands län
+SE04300013	Malmö
+SE3	Norra Sverige
+SE31	Norra Mellansverige
+SE311	Värmlands län
+SE312	Dalarnas län
+SE313	Gävleborgs län
+SE32	Mellersta Norrland
+SE321	Västernorrlands län
+SE322	Jämtlands län
+SE33	Övre Norrland
+SE331	Västerbottens län
+SE332	Norrbottens län
+SEZ	Extra-Regio NUTS 1
+SEZZ	Extra-Regio NUTS 2
+SEZZZ	Extra-Regio NUTS 3
+SE021	Uppsala län (NUTS 2003)
+SE025	Västmanlands län (NUTS 2003)
+SE03	Småland med öarna (NUTS95)
+SE05	Västsverige (NUTS95)
+SE_CAP	Stockholm
+SEX	Not regionalised / Unknown NUTS 1
+SEXX	Not regionalised / Unknown NUTS 2
+SEXXX	Not regionalised / Unknown NUTS 3
+UK	United Kingdom
+UK_K	United Kingdom under the Kyoto Protocol
+UKC-M	Great Britain
+UKC-L	England and Wales
+UKC	North East (UK)
+UKC1	Tees Valley and Durham
+UKC11	Hartlepool and Stockton-on-Tees
+UKC12	South Teesside
+UKC13	Darlington
+UKC14	Durham CC
+UKC2	Northumberland and Tyne and Wear
+UKC21	Northumberland
+UKC22	Tyneside
+UKC23	Sunderland
+UKD	North West (UK)
+UKD1	Cumbria
+UKD11	West Cumbria
+UKD12	East Cumbria
+UKD2	Cheshire (NUTS 2006)
+UKD21	Halton and Warrington (NUTS 2006)
+UKD22	Cheshire CC (NUTS 2006)
+UKD3-D5	Greater Manchester, Lancashire, Merseyside (NUTS 2006)
+UKD3	Greater Manchester
+UKD31	Greater Manchester South (NUTS 2010)
+UKD32	Greater Manchester North (NUTS 2010)
+UKD33	Manchester
+UKD34	Greater Manchester South West
+UKD35	Greater Manchester South East
+UKD36	Greater Manchester North West
+UKD37	Greater Manchester North East
+UKD4	Lancashire
+UKD41	Blackburn with Darwen
+UKD42	Blackpool
+UKD43	Lancashire CC (NUTS 2010)
+UKD44	Lancaster & Wyre
+UKD45	Mid Lancashire
+UKD46	East Lancashire
+UKD47	Chorley & West Lancashire
+UKD5	Merseyside (NUTS 2006)
+UKD51	East Merseyside (NUTS 2006)
+UKD52	Liverpool (NUTS 2006)
+UKD53	Sefton (NUTS 2006)
+UKD54	Wirral (NUTS 2006)
+UKD6	Cheshire
+UKD61	Warrington
+UKD62	Cheshire East
+UKD63	Cheshire West and Chester
+UKD7	Merseyside
+UKD71	East Merseyside
+UKD72	Liverpool
+UKD73	Sefton
+UKD74	Wirral
+UKE	Yorkshire and The Humber
+UKE1	East Yorkshire and Northern Lincolnshire
+UKE11	Kingston upon Hull, City of
+UKE12	East Riding of Yorkshire
+UKE13	North and North East Lincolnshire
+UKE2	North Yorkshire
+UKE21	York
+UKE22	North Yorkshire CC
+UKE3_E4	South and West Yorkshire
+UKE3	South Yorkshire
+UKE31	Barnsley, Doncaster and Rotherham
+UKE32	Sheffield
+UKE4	West Yorkshire
+UKE41	Bradford
+UKE42	Leeds
+UK24004	Leeds
+UKE43	Calderdale, Kirklees and Wakefield (NUTS 2006)
+UKE44	Calderdale and Kirklees
+UKE45	Wakefield
+UKF	East Midlands (UK)
+UKF1	Derbyshire and Nottinghamshire
+UKF11	Derby
+UKF12	East Derbyshire
+UKF13	South and West Derbyshire
+UKF14	Nottingham
+UKF15	North Nottinghamshire
+UKF16	South Nottinghamshire
+UKF2	Leicestershire, Rutland and Northamptonshire
+UKF21	Leicester
+UKF22	Leicestershire CC and Rutland
+UKF23	Northamptonshire (NUTS 2006)
+UKF24	West Northamptonshire
+UKF25	North Northamptonshire
+UKF3	Lincolnshire
+UKF30	Lincolnshire
+UKG	West Midlands (UK)
+UKG1_G3	Herefordshire, Worcestershire and Warwickshire, West Midlands
+UKG1	Herefordshire, Worcestershire and Warwickshire
+UKG11	Herefordshire, County of
+UKG12	Worcestershire
+UKG13	Warwickshire
+UKG2	Shropshire and Staffordshire
+UKG21	Telford and Wrekin
+UKG22	Shropshire CC
+UKG23	Stoke-on-Trent
+UKG24	Staffordshire CC
+UKG3	West Midlands
+UKG31	Birmingham
+UK73001	Birmingham
+UKG32	Solihull
+UKG33	Coventry
+UKG34	Dudley and Sandwell (NUTS 2006)
+UKG35	Walsall and Wolverhampton (NUTS 2006)
+UKG36	Dudley
+UKG37	Sandwell
+UKG38	Walsall
+UKG39	Wolverhampton
+UKH	East of England
+UKH1	East Anglia
+UKH11	Peterborough
+UKH12	Cambridgeshire CC
+UKH13	Norfolk (NUTS 2010)
+UKH14	Suffolk
+UKH15	Norwich & East Norfolk
+UKH16	North & West Norfolk
+UKH17	Breckland & South Norfolk
+UKH2	Bedfordshire and Hertfordshire
+UKH21	Luton
+UKH22	Bedfordshire CC (NUTS 2006)
+UKH23	Hertfordshire
+UKH24	Bedford
+UKH25	Central Bedfordshire
+UKH3	Essex
+UKH31	Southend-on-Sea
+UKH32	Thurrock
+UKH33	Essex CC (NUTS 2010)
+UKH34	Essex Haven Gateway
+UKH35	West Essex
+UKH36	Heart of Essex
+UKH37	Essex Thames Gateway
+UKI_J	London, South East
+UKI_J1	London, Berkshire, Buckinghamshire and Oxfordshire
+UKI	London
+UKI1	Inner London (NUTS 2010)
+UKI11	Inner London - West (NUTS 2010)
+UKI12	Inner London - East (NUTS 2010)
+UKI2	Outer London (NUTS 2010)
+UKI21	Outer London - East and North East (NUTS 2010)
+UKI22	Outer London - South (NUTS 2010)
+UKI23	Outer London - West and North West (NUTS 2010)
+UKI3	Inner London - West
+UKI31	Camden & City of London
+UKI32	Westminster
+UKI33	Kensington and Chelsea & Hammersmith and Fulham
+UKI34	Wandsworth
+UKI4	Inner London - East
+UKI41	Hackney & Newham
+UKI42	Tower Hamlets
+UKI43	Haringey & Islington
+UKI44	Lewisham & Southwark
+UKI45	Lambeth
+UKI5	Outer London - East and North East
+UKI51	Bexley & Greenwich
+UKI52	Barking and Dagenham & Havering
+UKI53	Redbridge & Waltham Forest
+UKI54	Enfield
+UKI6	Outer London - South
+UKI61	Bromley
+UKI62	Croydon
+UKI63	Merton, Kingston upon Thames & Sutton
+UKI7	Outer London - West and North West
+UKI71	Barnet
+UKI72	Brent
+UKI73	Ealing
+UKI74	Harrow & Hillingdon
+UKI75	Hounslow & Richmond upon Thames
+UK55001	London
+UKJ	South East (UK)
+UKJ1	Berkshire, Buckinghamshire and Oxfordshire
+UKJ11	Berkshire
+UKJ12	Milton Keynes
+UKJ13	Buckinghamshire CC
+UKJ14	Oxfordshire
+UKJ2	Surrey, East and West Sussex
+UKJ21	Brighton and Hove
+UKJ22	East Sussex CC
+UKJ23	Surrey (NUTS 2010)
+UKJ24	West Sussex (NUTS 2010)
+UKJ25	West Surrey
+UKJ26	East Surrey
+UKJ27	West Sussex (South West)
+UKJ28	West Sussex (North East)
+UKJ3	Hampshire and Isle of Wight
+UKJ31	Portsmouth
+UKJ32	Southampton
+UKJ33	Hampshire CC (NUTS 2010)
+UKJ34	Isle of Wight
+UKJ35	South Hampshire
+UKJ36	Central Hampshire
+UKJ37	North Hampshire
+UKJ4	Kent
+UKJ41	Medway
+UKJ42	Kent CC (NUTS 2010)
+UKJ43	Kent Thames Gateway
+UKJ44	East Kent
+UKJ45	Mid Kent
+UKJ46	West Kent
+UKK	South West (UK)
+UKK1	Gloucestershire, Wiltshire and Bristol/Bath area
+UKK11	Bristol, City of
+UKK12	Bath and North East Somerset, North Somerset and South Gloucestershire
+UKK13	Gloucestershire
+UKK14	Swindon
+UKK15	Wiltshire CC
+UKK2	Dorset and Somerset
+UKK21	Bournemouth and Poole
+UKK22	Dorset CC
+UKK23	Somerset
+UKK3	Cornwall and Isles of Scilly
+UKK30	Cornwall and Isles of Scilly
+UKK4	Devon
+UKK41	Plymouth
+UKK42	Torbay
+UKK43	Devon CC
+UKL	Wales
+UKL1	West Wales and The Valleys
+UKL11	Isle of Anglesey
+UKL12	Gwynedd
+UKL13	Conwy and Denbighshire
+UKL14	South West Wales
+UKL15	Central Valleys
+UKL16	Gwent Valleys
+UKL17	Bridgend and Neath Port Talbot
+UKL18	Swansea
+UKL2	East Wales
+UKL21	Monmouthshire and Newport
+UKL22	Cardiff and Vale of Glamorgan
+UKL23	Flintshire and Wrexham
+UKL24	Powys
+UKM	Scotland
+UKM1	North Eastern Scotland (NUTS 2003)
+UKM10	Aberdeen City, Aberdeenshire and North East Moray (NUTS 2003)
+UKM2	Eastern Scotland
+UKM21	Angus and Dundee City
+UKM22	Clackmannanshire and Fife
+UKM23	East Lothian and Midlothian
+UKM24	Scottish Borders
+UKM25	Edinburgh, City of
+UKM26	Falkirk
+UKM27	Perth & Kinross and Stirling
+UKM28	West Lothian
+UKM3	South Western Scotland
+UKM31	East Dunbartonshire, West Dunbartonshire and Helensburgh & Lomond
+UKM32	Dumfries & Galloway
+UKM33	East Ayrshire and North Ayrshire mainland
+UKM34	Glasgow City
+UKA2211	Glasgow
+UKM35	Inverclyde, East Renfrewshire and Renfrewshire
+UKM36	North Lanarkshire
+UKM37	South Ayrshire
+UKM38	South Lanarkshire
+UKM4	Highlands and Islands (NUTS 2003)
+UKM42	Inverness and Nairn, Moray, Badenoch and Strathspey (NUTS 2003)
+UKM5	North Eastern Scotland
+UKM50	Aberdeen City and Aberdeenshire
+UKM6	Highlands and Islands
+UKM61	Caithness & Sutherland and Ross & Cromarty
+UKM62	Inverness & Nairn and Moray, Badenoch & Strathspey
+UKM63	Lochaber, Skye & Lochalsh, Arran & Cumbrae and Argyll & Bute
+UKM64	Eilean Siar (Western Isles)
+UKM65	Orkney Islands
+UKM66	Shetland Islands
+UKN	Northern Ireland (UK)
+UKN0	Northern Ireland (UK)
+UKN01	Belfast
+UKN02	Outer Belfast
+UKN03	East of Northern Ireland (UK)
+UKN04	North of Northern Ireland (UK)
+UKN05	West and South of Northern Ireland (UK)
+UKZ	Extra-Regio NUTS 1
+UKZZ	Extra-Regio NUTS 2
+UKZZZ	Extra-Regio NUTS 3
+UK1	North (NUTS95)
+UK11	Cleveland, Durham (NUTS95)
+UK111	Cleveland (NUTS95)
+UK112	Durham (NUTS95)
+UK12	Cumbria (NUTS95)
+UK13	Northumberland,Tyne and Wear (NUTS95)
+UK131	Northumberland (NUTS95)
+UK132	Tyne and Wear (NUTS95)
+UK2	Yorkshire and Humberside (NUTS95)
+UK21	Humberside (NUTS95)
+UK22	North Yorkshire (NUTS95)
+UK23	South Yorkshire (NUTS95)
+UK24	West Yorkshire (NUTS95)
+UK3	East Midlands (NUTS95)
+UK31	Derbyshire, Nottinghamshire (NUTS95)
+UK311	Derbyshire (NUTS95)
+UK312	Nottinghamshire (NUTS95)
+UK32	Leicestershire, Northamptonshire (NUTS95)
+UK321	Leicestershire (NUTS95)
+UK322	Northamptonshire (NUTS95)
+UK33	Lincolnshire (NUTS95)
+UK4	East Anglia (NUTS95)
+UK401	Cambridgeshire (NUTS95)
+UK402	Norfolk (NUTS95)
+UK403	Suffolk (NUTS95)
+UK5	South East (UK) (NUTS95)
+UK51	Bedfordshire, Hertfordshire (NUTS95)
+UK511	Bedfordshire (NUTS95)
+UK512	Hertfordshire (NUTS95)
+UK52	Berkshire, Buckinghamshire, Oxfordshire (NUTS95)
+UK521	Berkshire (NUTS95)
+UK522	Buckinghamshire (NUTS95)
+UK523	Oxfordshire (NUTS95)
+UK53	Surrey, East-West Sussex (NUTS95)
+UK531	East Sussex (NUTS95)
+UK532	Surrey (NUTS95)
+UK533	West Sussex (NUTS95)
+UK54	Essex (NUTS95)
+UK55	Greater London (NUTS95)
+UK56	Hampshire, Isle of Wight (NUTS95)
+UK561	Hampshire (NUTS95)
+UK562	Isle of Wight (NUTS95)
+UK57	Kent (NUTS95)
+UK6	South West (UK) (NUTS95)
+UK61	Avon, Gloucestershire, Wiltshire (NUTS95)
+UK611	Avon (NUTS95)
+UK612	Gloucestershire (NUTS95)
+UK613	Wiltshire (NUTS95)
+UK62	Cornwall, Devon (NUTS95)
+UK621	Cornwall (NUTS95)
+UK622	Devon (NUTS95)
+UK63	Dorset, Somerset (NUTS95)
+UK631	Dorset (NUTS95)
+UK632	Somerset (NUTS95)
+UK7	West Midlands (NUTS95)
+UK71	Hereford and Worcester, Warwickshire (NUTS95)
+UK711	Hereford and Worcester (NUTS95)
+UK712	Warwickshire (NUTS95)
+UK72	Shropshire, Staffordshire (NUTS95)
+UK721	Shropshire (NUTS95)
+UK722	Staffordshire (NUTS95)
+UK73	West Midlands (County) (NUTS95)
+UK8	North West (UK) (NUTS95)
+UK81	Cheshire (NUTS95)
+UK82	Greater Manchester (NUTS95)
+UK83	Lancashire (NUTS95)
+UK84	Merseyside (NUTS95)
+UK9	Wales (NUTS95)
+UK91	Clwyd, Dyfed, Gwynedd, Powys (NUTS95)
+UK911	Clwyd (NUTS95)
+UK912	Dyfed (NUTS95)
+UK913	Gwynedd (NUTS95)
+UK914	Powys (NUTS95)
+UK92	Gwent, Mid-South-West Glamorgan (NUTS95)
+UK921	Gwent (NUTS95)
+UK922	Mid Glamorgan (NUTS95)
+UK923	South Glamorgan (NUTS95)
+UK924	West Glamorgan (NUTS95)
+UKA	Scotland (NUTS95)
+UKA1	Borders-Central-Fife-Lothian-Tayside (NUTS95)
+UKA11	Borders (NUTS95)
+UKA12	Central (NUTS95)
+UKA13	Fife (NUTS95)
+UKA14	Lothian (NUTS95)
+UKA15	Tayside (NUTS95)
+UKA2	Dumfries and Galloway, Strathclyde (NUTS95)
+UKA21	Dumfries and Galloway (NUTS95)
+UKA22	Strathclyde (NUTS95)
+UKA3	Highlands, Islands (NUTS95)
+UKA31	Highlands (NUTS95)
+UKA32	Islands (NUTS95)
+UKA4	Grampian (NUTS95)
+UKB	Northern Ireland (UK)(NUTS95)
+UK_CAP	London
+UK_DEL	Culham
+UKX	Not regionalised / Unknown NUTS 1
+UKXX	Not regionalised / Unknown NUTS 2
+UKXXX	Not regionalised / Unknown NUTS 3
+UK_NAL	United Kingdom, not allocated
+UK_OCT	British overseas countries and territories
+BLEU	Belgo-Luxembourg Economic Union
+BNL	Benelux Countries
+BAL	Baltic countries
+CHUNNEL	Channel Tunnel
+EU28_NEU28	EU-28 countries and non-EU-28 countries
+EU28_NEA19	EU-28 countries not in EA19 (9 countries)
+NMS_NEA19	New Member States not in EA19 (6 countries)
+EU28_NEA18	EU-28 countries not in EA18 (10 countries)
+NMS_NEA18	New Member States not in EA18 (7 countries)
+EU28_NEA17	EU-28 countries not in EA17 (11 countries)
+EU27_NEA17	EU-27 countries not in EA17 (10 countries)
+NMS_NEA17	New Member States not in EA17 (8 countries)
+EU27_NEA16	EU-27 countries not in EA16 (11 countries)
+NMS_NEA16	New Member States not in EA16 (8 countries)
+EU27_NEA15	EU-27 countries not in EA15 (12 countries)
+EU27_NEA13	EU-27 countries not in EA13 (14 countries)
+EU25_NEA12	EU-25 countries not in EA12 (13 countries)
+EU_OTH	Other EU countries
+EU28_OTH	Other EU-28 countries
+EU27_OTH	Other EU-27 countries
+EU25_OTH	Other EU-25 countries
+EU15_OTH	Other EU-15 countries
+EU15_NAL	European Union, not reported
+INT_EU	Intra-EU
+INT_EU28	Intra-EU-28
+INT_EU27	Intra-EU-27
+INT_EU25	Intra-EU-25
+INT_EU15	Intra-EU-15
+INT_NMS10	Intra-New Member States (10 countries)
+INT_NMS12	Intra-New Member States (12 countries)
+INT_EA	Intra-Euro area
+INT_EU_NAL	Intra-EU, not allocated
+INT_EU28_NAL	Intra-EU-28, not allocated
+INT_EU27_NAL	Intra-EU-27, not allocated
+INT_EU25_NAL	Intra-EU-25, not allocated
+INT_EU15_NAL	Intra-EU-15, not allocated
+INT_EA_NAL	Intra-Euro area, not allocated
+EU_FOR	EU-countries except reporting country
+EU28_FOR	EU-28 countries except reporting country
+EU27_FOR	EU-27 countries except reporting country
+EU25_FOR	EU-25 countries except reporting country
+EU15_FOR	EU-15 countries except reporting country
+EU12_FOR	EU-12 countries except reporting country
+EEA	European Economic Area (EEA18-2004, EEA28-2006, EEA30-2013, EEA31)
+EEA31	European Economic Area (EU-28 plus IS, LI, NO)
+EEA30	European Economic Area (EU-27 plus IS, LI, NO)
+EEA28	European Economic Area (EU-25 plus IS, LI, NO)
+EEA18	European Economic Area (EU-15 plus IS, LI, NO)
+EEA_X_LI	European Economic Area except Liechtenstein
+EEA_NEU	EEA-countries except the EU-countries
+EEA18_OTH	Other European Economic Area countries (18 countries)
+EEA_FOR	EEA-countries except reporting country
+EFTA	European Free Trade Association
+IS	Iceland
+IS0	Ísland
+IS00	Ísland
+IS001	Höfudborgarsvædi
+IS002	Landsbyggd
+ISZ	Extra-Regio level 1
+ISZZ	Extra-Regio level 2
+ISZZZ	Extra-Regio level 3
+IS_CAP	Reykjavik
+ISX	Not regionalised / Unknown level 1
+ISXX	Not regionalised / Unknown level 2
+ISXXX	Not regionalised / Unknown level 3
+CH_LI	Switzerland and Liechtenstein
+LI	Liechtenstein
+LI0	Liechtenstein
+LI00	Liechtenstein
+LI000	Liechtenstein
+LIZ	Extra-Regio level 1
+LIZZ	Extra-Regio level 2
+LIZZZ	Extra-Regio level 3
+LI_CAP	Vaduz
+LIX	Not regionalised / Unknown level 1
+LIXX	Not regionalised / Unknown level 2
+LIXXX	Not regionalised / Unknown level 3
+NO	Norway
+NO0	Norge
+NO01	Oslo og Akershus
+NO011	Oslo
+NO012	Akershus
+NO02	Hedmark og Oppland
+NO021	Hedmark
+NO022	Oppland
+NO03	Sør-Østlandet
+NO031	Østfold
+NO032	Buskerud
+NO033	Vestfold
+NO034	Telemark
+NO04	Agder og Rogaland
+NO041	Aust-Agder
+NO042	Vest-Agder
+NO043	Rogaland
+NO05	Vestlandet
+NO051	Hordaland
+NO052	Sogn og Fjordane
+NO053	Møre og Romsdal
+NO06	Trøndelag
+NO061	Sør-Trøndelag
+NO062	Nord-Trøndelag
+NO07	Nord-Norge
+NO071	Nordland
+NO072	Troms
+NO073	Finnmark
+NOZ	Extra-Regio level 1
+NOZZ	Extra-Regio level 2
+NOZZZ	Extra-Regio level 3
+NO_CAP	Oslo
+NOX	Not regionalised / Unknown level 1
+NOXX	Not regionalised / Unknown level 2
+NOXXX	Not regionalised / Unknown level 3
+CH	Switzerland
+CH0	Schweiz/Suisse/Svizzera
+CH01	Région lémanique
+CH011	Vaud
+CH012	Valais
+CH013	Genève
+CH02	Espace Mittelland
+CH021	Bern
+CH022	Freiburg
+CH023	Solothurn
+CH024	Neuchâtel
+CH025	Jura
+CH03	Nordwestschweiz
+CH031	Basel-Stadt
+CH032	Basel-Landschaft
+CH033	Aargau
+CH04	Zürich
+CH040	Zürich
+CH05	Ostschweiz
+CH051	Glarus
+CH052	Schaffhausen
+CH053	Appenzell Ausserrhoden
+CH054	Appenzell Innerrhoden
+CH055	St. Gallen
+CH056	Graubünden
+CH057	Thurgau
+CH06	Zentralschweiz
+CH061	Luzern
+CH062	Uri
+CH063	Schwyz
+CH064	Obwalden
+CH065	Nidwalden
+CH066	Zug
+CH07	Ticino
+CH070	Ticino
+CHZ	Extra-Regio level 1
+CHZZ	Extra-Regio level 2
+CHZZZ	Extra-Regio level 3
+CH_CAP	Bern (Berne)
+CH_DEL	Genève
+CHX	Not regionalised / Unknown level 1
+CHXX	Not regionalised / Unknown level 2
+CHXXX	Not regionalised / Unknown level 3
+EFTA_FOR	European Free Trade Association except reporting country
+EFTA_OTH	Other European Free Trade Association countries
+CC_V	Candidate countries (aggregate changing according to the context)
+CC5_15	Candidate countries from 2015 (5 countries)
+CC6_14	Candidate countries in 2014 (6 countries)
+CC5_13	Candidate countries in 2013 (5 countries)
+CC6_12	Candidate countries in 2012 (6 countries)
+CC5_10	Candidate countries in 2010 (5 countries)
+CC4_10	Candidate countries in 2010 (4 countries)
+CC3_07	Candidate countries in 2007 (3 countries)
+CC5_06	Candidate countries in 2006 (5 countries)
+CC4_05	Candidate countries in 2005 (4 countries)
+NMS_CC_04	New Member States and Candidate countries in 2004 (13 countries)
+ME	Montenegro
+ME0	Crna Gora
+ME00	Crna Gora
+ME000	Crna Gora
+MEZ	Extra-Regio level 1
+MEZZ	Extra-Regio level 2
+MEZZZ	Extra-Regio level 3
+ME_CAP	Podgorica
+MEX	Not regionalised / Unknown level 1
+MEXX	Not regionalised / Unknown level 2
+MEXXX	Not regionalised / Unknown level 3
+MK	Former Yugoslav Republic of Macedonia, the
+MK0	Poranesna jugoslovenska Republika Makedonija
+MK00	Poranesna jugoslovenska Republika Makedonija
+MK001	Vardarski
+MK002	Istocen
+MK003	Jugozapaden
+MK004	Jugoistocen
+MK005	Pelagoniski
+MK006	Poloski
+MK007	Severoistocen
+MK008	Skopski
+MKZ	Extra-Regio level 1
+MKZZ	Extra-Regio level 2
+MKZZZ	Extra-Regio level 3
+MK_CAP	Skopje
+MKX	Not regionalised / Unknown level 1
+MKXX	Not regionalised / Unknown level 2
+MKXXX	Not regionalised / Unknown level 3
+AL	Albania
+AL0	Shqipëria
+AL01	Veri
+AL011	Dibër
+AL012	Durrës
+AL013	Kukës
+AL014	Lezhë
+AL015	Shkodër
+AL02	Qender
+AL021	Elbasan
+AL022	Tiranë
+AL03	Jug
+AL031	Berat
+AL032	Fier
+AL033	Gjirokastër
+AL034	Korcë
+AL035	Vlorë
+ALZ	Extra-Regio level 1
+ALZZ	Extra-Regio level 2
+ALZZZ	Extra-Regio level 3
+AL_CAP	Tiranë (Tirana)
+ALX	Not regionalised / Unknown level 1
+ALXX	Not regionalised / Unknown level 2
+ALXXX	Not regionalised / Unknown level 3
+RS	Serbia
+RS_CAP	Beograd (Belgrade)
+TR	Turkey
+TR1	Istanbul
+TR10	Istanbul
+TR100	Istanbul
+TR2	Bati Marmara
+TR21	Tekirdag, Edirne, Kirklareli
+TR211	Tekirdag
+TR212	Edirne
+TR213	Kirklareli
+TR22	Balikesir, Çanakkale
+TR221	Balikesir
+TR222	Çanakkale
+TR3	Ege
+TR31	Izmir
+TR310	Izmir
+TR32	Aydin, Denizli, Mugla
+TR321	Aydin
+TR322	Denizli
+TR323	Mugla
+TR33	Manisa, Afyonkarahisar, Kütahya, Usak
+TR331	Manisa
+TR332	Afyonkarahisar
+TR333	Kütahya
+TR334	Usak
+TR4	Dogu Marmara
+TR41	Bursa, Eskisehir, Bilecik
+TR411	Bursa
+TR412	Eskisehir
+TR413	Bilecik
+TR42	Kocaeli, Sakarya, Düzce, Bolu, Yalova
+TR421	Kocaeli
+TR422	Sakarya
+TR423	Düzce
+TR424	Bolu
+TR425	Yalova
+TR5	Bati Anadolu
+TR51	Ankara
+TR510	Ankara
+TR52	Konya, Karaman
+TR521	Konya
+TR522	Karaman
+TR6	Akdeniz
+TR61	Antalya, Isparta, Burdur
+TR611	Antalya
+TR612	Isparta
+TR613	Burdur
+TR62	Adana, Mersin
+TR621	Adana
+TR622	Mersin
+TR63	Hatay, Kahramanmaras, Osmaniye
+TR631	Hatay
+TR632	Kahramanmaras
+TR633	Osmaniye
+TR7	Orta Anadolu
+TR71	Kirikkale, Aksaray, Nigde, Nevsehir, Kirsehir
+TR711	Kirikkale
+TR712	Aksaray
+TR713	Nigde
+TR714	Nevsehir
+TR715	Kirsehir
+TR72	Kayseri, Sivas, Yozgat
+TR721	Kayseri
+TR722	Sivas
+TR723	Yozgat
+TR8	Bati Karadeniz
+TR81	Zonguldak, Karabük, Bartin
+TR811	Zonguldak
+TR812	Karabük
+TR813	Bartin
+TR82	Kastamonu, Çankiri, Sinop
+TR821	Kastamonu
+TR822	Çankiri
+TR823	Sinop
+TR83	Samsun, Tokat, Çorum, Amasya
+TR831	Samsun
+TR832	Tokat
+TR833	Çorum
+TR834	Amasya
+TR9	Dogu Karadeniz
+TR90	Trabzon, Ordu, Giresun, Rize, Artvin, Gümüshane
+TR901	Trabzon
+TR902	Ordu
+TR903	Giresun
+TR904	Rize
+TR905	Artvin
+TR906	Gümüshane
+TRA	Kuzeydogu Anadolu
+TRA1	Erzurum, Erzincan, Bayburt
+TRA11	Erzurum
+TRA12	Erzincan
+TRA13	Bayburt
+TRA2	Agri, Kars, Igdir, Ardahan
+TRA21	Agri
+TRA22	Kars
+TRA23	Igdir
+TRA24	Ardahan
+TRB	Ortadogu Anadolu
+TRB1	Malatya, Elazig, Bingöl, Tunceli
+TRB11	Malatya
+TRB12	Elazig
+TRB13	Bingöl
+TRB14	Tunceli
+TRB2	Van, Mus, Bitlis, Hakkari
+TRB21	Van
+TRB22	Mus
+TRB23	Bitlis
+TRB24	Hakkari
+TRC	Güneydogu Anadolu
+TRC1	Gaziantep, Adiyaman, Kilis
+TRC11	Gaziantep
+TRC12	Adiyaman
+TRC13	Kilis
+TRC2	Sanliurfa, Diyarbakir
+TRC21	Sanliurfa
+TRC22	Diyarbakir
+TRC3	Mardin, Batman, Sirnak, Siirt
+TRC31	Mardin
+TRC32	Batman
+TRC33	Sirnak
+TRC34	Siirt
+TRZ	Extra-Regio level 1
+TRZZ	Extra-Regio level 2
+TRZZZ	Extra-Regio level 3
+TR_CAP	Ankara
+TRX	Not regionalised / Unknown level 1
+TRXX	Not regionalised / Unknown level 2
+TRXXX	Not regionalised / Unknown level 3
+EUR_C_E	Central and Eastern Europe
+EUR_C_E_OTH	Other Central and Eastern European countries
+WBC	WBC - Western Balkan Countries (aggregate changing according to the context)
+CEEC	Central and Eastern European countries except European former CIS Republics (aggregate changing according to the context)
+AD	Andorra
+BY	Belarus
+BY_CAP	Minsk
+BA	Bosnia and Herzegovina
+BA_CAP	Sarajevo
+BA_DEL	Banja Luka
+FO	Faeroe Islands (DK)
+GI	Gibraltar (UK)
+GG	Guernsey
+IM	Isle of Man
+GG_JE	Guernsey and Jersey (Channel Islands)
+JE	Jersey
+XK	Kosovo (under United Nations Security Council Resolution 1244/99)
+XK_CAP	Prishtinë
+MD	Moldova
+MD_CAP	Chisinau
+MC	Monaco
+RU	Russia
+RU_CAP	Moskva (Moscow)
+SM	San Marino
+SJ	Svalbard and Jan Mayen
+UA	Ukraine
+UA_CAP	Kyiv
+VA	Vatican City State
+NCL	Not classifiable according to current borders
+CZ_SK	Former Czechoslovakia (before 1992) / Total components of former Czechoslovakia
+RS_ME	Former Serbia and Montenegro (before 2006) / Total components of the former Serbia and Montenegro
+EX_YU	Former Yugoslavia (before 1992) / Total components of the former republic of Yugoslavia
+EX_YU_OTH	Other countries of former Yugoslavia (before 1992)
+EX_SU	Former Soviet Union (before 1991) / Total components of the former Soviet Union
+EX_SU_EUR	European Republics of the former Soviet Union
+EX_SU_OTH	Other countries of former Soviet Union (before 1991)
+NCL_OTH	Other entity not classifiable
+CIS	Commonwealth of Independent States (Former Soviet Union except BAL)
+EXT	Countries other than EU-27, EFTA and Candidate countries
+HDC_EXT	Highly developed countries (other than EU-27, EFTA and Candidate countries)
+MDC_EXT	Medium developed countries (other than EU-27, EFTA and Candidate countries)
+LDC_EXT	Less developed countries (other than EU-27, EFTA and Candidate countries)
+EXT_EU	Extra-EU
+EXT_EU28	Extra EU-28
+EXT_EU27	Extra EU-27
+EXT_EU25	Extra EU-25
+EXT_EU15	Extra-EU-15
+EXT_EU12	Extra-EU-12
+EXT_EA	Extra-Euro area
+EXT_EA19	Extra-Euro area-19
+EXT_EA18	Extra-Euro area-18
+EXT_EA17	Extra-Euro area-17
+EXT_EA16	Extra-Euro area-16
+EXT_EA15	Extra-Euro area-15
+EXT_EA13	Extra-Euro area-13
+EXT_EA12	Extra-Euro area-12
+EXT_EA11	Extra-Euro area-11
+EXT_EU_NAL	Extra-EU, not allocated
+EXT_EU28_NAL	Extra-EU-28, not allocated
+EXT_EU27_NAL	Extra-EU-27, not allocated
+EXT_EU25_NAL	Extra EU-25, not allocated
+EXT_EU15_NAL	Extra-EU-15, not allocated
+EXT_EA_NAL	Extra-Euro area, not allocated
+NEU	Non-EU countries (aggregate changing according to the context)
+NEU_HDI_VH	Non-EU countries with very high Human Development Index (HDI)
+NEU_HDI_H	Non-EU countries with high Human Development Index (HDI)
+NEU_HDI_M	Non-EU countries with medium Human Development Index (HDI)
+NEU_HDI_L	Non-EU countries with low Human Development Index (HDI)
+NEU_NHDI	Non-EU countries with no Human Development Index (HDI) ranking
+NEU28	Non-EU-28 countries
+NEU28_FOR	Non-EU-28 countries nor reporting country
+NEU27_FOR	Non-EU-27 countries nor reporting country
+EUR_NEU	European non-EU countries (aggregate changing according to the context)
+EUR_NEU28	European non-EU-28 countries
+EUR_NEU27	European non-EU-27 countries
+EUR_NEU25	European non-EU-25 countries
+EUR_NEU15	European non-EU-15 countries
+EUR_FOR	European countries except reporting country
+EUROTH	European countries not EU nor EFTA (aggregate changing according to the context)
+EUR_OTH	Other european countries (aggregate changing according to the context)
+AFR	Africa
+AFR_C_S	Central and South Africa
+AFR_C	Central Africa
+AO	Angola
+AO_CAP	Luanda
+CM	Cameroon
+CM_CAP	Yaoundé
+CF	Central African Republic
+CF_CAP	Bangui
+TD	Chad
+TD_CAP	N'Djamena
+CG	Congo
+CG_CAP	Brazzaville
+CD	Democratic Republic of the Congo
+CD_CAP	Kinshasa
+GQ	Equatorial Guinea
+GQ_CAP	Malabo
+GA	Gabon
+GA_CAP	Libreville
+ST	São Tomé and Príncipe
+ST_CAP	Sao Tomé
+AFR_E	Eastern Africa
+BI	Burundi
+BI_CAP	Bujumbura
+KM	Comoros
+KM_CAP	Moroni
+DJ	Djibouti
+DJ_CAP	Djibouti
+ER	Eritrea
+ER_CAP	Asmaraa
+ET	Ethiopia
+ET_CAP	Addis-Ababa
+KE	Kenya
+KE_CAP	Nairobi
+MG	Madagascar
+MG_CAP	Antananarivo
+MW	Malawi
+MW_CAP	Lilongwe
+MU	Mauritius
+MU_CAP	Port-Louis
+MZ	Mozambique
+MZ_CAP	Maputo
+RW	Rwanda
+RW_CAP	Kigali
+SC	Seychelles
+SO	Somalia
+SO_CAP	Muqdisho (Mogadishu)
+UG	Uganda
+UG_CAP	Kampala
+TZ	Tanzania
+TZ_CAP	Dodoma
+ZM	Zambia
+ZM_CAP	Lusaka
+ZW	Zimbabwe
+ZW_CAP	Harare
+AFR_N	Northern Africa
+DZ	Algeria
+DZ_CAP	Al-Jazair (Algiers)
+EG	Egypt
+EG_CAP	Al-Qahirah (Cairo)
+LY	Libya
+LY_CAP	Tarabulus (Tripoli)
+MA	Morocco
+MA_CAP	Rabat
+SS	South Sudan
+SS_CAP	Juba
+SD	Sudan
+SD_CAP	Al-Khartum (Khartoum)
+TN	Tunisia
+TN_CAP	Tunis
+EH	Western Sahara
+AFR_S	Southern Africa
+BW	Botswana
+BW_CAP	Gaborone
+LS	Lesotho
+LS_CAP	Maseru
+NA	Namibia
+NA_CAP	Windhoek
+ZA	South Africa
+ZA_CAP	Pretoria
+SZ	Swaziland
+SZ_CAP	Mbabane
+AFR_W	Western Africa
+BJ	Benin
+BJ_DEL	Cotonou (seat of government)
+BF	Burkina Faso
+BF_CAP	Ouagadougou
+CV	Cape Verde
+CV_CAP	Praia
+CI	Côte d'Ivoire
+CI_DEL	Abidjan (seat of government)
+GM	Gambia, The
+GM_CAP	Banjul
+GH	Ghana
+GH_CAP	Accra
+GN	Guinea
+GN_CAP	Conakry
+GW	Guinea-Bissau
+GW_CAP	Bissau
+LR	Liberia
+LR_CAP	Monrovia
+ML	Mali
+ML_CAP	Bamako
+MR	Mauritania
+MR_CAP	Nouakchott
+NE	Niger
+NE_CAP	Niamey
+NG	Nigeria
+NG_CAP	Abuja
+NG_DEL	Lagos
+SH	Saint Helena, Ascension and Tristan da Cunha (UK)
+SN	Senegal
+SN_CAP	Dakar
+SL	Sierra Leone
+SL_CAP	Freetown
+TG	Togo
+TG_CAP	Lomé
+AFR_OTH	Other African countries (aggregate changing according to the context)
+AME	America
+AME_N	Northern America
+BM	Bermuda (UK)
+CA_US	Canada and United States
+CA	Canada
+CA_CAP	Ottawa
+GL	Greenland (DK)
+PM	Saint Pierre and Miquelon (FR)
+US	United States
+US_CAP	Washington, D.C.
+US_DEL	New York
+AME_N_OTH	Other Northern American countries
+AME_X_N	Caribbean, Central and South America
+AME_C_CRB	Central America and Caribbean
+CRB	Caribbean
+AI	Anguilla (UK)
+AG	Antigua and Barbuda
+AW	Aruba (NL)
+BS	Bahamas
+BB	Barbados
+BB_CAP	Bridgetown
+BQ	Bonaire, Saint Eustatius and Saba
+VG	British Virgin Islands (UK)
+KY	Cayman Islands (UK)
+CU	Cuba
+CU_CAP	La Habana (Havana)
+CW	Curaçao
+DM	Dominica
+DO	Dominican Republic
+DO_CAP	Santo Domingo (Dominican Republic)
+GD	Grenada
+HT	Haiti
+HT_CAP	Port-au-Prince
+JM	Jamaica
+JM_CAP	Kingston
+MS	Montserrat (UK)
+AN	Former Netherlands Antilles
+PR	Puerto Rico (US)
+BL	Saint-Barthélemy (FR)
+KN	Saint Kitts and Nevis
+LC	Saint Lucia
+MF	Saint Martin (FR)
+VC	Saint Vincent and the Grenadines
+SX	Sint Maarten
+TT	Trinidad and Tobago
+TT_CAP	Port of Spain
+TC	Turks and Caicos Islands (UK)
+VI	US Virgin Islands (US)
+CRB_OTH	Other Caribbean countries
+AME_C_S	Central and South America
+AME_LAT	Latin American countries
+AME_C	Central America
+BZ	Belize
+BZ_DEL	Belize City
+CP	Clipperton (FR)
+CR	Costa Rica
+CR_CAP	San Jose
+SV	El Salvador
+SV_CAP	San Salvador
+GT	Guatemala
+GT_CAP	Ciudad de Guatemala
+HN	Honduras
+HN_CAP	Tegucigalpa
+MX	Mexico
+MX_CAP	Mexico
+NI	Nicaragua
+NI_CAP	Managua
+PA	Panama
+PA_CAP	Panama
+AME_C_OTH	Other Central American countries
+AME_S	South America
+AR	Argentina
+AR_CAP	Buenos Aires
+BO	Bolivia
+BO_CAP	La Paz
+BR	Brazil
+BR_CAP	Brasilia
+CL	Chile
+CL_CAP	Santiago
+CO	Colombia
+CO_CAP	Bogota
+EC	Ecuador
+EC_CAP	Quito
+FK	Falkland Islands (UK)
+GY	Guyana
+GY_CAP	Georgetown
+PY	Paraguay
+PY_CAP	Asunción
+PE	Peru
+PE_CAP	Lima
+SR	Suriname
+SR_CAP	Paramaribo
+UY	Uruguay
+UY_CAP	Montevideo
+VE	Venezuela
+VE_CAP	Caracas
+AME_C_S_OTH	Other Central or South American countries
+AME_S_OTH	Other South American countries
+AME_X_N_OTH	Other Caribbean, Central and South American countries
+AME_OTH	Other American countries (aggregate changing according to the context)
+ASI	Asia
+ASI_C	Central Asia
+KZ	Kazakhstan
+KZ_CAP	Astana
+KZ_DEL	Almaty
+KG	Kyrgyzstan
+KG_CAP	Bishkek
+TJ	Tajikistan
+TJ_CAP	Doushanbe
+TM	Turkmenistan
+TM_CAP	Ashgabat
+UZ	Uzbekistan
+UZ_CAP	Toshkent
+ASI_E	Eastern Asia
+CN	China (including Hong Kong)
+CN_X_HK	China (except Hong Kong)
+CN_CAP	Beijing
+HK	Hong Kong
+HK_CAP	Hong Kong
+MO	Macao
+JP	Japan
+JP_CAP	Tokyo
+JP_DEL	Naka
+MN	Mongolia
+KP	North Korea
+KR	South Korea
+KR_CAP	Seoul
+TW	Taiwan
+TW_CAP	Taipei
+TB	Tibet (under the administration of China)
+ASI_E_OTH	Other Eastern Asian countries
+ASI_S	Southern Asia
+AF	Afghanistan
+AF_CAP	Kabul
+BD	Bangladesh
+BD_CAP	Dhaka
+BT	Bhutan
+IO	British Indian Ocean Territory (UK)
+IN	India
+IN_CAP	New Delhi
+IR	Iran
+MV	Maldives
+NP	Nepal
+NP_CAP	Kathmandu
+PK	Pakistan
+PK_CAP	Islamabad
+LK	Sri Lanka
+LK_DEL	Colombo
+ASI_S_E	South-Eastern Asia
+BN	Brunei Darussalam
+KH	Cambodia
+KH_CAP	Phnom Penh
+ID	Indonesia
+ID_CAP	Jakarta
+ID_DEL	Banda Aceh
+LA	Laos
+LA_CAP	Vientiane
+MY	Malaysia
+MY_CAP	Kuala Lumpur
+MM	Myanmar/Burma
+MM_DEL	Yangon
+PH	Philippines
+PH_CAP	Manila
+SG	Singapore
+SG_CAP	Singapore
+TH	Thailand
+TH_CAP	Bangkok
+TL	Timor-Leste
+TL_CAP	Dili
+VN	Vietnam
+VN_CAP	Hanoi
+ASI_W_IR	Western Asia (including Iran)
+ASI_W	Western Asia
+AM	Armenia
+AM_CAP	Yerevan
+AZ	Azerbaijan
+AZ_CAP	Baki (Baku)
+BH	Bahrain
+GE	Georgia
+GE_CAP	Tbilisi
+IQ	Iraq
+IQ_CAP	Baghdad
+IL	Israel
+IL_DEL	Tel Aviv
+JO	Jordan
+JO_CAP	Amman
+KW	Kuwait
+LB	Lebanon
+LB_CAP	Bayrut
+PS	Palestine
+PS_CAP	Jerusalem-East (West Bank/Gaza Strip)
+OM	Oman
+QA	Qatar
+SA	Saudi Arabia
+SA_CAP	Ar-Riyad (Riyadh)
+SY	Syria
+SY_CAP	Dimashq (Damascus)
+AE	United Arab Emirates
+AE_CAP	Abu Dhabi
+YE	Yemen
+YE_CAP	Sanaa
+EX_YE	Former North Yemen (before 1990)
+EX_YD	Former South Yemen (before 1990)
+ASI_NME	Near and Middle East Asia (aggregate changing according to the context)
+ASI_NME_OTH	Other Near and Middle East Asian countries
+ASI_G	Gulf Arabian Countries
+ASI_W_OTH	Other Western Asian countries
+EX_SU_ASI	Asian Republics of the former Soviet Union
+ASI_OTH	Other Asian countries (aggregate changing according to the context)
+ASI_OCE_OTH	Other Asian and Oceanian countries (aggregate changing according to the context)
+OCE_PLR	Oceania and southern polar regions
+OCE	Oceania
+AU_NZ	Australia and New Zealand
+AU	Australia
+AU_CAP	Canberra
+AU_ISL	Australian Oceania
+CX	Christmas Island (AU)
+CC	Cocos (Keeling) Islands (AU)
+HM	Heard Island and McDonald Islands (AU)
+NF	Norfolk Island (AU)
+NZ	New Zealand
+NZ_CAP	Wellington
+NZ_ISL	New Zealand Oceania
+MEL	Melanesia
+FJ	Fiji
+FJ_CAP	Suva
+NC	New Caledonia (FR)
+NC_CAP	Noumea
+PG	Papua New Guinea
+PG_CAP	Port Moresby
+SB	Solomon Islands
+SB_CAP	Honiara
+VU	Vanuatu
+VU_CAP	Port Vila
+MIC	Micronesia
+GU	Guam (US)
+KI	Kiribati
+MH	Marshall Islands
+FM	Federated States of Micronesia
+FM_CAP	Palikir
+NR	Nauru
+MP	Northern Mariana Islands (US)
+PW	Palau
+POL	Polynesia
+AS	American Samoa (US)
+CK	Cook Islands (NZ)
+PF	French Polynesia (FR)
+NU	Niue (NZ)
+PN	Pitcairn Islands (UK)
+WS	Samoa
+WS_CAP	Apia
+TK	Tokelau (NZ)
+TO	Tonga
+TO_CAP	Nuku'alofa
+TV	Tuvalu
+WF	Wallis and Futuna (FR)
+US_ISL	American Oceania (US)
+UM	United States Minor Outlying Islands (US)
+OCE_OTH	Other Oceanian countries (aggregate changing according to the context)
+PLR	Southern polar regions
+AQ	Antarctica
+BV	Bouvet Island (NO)
+GS	South Georgia and the South Sandwich Islands (UK)
+TF	French Southern Territories (FR)
+ORG	International Organizations
+EUI	Institutions and bodies of the European Union
+EUI_X_EAI	EU institutions except the institutions of the euro area (aggregate changing according to the context)
+EUI_X_ECB	EU institutions except the ECB
+PARL	European Parliament
+COUNCIL	European Council
+CONS	Council of the European Union
+COMM	European Commission
+EU_NSI	Eurostat
+CURIA	Court of Justice
+ECA	European Court of Auditors
+EESC	European Economic and Social Committee
+COR	Committee of the Regions
+EIB	European Investment Bank
+EIF	European Investment Fund
+ECB	European Central Bank (ECB)
+ESM	European Stability Mechanism
+EDF	European Development Fund
+EU_BDG	All EU institutions financed via the EU Budget
+EUB_MNR	Other small EU institutions financed via the EU Budget
+EUB_OTH	Other EU institutions financed via the EU Budget
+EUI_NBDG	EU institutions not financed via the EU Budget
+ECSC	European Coal and Steel Community
+EMI	European Monetary Institute
+EMCF	European Monetary Cooperation Fund
+EURATOM	European Atomic Energy Community
+UNO	United Nations Organization
+UNICEF	United Nations Children's Fund (UNICEF)
+UNHCR	United Nations High Commissioner for Refugees, Office of the (UNHCR)
+UNRWA	United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA)
+ILO	International Labour Organisation (ILO)
+FAO	Food and Agricultural Organisation (FAO)
+UNESCO	United Nations Educational, Scientific and Cultural Organisation (UNESCO)
+WHO	World Health Organisation (WHO)
+IBRD	International Bank for Reconstruction and Development
+IDA	International Development Association
+IFC	International Finance Corporation (IFC)
+MIGA	Multilateral Investment Guarantee Agency (MIGA)
+IMF	International Monetary Fund
+ITU	International Telecommunication Union (ITU)
+IFAD	International Fund for Agricultural Development (IFAD)
+WTO	World Trade Organization
+IAEA	International Atomic Energy Agency (IAEA)
+UNO_OTH	United Nations Organization except IMF, WTO, IBRD, IDA
+ORG_OTH	Other International Organizations
+ACP	African, Caribbean and Pacific Group of States, signatories of the Partnership Agreement
+ACP_AFR	African ACP states
+ACP_CRB	Caribbean ACP states
+ACP_PAC	Pacific ACP states
+AFDB	African Development Bank
+ALA	Partner Countries in Asia and Latin America
+APEC	Asia-Pacific Economic Cooperation
+ASDB	Asian Development Bank
+ASEAN	Association of Southeast Asian Nations
+BIS	Bank for International Settlements
+BRIC	BRIC countries
+BRICS	BRICS countries
+CAN	Andean Community of Nations
+CARICOM	Caribbean Community
+CEMAC	Central African Economic and Monetary Community
+COMESA	Common Market for Eastern and Southern Africa
+DAC	Development assistance committee (DAC)
+EASA	European Aviation Safety Agency (EASA)
+NEASA	Non-EASA member countries 
+EBRD	European Bank for Reconstruction and Development
+ECCAS	Economic Community of Central African States
+ECOWAS	Economic Community of West African States
+EHEA	European Higher Education Area (Bologna Process)
+ESA	European Space Agency
+EURMED	Mediterranean countries in the Euro-Mediterranean Partnership
+FEMIP	Facility for Euro-Mediterranean Investment and Partnership
+FZ	Franc Zone
+G20	Group of Twenty
+IDB	Inter-American Development Bank
+IF	Investment Facility
+MACR	Mashrek
+MAGR	Maghreb
+MED	Mediterranean Basin Countries
+MED_X_HR	Mediterranean Basin Countries except Croatia
+MERCOSUR	Southern Common Market
+NAFTA	North American Free Trade Agreement
+ODA	Countries and territories receiving Official Development Assistance
+OECD	Organisation for Economic Co-operation and Development (OECD)
+NOECD	Non-OECD countries
+OPEC	Organisation of Petroleum Exporting Countries
+PALOP	Portuguese-speaking African Countries
+SADC	Southern African Development Community
+UEMOA	West African Economic and Monetary Union
+ORG_NEUR	Non European International Organizations
+CONTROL	Controlled by the reporting country
+DAE	Dynamic Asian economies (DAEs)
+DOM	Domestic
+DOT	Domestic and outbound
+ESC_UCI	Equally-shared control of UCI (Ultimate controlling institutional unit of a foreign affiliate) of more than 1 Member State
+EURONEXT	Euronext from 01/2001: Amsterdam-Brussels-Paris; from 02/2002: + Lisbon
+FOR	Foreign country
+INR	In the same region
+LDC	Least developed countries
+LMIC	Lower middle income countries
+MADCT	More advanced developing countries and territories
+MSHO	Member State of head office
+NAT	Reporting country
+NIC_S1	Core Newly Industrializing Countries
+NIC_S2A	Asian NICs of the second wave of industrialization
+NIC_S2LA	Latin American NICs of the second wave of industrialization
+OFFSHO	Offshore financial centers
+OLIC	Other low income countries
+OMX	Nordic and Baltic marketplace
+OUT	Outbound
+OUTR	In another region
+OUT_C	Outside any country
+RNC	Recognised Non-Citizens
+SHW	Share of 'wrl_x_rep' in 'world'
+STLS	Stateless
+THIRD_OTH	Other third countries
+TOTAL	Total
+UMIC	Upper middle income countries
+WORLD	All countries of the world
+WRL_NAL	World - not allocated
+WRL_REST	Rest of the world
+WRL_X_REP	World total except for the reporting country
+OTH	Others
+NAL	Not allocated
+NAP	Not applicable
+NRP	No response
+NSP	Not specified
+UNK	Unknown
+TEST	

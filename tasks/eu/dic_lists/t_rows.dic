@@ -1,0 +1,218 @@
+A_B	Agriculture; fishing
+C-E	Industry (except construction)
+F	Construction
+G-I	Wholesale and retail trade; hotels and restaurants; transport
+J_K	Financial intermediation; real estate
+L-P	public administration and community services; activities of householdsA01
+A01	Agriculture, hunting and related service activities
+A02	Forestry, logging and related service activities
+B05	Fishing, operation of fish hatcheries and fish farms; service activities incidental to fishing
+CA10	Mining of coal and lignite; extraction of peat
+CA11	Extraction of crude petroleum and natural gas; service activities incidental to oil and gas extraction excluding surveying
+CA12	Mining of uranium and thorium ores
+CB13	Mining of metal ores
+CB14	Other mining and quarrying
+DA15	Manufacture of food products and beverages
+DA16	Manufacture of tobacco products
+DB17	Manufacture of textiles
+DB18	Manufacture of wearing apparel; dressing; dyeing of fur
+DC19	Tanning, dressing of leather; manufacture of luggage
+DD20	Manufacture of wood and of products of wood and cork, except furniture; manufacture of articles of straw and plaiting materials
+DE21	Manufacture of pulp, paper and paper products
+DE22	Publishing, printing, reproduction of recorded media
+DF23	Manufacture of coke, refined petroleum products and nuclear fuel
+DG24	Manufacture of chemicals and chemical products
+DH25	Manufacture of rubber and plastic products
+DI26	Manufacture of other non-metallic mineral products
+DJ27	Manufacture of basic metals
+DJ28	Manufacture of fabricated metal products, except machinery and equipment
+DK29	Manufacture of machinery and equipment n.e.c.
+DL30	Manufacture of office machinery and computers
+DL31	Manufacture of electrical machinery and apparatus n.e.c.
+DL32	Manufacture of radio, television and communication equipment and apparatus
+DL33	Manufacture of medical, precision and optical instruments, watches and clocks
+DM34	Manufacture of motor vehicles, trailers and semi-trailers
+DM35	Manufacture of other transport equipment
+DN36	Manufacture of furniture; manufacturing n.e.c.
+DN37	Recycling
+E40	Electricity, gas, steam and hot water supply
+E41	Collection, purification and distribution of water
+F45	Construction
+G50	Sale, maintenance and repair of motor vehicles
+G51	Wholesale trade and commission trade, except of motor and motorcycles
+G52	Retail trade, except of motor vehicles, motorcycles; repair of personal and household goods
+H55	Hotels and restaurants
+I60	Land transport; transport via pipelines
+I61	Water transport
+I62	Air transport
+I63	Supporting and auxiliary transport activities; activities of travel agencies
+I64	Post and telecommunications
+J65	Financial intermediation, except insurance and pension funding
+J66	Insurance and pension funding, except compulsory social security
+J67	Activities auxiliary to financial intermediation
+K70	Real estate activities
+K71	Renting of machinery and equipment without operator and of personal and household goods
+K72	Computer and related activities
+K73	Research and development
+K74	Other business activities
+L75	Public administration and defence; compulsory social security
+M80	Education
+N85	Health and social work
+O90	Sewage and refuse disposal, sanitation and similar activities
+O91	Activities of membership organization n.e.c.
+O92	Recreational, cultural and sporting activities
+O93	Other service activities
+P95	Private households with employed persons
+P119	Financial intermediation services indirectly measured (FISIM)
+TOTAL	Total
+P7_S21	Intra EU imports cif
+P7_S22	Extra EU imports cif
+P7	Imports cif
+SUPBP	Supply at basic prices
+STAN11	Fixed capital stock
+P3_S14	Final consumption expenditure by households
+P3_S15	Final consumption expenditure by non-profit organisations serving households (NPISH)
+P3_S13	Final consumption expenditure by government
+P3	Final consumption expenditure
+P51	Gross fixed capital formation
+P53	Changes in valuables
+P52	Changes in inventories
+P5	Gross capital formation
+P6_S21	Exports intra EU fob
+P6_S22	Exports extra EU fob
+P6	Exports
+EMP	Labour inputs (1.000 persons)
+P118	Trade and transport margins
+SUPPP	Total supply at purchasers' prices
+TU	Total use at purchasers' prices
+CPA_A_B	Products of agriculture, forestry, fisheries and aquaculture
+CPA_A	Products of agriculture, hunting and forestry
+CPA_A01	Products of agriculture, hunting and related services
+CPA_A02	Products of forestry, logging and related services
+CPA_B	Fish and other fishing products; services incidental to fishing
+CPA_B05	Fish and other fishing products; services incidental to fishing
+CPA_C	Products from mining and quarrying
+CPA_C-E	Industrial products
+CPA_CA	Coal and lignite; peat; crude petroleum and natural gas; uranium and thorium
+CPA_CA10	Coal and lignite; peat
+CPA_CA11	Crude petroleum and natural gas; services incidental to oil and gas extraction excluding surveying
+CPA_CA12	Uranium and thorium ores
+CPA_CB	Metal ores and other mining and quarrying products
+CPA_CB13	Metal ores
+CPA_CB14	Other mining and quarrying products
+CPA_D	Manufactured products
+CPA_DA	Food products, beverages and tobacco
+CPA_DA15	Food products and beverages
+CPA_DA16	Tobacco products
+CPA_DB	Textiles and textile products
+CPA_DB17	Textiles
+CPA_DB18	Wearing apparel; furs
+CPA_DC	Leather and leather products
+CPA_DC19	Leather and leather products
+CPA_DD	Wood and wood products
+CPA_DD20	Wood and products of wood and cork (except furniture), articles of straw and plaiting materials
+CPA_DE	Pulp, paper and paper products; recorded media; printing services
+CPA_DE21	Pulp, paper and paper products
+CPA_DE22	Printed matter and recorded media
+CPA_DF	Coke, refined petroleum products and nuclear fuel
+CPA_DF23	Coke, refined petroleum products and nuclear fuel
+CPA_DG	Chemicals, chemical products and man-made fibres
+CPA_DG24	Chemicals, chemical products and man-made fibres
+CPA_DH	Rubber and plastic products
+CPA_DH25	Rubber and plastic products
+CPA_DI	Other non metallic mineral products
+CPA_DI26	Other non-metallic mineral products
+CPA_DJ	Basic metals and fabricated metal products
+CPA_DJ27	Basic metals
+CPA_DJ28	Fabricated metal products, except machinery and equipment
+CPA_DK	Machinery and equipment n.e.c.
+CPA_DK29	Machinery and equipment n.e.c.
+CPA_DL	Electrical and optical equipment
+CPA_DL30	Office machinery and computers
+CPA_DL31	Electrical machinery and apparatus n.e.c.
+CPA_DL32	Radio, television and communication equipment and apparatus
+CPA_DL33	Medical, precision and optical instruments, watches and clocks
+CPA_DM	Transport equipment
+CPA_DM34	Motor vehicles, trailers and semi-trailers
+CPA_DM35	Other transport equipment
+CPA_DN	Other manufactured goods n.e.c.
+CPA_DN36	Furniture; other manufactured goods n.e.c.
+CPA_DN37	Recovered secondary raw materials
+CPA_E	Electrical energy, gas, steam and hot water
+CPA_E40	Electrical energy, gas, steam and hot water
+CPA_E41	Collected and purified water, distribution services of water
+CPA_F	Construction work
+CPA_G	Wholesale and retail trade services; repair services of motor vehicles, motorcycles and personal and household goods
+CPA_G-I	Wholesale and retail trade services; hotels and restaurants; transport services
+CPA_G50	Trade, maintenance and repair services of motor vehicles and motorcycles; retail trade services of automotive fuel
+CPA_G51	Wholesale trade and commission trade services, except of motor vehicles and motorcycles
+CPA_G52	Retail trade services, except of motor vehicles and motorcycles; repair services of personal and household goods
+CPA_H	Hotel and restaurant services
+CPA_H55	Hotel and restaurant services
+CPA_I	Transport, storage and communication services
+CPA_I60	Land transport and transport via pipeline services
+CPA_I61	Water transport services
+CPA_I62	Air transport services
+CPA_I63	Supporting and auxiliary transport services; travel agency services
+CPA_I64	Post and telecommunication services
+CPA_J	Financial intermediation services
+CPA_J_K	Financial intermediation services; real estate services
+CPA_J65	Financial intermediation services, except insurance and pension funding services
+CPA_J66	Insurance and pension funding services, except compulsory social security services
+CPA_J67	Services auxiliary to financial intermediation
+CPA_K	Real estate, renting and business services
+CPA_K70	Real estate services
+CPA_K71	Renting services of machinery and equipment without operator and of personal and household goods
+CPA_K72	Computer and related services
+CPA_K73	Research and development services
+CPA_K74	Other business services
+CPA_L	Public administration and defence services, compulsory social security services
+CPA_L-P	Public administration and community services; activities of households
+CPA_L75	Public administration and defence services; compulsory social security services
+CPA_M	Education services
+CPA_M80	Education services
+CPA_N	Health and social services
+CPA_N85	Health and social work services
+CPA_O	Other community, social and personal services
+CPA_O90	Sewage and refuse disposal services, sanitation and similar services
+CPA_O91	Membership organisation services n.e.c.
+CPA_O92	Recreational, cultural and sporting services
+CPA_O93	Other services
+CPA_P	Private households with employed persons
+CPA_P95	Private households with employed persons
+CPA_Q	Services provided by extra-territorial organisations and bodies
+CPA_Q99	Services provided by extra-territorial organisations and bodies
+CPA_OTH	Other products
+CPA_TOTAL	Total
+DP6A	Cif/fob adjustments on exports
+DP7A	Cif/fob adjustments on imports
+P33	Direct purchases abroad by residents
+P34	Purchases on the domestic territory by non-residents
+TOT_CA	Total adjusted
+P2PP	Total intermediate consumption at purchasers' prices
+P2I	Use of imported products
+D21_M_D31	Taxes less subsidies on products
+TFINU	Final uses at purchasers' prices
+FINUBP	Final uses at basic prices
+D1	Compensation of employees
+D11	Gross Wages and salaries
+D29_M_D39	Other net taxes on production
+K1	Consumption of fixed capital
+B2N_B3N	Operating surplus, net
+B2G_B3G	Operating surplus, gross
+B1G	Value added at basic prices
+P1	Output at basic prices
+P11	Output at basic prices - Market output
+P12	Output at basic prices - Output for own final use
+P13	Output at basic prices - Other non-market output
+BIOMASS	Biomass
+FOSSIL	Fossil fuels
+MINERAL	Minerals
+V12110	Turnover or gross premiums written
+TOT_ADJ	Total adjustments
+P7_S2I	Imports of goods and services from EMU members (cif)
+P7_S2X	Imports of goods and services from EMU non-members(cif)
+B3G	Gross mixed income
+P6_S2I	Exports of goods and services EMU members (fob)
+P6_S2X	Exports of goods and services to EMU non-members (fob)
+CPA_F45	Construction work

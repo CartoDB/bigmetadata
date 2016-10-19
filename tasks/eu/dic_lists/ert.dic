@@ -1,0 +1,64 @@
+USD	United States dollar
+XDR	Special Drawing Rights exchange rates (1 SDR = ...)
+NEER	Nominal effective exchange rate
+NEER12	Nominal Effective Exchange Rate - 12 trading partners
+NEER15	Nominal Effective Exchange Rate - 15 trading partners
+NEEREA15	Nominal Effective Exchange Rate - 15 trading partners (Euro Area)
+NEEREA16	Nominal Effective Exchange Rate - 16 trading partners (Euro Area)
+NEEREA17	Nominal Effective Exchange Rate - 17 trading partners (Euro Area)
+NEEREA18	Nominal Effective Exchange Rate - 18 trading partners (Euro Area)
+NEER23	Nominal Effective Exchange Rate - 23 trading partners
+NEER24	Nominal Effective Exchange Rate - 24 trading partners
+NEER25	Nominal Effective Exchange Rate - 25 trading partners
+NEER27	Nominal Effective Exchange Rate - 27 trading partners
+NEER28	Nominal Effective Exchange Rate - 28 trading partners
+NEER34	Nominal Effective Exchange Rate - 34 trading partners
+NEER36	Nominal Effective Exchange Rate - 36 trading partners
+NEER37	Nominal Effective Exchange Rate - 37 trading partners
+NEER41	Nominal Effective Exchange Rate - 41 trading partners
+NEER42	Nominal Effective Exchange Rate - 42 trading partners
+NEER44	Nominal Effective Exchange Rate - 44 trading partners
+REERULC	Real effective exchange rate (deflator: unit labour costs)
+REERCPI	Real effective exchange rate (deflator: consumer price indices)
+REER	Real effective exchange rate
+REER12CPI	Real Effective Exchange Rate (deflator: consumer price indices - 12 trading partners)
+REER12PPI	Real Effective Exchange Rate (deflator: producer price indices - 12 trading partners)
+REER12ULCM	Real Effective Exchange Rate (deflator: unit labour costs in manufacturing - 12 trading partners)
+REER12ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 12 trading partners)
+REER12GDPD	Real Effective Exchange Rate (deflator: gross domestic product - 12 trading partners)
+REER15CPI	Real Effective Exchange Rate (deflator: consumer price indices - 15 trading partners)
+REEREA15CPI	Real Effective Exchange Rate (deflator: consumer price indices - 15 trading partners - Euro Area)
+REEREA16CPI	Real Effective Exchange Rate (deflator: consumer price indices - 16 trading partners - Euro Area)
+REEREA17CPI	Real Effective Exchange Rate (deflator: consumer price indices - 17 trading partners - Euro Area)
+REEREA18CPI	Real Effective Exchange Rate (deflator: consumer price indices - 18 trading partners - Euro Area)
+REER15ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 15 trading partners)
+REEREA15ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 15 trading partners - Euro Area)
+REEREA16ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 16 trading partners - Euro Area)
+REEREA17ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 17 trading partners - Euro Area)
+REEREA18ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 18 trading partners - Euro Area)
+REER23CPI	Real Effective Exchange Rate (deflator: consumer price indices - 23 trading partners)
+REER23PPI	Real Effective Exchange Rate (deflator: producer price indices -  23 trading partners)
+REER23ULCM	Real Effective Exchange Rate (deflator: unit labour costs in manufacturing - 23 trading partners)
+REER23ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 23 trading partners)
+REER23GDPD	Real Effective Exchange Rate (deflator: gross domestic product - 23 trading partners)
+REER24CPI	Real Effective Exchange Rate (deflator: consumer price indices - 24 trading partners)
+REER24ULCM	Real Effective Exchange Rate (deflator: unit labour costs in manufacturing - 24 trading partners)
+REER24ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 24 trading partners)
+REER24PPI	Real Effective Exchange Rate (deflator: producer price indices -  24 trading partners)
+REER24GDPD	Real Effective Exchange Rate (deflator: gross domestic product - 24 trading partners)
+REER25CPI	Real Effective Exchange Rate (deflator: consumer price indices - 25 trading partners)
+REER25ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 25 trading partners)
+REER27CPI	Real Effective Exchange Rate (deflator: consumer price indices - 27 trading partners)
+REER27ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 27 trading partners)
+REER28CPI	Real Effective Exchange Rate (deflator: consumer price indices - 28 trading partners)
+REER28ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 28 trading partners)
+REER34CPI	Real Effective Exchange Rate (deflator: consumer price indices - 34 trading partners)
+REER34ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 34 trading partners)
+REER36CPI	Real Effective Exchange Rate (deflator: consumer price indices - 36 trading partners)
+REER36ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 36 trading partners)
+REER37CPI	Real Effective Exchange Rate (deflator: consumer price indices - 37 trading partners)
+REER37ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 37 trading partners)
+REER41CPI	Real Effective Exchange Rate (deflator: consumer price indices - 41 trading partners)
+REER41ULCT	Real Effective Exchange Rate (deflator: unit labour costs in the total economy - 41 trading partners)
+REER42CPI	Real Effective Exchange Rate (deflator: consumer price indices - 42 trading partners)
+REER44CPI	Real Effective Exchange Rate (deflator: consumer price indices - 44 trading partners)

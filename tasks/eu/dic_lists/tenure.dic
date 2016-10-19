@@ -1,0 +1,9 @@
+TOTAL	Total
+OWN	Owner
+OWN_L	Owner, with mortgage or loan
+OWN_NL	Owner, no outstanding mortgage or housing loan
+RENT	Tenant
+RENT_MKT	Tenant, rent at market price
+RENT_FR	Tenant, rent at reduced price or free
+OTH	Other
+UNK	Unknown

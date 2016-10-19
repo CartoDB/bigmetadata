@@ -1,0 +1,22 @@
+TOT_REF	Persons refused entry
+REF_LAND	Refused at the land border
+REF_SEA	Refused at the sea border
+REF_AIR	Refused at the air border
+TOT_RET	Total number of persons returned
+VOLUNT	Voluntary return
+ENFORCE	Enforced return
+ASSIST	Assisted return
+N_ASSIST	Non-assisted return
+RET_THRD	Persons returned to a third country
+EURA	Returned under EURA
+OTH_READM	Returned under other readmission agreement
+N_READM	Returned without existing a readmission agreement
+FOR_P_HHAB	Share of foreign citizens who have acquired citizenship 
+NEU28_P_HHAB	Share of non-EU28 citizens who have acquired citizenship 
+NEU_P_HHAB	Share of non-EU citizens who have acquired citizenship
+EU_P_HHAB	Share of EU citizens who have acquired citizenship
+CITIZ	Country of Citizenship
+TRANSIT	Transit country
+OTH_THRD	Other third country
+OTH	Other
+UNK	Unknown

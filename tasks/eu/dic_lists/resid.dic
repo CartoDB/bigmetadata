@@ -1,0 +1,244 @@
+TOTAL	Total
+RES	Place of residence in the reporting country
+NRES	Place of residence outside the reporting country
+NRES_EU	Place of residence outside the reporting country but in another EU country
+NRES_EA	Place of residence outside the reporting country but in another Euro area country
+NRES_NEU	Place of residence outside the reporting country and in a non-EU country
+NRES_NEA	Place of residence outside the reporting country and in a non-Euro area country
+SAME	Place of residence unchanged
+CHG	Place of residence changed
+CHG_IN	Place of residence changed within the reporting country
+CHG_IN1	Place of residence changed within the same NUTS1 area
+CHG_IN2	Place of residence changed within the same NUTS2 area
+CHG_IN3	Place of residence changed within the same NUTS3 area
+CHG_IN4	Place of residence changed within the same NUTS4 area
+CHG_IN5	Place of residence changed within the same NUTS5 area
+CHG_OUT3	Place of residence changed outside the NUTS3 area 
+CHG_OUT	Place of residence changed from outside the reporting country
+EUR	Europe
+BE	Belgium
+BG	Bulgaria
+CZ	Czech Republic
+DK	Denmark
+DE	Germany (including  former GDR from 1991)
+DEW	Federal Republic of Germany (except former GDR)
+EE	Estonia
+IE	Ireland
+EL	Greece
+ES	Spain
+FR	France
+IT	Italy
+CY	Cyprus
+LV	Latvia
+LT	Lithuania
+LU	Luxembourg
+HU	Hungary
+MT	Malta
+NL	Netherlands
+AT	Austria
+PL	Poland
+PT	Portugal
+RO	Romania
+SI	Slovenia
+SK	Slovakia
+FI	Finland
+SE	Sweden
+UK	United Kingdom
+EU_FOR	EU-countries except reporting country
+EU_OTH	Resident in an EU country other than the country of birth / citizenship
+EFTA	European Free Trade Association
+IS	Iceland
+LI	Liechtenstein
+NO	Norway
+CH	Switzerland
+HR	Croatia
+MK	"Former Yugoslav Republic of Macedonia, the"
+TR	Turkey
+EUR_C_E	Central and Eastern Europe
+AL	Albania
+AD	Andorra
+BY	Belarus
+BA	Bosnia and Herzegovina
+MD	Moldova
+RU	Russia
+SM	San Marino
+UA	Ukraine
+VA	Vatican City State
+CZ_SK	Former Czechoslovakia (before 1992) / Total components of former Czechoslovakia
+RS_ME	Former Serbia and Montenegro (before 2006) / Total components of the former Serbia and Montenegro
+EX_YU	Former Yugoslavia (before 1992) / Total components of the former republic of Yugoslavia
+EX_SU	Former Soviet Union (before 1991) / Total components of the former Soviet Union
+EX_SU_EUR	European Republics of the former Soviet Union
+AFR	Africa
+AO	Angola
+CM	Cameroon
+CF	Central African Republic
+TD	Chad
+CG	Congo
+CD	Democratic Republic of the Congo
+GQ	Equatorial Guinea
+GA	Gabon
+ST	São Tomé and Príncipe
+BI	Burundi
+KM	Comoros
+DJ	Djibouti
+ER	Eritrea
+ET	Ethiopia
+KE	Kenya
+MG	Madagascar
+MW	Malawi
+MU	Mauritius
+MZ	Mozambique
+RW	Rwanda
+SC	Seychelles
+SO	Somalia
+UG	Uganda
+TZ	Tanzania
+ZM	Zambia
+ZW	Zimbabwe
+AFR_N	Northern Africa
+DZ	Algeria
+EG	Egypt
+LY	Libya
+MA	Morocco
+SD	Sudan
+TN	Tunisia
+EH	Western Sahara
+BW	Botswana
+LS	Lesotho
+NA	Namibia
+ZA	South Africa
+SZ	Swaziland
+BJ	Benin
+BF	Burkina Faso
+CV	Cape Verde
+CI	Côte d'Ivoire
+GM	Gambia
+GH	Ghana
+GN	Guinea
+GW	Guinea-Bissau
+LR	Liberia
+ML	Mali
+MR	Mauritania
+NE	Niger
+NG	Nigeria
+SN	Senegal
+SL	Sierra Leone
+TG	Togo
+AFR_OTH	Other African countries (aggregate changing according to the context)
+AME	America
+AME_N	Northern America
+BM	Bermuda (UK)
+CA	Canada
+US	United States
+AG	Antigua and Barbuda
+BS	Bahamas
+BB	Barbados
+CU	Cuba
+DM	Dominica
+DO	Dominican Republic
+GD	Grenada
+HT	Haiti
+JM	Jamaica
+KN	Saint Kitts and Nevis
+LC	Saint Lucia
+VC	Saint Vincent and the Grenadines
+TT	Trinidad and Tobago
+BZ	Belize
+CR	Costa Rica
+SV	El Salvador
+GT	Guatemala
+HN	Honduras
+MX	Mexico
+NI	Nicaragua
+MC	Monaco
+PA	Panama
+AR	Argentina
+BO	Bolivia
+BR	Brazil
+CL	Chile
+CO	Colombia
+EC	Ecuador
+GY	Guyana
+PY	Paraguay
+PE	Peru
+SR	Suriname
+UY	Uruguay
+VE	Venezuela
+AME_OTH	Other American countries  (aggregate changing according to the context)
+ASI	Asia
+KZ	Kazakhstan
+KG	Kyrgyzstan
+TJ	Tajikistan
+TM	Turkmenistan
+UZ	Uzbekistan
+CN	China (including Hong Kong)
+JP	Japan
+MN	Mongolia
+KP	North Korea
+KR	South Korea
+TW	Taiwan
+AF	Afghanistan
+BD	Bangladesh
+BT	Bhutan
+IN	India
+IR	Iran
+MV	Maldives
+NP	Nepal
+PK	Pakistan
+LK	Sri Lanka
+BN	Brunei Darussalam
+KH	Cambodia
+ID	Indonesia
+LA	Laos
+MY	Malaysia
+MM	Myanmar
+PH	Philippines
+SG	Singapore
+TH	Thailand
+TL	East Timor
+VN	Vietnam
+AM	Armenia
+AZ	Azerbaijan
+BH	Bahrain
+GE	Georgia
+IQ	Iraq
+IL	Israel
+JO	Jordan
+KW	Kuwait
+LB	Lebanon
+PS	Palestinian territory
+OM	Oman
+QA	Qatar
+SA	Saudi Arabia
+SY	Syria
+AE	United Arab Emirates
+YE	Yemen
+EX_YE	Former North Yemen (before 1990)
+EX_YD	Former South Yemen (before 1990)
+ASI_NME	Near and Middle East Asia (aggregate changing according to the context)
+EX_SU_ASI	Asian Republics of the former Soviet Union
+ASI_OTH	Other Asian countries (aggregate changing according to the context)
+OCE	Oceania
+AU	Australia
+NZ	New Zealand
+FJ	Fiji
+PG	Papua New Guinea
+SB	Solomon Islands
+VU	Vanuatu
+KI	Kiribati
+MH	Marshall Islands
+FM	Federated States of Micronesia
+NR	Nauru
+PW	Palau
+WS	Samoa
+TO	Tonga
+TV	Tuvalu
+OTH	Others
+NAP	Not applicable
+UNK	Unknown
+TOT_IN	All deaths reported in the country
+TOT_RESID	All deaths of residents in or outside their home country
+RESID_IN	Deaths of residents in their home country
+RESID_OUT	Deaths of residents outside their home country
+NRESID_IN	Deaths of non-residents  in the reporting country

@@ -1,0 +1,88 @@
+PROD_BP	Production value at basic price
+SUBS	Subsidies on products
+TAX	Taxes on products
+PROD_PP	Production value at producer price
+I07A_EQ_Y	Holdings with manure storage facilities
+I07A1_EQ_Y	Holdings with storage facilities for solid dung
+I07A2_EQ_Y	Holdings with storage facilities for liquid manure
+I07A3_EQ_Y	Holdings with storage facilities for slurry
+I07A31_EQ_Y	Holdings with storage facilities for slurry: tank
+I07A32_EQ_Y	Holdings with storage facilities for slurry: lagoon
+I07A1_EQ_YC	Holdings with covered storage facilities for solid dung
+I07A2_EQ_YC	Holdings with covered storage facilities for liquid manure
+I07A3_EQ_YC	Holdings with covered storage facilities for slurry
+3B1BA	Number of holdings. 1 000
+3B1BB	Number of holdings, agricultural area < 5 ha. 1 000
+3B1BC	Number of holdings, agricultural area 5-<20 ha. 1 000
+3B1BD	Number of holdings, agricultural area 20-<50 ha. 1 000
+3B1BE	Number of holdings, agricultural area >= 50 ha. 1 000
+3B1DC	Holdings with cereals. 1 000
+3B1GA	Total labour force. 1 000 AWU
+3B1GB	Regular labour force. 1 000 pers
+3B1GC	Full time regular labour force. 1 000 pers
+3B1GG	Part time regular labour force. 1 000 pers
+3B1HB	Family labour force. 1 000 pers
+3B1HF	Female regular labour force. 1 000 pers
+3B1HQ	Holding managers. 1 000 pers
+3B1IG	Female managers. 1 000 pers
+3B1IH	Holders being a natural person. 1 000 pers
+3B1II	Holders, < 35 years old. 1 000 pers
+3B1IJ	Holders, >= 65 years old. 1 000 pers
+3B2AA	Holdings with another gainful activity than agricultural production (% all holdings)
+LSD	Livestock density: livestock units/utilised agricultural area (LSU/UAA)
+PAGR	Price, agricultural land
+PARA	Price, arable land
+PMEAD	Price, meadow
+PIRR	Price, irrigated land
+PNIRR	Price, non-irrigated land
+RNAGR	New rents, agricultural land
+RAGR	Rent, agricultural land
+RARA	Rent, arable land
+RMEAD	Rent, meadow
+HIGH_INP	High-input farms
+LOW_INP	Low-input farms
+MED_INP	Medium-input farms
+ENT	Number of enterprises
+PROD	Annual production (1000 t)
+BAL_UAA	Gross Nutrient Balance per hectare UAA (kg of nutrient per ha)
+INP_UAA	Nutrient inputs per hectare UAA (kg of nutrient per ha)
+OUT_UAA	Nutrient outputs per hectare UAA (kg of nutrient per ha)
+BAL	Gross Nutrient Balance (Inputs minus Outputs) (tonnes of nutrient)
+TOT_N_EMIS	Total nitrogen emissions (tonnes)
+BAL_NET	Nett Nutrient Balance (Gross Nutrient Balance minus Total nitrogen emissions) (tonnes of nutrient)
+BAL_NET_UAA	Nett Nutrient Balance per hectare UAA (kg of nutrient per ha)
+INP_NT	Nutrient inputs (tonnes of nutrient)
+I_FRT	Total consumption of fertilisers (except manure) (tonnes of nutrient)
+I_FRT_MIN	Consumption of mineral fertilisers (tonnes of nutrient)
+I_FRT_ORG	Consumption of organic fertilisers (except manure) (tonnes of nutrient)
+I_MNR	Manure input (tonnes of nutrient)
+I_MNR_PRD	Manure production from total livestock (tonnes of nutrient)
+I_MNR_PCT	Manure production from cattle (tonnes of nutrient)
+I_MNR_PPG	Manure production from pigs (tonnes of nutrient)
+I_MNR_PSP	Manure production from sheep and goats (tonnes of nutrient)
+I_MNR_PPL	Manure production from poultry (tonnes of nutrient)
+I_MNR_POTH	Manure production from other livestock (tonnes of nutrient)
+I_MNR_WDR	Manure withdrawals (tonnes of nutrient)
+I_MNR_IMP	Manure imports (tonnes of nutrient)
+I_OTH	Other nutrient inputs (tonnes of nutrient)
+I_OTH_BIO	Other nutrient inputs: Biological fixation of Nitrogen (tonnes of nutrient)
+I_OTH_DEP	Other nutrient inputs: Atmospheric deposition (tonnes of nutrient)
+I_OTH_SEED	Other nutrient inputs: Seeds and planting material (tonnes of nutrient)
+OUT_NT	Nutrient outputs (tonnes of nutrient)
+O_CRP	Nutrient removal by harvest of crops (tonnes of nutrient)
+O_CRP_CER	Nutrient removal by harvest of cereals (tonnes of nutrient)
+O_CRP_PUL	Nutrient removal by harvest of dried pulses (tonnes of nutrient)
+O_CRP_ROO	Nutrient removal by harvest of root crops (tonnes of nutrient)
+O_CRP_IND	Nutrient removal by harvest of industrial crops (tonnes of nutrient)
+O_CRP_VEG	Nutrient removal by harvest of vegetables (tonnes of nutrient)
+O_CRP_FRU	Nutrient removal by harvest of fruits (tonnes of nutrient)
+O_CRP_ORN	Nutrient removal by harvest of ornamental crops (tonnes of nutrient)
+O_CRP_OTH	Nutrient removal by harvest of other crops (tonnes of nutrient)
+O_FOD	Nutrient removal by harvest and grazing of fodder (tonnes of nutrient)
+O_FOD_GN	Nutrient removal by harvest of green fodder (tonnes of nutrient)
+O_FOD_GR	Nutrient removal by harvest and grazing of grasslands (tonnes of nutrient)
+O_FOD_PGR	Nutrient removal by harvest and grazing of permanent grasslands (tonnes of nutrient)
+O_FOD_PGA	Nutrient removal by harvest of plants harvested green from arable land (tonnes of nutrient)
+O_RES	Nutrient removal by crop residues removed from the field (tonnes of nutrient)
+O_BRN	Nutrient removal by crop residues burned on the field (tonnes of nutrient)
+UAA	Utilised agricultural area (1000 ha)

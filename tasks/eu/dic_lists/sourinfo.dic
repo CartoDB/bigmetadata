@@ -1,0 +1,12 @@
+SOURINT	Internet
+SOURFAM	Member of the family, neighbour, work colleague
+SOUREMPL	Employer
+SOURGUID	Career guidance provider (including employment service office)
+SOURSCH	An education or training institution (school, college, centre, university)
+SOURTV	Mass media (TV, radio, newspaper, poster)
+SOURBOOK	Books
+SOUROTHER	Other
+NLK	Did not look for information on learning possibilities
+LK_FD	Looked for and found information on learning possibilities
+LK_NFD	Looked for but did not find any information on learning possibilities
+NRESP	No answer

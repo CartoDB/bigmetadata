@@ -1,0 +1,644 @@
+TOTAL	Total
+OC1-5	Non manual workers
+OC1-3	Managers, professionals, technicians and associate professionals
+OC1	Managers
+OC11	Chief executives, senior officials and legislators
+OC111	Legislators and senior officials
+OC1111	Legislators
+OC1112	Senior government officials
+OC1113	Traditional chiefs and heads of village
+OC1114	Senior officials of special-interest organizations
+OC112	Managing directors and chief executives
+OC1120	Managing directors and chief executives
+OC12	Administrative and commercial managers
+OC121	Business services and administration managers
+OC1211	Finance managers
+OC1212	Human resource managers
+OC1213	Policy and planning managers
+OC1219	Business services and administration managers not elsewhere classified
+OC122	Sales, marketing and development managers
+OC1221	Sales and marketing managers
+OC1222	Advertising and public relations managers
+OC1223	Research and development managers
+OC13	Production and specialised services managers
+OC131	Production managers in agriculture, forestry and fisheries
+OC1311	Agricultural and forestry production managers
+OC1312	Aquaculture and fisheries production managers
+OC132	Manufacturing, mining, construction, and distribution managers
+OC1321	Manufacturing managers
+OC1322	Mining managers
+OC1323	Construction managers
+OC1324	Supply, distribution and related managers
+OC133	Information and communications technology service managers
+OC1330	Information and communications technology service managers
+OC134	Professional services managers
+OC1341	Child care services managers
+OC1342	Health services managers
+OC1343	Aged care services managers
+OC1344	Social welfare managers
+OC1345	Education managers
+OC1346	Financial and insurance services branch managers
+OC1349	Professional services managers not elsewhere classified
+OC14	Hospitality, retail and other services managers
+OC141	Hotel and restaurant managers
+OC1411	Hotel managers
+OC1412	Restaurant managers
+OC142	Retail and wholesale trade managers
+OC1420	Retail and wholesale trade managers
+OC143	Other services managers
+OC1431	Sports, recreation and cultural centre managers
+OC1439	Services managers not elsewhere classified
+OC2	Professionals
+OC21	Science and engineering professionals
+OC211	Physical and earth science professionals
+OC2111	Physicists and astronomers
+OC2112	Meteorologists
+OC2113	Chemists
+OC2114	Geologists and geophysicists
+OC212	Mathematicians, actuaries and statisticians
+OC2120	Mathematicians, actuaries and statisticians
+OC213	Life science professionals
+OC2131	Biologists, botanists, zoologists and related professionals
+OC2132	Farming, forestry and fisheries advisers
+OC2133	Environmental protection professionals
+OC214	Engineering professionals (excluding electrotechnology)
+OC2141	Industrial and production engineers
+OC2142	Civil engineers
+OC2143	Environmental engineers
+OC2144	Mechanical engineers
+OC2145	Chemical engineers
+OC2146	Mining engineers, metallurgists and related professionals
+OC2149	Engineering professionals not elsewhere classified
+OC215	Electrotechnology engineers
+OC2151	Electrical engineers
+OC2152	Electronics engineers
+OC2153	Telecommunications engineers
+OC216	Architects, planners, surveyors and designers
+OC2161	Building architects
+OC2162	Landscape architects
+OC2163	Product and garment designers
+OC2164	Town and traffic planners
+OC2165	Cartographers and surveyors
+OC2166	Graphic and multimedia designers
+OC22	Health professionals
+OC221	Medical doctors
+OC2211	Generalist medical practitioners 
+OC2212	Specialist medical practitioners 
+OC222_322_5321	Nurses, midewives and health care assistants
+OC222_322	Nurses and midwives
+OC222_3222	Nursing professionals and midwives 
+OC222	Nursing and midwifery professionals
+OC2221_3221	Nurses
+OC2221	Nursing professionals
+OC2222_3222	Midwives
+OC2222	Midwifery professionals
+OC223	Traditional and complementary medicine professionals
+OC2230	Traditional and complementary medicine professionals
+OC224	Paramedical practitioners
+OC2240	Paramedical practitioners
+OC225	Veterinarians
+OC2250	Veterinarians
+OC226	Other health professionals
+OC2261	Dentists
+OC2262	Pharmacists
+OC2263	Environmental and occupational health and hygiene professionals
+OC2264	Physiotherapists 
+OC2265	Dieticians and nutritionists
+OC2266	Audiologists and speech therapists
+OC2267	Optometrists and ophthalmic opticians
+OC2269	Health professionals not elsewhere classified
+OC23	Teaching professionals
+OC231	University and higher education teachers
+OC2310	University and higher education teachers
+OC232	Vocational education teachers
+OC2320	Vocational education teachers
+OC233	Secondary education teachers
+OC2330	Secondary education teachers
+OC234	Primary school and early childhood teachers
+OC2341	Primary school teachers
+OC2342	Early childhood educators
+OC235	Other teaching professionals
+OC2351	Education methods specialists
+OC2352	Special needs teachers
+OC2353	Other language teachers
+OC2354	Other music teachers
+OC2355	Other arts teachers
+OC2356	Information technology trainers
+OC2359	Teaching professionals not elsewhere classified
+OC24	Business and administration professionals
+OC241	Finance professionals
+OC2411	Accountants
+OC2412	Financial and investment advisers
+OC2413	Financial analysts
+OC242	Administration professionals
+OC2421	Management and organization analysts
+OC2422	Policy administration professionals
+OC2423	Personnel and careers professionals
+OC2424	Training and staff development professionals
+OC243	Sales, marketing and public relations professionals
+OC2431	Advertising and marketing professionals
+OC2432	Public relations professionals
+OC2433	Technical and medical sales professionals (excluding ICT)
+OC2434	Information and communications technology sales professionals
+OC25	Information and communications technology professionals
+OC251	Software and applications developers and analysts
+OC2511	Systems analysts
+OC2512	Software developers
+OC2513	Web and multimedia developers
+OC2514	Applications programmers
+OC2519	Software and applications developers and analysts not elsewhere classified
+OC252	Database and network professionals
+OC2521	Database designers and administrators
+OC2522	Systems administrators
+OC2523	Computer network professionals
+OC2529	Database and network professionals not elsewhere classified
+OC26	Legal, social and cultural professionals
+OC261	Legal professionals
+OC2611	Lawyers
+OC2612	Judges
+OC2612A	Professional judges
+OC2612B	Non professional judges and magistrates
+OC2619	Legal professionals not elsewhere classified
+OC262	Librarians, archivists and curators 
+OC2621	Archivists and curators
+OC2622	Librarians and related information professionals
+OC263	Social and religious professionals
+OC2631	Economists
+OC2632	Sociologists, anthropologists and related professionals
+OC2633	Philosophers, historians and political scientists
+OC2634	Psychologists
+OC2635	Social work and counselling professionals
+OC2636	Religious professionals
+OC264_265	Authors, journalists, linguists and creative and performing artists
+OC264	Authors, journalists and linguists
+OC2641	Authors and related writers
+OC2642	Journalists
+OC2643	Translators, interpreters and other linguists
+OC265	Creative and performing artists
+OC2651	Visual artists
+OC2652	Musicians, singers and composers
+OC2653	Dancers and choreographers
+OC2654	Film, stage and related directors and producers
+OC2655	Actors
+OC2656	Announcers on radio, television and other media
+OC2659	Creative and performing artists not elsewhere classified
+OC3	Technicians and associate professionals
+OC31	Science and engineering associate professionals
+OC311	Physical and engineering science technicians
+OC3111	Chemical and physical science technicians
+OC3112	Civil engineering technicians
+OC3113	Electrical engineering technicians
+OC3114	Electronics engineering technicians
+OC3115	Mechanical engineering technicians
+OC3116	Chemical engineering technicians
+OC3117	Mining and metallurgical technicians
+OC3118	Draughtspersons
+OC3119	Physical and engineering science technicians not elsewhere classified
+OC312	Mining, manufacturing and construction supervisors
+OC3121	Mining supervisors
+OC3122	Manufacturing supervisors
+OC3123	Construction supervisors
+OC313	Process control technicians
+OC3131	Power production plant operators
+OC3132	Incinerator and water treatment plant operators
+OC3133	Chemical processing plant controllers
+OC3134	Petroleum and natural gas refining plant operators
+OC3135	Metal production process controllers
+OC3139	Process control technicians not elsewhere classified
+OC314	Life science technicians and related associate professionals
+OC3141	Life science technicians (excluding medical)
+OC3142	Agricultural technicians
+OC3143	Forestry technicians
+OC315	Ship and aircraft controllers and technicians
+OC3151	Ships' engineers
+OC3152	Ships' deck officers and pilots
+OC3153	Aircraft pilots and related associate professionals
+OC3154	Air traffic controllers
+OC3155	Air traffic safety electronics technicians
+OC32	Health associate professionals
+OC321	Medical and pharmaceutical technicians
+OC3211	Medical imaging and therapeutic equipment technicians
+OC3212	Medical and pathology laboratory technicians 
+OC3213	Pharmaceutical technicians and assistants
+OC3214	Medical and dental prosthetic technicians
+OC322	Nursing and midwifery associate professionals
+OC3221	Nursing associate professionals
+OC3222	Midwifery associate professionals
+OC323	Traditional and complementary medicine associate professionals
+OC3230	Traditional and complementary medicine associate professionals
+OC324	Veterinary technicians and assistants
+OC3240	Veterinary technicians and assistants
+OC325	Other health associate professionals
+OC3251	Dental assistants and therapists
+OC3252	Medical records and health information technicians
+OC3253	Community health workers
+OC3254	Dispensing opticians
+OC3255	Physiotherapy technicians and assistants
+OC3256	Medical assistants
+OC3257	Environmental and occupational health inspectors and associates
+OC3258	Ambulance workers
+OC3259	Health associate professionals not elsewhere classified
+OC33	Business and administration associate professionals
+OC331	Financial and mathematical associate professionals
+OC3311	Securities and finance dealers and brokers
+OC3312	Credit and loans officers
+OC3313	Accounting associate professionals
+OC3314	Statistical, mathematical and related associate professionals
+OC3315	Valuers and loss assessors
+OC332	Sales and purchasing agents and brokers
+OC3321	Insurance representatives
+OC3322	Commercial sales representatives
+OC3323	Buyers
+OC3324	Trade brokers
+OC333	Business services agents
+OC3331	Clearing and forwarding agents
+OC3332	Conference and event planners
+OC3333	Employment agents and contractors
+OC3334	Real estate agents and property managers
+OC3339	Business services agents not elsewhere classified
+OC334	Administrative and specialised secretaries
+OC3341	Office supervisors
+OC3342	Legal secretaries
+OC3343	Administrative and executive secretaries
+OC3344	Medical secretaries
+OC335	Regulatory government associate professionals
+OC3351	Customs and border inspectors
+OC3352	Government tax and excise officials
+OC3353	Government social benefits officials
+OC3354	Government licensing officials
+OC3355	Police inspectors and detectives
+OC3359	Regulatory government associate professionals not elsewhere classified
+OC34	Legal, social, cultural and related associate professionals
+OC341	Legal, social and religious associate professionals
+OC3411	Legal and related associate professionals
+OC3412	Social work associate professionals
+OC3413	Religious associate professionals
+OC342	Sports and fitness workers
+OC3421	Athletes and sports players
+OC3422	Sports coaches, instructors and officials
+OC3423	Fitness and recreation instructors and program leaders
+OC343	Artistic, cultural and culinary associate professionals
+OC3431	Photographers
+OC3432	Interior designers and decorators
+OC3433	Gallery, museum and library technicians
+OC3434	Chefs
+OC3435	Other artistic and cultural associate professionals
+OC35	Information and communications technicians
+OC351	Information and communications technology operations and user support technicians
+OC3511	Information and communications technology operations technicians
+OC3512	Information and communications technology user support technicians
+OC3513	Computer network and systems technicians
+OC3514	Web technicians
+OC352	Telecommunications and broadcasting technicians
+OC3521	Broadcasting and audio-visual technicians
+OC3522	Telecommunications engineering technicians
+OC4_5	Clerical support workers, service and sales workers
+OC4	Clerical support workers
+OC41	General and keyboard clerks
+OC411	General office clerks
+OC4110	General office clerks
+OC412	Secretaries (general)
+OC4120	Secretaries (general)
+OC413	Keyboard operators
+OC4131	Typists and word processing operators
+OC4132	Data entry clerks
+OC42	Customer services clerks
+OC421	Tellers, money collectors and related clerks
+OC4211	Bank tellers and related clerks
+OC4212	Bookmakers, croupiers and related gaming workers
+OC4213	Pawnbrokers and money-lenders
+OC4214	Debt-collectors and related workers
+OC422	Client information workers
+OC4221	Travel consultants and clerks
+OC4222	Contact centre information clerks
+OC4223	Telephone switchboard operators
+OC4224	Hotel receptionists
+OC4225	Enquiry clerks
+OC4226	Receptionists (general)
+OC4227	Survey and market research interviewers
+OC4229	Client information workers not elsewhere classified
+OC43	Numerical and material recording clerks
+OC431	Numerical clerks
+OC4311	Accounting and bookkeeping clerks
+OC4312	Statistical, finance and insurance clerks
+OC4313	Payroll clerks
+OC432	Material-recording and transport clerks
+OC4321	Stock clerks
+OC4322	Production clerks
+OC4323	Transport clerks
+OC44	Other clerical support workers
+OC441	Other clerical support workers
+OC4411	Library clerks
+OC4412	Mail carriers and sorting clerks
+OC4413	Coding, proof-reading and related clerks
+OC4414	Scribes and related workers
+OC4415	Filing and copying clerks
+OC4416	Personnel clerks
+OC4419	Clerical support workers not elsewhere classified
+OC5	Service and sales workers
+OC51	Personal service workers
+OC511	Travel attendants, conductors and guides
+OC5111	Travel attendants and travel stewards
+OC5112	Transport conductors
+OC5113	Travel guides
+OC512	Cooks
+OC5120	Cooks
+OC513	Waiters and bartenders
+OC5131	Waiters
+OC5132	Bartenders
+OC514	Hairdressers, beauticians and related workers
+OC5141	Hairdressers
+OC5142	Beauticians and related workers
+OC515	Building and housekeeping supervisors
+OC5151	Cleaning and housekeeping supervisors in offices, hotels and other establishments
+OC5152	Domestic housekeepers
+OC5153	Building caretakers
+OC516	Other personal services workers
+OC5161	Astrologers, fortune-tellers and related workers
+OC5162	Companions and valets
+OC5163	Undertakers and embalmers
+OC5164	Pet groomers and animal care workers
+OC5165	Driving instructors
+OC5169	Personal services workers not elsewhere classified
+OC52	Sales workers
+OC521	Street and market salespersons
+OC5211	Stall and market salespersons
+OC5212	Street food salespersons
+OC522	Shop salespersons 
+OC5221	Shop keepers
+OC5222	Shop supervisors
+OC5223	Shop sales assistants
+OC523	Cashiers and ticket clerks
+OC5230	Cashiers and ticket clerks
+OC524	Other sales workers
+OC5241	Fashion and other models
+OC5242	Sales demonstrators
+OC5243	Door to door salespersons
+OC5244	Contact centre salespersons
+OC5245	Service station attendants
+OC5246	Food service counter attendants
+OC5249	Sales workers not elsewhere classified
+OC53	Personal care workers
+OC531	Child care workers and teachers' aides
+OC5311	Child care workers
+OC5312	Teachers' aides
+OC532	Personal care workers in health services
+OC5321	Health care assistants
+OC5322	Home-based personal care workers
+OC5329	Personal care workers in health services not elsewhere classified
+OC54	Protective services workers
+OC541	Protective services workers
+OC5411	Fire-fighters
+OC5412	Police officers
+OC5413	Prison guards
+OC5414	Security guards
+OC5419	Protective services workers not elsewhere classified
+OC6-8	Skilled manual workers
+OC6_7	Skilled agricultural, forestry and fishery workers, craft and related trades workers
+OC6	Skilled agricultural, forestry and fishery workers
+OC61	Market-oriented skilled agricultural workers
+OC611	Market gardeners and crop growers
+OC6111	Field crop and vegetable growers
+OC6112	Tree and shrub crop growers
+OC6113	Gardeners, horticultural and nursery growers
+OC6114	Mixed crop growers
+OC612	Animal producers
+OC6121	Livestock and dairy producers
+OC6122	Poultry producers
+OC6123	Apiarists and sericulturists
+OC6129	Animal producers not elsewhere classified
+OC613	Mixed crop and animal producers
+OC6130	Mixed crop and animal producers
+OC62	Market-oriented skilled forestry, fishery and hunting workers
+OC621	Forestry and related workers
+OC6210	Forestry and related workers
+OC622	Fishery workers, hunters and trappers
+OC6221	Aquaculture workers
+OC6222	Inland and coastal waters fishery workers
+OC6223	Deep-sea fishery workers
+OC6224	Hunters and trappers
+OC63	Subsistence farmers, fishers, hunters and gatherers
+OC631	Subsistence crop farmers
+OC6310	Subsistence crop farmers
+OC632	Subsistence livestock farmers
+OC6320	Subsistence livestock farmers
+OC633	Subsistence mixed crop and livestock farmers
+OC6330	Subsistence mixed crop and livestock farmers
+OC634	Subsistence fishers, hunters, trappers and gatherers
+OC6340	Subsistence fishers, hunters, trappers and gatherers
+OC7-9	Manual workers
+OC7	Craft and related trades workers
+OC71	Building and related trades workers, excluding electricians
+OC711	Building frame and related trades workers
+OC7111	House builders
+OC7112	Bricklayers and related workers
+OC7113	Stonemasons, stone cutters, splitters and carvers
+OC7114	Concrete placers, concrete finishers and related workers
+OC7115	Carpenters and joiners
+OC7119	Building frame and related trades workers not elsewhere classified
+OC712	Building finishers and related trades workers
+OC7121	Roofers
+OC7122	Floor layers and tile setters
+OC7123	Plasterers
+OC7124	Insulation workers
+OC7125	Glaziers
+OC7126	Plumbers and pipe fitters
+OC7127	Air conditioning and refrigeration mechanics
+OC713	Painters, building structure cleaners and related trades workers
+OC7131	Painters and related workers
+OC7132	Spray painters and varnishers
+OC7133	Building structure cleaners
+OC72	Metal, machinery and related trades workers
+OC721	Sheet and structural metal workers, moulders and welders, and related workers
+OC7211	Metal moulders and coremakers
+OC7212	Welders and flamecutters
+OC7213	Sheet-metal workers
+OC7214	Structural-metal preparers and erectors
+OC7215	Riggers and cable splicers
+OC722	Blacksmiths, toolmakers and related trades workers
+OC7221	Blacksmiths, hammersmiths and forging press workers
+OC7222	Toolmakers and related workers
+OC7223	Metal working machine tool setters and operators
+OC7224	Metal polishers, wheel grinders and tool sharpeners
+OC723	Machinery mechanics and repairers
+OC7231	Motor vehicle mechanics and repairers
+OC7232	Aircraft engine mechanics and repairers
+OC7233	Agricultural and industrial machinery mechanics and repairers
+OC7234	Bicycle and related repairers
+OC73	Handicraft and printing workers
+OC731	Handicraft workers
+OC7311	Precision-instrument makers and repairers
+OC7312	Musical instrument makers and tuners
+OC7313	Jewellery and precious-metal workers
+OC7314	Potters and related workers
+OC7315	Glass makers, cutters, grinders and finishers
+OC7316	Sign writers, decorative painters, engravers and etchers
+OC7317	Handicraft workers in wood, basketry and related materials
+OC7318	Handicraft workers in textile, leather and related materials
+OC7319	Handicraft workers not elsewhere classified
+OC732	Printing trades workers
+OC7321	Pre-press technicians
+OC7322	Printers 
+OC7323	Print finishing and binding workers
+OC74	Electrical and electronic trades workers
+OC741	Electrical equipment installers and repairers
+OC7411	Building and related electricians
+OC7412	Electrical mechanics and fitters
+OC7413	Electrical line installers and repairers 
+OC742	Electronics and telecommunications installers and repairers
+OC7421	Electronics mechanics and servicers
+OC7422	Information and communications technology installers and servicers
+OC75	Food processing, wood working, garment and other craft and related trades workers
+OC751	Food processing and related trades workers
+OC7511	Butchers, fishmongers and related food preparers
+OC7512	Bakers, pastry-cooks and confectionery makers
+OC7513	Dairy-products makers
+OC7514	Fruit, vegetable and related preservers
+OC7515	Food and beverage tasters and graders
+OC7516	Tobacco preparers and tobacco products makers
+OC752	Wood treaters, cabinet-makers and related trades workers
+OC7521	Wood treaters
+OC7522	Cabinet-makers and related workers
+OC7523	Woodworking-machine tool setters and operators
+OC753	Garment and related trades workers
+OC7531	Tailors, dressmakers, furriers and hatters
+OC7532	Garment and related pattern-makers and cutters
+OC7533	Sewing, embroidery and related workers
+OC7534	Upholsterers and related workers
+OC7535	Pelt dressers, tanners and fellmongers
+OC7536	Shoemakers and related workers
+OC754	Other craft and related workers
+OC7541	Underwater divers
+OC7542	Shotfirers and blasters
+OC7543	Product graders and testers (excluding foods and beverages)
+OC7544	Fumigators and other pest and weed controllers
+OC7549	Craft and related workers not elsewhere classified
+OC8_9	Plant and machine operators and assemblers, elementary occupations
+OC8	Plant and machine operators and assemblers
+OC81	Stationary plant and machine operators
+OC811	Mining and mineral processing plant operators
+OC8111	Miners and quarriers
+OC8112	Mineral and stone processing plant operators
+OC8113	Well drillers and borers and related workers
+OC8114	Cement, stone and other mineral products machine operators
+OC812	Metal processing and finishing plant operators
+OC8121	Metal processing plant operators
+OC8122	Metal finishing, plating and coating machine operators
+OC813	Chemical and photographic products plant and machine operators
+OC8131	Chemical products plant and machine operators
+OC8132	Photographic products machine operators
+OC814	Rubber, plastic and paper products machine operators
+OC8141	Rubber products machine operators
+OC8142	Plastic products machine operators
+OC8143	Paper products machine operators
+OC815	Textile, fur and leather products machine operators
+OC8151	Fibre preparing, spinning and winding machine operators
+OC8152	Weaving and knitting machine operators
+OC8153	Sewing machine operators
+OC8154	Bleaching, dyeing and fabric cleaning machine operators
+OC8155	Fur and leather preparing machine operators
+OC8156	Shoemaking and related machine operators
+OC8157	Laundry machine operators
+OC8159	Textile, fur and leather products machine operators not elsewhere classified
+OC816	Food and related products machine operators
+OC8160	Food and related products machine operators
+OC817	Wood processing and papermaking plant operators
+OC8171	Pulp and papermaking plant operators
+OC8172	Wood processing plant operators
+OC818	Other stationary plant and machine operators
+OC8181	Glass and ceramics plant operators
+OC8182	Steam engine and boiler operators
+OC8183	Packing, bottling and labelling machine operators
+OC8189	Stationary plant and machine operators not elsewhere classified
+OC82	Assemblers
+OC821	Assemblers
+OC8211	Mechanical machinery assemblers
+OC8212	Electrical and electronic equipment assemblers
+OC8219	Assemblers not elsewhere classified
+OC83	Drivers and mobile plant operators
+OC831	Locomotive engine drivers and related workers
+OC8311	Locomotive engine drivers
+OC8312	Railway brake, signal and switch operators
+OC832	Car, van and motorcycle drivers
+OC8321	Motorcycle drivers
+OC8322	Car, taxi and van drivers
+OC833	Heavy truck and bus drivers
+OC8331	Bus and tram drivers
+OC8332	Heavy truck and lorry drivers
+OC834	Mobile plant operators
+OC8341	Mobile farm and forestry plant operators
+OC8342	Earthmoving and related plant operators
+OC8343	Crane, hoist and related plant operators
+OC8344	Lifting truck operators
+OC835	Ships' deck crews and related workers
+OC8350	Ships' deck crews and related workers
+OC9	Elementary occupations
+OC91	Cleaners and helpers
+OC911	Domestic, hotel and office cleaners and helpers
+OC9111	Domestic cleaners and helpers
+OC9112	Cleaners and helpers in offices, hotels and other establishments
+OC912	Vehicle, window, laundry and other hand cleaning workers
+OC9121	Hand launderers and pressers
+OC9122	Vehicle cleaners
+OC9123	Window cleaners
+OC9129	Other cleaning workers
+OC92	Agricultural, forestry and fishery labourers
+OC921	Agricultural, forestry and fishery labourers
+OC9211	Crop farm labourers
+OC9212	Livestock farm labourers
+OC9213	Mixed crop and livestock farm labourers
+OC9214	Garden and horticultural labourers
+OC9215	Forestry labourers
+OC9216	Fishery and aquaculture labourers
+OC93	Labourers in mining, construction, manufacturing and transport
+OC931	Mining and construction labourers
+OC9311	Mining and quarrying labourers
+OC9312	Civil engineering labourers
+OC9313	Building construction labourers
+OC932	Manufacturing labourers
+OC9321	Hand packers
+OC9329	Manufacturing labourers not elsewhere classified
+OC933	Transport and storage labourers
+OC9331	Hand and pedal vehicle drivers
+OC9332	Drivers of animal-drawn vehicles and machinery
+OC9333	Freight handlers
+OC9334	Shelf fillers
+OC94	Food preparation assistants
+OC941	Food preparation assistants
+OC9411	Fast food preparers
+OC9412	Kitchen helpers
+OC95	Street and related sales and service workers
+OC951	Street and related service workers
+OC9510	Street and related service workers
+OC952	Street vendors (excluding food)
+OC9520	Street vendors (excluding food)
+OC96	Refuse workers and other elementary workers
+OC961	Refuse workers
+OC9611	Garbage and recycling collectors
+OC9612	Refuse sorters
+OC9613	Sweepers and related labourers
+OC962	Other elementary workers
+OC9621	Messengers, package deliverers and luggage porters
+OC9622	Odd job persons
+OC9623	Meter readers and vending-machine collectors
+OC9624	Water and firewood collectors
+OC9629	Elementary workers not elsewhere classified
+OC0	Armed forces occupations
+OC01	Commissioned armed forces officers
+OC011	Commissioned armed forces officers
+OC0110	Commissioned armed forces officers
+OC02	Non-commissioned armed forces officers
+OC021	Non-commissioned armed forces officers
+OC0210	Non-commissioned armed forces officers
+OC03	Armed forces occupations, other ranks
+OC031	Armed forces occupations, other ranks
+OC0310	Armed forces occupations, other ranks
+OTH	Other occupations
+NAP	Not applicable
+NRP	No response
+UNK	Unknown
+PRISA	Personnel in adult prison
+PRISJ	Personnel in juvenile prison
+HOSP	Hospital employment
+OTH_SERV	Other health service providers employed by hospital
+OTH_HOSP	Other staff employed by hospital

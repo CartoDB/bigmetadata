@@ -1,0 +1,54 @@
+TOTAL	Total
+PRECIP	Precipitation
+EVAP_TSP	Actual evapotranspiration
+INTFL	Internal Flow
+INFL_NBT	Actual external inflow from neighbouring territories
+OUTFL	Total actual outflow
+OUTFL_SEA	Total actual outflow into the sea
+OUTFL_NBT	Total actual outflow into neighbouring territories
+RFW_RES	Renewable freshwater resources
+AQUI	Recharge into the aquifer
+GWAA	Groundwater available for annual abstraction
+FW_95LTAA	Freshwater resources 95% of years, LTAA
+ABST	Total gross abstraction
+ABS_PWS	Water abstraction for public water supply
+ABS_AGR	Water abstraction for agriculture
+ABS_AGR_IR	Water abstraction for agriculture - irrigation
+ABS_AGR_AQ	Water abstraction for agriculture - aquaculture
+ABS_MIN	Water abstraction for mining and quarrying
+ABS_IND	Water abstraction for manufacturing industry
+ABS_IND_CL	Water abstraction for manufacturing industry - cooling
+ABS_ELC_CL	Water abstraction for production of electricity - cooling
+ABS_CON	Water abstraction for construction and other industriel activities
+ABS_SER	Water abstraction for services
+ABS_HH	Water abstraction for private households
+ABS_OTH	Water abstraction for other uses
+ABS_NET	Water abstraction - net
+REW	Water returned without use
+IMP	Imports of water
+IMP_REG	Water transferred from other regions (imports)
+EXP	Exports of water
+EXP_REG	Water transferred to other regions (exports)
+LOSS	Losses during transport - total
+LOSS_EVAP	Evaporation losses
+LOSS_LEAK	Leakage losses
+LOSS_USE	Losses during use -  total
+AVL_USE	Water available for use
+GEN_HYDRO	Generation of hydroelectricity
+ART_RES	Artificial reservoirs
+PWS	Public water supply
+SOWS	Self and other water supply
+PWS_SOWS	Public water supply and self and other supply
+CONS_USE	Consumptive water use
+CONSUM	Total water consumption
+POP_PWS	Population connected to public water supply (%)
+CWD	Total cooling water discharged
+CWD_IW	Cooling water discharged to inland waters
+CWD_SEA	Cooling water discharged to marine waters
+ABS_DSW	Desalinated water abstracted
+ABS_RUW	Reused  water abstracted
+DIS	Total discharges of wastewater treatment plants (urban and other)
+DIS_IW	Total discharges to inland waters
+DIS_SEA	Total discharges to the sea
+WEI	Water exploitation index
+VOL_RES	Exploitable volume of reservoirs

@@ -1,0 +1,85 @@
+S1_S2	Total economy and rest of the world
+S1	Total economy
+S1_X_S13	Total economy, except General Government
+S1D	Non-educational private sector 
+S1D_OTH	Other non-educational private entities 
+S1N	Unspecified Total Economy
+PRIVATE	Private sector (S11, S12, S14, S15)
+S11_S14_S15	Non-financial corporations; households; non-profit institutions serving households
+S11_S12	Corporations
+S11_S123_TO_S125	Non-monetary financial corporations
+S11	Non-financial corporations
+S11001	Public non-financial corporations
+S11002	National private non-financial corporations
+S11003	Foreign controlled non-financial corporations
+S12	Financial corporations
+S12001	Public financial corporations
+S121_S122	Central bank; other monetary financial institutions
+S121_S122_S123	Monetary financial institutions
+S121	Central bank
+S122	Deposit taking corporations, except the Central Bank
+S12201	Public financial corporations
+S12202	National private monetary financial institutions
+S12203	Foreign controlled monetary financial institutions
+S122_S123	Monetary financial institutions other than central bank
+S123_TO_S125	Other financial intermediaries, financial auxiliaries, insurance corporations and pension funds
+S125_S126_S127	Other Financial Institutions (except ICPFs), financial auxiliaries, CFIs, and money lenders
+S123	Money market funds
+S12301	Public financial intermediaries
+S12302	National private financial intermediaries
+S12303	Foreign controlled financial intermediaries
+S124	Non-MMF investment funds
+S12401	Public financial auxiliaries
+S12402	National private financial auxiliaries
+S12403	Foreign controlled financial auxiliaries
+S125	Other Financial intermediaries, except insurance corporations and pension funds
+S12501	Public insurance corporations and pension funds
+S12502	National private insurance corporations and pension funds
+S12503	Foreign controlled insurance corporations and pension funds
+S126	Financial auxiliaries
+S127	Captive financial institutions and money lenders
+S128	Insurance corporations
+S128_S129	Insurance corporations and Pension Funds
+S129	Pension funds
+S13_TO_S15	General government; households; non-profit institutions serving households
+S13_S212	General government; institutions of the EU
+S13	General government
+S1311_TO_S1313	Central, state and local government
+S1311_S1312	Central and state government
+S1311	Central government
+S1312_TO_S1314	State and local government; social security funds
+S1312_S1313	State and local government
+S1312	State government
+S1313	Local government
+S1314	Social security funds
+S13_S15	General government; non-profit institutions serving households
+S14_S15	Households; non-profit institutions serving households
+S14	Households
+S141_S142	Employers (including own-account workers)
+S143	Employees
+S1441	Recipients of property income
+S1442	Recipients of pensions
+S1443	Recipients of other transfer incomes
+S145	Other households
+S15	Non-profit institutions serving households
+S2	Rest of the world
+S2I	Euro area (Member States and Institutions of Euro Area) changing composition
+S21	European Union
+S211	Member states of the EU
+S2111	Members of the Monetary Union
+S2112	Non-members of the Monetary Union
+S212	Institutions of the EU
+S2111_S2121	Intra euro area (12)
+S22	Third countries and international organisations
+S2X	Third countries (and international organisations) vis-à-vis the euro area: 'Extra-EA'
+MFI	Monetary financial institutions (including central banks)
+NONMFC	Non-monetary financial corporations
+INTLORG	International organisations
+PUBSEC	Public sector
+SOTH	Other sectors
+SN	Not sectorized
+TOT_SEC	Total
+PUBL	Public institutions
+PRIV	Private institutions
+PRIV_DEP	Private government dependant institutions
+PRIV_IND	Private government independent institutions

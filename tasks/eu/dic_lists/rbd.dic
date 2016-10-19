@@ -1,0 +1,380 @@
+BE	Belgium
+BE_RHI_W	Rhine - RBD (BE-Walloon region)
+BE_SCH_B	Scheldt/Escaut - RBD (BE-Brussels)
+BE_SCH_W	Escaut/Schelde - RBD (BE-Walloon region)
+BE_SCH_V	Schelde/Escaut - RBD (BE-Flemish region)
+BE_MAA_W	Meuse/Maas - RBD (BE-Walloon region)
+BE_MAA_V	Maas/Meuse - RBD (BE-Flemish region)
+BE_SEI_W	Seine - RBD (BE-Walloon region)
+BG	Bulgaria
+BG_DAN_RBD	Danube - RBD (BG)
+BG_BKS	Black Sea - RBD
+BG_AEE	East Aegean - RBD (BG)
+BG_AEW	West Aegean - RBD (BG)
+CZ	Czech Republic
+CZ_DAN	Danube - RBD (CZ)
+CZ_DYJ	Dyje / Thaya
+CZ_MOR	Morava / March (CZ)
+CZ_ELB	Labe / Elbe - RBD (CZ)
+CZ_ELB_UM	Upper and middle Labe / Elbe (CZ)
+CZ_MOL_U	Upper Vltava / Moldau
+CZ_BRK	Berounka
+CZ_MOL_L	Lower Vltava / Moldau
+CZ_OHR	Ohre and lower Labe/ Elbe (CZ)
+CZ_ODR	Odra / Oder - RBD (CZ)
+DK	Denmark
+DK_JTL	Jutland and Funen - RBD
+DK_ZEA	Zealand - RBD
+DK_BOR	Bornholm - RBD
+DK_VID	Vidaa-Krusaa - RBD
+DE	Germany (until 1990 former territory of the FRG)
+DE_DAN	Danube - RBD (DE)
+DE_RHI	Rhine - RBD (DE)
+DE_RHI_C	Lake Constance/Alpine Rhine
+DE_RHI_H	Hochrhein
+DE_RHI_O	Oberrhein
+DE_NEC	Neckar
+DE_MAI	Main
+DE_MSL_SAR	Moselle-Saar (DE)
+DE_RHI_M	Middle Rhine
+DE_RHI_N	Lower Rhine
+DE_RHI_D	Rhine delta
+DE_EMS	Ems - RBD (DE)
+DE_EMS_O	Upper Ems, Ems-Nordradde, Hase
+DE_LED	Leda-Jümme, lower Ems, Ems-estuary
+DE_WES_RBD	Weser - RBD
+DE_WER	Werra
+DE_FUL	Fulda-Diemel
+DE_WES	Weser
+DE_ALR	Aller
+DE_LEI	Leine
+DE_TID	Tide-Weser
+DE_ELB	Elbe / Labe - RBD (DE)
+DE_MUL	Mulde-Elbe-Schwarze Elster
+DE_SAA	Saale, Obere Moldau, Berounka, Eger and lower Elbe
+DE_ELB_M	Mittelelbe-Elde
+DE_HAV	Havel
+DE_ELB_T	Tide-Elbe
+DE_ODR	Oder / Odra - RBD (DE)
+DE_MAA	Maas / Meuse - RBD (DE)
+DE_EID	Eider - RBD
+DE_SLE	Schlei-Trave - RBD
+DE_WAR	Warnow-Peene - RBD
+EE	Estonia
+EE_W	West Estonia - RBD
+EE_LAA	Läänesaarte
+EE_MAT	Matsalu
+EE_PAR	Pärnu
+EE_HAR	Harju
+EE_E_RBD	East Estonia - RBD
+EE_VIR	Viru
+EE_VOR	Vörtsjärve
+EE_PEI	Peipsi
+EE_GAU	Koiva /Gauja - RBD (EE)
+IE	Ireland
+IE_E	Eastern Ireland - RBD
+IE_SHA	Shannon - RBD
+IE_SE	South Eastern Ireland - RBD
+IE_SW	South Western Ireland - RBD
+IE_W	Western Ireland - RBD
+EL	Greece
+EL_PEL_W	Western Peloponnese - RBD
+EL_PEL_N	Northern Peloponnese - RBD
+EL_PEL_E	Eastern Peloponnese - RBD
+EL_STE_W	Western Central Greece - RBD
+EL_EPI	Epirus - RBD
+EL_ATT	Attica - RBD
+EL_STE_E	Eastern Central Greece - RBD
+EL_THE	Thessalia - RBD
+EL_MAC_W	Western Macedonia - RBD
+EL_MAC_C	Central Macedonia - RBD
+EL_MAC_E	Eastern Macedonia - RBD
+EL_THR	Thrace - RBD
+EL_CRE	Crete - RBD
+EL_AEG	Aegean Islands - RBD
+ES	Spain
+ES_MIS	Miño-Sil - RBD (ES)
+ES_GAL	Galician Coast - RBD
+ES_BAS	Basque County Internal Basins - RBD
+ES_CAN	Cantabrian - RBD
+ES_CAN_W	Western Cantabrian RBD
+ES_CAN_E	Eastern Cantabrian RBD
+ES_DUE	Duero - RBD (ES)
+ES_TAG	Tagus - RBD (ES)
+ES_GUD	Guadiana - RBD (ES)
+ES_GUL	Guadalquivir - RBD
+ES_ADL	Andalusia Mediterranean Basins - RBD
+ES_GUA	Guadalete and Barbate - RBD
+ES_TIN	Tinto, Odiel and Piedras - RBD
+ES_SEG	Segura - RBD
+ES_JUC	Júcar - RBD
+ES_EBR	Ebro - RBD
+ES_CAT	Catalonia - RBD
+ES_BAI	Balearic Islands - RBD
+ES_GRC	Gran Canaria - RBD
+ES_FUE	Fuerteventura - RBD
+ES_LAN	Lanzarote - RBD
+ES_TNR	Tenerife - RBD
+ES_LPA	La Palma - RBD
+ES_LGM	La Gomera - RBD
+ES_EHI	El Hierro - RBD
+ES_CEU	Ceuta - RBD
+ES_MEL	Melilla - RBD
+FR	France
+FR_SCH	Escaut / Schelde - RBD (FR)
+FR_MAA_C	Meuse-Chiers - RBD (FR)
+FR_SAM	Sambre - RBD
+FR_RHI	Rhine - RBD (FR)
+FR_MSL_SAR	Moselle-Saar (FR)
+FR_RHI_I	Upper Rhine and Ill
+FR_RHO_CM	Rhone and the mediterranean coastal rivers - RBD (FR)
+FR_CAZ	Coastal streams of the Cote d'Azur
+FR_CLR	Languedoc Roussillon coastals
+FR_DOU	Doubs
+FR_DUR	Durance
+FR_ARD	Ardèche-Gard
+FR_RHO_H	Haut-Rhône
+FR_ISR	Isère-Drôme
+FR_RHO_M	Rhône moyen
+FR_SAO	Saône
+FR_COR	Corse - RBD
+FR_ADO_OTH	Adour, Garonne, Dordogne, Charente and Charente and Aquitaine coastal streams - RBD
+FR_ADO	Adour
+FR_CHA	Charente
+FR_CAQ	Charente and Aquitaine coastal streams
+FR_DOR	Dordogne
+FR_GAR	Garonne
+FR_LOT	Lot
+FR_TAR	Tarn-Aveyron
+FR_LOI	Loire, the coastal rivers of Vendée and Bretagne - RBD
+FR_ALL	Allier-Upper Loire
+FR_LOI_A	Lower Loire and coastal rivers of Vendée
+FR_LOI_M	Middle Loire
+FR_MAY	Mayenne-Sarthe-Loir
+FR_VIL	Vilaine and Brittany coastal streams
+FR_VIE	Vienne-Creuse
+FR_SEI_CN	Seine and the Normandy coastal streams - RBD (FR)
+FR_CNO	Coastal streams of Normandy
+FR_MRN	Marne
+FR_OIS	Oise
+FR_SEI_A	Seine upstream Paris (FR)
+FR_SEI_V	Seine downstream Paris (FR)
+FR_GUY	Guyane - RBD
+FR_REU	Réunion - RBD
+FR_GDL	Guadeloupe - RBD
+FR_MAR	Martinique - RBD
+HR	Croatia
+HR_DAN	Danube - RBD (HR)
+HR_DRA_SB	Drava and Danube sub-basin
+HR_SAV_SB	Sava sub-basin
+HR_ADR	Adriatic - RBD (HR)
+IT	Italy
+IT_ALP_E	Eastern Alps - RBD
+IT_PO	Po - RBD (IT)
+IT_APP_N	Northern Apennines - RBD
+IT_SER	Serchio - RBD
+IT_APP_M	Middle Apennines - RBD
+IT_APP_S	Southern Apennines - RBD
+IT_SAR	Sardinia - RBD
+IT_SIC	Sicily - RBD
+CY	Cyprus
+CY_RBD	Cyprus - RBD
+LV	Latvia
+LV_DAU	Daugava - RBD (LV)
+LV_GAU	Gauja (Koiva) - RBD (LV)
+LV_LIE	Lielupe - RBD (LV)
+LV_VEN_RBD	Venta - RBD (LV)
+LT	Lithuania
+LT_NEM	Nemunas - RBD (LT)
+LT_CUR	Curonian lagoon
+LT_BAL	Baltic Sea coastal waters
+LT_NEM_OTH	Small tributaries of the Nemunas river (including Nemunas river)
+LT_MER	Merkys
+LT_NER	Small tributaries of the Neris river (including Neris river)
+LT_ZEI	Zeimena
+LT_SVE_SB	Sventoji sub-basin
+LT_NEV	Nevezis
+LT_DUB	Dubysa
+LT_SES	Sesupe
+LT_JUR	Jura
+LT_MIN	Minija
+LT_COA	Lithuanian coastal rivers
+LT_PRI	Prieglius / Pregolya - RBD (LT)
+LT_VEN_RBD	Venta - RBD (LT)
+LT_VEN	Venta
+LT_SVE	Sventoji
+LT_BAR	Bartuva
+LT_LIE	Lielupe - RBD (LT)
+LT_LIE_OTH	Small tributaries of the Lielupe river
+LT_MUS	Musa
+LT_NEL	Nemunelis
+LT_DAU	Daugava - RBD (LT)
+LU	Luxembourg
+LU_MSL	Moselle - RBD (LU)
+LU_MAA	Meuse / Maas - RBD (LU)
+HU	Hungary
+HU_DAN_RBD	Danube - RBD (HU)
+HU_BAT	Balaton
+HU_DRA	Dráva / Drau (HU)
+HU_DAN	Danube (HU)
+HU_TIS	Tisza / Tysa (HU)
+MT	Malta
+MT_RBD	Malta - RBD
+NL	Netherlands
+NL_EMS	Ems - RBD (NL)
+NL_MAA	Maas / Meuse - RBD (NL)
+NL_RHI	Rhine - RBD (NL)
+NL_SCH	Schelde / Escaut - RBD (NL)
+AT	Austria
+AT_DAN	Danube - RBD (AT)
+AT_DAN_U	Danube upstream Jochenstein (AT)
+AT_DAN_D	Danube downstream Jochenstein (AT)
+AT_MOR	March / Morava (AT)
+AT_LER	Leitha, Raab, Rabnitz
+AT_MUR	Mur
+AT_DRA	Drau / Dráva (AT)
+AT_RHI	Rhine - RBD (AT)
+AT_ELB	Elbe / Labe - RBD (AT)
+PL	Poland
+PL_DAN	Danube - RBD (PL)
+PL_VIS	Vistula / Wisla - RBD (PL)
+PL_VIS_S	Little Vistula
+PL_VIS_U	Upper Vistula
+PL_VIS_M	Middle Vistula without Bug and Narew
+PL_BUG	Bug and Narew
+PL_VIS_L	Lower Vistula
+PL_SWI	Swieza - RBD
+PL_JAR	Jarft - RBD
+PL_ELB	Labe / Elbe - RBD (PL)
+PL_ODR	Odra / Oder - RBD (PL)
+PL_ODR_U	Upper Oder
+PL_ODR_M	Middle Oder
+PL_WRT	Warta
+PL_ODR_L	Lower Oder and Western Coast
+PL_UCK	Ucker - RBD
+PL_PRI	Pregolya / Prieglius - RBD (PL)
+PL_NEM	Nemunas - RBD (PL)
+PL_DNI	Dniester - RBD (PL)
+PT	Portugal
+PT_MIH	Minho and Lima - RBD (PT)
+PT_CAV	Cavado, Ave and Leca - RBD
+PT_DRO	Douro - RBD (PT)
+PT_VOU	Vouga, Mondego and Lis - RBD
+PT_TAG	Tagus and Western Basins - RBD (PT)
+PT_SAD	Sado and Mira - RBD
+PT_GUD	Guadiana - RBD (PT)
+PT_ALG	Algarve Basins - RBD
+PT_AZO	Azores - RBD
+PT_MAD	Madeira - RBD
+RO	Romania
+RO_DAN_RBD	Danube - RBD (RO)
+RO_BAN	Banat
+RO_SIR	Siret
+RO_PRU	Prut-Barlad
+RO_JIU	Jiu
+RO_OLT	Olt
+RO_ARV	Arges-Vedea
+RO_IAL	Ialomita-Buzau
+RO_DOB	Dobrogea
+RO_MRS	Mures
+RO_CRI	Crisuri
+RO_SOM	Somes-Tisa (RO)
+SI	Slovenia
+SI_DAN	Danube - RBD (SI)
+SI_ADR_N	North Adriatic - RBD
+SK	Slovakia
+SK_DUN	Dunajec and Poprad (Vistula) - RBD (SK)
+SK_DAN_RBD	Danube - RBD (SK)
+SK_BOD	Bodrog
+SK_MOR	Morava/March (SK)
+SK_DAN	Danube (SK)
+SK_VAH	Vah
+SK_HRO	Hron
+SK_IPE	Ipel
+SK_SLA	Slana
+SK_HOR	Hornád
+SK_BOV	Bodva
+FI	Finland
+FI_VUO	Vuoksi - RBD
+FI_KYM	Kymijoki-Gulf of Finland - RBD
+FI_KOK	Kokemäenjoki-Archipelago Sea-Bothnian Sea - RBD
+FI_OUL	Oulujoki-Iijoki - RBD
+FI_KEM	Kemijoki - RBD (FI)
+FI_TOR_RBD	Tornionjoki - RBD
+FI_TEN	Teno, Näätämöjoki and Paatsjoki - RBD (FI)
+FI_ALD	Åland - RBD
+SE	Sweden
+SE_BBY	Bothnian Bay - RBD (SE)
+SE_BBY_TO	Torne (Bothnian Bay) - RBD (SE)
+SE_BSE	Bothnian Sea - RBD (SE)
+SE_BAL_N	North Baltic Sea - RBD
+SE_BAL_S	South Baltic Sea - RBD
+SE_SKK	Skagerrak and Kattegat - RBD (SE)
+SE_BSE_TD	Trondelagsfylkene (Bothnian Sea) - RBD (SE)
+SE_BBY_NL	Nordland (Bothnian Bay) - RBD (SE)
+SE_BBY_TR	Troms (Bothnian Bay) - RBD (SE)
+SE_SGL	Glomma (Skagerrak and Kattegat) - RBD (SE)
+UK	United Kingdom
+UK_SCO	Scotland - RBD
+UK_SCO_NE	North East Scotland
+UK_TAY	Tay
+UK_FOR	Forth
+UK_CLY	Clyde
+UK_ARG	Argyll
+UK_HIG_W	West Highland
+UK_HIG_N	North Highland
+UK_ORK	Orkney and Shetland
+UK_SOL	Solway Tweed - RBD
+UK_NTH	Northumbria - RBD
+UK_HUM	Humber - RBD
+UK_ANG	Anglia - RBD
+UK_THA	Thames - RBD
+UK_SOE	South East England - RBD
+UK_SOW	South West England - RBD
+UK_SEV	Severn - RBD
+UK_WAL_W	Western Wales - RBD
+UK_DEE	Dee - RBD
+UK_NOW	North West England - RBD
+UK_NBA	Neagh Bann - RBD (Northern Ireland)
+UK_NWN	North West Northern Ireland - RBD
+UK_NOE	North East Northern Ireland - RBD
+IS	Iceland
+LI	Liechtenstein
+LI_RBD	Liechtenstein - RBD
+NO	Norway
+NO_GLO	Glomma, Møre and Romsdal - RBD
+NO_TRD	Troendelag - RBD (NO)
+NO_NRL	Nordland - RBD (NO)
+NO_TRO	Troms - RBD (NO)
+NO_FMK	Finnmark - RBD
+NO_GLM	Glomma - RBD (NO)
+NO_WBA	West Bay - RBD
+NO_AGD	Agder - RBD
+NO_ROL	Rogaland - RBD
+NO_HDA	Hordaland - RBD
+NO_SFJ	Sogn and Fjordane - RBD
+NO_BBY	Bothnian Bay - RBD (NO)
+NO_TOR	Torne (Torniojoki) - RBD (NO)
+NO_BSE	Bothnian Sea - RBD (NO)
+NO_SKK	Skagerrak and Kattegat - RBD (NO)
+NO_KEM	Kemijoki - RBD (NO)
+NO_TOR_FI	Tornionjoki - RBD (FI)
+CH	Switzerland
+CH_RHI	Rhine - RBD (CH)
+CH_RHO	Rhône - RBD (CH)
+CH_PO	Po - RBD (CH)
+CH_DAN	Danube - RBD (CH)
+CH_ADI	Adige - RBD
+ME	Montenegro
+MK	Former Yugoslav Republic of Macedonia, the
+AL	Albania
+RS	Serbia
+RS_DAN	Danube (RS)
+RS_SAV	Sava (RS)
+RS_MOR	Morava (RS)
+TR	Turkey
+BA	Bosnia and Herzegovina
+XK	Kosovo (under United Nations Security Council Resolution 1244/99)
+AD_RBD	Andorra - RBD
+GI_RBD	Gibraltar - RBD
+MC_RBD	Monaco - RBD

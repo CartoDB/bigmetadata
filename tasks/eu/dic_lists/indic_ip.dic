@@ -1,0 +1,54 @@
+TIPSBP10	Current account balance - % of GDP, 3 years average
+TIPSBP20	Current account balance - % of GDP
+TIPSII10	Net international investment position - % of GDP
+TIPSER10_1	Real effective exchange rate, 42 trading partners - 3 years % change
+TIPSER10_2	Real effective exchange rate, 42 trading partners - 1 year % change
+TIPSEX10	Export market shares - 5 years % change
+TIPSEX20	Export market shares - 1 year % change
+TIPSLM10	Nominal unit labour cost index - 3 years % change
+TIPSLM20	Nominal unit labour cost index - 1 year % change
+TIPSHO10	House price index, deflated - 1 year % change
+TIPSPC20	Private sector credit flow, consolidated - % of GDP
+TIPSPC10	Private sector credit flow, non-consolidated - % of GDP
+TIPSPD20	Private sector debt, consolidated - % of GDP
+TIPSGO10	General government sector debt - % of GDP
+TIPSFS10_1	Total financial sector liabilities, non-consolidated - 1 year % change
+TIPSFS10_2	Total financial sector liabilities, non-consolidated - million of national currency
+TIPSUN10	Unemployment rate - 3 years average
+TIPSUN20	Unemployment rate - %
+TIPSNA10	Real gross domestic product (GDP) - 1 year % change
+TIPSNA20	Gross fixed capital formation - % of GDP
+TIPSST10	Gross domestic expenditure on R&D - % of GDP
+TIPSBP70	Net Lending / Borrowing - % of GDP
+TIPSII20	Net external debt - % of GDP
+TIPSBP90	Direct investment in the reporting economy (flows) - % of GDP
+TIPSBP100	Direct investment in the reporting economy (stocks) - % of GDP
+TIPSEN10	Net trade balance of energy products - % of GDP
+TIPSER20	Real effective exchange rate, Euro area trading partners - 3 years % change
+TIPSBP60	Share of OECD export - 5 years % change
+TIPSNA30	Terms of trade - 5 years % change
+TIPSEX_V	Export market share, volumes - 1 year % change
+TIPSNA70	Labour productivity - 1 year % change
+TIPSNA40	Nominal unit labour cost index - 10 years % change
+TIPSLM50	Unit labour cost performance relative to Euro area - 10 years % change
+TIPSHO20	Nominal house price index - 3 years % change
+TIPSNA50	Residential construction - % of GDP
+TIPSPD10	Private sector debt, non-consolidated - % of GDP
+TIPSFS20	Financial sector leverage (debt-to-equity) - %
+TIPSNA60	Employment rate - 1 year % change
+TIPSLM60_1	Activity rate (15-64 years) - % of the total population of the same age group
+TIPSLM60_2	Activity rate (15-64 years) - % point change (t, t-3)
+TIPSLM70_1	Long-term unemployment rate - % of active population in the same age group
+TIPSLM70_2	Long-term unemployment rate - % of active population in the same age group, % point change (t, t-3)
+TIPSLM80_1	Youth unemployment rate - % of active population in the same age group
+TIPSLM80_2	Youth unemployment rate - % of active population in the same age group, % point change (t, t-3)
+TIPSLM90_1	Young people neither in employment nor in education and training - % of total population
+TIPSLM90_2	Young people neither in employment nor in education and training - % of total population, % point change (t, t-3)
+TIPSLC10_1	People at risk of poverty or social exclusion - % of total population
+TIPSLC10_2	People at risk of poverty or social exclusion - % of total population, % point change (t, t-3)
+TIPSLC20_1	People at risk of poverty after social transferes - % of total population
+TIPSLC20_2	People at risk of poverty after social transferes - % of total population, % point change (t, t-3)
+TIPSLC30_1	Severely materially deprived people - % of total population
+TIPSLC30_2	Severely materially deprived people - % of total population, % point change (t, t-3)
+TIPSLC40_1	People living in households with very low work Intensity - % of population aged 0-59
+TIPSLC40_2	People living in households with very low work intensity - % of population aged 0-59, % point change (t, t-3)

@@ -1,0 +1,5 @@
+TOTAL	Total
+MRTG	Arrears with mortgage payments as percentage of all owners
+MRTG_LOAN	Arrears with mortgage payments as percentage of all owners with a mortgage
+RENT	Arrears with payments for the tenants
+UTBL	Arrears with payments of schedulated utility bills

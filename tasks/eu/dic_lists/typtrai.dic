@@ -1,0 +1,27 @@
+ATT	Any type of continuing vocational training (CVT)
+CVT	Continuing vocational training (CVT) courses
+ATOF	Any type of other forms of continuing vocational training (CVT)
+NOT	No continuing vocational training (CVT)
+TOTAL	Total
+GEN	General training
+SPE	Special training
+INT_COU	Internal CVT course
+EXT_COU	External CVT course
+WS	Guided-on-the-job training
+JROT	Job rotation, exchanges or secondments
+LQUC	Learning/quality circles
+SLEAR	Self-directed learning
+CONF	Continuing training at conferences, workshops, trade fairs and lectures
+FED_NFE	Formal and non-formal education and training
+NO_FED_NFE	Neither formal nor non-formal education and training
+FED	Formal education and training
+NO_FED	No formal education or training
+NFE	Non-formal education and training
+JOB_NFE	Job-related non-formal education and training
+JOB_NFE_ES	Job-related non-formal education and training sponsored by the employer
+JOB_NFE_NES	Job-related non-formal education and training not sponsored by the employer
+JOB_NFE_ES_SAL	Job-related non-formal education and training sponsored by the employer (employees only)
+NJOB_NFE_ONLY	Only non-job-related non-formal education and training
+INFONLY	Informal learning activities only
+NOLEAR	No learning activity
+NRESP	No answer

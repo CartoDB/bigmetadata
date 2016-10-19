@@ -1,0 +1,25 @@
+SOX	Sulphur oxides
+SO2	Sulphur dioxide
+NOX	Nitrogen oxides
+NH3	Ammonia
+CO	Carbon monoxide
+VOC	Volatile organic compounds
+NMVOC	Non-methane volatile organic compounds
+CH4	Methane
+N2O	Nitrous oxide
+SF6	Sulphur hexafluoride
+GHG	Greenhouse Gas Emissions (CO2 equivalent)
+CO2	Carbon dioxide
+CO2_BIO	Carbon dioxide from biomass used as a fuel
+CH4_EQ	Methane (Global warming potential, CO2 equivalent)
+N2O_EQ	Nitrous oxide (Global warming potential, CO2 equivalent)
+HFC	Hydrofluorocarbons
+HFC_EQ	Hydrofluorocarbones (CO2 equivalent)
+PFC	Perfluorocarbons
+PFC_EQ	Perfluorocarbones (CO2 equivalent)
+SF6_EQ	Sulphur hexafluoride (Global warming potential, CO2 equivalent)
+PM	Particulates
+PM2_5	Particulates < 2.5µm
+PM10	Particulates < 10µm
+O3	Ozone
+PB	Lead

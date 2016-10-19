@@ -1,0 +1,14 @@
+FEI	Formal education and training institutions
+NFEI	Non-formal education and training institutions
+PUB_TNG	Public training institutions (financed or guided by the government)
+PRV_TNG	Private training companies
+PRV_NTNG	Private companies where the main activity is not training (e.g. equipment suppliers, parent/associate companies)
+COM_NTNG	Commercial institutions where education and training is not the main activity (e.g. equipment suppliers)
+NCOM_NTNG	Non-commercial institutions where education and training is not the main activity (e.g. libraries, museums, ministries)
+EMPL	Employer
+EO_CHC	Employers' organisations, chambers of commerce
+TRD_UN	Trade unions
+NPA	Non-profit associations (e.g. cultural society, political party)
+IND	Individuals (e.g. students giving private lessons)
+OTH	Other training providers
+NRP	No response

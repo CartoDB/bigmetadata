@@ -1,0 +1,34 @@
+TOTAL	Total
+ICCS01	Acts leading to death or intending to cause death
+ICCS0101_0102	Intentional homicide and attempted intentional homicide
+ICCS0101	Intentional homicide
+ICCS0102	Attempted intentional homicide
+ICCS02-04	Acts causing harm or intending to cause harm to the person, injurious acts of a sexual nature and acts against property involving violence or threat against a person
+ICCS02	Acts causing harm or intending to cause harm to the person
+ICCS0201	Assaults and threats
+ICCS02011	Assault
+ICCS0202	Acts against liberty
+ICCS02022	Deprivation of liberty
+ICCS020221	Kidnapping
+ICCS03	Injurious acts of a sexual nature
+ICCS0301	Sexual violence
+ICCS03011	Rape
+ICCS03012	Sexual assault
+ICCS03019	Other acts of sexual violence
+ICCS0302	Sexual exploitation
+ICCS03022	Sexual exploitation of children
+ICCS04	Acts against property involving violence or threat against a person
+ICCS0401	Robbery
+ICCS05	Acts against property only
+ICCS0501	Burglary
+ICCS05012	Burglary of private residential premises
+ICCS0502	Theft
+ICCS05021	Theft of a motorized vehicle or parts thereof
+ICCS050211	Theft of a motorized land vehicle
+ICCS06	Acts involving controlled drugs or other psychoactive substances
+ICCS0601	Unlawful acts involving controlled drugs or precursors
+ICCS07	Acts involving fraud, deception or corruption
+ICCS08	Acts against public order, authority and provisions of the State
+ICCS09	Acts against public safety and state security
+ICCS10	Acts against the natural environment
+ICCS11	Other criminal acts not elsewhere classified

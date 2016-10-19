@@ -107,7 +107,7 @@ class UnitTags(TagsTask):
 class SectionTags(TagsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def tags(self):
         return [
@@ -115,6 +115,10 @@ class SectionTags(TagsTask):
                    name='Global',
                    type='section',
                    description=''),
+           OBSTag(id='eu',
+                  name='european_union',
+                  type='section',
+                  description=''),
             OBSTag(id='united_states',
                    name='United States',
                    type='section',

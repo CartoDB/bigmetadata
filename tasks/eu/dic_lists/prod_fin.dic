@@ -1,0 +1,91 @@
+TOTAL	Total
+65	Financial intermediation services, except insurance and pension funding services
+651	Monetary intermediation services
+6511	Central banking services
+6512	Other monetary intermediation services
+65121	Deposit taking services
+651211	Inter-industry deposit taking services
+651212	Standardised deposit taking services
+651213	Non-standardised deposit taking services
+65122	Credit granting services
+651221	Inter-industry credit granting services
+651222	Consumer credit granting services
+651223	Mortgage credit granting services
+651224	Commercial credit granting services
+651225	Other credit granting services n.e.c.
+65123	Other monetary intermediation services n.e.c.
+652	Other financial intermediation services
+6521	Financial leasing services
+6522	Other credit granting services
+65221	Inter-industry credit granting services (65.22.1)
+65222	Consumer credit granting services (65.22.2)
+65223	Mortgage credit granting services (65.22.3)
+65224	Commercial credit granting services (65.22.4)
+65225	Other credit granting services n.e.c. (65.22.5)
+6523	Other financial intermediation services n.e.c., other than insurance and pension funding services
+65231	Investment banking services
+65232	Other financial intermediation services n.e.c.
+67	Services auxiliary to financial intermediation
+671	Services auxiliary to financial intermediation, except to insurance and pension funding
+6711	Financial markets administration services
+6712	Security brokerage and fund management services
+67121	Security brokerage services
+67122	Fund management services
+6713	Other services auxiliary to financial intermediation n.e.c.
+672	Services auxiliary to insurance and pension funding
+6721	Brokerage services
+6722	Other services auxiliary to insurance and pension funding n.e.c.
+66011	Non-linked life insurance services
+660111	Insurance products accumulating capital,-producing a capital sum
+660112	Insurance products accumulating capital,-producing an annuity
+660113	Term insurance products,-producing an annuity
+660114	Term insurance products,-producing a capital sum
+AGAC	Insurance products accumulating capital, producing a capital sum and producing an annuity (simplification)
+AGTI	Term insurance products, producing a capital sum and producing an annuity (simplification)
+AG011	Non-linked life insurance services (simplification)
+66012	Linked life insurance services
+66013	Tontine insurance services
+66014	Capital redemption insurance services
+CARLI	Linked capital redemption insurance services
+CARNL	Non linked capital redemption insurance services
+66015	Other life insurance services
+66021	Group pension services
+GPLI	Linked group pension services
+GPNL	Non linked group pension services
+66031	Accident and health insurance services
+660311	Accident insurance services
+660312	Health insurance services
+HMC	Health insurance services providing coverage against the cost of medical treatment
+HLI	Health insurance services providing coverage against the loss of income
+HOT	Other health insurance services
+660313	Permanent health insurance services
+AG03HP	Health insurance services and Permanent health insurance services (simplification)
+AG031	Accident and health insurance services (simplification)
+66032	Motor vehicle insurance services
+660321	Motor vehicle insurance services, third party liability
+660322	Motor vehicle insurance services, other classes
+66033	Marine, aviation and transport insurance services
+66034	Fire and other damage to property insurance services
+66035	General liability insurance services
+66036	Credit and suretyship insurance services
+66037	Assistance, legal expenses and miscellaneous financial loss insurance services
+660371	Assistance insurance services
+660372	Legal expenses insurance services
+660373	Miscellaneous financial loss insurance services
+AG037	Assistance, legal expenses and miscellaneous financial loss insurance services (simplification)
+66038	Other non life insurance services
+66041	Reinsurance services related to life insurance
+66042	Reinsurance services related to pension funding
+AG04A	Reinsurance services related to life insurance and to pension funds (simplification)
+66043	Reinsurance services related to non-life insurance
+660431	Reinsurance services related to accident and health insurance
+660432	Reinsurance services related to motor vehicle insurance
+660433	Reinsurance services related to marine, aviation and transport insurance
+660434	Reinsurance services related to fire and other damage to property insurance
+660435	Reinsurance services related to general liability insurance
+660436	Reinsurance services related to credit and suretyship insurance
+660437	Reinsurance services related to assistance, legal expenses and miscellaneous financial loss insurance
+660438	Reinsurance services related to other non-life insurance
+AG04B	Reinsurance services related to non-life insurance (simplification)
+INLCON	All individual life contracts
+GRLCON	All group life contracts

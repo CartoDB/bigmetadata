@@ -1,0 +1,16 @@
+TRIPS_INTRA	Total number of driven intra-regional trips (trucks/day)
+TRIPS_PROD	Total number of trips produced by and leaving the region (trucks/day)
+TRIPS_ATTR	Total number of trips attracted by but not originated in the region (trucks/day)
+TRIPS_TRAN	Total number of trips transited through the region, without origin or destination in that region (trucks/day)
+KM_INTRA	Total number of kilometers produced by intra-regional trips (km/day)
+KM_TOT	Total number of kilometers driven within each region by all trucks, intra-regional trips are not included (km/day)
+KM_PROD	Total number of kilometers made by journeys produced by the region, intra-regional trips are not included (km/day)
+KM_ATTR	Total number of kilometers made by journeys attracted by the region, intra-regional trips are not included (km/day)
+ACC_MEAN	Mean distance between a region and all other regions of the European Union (km)
+ACC_MIN	Minimum distance a truck must drive to reach another region (km)
+ACC_MAX	Maximum distance a truck can drive to reach another region (km)
+TR_RATIO	The share of total traffic that is transit traffic (%)
+IN_MT	Individual motorised transport
+IN_NMT	Individual non-motorised transport
+PUB_TR	Public transport
+COMTR	Average length of single commuting trips

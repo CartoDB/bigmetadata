@@ -1,0 +1,12 @@
+TOTAL	Total
+WORK	'Working' (see explanory text)
+N_WORK	Not 'Working' (see explanory text)
+NRESP	No response
+LOSS	Job losses
+LOSS_HS	High skill job losses
+CREA	Job creation
+CREA_HS	High skill job creation
+CREA_NA	Job creation Not applicable
+LOSS_NA	Job loss Not applicable
+CREA_UNK	Job creation Do not know
+LOSS_UNK	Job loss Do not know

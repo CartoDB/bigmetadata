@@ -1,0 +1,47 @@
+HE	Hourly earnings
+HE_FPCM	Hourly earnings of women as % of those of men
+HOVT	Hourly overtime pay
+HEAOVT	Hourly earnings plus overtime pay
+HEO_FPCM	Hourly earnings plus overtime pay of women as % of those of men
+HOVTPC	Hourly overtime pay as % of hourly earnings
+ME	Monthly earnings
+MOVT	Monthly overtime pay
+MS	Monthly shift pay
+MOVTPC	Monthly overtime pay as % of monthly earnings
+MSPC	Monthly shift pay as % of monthly earnings
+AE	Annual earnings
+AB	Annual bonuses
+ABPC	Annual bonuses as % of annual earnings
+MHP	Monthly hours paid
+MHPAOVT	Monthly overtime hours paid
+MHPOVTPC	Monthly overtime hours as % of monthly hours
+MW_MEAGE	Monthly minimum wage as a proportion of the mean value of average monthly earnings
+MW_MEDGE	Monthly minimum wage as a proportion of the median value of average monthly earnings
+AH	Annual holidays
+SAL_NR	Number of employees
+LOU_NR	Number of local units
+ERN_MN_EUR	Mean earnings in euro
+ERN_MN_PPS	Mean earnings in PPS
+ERN_MD_EUR	Median earnings in euro
+ERN_MD_PPS	Median earnings in PPS
+ERN_D1_EUR	First decile earnings in euro
+ERN_D1_PPS	First decile earnings in PPS
+ERN_D10_EUR	Tenth decile earnings in euro
+ERN_D10_PPS	Tenth decile earnings in PPS
+LWE_PC	Proportion of low-wage earners based on hourly earnings
+OVS_MN_EUR	Mean monthly overtime pay per employee in euro
+OVS_MN_PPS	Mean monthly overtime pay per employee in PPS
+OVC_MN_EUR	Mean monthly overtime pay per employee concerned in euro
+OVC_MN_PPS	Mean monthly overtime pay per employee concerned in PPS
+SHS_MN_EUR	Mean monthly shift pay per employee in euro
+SHS_MN_PPS	Mean monthly shift pay per employee in PPS
+SHC_MN_EUR	Mean monthly shift pay per employee concerned in euro
+SHC_MN_PPS	Mean monthly shift pay per employee concerned in PPS
+HP_MN_HR	Mean monthly number of hours paid
+OVHPS_MN_HR	Mean monthly number of overtime hours paid per employee
+OVHPC_MN_HR	Mean monthly number of overtime hours paid per employee concerned
+BS_MN_EUR	Mean annual bonuses per employee in euro
+BS_MN_PPS	Mean annual bonuses per employee in PPS
+BC_MN_EUR	Mean annual bonuses per employee concerned in euro
+BC_MN_PPS	Mean annual bonuses per employee concerned in PPS
+HDAY_MN	Mean annual number of holidays

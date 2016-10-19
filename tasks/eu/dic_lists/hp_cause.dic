@@ -1,0 +1,9 @@
+TOTAL	Total
+BIRTH	Born with it or birth injury
+WRK_DIS	Work-related diseases
+WRK_ACC	Work-related accident or injury including traffic accidents at work
+NWRK_DIS	Non-work related diseases
+NWRK_ACC	Household, leisure and sports accident or injury (non-work related)
+TRF_ACC	Traffic accident or injury (not work related)
+NRP	No response
+UNK	Unknown

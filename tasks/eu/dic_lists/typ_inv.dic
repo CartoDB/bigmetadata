@@ -1,0 +1,11 @@
+PRV_EQUI	All private equity
+EARL	Early stage investments
+EXRE	Expansion and replacement investments
+BUYOUT	Buyouts
+SEED	Seed stage
+STARTUP	Start-up stage
+LATE_VENTURE	Later stage venture
+VENTURE	Total venture capital (seed, start-up and later stage venture)
+GROWTH	Growth capital
+RESCUE	Rescue/Turnaround capital
+REPLACE	Replacement capital

@@ -1,0 +1,55 @@
+6000	Input total (I+II)
+7000	Total, goods and services currently consumed in agriculture
+7100	Seeds
+7490	Animals for rearing and production
+7500	Energy and lubricants
+7520	Fuels for heating
+7530	Motor fuels
+7540	Electricity
+7550	Lubricants
+7600	Fertilizers, soil improvers
+7620	Straight fertilizers
+7630	Nitrogenous fertilizers
+7650	Phosphatic fertilizers
+7680	Potassic fertilizers
+7700	Compound fertilizers
+7710	NP fertilizers
+7720	PK fertilizers
+7740	NPK fertilizers
+7850	Other fertilizers, soil improvers
+7900	Plant protection products
+7910	Fungicides
+7930	Insecticides
+7950	Herbicides
+7970	Other protection products
+8000	Animal feedingstuffs
+8010	Straight feedingstuffs
+8030	Cereals and milling by-products
+8070	Oil-cakes
+8100	Products of animal origin
+8130	Other straight feedingstuffs
+8210	Compound feedingstuffs
+8230	Compound feedingstuffs for calves
+8240	Compound feedingstuffs for cattle (excluding calves)
+8280	Compound feedingstuffs for pigs
+8300	Compound feedingstuffs for poultry
+8350	Other compound feedingstuffs
+8410	Material and small tools
+8510	Maintenance and repair of plant
+8610	Maintenance and repair of agricultural buildings and other buildings
+8730	Veterinary services
+8790	General expenses
+9000	Total goods and services contributing to agricultural investment
+9300	Machinery and other equipment
+9310	Rotovator and other 2 wheel equipment
+9320	Machinery and plant for cultivation
+9360	Machinery and plant for harvesting
+9400	Farm machinery and installations
+9410	Machinery and installations for crop production
+9450	Machinery and installations for animal production
+9480	Other farm machinery and installations
+9510	Tractors
+9550	Other vehicles
+9600	Buildings
+9610	Farm buildings
+9700	Engineering and soil improvement operations

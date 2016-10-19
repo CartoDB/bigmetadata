@@ -1,0 +1,37 @@
+10_DFGHIKO	All, without financial sector (10 employed persons or more)
+10_DGHIK	All, for comparability with 2002 (10 employed persons or more)
+S_DFGHIKO	Small enterprises (10-49 employed persons), without financial sector
+M_DFGHIKO	Medium enterprises (50-249 employed persons), without financial sector
+SM_DFGHIKO	SMEs (10-249 employed persons)
+L_DFGHIKO	Large enterprises (250 employed persons or more), without financial sector
+VS_DFGHIKO	Very small enterprises, without financial sector (1-9 employed persons)
+MI_DFGHIKO	Mini enterprises (5-9 employed persons)
+MC_DFGHIKO	Micro enterprises (1-4 employed persons)
+SME_O1	Objective 1 SMEs
+SME_NO1	Not Objective 1 SMEs
+10_BB	All enterprises (10 employed persons or more), without financial sector, which use broadband
+10_NBB	All enterprises (10 employed persons or more), without financial sector, which have internet access but do not use broadband
+10_D	Manufacturing (10 employed persons or more)
+10_DA15_TO_DE22	Manufacture of: food products, beverages & tobacco,  textiles & textile products, leather & leather products, wood & wood products, pulp, paper & paper products; Publishing & printing; publishing,  printing & reproduction of recorded media (10 employed persons or more)
+10_DE22	Publishing, printing, reproduction of recorded media (10 employed persons or more)
+10_DF23_DG24_DH25	Manufacture of coke, refined petroleum products & nuclear fuel; Manufacture of chemicals & chemical products; Manufacture of rubber & plastic products (10 employed persons or more)
+10_DI26_DJ27_DJ28	Manufacture of other non-metallic mineral products; Manufacture of basic metals & fabricated metal products; Manufacture of fabricated metal products, except machinery & equipment (10 employed persons or more)
+10_DK29_TO_DN37	Manufacture of machinery & equipment n.e.c.; Manufacture of electrical & optical equipment; Manufacture of transport equipment; Manufacturing n.e.c. (10 employed persons or more)
+10_E	Electricity, gas and water supply (10 employed persons or more)
+10_F	Construction (10 employed persons or more)
+10_G	Wholesale and retail trade (10 employed persons or more)
+10_G50	Sale, maintenance & repair of motor vehicles (10 employed persons or more)
+10_G51	Wholesale trade & commission trade, except of motor & motorcycles (10 employed persons or more)
+10_G52	Retail trade, except of motor vehicles, motorcycles; repair of personal & household goods (10 employed persons or more)
+10_H	Hotels and campings (10 employed persons or more)
+10_H551_H552	Hotels; camping sites, other provision of short-stay accommodation (10 employed persons or more)
+10_H553_TO_H555	Restaurants; bars; canteens & catering (10 employed persons or more)
+10_I	Transport, storage and communication (10 employed persons or more)
+10_I60_TO_I63	Land transport; transport via pipelines; water transport; air transport; supporting & auxiliary transport activities; activities of travel agencies
+10_I64	Post & telecommunications (10 employed persons or more)
+10_K	Real estate, Renting and Business activities (10 employed persons or more)
+10_K_NOT_K72	Real estate, renting & business activities excluding computer & related activities (10 employed persons or more)
+10_K72	Computer & related activities (10 employed persons or more)
+10_O921_O922	Motion picture & video activities; Radio and television activities (10 employed persons or more)
+10_O923_TO_O927	Other entertainment activities; news agency activities; library, archives, museums & other cultural activities; sporting activities; other recreational activities (10 employed persons or more)
+10_O93	Other service activities (10 employed persons or more)
