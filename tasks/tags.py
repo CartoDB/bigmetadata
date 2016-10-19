@@ -29,8 +29,22 @@ class LicenseTags(TagsTask):
             OBSTag(id='zillow',
                     name='Zillow Group Data',
                     type='license',
-                    description='http://www.zillow.com/research/data/. All data accessed and downloaded from this page is free for public use by consumers, media, analysts, academics etc., consistent with our published Terms of Use. Proper and clear attribution of all data to Zillow is required.')
-
+                    description='http://www.zillow.com/research/data/. All data accessed and downloaded from this page is free for public use by consumers, media, analysts, academics etc., consistent with our published Terms of Use. Proper and clear attribution of all data to Zillow is required.'),
+            OBSTag(id='eurostat_copyright',
+                   name='Eurostat Copyright',
+                   type='license',
+                   description='''
+            Eurostat has a policy of encouraging free re-use of its data, both for
+            non-commercial and commercial purposes. All statistical
+            data, metadata, content of web pages or other dissemination
+            tools, official publications and other documents published
+            on its website, with the exceptions listed below, can be
+            reused without any payment or written licence provided that:
+            the source is indicated as Eurostat; when re-use involves
+            modifications to the data or text, this must be stated
+            clearly to the end user of the information. `Full copyright
+            notice
+            <http://ec.europa.eu/eurostat/about/our-partners/copyright>`_.''')
         ]
 
 
@@ -107,7 +121,7 @@ class UnitTags(TagsTask):
 class SectionTags(TagsTask):
 
     def version(self):
-        return 4
+        return 5
 
     def tags(self):
         return [
@@ -115,10 +129,10 @@ class SectionTags(TagsTask):
                    name='Global',
                    type='section',
                    description=''),
-           OBSTag(id='eu',
-                  name='european_union',
-                  type='section',
-                  description=''),
+            OBSTag(id='eu',
+                   name='European Union',
+                   type='section',
+                   description=''),
             OBSTag(id='united_states',
                    name='United States',
                    type='section',
