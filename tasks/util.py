@@ -1174,7 +1174,7 @@ class CSV2TempTableTask(TempTableTask):
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell('head -n 1 {csv}'.format(csv=csv))
+        header_row = shell('head -n 1 {csv}'.format(csv=csv)).strip()
         return [(h, 'Text') for h in header_row.split(self.delimiter)]
 
     def run(self):
@@ -1186,7 +1186,7 @@ class CSV2TempTableTask(TempTableTask):
         session = current_session()
         session.execute('CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
-            coldef=', '.join(['{} {}'.format(*c) for c in self.coldef()])
+            coldef=', '.join(['"{}" {}'.format(*c) for c in self.coldef()])
         ))
         session.commit()
         options = ['''DELIMITER '"'{}'"' '''.format(self.delimiter)]
@@ -1274,7 +1274,7 @@ class TableTask(Task):
         '''
         This method must populate (most often via ``INSERT``) the output table.
 
-        For example: 
+        For example:
         '''
         raise NotImplementedError('Must implement populate method that '
                                    'populates the table')
