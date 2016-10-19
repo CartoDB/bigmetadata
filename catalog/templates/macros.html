@@ -155,6 +155,16 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
     :ref:`{{ target.id }}`
 {% endfor %}
 
+======================== ==========================
+        Boundary                     Time
+======================== =========================={% for geomcol, timespans in col.geom_timespans().items() %}
+{{ geomcol.name }}       {{ timespans|join(', ') }}
+{% endfor %}======================== ==========================
+
+{#| {{ geomcol.name }} | {{ timespans }} |#}
+
+{#| {{ geomcol.name }} | {% for timespan in timespans %} {{ timespan }}, {% endfor %} |#}
+
 {% if col.has_children() %}
 .. contents:: Subcolumns of {{ col.name }}
    :local:

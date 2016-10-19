@@ -400,6 +400,12 @@ class OBSColumn(Base):
         children.sort(key=lambda x: natural_sort_key(x.name))
         return children
 
+    def is_geomref(self):
+        '''
+        Returns True if the column is a geomref, else Null
+        '''
+        return GEOM_REF in self.targets.values()
+
     def has_children(self):
         '''
         Returns True if this column has children, False otherwise.
@@ -446,6 +452,22 @@ class OBSColumn(Base):
         Return tuple (longitude, latitude) for the catalog for this measurement.
         '''
         return catalog_lonlat(self.id)
+
+    def geom_timespans(self):
+        '''
+        Return a dict of geom columns and timespans that this measure is
+        available for.
+        '''
+        geom_timespans = {}
+        for table in self.tables:
+            table = table.table
+            geomref_column = table.geomref_column()
+            geom_column = [t for t, rt in geomref_column.targets.iteritems()
+                           if rt == GEOM_REF][0]
+            if geom_column not in geom_timespans:
+                geom_timespans[geom_column] = []
+            geom_timespans[geom_column].append(table.timespan)
+        return geom_timespans
 
 
 class OBSTable(Base):
@@ -504,6 +526,27 @@ class OBSTable(Base):
     description = Column(Text)
 
     version = Column(Numeric, default=0, nullable=False)
+
+    def geom_column(self):
+        '''
+        Return the column geometry column for this table, if it has one.
+
+        Returns None if there is none.
+        '''
+        for col in self.columns:
+            if lower(col.type) == 'geometry':
+                return col
+
+    def geomref_column(self):
+        '''
+        Return the geomref column for this table, if it has one.
+
+        Returns None if there is none.
+        '''
+        for col in self.columns:
+            col = col.column
+            if col.is_geomref():
+                return col
 
 
 class OBSTag(Base):
