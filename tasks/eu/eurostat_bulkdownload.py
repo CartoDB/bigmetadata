@@ -80,7 +80,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         columns = OrderedDict()
@@ -139,6 +139,17 @@ class FlexEurostatColumns(ColumnsTask):
                 columns[var_code] = OBSColumn(
                     id=var_code,
                     name=description,
+                    type='Numeric',
+                    description=table_desc,
+                    weight=1,
+                    aggregate=None, #???
+                    targets={}, #???
+                    tags=tags,
+                    extra=i
+                )
+                columns[var_code + '_flag'] = OBSColumn(
+                    id=var_code + '_flag',
+                    name=description,
                     type='Text',
                     description=table_desc,
                     weight=1,
@@ -152,6 +163,17 @@ class FlexEurostatColumns(ColumnsTask):
             description = variable_name
             columns[var_code] = OBSColumn(
                 id=var_code,
+                name=variable_name,
+                type='Numeric',
+                description=table_desc,
+                weight=1,
+                aggregate=None, #???
+                targets={}, #???
+                tags=tags,
+                extra=None
+            )
+            columns[var_code + '_flag'] = OBSColumn(
+                id=var_code + '_flag',
                 name=variable_name,
                 type='Text',
                 description=table_desc,
@@ -171,7 +193,7 @@ class TableEU(TableTask):
     subsection = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def timespan(self):
         return '2015'
@@ -198,14 +220,16 @@ class TableEU(TableTask):
         session.flush()
         column_targets = self.columns()
         for colname, coltarget in column_targets.iteritems():
-            if colname != 'nuts3_id':
+            if colname != 'nuts3_id' and not colname.endswith('_flag'):
                 col = coltarget.get(session)
                 extra = col.extra
                 keys = extra.keys()
                 vals = [extra[k_] for k_ in keys]
                 session.execute('''
-                    INSERT INTO {output} (nuts3_id, {colname})
-                    SELECT "geo\\time", Nullif("{year} ", ': ')::Text
+                    INSERT INTO {output} (nuts3_id, {colname}, {colname}_flag)
+                    SELECT "geo\\time",
+                      NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
+                      NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
                     FROM {input}
                     WHERE ({input_dims}) = ('{output_dims}')
                     ON CONFLICT (nuts3_id)
@@ -217,3 +241,4 @@ class TableEU(TableTask):
                            output=self.output().table,
                            input=self.input()['data'].table
                        ))
+            print colname
