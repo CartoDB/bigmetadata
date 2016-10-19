@@ -198,7 +198,7 @@ class NUTSSHNCrosswalk(TempTableTask):
 
 class NUTSColumns(ColumnsTask):
 
-    level = IntParameter()
+    level = IntParameter(default=3)
 
     def columns(self):
         nuts3 = OBSColumn(
