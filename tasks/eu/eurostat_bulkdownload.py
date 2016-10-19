@@ -191,10 +191,10 @@ class TableEU(TableTask):
 
     table_name = Parameter()
     subsection = Parameter()
-    nuts_level = Parameter()
+    nuts_level = IntParameter()
 
     def version(self):
-        return 2
+        return 3
 
     def timespan(self):
         return '2015'
@@ -249,5 +249,5 @@ class EURegionalTables(WrapperTask):
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
             reader = csv.reader(wrappertables)
             for subsection, table_code, nuts in reader:
-                if nuts == 3: # Remove this line when NUTS2 and NUTS1 are available
+                if nuts == str(3): # Remove this line when NUTS2 and NUTS1 are available
                     yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts)
