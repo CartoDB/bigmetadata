@@ -1,0 +1,122 @@
+TOTAL	Total
+OD10403-20109	Diseases caused by certain chemical agents
+OD100	Diseases caused by chemical agents
+OD10000	Diseases caused by acrylonitrile
+OD10100	Diseases caused by arsenic or compounds thereof
+OD10200	Diseases caused by beryllium (glucinium) or compounds thereof
+OD10301	Diseases caused by carbon monoxide
+OD10302	Diseases caused by carbon oxychloride
+OD10401	Diseases caused by hydrocyanic acid
+OD10402	Diseases caused by cyanides and compounds thereof
+OD10403	Diseases caused by isocyanates
+OD10500	Diseases caused by cadmium or compounds thereof
+OD10600	Diseases caused by chromium or compounds thereof
+OD10700	Diseases caused by mercury or compounds thereof
+OD10800	Diseases caused by manganese or compounds thereof
+OD10901	Diseases caused by nitric acid
+OD10902	Diseases caused by oxides of nitrogen
+OD10903	Diseases caused by ammonia
+OD11000	Diseases caused by nickel or compounds thereof
+OD11100	Diseases caused by phosphorus or compounds thereof
+OD11200	Diseases caused by lead or compounds thereof
+OD11301	Diseases caused by oxides of sulphur
+OD11302	Diseases caused by sulphuric acid
+OD11303	Diseases caused by carbon disulphide
+OD11400	Diseases caused by vanadium or compounds thereof
+OD11501	Diseases caused by chlorine
+OD11502	Diseases caused by bromine
+OD11504	Diseases caused by iodine
+OD11505	Diseases caused by fluorine or compounds thereof
+OD11600	Diseases caused by aliphatic or alicyclic hydrocarbons derived from petroleum spirit or petrol
+OD11700	Diseases caused by halogenated derivatives of the aliphatic or alicyclic hydrocarbons
+OD11800	Diseases caused by butyl, methyl and isopropyl alcohol
+OD11900	Diseases caused by ethylene glycol, diethylene glycol, 1,4-butanediol and the nitrated derivatives of the glycols and of glycerol
+OD12000	Diseases caused by methyl ether, ethyl ether, isopropyl ether, vinyl ether, dichloroisopropyl ether, guaiacol, methyl ether and ethyl ether of ethylene glycol
+OD12100	Diseases caused by acetone, chloroacetone, bromoacetone, hexafluoroacetone, methyl ethyl ketone, methyl n-butyl ketone, methyl isobutyl ketone, diacetone alcohol, mesityl oxide, 2-methylcyclohexanone
+OD12200	Diseases caused by organophosphorus esters
+OD12300	Diseases caused by organic acids
+OD12400	Diseases caused by formaldehyde
+OD12500	Diseases caused by aliphatic nitrated derivatives
+OD12601	Diseases caused by benzene or counterparts thereof (the counterparts of benzene are defined by the formula: CnH2n-6)
+OD12602	Diseases caused by naphthalene or naphthalene counterparts (the counterpart of naphthalene is defined by the formula: CnH2n-12)
+OD12603	Diseases caused by vinylbenzene and divinylbenzene
+OD12700	Diseases caused by halogenated derivatives of the aromatic hydrocarbons
+OD12801	Diseases caused by phenols or counterparts or halogenated derivatives thereof
+OD12802	Diseases caused by naphthols or counterparts or halogenated derivatives thereof
+OD12803	Diseases caused by halogenated derivatives of the alkylaryl oxides
+OD12804	Diseases caused by halogenated derivatives of the alkylaryl sulfonates
+OD12805	Diseases caused by benzoquinones
+OD12901	Diseases caused by aromatic amines or aromatic hydrazines or halogenated, phenolic, nitrified, nitrated or sulfonated derivatives thereof
+OD12902	Diseases caused by aliphatic amines and halogenated derivatives thereof
+OD13001	Diseases caused by nitrated derivatives of aromatic hydrocarbons
+OD13002	Diseases caused by nitrated derivatives of phenols or their counterparts
+OD13100	Diseases caused by antimony and derivatives thereof
+OD13200	Diseases caused by nitric acid esters
+OD13300	Diseases caused by hydrogen sulphide
+OD13500	Diseases caused by encephalopathies due to organic solvents which do not come under other headings
+OD13600	Diseases caused by polyneuropathies due to organic solvents which do not come under other headings
+OD200	Skin diseases caused by substances and agents not included under other headings
+OD20100	Skin diseases and skin cancers
+OD20101	Skin diseases and skin cancers caused by soot
+OD20102	Skin diseases and skin cancers caused by bitumen
+OD20103	Skin diseases and skin cancers caused by tar
+OD20104	Skin diseases and skin cancers caused by pitch
+OD20105	Skin diseases and skin cancers caused by anthracene or compounds thereof
+OD20106	Skin diseases and skin cancers caused by mineral and other oils
+OD20107	Skin diseases and skin cancers caused by crude paraffin
+OD20108	Skin diseases and skin cancers caused by carbazole or compounds thereof
+OD20109	Skin diseases and skin cancers caused by products of the distillation of coal
+OD20200	Occupational skin ailments caused by scientifically recognised allergy provoking or irritative substances not included under other headings
+OD300	Diseases caused by the inhalation of substances and agents not included under other headings
+OD30100	Diseases of the respiratory system and cancers
+OD30111-30404	Respiratory diseases
+OD30111	Silicosis
+OD30112	Silicosis combined with pulmonary tuberculosis
+OD30121	Asbestosis
+OD30122	Mesothelioma following the inhalation of asbestos dust
+OD30131	Pneumoconioses caused by dusts of silicates
+OD30200	Complication of asbestos in the form of bronchial cancer
+OD30300	Broncho-pulmonary ailments caused by dusts from sintered metals
+OD30401	Extrinsic allergic alveolites
+OD30402	Lung diseases caused by the inhalation of dusts and fibres from cotton, flax, hemp, jute, sisal and bagasse
+OD30403	Respiratory ailments of an allergic nature caused by the inhalation of substances consistently recognised as causing allergies and inherent to the type of work
+OD30404	Respiratory ailments caused by the inhalation of dust from cobalt, tin, barium and graphite
+OD30405	Siderosis
+OD30406	Allergic asthmas caused by the inhalation of substances consistently recognised as causing allergies and inherent to the type of work
+OD30407	Allergic rhinitis caused by the inhalation of substances consistently recognised as causing allergies and inherent to the type of work
+OD30501	Cancerous diseases of the upper respiratory tract caused by dust from wood
+OD30600	Fibrotic diseases of the pleura, with respiratory restriction, caused by asbestos
+OD30700	Chronic obstructive bronchitis or emphysema in miners working in underground coal mines
+OD30800	Lung cancer following the inhalation of asbestos dust
+OD30900	Broncho-pulmonary ailments caused by dusts or fumes from aluminium or compounds thereof
+OD31000	Broncho-pulmonary ailments caused by dusts from basic slags
+OD400	Infectious and parasitic diseases
+OD40100-40500	Infectious diseases
+OD40100	Infectious or parasitic diseases transmitted to man by animals or remains of animals
+OD40200	Tetanus
+OD40300	Brucellosis
+OD40400	Viral hepatitis
+OD40500	Tuberculosis
+OD40600	Amoebiasis
+OD40700	Other infectious diseases caused by work in disease prevention, health care, domicilary assistance and other comparable activities for which a risk of infection has been proven
+OD500	Diseases caused by physical agents
+OD50201	Cataracts caused by heat radiation
+OD50202	Conjunctival ailments following exposure to ultraviolet radiation
+OD50300	Hypoacousis or deafness caused by noise
+OD50400	Diseases caused by atmospheric compression or decompression
+OD50501	Osteoarticular diseases of the hands and wrists caused by mechanical vibration
+OD50502	Angioneurotic diseases caused by mechanical vibration
+OD50610	Diseases of the periarticular sacs due to pressure
+OD50611	Pre-patellar and sub-patellar bursitis
+OD50612	Olecranon bursitis
+OD50613	Shoulder bursitis
+OD50621	Diseases due to overstraining of the tendon sheaths
+OD50622	Diseases due to overstraining of the peritendineum
+OD50623	Diseases due to overstraining of the muscular and tendonous insertions
+OD50630	Meniscus lesions following extended periods of work in a kneeling or squatting position
+OD50640	Paralysis of the nerves due to pressure
+OD50645	Carpal tunnel syndrome
+OD50700	Miner's nystagmus
+OD50800	Diseases caused by ionising radiation
+OTH	Other diseases
+UNK	Unknown diseases

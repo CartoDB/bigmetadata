@@ -1,0 +1,640 @@
+HOLD_HOLD	hold: Total number of holdings
+HOLDSL_HOLD	hold: Sole holder holdings
+HOLDLEG_GRP_HOLD	hold: Legal persons or group holdings
+AGRAREA_HA	ha: Utilised agricultural area
+AGRAREA_HOLD	hold with Utilised agricultural area
+AGRAREA_LSU	LSU of hold with Utilised agricultural area
+B_1_HA	ha: Arable land
+B_1_HOLD	hold: Arable land
+B_1_1_HA	ha: Cereals
+B_1_1_HOLD	hold: Cereals
+B_1_1_1_HA	ha: Common wheat and spelt
+B_1_1_1_HOLD	hold: Common wheat and spelt
+B_1_1_2_HA	ha: Durum wheat
+B_1_1_2_HOLD	hold: Durum wheat
+B_1_1_3_HA	ha: Rye
+B_1_1_3_HOLD	hold: Rye
+B_1_1_4_HA	ha: Barley
+B_1_1_4_HOLD	hold: Barley
+B_1_1_5_HA	ha: Oats
+B_1_1_5_HOLD	hold: Oats
+B_1_1_6_HA	ha: Grain maize
+B_1_1_6_HOLD	hold: Grain maize
+B_1_1_7_HA	ha: Rice
+B_1_1_7_HOLD	hold: Rice
+B_1_1_99_HA	ha: Other cereals
+B_1_1_99_HOLD	hold: Other cereals
+B_1_2_HA	ha: Pulses - total
+B_1_2_HOLD	hold: Pulses - total
+B_1_345_HA	ha: Root crops
+B_1_345_HOLD	hold: Root crops
+B_1_3_HA	ha: Potatoes
+B_1_3_HOLD	hold: Potatoes
+B_1_4_HA	ha: Sugar beet
+B_1_4_HOLD	hold: Sugar beet
+B_3_99_HA	ha: Fodder crops and grass
+B_3_99_HOLD	hold: Fodder crops and grass
+B_1_5_HA	ha: Fodder roots and brassicas
+B_1_5_HOLD	hold: Fodder roots and brassicas
+B_1_6_HA	ha: Industrial crops - total
+B_1_6_HOLD	hold: Industrial crops - total
+B_1_6_1_HA	ha: Tobacco
+B_1_6_1_HOLD	hold: Tobacco
+B_1_6_2_HA	ha: Hops
+B_1_6_2_HOLD	hold: Hops
+B_1_6_3_HA	ha: Cotton
+B_1_6_3_HOLD	hold: Cotton
+B_1_6_4_HA	ha: Rape and turnip
+B_1_6_4_HOLD	hold: Rape and turnip
+B_1_6_5_HA	ha: Sunflower
+B_1_6_5_HOLD	hold: Sunflower
+B_1_6_6_HA	ha: Soya
+B_1_6_6_HOLD	hold: Soya
+B_1_6_7_11_HA	ha:  Other oil-seed or fibre crops
+B_1_6_7_11_HOLD	hold:  Other oil-seed or fibre crops
+B_1_6_12_HA	ha: Aromatic, medicinal and culinary plants
+B_1_6_12_HOLD	hold: Aromatic, medicinal and culinary plants
+B_1_6_99_HA	ha: Industrial crops not mentioned elsewhere
+B_1_6_99_HOLD	hold: Industrial crops not mentioned elsewhere
+B_4_7_7_2_8_2_HA	ha: Under glass:Vegetables, flowers and permanent crops
+B_4_7_7_2_8_2_HOLD	hold: Under glass:Vegetables, flowers and permanent crops
+B_1_7_HA	ha: Fresh vegetables, melons, strawberries
+B_1_7_HOLD	hold: Fresh vegetables, melons, strawberries
+B_1_7_1_HA	ha: Outdoor: Fresh vegetables, melons, strawberries
+B_1_7_1_HOLD	hold: Outdoor: Fresh vegetables, melons, strawberries
+B_1_7_1_1_HA	ha: Open field: Outdoor: Fresh vegetables, melons, strawberries
+B_1_7_1_1_HOLD	hold: Open field: Outdoor: Fresh vegetables, melons, strawberries
+B_1_7_1_2_HA	ha: Market gardening: Outdoor: Fresh vegetables, melons, strawberries
+B_1_7_1_2_HOLD	hold: Market gardening: Outdoor: Fresh vegetables, melons, strawberries
+B_1_7_2_HA	ha: Under glass: Fresh vegetables, melons, strawberries
+B_1_7_2_HOLD	hold: Under glass: Fresh vegetables, melons, strawberries
+B_1_8_HA	ha: Flowers and ornemental plants
+B_1_8_HOLD	hold: Flowers and ornemental plants
+B_1_8_1_HA	ha: Outdoor: Flowers and ornemental plants
+B_1_8_1_HOLD	hold: Outdoor: Flowers and ornemental plants
+B_1_8_2_HA	ha: Under glass: Flowers and ornemental plants
+B_1_8_2_HOLD	hold: Under glass: Flowers and ornemental plants
+B_1_9_HA	ha: Fodder crops - total
+B_1_9_HOLD	hold: Fodder crops - total
+B_1_9_1_HA	ha: Fodder crops - temporary grass
+B_1_9_1_HOLD	hold: Fodder crops - temporary grass
+B_1_9_2_HA	ha: Total: Other green fodder: Fodder crops
+B_1_9_2_HOLD	hold: Total: Other green fodder: Fodder crops
+B_1_9_2_1_HA	ha: Green maize: Other green fodder: Fodder crops
+B_1_9_2_1_HOLD	hold: Green maize: Other green fodder: Fodder crops
+B_1_9_2_2_HA	ha: Other fodder crops: leguminous plants: Fodder crops
+B_1_9_2_2_HOLD	hold: Other fodder crops: leguminous plants: Fodder crops
+B_1_9_2_99_HA	ha: Other green fodder - other than green maize and leguminous
+B_1_9_2_99_HOLD	hold: Other green fodder - other than green maize and leguminous
+B_1_10_11_HA	ha: Seeds, seedlings and other crops on arable land
+B_1_10_11_HOLD	hold: Seeds, seedlings and other crops on arable land
+B_1_10_HA	ha: Seeds and seedlings
+B_1_10_HOLD	hold: Seeds and seedlings
+B_1_11_HA	ha: Other crops on arable land
+B_1_11_HOLD	hold: Other crops on arable land
+B_1_12_HA	ha: Fallow land - total (with and w/o subsidies)
+B_1_12_HOLD	hold: Fallow land - total (with and w/o subsidies)
+B_2_HA	ha: Kitchen gardens
+B_2_HOLD	hold: Kitchen gardens
+B_3_HA	ha: Total: Permanent grassland and meadow
+B_3_HOLD	hold: Total: Permanent grassland and meadow
+B_3_1_HA	ha: Pasture and meadow: Permanent grassland and meadow
+B_3_1_HOLD	hold: Pasture and meadow: Permanent grassland and meadow
+B_3_2_HA	ha: Rough grazings: Permanent grassland and meadow
+B_3_2_HOLD	hold: Rough grazings: Permanent grassland and meadow
+B_3_3_HA	ha: Permanent grassland and meadow - not used for production, eligible for subsidies
+B_3_3_HOLD	hold: Permanent grassland and meadow - not used for production, eligible for subsidies
+B_4_HA	ha: Permanent crops
+B_4_HOLD	hold: Permanent crops
+B_4_1_HA	ha: Fruit and berry plantations - total
+B_4_1_HOLD	hold: Fruit and berry plantations - total
+B_4_1_1_HA	ha: Fruit species: Fruit and berry plantations
+B_4_1_1_HOLD	hold: Fruit species: Fruit and berry plantations
+B_4_1_1_1_HA	ha: Fruit species of temperate climate zones
+B_4_1_1_1_HOLD	hold: Fruit species of temperate climate zones
+B_4_1_1_2_HA	ha: Fruit species of subtropical climate zones
+B_4_1_1_2_HOLD	hold: Fruit species of subtropical climate zones
+B_4_1_2_HA	ha: Berry species : Fruit and berry plantations
+B_4_1_2_HOLD	hold: Berry species: Fruit and berry plantations
+B_4_1_99_1_HA	ha: Temperate climate: Fruit and berry plantations - until 2007
+B_4_1_99_1_HOLD	hold: Temperate climate: Fruit and berry plantations - until 2007
+B_4_1_99_2_HA	ha: Subtropical climate :Fruit and berry plantations - until 2007
+B_4_1_99_2_HOLD	hold: Subtropical climate: Fruit and berry plantations - until 2007
+B_4_1_3_HA	ha: Nuts: Fruit and berry plantations
+B_4_1_3_HOLD	hold:  Nuts: Fruit and berry plantations
+B_4_2_HA	ha: Citrus plantations
+B_4_2_HOLD	hold: Citrus plantations
+B_4_3_HA	ha: Olive plantations - total
+B_4_3_HOLD	hold: Olive plantations - total
+B_4_3_1_HA	ha: Olive plantations - table olives
+B_4_3_1_HOLD	hold: Olive plantations - table olives
+B_4_3_2_HA	ha: Olive plantations - oil production
+B_4_3_2_HOLD	hold: Olive plantations - oil production
+B_4_4_HA	ha: Vineyards - total
+B_4_4_HOLD	hold: Vineyards - total
+B_4_4_1_HA	ha: Vineyards - quality wine
+B_4_4_1_HOLD	hold: Vineyards - quality wine
+B_4_4_2_HA	ha: Vineyards - other wines
+B_4_4_2_HOLD	hold: Vineyards - other wines
+B_4_4_3_HA	ha: Vineyards - table grapes
+B_4_4_3_HOLD	hold: Vineyards - table grapes
+B_4_4_4_HA	ha: Vineyards - raisins
+B_4_4_4_HOLD	hold: Vineyards - raisins
+B_4_5_HA	ha: Nurseries
+B_4_5_HOLD	hold: Nurseries
+B_4_6_HA	ha: Other permanent crops
+B_4_6_HOLD	hold: Other permanent crops
+B_4_7_HA	ha: Permanent crops under glass
+B_4_7_HOLD	hold: Permanent crops under glass
+B_5_HA	ha: Other land - Total
+B_5_HOLD	hold: Other land - Total
+B_5_1_5_3_HA	ha: Unutilised agricultural land and other areas
+B_5_1_5_3_HOLD	hold: Unutilised agricultural land and other areas
+B_5_1_HA	ha: Unutilised agricultural land
+B_5_1_HOLD	hold: Unutilised agricultural land
+B_5_2_HA	ha: Wooded area
+B_5_2_HOLD	hold: Wooded area
+B_5_2_1_HA	ha: Wooded area - with short rotation
+B_5_2_1_HOLD	hold: Wooded area - with short rotation
+B_5_3_HA	ha: Other land
+B_5_3_HOLD	hold: Other land
+B_6_1_HA	ha: Mushrooms
+B_6_1_HOLD	hold: Mushrooms
+B_6_3_HA	ha: Energy crops
+B_6_3_HOLD	hold: Energy crops
+B_6_3_1_HA	ha: Energy crops on set-aside area
+B_6_3_1_HOLD	hold: Energy crops on set-aside area
+B_6_4_HA	ha: Genetically modified crops
+B_6_4_HOLD	hold: Genetically modified crops
+B_6_2_1_HA	ha: Total irrigable area
+B_6_2_1_HOLD	hold: Total irrigable area
+B_6_2_2_HA	ha: Irrigated at least once a year : Total (excl. kitchen gardens and area under glass)
+B_6_2_2_HOLD	hold with area irrigated at least once a year: Total (excl. kitchen gardens and area under glass)
+B_6_2_2_99_HOLD	hold with area irrigated at least once a year: Total (incl. kitchen gardens and area under glass)
+C_LIVESTOCK_HOLD	hold: Number of holdings with livestock
+C_LIVESTOCK_LSU	LSU of the holdings with livestock
+C_1_HEADS	head: Equidae
+C_1_HOLD	hold: Equidae
+C_1_3_LSU	LSU: Grazing livestock
+C_1_3_HOLD	Holdings with grazing livestock
+C_2_LSU	LSU: Cattle
+C_2_HEADS	head: Cattle - total
+C_2_HOLD	hold: Cattle - total
+C_2_1_HEADS	head: Bovine <1 year old - total
+C_2_1_HOLD	hold: Bovine <1 year old - total
+C_2_2_HEADS	head: Bovine 1-<2 years - males
+C_2_2_HOLD	hold: Bovine 1-<2 years - males
+C_2_3_HEADS	head: Bovine 1-<2 years - females
+C_2_3_HOLD	hold: Bovine 1-<2 years - females
+C_2_4_HEADS	head: Bovine 2 years and older - males
+C_2_4_HOLD	hold: Bovine 2 years and older - males
+C_2_5_HEADS	head: Heifers, 2 years and older
+C_2_5_HOLD	hold: Heifers, 2 years and older
+C_2_6_HEADS	head: Dairy cows
+C_2_6_HOLD	hold: Dairy cows
+C_2_99_HEADS	head: Other cows, bovine 2 years old and over
+C_2_99_HOLD	hold: Other cows, bovine 2 years old and over
+C_3_1_HEADS	head: Sheep - total
+C_3_1_HOLD	hold: Sheep - total
+C_3_1_1_HEADS	head: Sheep - breeding females
+C_3_1_1_HOLD	hold: Sheep - breeding females
+C_3_1_99_HEADS	head: Sheep - others
+C_3_1_99_HOLD	hold: Sheep - others
+C_3_2_HEADS	head: Goats
+C_3_2_HOLD	hold: Goats
+C_3_2_1_HEADS	head: Goats - breeding females
+C_3_2_1_HOLD	hold: Goats - breeding females
+C_3_2_99_HEADS	head: Goats - others
+C_3_2_99_HOLD	hold: Goats - others
+C_4_HEADS	head: Pigs
+C_4_HOLD	hold: Pigs
+C_4_1_HEADS	head: Pigs - piglets under 20 kg
+C_4_1_HOLD	hold: Pigs - piglets under 20 kg
+C_4_2_HEADS	head: Pigs - breeding sows over 50 kg
+C_4_2_HOLD	hold: Pigs - breeding sows over 50 kg
+C_4_99_HEADS	head: Pigs - others
+C_4_99_HOLD	hold: Pigs - others
+C_5_1000_HEADS	1000 heads: Poultry
+C_5_HOLD	hold: Poultry
+C_5_1_1000_HEADS	1000 heads: Poultry - broilers
+C_5_1_HOLD	hold: Poultry - broilers
+C_5_2_1000_HEADS	1000 heads: Laying hens
+C_5_2_HOLD	hold: Laying hens
+C_5_3_1000_HEADS	1000 heads: Poultry - others
+C_5_3_HOLD	hold: Poultry - others
+C_6_HEADS	head: Rabbits (breeding females)
+C_6_HOLD	hold: Rabbits (breeding females)
+C_7_HIVE	Nb: Beehives
+C_7_HOLD	hold: Beehives
+C_99_EQ_Y_HOLD	Holdings with other livestock
+A_3_2_1_HOLD	hold:Organic farming - certified
+A_3_2_1_HA	ha:Organic farming - certified
+A_3_2_2_HOLD	hold:Farming system - Conversion to organic farming
+A_3_2_2_HA	ha:Farming system - Conversion to organic farming
+A_3_2_3_HOLD	hold:Organic farming (incl. in conversion)
+A_3_2_3_HA	ha:Organic farming (incl. in conversion)
+A_3_2_3_1_HOLD	hold:Organic farming - cereals
+A_3_2_3_1_HA	ha:Organic farming - cereals
+A_3_2_3_2_HOLD	hold:Organic farming - dried pulses
+A_3_2_3_2_HA	ha:Organic farming - dried pulses
+A_3_2_3_3_HOLD	hold:Organic farming - potatoes
+A_3_2_3_3_HA	ha:Organic farming - potatoes
+A_3_2_3_4_HOLD	hold:Organic farming - sugar beet
+A_3_2_3_4_HA	ha:Organic farming - sugar beet
+A_3_2_3_5_HOLD	hold:Organic farming - oil seed crops
+A_3_2_3_5_HA	ha:Organic farming - oil crops
+A_3_2_3_6_HOLD	hold:Organic farming - fresh vegetables, melons, strawberries
+A_3_2_3_6_HA	ha:Organic farming - fresh vegetables, melons, strawberries
+A_3_2_3_7_HOLD	hold:Organic farming - pasture and meadow, excl. rough grazings
+A_3_2_3_7_HA	ha:Organic farming - pasture and meadow, excl. rough grazings
+A_3_2_3_8_HOLD	hold:Organic farming - fruit and berry
+A_3_2_3_8_HA	ha:Organic farming - fruit and berry
+A_3_2_3_9_HOLD	hold:Organic farming - citrus fruit
+A_3_2_3_9_HA	ha:Organic farming - citrus fruit
+A_3_2_3_10_HOLD	hold:Organic farming - olives
+A_3_2_3_10_HA	ha:Organic farming - olives
+A_3_2_3_11_HOLD	hold:Organic farming - vineyards
+A_3_2_3_11_HA	ha:Organic farming - vineyards
+A_3_2_3_99_HOLD	hold:Organic farming - other crops
+A_3_2_3_99_HA	ha:Organic farming - other crops
+A_3_2_4_1_HOLD	hold: Organic farming - bovine animals
+A_3_2_4_1_HEADS	head:Organic farming - bovine animals
+A_3_2_4_2_HOLD	hold: Organic farming - pigs
+A_3_2_4_2_HEADS	head:Organic farming - pigs
+A_3_2_4_3_HOLD	hold: Organic farming - sheep and goats
+A_3_2_4_3_HEADS	head:Organic farming - sheep and goats
+A_3_2_4_4_HOLD	hold: Organic farming - poultry
+A_3_2_4_4_HEADS	head:Organic farming - poultry
+A_3_2_4_5_EQ_Y_HOLD	hold: Organic farming - with other animals
+E_1_2_4B_EQ_Y_HOLD	Hold. with vocational training by manager in last 12 months
+M_1_1_HA	ha: Tillage: conventional
+M_1_1_HOLD	hold: Tillage: conventional
+M_1_2_HA	ha: Tillage: conservation
+M_1_2_HOLD	hold: Tillage: conservation
+M_1_3_HA	ha: Tillage: zero
+M_1_3_HOLD	hold: Tillage: zero
+M_2_1_1_HA	ha: Soil cover: normal winter crop
+M_2_1_1_HOLD	hold: Soil cover: normal winter crop
+M_2_1_2_HA	ha: Soil cover: cover or intermediate crop
+M_2_1_2_HOLD	hold: Soil cover: cover or intermediate crop
+M_2_1_3_HA	ha: Soil cover: plant residues
+M_2_1_3_HOLD	hold: Soil cover: plant residues
+M_2_1_4_HA	ha: Soil cover: bare soil
+M_2_1_4_HOLD	hold: Soil cover: bare soil
+M_2_2_1_EQ_0_HOLD	hold: Share of Arable Area out of crop rotation: 0
+M_2_2_1_EQ_0_HA	ha arable land of hold: Share of Arable Area out of crop rotation: 0
+M_2_2_1_EQ_24_HOLD	hold: Share of Arable Area out of crop rotation: >0-<25
+M_2_2_1_EQ_24_HA	ha arable land of hold: Share of Arable Area out of crop rotation: >0-<25
+M_2_2_1_EQ_49_HOLD	hold: Share of Arable Area out of crop rotation: >=25-<50
+M_2_2_1_EQ_49_HA	ha arable land of hold: Share of Arable Area out of crop rotation: >=25-<50
+M_2_2_1_EQ_74_HOLD	hold: Share of Arable Area out of crop rotation: >=50-<75
+M_2_2_1_EQ_74_HA	ha arable land of hold: Share of Arable Area out of crop rotation: >=50-<75
+M_2_2_1_EQ_100_HOLD	hold: Share of Arable Area out of crop rotation: >=75
+M_2_2_1_EQ_100_HA	ha arable land of hold: Share of Arable Area out of crop rotation: >=75
+M_3_1_ABC_Y_HOLD	hold: Linear elements maintained:  yes
+M_3_1_A_EQ_Y_HOLD	hold: Linear elements maintained: hedges - yes
+M_3_1_B_EQ_Y_HOLD	hold: Linear elements maintained: tree lines - yes
+M_3_1_C_EQ_Y_HOLD	hold: Linear elements maintained: stone walls - yes
+M_3_2_ABC_Y_HOLD	hold: Linear elements established:  yes
+M_3_2_A_EQ_Y_HOLD	hold: Linear elements established: hedges - yes
+M_3_2_B_EQ_Y_HOLD	hold: Linear elements established: tree lines - yes
+M_3_2_C_EQ_Y_HOLD	hold: Linear elements established: stone walls - yes
+M_3_12_ABC_Y_HOLD	hold: Linear elements established or maintained:  yes
+M_3_12_A_Y_HOLD	hold: Linear elements established or maintained: hedges - yes
+M_3_12_B_Y_HOLD	hold: Linear elements established or maintained: tree lines - yes
+M_3_12_C_Y_HOLD	hold: Linear elements established or maintained: stone walls - yes
+M_4_1_1_HA	ha: Grazing on the holding: Area grazed during last year
+M_4_2_1_HEADS	Common land grazing: Number of animals
+M_4_2_1_HOLD	Common land grazing: Number of holdings
+M_4_2_1_LSU	Common land grazing:  LSU of farms having practised common grazing
+M_5_1_1_PLACES	places: Animal housing - Cattle - Stanchion tied stable with solid dung and manure
+M_5_1_1_HOLD	hold: Animal housing - Cattle - Stanchion tied stable with solid dung and manure
+M_5_1_1_HEADS	head: Animal housing - Cattle - Stanchion tied stable with solid dung and manure
+M_5_1_2_PLACES	places: Animal housing - Cattle - Stanchion tied stable with slurry
+M_5_1_2_HOLD	hold: Animal housing - Cattle - Stanchion tied stable with slurry
+M_5_1_2_HEADS	head: Animal housing - Cattle - Stanchion tied stable with slurry
+M_5_1_3_PLACES	places: Animal housing - Cattle - Loose housing with solid dung and liquid manure
+M_5_1_3_HOLD	hold: Animal housing - Cattle - Loose housing with solid dung and liquid manure
+M_5_1_3_HEADS	head: Animal housing - Cattle - Loose housing with solid dung and liquid manure
+M_5_1_4_PLACES	places: Animal housing - Cattle - Loose housing with slurry
+M_5_1_4_HOLD	hold: Animal housing - Cattle - Loose housing with slurry
+M_5_1_4_HEADS	head: Animal housing - Cattle - Loose housing with slurry
+M_5_1_99_PLACES	places: Animal housing - Cattle - Other housing
+M_5_1_99_HOLD	hold: Animal housing - Cattle - Other housing
+M_5_1_99_HEADS	head: Animal housing - Cattle - Other housing
+M_5_2_1_PLACES	places: Animal housing - Pigs - on partially slatted floors
+M_5_2_1_HOLD	hold: Animal housing - Pigs - on partially slatted floors
+M_5_2_1_HEADS	head: Animal housing - Pigs - on partially slatted floors
+M_5_2_2_PLACES	places: Animal housing - Pigs - on completely slatted floors
+M_5_2_2_HOLD	hold: Animal housing - Pigs - on completely slatted floors
+M_5_2_2_HEADS	head: Animal housing - Pigs - on completely slatted floors
+M_5_2_3_PLACES	places: Animal housing - Pigs - on straw beds
+M_5_2_3_HOLD	hold: Animal housing - Pigs - on straw beds
+M_5_2_3_HEADS	head: Animal housing - Pigs - on straw beds
+M_5_2_99_PLACES	places: Animal housing - Pigs - other
+M_5_2_99_HOLD	hold: Animal housing - Pigs - other
+M_5_2_99_HEADS	head: Animal housing - Pigs - other
+M_5_3_1_PLACES	places: Animal housing - Laying hens - Straw beds
+M_5_3_1_HOLD	hold: Animal housing - Laying hens - Straw beds
+M_5_3_1_1000_HEADS	1000 heads: Animal housing - Laying hens - Straw beds
+M_5_3_2_PLACES	places: Animal housing - Laying hens - Battery cages (all types)
+M_5_3_2_HOLD	hold: Animal housing - Laying hens - Battery cages (all types)
+M_5_3_2_1000_HEADS	1000 heads: Animal housing - Laying hens - Battery cages (all types)
+M_5_3_2_1_PLACES	places: Animal housing - Laying hens - Battery cages (with manure belt)
+M_5_3_2_1_HOLD	hold: Animal housing - Laying hens - Battery cages (with manure belt)
+M_5_3_2_1_1000_HEADS	1000 heads: Animal housing - Laying hens - Battery cages (with manure belt)
+M_5_3_2_2_PLACES	places: Animal housing - Laying hens - Battery cages (with deep pit)
+M_5_3_2_2_HOLD	hold: Animal housing - Laying hens - Battery cages (with deep pit)
+M_5_3_2_2_1000_HEADS	1000 heads: Animal housing - Laying hens - Battery cages (with deep pit)
+M_5_3_2_3_PLACES	places: Animal housing - Laying hens - Battery cages (with stilt house)
+M_5_3_2_3_HOLD	hold: Animal housing - Laying hens - Battery cages (with stilt house)
+M_5_3_2_3_1000_HEADS	1000 heads: Animal housing - Laying hens - Battery cages (with stilt house)
+M_5_3_99_PLACES	places: Animal housing - Laying hens - Other than Straw Beds and Battery Cages
+M_5_3_99_HOLD	hold: Animal housing - Laying hens - Other than Straw Beds and Battery Cages
+M_5_3_99_1000_HEADS	1000 heads: Animal housing - Laying hens - Other than Straw Beds and Battery Cages
+M_6_1_2_EQ_0_HOLD	hold: Manure application: % of AA with immediate incoporation - 0
+M_6_1_2_EQ_0_HA	ha UAA of hold : Manure application: % of AA with immediate incoporation = 0
+M_6_1_2_EQ_0_LSU	LSU of hold : Manure application: % of AA with immediate incoporation = 0
+M_6_1_2_EQ_24_HOLD	hold: Manure application: % of AA with immediate incoporation - >0-<25
+M_6_1_2_EQ_24_HA	ha UAA of hold: Manure application: % of AA with immediate incoporation - >0-<25
+M_6_1_2_EQ_24_LSU	LSU of hold: Manure application: % of AA with immediate incoporation - >0-<25
+M_6_1_2_EQ_49_HOLD	hold: Manure application: % of AA with immediate incoporation - 25-<50
+M_6_1_2_EQ_49_HA	ha UAA of hold: Manure application: % of AA with immediate incoporation - 25-<50
+M_6_1_2_EQ_49_LSU	LSU of hold: Manure application: % of AA with immediate incoporation - 25-<50
+M_6_1_2_EQ_74_HOLD	hold: Manure application: % of AA with immediate incoporation - 50-<75
+M_6_1_2_EQ_74_HA	ha UAA of hold: Manure application: % of AA with immediate incoporation - 50-<75
+M_6_1_2_EQ_74_LSU	LSU of hold: Manure application: % of AA with immediate incoporation - 50-<75
+M_6_1_2_EQ_100_HOLD	hold: Manure application: % of AA with immediate incoporation - >=75
+M_6_1_2_EQ_100_HA	ha UAA of hold: Manure application: % of AA with immediate incoporation - >=75
+M_6_1_2_EQ_100_LSU	LSU of hold: Manure application: % of AA with immediate incoporation - >=75
+M_6_2_2_EQ_0_HOLD	hold: Slurry application: % of AA with immediate incorporation = 0
+M_6_2_2_EQ_0_HA	ha UAA of hold: Slurry application: % of AA with immediate incorporation = 0
+M_6_2_2_EQ_0_LSU	LSU of hold: Slurry application: % of AA with immediate incorporation = 0
+M_6_2_2_EQ_24_HOLD	hold: Slurry application: % of AA with immediate incorporation - >0-<25
+M_6_2_2_EQ_24_HA	ha UAA of hold: Slurry application: % of AA with immediate incorporation - >0-<25
+M_6_2_2_EQ_24_LSU	LSU of hold: Slurry application: % of AA with immediate incorporation - >0-<25
+M_6_2_2_EQ_49_HOLD	hold: Slurry application: % of AA with immediate incorporation - 25-<50
+M_6_2_2_EQ_49_HA	ha UAA of hold: Slurry application: % of AA with immediate incorporation - 25-<50
+M_6_2_2_EQ_49_LSU	LSU of hold: Slurry application: % of AA with immediate incorporation - 25-<50
+M_6_2_2_EQ_74_HOLD	hold: Slurry application: % of AA with immediate incorporation - 50-<75
+M_6_2_2_EQ_74_HA	ha UAA of hold: Slurry application: % of AA with immediate incorporation - 50-<75
+M_6_2_2_EQ_74_LSU	LSU of hold: Slurry application: % of AA with immediate incorporation - 50-<75
+M_6_2_2_EQ_100_HOLD	hold: Slurry application: % of AA with immediate incorporation - >=75
+M_6_2_2_EQ_100_HA	ha UAA of hold: Slurry application: % of AA with immediate incorporation - >=75
+M_6_2_2_EQ_100_LSU	LSU of hold: Slurry application: % of AA with immediate incorporation - >=75
+M_7_1_1_EQ_Y_HOLD	hold: Holdings with storage facilities for solid dung
+M_7_1_1_EQ_Y_HA	ha UAA of holdings with storage facilities for solid dung
+M_7_1_1_EQ_Y_LSU	LSU of holdings with storage facilities for solid dung
+M_7_1_2_EQ_Y_HOLD	hold: Holdings with storage facilities for liquid manure
+M_7_1_2_EQ_Y_HA	ha UAA of holdings with storage facilities for liquid manure
+M_7_1_2_EQ_Y_LSU	LSU of holdings with storage facilities for liquid manure
+M_7_1_3_1_EQ_Y_HOLD	hold: Holdings with slurry tank
+M_7_1_3_1_EQ_Y_HA	ha UAA of holdings with slurry tank
+M_7_1_3_1_EQ_Y_LSU	LSU of holdings with slurry tank
+M_7_1_3_2_EQ_Y_HOLD	hold: Holdings with lagoon for slurry
+M_7_1_3_2_EQ_Y_HA	ha UAA of holdings with lagoon for slurry
+M_7_1_3_2_EQ_Y_LSU	LSU of holdings with lagoon for slurry
+M_7_2_1_EQ_Y_HOLD	hold: Holdings with covered storage facilities for solid dung
+M_7_2_1_EQ_Y_HA	ha UAA of holdings with covered storage facilities for solid dung
+M_7_2_1_EQ_Y_LSU	LSU of holdings with covered storage facilities for solid dung
+M_7_2_2_EQ_Y_HOLD	hold: Holdings with covered storage facilities for liquid manure
+M_7_2_2_EQ_Y_HA	ha UAA of holdings with covered storage facilities for liquid manure
+M_7_2_2_EQ_Y_LSU	LSU of holdings with covered storage facilities for liquid manure
+M_7_2_3_EQ_Y_HOLD	hold: Holdings with covered storage facilities for slurry
+M_7_2_3_EQ_Y_HA	ha UAA of holdings with covered storage facilities for slurry
+M_7_2_3_EQ_Y_LSU	LSU of holdings with covered storage facilities for slurry
+M_8_1_1_HA	ha: Average area irrigated in the last 3 years
+M_8_1_1_HOLD	hold: Average area irrigated in the last 3 years
+M_8_1_2_1_HA	ha: Area irrigated in the previous 12 months: cereals (excl. maize and rice)
+M_8_1_2_1_HOLD	hold: Area irrigated in the previous 12 months: cereals (excl. maize and rice)
+M_8_1_2_2_HA	ha: Area irrigated in the previous 12 months: maize (grain and green)
+M_8_1_2_2_HOLD	hold: Area irrigated in the previous 12 months: maize (grain and green)
+M_8_1_2_3_HA	ha: Area irrigated in the previous 12 months: rice
+M_8_1_2_3_HOLD	hold: Area irrigated in the previous 12 months: rice
+M_8_1_2_4_HA	ha: Area irrigated in the previous 12 months: pulses
+M_8_1_2_4_HOLD	hold: Area irrigated in the previous 12 months: pulses
+M_8_1_2_5_HA	ha: Area irrigated in the previous 12 months: potatoes
+M_8_1_2_5_HOLD	hold: Area irrigated in the previous 12 months: potatoes
+M_8_1_2_6_HA	ha: Area irrigated in the previous 12 months: sugar beet
+M_8_1_2_6_HOLD	hold: Area irrigated in the previous 12 months: sugar beet
+M_8_1_2_7_HA	ha: Area irrigated in the previous 12 months: rape and turnip rape
+M_8_1_2_7_HOLD	hold: Area irrigated in the previous 12 months: rape and turnip rape
+M_8_1_2_8_HA	ha: Area irrigated in the previous 12 months: sunflower
+M_8_1_2_8_HOLD	hold: Area irrigated in the previous 12 months: sunflower
+M_8_1_2_9_HA	ha: Area irrigated in the previous 12 months: textile crops
+M_8_1_2_9_HOLD	hold: Area irrigated in the previous 12 months: textile crops
+M_8_1_2_10_HA	ha: Area irrigated in the previous 12 months: Fresh vegetables, melons, strawberries - open field
+M_8_1_2_10_HOLD	hold: Area irrigated in the previous 12 months: Fresh vegetables, melons, strawberries - open field
+M_8_1_2_11_HA	ha: Area irrigated in the previous 12 months: Temporary and permanent grass grass
+M_8_1_2_11_HOLD	hold: Area irrigated in the previous 12 months: Temporary and permanent grass grass
+M_8_1_2_12_HA	ha: Area irrigated in the previous 12 months: other crops on arable land
+M_8_1_2_12_HOLD	hold: Area irrigated in the previous 12 months: other crops on arable land
+M_8_1_2_13_HA	ha: Area irrigated in the previous 12 months: fruit and berry plantations
+M_8_1_2_13_HOLD	hold: Area irrigated in the previous 12 months: fruit and berry plantations
+M_8_1_2_14_HA	ha: Area irrigated in the previous 12 months: citrus plantations
+M_8_1_2_14_HOLD	hold: Area irrigated in the previous 12 months: citrus plantations
+M_8_1_2_15_HA	ha: Area irrigated in the previous 12 months: olive plantations
+M_8_1_2_15_HOLD	hold: Area irrigated in the previous 12 months: olive plantations
+M_8_1_2_16_HA	ha: Area irrigated in the previous 12 months: vineyards
+M_8_1_2_16_HOLD	hold: Area irrigated in the previous 12 months: vineyards
+M_8_2_1_EQ_Y_HOLD	hold: Holdings with: Irrigation method: Surface irrigation
+M_8_2_2_EQ_Y_HOLD	hold: Holdings with: Irrigation method: Sprinkler irrigation
+M_8_2_3_EQ_Y_HOLD	hold: Holdings with: Irrigation method: Drop irrigation
+M_8_3_1_EQ_Y_HOLD	hold: Holdings with: Source of water: on-farm ground water
+M_8_3_2_EQ_Y_HOLD	hold: Holdings with: Source of water: on-farm surface water
+M_8_3_3_EQ_Y_HOLD	hold: Holdings with: Source of water: off-farm surface water
+M_8_3_4_EQ_Y_HOLD	hold: Holdings with: Source of water: off-farm water from water supply networks
+M_8_3_99_EQ_Y_HOLD	hold: Holdings with: Source of water: other sources
+M_8_4_M3	Volume of water used for irrigation per year - in m3
+LFH_W_PERS	pers: Sole holders working on the farm
+LFH_W_F_PERS	pers: Female: Sole holders working on the farm
+LFH_W_M_PERS	pers: Male: Sole holders working on the farm
+LFRMF_PERS	pers: Labour force - members of sole holders' family
+LFRMF_M_PERS	pers: Male: Labour force: members of sole holders' family
+LFRMF_F_PERS	pers: Female: Labour force: members of sole holders' family
+LFRF_PERS	pers: Family labour force
+LFRF_M_PERS	pers: Male: Family labour force
+LFRF_F_PERS	pers: Female: Family labour force
+LFRNF_PERS	pers: Regular non family labour force
+LFRNF_M_PERS	pers: Male: Regular non family labour force
+LFRNF_F_PERS	pers: Female: Regular non family labour force
+LFR_PERS	pers: Regular Labour force
+LFR_M_PERS	pers: Male: Regular labour force
+LFR_F_PERS	pers: Female: Regular labour force
+LFH_AWU	AWU: Sole holders
+LFH_W_F_AWU	AWU: Female: Sole holders working on the farm
+LFH_W_M_AWU	AWU: Male: Sole holders working on the farm
+LFRMF_AWU	AWU: Labour force : members of sole holders' family
+LFRMF_M_AWU	AWU: Male: Labour force: members of sole holders' family - calculated
+LFRMF_F_AWU	AWU: Female: Labour force: members of sole holders' family-calculated
+LFRF_AWU	AWU: Family labour force
+LFRF_M_AWU	AWU: Male: Family labour force
+LFRF_F_AWU	AWU: Females: Family labour force
+LFRNF_AWU	AWU: Regular non family labour force
+LFRNF_M_AWU	AWU: Male: Regular non family labour force
+LFRNF_F_AWU	AWU: Female: Regular non family labour force
+LFR_AWU	AWU: Regular Labour force
+LFR_M_AWU	AWU: Male: Regular labour force
+LFR_F_AWU	AWU: Female: Regular labour force
+LFNRNF_AWU	AWU: Non-family labour force working on non-regular basis
+LFD_AWU	AWU: Total: Labour force directly employed by the holding
+LFND_AWU	AWU: Labour force  not directly employed by the holding
+SO_EURO	Euro: Standard output (SO)
+A_3_1_1_HA	ha: Farming by owner: Agricultural area
+A_3_1_1_HOLD	hold: Farming by owner: Agricultural area
+A_3_1_2_HA	ha: Farming by tenant: Agricultural area
+A_3_1_2_HOLD	hold: Farming by tenant: Agricultural area
+A_3_1_3_HA	ha: Shared farming or other modes: Agricultural area
+A_3_1_3_HOLD	hold: Shared farming or other modes: Agricultural area
+TOTAREA_HA	ha: Total area
+TOTAREA_HOLD	hold: Total area
+A_3_3_1_EQ_Y_HOLD	hold: More than 50% of producion self-consumed by the holder
+LFROF_PERS	total: Members of sole holder's family- persons
+D_2_1_1_Y_HOLD	Holdings with equipment for energy production: wind
+D_2_1_1_Y_HA	ha: UAA of holdings with equipment for energy production: wind
+D_2_1_2_Y_HOLD	Holdings with equipment for energy production: biomass
+D_2_1_2_Y_HA	ha: UAA of holdings with equipment for energy production: biomass
+D_2_1_2_1_Y_HOLD	Holdings with equipment for energy production: bio- methane from biomass
+D_2_1_2_1_Y_HA	ha: UAA of holdings with equipment for energy production: bio- methane from biomass
+D_2_1_3_Y_HOLD	Holdings with equipment for energy production: solar energy
+D_2_1_3_Y_HA	ha: UAA of holdings with equipment for energy production: solar energy
+D_2_1_4_Y_HOLD	Holdings with equipment for energy production: hydro- energy
+D_2_1_4_Y_HA	ha: UAA of holdings with equipment for energy production: hydro- energy
+D_2_1_99_Y_HOLD	Holdings with equipment for energy production: other sources
+D_2_1_99_Y_HA	ha: UAA of holdings with equipment for energy production: other sources
+OGA_H_D_Y_HOLD	hold. with OGA of the sole holder-manager related directly to the holding
+OGA_H_N_Y_HOLD	hold. with OGA of the sole holder-manager not related directly to the holding
+OGA_S_D_Y_HOLD	hold. with OGA of the spouse of the sole holder-manager related directly to the holding
+OGA_S_N_Y_HOLD	hold. with OGA of the spouse of the sole holder-manager not related directly to the holding
+OGA_F_M_PERS	pers: other family members of sole holder with major OGA
+OGA_F_M_HOLD	hold: other family members of sole holder with major OGA
+OGA_F_S_PERS	pers: other family members of sole holder with subsidiary OGA
+OGA_F_S_HOLD	hold: other family members of sole holder with subsidiary OGA
+OGA_F_D_PERS	pers: other family members of sole holder with OGA related to the holding
+OGA_F_D_HOLD	hold: other family members of sole holder with OGA related to the holding
+OGA_F_N_PERS	pers:other family members of sole holder with OGA not related to the holding
+OGA_F_N_HOLD	hold:other family members of sole holder with OGA not related to the holding
+OGA_N_D_M_PERS	pers:non-family workers with major OGA related to the holding
+OGA_N_D_M_HOLD	hold: non-family workers with major OGA related to the holding
+OGA_N_D_S_PERS	pers:non-family workers with subsidiary OGA related to the holding
+OGA_N_D_S_HOLD	hold:non-family workers with subsidiary OGA related to the holding
+OGA_F_1_Y_HOLD	Holdings with OGA
+OGA_F_1_Y_HA	ha: UAA of hold. with OGA
+OGA_F_1_Y_EUR	Euro: SO of hold. with OGA
+OGA_F_1_Y_LSU	LSU of hold. with OGA
+OGA_F_1_1_Y_HOLD	hold:Tourism as OGA
+OGA_F_1_1_Y_HA	ha: UAA of hold. with tourism as OGA
+OGA_F_1_1_Y_EUR	Euro: SO of hold. with tourism as OGA
+OGA_F_1_1_Y_LSU	LSU of hold. with tourism as OGA
+OGA_F_1_2_Y_HOLD	hold: Handicraft as OGA
+OGA_F_1_2_Y_HA	ha: UAA of hold. with handcraft as OGA
+OGA_F_1_2_Y_EUR	Euro: SO of hold. with handcraft as OGA
+OGA_F_1_2_Y_LSU	LSU of hold. with handcraft as OGA
+OGA_F_1_3_Y_HOLD	hold:Processing of farm products as OGA
+OGA_F_1_3_Y_HA	ha: UAA of hold with processing of farm products as OGA
+OGA_F_1_3_Y_EUR	Euro: SO of hold with processing of farm products as OGA
+OGA_F_1_3_Y_LSU	LSU of hold with processing of farm products as OGA
+OGA_F_1_4_Y_HOLD	hold:Renewable energy production as OGA
+OGA_F_1_4_Y_HA	ha: UAA of hold. with renewable energy production as OGA
+OGA_F_1_4_Y_EUR	Euro: SO of hold. with renewable energy production as OGA
+OGA_F_1_4_Y_LSU	LSU of hold. with renewable energy production as OGA
+OGA_F_1_5_Y_HOLD	hold: Wood processing as OGA
+OGA_F_1_5_Y_HA	ha: UAA of hold. with wood processing as OGA
+OGA_F_1_5_Y_EUR	Euro: SO of hold. with wood processing as OGA
+OGA_F_1_5_Y_LSU	LSU of hold. with wood processing as OGA
+OGA_F_1_6_Y_HOLD	hold: Aquaculture as OGA
+OGA_F_1_6_Y_HA	ha: UAA of hold. with aquaculture as OGA
+OGA_F_1_6_Y_EUR	Euro: SO of hold. with aquaculture as OGA
+OGA_F_1_6_Y_LSU	LSU of hold. with aquaculture as OGA
+OGA_F_1_7_Y_HOLD	hold: Contractual work as OGA
+OGA_F_1_7_Y_HA	ha: UAA of hold. with contractual work as OGA
+OGA_F_1_7_Y_EUR	Euro: SO of hold. with contractual work as OGA
+OGA_F_1_7_Y_LSU	LSU of hold. with contractual work as OGA
+OGA_F_1_7_1_Y_HOLD	hold:Contractual agricultural work as OGA
+OGA_F_1_7_1_Y_HA	ha: UAA of hold. with contractual agricultural work as OGA
+OGA_F_1_7_1_Y_EUR	Euro: SO of hold. with contractual agricultural work as OGA
+OGA_F_1_7_1_Y_LSU	LSU of hold. with contractual agricultural work as OGA
+OGA_F_1_7_2_Y_HOLD	hold:Contractual non-agricultural work as OGA
+OGA_F_1_7_2_Y_HA	ha: UAA of hold. with contractual non-agricultural work as OGA
+OGA_F_1_7_2_Y_EUR	Euro:SO of hold. with contractual non-agricultural work as OGA
+OGA_F_1_7_2_Y_LSU	LSU of hold. with contractual non-agricultural work as OGA
+OGA_F_1_8_Y_HOLD	hold: Forestry-work as OGA
+OGA_F_1_8_Y_HA	ha: UAA of hold. with forestry-work as OGA
+OGA_F_1_8_Y_EUR	Euro: SO of hold. with forestry-work as OGA
+OGA_F_1_8_Y_LSU	LSU of hold. with forestry-work as OGA
+OGA_F_1_99_Y_HOLD	hold: OGA not mentioned elsewhere
+OGA_F_1_99_Y_HA	ha: UAA of hold. with OGA n.m.e.
+OGA_F_1_99_Y_EUR	Euro: SO of hold. with OGA n.m.e.
+OGA_F_1_99_Y_LSU	LSU of hold. with OGA n.m.e.
+OGA_F_2_1_0_HOLD	Holdings with up to 10% of turnover coming from OGA
+OGA_F_2_1_0_HA	ha: UAA of hold. with up to 10% of turnover coming from OGA
+OGA_F_2_1_0_EUR	Euro: SO of hold. with up to 10% of turnover coming from OGA
+OGA_F_2_1_0_LSU	LSU of hold. with up to 10% of turnover coming from OGA
+OGA_F_2_1_11_HOLD	Holdings with 10% to 50% of turnover coming from OGA
+OGA_F_2_1_11_HA	ha: UAA of hold. with 10% to 50% of turnover coming from OGA
+OGA_F_2_1_11_EUR	Euro: SO of hold. with 10% to 50% of turnover coming from OGA
+OGA_F_2_1_11_LSU	LSU: of hold. with 10% to 50% of turnover coming from OGA
+OGA_F_2_1_51_HOLD	Holdings with more than 50% of turnover coming from OGA
+OGA_F_2_1_51_HA	ha: UAA of hold. with more than 50% of turnover coming from OGA
+OGA_F_2_1_51_EUR	Euro: SO of hold. with more than 50% of turnover coming from OGA
+OGA_F_2_1_51_LSU	LSU of hold. with more than 50% of turnover coming from OGA
+RD_G_1_Y_HOLD	holdings benefiting from listed measures of rural development support
+RD_G_1_Y_HA	ha: UAA of hold. benefiting from listed measures of rural development support
+RD_G_1_Y_EUR	Euro: SO of hold. benefiting from listed measures of rural development support
+RD_G_1_Y_LSU	LSU of of hold. benefiting from listed measures of rural development support
+RD_G_1_1_Y_HOLD	holdings benefiting advisory services (Rural development support)
+RD_G_1_1_Y_HA	ha: UAA of hold. benefiting advisory services (Rural development support)
+RD_G_1_1_Y_EUR	Euro: SO of hold. benefiting advisory services (Rural development support)
+RD_G_1_1_Y_LSU	LSU of hold. benefiting advisory services (Rural development support)
+RD_G_1_2_Y_HOLD	holdings benefiting measures for modernisation (Rural development support)
+RD_G_1_2_Y_HA	ha: UAA of hold. benefiting measures for modernisation (Rural development support)
+RD_G_1_2_Y_EUR	Euro: SO of hold. benefiting measures for modernisation (Rural development support)
+RD_G_1_2_Y_LSU	LSU of hold. benefiting measures for modernisation (Rural development support)
+RD_G_1_3_Y_HOLD	holdings benefiting measures adding value to products (Rural development support)
+RD_G_1_3_Y_HA	ha: UAA of hold. benefiting measures adding value to products (Rural development support)
+RD_G_1_3_Y_EUR	Euro:SO of hold. benefiting measures adding value to products (Rural development support)
+RD_G_1_3_Y_LSU	LSU of hold. benefiting measures adding value to products (Rural development support)
+RD_G_1_4_Y_HOLD	holdings benefiting measures Community standards (Rural development support)
+RD_G_1_4_Y_HA	ha: UAA of hold. benefiting measures Community standards (Rural development support)
+RD_G_1_4_Y_EUR	Euro: SO of hold. benefiting measures Community standards (Rural development support)
+RD_G_1_4_Y_LSU	LSU of hold. benefiting measures Community standards (Rural development support)
+RD_G_1_5_Y_HOLD	holdings benefiting measures Food quality scheme (Rural development support)
+RD_G_1_5_Y_HA	ha: UAA of hold. benefiting measures Food quality scheme (Rural development support)
+RD_G_1_5_Y_EUR	Euro: SO of hold. benefiting measures Food quality scheme (Rural development support)
+RD_G_1_5_Y_LSU	LSU of hold. benefiting measures Food quality scheme (Rural development support)
+RD_G_1_6_Y_HOLD	holdings benefiting measures Natura 2000 payments (Rural development support)
+RD_G_1_6_Y_HA	ha: UAA of hold. benefiting measures Natura 2000 payments (Rural development support)
+RD_G_1_6_Y_EUR	Euro: SO of hold. benefiting measures Natura 2000 payments (Rural development support)
+RD_G_1_6_Y_LSU	LSU of hold. benefiting measures Natura 2000 payments (Rural development support)
+RD_G_1_7_Y_HOLD	holdings benefiting measures for payments under Water Framework Directive (Rural development support)
+RD_G_1_7_Y_HA	ha: UAA of hold. benefiting measures for payments under Water Framework Directive (Rural development support)
+RD_G_1_7_Y_EUR	Euro: SO of hold. benefiting measures for payments under Water Framework Directive (Rural development support)
+RD_G_1_7_Y_LSU	LSU of hold. benefiting measures for payments under Water Framework Directive (Rural development support)
+RD_G_1_8_Y_HOLD	holdings benefiting measures for Agri-environment payments (Rural development support)
+RD_G_1_8_Y_HA	ha: UAA of hold. benefiting measures for Agri-environment payments (Rural development support)
+RD_G_1_8_Y_EUR	Euro: SO of hold. benefiting measures for Agri-environment payments (Rural development support)
+RD_G_1_8_Y_LSU	LSU of hold. benefiting measures for Agri-environment payments (Rural development support)
+RD_G_1_8_1_Y_HOLD	holdings benefiting measures for Agri-environment payments for organic farming (Rural development support)
+RD_G_1_8_1_Y_HA	ha: UAA of hold. benefiting measures for Agri-environment payments for organic farming (Rural development support)
+RD_G_1_8_1_Y_EUR	Euro: SO of hold. benefiting measures for Agri-environment payments for organic farming (Rural development support)
+RD_G_1_8_1_Y_LSU	LSU of hold. benefiting measures for Agri-environment payments for organic farming (Rural development support)
+RD_G_1_9_Y_HOLD	holdings benefiting measures for Animal welfare payments (Rural development support)
+RD_G_1_9_Y_HA	ha: UAA of hold. benefiting measures for Animal welfare payments (Rural development support)
+RD_G_1_9_Y_EUR	Euro: SO of hold. benefiting measures for Animal welfare payments (Rural development support)
+RD_G_1_9_Y_LSU	LSU of hold. benefiting measures for Animal welfare payments (Rural development support)
+RD_G_1_10_Y_HOLD	holdings benefiting measures for Diversification into non-agricultural activities (Rural development support)
+RD_G_1_10_Y_HA	ha: UAA of hold. benefiting measures for Diversification into non-agricultural activities (Rural development support)
+RD_G_1_10_Y_EUR	Euro: SO of hold. benefiting measures for Diversification into non-agricultural activities (Rural development support)
+RD_G_1_10_Y_LSU	LSU of hold. benefiting measures for Diversification into non-agricultural activities (Rural development support)
+RD_G_1_11_Y_HOLD	holdings benefiting measures for Encouragement of tourism activities (Rural development support)
+RD_G_1_11_Y_HA	ha: UAA of hold. benefiting measures for Encouragement of tourism activities (Rural development support)
+RD_G_1_11_Y_EUR	Euro: SO of hold. benefiting measures for Encouragement of tourism activities (Rural development support)
+RD_G_1_11_Y_LSU	LSU of hold. benefiting measures for Encouragement of tourism activities (Rural development support)
+D_1_1_A	Four-wheel tractors, track-laying tractors, tool carriers belonging exclusively to the holding
+D_1_1_B	Cultivators etc. belonging exclusively to the holding
+D_1_1_C	Combine harvesters belonging exclusively to the holding
+D_1_1_D	Other fully mechanised harvesters belonging exclusively to the holding
+D_1_2_A_EQ_Y	Use in the last 12 months of four-wheel tractors etc. used by several holdings
+D_1_2_B_EQ_Y	Use in the last 12 months of cultivators etc. used by several holdings
+D_1_2_C_EQ_Y	Use in the last 12 months of combine harvesters used by several holdings
+D_1_2_D_EQ_Y	Use in the last 12 months of other fully mechanised harvesters used by several holdings

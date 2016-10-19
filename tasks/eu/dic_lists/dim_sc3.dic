@@ -1,0 +1,11 @@
+1	Monthly index or monthly weighting
+2	Annual index or annual weighting
+3	Annual percentage change in the monthly index
+4	Annual percentage change in quarterly averages of the monthly index
+5	Percentage change in the annual index
+6	Output, nominal indices
+7	Input, nominal indices
+8	Output, deflated indices
+9	Input, deflated indices
+10	Annual data
+11	Percentage change in price or index

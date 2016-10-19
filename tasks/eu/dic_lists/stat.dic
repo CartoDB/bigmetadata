@@ -1,0 +1,7 @@
+DMOM	Mean consumption expenditure per household
+DMOE	Mean consumption expenditure per adult equivalent
+DMDM	Median consumption expediture per household
+DMDE	Median consumption expenditure per adult equivalent
+STDE	Percentage of standard error
+MEAN_SUP0	Mean consumption expenditure per household with an expenditure greater than zero
+PERC_SUP0	Percentage of households with a consumption expenditure greater than zero

@@ -1,0 +1,19 @@
+TOTALNOREROUTE	Total receipts
+SOC_CONTRIBNOREROUTE	Social contribution
+SEMPLOYER	Employers' social contribution
+SEACTUAL	Actual employers' social contribution
+SEIMPUTED	Imputed employers' social contribution
+SPROT_PERS	Social contribution paid by the protected persons
+SPEMPLOY	Social contribution paid by the employees
+SPSELF	Social contribution paid by the self-employed
+SP_OTH	Social contribution paid by pensioners and other protected persons
+SREROUTED	Rerouted social contributionbetween schemes
+GG_CONTRIB	General government contributions
+GEARLYMARK	Earmarked taxes
+GGENREV	General revenue
+TRANSFER	Transfers from other schemes
+REC_OTH	Other receipts
+R_OTH_PROP	Property income
+R_OTH_OTH	Miscellaneous other receipts
+TOTAL	Total receipts including transactions between schemes
+SOC_CONTRIB	Social contribution including transactions between schemes

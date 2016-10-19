@@ -1,0 +1,20 @@
+TOTAL	Total
+0	No children
+1	1 child
+GE1	1 child or more
+2	2 children
+3	3 children
+GE3	3 children or more
+4	4 children
+GE4	4 children or more
+5	5 children
+GE5	5 children or more
+6	6 children
+GE6	6 children or more
+7	7 children
+GE7	7 children or more
+8	8 children
+9	9 children
+10	10 children
+UNK	Unknown
+NRP	No response

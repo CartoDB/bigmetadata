@@ -1,0 +1,37 @@
+TOTAL	Total
+PAS_FR	Passengers and freight
+PAS	Passengers embarked and disembarked
+PAS_EMB	Passengers embarked
+PAS_DEMB	Passengers disembarked
+PAS_BRD	Passengers on board
+PAS_BRD_ARR	Passengers on board (arrivals)
+PAS_BRD_DEP	Passengers on board (departures)
+PAS_CRD	Passengers carried
+PAS_CRD_ARR	Passengers carried (arrival)
+PAS_CRD_DEP	Passengers carried (departures)
+PAS_TRS	Direct transit passengers
+PAS_TRF	Transfer passengers
+PAS_ONL	Passengers only
+ST_PAS	Passengers seats available
+ST_PAS_ARR	Passengers seats available (arrivals)
+ST_PAS_DEP	Passengers seats available (departures)
+FR_LD_NLD	Freight loaded and unloaded
+FR_LD	Freight loaded
+FR_NLD	Freight unloaded
+FR_ONL	Freight only
+FRM_BRD	Freight and mail on board
+FRM_BRD_ARR	Freight and mail on board (arrivals)
+FRM_BRD_DEP	Freight and mail on board (departures)
+FRM_LD_NLD	Freight and mail loaded and unloaded
+FRM_LD	Freight and mail loaded
+FRM_NLD	Freight and mail unloaded
+FRM_TRS	Freight and mail in transit
+CAF	Commercial air flights (passengers, freight and mail)
+CAF_PAS	Commercial passenger air flights
+CAF_PAS_ARR	Commercial passenger air flights (arrivals)
+CAF_PAS_DEP	Commercial passenger air flights (departures)
+CAF_FRM	Freight and mail commercial air flights
+CAF_FRM_ARR	Freight and mail commercial air flights (arrivals)
+CAF_FRM_DEP	Freight and mail commercial air flights (departures)
+ACM	Aircraft movements (passenger, freight and mail, commercial and non-commercial general aviation operations)
+CACM	Commercial aircraft movements (passenger, freight and mail, commercial general aviation operations)

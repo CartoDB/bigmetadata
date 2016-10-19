@@ -1,0 +1,9 @@
+TOTAL	Total transport
+TOT_GOOD	Total goods loaded and unloaded
+LD_GOOD	Goods loaded
+UNLD_GOOD	Goods unloaded
+TRANSIT_GOOD	Goods in transit
+TOT_PASS	Total passengers embarked and disembarked
+EMB_PASS	Passengers embarked
+DISEMB_PASS	Passengers disembarked
+TRANSIT_PASS	Passengers in transit

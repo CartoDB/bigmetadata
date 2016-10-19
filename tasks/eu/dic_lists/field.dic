@@ -1,0 +1,140 @@
+TOTAL	Total
+EF0	General Programmes
+EF01	Basic/broad, general programmes
+EF010	Basic/broad, general programmes
+EF08	Literacy and numeracy
+EF080	Literacy and numeracy
+EF09	Personal skills/development
+EF090_347	Personal development, Working life
+EF090	Personal skills/development
+EF1	Education
+EF14	Teacher training and education science
+EF140	Teacher training and education science (broad programmes)
+EF141	Teaching and training
+EF142	Education Science
+EF143	Training for pre-school teachers
+EF144	Training for teachers at basic levels
+EF145	Training for teachers with subject specialisation
+EF146	Training for teachers of vocational subjects
+EF2	Humanities and arts
+EF21	Arts
+EF210	Arts (broad programmes)
+EF211	Fine arts
+EF212	Music and performing arts
+EF213	Audio-visual techniques and media production
+EF214	Design
+EF215	Craft skills
+EF22	Humanities
+EF220	Humanities (broad programmes)
+EF221	Religion
+EF222	Foreign languages
+EF222_223	Languages (foreign + mother tongue)
+EF223	Mother tongue
+EF224	History, philosophy and related subjects
+EF225	History and archaeology
+EF226	Philosophy and ethics
+EF3	Social sciences, business and law
+EF31	Social and behavioural science
+EF310	Social and behavioural sciences (broad programmes)
+EF311	Psychology
+EF312	Sociology and cultural studies
+EF313	Political science and civics
+EF314	Economics
+EF32	Journalism and information
+EF321	Journalism and reporting
+EF322	Library, information, archive
+EF34	Business and administration
+EF340	Business and administration (broad programmes)
+EF341_342	Sales and marketing
+EF341	Wholesale and retail sales
+EF342	Marketing and advertising
+EF343-346	Accounting and finance, management and administration, secretarial and office work computing
+EF343_344	Accounting and finance
+EF343	Finance, banking, insurance
+EF344	Accounting and taxation
+EF345	Management and administration
+EF346	Secretarial and office work
+EF347	Working life
+EF38	Law
+EF380	Law
+EF4_5	Science, mathematics and computing, engineering, manufacturing and construction
+EF4	Science, mathematics and computing
+EF42	Life science
+EF421	Biology and biochemistry
+EF422	Environmental science
+EF44	Physical science
+EF440	Physical sciences (broad programmes)
+EF441	Physics
+EF442	Chemistry
+EF443	Earth science
+EF46	Mathematics and statistics
+EF461	Mathematics
+EF462	Statistics
+EF48	Computing
+EF481	Computer science
+EF482	Computer use
+EF5	Engineering, manufacturing and construction
+EF52_54	Engineering and manufacturing
+EF52	Engineering and engineering trades
+EF520	Engineering and engineering trades (broad programmes)
+EF521	Mechanics and metal work
+EF522	Electricity and energy
+EF523	Electronics and automation
+EF524	Chemical and process
+EF525	Motor vehicles, ships and aircraft
+EF54	Manufacturing and processing
+EF540	Manufacturing and processing (broad programmes)
+EF541	Food processing
+EF542	Textiles, clothes, footwear, leather
+EF543	Materials (wood, paper, plastic, glass)
+EF544	Mining and extraction
+EF58	Architecture and building
+EF581	Architecture and town planning
+EF582	Building and civil engineering
+EF6	Agriculture and veterinary
+EF62	Agriculture, forestry and fishery
+EF620	Agriculture, forestry and fishery (broad programmes)
+EF621	Crop and livestock production
+EF622	Horticulture
+EF623	Forestry
+EF624	Fisheries
+EF64	Veterinary
+EF641	Veterinary
+EF7	Health and Welfare
+EF72	Health
+EF720	Health (broad programmes)
+EF721	Medicine
+EF722	Medical services
+EF723	Nursing and caring
+EF724	Dental studies
+EF725	Medical diagnostic and treatment technology
+EF726	Therapy and rehabilitation
+EF727	Pharmacy
+EF76	Social services
+EF761	Child care and youth services
+EF762	Social work and counselling
+EF8	Services
+EF81_84_86	Personnal services, transport services, security services
+EF81	Personal services
+EF810	Personal services (broad programmes)
+EF811	Hotel, restaurant and catering
+EF812	Travel, tourism and leisure
+EF813	Sports
+EF814	Domestic services
+EF815	Hair and beauty services
+EF84	Transport services
+EF840	Transport services
+EF85_862	Environment protection, occupational health and safety
+EF85	Environmental protection
+EF850	Environmental protection (broad programmes)
+EF851	Environmental protection technology
+EF852	Natural environments and wildlife
+EF853	Community sanitation services
+EF86	Security services
+EF860	Security services (broad programmes)
+EF861	Protection of persons and property
+EF862	Occupational health and safety
+EF863	Military and defence
+OTH	Others
+NRP	No response
+UNK	Unknown

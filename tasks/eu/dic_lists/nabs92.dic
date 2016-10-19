@@ -1,0 +1,131 @@
+NBS01	Exploration and exploitation of the earth
+NBS0100	General Research on the exploration and exploitation of the earth
+NBS0101	Mineral, oil and natural gas prospecting
+NBS0102	Exploration and exploitation of the sea-bed
+NBS0103	Earths crust and mantle excluding sea-bed
+NBS0104	Hydrology
+NBS0105	Sea and oceans
+NBS0106	Atmosphere
+NBS0109	Other research on the exploration and exploitation of the earth
+NBS02	Infrastructure and general planning of land-use
+NBS0200	General research on the infrastucture and general planning of land use
+NBS0201	General planning of land-use
+NBS0202	Construction and planning of buildings
+NBS0203	Civil engineering
+NBS0204	Transport systems
+NBS0205	Telecommunication systems
+NBS0206	Water supply
+NBS0209	Other research on the infrastructure and general planning of land-use
+NBS03	Control and care of the environment
+NBS0300	General research on the environment
+NBS0301	Protection of atmosphere and climate
+NBS0302	Protection of ambient air
+NBS0303	Solid waste
+NBS0304	Protection of ambient water (excluding groundwater)
+NBS0305	Protection of soil and groundwater
+NBS0306	Abatement of noise and vibration
+NBS0307	Protection of species and habitats
+NBS0308	Protection against natural hazards
+NBS0309	Protection against radioactive radiation
+NBS0310	Other research on the environment
+NBS04	Protection and improvement of human health
+NBS0400	General research on protection and improvement of human health
+NBS0401	Medical research, hospital treatment, surgery
+NBS0402	Preventive medicine
+NBS0403	Biomedical engineering and medicines
+NBS0404	Occupational medicine
+NBS0405	Nutrition and food hygiene
+NBS0406	Drug abuse and addiction
+NBS0407	Social medicine
+NBS0408	Hospital structures and organization of medical care
+NBS0409	Other medical research
+NBS05	Production, distribution and rational utilization of energy
+NBS0500	General research on production, distribution, and rational utilization of energy
+NBS0501	Fossil fuels and their derivatives
+NBS0502	Nuclear fission
+NBS0503	Radioactive waste management including decommissioning with regard to fuel/energy
+NBS0504	Nuclear fusion
+NBS0505	Renewable energy sources
+NBS05051	Solar thermal and photovoltaic energy
+NBS05052	Geothermal energy
+NBS05053	Water, wind and wave energy
+NBS05054	Research into biomass conversion (particularly into the areas of pyrolysis, gasification, extraction and enzyme processing); research on the processing of waste from industry, agriculture and the domestic sector with a view to energy
+NBS0506	Rational utilization of energy
+NBS0509	Other research on production, distribution and rational utilization of energy
+NBS06	Agricultural production and technology
+NBS0600	General research on agricultural production and technology
+NBS0601	Animal Products
+NBS0602	Fishing and fish-farming
+NBS0603	Veterinary medicine
+NBS0604	Crops
+NBS0605	Forestry and timber production
+NBS0606	Food technology
+NBS0609	Other research on agricultural production and technology
+NBS07	Industrial production, and technology
+NBS0700	General research on industrial production and technology
+NBS0701	Increasing economic efficiency and competitiveness
+NBS0702	Manufacturing and processing techniques
+NBS0703	Extractions and processing of non-energy mineral and derived products
+NBS0704	Products of the chemical industry
+NBS07041	Petrochemical and coal by-products
+NBS07042	Pharmaceutical products
+NBS0705	Manufacture of motor vehicles and other means of transport
+NBS07051	Aerospace equipment manufacturing and repairing
+NBS07052	Manufacture of motor vehicles and parts (including agricultural tractors)
+NBS07053	Manufacture of all other transport equipment
+NBS0706	Electronic and related industries
+NBS07061	Manufacture of office machinery and data-processing equipment
+NBS07062	Manufacture of radio, television and communications equipment and apparatus
+NBS07063	Software development
+NBS0707	Manufacture of electrical machinery and apparatus
+NBS0708	Manufacture of non-electronic and non-electrical machinery
+NBS0709	Manufacture of instruments
+NBS07091	Manufacture of medical and surgical equipment and orthopaedic appliances
+NBS07092	All other instrument manufacture
+NBS0710	Manufacture of food products and beverages
+NBS0711	Manufacture of textile, clothing and leather goods
+NBS0712	Other manufacturing products
+NBS0713	Recycling waste
+NBS08	Social structures and relationships
+NBS0800	Research of a general nature
+NBS0801	Education, training, recurrent education and retraining
+NBS0802	Cultural activities
+NBS0803	Management of businesses and institutions
+NBS0804	Improvement of working conditions
+NBS0805	Social security system
+NBS0806	Political structure of society
+NBS0807	Social change, social processes and social conflicts
+NBS0809	Other research with regard to society
+NBS09	Exploration and exploitation of space
+NBS0900	General research on exploration and exploitation of space
+NBS0901	Scientific exploration of space
+NBS0902	Applied research programmes
+NBS0903	Launch systems
+NBS0904	Space laboratories and space travel
+NBS0909	Other research on the exploration and exploitation of space
+NBS10	Research financed from general university funds (GUF)
+NBS1000	Mathematics and computer sciences
+NBS1001	Physical sciences
+NBS1002	Chemical sciences
+NBS1003	Biological sciences
+NBS1004	Earth and related (environmental) sciences
+NBS1005	Engineering sciences
+NBS1006	Medical sciences
+NBS1007	Agricultural sciences
+NBS1008	Social sciences
+NBS1009	Humanities
+NBS11	Non-oriented research
+NBS1100	Mathematics and computer sciences
+NBS1101	Physical sciences
+NBS1102	Chemical sciences
+NBS1103	Biological sciences
+NBS1104	Earth and related (environmental) sciences
+NBS1105	Engineering sciences
+NBS1106	Medical sciences
+NBS1107	Agricultural sciences
+NBS1108	Social sciences
+NBS1109	Humanities
+NBS12	Other civil research
+NBS13	Defence
+NBS99_X_13	Total civil research and development appropriations
+NBS99	Total appropriations

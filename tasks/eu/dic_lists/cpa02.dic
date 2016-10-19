@@ -1,0 +1,206 @@
+CPA_TOTAL	Total
+CPA_A_B	Products of agriculture, forestry, fisheries and aquaculture
+CPA_A	Products of agriculture, hunting and forestry
+CPA_A01	Products of agriculture, hunting and related services
+CPA_A02	Products of forestry, logging and related services
+CPA_B	Fish and other fishing products; services incidental to fishing
+CPA_B05	Fish and other fishing products; services incidental to fishing
+CPA_C	Products from mining and quarrying
+CPA_CA	Coal and lignite; peat; crude petroleum and natural gas; uranium and thorium
+CPA_CA10	Coal and lignite; peat
+CPA_CA11	Crude petroleum and natural gas; services incidental to oil and gas extraction excluding surveying
+CPA_CA12	Uranium and thorium ores
+CPA_CB	Metal ores and other mining and quarrying products
+CPA_CB13	Metal ores
+CPA_CB14	Other mining and quarrying products
+CPA_D	Manufactured products
+CPA_DA	Food products, beverages and tobacco
+CPA_DA15	Food products and beverages
+CPA_DA16	Tobacco products
+CPA_DB	Textiles and textile products
+CPA_DB17	Textiles
+CPA_DB18	Wearing apparel; furs
+CPA_DC	Leather and leather products
+CPA_DC19	Leather and leather products
+CPA_DC193	Footwear
+CPA_DD	Wood and wood products
+CPA_DD20	Wood and products of wood and cork (except furniture), articles of straw and plaiting materials
+CPA_DE	Pulp, paper and paper products; recorded media; printing services
+CPA_DE21	Pulp, paper and paper products
+CPA_DE22	Printed matter and recorded media
+CPA_DF	Coke, refined petroleum products and nuclear fuel
+CPA_DF23	Coke, refined petroleum products and nuclear fuel
+CPA_DG	Chemicals, chemical products and man-made fibres
+CPA_DG24	Chemicals, chemical products and man-made fibres
+CPA_DH	Rubber and plastic products
+CPA_DH25	Rubber and plastic products
+CPA_DI	Other non metallic mineral products
+CPA_DI26	Other non-metallic mineral products
+CPA_DI263	Ceramic tiles and flags
+CPA_DJ	Basic metals and fabricated metal products
+CPA_DJ27	Basic metals
+CPA_DJ28-DN36	Metal products and machinery, transport equipment
+CPA_DJ28-DL_DN36	Metal products and machinery
+CPA_DJ28	Fabricated metal products, except machinery and equipment
+CPA_DK	Machinery and equipment n.e.c.
+CPA_DK29	Machinery and equipment n.e.c.
+CPA_DL	Electrical and optical equipment
+CPA_DL30	Office machinery and computers
+CPA_DL31	Electrical machinery and apparatus n.e.c.
+CPA_DL32	Radio, television and communication equipment and apparatus
+CPA_DL33	Medical, precision and optical instruments, watches and clocks
+CPA_DM	Transport equipment
+CPA_DM34	Motor vehicles, trailers and semi-trailers
+CPA_DM35	Other transport equipment
+CPA_DN	Other manufactured goods n.e.c.
+CPA_DN36	Furniture; other manufactured goods n.e.c.
+CPA_DN37	Recovered secondary raw materials
+CPA_E	Electrical energy, gas, steam and hot water
+CPA_E40	Electrical energy, gas, steam and hot water
+CPA_E41	Collected and purified water, distribution services of water
+CPA_F	Construction work
+CPA_F45	Construction work
+CPA_FA	Construction work: housing
+CPA_FB	Construction work: other constructions
+CPA_G	Wholesale and retail trade services; repair services of motor vehicles, motorcycles and personal and household goods
+CPA_G50	Trade, maintenance and repair services of motor vehicles and motorcycles; retail trade services of automotive fuel
+CPA_G503	Trade services of motor vehicle parts and accessories
+CPA_G505	Retail trade services of motor fuel
+CPA_G50101	Wholesale trade services of motor vehicles- wholesale trade services of both new and second-hand vehicles
+CPA_G50102	Retail trade services of motor vehicles
+CPA_G50103	Sales on a fee or contract basis of motor vehicles
+CPA_G50201	Maintenance and repair services of passenger motor cars
+CPA_G50202	Maintenance and repair services of other motor vehicles
+CPA_G50203	Other services related to motor vehicles
+CPA_G50301	Wholesale trade services of parts and accessories of motor vehicles
+CPA_G50302	Retail trade services of parts and accessories of motor vehicles
+CPA_G50303	Sales on a fee or contract basis of parts and accessories of motor vehicles
+CPA_G50401	Wholesale trade services of motorcycles and related parts and accessories
+CPA_G50402	Retail trade services of motorcycles and related parts and accessories
+CPA_G50403	Sales on a fee or contract basis of motorcycles and related parts and accessories
+CPA_G50404	Maintenance and repair services of motorcycles
+CPA_G50501	Retail trade services of motor fuel
+CPA_G51	Wholesale trade and commission trade services, except of motor vehicles and motorcycles
+CPA_G511	Sales on a fee or contract basis
+CPA_G5111	Sales on a fee or contract basis of live animals, agricultural raw materials, textile raw materials and semi-finished goods
+CPA_G5112	Sales on a fee or contract basis of fuels, ores, metals and industrial chemicals
+CPA_G5113	Sales on a fee or contract basis of timber and building materials
+CPA_G5114	Sales on a fee or contract basis of machinery, industrial equipment, ships and aircraft
+CPA_G5115	Sales on a fee or contract basis of furniture, household goods, hardware and ironmongery
+CPA_G5116	Sales on a fee or contract basis of textiles, clothing, footwear and leather goods
+CPA_G5117	Sales on a fee or contract basis of food, beverages and tobacco
+CPA_G5118	Sales on a fee or contract basis by agents specializing in particular products or ranges of products n.e.c.
+CPA_G5119	Sales on a fee or contract basis by agents specializing in a variety of goods
+CPA_G512	Wholesale trade services of agricultural raw materials and live animals
+CPA_G5121	Wholesale trade services of grain, seeds and animal feeds
+CPA_G5122	Wholesale trade services of flowers and plants
+CPA_G5123	Wholesale trade services of live animals
+CPA_G5124	Wholesale trade services of hides, skins and leather
+CPA_G5125	Wholesale trade services of unmanufactured tobacco
+CPA_G513	Wholesale trade services of food, beverages and tobacco
+CPA_G5131	Wholesale trade services of fruit and vegetables
+CPA_G5132	Wholesale trade services of meat and meat products
+CPA_G5133	Wholesale trade services of dairy products, eggs and edible oils and fats
+CPA_G5134	Wholesale trade services of alcoholic and other beverages
+CPA_G5135	Wholesale trade services of tobacco products
+CPA_G5136	Wholesale trade services of sugar, chocolate and sugar confectionery
+CPA_G5137	Wholesale trade services of coffee, tea, cocoa and spices
+CPA_G5138	Wholesale trade services of other food including fish, crustaceans and molluscs
+CPA_G5139	Wholesale trade services of food, beverages and tobacco, non-specialized
+CPA_G514	Wholesale trade services of household goods
+CPA_G5141	Wholesale trade services of textiles
+CPA_G5142	Wholesale trade services of clothing and footwear
+CPA_G5143	Wholesale trade services of electrical household appliances and radio and television goods
+CPA_G5144	Wholesale trade services of china and glassware, wallpaper and cleaning materials
+CPA_G5145	Wholesale trade services of perfume and cosmetics
+CPA_G5146	Wholesale trade services of pharmaceutical goods
+CPA_G5147	Wholesale trade services of other household goods
+CPA_G515	Wholesale trade services of non-agricultural intermediate products and of waste and scrap
+CPA_G5151	Wholesale trade services of solid, liquid and gaseous fuels and related products
+CPA_G5152	Wholesale trade services of metal ores and metals
+CPA_G5153	Wholesale trade services of wood, construction materials and sanitary equipment
+CPA_G5154	Wholesale trade services of hardware, plumbing and heating equipment and supplies
+CPA_G5155	Wholesale trade services of chemical products
+CPA_G5156	Wholesale trade services of other intermediate products
+CPA_G5157	Wholesale trade services of waste and scrap
+CPA_G518	Wholesale trade services of machinery, equipment and supplies
+CPA_G5181	Wholesale trade services of machine tools
+CPA_G5182	Wholesale trade services of mining, construction and civil engineering machinery and equipment
+CPA_G5183	Wholesale trade services of machinery for the textile industry and of sewing and knitting machines
+CPA_G5184	Wholesale trade services of computers, computer peripheral equipment and software
+CPA_G5185	Wholesale trade services of other office machinery and equipment
+CPA_G5186	Wholesale trade services of other electronic parts and equipment
+CPA_G5187	Wholesale trade services of other machinery and equipment for use in industry, trade and navigation
+CPA_G5188	Wholesale trade services of agricultural machinery, accessories and implements, including tractors
+CPA_G519	Other wholesale trade services
+CPA_G52	Retail trade services, except of motor vehicles and motorcycles; repair services of personal and household goods
+CPA_G521	Retail sale in non-specialized stores
+CPA_G52111	Retail trade services in non-specialized stores with food, beverages or tobacco predominating
+CPA_G52121	Other retail trade services in non-specialized stores
+CPA_G522	Retail trade services
+CPA_G52211	Retail trade services of fruit and vegetables
+CPA_G52221	Retail trade services of meat (including poultry) and meat products
+CPA_G52231	Retail trade services of fish, crustaceans and molluscs
+CPA_G52241	Retail trade services of bread, cakes, flour confectionery and sugar confectionery
+CPA_G52251	Retail trade services of alcoholic and other beverages
+CPA_G52261	Retail trade services of tobacco products
+CPA_G52271	Other retail trade services of food, in specialized stores
+CPA_G52311	Retail trade services of pharmaceutical goods
+CPA_G52321	Retail trade services of medical and orthopaedic goods
+CPA_G52331	Retail trade services of cosmetic and toilet articles
+CPA_G52411	Retail trade services of textiles and haberdashery
+CPA_G52421	Retail trade services of clothing
+CPA_G52431	Retail trade services of footwear and leather goods
+CPA_G52441	Retail trade services of household furniture, lighting equipment and household articles n.e.c.
+CPA_G52451	Retail trade services of electrical household appliances
+CPA_G52452	Retail trade services of radio and television equipment, musical instruments and records
+CPA_G52461	Retail trade services of hardware, paints and glass
+CPA_G52471	Retail trade services of books, newspapers and stationery
+CPA_G52481	Specialized retail trade services of office furniture, office supplies and equipment, computers and optical and photographical equipment
+CPA_G52482	Specialized retail trade services of watches, clocks and jewellery and of sports goods, games and toys
+CPA_G52483	Specialized retail trade services of non-food products n.e.c.
+CPA_G52501	Retail trade services of second-hand goods in stores
+CPA_G52611	Retail trade services via mail order houses
+CPA_G52621	Retail trade services in stalls and markets
+CPA_G52631	Other non-store retail trade services
+CPA_G52711	Repair services of boots, shoes and other articles of leather
+CPA_G52721	Repair services of electrical household goods
+CPA_G52731	Repair services of watches, clocks and jewellery
+CPA_G52741	Repair services of other personal and household goods
+CPA_H	Hotel and restaurant services
+CPA_H55	Hotel and restaurant services
+CPA_I	Transport, storage and communication services
+CPA_I60	Land transport and transport via pipeline services
+CPA_I61	Water transport services
+CPA_I62	Air transport services
+CPA_I63	Supporting and auxiliary transport services; travel agency services
+CPA_I64	Post and telecommunication services
+CPA_J	Financial intermediation services
+CPA_J65	Financial intermediation services, except insurance and pension funding services
+CPA_J66	Insurance and pension funding services, except compulsory social security services
+CPA_J67	Services auxiliary to financial intermediation
+CPA_K	Real estate, renting and business services
+CPA_K70	Real estate services
+CPA_K71	Renting services of machinery and equipment without operator and of personal and household goods
+CPA_K72	Computer and related services
+CPA_K73	Research and development services
+CPA_K74	Other business services
+CPA_L	Public administration and defence services, compulsory social security services
+CPA_L75	Public administration and defence services; compulsory social security services
+CPA_M	Education services
+CPA_M80	Education services
+CPA_N	Health and social services
+CPA_N85	Health and social work services
+CPA_O	Other community, social and personal services
+CPA_O90	Sewage and refuse disposal services, sanitation and similar services
+CPA_O91	Membership organisation services n.e.c.
+CPA_O92	Recreational, cultural and sporting services
+CPA_O93	Other services
+CPA_P	Private households with employed persons
+CPA_P95	Private households with employed persons
+CPA_Q	Services provided by extra-territorial organisations and bodies
+CPA_Q99	Services provided by extra-territorial organisations and bodies
+CPA_OTH	Other products
+TOT_HH	All CPA products plus direct emissions by private households
+HH	Direct emissions by private households
+V12110	Turnover or gross premiums written

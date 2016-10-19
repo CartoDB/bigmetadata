@@ -1,0 +1,15 @@
+HF1-3	All financing agents
+HF1	General government
+HF11	General government except social security funds
+HF12	Social security funds
+HF2	Private sector
+HF21	Private social insurance
+HF22	Private insurance enterprises (other than social insurance)
+HF21_22	Private insurance enterprises (including private social insurance)
+HF23	Private household out-of-pocket expenditure
+HF232-235	Cost-sharing: central government; state / provincial government; Local / municipal government; Social security funds
+HF236_237	Cost-sharing: Private insurance
+HF24	Non-profit institutions serving households
+HF25	Corporations (other than health insurance)
+HF3	Rest of the world
+HF0	Not elsewhere classified

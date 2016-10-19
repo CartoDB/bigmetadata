@@ -1,0 +1,21 @@
+HBEDT	Available beds in hospitals (HP.1)
+HBEDT_CUR	Curative care beds in hospitals (HP.1)
+HBEDT_REH	Rehabilitative care beds in hospitals (HP.1)
+HBEDT_LT	Long-term care beds in hospitals (HP.1)
+HBEDT_OTH	Other beds in hospitals (HP.1)
+HBEDI_PSY	Psychiatric care beds in hospitals (HP.1)
+NRCBED	Available beds in nursing and residential care facilities (HP.2)
+CT_SCAN	Computed Tomography Scanners
+MRI	Magnetic Resonance Imaging Units
+GAMMA	Gamma cameras
+DSA	Angiography units
+LSI	Lithotriptors
+PET_SCAN	PET scanners
+RAD	Radiation therapy equipment
+MAMMO	Mammographs
+OPER	Operation theatres in hospital 
+DAY	Day care places altogether
+DAY_SUR	Surgical day care places
+DAY_ONC	Oncological day care place
+DAY_PSY	Psychiatric day care place
+DAY_GER	Geriatric day care places

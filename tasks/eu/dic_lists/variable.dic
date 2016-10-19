@@ -1,0 +1,235 @@
+LIVESTOCK	Livestock
+AGRAREA_HA	Utilised agricultural area (ha)
+LFD_AWU	AWU:Labour force - directly employed by the holding
+PROD	Production
+HOLD_HOLD	hold:No. of holdings
+HOLD	No. of holdings
+HOLDSL_HOLD	hold:Sole holder holdings
+HOLDLEG_GRP_HOLD	hold:Legal persons or group holdings
+SGM_ESU	ESU:SGM of the holding
+TOTAREA_HA	ha:Total area
+TOTAREA	Total area
+AGRAREA	Utilised agricultural area
+CC01_HA	ha:Farming by owner:Agricultural area
+CC01	Farming by owner:Agricultural area
+CC02_HA	ha:Farming by tenant:Agricultural area
+CC02	Farming by tenant:Agricultural area
+CC03_HA	ha:Shared farming or other modes::Agricultural area
+CC03	Shared farming or other modes::Agricultural area
+CC05	Holdings with organic or low-input farming
+D	Arable land
+D01_09_13D1	Cereals, oilseeds, protein crops
+D01_08	Cereals
+D01	Common wheat and spelt
+D02	Durum wheat
+D03	Rye
+D04	Barley
+D05	Oats
+D06	Grain maize
+D07	Rice
+D08	Other cereals
+D09	Pulses - total
+D09C	Pulses - fodder peas
+D09D	Pulses - fodder field beans
+D10_12	Root crops
+D10	Potatoes
+D11	Sugar beet
+D12_18_F	Fodder crops and grass
+D12	Fodder roots and brassicas
+D13	Industrial plants
+D13A	Tobacco
+D13B	Hops
+D13C	Cotton
+D13D	Other industrial plants
+D13D1	Total:Other oil-seed or fibre plants
+D13D1A	Rape and turnip:Other oil-seed or fibre plants
+D13D1B	Sunflower:Other oil-seed or fibre plants
+D13D1C	Soya:Other oil-seed or fibre plants
+D13D1D	Others:Other oil-seed or fibre plants
+TEXT_CRP	Textile crops (including cotton, flax, hemp)
+D13D2	Aromatic-, medicinal and culinary plants
+D13D3	Industrial plants - Others
+D14_15	Fresh vegetables, melons, strawberries
+D14	Outdoor:Fresh vegetables, melons, strawberries
+D14A	Open field:Outdoor:Fresh vegetables, melons, strawberries
+D14B	Market gardening:Outdoor:Fresh vegetables, melons, strawberries
+D15_17_G07	Under glass:Vegetables, flowers and permanent crops
+D15	Under glass:Fresh vegetables, melons, strawberries
+D16_17	Flowers and ornemental plants
+D16	Outdoor:Flowers and ornemental plants
+D17	Under glass:Flowers and ornemental plants
+D18	Forage plants - total
+D18A	Forage plants - temporary grass
+D18B	Total:Other green fodder:Forage plants
+D18B1	Green maize:Other green fodder:Forage plants
+D18B2	Leguminous plants:Other green fodder:Forage plants
+D19_20	Seeds, seedlings and other crops on arable land
+D19	Seeds and seedlings
+D20	Other crops
+D21_22	Fallow land
+D21	Fallow land without subsidies
+D22	Non-productive arable land, eligible for support
+E	Kitchen gardens
+F	Total:Permanent grassland and meadow
+F01	Pasture and meadow:Permanent grassland and meadow
+F02	Rough grazings:Permanent grassland and meadow
+F03	Non-productive grassland, eligible for support
+G	Permanent crops
+G01	Fruit and berry plantations - total
+G01A	Temperate climate:Fruit and berry plantations
+G01B	Subtropical climate:Fruit and berry plantations
+G01C	Nuts:Fruit and berry plantations
+G02	Citrus plantations
+G03	Olive plantations - total
+G03A	Olive plantations - table olives
+G03B	Olive plantations - oil production
+G04	Vineyards - total
+G04A	Vineyards - quality wine
+G04B	Vineyards - other wines
+G04C	Vineyards - table grapes
+G04D	Vineyards - raisins
+G05	Nurseries
+G06	Other permanent crops
+G07	Permanent crops under glass
+H	Other land
+H0103	Unutilised land and other areas
+H02	Wooded area
+H02F	Wooded area - for selling wood
+H02G	Wooded area - with short rotation
+I01	Total:Successive secondary crops
+I01A	Non fodder cereals:Successive secondary crops
+I01B	Non fodder pulses:Successive secondary crops
+I01C	Non fodder oil-seed plants:Successive secondary crops
+I01D	Other:Successive secondary crops
+I02	Mushrooms
+I03A	Total irrigable area
+I03B	Irrigated once a year:Total
+I03B1	Irrigated once a year:Durum wheat
+I03B2	Irrigated once a year:Maize
+I03B3	Irrigated once a year:Potatoes
+I03B4	Irrigated once a year:Sugar beet
+I03B5	Irrigated once a year:Sunflower
+I03B6	Irrigated once a year:Soya
+I03B7	Irrigated once a year:Fodder plants
+I03B8	Irrigated once a year:Fruit and berry orchards
+I03B9	Irrigated once a year:Citrus fruit
+I03B10	Irrigated once a year:Vines
+I04	Area covered by greenhouses in use
+I05	Combined crops
+I05A	Combined:Agricultural crops - forestry
+I05B	Combined:Permanent - annual crops
+I05C	Combined:Permanent - permanent crops
+I05D	Combined crops:Others
+I08	Set-aside areas under incentive schemes - total
+I08A	Non-productive land, eligible for support
+I08AD22	Fallow land with no economic use: Set-aside areas under incentive schemes
+I08B	Raw material for non-food purposes:Set-aside areas under incentive schemes
+I08C	Converted into permanent pasture: Set aside areas under incentive schemes
+I08D	Converted into wooded areas: Set aside areas under incentive schemes
+I08E	Others:Set aside areas under incentive schemes
+I09A_HA	ha:Crops for winter soil cover: Nutrients management
+I09A_HOLD	hold:Crops for winter soil cover: Nutrients management
+I09B_HA	ha:Crops for nitrogen fixing: Nutrients management
+I09B_HOLD	hold:Crops for nitrogen fixing: Nutrients management
+J_LSU	LSU:Livestock
+J	Livestock
+J01	Equidae
+J01_10_LSU	LSU:Grazing
+J02_08	Cattle
+J02	Bovine <1 year old - total
+J02A	Bovine <1 year old - males
+J02B	Bovine <1 year old - females
+J03	Bovine 1-<2 years - males
+J04	Bovine 1-<2 years - females
+J05	Bovine 2 years and older - males
+J06	Heifers, 2 years and older
+J07	Dairy cows
+J08	Other cows, bovine 2 years old and over
+J09	Sheep
+J09A	Sheep - breeding ewes
+J09B	Sheep - others
+J10	Goats
+J10A	Goats - breeding females
+J10B	Goats - others
+J11_13_HEADS	head:Pigs
+J11_13	Pigs
+J11	Pigs - piglets under 20 kg
+J12	Pigs - breeding sows over 50 kg
+J13	Pigs - others
+J14_16_1000_HEADS	1000:Poultry
+J14_16	Poultry (1000 heads)
+J14	Poultry - broilers (1000 heads)
+J15	Laying hens (1000 heads)
+J16	Poultry - others (1000 heads)
+J17	Rabbits (breeding females)
+J18	Beehives
+J19A	Deer
+K01A	Four-wheel tractors, track-laying tractors, tool carriers belonging exclusively to the holding
+K01A0	Tractors etc.< 40 kw belonging exclusively to the holding
+K01A3	Tractors etc.40 - <60 kw belonging exclusively to the holding
+K01A41	Tractors etc. 60 - <100 kw belonging exclusively to the holding
+K01A42	Tractors etc. >=100 kw belonging exclusively to the holding
+K02A	Cultivators etc. belonging exclusively to the holding
+K03A_MACH	mach:Combine harvesters belonging exclusively to the holding
+K03	Combine harvesters
+K03A	Combine harvesters belonging exclusively to the holding
+K09A	Other fully mechanised harvesters belonging exclusively to the holding
+B04_EQ_Y_HOLD	hold:Farm accounts are kept
+CC05B_EQ_Y_HOLD	hold:Other low-input farming practiced
+CC05C_EQ_Y_HOLD	hold:Agri-environmental premium is received
+CC05C1_EQ_Y_HOLD	hold:Payment for landscape included in the agri-environmental premium received
+J19_EQ_Y	Other livestock
+K01B_EQ_Y	Use in last 12 mths:Tractors etc. not belonging the holding
+K02B_EQ_Y	Use in last 12 mths:Cultivators etc. not belonging the holding
+K03B_EQ_Y	Use in last 12 mths:Combined harvestors not belonging the holding
+K09B_EQ_Y	Use in last 12 mths:Other fully mechanised harvestors not belonging the holding
+K10_EQ_M	Mobile irrigation equipment
+K10_EQ_F	Fixed irrigation equipment
+K10_EQ_I	Irrigation equipment, but not known if fixed or mobile
+K10_EQ_0	No irrigation equipment
+L07_EQ_M_HOLD	hold:Sole holder-manager - major other gainful activity
+L07_EQ_M_AGRAREA_HA	ha AA:Sole holder-manager - major other gainful activity
+L07_EQ_S_HOLD	hold:Sole holder-manager - subsidiary other gainful activity
+L07_EQ_S_AGRAREA_HA	ha AA:Sole holder-manager - subsidiary other gainful activity
+L07_EQ_N_HOLD	hold:Sole holder-manager - no other gainful activity (L07=x)
+L07_EQ_N_AGRAREA_HA	ha AA:Sole holder-manager - no other gainful activity (L07=x)
+L08_EQ_M_HOLD	hold:Major other gainful activity:Spouse of the sole holder working on the holding
+L08_EQ_S_HOLD	hold:Subsidiary other gainful activity:Spouse of the sole holder
+L08_EQ_N_HOLD	hold:No other gainful activity:Spouse of the sole holder working on the holding(L08=n)
+L09A_PERS	pers:Major other gainful activity:Other family members of sole holder
+L09B_PERS	pers:Subsidiary other gainful activity:Other family members of sole holder
+LFH_M	Male:Sole holders
+LFH_F	Female:Sole holders
+LFH	Sole holders
+LFS_M	Male:Spouses of sole holders
+LFS_F	Female:Spouses of sole holders
+LFS	Spouses of sole holders
+LFROF_M	Male:Other family members of sole holders
+LFROF_F	Female:Other family members of sole holders
+LFROF	Other family members of sole holders:Labour force
+LFRF_M	Male:Family members of sole holders:Labour force
+LFRF_F	Female:Family members of sole holders:Labour force
+LFRF	Family members of sole holders
+LFRNF_M	Male:Regular non family labour force
+LFRNF_F	Female:Regular non family labour force
+LFRNF	Regular non family labour force
+LFNR	Labour force - non regular non family
+LFGH_PERS	pers:Group-holdings:Holders
+LFGH	Group-holdings:Holders
+LFR_PERS	pers:Labour force - regular
+LFR	Labour force - regular
+LFR_M_PERS	pers:Male:Regular labour force
+LFR_M	Male:Regular labour force
+LFR_F_PERS	pers:Female:Regular labour force
+LFR_F	Female:Regular labour force
+LFD	Labour force - directly employed by the holding
+LFND	Labour force - not directly employed by the holding
+M01	Holdings with another gainful activity
+M01A	Holdings with tourism as other gainful activity
+M01B	Holdings with handicraft as other gainful activity
+M01C	Holdings with processing of farm products as other gainful activity
+M01D	Holdings with wood processing as other gainful activity
+M01E	Holdings with aquaculture as other gainful activity
+M01F	Holdings with renewable energy production as other gainful activity
+M01G	Holdings with contractual work as other gainful activity
+M01H	Holdings with other gainful activities n.a.e. as other gainful activity

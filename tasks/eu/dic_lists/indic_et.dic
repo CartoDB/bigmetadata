@@ -1,0 +1,41 @@
+PC_TOT_IMP	Share of imports by partner in total imports (%)
+PC_TOT_EXP	Share of exports by partner in total exports (%)
+RT_EXP_IMP	Export/Import ratio
+IVOL_IMP	Import volume index (2010=100)
+IVOL_EXP	Export volume index (2010=100)
+RT_IVOL	Volume Ratio (Export/Import)
+PC_IMP_EU	Share of imports from EU in total imports (%)
+PC_EXP_EU	Share of exports to EU in total exports (%)
+PC_IMP_WRL	Share of national imports in world imports (%)
+PC_EXP_WRL	Share of national exports in world exports (%)
+TRD_VAL	Trade value in million ECU/EURO
+TRD_VAL_RT12	Growth rate M/M-12 of the trade value
+TRD_VAL_SWDA	Seasonally and working day adjusted trade value in million ECU/EURO
+TRD_VAL_SWDA_RT1	Growth rate M/M-1 of the seasonally and working day adjusted trade value
+IVU	Unit value index (2010=100)
+IVU_EXP	Export unit value index (2010=100)
+IVU_IMP	Import unit value index (2010=100)
+RT_IVU	Terms of trade (Export/import)
+IVU_RT1	Growth rate M/M-1 of the unit-value indices
+IVU_RT12	Growth rate M/M-12 of the unit-value indices
+IVOLU	Unit volume index (2000=100)
+IVOL_NSA	Volume indices (2010=100)
+IVOL_NSA_RT12	Growth rate M/M-12 of the volume Indices
+IVOL_SWDA	Seasonally and working day adjusted volume indices (2010=100)
+IVOL_SWDA_RT1	Growth rate M/M-1 of the seasonally and working day adjusted volume Indices
+CONT_IMP_EU	Share of imports by Member State (%)
+CONT_EXP_EU	Share of exports by Member State (%)
+MIO_BAL_VAL	Trade balance in million ECU/EURO
+MIO_EXP_VAL	Exports in million of ECU/EURO
+MIO_IMP_VAL	Imports in million of ECU/EURO
+PC_IMP_PROD	Share of imports by product (%)
+PC_EXP_PROD	Share of exports by product (%)
+PC_IMP_PART	Share of imports by partner (%)
+PC_EXP_PART	Share of exports by partner (%)
+ENT_NR	Number of enterprises
+AVG_IMP_VAL	Average import value
+AVG_EXP_VAL	Average export value
+IMP_VAL	Import value
+EXP_VAL	Export value
+PC_IMP_SZCL	Percentage of imports by sizeclas (%)
+PC_EXP_SZCL	Percentage of exports by sizeclas (%)

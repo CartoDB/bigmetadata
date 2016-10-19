@@ -1,0 +1,44 @@
+TOTAL	Total
+NONE	No income
+Q1	First quartile
+Q2	Second quartile
+Q3	Third quartile
+Q4	Fourth quartile
+QU1	First quintile
+QU2	Second quintile
+QU3	Third quintile
+QU4	Fourth quintile
+QU5	Fifth quintile
+D1	First decile
+D2	Second decile
+D3	Third decile
+D4	Fourth decile
+D5	Fifth decile
+D6	Sixth decile
+D7	Seventh decile
+D8	Eighth decile
+D9	Ninth decile
+D10	Tenth decile
+P1	First percentile
+P2	Second percentile
+P3	Third percentile
+P4	Fourth percentile
+P5	Fifth percentile
+P10	Tenth percentile
+P25	Twenty-fifth percentile
+MED	Median
+S2	Second sextile
+P75	Seventy-fifth percentile
+P90	Ninetieth percentile
+P95	Ninety-fifth percentile
+P96	Ninety-sixth percentile
+P97	Ninety-seventh percentile
+P98	Ninety-eighth percentile
+P99	Ninety-ninth percentile
+P100	Hundredth percentile
+QUINTILE1	First quintile
+QUINTILE2	Second quintile
+QUINTILE3	Third quintile
+QUINTILE4	Fourth quintile
+QUINTILE5	Fifth quintile
+UNK	Unknown

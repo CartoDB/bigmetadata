@@ -1,0 +1,74 @@
+TOTAL	Total
+SOL_FUEL	Solid fuels (v2011 + v2012)
+HCOA_DER	Hard coal and derivatives 
+COKE	Coke
+SOL_FUEL_OTH	Other solid fuels
+LIQ_FUEL	Liquid fuels
+COIL	Crude oil
+ROIL	Refined oil products
+PETROL	All Petroleum Products
+LPG	LPG
+DIESEL	Diesel
+GAS	Gas (v2031 + v2032 + v2033 + v2034)
+GAS_NAT	Natural Gas
+GAS_BFUR	Blast-furnace gas
+GAS_COKE	Coke-oven gas
+GAS_CONV	Converter gas
+GAS_OTH	Other gas
+ELEC	Electrical Energy
+ELEC_OTH	Electricity or other sources
+OTHER	Other products
+STEAM	Steam
+DLV_GAS_BFUR	External deliveries of blast-furnace gas
+DLV_GAS_CONV	External deliveries of converter gas
+ALTER	Alternative Energy
+PETROL_X_HYBR	Petrol (excluding hybrids)  
+ELEC_PETROL	Hybrid electric-petrol
+ELEC_PETROL_PI	Plug-in hybrid petrol-electric  
+DIESEL_X_HYBR	Diesel (excluding hybrids)  
+ELEC_DIESEL	Hybrid diesel-electric
+ELEC_DIESEL_PI	Plug-in hybrid diesel-electric  
+HYDR_FUELCELL	Hydrogen and fuel cells 
+BIOETHAN	Bioethanol
+BIODIESEL	Biodiesel
+BIFUEL	Bi-fuel vehicles
+CNG	Compressed natural gas (CNG)  
+LNG	Liquefied natural gas (LNG)  
+ELEC_PETROL_HYBR	Hybrid electric-petrol and plug-in hybrid petrol-electric  
+ELEC_DIESEL_HYBR	Hybrid electric-diesel and plug-in hybrid diesel-electric  
+N00	Natural energy inputs
+N01	Fossil non-renewable natural energy inputs
+N02	Nuclear non-renewable natural energy inputs
+N03	Hydro based renewable natural energy inputs
+N04	Wind based renewable natural energy inputs
+N05	Solar based renewable natural energy inputs
+N06	Biomass based renewable natural energy inputs
+N07	Other renewable natural energy inputs
+P00	Energy products
+P08	Hard coal
+P09	Brown coal and peat
+P10	Derived gases (= manufactured gases excl. biogas)
+P11	Secondary coal products (coke, coal tar, patent fuel, BKB and peat products)
+P12	Crude oil, NGL, and other hydrocarbons (excl. bio)
+P13	Natural gas (without bio)
+P14	Motor spirit (without bio)
+P15	Kerosenes and jet fuels (without bio)
+P16	Naphtha
+P17	Transport diesel (without bio)
+P18	Heating and other gasoil (without bio)
+P19	Residual fuel oil
+P20	Refinery gas, ethane and LPG
+P21	Other petroleum products incl. additives/oxygenates and refinery feedstocks
+P22	Nuclear fuel
+P23	Wood, wood waste and other solid biomass, charcoal
+P24	Liquid biofuels
+P25	Biogas
+P26	Electrical energy
+P27	Heat
+R00	Energy residuals
+R28	Renewable waste
+R29	Non-renewable waste
+R30	Energy losses all kinds of (during extraction, distribution, storage and transformation, and dissipative heat from end use)
+R31	Energy incorporated in products for non-energy use
+SD_IO	Statistical discrepancy between input and output of all energy flows
+N00_P00_R00	Natural energy inputs, energy products and energy residuals

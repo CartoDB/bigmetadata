@@ -1,0 +1,12 @@
+TOTAL	Total
+ESU0	Zero ESU
+ESU_LT1	Less than 1 ESU
+ESU1	From 1 to 1.9 ESU
+ESU_LT2	Less than 2 ESU
+ESU2-3	From 2 to 3.9 ESU
+ESU4-7	From 4 to 7.9 ESU
+ESU8-15	From 8 to 15.9 ESU
+ESU16-39	From 16 to 39.9 ESU
+ESU40-99	From 40 to 99.9 ESU
+ESU100-249	From 100 to 249.9 ESU
+ESU_GE250	250 ESU or over

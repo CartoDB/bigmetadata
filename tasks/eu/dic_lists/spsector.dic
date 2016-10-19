@@ -1,0 +1,12 @@
+TOTALNOREROUTE	Total receipts
+CORPORATION	Corporations (non-financial and financial)
+GG_CENT	General government central
+GG_LOC	General government state and local
+GG_SS	General government social security funds
+GG_TOT	Total general government
+HOUSENOREROUTE	Households
+NONPROF	Non-profit institutions serving households
+RESTNOREROUTE	Rest of the world
+TOTAL	Total receipts including transactions between schemes
+HOUSE	Households including transactions between schemes
+REST	Rest of the world including transactions between schemes

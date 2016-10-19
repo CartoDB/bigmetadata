@@ -1,0 +1,14 @@
+TOTAL	Total
+RES	Residential buildings
+RES1	One-dwelling residential buildings
+RES2	Two-dwelling residential buildings
+RES_GE3	Three or more dwelling residential buildings
+HOUSE	House
+HOUSE_D	Detached house
+HOUSE_SD	Semi-detached house
+FLAT	Flat
+FLAT_LT10	Flat in a building with less than ten dwellings
+FLAT_GE10	Flat in a building with ten or more dwellings
+NRES	Non-residential buildings
+OTH	Others
+UNK	Unknown

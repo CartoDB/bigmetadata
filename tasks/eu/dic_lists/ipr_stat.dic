@@ -1,0 +1,24 @@
+PEN	Pending
+REG	Registered
+ERR	Absolute error
+INVPEN	Invalidity pending
+INVDEC	Declared invalid
+EXPLEG	Design legally expired
+EXPDAT	Design passed expiry date without renewal
+REGPUB	Registered and published
+REGWPUB	Registered and waiting for publication
+SURR	Surrendered
+EXAM	To be examined
+PUBDEF	Publication deferred
+PUBNDEF	Publication not deferred
+OPEN	Open application
+EXP	Expired
+CANCPEN	Cancellation pending
+CANC	Cancelled
+DEEMNF	Deemed not filed
+REF	Refused
+WDN	Withdrawn
+DEL	Deleted
+OPP	Opposed
+APPLBL	Appealable
+APP	Appealed

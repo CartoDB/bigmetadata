@@ -1,0 +1,29 @@
+TOTAL	All sectors
+BES	Business enterprise sector
+REG	Regional/sector funds
+NAT	National funds
+SPE	Specific national measure
+EUS	EU sources
+GOV	Government sector
+GOV_REB	Government rebates on expenditure
+GOV_GUF	Government - General university funds
+GOV_DIR	Government - Direct government
+HES	Higher education sector
+PNP	Private non-profit sector
+HES_AND_PNP	Higher education and private-non-profit sector
+TAX	Tax concessions on expenditure
+EXT	External financial assistance from non-government sources
+PAYTR	Royalty payments from external bodies/persons for the use of training resources
+PAYC	Payments from external bodies/persons for the use of training resources
+ABR	Abroad
+ABR_PRIVATE	Abroad - Private sector
+ABR_BES	Abroad - Business enterprise sector
+ABR_PNP	Abroad - Private non-profit sector
+ABR_PUBLIC	Abroad - Public sector
+ABR_GOV	Abroad - Government sector
+ABR_HES	Abroad - Higher education sector
+ABR_EC	Abroad - European Commission
+ABR_INT	Abroad - International Organisations
+ABR_OTHER	Abroad - other
+ABR_BES_GROUP	Abroad - enterprises within the same group
+ABR_BES_OTH	Abroad - other business enterprise companies

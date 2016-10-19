@@ -1,0 +1,49 @@
+TOTAL	Total
+CRE_DEB_AVG	Average of credits and debits
+CRE	Credit
+DEB	Debit
+NET	Net
+ASS	Assets
+AD	Gross sales of assets
+AI	Gross acquisition of assets
+LIAB	Liabilities
+LD	Gross decrease in liabilities
+LI	Gross incurrence of liabilities
+IMP	Imports
+EXP	Exports
+BAL	Balance
+BAL_RT	Balance for values / Ratio for indices
+BAL_TRD	Trade balance
+DOM	Domestic
+ADJ	Other adjustments
+TRN	Transactions
+STK	Stock
+STK_GRS	Gross stock
+STK_NET	Net stock
+FLOW_GRS	Gross flow
+FLOW_NET	Net flow
+ENT	Entrants
+EXIT	Exits
+IN	Inwards
+OUT	Outwards
+PAID	Paid
+RECV	Received
+II	Net income on inward FDI
+IO	Net income on outward FDI
+NI	Net FDI inward
+NO	Net FDI outward
+A_LE	Assets - positions at the end of period
+A_K7A	Assets - revaluations due to exchange rate changes
+A_K7B	Assets - revaluations due to other price changes
+A_KA	Assets - other changes in the volume of Assets/Liabilities
+L_LE	Liabilities - positions at the end of period
+L_K7A	Liabilities - revaluations due to exchange rate changes
+L_K7B	Liabilities - revaluations due to other price changes
+L_KA	Liabilities - other changes in the volume of Assets/Liabilities
+N_LE	Net positions at the end of period
+N_K7A	Net revaluations due to exchange rate changes
+N_K7B	Net revaluations due to other price changes
+N_KA	Net other changes in the volume of Assets/Liabilities
+NE_LE	Net liabilities (liabilities minus assets)
+NSP	Not specified
+UNK	Unknown

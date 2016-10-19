@@ -1,0 +1,52 @@
+TOTAL	Total
+SOC_INFR	Social infrastructure services
+ECO_INFR	Economic infrastructure and services
+PROD	Production sectors
+MULTI	Multi sector/cross cutting
+BUDG	Budget support, food aid, food security
+ACT_DEB	Action relating to debt
+HUM_AID	Humanitarian aid
+WATER_SS	Water supply and sanitation
+ODA	Official development aid
+GR_NGO	Grants by NGOs
+PRIVF	Private flows
+OTHOF	Other official flows
+AGRI	Agriculture and fisheries
+ENVIR	Environment, health and consumer protection
+INFO	Research, information, education and statistics
+COMP	Competition
+MARK	Internal Market
+JUST	Justice and home affairs
+ENER	Energy and Transport
+EMPL	Employment and social affairs
+CUST	Taxation and Customs union
+TOTCHEM	Total production of chemicals
+TOTTOX	Total toxic chemicals
+CMR	CMR - chemicals
+CHRONIC	Chronic toxic chemicals
+VERY	Very toxic chemicals
+TOXIC	Toxic chemicals
+HARM	Harmful chemicals
+ORG	Organisations
+SITE	Sites
+EU_VOTE	EU elections
+NAT_VOTE	National elections
+PC_TENV	Environmental taxes
+PC_TLAB	Taxes on labour
+SHARE	Annual fellings as a share of net annual increment (%)
+INCRE	Net annual increment (1 000 m3 over bark)
+FELLG	Annual fellings (1 000 m3 over bark)
+HLY_F	Healthy life years - females
+HLY_M	Healthy life years - males
+LEXP_F	Life expectancy - females
+LEXP_M	Life expectancy - males
+INDUS	Enterprise and Industry
+IND	Industry
+SERV	Services
+TOTHARM	Environmentally harmful chemicals, total
+SEVERE	Chemicals with severe chronic environmental impacts
+SIGNIF	Chemicals with significant chronic environmental impacts
+MDRT	Chemicals with moderate chronic environmental impacts
+CHRNC	Chemicals with chronic environmental impacts
+ACUTE	Chemicals with significant acute environmental impacts
+NAL	Not allocated

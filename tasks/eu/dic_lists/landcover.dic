@@ -1,0 +1,113 @@
+LC	Total land cover
+LCA	Artificial land
+LCB	Cropland
+LCC	Woodland
+LCD	Shrubland
+LCE	Grassland
+LCF	Bare land
+LCG	Water
+LCH	Wetland
+LCA1	Built-up areas
+LCA2	Artificial non built-up areas
+LCB1	Cereals
+LCB2	Root crops
+LCB3	Non permanent industrial crops
+LCB4	Dry pulses, vegetables and flowers
+LCB5	Fodder crops (mainly leguminous)
+LCB7	Fruit trees and berries
+LCB8	Other permanent crops
+LCC10	Broadleaved woodland
+LCC20	Coniferous woodland
+LCC30	Mixed woodland
+LCC1	Forest FAO
+LCC2	Other wooded land FAO
+LCC3	Other wooded land no FAO
+LCD1	Shrubland with sparse tree cover
+LCD2	Shrubland without tree cover
+LCE1	Grassland with sparse tree/shrub cover
+LCE2	Grassland without tree/shrub cover
+LCE3	Spontaneous vegetation
+LCF1	Bare land
+LCG1	Inland water bodies
+LCG2	Inland running water
+LCG3	Coastal water bodies
+LCG5	Glaciers, permanent snow
+LCH1	Inland wetlands
+LCH2	Coastal wetlands
+LCA11	Buildings with 1 to 3 floors
+LCA12	Buildings with more than 3 floors
+LCA13	Greenhouses
+LCA21	Non built-up area features
+LCA22	Non built-up linear features
+LCB11	Common wheat
+LCB12	Durum wheat
+LCB13	Barley
+LCB14	Rye
+LCB15	Oats
+LCB16	Maize
+LCB17	Rice
+LCB18	Triticale
+LCB19	Other cereals
+LCB21	Potatoes
+LCB22	Sugar beet
+LCB23	Other root crops
+LCB31	Sunflower
+LCB32	Rape and turnip seeds
+LCB33	Soya
+LCB34	Cotton
+LCB35	Other fibre and oleaginous crops
+LCB36	Tobacco
+LCB37	Other non permanent industrial crops
+LCB41	Dry pulses
+LCB42	Tomatoes
+LCB43	Other fresh vegetables
+LCB44	Floriculture and ornamental plants
+LCB45	Strawberries
+LCB51	Clovers
+LCB52	Lucerne
+LCB53	Other legumes and mixture for fodder
+LCB54	Mixed cereals for fodder
+LCB55	Temporary grassland
+LCB71	Apple fruit
+LCB72	Pear fruit
+LCB73	Cherry fruit
+LCB74	Nuts trees
+LCB75	Other fruit trees and berries
+LCB76	Oranges
+LCB77	Other citrus fruit
+LCB81	Olive groves
+LCB82	Vineyards
+LCB83	Nurseries
+LCB84	Permanent industrial crops
+LCC11	Broadleaved and evergreen forest
+LCC12	Coniferous forest
+LCC13	Mixed forest
+LCC21	Broadleaved and evergreen other wooded areas
+LCC22	Coniferous other wooded areas
+LCC23	Mixed other wooded areas
+LCC31	Broadleaved and evergreen other
+LCC32	Coniferous other
+LCC33	Mixed other
+LCD10	Shrubland with sparse tree cover
+LCD20	Shrubland without tree cover
+LCE10	Grassland with sparse tree/shrub cover
+LCE20	Grassland without tree/shrub cover
+LCE30	Spontaneous vegetation
+LCF10	Rocks and stones
+LCF20	Sand
+LCF30	Lichens
+LCF40	Other base soil
+LCG10	Inland water bodies
+LCG20	Inland running water
+LCG30	Coastal water bodies
+LCG50	Glaciers, permanent snow
+LCH11	Inland marshes
+LCH12	Peatbogs
+LCH21	Salt-marshes
+LCH22	Salines
+LCH23	Intertidal flats
+LCA1_LC	Built-up areas on total land
+B1GQ_LCA	Productivity of artificial land
+LCA1_LCA	Built-up areas on artificial land
+B1GM_LCA1	Productivity of artificial built-up areas
+B1GM_LCA2	Productivity of artificial non built-up areas

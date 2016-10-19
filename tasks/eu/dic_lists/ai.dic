@@ -1,0 +1,42 @@
+SOX	Sulphur oxides
+SO2	Sulphur dioxide
+NOX	Nitrogen oxides
+NH3	Ammonia
+CO	Carbon monoxide
+VOC	Volatile organic compounds
+NMVOC	Non-methane volatile organic compounds
+CH4	Methane
+N2O	Nitrous oxide
+SF6	Sulphur hexafluoride
+GHG	Greenhouse Gas Emissions (CO2 equivalent)
+CO2	Carbon dioxide
+CO2_BIO	Carbon dioxide from biomass used as a fuel
+CH4_EQ	Methane (Global warming potential, CO2 equivalent)
+N2O_EQ	Nitrous oxide (Global warming potential, CO2 equivalent)
+HFC	Hydrofluorocarbons
+HFC_EQ	Hydrofluorocarbones (CO2 equivalent)
+PFC	Perfluorocarbons
+PFC_EQ	Perfluorocarbones (CO2 equivalent)
+SF6_EQ	Sulphur hexafluoride (Global warming potential, CO2 equivalent)
+SPM	Total Particulate Formation PM10 (PM10 equivalent)
+PM10	Particulates < 10µm
+SOX_PMP	Sulphur oxides (Particulate Formation, PM10 equivalent)
+NOX_PMP	Nitrogen oxides (Particulate Formation, PM10 equivalent)
+NH3_PMP	Ammonia (Particulate Formation, PM10 equivalent)
+PM2_5	Particulates < 2.5µm
+PM	Particulates
+AP	Total Acidifying Potential (AP equivalent)
+NOX_ACP	Nitrogen oxides (Acidifying Potential, Acid equivalents)
+NH3_ACP	Ammonia (Acidifying Potential, Acid equivalent)
+SOX_ACP	Sulphur oxides (Acidifying Potential, Acid equivalent)
+O3	Ozone
+TOP	Total Tropospheric Ozone Forming Potential (TOFP equivalent)
+NMVOC_TOFP	Non-methane Volatile Organic Compounds (Tropospheric ozone forming potential)
+NOX_TOFP	Nitrogen oxides ( Tropospheric ozone forming potential, NMVOC equivalent)
+CO_TOFP	Carbon monoxide (Tropospheric ozone forming potential, NMVOC equivalent)
+CH4_TOFP	Methane (Tropospheric ozone forming potential, NMVOC equivalent)
+PB	Lead
+CFC_P	CFC (Production)
+CFC_C	CFC (Consumption)
+HAL_P	Halons (Production)
+HAL_C	Halons (Consumption)

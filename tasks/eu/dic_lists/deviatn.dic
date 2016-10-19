@@ -1,0 +1,11 @@
+TOTAL	Total
+DEV_0	No information
+DEV_1	Deviation due to electrical problems, explosion, fire
+DEV_2	Deviation by overflow, overturn, leak, flow, vaporisation, emission
+DEV_3	Breakage, bursting, splitting, slipping, fall, collapse of Material Agent
+DEV_4	Loss of control (total or partial) of machine, means of transport or handling equipment, hand-held tool, object, animal
+DEV_5	Slipping - Stumbling and falling - Fall of persons
+DEV_6	Body movement without any physical stress (generally leading to an external injury)
+DEV_7	Body movement under or with physical stress (generally leading to an internal injury)
+DEV_8	Shock, fright, violence, aggression, threat, presence
+DEV_9	Other Deviations not listed above in this classification.

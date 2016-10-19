@@ -1,0 +1,9 @@
+HRST	Persons with tertiary education (ISCED) and/or employed in science and technology
+HRSTE	Persons with tertiary education (ISCED)
+HRSTO	Persons employed in science and technology
+HRSTC	Persons with tertiary education (ISCED) and employed in science and technology
+HRSTU	Unemployed persons with tertiary education (ISCED)
+SE	Scientists and engineers
+NON_HRSTU	Unemployed persons with non-tertiary education (ISCED)
+APPL	Applicant
+INVT	Inventor

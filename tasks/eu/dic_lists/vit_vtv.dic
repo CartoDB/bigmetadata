@@ -1,0 +1,7 @@
+VITARTOT	Total holdings
+VITARC1	Holdings with > 0 <= 10 % of agricultural area in use under vines
+VITARC2	Holdings with 10 <= 25 % of agricultural area in use under vines
+VITARC3	Holdings with 25 <= 50 % of agricultural area in use under vines
+VITARC4	Holdings with 50 <= 75 % of agricultural area in use under vines
+VITARC5	Holdings with 75 <= 90 % of agricultural area in use under vines
+VITARC6	Holdings with >= 90 % of agricultural area in use under vines

@@ -1,0 +1,34 @@
+NABS01	Exploration and exploitation of the earth
+NABS02	Environment
+NABS03	Exploration and exploitation of space
+NABS04	Transport, telecommunication and other infrastructures
+NABS05	Energy
+NABS06	Industrial production and technology
+NABS07	Health
+NABS08	Agriculture
+NABS09	Education
+NABS10	Culture, recreation, religion and mass media
+NABS11	Political and social systems, structures and processes
+NABS12	General advancement of knowledge: R&D financed from General University Funds (GUF)
+NABS121	R&D related to Natural Sciences - financed from GUF
+NABS122	R&D related to Engineering Sciences - financed from GUF
+NABS123	R&D related to Medical Sciences - financed from GUF
+NABS124	R&D related to Agricultural Sciences - financed from GUF
+NABS125	R&D related to Social Sciences - financed from GUF
+NABS126	R&D related to Humanities - financed from GUF
+NABS13	General advancement of knowledge: R&D financed from other sources than GUF
+NABS131	R&D related to Natural Sciences - financed from other sources  than GUF
+NABS132	R&D related to Engineering Sciences - financed from other sources  than GUF
+NABS133	R&D related to Medical Sciences - financed from other sources  than GUF
+NABS134	R&D related to Agricultural Sciences - financed from other sources  than GUF
+NABS135	R&D related to Social Sciences - financed from other sources  than GUF
+NABS136	R&D related to Humanities - financed from other sources  than GUF
+NABS14	Defence
+NABS99_X_14	Total civil R&D appropriations
+NABS99	Total R&D appropriations
+TOT_TNC	National public funding to transnationally coordinated R&D
+TNC1	National contributions to transnational public R&D performers
+TNC2	National contributions to Europe-wide transnational public R&D programmes
+TNC3	National contributions to bilateral or multilateral public R&D programmes
+IF	GBAORD - institutional funding
+PF	GBAORD - project funding

@@ -1,0 +1,43 @@
+TOTAL	All presentation forms
+FRE	Fresh
+FRE_WHL	Fresh, whole
+FRE_GUT	Fresh, gutted
+FRE_GUH	Fresh, gutted and headed
+FRE_TAL	Fresh, tails
+FRE_FIL	Fresh, filleted
+FRE_PEL	Fresh, peeled and cleaned
+FRE_ALI	Fresh, alive
+FRE_OTH	Fresh, other
+FRE_NSP	Fresh, not specified
+FRO	Frozen
+FRO_WHL	Frozen, whole
+FRO_GUT	Frozen, gutted
+FRO_GUH	Frozen, gutted and headed
+FRO_TAL	Frozen, tails
+FRO_FIL	Frozen, filleted
+FRO_NFL	Frozen, not filleted
+FRO_CLE	Frozen, clean
+FRO_NCL	Frozen, not clean
+FRO_OTH	Frozen, other
+FRO_NSP	Frozen, not specified
+SAL	Salted
+SAL_WHL	Salted, whole
+SAL_GUT	Salted, gutted
+SAL_GUH	Salted, gutted and headed
+SAL_FIL	Salted, filleted
+SAL_OTH	Salted, other
+SAL_NSP	Salted, not specified
+SMO	Smoked
+COK	Cooked
+COK_FRO	Cooked, frozen and packed
+DRI	Dried
+DRI_WHL	Dried, whole
+DRI_GUT	Dried, gutted
+DRI_GUH	Dried, gutted and headed
+DRI_FIL	Dried, filleted
+DRI_OTH	Dried, other
+DRI_NSP	Dried, not specified
+CLA	Claws
+ROE	Roes
+WHL	Whole
+UNK	Presentation unknown

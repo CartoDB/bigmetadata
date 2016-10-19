@@ -1,0 +1,15 @@
+EXPLOSIF	1. Explosives
+GASES	2. Gases,compressed,liquified,dissolved und.pressure
+FLAM_LIQ	3. Flammable liquids
+FLAM_SOL	4.1. Flammable solids
+SUB_SP_COMB	4.2. Substances liable to spontaneous combustion
+SUB_FLAM_GAS	4.3. Substance emitting flammable gases (with water)
+OXID_SUB	5.1. Oxidising substances
+ORG_PEROX	5.2. Organic peroxides
+TOXIC_SUB	6.1. Toxic substances
+SUB_INFECT	6.2. Substances liable to cause infections
+RADIOACT	7. Radioactive material
+CORROS	8. Corrosives
+DANG_MISC	9. Miscellaneous dangerous substances
+DANG_GD_UNK	99. Unknown dangerous good
+TOT_DANG_GDS	10. Total all dangerous goods groups

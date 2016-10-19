@@ -1,0 +1,6 @@
+TOTAL	Total of household income groups
+LT60PC	Household income less than 60% compared to median actual current income
+60_100PC	Household income between 60% and 100% compared to median actual current income
+100_140PC	Household income between 100% and 140% compared to median actual current income
+GE140PC	Household income between 140% and greater compared to median actual current income
+NS	Not significant

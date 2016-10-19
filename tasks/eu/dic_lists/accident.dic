@@ -1,0 +1,22 @@
+TOTAL	Total
+COLLIS	Collisions of trains, including collisions with obstacles within the clearance gauge
+COLLIS_X_LVLCROS	Collisions (excluding level-crossing accidents)
+DERAIL	Derailments of trains
+DGD	Accidents involving transport of dangerous goods
+NDGD	Accidents not involving transport of dangerous goods
+DGD_RL	Accidents in which dangerous goods are released
+DGD_NRL	Accidents in which dangerous goods are not released
+LVLCROS	Level crossing accidents
+RSTK_MOT	Accidents to persons caused by rolling stock in motion
+RD_TRF	Road traffic
+HOM_SCH	Accident at home / school / leisure
+HOM_LEIS	Home and leisure
+HOM	Home
+LEIS	Leisure
+RSTK_FIRE	Fires in rolling stock
+FAT_NT	Fatalities in injury accidents on national territory (all operators)
+ACC_NT	Injury accidents on national territory (all operators)
+FAT_NC	Fatalities in injury accidents where a national company was involved (worldwide)
+ACC_NC	Injury accidents where a national company was involved (worldwide)
+OTH	Others
+UNK	Unknown

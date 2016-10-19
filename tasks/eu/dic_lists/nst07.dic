@@ -1,0 +1,104 @@
+TOTAL	Total transported goods
+GT01	Products of agriculture, hunting, and forestry; fish and other fishing products
+GT011	Cereals
+GT012	Potatoes
+GT013	Sugar beet
+GT014	Other fresh fruit and vegetables
+GT015	Products of forestry and logging
+GT016	Live plants and flowers
+GT017	Other substances of vegetable origin
+GT018	Live animals
+GT019	Raw milk from bovine cattle, sheep and goats
+GT01A	Other raw materials of animal origin
+GT01B	Fish and other fishing products
+GT02	Coal and lignite; crude petroleum and natural gas
+GT021	Coal and lignite
+GT022	Crude petroleum
+GT023	Natural gas
+GT03	Metal ores and other mining and quarrying products; peat; uranium and thorium
+GT031	Iron ores
+GT032	Non ferrous metal ores (except uranium and thorium ores)
+GT033	Chemical and (natural) fertilizer minerals
+GT034	Salt
+GT035	Stone, sand, gravel, clay, peat and other mining and quarrying products n.e.c.
+GT036	Uranium and thorium ores
+GT04	Food products, beverages and tobacco
+GT041	Meat, raw hides and skins and meat products
+GT042	Fish and fish products, processed and preserved
+GT043	Fruit and vegetables, processed and preserved
+GT044	Animal and vegetable oils and fats
+GT045	Dairy products and ice cream
+GT046	Grain mill products, starches, starch products and prepared animal feeds
+GT047	Beverages
+GT048	Other food products n.e.c. and tobacco products (except in parcel service or grouped)
+GT049	Various food products and tobacco products in parcel service or grouped
+GT05	Textiles and textile products; leather and leather products
+GT051	Textiles
+GT052	Wearing apparel and articles of fur
+GT053	Leather and leather products
+GT06	Wood and products of wood and cork (except furniture); articles of straw and plaiting materials; pulp, paper and paper products; printed matter and recorded media
+GT061	Products of wood and cork (except furniture)
+GT062	Pulp, paper and paper products
+GT063	Printed matter and recorded media
+GT07	Coke and refined petroleum products
+GT071	Coke oven products; briquettes, ovoids and similar solid fuels
+GT072	Liquid refined petroleum products
+GT073	Gaseous, liquefied or compressed petroleum products
+GT074	Solid or waxy refined petroleum products
+GT08	Chemicals, chemical products, and man-made fibers; rubber and plastic products ; nuclear fuel
+GT081	Basic mineral chemical products
+GT082	Basic organic chemical products
+GT083	Nitrogen compounds and fertilizers (except natural fertilizers)
+GT084	Basic plastics and synthetic rubber in primary forms
+GT085	Pharmaceuticals and parachemicals including pesticides and other agro-chemical products
+GT086	Rubber or plastic products
+GT087	Nuclear fuel
+GT09	Other non metallic mineral products
+GT091	Glass and glass products, ceramic and porcelain products
+GT092	Cement, lime and plaster
+GT093	Other construction materials, manufactures
+GT10	Basic metals; fabricated metal products, except machinery and equipment
+GT101	Basic iron and steel and ferro-alloys and products of the first processing of iron and steel (except tubes)
+GT102	Non ferrous metals and products thereof
+GT103	Tubes, pipes, hollow profiles and related fittings
+GT104	Structural metal products
+GT105	Boilers, hardware, weapons and other fabricated metal products
+GT11	Machinery and equipment n.e.c.; office machinery and computers; electrical machinery and apparatus n.e.c.; radio, television and communication equipment and apparatus; medical, precision and optical instruments; watches and clocks
+GT111	Agricultural and forestry machinery
+GT112	Domestic appliances n.e.c. (white goods)
+GT113	Office machinery and computers
+GT114	Electric machinery and apparatus n.e.c.
+GT115	Electronic components and emission and transmission appliances
+GT116	Television and radio receivers; sound or video recording or reproducing apparatus and associated goods (Brown goods)
+GT117	Medical, precision and optical instruments, watches and clocks
+GT118	Other machines, machine tools and parts
+GT12	Transport equipment
+GT121	Automobile industry products
+GT122	Other transport equipment
+GT13	Furniture; other manufactured goods n.e.c.
+GT131	Furniture
+GT132	Other manufactured goods
+GT14	Secondary raw materials; municipal wastes and other wastes
+GT141	Household and municipal waste
+GT142	Other waste and secondary raw materials
+GT15	Mail, parcels
+GT151	Mail
+GT152	Parcels, small packages
+GT16	Equipment and material utilized in the transport of goods
+GT161	Containers and swap bodies in service, empty
+GT162	Pallets and other packaging in service, empty
+GT17	Goods moved in the course of household and office removals; baggage and articles accompanying travellers; motor vehicles being moved for repair; other non market goods n.e.c.
+GT171	Household removal
+GT172	Baggage and articles accompanying travellers
+GT173	Vehicles for repair
+GT174	Plant equipment, scaffolding
+GT175	Other non market goods n.e.c.
+GT18	Grouped goods: a mixture of types of goods which are transported together
+GT180	Grouped goods
+GT19	Unidentifiable goods: goods which for any reason cannot be identified and therefore cannot be assigned to groups 01-16.
+GT191	Unidentifiable goods in containers or swap bodies
+GT192	Other unidentifiable goods
+GT20	Other goods n.e.c.
+GT200	Other goods not elsewhere classified
+NAP	Not applicable
+UNK	Unknown

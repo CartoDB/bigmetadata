@@ -1,0 +1,35 @@
+GEN	Generation of wastewater - all sources
+GEN_PS	Generation of wastewater - point sources - total
+GEN_AGR	Generation of wastewater - agriculture, forestry, fishing
+GEN_IND	Generation of wastewater - industry total
+GEN_MIN	Generation of wastewater - mining and quarrying
+GEN_MAN	Generation of wastewater - manufacturing industries
+GEN_FOOD	Generation of wastewater - foodprocessing industry
+GEN_MET	Generation of wastewater - basic metals
+GEN_TRA	Generation of wastewater - motor vehicles and transport equipment
+GEN_TEXT	Generation of wastewater - textiles
+GEN_PAP	Generation of wastewater - paper and paper products
+GEN_CHEM	Generation of wastewater - chemical products and refined petroleum
+GEN_ELC	Generation of wastewater - production and distribution of electricity (excluding cooling water)
+GEN_CON	Generation of wastewater - construction
+GEN_DOM	Generation of wastewater - domestic sources - totad
+GEN_SER	Generation of wastewater - services
+GEN_HH	Generation of wastewater - private households
+GEN_NPS	Generation of wastewater - non-point sources
+GEN_URB	Urban wastewater generated - total
+TRT_IF	Urban and industrial wastewater treatment - total inflow
+TRT_URB_IF	Urban wastewater treatment - total inflow
+TRT_IND_IF	Industrial wastewater treatment - total inflow
+DIS	Total discharges of wastewater treatment plants (urban and other)
+DIS_URB	Urban wastewater discharges - total
+DIS_URB_AT	Urban wastewater discharged - after treatment
+DIS_URB_AIT	Urban wastewater discharged - after independent treatment
+DIS_URB_NT	Urban wastewater discharged - without treatment
+DIS_IND	Industrial wastewater discharges - total
+DIS_IND_AT	Industrial wastewater discharged - after treatment
+DIS_IND_NT	Industrial wastewater discharged - without treatment
+DIS_NT	Total wastewater discharged - without treatment
+DIS_AGR	Agricultural wastewater direct discharges (incl. forestry and fisheries)
+DIS_NPS	Direct discharges from non-point sources
+DIS_IW	Total discharges to inland waters
+DIS_SEA	Total discharges to the sea

@@ -1,0 +1,15 @@
+TOTAL	Total
+WEN_00	No information
+WEN_01	Industrial site
+WEN_02	Construction site, construction, opencast quarry, opencast mine
+WEN_03	Farming, breeding, fish farming, forest zone
+WEN_04	Tertiary activity area, office, amusement area, miscellaneous
+WEN_05	Health establishment
+WEN_06	Public area
+WEN_07	In the home
+WEN_08	Sports area
+WEN_09	In the air, elevated, excluding construction sites
+WEN_10	Underground, excluding construction sites
+WEN_11	On /over water, excluding construction sites
+WEN_12	In high pressure environments, excluding construction sites
+WEN_99	Other Working Environments not listed in the classification

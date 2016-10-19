@@ -1,0 +1,14 @@
+TOTAL	Total
+LT200	Fewer than 200 inhabitants
+200-499	From 200 to 499 inhabitants
+500-999	From 500 to 999 inhabitants
+1000-1999	From 1 000 to 1 999 inhabitants
+2000-4999	From 2 000 to 4 999 inhabitants
+5000-9999	From 5 000 to 9 999 inhabitants
+10000-19999	From 10 000 to 19 999 inhabitants
+20000-49999	From 20 000 to 49 999 inhabitants
+50000-99999	From 50 000 to 99 999 inhabitants
+100000-199999	From 100 000 to 199 999 inhabitants
+200000-499999	From 200 000 to 499 999 inhabitants
+500000-999999	From 500 000 to 999 999 inhabitants
+GE1000000	1 000 000 inhabitants or more 

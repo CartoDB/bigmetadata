@@ -1,0 +1,62 @@
+TOTAL	All ISCED 1997 levels 
+ED0-4	Pre-primary, primary, secondary and post-secondary non-tertiary education (levels 0-4)
+ED0-3CS	Pre-primary, primary, lower and upper secondary education shorter than 3 years (levels 0-3CS)
+ED0-2	Pre-primary, primary and lower secondary education (levels 0-2)
+ED0_1	Pre-primary and primary education (levels 0 and 1)
+ED0	Pre-primary education (level 0)
+ED1-6	Primary, lower and upper secondary, post-secondary non-tertiary, first and second stage of tertiary education (levels 1-6)
+ED1-4	Primary, lower and upper secondary, post-secondary non-tertiary education (levels 1-4)
+ED1-3	Primary, lower and upper secondary education (levels 1-3)
+ED1_2	Primary and lower secondary education (levels 1 and 2)
+ED1	Primary education or first stage of basic education (level 1)
+ED2-4	Lower and upper secondary, post-secondary non-tertiary education (levels 2-4)
+ED2-4V	Low and upper secondary, post-secondary non-tertiary education (levels 2-4) - vocational or technical programme orientation
+ED2_3	Lower and upper secondary education (levels 2 and 3)
+ED2	Lower secondary or second stage of basic education (level 2)
+ED2A	Lower secondary education (level 2A), programmes designed for direct access to level 3A or 3B
+ED2B	Lower secondary education (level 2B), programmes designed for direct access to level 3C
+ED2C	Lower secondary education (level 2C), programmes designed for direct access to the labour market
+ED2G	Lower secondary education (level 2) - general programme orientation
+ED2VPV	Lower secondary education (level 2) - pre-vocational/pre-technical and vocational/technical programme orientation
+ED2PV	Lower secondary education (level 2) - pre-vocational or pre-technical programme orientation
+ED2V	Lower secondary education (level 2) - vocational or technical programme orientation
+ED3-6	Upper secondary, post-secondary non-tertiary, first and second stage of tertiary education (levels 3-6)
+ED3_4	Upper secondary and post-secondary non-tertiary education (levels 3 and 4)
+ED3AB_4	Upper secondary education (excluding level 3C shorter than 3 years) and post-secondary non-tertiary education (levels 3A, 3B and 4)
+ED3_4G	Upper secondary and post-secondary non-tertiary education (levels 3 and 4) - general programme orientation
+ED3	Upper secondary education (level 3)
+ED3A	Upper secondary education (level 3A), programmes designed to provide direct access to level 5A
+ED3B	Upper secondary education (level 3B), programmes designed to provide direct access to level 5B
+ED3C	Upper secondary education (level 3C), programmes not designed to lead directly to levels 5A or 5B; they lead directly to labour market, level 4 or other level 3 programmes
+ED3CS	Upper secondary education (level 3C), programmes not designed to lead directly to levels 5A or 5B, duration shorter than 3 years
+ED3CL	Upper secondary education (level 3C), programmes not designed to lead directly to levels 5A or 5B - duration of at least 3 years 
+ED3G	Upper secondary education (level 3) - general programme orientation
+ED3VPV	Upper secondary education (level 3) - pre-vocational and vocational programme orientation
+ED3PV	Upper secondary education (level 3) -  pre-vocational or pre-technical programme orientation
+ED3V	Upper secondary education (level 3) - vocational or technical programme orientation
+ED4-6	Post-secondary non-tertiary and tertiary education (levels 4-6)
+ED4	Post-secondary non-tertiary education (level 4)
+ED4A	Post-secondary non-tertiary education (level 4A), programmes designed to provide direct access to level 5A
+ED4B	Post-secondary non-tertiary education (level 4B), programmes designed to provide direct access to level 5B
+ED4C	Post-secondary non-tertiary education (level 4C), programmes not designed to lead directly to level 5
+ED4G	Post-secondary non-tertiary education (level 4) - general programme orientation
+ED4VPV	Post-secondary non-tertiary education (level 4) - pre-vocational and vocational programme orientation 
+ED4PV	Post-secondary non-tertiary education (level 4) - pre-vocational programme orientation
+ED4V	Post-secondary non-tertiary education (level 4) - vocational programme orientation
+ED5_6	First and second stage of tertiary education (levels 5 and 6)
+ED5A_6	First stage of tertiary education, tertiary programmes that are theoretically based/research preparatory or giving access to professions with high skills requirements (level 5A) and second stage of tertiary education (level 6)
+ED5	First stage of tertiary education not leading directly to an advanced research qualification (level 5)
+ED5A	First stage of tertiary education, programmes that are theoretically based/research preparatory or giving access to professions with high skills requirements (level 5A)
+ED5AD1	First stage of tertiary education, programmes that are theoretically based/research preparatory or giving access to professions with high skills requirements (first degree of level 5A)
+ED5AD2	First stage of tertiary education, programmes that are theoretically based/research preparatory or giving access to professions with high skills requirements (second degree of level 5A)
+ED5B	First stage of tertiary education, programmes which are practically oriented and occupationally specific (level 5B)
+ED5BQ1	First stage of tertiary education, programmes which are practically oriented and occupationally specific (first qualification of level 5B)
+ED5BQ2	First stage of tertiary education, programmes which are practically oriented and occupationally specific (second qualification of level 5B)
+ED6	Second stage of tertiary education leading to an advanced research qualification (level 6)
+ED6PHD	Doctor of Philosophy (Ph.D.)
+OTH	Other level of education
+ED_NED	Total of all level ISCED97 and no education
+NED	No education
+NAP	Not applicable
+NRP	No response
+UNK	Unknown
