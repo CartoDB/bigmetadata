@@ -35,7 +35,7 @@ class GenerateRST(Task):
     force = BooleanParameter(default=False)
     format = Parameter()
     preview = BooleanParameter(default=False)
-    images = BooleanParameter(default=True)
+    images = BooleanParameter(default=False)
 
     def __init__(self, *args, **kwargs):
         super(GenerateRST, self).__init__(*args, **kwargs)
@@ -111,6 +111,9 @@ class GenerateRST(Task):
                     continue
 
                 if col.weight < 1:
+                    continue
+
+                if not col.tables:
                     continue
 
                 # tags with denominators will appear beneath that denominator

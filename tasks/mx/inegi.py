@@ -4,6 +4,7 @@ from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
 from tasks.meta import GEOM_REF, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
+from tasks.tags import SectionTags, SubsectionTags
 
 from collections import OrderedDict
 
@@ -170,16 +171,26 @@ class GeographyColumns(ColumnsTask):
         'servicios_area': 3,
     }
 
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+        }
+
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
             name=RESNAMES[self.resolution],
             description=RESDESCS[self.resolution],
             weight=self.weights[self.resolution],
+            tags=[sections['mx'], subsections['boundary']]
         )
         geom_ref = OBSColumn(
             id=self.resolution + '_cvegeo',

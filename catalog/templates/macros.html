@@ -1,4 +1,4 @@
-{%- macro build_column(col, subsection, image_path, depth=0) %}
+{%- macro build_column(col, subsection, image_path, format, depth=0) %}
 
 .. _{{ col.id }}:
 
@@ -13,10 +13,12 @@
   endif
 %}
 
+{% if format != 'pdf' %}
 {% if col.has_catalog_image() %}
 .. figure:: {{ image_path }}/{{ col.id }}.png
   :width: 100 %
   :align: center
+{% endif %}
 {% endif %}
 
 {% if col.description %}{{ col.description }}{% endif %}
@@ -40,20 +42,7 @@ Obtain "{{ col.name }}" geometry at one point:
 
 .. code-block:: postgresql
 
-{% if 'whosonfirst.wof_disputed_geom' == col.id %}
-  {% set point = 'CDB_LatLng(33.78, 76.57)' %}
-{% elif 'whosonfirst.wof_marinearea_geom' == col.id %}
-  {% set point = 'CDB_LatLng(43.33, -68.47)' %}
-{% elif col.id in ('us.census.tiger.school_district_elementary',
-                   'us.census.tiger.school_district_secondary') %}
-  {% set point = 'CDB_LatLng(40.7025, -73.7067)' %}
-{% elif 'es.ine' in col.id %}
-  {% set point = 'CDB_LatLng(40.39, -3.7)' %}
-{% elif 'us.zillow' in col.id %}
-  {% set point = 'CDB_LatLng(28.3305906291771, -81.3544048197256)' %}
-{% else %}
-  {% set point = 'CDB_LatLng(40.7, -73.9)' %}
-{% endif %}
+{% set point = 'CDB_LatLng(%s, %s)'|format(col.catalog_lonlat().0, col.catalog_lonlat().1) %}
 
 {% if col.type|lower == 'text' %}
 
@@ -173,7 +162,7 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
   {% for child in col.children() %}
   {% if child.weight > 0 and subsection in child.tags %}
-  {{ build_column(child, subsection, image_path, depth + 1) }}
+  {{ build_column(child, subsection, image_path, format, depth + 1) }}
   {% endif %}
   {% endfor %}
 {% endif %}

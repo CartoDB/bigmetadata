@@ -250,7 +250,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
         if denom_colname:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom_webmercator, " \
+                    "geom.the_geom, " \
                     "numer.{numer_colname} / NULLIF(denom.{denom_colname}, 0) measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer, " \
                     "     {denom_tablename} as denom " \
@@ -267,20 +267,20 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "  AND numer.{numer_geomref_colname} = denom.{denom_geomref_colname} "
         elif numer_aggregate == 'sum':
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom_webmercator, " \
+                    "geom.the_geom, " \
                     "numer.{numer_colname} / " \
-                    "  ST_Area(geom.the_geom_webmercator) * 1000000.0 measure " \
+                    "  ST_Area(geom.the_geom) * 1000000.0 measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
             statssql = "SELECT CDB_HeadsTailsBins(array_agg(distinct( " \
-                    '  (numer.{numer_colname} / ST_Area(geom.the_geom_webmercator) ' \
+                    '  (numer.{numer_colname} / ST_Area(geom.the_geom) ' \
                     '      * 1000000.0)::NUMERIC)), 4) as "headtails" ' \
                     "FROM {geom_tablename} as geom, " \
                     "     {numer_tablename} as numer " \
                     "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
         else:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "  geom.the_geom_webmercator, " \
+                    "  geom.the_geom, " \
                     "  numer.{numer_colname} measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "  WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
@@ -787,82 +787,120 @@ class OBSMeta(Task):
     '''
 
     QUERY = '''
-    SELECT numer_c.id numer_id,
+    WITH denoms as (
+      SELECT
+           numer_c.id numer_id,
            denom_c.id denom_id,
-           geom_c.id geom_id,
-           FIRST(numer_c.name) numer_name,
+           denom_t.id denom_tid,
+           geomref_c.id geomref_id,
            FIRST(denom_c.name) denom_name,
-           FIRST(geom_c.name) geom_name,
-           FIRST(numer_c.description) numer_description,
            FIRST(denom_c.description) denom_description,
-           FIRST(geom_c.description) geom_description,
-           FIRST(numer_c.aggregate) numer_aggregate,
            FIRST(denom_c.aggregate) denom_aggregate,
-           FIRST(geom_c.aggregate) geom_aggregate,
-           FIRST(numer_c.type) numer_type,
            FIRST(denom_c.type) denom_type,
-           FIRST(geom_c.type) geom_type,
-           FIRST(numer_data_ct.colname) numer_colname,
            FIRST(denom_data_ct.colname) denom_colname,
-           FIRST(geom_geom_ct.colname) geom_colname,
-           FIRST(numer_geomref_ct.colname) numer_geomref_colname,
            FIRST(denom_geomref_ct.colname) denom_geomref_colname,
-           FIRST(geom_geomref_ct.colname) geom_geomref_colname,
-           FIRST(numer_t.tablename) numer_tablename,
            FIRST(denom_t.tablename) denom_tablename,
-           FIRST(geom_t.tablename) geom_tablename,
-           FIRST(numer_t.timespan) numer_timespan,
            FIRST(denom_t.timespan) denom_timespan,
-           FIRST(numer_c.weight) numer_weight,
            FIRST(denom_c.weight) denom_weight,
-           FIRST(geom_c.weight) geom_weight,
-           FIRST(geom_t.timespan) geom_timespan,
-           FIRST(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
-           JSONB_OBJECT_AGG(
-             numer_tag.type || '/' || numer_tag.id, numer_tag.name
-           ) numer_tags,
            JSONB_OBJECT_AGG(
              denom_tag.type || '/' || denom_tag.id, denom_tag.name
            ) FILTER (WHERE denom_tag.type IS NOT NULL) denom_tags,
-           JSONB_OBJECT_AGG(
-             geom_tag.type || '/' || geom_tag.id, geom_tag.name
-           ) FILTER (WHERE geom_tag.type IS NOT NULL) geom_tags,
-           NULL::JSONB timespan_tags,
-           ARRAY_AGG(DISTINCT numer_tag.id)
-             FILTER (WHERE numer_tag.type = 'section') section_tags,
-           ARRAY_AGG(DISTINCT numer_tag.id)
-             FILTER (WHERE numer_tag.type = 'subsection') subsection_tags,
-           ARRAY_AGG(DISTINCT numer_tag.id)
-             FILTER (WHERE numer_tag.type = 'unit') unit_tags,
-           FIRST(numer_c.extra)::JSONB numer_extra,
-           FIRST(numer_data_ct.extra)::JSONB numer_ct_extra,
            FIRST(denom_c.extra)::JSONB denom_extra,
-           FIRST(denom_data_ct.extra)::JSONB denom_ct_extra,
-           FIRST(geom_c.extra)::JSONB geom_extra,
-           FIRST(geom_geom_ct.extra)::JSONB geom_ct_extra
+           FIRST(denom_data_ct.extra)::JSONB denom_ct_extra
+      FROM observatory.obs_column numer_c
+           , observatory.obs_column_to_column denom_c2c
+           , observatory.obs_column denom_c
+           , observatory.obs_column_table denom_data_ct
+           , observatory.obs_table denom_t
+           , observatory.obs_column_tag denom_ctag
+           , observatory.obs_tag denom_tag
+           , observatory.obs_column_table denom_geomref_ct
+           , observatory.obs_column geomref_c
+           , observatory.obs_column_to_column geomref_c2c
+      WHERE denom_c2c.source_id = numer_c.id
+        AND denom_c2c.target_id = denom_c.id
+        AND denom_data_ct.column_id = denom_c.id
+        AND denom_data_ct.table_id = denom_t.id
+        AND denom_c.id = denom_ctag.column_id
+        AND denom_ctag.tag_id = denom_tag.id
+        AND denom_c2c.reltype = 'denominator'
+        AND denom_geomref_ct.table_id = denom_t.id
+        AND denom_geomref_ct.column_id = geomref_c.id
+        AND geomref_c2c.reltype = 'geom_ref'
+        AND geomref_c2c.source_id = geomref_c.id
+      GROUP BY numer_c.id, denom_c.id, denom_t.id, geomref_c.id
+    ), leftjoined_denoms AS (
+      SELECT numer_c.id all_numer_id, denoms.*
+      FROM observatory.obs_column numer_c
+           LEFT JOIN denoms ON numer_c.id = denoms.numer_id
+    ) SELECT numer_c.id numer_id,
+           denom_id,
+           geom_c.id geom_id,
+            FIRST(numer_c.name) numer_name,
+            FIRST(denom_name) denom_name,
+            FIRST(geom_c.name) geom_name,
+            FIRST(numer_c.description) numer_description,
+            FIRST(denom_description) denom_description,
+            FIRST(geom_c.description) geom_description,
+            FIRST(numer_c.aggregate) numer_aggregate,
+            FIRST(denom_aggregate) denom_aggregate,
+            FIRST(geom_c.aggregate) geom_aggregate,
+            FIRST(numer_c.type) numer_type,
+            FIRST(denom_type) denom_type,
+            FIRST(geom_c.type) geom_type,
+            FIRST(numer_data_ct.colname) numer_colname,
+            FIRST(denom_colname) denom_colname,
+            FIRST(geom_geom_ct.colname) geom_colname,
+            FIRST(numer_geomref_ct.colname) numer_geomref_colname,
+            FIRST(denom_geomref_colname) denom_geomref_colname,
+            FIRST(geom_geomref_ct.colname) geom_geomref_colname,
+            FIRST(numer_t.tablename) numer_tablename,
+            FIRST(denom_tablename) denom_tablename,
+            FIRST(geom_t.tablename) geom_tablename,
+            FIRST(numer_t.timespan) numer_timespan,
+            FIRST(denom_timespan) denom_timespan,
+            FIRST(numer_c.weight) numer_weight,
+            FIRST(denom_weight) denom_weight,
+            FIRST(geom_c.weight) geom_weight,
+            FIRST(geom_t.timespan) geom_timespan
+           , FIRST(geom_t.the_geom)::geometry AS the_geom
+           , JSONB_OBJECT_AGG(
+              numer_tag.type || '/' || numer_tag.id, numer_tag.name
+            ) numer_tags,
+            FIRST(denom_tags) denom_tags,
+            JSONB_OBJECT_AGG(
+              geom_tag.type || '/' || geom_tag.id, geom_tag.name
+            ) FILTER (WHERE geom_tag.type IS NOT NULL) geom_tags,
+            NULL::JSONB timespan_tags,
+            ARRAY_AGG(DISTINCT numer_tag.id)
+              FILTER (WHERE numer_tag.type = 'section') section_tags,
+            ARRAY_AGG(DISTINCT numer_tag.id)
+              FILTER (WHERE numer_tag.type = 'subsection') subsection_tags,
+            ARRAY_AGG(DISTINCT numer_tag.id)
+              FILTER (WHERE numer_tag.type = 'unit') unit_tags,
+            FIRST(numer_c.extra)::JSONB numer_extra,
+            FIRST(numer_data_ct.extra)::JSONB numer_ct_extra,
+            FIRST(denom_extra) denom_extra,
+            FIRST(denom_ct_extra) denom_ct_extra,
+            FIRST(geom_c.extra)::JSONB geom_extra,
+            FIRST(geom_geom_ct.extra)::JSONB geom_ct_extra
     FROM observatory.obs_column_table numer_data_ct,
          observatory.obs_table numer_t,
          observatory.obs_column_table numer_geomref_ct,
          observatory.obs_column geomref_c,
          observatory.obs_column_to_column geomref_c2c,
-         observatory.obs_column geom_c,
          observatory.obs_column_table geom_geom_ct,
          observatory.obs_column_table geom_geomref_ct,
          observatory.obs_table geom_t,
          observatory.obs_column_tag numer_ctag,
          observatory.obs_tag numer_tag,
-         observatory.obs_column_tag geom_ctag,
-         observatory.obs_tag geom_tag,
-         observatory.obs_column numer_c
-      LEFT JOIN (
-        observatory.obs_column_to_column denom_c2c
-        JOIN observatory.obs_column denom_c ON denom_c2c.target_id = denom_c.id
-        JOIN observatory.obs_column_table denom_data_ct ON denom_data_ct.column_id = denom_c.id
-        JOIN observatory.obs_table denom_t ON denom_data_ct.table_id = denom_t.id
-        JOIN observatory.obs_column_table denom_geomref_ct ON denom_geomref_ct.table_id = denom_t.id
-        JOIN observatory.obs_column_tag denom_ctag ON denom_c.id = denom_ctag.column_id
-        JOIN observatory.obs_tag denom_tag ON denom_ctag.tag_id = denom_tag.id
-      ) ON denom_c2c.source_id = numer_c.id
+         observatory.obs_column numer_c,
+         leftjoined_denoms,
+         observatory.obs_column geom_c
+         LEFT JOIN (
+            observatory.obs_column_tag geom_ctag JOIN
+            observatory.obs_tag geom_tag ON geom_tag.id = geom_ctag.tag_id
+         ) ON geom_c.id = geom_ctag.column_id
     WHERE numer_c.id = numer_data_ct.column_id
       AND numer_data_ct.table_id = numer_t.id
       AND numer_t.id = numer_geomref_ct.table_id
@@ -879,14 +917,13 @@ class OBSMeta(Task):
       AND numer_c.id != geomref_c.id
       AND numer_ctag.column_id = numer_c.id
       AND numer_ctag.tag_id = numer_tag.id
-      AND geom_ctag.column_id = geom_c.id
-      AND geom_ctag.tag_id = geom_tag.id
-      AND (numer_c.id != denom_c.id OR denom_c.id IS NULL)
-      AND (denom_c2c.reltype = 'denominator' OR denom_c2c.reltype IS NULL)
-      AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
-      AND (denom_t.timespan = numer_t.timespan OR denom_t.timespan IS NULL)
-    GROUP BY numer_c.id, denom_c.id, geom_c.id,
-             numer_t.id, denom_t.id, geom_t.id
+      AND numer_c.id = leftjoined_denoms.all_numer_id
+      AND (leftjoined_denoms.numer_id IS NULL OR (
+        numer_t.timespan = leftjoined_denoms.denom_timespan
+        AND geomref_c.id = leftjoined_denoms.geomref_id
+      ))
+    GROUP BY numer_c.id, denom_id, geom_c.id,
+             numer_t.id, denom_tid, geom_t.id
     '''
 
     DIMENSIONS = {
@@ -902,7 +939,7 @@ SELECT numer_id::TEXT,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
-       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
 GROUP BY numer_id
         ''',
@@ -919,7 +956,7 @@ SELECT denom_id::TEXT,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
-       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
 GROUP BY denom_id
         ''',
@@ -932,7 +969,7 @@ SELECT geom_id::TEXT,
        FIRST(geom_extra)::JSONB geom_extra,
        FIRST(geom_type)::TEXT geom_type,
        FIRST(geom_aggregate)::TEXT geom_aggregate,
-       ST_SetSRID(FIRST(the_geom_webmercator), 3857)::GEOMETRY(GEOMETRY, 3857) the_geom_webmercator,
+       ST_SetSRID(FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
@@ -951,7 +988,7 @@ SELECT numer_timespan::TEXT timespan_id,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-       ST_Union(DISTINCT ST_SetSRID(the_geom_webmercator, 3857)) the_geom_webmercator
+       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta
 GROUP BY numer_timespan
         '''
@@ -966,7 +1003,7 @@ class OBSMetaToLocal(OBSMeta):
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
             session.execute(self.FIRST_AGGREGATE)
             session.execute('CREATE TABLE observatory.obs_meta AS {select}'.format(
-                select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
+                select=self.QUERY
             ))
             # confirm that there won't be ambiguity with selection of geom
             # a common issue we're running into is that a single geom_ref is
@@ -986,8 +1023,7 @@ class OBSMetaToLocal(OBSMeta):
                 session.execute('CREATE TABLE observatory.obs_meta_{dimension} '
                                 'AS {select}'.format(
                                     dimension=dimension,
-                                    select=query.replace('the_geom_webmercator', 'the_geom') \
-                                                .replace('3857', '4326')
+                                    select=query
                                 ))
                 session.execute('CREATE INDEX ON observatory.obs_meta_{dimension} USING gist '
                                 '(the_geom)'.format(dimension=dimension))
@@ -1009,6 +1045,7 @@ class SyncMetadata(WrapperTask):
         for table in ('obs_table', 'obs_column', 'obs_column_table',
                       'obs_tag', 'obs_column_tag', 'obs_dump_version',
                       'obs_column_to_column', 'obs_meta', 'obs_meta_numer',
-                      'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan'
+                      'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan',
+                      'obs_column_table_tile',
                      ):
             yield TableToCartoViaImportAPI(table=table, force=True)
