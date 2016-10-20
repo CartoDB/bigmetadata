@@ -238,7 +238,8 @@ class NUTSGeometries(TableTask):
         session = current_session()
         session.execute('''
             INSERT INTO {output}
-            SELECT nuts3, wkb_geometry
+            SELECT SUBSTR(nuts3, 1, 2 + {level}) nuts_code,
+                   ST_Union(wkb_geometry) the_geom
             FROM {crosswalk} xwalk, {geoms} geoms
             WHERE CASE
               WHEN xwalk.shn_level = 0 THEN geoms.shn0
@@ -246,7 +247,9 @@ class NUTSGeometries(TableTask):
               WHEN xwalk.shn_level = 2 THEN geoms.shn2
               WHEN xwalk.shn_level = 3 THEN geoms.shn3
             END = xwalk.shn
+            GROUP BY SUBSTR(nuts3, 1, 2 + {level})
                         '''.format(
+                            level=self.level,
                             output=self.output().table,
                             crosswalk=self.input()['nuts_shn_crosswalk'].table,
                             geoms=self.input()['shn_geoms'].table
