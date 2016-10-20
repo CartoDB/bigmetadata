@@ -191,9 +191,10 @@ class TableEU(TableTask):
 
     table_name = Parameter()
     subsection = Parameter()
+    nuts_level = IntParameter()
 
     def version(self):
-        return 2
+        return 3
 
     def timespan(self):
         return '2015'
@@ -203,7 +204,7 @@ class TableEU(TableTask):
             'data': EUTempTable(table_name=self.table_name),
             'meta': FlexEurostatColumns(table_name=self.table_name,
                                         subsection=self.subsection),
-            'geometa': NUTSColumns(level=3),
+            'geometa': NUTSColumns(level=self.nuts_level),
         }
         return requirements
 
@@ -242,3 +243,12 @@ class TableEU(TableTask):
                            input=self.input()['data'].table
                        ))
             print colname
+
+class EURegionalTables(WrapperTask):
+    def requires(self):
+        with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
+            reader = csv.reader(wrappertables)
+            for subsection, table_code, nuts in reader:
+                nuts = int(nuts)
+                if nuts == 3: # Remove this line when NUTS2 and NUTS1 are available
+                    yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts)
