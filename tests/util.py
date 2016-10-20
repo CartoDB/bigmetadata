@@ -3,6 +3,7 @@ Util functions for tests
 '''
 
 import os
+import luigi
 from subprocess import check_output
 
 
@@ -55,7 +56,6 @@ def teardown():
     Base.metadata.drop_all()
 
 
-
 def runtask(task):
     '''
     Run deps of tasks then the task, faking session management
@@ -66,6 +66,11 @@ def runtask(task):
         runtask(dep)
         assert dep.complete() is True
     try:
+        for klass, cb_dict in task._event_callbacks.iteritems():
+            if isinstance(task, klass):
+                 start_callbacks = cb_dict.get('event.core.start', [])
+                 for scb in start_callbacks:
+                     scb(task)
         task.run()
         task.on_success()
     except Exception as exc:

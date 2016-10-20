@@ -20,7 +20,7 @@ from slugify import slugify
 import requests
 
 from luigi import (Task, Parameter, LocalTarget, Target, BooleanParameter,
-                   ListParameter, DateParameter, WrapperTask)
+                   ListParameter, DateParameter, WrapperTask, Event)
 from luigi.s3 import S3Target
 
 from sqlalchemy import Table, types, Column
@@ -1080,15 +1080,17 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
-            schema=classpath(self)))
-        target = PostgresTarget(classpath(self), self.task_id)
-        #if not getattr(self, 'wiped', False) and (self.force or target.empty()):
-        if getattr(self, 'first_time', True) and (self.force or target.empty()):
-            shell("psql -c 'DROP TABLE IF EXISTS \"{schema}\".{tablename}'".format(
-                schema=classpath(self), tablename=self.task_id))
-        self.first_time = False
-        return target
+        return PostgresTarget(classpath(self), self.task_id)
+
+
+@TempTableTask.event_handler(Event.START)
+def clear_temp_table(task):
+    target = task.output()
+    shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
+        schema=classpath(task)))
+    if task.force or target.empty():
+        shell("psql -c 'DROP TABLE IF EXISTS \"{schema}\".{tablename}'".format(
+                schema=classpath(task), tablename=task.task_id))
 
 
 class Shp2TempTableTask(TempTableTask):
