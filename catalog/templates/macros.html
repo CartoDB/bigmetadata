@@ -155,15 +155,26 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
     :ref:`{{ target.id }}`
 {% endfor %}
 
-=============================================================================== ====
-Boundary                                                                        Time
-=============================================================================== ===={% for geomcol, timespans in col.geom_timespans().items() %}
-{{ geomcol.name }}                                                              {{ timespans|join(', ') }}
-{% endfor %}=============================================================================== ====
+.. raw:: html
 
-{#| {{ geomcol.name }} | {{ timespans }} |#}
-
-{#| {{ geomcol.name }} | {% for timespan in timespans %} {{ timespan }}, {% endfor %} |#}
+   <table border="1" class="docutils">
+   <colgroup>
+   <col width="82%" />
+   <col width="18%" />
+   </colgroup>
+   <thead valign="bottom">
+   <tr class="row-odd"><th class="head">Boundary</th>
+   <th class="head">Time (default is latest)</th>
+   </tr>
+   </thead>
+   <tbody valign="top">
+   {% for geomcol, timespans in col.geom_timespans().items() %}
+   <tr class="row-even"><td>{{ geomcol.name }}</td>
+   <td>{{ timespans|sort(True)|join(', ') }}</td>
+   {% endfor %}
+   </tr>
+   </tbody>
+   </table>
 
 {% if col.has_children() %}
 .. contents:: Subcolumns of {{ col.name }}
