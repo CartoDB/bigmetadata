@@ -1089,8 +1089,10 @@ def clear_temp_table(task):
     shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
         schema=classpath(task)))
     if task.force or target.empty():
-        shell("psql -c 'DROP TABLE IF EXISTS \"{schema}\".{tablename}'".format(
-                schema=classpath(task), tablename=task.task_id))
+        session = current_session()
+        session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
+		        schema=classpath(task), tablename=task.task_id))
+        session.flush()
 
 
 class Shp2TempTableTask(TempTableTask):
