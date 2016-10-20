@@ -1,0 +1,9 @@
+TOTAL	Total
+TOT_R	Total of rented accommodation
+R_HOT	Rented accommodation: hotels or similar establishments
+R_CAMP	Rented accommodation: campsites, caravan or trailer park 
+R_OTH	Rented accommodation: other
+TOT_NR	Total of non-rented accommodation 
+NR_OWN	Non-rented accommodation: own holiday home 
+NR_RF	Non-rented accommodation: accommodation provided without charge by relatives or friends 
+NR_OTH	Non-rented accommodation: other 

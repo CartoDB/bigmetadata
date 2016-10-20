@@ -1,0 +1,162 @@
+TOTAL	Total (all sectors including memo items and indirect CO2)
+TOTXMEMO	All sectors and indirect CO2 (excluding memo items)
+TOTX4_MEMO	All sectors and indirect CO2 (excluding LULUCF and memo items)
+TOTX4_MEMONIA	All sectors and indirect CO2 (excluding LULUCF and memo items, including international aviation)
+CRF1-6XMEMO	All sectors (excluding memo items)
+CRF1-6X4_MEMO	All sectors (excluding LULUCF and memo items)
+CRF1-6X4_MEMONIA	All sectors (excluding LULUCF and memo items, including international aviation)
+CRF_MEMO	Memo items
+CRF1	Energy
+CRF1A	Fuel combustion - sectoral approach
+CRF1A1	Fuel combustion in energy industries
+CRF1A1A	Fuel combustion in public electricity and heat production
+CRF1A1B	Fuel combustion in petroleum refining
+CRF1A1C	Fuel combustion in manufacture of solid fuels and other energy industries
+CRF1A2	Fuel combustion in manufacturing industries and construction
+CRF1A2A	Fuel combustion in manufacture of iron and steel
+CRF1A2B	Fuel combustion in manufacture of non-ferrous metals
+CRF1A2C	Fuel combustion in manufacture of chemicals
+CRF1A2D	Fuel combustion in manufacture of pulp, paper and printing
+CRF1A2E	Fuel combustion in manufacture of food, beverages and tobacco
+CRF1A2F	Fuel combustion in manufacture of non-metallic mineral products
+CRF1A2G	Fuel combustion in other manufacturing industries and construction
+CRF1A3	Fuel combustion in transport
+CRF1A3A	Fuel combustion in domestic aviation
+CRF1A3B	Fuel combustion in road transport
+CRF1A3C	Fuel combustion in railways
+CRF1A3D	Fuel combustion in domestic navigation
+CRF1A3E	Fuel combustion in other transport
+CRF1A4	Other fuel combustion sectors
+CRF1A4A	Fuel combustion in commercial and institutional sector
+CRF1A4B	Fuel combustion by households
+CRF1A4C	Fuel combustion in agriculture, forestry and fishing
+CRF1A5	Other fuel combustion sectors n.e.c.
+CRF1A5A	Stationary fuel combustion sectors n.e.c.
+CRF1A5B	Mobile fuel combustion sectors n.e.c.
+CRF1B	Fugitive emissions from fuels
+CRF1B1	Fugitive emissions from solid fuels
+CRF1B2	Fugitive emissions from oil and natural gas and other emissions from energy production
+CRF1C	Transport and storage of CO2 (memo item)
+CRF1D1	International bunkers (memo item)
+CRF1D1A	International aviation (memo item)
+CRF1D1B	International navigation (memo item)
+CRF1D2	Multilateral operations (memo item)
+CRF1D3	CO2 emissions from biomass (memo item)
+CRF2	Industrial processes and product use
+CRF2A	Mineral industry
+CRF2A1	Cement production
+CRF2A2	Lime production
+CRF2A3	Glass production
+CRF2A4	Other process uses of carbonates
+CRF2B	Chemical industry
+CRF2B1	Ammonia production
+CRF2B2	Nitric acid production
+CRF2B3	Adipic acid production
+CRF2B4	Caprolactam, glyoxal and glyoxylic acid production
+CRF2B5	Carbide production
+CRF2B6	Titanium dioxide production
+CRF2B7	Soda ash production
+CRF2B8	Petrochemical and carbon black production
+CRF2B9	Fluorochemical production
+CRF2B10	Other chemical industry
+CRF2C	Metal industry
+CRF2C1	Iron and steel production
+CRF2C2	Ferroalloys production
+CRF2C3	Aluminium production
+CRF2C4	Magnesium production
+CRF2C5	Lead production
+CRF2C6	Zinc production
+CRF2C7	Other metal industry
+CRF2D	Non-energy products from fuels and solvent use
+CRF2D1	Lubricant use
+CRF2D2	Paraffin wax use
+CRF2D3	Other non-energy product use
+CRF2E	Electronics industry
+CRF2E1	Integrated circuit or semiconductor production
+CRF2E2	TFT flat panel display production
+CRF2E3	Photovoltaic
+CRF2E4	Heat transfer fluid
+CRF2E5	Other electronics industry
+CRF2F	Product uses as substitutes for ozone depleting substances
+CRF2F1	Refrigeration and air conditioning
+CRF2F2	Foam blowing agent use
+CRF2F3	Fire protection
+CRF2F4	Aerosol use
+CRF2F5	Solvent use
+CRF2F6	Other applications of substitutes for ozone depleting substances
+CRF2G	Other product manufacture and use
+CRF2H	Other industrial process and product use
+CRF3	Agriculture
+CRF31	Livestock
+CRF3A	Enteric fermentation
+CRF3A1	Enteric fermentation of cattle
+CRF3A2	Enteric fermentation of sheep
+CRF3A3	Enteric fermentation of swine
+CRF3A4	Enteric fermentation of other livestock
+CRF3B	Manure management
+CRF3B1	Cattle manure management
+CRF3B2	Sheep manure management
+CRF3B3	Swine manure management
+CRF3B4	Other livestock manure management
+CRF3B5	Indirect N2O emissions from manure management
+CRF3C	Rice cultivation
+CRF3C1	Irrigated rice cultivation
+CRF3C2	Rainfed rice cultivation
+CRF3C3	Deep water rice cultivation
+CRF3C4	Other rice cultivation
+CRF3D	Managed agricultural soils
+CRF3D1	Direct N2O emissions from managed agricultural soils
+CRF3D2	Indirect N2O emissions from managed agricultural soils
+CRF3E	Prescribed burning of savannas
+CRF3F	Field burning of agricultural residues
+CRF3F1	Field burning of cereals residues
+CRF3F2	Field burning of pulses residues
+CRF3F3	Field burning of tubers and roots residues
+CRF3F4	Field burning of sugar cane residues
+CRF3F5	Field burning of other agricultural residues
+CRF3G	Liming
+CRF3H	Urea application
+CRF3I	Other carbon-containing fertilizers
+CRF3J	Other agriculture
+CRF4	Land use, land use change, and forestry (LULUCF)
+CRF4A	Forest land
+CRF4A1	Unconverted forest land
+CRF4A2	Land converted to forest land
+CRF4B	Cropland
+CRF4B1	Unconverted cropland
+CRF4B2	Land converted to cropland
+CRF4C	Grassland
+CRF4C1	Unconverted grassland
+CRF4C2	Land converted to grassland
+CRF4D	Wetlands
+CRF4D1	Unconverted wetlands
+CRF4D2	Land converted to wetlands
+CRF4E	Settlements
+CRF4E1	Unconverted settlements
+CRF4E2	Land converted to settlements
+CRF4F	Other land
+CRF4F2	Land converted to other land
+CRF4G	Harvested wood products
+CRF4H	Other land use, land use change, and forestry
+CRF5	Waste management
+CRF5A	Solid waste disposal
+CRF5A1	Managed waste disposal sites
+CRF5A2	Unmanaged waste disposal sites
+CRF5A3	Uncategorized waste disposal sites
+CRF5B	Biological treatment of solid waste
+CRF5B1	Waste composting
+CRF5B2	Anaerobic digestion at biogas facilities
+CRF5C	Incineration and open burning of waste
+CRF5C1	Waste incineration
+CRF5C2	Open burning of waste
+CRF5D	Wastewater treatment and discharge
+CRF5D1	Domestic wastewater
+CRF5D2	Industrial wastewater
+CRF5D3	Other wastewater
+CRF5E	Other disposal
+CRF5F	Long-term storage of carbon (memo item)
+CRF5F1	Long-term storage of carbon in waste disposal sites
+CRF5F2	Annual change in total long-term carbon storage
+CRF5F3	Annual change in total long-term carbon storage in harvested wood products HWP waste
+CRF6	Other sectors
+CRF_INDCO2	Indirect CO2

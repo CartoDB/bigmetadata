@@ -1,0 +1,56 @@
+HC1-9_R1	Health care expenditure
+HC1-9	Current health care expenditure (CHE)
+HC1	Services of curative care
+HC11	In-patient curative care
+HC12	Day cases of curative care
+HC13	Out-patient curative care
+HC14	Services of curative home care
+HC2	Services of rehabilitative care
+HC21	In-patient rehabilitative care
+HC22	Day cases of rehabilitative care
+HC23	Out-patient rehabilitative care
+HC24	Services of rehabilitative home care
+HC1_2	Services of curative and rehabilitative care
+HC11_21	Services of in-patient curative and rehabilitative care
+HC11_21_31	In-patient care
+HC12_22	Day cases of curative and rehabilitative care
+HC13_23	Out-patient curative and rehabilitative care
+HC14_24	Services of curative home and rehabilitative home care
+HC3	Services of long-term nursing care
+HC31	In-patient long-term nursing care
+HC32	Day cases of long-term nursing care
+HC33	Long-term nursing care: home care
+HC4	Ancillary services to health care
+HC41	Clinical laboratory
+HC42	Diagnostic imaging
+HC43	Patient transport and emergency rescue
+HC49	All other miscellaneous ancillary services
+HC5	Medical goods dispensed to out-patients
+HC51	Pharmaceuticals and other medical non-durables
+HC52	Therapeutic appliances and other medical durables
+HC6	Prevention and public health services
+HC61	Maternal and child health; family planning and counselling
+HC62	School health services
+HC63	Prevention of communicable diseases
+HC64	Prevention of non-communicable diseases
+HC65	Occupational health care
+HC69	All other misc. public health services
+HC7	Health administration and health insurance
+HC71	General government administration of health
+HC72	Health administration and health insurance: private
+HC9	Not specified by kind
+HCR	Health-related functions
+HCR1	Capital formation of health care provider institutions
+HCR2	Education and training of health personnel
+HCR3	Research and development in health
+HCR4	Food, hygiene and drinking water control
+HCR5	Environmental health
+HCR6	Administration and provision of social services in kind to assist living with disease and impairment
+HCR61	Social services of LTC (LTC other than HC.3)
+HCR7	Administration and provision of health related cash-benefits
+HCR2-7	Health care related goods and services
+LTC	Long term care (HC.3 and HC.R.6.1)
+TOT_PAT	Total patient
+IN	In-patient
+OUT	Out-patient
+DAY	Day patient

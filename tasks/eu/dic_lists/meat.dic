@@ -1,0 +1,35 @@
+B0000	Total of meat and edible meat offal
+B0010	Meat of livestock
+B1000	Bovine meat
+B1100	Calve and young cattley
+B1110	Calve
+B1120	Young cattle
+B1200	Adult cattle
+B1210_1220	Bullock and bull
+B1210	Bullock
+B1220	Bull
+B1230	Cow
+B1240	Heifer
+B3000	Meat of swine
+B3100	Pigmeat
+B3100A	Swine (grade I)
+B3100B	Swine (grade II)
+B4000	Meat of sheep and goats
+B4100	Sheepmeat
+B4110	Lamb
+B4120	Mutton
+B4200	Goat meat
+B5000	Meat of horses, asses, mules or hinnies
+B6000	Edible offal
+B7000	Poultry meat
+B7100	Chicken
+B7110	Broiler
+B7120	Boiling hen
+B7200	Duck
+B7300	Turkey
+B7400	Goose, guinea fowl and other poultry
+B7410	Goose
+B7420	Guinea fowl
+B7490	Other poultry
+B8000	Meat of rabbits
+B9000	Other meat

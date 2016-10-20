@@ -1,0 +1,99 @@
+TOTAL	Total
+AP_PE	Apple and pear trees
+AP	Apple trees
+APD	Dessert apple trees
+APD_BKP	Boskoop group
+APD_BRB	Braeburn group
+APD_COO	Cox Orange group
+APD_CRP	Cripps Pink group
+APD_ELR	Elstar group 
+APD_FUJ	Fuji group 
+APD_GAL	Gala group 
+APD_GOD	Golden Delicious group 
+APD_GRS	Granny Smith group 
+APD_IDR	Idared group 
+APD_JON	Jonagold/Jonagored group 
+APD_MOD	Morgenduft group 
+APD_RED	Red Delicious group 
+APD_RBC	Reinette group 
+APD_SHP	Shampion group 
+APD_LOB	Lobo group 
+APD_PIN	Pinova group 
+APD_OTH	Other dessert apples n.e.c. 
+API	Apple trees plantation for industrial processing
+PE	Pear trees
+PED	Dessert pear trees
+PED_CFR	Conference group 
+PED_WIL	Williams group 
+PED_ABT	Abate group 
+PED_ROC	Rocha group 
+PED_COE	Coscia-Ercolini group 
+PED_GYT	Guyot group 
+PED_BLQ	Blanquilla group 
+PED_DCN	Decana group 
+PED_KAS	Kaiser group 
+PED_OTH	Other dessert pears n.e.c. 
+PEI	Pear trees for industrial processing
+PC_APC	Peach, nectarine and apricot trees
+PC	Peach and nectarine trees 
+PCD	Dessert peach and nectarine trees  
+PCD_PEA	Peaches for fresh consumption 
+PCD_PEAY	Yellow flesh peaches 
+PCD_PEAY_VE	Very early yellow flesh peaches
+PCD_PEAY_E	Early yellow flesh peaches
+PCD_PEAY_M	Medium-early yellow flesh peaches
+PCD_PEAY_L	Late yellow flesh peaches
+PCD_PEAW	White flesh peaches
+PCD_PEAW_VE	Very early white flesh peaches
+PCD_PEAW_E	Early white flesh peaches 
+PCD_PEAW_M	Medium-early white flesh peaches 
+PCD_PEAW_L	Late white flesh peaches 
+PCD_PEAD	Doughnut peaches 
+PCD_NEC	Nectarines for fresh consumption 
+PCD_NECY	Yellow flesh nectarines 
+PCD_NECY_VE	Very early yellow flesh nectarines 
+PCD_NECY_E	Early yellow flesh nectarines 
+PCD_NECY_M	Medium-early yellow flesh nectarines 
+PCD_NECY_L	Late yellow flesh nectarines 
+PCD_NECW	White flesh nectarines 
+PCD_NECW_VE	Very early white flesh nectarines 
+PCD_NECW_E	Early white flesh nectarines 
+PCD_NECW_M	Medium-early white flesh nectarines 
+PCD_NECW_L	Late white flesh nectarines 
+PCI	Peach and nectarine trees for industrial processing (including group of Pavie) 
+APC	Apricot trees  
+APC_VE	Very early apricots (harvest until 31 May)
+APC_E	Early apricots (harvest between 1 and 30 June)
+APC_M	Medium-early apricots (harvest between 1 and 31 July)
+APC_L	Late apricots (harvest after 1 August)
+ORA_SCF_LEM	Orange, small citrus fruit and lemon trees 
+ORA	Orange trees  
+ORA_NVL	Navel oranges 
+ORA_NVL_E	Early Navel oranges 
+ORA_NVL_M	Medium-early Navel oranges 
+ORA_NVL_L	Late Navel oranges 
+ORA_BLC	Blancas oranges 
+ORA_BLC_E	Early Blancas oranges 
+ORA_BLC_L	Late Blancas oranges 
+ORA_SGU	Sanguine oranges 
+ORA_OTH	Other oranges n.e.c. 
+SCF	Small citrus fruit trees  
+SCF_STM	Satsumas 
+SCF_STM_VE	Extra-early satsumas
+SCF_STM_OTH	Other satsumas
+SCF_CLM	Clementines 
+SCF_CLM_E	Early clementines 
+SCF_CLM_M	Medium-early clementines 
+SCF_CLM_L	Late clementines 
+SCF_OTH	Other small citrus fruits including hybrids 
+LEM	Lemon trees
+LEM_WI	Winter lemon varieties 
+LEM_SU	Summer lemon varieties 
+OLI	Olive trees  
+GRV	Table grape vines  
+GRV_W	White table grape vines  
+GRV_WSDL	Seedless white table grape vines  
+GRV_WNML	Normal white table grape vines  
+GRV_R	Red table grape vines  
+GRV_RSDL	Seedless red table grape vines  
+GRV_RNML	Normal red table grape vines  

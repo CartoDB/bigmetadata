@@ -1,0 +1,18 @@
+TOTAL	Total
+PER_PHY	Physical person
+PER_LEG	Legal person
+LS01	Incorporated enterprises limited by shares
+LS02	Cooperative enterprises
+LS05	Mutual enterprises
+LS03	Public law enterprises
+LS04	Branches of non-EEA enterprises
+SP	Personally owned and no limit to personal liability
+LL	Private or publicly quoted joint stock companies with limited liability for those owning shares
+PA	Personally owned limited and unlimited liability partnerships. Included are also other level forms such as co-operatives, associations etc.
+TT	All of the legal forms
+SPR	Sole Proprietorship
+PRT	Partnership
+CNP	Limited liability company, not publicly listed
+CP	Limited liability company, publicly listed
+OTH	Others
+UNK	Unknown

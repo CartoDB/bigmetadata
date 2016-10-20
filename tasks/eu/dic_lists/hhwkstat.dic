@@ -1,0 +1,10 @@
+TOTAL	Total
+HHW_10	All adults working
+HHW_11	All adults working full time
+HHW_12	At least one adult working part time, all other adults (if any) working full time
+HHW_20	At least one adult not working, all other adults (if any) either working or not working
+HHW_30	All adults not working (all households)
+HHW_31	All adults not working (excluding households composed solely of students)
+HHW_32	All adults not working (excluding households composed solely of students or solely inactive aged 65 and over)
+NRESP	No response
+UNK	Unknown

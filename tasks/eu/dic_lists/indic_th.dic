@@ -1,0 +1,496 @@
+KEY_01	Population, total
+KEY_01B	Population, growth (in %)
+KEY_02A	GDP (current US$)
+KEY_02A_EU	GDP (current in Euro)
+KEY_02A_NC	GDP (current in national currency)
+KEY_02B_NC	GDP (constant 2000 in national currency)
+KEY_02C	GDP per capita (current US$)
+KEY_02C_EU	GDP per capita (current in Euro)
+KEY_02D_NC	GDP per capita (constant in national currency)
+KEY_03A_NC	GDP growth (annual % - constant in national currency)
+KEY_03B_NC	GDP per capita growth (annual % - constant in national currency)
+KEY_04	Gross fixed capital formation (% of GDP)
+KEY_05	Exports of goods and services (in % of GDP)
+KEY_06	Trade balance of goods (in % of GDP)
+KEY_07	Current account balance (% of GDP)
+KEY_08	Foreign direct investment, net inflows (% of GDP)
+KEY_09	External debt (in % of GDP)
+KEY_10	Total debt service (% of exports of goods and services)
+KEY_11	Total reserves in months of imports
+KEY_12A	Revenues (% of GDP)
+KEY_12B	Grants (in % of GDP)
+KEY_13	Expenditure (% of GDP)
+KEY_14	Cash surplus/deficit (% of GDP)
+KEY_15	Consumer price inflation (annual average change in %)
+KEY_16	Interest rates - Governement bond yield: long term
+KEY_17	Country exchange rates - National currency per US dollar - period average
+KEY_18	Telephone lines and mobile cellular telephone subscription per 100 inhabitants
+KEY_18A	Mobile cellular subscriptions (per 100 people)
+KEY_18B	Telephone lines (per 100 people)
+KEY_19	Cost of business start-up procedures (% of GNI per capita)
+KEY_20	Time required to start a business (days)
+KEY_21	Access of rural population to an all season road (Rural Access Index)
+KEY_22	Household electrification rate (% of households)
+3A101	GDP (constant 2000 US$)
+3A106	GDP per capita (constant 2000 US$)
+3A108	GDP per capita, PPP (constant 2000 international $)
+3A109	GDP, PPP (constant 2000 international $)
+3A110	GDP, PPP (current international $)
+3A111	GNI (constant LCU)
+3A112	GNI (current LCU)
+3A113	GNI (current US$)
+3A114	GNI per capita, Atlas method (current US$)
+3A201	Exports of goods and services (current LCU)
+3A202	Exports of goods and services (current US$)
+3A203	Imports of goods and services (current LCU)
+3A204	Imports of goods and services (current US$)
+3A301	Agriculture, value added (% of GDP)
+3A302	Agriculture, value added (current LCU)
+3A303	Agriculture, value added (current US$)
+3A304	Industry, value added (% of GDP)
+3A305	Industry, value added (current LCU)
+3A306	Industry, value added (current US$)
+3A307	Manufacturing, value added (current LCU)
+3A308	Manufacturing, value added (current US$)
+3A309	Services, etc., value added (% of GDP)
+3A310	Services, etc., value added (current LCU)
+3A311	Services, etc., value added (current US$)
+3A401	External balance on goods and services (current LCU)
+3A402	External balance on goods and services (current US$)
+3A704	Gross fixed capital formation (annual % growth))
+3A705	Gross fixed capital formation (constant 2000 US$)
+3A706	Gross fixed capital formation (constant LCU)
+3A707	Gross fixed capital formation (current LCU)
+3A708	Gross fixed capital formation (current US$)
+3A709	Gross value added at factor cost (current LCU)
+3A710	Gross value added at factor cost (current US$)
+3A501	External debt, total (DOD, current US$)
+3A502	Present value of debt (% of exports of goods and services)
+3A504	Total debt service (TDS, current US$)
+3A601	Final consumption expenditure, etc. (current LCU)
+3A602	Final consumption expenditure, etc. (current US$)
+3A603	General government final consumption expenditure (current LCU)
+3A604	General government final consumption expenditure (current US$)
+3A605	Household final consumption expenditure, etc. (current LCU)
+3A606	Household final consumption expenditure, etc. (current US$)
+3A701	Gross capital formation (current LCU)
+3A702	Gross capital formation (current US$)
+3A801	Net taxes on products (current LCU)
+3A802	Net taxes on products (current US$)
+3B01	Consumer price index (2000 = 100)
+1B100	Current Account - Current Account: Net - (in Mio USD)
+1B110	Current Account - Goods and Services: Net - (in Mio USD)
+1B111	Current Account - Goods: Credit - (in Mio USD)
+1B112	Current Account - Goods: Debit - (in Mio USD)
+1B113	Current Account - Goods: Net - (in Mio USD)
+1B114	Current Account - Services: Credit - (in Mio USD)
+1B115	Current Account - Services: Debit - (in Mio USD)
+1B116	Current Account - Services: Net - (in Mio USD)
+1B117	Current Account - Services - Transportation: Credit - (in Mio USD)
+1B118	Current Account - Services - Transportation: Debit - (in Mio USD)
+1B119	Current Account - Services - Travel: Credit - (in Mio USD)
+1B120	Current Account - Services - Travel: Debit - (in Mio USD)
+1B131	Current Account - Income: Credit - (in Mio USD)
+1B132	Current Account - Income: Debit - (in Mio USD)
+1B133	Current Account - Income: Net - (in Mio USD)
+1B140	Current Account - Current Transfers: Net - (in Mio USD)
+1B141	Current Account - Current Transfers: Credit - (in Mio USD)
+1B142	Current Account - Current Transfers: Debit - (in Mio USD)
+1B143	Current Account - Current Transfers - Workers' Remittances: Debit - (in Mio USD)
+1B144	Current Account - Current Transfers - Workers' Remittances: Credit - (in Mio USD)
+1B145	Current Account - Current Transfers - Other Transfers: Credit - (in Mio USD)
+1B146	Current Account - Current Transfers - Other Transfers: Debit - (in Mio USD)
+1B200	Capital and financial account - Totals: Net - (in Mio USD)
+1B201	Capital and financial account - Capital account: Net - (in Mio USD)
+1B202	Capital and financial account - Capital Transfers: Credit - (in Mio USD)
+1B203	Capital and financial account - Capital Transfers: Debit - (in Mio USD)
+1B211	Capital and financial account - Direct Investment Abroad: Net - (in Mio USD)
+1B212	Capital and financial account - Direct Investment in Reporting Economy: Net - (in Mio USD)
+1B213	Capital and financial account - Direct Investment: Net - (in Mio USD)
+1B221	Capital and financial account - Portfolio Investment Assets: Net - (in Mio USD)
+1B222	Capital and financial account - Portfolio Investment Liabilities: Net - (in Mio USD)
+1B223	Capital and financial account - Portfolio Investment: Net - (in Mio USD)
+1B231	Capital and financial account - Reserve Assets - (in Mio USD)
+1B232	Capital and financial account - Reserve Assets - Foreign Exchange - (in Mio USD)
+1B233	Capital and financial account - Reserve Assets - Monetary Gold - (in Mio USD)
+1B234	Capital and financial account - Reserve Assets - Reserve Position in the Fund (in Mio USD)
+1B235	Capital and financial account - Reserve Assets - Special Drawing Rights: Net - (in Mio USD)
+1B241	Capital and financial account - Other Investment - Assets: Net - (in Mio USD)
+1B242	Capital and financial account - Other Investment - Liabilities: Net - (in Mio USD)
+1B243	Capital and financial account - Other Investment: Net - (in Mio USD)
+2A11	Country exchange rates - National currency per SDR - end of period
+2A12	Country exchange rates - SDR per a national currency - end of period
+2A13	Country exchange rates - National currency per US dollar - end of period
+2A14	Country exchange rates - US dollar per national curency - end of period
+2A22	Country exchange rates - US dollar per national curency - period average
+2B01	Monetary survey - Domestic Credit (in Mio national currency)
+2B02	Monetary survey - Claims on other non governmental domestic sectors - Private sector (in Mio national currency)
+2B03	Monetary survey - Money (in Mio national currency)
+2B04	Monetary survey - Quasi money (in Mio national currency)
+2B05	Monetary survey - Other items (net) (in Mio national currency)
+5A100	Government Finance - Cash receipts from operating activities (in Mio national currency)
+5A101	Government Finance - Grants received (in Mio national currency)
+5A200	Government Finance - Cash payments for operating activities (in Mio national currency)
+5A300	Government Finance - Cash surplus (+) / deficit (-) (in Mio national currency)
+2B06	Deposit Money Banks - Foreign Assets (in Mio national currency)
+2B07	Deposit Money Banks - Foreign Liabilities (in Mio national currency)
+0A100	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant), in 1000s)
+0A101	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 4 years, in 1000s
+0A102	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 14 years, in 1000s
+0A103	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 17 years, in 1000s
+0A104	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 19 years, in 1000s
+0A105	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 24 years, in 1000s
+0A106	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 5 to 14 years, in 1000s
+0A107	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 6 to 11 years, in 1000s
+0A108	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 12 to 14 years, in 1000s
+0A109	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 years and more, in 1000s
+0A110	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 17 years, in 1000s
+0A111	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 24 years, in 1000s
+0A112	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 49 years, in 1000s
+0A113	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 59 years, in 1000s
+0A114	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 64 years, in 1000s
+0A115	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 18 years and more, in 1000s
+0A116	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 18 to 23 years, in 1000s
+0A117	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 years and more, in 1000s
+0A118	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 to 64 years, in 1000s
+0A119	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 to 69 years, in 1000s
+0A120	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 25 years and more, in 1000s
+0A121	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 25 to 69 years, in 1000s
+0A122	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 50 years and more, in 1000s
+0A123	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 60 years and more, in 1000s
+0A124	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 65 years and more, in 1000s
+0A125	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 70 years and more, in 1000s
+0A126	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 75 years and more, in 1000s
+0A127	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 80 years and more, in 1000s
+0A128	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 85 years and more, in 1000s
+0A129	Total population, both sexes combined, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 90 years and more, in 1000s
+0A200	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant), in 1000s
+0A201	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 4 years, in 1000s
+0A202	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 14 years, in 1000s
+0A203	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 17 years, in 1000s
+0A204	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 19 years, in 1000s
+0A205	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 24 years, in 1000s
+0A206	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 5 to 14 years, in 1000s
+0A207	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 6 to 11 years, in 1000s
+0A208	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 12 to 14 years, in 1000s
+0A209	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 years and more, in 1000s
+0A210	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 17 years, in 1000s
+0A211	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 24 years, in 1000s
+0A212	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 49 years, in 1000s
+0A213	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 59 years, in 1000s
+0A214	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 64 years, in 1000s
+0A215	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 18 years and more, in 1000s
+0A216	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 18 to 23 years, in 1000s
+0A217	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 years and more, in 1000s
+0A218	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 to 64 years, in 1000s
+0A219	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 to 69 years, in 1000s
+0A220	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 25 years and more, in 1000s
+0A221	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 25 to 69 years, in 1000s
+0A222	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 50 years and more, in 1000s
+0A223	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 60 years and more, in 1000s
+0A224	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 65 years and more, in 1000s
+0A225	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 70 years and more, in 1000s
+0A226	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 75 years and more, in 1000s
+0A227	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 80 years and more, in 1000s
+0A228	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 85 years and more, in 1000s
+0A229	Total population, men, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 90 years and more, in 1000s
+0A300	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant), in 1000s
+0A301	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 4 years, in 1000s
+0A302	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 14 years, in 1000s
+0A303	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 17 years, in 1000s
+0A304	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 19 years, in 1000s
+0A305	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 0 to 24 years, in 1000s
+0A306	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 5 to 14 years, in 1000s
+0A307	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 6 to 11 years, in 1000s
+0A308	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 12 to 14 years, in 1000s
+0A309	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 years and more, in 1000s
+0A310	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 17 years, in 1000s
+0A311	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 24 years, in 1000s
+0A312	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 49 years, in 1000s
+0A313	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 59 years, in 1000s
+0A314	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 15 to 64 years, in 1000s
+0A315	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 18 years and more, in 1000s
+0A316	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 18 to 23 years, in 1000s
+0A317	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 years and more, in 1000s
+0A318	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 to 64 years, in 1000s
+0A319	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 20 to 69 years, in 1000s
+0A320	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 25 years and more, in 1000s
+0A321	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 25 to 69 years, in 1000s
+0A322	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 50 years and more, in 1000s
+0A323	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 60 years and more, in 1000s
+0A324	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 65 years and more, in 1000s
+0A325	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 70 years and more, in 1000s
+0A326	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 75 years and more, in 1000s
+0A327	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 80 years and more, in 1000s
+0A328	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 85 years and more, in 1000s
+0A329	Total population, women, annual as of July 1, (1950-2010: estimates - 2011-2050: medium variant),  from 90 years and more, in 1000s
+0B101	Unemployment, total (% of total labor force)
+0B102	Unemployment, female (% of female labor force)
+0B103	Unemployment, male (% of male labor force)
+0B104	Employment in agriculture (% of total employment)
+0B105	Employees, agriculture, female (% of female employment)
+0B106	Employees, agriculture, male (% of male employment)
+0B107	Employment in industry (% of total employment)
+0B108	Employees, industry, female (% of female employment)
+0B109	Employees, industry, male (% of male employment)
+0B110	Employment in services (% of total employment)
+0B111	Employees, services, female (% of female employment)
+0B112	Employees, services, male (% of male employment)
+0B201	Urban population
+0B202	Urban population (% of total)
+0B203	Urban population growth (annual %)
+0B301	School enrollment, primary (% gross)
+0B302	School enrollment, primary, female (% gross)
+0B303	School enrollment, primary, male (% gross)
+0B304	School enrollment, secondary (% gross)
+0B305	School enrollment, secondary, female (% gross)
+0B306	School enrollment, secondary, male (% gross)
+0B307	School enrollment, tertiary (% gross)
+0B308	School enrollment, tertiary, female (% gross)
+0B309	School enrollment, tertiary, male (% gross)
+0B401	Hospital beds (per 1,000 people)
+0B402	Physicians (per 1,000 people)
+0B501	Life expectancy at birth, total (years)
+0B502	Life expectancy at birth, female (years)
+0B503	Life expectancy at birth, male (years)
+0B601	Fertility rate, total (births per woman)
+0B602	Mortality rate, infant (per 1,000 live births)
+0B603	Mortality rate, under 5 years (per 1,000)
+0B701	Health expenditure per capita (current US$)
+4B0002_T	Almonds, with shell
+4B0003_T	Anise, badian, fennel, corian.
+4B0004_T	Apples
+4B0005_T	Apricots
+4B0006_T	Arecanuts
+4B0007_T	Artichokes
+4B0008_T	Asparagus
+4B0009_T	Avocados
+4B0010_T	Bambara beans
+4B0011_T	Bananas
+4B0012_T	Barley
+4B0013_T	Beans, dry
+4B0014_T	Beans, green
+4B0016_T	Brazil nuts, with shell
+4B0017_T	Broad beans, horse beans, dry
+4B0018_T	Buckwheat
+4B0019_T	Cabbages and other brassicas
+4B0020_T	Canary seed
+4B0022_T	Carobs
+4B0023_T	Carrots and turnips
+4B0024_T	Cashew nuts, with shell
+4B0025_T	Cashewapple
+4B0026_T	Cassava
+4B0027_T	Castor oil seed
+4B0028_T	Cauliflowers and broccoli
+4B0029_T	Cereals, nec
+4B0030_T	Cherries
+4B0031_T	Chestnuts
+4B0032_T	Chick peas
+4B0033_T	Chicory roots
+4B0034_T	Chillies and peppers, dry
+4B0035_T	Chillies and peppers, green
+4B0036_T	Cinnamon (canella)
+4B0037_T	Citrus fruit, nec
+4B0039_T	Cloves
+4B0040_T	Cocoa beans
+4B0041_T	Coconut (copra) oil
+4B0042_T	Coconuts
+4B0043_T	Coffee, green
+4B0047_T	Cottonseed oil
+4B0048_T	Cow peas, dry
+4B0049_T	Cranberries, blueberries
+4B0050_T	Cucumbers and gherkins
+4B0051_T	Currants
+4B0052_T	Dates
+4B0053_T	Eggplants (aubergines)
+4B0054_T	Figs
+4B0055_T	Flax fibre and tow
+4B0056_T	Fonio
+4B0058_T	Garlic
+4B0059_T	Ginger
+4B0060_T	Gooseberries
+4B0061_T	Grapefruit (inc. pomelos)
+4B0062_T	Grapes
+4B0063_T	Groundnut oil
+4B0064_T	Groundnuts, with shell
+4B0066_T	Hazelnuts, with shell
+4B0067_T	Hops
+4B0068_T	Jute and Jute-like fibers
+4B0069_T	Kiwi fruit
+4B0070_T	Kolanuts
+4B0072_T	Leguminous vegetables, nec
+4B0073_T	Lemons and limes
+4B0074_T	Lentils
+4B0075_T	Lettuce and chicory
+4B0076_T	Linseed
+4B0077_T	Linseed oil
+4B0078_T	Lupins
+4B0079_T	Maize
+4B0081_T	Maize oil
+4B0082_T	Maize, green
+4B0083_T	Maté
+4B0084_T	Melonseed
+4B0085_T	Millet
+4B0086_T	Mixed grain
+4B0087_T	Mushrooms and truffles
+4B0089_T	Mustard seed
+4B0090_T	Natural rubber
+4B0091_T	Nutmeg, mace and cardamoms
+4B0092_T	Nuts, nec
+4B0093_T	Oats
+4B0094_T	Oil palm fruit
+4B0095_T	Oilseeds, nec
+4B0096_T	Okra
+4B0097_T	Olive oil, virgin
+4B0098_T	Olives
+4B0099_T	Onions (inc. shallots), green
+4B0100_T	Onions, dry
+4B0101_T	Oranges
+4B0102_T	Other melons (inc.cantaloupes)
+4B0103_T	Palm kernel oil
+4B0105_T	Palm oil
+4B0106_T	Papayas
+4B0107_T	Peaches and nectarines
+4B0108_T	Pears
+4B0109_T	Peas, dry
+4B0110_T	Peas, green
+4B0111_T	Pepper (Piper spp.)
+4B0112_T	Persimmons
+4B0113_T	Pigeon peas
+4B0114_T	Pineapples
+4B0115_T	Pistachios
+4B0116_T	Plantains
+4B0117_T	Plums and sloes
+4B0119_T	Potatoes
+4B0120_T	Pulses, nec
+4B0121_T	Pumpkins, squash and gourds
+4B0122_T	Quinces
+4B0123_T	Quinoa
+4B0125_T	Rapeseed
+4B0126_T	Rapeseed oil
+4B0127_T	Raspberries and other berries
+4B0129_T	Rice, paddy
+4B0130_T	Roots and Tubers, nec
+4B0131_T	Rye
+4B0133_T	Safflower oil
+4B0134_T	Safflower seed
+4B0135_T	Seed cotton
+4B0136_T	Sesame oil
+4B0137_T	Sesame seed
+4B0138_T	Sisal and other agave fibers
+4B0139_T	Sorghum
+4B0141_T	Sour cherries
+4B0142_T	Soybean oil
+4B0143_T	Soybeans
+4B0144_T	Spices, nec
+4B0145_T	Spinach
+4B0146_T	Stone fruit, nec
+4B0147_T	Strawberries
+4B0148_T	String beans
+4B0149_T	Sugar beet
+4B0150_T	Sugar cane
+4B0151_T	Sugar crops, nec
+4B0153_T	Sunflower oil
+4B0154_T	Sunflower seed
+4B0155_T	Sweet potatoes
+4B0156_T	Tangerines, mandarins, clem.
+4B0157_T	Taro (cocoyam)
+4B0158_T	Tea
+4B0159_T	Tobacco, unmanufactured
+4B0160_T	Tomatoes
+4B0161_T	Triticale
+4B0162_T	Vanilla
+4B0164_T	Vegetables, nec
+4B0165_T	Vetches
+4B0166_T	Walnuts, with shell
+4B0167_T	Watermelons
+4B0168_T	Wheat
+4B0169_T	Wine
+4B0170_T	Yams
+4B0171_T	Yautia (cocoyam)
+4B2006_T	Cattle meat
+4B2007_T	Chicken meat
+4B2008_T	Cow milk, whole, fresh
+4B2009_T	Duck meat
+4B2011_T	Game meat
+4B2012_T	Goat meat
+4B2013_T	Goat milk, whole, fresh
+4B2014_T	Goose and guinea fowl meat
+4B2015_T	Hen eggs, in shell
+4B2017_T	Horse meat
+4B2019_T	Natural honey
+4B2022_T	Pig meat
+4B2023_T	Rabbit meat
+4B2024_T	Sheep meat
+4B2027_T	Turkey meat
+4B2028_T	Wool, greasy
+G1_01	Population below $1 (PPP) per day, percentage
+G1_02	Poverty gap ratio at $1 a day (PPP), percentage
+G1_03	Poorest quintile's share in national income or consumption, percentage
+G1_04	Growth rate of GDP per person employed, percentage
+G1_05	Employment-to-population ratio, both sexes, percentage
+G1_06	Proportion of employed people living below $1 (PPP) per day, percentage
+G1_07	Proportion of own-account and contributing family workers in total employment, both sexes, percentage
+G1_08	Children under 5 moderately or severely underweight, percentage
+G1_09	Population undernourished, percentage
+G2_01	Total net enrolment ratio in primary education, both sexes
+G2_02	Percentage of pupils starting grade 1 who reach last grade of primary, both sexes
+G2_03	Literacy rates of 15-24 years old, both sexes, percentage
+G3_01A	Gender Parity Index in primary level enrolment
+G3_01B	Gender Parity Index in secondary level enrolment
+G3_01C	Gender Parity Index in tertiary level enrolment
+G3_02	Share of women in wage employment in the non-agricultural sector
+G3_03	Seats held by women in national parliament, percentage
+G4_01	Children under five mortality rate per 1,000 live births
+G4_02	Infant mortality rate (0-1 year) per 1,000 live births
+G4_03	Children 1 year old immunized against measles, percentage
+G5_01	Maternal mortality ratio per 100,000 live births
+G5_02	Births attended by skilled health personnel, percentage
+G5_03	Current contraceptive use among married women 15-49 years old, any method, percentage
+G5_04	Adolescent birth rate, per 1,000 women
+G5_05A	Antenatal care coverage, at least four visits, percentage
+G5_05B	Antenatal care coverage, at least one visit, percentage
+G5_06	Unmet need for family planning, total, percentage
+G6_01	People living with HIV, 15-49 years old, percentage
+G6_02A	Condom use at last high-risk sex, 15-24 years old, men, percentage
+G6_02B	Condom use at last high-risk sex, 15-24 years old, women, percentage
+G6_03A	Men 15-24 years old with comprehensive correct knowledge of HIV/AIDS, percentage
+G6_03B	Women 15-24 years old with comprehensive correct knowledge of HIV/AIDS, percentage
+G6_04	Ratio of school attendance rate of orphans to school attendance rate of non orphans
+G6_05	Antiretroviral therapy coverage among people with advanced HIV infection, percentage
+G6_06A	Notified cases of malaria per 100,000 population
+G6_06B	Malaria death rate per 100,000 population, ages 0-4
+G6_06C	Malaria death rate per 100,000 population, all ages
+G6_07	Children under 5 sleeping under insecticide-treated bed nets, percentage
+G6_08	Children under 5 with fever being treated with anti-malarial drugs, percentage
+G6_09A	Tuberculosis incidence rate per year per 100,000 population
+G6_09B	Tuberculosis prevalence rate per 100,000 population
+G6_09C	Tuberculosis death rate per year per 100,000 population
+G6_10A	Tuberculosis detection rate under DOTS, percentage
+G6_10B	Tuberculosis treatment success rate under DOTS, percentage
+G7_01	Proportion of land area covered by forest, percentage
+G7_02A	Carbon dioxide emissions (CO2), kg CO2 per $1 GDP (PPP) (UNFCCC)
+G7_02B	Carbon dioxide emissions (CO2), thousand metric tonnes of CO2 (CDIAC)
+G7_02C	Carbon dioxide emissions (CO2), thousand metric tonnes of CO2 (UNFCCC)
+G7_02D	Carbon dioxide emissions (CO2), metric tonnes of CO2 per capita (CDIAC)
+G7_02E	Carbon dioxide emissions (CO2), metric tonnes of CO2 per capita (UNFCCC)
+G7_03	Consumption of all Ozone-Depleting Substances in ODP metric tonnes
+G7_05	Proportion of total water resources used, percentage
+G7_06	Terrestrial and marine areas protected to total territorial area, percentage
+G7_08	Proportion of the population using improved drinking water sources, total
+G7_09	Proportion of the population using improved sanitation facilities, total
+G7_10	Slum population as percentage of urban, percentage
+G8_01A	Net ODA as percentage of OECD/DAC donors GNI
+G8_01B	Net ODA to LDCs as percentage of OECD/DAC donors GNI
+G8_02	ODA to basic social services as percentage of sector-allocable ODA
+G8_03	ODA that is untied, percentage
+G8_04	ODA received in landlocked developing countries as percentage of their GNI
+G8_05	ODA received in small islands developing States as percentage of their GNI
+G8_08	Agriculture support estimate for OECD countries as percentage of their GDP
+G8_09	ODA provided to help build trade capacity, percentage
+G8_11A	Debt relief committed under HIPC initiative, cumulative million US$ in end-2006 NPV terms
+G8_11B	Debt relief delivered in full under MDRI initiative, cumulative million US$ in end-2006 NPV terms
+G8_12	Debt service as percentage of exports of goods and services and net income
+G8_14	Telephone lines per 100 population
+G8_15	Cellular subscribers per 100 population
+G8_16	Internet users per 100 population

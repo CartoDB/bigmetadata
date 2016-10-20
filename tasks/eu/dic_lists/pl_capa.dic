@@ -1,0 +1,10 @@
+PL_1	Number of plants
+PL_2	Design capacity BOD (1 000 kg O2/day)
+PL_3	Actual occupation BOD (1 000 kg O2/day)
+PL_4	Effluent BOD (1 000 kg O2/day)
+PL_5	Design capacity vol. (34) (1 000 m3/d)
+PL_6	Actual occupation vol. (1 000 m3/d)
+PL_7	Effluent vol. (1 000 m3/d)
+PL_8	Design capacity inh. (34) (1 000 I.E.)
+PL_9	Actual occupation inh. (1 000 I.E.)
+PL_10	Effluent inh. (1 000 I.E.)

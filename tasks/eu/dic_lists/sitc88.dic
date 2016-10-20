@@ -1,0 +1,16 @@
+TOTAL	Total - all products
+SITC0_1	Food, drinks and tobacco
+SITC0	Food and live animals
+SITC1	Beverages and tobacco
+SITC2_4	Raw materials
+SITC2	Crude materials, inedible except fuels
+SITC3	Mineral fuels, lubricants and related materials
+SITC33	Petroleum, Petroleum products and related materials
+SITC4	Animal and vegetable oils, fats and waxes
+SITC5-8	Manufactured products
+SITC5	Chemicals and related products, n.e.s.
+SITC6_8	Other manufactured products
+SITC6	Manufactured goods classified chiefly by material
+SITC7	Machinery and transport equipment
+SITC8	Miscellaneous manufactured articles
+SITC9	Commodities and transactions not classified elsewhere in SITC

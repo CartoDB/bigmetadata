@@ -1,0 +1,44 @@
+TOTAL	Total
+M01-03	From January to March
+M01-05	From January to May
+M01	January
+M02-09	From February to September
+M02	February
+M03-05	From March to May
+M03	March
+M04	April
+M05_M06	May-June
+M05	May
+M_LT06	31 May and before
+LT_MID06	15 June and before
+M06	June
+MID06-MID07	From 16 June to 15 July
+M07	July
+MID07-MID08	From 16 July to 15 August
+M08	August
+M_GE08	1 August and after
+GE_MID08	15 August and after
+M09-11	From September to November
+M09-12	From September to December
+M09	September
+M10-12	From October to December
+M10-01	From October to January
+M10-04	From October to April
+M10	October
+M11-01	From November to January
+M11	November
+M12-03	From December to March
+M12	December
+PYM01	January of previous calendar year
+PYM02	February of previous calendar year
+PYM03	March of previous calendar year
+PYM04	April of previous calendar year
+PYM05	May of previous calendar year
+PYM06	June of previous calendar year
+PYM07	July of previous calendar year
+PYM08	August of previous calendar year
+PYM09	September of previous calendar year
+PYM10	October of previous calendar year
+PYM11	November of previous calendar year
+PYM12	December of previous calendar year
+UNK	Unknown

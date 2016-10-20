@@ -1,0 +1,302 @@
+0000	All products
+2000	Solid fuels
+2100	Hard coal and derivatives
+2110	Hard Coal & Patent Fuels
+2111	Hard coal
+2112	Patent Fuels
+2115	Anthracite
+2116	Coking Coal
+2117	Other Bituminous Coal
+2118	Sub-bituminous Coal
+2120	Coke
+2121	Coke Oven Coke
+2122	Gas Coke
+2130	Coal Tar
+2200	Lignite and Derivatives
+2210	Lignite/Brown Coal
+2211	Black Lignite
+2212	Brown Coal (Lignite)
+2220	Brown Coal Coke
+2230	BKB (brown coal briquettes)
+2310	Peat
+2330	Peat products
+2410	Oil shale and oil sands
+2500_S	Other solid fuels
+3000	Total petroleum products
+3000A	Total crude oil and petroleum products (blended with bio components)
+3100	Crude oil, feedstocks and other hydrocarbons
+3100A	Crude oil, NGLs, feedstocks, additives/oxygenates and other hydrocarbons (blended with bio components)
+3105	Crude oil (without NGL)
+3106	Natural gas liquids (NGL)
+3110	Crude oil and NGL
+3110_S	Other primary oil
+3150	Refined oil products
+3190	Feedstocks and other hydrocarbons
+3191	Refinery feedstocks
+3192	Additives/Oxygenates
+3192A	Additives/oxygenates (blended with bio components)
+3193	Other hydrocarbons
+3196	Of which: biofuels (3192A)
+3200	All petroleum products
+3200A	Total products (blended with bio components)
+3205	LPG & Refinery Gas
+3210	Refinery gas and ethane
+3214	Refinery gas
+3215	Ethane
+3220	Liquified petroleum gas (LPG)
+3225	LPG Fuel
+3230	Motor spirit
+3234	Gasoline (without bio components)
+3234A	Total motor gasoline (blended with bio components)
+3235	Aviation gasoline
+3236	Car Spirit
+3237	Premium leaded gasoline
+3238	Premium unleaded gasoline, 95 Ron
+3240	Kerosenes - Jet Fuels
+3244	Other kerosene
+3246	Gasoline type jet fuel
+3247	Kerosene type jet fuel (without bio components)
+3247A	Total kerosene type jet fuel (blended with bio components)
+3250	Naphtha
+3260	Gas/diesel oil (without bio components)
+3260A	Total gas/diesel oil (blended with bio components)
+3265	Transport Diesel
+3265A	Road diesel (blended with bio components)
+3266	Heating and other gas oil (blended with bio components)
+3270	Residual Fuel Oil
+3270A	Total fuel oil
+3271	Fuel oil-low sulphur (<1%)
+3272	Fuel oil-high sulphur (>=1%)
+3280	Other petroleum products
+3281	White Spirit and SBP
+3282	Lubricants
+3283	Bitumen
+3285	Petroleum coke
+3286	Paraffin Waxes
+3290	Other products
+3295	Other Oil Products
+3300_S	Other petroleum products
+4000	Gas
+4100	Natural gas
+4101	Of which: LNG
+4200	Derived gases
+4210	Coke Oven Gas
+4220	Blast Furnace Gas
+4230	Gas Works Gas
+4240	Other recovered gases
+5100	Nuclear heat
+5200	Derived heat
+5500	Renewable energies
+5510	Hydro power
+5520	Wind power
+5530	Solar energy
+5532	Solar thermal
+5534	Solar photovoltaic
+5535	Tide, Wave and Ocean
+5540	Biomass and renewable wastes
+5541	Solid biofuels (excluding charcoal)
+55411	Fuelwood, wood residues and by-products
+55412	Wood pellets
+55413	Bagasse
+55414	Black liquor
+55415	Other vegetal materials and residues
+55416	Animal waste
+5542	Biogas
+55421	Landfill Gas
+55422	Sewage Sludge Gas
+55423	Other biogases from anaerobic fermentation
+55425	Biogases from thermal processes
+5543	Municipal waste
+55431	Municipal waste (renewable)
+55432	Municipal waste (non-renewable)
+5544	Charcoal
+5545	Liquid biofuels
+5546	Biogasoline
+5546O	Biogasoline
+5546R	Biogasoline (capacity)
+55461R	Bioethanol
+5547	Biodiesels
+5547O	Biodiesels
+5547R	Biodiesels (capacity)
+5548	Other liquid biofuels
+5549	Bio jet kerosene
+5549O	Bio jet kerosene
+5549R	Bio jet kerosene (capacity)
+5550	Geothermal Energy
+5560_S	Other renewable energies
+6000	Electrical energy
+7100	Industrial wastes
+7200	Waste (non-renewable)
+9000	Infrastructure
+9004	Solar panel area
+9007	Electrical capacity
+9999	Other products
+010000	CEREALS (including seeds)
+011000	Wheat and spelt
+011100	Soft wheat and spelt
+011200	Durum wheat
+012000	Rye and meslin
+013000	Barley
+013100	Feed barley
+013200	Malting barley
+014000	Oats and summer cereal mixtures
+015000	Grain maize
+016000	Rice
+019000	Other cereals
+020000	INDUSTRIAL CROPS
+021000	Oil seeds and oleaginous fruits (including seeds)
+021100	Rape and turnip rape seed
+021200	Sunflower
+021300	Soya
+021900	Other oleaginous products
+022000	Protein crops (including seeds)
+023000	Raw tobacco
+024000	Sugar beet
+029000	Other industrial crops
+029100	Fibre plants
+029200	Hops
+029900	Other industrial crops: others
+030000	FORAGE PLANTS
+031000	Fodder maize
+032000	Fodder root crops (including forage beet)
+039000	Other forage plants
+039100	Hay
+039200	Straw
+039300	Silage
+039900	Other forage plants: others
+040000	VEGETABLES AND HORTICULTURAL PRODUCTS
+041000	Fresh vegetables
+041100	Cauliflower
+041200	Tomatoes
+041900	Other fresh vegetables
+041910	Cabbage
+041920	Lettuce
+041930	Spinach
+041940	Cucumbers
+041950	Carrots
+041960	Onions
+041970	Green beans
+041980	Pulses
+041990	Peas
+041999	Other fresh vegetables: other
+042000	Plants and flowers
+050000	POTATOES (including seeds)
+051000	Potatoes for consumption
+051100	Early potatoes
+051200	Main crop potatoes
+052000	Seed potatoes
+059000	Other potatoes
+060000	FRUITS
+061000	Fresh fruit (excluding citrus fruit and grapes)
+061100	Dessert apples
+061200	Dessert pears
+061300	Peaches
+061900	Other fresh fruit, nuts and dried fruit
+061910	Cherries
+061920	Plums
+061930	Strawberries
+061940	Nuts and dried fruit
+061941	Nuts
+061942	Dried fruit
+061990	Other fresh fruit: other
+062000	Citrus fruit
+062100	Sweet oranges
+062200	Mandarins
+062300	Lemons
+062900	Other citrus fruits
+063000	Tropical fruit
+064000	Grapes
+064100	Dessert grapes
+064900	Other grapes, fresh
+065000	Olives
+065100	Table olives
+065900	Other olives
+070000	WINE
+071000	Table wine
+071100	Vin de pays or Vinho regional or Vino de la tierra
+071900	Other table wine
+072000	Quality wine
+079000	Other wine
+080000	OLIVE OIL
+090000	OTHER CROP PRODUCTS
+091000	Vegetable materials used primarily for plaiting
+092000	Seeds
+099000	Other crop products: others
+100000	CROP OUTPUT (010000 to 090000), including fruits (060000) and vegetables (040000)
+101000	CROP OUTPUT (010000 to 090000), excluding fruits (060000) and vegetables (040000)
+110000	ANIMALS
+111000	Cattle
+111100	Cattle excluding calves
+111200	Calves
+112000	Pigs
+113000	Equines
+114000	Sheep and goats
+115000	Poultry
+115100	Chickens
+115900	Other poultry
+119000	Other animals
+120000	ANIMAL PRODUCTS
+121000	Milk
+121100	Cows' milk
+121900	Other milk types
+122000	Eggs
+129000	Other animal products
+130000	ANIMAL OUTPUT (110000+120000)
+140000	AGRICULTURAL GOODS OUTPUT (100000+130000), including fruits (060000) and vegetables (040000)
+141000	AGRICULTURAL GOODS OUTPUT (101000+130000), excluding fruits (060000) and vegetables (040000)
+200000	Goods and services currently consumed in agriculture (Input 1)
+201000	SEEDS AND PLANTING STOCK
+202000	ENERGY, LUBRICANTS
+202100	Electricity
+202200	Fuels for heating
+202300	Motor fuels
+202400	Lubricants
+203000	FERTILISERS AND SOIL IMPROVERS
+203100	Straight fertilizers
+203110	Nitrogenous fertilizers
+203120	Phosphatic fertilizers
+203130	Potassic fertilizers
+203200	Compound fertilizers
+203210	NP fertilizers
+203220	PK fertilizers
+203230	NPK fertilizers
+203900	Other fertilizers, soil improvers
+204000	PLANT PROTECTION PRODUCTS AND PESTICIDES
+204100	Fungicides
+204200	Insecticides
+204300	Herbicides
+204900	Other plant protection products
+205000	VETERINARY EXPENSES
+206000	ANIMAL FEEDINGSTUFFS
+206100	Straight feeding stuffs
+206110	Cereals and milling by-products
+206120	Oilcakes
+206130	Products of animal origin
+206190	Other straight feeding stuffs
+206200	Compound feeding stuffs
+206210	Compound feeding stuffs for calves
+206220	Compound feeding stuffs for cattle excluding calves
+206230	Compound feeding stuffs for pigs
+206240	Compound feeding stuffs for poultry
+206290	Other compound feeding stuffs
+207000	MAINTENANCE OF MATERIALS
+208000	MAINTENANCE OF BUILDINGS
+209000	OTHER GOODS AND SERVICES
+210000	Goods and services contributing to agricultural investment (Input 2)
+211000	MATERIALS
+211100	MACHINERY AND OTHER EQUIPMENT
+211110	Rotovators and other 2 wheel equipment
+211120	Machinery and plant for cultivation
+211130	Machinery and plant for harvesting
+211140	Farm machinery and installations
+211141	Farm machinery and installations for crop production
+211142	Farm machinery and installations for animal production
+211149	Other farm machinery and installations
+211200	TRANSPORT EQUIPMENT
+211210	Tractors
+211290	Other vehicles
+212000	BUILDINGS
+212100	FARM BUILDINGS (NON-RESIDENTIAL)
+212900	OTHER WORKS EXCEPT LAND IMPROVEMENTS (OTHER BUILDINGS, STRUCTURES, ETC.)
+219000	OTHER
+220000	Input total (Input 1 + Input 2)

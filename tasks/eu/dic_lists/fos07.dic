@@ -1,0 +1,52 @@
+TOTAL	Total
+FOS1-4	Natural sciences, Engineering and technology, Medical and health sciences, Agricultural sciences
+FOS1	Natural sciences
+FOS101	Mathematics
+FOS102	Computer and information sciences
+FOS103	Physical sciences
+FOS104	Chemical sciences
+FOS105	Earth and related environmental sciences
+FOS106	Biological sciences
+FOS107	Other natural sciences
+FOS2	Engineering and technology
+FOS201	Civil engineering
+FOS202	Electrical engineering, electronic engineering, information engineering
+FOS203	Mechanical engineering
+FOS204	Chemical engineering
+FOS205	Materials engineering
+FOS206	Medical engineering
+FOS207	Environmental engineering
+FOS208	Environmental biotechnology
+FOS209	Industrial Biotechnology
+FOS210	Nano-technology
+FOS211	Other engineering and technologies
+FOS3	Medical and health sciences
+FOS301	Basic medicine
+FOS302	Clinical medicine
+FOS303	Health sciences
+FOS304	Health biotechnology
+FOS305	Other medical sciences
+FOS4	Agricultural sciences
+FOS401	Agriculture, forestry, and fisheries
+FOS402	Animal and dairy science
+FOS403	Veterinary science
+FOS404	Agricultural biotechnology
+FOS405	Other agricultural sciences
+FOS5_6	Social sciences and Humanities
+FOS5	Social sciences
+FOS501	Psychology
+FOS502	Economics and business
+FOS503	Educational sciences
+FOS504	Sociology
+FOS505	Law
+FOS506	Political Science
+FOS507	Social and economic geography
+FOS508	Media and communications
+FOS509	Other social sciences
+FOS6	Humanities
+FOS601	History and archaeology
+FOS602	Languages and literature
+FOS603	Philosophy, ethics and religion
+FOS604	Art (arts, history of arts, performing arts, music)
+FOS605	Other humanities
+NSP	Not specified

@@ -1,0 +1,121 @@
+IND_TOTAL	All Individuals
+Y0_15	Individuals, 15 years old or less
+Y15_29	Individuals, 15 to 29 years old
+Y16_19	Individuals, 16 to 19 years old
+Y16_24	Individuals, 16 to 24 years old
+Y16_29	Individuals, 16 to 29 years old
+Y20_24	Individuals, 20 to 24 years old
+Y25_29	Individuals, 25 to 29 years old
+Y25_34	Individuals, 25 to 34 years old
+Y25_54	Individuals, 25 to 54 years old
+Y25_64	Individuals, 25 to 64 years old
+Y35_44	Individuals, 35 to 44 years old
+Y45_54	Individuals, 45 to 54 years old
+Y55_64	Individuals, 55 to 64 years old
+Y55_74	Individuals, 55 to 74 years old
+Y65_74	Individuals, 65 to 74 years old
+Y75_MAX	Individuals, 75 years old or more
+Y16_24LO	Individuals aged 16-24 with low education
+Y16_24ME	Individuals aged 16-24 with medium formal education
+Y16_24HI	Individuals aged 16-24 with high formal education
+Y25_54LO	Individuals aged 25 to 54 with low formal education
+Y25_54ME	Individuals aged 25 to 54 with medium formal education
+Y25_54HI	Individuals aged 25 to 54 with high formal education
+Y25_64LO	Individuals aged 25 to 64 with low formal education
+Y25_64ME	Individuals aged 25 to 64 with medium formal education
+Y25_64HI	Individuals aged 25 to 64 with high formal education
+Y55_74LO	Individuals aged 55 to 74 with low formal education
+Y55_74ME	Individuals aged 55 to 74 with medium formal education
+Y55_74HI	Individuals aged 55 to 74 with high formal education
+Y25_64_SALSELFFAM	Individuals aged 25 to 64 who are employees, self-employed or family workers
+Y25_64_UNE	Individuals aged 25 to 64 who are unemployed
+Y25_64_RETIROTH	Individuals aged 25 to 64 who are retired or other inactive
+M_Y16_19	Males, 16 to 19 years old
+F_Y16_19	Females, 16 to 19 years old
+M_Y16_24	Males, 16 to 24 years old
+F_Y16_24	Females, 16 to 24 years old
+M_Y16_29	Males, 16 to 29 years old
+F_Y16_29	Females, 16 to 29 years old
+M_Y16_74	Males, 16 to 74 years old
+F_Y16_74	Females, 16 to 74 years old
+M_Y20_24	Males, 20 to 24 years old
+F_Y20_24	Females, 20 to 24 years old
+M_Y25_29	Males, 25 to 29 years old
+F_Y25_29	Females, 25 to 29 years old
+M_Y25_34	Males, 25 to 34 years old
+F_Y25_34	Females, 25 to 34 years old
+M_Y25_54	Males 25 to 54 years old
+F_Y25_54	Females 25 to 54 years old
+M_Y25_64	Males, 25 to 64 years old
+F_Y25_64	Females, 25 to 64 years old
+M_Y35_44	Males, 35 to 44 years old
+F_Y35_44	Females, 35 to 44 years old
+M_Y45_54	Males, 45 to 54 years old
+F_Y45_54	Females, 45 to 54 years old
+M_Y55_64	Males, 55 to 64 years old
+F_Y55_64	Females, 55 to 64 years old
+M_Y55_74	Males 55 to 74 years old
+F_Y55_74	Females 55 to 74 years old
+M_Y65_74	Males, 65 to 74 years old
+F_Y65_74	Females, 65 to 74 years old
+M_I0_2	Males with low formal education
+F_I0_2	Females with low formal education
+M_I3_4	Males with medium formal education
+F_I3_4	Females with medium formal education
+M_I5_8	Males with high formal education
+F_I5_8	Females with high formal education
+I0_2	Individuals with no or low formal education
+I3_4	Individuals with medium formal education
+I5_8	Individuals with high formal education
+CB_EU_FOR	Individuals who are born in another EU Member State
+CB_EXT_EU	Individuals who are born in non-EU country
+CB_FOR	Individuals who are foreign-born
+CB_NAT	Individuals who are native-born
+CC_EU_FOR	Nationals of another EU-Member State
+CC_EXT_EU	Nationals of non-EU country
+CC_FOR	Non-nationals
+CC_NAT	Nationals
+EMPL_UNE	Active labour force (employed and unemployed)
+FAM	Family and relatives
+PRT_INT	Intimate partner
+FRD	Friends
+HHI_Q1	Individual living in a household with income in first quartile
+HHI_Q2	Individual living in a household with income in second quartile
+HHI_Q3	Individual living in a household with income in third quartile
+HHI_Q4	Individual living in a household with income in fourth quartile
+IND_DEG1	Individuals living in densely-populated area (at least 500 inhabitants/Km²)
+IND_DEG2	Individuals living in intermediate urbanized area (between 100 and 499 inhabitants/Km²)
+IND_DEG3	Individuals living in sparsely populated area (less than 100 inhabitants/Km²)
+IND_DEV_L	Individuals living in less developed regions
+IND_DEV_M	Individuals living in more developed regions
+IND_DEV_T	Individuals living in transition regions
+IND_O1	Individuals living in Objective 1 regions / 'Convergence' regions
+IND_NO1	Individuals living in Not Objective 1 regions / 'Regional Competitiveness and Employment' Region
+IND_BROAD	Individuals living in a household with broadband access
+IND_BROADX	Individuals living in a household with Internet access but with no broadband access
+ISCO_ICT	ICT professionals
+ISCO_ICTX	Non ICT professionals
+ISCO0_5	Non-manual including the armed forces
+ISCO6_9	Manual
+IREG	Individuals regularly using the Internet (at least once per week)
+IREGX	Individuals not regularly using the Internet (less than once per week)
+OTHER	Other Inactive
+RETIR	Retired Individuals
+RETIR_OTHER	Retired and other inactive
+RF_LE1	Individuals with no risk factor or one risk factor
+RF_GE1	Individuals with at least one of the 3 following characteristics: 55 to 74 years old; low education; unemployed or inactive or retired
+RF_GE2	Individuals with at least two of the 3 following characteristics: 55 to 74 years old; low education; unemployed or inactive or retired
+SAL	Employees
+SAL_SELF_FAM	Employees, self-employed, family workers
+SAL_PERM	Employees with a permanent job
+SELF	Self-employed persons
+SELF_FAM	Self-employed, family workers
+EMP_FT	Employed persons working full-time
+EMP_JOB1	Employed persons with one job only
+STUD	Students
+UNE	Unemployed
+HLDR	EU Blue Card holder
+IND_DCH	Individuals living in a household with children
+IND_NO_DCH	Individuals living in a household without children
+MD	Mobile internet users
+MDX	Non-users of mobile internet

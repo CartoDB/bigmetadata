@@ -1,0 +1,60 @@
+TOTAL	Total
+SQM_LT30	Less than 30 m2
+SQM30-39	From 30 to 39 m2
+SQM40-49	From 40 to 49 m2
+SQM50-59	From 50 to 59 m2
+SQM60-79	From 60 to 79 m2
+SQM80-99	From 80 to 99 m2
+SQM100-119	From 100 to 119 m2
+SQM_LT120	Less than 120 m2
+SQM120-149	From 120 to 149 m2
+SQM120-399	From 120 to 399 m2
+SQM_GE150	150 m2 or over
+SQM400-999	From 400 to 999 m2
+SQM1000-2499	From 1 000 to 2 499 m2
+SQM2500-4999	From 2 500 to 4 999 m2
+SQM5000-9999	From 5 000 to 9 999 m2
+SQM_GE10000	10 000 m2 or over
+HA0	Zero ha
+HA_LT01	Less than 0.10 ha
+HA01	From 0.10 to 0.19 ha
+HA01-04	From 0.10 to 0.49 ha
+HA02	From 0.20 to 0.29 ha
+HA_LT025	Less than 0.25 ha
+HA025-04	From 0.25 to 0.49 ha
+HA03-04	From 0.30 to 0.49 ha
+HA_LT05	Less than 0.50 ha
+HA05-06	From 0.50 to 0.69 ha
+HA05-09	From 0.50 to 0.99 ha
+HA07-09	From 0.70 to 0.99 ha
+HA_LT1	Less than 1 ha
+HA1	From 1 to 1.9 ha
+HA1-2	From 1 to 2.9 ha
+HA1-9	From 1 to 9.9 ha
+HA_LT2	Less than 2 ha
+HA2	From 2 to 2.9 ha
+HA2-3	From 2 to 3.9 ha
+HA2-4	From 2 to 4.9 ha
+HA_GE2	2 ha or over
+HA3-4	From 3 to 4.9 ha
+HA_LT5	Less than 5 ha
+HA5-9	From 5 to 9.9 ha
+HA5-19	From 5 to 19.9 ha
+HA_GE5	5 ha or over
+HA10-19	From 10 to 19.9 ha
+HA_GE10	10 ha or over
+HA20-29	From 20 to 29.9 ha
+HA20-49	From 20 to 49.9 ha
+HA_GE20	20 ha or over
+HA30-49	From 30 to 49.9 ha
+HA30-79	From 30 to 79.9 ha
+HA_GE30	30 ha or over
+HA50-69	From 50 to 69.9 ha
+HA50-99	From 50 to 99.9 ha
+HA_GE50	50 ha or over
+HA_GE70	70 ha or over
+HA80-149	From 80 to 149.9 ha
+HA_GE80	80 ha or over
+HA_GE100	100 ha or over
+HA_GE150	150 ha or over
+UNK	Unknown

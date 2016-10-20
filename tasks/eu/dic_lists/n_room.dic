@@ -1,0 +1,21 @@
+TOTAL	Total
+1	1 room
+2	2 rooms
+3	3 rooms
+4	4 rooms
+5	5 rooms
+6	6 rooms
+7	7 rooms
+GE7	7 rooms or more
+8	8 rooms
+GE8	8 rooms or more
+9	9 rooms
+GE9	9 rooms or more
+GE10	10 rooms or more
+LT25	Less than 25 rooms
+25-99	From 25 to 99 rooms
+GE100	100 rooms or more
+100-249	From 100 to 249 rooms
+GE250	250 rooms or more
+UNK	Unknown
+TOT_HH	Total number of households

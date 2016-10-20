@@ -1,0 +1,14 @@
+TOTAL	Total 
+PER_SUSP	Suspected person 
+PER_PRSC	Prosecuted person 
+PER_CNV	Convicted person 
+PER_PRIS	Prisoner 
+PER_VICT	Victim 
+TRI_PRE	Pre-trial 
+TRI_SPSD	Sentence passed 
+CRT_BGHT	Brought to court 
+CRT_CNV	Convicted 
+CRT_ACQT	Acquitted 
+CRT_RESL	Resolved 
+CRT_PEN	Pending 
+UNK	Unknown

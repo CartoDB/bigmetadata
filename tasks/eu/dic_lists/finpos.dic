@@ -1,0 +1,19 @@
+ASS	Assets
+LIAB	Liabilities
+NET	Net position
+CIA	Credit institutions, assets
+CIL	Credit institutions, liabilities
+CIN	Credit institutions, net position
+GGN	General government, net postion
+GGA	General government, assets
+GGL	General government, liabilities
+NEN	National economy, net position
+NEA	National economy, assets
+NEL	National economy, liabilities
+NFPA	Non-financial private sector, assets
+NFPL	non-financial private sector, liabilities
+NFPN	Non-financial private sector, net position
+FINTRA	Financial transactions (net accuisitions of financial assets/net incurrence of liabilities)
+OTA	Other, assets
+OTL	Other, liabilities
+OTN	Other, net position

@@ -1,0 +1,96 @@
+TOTAL	Total
+GINI_HND	Gini coefficient (scale from 0 to 100)
+S80_S20	Inequality of income distribution (income quintile share ratio)
+A97_MD60	At risk of poverty rate anchored at 1997 (cut-off point: 60% of median equivalised income)
+A98_MD40	At risk of poverty rate anchored at 1998 (cut-off point: 40% of median equivalised income)
+A98_MD50	At risk of poverty rate anchored at 1998 (cut-off point: 50% of median equivalised income)
+A98_MD60	At risk of poverty rate anchored at 1998 (cut-off point: 60% of median equivalised income)
+A98_MD70	At risk of poverty rate anchored at 1998 (cut-off point: 70% of median equivalised income)
+A98_M40	At risk of poverty rate anchored at 1998 (cut-off point: 40% of mean equivalised income)
+A98_M50	At risk of poverty rate anchored at 1998 (cut-off point: 50% of mean equivalised income)
+A98_M60	At risk of poverty rate anchored at 1998 (cut-off point: 60% of mean equivalised income)
+A99_MD60	At risk of poverty rate anchored at 1999 (cut-off point: 60% of median equivalised income)
+A00_MD60	At risk of poverty rate anchored at 2000 (cut-off point: 60% of median equivalised income)
+MEI_E	Mean equivalised net income
+MED_E	Median equivalised net income
+TC	Top cut-off point
+SHARE	Share of national equivalised income
+LI_R_MD40	At risk of poverty rate (cut-off point: 40% of median equivalised income)
+LI_R_MD50	At risk of poverty rate (cut-off point: 50% of median equivalised income)
+LI_R_MD60	At risk of poverty rate (cut-off point: 60% of median equivalised income after social transfers)
+LI_R_MD70	At risk of poverty rate (cut-off point: 70% of median equivalised income)
+LI_R_M40	At risk of poverty rate (cut-off point: 40% of mean equivalised income)
+LI_R_M50	At risk of poverty rate (cut-off point: 50% of mean equivalised income)
+LI_R_M60	At risk of poverty rate (cut-off point: 60% of mean equivalised income)
+LI_R_MD40BTP	At risk of poverty rate before social transfers (pensions included in social transfers) (cut-off point: 40% of median equivalised income after social transfers)
+LI_R_MD50BTP	At risk of poverty rate before social transfers (pensions included in social transfers) (cut-off point: 50% of median equivalised income after social transfers)
+LI_R_MD60BTP	At risk of poverty rate before social transfers (pensions included in social transfers) (cut-off point: 60% of median equivalised income after social transfers)
+LI_R_MD70BTP	At risk of poverty rate before social transfers (pensions included in social transfers) (cut-off point: 70% of median equivalised income after social transfers)
+LI_R_M40BTP	At risk of poverty rate before social transfers (pensions included in social transfers) (cut-off point: 40% of mean equivalised income after social transfers)
+LI_R_M50BTP	At risk of poverty rate before social transfers (pensions included in social transfers) (cut-off point: 50% of mean equivalised income after social transfers)
+LI_R_M60BTP	At risk of poverty rate before social transfers (pensions included in social transfers) (cut-off point: 60% of mean equivalised income after social transfers)
+LI_R_MD40BT	At risk of poverty rate before social transfers (pensions excluded from social transfers) (cut-off point: 40% of median equivalised income after social transfers)
+LI_R_MD50BT	At risk of poverty rate before social transfers (pensions excluded from social transfers) (cut-off point: 50% of median equivalised income after social transfers)
+LI_R_MD60BT	At risk of poverty rate before social transfers (pensions excluded from social transfers) (cut-off point: 60% of median equivalised income after social transfers)
+LI_R_MD70BT	At risk of poverty rate before social transfers (pensions excluded from social transfers) (cut-off point: 70% of median equivalised income after social transfers)
+LI_R_M40BT	At risk of poverty rate before social transfers (pensions excluded from social transfers) (cut-off point: 40% of mean equivalised income after social transfers)
+LI_R_M50BT	At risk of poverty rate before social transfers (pensions excluded from social transfers) (cut-off point: 50% of mean equivalised income after social transfers)
+LI_R_M60BT	At risk of poverty rate before social transfers (pensions excluded from social transfers) (cut-off point: 60% of mean equivalised income after social transfers)
+LI_GAP_MD40	Relative poverty gap (cut-off point: 40% of median equivalised income)
+LI_GAP_MD50	Relative poverty gap (cut-off point: 50% of median equivalised income)
+LI_GAP_MD60	Relative poverty gap (cut-off point: 60% of median equivalised income)
+LI_GAP_MD70	Relative poverty gap (cut-off point: 70% of median equivalised income)
+LI_GAP_M40	Relative poverty gap (cut-off point: 40% of mean equivalised income)
+LI_GAP_M50	Relative poverty gap (cut-off point: 50% of mean equivalised income)
+LI_GAP_M60	Relative poverty gap (cut-off point: 60% of mean equivalised income)
+LI_C_MD40	At risk of poverty threshold (40% of median equivalised income)
+LI_C_MD50	At risk of poverty threshold (50% of median equivalised income)
+LI_C_MD60	At risk of poverty threshold (60% of median equivalised income)
+LI_C_MD70	At risk of poverty threshold (70% of median equivalised income)
+LI_C_M40	At risk of poverty threshold (40% of mean equivalised income)
+LI_C_M50	At risk of poverty threshold (50% of mean equivalised income)
+LI_C_M60	At risk of poverty threshold (60% of mean equivalised income)
+LIP_MD40	At persistent risk of poverty rate by age and gender (cut-off point: 40% of median equivalised income)
+LIP_MD50	At persistent risk of poverty rate by age and gender (cut-off point: 50% of median equivalised income)
+LIP_MD60	At persistent risk of poverty rate by age and gender (cut-off point: 60% of median equivalised income)
+LIP_MD70	At persistent risk of poverty rate by age and gender (cut-off point: 70% of median equivalised income)
+LIP_M40	At persistent risk of poverty rate by age and gender (cut-off point: 40% of mean equivalised income)
+LIP_M50	At persistent risk of poverty rate by age and gender (cut-off point: 50% of mean equivalised income)
+LIP_M60	At persistent risk of poverty rate by age and gender (cut-off point: 60% of mean equivalised income)
+LI_GE130MD	Having income of 130% of median income or more
+LI_GE140MD	Having income of 140% of median income or more
+LI_GE150MD	Having income of 150% of median income or more
+LI_GE160MD	Having income of 160% of median income or more
+LI_GE130M	Having income of 130% of mean income or more
+LI_GE140M	Having income of 140% of mean income or more
+LI_GE150M	Having income of 150% of mean income or more
+HLTH	Self defined health status
+R_GE65_LT65	Persons aged 65 years and over compared to persons aged less than 65 years
+R_GE75_LT75	Persons aged 75 years and over compared to persons aged less than 75 years
+R_GE60_LT60	Persons aged 60 years and over compared to persons aged less than 60 years
+R_PN_WK	Ratio of income from pensions of persons aged between 65 and 74 years and income from work of persons aged between 50 and 59 years
+SC101	Less than 3 years - no formal childcare
+SC102	Less than 3 years - childcare from 1 to 29 hours weekly
+SC103	Less than 3 years - childcare 30 hours or more weekly
+SC111	Between 3 years and compulsory school age - no formal childcare
+SC112	Between 3 years and compulsory school age - childcare from 1 to 29 hours weekly
+SC113	Between 3 years and compulsory school age - childcare 30 hours or more weekly
+R_NDEP_NLOW	Population at risk of poverty but not severely materially deprived and not living in a household with low work intensity
+R_NDEP_LOW	Population at risk of poverty, not severely materially deprived but living in a household with low work intensity
+R_DEP_NLOW	Population at risk of poverty, severely materially deprived but not living in a household with low work intensity
+R_DEP_LOW	Population at risk of poverty, severely materially deprived and living in a household with low work intensity
+NR_NDEP_LOW	Population not at risk of poverty, not severely materially deprived but living in a household with low work intensity
+NR_DEP_NLOW	Population not at risk of poverty but severely materially deprived and not living in a household with low work intensity
+NR_DEP_LOW	Population not at risk of poverty but severely materially deprived and living in a household with low work intensity
+NR_NDEP_NLOW	Population neither at risk of poverty, nor severely materially deprived nor living in a household with low work intensity
+GAP_LT18TOT	Gap between people aged less than 18 years and total population
+GAP_18-24TOT	Gap between people aged 18 - 24 and total population
+INC_EMP	Income from employment
+INC_PEN	Income from pensions
+INC_BEN	Income from benefits and allowances
+INC_OTH	Income from other sources
+A25DI	Housing cost burden over 25 % of disposable household income
+A40DI	Housing cost burden over 40 % of disposable household income
+A50DI	Housing cost burden over 50 % of disposable household income
+A60DI	Housing cost burden over 60 % of disposable household income
+A75DI	Housing cost burden over 75 % of disposable household income

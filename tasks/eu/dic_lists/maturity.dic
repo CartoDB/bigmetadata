@@ -1,0 +1,60 @@
+TOTAL	Total - all maturities
+SHORT	Short-term maturity
+LONG	Long-term maturity
+LONG_FX	Long-term maturity, fixed rate
+LONG_FL	Long-term maturity, floating rate
+M_LT1	Maturity: less than 1 month
+M1-3	Maturity: from 1 to 3 months
+M_LT3	Maturity: less than 3 months
+M3-12	Maturity: from 3 to 12 months
+M_GT3	Maturity: over 3 months
+Y_LT1	Maturity: less than 1 year
+Y_LE1	Maturity: 1 year or less
+Y1	Maturity: 1 year
+Y1-2	Maturity: from 1 to 2 years
+Y1-3	Maturity: from 1 to 3 years
+Y1-5	Maturity: from 1 to 5 years
+Y_GT1	Maturity: over 1 year
+Y_LT2	Maturity: less than 2 years
+Y2	Maturity: 2 years
+Y_GT2	Maturity: over 2 years
+Y3	Maturity: 3 years
+Y3-5	Maturity: from 3 to 5 years
+Y4	Maturity: 4 years
+Y_LT5	Maturity: less than 5 years
+Y5	Maturity: 5 years
+Y5-7	Maturity: from 5 to 7 years
+Y5-10	Maturity: from 5 to 10 years
+Y_GT5	Maturity: over 5 years
+Y6	Maturity: 6 years
+Y7	Maturity: 7 years
+Y7-10	Maturity: from 7 to 10 years
+Y8	Maturity: 8 years
+Y9	Maturity: 9 years
+Y10	Maturity: 10 years
+Y10-15	Maturity: from 10 to 15 years
+Y10-20	Maturity: from 10 to 20 years
+Y_GT10	Maturity: over 10 years
+Y11	Maturity: 11 years
+Y12	Maturity: 12 years
+Y13	Maturity: 13 years
+Y14	Maturity: 14 years
+Y15	Maturity: 15 years
+Y15-30	Maturity: from 15 to 30 years
+Y16	Maturity: 16 years
+Y17	Maturity: 17 years
+Y18	Maturity: 18 years
+Y19	Maturity: 19 years
+Y20	Maturity: 20 years
+Y_GT20	Maturity: over 20 years
+Y21	Maturity: 21 years
+Y22	Maturity: 22 years
+Y23	Maturity: 23 years
+Y24	Maturity: 24 years
+Y25	Maturity: 25 years
+Y26	Maturity: 26 years
+Y27	Maturity: 27 years
+Y28	Maturity: 28 years
+Y29	Maturity: 29 years
+Y30	Maturity: 30 years
+Y_GT30	Maturity: over 30 years

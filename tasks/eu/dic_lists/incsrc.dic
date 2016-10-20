@@ -1,0 +1,23 @@
+TOTAL	Total
+ANY_MNY	Any monetary income
+WORK	Income from work
+WORK_WAGE	Wages and salaries
+WORK_SELF	Self-employment income
+PRIV	Private sources
+PRIV_CAP	Capital income
+PRIV_RENT	Property/rental income
+PRIV_TRF	Private transfers
+SOC_TRF	Social transfers
+SOC_RET	Old-age/survivors pensions
+SOC_NRET	Social transfers - other than old-age/survivors pensions
+SOC_UNE	Unemployment related transfers
+SOC_FAM	Family related transfers
+SOC_SICK	Sickness/invalidity related transfers
+SOC_EDUC	Education related transfers
+SOC_ASS	Social assistance
+SOC_HOUS	Housing allowance
+SOC_OTH	Other social transfers, n.e.s.
+SOC_NRUS	Social transfers other than old-age/survivors pensions and unemployment, sickness/invalidity related benefits
+PRIMARY	Primary income
+SECONDARY	Secondary income
+UNK	Unknown

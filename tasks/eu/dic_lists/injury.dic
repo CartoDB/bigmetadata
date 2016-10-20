@@ -1,0 +1,50 @@
+TOTAL	Total
+INJ010	Wounds and superficial injuries
+INJ011	Superficial injuries
+INJ012	Open wounds
+INJ019	Other types of wounds and superficial injuries
+CONT_BRU	Contusions, bruisings
+CUT_LACE	Cuts, lacerations, severed nerves or tendons
+INJ020	Bone fractures
+INJ021	Closed fractures
+INJ022	Open fractures
+INJ029	Other types of bone fractures
+INJ030	Dislocations, sprains and strains
+INJ031	Dislocations and subluxations
+INJ032	Sprains and strains
+INJ039	Other types of dislocations, sprains and strains
+INJ040	Traumatic amputations (Loss of body parts)
+INJ050	Concussions and internal injuries
+INJ051	Concussions
+INJ052	Internal injuries
+INJ059	Other types of concussions and internal injuries
+INJ060	Burns, scalds and frostbites
+INJ061	Burns and scalds (thermal)
+INJ062	Chemical burns (corrosions)
+INJ063	Frostbites
+INJ069	Other types of burns, scalds and frostbites
+INJ070	Poisonings and infections
+INJ071	Acute poisonings
+INJ072	Acute infections
+POIS_ASP	Poisonings, gassings and asphyxiations
+INJ079	Other types of poisonings and infections
+INJ080	Drownings and asphyxiations
+INJ081	Asphyxiations
+INJ082	Drownings and non-fatal submersions
+INJ089	Other types of drownings and asphyxiations
+INJ090	Effects of sound, vibration and pressure
+INJ091	Acute hearing losses
+INJ092	Effects of pressure (barotrauma)
+INJ099	Other effects of sound, vibration and pressure
+INJ100	Effects of temperature extremes, light and radiation
+INJ101	Heats and sunstrokes
+INJ102	Effects of radiation (non-thermal)
+INJ103	Effects of reduced temperature
+INJ109	Other effects of temperature extremes, light and radiation
+INJ110	Shocks
+INJ111	Shocks after aggression and threats
+INJ112	Traumatic shocks
+INJ119	Other types of shocks
+INJ120	Multiple injuries
+OTH	Other not elsewhere mentioned
+UNK	Unspecified

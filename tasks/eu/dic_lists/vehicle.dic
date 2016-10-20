@@ -1,0 +1,142 @@
+TOTAL	Total
+TOT_X_TM	All vehicles (except trailers and motorcycles)
+TRN	Trains
+TRN_HSPD	High speed trains
+TRN_THSPD	Tilting high speed trains
+TRN_CV	Conventional trains
+TST	Trainsets
+TST_HSPD	High speed trainsets
+TST_THSPD	Tilting high speed trainsets
+TST_CV	Conventional trainsets
+LOC	Locomotives
+LOC_ELC	Electric locomotives
+LOC_DIE	Diesel locomotives
+LOC_STM	Steam locomotives
+RCA	Railcars
+RCA_ELC	Electric railcars
+RCA_DIE	Diesel railcars
+RCA_TRL	Railcar trailers
+RL_PAS	Passenger railway vehicles
+COA_RCA_TRL	Coaches and railcar trailers
+RCA_PAS	Passenger railcars
+COU	Couchette coaches, sleeping cars
+DIN	Dining cars
+COA	Coaches
+VAN	Vans
+WAG	Wagons
+WAG_GD	Goods wagons - total
+WAG_GD_LD	Goods wagons - loaded
+WAG_GD_EMP	Goods wagons - empty
+WAG_COV	Covered wagons
+WAG_HIS	High sided wagons
+WAG_FLT	Flat wagons
+WAG_IMOD	Wagons for intermodal transport
+WAG_OTH	Other wagons
+UTL	Total utility vehicles
+LOR_RTRN	Lorries and road trains
+LOR_RTRN_DIE	Lorries and road trains - diesel
+LOR_RTRN_OTH	Lorries and road trains - other fuel
+LOR_TRL	Lorries and trailers
+LOR_TRL21	Lorries and trailers - 2+1 axles
+LOR_TRL22	Lorries and trailers - 2+2 axles
+LOR_TRL23	Lorries and trailers - 2+3 axles
+LOR_TRL32	Lorries and trailers - 3+2 axles
+LOR_TRL33	Lorries and trailers - 3+3 axles
+LOR_TRL_OTH	Lorries and trailers - other
+LOR_LGV_TRC	Lorries (including light goods road vehicles) and road tractors
+LOR	Lorries
+LOR2	Lorries - 2 axles
+LOR3	Lorries - 3 axles
+LOR4	Lorries - 4 axles
+LOR_OTH	Lorries - other
+TRC	Road tractors
+TRC_AGR	Agricultural tractors
+TRC_AV	Road tractors and articulated vehicles
+TRC_AV_DIE	Road tractors and articulated vehicles - diesel
+TRC_AV_OTH	Road tractors and articulated vehicles - other fuel
+TRC_STRL	Road tractors and semi-trailers
+TRC_STRL21	Road tractors and semi-trailers - 2+1 axles
+TRC_STRL22	Road tractors and semi-trailers - 2+2 axles
+TRC_STRL23	Road tractors and semi-trailers - 2+3 axles
+TRC_STRL32	Road tractors and semi-trailers - 3+2 axles
+TRC_STRL33	Road tractors and semi-trailers - 3+3 axles
+TRC_STRL_OTH	Road tractors and semi-trailers - other
+TRL_STRL	Trailers and semi-trailers
+TRL	Trailers
+STRL	Semi-trailers
+VEH_GD	Goods road vehicles
+VG_LE3P5	Goods vehicles <= 3.5 tonnes
+VG_LE3P5_PET	Goods vehicles <= 3.5 tonnes - petrol
+VG_LE3P5_DIE	Goods vehicles <= 3.5 tonnes - diesel
+VG_LE3P5_LPG	Goods vehicles <= 3.5 tonnes - LPG
+VG_LE3P5_CNG	Goods vehicles <= 3.5 tonnes - LNG or CNG
+VG_LE3P5_OTH	Goods vehicles <= 3.5 tonnes - other fuel
+VG_GT3P5	Goods vehicles > 3.5 tonnes
+VG_GT3P5_PET	Goods vehicles > 3.5 tonnes - petrol
+VG_GT3P5_DIE	Goods vehicles > 3.5 tonnes - diesel
+VG_GT3P5_OTH	Goods vehicles > 3.5 tonnes - other fuel
+VG_3P5-6	Goods vehicles > 3.5 and <= 6 tonnes
+VG_3P5-6_PET	Goods vehicles > 3.5 and <= 6 tonnes - petrol
+VG_3P5-6_DIE	Goods vehicles > 3.5 and <= 6 tonnes - diesel
+VG_3P5-6_OTH	Goods vehicles > 3.5 and <= 6 tonnes - other fuel
+VG_3P5-15	Goods vehicles > 3.5 and <= 15 tonnes
+VG_LE6	Goods vehicles <= 6 tonnes
+VG_GT6	Goods vehicles > 6 tonnes
+VG_GT6_DIE	Goods vehicles > 6 tonnes - diesel
+VG_GT6_OTH	Goods vehicles > 6 tonnes - other fuel
+VG_6-12	Goods vehicles > 6 and <= 12 tonnes
+VG_GT12	Goods vehicles > 12 tonnes
+VG_GT15	Goods vehicles > 15 tonnes
+MOTO_MOP	Motorcycles and mopeds
+MOP	Mopeds
+MOTO	Motorcycles (> 50cm3)
+MOTO_GT50	Motorcycles > 50cm3
+MOTO_LE125	Motorcycles <= 125cm3
+MOTO_GT125	Motorcycles > 125cm3
+MOTO_NSP	Motorcycles not specified
+MOTO_2WH	Two-wheeled road motor vehicles  (motorcycles)
+QUA_LE50	Quads <= 50cm3
+QUA_GT50	Quads > 50cm3
+CAR	Passenger cars
+CAR_PET	Passenger cars - petrol
+CAR_DIE	Passenger cars - diesel
+CAR_ELC	Passenger cars - electric
+CAR_HG	Passenger cars - hydrogen
+CAR_LPG	Passenger cars - LPG
+CAR_MULTI	Passenger cars - multi-fuel and other fuel (excluding fuel with designated coding)
+CAR_CNG	Passenger cars - CNG
+CAR_PET_FLX	Passenger cars - flex-fuel: petrol/ethanol (E85)
+CAR_DIE_FLX	Passenger cars - flex-fuel: diesel/bio-diesel
+CAR_PET_HYD	Passenger cars - bi-fuel: petrol or hydrogen
+CAR_PET_LPG	Passenger cars - bi-fuel: petrol or LPG
+CAR_PET_CNG	Passenger cars - bi-fuel: petrol or CNG
+CAR_OTH	Passenger cars - other fuel
+BUS_TOT	Motor coaches, buses and trolley buses
+BUS_MCO	Buses and motor coaches
+BUS_MCO_DIE	Buses and motor coaches - diesel
+BUS_MCO_PET	Other buses and motor coaches - petrol
+BUS_MCO_LPG	Other buses and motor coaches - LPG
+BUS_MCO_CNG	Other buses and motor coaches - LNG or CNG
+BUS_MCO_MIN	Mini-buses and mini-coaches
+BUS_MIN	Mini-buses
+BUS_MCO_OTH	Other buses and motor coaches
+BUS	Buses
+BUS_DIE	Buses - diesel
+BUS_OTH	Buses - other fuel
+BUS_TRO	Trolley buses
+TRM_LR	Trams and light rail vehicles
+MCO	Motor coaches
+MCO_DIE	Motor coaches - diesel
+MCO_OTH	Motor coaches - other fuel
+BIKE	Bicycles
+SPE	Special vehicles
+MTZ_OTH	Other motorized vehicles
+MTZ_OTH_PET	Other motorized vehicles - petrol
+MTZ_OTH_DIE	Other motorized vehicles - diesel
+MTZ_OTH_LPG	Other motorized vehicles - LPG
+MTZ_OTH_CNG	Other motorized vehicles - CNG
+MTZ_OTH_OTH	Other motorized vehicles - other fuel
+NMTZ_OTH	Other non-motorized vehicles
+ANI_RD	Riding animals
+OTH	Other
+UNK	Unknown

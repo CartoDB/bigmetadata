@@ -1097,6 +1097,8 @@ class Shp2TempTableTask(TempTableTask):
     temporary Postgres table.  That method must be overriden.
     '''
 
+    encoding = Parameter(default='latin1', significant=False)
+
     def input_shp(self):
         '''
         This method must be implemented by subclasses.  Should return either
@@ -1115,11 +1117,12 @@ class Shp2TempTableTask(TempTableTask):
         operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no '.format(
             schema=schema)
         for shp in shps:
-            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
+            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING={encoding} ' \
                     'ogr2ogr -f PostgreSQL PG:"dbname=$PGDATABASE ' \
                     'active_schema={schema}" -t_srs "EPSG:4326" ' \
                     '-nlt MultiPolygon -nln {table} ' \
                     '{operation} \'{input}\' '.format(
+                        encoding=self.encoding,
                         schema=schema,
                         table=tablename,
                         input=shp,
@@ -1174,7 +1177,7 @@ class CSV2TempTableTask(TempTableTask):
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell('head -n 1 {csv}'.format(csv=csv))
+        header_row = shell('head -n 1 {csv}'.format(csv=csv)).strip()
         return [(h, 'Text') for h in header_row.split(self.delimiter)]
 
     def run(self):
@@ -1186,7 +1189,7 @@ class CSV2TempTableTask(TempTableTask):
         session = current_session()
         session.execute('CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
-            coldef=', '.join(['{} {}'.format(*c) for c in self.coldef()])
+            coldef=', '.join(['"{}" {}'.format(*c) for c in self.coldef()])
         ))
         session.commit()
         options = ['''DELIMITER '"'{}'"' '''.format(self.delimiter)]
@@ -1274,7 +1277,7 @@ class TableTask(Task):
         '''
         This method must populate (most often via ``INSERT``) the output table.
 
-        For example: 
+        For example:
         '''
         raise NotImplementedError('Must implement populate method that '
                                    'populates the table')

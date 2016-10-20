@@ -1,0 +1,260 @@
+D01_ECU_PER_HA	Common wheat and spelt
+D02_ECU_PER_HA	Durum wheat
+D03_ECU_PER_HA	Rye
+D04_ECU_PER_HA	Barley
+D05_ECU_PER_HA	Oats
+D06_ECU_PER_HA	Grain maize
+D07_ECU_PER_HA	Rice
+D08_ECU_PER_HA	Other cereals
+D09_ECU_PER_HA	Pulses - total
+D09A_ECU_PER_HA	Pulses - fodder
+D09B_ECU_PER_HA	Pulses - other
+D09C_ECU_PER_HA	Pulses - fodder peas
+D09D_ECU_PER_HA	Pulses - fodder field beans
+D09E_ECU_PER_HA	Pulses - other than fodder peas and field beans
+D09E_1_ECU_PER_HA	Peas, field beans and sweet lupines
+D09F_ECU_PER_HA	Lentils, chick peas and vetches
+D09G_ECU_PER_HA	Other protein crops harvested dry
+D10_ECU_PER_HA	Potatoes
+D11_ECU_PER_HA	Sugar beet
+D12_ECU_PER_HA	Fodder roots and brassicas
+D13_ECU_PER_HA	Industrial plants
+D13A_ECU_PER_HA	Tobacco
+D13B_ECU_PER_HA	Hops
+D13C_ECU_PER_HA	Cotton
+D13D_ECU_PER_HA	Other industrial plants
+D13D1_ECU_PER_HA	Other oil-seed or fibre plants
+D13D1A_ECU_PER_HA	Rape and turnip
+D13D1B_ECU_PER_HA	Sunflower
+D13D1C_ECU_PER_HA	Soya
+D13D1D_ECU_PER_HA	Other oil-seed or fibre plants - others
+D13D2_ECU_PER_HA	Aromatic-, medicinal and culinary plants
+D13D3_ECU_PER_HA	Industrial plants - Others
+D13D3A_ECU_PER_HA	Sugar cane
+D13D3B_ECU_PER_HA	Industrial plants - Other- except sugar cane
+D14_ECU_PER_HA	Fresh vegetables, melons, strawberries - outdoor
+D14A_ECU_PER_HA	Fresh vegetables, melons, strawberries - outdoor - open field
+D14B_ECU_PER_HA	Fresh vegetables, melons, strawberries - outdoor - market garden
+D15_ECU_PER_HA	Fresh vegetables, melons, strawberries - under glass
+D16_ECU_PER_HA	Flowers - outdoor
+D17_ECU_PER_HA	Flowers - under glass
+D18_ECU_PER_HA	Forage plants - total
+D18A_ECU_PER_HA	Forage plants - temporary grass
+D18B_ECU_PER_HA	Forage plants - other green fodder - total
+D18B1_ECU_PER_HA	Forage plants - other green fodder - green maize
+D18B2_ECU_PER_HA	Forage plants - other green fodder - leguminous plants
+D18B2_3_ECU_PER_HA	Other forage plants
+D18B3_ECU_PER_HA	Forage plants - other green fodder - others
+D19_ECU_PER_HA	Seeds and seedlings
+D20_ECU_PER_HA	Other crops
+D21_ECU_PER_HA	Fallow land without subsidies
+D22_ECU_PER_HA	Non-productive arable land, eligible for support
+D23_ECU_PER_HA	Tobacco
+D24_ECU_PER_HA	Hops
+D25_ECU_PER_HA	Cotton
+D26_ECU_PER_HA	Rape and turnip
+D27_ECU_PER_HA	Sunflower
+D28_ECU_PER_HA	Soya
+D29_ECU_PER_HA	Linseed (oil flax)
+D30_ECU_PER_HA	Other oil seed crops
+D31_ECU_PER_HA	Flax
+D32_ECU_PER_HA	Hemp
+D33_ECU_PER_HA	Other textile crops
+D34_ECU_PER_HA	Aromatic, medicinal and culinary plants (same as previous D13D2)
+D35_ECU_PER_HA	Industrial plants not mentioned elsewhere
+E_ECU_PER_HA	Kitchen gardens
+F_ECU_PER_HA	Permanent grassland and meadow - total
+F01_ECU_PER_HA	Permanent grassland and meadow - pasture and meadow
+F02_ECU_PER_HA	Permanent grassland and meadow - rough grazings
+F03_ECU_PER_HA	Permanent grassland and meadow - no used for production, eligible for subsidies
+G01_ECU_PER_HA	Fruit and berry plantations - total
+G01A_ECU_PER_HA	Fruit and berry plantations - temperate climate
+G01B_ECU_PER_HA	Fruit and berry plantations - subtropical climate
+G01C_ECU_PER_HA	Fruit and berry plantations - nuts
+G02_ECU_PER_HA	Citrus plantations
+G03_ECU_PER_HA	Olive plantations - total
+G03A_ECU_PER_HA	Olive plantations - table olives
+G03B_ECU_PER_HA	Olive plantations - oil production
+G04_ECU_PER_HA	Vineyards - total
+G04A_ECU_PER_HA	Vineyards - quality wine
+G04B_ECU_PER_HA	Vineyards - other wines
+G04C_ECU_PER_HA	Vineyards - table grapes
+G04D_ECU_PER_HA	Vineyards - raisins
+G05_ECU_PER_HA	Nurseries
+G06_ECU_PER_HA	Other permanent crops
+G07_ECU_PER_HA	Permanent crops under glass
+I01_ECU_PER_HA	Successive secondary crops - total
+I01A_ECU_PER_HA	Successive secondary crops - non fodder cereals
+I01B_ECU_PER_HA	Successive secondary crops - non fodder pulses
+I01C_ECU_PER_HA	Successive secondary crops - non fodder oil-seed plants
+I01D_ECU_PER_HA	Successive secondary crops - others total
+I01D1_ECU_PER_HA	Successive secondary crops - others non fodder
+I01D2_ECU_PER_HA	Successive secondary crops - others fodder
+I02_ECU_PER_100_M2	Mushrooms
+I03B1_ECU_PER_HA	Irrigated once a year - Durum wheat
+I03B10_ECU_PER_HA	Irrigated once a year - Vines
+I03B2_ECU_PER_HA	Irrigated once a year - Maize
+I03B3_ECU_PER_HA	Irrigated once a year - Potatoes
+I03B4_ECU_PER_HA	Irrigated once a year - Sugar beet
+I03B5_ECU_PER_HA	Irrigated once a year - Sunflower
+I03B6_ECU_PER_HA	Irrigated once a year - Soya
+I03B7_ECU_PER_HA	Irrigated once a year - fodder plants
+I03B8_ECU_PER_HA	Irrigated once a year - fruit and berry orchards
+I03B9_ECU_PER_HA	Irrigated once a year - Citrus fruit
+I06_ECU_PER_HA	Set aside land - total
+I06A_ECU_PER_HA	Set aside land - left fallow
+I06B_ECU_PER_HA	Set aside land - grazing
+I06C_ECU_PER_HA	Set aside land - lentils, chick peas and vetches
+I08AD22_ECU_PER_HA	Set-aside areas under incentive schemes - fallow land with no economic use
+J01_ECU_PER_HEAD	Equidae
+J01_ECU_PER_HEAD-D	Equidae
+J02_ECU_PER_HEAD	Bovine under one year old - total
+J02_ECU_PER_HEAD-D	Bovine under one year old - total
+J02A_ECU_PER_HEAD	Bovine under one year old - males
+J02A_ECU_PER_HEAD-D	Bovine under one year old - males
+J02B_ECU_PER_HEAD	Bovine under one year old - females
+J02B_ECU_PER_HEAD-D	Bovine under one year old - females
+J03_ECU_PER_HEAD	Bovine under 2 years - males
+J03_ECU_PER_HEAD-D	Bovine under 2 years - males
+J04_ECU_PER_HEAD	Bovine under 2 years - females
+J04_ECU_PER_HEAD-D	Bovine under 2 years - females
+J05_ECU_PER_HEAD	Bovine 2 years and older - males
+J05_ECU_PER_HEAD-D	Bovine 2 years and older - males
+J06_ECU_PER_HEAD	Heifers, 2 years and older
+J06_ECU_PER_HEAD-D	Heifers, 2 years and older
+J07_ECU_PER_HEAD	Dairy cows
+J07_ECU_PER_HEAD-D	Dairy cows
+J08_ECU_PER_HEAD	Bovine 2 years old and over - other cows
+J08_ECU_PER_HEAD-D	Bovine 2 years old and over - other cows
+J09_ECU_PER_HEAD	Sheep - total
+J09_ECU_PER_HEAD-D	Sheep - total
+J09A_ECU_PER_HEAD	Sheep - breeding females
+J09A_ECU_PER_HEAD-D	Sheep - breeding females
+J09B_ECU_PER_HEAD	Sheep, others
+J09B_ECU_PER_HEAD-D	Sheep, others
+J10_ECU_PER_HEAD	Goats
+J10_ECU_PER_HEAD-D	Goats
+J10A_ECU_PER_HEAD	Goats - breeding females
+J10A_ECU_PER_HEAD-D	Goats - breeding females
+J10B_ECU_PER_HEAD	Goats - others
+J10B_ECU_PER_HEAD-D	Goats - others
+J11_ECU_PER_HEAD	Pigs - piglets under 20 kg
+J12_ECU_PER_HEAD	Pigs - breeding sows over 50 kg
+J13_ECU_PER_HEAD	Pigs - others
+J14_ECU_PER_100_HDS	Poultry - broilers
+J15_ECU_PER_100_HDS	Laying hens
+J16_ECU_PER_100_HDS	Poultry - others
+J16A_ECU_PER_100_HDS	Turkeys
+J16B_ECU_PER_100_HDS	Ducks
+J16C_ECU_PER_100_HDS	Goose
+J16D_ECU_PER_100_HDS	Other poultry
+J17_ECU_PER_HEAD	Rabbits (breeding females)
+J18_ECU_PER_HEAD	Beehives
+J19_ECU_PER_HEAD	Other livestock
+R132_ECU_PER_HA	Herbaceous oil-seed plants
+R135_ECU_PER_HA	Other industrial plants
+R139_ECU_PER_HARVEST	Mushrooms
+R334_ECU_PER_HA	Other oil seed
+MSH_HRV_Y	Mushrooms: average number of harvests per year
+EXCHG_RT	National currency for 1 Euro/ECU
+RD	RD: Threshold for SGMH/SGMF (fodder deficit)
+RS	RS: Threshold for SGMH/SGMF (fodder surpluse)
+RV	RV: Coefficient for fodder area valuation
+B_1_1_1_ECU_PER_HA	Common wheat and spelt
+B_1_1_2_ECU_PER_HA	Durum wheat
+B_1_1_3_ECU_PER_HA	Rye
+B_1_1_4_ECU_PER_HA	Barley
+B_1_1_5_ECU_PER_HA	Oats
+B_1_1_6_ECU_PER_HA	Grain maize
+B_1_1_7_ECU_PER_HA	Rice
+B_1_1_99_ECU_PER_HA	Other cereals
+B_1_2_ECU_PER_HA	Pulses - total
+B_1_2_1_ECU_PER_HA	Peas, field beans and sweet lupines
+B_1_2_2_ECU_PER_HA	Pulses other than peas, field beans and sweet lupines
+B_1_3_ECU_PER_HA	Potatoes
+B_1_4_ECU_PER_HA	Sugar beet
+B_1_5_ECU_PER_HA	Fodder roots and brassicas
+B_1_6_1_ECU_PER_HA	Tobacco
+B_1_6_2_ECU_PER_HA	Hops
+B_1_6_3_ECU_PER_HA	Cotton
+B_1_6_4_ECU_PER_HA	Rape and turnip
+B_1_6_5_ECU_PER_HA	Sunflower
+B_1_6_6_ECU_PER_HA	Soya
+B_1_6_7_ECU_PER_HA	Linseed (oil flax)
+B_1_6_8_ECU_PER_HA	Other oil seed crops
+B_1_6_9_ECU_PER_HA	Flax
+B_1_6_10_ECU_PER_HA	Hemp
+B_1_6_11_ECU_PER_HA	Other textile crops
+B_1_6_12_ECU_PER_HA	Aromatic, medicinal and culinary plants (same as previous D13D2)
+B_1_6_99_ECU_PER_HA	Industrial plants not mentioned elsewhere
+B_1_7_ECU_PER_HA	Fresh vegetables, melons, strawberries
+B_1_7_1_ECU_PER_HA	Fresh vegetables, melons, strawberries - outdoor
+B_1_7_1_1_ECU_PER_HA	Fresh vegetables, melons, strawberries - outdoor - open field
+B_1_7_1_2_ECU_PER_HA	Fresh vegetables, melons, strawberries - outdoor - market garden
+B_1_7_2_ECU_PER_HA	Fresh vegetables, melons, strawberries - under glass
+B_1_8_1_ECU_PER_HA	Flowers - outdoor
+B_1_8_2_ECU_PER_HA	Flowers - under glass
+B_1_9_ECU_PER_HA	Forage plants - total
+B_1_9_1_ECU_PER_HA	Forage plants - temporary grass
+B_1_9_2_ECU_PER_HA	Forage plants - other green fodder - total
+B_1_9_2_1_ECU_PER_HA	Forage plants - other green fodder - green maize
+B_1_9_2_2_ECU_PER_HA	Forage plants - other green fodder - leguminous plants
+B_1_9_2_99_ECU_PER_HA	Forage plants - other green fodder - other than green maize and leguminous
+B_1_10_ECU_PER_HA	Seeds and seedlings
+B_1_11_ECU_PER_HA	Other crops
+B_1_12_1_ECU_PER_HA	Fallow land without subsidies
+B_1_12_2_ECU_PER_HA	Fallow land subject to payment of subsidies with no economic use
+B_2_ECU_PER_HA	Kitchen gardens
+B_3_ECU_PER_HA	Permanent grassland and meadow - total
+B_3_1_ECU_PER_HA	Permanent grassland and meadow - pasture and meadow
+B_3_2_ECU_PER_HA	Permanent grassland and meadow - rough grazings
+B_3_3_ECU_PER_HA	Permanent grassland and meadow - no used for production, eligible for subsidies
+B_4_1_ECU_PER_HA	Fruit and berry plantations - total
+B_4_1_1_ECU_PER_HA	Fruit species
+B_4_1_1_1_ECU_PER_HA	Fruit species of temperate climate zones
+B_4_1_1_2_ECU_PER_HA	Fruit species of subtropical climate zones
+B_4_1_2_ECU_PER_HA	Berry species
+B_4_1_3_ECU_PER_HA	Fruit and berry plantations - nuts
+B_4_2_ECU_PER_HA	Citrus plantations
+B_4_3_ECU_PER_HA	Olive plantations - total
+B_4_3_1_ECU_PER_HA	Olive plantations - table olives
+B_4_3_2_ECU_PER_HA	Olive plantations - oil production
+B_4_4_ECU_PER_HA	Vineyards - total
+B_4_4_1_ECU_PER_HA	Vineyards - quality wine
+B_4_4_2_ECU_PER_HA	Vineyards - other wines
+B_4_4_3_ECU_PER_HA	Vineyards - table grapes
+B_4_4_4_ECU_PER_HA	Vineyards - raisins
+B_4_5_ECU_PER_HA	Nurseries
+B_4_6_ECU_PER_HA	Other permanent crops
+B_4_7_ECU_PER_HA	Permanent crops under glass
+B_6_1_ECU_PER_100_M2	Mushrooms
+B_6_1_ECU_PER_HARVEST	Mushrooms: average number of harvests per year
+C_1_ECU_PER_HEAD	Equidae
+C_2_1_ECU_PER_HEAD	Bovine under one year old - total
+C_2_2_ECU_PER_HEAD	Bovine between 1 and 2 years - males
+C_2_3_ECU_PER_HEAD	Bovine between 1 and 2 years - females
+C_2_4_ECU_PER_HEAD	Bovine 2 years and older - males
+C_2_5_ECU_PER_HEAD	Heifers, 2 years and older
+C_2_6_ECU_PER_HEAD	Dairy cows
+C_2_99_ECU_PER_HEAD	Bovine 2 years old and over - other cows
+C_3_1_ECU_PER_HEAD	Sheep - total
+C_3_1_1_ECU_PER_HEAD	Sheep - breeding females
+C_3_1_99_ECU_PER_HEAD	Sheep, others
+C_3_2_ECU_PER_HEAD	Goats
+C_3_2_1_ECU_PER_HEAD	Goats - breeding females
+C_3_2_99_ECU_PER_HEAD	Goats - others
+C_4_1_ECU_PER_HEAD	Pigs - piglets under 20 kg
+C_4_2_ECU_PER_HEAD	Pigs - breeding sows over 50 kg
+C_4_99_ECU_PER_HEAD	Pigs - others
+C_5_1_ECU_PER_100_HDS	Poultry - broilers
+C_5_2_ECU_PER_100_HDS	Laying hens
+C_5_3_ECU_PER_100_HDS	Poultry - others
+C_5_3_1_ECU_PER_100_HDS	Poultry - others-Turkeys
+C_5_3_2_ECU_PER_100_HDS	Poultry - others - Ducks
+C_5_3_3_ECU_PER_100_HDS	Poultry - others - Geese
+C_5_3_4_ECU_PER_100_HDS	Poultry - others -Ostriches
+C_6_ECU_PER_HEAD	Rabbits (breeding females)
+C_7_ECU_PER_HIVE	Beehives
+ANI	Animal products
+VEG	Vegetal products
+TOTAL	Total

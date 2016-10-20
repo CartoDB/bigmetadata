@@ -1,0 +1,6 @@
+TOTAL	Total
+SO	Function is sourced
+SO_DO	Function is sourced Domestically
+SO_IN	Function is sourced Internationally
+NO	Function is not sourced
+UNK	Unknown

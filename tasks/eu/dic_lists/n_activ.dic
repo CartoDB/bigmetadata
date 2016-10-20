@@ -1,0 +1,10 @@
+TOTAL	Total
+0	No active persons
+1	1 active person
+2	2 active persons
+3	3 active persons
+GE3	3 active persons or more
+4	4 active persons
+5	5 active persons
+GT5	5 active persons or more
+UNK	Unknown

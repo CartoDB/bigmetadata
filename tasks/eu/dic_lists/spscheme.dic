@@ -1,0 +1,22 @@
+TOTAL	All schemes
+PUBLIC	Public schemes
+PRIVATE	Private schemes
+COMPULSORY	Compulsory schemes
+N_CLAW	Non compulsory schemes available by law
+N_C_OTH	Other non compulsory schemes
+CONTRIBUTORY	Contributory schemes
+NON_CONTRIB	Non contributory schemes
+UNIVERSAL	Universal schemes
+GENERAL	General schemes
+SCIVCERV	Civil servants schemes
+SSELFEMP	Self-employed schemes
+SOTH_OCCUP	Other occupational schemes
+SOTHER	Other special schemes
+BASE	Basic schemes
+COMP	Supplementary schemes
+PUCENTGOV	Public central government schemes
+PULOCGOV	Public state and local government schemes
+PREMP	Private schemes for employees
+PRECONTR	Private schemes for employees contractual
+PREN_CONTR	Private schemes for employees non contractual
+PR_OTH	Other private schemes

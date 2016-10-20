@@ -1,0 +1,6 @@
+0	No books
+GE1	1 book or more
+LT5	Less than 5 books
+5-9	From 5 to 9 books
+GE10	10 books or more
+NRP	No response

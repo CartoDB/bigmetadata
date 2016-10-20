@@ -1,0 +1,29 @@
+TOTAL	Total
+BASIC	Basic training
+PRACT	Practical experience only
+FULL	Full agricultural training
+CO_OF	CVT courses and/or other forms of CVT
+CO	CVT courses
+CO_INT	CVT courses - internal
+CO_EXT	CVT courses - external
+CO_HSW	Obligatory courses on health and safety at work
+OF	Other forms of CVT
+OF_GUID	Other forms of CVT - guided-on-the-job training
+OF_JROT	Other forms of CVT - job rotation, exchanges or secondments
+OF_CONF	Other forms of CVT - training at conferences, workshops, trade fairs and lectures
+OF_LQC	Other forms of CVT - learning/quality circles
+OF_SDL	Other forms of CVT - self-directed learning
+NO_CVT	No CVT
+FE_NFE	Formal and non-formal education and training
+FE	Formal education and training
+NFE	Non-formal education and training
+NFE_JB	Non-formal education and training - job-related
+NFE_JB_ES	Non-formal education and training - job-related and sponsored by the employer
+NFE_JB_ES_SAL	Non-formal education and training - job-related and sponsored by the employer (employees only)
+NFE_JB_NES	Non-formal education and training - job-related and not sponsored by the employer
+NFE_NJB	Non-formal education and training - not job-related
+NO_FE_NO_NFE	Neither formal nor non-formal education or training
+NO_FE	No formal education or training
+INF_ONL	Informal learning only
+NO_LEARN	No learning activity
+NRP	No response
