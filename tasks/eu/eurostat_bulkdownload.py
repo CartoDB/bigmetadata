@@ -249,5 +249,6 @@ class EURegionalTables(WrapperTask):
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
             reader = csv.reader(wrappertables)
             for subsection, table_code, nuts in reader:
-                if nuts == str(3): # Remove this line when NUTS2 and NUTS1 are available
+                nuts = int(nuts)
+                if nuts == 3: # Remove this line when NUTS2 and NUTS1 are available
                     yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts)
