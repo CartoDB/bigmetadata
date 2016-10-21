@@ -124,14 +124,14 @@ class SourceTags(TagsTask):
 
 class LicenseTags(TagsTask):
     def version(self):
-        return 2
+        return 4
 
     def tags(self):
         return [
             OBSTag(id='insee-license',
                    name='INSEE Copyright',
                    type='license',
-                   description=u'Commercial reuse permissible, more details `here <http://www.insee.fr/en/service/default.asp?page=rediffusion/copyright.htm>`.')
+                   description=u'Commercial reuse permissible, more details `here <http://www.insee.fr/en/service/default.asp?page=rediffusion/copyright.htm>`_.')
         ]
 
 
@@ -155,7 +155,7 @@ class FrenchColumns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 7
+        return 10
 
     def columns(self):
         cols = OrderedDict()

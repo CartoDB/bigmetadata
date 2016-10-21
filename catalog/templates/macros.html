@@ -144,11 +144,7 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 {% endfor %}
 {% endif %}
 
-{% for target, reltype in col.targets.iteritems() %}
-:{{ reltype }}:
-
-    :ref:`{{ target.id }}`
-{% endfor %}
+{% if col.geom_timespans()|length > 0 %}
 
 .. raw:: html
 
@@ -159,13 +155,41 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
    </tr>
    </thead>
    <tbody valign="top">
+
+
    {% for geomcol, timespans in col.geom_timespans().items() %}
-   <tr class="row-even"><td>{{ geomcol.name }}</td>
-   <td>{{ timespans|sort(True)|join(', ') }}</td>
+.. raw:: html
+
+   <tr class="row-even"><td>
+
+:ref:`{{ geomcol.id }}`
+
+.. raw:: html
+
+   </td>
+   <td>
+
+{{ timespans|sort(True)|join(', ') }}
+
+.. raw:: html
+
+   </td>
+
    {% endfor %}
+
+.. raw:: html
+
    </tr>
    </tbody>
    </table>
+
+{% endif %}
+
+{% for target, reltype in col.targets.iteritems() %}
+:{{ reltype|capitalize }}:
+
+    :ref:`{{ target.id }}`
+{% endfor %}
 
 :Source:
 

@@ -76,6 +76,9 @@ class GenerateRST(Task):
         session = current_session()
         i = 0
         for section in session.query(OBSTag).filter(OBSTag.type == 'section'):
+            targets[(section.id, 'tags.boundary')] = LocalTarget(
+                'catalog/source/{section}/boundary.rst'.format(
+                    section=strip_tag_id(section.id)))
             for subsection in session.query(OBSTag).filter(OBSTag.type == 'subsection'):
                 i += 1
                 if i > 10 and self.preview:
@@ -84,6 +87,7 @@ class GenerateRST(Task):
                     'catalog/source/{section}/{subsection}.rst'.format(
                         section=strip_tag_id(section.id),
                         subsection=strip_tag_id(subsection.id)))
+
         targets[('licenses', None)] = LocalTarget('catalog/source/licenses.rst')
         targets[('sources', None)] = LocalTarget('catalog/source/sources.rst')
         return targets
@@ -98,7 +102,8 @@ class GenerateRST(Task):
         session = current_session()
         fhandle = target.open('w')
         fhandle.write(LICENSES_TEMPLATE.render(
-            licenses=session.query(OBSTag).filter(OBSTag.type == 'license'),
+            licenses=session.query(OBSTag).filter(
+                OBSTag.type == 'license').order_by(OBSTag.name),
             **self.template_globals()
         ).encode('utf8'))
         fhandle.close()
@@ -107,7 +112,8 @@ class GenerateRST(Task):
         session = current_session()
         fhandle = target.open('w')
         fhandle.write(SOURCES_TEMPLATE.render(
-            sources=session.query(OBSTag).filter(OBSTag.type == 'source'),
+            sources=session.query(OBSTag).filter(
+                OBSTag.type == 'source').order_by(OBSTag.name),
             **self.template_globals()
         ).encode('utf8'))
         fhandle.close()
@@ -127,14 +133,35 @@ class GenerateRST(Task):
             section = session.query(OBSTag).get(section_id)
             subsection = session.query(OBSTag).get(subsection_id)
 
-            resp = session.execute('''
-                SELECT DISTINCT numer_id
-                FROM observatory.obs_meta
-                WHERE numer_tags ? 'section/{section_id}'
-                  AND numer_tags ? 'subsection/{subsection_id}'
-                ORDER BY numer_id
-            '''.format(section_id=section_id,
-                       subsection_id=subsection_id))
+            if subsection_id == 'tags.boundary':
+                resp = session.execute('''
+                    SELECT DISTINCT c.id
+                    FROM observatory.obs_tag section_t,
+                         observatory.obs_column_tag section_ct,
+                         observatory.obs_tag subsection_t,
+                         observatory.obs_column_tag subsection_ct,
+                         observatory.obs_column c
+                    WHERE section_t.id = section_ct.tag_id
+                      AND subsection_t.id = subsection_ct.tag_id
+                      AND c.id = section_ct.column_id
+                      AND c.id = subsection_ct.column_id
+                      AND subsection_t.id = '{subsection_id}'
+                      AND section_t.id = '{section_id}'
+                      AND subsection_t.type = 'subsection'
+                      AND section_t.type = 'section'
+                    GROUP BY c.id
+                    ORDER BY c.id
+                '''.format(section_id=section_id,
+                           subsection_id=subsection_id))
+            else:
+                resp = session.execute('''
+                    SELECT DISTINCT numer_id
+                    FROM observatory.obs_meta
+                    WHERE numer_tags ? 'section/{section_id}'
+                      AND numer_tags ? 'subsection/{subsection_id}'
+                    ORDER BY numer_id
+                '''.format(section_id=section_id,
+                           subsection_id=subsection_id))
 
             target.makedirs()
             fhandle = target.open('w')

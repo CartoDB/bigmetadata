@@ -5,7 +5,7 @@ from tasks.util import TagsTask
 class LicenseTags(TagsTask):
 
     def version(self):
-        return 2
+        return 3
 
     def tags(self):
         return [
@@ -21,7 +21,7 @@ class LicenseTags(TagsTask):
             OBSTag(id='uk_ogl',
                     name='UK Open Government Licence (OGL)',
                     type='license',
-                    description='The Licensor grants you a worldwide, royalty-free, perpetual, non-exclusive licence to use the Information subject to the conditions `here <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/>`.'),
+                    description='The Licensor grants you a worldwide, royalty-free, perpetual, non-exclusive licence to use the Information subject to the conditions `here <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/>`_.'),
             OBSTag(id='ine_property',
                     name='National Statistics Institute (INE) Property',
                     type='license',
