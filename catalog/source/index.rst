@@ -18,6 +18,9 @@ the Data Observatory and CARTO.
 
    *
 
+   sources
+   licenses
+
 Search
 ==================
 

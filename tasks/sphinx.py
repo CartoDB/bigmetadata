@@ -27,7 +27,8 @@ ENV.filters['strip_tag_id'] = strip_tag_id
 
 SECTION_TEMPLATE = ENV.get_template('section.html')
 SUBSECTION_TEMPLATE = ENV.get_template('subsection.html')
-
+LICENSES_TEMPLATE = ENV.get_template('licenses.html')
+SOURCES_TEMPLATE = ENV.get_template('sources.html')
 
 
 class GenerateRST(Task):
@@ -83,6 +84,8 @@ class GenerateRST(Task):
                     'catalog/source/{section}/{subsection}.rst'.format(
                         section=strip_tag_id(section.id),
                         subsection=strip_tag_id(subsection.id)))
+        targets[('licenses', None)] = LocalTarget('catalog/source/licenses.rst')
+        targets[('sources', None)] = LocalTarget('catalog/source/sources.rst')
         return targets
 
     def template_globals(self):
@@ -91,10 +94,36 @@ class GenerateRST(Task):
             'IMAGE_PATH': image_path
         }
 
+    def build_licenses(self, target):
+        session = current_session()
+        fhandle = target.open('w')
+        fhandle.write(LICENSES_TEMPLATE.render(
+            licenses=session.query(OBSTag).filter(OBSTag.type == 'license'),
+            **self.template_globals()
+        ).encode('utf8'))
+        fhandle.close()
+
+    def build_sources(self, target):
+        session = current_session()
+        fhandle = target.open('w')
+        fhandle.write(SOURCES_TEMPLATE.render(
+            sources=session.query(OBSTag).filter(OBSTag.type == 'source'),
+            **self.template_globals()
+        ).encode('utf8'))
+        fhandle.close()
+
     def run(self):
         session = current_session()
         for section_subsection, target in self.output().iteritems():
             section_id, subsection_id = section_subsection
+
+            if section_id == 'licenses':
+                self.build_licenses(target)
+                continue
+            elif section_id == 'sources':
+                self.build_sources(target)
+                continue
+
             section = session.query(OBSTag).get(section_id)
             subsection = session.query(OBSTag).get(subsection_id)
 

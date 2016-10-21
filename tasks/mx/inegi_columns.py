@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from tasks.meta import OBSColumn, DENOMINATOR
+from tasks.meta import OBSColumn, DENOMINATOR, OBSTag
 from tasks.util import ColumnsTask, TagsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 from collections import OrderedDict
 
-# %s/\(\w\+\d\+_\?R\?\)\t\(.\+\)$/\1 = OBSColumn(\r    id='\1',\r    name='\2',\r    type='Numeric',\r    weight=3,\r    aggregate='sum',\r    tags=[mexico, unit_people, ],\r    targets={},\r)
 
 class SourceTags(TagsTask):
     def version(self):
@@ -15,10 +14,24 @@ class SourceTags(TagsTask):
     def tags(self):
         return [
             OBSTag(id='inegi-source',
-                name=u'Instituto Nacional de Estadística y Geografía (INEGI)',
-                type='source',
-                description='INEGI data provided by `Diego Valle-Jones <https://www.diegovalle.net/>`_'
-                )]
+                   name=u'Instituto Nacional de Estadística y Geografía (INEGI)',
+                   type='source',
+                   description='INEGI data provided by `Diego Valle-Jones <https://www.diegovalle.net/>`_'
+                  )]
+
+
+class LicenseTags(TagsTask):
+    def version(self):
+        return 2
+
+    def tags(self):
+        return [
+            OBSTag(id='inegi-license',
+                   name=u'Free use of information from INEGI',
+                   type='license',
+                   description='Terms of free use can be read in detail `here <http://www.beta.inegi.org.mx/contenidos/inegi/doc/terminos_info.pdf>`_.'
+                  )]
+
 
 class DemographicColumns(ColumnsTask):
 
@@ -27,6 +40,8 @@ class DemographicColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'unittags': UnitTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
@@ -43,6 +58,8 @@ class DemographicColumns(ColumnsTask):
         unit_years = input_['unittags']['years']
         unit_ratio = input_['unittags']['ratio']
         unit_education = input_['unittags']['education_level']
+        license = input_['license']['inegi-license']
+        source = input_['source']['inegi-source']
 
         mexico = input_['sections']['mx']
 
@@ -2968,7 +2985,7 @@ class DemographicColumns(ColumnsTask):
             targets={},
         )
 
-        return OrderedDict([
+        cols = OrderedDict([
             ('pop', pop),
             ('pop_0_2', pop_0_2),
             ('pop_0_4', pop_0_4),
@@ -3298,3 +3315,9 @@ class DemographicColumns(ColumnsTask):
             ('people_per_dwelling', people_per_dwelling),
             ('people_per_room', people_per_room),
         ])
+
+        for colname, col in cols.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+
+        return cols

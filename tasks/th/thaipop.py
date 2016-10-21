@@ -8,10 +8,12 @@ from tasks.meta import (GEOM_REF, current_session, GEOM_NAME, OBSColumn)
 from tasks.util import ColumnsTask, TableTask, Carto2TempTableTask
 from collections import OrderedDict
 
+
 class ImportThai(Carto2TempTableTask):
 
     subdomain = 'solutions'
     table = 'thai_districts'
+
 
 class ThaiColumns(ColumnsTask):
 

@@ -134,11 +134,6 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
 {% endif %}
 {% endif %}
-{# preview map #}
-{#
-.. rst-class:: cartodb-static-map
-   {{ table.tablename }}.{{ coltable.colname }}
-   #}
 
 {% if format == 'html' %}
 {% for coltable in col.tables %}
@@ -158,10 +153,6 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 .. raw:: html
 
    <table border="1" class="docutils">
-   <colgroup>
-   <col width="82%" />
-   <col width="18%" />
-   </colgroup>
    <thead valign="bottom">
    <tr class="row-odd"><th class="head">Boundary</th>
    <th class="head">Time (default is latest)</th>
@@ -175,6 +166,14 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
    </tr>
    </tbody>
    </table>
+
+:Source:
+
+    {% for source in col.source_tags() %}{{ source.name }}{% endfor %}
+
+:License:
+
+    {% for license in col.license_tags() %}{{ license.name }}{% endfor %}
 
 {% if col.has_children() %}
 .. contents:: Subcolumns of {{ col.name }}

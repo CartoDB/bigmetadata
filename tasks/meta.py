@@ -39,7 +39,6 @@ _engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format
 ))
 
 
-
 def get_engine():
 
     @event.listens_for(_engine, "connect")
@@ -470,6 +469,18 @@ class OBSColumn(Base):
                 geom_timespans[geom_column] = []
             geom_timespans[geom_column].append(table.timespan)
         return geom_timespans
+
+    def source_tags(self):
+        '''
+        Return source tags.
+        '''
+        return [tag for tag in self.tags if tag.type.lower() == 'source']
+
+    def license_tags(self):
+        '''
+        Return license tags.
+        '''
+        return [tag for tag in self.tags if tag.type.lower() == 'license']
 
 
 class OBSTable(Base):

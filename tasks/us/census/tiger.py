@@ -15,7 +15,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                        )
 from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
                         OBSColumnTag, OBSTag, OBSColumnToColumn, current_session)
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
                    IntParameter)
@@ -39,20 +39,26 @@ class SourceTags(TagsTask):
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 10
+        return 11
 
     def requires(self):
         return {
             'geom_columns': GeomColumns(),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def columns(self):
         cols = OrderedDict()
         session = current_session()
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        source = input_['source']['tiger-source']
+        license = input_['license']['no-restrictions']
+
         for colname, coltarget in self.input()['geom_columns'].iteritems():
             col = coltarget.get(session)
             cols[colname + '_clipped'] = OBSColumn(
@@ -62,7 +68,8 @@ class ClippedGeomColumns(ColumnsTask):
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
                 targets={col: 'cartography'},
-                tags=[sections['united_states'], subsections['boundary']]
+                tags=[sections['united_states'], subsections['boundary'],
+                      source, license]
             )
 
         return cols
@@ -71,13 +78,14 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 14
+        return 15
 
     def requires(self):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'sourcetag': SourceTags()
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def _generate_desc(self, sumlevel):
@@ -87,8 +95,11 @@ class GeomColumns(ColumnsTask):
         return SUMLEVELS_BY_SLUG[sumlevel]['census_description']
 
     def columns(self):
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        source = input_['source']['tiger-source']
+        license = input_['license']['no-restrictions']
         columns = {
             'block_group': OBSColumn(
                 type='Geometry',
@@ -183,9 +194,9 @@ class GeomColumns(ColumnsTask):
             ),
         }
 
-        tiger_source = self.input()['sourcetag']['tiger-source']
         for _,col in columns.iteritems():
-            col.tags.append(tiger_source)
+            col.tags.append(source)
+            col.tags.append(license)
         return columns
 
 

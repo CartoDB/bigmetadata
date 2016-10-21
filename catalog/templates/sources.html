@@ -1,0 +1,15 @@
+.. Sources:
+
+Sources
+==============================================================================
+
+{% for source in sources %}{% if source.columns|length > 0 %}
+
+.. _{{ source.id }}:
+
+{{ source.name }}
+-------------------------------------------------------------------------------
+
+{{ source.description }}
+
+{% endif %}{% endfor %}

@@ -1,0 +1,15 @@
+.. Licenses:
+
+Licenses
+==============================================================================
+
+{% for license in licenses %}{% if license.columns|length > 0 %}
+
+.. _{{ license.id }}:
+
+{{ license.name }}
+-------------------------------------------------------------------------------
+
+{{ license.description }}
+
+{% endif %}{% endfor %}

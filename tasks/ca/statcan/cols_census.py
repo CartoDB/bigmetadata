@@ -1,8 +1,10 @@
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 from tasks.util import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.ca.statcan.license import LicenseTags, SourceTags
 
 from collections import OrderedDict
+
 
 class CensusColumns(ColumnsTask):
 
@@ -11,13 +13,17 @@ class CensusColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'license': LicenseTags(),
+            'source': SourceTags(),
         }
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         input_ = self.input()
+        license = input_['license']['statcan-license']
+        source = input_['source']['statcan-census-2011']
 
         subsections = input_['subsections']
 
@@ -11201,7 +11207,7 @@ class CensusColumns(ColumnsTask):
             tags=[ca, subsections['segments']],
             targets={},)
 
-        return OrderedDict([
+        cols = OrderedDict([
             ('t001c001_t', t001c001_t),
             ('t001c001_m', t001c001_m),
             ('t001c001_f', t001c001_f),
@@ -12445,4 +12451,7 @@ class CensusColumns(ColumnsTask):
             ('t010c006_t', t010c006_t),
             ('t010c007_t', t010c007_t),
         ])
-
+        for colname, col in cols.iteritems():
+            col.tags.append(license)
+            col.tags.append(source)
+        return cols

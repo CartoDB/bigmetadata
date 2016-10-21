@@ -5,7 +5,7 @@ from luigi import Task, Parameter, LocalTarget, WrapperTask
 from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
-from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, GEOM_REF, OBSTag
 
 from collections import OrderedDict
@@ -44,9 +44,26 @@ class ImportGeometry(Shp2TempTableTask):
                                 resolution=self.resolution.upper()))
         return os.path.join(self.input().path, path)
 
-class SourceTags(TagsTask):
+
+class LicenseTags(TagsTask):
+
     def version(self):
         return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='cnig-license',
+                    name='License of CNIG',
+                    type='license',
+                   description='Royal Decree 663/2007, more information `here <https://www.cnig.es/propiedadIntelectual.do>`_.'
+                    )]
+
+
+class SourceTags(TagsTask):
+
+    def version(self):
+        return 1
+
     def tags(self):
         return [
             OBSTag(id='cnig-source',
@@ -55,21 +72,26 @@ class SourceTags(TagsTask):
                     description='`The National Center for Geographic Information (CNIG) <https://www.cnig.es/>`_'
                     )]
 
+
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'geotags': SourceTags()
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def columns(self):
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        source = input_['source']['cnig-source']
+        license = input_['license']['cnig-license']
         ccaa = OBSColumn(
             type='Geometry',
             name='Autonomous Community',
@@ -101,9 +123,10 @@ class GeometryColumns(ColumnsTask):
             ('muni', muni),
         ])
 
-        cnig_source = self.input()['geotags']['cnig-source']
         for _, col in columns.iteritems():
-            col.tags.append(cnig_source)
+            col.tags.append(source)
+            col.tags.append(license)
+
         return columns
 
 class GeomRefColumns(ColumnsTask):

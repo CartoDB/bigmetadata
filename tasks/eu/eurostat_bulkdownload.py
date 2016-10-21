@@ -63,6 +63,24 @@ class EUFormatTable(TempTableTask):
         return EUTempTable()
 
 
+class SourceTags(TagsTask):
+
+    def tags(self):
+        return [OBSTag(id='eurostat-source',
+                       name='Eurostat',
+                       type='source',
+                       description='Eurostat data can be found `here <http://ec.europa.eu>`_.')]
+
+
+class LicenseTags(TagsTask):
+
+    def tags(self):
+        return [OBSTag(id='eurostat-license',
+                       name='Copyright European Union',
+                       type='license',
+                       description='Reuse is authorised, provided the source is acknowledged.  Full information `here <https://ec.europa.eu/info/legal-notice_en#copyright-notice>`_')]
+
+
 class FlexEurostatColumns(ColumnsTask):
 
     subsection = Parameter()
@@ -76,11 +94,13 @@ class FlexEurostatColumns(ColumnsTask):
         return {
             'units': UnitTags(),
             'subsection': SubsectionTags(),
-            'section': SectionTags()
+            'section': SectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
-        return 4
+        return 5
 
     def columns(self):
         columns = OrderedDict()
@@ -90,6 +110,8 @@ class FlexEurostatColumns(ColumnsTask):
         subsectiontags = input_['subsection']
         unittags = input_['units'] #???
         eu = input_['section']['eu']
+        license = input_['license']['eurostat-license']
+        source = input_['source']['eurostat-source']
 
         tags = [eu, subsectiontags[self.subsection]]
 
@@ -183,6 +205,10 @@ class FlexEurostatColumns(ColumnsTask):
                 tags=tags,
                 extra=None
             )
+
+        for colname, col in columns.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
 
         return columns
 
