@@ -13,13 +13,14 @@ the Data Observatory and CARTO.
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
+   :maxdepth: 1
    :glob:
-
-   *
 
    sources
    licenses
+
+   *
+
 
 Search
 ==================

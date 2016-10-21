@@ -169,11 +169,11 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
 :Source:
 
-    {% for source in col.source_tags() %}{{ source.name }}{% endfor %}
+    {% for source in col.source_tags() %}:ref:`{{ source.id }}`{% endfor %}
 
 :License:
 
-    {% for license in col.license_tags() %}{{ license.name }}{% endfor %}
+    {% for license in col.license_tags() %}:ref:`{{ license.id }}`{% endfor %}
 
 {% if col.has_children() %}
 .. contents:: Subcolumns of {{ col.name }}
