@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath)
@@ -79,6 +81,7 @@ class DownloadFR(Task):
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
+
 class RawFRData(CSV2TempTableTask):
 
     resolution = Parameter()
@@ -107,14 +110,28 @@ class RawFRData(CSV2TempTableTask):
 
 class SourceTags(TagsTask):
     def version(self):
-        return 1
+        return 2
 
     def tags(self):
         return [
             OBSTag(id='insee',
-                   name='INSEE',
+                   name='National Institute of Statistics and Economic Studies (INSEE)',
                    type='source',
-                   description='http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensement/resultats/2012/donnees-detaillees-recensement-2012.htm')
+                   description=u'The `Institut national de la statistique et '
+                   u'des études économiques <http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensement/resultats/2012/donnees-detaillees-recensement-2012.htm>`_.')
+        ]
+
+
+class LicenseTags(TagsTask):
+    def version(self):
+        return 2
+
+    def tags(self):
+        return [
+            OBSTag(id='insee-license',
+                   name='INSEE Copyright',
+                   type='license',
+                   description=u'Commercial reuse permissible, more details `here <http://www.insee.fr/en/service/default.asp?page=rediffusion/copyright.htm>`.')
         ]
 
 
@@ -127,7 +144,8 @@ class FrenchColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'unittags': UnitTags(),
-            'sourcetag': SourceTags()
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
         if self.table_theme != 'population':
             requirements['population_vars'] = FrenchColumns(table_theme='population')
@@ -193,10 +211,13 @@ class FrenchColumns(ColumnsTask):
                     subsection_tag = subsectiontags[s]
                     cols[var_code].tags.append(subsection_tag)
 
-        insee_source = input_['sourcetag']['insee']
+        source = input_['source']['insee']
+        license = input_['license']['insee-license']
 
-        for _,col in cols.iteritems():
-            col.tags.append(insee_source)
+        for _, col in cols.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+
         return cols
 
 
