@@ -11,6 +11,7 @@ from collections import OrderedDict
 
 import csv
 import os
+import re
 import itertools
 
 #
@@ -42,7 +43,7 @@ class DownloadEurostat(Task):
 
 class EUTempTable(CSV2TempTableTask):
 
-    delimiter = Parameter(default='\t', significant=False)
+    delimiter = Parameter(default=',', significant=False)
     table_name = Parameter() # Ex. "DEMO_R_PJANAGGR3"
 
     def version(self):
@@ -52,16 +53,14 @@ class EUTempTable(CSV2TempTableTask):
         return DownloadEurostat(table_code=self.table_name)
 
     def input_csv(self):
-        shell("cat {path} | tr ',' '\t' > {path}.csv".format(
+        shell("cat {path} | tr '\' ',' | tr '\t' ',' > {path}.csv".format(
             path=self.input().path))
         return self.input().path + '.csv'
-
 
 class EUFormatTable(TempTableTask):
 
     def requires(self):
         return EUTempTable()
-
 
 class FlexEurostatColumns(ColumnsTask):
 
@@ -100,6 +99,8 @@ class FlexEurostatColumns(ColumnsTask):
             reader = csv.reader(metabase, delimiter='\t')
             for possible_tablenames, code, code_value in reader:
                 if self.table_name.lower() == possible_tablenames.lower():
+                    if code == 'unit':
+                        unit = code_value
                     if code != "geo" and code != "unit" and code != "time":
                         if current_code == code:
                             current_list.append(code_value)
@@ -110,7 +111,7 @@ class FlexEurostatColumns(ColumnsTask):
                         else:
                             current_list.append(code_value)
                         current_code = code
-                    codes[current_code] = current_list
+                        codes[current_code] = current_list
 
         product = [x for x in apply(itertools.product, codes.values())]
         cross_prod = [dict(zip(codes.keys(), p)) for p in product]
@@ -123,18 +124,26 @@ class FlexEurostatColumns(ColumnsTask):
                     variable_name = table_description.split('by')[0].strip()
                     break
 
-        if cross_prod:
+        if not(len(cross_prod)==1 and bool(cross_prod[0]) == False):
             for i in cross_prod:
                 var_code = underscore_slugify(variable_name+"_".join(i.values()))
                 dimdefs = []
                 for dimname, value in i.iteritems():
-                    with open(os.path.join(os.path.dirname(__file__),
-                                           'dic_lists', '{dimension}.dic'.format(
-                                               dimension=dimname))) as dimfile:
-                        reader = csv.reader(dimfile, delimiter='\t')
-                        for possible_dimvalue, dimdef in reader:
-                            if value == possible_dimvalue:
-                                dimdefs.append(dimdef)
+                    if dimname != 'unit':
+                        with open(os.path.join(os.path.dirname(__file__),
+                                               'dic_lists', '{dimension}.dic'.format(
+                                                   dimension=dimname))) as dimfile:
+                            reader = csv.reader(dimfile, delimiter='\t')
+                            for possible_dimvalue, dimdef in reader:
+                                if value == possible_dimvalue:
+                                    dimdefs.append(dimdef)
+                # with open(os.path.join(os.path.dirname(__file__),
+                #                        'dic_lists', '{dimension}.dic'.format(
+                #                            dimension="unit"))) as unitfile:
+                #     reader = csv.reader(unitfile, delimiter='\t')
+                #     for possible_unit, unit_def in reader:
+                #         if possible_unit == unit:
+
                 description = "{} ".format(variable_name)+", ".join([str(x) for x in dimdefs])
                 columns[var_code] = OBSColumn(
                     id=var_code,
@@ -145,7 +154,7 @@ class FlexEurostatColumns(ColumnsTask):
                     aggregate=None, #???
                     targets={}, #???
                     tags=tags,
-                    extra=i
+                    extra=[i,unit]
                 )
                 columns[var_code + '_flag'] = OBSColumn(
                     id=var_code + '_flag',
@@ -156,7 +165,7 @@ class FlexEurostatColumns(ColumnsTask):
                     aggregate=None, #???
                     targets={}, #???
                     tags=tags,
-                    extra=i
+                    extra=[i,unit]
                 )
         else:
             var_code = underscore_slugify(variable_name)
@@ -170,7 +179,7 @@ class FlexEurostatColumns(ColumnsTask):
                 aggregate=None, #???
                 targets={}, #???
                 tags=tags,
-                extra=None
+                extra=[None,unit]
             )
             columns[var_code + '_flag'] = OBSColumn(
                 id=var_code + '_flag',
@@ -181,9 +190,9 @@ class FlexEurostatColumns(ColumnsTask):
                 aggregate=None, #???
                 targets={}, #???
                 tags=tags,
-                extra=None
+                extra=[None,unit]
             )
-
+        print columns
         return columns
 
 
@@ -192,16 +201,18 @@ class TableEU(TableTask):
     table_name = Parameter()
     subsection = Parameter()
     nuts_level = IntParameter()
+    unit = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def timespan(self):
-        return '2015'
+        return '2014'
 
     def requires(self):
         requirements = {
             'data': EUTempTable(table_name=self.table_name),
+            'csv': DownloadEurostat(table_code=self.table_name),
             'meta': FlexEurostatColumns(table_name=self.table_name,
                                         subsection=self.subsection),
             'geometa': NUTSColumns(level=self.nuts_level),
@@ -215,40 +226,74 @@ class TableEU(TableTask):
         return cols
 
     def populate(self):
+        path_to_csv = self.input()['csv'].path + '.csv'
+        with open(path_to_csv) as csvfile:
+            header = csvfile.next()
+            header = re.split(',',header)
+        for i,val in enumerate(header):
+            header[i] = val.strip()
+            if "geo" in val:
+                geo = val
+        # print header
         session = current_session()
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (nuts3_id)'.format(
             output=self.output().table))
         session.flush()
         column_targets = self.columns()
         for colname, coltarget in column_targets.iteritems():
+            # print colname
             if colname != 'nuts3_id' and not colname.endswith('_flag'):
                 col = coltarget.get(session)
-                extra = col.extra
-                keys = extra.keys()
-                vals = [extra[k_] for k_ in keys]
-                session.execute('''
-                    INSERT INTO {output} (nuts3_id, {colname}, {colname}_flag)
-                    SELECT "geo\\time",
-                      NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
-                      NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
-                    FROM {input}
-                    WHERE ({input_dims}) = ('{output_dims}')
-                    ON CONFLICT (nuts3_id)
-                       DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
-                           colname=colname,
-                           year=self.timespan(),
-                           input_dims=', '.join(keys),
-                           output_dims="', '".join(vals),
-                           output=self.output().table,
-                           input=self.input()['data'].table
-                       ))
-            print colname
+                extra = col.extra[0]
+                thousands = col.extra[1]
+                print thousands
+                if "THS" in thousands:
+                    multiple = '1000*'
+                else:
+                    multiple = ''
+                if extra != None:
+                    keys = extra.keys()
+                    vals = [extra[k_] for k_ in keys]
+                    session.execute('''
+                        INSERT INTO {output} (nuts3_id, {colname}, {colname}_flag)
+                        SELECT "{geo}",
+                          {multiply}NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
+                          NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
+                        FROM {input}
+                        WHERE ({input_dims}) = ('{output_dims}')
+                        ON CONFLICT (nuts3_id)
+                           DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
+                               geo=geo,
+                               colname=colname,
+                               multiply=multiple,
+                               year=self.timespan(),
+                               input_dims=', '.join(keys),
+                               output_dims="', '".join(vals),
+                               output=self.output().table,
+                               input=self.input()['data'].table
+                           ))
+                else:
+                    session.execute('''
+                        INSERT INTO {output} (nuts3_id, {colname}, {colname}_flag)
+                        SELECT "{geo}",
+                          {multiply}NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
+                          NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
+                        FROM {input}
+                        ON CONFLICT (nuts3_id)
+                           DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
+                               geo=geo,
+                               colname=colname,
+                               multiply=multiple,
+                               year=self.timespan(),
+                               output=self.output().table,
+                               input=self.input()['data'].table
+                           ))
 
 class EURegionalTables(WrapperTask):
     def requires(self):
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
             reader = csv.reader(wrappertables)
-            for subsection, table_code, nuts in reader:
+            for subsection, table_code, nuts, units in reader:
                 nuts = int(nuts)
                 if nuts == 3: # Remove this line when NUTS2 and NUTS1 are available
-                    yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts)
+                    yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts, unit=units)

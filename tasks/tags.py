@@ -115,6 +115,22 @@ class UnitTags(TagsTask):
                    name='Families',
                    type='unit',
                    description=''),
+                               OBSTag(id='family_unit',
+                                      name='Families',
+                                      type='unit',
+                                      description=''),
+            OBSTag(id='hours',
+                   name='Hours',
+                   type='unit',
+                   description=''),
+            OBSTag(id='crimes',
+                   name='Crimes',
+                   type='unit',
+                   description=''),
+            OBSTag(id='tonnes',
+                   name='Metric Tonnes',
+                   type='unit',
+                   description=''),
         ]
 
 
