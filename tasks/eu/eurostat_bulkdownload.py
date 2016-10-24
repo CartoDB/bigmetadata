@@ -64,7 +64,8 @@ class EUFormatTable(TempTableTask):
 
 class FlexEurostatColumns(ColumnsTask):
 
-    subsection = Parameter()
+    subsection = Parameter() # Ex. 'age_gender'
+    units = Parameter() # Ex. 'people'
     table_name = Parameter()  # Ex. "DEMO_R_PJANAGGR3"
 
     # From tablename, determine basis of name for columns from table_dic.dic
@@ -87,10 +88,10 @@ class FlexEurostatColumns(ColumnsTask):
         input_ = self.input()
 
         subsectiontags = input_['subsection']
-        unittags = input_['units'] #???
+        unittags = input_['units']
         eu = input_['section']['eu']
 
-        tags = [eu, subsectiontags[self.subsection]]
+        tags = [eu, subsectiontags[self.subsection], unittags[self.units]]
 
         current_code = None
         codes = {}
@@ -101,7 +102,7 @@ class FlexEurostatColumns(ColumnsTask):
                 if self.table_name.lower() == possible_tablenames.lower():
                     if code == 'unit':
                         unit = code_value
-                    if code != "geo" and code != "unit" and code != "time":
+                    if code != "geo" and code != "time":
                         if current_code == code:
                             current_list.append(code_value)
                         elif current_code:
@@ -124,9 +125,9 @@ class FlexEurostatColumns(ColumnsTask):
                     variable_name = table_description.split('by')[0].strip()
                     break
 
-        if not(len(cross_prod)==1 and bool(cross_prod[0]) == False):
+        if len(cross_prod) != 1:
             for i in cross_prod:
-                var_code = underscore_slugify(variable_name+"_".join(i.values()))
+                var_code = underscore_slugify(self.table_name.lower()+"_".join(i.values()))[:60]
                 dimdefs = []
                 for dimname, value in i.iteritems():
                     if dimname != 'unit':
@@ -144,7 +145,7 @@ class FlexEurostatColumns(ColumnsTask):
                 #     for possible_unit, unit_def in reader:
                 #         if possible_unit == unit:
 
-                description = "{} ".format(variable_name)+", ".join([str(x) for x in dimdefs])
+                description = "{} ".format(variable_name)+ ", ".join([str(x) for x in dimdefs])
                 columns[var_code] = OBSColumn(
                     id=var_code,
                     name=description,
@@ -168,7 +169,7 @@ class FlexEurostatColumns(ColumnsTask):
                     extra=[i,unit]
                 )
         else:
-            var_code = underscore_slugify(variable_name)
+            var_code = underscore_slugify(variable_name)[:60]
             description = variable_name
             columns[var_code] = OBSColumn(
                 id=var_code,
@@ -192,7 +193,6 @@ class FlexEurostatColumns(ColumnsTask):
                 tags=tags,
                 extra=[None,unit]
             )
-        print columns
         return columns
 
 
@@ -204,7 +204,7 @@ class TableEU(TableTask):
     unit = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def timespan(self):
         return '2014'
@@ -214,14 +214,15 @@ class TableEU(TableTask):
             'data': EUTempTable(table_name=self.table_name),
             'csv': DownloadEurostat(table_code=self.table_name),
             'meta': FlexEurostatColumns(table_name=self.table_name,
-                                        subsection=self.subsection),
+                                        subsection=self.subsection,
+                                        units=self.unit),
             'geometa': NUTSColumns(level=self.nuts_level),
         }
         return requirements
 
     def columns(self):
         cols = OrderedDict()
-        cols['nuts3_id'] = self.input()['geometa']['nuts3_id']
+        cols['nuts{}_id'.format(self.nuts_level)] = self.input()['geometa']['nuts{}_id'.format(self.nuts_level)]
         cols.update(self.input()['meta'])
         return cols
 
@@ -236,17 +237,18 @@ class TableEU(TableTask):
                 geo = val
         # print header
         session = current_session()
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (nuts3_id)'.format(
-            output=self.output().table))
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (nuts{level}_id)'.format(
+            output=self.output().table,
+            level=self.nuts_level))
         session.flush()
         column_targets = self.columns()
         for colname, coltarget in column_targets.iteritems():
             # print colname
-            if colname != 'nuts3_id' and not colname.endswith('_flag'):
+            if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
                 col = coltarget.get(session)
                 extra = col.extra[0]
                 thousands = col.extra[1]
-                print thousands
+                # print col.extra[1]
                 if "THS" in thousands:
                     multiple = '1000*'
                 else:
@@ -255,15 +257,16 @@ class TableEU(TableTask):
                     keys = extra.keys()
                     vals = [extra[k_] for k_ in keys]
                     session.execute('''
-                        INSERT INTO {output} (nuts3_id, {colname}, {colname}_flag)
+                        INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
                         SELECT "{geo}",
                           {multiply}NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
                           NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
                         FROM {input}
                         WHERE ({input_dims}) = ('{output_dims}')
-                        ON CONFLICT (nuts3_id)
+                        ON CONFLICT (nuts{level}_id)
                            DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
                                geo=geo,
+                               level=self.nuts_level,
                                colname=colname,
                                multiply=multiple,
                                year=self.timespan(),
@@ -274,14 +277,15 @@ class TableEU(TableTask):
                            ))
                 else:
                     session.execute('''
-                        INSERT INTO {output} (nuts3_id, {colname}, {colname}_flag)
+                        INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
                         SELECT "{geo}",
                           {multiply}NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
                           NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
                         FROM {input}
-                        ON CONFLICT (nuts3_id)
+                        ON CONFLICT (nuts{level}_id)
                            DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
                                geo=geo,
+                               level=self.nuts_level,
                                colname=colname,
                                multiply=multiple,
                                year=self.timespan(),
