@@ -75,10 +75,8 @@ class DownloadGeography(DownloadUnzipTask):
     URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/Boundaries_{year}_{resolution}/\$File/{year}_{resolution}_shape.zip'
 
     def download(self):
-        url = self.URL.format(resolution=self.resolution, year=self.year)
-        print url
         shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=url
+            output=self.output().path, url=self.URL.format(resolution=self.resolution, year=self.year)
         ))
 
 
