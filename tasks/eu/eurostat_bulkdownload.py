@@ -91,8 +91,6 @@ class FlexEurostatColumns(ColumnsTask):
         unittags = input_['units']
         eu = input_['section']['eu']
 
-        tags = [eu, subsectiontags[self.subsection], unittags[self.units]]
-
         current_code = None
         codes = {}
         current_list = []
@@ -100,8 +98,6 @@ class FlexEurostatColumns(ColumnsTask):
             reader = csv.reader(metabase, delimiter='\t')
             for possible_tablenames, code, code_value in reader:
                 if self.table_name.lower() == possible_tablenames.lower():
-                    if code == 'unit':
-                        unit = code_value
                     if code != "geo" and code != "time":
                         if current_code == code:
                             current_list.append(code_value)
@@ -124,74 +120,61 @@ class FlexEurostatColumns(ColumnsTask):
                     table_desc = table_description
                     variable_name = table_description.split('by')[0].strip()
                     break
-
-        if len(cross_prod) != 1:
-            for i in cross_prod:
-                var_code = underscore_slugify(self.table_name.lower()+"_".join(i.values()))[:60]
-                dimdefs = []
-                for dimname, value in i.iteritems():
-                    if dimname != 'unit':
-                        with open(os.path.join(os.path.dirname(__file__),
-                                               'dic_lists', '{dimension}.dic'.format(
-                                                   dimension=dimname))) as dimfile:
+        for i in cross_prod:
+            if len(cross_prod) > 1: # Multiple variables
+                var_code = underscore_slugify(self.table_name+"_".join(i.values()))
+                if len(i) == 1: # Only units are unique
+                    dimdefs = []
+                    for unit_dic, unit_value in i.iteritems():
+                        with open(os.path.join(os.path.dirname(__file__),'dic_lists/{dimension}.dic'.format(dimension=unit_dic))) as dimfile:
                             reader = csv.reader(dimfile, delimiter='\t')
                             for possible_dimvalue, dimdef in reader:
-                                if value == possible_dimvalue:
+                                if unit_value == possible_dimvalue:
                                     dimdefs.append(dimdef)
-                # with open(os.path.join(os.path.dirname(__file__),
-                #                        'dic_lists', '{dimension}.dic'.format(
-                #                            dimension="unit"))) as unitfile:
-                #     reader = csv.reader(unitfile, delimiter='\t')
-                #     for possible_unit, unit_def in reader:
-                #         if possible_unit == unit:
-
-                description = "{} ".format(variable_name)+ ", ".join([str(x) for x in dimdefs])
-                columns[var_code] = OBSColumn(
-                    id=var_code,
-                    name=description,
-                    type='Numeric',
-                    description=table_desc,
-                    weight=1,
-                    aggregate=None, #???
-                    targets={}, #???
-                    tags=tags,
-                    extra=[i,unit]
-                )
-                columns[var_code + '_flag'] = OBSColumn(
-                    id=var_code + '_flag',
-                    name=description,
-                    type='Text',
-                    description=table_desc,
-                    weight=1,
-                    aggregate=None, #???
-                    targets={}, #???
-                    tags=tags,
-                    extra=[i,unit]
-                )
-        else:
-            var_code = underscore_slugify(variable_name)[:60]
-            description = variable_name
+                    description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
+                else:
+                    dimdefs = []
+                    for dimname, dimvalue in i.iteritems():
+                        with open(os.path.join(os.path.dirname(__file__),'dic_lists/{dimension}.dic'.format(dimension=dimname))) as dimfile:
+                            reader = csv.reader(dimfile, delimiter='\t')
+                            for possible_dimvalue, dimdef in reader:
+                                if dimvalue == possible_dimvalue:
+                                    if dimname != "unit": # Only take non-unit definitions for name. This may be problematic
+                                        dimdefs.append(dimdef)
+                    description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
+            else: # Only one variable
+                var_code = underscore_slugify(self.table_name)
+                description = variable_name
+            with open(os.path.join(os.path.dirname(__file__),'dic_lists/unit.dic')) as unitfile:
+                reader = csv.reader(unitfile, delimiter='\t')
+                for possible_unit, unitdef in reader:
+                    if i['unit'] == possible_unit:
+                        if "percentage" in unitdef:
+                            final_unit_tag = "ratio"
+                        else:
+                            final_unit_tag = self.units
+            tags = [eu, subsectiontags[self.subsection], unittags[final_unit_tag]]
             columns[var_code] = OBSColumn(
                 id=var_code,
-                name=variable_name,
+                name=description,
                 type='Numeric',
                 description=table_desc,
                 weight=1,
                 aggregate=None, #???
                 targets={}, #???
                 tags=tags,
-                extra=[None,unit]
-            )
+                extra=i
+                )
             columns[var_code + '_flag'] = OBSColumn(
                 id=var_code + '_flag',
-                name=variable_name,
+                name=description + ' flag',
                 type='Text',
                 description=table_desc,
-                weight=1,
+                weight=0,
                 aggregate=None, #???
                 targets={}, #???
                 tags=tags,
-                extra=[None,unit]
+                extra=i
             )
         return columns
 
@@ -202,12 +185,13 @@ class TableEU(TableTask):
     subsection = Parameter()
     nuts_level = IntParameter()
     unit = Parameter()
+    year = IntParameter()
 
     def version(self):
         return 5
 
     def timespan(self):
-        return '2014'
+        return str(self.year)
 
     def requires(self):
         requirements = {
@@ -246,52 +230,34 @@ class TableEU(TableTask):
             # print colname
             if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
                 col = coltarget.get(session)
-                extra = col.extra[0]
-                thousands = col.extra[1]
+                extra = col.extra
+                thousands = extra['unit']
                 # print col.extra[1]
                 if "THS" in thousands:
                     multiple = '1000*'
                 else:
                     multiple = ''
-                if extra != None:
-                    keys = extra.keys()
-                    vals = [extra[k_] for k_ in keys]
-                    session.execute('''
-                        INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
-                        SELECT "{geo}",
-                          {multiply}NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
-                          NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
-                        FROM {input}
-                        WHERE ({input_dims}) = ('{output_dims}')
-                        ON CONFLICT (nuts{level}_id)
-                           DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
-                               geo=geo,
-                               level=self.nuts_level,
-                               colname=colname,
-                               multiply=multiple,
-                               year=self.timespan(),
-                               input_dims=', '.join(keys),
-                               output_dims="', '".join(vals),
-                               output=self.output().table,
-                               input=self.input()['data'].table
-                           ))
-                else:
-                    session.execute('''
-                        INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
-                        SELECT "{geo}",
-                          {multiply}NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
-                          NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
-                        FROM {input}
-                        ON CONFLICT (nuts{level}_id)
-                           DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
-                               geo=geo,
-                               level=self.nuts_level,
-                               colname=colname,
-                               multiply=multiple,
-                               year=self.timespan(),
-                               output=self.output().table,
-                               input=self.input()['data'].table
-                           ))
+                keys = extra.keys()
+                vals = [extra[k_] for k_ in keys]
+                session.execute('''
+                    INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
+                    SELECT "{geo}",
+                      {multiply}NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
+                      NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
+                    FROM {input}
+                    WHERE ({input_dims}) = ('{output_dims}')
+                    ON CONFLICT (nuts{level}_id)
+                       DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
+                           geo=geo,
+                           level=self.nuts_level,
+                           colname=colname,
+                           multiply=multiple,
+                           year=self.timespan(),
+                           input_dims=', '.join(keys),
+                           output_dims="', '".join(vals),
+                           output=self.output().table,
+                           input=self.input()['data'].table
+                       ))
 
 class EURegionalTables(WrapperTask):
     def requires(self):
@@ -299,5 +265,8 @@ class EURegionalTables(WrapperTask):
             reader = csv.reader(wrappertables)
             for subsection, table_code, nuts, units in reader:
                 nuts = int(nuts)
-                if nuts == 3: # Remove this line when NUTS2 and NUTS1 are available
-                    yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts, unit=units)
+                for year in range(1990,2016):
+                    try:
+                        yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts, unit=units, year=year)
+                    except:
+                        pass
