@@ -1,0 +1,245 @@
+import os
+import urllib
+
+from abc import ABCMeta
+from luigi import Task, Parameter, WrapperTask, LocalTarget
+from collections import OrderedDict
+from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath
+from tasks.meta import current_session
+from tasks.au.geo import (
+    GEO_STE,
+    GEOGRAPHIES, GeographyColumns, Geography)
+# from tasks.ca.statcan.cols_census import CensusColumns
+# from tasks.ca.statcan.cols_nhs import NHSColumns
+
+
+PROFILE_BCP = 'BCP'
+
+PROFILES = (
+    PROFILE_BCP,
+)
+
+STATE_AUST = 'AUST'
+
+STATES = (
+    STATE_AUST
+)
+
+
+URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_{header}-header.zip'
+
+
+class BaseParams:
+    __metaclass__ = ABCMeta
+
+    year = Parameter(default='2011')
+    profile = Parameter(default=PROFILE_BCP)
+    resolution = Parameter(default=GEO_STE)
+    state = Parameter(default=STATE_AUST)
+
+class DownloadData(BaseParams, DownloadUnzipTask):
+    def download(self):
+        urllib.urlretrieve(url=URL.format(
+                               year=self.year,
+                               profile=self.profile,
+                               resolution=self.resolution,
+                               state=self.state,
+                               header='long'
+                           ),
+                           filename=self.output().path + '.zip')
+
+
+# class SplitAndTransposeData(BaseParams, Task):
+#     def requires(self):
+#         return DownloadData(resolution=self.resolution, survey=self.survey)
+
+#     def run(self):
+#         infiles = shell('ls {input}/{survey_code}-{geo_code}*.[cC][sS][vV]'.format(
+#             input=self.input().path,
+#             survey_code=PROFILE_CODES[self.survey],
+#             geo_code=GEOGRAPHY_CODES[self.resolution]
+#         ))
+#         in_csv_files = infiles.strip().split('\n')
+#         os.makedirs(self.output().path)
+#         StatCanParser().parse_csv_to_files(in_csv_files, self.output().path)
+
+#     def output(self):
+#         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
+
+#####################################
+# IMPORT TO TEMP TABLES
+#####################################
+class CopyDataToTable(BaseParams, TempTableTask):
+
+    topic = Parameter()
+
+    def requires(self):
+        return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
+
+    def run(self):
+        infile = os.path.join(self.input().path, self.topic + '.csv')
+        headers = shell('head -n 1 {csv}'.format(csv=infile))
+        cols = ['{} NUMERIC'.format(h) for h in headers.split(',')[1:]]
+
+        session = current_session()
+        session.execute('CREATE TABLE {output} (Geo_Code TEXT, {cols})'.format(
+            output=self.output().table,
+            cols=', '.join(cols)
+        ))
+        session.commit()
+        shell("cat '{infile}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
+            output=self.output().table,
+            infile=infile,
+        ))
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geo_code)'.format(
+            output=self.output().table
+        ))
+
+
+class ImportData(BaseParams, Task):
+    def requires(self):
+        return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
+
+    def run(self):
+        infiles = shell('ls {input}/*.csv'.format(
+            input=self.input().path))
+        fhandle = self.output().open('w')
+        for infile in infiles.strip().split('\n'):
+            topic = os.path.split(infile)[-1].split('.csv')[0]
+            data = yield CopyDataToTable(resolution=self.resolution, survey=self.survey, topic=topic)
+            fhandle.write('{table}\n'.format(table=data.table))
+        fhandle.close()
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
+
+# class ImportAllResolutions(WrapperTask):
+#     survey = Parameter(default=PROFILE_BCP)
+
+#     def requires(self):
+#         for resolution in GEOGRAPHIES:
+#             yield ImportData(resolution=resolution, survey=self.survey)
+
+
+# class ImportAllSurveys(WrapperTask):
+#     resolution = Parameter(default=GEO_STE)
+
+#     def requires(self):
+#         for survey in PROFILES:
+#             yield ImportData(resolution=self.resolution, survey=survey)
+
+
+# class ImportAll(WrapperTask):
+#     def requires(self):
+#         for survey in PROFILES:
+#             for resolution in GEOGRAPHIES:
+#                 yield ImportData(resolution=resolution, survey=survey)
+
+
+#####################################
+# COPY TO OBSERVATORY
+#####################################
+# class Survey(BaseParams, TableTask):
+
+#     topic = Parameter(default='t001')
+
+#     def requires(self):
+#         '''
+#         Subclasses must override this.
+#         '''
+#         raise NotImplementedError('Survey must define requires()')
+
+#     def timespan(self):
+#         '''
+#         Subclasses must override this.
+#         '''
+#         raise NotImplementedError('Survey must define timespan()')
+
+#     def columns(self):
+#         cols = OrderedDict()
+#         input_ = self.input()
+#         cols['geo_code'] = input_['geometa']['geom_id']
+#         for colname, coltarget in input_['meta'].iteritems():
+#             if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
+#                 cols[colname] = coltarget
+#         return cols
+
+#     def populate(self):
+#         session = current_session()
+#         columns = self.columns()
+#         out_colnames = columns.keys()
+#         in_table = self.input()['data']
+#         in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
+#         in_colnames[0] = 'geo_code'
+#         for i, in_c in enumerate(in_colnames):
+#             cmd =   "SELECT 'exists' FROM information_schema.columns " \
+#                     "WHERE table_schema = '{schema}' " \
+#                     "  AND table_name = '{tablename}' " \
+#                     "  AND column_name = '{colname}' " \
+#                     "  LIMIT 1".format(
+#                         schema=in_table.schema,
+#                         tablename=in_table.tablename.lower(),
+#                         colname=in_c.lower())
+#             # remove columns that aren't in input table
+#             if session.execute(cmd).fetchone() is None:
+#                 in_colnames[i] = None
+#                 out_colnames[i] = None
+#         in_colnames = [
+#             "CASE {ic}::TEXT WHEN '-6' THEN NULL ELSE {ic} END".format(ic=ic) for ic in in_colnames if ic is not None]
+#         out_colnames = [oc for oc in out_colnames if oc is not None]
+
+#         cmd =   'INSERT INTO {output} ({out_colnames}) ' \
+#                 'SELECT {in_colnames} FROM {input} '.format(
+#                     output=self.output().table,
+#                     input=in_table.table,
+#                     in_colnames=', '.join(in_colnames),
+#                     out_colnames=', '.join(out_colnames))
+#         session.execute(cmd)
+
+
+# class Census(Survey):
+#     def requires(self):
+#         return {
+#             'data': CopyDataToTable(resolution=self.resolution, survey=PROFILE_BCP, topic=self.topic),
+#             'geo': Geography(resolution=self.resolution),
+#             'geometa': GeographyColumns(resolution=self.resolution),
+#             'meta': CensusColumns(),
+#         }
+
+#     def timespan(self):
+#         return 2011
+
+
+# class AllCensusTopics(BaseParams, WrapperTask):
+#     def requires(self):
+#         topic_range = range(1, 11)   # 1-10
+
+#         for resolution in (GEO_CT, GEO_STE, GEO_CD, GEO_CSD, GEO_CMA):
+#             for count in topic_range:
+#                 topic = 't{:03d}'.format(count)
+#                 yield Census(resolution=resolution, survey=PROFILE_BCP, topic=topic)
+
+
+# class NHS(Survey):
+#     def requires(self):
+#         return {
+#             'data': CopyDataToTable(resolution=self.resolution, survey=PROFILE_NHS, topic=self.topic),
+#             'geo': Geography(resolution=self.resolution),
+#             'geometa': GeographyColumns(resolution=self.resolution),
+#             'meta': NHSColumns(),
+#         }
+
+#     def timespan(self):
+#         return 2011
+
+
+# class AllNHSTopics(BaseParams, WrapperTask):
+#     def requires(self):
+#         topic_range = range(1, 30)   # 1-29
+
+#         for resolution in (GEO_CT, GEO_STE, GEO_CD, GEO_CSD, GEO_CMA):
+#             for count in topic_range:
+#                 topic = 't{:03d}'.format(count)
+#                 yield NHS(resolution=resolution, survey=PROFILE_NHS, topic=topic)
