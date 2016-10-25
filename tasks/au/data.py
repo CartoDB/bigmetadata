@@ -4,7 +4,7 @@ import urllib
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
-from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath
+from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, CSV2TempTableTask
 from tasks.meta import current_session
 from tasks.au.geo import (
     GEO_STE,
@@ -37,6 +37,7 @@ class BaseParams:
     resolution = Parameter(default=GEO_STE)
     state = Parameter(default=STATE_AUST)
 
+
 class DownloadData(BaseParams, DownloadUnzipTask):
     def download(self):
         urllib.urlretrieve(url=URL.format(
@@ -44,70 +45,52 @@ class DownloadData(BaseParams, DownloadUnzipTask):
                                profile=self.profile,
                                resolution=self.resolution,
                                state=self.state,
-                               header='long'
+                               header='short'
                            ),
                            filename=self.output().path + '.zip')
 
 
-# class SplitAndTransposeData(BaseParams, Task):
-#     def requires(self):
-#         return DownloadData(resolution=self.resolution, survey=self.survey)
-
-#     def run(self):
-#         infiles = shell('ls {input}/{survey_code}-{geo_code}*.[cC][sS][vV]'.format(
-#             input=self.input().path,
-#             survey_code=PROFILE_CODES[self.survey],
-#             geo_code=GEOGRAPHY_CODES[self.resolution]
-#         ))
-#         in_csv_files = infiles.strip().split('\n')
-#         os.makedirs(self.output().path)
-#         StatCanParser().parse_csv_to_files(in_csv_files, self.output().path)
-
-#     def output(self):
-#         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
-
-
-#####################################
-# IMPORT TO TEMP TABLES
-#####################################
-class CopyDataToTable(BaseParams, TempTableTask):
-
-    topic = Parameter()
-
+class CopyFiles(BaseParams, Task):
     def requires(self):
-        return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
+        return DownloadData(resolution=self.resolution, profile=self.profile)
 
     def run(self):
-        infile = os.path.join(self.input().path, self.topic + '.csv')
-        headers = shell('head -n 1 {csv}'.format(csv=infile))
-        cols = ['{} NUMERIC'.format(h) for h in headers.split(',')[1:]]
+        shell('mkdir {output}'.format(
+            output=self.output().path
+        ))
 
-        session = current_session()
-        session.execute('CREATE TABLE {output} (Geo_Code TEXT, {cols})'.format(
-            output=self.output().table,
-            cols=', '.join(cols)
-        ))
-        session.commit()
-        shell("cat '{infile}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
-            output=self.output().table,
-            infile=infile,
-        ))
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geo_code)'.format(
-            output=self.output().table
-        ))
+        # copy the csvs to a path with no spaces so we can use them in the CSV2TempTableTask
+        cmd = 'find '+self.input().path+' -name \'*.csv\' -print0 | xargs -0 -I {} cp {} '+self.output().path
+        shell(cmd)
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
+
+class ImportCSV(BaseParams, CSV2TempTableTask):
+
+    infilepath = Parameter()
+
+    def requires(self):
+        return DownloadData(resolution=self.resolution, profile=self.profile)
+
+    def input_csv(self):
+        return self.infilepath
 
 
 class ImportData(BaseParams, Task):
     def requires(self):
-        return SplitAndTransposeData(resolution=self.resolution, survey=self.survey)
+        return CopyFiles(resolution=self.resolution, profile=self.profile)
 
     def run(self):
         infiles = shell('ls {input}/*.csv'.format(
-            input=self.input().path))
+            input=self.input().path
+        ))
+
+        file_list = infiles.strip().split('\n')
         fhandle = self.output().open('w')
-        for infile in infiles.strip().split('\n'):
-            topic = os.path.split(infile)[-1].split('.csv')[0]
-            data = yield CopyDataToTable(resolution=self.resolution, survey=self.survey, topic=topic)
+        for infile in file_list:
+            data = yield ImportCSV(resolution=self.resolution, profile=self.profile, infilepath=infile)
             fhandle.write('{table}\n'.format(table=data.table))
         fhandle.close()
 
@@ -116,26 +99,26 @@ class ImportData(BaseParams, Task):
 
 
 # class ImportAllResolutions(WrapperTask):
-#     survey = Parameter(default=PROFILE_BCP)
+#     profile = Parameter(default=PROFILE_BCP)
 
 #     def requires(self):
 #         for resolution in GEOGRAPHIES:
-#             yield ImportData(resolution=resolution, survey=self.survey)
+#             yield ImportData(resolution=resolution, profile=self.profile)
 
 
 # class ImportAllSurveys(WrapperTask):
 #     resolution = Parameter(default=GEO_STE)
 
 #     def requires(self):
-#         for survey in PROFILES:
-#             yield ImportData(resolution=self.resolution, survey=survey)
+#         for profile in PROFILES:
+#             yield ImportData(resolution=self.resolution, profile=profile)
 
 
 # class ImportAll(WrapperTask):
 #     def requires(self):
-#         for survey in PROFILES:
+#         for profile in PROFILES:
 #             for resolution in GEOGRAPHIES:
-#                 yield ImportData(resolution=resolution, survey=survey)
+#                 yield ImportData(resolution=resolution, profile=profile)
 
 
 #####################################
@@ -202,7 +185,7 @@ class ImportData(BaseParams, Task):
 # class Census(Survey):
 #     def requires(self):
 #         return {
-#             'data': CopyDataToTable(resolution=self.resolution, survey=PROFILE_BCP, topic=self.topic),
+#             'data': CopyDataToTable(resolution=self.resolution, profile=PROFILE_BCP, topic=self.topic),
 #             'geo': Geography(resolution=self.resolution),
 #             'geometa': GeographyColumns(resolution=self.resolution),
 #             'meta': CensusColumns(),
@@ -219,13 +202,13 @@ class ImportData(BaseParams, Task):
 #         for resolution in (GEO_CT, GEO_STE, GEO_CD, GEO_CSD, GEO_CMA):
 #             for count in topic_range:
 #                 topic = 't{:03d}'.format(count)
-#                 yield Census(resolution=resolution, survey=PROFILE_BCP, topic=topic)
+#                 yield Census(resolution=resolution, profile=PROFILE_BCP, topic=topic)
 
 
 # class NHS(Survey):
 #     def requires(self):
 #         return {
-#             'data': CopyDataToTable(resolution=self.resolution, survey=PROFILE_NHS, topic=self.topic),
+#             'data': CopyDataToTable(resolution=self.resolution, profile=PROFILE_NHS, topic=self.topic),
 #             'geo': Geography(resolution=self.resolution),
 #             'geometa': GeographyColumns(resolution=self.resolution),
 #             'meta': NHSColumns(),
@@ -242,4 +225,4 @@ class ImportData(BaseParams, Task):
 #         for resolution in (GEO_CT, GEO_STE, GEO_CD, GEO_CSD, GEO_CMA):
 #             for count in topic_range:
 #                 topic = 't{:03d}'.format(count)
-#                 yield NHS(resolution=resolution, survey=PROFILE_NHS, topic=topic)
+#                 yield NHS(resolution=resolution, profile=PROFILE_NHS, topic=topic)

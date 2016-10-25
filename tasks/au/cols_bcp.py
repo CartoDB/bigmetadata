@@ -57,9 +57,12 @@ class BCPColumns(ColumnsTask):
             tags=[au, unit_people, subsections['age_gender']],
             targets={},)
 
+        # TODO: 1) add the rest of the columns here
+
 
         return OrderedDict([
             ('Tot_P_M', Tot_P_M),
             ('Tot_P_F', Tot_P_F),
             ('Tot_P_P', Tot_P_P),
+            # TODO: 2) don't forget to add them to the dict too...
         ])
