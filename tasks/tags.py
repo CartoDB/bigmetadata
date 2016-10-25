@@ -146,6 +146,10 @@ class SectionTags(TagsTask):
             OBSTag(id='fr',
                    name='France',
                    type='section',
+                   description=''),
+            OBSTag(id='au',
+                   name='Australia',
+                   type='section',
                    description='')
         ]
 
