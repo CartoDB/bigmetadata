@@ -52,15 +52,22 @@ class EUTempTable(CSV2TempTableTask):
     def requires(self):
         return DownloadEurostat(table_code=self.table_name)
 
+    def coldef(self):
+        coldefs = super(CSV2TempTableTask, self).coldef()
+        for i, cd in enumerate(coldefs):
+            coldefs[i][0] = cd[0].strip()
+
     def input_csv(self):
         shell("cat {path} | tr '\' ',' | tr '\t' ',' > {path}.csv".format(
             path=self.input().path))
         return self.input().path + '.csv'
 
+
 class EUFormatTable(TempTableTask):
 
     def requires(self):
         return EUTempTable()
+
 
 class FlexEurostatColumns(ColumnsTask):
 
@@ -188,7 +195,7 @@ class TableEU(TableTask):
     year = IntParameter()
 
     def version(self):
-        return 5
+        return 6
 
     def timespan(self):
         return str(self.year)
@@ -242,8 +249,8 @@ class TableEU(TableTask):
                 session.execute('''
                     INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
                     SELECT "{geo}",
-                      {multiply}NullIf(SPLIT_PART("{year} ", ' ', 1), ':')::Numeric,
-                      NullIf(SPLIT_PART("{year} ", ' ', 2), '')::Text
+                      {multiply}NullIf(SPLIT_PART("{year}", ' ', 1), ':')::Numeric,
+                      NullIf(SPLIT_PART("{year}", ' ', 2), '')::Text
                     FROM {input}
                     WHERE ({input_dims}) = ('{output_dims}')
                     ON CONFLICT (nuts{level}_id)
