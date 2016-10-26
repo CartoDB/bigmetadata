@@ -47,15 +47,19 @@ class EUTempTable(CSV2TempTableTask):
     table_name = Parameter() # Ex. "DEMO_R_PJANAGGR3"
 
     def version(self):
-        return 3
+        return 5
 
     def requires(self):
         return DownloadEurostat(table_code=self.table_name)
 
     def coldef(self):
-        coldefs = super(CSV2TempTableTask, self).coldef()
+        coldefs = super(EUTempTable, self).coldef()
         for i, cd in enumerate(coldefs):
-            coldefs[i][0] = cd[0].strip()
+            cdtemp = list(cd)
+            cdtemp[0] = cdtemp[0].strip()
+            newcd = tuple(cdtemp)
+            coldefs[i] = newcd
+        return coldefs
 
     def input_csv(self):
         shell("cat {path} | tr '\' ',' | tr '\t' ',' > {path}.csv".format(
@@ -87,7 +91,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 4
+        return 6
 
     def columns(self):
         columns = OrderedDict()
@@ -156,7 +160,7 @@ class FlexEurostatColumns(ColumnsTask):
                 reader = csv.reader(unitfile, delimiter='\t')
                 for possible_unit, unitdef in reader:
                     if i['unit'] == possible_unit:
-                        if "percentage" in unitdef:
+                        if "percentage" in unitdef.lower():
                             final_unit_tag = "ratio"
                         else:
                             final_unit_tag = self.units
@@ -238,10 +242,12 @@ class TableEU(TableTask):
             if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
                 col = coltarget.get(session)
                 extra = col.extra
-                thousands = extra['unit']
+                multiplier = extra['unit']
                 # print col.extra[1]
-                if "THS" in thousands:
+                if "THS" in multiplier or "1000" in multiplier or multiplier == 'KTOE':
                     multiple = '1000*'
+                if "MIO" in multiplier:
+                    multiple = '1000000*'
                 else:
                     multiple = ''
                 keys = extra.keys()
