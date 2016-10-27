@@ -61,7 +61,8 @@ class GenerateRST(Task):
             '''.format(section_id=section_id,
                        subsection_id=subsection_id))
             if self.images:
-                for column_id in resp:
+                for row in resp:
+                    column_id = row[0]
                     if column_id.startswith('uk'):
                         if self.format == 'pdf':
                             img = GenerateThumb(measure=column_id, force=False)

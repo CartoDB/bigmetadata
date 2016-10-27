@@ -4,7 +4,7 @@ Tasks to sync data locally to CartoDB
 
 from tasks.meta import (current_session, OBSTable, Base, OBSColumn,)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
-                        classpath, shell, PostgresTarget, TempTableTask,
+                        classpath, shell, PostgresTarget, TempTableTask, LOGGER,
                         CartoDBTarget, import_api, TableToCartoViaImportAPI)
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
@@ -15,6 +15,7 @@ from datetime import date
 from decimal import Decimal
 from cStringIO import StringIO
 from PIL import Image, ImageOps
+from pprint import pprint
 
 import requests
 
@@ -250,7 +251,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
         if denom_colname:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom, " \
+                    "geom.the_geom_webmercator, " \
                     "numer.{numer_colname} / NULLIF(denom.{denom_colname}, 0) measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer, " \
                     "     {denom_tablename} as denom " \
@@ -267,7 +268,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "  AND numer.{numer_geomref_colname} = denom.{denom_geomref_colname} "
         elif numer_aggregate == 'sum':
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom, " \
+                    "geom.the_geom_webmercator, " \
                     "numer.{numer_colname} / " \
                     "  ST_Area(geom.the_geom) * 1000000.0 measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
@@ -280,7 +281,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
         else:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "  geom.the_geom, " \
+                    "  geom.the_geom_webmercator, " \
                     "  numer.{numer_colname} measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "  WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
@@ -330,7 +331,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
         layers.append({
             'type': 'mapnik',
             'options': {
-                'layer_name': numer_tablename,
+                'layer_name': geom_tablename,
                 'cartocss': '''/** choropleth visualization */
 
 {ramp}
@@ -404,12 +405,12 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                               ))
 
         url1 = image_urls.pop(0)
-        print url1
+        LOGGER.info(url1)
         file1 = StringIO(requests.get(url1, stream=True).content)
         image1 = ImageOps.expand(Image.open(file1), border=10, fill='white')
 
         for url2 in image_urls:
-            print url2
+            LOGGER.info(url2)
             file2 = StringIO(requests.get(url2, stream=True).content)
 
             image2 = ImageOps.expand(Image.open(file2), border=10, fill='white')
@@ -426,6 +427,17 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
             image1 = result
         image1.save(self.output().path)
+
+    def complete(self):
+        '''
+        If we support this country,
+        '''
+        country = self.measure.split('.')[0]
+        if country in self.CENTER_ZOOM_BOUNDS:
+            return super(ImagesForMeasure, self).complete()
+        else:
+            LOGGER.warn('No info to create images for %s', self.measure)
+            return True
 
     def output(self, measure=None):
         if measure is None:
@@ -493,8 +505,11 @@ class GenerateStaticImage(Task):
         }
         resp = requests.get(self.MAP_URL,
                             headers={'content-type':'application/json'},
-                            params={'config': json.dumps(config)})
-        return resp.json()
+                            params={'config': json.dumps(config)}).json()
+        if 'layergroupid' not in resp:
+            raise Exception('Named map returned no layergroupid: {}'.format(
+                pprint(resp)))
+        return resp
 
     def run(self):
         self.output().makedirs()
@@ -508,7 +523,7 @@ class GenerateStaticImage(Task):
                     center_lon=config['center'][0],
                     center_lat=config['center'][1]
                 )
-        print img_url
+        LOGGER.info(img_url)
         shell('curl "{img_url}" > {output}'.format(img_url=img_url,
                                                    output=self.output().path))
 
@@ -576,7 +591,7 @@ class PurgeUndocumentedTables(Task):
                 if cnt == 0:
                     stmt = 'DROP TABLE observatory.{tablename} CASCADE'.format(
                         tablename=tablename)
-                    print(stmt)
+                    LOGGER.info(stmt)
                     session.execute(stmt)
                     session.commit()
                 else:
@@ -600,7 +615,7 @@ class PurgeMetadataTables(Task):
                 _id = resp.fetchall()[0][0]
                 stmt = "DELETE FROM observatory.obs_table " \
                         "WHERE id = '{id}'".format(id=_id)
-                print(stmt)
+                LOGGER.info(stmt)
                 session.execute(stmt)
                 session.commit()
 
@@ -621,12 +636,12 @@ class PurgeMetadataTables(Task):
                 if task_id.startswith(underscore_slugify(name)):
                     exists = True
             if exists is True:
-                print('{table} exists'.format(table=table))
+                LOGGER.info('{table} exists'.format(table=table))
             else:
                 # TODO drop table
                 import pdb
                 pdb.set_trace()
-                print table
+                LOGGER.info(table)
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
 
@@ -758,7 +773,7 @@ class DumpS3(Task):
         path = 's3://cartodb-observatory-data/{path}'.format(
             path=path
         )
-        print path
+        LOGGER.info(path)
         target = S3Target(path)
         if self.force:
             shell('aws s3 rm {output}'.format(
