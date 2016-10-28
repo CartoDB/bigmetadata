@@ -200,6 +200,18 @@ class ImagesForMeasure(Task):
 @3:#f59e72;
 @2:#f9c098;
 @1:#fde0c5;''',
+        'tags.segmentation': '''
+@1:#7F3C8D;
+@2:#11A579;
+@3:#3969AC;
+@4:#F2B701;
+@5:#E73F74;
+@6:#80BA5A;
+@7:#E68310;
+@8:#008695;
+@9:#CF1C90;
+@10:#f97b72;
+@11:#A5AA99;''',
     }
 
     measure = Parameter()
@@ -220,7 +232,7 @@ class ImagesForMeasure(Task):
         session = current_session()
         measure = session.query(OBSColumn).get(self.measure)
         mainquery = '''
-SELECT numer_aggregate,
+SELECT numer_aggregate, numer_type,
        numer_colname, numer_geomref_colname,
        numer_tablename,
        geom_geomref_colname,
@@ -239,14 +251,13 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
         # how should we determine fallback resolution?
         if results is None:
-            query = mainquery.format(
-                measure=self.measure,
-                boundary_clause="")
+            query = mainquery.format(measure=self.measure, boundary_clause="")
             resp = session.execute(query)
             results = resp.fetchone()
 
-        numer_aggregate, numer_colname, numer_geomref_colname, numer_tablename, \
-                geom_geomref_colname, geom_colname, geom_tablename, denom_colname, \
+        numer_aggregate, numer_type, numer_colname, numer_geomref_colname, \
+                numer_tablename, geom_geomref_colname, geom_colname, \
+                geom_tablename, denom_colname, \
                 denom_tablename, denom_geomref_colname = results
 
         if denom_colname:
@@ -285,12 +296,21 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "  numer.{numer_colname} measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "  WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
-            statssql = "SELECT " \
-                    'CDB_HeadsTailsBins(array_agg( ' \
-                    '  distinct(numer.{numer_colname}::NUMERIC)), 4) as "headtails" ' \
-                    "FROM {geom_tablename} as geom, " \
-                    "     {numer_tablename} as numer " \
-                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
+            if numer_type.lower() == 'numeric':
+                statssql = "SELECT " \
+                        'CDB_HeadsTailsBins(array_agg( ' \
+                        '  distinct(numer.{numer_colname}::NUMERIC)), 4) as "headtails" ' \
+                        "FROM {geom_tablename} as geom, " \
+                        "     {numer_tablename} as numer " \
+                        "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
+            else:
+                statssql = '''
+                SELECT array_agg(category) categories FROM (
+                SELECT row_number() over () catname, {numer_colname} as category, COUNT(*) cnt
+                FROM {numer_tablename}
+                GROUP BY {numer_colname} ORDER BY COUNT(*) DESC
+                LIMIT 10
+                ) foo'''
 
         cartosql = cartosql.format(geom_colname=geom_colname,
                                    numer_colname=numer_colname,
@@ -312,8 +332,9 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                                    denom_geomref_colname=denom_geomref_colname)
 
         resp = query_cartodb(statssql)
-        assert resp.status_code == 200
-        headtails = resp.json()['rows'][0]['headtails']
+        if resp.status_code != 200:
+            raise Exception("Unable to obtain statssql: {}".format(
+                resp.text))
 
         if measure.unit():
             ramp = self.PALETTES.get(measure.unit().id, self.PALETTES['tags.ratio'])
@@ -321,12 +342,24 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
             ramp = self.PALETTES['tags.ratio']
 
         bucket_css = u''
-        for i, bucket in enumerate(headtails):
-            bucket_css = u'''
-[measure <= {bucket}] {{
-   polygon-fill: @{i};
-}}
-            '''.format(bucket=bucket, i=i+1) + bucket_css
+        if numer_type.lower() == 'numeric':
+            buckets = resp.json()['rows'][0]['headtails']
+
+
+            for i, bucket in enumerate(buckets):
+                bucket_css = u'''
+    [measure <= {bucket}] {{
+       polygon-fill: @{i};
+    }}
+                '''.format(bucket=bucket, i=i+1) + bucket_css
+        else:
+            buckets = resp.json()['rows'][0]['categories']
+            for i, bucket in enumerate(buckets):
+                bucket_css = u'''
+    [measure = "{bucket}"] {{
+       polygon-fill: @{i};
+    }}
+                '''.format(bucket=bucket, i=i+1) + bucket_css
 
         layers.append({
             'type': 'mapnik',
@@ -351,7 +384,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
   {bucket_css}
 }}'''.format(
     ramp=ramp,
-    bucketlen=len(headtails) + 1,
+    bucketlen=len(buckets) + 1,
     bucket_css=bucket_css),
                 'cartocss_version': "2.1.1",
                 'sql': cartosql,
@@ -374,8 +407,11 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
         }
         resp = requests.get(self.MAP_URL,
                             headers={'content-type':'application/json'},
-                            params={'config': json.dumps(config)})
-        return resp.json()
+                            params={'config': json.dumps(config)}).json()
+        if 'layergroupid' not in resp:
+            raise Exception('Named map returned no layergroupid: {}'.format(
+                pprint(resp)))
+        return resp
 
     def run(self):
         self.output().makedirs()
