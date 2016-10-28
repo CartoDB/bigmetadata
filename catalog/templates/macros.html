@@ -135,15 +135,6 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 {% endif %}
 {% endif %}
 
-{% if format == 'html' %}
-{% for coltable in col.tables %}
-    {% set table = coltable.table %}
-    {#:{{ table.timespan }}:#}
-
-    `On Carto <http://observatory.cartodb.com/tables/{{ table.tablename }}>`_
-{% endfor %}
-{% endif %}
-
 {% if col.geom_timespans()|length > 0 %}
 
 .. raw:: html
