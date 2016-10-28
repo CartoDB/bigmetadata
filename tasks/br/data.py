@@ -36,69 +36,36 @@ class DownloadData(BaseParams, DownloadUnzipTask):
         ))
 
 
-class CopyFiles(BaseParams, Task):
+class ImportCSV(BaseParams, CSV2TempTableTask):
+
+    tablename = Parameter()
+    encoding = 'latin1'
+    delimiter = ';'
+
     def requires(self):
         return DownloadData(resolution=self.resolution, state=self.state)
 
-    def run(self):
-        shell('mkdir {output}'.format(
-            output=self.output().path
-        ))
-
-        # move the csvs to a path with no spaces so we can use them in the CSV2TempTableTask
-        cmd = 'find '+self.input().path+' -name \'*.csv\' -print0 | xargs -0 -I {} cp {} '+self.output().path
-        shell(cmd)
-
-    def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
-
-
-class CleanCSVs(BaseParams, Task):
-    def requires(self):
-        return CopyFiles(resolution=self.resolution, state=self.state)
-
-    def run(self):
-        cmd = 'sed -i \'s/;/,/g\' {}/*.csv'.format(self.input().path)
-        shell(cmd)
-
-        # create a file to indicate that the task succeeded
-        shell('touch {output}'.format(output=self.output().path))
-
-    def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
-
-
-class ImportCSV(BaseParams, CSV2TempTableTask):
-
-    infilepath = Parameter()
-    encoding = 'latin1'
-
-    # def requires(self):
-    #     return DownloadData(resolution=self.resolution, state=self.state)
+    def read_method(self, fname):
+        return 'sed "s/;$//" {}'.format(fname)
 
     def input_csv(self):
-        return self.infilepath
+        return '"{downloadpath}/"*/*/*"/{tablename}_{state}.csv"'.format(
+            downloadpath=self.input().path,
+            tablename=self.tablename,
+            state=self.state.upper(),
+        )
 
 
-class ImportData(BaseParams, Task):
+class ImportAllCSV(BaseParams, WrapperTask):
+
+    TABLES = ['Basico', 'Domicilio01', 'Domicilio02', 'DomicilioRenda',
+              'Entorno01', 'Entorno02', 'Entorno03', 'Entorno04', 'Entorno05',
+              'Pessoa01', 'Pessoa02', 'Pessoa03', 'Pessoa04', 'Pessoa05',
+              'Pessoa06', 'Pessoa07', 'Pessoa08', 'Pessoa09', 'Pessoa10',
+              'Pessoa11', 'Pessoa12', 'Pessoa13', 'PessoaRenda',
+              'Responsavel01', 'Responsavel02', 'ResponsavelRenda',]
 
     def requires(self):
-        return {
-            'copied': CopyFiles(resolution=self.resolution, state=self.state),
-            'cleaned': CleanCSVs(resolution=self.resolution, state=self.state)
-        }
-
-    def run(self):
-        infiles = shell('ls {input}/*.csv'.format(
-            input=self.input()['copied'].path
-        ))
-
-        file_list = infiles.strip().split('\n')
-        fhandle = self.output().open('w')
-        for infile in file_list:
-            data = yield ImportCSV(resolution=self.resolution, state=self.state, infilepath=infile)
-            fhandle.write('{table}\n'.format(table=data.table))
-        fhandle.close()
-
-    def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+        for table in self.TABLES:
+            yield ImportCSV(resolution=self.resolution, state=self.state,
+                            tablename=table)
