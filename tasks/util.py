@@ -1206,10 +1206,16 @@ class CSV2TempTableTask(TempTableTask):
                     table=self.output().table,
                     options=' '.join(options)
                 ))
+            self.after_copy()
         except:
+            session.rollback()
             session.execute('DROP TABLE IF EXISTS {output}'.format(
                 output=self.output().table))
+            session.commit()
             raise
+
+    def after_copy(self):
+        pass
 
 
 class LoadPostgresFromURL(TempTableTask):

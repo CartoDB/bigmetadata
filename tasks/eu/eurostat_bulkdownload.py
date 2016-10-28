@@ -4,7 +4,7 @@ from tasks.meta import (OBSTable, OBSColumn, OBSTag, current_session,
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath)
+                        underscore_slugify, shell, classpath, LOGGER)
 
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget, ListParameter
 from collections import OrderedDict
@@ -22,7 +22,6 @@ import itertools
 # dl_data = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Fdemo_r_pjangrp3.tsv.gz
 
 class DownloadEurostat(Task):
-
     table_code = Parameter()
     URL = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F{code}.tsv.gz"
 
@@ -73,8 +72,51 @@ class EUFormatTable(TempTableTask):
         return EUTempTable()
 
 
+class DICTablesCache(object):
+
+    def __init__(self):
+        self._cache = {}
+
+    def read(self, fname):
+        if fname not in self._cache:
+            LOGGER.info('Caching %s', fname)
+            with open(os.path.join(os.path.dirname(__file__), fname), 'r') as fhandle:
+                reader = csv.reader(fhandle, delimiter='\t')
+                self._cache[fname] = []
+                for csv_line in reader:
+                    self._cache[fname].append(csv_line)
+
+            LOGGER.info('Cached %s, with %s lines', fname, len(self._cache[fname]))
+
+        for line in self._cache[fname]:
+            yield line
+
+
+class MetabaseTable(CSV2TempTableTask):
+
+    has_header = False
+    delimiter = '\t'
+
+    def coldef(self):
+        return [
+            ('table_code', 'TEXT',),
+            ('dimension', 'TEXT',),
+            ('value', 'TEXT',),
+        ]
+
+    def input_csv(self):
+        return os.path.join(os.path.dirname(__file__), 'metabase.txt')
+
+    def after_copy(self):
+        session = current_session()
+        session.execute('CREATE UNIQUE INDEX ON {table} (table_code, dimension, value)'.format(
+            table=self.output().table
+        ))
+
+
 class FlexEurostatColumns(ColumnsTask):
 
+    cache = DICTablesCache()
     subsection = Parameter() # Ex. 'age_gender'
     units = Parameter() # Ex. 'people'
     table_name = Parameter()  # Ex. "DEMO_R_PJANAGGR3"
@@ -87,7 +129,8 @@ class FlexEurostatColumns(ColumnsTask):
         return {
             'units': UnitTags(),
             'subsection': SubsectionTags(),
-            'section': SectionTags()
+            'section': SectionTags(),
+            'metabase': MetabaseTable(),
         }
 
     def version(self):
@@ -102,68 +145,67 @@ class FlexEurostatColumns(ColumnsTask):
         unittags = input_['units']
         eu = input_['section']['eu']
 
-        current_code = None
-        codes = {}
-        current_list = []
-        with open(os.path.join(os.path.dirname(__file__), 'metabase.txt')) as metabase:
-            reader = csv.reader(metabase, delimiter='\t')
-            for possible_tablenames, code, code_value in reader:
-                if self.table_name.lower() == possible_tablenames.lower():
-                    if code != "geo" and code != "time":
-                        if current_code == code:
-                            current_list.append(code_value)
-                        elif current_code:
-                            codes[current_code] = current_list
-                            current_list = []
-                            current_list.append(code_value)
-                        else:
-                            current_list.append(code_value)
-                        current_code = code
-                        codes[current_code] = current_list
+        cache = self.cache
 
-        product = [x for x in apply(itertools.product, codes.values())]
-        cross_prod = [dict(zip(codes.keys(), p)) for p in product]
+        session = current_session()
+        resp = session.execute('''
+            SELECT ARRAY_AGG(DISTINCT dimension) FROM {table}
+            WHERE dimension NOT IN ('geo', 'time') AND table_code = '{table_code}';
+        '''.format(table=input_['metabase'].table, table_code=self.table_name.lower()))
+        dimensions = resp.fetchone()[0]
 
-        with open(os.path.join(os.path.dirname(__file__), 'table_dic.dic')) as tabledicfile:
-            tablereader = csv.reader(tabledicfile, delimiter='\t')
-            for possible_tablenames, table_description in tablereader:
-                if self.table_name.lower() == possible_tablenames.lower():
-                    table_desc = table_description
-                    variable_name = table_description.split('by')[0].strip()
-                    break
+        resp = session.execute('''
+            WITH dimensions AS (SELECT value, dimension
+            FROM {table}
+            WHERE table_code = '{table_code}'
+              AND dimension NOT IN ('time', 'geo'))
+            SELECT ARRAY_AGG(JSON_BUILD_OBJECT({select}))
+            FROM {from_}
+            WHERE {where}
+        '''.format(
+            table=input_['metabase'].table,
+            table_code=self.table_name.lower(),
+            select=', '.join(["'{}', {}.value".format(dim, dim) for dim in dimensions]),
+            from_=', '.join(['dimensions {}'.format(dim) for dim in dimensions]),
+            where=' AND '.join(["{}.dimension = '{}'".format(dim, dim) for dim in dimensions])
+        ))
+        cross_prod = resp.fetchone()[0]
+
+        for possible_tablenames, table_description in cache.read('table_dic.dic'):
+            if self.table_name.lower() == possible_tablenames.lower():
+                table_desc = table_description
+                variable_name = table_description.split('by')[0].strip()
+                break
         for i in cross_prod:
             if len(cross_prod) > 1: # Multiple variables
                 var_code = underscore_slugify(self.table_name+"_".join(i.values()))
                 if len(i) == 1: # Only units are unique
                     dimdefs = []
                     for unit_dic, unit_value in i.iteritems():
-                        with open(os.path.join(os.path.dirname(__file__),'dic_lists/{dimension}.dic'.format(dimension=unit_dic))) as dimfile:
-                            reader = csv.reader(dimfile, delimiter='\t')
-                            for possible_dimvalue, dimdef in reader:
-                                if unit_value == possible_dimvalue:
-                                    dimdefs.append(dimdef)
+                        for possible_dimvalue, dimdef in cache.read('dic_lists/{dimension}.dic'.format(dimension=unit_dic)):
+                            if unit_value == possible_dimvalue:
+                                dimdefs.append(dimdef)
                     description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
                 else:
                     dimdefs = []
                     for dimname, dimvalue in i.iteritems():
-                        with open(os.path.join(os.path.dirname(__file__),'dic_lists/{dimension}.dic'.format(dimension=dimname))) as dimfile:
-                            reader = csv.reader(dimfile, delimiter='\t')
-                            for possible_dimvalue, dimdef in reader:
-                                if dimvalue == possible_dimvalue:
-                                    if dimname != "unit": # Only take non-unit definitions for name. This may be problematic
-                                        dimdefs.append(dimdef)
+                        for possible_dimvalue, dimdef in cache.read('dic_lists/{dimension}.dic'.format(dimension=dimname)):
+                            if dimvalue == possible_dimvalue:
+                                if dimname != "unit": # Only take non-unit definitions for name. This may be problematic
+                                    dimdefs.append(dimdef)
                     description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
             else: # Only one variable
                 var_code = underscore_slugify(self.table_name)
                 description = variable_name
-            with open(os.path.join(os.path.dirname(__file__),'dic_lists/unit.dic')) as unitfile:
-                reader = csv.reader(unitfile, delimiter='\t')
-                for possible_unit, unitdef in reader:
+            for possible_unit, unitdef in cache.read('dic_lists/unit.dic'):
+                try:
                     if i['unit'] == possible_unit:
-                        if "percentage" in unitdef.lower():
+                        if "percentage" in unitdef.lower() or "per" in unitdef.lower():
                             final_unit_tag = "ratio"
                         else:
                             final_unit_tag = self.units
+                except:
+                    final_unit_tag = self.units
             tags = [eu, subsectiontags[self.subsection], unittags[final_unit_tag]]
             columns[var_code] = OBSColumn(
                 id=var_code,
@@ -242,12 +284,14 @@ class TableEU(TableTask):
             if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
                 col = coltarget.get(session)
                 extra = col.extra
-                multiplier = extra['unit']
-                # print col.extra[1]
-                if "THS" in multiplier or "1000" in multiplier or multiplier == 'KTOE':
-                    multiple = '1000*'
-                if "MIO" in multiplier:
-                    multiple = '1000000*'
+                if 'unit' in extra.keys():
+                    multiplier = extra['unit']
+                    if "THS" in multiplier or "1000" in multiplier or multiplier == 'KTOE':
+                        multiple = '1000*'
+                    if "MIO" in multiplier:
+                        multiple = '1000000*'
+                    else:
+                        multiple = ''
                 else:
                     multiple = ''
                 keys = extra.keys()
@@ -278,8 +322,5 @@ class EURegionalTables(WrapperTask):
             reader = csv.reader(wrappertables)
             for subsection, table_code, nuts, units in reader:
                 nuts = int(nuts)
-                for year in range(1990,2016):
-                    try:
-                        yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts, unit=units, year=year)
-                    except:
-                        pass
+                for year in range(2010, 2016):
+                    yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts, unit=units, year=year)

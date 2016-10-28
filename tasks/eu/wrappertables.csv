@@ -1,1 +1,14 @@
-age_gender,demo_r_pjangroup,2,people
+age_gender,demo_r_pjangrp3,3,people
+age_gender,demo_r_births,3,people
+commerce_economy,nama_10r_3gdp,3,money
+commerce_economy,nama_10r_3popgdp,3,people
+education,educ_renrlrg3,2,people
+education,educ_renrlrg1,2,people
+education,tgs00091,2,ratio
+income,tgs00026,2,money
+income,tgs00036,2,money
+transportation,road_go_na_rl3g,3,tonnes
+health,crim_gen_reg,3,crimes
+transportation,tgs00075,2,people
+commerce_economy,tgs00112,2,businesses
+health,tgs00058,2,people
