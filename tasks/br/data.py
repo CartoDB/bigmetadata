@@ -71,6 +71,7 @@ class CleanCSVs(BaseParams, Task):
 class ImportCSV(BaseParams, CSV2TempTableTask):
 
     infilepath = Parameter()
+    encoding = 'latin1'
 
     # def requires(self):
     #     return DownloadData(resolution=self.resolution, state=self.state)
@@ -80,6 +81,7 @@ class ImportCSV(BaseParams, CSV2TempTableTask):
 
 
 class ImportData(BaseParams, Task):
+
     def requires(self):
         return {
             'copied': CopyFiles(resolution=self.resolution, state=self.state),
