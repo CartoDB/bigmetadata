@@ -5,7 +5,7 @@ from tasks.meta import current_session, DENOMINATOR
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector,
                             get_parent_code)
 from tasks.meta import OBSTable, OBSColumn, OBSTag
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns
 
 from collections import OrderedDict
@@ -65,22 +65,26 @@ class SourceTags(TagsTask):
 
     def tags(self):
         return [OBSTag(id='qcew',
-                    name='Quartery Census of Employment and Wages (QCEW)',
-                    description='`Bureau of Labor Statistics QCEW <http://www.bls.gov/cew/home.htm>`_')]
+                       name='Quartery Census of Employment and Wages (QCEW)',
+                       type='source',
+                       description='`Bureau of Labor Statistics QCEW <http://www.bls.gov/cew/home.htm>`_')]
+
+
 
 class QCEWColumns(ColumnsTask):
 
     naics_code = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         requirements = {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
-            'sources': SourceTags()
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
         parent_code = get_parent_code(self.naics_code)
         if parent_code:
@@ -179,10 +183,11 @@ class QCEWColumns(ColumnsTask):
             tags=[units['ratio'], sections['united_states'], subsections['employment']],
         )
 
-        qcew_source = input_['sources']['qcew']
-        for col in cols:
-            for i in col:
-                i.tags.append(qcew_source)
+        source = input_['source']['qcew']
+        license = input_['license']['no-restrictions']
+        for colname, col in cols.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
         return cols
 
 class QCEW(TableTask):

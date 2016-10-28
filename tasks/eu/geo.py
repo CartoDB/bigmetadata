@@ -2,10 +2,11 @@
 
 from luigi import LocalTarget, Task, IntParameter
 
-from tasks.meta import current_session, OBSColumn, GEOM_REF
+from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag
 from tasks.util import (TagsTask, DownloadUnzipTask, Shp2TempTableTask, shell,
                         classpath, CSV2TempTableTask, TempTableTask,
                         ColumnsTask, TableTask)
+from tasks.tags import SectionTags, SubsectionTags
 from collections import OrderedDict
 
 import os
@@ -15,12 +16,12 @@ class SourceLicenseTags(TagsTask):
 
     def tags(self):
         return [
-            TagsTask(
+            OBSTag(
                 id='eurographics-license',
                 name='EuroGeographics Open Data Licence',
                 type='license',
                 description='This product includes Intellectual Property from European National Mapping and Cadastral Authorities and is licensed on behalf of these by EuroGeographics. Original product is available for free at `www.eurogeographics.org <www.eurogeographics.org>`_ Terms of the licence available at `http://www.eurogeographics.org/form/topographic-data-eurogeographics <http://www.eurogeographics.org/form/topographic-data-eurogeographics>`_'),
-            TagsTask(
+            OBSTag(
                 id='eurographics-source',
                 name='EuroGraphics EuroGlobalMap',
                 type='source',
@@ -200,12 +201,30 @@ class NUTSColumns(ColumnsTask):
 
     level = IntParameter(default=3)
 
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source_license': SourceLicenseTags()
+        }
+
+    def version(self):
+        return 2
+
     def columns(self):
+        input_ = self.input()
+        section = input_['sections']['eu']
+        subsection = input_['subsections']['boundary']
+        source_license = input_['source_license']
+
         nuts3 = OBSColumn(
             id='nuts{}'.format(self.level),
             type='Geometry',
             name='NUTS Level {}'.format(self.level),
+            tags=[section, subsection, source_license['eurographics-license'],
+                  source_license['eurographics-source']]
         )
+
         return OrderedDict([
             ('nuts{}_id'.format(self.level), OBSColumn(
                 type='Text',

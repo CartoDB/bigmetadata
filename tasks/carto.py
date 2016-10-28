@@ -4,7 +4,7 @@ Tasks to sync data locally to CartoDB
 
 from tasks.meta import (current_session, OBSTable, Base, OBSColumn,)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
-                        classpath, shell, PostgresTarget, TempTableTask,
+                        classpath, shell, PostgresTarget, TempTableTask, LOGGER,
                         CartoDBTarget, import_api, TableToCartoViaImportAPI)
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
@@ -15,6 +15,7 @@ from datetime import date
 from decimal import Decimal
 from cStringIO import StringIO
 from PIL import Image, ImageOps
+from pprint import pprint
 
 import requests
 
@@ -199,6 +200,18 @@ class ImagesForMeasure(Task):
 @3:#f59e72;
 @2:#f9c098;
 @1:#fde0c5;''',
+        'tags.segmentation': '''
+@1:#7F3C8D;
+@2:#11A579;
+@3:#3969AC;
+@4:#F2B701;
+@5:#E73F74;
+@6:#80BA5A;
+@7:#E68310;
+@8:#008695;
+@9:#CF1C90;
+@10:#f97b72;
+@11:#A5AA99;''',
     }
 
     measure = Parameter()
@@ -219,7 +232,7 @@ class ImagesForMeasure(Task):
         session = current_session()
         measure = session.query(OBSColumn).get(self.measure)
         mainquery = '''
-SELECT numer_aggregate,
+SELECT numer_aggregate, numer_type,
        numer_colname, numer_geomref_colname,
        numer_tablename,
        geom_geomref_colname,
@@ -238,19 +251,18 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
         # how should we determine fallback resolution?
         if results is None:
-            query = mainquery.format(
-                measure=self.measure,
-                boundary_clause="")
+            query = mainquery.format(measure=self.measure, boundary_clause="")
             resp = session.execute(query)
             results = resp.fetchone()
 
-        numer_aggregate, numer_colname, numer_geomref_colname, numer_tablename, \
-                geom_geomref_colname, geom_colname, geom_tablename, denom_colname, \
+        numer_aggregate, numer_type, numer_colname, numer_geomref_colname, \
+                numer_tablename, geom_geomref_colname, geom_colname, \
+                geom_tablename, denom_colname, \
                 denom_tablename, denom_geomref_colname = results
 
         if denom_colname:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom, " \
+                    "geom.the_geom_webmercator, " \
                     "numer.{numer_colname} / NULLIF(denom.{denom_colname}, 0) measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer, " \
                     "     {denom_tablename} as denom " \
@@ -267,7 +279,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "  AND numer.{numer_geomref_colname} = denom.{denom_geomref_colname} "
         elif numer_aggregate == 'sum':
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom, " \
+                    "geom.the_geom_webmercator, " \
                     "numer.{numer_colname} / " \
                     "  ST_Area(geom.the_geom) * 1000000.0 measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
@@ -280,16 +292,25 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
         else:
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "  geom.the_geom, " \
+                    "  geom.the_geom_webmercator, " \
                     "  numer.{numer_colname} measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "  WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
-            statssql = "SELECT " \
-                    'CDB_HeadsTailsBins(array_agg( ' \
-                    '  distinct(numer.{numer_colname}::NUMERIC)), 4) as "headtails" ' \
-                    "FROM {geom_tablename} as geom, " \
-                    "     {numer_tablename} as numer " \
-                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
+            if numer_type.lower() == 'numeric':
+                statssql = "SELECT " \
+                        'CDB_HeadsTailsBins(array_agg( ' \
+                        '  distinct(numer.{numer_colname}::NUMERIC)), 4) as "headtails" ' \
+                        "FROM {geom_tablename} as geom, " \
+                        "     {numer_tablename} as numer " \
+                        "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
+            else:
+                statssql = '''
+                SELECT array_agg(category) categories FROM (
+                SELECT row_number() over () catname, {numer_colname} as category, COUNT(*) cnt
+                FROM {numer_tablename}
+                GROUP BY {numer_colname} ORDER BY COUNT(*) DESC
+                LIMIT 10
+                ) foo'''
 
         cartosql = cartosql.format(geom_colname=geom_colname,
                                    numer_colname=numer_colname,
@@ -311,8 +332,9 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                                    denom_geomref_colname=denom_geomref_colname)
 
         resp = query_cartodb(statssql)
-        assert resp.status_code == 200
-        headtails = resp.json()['rows'][0]['headtails']
+        if resp.status_code != 200:
+            raise Exception("Unable to obtain statssql: {}".format(
+                resp.text))
 
         if measure.unit():
             ramp = self.PALETTES.get(measure.unit().id, self.PALETTES['tags.ratio'])
@@ -320,17 +342,29 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
             ramp = self.PALETTES['tags.ratio']
 
         bucket_css = u''
-        for i, bucket in enumerate(headtails):
-            bucket_css = u'''
-[measure <= {bucket}] {{
-   polygon-fill: @{i};
-}}
-            '''.format(bucket=bucket, i=i+1) + bucket_css
+        if numer_type.lower() == 'numeric':
+            buckets = resp.json()['rows'][0]['headtails']
+
+
+            for i, bucket in enumerate(buckets):
+                bucket_css = u'''
+    [measure <= {bucket}] {{
+       polygon-fill: @{i};
+    }}
+                '''.format(bucket=bucket, i=i+1) + bucket_css
+        else:
+            buckets = resp.json()['rows'][0]['categories']
+            for i, bucket in enumerate(buckets):
+                bucket_css = u'''
+    [measure = "{bucket}"] {{
+       polygon-fill: @{i};
+    }}
+                '''.format(bucket=bucket, i=i+1) + bucket_css
 
         layers.append({
             'type': 'mapnik',
             'options': {
-                'layer_name': numer_tablename,
+                'layer_name': geom_tablename,
                 'cartocss': '''/** choropleth visualization */
 
 {ramp}
@@ -350,7 +384,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
   {bucket_css}
 }}'''.format(
     ramp=ramp,
-    bucketlen=len(headtails) + 1,
+    bucketlen=len(buckets) + 1,
     bucket_css=bucket_css),
                 'cartocss_version': "2.1.1",
                 'sql': cartosql,
@@ -373,8 +407,11 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
         }
         resp = requests.get(self.MAP_URL,
                             headers={'content-type':'application/json'},
-                            params={'config': json.dumps(config)})
-        return resp.json()
+                            params={'config': json.dumps(config)}).json()
+        if 'layergroupid' not in resp:
+            raise Exception('Named map returned no layergroupid: {}'.format(
+                pprint(resp)))
+        return resp
 
     def run(self):
         self.output().makedirs()
@@ -404,12 +441,12 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                               ))
 
         url1 = image_urls.pop(0)
-        print url1
+        LOGGER.info(url1)
         file1 = StringIO(requests.get(url1, stream=True).content)
         image1 = ImageOps.expand(Image.open(file1), border=10, fill='white')
 
         for url2 in image_urls:
-            print url2
+            LOGGER.info(url2)
             file2 = StringIO(requests.get(url2, stream=True).content)
 
             image2 = ImageOps.expand(Image.open(file2), border=10, fill='white')
@@ -426,6 +463,17 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
             image1 = result
         image1.save(self.output().path)
+
+    def complete(self):
+        '''
+        If we support this country,
+        '''
+        country = self.measure.split('.')[0]
+        if country in self.CENTER_ZOOM_BOUNDS:
+            return super(ImagesForMeasure, self).complete()
+        else:
+            LOGGER.warn('No info to create images for %s', self.measure)
+            return True
 
     def output(self, measure=None):
         if measure is None:
@@ -493,8 +541,11 @@ class GenerateStaticImage(Task):
         }
         resp = requests.get(self.MAP_URL,
                             headers={'content-type':'application/json'},
-                            params={'config': json.dumps(config)})
-        return resp.json()
+                            params={'config': json.dumps(config)}).json()
+        if 'layergroupid' not in resp:
+            raise Exception('Named map returned no layergroupid: {}'.format(
+                pprint(resp)))
+        return resp
 
     def run(self):
         self.output().makedirs()
@@ -508,7 +559,7 @@ class GenerateStaticImage(Task):
                     center_lon=config['center'][0],
                     center_lat=config['center'][1]
                 )
-        print img_url
+        LOGGER.info(img_url)
         shell('curl "{img_url}" > {output}'.format(img_url=img_url,
                                                    output=self.output().path))
 
@@ -576,7 +627,7 @@ class PurgeUndocumentedTables(Task):
                 if cnt == 0:
                     stmt = 'DROP TABLE observatory.{tablename} CASCADE'.format(
                         tablename=tablename)
-                    print(stmt)
+                    LOGGER.info(stmt)
                     session.execute(stmt)
                     session.commit()
                 else:
@@ -600,7 +651,7 @@ class PurgeMetadataTables(Task):
                 _id = resp.fetchall()[0][0]
                 stmt = "DELETE FROM observatory.obs_table " \
                         "WHERE id = '{id}'".format(id=_id)
-                print(stmt)
+                LOGGER.info(stmt)
                 session.execute(stmt)
                 session.commit()
 
@@ -621,12 +672,12 @@ class PurgeMetadataTables(Task):
                 if task_id.startswith(underscore_slugify(name)):
                     exists = True
             if exists is True:
-                print('{table} exists'.format(table=table))
+                LOGGER.info('{table} exists'.format(table=table))
             else:
                 # TODO drop table
                 import pdb
                 pdb.set_trace()
-                print table
+                LOGGER.info(table)
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
 
@@ -758,7 +809,7 @@ class DumpS3(Task):
         path = 's3://cartodb-observatory-data/{path}'.format(
             path=path
         )
-        print path
+        LOGGER.info(path)
         target = S3Target(path)
         if self.force:
             shell('aws s3 rm {output}'.format(

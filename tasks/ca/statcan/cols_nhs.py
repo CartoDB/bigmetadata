@@ -1,8 +1,10 @@
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 from tasks.util import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.ca.statcan.license import LicenseTags, SourceTags
 
 from collections import OrderedDict
+
 
 class NHSColumns(ColumnsTask):
 
@@ -11,13 +13,17 @@ class NHSColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'license': LicenseTags(),
+            'source': SourceTags(),
         }
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         input_ = self.input()
+        license = input_['license']['statcan-license']
+        source = input_['source']['statcan-nhs-2011']
 
         subsections = input_['subsections']
 
@@ -22966,7 +22972,7 @@ class NHSColumns(ColumnsTask):
             tags=[ca, unit_people, subsections['employment']],
             targets={},)
 
-        return OrderedDict([
+        cols = OrderedDict([
             ('t001c001_t', t001c001_t),
             ('t001c001_m', t001c001_m),
             ('t001c001_f', t001c001_f),
@@ -25524,3 +25530,7 @@ class NHSColumns(ColumnsTask):
             ('t029c009_m', t029c009_m),
             ('t029c009_f', t029c009_f),
         ])
+        for colname, col in cols.iteritems():
+            col.tags.append(license)
+            col.tags.append(source)
+        return cols

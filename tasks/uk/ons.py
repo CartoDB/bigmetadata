@@ -6,7 +6,7 @@ from tasks.meta import OBSColumn, DENOMINATOR, current_session, OBSTag
 from tasks.util import (TableTask, ColumnsTask, classpath, shell,
                         DownloadUnzipTask, TagsTask, TempTableTask)
 from tasks.uk.cdrc import OutputAreaColumns
-from tasks.tags import UnitTags, SectionTags, SubsectionTags
+from tasks.tags import UnitTags, SectionTags, SubsectionTags, LicenseTags
 
 from collections import OrderedDict
 import os
@@ -21,6 +21,7 @@ class SourceTags(TagsTask):
                     name='Office for National Statistics (ONS)',
                     type='source',
                     description="The UK's largest independent producer of official statistics and the recognised national statistical institute of the UK (`ONS <https://www.ons.gov.uk/>`_)")]
+
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
@@ -64,14 +65,17 @@ class CensusColumns(ColumnsTask):
             'units': UnitTags(),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'sources': SourceTags()
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
-        return 2
+        return 4
 
     def columns(self):
         input_ = self.input()
+        source = input_['source']['ons']
+        license = input_['license']['uk_ogl']
         uk = input_['sections']['uk']
         subsections = input_['subsections']
         units = input_['units']
@@ -1101,9 +1105,9 @@ class CensusColumns(ColumnsTask):
             ('never_worked', never_worked),
             ('long_term_unemployed', long_term_unemployed),
         ])
-        ons_source = input_['sources']['ons']
         for _, col in columns.iteritems():
-            col.tags.append(ons_source)
+            col.tags.append(source)
+            col.tags.append(license)
         return columns
 
 class ImportAllEnglandWalesLocal(Task):
