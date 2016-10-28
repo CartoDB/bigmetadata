@@ -1,0 +1,43 @@
+EPS_EPE	Environmental protection expenditure 
+EPS_P1	Output  
+EPS_P11	Market output  
+EPS_P11_MA	Market output from principal activity (specialist producers)  
+EPS_P11_SA	Market output from secondary activity (non-specialist producers)  
+EPS_P13	Non-market output  
+EPS_P1_ANC	Ancillary output 
+EPS_P1_ANCESA	Ancillary output (ESA-compatible output) 
+EPS_P2	Intermediate consumption 
+EPS_P2_EPS	Intermediate consumption of environmental protection services  
+EPS_P2_EPS_SP	Intermediate consumption of environmental protection services by corporations as specialist producers  
+EPS_P2_NEPS	Intermediate consumption of products other than environmental protection services  
+TOT_P2_EPS	Intermediate consumption of environmental protection services for production of environmental protection services and for other production 
+P3_EPS	Final consumption expenditure of environmental protection services 
+P3_ACP	Final consumption expenditure of adapted and connected products 
+EPS_P51G_NP	Gross fixed capital formation and acquisition less disposals of non-produced non-financial assets 
+EPS_INV	Investment 
+EPS_INV_PT	Pollution treatment investment 
+EPS_INV_PP	Pollution prevention investment 
+EPS_INV_PP_PC_INV	Pollution prevention investment as % of total environmental protection investment 
+EPS_INV_PC_P51G	Investment as % of gross fixed capital formation 
+EPS_D1	Compensation of employees 
+EPS_CUR	Current expenditure 
+EPS_CUR_IN	In-house current expenditure  
+EPS_CUR_FEE	Fees and purchases  
+EPS_CUR_PC_P1	Current expenditure as % of output 
+EPS_D29X39	Other taxes less other subsidies on production 
+EPS_P51C	Consumption of fixed capital  
+EPS_B2N	Net operating surplus  
+EPS_REC_BYPR	Receipts from by-products  
+EPS_EMP	Labour input  
+P7_EPS	Import 
+P6_EPS	Export 
+EPS_D21X31	Taxes less subsidies on products 
+EPS_SUP_NU	Supply at purchasers' prices available for national uses 
+EP_D3_7_92_99_P	Current and capital transfers for environmental protection, paid  
+EP_D3_7_92_99_R	Current and capital transfers for environmental protection, received 
+EP_D3_7_R	Current transfers for environmental protection, received  
+EP_D92_99_R	Investment grants and other capital transfers for environmental protection, received  
+EP_TAXEM_P	Earmarked taxes for environmental protection, paid 
+EPS_NEGB2N_MP	Negative net operating surplus of market producers of general government 
+EP_TRF	Environmental protection subsidies/transfers 
+EPS_REV_SLS	Revenues from sales 

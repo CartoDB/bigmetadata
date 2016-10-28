@@ -1,0 +1,28 @@
+TOTAL	Total
+PC0	Zero percent of a full-time
+PC1-24	From 1 to 24 percent of a full-time
+PC25-49	From 25 to 49 percent of a full-time
+PC50-74	From 50 to 74 percent of a full-time
+PC75-99	From 75 to 99 percent of a full-time
+PC100	100 percent of a full-time
+H0	Zero hours
+H1-9	From 1 to 9 hours
+H1-19	From 1 to 19 hours
+H10-19	From 10 to 19 hours
+H20-29	From 20 to 29 hours
+H20-31	From 20 to 31 hours
+H30-39	From 30 to 39 hours
+H_GE32	32 hours or over
+H40-49	From 40 to 49 hours
+H_GE50	50 hours or over
+PT	Part-time
+FT	Full-time
+TEMP	Temporary contracts 
+TOT_FTE	Total in full-time equivalents
+AVG_FTE	Yearly average in full-time equivalents
+PT_FTE	Part-time in full-time equivalents
+NORM	Normal working time
+ATYP	Atypical working time
+NAP	Not applicable
+NRP	No response
+UNK	Unknown

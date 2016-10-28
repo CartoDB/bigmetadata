@@ -1,0 +1,64 @@
+TOTAL	Total
+11	Barriers related to location
+12	Language barriers
+13	Cultural and trust barriers
+14	Economic barriers
+15	Legal and regulatory barriers
+16	Difficulties to identify suitable foreign service providers
+20	No barriers perceived
+30	The service is not relevant
+LEG_ADM	Legal or administrative barriers
+C41	Cross border trade not relevant (products not exportable)
+C42	Establishing a commercial presence abroad
+C43	Movement of personnel on a temporary basis
+C44	Taxation issues
+C45	Insurance, guarantee systems, etc. issues
+C46	Lack of international standards for services
+C47	Difficulties in identifying potential clients abroad
+C48	Language and cultural barriers
+TARIF	Trade tariffs
+INT_STAN	Uncertainty of international standards
+EMPL	Concerns of employees (including trade unions)
+PAT_INT	Concern of violation of patents and/or intellectual property rights
+CONFL	Conflicting with social values of your enterprise (e.g. corporate social responsibility issues)
+DISTAN	Problems with the distance to producers
+PROX	Proximity to existing clients needed
+PROV	Difficulties in identifying potential/suitable providers abroad
+OVERALL	Overall concerns of the sourcing operation exceeding expected benefits
+RF	Relations feasible only within enterprise group
+L	Location of enterprise
+SBS	Size or business scope of enterprise
+ASP	Availability of suitable partners
+LRB	Legal or regulatory barriers
+CCI	Concerns about losing core competence or independence
+RIMF	Risk to invest manpower and/or finances into wrong direction
+NSCC	Have tried but did not succeed
+NWRI	Need or willingness to remain independent
+OSOP	Other strategic or operational options preferred
+BEG	Too burdensome vis-à-vis the expected gains
+FIN	Financial reasons
+QPS	Uncertainty of the quality of the products/services to be supplied abroad
+MAN	Lack of management resources and know-how (optional)
+DOC	Missing documentation of own products and processes (optional)
+MOB	Barriers to mobility
+TRANSP	Barriers to transport
+BUILD	Barriers to accessing buildings
+EDUC	Barriers to education and training
+EMP	Barriers to employment
+INT	Barriers to using the Internet
+SPEAK	Barriers to social contact
+LEISURE	Barriers to leisure
+PAY	Barriers to paying for the essential things in life
+DISCRIM	Barriers of perceived discrimination
+LD1	Barriers to participation in 1 life domain
+LD2-3	Barriers to participation in 2-3 life domains
+LD_GE4	Barriers to participation in 4 or more life domains
+LANG	Lack of language skills
+QUAL	Lack of recognition of qualifications
+PERM	Citizenship of residence permit
+ORELSOC	Origin, religion or social backgroung
+NO	No barrier
+OTHER	Other barriers
+NAP	Not applicable
+NRP	No response
+UNK	Unknown

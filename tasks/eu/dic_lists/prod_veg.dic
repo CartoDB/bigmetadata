@@ -1,0 +1,98 @@
+01110000	Soft wheat - prices per 100 kg
+01120000	Durum wheat - prices per 100 kg
+01200000	Rye - prices per 100 kg
+01300000	Barley - prices per 100 kg
+01310000	Feed barley - prices per 100 kg
+01320000	Malting barley - prices per 100 kg
+01400000	Oats - prices per 100 kg
+01500000	Maize - prices per 100 kg
+01600000	Rice - prices per 100 kg
+01910000	Sorghum - prices per 100 kg
+01920000	Triticale - prices per 100 kg
+02110000	Rape - prices per 100 kg
+02120000	Sunflowers - prices per 100 kg
+02130000	Soya - prices per 100 kg
+02210000	Dried peas - prices per 100 kg
+02220000	Dried beans - prices per 100 kg
+02230000	Broad beans (dry) - prices per 100 kg
+02300000	Raw tobacco: all varieties - prices per 100 kg
+02400000	Sugar beet: unit value - prices per 1000 kg
+02911000	Cotton (including seed) - prices per 100 kg
+02920000	Hops : all varieties - prices per 100 kg
+02991000	Lentils - prices per 100 kg
+02992000	Chick peas - prices per 100 kg
+04110000	Cauliflowers: all qualities - prices per 100 kg
+04121000	Tomatoes in the open: all qualities - prices per 100 kg
+04122000	Tomatoes under glass: all qualities - prices per 100 kg
+04191100	White cabbage: all qualities - prices per 100 kg
+04191200	Red cabbage: all qualities - prices per 100 kg
+04191300	Savoy cabbage: all qualities - prices per 100 kg
+04192100	Lettuce in the open: all qualities - prices per 100 kg
+04192200	Lettuce under glass: all qualities - prices per 100 kg
+04193000	Spinach - prices per 100 kg
+04194100	Cucumbers in the open: all qualities - prices per 100 kg
+04194200	Cucumbers under glass: all qualities - prices per 100 kg
+04195000	Carrots: all qualities - prices per 100 kg
+04196000	Onions: all qualities - prices per 100 kg
+04197000	Green beans - prices per 100 kg
+04198100	French beans: all qualities - prices per 100 kg
+04199000	Green peas: all qualities - prices per 100 kg
+04199901	Cultivated mushrooms: all qualities - prices per 100 kg
+04199902	Chicory in the open - prices per 100 kg
+04199903	Leeks in the open - prices per 100 kg
+04199904	Capsicum (under glass) - prices per 100 kg
+04199905	Beetroot - prices per 100 kg
+04199906	Garlic - prices per 100 kg
+04199907	Kohlrabi - prices per 100 kg
+04199908	Radish - prices per 100 kg
+04199909	Brussels sprouts: all qualities - prices per 100 kg
+04199910	Asparagus: all qualities - prices per 100 kg
+04199911	Courgettes - prices per 100 kg
+04199912	Celeriac: all qualities - prices per 100 kg
+04199913	Melons - prices per 100 kg
+04199914	Water melons - prices per 100 kg
+04210000	Roses - prices per 100 items
+04220000	Carnations - prices per 100 items
+04230000	Chrysanthemums - prices per 100 items
+04240000	Gladioli - prices per 100 items
+04250000	Tulips - prices per 100 items
+04260000	Freesias - prices per 100 items
+05110000	Early potatoes - prices per 100 kg
+05120000	Main crop potatoes - prices per 100 kg
+05200000	Seed potatoes
+05900000	Other potatoes
+06110000	Dessert apples: all varieties - prices per 100 kg
+06120000	Dessert pears: all varieties - prices per 100 kg
+06130000	Peaches: all varieties - prices per 100 kg
+06191100	Cherries: sweet cherries - prices per 100 kg
+06191200	Cherries: sour cherries - prices per 100 kg
+06192000	Plums: all varieties  - prices per 100 kg
+06193000	Strawberries: all types of production - prices per 100 kg
+06193100	Strawberries in the open - prices per 100 kg
+06193200	Strawberries under glass - prices per 100 kg
+06194110	Walnuts - prices per 100 kg
+06194120	Hazelnuts - prices per 100 kg
+06194130	Almonds - prices per 100 kg
+06194140	Chestnuts - prices per 100 kg
+06194200	Dried fruit - prices per 100 Kg
+06310000	Fresh figs - prices per 100 kg
+06199100	Apricots: all varieties - prices per 100 kg
+06199200	Raspberries - prices per 100 kg
+06199300	Blackcurrents - prices per 100 kg
+06210000	Oranges: all varieties - prices per 100 kg
+06220000	Mandarins: all varieties - prices per 100 kg
+06230000	Lemons: all varieties - prices per 100 kg
+06290000	Other citrus fruit- prices per 100 kg
+06410000	Dessert grapes: all varieties - prices per 100 kg
+06490000	Grapes for wine production (prices per 100 kg) - prices per 100 kg
+06510000	Table olives - prices per 100 kg
+06590000	Other olives - prices per 100 kg
+07110000	Vin de pays/Vinho regional/Vino de la tierra - prices per 100 litres
+07190000	Other table wine - prices per 100 litres
+07200000	Quality wine - prices per 100 litres
+07900000	Other wine - prices per 100 litres
+08100000	Extra vergine - prices per 100 litres
+08200000	Sopraffino - fine - prices per 100 litres
+08300000	Semi-fine - prices per 100 litres
+08400000	Lampante - prices per 100 litres
+08500000	Olive Oil virgine - prices per 100 litres

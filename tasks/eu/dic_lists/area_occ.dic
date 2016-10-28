@@ -1,0 +1,10 @@
+TOTAL	Total
+SQM_LT10	Less than 10 m2 per occupant
+SQM10-14	From 10 to 14 m2 per occupant
+SQM15-19	From 15 to 19 m2 per occupant
+SQM20-29	From 20 to 29 m2 per occupant
+SQM30-39	From 30 to 39 m2 per occupant
+SQM40-59	From 40 to 59 m2 per occupant
+SQM60-79	From 60 to 79 m2 per occupant
+SQM_GE80	80 m2 or over per occupant
+UNK	Unknown

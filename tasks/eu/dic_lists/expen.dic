@@ -1,0 +1,15 @@
+TOTAL	Total
+INV	Investments
+MNT	Maintenance costs
+VESS	Expenditures in vessels in goods inland waterways transport enterprises
+INV_VESS	Investment expenditures in vessels in goods inland waterways transport enterprises
+MNT_VESS	Maintenance expenditures in vessels in goods inland waterways transport enterprises
+IWTI	Expenditures in inland waterways transport infrastrastructure
+INV_IWTI	Investment expenditures in inland waterways transport infrastrastructure
+MNT_IWTI	Maintenance expenditures in inland waterways transport infrastrastructure
+ROVE	Total expenditures in road transport vehicles
+INV_ROVE	Investment expenditures in road transport vehicles
+MNT_ROVE	Maintenance expenditures in road transport vehicles
+ROIF	Total expenditures in road infrastructure
+INV_ROIF	Investment expenditures in road infrastructure
+MNT_ROIF	Maintenance expenditures in road infrastructure

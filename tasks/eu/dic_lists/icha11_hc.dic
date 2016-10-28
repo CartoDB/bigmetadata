@@ -1,0 +1,52 @@
+TOT_HC	Current health care expenditure (CHE)
+HC1_2	Curative care and rehabilitative care
+HC1	Curative care
+HC11_21	Inpatient curative and rehabilitative care
+HC11	Inpatient curative care
+HC12_22	Day curative and rehabilitative care
+HC12	Day curative care
+HC13_23	Outpatient curative and rehabilitative care
+HC13	Outpatient curative care
+HC131	General outpatient curative care
+HC132	Dental outpatient curative care
+HC133	Specialised outpatient curative care
+HC139	All other outpatient curative care n.e.c.
+HC14_24	Home-based curative and rehabilitative care
+HC14	Home-based curative care
+HC2	Rehabilitative care
+HC21	Inpatient rehabilitative care
+HC22	Day rehabilitative care
+HC23	Outpatient rehabilitative care
+HC24	Home-based rehabilitative care
+HC3	Long-term care (health)
+HC31	Inpatient long-term care (health)
+HC32	Day long-term care (health)
+HC33	Outpatient long-term care (health)
+HC34	Home-based long-term care (health)
+HC4	Ancillary services (non-specified by function)
+HC41	Laboratory services
+HC42	Imaging services
+HC43	Patient transportation
+HC5	Medical goods (non-specified by function)
+HC51	Pharmaceuticals and other medical non-durable goods
+HC511	Prescribed medicines
+HC512	Over-the-counter medicines
+HC513	Other medical non-durable goods
+HC52	Therapeutic appliances and other medical durable goods
+HC6	Preventive care
+HC61	Information, education and counseling programmes
+HC62	Immunisation programmes
+HC63	Early disease detection programmes
+HC64	Healthy condition monitoring programmes
+HC65	Epidemiological surveillance and risk and disease control programmes
+HC66	Preparing for disaster and emergency response programmes
+HC7	Governance and health system and financing administration
+HC71	Governance and health system administration
+HC72	Administration of health financing
+HC9	Other health care services not elsewhere classified (n.e.c.)
+HC_UNK	Other health care services unknown
+HCRI1	Total pharmaceutical expenditure (TPE)
+HCRI2	Traditional, complementary and alternative medicines (TCAM)
+HCR1	Long-term care (social)
+HCR2	Health promotion with multi-sectoral approach
+LTC	Long-term care (HC.3 and HCR.1)

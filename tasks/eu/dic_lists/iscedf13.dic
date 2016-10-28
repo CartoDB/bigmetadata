@@ -1,0 +1,229 @@
+TOTAL	Total
+F00	Generic programmes and qualifications
+F000	Generic programmes and qualifications not further defined
+F0000	Generic programmes and qualifications not further defined
+F001	Basic programmes and qualifications
+F0011	Basic programmes and qualifications
+F002	Literacy and numeracy
+F0021	Literacy and numeracy
+F003	Personal skills and development
+F0031	Personal skills and development
+F009	Generic programmes and qualifications not elsewhere classified
+F0099	Generic programmes and qualifications not elsewhere classified
+F01	Education
+F011	Education
+F0110	Education not further defined
+F0111	Education science
+F0112	Training for pre-school teachers
+F0113_0114	Teacher trainigng without and with subject specialisation 
+F0113	Teacher training without subject specialisation
+F0114	Teacher training with subject specialisation
+F0119	Education not elsewhere classified
+F018	Inter-disciplinary programmes and qualifications involving education
+F0188	Inter-disciplinary programmes and qualifications involving education
+F02	Arts and humanities
+F020	Arts and humanities not further defined
+F0200	Arts and humanities not further defined
+F021	Arts
+F0210	Arts not further defined
+F0211	Audio-visual techniques and media production
+F0212	Fashion, interior and industrial design
+F0213	Fine arts
+F0214	Handicrafts
+F0215	Music and performing arts
+F0219	Arts not elsewhere classified
+F022_023	Humanities
+F022	Humanities (except languages)
+F0220	Humanities (except languages) not further defined
+F0221	Religion and theology
+F0222	History and archaeology
+F0223	Philosophy and ethics
+F0229	Humanities (except languages) not elsewhere classified
+F023	Languages
+F0230	Languages not further defined
+F0231	Language acquisition
+F0232	Literature and linguistics
+F0239	Languages not elsewhere classified
+F028	Inter-disciplinary programmes and qualifications involving arts and humanities
+F0288	Inter-disciplinary programmes and qualifications involving arts and humanities
+F029	Arts and humanities not elsewhere classified
+F0299	Arts and humanities not elsewhere classified
+F03_04	Social sciences, journalism, information, business, administration and law 
+F03	Social sciences, journalism and information
+F030	Social sciences, journalism and information not further defined
+F0300	Social sciences, journalism and information not further defined
+F031	Social and behavioural sciences
+F0310	Social and behavioural sciences not further defined
+F0311	Economics
+F0312	Political sciences and civics
+F0313	Psychology
+F0314	Sociology and cultural studies
+F0319	Social and behavioural sciences not elsewhere classified
+F032	Journalism and information
+F0320	Journalism and information not further defined
+F0321	Journalism and reporting
+F0322	Library, information and archival studies
+F0329	Journalism and information not elsewhere classified
+F038	Inter-disciplinary programmes and qualifications involving social sciences, journalism and information
+F0388	Inter-disciplinary programmes and qualifications involving social sciences, journalism and information
+F039	Social sciences, journalism and information not elsewhere classified
+F0399	Social sciences, journalism and information not elsewhere classified
+F04	Business, administration and law
+F040	Business, administration and law not further defined
+F0400	Business, administration and law not further defined
+F041	Business and administration
+F0410	Business and administration not further defined
+F0411	Accounting and taxation
+F0412	Finance, banking and insurance
+F0413	Management and administration
+F0414	Marketing and advertising
+F0415	Secretarial and office work
+F0416	Wholesale and retail sales
+F0417	Work skills
+F0419	Business and administration not elsewhere classified
+F042	Law
+F0421	Law
+F048	Inter-disciplinary programmes and qualifications involving business, administration and law
+F0488	Inter-disciplinary programmes and qualifications involving business, administration and law
+F049	Business, administration and law not elsewhere classified
+F0499	Business, administration and law not elsewhere classified
+F05	Natural sciences, mathematics and statistics
+F050	Natural sciences, mathematics and statistics not further defined
+F0500	Natural sciences, mathematics and statistics not further defined
+F051	Biological and related sciences
+F0510	Biological and related sciences not further defined
+F0511_0512	Biology and biochemistry 
+F0511	Biology
+F0512	Biochemistry
+F0519	Biological and related sciences not elsewhere classified
+F052	Environment
+F0520	Environment not further defined
+F0521	Environmental sciences
+F0522	Natural environments and wildlife
+F0529	Environment not elsewhere classified
+F053	Physical sciences
+F0530	Physical sciences not further defined
+F0531	Chemistry
+F0532	Earth sciences
+F0533	Physics
+F0539	Physical sciences not elsewhere classified
+F054	Mathematics and statistics
+F0540	Mathematics and statistics not further defined
+F0541	Mathematics
+F0542	Statistics
+F058	Inter-disciplinary programmes and qualifications involving natural sciences, mathematics and statistics
+F0588	Inter-disciplinary programmes and qualifications involving natural sciences, mathematics and statistics
+F059	Natural sciences, mathematics and statistics not elsewhere classified
+F0599	Natural sciences, mathematics and statistics not elsewhere classified
+F06	Information and Communication Technologies
+F061	Information and Communication Technologies
+F0610	Information and Communication Technologies not further defined
+F0611	Computer use
+F0612_0613	Database and network design and administration, software and applications development and analysis
+F0612	Database and network design and administration
+F0613	Software and applications development and analysis
+F0619	Information and Communication Technologies not elsewhere classified
+F068	Inter-disciplinary programmes and qualifications involving information and Communication Technologies
+F0688	Inter-disciplinary programmes and qualifications involving information and Communication Technologies
+F07	Engineering, manufacturing and construction
+F070	Engineering, manufacturing and construction not further defined
+F0700	Engineering, manufacturing and construction not further defined
+F071	Engineering and engineering trades
+F0710	Engineering and engineering trades not further defined
+F0711	Chemical engineering and processes
+F0712	Environmental protection technology
+F0713	Electricity and energy
+F0714	Electronics and automation
+F0715	Mechanics and metal trades
+F0716	Motor vehicles, ships and aircraft
+F0719	Engineering and engineering trades not elsewhere classified
+F072	Manufacturing and processing
+F0720	Manufacturing and processing not further defined
+F0721	Food processing
+F0722	Materials (glass, paper, plastic and wood)
+F0723	Textiles (clothes, footwear and leather)
+F0724	Mining and extraction
+F0729	Manufacturing and processing not elsewhere classified
+F073	Architecture and construction
+F0730	Architecture and construction not further defined
+F0731	Architecture and town planning
+F0732	Building and civil engineering
+F078	Inter-disciplinary programmes and qualifications involving engineering, manufacturing and construction
+F0788	Inter-disciplinary programmes and qualifications involving engineering, manufacturing and construction
+F079	Engineering, manufacturing and construction not elsewhere classified
+F0799	Engineering, manufacturing and construction not elsewhere classified
+F08	Agriculture, forestry, fisheries and veterinary
+F080	Agriculture, forestry, fisheries and veterinary not further defined
+F0800	Agriculture, forestry, fisheries and veterinary not further defined
+F081-083_088	Agriculture, forestry and fishery 
+F081	Agriculture
+F0810	Agriculture not further defined
+F0811	Crop and livestock production
+F0812	Horticulture
+F0819	Agriculture not elsewhere classified
+F082	Forestry
+F0821	Forestry
+F083	Fisheries
+F0831	Fisheries
+F084	Veterinary
+F0841	Veterinary
+F088	Inter-disciplinary programmes and qualifications involving agriculture, forestry, fisheries and veterinary
+F0888	Inter-disciplinary programmes and qualifications involving agriculture, forestry, fisheries and veterinary
+F089	Agriculture, forestry, fisheries and veterinary not elsewhere classified
+F0899	Agriculture, forestry, fisheries and veterinary not elsewhere classified
+F09	Health and welfare
+F090	Health and welfare not further defined
+F0900	Health and welfare not further defined
+F091	Health
+F0910	Health not further defined
+F0911	Dental studies
+F0912_0915_0917	Medicine, therapy and rehabilitation
+F0912	Medicine
+F0913_0921	Nursing, midwifery and caringcare of the elderly and of disabled adults 
+F0913	Nursing and midwifery
+F0914	Medical diagnostic and treatment technology
+F0915	Therapy and rehabilitation
+F0916	Pharmacy
+F0917	Traditional and complementary medicine and therapy
+F0919	Health not elsewhere classified
+F092	Welfare
+F0920	Welfare not further defined
+F0921	Care of the elderly and of disabled adults
+F0922	Child care and youth services
+F0923	Social work and counselling
+F0929	Welfare not elsewhere classified
+F098	Inter-disciplinary programmes and qualifications involving health and welfare
+F0988	Inter-disciplinary programmes and qualifications involving health and welfare
+F099	Health and welfare not elsewhere classified
+F0999	Health and welfare not elsewhere classified
+F10	Services
+F100	Services not further defined
+F1000	Services not further defined
+F101	Personal services
+F1010	Personal services not further defined
+F1011	Domestic services
+F1012	Hair and beauty services
+F1013	Hotel, restaurants and catering
+F1014	Sports
+F1015	Travel, tourism and leisure
+F1019	Personal services not elsewhere classified
+F102	Hygiene and occupational health services
+F1020	Hygiene and occupational health services not further defined
+F1021	Community sanitation
+F1022	Occupational health and safety
+F1029	Hygiene and occupational health services not elsewhere classified
+F103	Security services
+F1030	Security services not further defined
+F1031	Military and defence
+F1032	Protection of persons and property
+F1039	Security services not elsewhere classified
+F104	Transport services
+F1041	Transport services
+F108	Inter-disciplinary programmes and qualifications involving services
+F1088	Inter-disciplinary programmes and qualifications involving services
+F109	Services not elsewhere classified
+F1099	Services not elsewhere classified
+OTH	Other
+NSP	Not specified
+NRP	No response
+UNK	Unknown

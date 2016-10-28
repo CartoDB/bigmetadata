@@ -1,0 +1,112 @@
+C_00	Total crops
+C_01_07	Total arable land crops
+C_01	Cereals, incl. rice
+C01_NOT_C0113	Cereals, excl. maize
+C_011	Cereals, excl. rice
+C_0111	Wheat total
+C_01111	Common wheat and spelt
+C_01112	Durum wheat
+C_0112	Barley
+C_0113	Grain maize
+C_0114	Rye and meslin
+C_0115	Oats
+C_0116	Triticale
+C_0117	Other cereals
+C_012	Rice
+C0113_C0611	Maize (grain maize + green maize)
+C_02	Dried pulses
+C_03	Root crops
+C_031	Potatoes (incl. early and seed potatoes)
+C_032	Beets
+C_0321	Sugar beets (excl. seeds)
+C_0322	Fodder beets
+C_033	Fodder roots and brassicas (excl. seeds)
+C_034	Other root crops
+C_04	Industrial crops (total)
+C_041	Oilseeds
+C_0411	Sunflower
+C_0412	Soya beans
+C_0413	Rape and turnip rape
+C_0414	Flax/linseed
+C_0415	Other oilseeds (cotton, etc.)
+C_042	Tobacco
+C_043	Hops
+C_044	Textile crops
+C_0441	Cotton
+C_0442	Other textile crops
+C_045	Other industrial crops
+C_0451	Officinal herbs, aromatic plants, plants for seasoning
+C_0452	Other
+C_05	Fresh vegetables, melons, strawberries (total)
+C05_NOT_C0534	Fresh vegetables, melons (excl. strawberries)
+C_051	All brassicas (excl. roots)
+C_0511	Cauliflower
+C_0512	Cabbage (white)
+C_0513	Other brassicas
+C_052	Leafy or stalked vegetables (excl. brassicas)
+C_0521	Celeriac and celery
+C_0522	Leeks
+C_0523	Lettuce
+C_0524	Endive
+C_0525	Spinach
+C_0526	Asparagus
+C_0527	Other leafy or stalked vegetables (excl. brassicas)
+C_053	Vegetables cultivated for fruit
+C_0531	Tomatoes
+C_0532	Cucumbers
+C_0533	Melons
+C_0534	Strawberries
+C_0535	Other vegetables cultivated for fruit
+C_054	Root and tuber vegetables
+C_0541	Carrots
+C_0542	Garlic
+C_0543	Onions and shallots
+C_05431	Onions
+C_05432	Shallots
+C_0544	Other root and tuber vegetables
+C_055	Pulses
+C_0551	Peas
+C_0552	Beans and Green beans
+C_0553	Other pulses
+C_056	Other
+C_06	Green fodder from arable land (total)
+C_061	Annual green fodder
+C_0611	Green maize
+C_0612	Other annual green fodder
+C_062	Perenniual green fodder
+C_063	Temporary grasses and grazings
+C_07	Other arable land crops (incl. 'Flowers and ornamental plants (excl. nurseries)' and 'Arable land seeds and seedlings')
+C_071	Flowers and ornamental plants (excl. nurseries)
+C_072	Arable land seeds and seedlings
+C_08	Permanent grassland (pastures and meadows)
+C_081	Pastures and meadows (excl rough grazing)
+C_082	Rough grazing
+C_09_13	Total permanent crops
+C_09	Fruit (excl. citrus fruit, grapes, olives) and berries
+C_091	Fruit  (excl. citrus fruit, grapes, olives)
+C_0911	Pome and stone fruit
+C_09111	Pome fruit
+C_091111	Apples
+C_091112	Pears
+C_09112	Stone fruit
+C_091121	Peaches
+C_091122	Apricots
+C_091123	Cherries
+C_091124	Plums
+C_091125	Other stone fruit
+C_0912	Nuts
+C_0913	Other fruit (excl. citrus fruit, grapes, olives)
+C_092	Berries (Soft fruit)
+C_10	Citrus fruit
+C_101	Oranges
+C_102	Lemons
+C_103	Grapefruit
+C_104	Other citrus fruit (mandarins, other)
+C_11	Grapes
+C_12	Olives
+C_121	Table olives
+C_122	Oil olives
+C_13	Other permanent crops
+C_14	Unutilized land (fallow land, not part of crop rotation)
+C_15	Fallow land as part of crop rotation (incl. green manure)
+C_151	Green manure

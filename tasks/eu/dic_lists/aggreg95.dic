@@ -1,0 +1,61 @@
+00	Gross Domestic Product
+A01	Actual individual consumption
+A0101	Food and non-alcoholic beverages
+A010101	Food
+A01010101	Bread and cereals
+A01010102	Meat
+A01010103	Fish
+A01010104	Milk, cheese and eggs
+A01010105	Oils and fats
+A01010106	Fruits, vegetables, potatoes
+A01010199	Other food
+A010102	Non-alcoholic beverages
+A0102	Alcoholic beverages, tobacco and narcotics
+A010201	Alcoholic beverages
+A010202	Tobacco
+A0103	Clothing and footwear
+A010301	Clothing
+A010302	Footwear
+A0104	Housing, water, electricity, gas and other fuels
+A010405	Electricity, gas and other fuels
+A0105	Household furnishings, equipment and maintenance
+A010501	Furniture and furnishings, carpets and other floor coverings
+A010503	Households appliances
+A0106	Health
+A010603	Hospital Services
+A0107	Transport
+A010701	Personal transport equipment
+A010703	Transport services
+A0108	Communication
+A0109	Recreation and culture
+A010901	Audio-visual, photographic and information processing equipment
+A0110	Education
+A0111	Restaurants and hotels
+A0112	Miscellaneous goods and services
+A04	Actual collective consumption
+A05	Gross fixed capital formation
+A0501	Machinery and equipment
+A050101	Fabricated metal products and equipment (except electrical and optical equipment)
+A050102	Electrical and optical equipment
+A050103	Transport equipment
+A0502	Construction
+A050201	Residential buildings
+A050202	Non-residential buildings
+A050203	Civil engineering works
+A0503	Software
+E01	Final consumption expenditure
+E011	Household final consumption expenditure
+E012	Government final consumption expenditure
+E0121	Collective consumption expenditure
+E0122	Individual consumption expenditure
+P01	Total goods
+P0101	Consumer goods
+P010101	Non-durable goods
+P010102	Semi-durable goods
+P010103	Durable goods
+P0102	Capital goods
+P02	Total services
+P0201	Consumer services
+P0202	Government services
+P020201	Collective services
+P020202	Individual services

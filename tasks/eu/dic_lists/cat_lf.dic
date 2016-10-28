@@ -1,0 +1,14 @@
+LFD	Direct labour force (LFRF+LFRNF+LFNR)
+LFR	Regular labour force (LFRF+LFRNF)
+LFRF	Family labour force
+LFH	Sole holder
+LFRMF	Members of sole holders' family
+LFS	Spouse of sole holder (until 2007)
+LFROF	Other members of sole holder's family (until 2007)
+LFNF	Non family labour force (LFRNF+LFNR)
+LFRNF	Non family labour force, employed on a regular basis, incl. group holders
+LFNRNF	Non-family labour force working on non-regular basis
+LFGH	Group holders
+LFNR	Labour force, employed on a non regular basis
+LFM	Holding managers, excl. group holdings
+LFND	Labour force, not directly employed by the holding

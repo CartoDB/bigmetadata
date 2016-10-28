@@ -1,0 +1,466 @@
+1120	Soft wheat - prices per 100 kg
+1130	Durum wheat - prices per 100 kg
+1150	Rye - prices per 100 kg
+1160	Barley - prices per 100 kg
+1161	Malting barley - prices per 100 kg
+1180	Oats - prices per 100 kg
+1200	Maize - prices per 100 kg
+1211	Sorghum - prices per 100 kg
+1217	Triticale - prices per 100 kg
+1251	Rice - prices per 100 kg
+1314	Dried peas - prices per 100 kg
+1316	Chick peas - prices per 100 kg
+1331	Dried beans - prices per 100 kg
+1338	Broad beans (dry) - prices per 100 kg
+1341	Lentils - prices per 100 kg
+1361	Main crop potatoes - prices per 100 kg
+1362	Early potatoes - prices per 100 kg
+1371	Sugar beet: unit value - prices per 1 000 kg
+1372	Sugar beet: standard quality - prices per 1 000 kg
+1430	Rape - prices per 100 kg
+1450	Sunflowers - prices per 100 kg
+1470	Soya - prices per 100 kg
+1490	Cotton (including seed) - prices per 100 kg
+1495	Groundnuts; unshelled - prices per 100 kg
+1551	Raw tobacco: all varieties - prices per 100 kg
+1552	Raw tobacco: most important variety - prices per 100 kg
+1553	Raw tobacco: 2nd most important variety - prices per 100 kg
+1561	Hops : all varieties - prices per 100 kg
+1562	Hops : most important variety - prices per 100 kg
+1621	Cauliflowers: all qualities - prices per 100 kg
+1622	Cauliflowers: quality I - prices per 100 kg
+1632	Brussels sprouts: all qualities - prices per 100 kg
+1633	Brussels sprouts: quality I - prices per 100 kg
+1636	White cabbage: all qualities - prices per 100 kg
+1637	White cabbage: quality I - prices per 100 kg
+1641	Red cabbage: all qualities - prices per 100 kg
+1642	Red cabbage: quality I - prices per 100 kg
+1646	Savoy cabbage: all qualities - prices per 100 kg
+1647	Savoy cabbage: quality I - prices per 100 kg
+1671	Celeriac: all qualities - prices per 100 kg
+1681	Lettuce in the open: all qualities - prices per 100 kg
+1682	Lettuce in the open: quality I - prices per 100 kg
+1683	Lettuce under glass: all qualities - prices per 100 kg
+1684	Lettuce under glass: quality I - prices per 100 kg
+1701	Asparagus: all qualities - prices per 100 kg
+1702	Asparagus: quality I - prices per 100 kg
+1751	Tomatoes in the open: all qualities - prices per 100 kg
+1752	Tomatoes in the open: round; quality I - prices per 100 kg
+1753	Tomatoes in the open: long; quality I - prices per 100 kg
+1754	Tomatoes under glass: all qualities - prices per 100 kg
+1755	Tomatoes under glass: quality I - prices per 100 kg
+1762	Cucumbers in the open: all qualities - prices per 100 kg
+1763	Cucumbers in the open: quality I - prices per 100 kg
+1764	Cucumbers under glass: all qualities - prices per 100 kg
+1765	Cucumbers under glass: quality I - prices per 100 kg
+1771	Melons - prices per 100 kg
+1777	Water melons - prices per 100 kg
+1831	Carrots: all qualities - prices per 100 kg
+1832	Carrots: quality I - prices per 100 kg
+1851	Onions: all qualities - prices per 100 kg
+1891	Green peas: all qualities - prices per 100 kg
+1892	Green peas: quality I - prices per 100 kg
+1902	French beans: all qualities - prices per 100 kg
+1903	French beans: quality I - prices per 100 kg
+1910	Cultivated mushrooms: all qualities - prices per 100 kg
+1925	Broccoli - prices per 100 kg
+1926	Chinese cabbage - prices per 100 kg
+1927	Scarlet runners (beans) - prices per 100 kg
+1928	Garlic - prices per 100 kg
+1929	Kohlrabi - prices per 100 kg
+1930	Radish - prices per 100 kg
+1931	Eissalat/Bummerlsalat - prices per 100 kg
+1932	Spinach - prices per 100 kg
+2111	Dessert apples: all varieties - prices per 100 kg
+2112	Dessert apples: Golden delicious - prices per 100 kg
+2114	Dessert apples: Cox's orange pippin - prices per 100 kg
+2131	Dessert pears: all varieties - prices per 100 kg
+2133	Dessert pears: Williams - prices per 100 kg
+2138	Dessert pears: Doyenne du comice - prices per 100 kg
+2181	Peaches: all varieties - prices per 100 kg
+2191	Apricots: all varieties - prices per 100 kg
+2201	Cherries: sweet cherries - prices per 100 kg
+2202	Cherries: sour cherries - prices per 100 kg
+2213	Plums: quetsches - prices per 100 kg
+2214	Plums: greengages - prices per 100 kg
+2215	Plums: mirabelles - prices per 100 kg
+2219	Plums for drying and other plums - prices per 100 kg
+2225	Dates - prices per 100 kg
+2231	Walnuts - prices per 100 kg
+2232	Hazelnuts - prices per 100 kg
+2233	Almonds - prices per 100 kg
+2236	Chestnuts - prices per 100 kg
+2241	Pistachios - prices per 100 kg
+2251	Fresh figs - prices per 100 kg
+2253	Avocados - prices per 100 kg
+2256	Dried figs - prices per 100 kg
+2258	Bananas - prices per 100 kg
+2261	Strawberries in the open - prices per 100 kg
+2262	Strawberries under glass - prices per 100 kg
+2263	Strawberries: all types of production - prices per 100 kg
+2320	Oranges: all varieties - prices per 100 kg
+2331	Oranges: Moro - prices per 100 kg
+2332	Oranges: Sanguinello - prices per 100 kg
+2334	Oranges: Tarocco - prices per 100 kg
+2335	Oranges: Washington navels - prices per 100 kg
+2336	Oranges: Valencia - prices per 100 kg
+2351	Mandarins: all varieties - prices per 100 kg
+2352	Mandarins: Satsumas - prices per 100 kg
+2353	Tangerines: all varieties - prices per 100 kg
+2360	Mandarins: clementines - prices per 100 kg
+2371	Lemons: all varieties - prices per 100 kg
+2372	Lemons: Verdelli - prices per 100 kg
+2373	Lemons: Invernali - prices per 100 kg
+2374	Lemons: Vernia - prices per 100 kg
+2375	Lemons: Mesero - prices per 100 kg
+2416	Raisins - prices per 100 kg
+2418	Currants - prices per 100 kg
+2419	Sultanas - prices per 100 kg
+2421	Dessert grapes: all varieties - prices per 100 kg
+2445	Grapes for wine production (prices per 100 kg) - prices per 100 kg
+2460	Table olives - prices per 100 kg
+2971	Carobs - prices per 100 kg
+3051	Azaleas (potted) - prices per 100 items
+3054	Chrysanthemums (potted) - prices per 100 items
+3057	Cyclamens (potted) - prices per 100 items
+3064	Poinsettias (potted) - prices per 100 items
+3100	Roses - prices per 100 items
+3103	Baccara roses - prices per 100 items
+3110	Carnations - prices per 100 items
+3120	Chrysanthemums - prices per 100 items
+3130	Gladioli - prices per 100 items
+3140	Tulips - prices per 100 items
+3150	Freesias - prices per 100 items
+3810	Wine must - prices per 100 litres
+3821	White wine - prices per 100 litres
+3822	Red wine - prices per 100 litres
+3823	Rose wine - prices per 100 litres
+3831	Beziers - prices per 100 litres
+3832	Montpellier - prices per 100 litres
+3833	Narbonne - prices per 100 litres
+3834	Carcassonne - prices per 100 litres
+3835	Nîmes - prices per 100 litres
+3836	Perpignan - prices per 100 litres
+3840	Asti - prices per 100 litres
+3841	Verona - prices per 100 litres
+3842	Reggio Emilia - prices per 100 litres
+3843	Teramo - prices per 100 litres
+3844	Matera - prices per 100 litres
+3845	Brindisi - prices per 100 litres
+3846	Bari - prices per 100 litres
+3847	Catanzaro - prices per 100 litres
+3848	Sassari - prices per 100 litres
+3849	Forli - prices per 100 litres
+3850	Viterbo - prices per 100 litres
+3851	Foggia - prices per 100 litres
+3852	Taranto - prices per 100 litres
+3855	Elbling - prices per 100 litres
+3856	Rivaner - prices per 100 litres
+3861	Retsina (white) - prices per 100 litres
+3862	Aretsinoto (white) - prices per 100 litres
+3863	Kokkino - prices per 100 litres
+3871	Portugieser - prices per 100 litres
+3872	Riesling - prices per 100 litres
+3873	Sylvaner or mueller-thurgau - prices per 100 litres
+3881	Young white wine - prices per 100 litres
+3882	Young red wine - prices per 100 litres
+3883	Young rose and clairet wines - prices per 100 litres
+3901	Corbières - prices per 100 litres
+3902	Côtes de provence - prices per 100 litres
+3903	Côtes du Rhône - prices per 100 litres
+3904	Bordeaux blancs - prices per 100 litres
+3906	Muscadet - prices per 100 litres
+3910	Barbera: Asti - prices per 100 litres
+3911	Dolcetto delle langhe: Cuneo - prices per 100 litres
+3912	Barbera: Cuneo - prices per 100 litres
+3913	Cabernet e merlot di collina: Bolzano - prices per 100 litres
+3914	Merlot: Treviso - prices per 100 litres
+3915	Cabernet: Treviso - prices per 100 litres
+3916	Lambrusco: Modena - prices per 100 litres
+3917	Sangiovese: Forli - prices per 100 litres
+3918	Albana: Forli - prices per 100 litres
+3919	Chianti: Siena - prices per 100 litres
+3920	Castelli (frascati-grottaferrata): Roma - prices per 100 litres
+3925	Auxerrois - prices per 100 litres
+3926	Riesling - prices per 100 litres
+3927	Pinot blanc - prices per 100 litres
+3928	Pinot gris - prices per 100 litres
+3931	Samos - prices per 100 litres
+3941	Dao - prices per 100 litres
+3950	Casked white wine, all qualities - prices per 100 litres
+3951	Casked red wine, all qualities - prices per 100 litres
+3963	Extra vergine - prices per 100 litres
+3964	Sopraffino - fine - prices per 100 litres
+3965	Fino - prices per 100 litres
+3966	Semi-fine - prices per 100 litres
+3967	Comune - prices per 100 litres
+3968	Lampante - prices per 100 litres
+3969	Extra: grade I - prices per 100 litres
+1554	Raw tobacco: flue cured - prices per 100 kg
+1555	Raw tobacco: light air cured - prices per 100 kg
+1556	Raw tobacco: dark air cured - prices per 100 kg
+1557	Raw tobacco: fire cured - prices per 100 kg
+1558	Raw tobacco: sun cured - prices per 100 kg
+1583	Carthame - prices per 100 kg
+1911	Courgettes - prices per 100 kg
+1912	Chicory in the open - prices per 100 kg
+1913	Leeks in the open - prices per 100 kg
+1914	Gherkins in the open - prices per 100 kg
+1915	Capsicum (under glass) - prices per 100 kg
+1916	Winter cabbage - prices per 100 kg
+1917	Summer and winter cabbage - prices per 100 kg
+1918	Spring greens - prices per 100 kg
+1919	Green beans - prices per 100 kg
+1920	Beetroot - prices per 100 kg
+1921	Parsnips - prices per 100 kg
+1922	Celery - prices per 100 kg
+1923	Calabrese - prices per 100 kg
+2115	Dessert apples: Jonagold - prices per 100 kg
+2116	Dessert apples: Elstar - prices per 100 kg
+2117	Dessert apples: Jonathon - prices per 100 kg
+2118	Dessert apples: Egrement russet - prices per 100 kg
+2119	Dessert apples: Spartan - prices per 100 kg
+2120	Cider apples - prices per 100 kg
+2121	Cooking appels: Bramley's seedling - prices per 100 kg
+2139	Dessert pears: Conference - prices per 100 kg
+2264	Raspberries - prices per 100 kg
+2265	Blackcurrents - prices per 100 kg
+3065	Pelargonium (potted) - prices per 100 items
+3066	Ficus (potted) - prices per 100 items
+3067	Kalanchoe (potted) - prices per 100 items
+3068	Saint Paulia (potted) - prices per 100 items
+3069	Begonia (potted) - prices per 100 items
+3151	Lilium - prices per 100 items
+3152	Dianthus - prices per 100 items
+3153	Gerbera - prices per 100 items
+3154	Cymbidium - prices per 100 items
+3155	Chrysanthemums : spray - prices per 100 items
+3156	Chrysanthemums : bloom - prices per 100 items
+3700	Red wine (10-12 % vol.) - prices per 100 litres
+3701	Red wine (12.5-15 % vol.) - prices per 100 litres
+3702	White wine (10-13 % vol.) - prices per 100 litres
+3705	Oltrepo pavese Barbera: Pavia - prices per 100 litres
+3706	Alto Adige Schiava: Bolzano - prices per 100 litres
+3707	Caldaro Classico superiore: Bolzano - prices per 100 litres
+3708	Trentino Chardonnay: Trento - prices per 100 litres
+3709	Bardolino: Verona - prices per 100 litres
+3710	Soave classico: Verona - prices per 100 litres
+3711	Valpolicella: Verona - prices per 100 litres
+3712	Chianti: Firenze - prices per 100 litres
+3713	Prosecco di Conegliano: Treviso - prices per 100 litres
+3714	Piave Merlot: Treviso - prices per 100 litres
+3715	Friuli Grave Merlot: Pordenone - prices per 100 litres
+3716	Colli piacentini Gutturnio: Piacenza - prices per 100 litres
+3717	Lambrusco reggiano: Reggio Emilia - prices per 100 litres
+3718	Verdicchio dei Colli di Jesi classico: Ancona - prices per 100 litres
+3719	Trebbiano d'Abruzzo: Chieti - prices per 100 litres
+3720	Orvieto classico: Terni - prices per 100 litres
+3721	Frascati superiore: Roma - prices per 100 litres
+3722	Montepulciano d'Abruzzo: Chieti - prices per 100 litres
+3837	Table wine: France - prices per 100 litres
+3838	Standard wine: France - prices per 100 litres
+3884	Clairet - prices per 100 litres
+3730	Porto
+3731	Vinho Verde, white wine
+3732	Vinho Verde, red wine
+3733	Alentejo, white wine
+3734	Alentejo, red wine
+3735	Dão, white wine
+3736	Dão, red wine
+3737	Douro, white wine
+3738	Douro, red wine
+3739	Ribatejo, white wine
+3740	Ribatejo, red wine
+3741	Távora-Varosa, white wine
+3742	Távora-Varosa, red wine
+3743	Beira Interior, white wine
+3744	Beira Interior, red wine
+3745	Alenquer, Arruda and Torres Vedras, white wine
+3746	Alenquer, Arruda and Torres Vedras, red wine
+3747	Bairrada, white wine
+3748	Bairrada, red wine
+3749	Other regions, white wine
+3750	Other regions, red wine
+4150	Calves - prices per 100 kg live weight
+4161	Young cattle - prices per 100 kg live weight
+4162	Heifers - prices per 100 kg live weight
+4171	Cows A (1st quality) - prices per 100 kg live weight
+4172	Cows B (2nd quality) - prices per 100 kg live weight
+4173	Cows C (3rd quality) - prices per 100 kg live weight
+4180	Bullocks - prices per 100 kg live weight
+4210	Calves (carcasses) - prices per 100 kg carcass weight
+4232	Calves (of a few days) - prices per head
+4233	Calves (of a few weeks) - prices per head
+4234	Young cattle (store) - prices per head
+4235	Heifers (store) - prices per head
+4242	Young bulls (U3) - prices per 100 kg
+4245	Young bulls (R3) - prices per 100 kg
+4248	Young bulls (O3) - prices per 100 kg
+4254	Bulls (R3) - prices per 100 kg
+4263	Steers (R3) - prices per 100 kg
+4266	Steers (O3) - prices per 100 kg
+4272	Cows (R3) - prices per 100 kg
+4275	Cows (O3) - prices per 100 kg
+4278	Cows (P2) - prices per 100 kg
+4283	Heifers (R3) - prices per 100 kg
+4286	Heifers (O3) - prices per 100 kg
+4291	Young bulls (unit values) - prices per 100 kg
+4293	Steers (unit values) - prices per 100 kg
+4294	Cows (unit values) - prices per 100 kg
+4295	Heifers (unit values) - prices per 100 kg
+4296	Adult cattle (unit values) - prices per 100 kg
+4412	Pigs (light) - prices per 100 kg live weight
+4421	Pigs (carcasses) (grade II) - prices per 100 kg
+4425	Pigs (carcasses) (grade I) - prices per 100 kg
+4440	Piglets - prices per 100 kg live weight
+4610	Horses - prices per 100 kg live weight
+4620	Horses - prices per 100 kg dead weight
+4727	Suckling lambs - prices per 100 kg live weight
+4732	Fattening lambs - prices per 100 kg live weight
+4733	Sheep - prices per 100 kg live weight
+4752	Kids - prices per 100 kg live weight
+4753	Goats - prices per 100 kg live weight
+4821	Chickens (live; 1st choice) - prices per 100 kg live weight
+4871	Chickens (class A; slaughtered) - prices per 100 kg dead weight
+4933	Broiling fowl (slaughtered) - prices per 100 kg dead weight
+4952	Ducks (slaughtered) - prices per 100 kg dead weight
+4971	Turkey-hens (slaughtered) - prices per 100 kg dead weight
+4972	Turkey-cocks (slaughtered) - prices per 100 kg dead weight
+5021	Rabbits - prices per 100 kg live weight
+5022	Rabbits (slaughtered) - prices per 100 kg dead weight
+5180	Raw cows' milk; 3.7% fat content - prices per 100 kg
+5185	Raw cows' milk; actual fat content - prices per 100 kg
+5191	Raw sheep milk - prices per 100 kg
+5192	Raw goats' milk - prices per 100 kg
+5315	Fresh eggs (whole country) - prices per 100 items
+5411	Whole cows' milk for human consumption - prices per 100 litres
+5415	Cream - prices per 100 kg
+5421	Condensed milk; unsweetened - prices per 100 kg
+5422	Condensed milk; sweetened - prices per 100 kg
+5428	Skimmed milk powder; not denatured - prices per 100 kg
+5431	Yoghurt (10 % fat content) - prices per 100 kg
+5435	Butter - prices per 100 kg
+5545	Cheese (fat content 30 %) - prices per 100 kg
+5546	Cheese (fat content 45 %) - prices per 100 kg
+5511	Emmentaler - Emmenthal - prices per 100 kg
+5512	Cantal - prices per 100 kg
+5514	Grana (>ou= 1 anno) - prices per 100 kg
+5515	Cheddar - prices per 100 kg
+5516	Cheshire - prices per 100 kg
+5517	Pecorino - prices per 100 kg
+5520	Groviera - prices per 100 kg
+5521	Kasseri - prices per 100 kg
+5522	Kefalotiri - prices per 100 kg
+5531	Gouda - prices per 100 kg
+5532	Edamer - Edammer - prices per 100 kg
+5533	Tilsiter - prices per 100 kg
+5534	St. Paulin - prices per 100 kg
+5535	Provolone - prices per 100 kg
+5536	Fontina - prices per 100 kg
+5538	Börenkaas - prices per 100 kg
+5539	Havarti 45% - prices per 100 kg
+5540	Havarti 30% - prices per 100 kg
+5541	Esrom - prices per 100 kg
+5542	Samso-danbo 30% - prices per 100 kg
+5543	Samso-danbo 45% - prices per 100 kg
+5544	Asiago - prices per 100 kg
+5562	Gorgonzola - prices per 100 kg
+5563	Blue stilton - prices per 100 kg
+5564	Danablu - prices per 100 kg
+5565	Roquefort - prices per 100 kg
+5571	Camembert - Camembert normand - prices per 100 kg
+5572	Limburger - prices per 100 kg
+5573	Brie laitier - prices per 100 kg
+5574	Carré de l'est - prices per 100 kg
+5575	Munster - prices per 100 kg
+5576	Taleggio - prices per 100 kg
+5578	Feta - prices per 100 kg
+5580	Chèvre laitier - prices per 100 kg
+5581	Ricotta - prices per 100 kg
+5582	Parmigiano reggiano (+ 1 anno) - prices per 100 kg
+5583	Italico - prices per 100 kg
+5584	Mozzarella - prices per 100 kg
+5589	Hushalls - prices per 100 kg
+5590	Herrgards - prices per 100 kg
+5599	Cheese processed - prices per 100 kg
+5610	Raw wool - prices per 100 kg
+5630	Honey - prices per 100 kg
+7523	Heating gas oil - prices per 100 litres
+7526	Residual fuel oil (prices/100 kg) - prices per 100 kg
+7531	Motor spirit - prices per 100 litres
+7535	Diesel oil - prices per 100 litres
+7631	Sulphate of ammonia - prices per 100 kg of nutritive substance
+7634	Ammonium nitrate (20.5 % N) - prices per 100 kg of nutritive substance
+7635	Ammonium nitrate (26% N) (in sacks) - prices per 100 kg of nutritive substance
+7636	Ammonium nitrate (26% N) (in bulk) - prices per 100 kg of nutritive substance
+7645	Ammonium nitrate (33% N) (in sacks) - prices per 100 kg of nutritive substance
+7646	Ammonium nitrate (33% N) (in bulk) - prices per 100 kg of nutritive substance
+7647	Urea - prices per 100 kg of nutritive substance
+7670	Superphosphate (18% P205) - prices per 100 kg of nutritive substance
+7674	Triple Superphosphate (46% P205) - prices per 100 kg of nutritive substance
+7681	Muriate of potash - prices per 100 kg of nutritive substance
+7685	Sulphate of potash - prices per 100 kg of nutritive substance
+7711	Binary fertilizers: 1 - 1 - 0 - prices per 100 kg merchandise
+7721	Binary fertilizers: 0 - 1 - 1 - prices per 100 kg merchandise
+7725	Binary fertilizers: 0 - 20 - 20 - prices per 100 kg merchandise
+7750	Ternary fertilizers: 1 - 0;5 - 0;5 - prices per 100 kg merchandise
+7755	Ternary fertilizers: 20 - 10 - 10 - prices per 100 kg merchandise
+7758	Ternary fertilizers: 1 - 1 - 1 (in sacks) - prices per 100 kg merchandise
+7759	Ternary Fertilizers: 17 - 17 - 17 (in sacks) - prices per 100 kg merchandise
+7766	Ternary fertilizers: 1 - 1 - 1 (in bulk) - prices per 100 kg merchandise
+7767	Ternary Fertilizers : 17 - 17 - 17 (in bulk) - prices per 100 kg merchandise
+7770	Ternary Fertilizers : 26 - 2 - 3 - prices per 100 kg merchandise
+7771	Ternary Fertilizers : 20 - 4 - 8 - prices per 100 kg merchandise
+7772	Ternary Fertilizers : 18 - 5 - 10 - prices per 100 kg merchandise
+7773	Ternary Fertilizers : 23 - 5 - 10 - prices per 100 kg merchandise
+7774	Ternary Fertilizers : 18 - 3 - 12 - prices per 100 kg merchandise
+7775	Ternary Fertilizers : 12 - 6 - 17 - prices per 100 kg merchandise
+7776	Ternary Fertilizers : 14 - 9 - 10 - prices per 100 kg merchandise
+7780	Ternary fertilizers: 1 - 1 - 2 - prices per 100 kg merchandise
+7785	Ternary fertilizers: 9 - 9 - 18 - prices per 100 kg merchandise
+7790	Ternary fertilizers: 1 - 2 - 2 - prices per 100 kg merchandise
+7795	Ternary fertilizers: 10 - 20 - 20 - prices per 100 kg merchandise
+8041	Feedingstuffs: fodder wheat - prices per 100 kg
+8043	Feedingstuffs: barley - prices per 100 kg
+8044	Feedingstuffs: oats - prices per 100 kg
+8045	Feedingstuffs: maize - prices per 100 kg
+8052	Feedingstuffs: wheat bran - prices per 100 kg
+8054	Feedingstuffs: ground barley - prices per 100 kg
+8056	Feedingstuffs: ground maize - prices per 100 kg
+8075	Linseed cake (expeller) - prices per 100 kg
+8079	Toasted extracted soyabean meal - prices per 100 kg
+8120	Animal meal - prices per 100 kg
+8125	Fish meal - prices per 100 kg
+8140	Field beans - prices per 100 kg
+8141	Field peas - prices per 100 kg
+8142	Fodder peas - prices per 100 kg
+8153	Dried sugar beet pulp - prices per 100 kg
+8171	Meadow hay - prices per 100 kg
+8175	Dried lucerne - prices per 100 kg
+8180	Cereal straw - prices per 100 kg
+8233	Complementary feed for rearing calves - prices per 100 kg
+8237	Milk replacer for fattening calves (in sacks) - prices per 100 kg
+8238	Milk replacer for fattening calves (in bulk) - prices per 100 kg
+8253	Complementary feed for dairy cattle at grass - prices per 100 kg
+8254	Complementary feed for dairy cattle (stall-fed) (in sacks) - prices per 100 kg
+8255	Complementary feed for dairy cattle (stall-fed) (in bulk) - prices per 100 kg
+8256	Protein-rich complementary feed for dairy cattle (stall-fed) (in sacks) - prices per 100 kg
+8257	Protein-rich complementary feed for dairy cattle (stall-fed) (in bulk) - prices per 100 kg
+8263	Complementary feed for cattle fattening (in sacks) - prices per 100 kg
+8264	Complementary feed for cattle fattening (in bulk) - prices per 100 kg
+8265	Protein-rich complementary feed for cattle fattening (in sacks) - prices per 100 kg
+8266	Protein-rich complementary feed for cattle fattening (in bulk) - prices per 100 kg
+8288	Complete feed for rearing pigs (in sacks) - prices per 100 kg
+8289	Complete feed for rearing pigs (in bulk) - prices per 100 kg
+8292	Complete feed for sows (in sacks) - prices per 100 kg
+8293	Complete feed for sows (in bulk) - prices per 100 kg
+8296	Complete feed for fattening pigs (in sacks) - prices per 100 kg
+8297	Complete feed for fattening pigs (in bulk) - prices per 100 kg
+8307	Baby chick feed (in sacks) - prices per 100 kg
+8308	Baby chick feed (in bulk) - prices per 100 kg
+8312	Complete feed for rearing pulle (in sacks) - prices per 100 kg
+8313	Complete feed for rearing pulle (in bulk) - prices per 100 kg
+8319	Complete feed for battery laying hens (in sacks) - prices per 100 kg
+8320	Complete feed for battery laying hens (in bulk) - prices per 100 kg
+8327	Complete feed for broiler production (in sacks) - prices per 100 kg
+8328	Complete feed for broiler production (in bulk) - prices per 100 kg

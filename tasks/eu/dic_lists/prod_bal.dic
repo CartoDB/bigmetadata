@@ -1,0 +1,170 @@
+B1100	Cereals - Total
+B1110	Wheat - Total
+B1111	Common wheat
+B1112	Durum wheat (Triticum durum)
+B1120	Cereals other than wheat
+B1121	Rye and maslin
+B1122	Barley
+B1123	Oats and mixed grains other than maslin
+B1124	Maize
+B1125	Triticale
+B1129	Cereals n.e.s. (inluding sorghum)
+B1130	Cereals - Total, farm
+B1140	Wheat - Total, farm
+B1141	Common wheat, farm
+B1142	Durum wheat (Triticum durum), farm
+B1150	Cereals other than wheat, farm
+B1151	Rye and maslin, farm
+B1152	Barley, farm
+B1153	Oats and mixed grains other than maslin, farm )
+B1154	Maize, farm
+B1155	Triticale, farm
+B1159	Cereals n.e.s. (inluding sorghum), farm
+B1160	Cereals - Total, market
+B1170	Wheat - Total, market
+B1171	Common wheat, market
+B1172	Durum wheat (Triticum durum), market
+B1180	Cereals other than wheat, market
+B1181	Rye and maslin, market
+B1182	Barley, market
+B1183	Oats and mixed grains other than maslin, market
+B1184	Maize, market
+B1185	Triticale, market
+B1189	Cereals n.e.s. (inluding sorghum), market
+B1201	Paddy rice
+B1202	Paddy rice, long
+B1203	Paddy rice, round
+B1204	Paddy rice, medium
+B1215	Husked rice
+B1216	Husked rice, long
+B1217	Husked rice, round
+B1218	Husked rice, medium
+B1220	Milled rice
+B1221	Milled rice, long
+B1222	Milled rice, rund
+B1223	Milled rice, medium
+B1230	Broken rice
+B1290	Rice - Total (equivalent milled rice)
+B1291	Rice - Total excluding broken rice (equivalent milled rice)
+B1300	Dried pulses
+B1310	Peas (including chick peas)
+B1330	Horse and broad beans
+B1340	Lupine seed
+B1410	Potatoes
+B1411	Early potatoes
+B1412	Other potatoes
+B1490	Potato starch
+B1511	Sugar beet
+B1520	Sugar (equivalent white sugar)
+B1530	Molasses
+B4900	Honey
+B5100	Oil seeds and oleaginous fruit - Total (crop-year) (until 2000/2001 incl. olives)
+B5111	Oil seeds and oleaginous fruit - Rape and turnip rape (crop-year)
+B5112	Oil seeds and oleaginous fruit - Sunflower (crop-year)
+B5113	Oil seeds and oleaginous fruit - Soja (crop-year)
+B5115	Oil seeds and oleaginous fruit - Flax (crop-year)
+B5116	Oil seeds and oleaginous fruit - Cotton (crop-year)
+B5130	Oil seeds and oleaginous fruit - Olives (crop-year)
+B5190	Oil seeds and oleaginous fruit - Others
+B5200	Vegetable fats and oils - Total (crop-year) (until 2000/2001 incl. olives)
+B520C	Vegetable fats and oils - Total (calendar-year)
+B5211	Vegetable fats and oils - rape and turnip rape (crop-year)
+B5212	Vegetable fats and oils - Sunflower (crop-year)
+B5213	Vegetable fats and oils - Soja (crop-year)
+B5215	Vegetable fats and oils - Flax
+B5217	Vegetable fats and oils - Maize kernels
+B5230	Vegetable fats and oils - Olives (crop-year)
+B5290	Vegetable fats and oils - Others
+B5300	Fats and oils of lands animal - Total (calendar-year)
+B5400	Fats and oils of marine animal - Total (calendar-year)
+B5500	Prepared fats and oils - Total (expressed in terms of crude fat) (calendar-year)
+B5531	Margarine (expressed in terms of crude fat) (calendar-year)
+B5532	Product weight (Margarine)
+B5541	White products (expressed in terms of crude fat) (calendar-year)
+B5542	Product weight (Other prepared edible fats)
+B5600	Oilcake - Total (crop-year)
+B5611	Oilcake - Rape and turnip rape (crop-year)
+B5612	Oilcake - Sunflower (crop-year)
+B5613	Oilcake - Soja (crop-year)
+B5615	Oilcake - Flax
+B5617	Oilcake - Maize (crop-year)
+B5630	Oilcake - Olives
+B5690	Oilcake - Others
+B5900	Fats and oils - Total (calendar-year)
+B1711	Cauliflowers (market balance sheet)
+B1712	Fresh tomatoes (market balance sheet)
+B1713	Processed tomatoes
+B1721	Apples (market balance sheet)
+B1722	Pears (market balance sheet)
+B1723	Fresh peaches
+B1724	Processed peaches
+B1725	Oranges (market balance sheet)
+B1726	Fresh grapes (market balance sheet)
+B1800	Vegetables
+B1910	Fresh fruit (excluding citrus fruit)
+B1920	Nuts
+B1940	Citrus fruit
+B1950	Dried fruits
+B4100	Meat - Total
+B4110	Cattle
+B4120	Pigs
+B4130	Sheep and goats
+B4140	Equidae
+B4150	Poultry
+B4160	Other meat
+B4170	Offal
+B4400	Whole milk (raw material)
+B4410	Fresh milk products except cream
+B4411	Drinking milk
+B4412	Cream
+B4420	Concentrated milk
+B4430	Whole milk powder
+B4440	Skimmed milk powder
+B4450	Butter (product weight)
+B4460	Cheese
+B4461	Processed cheese
+B4700	Eggs - Total
+B4720	Eggs for consumption
+B2000	Wine - Total
+B2001	Red and rose wine
+B2002	White wine
+B2010	Quality wines P.S.R. - Total
+B2011	Quality wines P.S.R. - Red/Rose
+B2012	Quality wines P.S.R. - White
+B2020	Table wine - Total
+B2021	Table wine - Red/Rose
+B2022	Table wine - White
+B2030	Other wines - Total
+B2031	Other wines - Red/Rose
+B2032	Other wines - White
+B2100	Vermouth
+B2200	Wine - Total
+B2201	Red and rose wine
+B2202	White wine
+B2210	Quality wines P.S.R. - Total
+B2211	Quality wines P.S.R. - Red/Rose
+B2212	Quality wines P.S.R. - White
+B2220	Table wine - Total
+B2221	Table wine - Red/Rose
+B2222	Table wine - White
+B2230	Table wine - without geographical indication
+B2231	Table wine WOGI - Red/Rose
+B2232	Table wine WOGI - White
+B2240	Table wine - with geographical indication
+B2241	Table wine WGI - RED/ROSE
+B2242	Table wine WGI - WHITE
+B2250	Other wines - Total
+B2251	Other wines - Red/Rose
+B2252	Other wines - White
+B2260	P.D.O. Total wine
+B2261	P.D.O. - Red and rose wine
+B2262	P.D.O. -  white wine
+B2270	P.G.I. Total wine
+B2271	P.G.I. - Red and rose wine
+B2272	P.G.I. - white wine
+B2280	Varietal wine - Total
+B2281	Varietal wine - Red and rose wine
+B2282	Varietal wine - white wine
+B2290	Other wine - Total
+B2291	Other wine - Red and rose wine
+B2292	Other wine - white wine

@@ -1,0 +1,231 @@
+IPC	International patent classification (IPC) - total
+A	Section A - Human necessities
+A01	Agriculture; forestry; animal husbandry; hunting; trapping; fishing
+A21	Baking; equipment for making or processing doughs; doughs for baking
+A22	Butchering; meat treatment; processing poultry or fish
+A23	Foods or foodstuffs; their treatment, not covered by other classes
+A24	Tobacco; cigars; cigarettes; smokers' requisites
+A41	Wearing apparel
+A42	Headwear
+A43	Footwear
+A44	Haberdashery; jewellery
+A45	Hand or travelling articles
+A46	Brushware
+A47	Furniture; domestic articles or appliances; coffee mills; spice mills; suction cleaners in general
+A61	Medical or veterinary science; hygiene
+A62	Life-saving; fire-fighting
+A63	Sports; games; amusements
+B	Section B - Performing operations; transporting
+B01	Physical or chemical processes or apparatus in general
+B02	Crushing, pulverising, or disintegrating; preparatory treatment of grain for milling
+B03	Separation of solid materials using liquids or using pneumatic tables or jigs; magnetic or electrostatic separation of solid materials from solid materials or fluids; separation by high-voltage electric fields
+B04	Centrifugal apparatus or machines for carrying-out physical or chemical processes
+B05	Spraying or atomising in general; applying liquids or other fluent materials to surfaces, in general
+B06	Generating or transmitting mechanical vibrations in general
+B07	Separating solids from solids; sorting
+B08	Cleaning
+B09	Disposal of solid waste; reclamation of contaminated soil
+B21	Mechanical metal-working without essentially removing material; punching metal
+B22	Casting; powder metallurgy
+B23	Machine tools; metal-working not otherwise provided for
+B24	Grinding; polishing
+B25	Hand tools; portable power-driven tools; handles for hand implements; workshop equipment; manipulators
+B26	Hand cutting tools; cutting; severing
+B27	Working or preserving wood or similar material; nailing or stapling machines in general
+B28	Working cement, clay, or stone
+B29	Working of plastics; working of substances in a plastic state in general
+B30	Presses
+B31	Making paper articles; working paper
+B32	Layered products
+B41	Printing; lining machines; typewriters; stamps
+B42	Bookbinding; albums; files; special printed matter
+B43	Writing or drawing implements; bureau accessories
+B44	Decorative arts
+B60	Vehicles in general
+B61	Railways
+B62	Land vehicles for travelling otherwise than on rails
+B63	Ships or other waterborne vessels; related equipment
+B64	Aircraft; aviation; cosmonautics
+B65	Conveying; packing; storing; handling thin or filamentary material
+B66	Hoisting; lifting; hauling
+B67	Opening or closing bottles, jars or similar containers; liquid handling
+B68	Saddlery; upholstery
+B81	Micro-structural technology
+B82	Nanotechnology
+B82Y	Nanotechnology - Specific uses or applications of nano-structures
+B82Y5	Nanobiotechnology or nano-medicine
+B82Y10	Nanotechnology for information processing, storage and transmission
+B82Y15	Nanotechnology for interacting, sensing or actuating
+B82Y20	Nanotechnology for optics
+B82Y25	Nanomagnetism
+B82Y30	Nanotechnology for materials and surface science
+B82Y35	Methods or apparatus for measurement or analysis of nanostructures
+B82Y40	Manufacture or treatment of nanostructures
+B82Y99	Subject matter not provided for in other groups of this subclass
+C	Section C - Chemistry; metallurgy
+C01	Inorganic chemistry
+C02	Treatment of water, waste water, sewage, or sludge
+C03	Glass; mineral or slag wool
+C04	Cements; concrete; artificial stone; ceramics; refractories
+C05	Fertilisers; manufacture thereof
+C06	Explosives; matches
+C07	Organic chemistry
+C08	Organic macromolecular compounds; their preparation or chemical working-up; compositions based thereon
+C09	Dyes; paints; polishes; natural resins; adhesives; compositions not otherwise provided for; applications of materials not otherwise provided for
+C10	Petroleum, gas or coke industries; technical gases containing carbon monoxide; fuels; lubricants; peat
+C11	Animal or vegetable oils, fats, fatty substances or waxes; fatty acids therefrom; detergents; candles
+C12	Biochemistry; beer; spirits; wine; vinegar; microbiology; enzymology; mutation or genetic engineering
+C13	Sugar industry
+C14	Skins; hides; pelts; leather
+C21	Metallurgy of iron
+C22	Metallurgy; ferrous or non-ferrous alloys; treatment of alloys or non-ferrous metals
+C23	Coating metallic material; coating material with metallic material; chemical surface treatment; diffusion treatment of metallic material; coating by vacuum evaporation, by sputtering, by ion implantation or by chemical vapour deposition, in general; inhibiting corrosion of metallic material or incrustation in general
+C25	Electrolytic or electrophoretic processes; apparatus therefor
+C30	Crystal growth
+C40	Combinatorial technology
+C99	Section C Other - Chemistry; metallurgy
+D	Section D - Textiles; paper
+D01	Natural or artificial threads or fibres; spinning
+D02	Yarns; mechanical finishing of yarns or ropes; warping or beaming
+D03	Weaving
+D04	Braiding; lace-making; knitting; trimmings; non-woven fabrics
+D05	Sewing; embroidering; tufting
+D06	Treatment of textiles or the like; laundering; flexible materials not otherwise provided for
+D07	Ropes; cables other than electric
+D21	Paper-making; production of cellulose
+E	Section E - Fixed constructions
+E01	Construction of roads, railways, or bridges
+E02	Hydraulic engineering; foundations; soil-shifting
+E03	Water supply; sewerage
+E04	Building
+E05	Locks; keys; window or door fittings; safes
+E06	Doors, windows, shutters, or roller blinds, in general; ladders
+E21	Earth or rock drilling; mining
+F	Section F - Mechanical engineering; lighting; heating; weapons; blasting
+F01	Machines or engines in general; engine plants in general; steam engines
+F02	Combustion engines; hot-gas or combustion-product engine plants
+F03	Machines or engines for liquids; wind, spring, or weight motors; producing mechanical power or a reactive propulsive thrust, not otherwise provided for
+F04	Positive-displacement machines for liquids; pumps for liquids or elastic fluids
+F15	Fluid-pressure actuators; hydraulics or pneumatics in general
+F16	Engineering elements or units; general measures for producing and maintaining effective functioning of machines or installations; thermal insulation in general
+F17	Storing or distributing gases or liquids
+F21	Lighting
+F22	Steam generation
+F23	Combustion apparatus; combustion processes
+F24	Heating; ranges; ventilating
+F25	Refrigeration or cooling; combined heating and refrigeration systems; heat pump systems; manufacture or storage of ice; liquefaction or solidification of gases
+F26	Drying
+F27	Furnaces; kilns; ovens; retorts
+F28	Heat exchange in general
+F41	Weapons
+F42	Ammunition; blasting
+G	Section G - Physics
+G01	Measuring; testing
+G02	Optics
+G03	Photography; cinematography; analogous techniques using waves other than optical waves; electrography; holography
+G04	Horology
+G05	Controlling; regulating
+G06	Computing; calculating; counting
+G07	Checking-devices
+G08	Signalling
+G09	Educating; cryptography; display; advertising; seals
+G10	Musical instruments; acoustics
+G11	Information storage
+G12	Instrument details
+G21	Nuclear physics; nuclear engineering
+G99	Section G Other - Physics
+H	Section H - Electricity
+H01	Basic electric elements
+H02	Generation, conversion, or distribution of electric power
+H03	Basic electronic circuitry
+H04	Electric communication technique
+H05	Electric techniques not otherwise provided for
+HT	High tech - total
+AVI	Aviation
+CAB	Computer and automated business equipment
+CTE	Communication technology
+LSR	Laser
+MGE	Micro-organism and genetic engineering
+SMC	Semiconductors
+ICT	Information and communication technology (ICT) - total
+COE	Consumer electronics
+COM	Computers, office machinery
+TEL	Telecommunications
+ICT_OTH	Other ICT
+BIO	Biotechnology sector - total
+NRG	Energy technologies - total
+BFS	Biofuels
+BMA	Biomass
+CCS	Carbon Capture and Storage
+EBU	Efficient Buildings
+FCE	Fuel cells
+GTH	Geothermal
+HEP	Heat pump
+HEX	Heat exchange
+HYD	Hydrogen
+LGT	Lighting
+SEN	Stirling engines
+SMG	Smart grids
+SOL	Solar
+STR	Storage and transport 
+TEN	Traditional engines
+TWA	Tide and wave
+WHR	Waste heat recovery
+WND	Wind
+Y02	Technologies or applications for mitigation or adaptation against climate change
+Y02C	Capture, storage, sequestration or disposal of greenhouse gases
+Y02C10	CO2 capture or storage
+Y02C1002	CO2 capture by biological separation
+Y02C1004	CO2 capture by chemical separation
+Y02C1006	CO2 capture by absorption
+Y02C1008	CO2 capture by adsorption
+Y02C1010	CO2 capture by membranes or diffusion
+Y02C1012	CO2 capture by rectification and condensation
+Y02C1014	Subterranean or submarine CO2 storage
+Y02C20	Capture or disposal of greenhouse gases other than CO2
+Y02C2010	Capture or disposal of nitrous oxide
+Y02C2020	Capture or disposal of methane
+Y02C2030	Capture or disposal of perfluorocarbons, hydrofluorocarbons or sulfur hexafluoride
+Y02E	Reduction of greenhouse gases emission, related to energy generation, transmission or distribution
+Y02E10	Energy generation through renewable energy sources
+Y02E1010	Renewable energy sources: Geothermal energy
+Y02E1020	Renewable energy sources: Hydro energy
+Y02E1030	Renewable energy sources: Energy from sea
+Y02E1040	Renewable energy sources: Solar thermal energy
+Y02E1050	Renewable energy sources: Photovoltaic energy
+Y02E1060	Renewable energy sources: Thermal-Photovoltaic hybrids
+Y02E1070	Renewable energy sources: Wind energy
+Y02E20	Combustion technologies with mitigation potential
+Y02E2010	Combined combustion
+Y02E2030	Technologies for a more efficient combustion or heat usage
+Y02E30	Energy generation of nuclear origin
+Y02E3010	Fusion reactors
+Y02E3030	Nuclear fission reactors
+Y02E40	Technologies for an efficient electrical power generation, transmission or distribution
+Y02E4010	Flexible AC transmission systems
+Y02E4020	Active power filtering
+Y02E4030	Reactive power compensation
+Y02E4040	Arrangements for reducing harmonics
+Y02E4050	Arrangements for eliminating or reducing asymmetry in polyphase networks
+Y02E4060	Superconducting electric elements and equipment
+Y02E4070	Methods and systems for the efficient management or operation of electric power systems
+Y02E50	Technologies for the production of fuel of non-fossil origin
+Y02E5010	Biofuels
+Y02E5030	Fuel from waste
+Y02E60	Technologies with potential or indirect contribution to GHG emissions mitigation
+Y02E6010	Energy storage
+Y02E6030	Hydrogen technology
+Y02E6050	Fuel cells
+Y02E70	Other energy conversion or management systems reducing GHG emissions
+Y02E7010	Hydrogen from electrolysis with energy of non-fossil origin
+Y02E7020	Systems combining fuel cells with production of fuel of non-fossil origin
+Y02E7030	Systems combining energy storage with energy generation of non-fossil origin
+Y02E7040	Batteries, ultracapacitors, supercapacitors or double-layer capacitors, charging or discharging systems or methods for reducing GHG emissions
+Y01N	Nanotechnology - total
+Y01N2	Nanobiotechnology
+Y01N4	Nanotechnology for information processing, storage and transmission
+Y01N6	Nanotechnology for materials and surface science
+Y01N8	Nanotechnology for interacting, sensing or actuating
+Y01N10	Nano optics
+Y01N12	Nanomagnetics
+UNK	Unknown

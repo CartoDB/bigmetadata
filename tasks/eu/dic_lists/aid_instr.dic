@@ -1,0 +1,34 @@
+TOTAL	Total
+EQUIT	Equity participation
+EQUIT1	Provision of risk capital
+EQUIT2	Other forms of equity intervention
+GRANT	Grant
+GRANT1	Direct grant
+GRANT2	Interest subsidy
+GUAR	Guarantee
+SOFTL	Soft loan
+SOFTL1	Reimbursable grant
+SOFTL2	Repayable advances
+TAXD	Tax deferral
+TAXD1	Tax deferment
+TAXE	Tax exemption
+TAXE1	Reduction of social security contributions
+TAXE2	Debt write-off
+TAXE3	Tax allowance
+TAXE4	Tax base reduction
+TAXE5	Tax rate reduction
+TAXE6	Other forms of tax advantage
+FCC	Financial crisis cases (FCC) - specific
+FCC1	Guarantee on liability
+FCC2	Liquidity measures other than guarantees on liabilities
+FCC3	Recapitalisation
+FCC4	Impaired assets
+FCC5	To be assessed
+OTHER1	Financing of the aid: Through parafiscal charges or taxes affected to a beneficiary
+OTHER2	Financing of the aid: Accumulated reserves
+OTHER3	Financing of the aid: Public enterprises
+OTHER4	Financing of the aid: Other
+OTHER5	Fiscal Measure
+OTHER6	Subsidised services
+NAP	Not applicable
+OTH	Other

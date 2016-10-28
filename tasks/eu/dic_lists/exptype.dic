@@ -1,0 +1,15 @@
+XTOT	Total
+XIND	Transfers to individuals
+XINDPER	Transfers to individuals - periodic cash payments
+XINDLUMP	Transfers to individuals - lump-sum payments
+XINDREIM	Transfers to individuals - reimbursements
+XINDRSOC	Transfers to individuals - reduced social contributions
+XINDRTAX	Transfers to individuals - reduced taxes
+XEMP	Transfers to employers
+XEMPPER	Transfers to employers - periodic cash payments
+XEMPLUMP	Transfers to employers - lump-sum payments
+XEMPREIM	Transfers to employers - reimbursements
+XEMPRSOC	Transfers to employers - reduced social contributions
+XEMPRTAX	Transfers to employers - reduced taxes
+XSERV	Transfers to service providers
+XNOTSPEC	Not specified

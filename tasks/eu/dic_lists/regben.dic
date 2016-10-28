@@ -1,0 +1,9 @@
+TOTAL	Total
+REGBEN	Registered as unemployed and receiving benefits/assistance
+REGNOBEN	Registered as unemployed but not receiving benefits/assistance
+NOREGBEN	Not registered as unemployed but receiving benefits/assistance
+NOREGNOBEN	Not registered as unemployed and not receiving benefits/assistance
+REGIST	Registered as unemployed
+BENEFIT	Receiving benefits/assistance
+NRESP	No answer
+UNK	Unknown

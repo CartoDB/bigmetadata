@@ -1,0 +1,4 @@
+PORT_TOT	Total number of ports
+PORT_PR	Number of principal ports
+LGT_QUAY	Total length of quays of principal ports
+LGT_QUAY_CONT	Length of quays of principal ports dedicated to containers

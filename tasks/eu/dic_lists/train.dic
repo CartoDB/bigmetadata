@@ -1,0 +1,12 @@
+TOTAL	Total
+TRN_GD	Goods trains
+TRN_PAS	Passenger trains
+TRN_OTH	Other trains
+STCL1	Seats, first class
+STCL2	Seats, second class
+STMIX	Mixed seats
+DIN	Dining cars
+CL1	First class
+CL2	Second class
+COU	Couchette coaches, sleepling cars
+BRT	Berths in couchettes and sleeping cars

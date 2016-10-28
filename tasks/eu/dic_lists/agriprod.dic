@@ -1,0 +1,965 @@
+A0000	Total of live animals
+A0010	Livestock
+A0011	Grazing livestock
+A0019	Other livestock
+A1000	Live horses, asses, mules and hinnies
+A1100	Live horses
+A1100B	Horses for slaughter
+A1200	Live asses, mules and hinnies
+A1210	Asses
+A1220	Mules
+A1230	Hinnies
+A2000	Live bovine animals
+A2000B	Bovine animals for slaughter
+A2000D	Bovine animals for meat production
+A2000E	Bovine animals not for meat production
+A2010	Bovine animals, less than 1 year
+A2010B	Bovine animals, less than 1 year, for slaughter
+A2010C	Bovine animals, less than 1 year, not for slaughter
+A2020	Bovine animals, 1 year
+A2020B	Bovine animals, 1 year, for slaughter
+A2020C	Bovine animals, 1 year, not for slaughter
+A2030	Bovine animals, 2 years or over
+A2030B	Bovine animals, 2 years or over, for slaughter
+A2030C	Bovine animals, 2 years or over, not for slaughter
+A2100_2200	Bovine animals, male and female (having not yet calved)
+A2100	Male bovine animals
+A2110	Male calves, less than 1 year
+A2110C	Male calves, less than 1 year, not for slaughter
+A2120	Male bovine animals, 1 year
+A2130	Male bovine animals, 2 years or over
+A2140	Male bovine animals, 1 years or over
+A2140A	Bullocks
+A2200_2300	Female bovine animals
+A2230_2330	Female bovine animals, 2 years or over
+A2200	Female bovine animals (having not calved)
+A2210	Female calves, less than 1 year
+A2210C	Female calves, less than 1 year, not for slaughter
+A2220	Heifers, 1 year
+A2220B	Heifers, 1 year, for slaughter
+A2220C	Heifers, 1 year, not for slaughter
+A2230	Heifers, 2 years or over
+A2230B	Heifers, 2 years or over, for slaughter
+A2230C	Heifers, 2 years or over, not for slaughter
+A2300	Cows
+A2300F	Dairy cows
+A2300G	Non dairy cows
+A2300H	Suckler cows
+A2330	Other cows, 2 years and over
+A2400	Buffaloes
+A2410	Breeding female buffaloes
+A2420	Other buffaloes
+A2421	Male buffaloes
+A2500	Live cattle
+A2510	Young cattle, less than 1 year
+A2511	Calves, less than 8 months
+A2511AA	Calves, aged of few days
+A2511AB	Calves, aged of few weeks
+A2512	Young cattle, aged from 8 months to less than 12 months
+A2900	Other bovine animals
+A3000	Live swine
+A3100	Live swine, domestic species
+A3110	Piglets, less than 20 kg
+A3120_3133	Breeding pigs
+A3120	Breeding sows
+A3120K	Covered sows
+A3120KA	Sows covered for the first time
+A3120L	Sows, not covered
+A3120LA	Gilts not yet covered
+A3130	Other pigs
+A3131	Pigs, from 20 kg to less than 50 kg
+A3132	Fattening pigs, 50 kg or over
+A3132X	Fattening pigs, from 50 kg to less than 80 kg
+A3132Y	Fattening pigs, from 80 kg to less than 110 kg
+A3132Z	Fattening pigs, 110 kg or over
+A3133	Breeding boars
+A3200	Live swine, wild species
+A4000	Live sheep and goats
+A4100	Live sheep
+A4110	Ewes and ewe-lambs, breeding females
+A4110K	Ewes and ewe-lambs put to the ram
+A4110KC	Milk ewes and ewe-lambs put to the ram
+A4110KD	Non milk ewes and ewe-lambs put to the ram
+A4120	Other sheep
+A4121	Lambs
+A4121H	Suckling lambs
+A4121P	Fattening lambs
+A4200	Live goats
+A4201	Goats, 12 months or less
+A4210	Goats, breeding females
+A4210K	Goats mated and having already kidded
+A4210KA	Goats mated for the first time
+A4210KB	Goats having already kidded
+A4210F	Dairy goats
+A4220	Other goats
+A5000	Live poultry
+A5010	Breeding poultry
+A5000X5100	Live poultry excluding chicken (species)
+A5100	Chicken (species)
+A5110	Hens
+A5110O	Laying hens
+A5110OH	Laying hens (producing eggs for consumption)
+A5110ONH	Laying hens (not producing eggs for consumption)
+A5120	Cocks
+A5130	Chicks of chicken
+A5130O	Chicks of laying hen breeds (laying)
+A5130ON	Chicks of laying hen breeds (selection)
+A5130P	Chicks of meat broiler breeds (fattening)
+A5130PN	Chicks of meat broiler breeds (selection)
+A5130M	Chicks of mixed meat-laying breeds
+A5130OM	Chicks used for laying
+A5130PM	Chicks used for fattening
+A5130N	Chicks of chicken (selection)
+A5131	Cockerels
+A5131P	Cockerels from sexing
+A5140	Broilers
+A5200	Ducks, geese, turkeys, Guinea fowls
+A5210	Ducks
+A5211P	Chicks of duck (fattening)
+A5220	Geese
+A5221P	Chicks of goose (fattening)
+A5230	Turkeys
+A5231P	Chicks of turkey (fattening)
+A5240	Guinea fowls
+A5241P	Chicks of Guinea fowls (fattening)
+A5200_6521	Other poultry including ostriches
+A5300	Other poultry
+A6000	Other animals
+A6100	Rodents
+A6110	Rabbits
+A6111	Rabbits, breeding females
+A6120	Other rodents
+A6121	Mice
+A6122	Rats
+A6123	Guinea pigs
+A6124	Hamsters
+A6125	Syrian (golden) hamsters
+A6126	Chinese hamsters
+A6127	Gerbils
+A6128	Mongolian gerbils
+A6200	Other big herbivores
+A6210	Deers
+A6220	Camels
+A6300	Carnivores
+A6310	Cats
+A6320	Dogs
+A6330	Ferrets
+A6340	Foxes
+A6390	Other carnivores
+A6400	Primates
+A6410	Prosimians
+A6420	Marmosets and tamarins
+A6430	Monkeys
+A6431	Squirrel monkeys
+A6432	Cynomolgus monkeys
+A6433	Rhesus monkeys
+A6440	Macaques and vervets
+A6450	Baboons
+A6490	Other species of primates
+A6500	Birds
+A6510	Birds, domestic species
+A6520	Birds, wild species
+A6521	Ostrich
+A6600	Reptiles and amphibians
+A6610	Reptiles
+A6620	Amphibians
+A6629	Other amphibians
+A6700	Insects
+A6710	Bees
+A6710R	Bees (hives)
+A6720	Other insects (excl. bees)
+A6900	Other live animals
+A6900A	Other animals excluding ostriches, rabbits, bees, insects and pet animals
+B0000	Total of meat and edible meat offal
+B0010	Meat of livestock
+B1000	Bovine meat
+B1100	Calve and young cattley
+B1110	Calve
+B1120	Young cattle
+B1200	Adult cattle
+B1210_1220	Bullock and bull
+B1210	Bullock
+B1220	Bull
+B1230	Cow
+B1240	Heifer
+B3000	Meat of swine
+B3100	Pigmeat
+B3100A	Swine (grade I)
+B3100B	Swine (grade II)
+B4000	Meat of sheep and goats
+B4100	Sheepmeat
+B4110	Lamb
+B4120	Mutton
+B4200	Goat meat
+B5000	Meat of horses, asses, mules or hinnies
+B6000	Edible offal
+B7000	Poultry meat
+B7100	Chicken
+B7110	Broiler
+B7120	Boiling hen
+B7200	Duck
+B7300	Turkey
+B7400	Goose, guinea fowl and other poultry
+B7410	Goose
+B7420	Guinea fowl
+B7490	Other poultry
+B8000	Meat of rabbits
+B9000	Other meat
+D0000	Milk, cheese and eggs
+D0100	Milk products
+D0100AD	Farm milk products delivered to dairies
+D0110	Fresh products
+D0120	Manufactured products
+D0200	Milk products, other than?
+D0210D	Milk products, other than drinking milk, cream, butter and cheese, delivered to dairies
+D0220D	Milk products, other than milk and cream, delivered to dairies
+D0230D	Other milk products (than milk, cream, skimmed milk and buttermilk) delivered to dairies
+D1000	Raw milk and cream
+D1100	Milk or Raw milk
+D1100A	Raw milk, total available on farms
+D1100DU	Raw milk, total available on dairies  (=total used)
+D1100D	Raw milk delivered to dairies
+D1100F	Raw milk for feed
+D1100DLA	Raw milk, differences and losses on farms
+D1100DLD	Raw milk, differences and losses in dairies
+D1100OUD	Raw milk, other uses by dairies
+D1110	Raw cows' milk
+D1110D	Raw cows' milk delivered to dairies
+D1110A	Raw cows' milk from farm
+D1111A	Dairy raw cows' milk from farm
+D1112A	Non-dairy raw cows' milk from farm
+D1120	Ewes' milk
+D1120D	Ewes' milk delivered to dairies
+D1120A	Ewes' milk from farm
+D1130	Goats' milk
+D1130D	Goats' milk delivered to dairies
+D1130A	Goats' milk from farm
+D1140D	Buffalos' milk delivered to dairies
+D1140A	Buffalos' milk from farm
+D1190	Raw milk from other species
+D1200A	Raw cream from farm
+D1200D	Raw cream delivered to dairies
+D1200DME	Raw cream delivered to dairies (in milk equivalent)
+D2000	Milk and cream, not concentrated nor containing added sugar or other sweetening matter
+D2000X	Milk and cream in bulk: Exports
+D2000Y	Milk and cream in bulk: Exports intra-EU
+D2100	Drinking milk
+D2110	Raw drinking milk
+D2110V	Drinking milk - Direct sales
+D2110H	Drinking milk - Home consumption
+D2120	Whole milk
+D2120I	Imports of whole milk (including raw milk)
+D2120J	Imports (intra-EU) of whole milk (including raw milk)
+D2121	Whole milk pasteurised
+D2122	Whole milk sterilised
+D2123	Whole milk uperised
+D2130	Partly skimmed milk
+D2131	Partly skimmed milk pasteurised
+D2132	Partly skimmed milk sterilised
+D2133	Partly skimmed milk uperised
+D2140_4200A	Skimmed milk and buttermilk, total available on farms
+D2140_4200RD	Skimmed milk and buttermilk returned by dairies
+D2140_4200BC	Skimmed milk and buttermilk : Balance of cream deliveries
+D2140_4200AB	Skimmed milk and buttermilk from butter and cream production
+D2140_4200D	Skimmed milk and buttermilk delivered to dairies
+D2140	Skimmed milk
+D2140RA	Skimmed milk - returned to the farm
+D2140I	Imports of skimmed milk
+D2140J	Imports (intra-EU) of skimmed milk
+D2141	Skimmed milk pasteurised
+D2142	Skimmed milk sterilised
+D2143	Skimmed milk uperised
+D2200_6110A	Cream and butter from farm
+D2200	Cream
+D2200V	Cream for direct consumption
+D2201	Cream of fat content by weight not exceeding 29 %
+D2202	Cream of fat content by weight over 29 %
+D2200IME	Imports of cream (in milk equivalent)
+D2200JME	Imports (intra-EU) of cream (in milk equivalent)
+D3000	Milk and cream, concentrated or containing added sugar or other sweetening matter
+D3100	Powder products
+D3100_X_3113	Milk and cream powders, excluding skimmed milk powders
+D3110	Milk powder
+D3111	Whole milk powder
+D3112	Partly skimmed milk powder
+D3113	Skimmed milk powder
+D3120	Cream milk powder
+D3130	Buttermilk powder
+D3190	Other powder products
+D3200	Concentrated milk
+D3210	Concentrated milk not sweetened
+D3220	Concentrated milk sweetened
+D4000	Buttermilk, curdled milk and cream, yogurt, kephir and other fermented or acidified milk and cream
+D4100	Acidified milk (yoghurts and other)
+D4110	Acidified milk with additives
+D4120	Acidified milk without additives
+D4200	Buttermilk
+D5000	Whey
+D5100	Whey (liquid)
+D5200	Whey (concentrated)
+D5300	Whey (in powder or in block)
+D5400	Lactose (milk sugar)
+D5500	Lactalbumin
+D6000	"Butter, incl. dehydrated butter and ghee, and other fats and oils derived from milk; dairy spreads"
+D6100	Butter
+D6100A	Farm butter
+D6100AD	Farm butter delivered to dairies
+D6110	Traditional butter
+D6120	Recombined butter
+D6130	Whey butter
+D6200	Rendered butter and butteroil
+D6900	Other yellow fat dairy products
+D6910	Reduced-fat butter
+D6990	Other yellow fat dairy products (without Reduced-fat butter)
+D7000	Cheese and curd
+D7100	Cheese
+D7100A	Farm cheese
+D7100AD	Farm cheese delivered to dairies
+D7110	All types of cheese
+D7111	Soft cheese
+D7112	Medium soft cheese
+D7113	Medium hard cheese
+D7114	Hard cheese
+D7115	Extra hard cheese
+D7116	Fresh cheese
+D7120	Cheese from animals
+D7121	Cheese from cows'milk (pure)
+D7122	Cheese from ewes milk (pure)
+D7123	Cheese from goats milk (pure)
+D7129	Others (cheese from buffalos'milk (pure) or mixed cheese)
+D7200	Processed cheese
+D8000	Eggs
+D8000H	Eggs for consumption
+D8100	Fertilised eggs from domestic bird species, for incubation
+D8110	Hens' eggs
+D8120	Ducks' eggs
+D8130	Geeses' eggs
+D8140	Turkeys' eggs
+D8150	Guinea fowls' eggs
+D8190	Eggs from other species
+D8200	Eggs in shell from domestic birdspecies,not for incubation
+D8210	Hens' eggs
+D8290	Eggs from other species
+D8300	Eggs not in shell
+D9000	Other milk products
+D9000I	Imports of other products
+D9000J	Imports (intra-EU) of other products
+D9100	Drinks with a milk base
+D9200	Other fresh products  (milk-based desserts, ice cream)
+D9300	Caseins and caseinates
+D9400	Chocolate crumb
+D9500	Other organic dairy products
+D9900A	Other products collected from farm
+D9910	Honey
+CRP	Crop products
+UAA	Utilised Agricultural Area
+UAAT	Utilised Agricultural Area - outdoor
+UAAS	Utilised Agricultural Area - under glass or high accessible cover
+UAAXK0000	Utilised agricultural area excluding kitchen gardens
+ARA	Arable land
+C0000	Cereals for the production of grain (including seed)
+C1000	Cereals (excluding rice) for the production of grain (including seed)
+C1000X1500	Cereals (excluding rice, grain maize and corn-cob-mix) for the production of grain (including seed)
+C1100	Wheat and spelt
+C1110	Common wheat and spelt
+C1111	Common winter wheat and spelt
+C1112	Common spring wheat and spelt
+C1120	Durum wheat
+C1121	Winter durum wheat
+C1122	Spring durum wheat
+C1200	Rye and winter cereal mixtures (maslin)
+C1210	Rye
+C1211	Winter rye
+C1212	Spring rye
+C1220	Winter cereal mixtures (maslin)
+C1300	Barley
+C1300F	Fodder barley
+C1310	Winter barley
+C1320	Spring barley
+C1320M	Malting barley
+C1400	Oats and spring cereal mixtures (mixed grain other than maslin)
+C1410	Oats
+C1420	Spring cereal mixtures (mixed grain other than maslin)
+C1500	Grain maize and corn-cob-mix
+C1510	Grain maize
+C1520	Corn-cob-mix
+C1600_1700_1900	Other cereals (including triticale and sorghum)
+C1600	Triticale
+C1610	Winter triticale
+C1700	Sorghum
+C1900	Other cereals n.e.c. (buckwheat, millet, canary seed, etc.)
+C1910	Buckwheat
+C2000	Rice
+C2000X2000B	Rice (excluding broken rice) (equivalent milled rice)
+C2100	Rice Indica
+C2200	Rice Japonica
+C2000B	Broken rice
+C2000Y	Paddy rice
+C2001Y	Paddy rice, long
+C2002Y	Paddy rice, round
+C2003Y	Paddy rice, medium
+C2000U	Husked rice
+C2001U	Husked rice, long
+C2002U	Husked rice, round
+C2003U	Husked rice, medium
+C2000L	Milled rice
+C2001L	Milled rice, long
+C2002L	Milled rice, round
+C2003L	Milled rice, medium
+P0000	Dry pulses and protein crops for the production of grain (including seed and mixtures of cereals and pulses)
+P1000	Field peas, beans and sweet lupins
+P1100	Field peas
+P1200	Broad and field beans
+P1210	Broad beans
+P1220	Field beans
+P1300	Sweet lupins
+P9000	Other dry pulses and protein crops n.e.c.
+P9100	Lentils
+P9200	Chick peas
+P9300	Haricot beans
+R0000	Root crops
+R0000T	Root crops - outdoor
+R0000S	Root crops - under glass or high accessible cover
+R1000	Potatoes (including seed potatoes)
+R1000T	Potatoes (including seed potatoes) - outdoor
+R1000S	Potatoes (including seed potatoes) - under glass or high accessible cover
+R1100	Potatoes for fresh consumption
+R1110	Main harvest potatoes
+R1120	Early potatoes
+R1900	Other potatoes
+R1910	Potatoes for processing
+R1911	Starch potatoes
+R1919	Other potatoes for processing n.e.c.
+R1920	Seed potatoes
+R1930	Fodder potatoes
+R1990	Other potatoes n.e.c.
+R2000	Sugar beet (excluding seed)
+R2000SQ	Sugar beet: standard quality
+R9000	Other root crops n.e.c.
+R9100	Fodder root crops (including forage beet)
+I0000AM	Industrial crops (agri-monetary)
+I0000	Industrial crops
+I0000T	Industrial crops - outdoor
+I0000S	Industrial crops - under glass or high accessible cover
+I1000	Oilseeds and oleaginous fruits
+I1100	Oilseeds
+I1110-1130	Rape, turnip rape, sunflower seeds and soya
+I1110	Rape and turnip rape seeds
+I1111	Winter rape and turnip rape seeds
+I1112	Spring rape and turnip rape seeds
+I1120	Sunflower seed
+I1130	Soya
+I1140-1190	Other oilseed crops
+I1140	Linseed (oilflax)
+I1150_2300	Cotton seed and fibre
+I1150	Cotton seed
+I1190	Other oilseed crops n.e.c.
+I1900	Other oilseeds and oleaginous fruits
+I1910	Unshelled groundnuts
+I1920AM	Poppy (seeds)
+I2000	Fibre crops
+I2100_2200_2900	Fibre flax, hemp and other fibre crops n.e.c.
+I2100	Fibre flax
+I2200	Hemp
+I2300	Cotton fibre
+I1190_2900	Other oilseed and fibre crops
+I2900	Other fibre crops n.e.c.
+I3000	Tobacco
+I3100	Raw Tobacco
+I3100V1	Raw tobacco: most important variety
+I3100V2	Raw tobacco: 2nd most important variety
+I3110	Raw tobacco: flue cured
+I3120	Raw tobacco: light air cured
+I3130	Raw tobacco: dark air cured
+I3140	Raw tobacco: fire cured
+I3150	Raw tobacco: sun cured
+I4000	Hops
+I4000V1	Hops: most important variety
+I5000_9000	Other industrial crops including aromatic, medicinal and culinary plants
+I5000	Aromatic, medicinal and culinary plants
+I5000T	Aromatic, medicinal and culinary plants - outdoor
+I5000S	Aromatic, medicinal and culinary plants - under glass or high accessible cover
+I6000_9000	Other industrial crops including energy crops n.e.c.
+I6000	Energy crops n.e.c.
+I9000	Other industrial crops n.e.c.
+I9000AM	Other industrial crops (agri-monetary)
+I9900AM	Other industrial crops (agri-monetary) n.e.c.
+G0000_J0000	Graminaceous, leguminous and oleaginous plants harvested green (including grazings)
+G0000	Plants harvested green from arable land
+G1000	Temporary grasses and grazings
+G1100	Temporary grasses
+G1200	Temporary grazings
+G2000	Leguminous plants harvested green
+G2100	Lucerne
+G2900	Other leguminous plants harvested green n.e.c.
+G2910	Clover and mixtures
+G3000	Green maize
+G9000	Other plants harvested green from arable land
+G9100	Other cereals harvested green (excluding green maize)
+G9900	Other plants harvested green from arable land n.e.c.
+V0000AM_PLF	Fresh vegetables (including melons) and horticultural products
+VSK	Fresh vegetables (including melons) and strawberries (including kitchen gardens)
+VSNPECRS	Vegetables, strawberries, permanent crops, flowers and ornamental plants under glass or high accessible cover
+V0000_S0000	Fresh vegetables (including melons) and strawberries
+V0000_S0000T	Fresh vegetables (including melons) and strawberries - outdoor
+V0000_S0000TO	Fresh vegetables (including melons) and strawberries grown in rotation with non-horticultural crops (open field)
+V0000_S0000TK	Fresh vegetables (including melons) and strawberries grown in rotation with horticultural crops (market gardening)
+V0000_S0000S	Fresh vegetables (including melons) and strawberries - under glass or high accessible cover
+V0000X3500	Fresh vegetables excluding melons
+V0000AM	Fresh vegetables including melons (agri-monetary)
+V0000	Fresh vegetables (including melons)
+V1000	Brassicas
+V1100	Cauliflower and broccoli
+V1110	Cauliflower
+V1110Q1	Cauliflower: quality I
+V1120	Broccoli
+V1200_1900	Brussels sprouts and other brassicas n.e.c
+V1200	Brussels sprouts
+V1200Q1	Brussels sprouts: quality I
+V1300	Cabbages
+V1310	White cabbage
+V1310Q1	White cabbage: quality I
+V1320	Red cabbage
+V1320Q1	Red cabbage: quality I
+V1330	Savoy cabbage
+V1330Q1	Savoy cabbage: quality I
+V1900	Other brassicas n.e.c
+V1910	Kohlrabi
+V1920	Chinese cabbage
+V2000	Leafy and stalked vegetables (excluding brassicas)
+V2100	Leeks
+V2100T	Leeks - outdoor
+V2200	Celery
+V2300	Lettuces
+V2300T	Lettuces - outdoor
+V2300TQ1	Lettuces - outdoor: quality I
+V2300S	Lettuces - under glass or high accessible cover
+V2300SQ1	Lettuces - under glass or high accessible cover: quality I
+V2310	Iceberg lettuce
+V2400	Endives
+V2500	Spinach
+V2600	Asparagus
+V2600Q1	Asparagus: quality I
+V2700	Chicory
+V2710	Chicory for fresh consumption
+V2720	Chicory for processing
+V2800	Artichokes
+V2900	Other leafy or stalked vegetables n.e.c.
+V3000	Vegetables cultivated for fruit (including melons)
+V3100	Tomatoes
+V3110	Tomatoes for fresh consumption
+V3120	Tomatoes for processing
+V3100T	Tomatoes - outdoor
+V3101TQ1	"Tomatoes - outdoor: round; quality I"
+V3102TQ1	"Tomatoes - outdoor: long; quality I"
+V3100S	Tomatoes - under glass or high accessible cover
+V3100SQ1	Tomatoes - under glass or high accessible cover: quality I
+V3200	Cucumbers
+V3200T	Cucumbers - outdoor
+V3200TQ1	Cucumbers - outdoor: quality I
+V3200S	Cucumbers - under glass or high accessible cover
+V3200SQ1	Cucumbers - under glass or high accessible cover: quality I
+V3300	Gherkins
+V3300T	Gherkins - outdoor
+V3400	Eggplants, courgettes (including marrows), gourds and pumpkins
+V3410	Eggplants
+V3420	Courgettes and marrows
+V3430	Gourds and pumpkins
+V3500	Melons
+V3510	Muskmelons
+V3520	Watermelons
+V3600	Peppers (capsicum)
+V3600S	Peppers (capsicum) - under glass or high accessible cover
+V3610	Red peppers (capsicum)
+V3900	Other vegetables cultivated for fruit n.e.c.
+V4000	Root, tuber and bulb vegetables
+V4100	Carrots
+V4100Q1	Carrots: quality I
+V4200	Onions and shallots
+V4210	Onions
+V4220	Shallots
+V4300	Beetroot
+V4400	Celeriac
+V4500	Radishes
+V4600	Garlic
+V4900	Other root, tuber and bulb vegetables n.e.c.
+V4910	Turnips
+V4920	Fennel
+V4930	Salsifies and scorzonera
+V5000AM	Fresh pulses (agri-monetary)
+V5000	Fresh pulses
+V5100	Fresh peas
+V5100Q1	Fresh peas: quality I
+V5200	Fresh beans
+V5210	French beans
+V5210Q1	French beans: quality I
+V5220	Runner beans
+V5900	Other fresh pulses n.e.c.
+V9000	Other fresh vegetables n.e.c.
+V9000AM	Other fresh vegetables (agri-monetary)
+V9900AM	Other fresh vegetables n.e.c. (agri-monetary)
+S0000	Strawberries
+S0000T	Strawberries - outdoor
+S0000S	Strawberries - under glass or high accesible cover
+ARA9	Other arable land crops
+ARA9T	Other arable land crops - outdoor
+ARA9S	Other arable land crops - under glass or high accessible cover
+PLF	Plants and flowers
+NUP	Nursery products and seedlings
+N0000_L0000	Flowers, ornamental plants and nursery products
+N0000_X0000	Flowers, ornamental plants and Christmas trees
+N0000	Flowers and ornamental plants (excluding nurseries)
+N0000T	Flowers and ornamental plants (excluding nurseries) - outdoor
+N0000S	Flowers and ornamental plants (excluding nurseries) - under glass or high accessible cover
+N1001	Azaleas: potted
+N1002	Cyclamens: potted
+N1003	Poinsettias: potted
+N1004	Pelargonium: potted
+N1005	Ficus: potted
+N1006	Kalanchoe: potted
+N1007	Saint Paulia: potted
+N1008	Begonia: potted
+N1001P	Azaleas: potted
+N1002P	Cyclamens: potted
+N1003P	Poinsettias: potted
+N1004P	Pelargonium: potted
+N1005P	Ficus: potted
+N1006P	Kalanchoe: potted
+N1007P	Saint Paulia: potted
+N1008P	Begonia: potted
+N1009	Roses
+N1010	Baccara roses
+N1011	Carnations
+N1012	Chrysanthemums
+N1012P	Chrysanthemums: potted
+N1013	Gladioli
+N1014	Tulips
+N1015	Freesias
+N1016	Lilium
+N1017	Dianthus
+N1018	Gerbera
+N1019	Cymbidium
+PLT	Plantations
+E0000	Seeds and seedlings
+E0000T	Seeds and seedlings - outdoor
+E0000S	Seeds and seedlings - under glass or high accessible cover
+E1000	Seeds
+E1000T	Seeds - outdoor
+E1000S	Seeds - under glass or high accessible cover
+E2000	Seedlings
+E2000T	Seedlings - outdoor
+E2000S	Seedlings - under glass or high accessible cover
+E2100AM	Flower bulbs
+ARA99	Other arable land crops n.e.c.
+FOP	Forage plants
+FOP9	Other forage plants
+FOP91	Hay
+FOP92	Straw
+FOP93	Silage
+FOP99	Other forage plants n.e.c.
+Q0000	Fallow land
+Q0000XS	Fallow land without subsidies
+Q0000ES	Fallow land not in use, eligible for subsidies
+J0000	Permanent grassland
+J1000	Permanent pastures and meadows
+J1100	Permanent pastures
+J1200	Permanent meadows
+J2000	Permanent rough grazings
+J3000	Permanent agricultural grassland not in use
+J3000ES	Permanent agricultural grassland not in use, eligible for subsidies
+PECR	Permanent crops
+PECRS	Permanent crops under glass or high accessible cover
+H0000_K2000	Permanent crops for human consumption including those from kitchen gardens
+H0000	Permanent crops for human consumption
+H0000T	Permanent crops for human consumption - outdoor
+H0000S	Permanent crops for human consumption - under glass or high accessible cover
+FRUAM	Fruits, citrus fruits, berries (including strawberries), nuts, grapes, olives and dried fruits (agri-monetary)
+F0000AM	Fresh fruits (agri-monetary)
+F0000	Fruits, berries and nuts (excluding citrus fruits, grapes and strawberries)
+F0000X3000	Fruits and nuts (excluding citrus fruits and grapes)
+F1000_3000	Fruits and berries (excluding strawberries) from temperate climate zones
+F1000	Fruits from temperate climate zones
+F1100	Pome fruits
+F1110_1120	Apples and pears
+F1110	Apples
+F1111	Apples for fresh consumption
+F1111_01	Boskoop group
+F1111_02	Braeburn group
+F1111_03	Cox's orange group
+F1111_031	Cox's orange pippin apples
+F1111_04	Cripps Pink group
+F1111_05	Elstar apples group
+F1111_051	Elstar apples
+F1111_06	Fuji group
+F1111_07	Gala group
+F1111_08	Golden Delicious group
+F1111_081	Golden Delicious apples
+F1111_09	Granny Smith group
+F1111_10	Idared group
+F1111_11	Jonagold/Jonagored group
+F1111_111	Jonagold apples
+F1111_112	Jonathan apples
+F1111_12	Lobo group
+F1111_13	Morgenduft group
+F1111_14	Pinova group
+F1111_15	Red Delicious group
+F1111_16	Reinette group
+F1111_17	Shampion group
+F1111_90	Other apples for fresh consumption
+F1111_901	Egrement russet apples
+F1111_902	Spartan apples
+F1111_909	Other apples for fresh consumption n.e.c
+F1112	Apples for processing
+F1112_01	Cooking apples
+F1112_011	Bramley's seedling cooking apples
+F1112_02	Cider apples
+F1120	Pears
+F1121	Pears for fresh consumption
+F1121_01	Abate group
+F1121_02	Blanquilla group
+F1121_03	Conference group
+F1121_04	Coscia-Ercolini group
+F1121_05	Decana group
+F1121_051	Doyenne du comice pears
+F1121_06	Guyot group
+F1121_07	Kaiser group
+F1121_08	Rocha group
+F1121_09	Williams group
+F1121_091	Williams pears
+F1121_90	Other pears for fresh consumption n.e.c.
+F1122	Pears for processing
+F1190	Other pome fruits n.e.c.
+F1191	Quinces
+F1200	Stone fruits
+F1200T	Stone fruits - outdoor
+F1200S	Stone fruits - under glass or high accessible cover
+F1210-1230	Peaches, nectarines and apricots
+F1210_1220	Peaches and nectarines
+F1210	Peaches
+F1211	Peaches for fresh consumption
+F1211_01	Yellow flesh peaches
+F1211_01VE	Very early yellow flesh peaches
+F1211_01ER	Early yellow flesh peaches
+F1211_01ME	Medium-early yellow flesh peaches
+F1211_01LA	Late yellow flesh peaches
+F1211_02	White flesh peaches
+F1211_02VE	Very early white flesh peaches
+F1211_02ER	Early white flesh peaches
+F1211_02ME	Medium-early white flesh peaches
+F1211_02LA	Late white flesh peaches
+F1211_03	Doughnut peaches
+F1212	Peaches for processing
+F1220	Nectarines
+F1221	Nectarines for fresh consumption
+F1221_01	Yellow flesh nectarines
+F1221_01VE	Very early yellow flesh nectarines
+F1221_01ER	Early yellow flesh nectarines
+F1221_01ME	Medium-early yellow flesh nectarines
+F1221_01LA	Late yellow flesh nectarines
+F1221_02	White flesh nectarines
+F1221_02VE	Very early white flesh nectarines
+F1221_02ER	Early white flesh nectarines
+F1221_02ME	Medium-early white flesh nectarines
+F1221_02LA	Late white flesh nectarines
+F1222	Nectarines for processing
+F1211_1221	Peaches and nectarines for fresh consumption
+F1212_1222	Peaches and nectarines for processing
+F1230	Apricots
+F1230VE	Very early apricots
+F1230ER	Early apricots
+F1230ME	Medium-early apricots
+F1230LA	Late apricots
+F1240	Cherries
+F1241	Sour cherries
+F1242	Sweet cherries
+F1250	Plums
+F1251	Quetsches
+F1252	Greengages
+F1253	Mirabelles
+F1259	Plums for drying and other plums
+F1290	Other stone fruits n.e.c
+F2000	Fruits from subtropical and tropical climate zones
+F2000T	Fruits from subtropical and tropical climate zones - outdoor
+F2000S	Fruits from subtropical and tropical climate zones - under glass or high accessible cover
+F2100	Figs
+F2200	Kiwis
+F2300	Avocados
+F2400	Bananas
+F2900	Other fruits from subtropical and tropical climate zones n.e.c.
+F2910	Dates
+F3000	Berries (excluding strawberries)
+F3000T	Berries (excluding strawberries) - outdoor
+F3000S	Berries (excluding strawberries) - under glass or high accessible cover
+F3100	Currants
+F3100T	Currants - outdoor
+F3100S	Currants - under glass or high accessible cover
+F3110	Blackcurrants
+F3110T	Blackcurrants - outdoor
+F3110S	Blackcurrants - under glass or high accessible cover
+F3120	Redcurrants
+F3120T	Redcurrants - outdoor
+F3120S	Redcurrants - under glass or high accessible cover
+F3200	Raspberries
+F3200T	Raspberries - outdoor
+F3200S	Raspberries - under glass or high accessible cover
+F3300	Blueberries
+F3300T	Blueberries - outdoor
+F3300S	Blueberries - under glass or high accessible cover
+F3900	Other berries n.e.c.
+F3900T	Other berries n.e.c. - outdoor
+F3900S	Other berries n.e.c. - under glass or high accessible cover
+F3910	Gooseberries
+F4000_5000AM	Nuts and dried fruit
+F4000	Nuts
+F4100	Walnuts
+F4200	Hazelnuts
+F4300	Almonds
+F4400	Chestnuts
+F4900	Other nuts n.e.c.
+F4910	Pistachios
+F5000AM	Dried fruits (agri-monetary)
+F5100AM	Dried figs (agri-monetary)
+F5900AM	Other dried fruits n.e.c. (agri-monetary)
+F9000AM	Other fresh fruits, nuts and dried fruits (agri-monetary)
+F5000AM_9000AM	Other fresh and dried fruits (agri-monetary)
+F9900AM	Other fresh fruit n.e.c. (agri-monetary)
+T0000	Citrus fruits
+T1000_2000_3100	Oranges, small citrus fruits and yellow lemons
+T1000	Oranges
+T1100	Navel oranges
+T1100ER	Early Navel oranges
+T1100ME	Medium-early Navel oranges
+T1100LA	Late Navel oranges
+T1110	Washington Navel oranges
+T1200	White oranges (blancas)
+T1200ER	Early white oranges (blancas )
+T1200LA	Late white oranges (blancas)
+T1210	Valencia oranges
+T1300	Blood oranges (sanguines)
+T1310	Moro oranges
+T1320	Sanguinello oranges
+T1330	Tarocco oranges
+T1900	Others oranges n.e.c
+T2000	Small citrus fruits
+T2100	Satsumas
+T2100VE	Very early satsumas
+T2190	Other satsumas
+T2200	Clementines
+T2200ER	Early clementines
+T2200ME	Medium-early clementines
+T2200LA	Late clementines
+T2900	Other small citrus fruits (including hybrids) n.e.c.
+T2910	Mandarins
+T2920	Tangerines
+T3000	Lemons and acid limes
+T3000AM	Lemons (agri-monetary)
+T3100	Yellow lemons
+T3110	Winter lemon varieties
+T3110_01	Invernali lemons
+T3110_02	Mesero lemons
+T3120	Summer lemon varieties
+T3120_01	Verdelli lemons
+T3120_02	Verna lemons
+T3200	Acid limes
+T4000	Pomelos and grapefruit
+T9000	Other citrus fruits n.e.c.
+T9000AM	Other citrus fruits n.e.c. (agri-monetary)
+W0000	Grapes, must and wines
+W1000	Grapes
+W1000T	Grapes - outdoor
+W1000S	Grapes - under glass or high accessible cover
+W1100	Grapes for wines
+W1110_1120	Grapes for wines with geographical indication (PDO/PGI)
+W1110	Grapes for wines with protected designation of origin (PDO)
+W1120	Grapes for wines with protected geographical indication (PGI)
+W1190	Grapes for other wines n.e.c. (without PDO/PGI)
+WDP	Dual purpose grapes
+W1200	Grapes for table use
+W1210	White grapes for table use
+W1211	Seedless white grapes for table use
+W1212	Normal white grapes for table use
+W1220	Red grapes for table use
+W1221	Seedless red grapes for table use
+W1222	Normal red grapes for table use
+W1300	Grapes for raisins
+W1310	Black Corinth grapes (currants)
+W1320	Sultana grapes
+W1900	Grapes for other purposes n.e.c.
+W1900AM	Other fresh grapes (agri-monetary)
+W2000	Must
+W2100	Vinified must
+W2200	Non-vinified must
+W2210	Concentrated must
+W2220	Grape juice
+W3000	Wines
+W3000R	Wines - red and rosé
+W3000W	Wines - white
+W3100	Wines with geographical indication (PDO/PGI)
+W3100R	Wines with PDO/PGI - red and rosé
+W3100W	Wines with PDO/PGI - white
+W3110	Wines with protected designation of origin (PDO)
+W3110R	Wines with PDO - red and rosé
+W3110W	Wines with PDO - white
+W3120	Wines with protected geographical indication (PGI)
+W3120R	Wines with PGI - red and rosé
+W3120W	Wines with PGI - white
+W3200	Wines without geographical indication (PDO/PGI), including varietal wines
+W3200R	Wines without PDO/PGI, including varietal wines - red and rosé
+W3200W	Wines without PDO/PGI, including varietal wines - white
+W3120_3210_3221	Table wines
+W3120_3210_3221R	Table wines - red and rosé
+W3120_3210_3221W	Table wines - white
+W3210_3221	Tables wines without geographical indication (PDO/PGI)
+W3210_3221R	Table wines without PDO/PGI - red and rosé
+W3210_3221W	Table wines without PDO/PGI - white
+W3210	Varietal wines
+W3210R	Varietal wines - red and rosé
+W3210W	Varietal wines - white
+W3220	Other wines
+W3220R	Other wines - red and rosé
+W3220W	Other wines - white
+W3221	Other wines for direct human consumption without geographical indication (PDO/PGI) and without mention of variety
+W3221R	Other wines for direct human consumption without PDO/PGI and without mention of variety - red and rosé
+W3221W	Other wines for direct human consumption without PDO/PGI and without mention of variety - white
+W3222	Other wines for processing n.e.c.
+W3222R	Other wines for processing n.e.c. - red and rosé
+W3222W	Other wines for processing n.e.c. - white
+O0000	Olives and olive oil
+O1000	Olives
+O1100	Olives for table use
+O1900	Other olives
+O1910	Olives for oil
+O1990	Other olives n.e.c.
+ODP	Dual purpose olives
+O2000	Olive oil
+O2100	Extra virgin olive oil
+O2200	Virgin olive oil
+O2210	Virgin olive oil: superfine
+O2220	Virgin olive oil: fine
+O2230	Ordinary virgin olive oil: semi-fine/corrente
+O2300	Refined (common) olive oil
+O2400	Lampante virgin olive oil
+H9000	Other permanent crops for human consumption n.e.c.
+H9100	Carobs
+PECR9_H9000	Other permanent crops including other permanent crops for human consumption
+PECR9_H9000T	Other permanent crops including other permanent crops for human consumption - outdoor
+PECR9_H9000S	Other permanent crops including other permanent crops for human consumption - under glass or high accessible cover
+L0000	Nurseries
+L0000T	Nurseries - outdoor
+L0000S	Nurseries - under glass or high accessible cover
+PECR9	Other permanent crops
+PECR9T	Other permanent crops - outdoor
+PECR9S	Other permanent crops - under glass or high accessible cover
+X0000	Christmas trees
+Z0000	Plaiting, weaving and other permanent crops n.e.c.
+Z1000	Vegetative materials used primarily for plaiting
+K0000	Kitchen gardens
+K1000	Vegetables from kitchen gardens
+K2000	Fruits from kitchen gardens
+CRP9	Other crop products
+CRP99	Other crop products n.e.c.
+U0000	Mushrooms
+U1000	Cultivated mushrooms
+U1100	Champignons
+U1900	Other cultivated mushrooms n.e.c.
+U2000	Wild mushrooms

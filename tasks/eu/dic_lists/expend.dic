@@ -1,0 +1,86 @@
+TOTAL	Total expenditure
+TRA	Expenditure on transport
+SHOP	Expenditure on shopping
+REST	Expenditure on restaurants/cafés
+ACC	Expenditure on accommodation
+DUR	Expenditure on durables and valuable goods
+IW_VES	Expenditure on vessels in goods inland waterways transport enterprises
+IW_INF	Expenditure on inland waterways transport infrastructure
+RD_VEH	Expenditure on road transport vehicles
+RD_INF	Expenditure on road infrastructure
+RL_RSTK	Expenditure on rolling stock in principal railway enterprises
+RL_INF	Expenditure on infrastructure in principal railway enterprises
+INSTR	Expenditure on instruction without ancillary services and R&D
+ASERV	Expenditure on ancillary services 
+RD	Expenditure on R&D activities 
+INIT	Expenditure of government before intergovernmental transfers
+FINL	Expenditure of government after intergovernmental transfers
+ADJ	Adjustments for changes in fund balances 
+INV	Investment
+INV_IW_VES	Investment in vessels in goods inland waterways transport enterprises
+INV_IW_INF	Investment in inland waterways transport infrastructure
+INV_RD_VEH	Investment in road transport vehicles
+INV_RD_INF	Investment in road infrastructure
+INV_RL_RSTK	Investment in rolling stock in principal railway enterprises
+INV_RL_INF	Investment in infrastructure in principal railway enterprises
+INV_PT	Investment in pollution treatment
+INV_PP	Investment in pollution prevention
+INV_PP_PC	Investment in  pollution prevention  as % of total investment in environmental protection
+INV_TRD	Investment in tradable rights
+INV_ICT	Investment in ICT
+INV_EARL	Investment in early stage
+INV_VEN	Venture capital investment (seed, start-up and later stage) 
+INV_VEN_SEED	Investment in seed stage 
+INV_VEN_STAR	Investment in start-up stage 
+INV_VEN_LATE	Investment in later stage 
+INV_EXRE	Investment for expansion and replacement  
+INV_GROW	Investment in growth stage 
+INV_RESC	Investment for rescue/turnaround 
+INV_REPL	Investment for replacement  
+INV_BUY	Investment for buyout  
+TRF_PAY	Transfers and payments 
+TRF	Subsidies/transfers
+TRF_IND	Transfers to individuals
+TRF_IPER	Transfers to individuals - periodic cash payments
+TRF_ILUMP	Transfers to individuals - lump-sum payments
+TRF_IREIM	Transfers to individuals - reimbursements
+TRF_ISOC	Transfers to individuals - reduced social contributions
+TRF_ITAX	Transfers to individuals - reduced taxes
+TRF_EMP	Transfers to employers
+TRF_EPER	Transfers to employers - periodic cash payments
+TRF_ELUMP	Transfers to employers - lump-sum payments
+TRF_EREIM	Transfers to employers - reimbursements
+TRF_ESOC	Transfers to employers - reduced social contributions
+TRF_ETAX	Transfers to employers - reduced taxes
+TRF_SERV	Transfers to service providers
+TRF_NET	Net transfers 
+TRF_NSP	Transfers recipient not specified
+MNT	Maintenance
+MNT_IW_VES	Maintenance in vessels in goods inland waterways transport enterprises
+MNT_IW_INF	Maintenance in inland waterways transport infrastructure
+MNT_RD_VEH	Maintenance in road transport vehicles
+MNT_RD_INF	Maintenance in road infrastructure
+MNT_RL_RSTK	Maintenance in rolling stock in principal railway enterprises
+MNT_RL_INF	Maintenance in infrastructure in principal railway enterprises
+CUR	Current expenditure
+CUR_LC	Current – labour cost
+CUR_COMP	Expenditure for compensation of personnel 
+CUR_COMPT	Expenditure for compensation of teachers (with active teaching responsibilities) 
+CUR_COMPO	Expenditure for compensation of other pedagogical, administrative, professional, and support personnel 
+CUR_RET	Expenditure for retirement pensions 
+CUR_NLC	Expenditure for other non-salary compensation 
+CUR_OTH	Current –other expenditure
+CAP	Capital expenditure
+CAP_LAND	Capital - land and buildings
+CAP_INST	Capital - instruments and equipment
+BC_RD	Balanced costs for investment in research and development and similar investments
+BC_MKT	Balanced costs for marketing and sales related services
+BC_OSERV	Other balanced costs related to services
+FA	Financial aid to households and students 
+FA_GRNT	Scholarships and other grants to students/households 
+FA_LOAN	Student loans 
+DIR	Direct expenditure 
+PAY	Payments 
+PAY_NET	Net payments 
+PAY_SEA	Payments for specific educational activities 
+OTH	Other expenditure

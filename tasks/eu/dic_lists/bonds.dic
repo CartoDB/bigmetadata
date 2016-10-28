@@ -1,0 +1,18 @@
+CTE	Italian Treasury certificates in ECU
+ELB	Greek ECU-linked bonds
+OAT	French fungible treasury bonds
+BTAN	French BTAN
+BONOS	Spanish BONOS
+TN	UK treasury 3 year notes in ECU
+GOVIS	Government issues
+OTHIS	Other issues
+INTIS	International issues
+CORBONFI	Bonds issued by financial corporations
+CORBONNONFI	Bonds issued by non-financial corporations
+GOVBON	Bond issues of governments
+INSTBON	Bond issues of institutions
+TOTBON	Total of bonds issued
+GOV	Government bonds
+TOTGOV	Total of government bonds
+GBAAA	AAA rated euro area central government bonds
+GBA_AAA	All euro area central governments bonds

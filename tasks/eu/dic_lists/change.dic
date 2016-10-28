@@ -1,0 +1,13 @@
+TOTAL	Total
+INCR	Increase
+DECR	Decrease
+SUBS	Substantial change
+VPOS	Very positive change
+POS	Positive change
+MOD	Moderate change
+NONE	No change
+NEG	Negative change
+VNEG	Very negative change
+NAP	Not applicable
+NRP	No response
+UNK	Unknown

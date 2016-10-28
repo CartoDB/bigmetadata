@@ -1,0 +1,8 @@
+TOTAL	Total having an international sourcing activity
+IN	Within enterprise group
+OUT	Outside enterprise group
+IN_EX	Existing foreign enterprise of same group
+IN_AQ	New existing foreign enterprise of same group (by acquisition)
+IN_NEW	Newly created foreign enterprise of same group (green field operation)
+OTHER	Other foreign enterprises
+UNK	Unknown

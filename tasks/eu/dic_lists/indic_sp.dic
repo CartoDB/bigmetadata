@@ -1,0 +1,16 @@
+GSP_MIO_NAC	Gross social protection in millions of national currency
+NSP_MIO_NAC	Net social protection in millions of national currency
+GSP_MIO_EUR	Gross social protection in millions of Euros
+NSP_MIO_EUR	Net social protection in millions of Euros
+NSP_PC_GSP	Net social protection as a percentage of gross social protection
+GSP_PC_GDP	Gross social protection as a percentage of GDP
+NSP_PC_GDP	Net social protection as a percentage of GDP
+SPB_PC_TSC	Percentage of social protection benefits subject to taxation or social contributions
+SPB_PC_TAX	Percentage of social protection benefits subject to taxation
+SPB_PC_SC	Percentage of social protection benefits subject to social contributions
+SPC_PC_TSC	Percentage of social protection cash benefits subject to taxation or social contributions
+SPC_PC_TAX	Percentage of social protection cash benefits subject to taxation
+SPC_PC_SC	Percentage of social protection cash benefits subject to social contributions
+TSC_RT_LE	Effective combined taxation and social contribution rates on benefits subject to levies
+TSC_RT_SPB	Effective combined taxation and social contribution rates on all social protection benefits
+FBE_MIO_EUR	Residual fiscal benefits in millions of Euros

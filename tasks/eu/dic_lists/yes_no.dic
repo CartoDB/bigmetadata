@@ -1,0 +1,13 @@
+YES	Yes
+NO	No
+UNK	Unknown
+NRESP	No answer
+TOT	Total
+YES_F	Seeking finance
+NO_F	Not seeking finance
+YES_G	Need load finance guarantee
+NO_G	No need loan finance guarantee
+YES_MOB	Job mobility
+NO_MOB	No job mobility
+YES_OD	Disabled
+NO_OD	Not disabled

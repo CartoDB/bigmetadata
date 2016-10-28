@@ -1,0 +1,16 @@
+MAX	Work intensity = 1
+NVLOW	Work intensity other than very low ]0.2 - 1]
+VHIGH	Very high work intensity  ]0.85 - 1]
+MHIGH	Work intensity between 0.5 and 1
+HIGH	High work intensity  ]0.55 - 0.85]
+MED	Medium work intensity  [0.45 - 0.55]
+LOW	Low work intensity ]0.2 -0.45[
+MLOW	Work intensity between 0 and 0.5
+VLOW	Very low work intensity [0 - 0.2]
+NONE	Work intensity = 0
+NONEWORK	Household with work intensity = 0
+SOMEWORK	Household with work intensity between 0 and 1
+MAXWORK	Household with work intensity = 1
+SOMELT05	Household with work intensity between 0 and 0.5
+SOMEGE05	Household with work intensity between 0.5 and 1
+SOME	Work intensity between 0 and 1 

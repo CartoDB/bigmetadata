@@ -1,0 +1,38 @@
+V1010	Stocks on first day of year
+V1020	Arising within the works
+V1030	Receipts (V1031 + V1032 + V1033)
+V1031	Receipts from home sources
+V1032	Receipts from Community countries
+V1033	Receipts from third countries
+V1040	Total available (V1010 + V1020 + V1030)
+V1050	Consumption total ...
+V1051	Consumption of electric furnaces
+V1052	Consumption of stainless scrap
+V1060	Deliveries
+V1070	Stocks on last day of year (V1040 - V1050 - V1060)
+V3100	Resources (V3101 + V3102)
+V3101	Gross production
+V3102	Receipts from outside
+V3200	Used (V3210 + V3220 + V3230)
+V3210	Consumption by plant (V3211 + V3212 + V3213 + V3214 + V3215 + V3216 + V3217)
+V3211	Sinter plant and plant for preparation of burden
+V3212	Blast furnaces and electric iron making furnaces
+V3213	Electric melting shops and continuing casting
+V3214	Other melting shops and continuing casting
+V3215	Rolling mill departments
+V3216	Electricity generating stations
+V3217	Other plant
+V3220	Deliveries to outside
+V3230	Losses
+V5010	Coke
+V5020	Load preparation
+V5030	Pig iron and ferro-alloys
+V5040	Crude steel
+V5041	Crude steel: electric
+V5042	Crude steel used in continuous casting
+V5050	Products obtained directly by hot rolling (V5051 + V5052)
+V5051	Flat products
+V5052	Long products
+V5060	Products obtained from hot rolling products (excluding coated products)
+V5061	Products obtained from hot rolling products obtained by cold rolling
+V5070	Coated products

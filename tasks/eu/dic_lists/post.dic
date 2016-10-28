@@ -1,0 +1,381 @@
+010	Current + capital account
+011	Current and capital transfers
+993	Current account
+100	Current account, Goods
+110	Current account, Goods, General merchandise
+150	Current account, Goods, Goods for processing
+151	Current account, Goods, Goods for processing, Abroad
+152	Current account, Goods, Goods for processing, In the compiling economy
+160	Current account, Goods, Repairs on goods
+170	Current account, Goods, Goods procured  in ports by carriers
+180	Current account, Goods, Non monetary gold
+181	Current account, Goods, Non monetary gold, Gold held as a store of value
+182	Current account, Goods, Non monetary gold, Other non monetary gold
+200	Current account, Services
+201	Current account, Services, Branding, Quasi-transit adjustment
+205	Current account, Services, Transportation
+206	Current account, Services, Transportation, Sea transport
+207	Current account, Services, Transportation, Sea transport, Passenger transport on sea
+208	Current account, Services, Transportation, Sea transport, Freight transport on sea
+209	Current account, Services, Transportation, Sea transport, Supporting, auxiliary and other sea transport services
+210	Current account, Services, Transportation, Air transport
+211	Current account, Services, Transportation, Air transport, Passenger transport by air
+212	Current account, Services, Transportation, Air transport, Freight transport by air
+213	Current account, Services, Transportation, Air transport, Supporting, auxiliary and other air transport services
+214	Current account, Services, Transportation, Other transport (other than sea and air)
+215	Current account, Services, Transportation, Other transport (other than sea and air), Passenger on other transport
+216	Current account, Services, Transportation, Other transport (other than sea and air), Freight on other transport
+217	Current account, Services, Transportation, Other transport (other than sea and air), Other of other transport
+218	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Space transport
+219	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Rail transport
+220	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Rail transport, Passenger on rail
+221	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Rail transport, Freight on rail
+222	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Rail transport, Supporting, auxiliary and other rail transport services
+223	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Road transport
+224	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Road transport, Passenger on road
+225	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Road transport, Freight on road
+226	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Road transport, Supporting, auxiliary and other road transport services
+227	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Inland waterway transport
+228	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Inland waterway transport, Passenger on inland waterway
+229	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Inland waterway transport, Freight on inland waterway
+230	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Inland waterway transport, Supporting, auxiliary and other inland waterway transport services
+231	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Pipeline transport
+232	Current account, Services, Transportation, Other transport (other than sea and air) - extended classification, Other supporting and auxiliary transport services
+236	Current account, Services, Travel
+237	Current account, Services, Travel, Business travel
+238	Current account, Services, Travel, Business travel, Expenditure by seasonal and border workers
+239	Current account, Services, Travel, Business travel, Other business travel
+240	Current account, Services, Travel, Personal travel
+241	Current account, Services, Travel, Personal travel, Health-related expenditure
+242	Current account, Services, Travel, Personal travel, Education related expenditure
+243	Current account, Services, Travel, Personal travel, Other personal travel
+981	Current account, Services, Other services
+245	Current account, Services, Other services, Communications services
+246	Current account, Services, Other services, Communications services, Postal and courier services
+958	Current account, Services, Communications services, Postal and courier services, Postal services
+959	Current account, Services, Communications services, Postal and courier services, Courier services
+247	Current account, Services, Other services, Communications services, Telecommunication services
+249	Current account, Services, Other services, Construction services
+250	Current account, Services, Other services, Construction services, Construction abroad
+251	Current account, Services, Other services, Construction services, Construction in the compiling economy
+253	Current account, Services, Other services, Insurance services
+254	Current account, Services, Other services, Insurance services, Life insurance and pension funding
+255	Current account, Services, Other services, Insurance services, Freight insurance
+256	Current account, Services, Other services, Insurance services, Other direct insurance
+257	Current account, Services, Other services, Insurance services, Reinsurance
+258	Current account, Services, Other services, Insurance services, Auxiliary services
+260	Current account, Services, Other services, Financial services
+262	Current account, Services, Other services, Computer and information services
+263	Current account, Services, Other services, Computer and information services, Computer services
+264	Current account, Services, Other services, Computer and information services, Information services
+889	Current account, Services, Other services, Computer and information services, Information services, News agency services
+890	Current account, Services, Other services, Computer and information services, Information services, Other information provision services
+266	Current account, Services, Other services, Royalties and license fees
+891	Current account, Services, Other services, Royalties and license fees, Franchises and similar rights
+892	Current account, Services, Other services, Royalties and license fees, Other royalties and license fees
+268	Current account, Services, Other services, Other business services
+269	Current account, Services, Other services, Other business services, Merchanting and other trade-related services
+270	Current account, Services, Other services, Other business services, Merchanting and other trade-related services, Merchanting
+271	Current account, Services, Other services, Other business services, Merchanting and other trade-related services, Other trade-related services
+272	Current account, Services, Other services, Other business services, Operational leasing services
+273	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services
+274	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Legal, accounting, management and public relations services
+275	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Legal, accounting, management and public relations services, Legal services
+276	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Legal, accounting, management and public relations services, Accounting, auditing, book-keeping and tax consulting services
+277	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Legal, accounting, management and public relations services, Business and management consultancy, public relations services
+278	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Advertising, market research and public opinion polling
+279	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Research and development services
+280	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Architectural, engineering and other technical consultancy
+281	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Agricultural, mining , and on-site processing
+282	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Agricultural, mining , and on-site processing, Waste treatment and depolution
+283	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Agricultural, mining , and on-site processing, Other agricultural, mining and on-site processing
+284	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Other miscellaneous business, professional and technical services
+285	Current account, Services, Other services, Other business services, Miscellaneous business, professional and technical services, Services between affiliated enterprises, n.i.e.
+287	Current account, Services, Other services, Personal, cultural and recreational services
+288	Current account, Services, Other services, Personal, cultural and recreational services, Audio-visual and related services
+289	Current account, Services, Other services, Personal, cultural and recreational services, Other personal, cultural and recreational services
+895	Current account, Services, Other services, Personal, cultural and recreational services, Other personal, cultural and recreational services, Education services
+896	Current account, Services, Personal, cultural and recreational services, Other personal, cultural and recreational services, Health services
+897	Current account, Services, Other services, Personal, cultural and recreational services, Other personal, cultural and recreational services, Other
+291	Current account, Services, Other services, Government services, n.i.e.
+29110	Current account, Services, Other services, Government services: Reimbursement of MS for cost of collecting own resources
+29120	Current account, Services, Other services, Government services: Building acquisition, construction and rent
+29130	Current account, Services, Other services, Government services: Other government services
+292	Current account, Services, Other services, Government services, n.i.e., Embassies and consulates
+293	Current account, Services, Other services, Government services, n.i.e., Military units and agencies
+294	Current account, Services, Other services, Government services, n.i.e., Other government services
+298	Current account, services, commercial services
+982	Current account, Services, Services not allocated
+950	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis
+951	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis, Sea Freight
+952	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis, Air Freight
+858	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis, Other freight
+862	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis, Space freight
+863	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis, Rail freight
+953	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis, Road freight
+865	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis, Inland waterway freight
+868	Current account, Services, Memorandum items, Freight transportation on merchandise, valued on a transaction basis, Pipeline freight
+955	Current account, Services, Memorandum items, Travel
+956	Current account, Services, Memorandum items, Travel, Expenditure on goods
+957	Current account, Services, Memorandum items, Travel, Expenditure on accommodation and food and beverage
+871	Current account, Services, Memorandum items, Travel, All other travel expenditure
+960	Current account, Services, Memorandum items, Gross insurance premiums
+972	Current account, Services, Memorandum items, Gross insurance premiums, Gross premiums - Life insurance
+974	Current account, Services, Memorandum items, Gross insurance premiums, Gross premiums - Freight insurance
+976	Current account, Services, Memorandum items, Gross insurance premiums, Gross premiums - Other direct insurance
+961	Current account, Services, Memorandum items, Gross insurance claims
+973	Current account, Services, Memorandum items, Gross insurance claims, Gross claims - Life insurance
+975	Current account, Services, Memorandum items, Gross insurance claims, Gross claims - Freight insurance
+977	Current account, Services, Memorandum items, Gross insurance claims, Gross claims - Other direct insurance
+887	Current account, Services, Memorandum items, Financial intermediation services indirectly measured (FISIM)
+888	Current account, Services, Memorandum items, Financial services including FISIM
+962	Current account, Services, Memorandum items, Merchanting gross flows
+894	Current account, Services, Memorandum items, Audiovisual transactions
+300	Current account, Income
+310	Current account, Income, Compensation of employees (including border, seasonal, and other workers)
+31010	Current account, Income, Compensation of employees, Gross wages and salaries
+31020	Current account, Income, Compensation of employees, Employers' Social contribution
+320	Current account, Income, Investment income
+320INT	Current account, Income, Investment income, Memorandum items, Interest BPM5 (not adjusted for FISIM)
+320D41	Current account, Income, Investment income, Memorandum items, Interest SNA93  (adjusted for FISIM)
+320FIS	Current account, Income, Investment income, Memorandum items, Value of  FISIM
+320D4N	Current account, Income, Investment income, Memorandum items, Other than interest
+330	Current account, Income, Investment income, Direct investment
+331	Current account, Income, Investment income, Direct investment, Income on equity
+332	Current account, Income, Investment income, Direct investment, Income on equity, Dividends and distributed branch profits
+333	Current account, Income, Investment income, Direct investment, Income on equity, Reinvested earnings and undistributed branch profits
+334	Current account, Income, Investment income, Direct investment, Income on debt (interest)
+339	Current account, Income, Investment income, Portfolio investment
+340	Current account, Income, Investment income, Portfolio investment, Income on equity (dividends)
+341	Current account, Income, Investment income, Portfolio investment, Income on equity (dividends), Monetary authorities
+349	Current account, Income, Investment income, Portfolio investment, Income on debt (interest)
+370	Current account, Income, Investment income, Other investment
+370INT	Current account, Income, Investment income, Other investment, Memorandum items, Interest BPM5 (not adjusted for FISIM)
+370D44	Current account, Income, Investment income, Other investment, Memorandum items, Income attributed to insurance policy holders
+370D4N	Current account, Income, Investement income, Other investment, Memorandum items, Other
+37010	Current account, Income, Investement income, Other investment, Memorandum items, Other, EIB reinvested earnings
+379	Current account, Current transfers
+380	Current account, Current transfers, General government
+380D2	Current account, Current transfers, General government, Taxes on production and imports
+380D21	Current account, Current transfers, General government, Taxes on products
+380D212X21	Current account, Current transfers, General government, Taxes on products, Taxes and duties on imports, Customs duties, Traditional Own Resources
+380D212X22	Current account, Current transfers, General government, Taxes on products, Taxes and duties on imports, Agricultural levies, Traditional Own Resources
+380D211X24	Current account, Current transfers, General government, Taxes on products, Own resources from Value Added Taxes, VAT contribution
+380D214X23	Current account, Current transfers, General government, Taxes on products, Sugar and isoglucose production levies, Traditional Own Resources
+380D29	Current account, Current transfers, General government, Other taxes on production
+380D29X25	Current account, Current transfers, General government, Other taxes on production, ECSC levy
+380D3	Current account, Current transfers, General government, Subsidies
+380D31	Current account, Current transfers, General government, Subsidies on products
+380D319X31	Current account, Current transfers, General government, Subsidies on products, Agriculture and fishery
+380D39	Current account, Current transfers, General government, Other subsidies on production
+380D39X31	Current account, Current transfers, General government, Other subsidies on production, Agriculture and fishery
+380D39X32	Current account, Current transfers, General government, Other subsidies on production, Grants for interest relief
+380D39X33	Current account, Current transfers, General government, Other subsidies on production, Other
+380D5	Current account, Current transfers, General government, Taxes on income, wealth, etc
+380D50	Current account, Current transfers, General government, Taxes on income, wealth, etc
+380D51	Current account, Current transfers, General government, Taxes on income, wealth, etc, Taxes on income
+380D6	Current account, Current transfers, General government, Social Contributions and benefits
+380D61	Current account, Current transfers, General government, Social contributions
+380D61121	Compulsory employees' actual social contributions
+380D612	Employers' imputed social contributions
+380D62	Current account, Current transfers, General government, Social benefits other than social transfers in kind
+380D63	General government current transfers, social transfers in kind
+380D7	Current account, Current transfers, General government, Other current transfers
+380D74	Current account, Current transfers, General government, Other current transfers, Current international cooperation
+380D74X66	Current account, Current transfers, General government, Other current transfers, Current international cooperation, Contributions of Member States to the European Development Fund
+380D74X68	Current account, Current transfers, General government, Other current transfers, Current international cooperation, European Social Fund and others
+380D74X70	Current account, Current transfers, General government, Other current transfers, Current international cooperation, Agriculture and fishery (Guidance and other)
+380D74X74	Current account, Current transfers, General government, Other current transfers, Current international cooperation, European Regional Development Fund and others
+380D74X88	Current account, Current transfers, General government, Other current transfers, Current international cooperation, European Development Fund
+380D74X90	Current account, Current transfers, General government, Other current transfers, Current international cooperation, European Comunity Steel and Coal transfers
+380D74X94	Current account, Current transfers, General government, Other current transfers, Current international cooperation, Other
+380D75	Current account, Current transfers, General government, Other current transfers, Miscellaneous current transfer
+380D7N	Current account, Current transfers, General government, Other current transfers, Other of general government n.i.e.
+380D75X64	Current account, Current transfers, General government, Other current transfers, Miscellaneous, GNI related contributions, Own resources based on Gross National Income
+380D75X92	Current account, Current transfers, General government, Other current transfers, Miscellaneous, Financial compensation to MS, Correction of budgetary imbalances granted to the UK
+380D75X94	Current account, Current transfers, General government, Other current transfers, Miscellaneous, Miscellaneous revenue/Fines and penalities
+380D75X96	Current account, Current transfers, General government, Other current transfers, Miscellaneous, Transfers to private non profit institutions
+390	Current account, Current transfers, Other sectors
+391	Current account, Current transfers, Other sectors, Worker's remittances
+392	Current account, Current transfers, Other sectors, Other private transfers
+392D21	Current account, Current transfers, Other sectors, Other private transfers, Taxes on products
+392D29	Current account, Current transfers, Other sectors, Other private transfers, Other taxes on production
+392D31	Current account, Current transfers, Other sectors, Other private transfers, Subsidies on products
+392D39	Current account, Current transfers, Other sectors, Other private transfers, Other subsidies on production
+392D50	Current account, Current transfers, Other sectors, Other private transfers, Taxes on income, wealth, etc
+392D61	Current account, Current transfers, Other sectors, Other private transfers, Social contributions
+392D62	Current account, Current transfers, Other sectors, Other private transfers, Social benefits other than social transfers in kind
+392D71	Current account, Current transfers, Other sectors, Other private transfers, Net non-life insurance premiums
+392D72	Current account, Current transfers, Other sectors, Other private transfers, Non life insurance claims
+392D7N	Current account, Current transfers, Other sectors, Other private transfers, Other current transfers of other sectors n.i.e.
+392D80	Current account, Current transfers, Other sectors, Other private transfers, Adjustment for the change in net equity of households in pension fund reserves
+994	Capital account
+400	Capital account, Capital transfers
+400D91	Capital account, Capital transfers, Capital taxes
+400D9N	Capital account, Capital transfers, Investment grants and other capital transfers
+401	Capital account, Capital transfers, General government
+401D92	Capital account, Capital transfers, General government, Investment grants
+401D92X11	Capital account, Capital transfers, General government, Investment grants, Agriculture and Fishery (EAGGF guidance and others)
+401D92X12	Capital account, Capital transfers, General government, Investment grants, European Regional Development Fund and others
+401D92X13	Capital account, Capital transfers, General government, Investment grants, European Development Fund
+401D92X14	Capital account, Capital transfers, General government, Investment grants, Cohesion funds and others
+401D92X15	Capital account, Capital transfers, General government, Investment grants, Investment grants - Other
+401D99	Capital account, Capital transfers, General Government, Other
+401D99X11	Capital account, Capital transfers, General Government, Other, Agriculture and Fishery  (EAGGF guidance and others)
+401D99X15	Capital account, Capital transfers, General Government, Other, Other
+401D99X20	Capital account, Capital transfers, General Government, Other, Debt forgiveness
+480	Capital account, Acquisition disposal of non-produced non-financial assets
+995	Financial account
+500	Financial account, Direct investment
+505	Financial account, Direct investment, Abroad
+506	Financial account, Direct investment, Abroad, Equity capital and reinvested earnings
+510	Financial account, Direct investment, Abroad, Equity capital
+525	Financial account, Direct investment, Abroad, Reinvested earnings
+530	Financial account, Direct investment, Abroad, Other capital
+541	Financial account, Direct investment, Abroad, Equity capital & Other capital
+555	Financial account, Direct investment, In the reporting economy
+556	Financial account, Direct investment, In the reporting economy, Equity capital and Reinvested earnings
+560	Financial account, Direct investment, In the reporting economy, Equity capital
+575	Financial account, Direct investment, In the reporting economy, Reinvested earnings
+580	Financial account, Direct investment, In the reporting economy, Other capital
+591	Financial account, Direct investment, In the reporting economy, Equity capital & Other capital
+600	Financial account, Portfolio investment
+602	Financial account, Portfolio investment, Assets
+610	Financial account, Portfolio investment, Assets, Equities securities
+614	Financial account, Portfolio investment, Assets, Equities securities, Other sectors
+619	Financial account, Portfolio investment, Assets, Debt securities
+620	Financial account, Portfolio investment, Assets, Debt securities, Bonds and notes
+624	Financial account, Portfolio investment, Assets, Debt securities, Bonds and notes, Other sectors
+630	Financial account, Portfolio investment, Assets, Debt securities, Money market instruments
+634	Financial account, Portfolio investment, Assets, Debt securities, Money market instruments, Other sectors
+652	Financial account, Portfolio investment, Liabilities
+660	Financial account, Portfolio investment, Liabilities, Equities securities
+669	Financial account, Portfolio investment, Liabilities, Debt securities
+670	Financial account, Portfolio investment, Liabilities, Debt securities, Bonds and notes
+672	Financial account, Portfolio investment, Liabilities, Debt securities, Bonds and notes, General government
+674	Financial account, Portfolio investment, Liabilities, Debt securities, Bonds and notes, Other sectors
+680	Financial account, Portfolio investment, Liabilities, Debt securities, Money market instruments
+684	Financial account, Portfolio investment, Liabilities, Debt securities, Money market instruments, Other sectors
+910	Financial account, Financial derivatives, Balance
+914	Financial account, Financial derivatives, Balance, Other sectors
+904	Financial account, Financial derivatives, Assets, Other sectors
+909	Financial account, Financial derivatives, Liabilities, Other sectors
+700	Financial account, Other investment
+703	Financial account, Other investment, Assets
+704	Financial account, Other investment, Assets, General government
+713	Financial account, Other investment, Assets, Loans/currency & deposits, General government
+714	Financial account, Other investment, Assets, Loans
+719	Financial account, Other investment, Assets, Loans, General government 
+725	Financial account, Other investment, Assets, Loans, Other sectors
+728	Financial account, Other investment, Assets, Other sectors
+729	Financial account, Other investment, Assets, Loans/currency & deposits, Other sectors
+730	Financial account, Other investment, Assets, Currency and deposits
+732	Financial account, Other investment, Assets, Currency and deposits, General government
+734	Financial account, Other investment, Assets, Currency and deposits, Other sectors
+736	Financial account, Other investment, Assets, Other assets
+740	Financial account, Other investment, Assets, Other assets, General government
+741	Financial account, Other investment, Assets, Other assets, General government, Long-term
+742	Financial account, Other investment, Assets, Other assets, General government, Short-term
+746	Financial account, Other investment, Assets, Other assets, Other sectors
+753	Financial account, Other investment, Liabilities
+754	Financial account, Other investment, Liabilities, General government
+759	Financial account, Other investment, Liabilities, Trade credits, General government, Short-term
+764	Financial account, Other investment, Liabilities, Loans
+769	Financial account, Other investment, Liabilities, General government, Loans
+775	Financial account, Other investment, Liabilities, Other sectors, Loans
+779	Financial account, Other investment, Liabilities, Other sectors
+780	Financial account, Other investment, Liabilities, Currency and deposits
+786	Financial account, Other investment, Liabilities, Other liabilities
+790	Financial account, Other investment, Liabilities, Other liabilities, General government
+791	Financial account, Other investment, Liabilities, Other liabilities, General government, Long-term
+792	Financial account, Other investment, Liabilities, Other liabilities, General government, Short-term
+796	Financial account, Other investment, Liabilities, Other liabilities, Other sectors
+802	Financial account, Official reserve assets
+980	Net external debt
+983	Commercial services (services excluding Government services, n.i.e.)
+988	Financial account, International investment position, Assets
+989	Financial account, International investment position, Liabilities
+998	Net errors and omissions
+991	Current account, Goods and services
+992	Current account, Goods, services and income
+996	Capital and financial account
+EMP	Number of persons employed
+ENT	Number of enterprises
+EXP	Exports of goods and services
+EXPEU	Exports of goods and services to the EU
+EXPG	Exports of goods
+EXPGEU	Exports of goods to the EU
+EXPGRW	Exports of goods to the rest of world
+EXPI	Intra-group export of goods and services
+EXPICC	Intra-group exports of goods and services to the controlling unit in the compiling country
+EXPINC	Intra-group exports of goods and services excluding controlling unit
+EXPRW	Exports of goods and services to the rest of world
+EXPS	Exports of services
+EXPSEU	Exports of services to the EU
+EXPSRW	Exports of services to the rest of world
+GIT	Gross investment in tangible goods
+IMP	Import of goods and services
+IMPEU	Import of goods and services from the EU
+IMPG	Import of goods
+IMPGEU	Import of goods from the EU
+IMPGRW	Import of goods from the rest of world
+IMPI	Intra-group import of goods and services
+IMPICC	Intra-group import of goods and services from the controlling unit in the compiling country
+IMPINC	Intra-group import of goods and services excluding controlling unit
+IMPRW	Import of goods and services from the rest of world
+IMPS	Import of services
+IMPSEU	Import of services from the EU
+IMPSRW	Import of services from the rest of world
+PEC	Personnel costs
+RDE	Total intra-mural R&D expenditure
+RDP	Total number of R&D personnel
+TUR	Turnover
+VAC	Value added at factor cost
+518	Financial account, Direct investment, Abroad, Equity capital, MFIs (excluding central bank)
+519	Financial account, Direct investment, Abroad, Equity capital, Other sectors
+528	Financial account, Direct investment, Abroad, Reinvested earnings, MFIs (excluding central bank)
+529	Financial account, Direct investment, Abroad, Reinvested earnings, Other sectors
+538	Financial account, Direct investment, Abroad, Other capital, MFIs (excluding central bank)
+539	Financial account, Direct investment, Abroad, Other capital, Other sectors
+568	Financial account, Direct investment, In the reporting economy, Equity capital, MFIs (excluding central bank)
+569	Financial account, Direct investment, In the reporting economy, Equity capital, Other sectors
+578	Financial account, Direct investment, In the reporting economy, Reinvested earnings, MFIs (excluding central bank)
+579	Financial account, Direct investment, In the reporting economy, Reinvested earnings, Other sectors
+588	Financial account, Direct investment, In the reporting economy, Other capital, MFIs (excluding central bank)
+589	Financial account, Direct investment, In the reporting economy, Other capital, Other sectors
+611	Financial account, Portfolio investment, Assets, Equity securities, Monetary authorities
+612	Financial account, Portfolio investment, Assets, Equity securities, General government
+613	Financial account, Portfolio investment, Assets, Equity securities, MFIs
+621	Financial account, Portfolio investment, Assets, Debt securities, Bonds and notes, Monetary authorities
+622	Financial account, Portfolio investment, Assets, Debt securities, Bonds and notes, General government
+623	Financial account, Portfolio investment, Assets, Debt securities, Bonds and notes, MFIs
+631	Financial account, Portfolio investment, Assets, Debt securities, Money market instruments, Monetary authorities
+632	Financial account, Portfolio investment, Assets, Debt securities, Money market instruments, General government
+633	Financial account, Portfolio investment, Assets, Debt securities, Money market instruments, MFIs
+663	Financial account, Portfolio investment, Liabilities, Equity securities, MFIs
+664	Financial account, Portfolio investment, Liabilities, Equity securities, Other sectors
+671	Financial account, Portfolio investment, Liabilities, Debt securities, Bonds and notes, Monetary authorities
+673	Financial account, Portfolio investment, Liabilities, Debt securities, Bonds and notes, MFIs
+681	Financial account, Portfolio investment, Liabilities, Debt securities, Money market instruments, Monetary authorities
+682	Financial account, Portfolio investment, Liabilities, Debt securities, Money market instruments, General government
+683	Financial account, Portfolio investment, Liabilities, Debt securities, Money market instruments, MFIs
+701	Financial account, Other investment, Assets, Monetary authorities
+702	Financial account, Other investment, Assets, Monetary authorities, Loans/currency and deposits
+705	Financial account, Other investment, Assets, MFIs
+707	Financial account, Other investment, Assets, Trade credits, general government
+710	Financial account, Other investment, Assets, Trade credits, Other sectors
+716	Financial account, Other investment, Assets, MFIs, Loans/currency and deposits
+737	Financial account, Other investment, Assets, Other assets, Monetary authorities
+743	Financial account, Other investments, Assets, Other assets, MFIs
+751	Financial account, Other investment, Liabilities, Monetary authorities
+752	Financial account, Other investment, Liabilities, Monetary authorities, Loans/currency and deposits
+755	Financial account, Other investment, Liabilities, MFIs
+757	Financial account, Other investment, Liabilities, Trade credits, General government
+760	Financial account, Other investment, Liabilities, Trade credits, Other sectors
+778	Financial account, Other investment, Liabilities, MFIs, Loans/currency and deposits
+787	Financial account, Other investment, Liabilities, Other liabilities, Monetary authorities
+793	Financial account, Other investment, Liabilities, Other liabilities, MFIs
+911	Financial account, Financial derivatives, Balance, Monetary authorities
+912	Financial account, Financial derivatives, Balance, General government
+913	Financial account, Financial derivatives, Balance, MFIs
+968	Workers' remittances and  compensation of employees

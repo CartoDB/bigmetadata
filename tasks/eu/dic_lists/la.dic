@@ -1,0 +1,44 @@
+LA_1	Total agricultural land
+LA_1_1	Arable land
+LA_1_2	Land under permanent crops
+LA_1_3	Land under permanent meadows and pasture
+LA_1_4	Other agricultural land
+LA_1_5	Agricultural irrigated land
+LA_2	Total land under forest and other wooded land
+LA_2_1	Predominantly coniferous
+LA_2_2	Predominantly broadleaved
+LA_2_3	Predominantly other
+LA_2_4	Mixed forest
+LA_2_5	Other wooded land
+LA_3	Built-up and related land
+LA_3_1	Residential land
+LA_3_2	Industrial land
+LA_3_3	Land used for quarries, pits, mines, etc.
+LA_3_4	Commercial land
+LA_3_5	Land used for public services, excluding transport, communication and technical infrastructure
+LA_3_6	Land of mixed use
+LA_3_7	Land used for transport and communication
+LA_3_8	Land used for technical infrastucture
+LA_3_9	Recreational and other open land
+LA_4	Wet open lands
+LA_4_1	Mires
+LA_4_2	Wet tundra
+LA_4_3	Other wet open lands
+LA_5	Total dry open lands
+LA_5_1	Dry open land with special vegetation cover
+LA_5_1_1	Heathland
+LA_5_1_2	Dry tundra
+LA_5_1_3	Mountainous grassland
+LA_5_1_4	Other dry open land with special vegetation cover
+LA_5_2	Dry open land without, or with insignificant vegetation cover
+LA_5_2_1	Bare rocks, glaciers and perpetual snow
+LA_5_2_2	Sand beaches, dunes and other sandy lands
+LA_5_2_3	Other dry open land without, or with insignificant vegetation cover
+LA_6	Waters
+LA_6_1	Inland waters
+LA_6_2	Tidal waters
+LA_7	Land area
+LA_8	Total area
+LA_9	Total gains
+LA_9_1	Area affected by erosion
+LA_9_2	Area affected by desertification

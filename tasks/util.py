@@ -20,7 +20,7 @@ from slugify import slugify
 import requests
 
 from luigi import (Task, Parameter, LocalTarget, Target, BooleanParameter,
-                   ListParameter, DateParameter, WrapperTask)
+                   ListParameter, DateParameter, WrapperTask, Event)
 from luigi.s3 import S3Target
 
 from sqlalchemy import Table, types, Column
@@ -1080,15 +1080,19 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
-            schema=classpath(self)))
-        target = PostgresTarget(classpath(self), self.task_id)
-        #if not getattr(self, 'wiped', False) and (self.force or target.empty()):
-        if getattr(self, 'first_time', True) and (self.force or target.empty()):
-            shell("psql -c 'DROP TABLE IF EXISTS \"{schema}\".{tablename}'".format(
-                schema=classpath(self), tablename=self.task_id))
-        self.first_time = False
-        return target
+        return PostgresTarget(classpath(self), self.task_id)
+
+
+@TempTableTask.event_handler(Event.START)
+def clear_temp_table(task):
+    target = task.output()
+    shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
+        schema=classpath(task)))
+    if task.force or target.empty():
+        session = current_session()
+        session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
+		        schema=classpath(task), tablename=task.task_id))
+        session.flush()
 
 
 class Shp2TempTableTask(TempTableTask):
@@ -1096,6 +1100,8 @@ class Shp2TempTableTask(TempTableTask):
     A task that loads :meth:`~.util.Shp2TempTableTask.input_shp()` into a
     temporary Postgres table.  That method must be overriden.
     '''
+
+    encoding = Parameter(default='latin1', significant=False)
 
     def input_shp(self):
         '''
@@ -1115,11 +1121,12 @@ class Shp2TempTableTask(TempTableTask):
         operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no '.format(
             schema=schema)
         for shp in shps:
-            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
+            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING={encoding} ' \
                     'ogr2ogr -f PostgreSQL PG:"dbname=$PGDATABASE ' \
                     'active_schema={schema}" -t_srs "EPSG:4326" ' \
                     '-nlt MultiPolygon -nln {table} ' \
                     '{operation} \'{input}\' '.format(
+                        encoding=self.encoding,
                         schema=schema,
                         table=tablename,
                         input=shp,
@@ -1175,7 +1182,7 @@ class CSV2TempTableTask(TempTableTask):
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell('head -n 1 {csv}'.format(csv=csv))
+        header_row = shell('head -n 1 {csv}'.format(csv=csv)).strip()
         return [(h, 'Text') for h in header_row.split(self.delimiter)]
 
     def run(self):
@@ -1278,7 +1285,7 @@ class TableTask(Task):
         '''
         This method must populate (most often via ``INSERT``) the output table.
 
-        For example: 
+        For example:
         '''
         raise NotImplementedError('Must implement populate method that '
                                    'populates the table')

@@ -1,0 +1,22 @@
+PUB	Public schools and colleges
+UNIV	Universities and other higher education establishments
+PUTR	Public training institutions (financed or guided by the government; e.g. adult education centres)
+SPEC	Specialised training institutions
+PRALL	Private training organisations
+PRIV	Private companies whose main activity is not training
+EQUIP	Equipment suppliers
+PAR	Parent/associate companies
+UNION	Unions
+CHOC	Chambers of commerce, sector bodies, employers' organisations
+OTH	Other providers
+NRESP	No response
+FEDINST	Formal education institution
+NFEINST	Non formal education and training institutions
+COMINST	Commercial institution where education and training is not the main activity (e.g. equipment suppliers)
+EMPL	Employer
+CHACOM	Employers' organisations, chambers of commerce
+TRDINST	Trade unions
+NONPROF	Non-profit associations (e.g. cultural society, political party)
+INDIV	Individuals (e.g. students giving private lessons)
+NONCOM	Non commercial instituion where ET is not the main activity (e.g. libraries, museums, ministers)
+OTHER	Other

@@ -1,0 +1,20 @@
+B_MD40	Below 40% of median equivalised income
+A_MD40	Above 40% of median equivalised income
+B_MD50	Below 50% of median equivalised income
+A_MD50	Above 50% of median equivalised income
+B_MD60	Below 60% of median equivalised income
+A_MD60	Above 60% of median equivalised income
+B_MD70	Below 70% of median equivalised income
+A_MD70	Above 70% of median equivalised income
+B_M40	Below 40% of mean equivalised income
+A_M40	Above 40% of mean equivalised income
+B_M50	Below 50% of mean equivalised income
+A_M50	Above 50% of mean equivalised income
+B_M60	Below 60% of mean equivalised income
+A_M60	Above 60% of mean equivalised income
+Q0_20	First quintile of equivalised income
+Q20_40	Second quintile of equivalised income
+Q40_60	Third quintile of equivalised income
+Q60_80	Fourth quintile of equivalised income
+Q80_100	Fifth quintile of equivalised income
+TOTAL	Total

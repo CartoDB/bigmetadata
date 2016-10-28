@@ -1,0 +1,23 @@
+TOTAL	Total
+SIN	Single persons (never in legal union)  
+LUN	Persons in legal union (married or in registered partnership) 
+MAR	Married persons
+MARO	Persons in an opposite-sex married couple
+MARS	Persons in an same-sex married couple
+REP	Persons in registered partnership
+REPO	Persons in an opposite-sex registered partnership
+REPS	Persons in a same-sex registered partnership
+CSU	Persons in consensual union
+DTHLUN	Persons whose legal union ended with the death of the partner
+WID	Widowed persons
+DTHREP	Persons whose registered partnership ended with the death of the partner
+DISLUN	Persons whose legal union was legally dissolved
+DIV	Divorced persons
+DISREP	Persons whose registered partnership was legally dissolved
+SEP	Separated persons
+NLUN	Persons neither in registered partnership nor married
+ENDLUN	Persons whose legal union ended
+NMAR	Not married persons  
+NLUN_NCSU	Persons neither in legal nor in consensual union
+UNK	Persons with unknown marital status
+NRP	No response  

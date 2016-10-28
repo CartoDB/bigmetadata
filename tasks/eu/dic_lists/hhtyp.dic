@@ -1,0 +1,58 @@
+TOTAL	Total
+A1	Single person
+A1_LT30	One adult younger than 30 years
+A1_30_64	One adult aged between 30 and 64 years
+A1_LT64	One adult younger than 64 years
+A1_LT65	One adult younger than 65 years
+A1_GE65	One adult 65 years or over
+A1_DCH	Single person with dependent children
+A1_CHLT25	Lone parent with child(ren) aged less than 25
+A1F	Single female
+A1M	Single male
+A1F_CH	Single mother with children
+A2	Two adults
+A2_2LT65	Two adults younger than 65 years
+A2_GE1_GE65	Two adults, at least one aged 65 years or over
+A2_DCH	Two adults with dependent children
+A2_1DCH	Two adults with one dependent child
+A2_2DCH	Two adults with two dependent children
+A2_2CH_LT14	Two adults with two children younger than 14 years
+A2_GE3DCH	Two adults with three or more dependent children
+A_GE2_NDCH	Two or more adults without dependent children
+A_GE2_DCH	Two or more adults with dependent children
+A_GE3	Three or more adults
+A_GE3_DCH	Three or more adults with dependent children
+CPL_CHLT25	Couple with child(ren) aged less than 25
+CPL_CHLT25_OTH	Couple or lone parent with child(ren) aged less than 25 and other persons living in household
+CPL_NCH	Couple without children
+CPL_NCHLT25	Couple without child(ren) aged less than 25 ("Couple without children")
+CPL_NCH_NOTH	Couple without children without other persons
+CPL_OTH	Couple living with other persons
+CHILD	Person living as a child in the parental home
+CH_MCPL	Child living with both married parents
+CH_CCPL	Child living with both parents cohabiting
+CH_A0	Child not living with parents
+CH_A1	Child living with a single parent
+OTH	Other
+OTH_NCH	Other, no children
+OTH_CH	Other with children
+ALL_NDCH	All types without dependent children
+ALL_DCH	All types with dependent children
+HH_NDCH	Households without dependent children
+HH_DCH	Households with dependent children
+HH_O1	Households in Objective 1 regions / "Convergence" regions
+OTHER	Other households
+HH_NO1	Households in not Objective 1 regions / "Regional Competitiveness and Employment" Region
+HH_DEG1	Households living in densely-populated area (at least 500 inhabitants/Km2)
+HH_DEG2	Households living in intermediate urbanized area (between 100 and 499 inhabitants/Km2)
+HH_DEG3	Households living in sparsely populated area (less than 100 inhabitants/Km2)
+HH_DEV_L	Households living in less developed regions
+HH_DEV_M	Households living in more developed regions
+HH_DEV_T	Households living in transition regions
+HHI_Q1	Number of households with income in first quartile
+HHI_Q2	Number of households with income in second quartile
+HHI_Q3	Number of households with income in third quartile
+HHI_Q4	Number of households with income in fourth quartile
+INST	Institutional household
+RESTHOME	Resthome
+UNK	Unknown

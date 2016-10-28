@@ -1,0 +1,39 @@
+TOTAL	Total
+ALL	All levels
+VHIGH	Very high
+MOT	Mother tongue
+PROF	Proficient
+HIGH	High
+HVY	Heavy
+VGOOD	Very good
+BROAD	Broad
+GOOD	Good
+VG_G	Very good and good
+FAIR	Fair
+MED	Medium
+MOD_SEV	Moderate and severe
+MOD	Moderate
+MOD_HVY	Moderate or heavy
+SOME	Some
+BASIC	Basic
+LTD	Limited
+VMILD	Very mild
+MILD	Mild
+M_VM	Mild and very mild
+LGHT	Light
+NONE_LGHT	None or light
+LOW	Low
+BAD	Bad
+VLOW	Very low
+VBAD	Very bad
+B_VB	Bad and very bad
+SEV	Severe
+VSEV	Very severe
+S_VS	Severe and very severe
+SM_SEV	Some and severe
+MOD_S_VS	Moderate, severe and very severe
+NONE	None
+NAP	Not applicable
+NRP	No response
+NSP	Not specified
+UNK	Unknown

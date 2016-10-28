@@ -1,0 +1,75 @@
+TOTAL	Total
+UNI	Universe
+SPL	Sample
+AVG	Average
+MED	Median
+CUM	Cumulative series
+RV	Relative value
+END	Value at the end of the period
+MAX	Maximum value within period
+MIN	Minimum value within period
+STD	Standard deviation
+CV	Coefficient of variation 
+CVA	Coefficient of variation for absolute value
+CVR	Coefficient of variation for relative value
+DISP_NUTS2	Dispersion at NUTS level 2
+DISP_NUTS3	Dispersion at NUTS level 3
+SUM3Y	Sum of the last 3 years
+SUM4Y	Sum of the last 4 years
+SUM6Y	Sum of the last 6 years
+NSME	Unsmoothed estimate 
+SME	Smoothed estimate 
+SME_UP95	Smoothed estimate - upper boundary of the 95% confidence interval 
+SME_LW95	Smoothed estimate - lower boundary of the 95% confidence interval 
+COWEU	Country weights for European Union (EC12-1994, EU15-2004, EU25-2006, EU27-2013, EU28)
+COWEU28	Country weights for EU-28 (European Union)
+COWEU27	Country weights for EU-27 (European Union)
+COWEU25	Country weights for EU-25 (European Union)
+COWEU15	Country weights for EU-15 (European Union)
+COWEA	Country weights for the euro area (EA11-2000, EA12-2006, EA13-2007, EA15-2008, EA16-2010, EA17-2013, EA18)
+COWEA19	Country weights for EA-19 (Euro area)
+COWEA18	Country weights for EA-18 (Euro area)
+COWEA17	Country weights for EA-17 (Euro area)
+COWEA16	Country weights for EA-16 (Euro area)
+COWEA15	Country weights for EA-15 (Euro area)
+COWEA13	Country weights for EA-13 (Euro area)
+COWEA12	Country weights for EA-12 (Euro area)
+COWEEA	Country weights for EEA (European Economic Area)
+IWBS	Item weights for industry, construction and services (except activities of households as employers and extra-territorial organisations and bodies) - NACE rev.2, B to S
+NONE	No income
+Q1	First quartile
+Q2	Second quartile
+Q3	Third quartile
+Q4	Fourth quartile
+QU1	First quintile
+QU2	Second quintile
+QU3	Third quintile
+QU4	Fourth quintile
+QU5	Fifth quintile
+D1	First decile
+D2	Second decile
+D3	Third decile
+D4	Fourth decile
+D5	Fifth decile
+D6	Sixth decile
+D7	Seventh decile
+D8	Eighth decile
+D9	Ninth decile
+D10	Tenth decile
+P1	First percentile
+P2	Second percentile
+P3	Third percentile
+P4	Fourth percentile
+P5	Fifth percentile
+P10	Tenth percentile
+P25	Twenty-fifth percentile
+S2	Second sextile
+P75	Seventy-fifth percentile
+P90	Ninetieth percentile
+P95	Ninety-fifth percentile
+P96	Ninety-sixth percentile
+P97	Ninety-seventh percentile
+P98	Ninety-eighth percentile
+P99	Ninety-ninth percentile
+P100	Hundredth percentile
+UNK	Unknown

@@ -1,0 +1,551 @@
+TOTAL	Total
+LFD	Late foetal death
+LFD1	Late foetal death (group 1)
+LFD2	Late foetal death (group 2)
+MN0	Zero minutes
+MN1-59	From 1 to 59 minutes 
+MN1-74	From 1 to 74 minutes
+MN60-149	From 60 to 149 minutes
+MN75-149	From 75 to 149 minutes 
+MN150-299	From 150 to 299 minutes
+MN_GE150	150 minutes or over
+MN_GE300	300 minutes or over
+H0	Zero hours
+H1-9	From 1 to 9 hours
+H1-29	From 1 to 29 hours
+H_LE10	10 hours or less
+H10-19	From 10 to 19 hours
+H10-20	From 10 to 20 hours
+H_GT10-20	From more than 10 to 20 hours
+H20-29	From 20 to 29 hours
+H20-30	From 20 to 30 hours
+H_GT20-30	From more than 20 to 30 hours
+H30-39	From 30 to 39 hours
+H30-40	From 30 to 40 hours
+H_GT30-40	From more than 30 to 40 hours
+H_GE30	30 hours or over
+H40-49	From 40 to 49 hours
+H_GT40	Over 40 hours
+H_GE50	50 hours or over
+N_GE1	1 night or over
+N1-3	From 1 to 3 nights
+N4-7	From 4 to 7 nights
+N_GE4	4 nights or over
+N8-14	From 8 to 14 nights
+N15-28	From 15 to 28 nights
+N29-91	From 29 to 91 nights
+N92-365	From 92 to 365 nights
+D0	Zero days
+D0-27	From 0 to 27 days
+D_LT1	Less than 1 day
+D1-3	From 1 to 3 days
+D1-6	From 1 to 6 days
+D1-7	From 1 to 7 days
+D4-6	From 4 to 6 days
+D_GE4	4 days or over
+D_LT7	Less than 7 days
+D7-13	From 7 to 13 days
+D7-27	From 7 to 27 days
+D8-35	From 8 to 35 days
+D14-20	From 14 to 20 days
+D14-29	From 14 to 29 days
+D_GE14	14 days or over
+D21-29	From 21 to 29 days
+D_LT28	Less than 28 days
+D28-364	From 28 days to less than 1 year
+D_GT35	Over 35 days
+W0-16	From 0 to 16 weeks
+W0-20	From 0 to 20 weeks
+W0-27	From 0 to 27 weeks
+W17	17 weeks
+W18	18 weeks
+W19	19 weeks
+W20	20 weeks
+W21	21 weeks
+W22	22 weeks
+W23	23 weeks
+W24	24 weeks
+W25	25 weeks
+W26	26 weeks
+W27	27 weeks
+W28	28 weeks
+W28-31	From 28 to 31 weeks
+W29	29 weeks
+W30	30 weeks
+W31	31 weeks
+W32	32 weeks
+W32-35	From 32 to 35 weeks
+W33	33 weeks
+W34	34 weeks
+W35	35 weeks
+W36	36 weeks
+W36-39	From 36 to 39 weeks
+W37	37 weeks
+W38	38 weeks
+W39	39 weeks
+W_GE40	40 weeks or over
+NST	Not started
+IMM	Immediate
+M0	Zero months
+M_LT1	Less than 1 month
+M1	1 month
+M1-2	From 1 to 2 months
+M1-3	From 1 to 3 months
+M1-6	From 1 to 6 months
+M_GE1	1 month or over
+M2	2 months
+M_LT3	Less than 3 months
+M_LE3	3 months or less
+M3	3 months
+M3-4	From 3 to 4 months
+M3-5	From 3 to 5 months
+M3-6	From 3 to 6 months
+M_GT3-6	From more than 3 to 6 months
+M_GE3	3 months or over
+M4	4 months
+M4-6	From 4 to 6 months
+M5	5 months
+M5-6	From 5 to 6 months
+M6	6 months
+M6-11	From 6 to 11 months
+M6-12	From 6 to 12 months
+M_GT6-12	From more than 6 to 12 months
+M_GE6	6 months or over
+M7	7 months
+M7-9	From 7 to 9 months
+M7-12	From 7 to 12 months
+M8	8 months
+M9	9 months
+M10	10 months
+M_GE10	10 months or over
+M11	11 months
+M12	12 months
+M12-17	From 12 to 17 months
+M_GE12	12 months or over
+M_GT12	Over 12 months
+M13	13 months
+M13-18	From 13 to 18 months
+M14	14 months
+M15	15 months
+M16	16 months
+M17	17 months
+M18	18 months
+M18-23	From 18 to 23 months
+M19	19 months
+M19-24	From 19 to 24 months
+M20	20 months
+M21	21 months
+M22	22 months
+M23	23 months
+M24	24 months
+M24-47	From 24 to 47 months
+M25	25 months
+M25-36	From 25 to 36 months
+M26	26 months
+M27	27 months
+M28	28 months
+M29	29 months
+M30	30 months
+M31	31 months
+M32	32 months
+M33	33 months
+M34	34 months
+M35	35 months
+M36	36 months
+M_GT36	Over 36 months
+M37	37 months
+M38	38 months
+M39	39 months
+M40	40 months
+M41	41 months
+M42	42 months
+M43	43 months
+M44	44 months
+M45	45 months
+M46	46 months
+M47	47 months
+M48	48 months
+M_GE48	48 months or over
+M49	49 months
+M50	50 months
+M51	51 months
+M52	52 months
+M53	53 months
+M54	54 months
+M55	55 months
+M56	56 months
+M57	57 months
+M58	58 months
+M59	59 months
+M60	60 months
+M61	61 months
+M62	62 months
+M63	63 months
+M64	64 months
+M65	65 months
+M66	66 months
+M67	67 months
+M68	68 months
+M69	69 months
+M70	70 months
+M71	71 months
+M72	72 months
+M73	73 months
+M74	74 months
+M75	75 months
+M76	76 months
+M77	77 months
+M78	78 months
+M79	79 months
+M80	80 months
+M81	81 months
+M82	82 months
+M83	83 months
+M84	84 months
+M85	85 months
+M86	86 months
+M87	87 months
+M88	88 months
+M89	89 months
+M90	90 months
+M91	91 months
+M92	92 months
+M93	93 months
+M94	94 months
+M95	95 months
+M96	96 months
+M97	97 months
+M98	98 months
+M99	99 months
+M100	100 months
+M101	101 months
+M102	102 months
+M103	103 months
+M104	104 months
+M105	105 months
+M106	106 months
+M107	107 months
+M108	108 months
+M109	109 months
+M110	110 months
+M111	111 months
+M112	112 months
+M113	113 months
+M114	114 months
+M115	115 months
+M116	116 months
+M117	117 months
+M118	118 months
+M119	119 months
+Y0-29	From 0 to 29 years
+Y_LT1	Less than 1 year
+Y1	1 year
+Y1-2	From 1 to 2 years
+Y1-3	From 1 to 3 years
+Y1-4	From 1 to 4 years
+Y1-5	From 1 to 5 years
+Y1-9	From 1 to 9 years
+Y1-14	From 1 to 14 years
+Y_LT2	Less than 2 years
+Y2	2 years
+Y2-3	From 2 to 3 years
+Y2-4	From 2 to 4 years
+Y2-5	From 2 to 5 years
+Y_GE2	2 years or over
+Y_LT3	Less than 3 years
+Y_LE3	3 years or less
+Y3	3 years
+Y3-CSA	From 3 years to minimum compulsory school age
+Y3-4	From 3 to 4 years
+Y3-5	From 3 to 5 years
+Y3-9	From 3 to 9 years
+Y_GE3	3 years or over
+Y_GT3	Over 3 years
+Y_LT4	Less than 4 years
+Y4	4 years
+Y4-5	From 4 to 5 years
+Y_GT4	Over 4 years
+Y_LT5	Less than 5 years
+Y_LE5	5 years or less
+Y5	5 years
+Y5-9	From 5 to 9 years
+Y5-10	From 5 to 10 years
+Y5-11	From 5 to 11 years
+Y5-14	From 5 to 14 years
+Y5-29	From 5 to 29 years
+Y_GE5	5 years or over
+Y_GT5	Over 5 years
+CSA-Y12	From minimum compulsory school age to 12 years
+Y_LT6	Less than 6 years
+Y6	6 years
+Y6-7	From 6 to 7 years
+Y6-9	From 6 to 9 years
+Y6-10	From 6 to 10 years
+Y6-11	From 6 to 11 years
+Y7	7 years
+Y7-12	From 7 to 12 years
+Y8	8 years
+Y8-9	From 8 to 9 years
+Y9	9 years
+Y_LT10	Less than 10 years
+Y10	10 years
+Y10-11	From 10 to 11 years
+Y10-14	From 10 to 14 years
+Y10-19	From 10 to 19 years
+Y10-20	From 10 to 20 years
+Y10-29	From 10 to 29 years
+Y_GE10	10 years or over
+Y_LT11	Less than 11 years
+Y11	11 years
+Y11-15	From 11 to 15 years
+Y12	12 years
+Y12-13	From 12 to 13 years
+Y12-17	From 12 to 17 years
+Y12-49	From 12 to 49 years
+Y_GE12	12 years or over
+Y13	13 years
+Y13-18	From 13 to 18 years
+Y_LT14	Less than 14 years
+Y14	14 years
+Y14-15	From 14 to 15 years
+Y14-17	From 14 to 17 years
+Y_LT15	Less than 15 years
+Y15	15 years
+Y15-17	From 15 to 17 years
+Y15-19	From 15 to 19 years
+Y15-24_Y65-74	From 15 to 24 years and 65 to 74 years
+Y15-24	From 15 to 24 years
+Y15-29	From 15 to 29 years
+Y15-34	From 15 to 34 years
+Y15-39	From 15 to 39 years
+Y15-44	From 15 to 44 years
+Y15-59	From 15 to 59 years
+Y15-64	From 15 to 64 years
+Y15-69	From 15 to 69 years
+Y15-74	From 15 to 74 years
+Y_GE15	15 years or over
+Y_LT16	Less than 16 years
+Y16	16 years
+Y16-17	From 16 to 17 years
+Y16-18	From 16 to 18 years
+Y16-19	From 16 to 19 years
+Y16-24	From 16 to 24 years
+Y16-29	From 16 to 29 years
+Y16-44	From 16 to 44 years
+Y16-64	From 16 to 64 years
+Y_GE16	16 years or over
+Y_LT17	Less than 17 years
+Y17	17 years
+Y_LT18	Less than 18 years
+Y18	18 years
+Y18-19	From 18 to 19 years
+Y18-24	From 18 to 24 years
+Y18-34	From 18 to 34 years
+Y18-44	From 18 to 44 years
+Y18-49	From 18 to 49 years
+Y18-54	From 18 to 54 years
+Y18-59	From 18 to 59 years
+Y18-64	From 18 to 64 years
+Y18-69	From 18 to 69 years
+Y18-74	From 18 to 74 years
+Y_GE18	18 years or over
+Y19	19 years
+Y19-24	From 19 to 24 years
+Y_LT20	Less than 20 years
+Y20	20 years
+Y20-24	From 20 to 24 years
+Y20-29	From 20 to 29 years
+Y20-34	From 20 to 34 years
+Y20-49	From 20 to 49 years
+Y20-59	From 20 to 59 years
+Y20-64	From 20 to 64 years
+Y20-69	From 20 to 69 years
+Y_GE20	20 years or over
+Y21	21 years
+Y_GE21	21 years or over
+Y22	22 years
+Y23	23 years
+Y24	24 years
+Y_LT25	Less than 25 years
+Y25	25 years
+Y25-29	From 25 to 29 years
+Y25-34	From 25 to 34 years
+Y25-39	From 25 to 39 years
+Y25-44	From 25 to 44 years
+Y25-49	From 25 to 49 years
+Y25-54	From 25 to 54 years
+Y25-59	From 25 to 59 years
+Y25-64	From 25 to 64 years
+Y25-69	From 25 to 69 years
+Y25-74	From 25 to 74 years
+Y_GE25	25 years or over
+Y26	26 years
+Y27	27 years
+Y28	28 years
+Y29	29 years
+Y_LT30	Less than 30 years
+Y30	30 years
+Y30-34	From 30 to 34 years
+Y30-39	From 30 to 39 years
+Y30-44	From 30 to 44 years
+Y30-49	From 30 to 49 years
+Y30-64	From 30 to 64 years
+Y_GE30	30 years or over
+Y31	31 years
+Y32	32 years
+Y33	33 years
+Y34	34 years
+Y_LT35	Less than 35 years
+Y35	35 years
+Y35-39	From 35 to 39 years
+Y35-44	From 35 to 44 years
+Y35-49	From 35 to 49 years
+Y35-54	From 35 to 54 years
+Y35-64	From 35 to 64 years
+Y_GE35	35 years or over
+Y_LT36	Less than 36 years
+Y36	36 years
+Y36-55	From 36 to 55 years
+Y37	37 years
+Y38	38 years
+Y39	39 years
+Y_LT40	Less than 40 years
+Y40	40 years
+Y40-44	From 40 to 44 years
+Y40-49	From 40 to 49 years
+Y40-54	From 40 to 54 years
+Y40-59	From 40 to 59 years
+Y40-64	From 40 to 64 years
+Y_GE40	40 years or over
+Y41	41 years
+Y42	42 years
+Y43	43 years
+Y44	44 years
+Y_LT45	Less than 45 years
+Y45	45 years
+Y45-49	From 45 to 49 years
+Y45-54	From 45 to 54 years
+Y45-59	From 45 to 59 years
+Y45-64	From 45 to 64 years
+Y_GE45	45 years or over
+Y46	46 years
+Y47	47 years
+Y48	48 years
+Y_GE48	48 years or over
+Y49	49 years
+Y_GE49	49 years or over
+Y50	50 years
+Y50-54	From 50 to 54 years
+Y50-59	From 50 to 59 years
+Y50-64	From 50 to 64 years
+Y50-69	From 50 to 69 years
+Y50-74	From 50 to 74 years
+Y_GE50	50 years or over
+Y51	51 years
+Y_GE51	51 years or over
+Y52	52 years
+Y53	53 years
+Y54	54 years
+Y55	55 years
+Y55-59	From 55 to 59 years
+Y55-64	From 55 to 64 years
+Y55-69	From 55 to 69 years
+Y55-74	From 55 to 74 years
+Y_GE55	55 years or over
+Y56	56 years
+Y_GE56	56 years or over
+Y57	57 years
+Y58	58 years
+Y59	59 years
+Y_LT60	Less than 60 years
+Y60	60 years
+Y60-64	From 60 to 64 years
+Y60-69	From 60 to 69 years
+Y60-74	From 60 to 74 years
+Y60-79	From 60 to 79 years
+Y_GE60	60 years or over
+Y61	61 years
+Y62	62 years
+Y63	63 years
+Y64	64 years
+Y_LT65	Less than 65 years
+Y65	65 years
+Y65-69	From 65 to 69 years
+Y65-74	From 65 to 74 years
+Y65-79	From 65 to 79 years
+Y65-84	From 65 to 84 years
+Y_GE65	65 years or over
+Y66	66 years
+Y67	67 years
+Y68	68 years
+Y69	69 years
+Y70	70 years
+Y70-74	From 70 to 74 years
+Y_GE70	70 years or over
+Y71	71 years
+Y72	72 years
+Y73	73 years
+Y74	74 years
+Y_LT75	Less than 75 years
+Y75	75 years
+Y75-79	From 75 to 79 years
+Y75-84	From 75 to 84 years
+Y_GE75	75 years or over
+Y76	76 years
+Y77	77 years
+Y78	78 years
+Y79	79 years
+Y80	80 years
+Y80-84	From 80 to 84 years
+Y_GE80	80 years or over
+Y81	81 years
+Y82	82 years
+Y83	83 years
+Y84	84 years
+Y85	85 years
+Y85-89	From 85 to 89 years
+Y_GE85	85 years or over
+Y86	86 years
+Y87	87 years
+Y88	88 years
+Y89	89 years
+Y90	90 years
+Y90-94	From 90 to 94 years
+Y_GE90	90 years or over
+Y91	91 years
+Y_GE91	91 years or over
+Y92	92 years
+Y93	93 years
+Y94	94 years
+Y95	95 years
+Y95-99	From 95 to 99 years
+Y_GE95	95 years or over
+Y96	96 years
+Y97	97 years
+Y98	98 years
+Y99	99 years
+Y_GE99	99 years or over
+Y100	100 years
+Y_GE100	100 years or over
+Y101	101 years
+Y_GE101	101 years or over
+Y102	102 years
+Y103	103 years
+Y104	104 years
+Y105	105 years
+Y106	106 years
+Y107	107 years
+Y108	108 years
+Y109	109 years
+Y110	110 years
+Y_GE110	110 years or over
+Y_OPEN	Open-ended age class
+FAT	Fatality
+JUVENILE	Juvenile
+ADULT	Adult
+ONGO	Ongoing
+NAP	Not applicable
+NEV	Never
+NRP	No response
+OTH	Other
+UNK	Unknown

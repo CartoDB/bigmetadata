@@ -1,0 +1,155 @@
+101_A	Number of employees in the year of enterprise birth
+101_N	Number of units having survived from 2002 to 2005
+201_A	Start-up type - new enterprise
+201_C	Start-up type - reactivation after more than 2 years
+201_T	Start-up type - Total
+202_A	Start-up motivation - desire for new challenges
+202_B	Start-up motivation - desire to be one's own boss
+202_C	Start-up motivation - desire to make a living from a hobby activity
+202_D	Start-up motivation - tradition for self-employment in the family
+202_E	Start-up motivation - combining work and private life
+202_F	Start-up motivation - children are big enough
+202_G	Start-up motivation - prospect of making more money
+202_H	Start-up motivation - realising an idea for an new product or service
+202_I	Start-up motivation - reaching an international market
+202_J	Start-up motivation - avoiding unemployment
+202_K	Start-up motivation - getting away from unsatisfactory work situation
+202_L	Start-up motivation - working as sub-contractor exclusively for former employer
+202_M	Start-up motivation - only possibility to carry out profession
+202_T	Start-up motivation - Total
+203_A	Start-up financing - own funds or savings
+203_B	Start-up financing - financial assistance from family or friends
+203_C	Start-up financing - bank loan without collateral
+203_D	Start-up financing - bank loan with collateral
+203_E	Start-up financing - capital contribution from other enterprises
+203_F	Start-up financing - venture capital
+203_G	Start-up financing - financial support from public authorities
+203_T	Start-up financing - Total
+204_A	Start-up difficulties - to get financing
+204_B	Start-up difficulties - to establish contacts with customers
+204_C	Start-up difficulties - to obtain payment for outstanding invoices
+204_D	Start-up difficulties - to price goods or services
+204_E	Start-up difficulties - to find suitable premises
+204_F	Start-up difficulties - to find suppliers
+204_G	Start-up difficulties - to get suitable personnel
+204_H	Start-up difficulties - to use information technology effectively
+204_I	Start-up difficulties - to deal with legal / governmental / administrative matters
+204_J	Start-up difficulties - to be alone as an entrepreneur
+204_K	Start-up difficulties - to get backing from spouse or family
+204_T	Start-up difficulties - Total
+205_A	Previous occupation - employee
+205_B	Previous occupation - running another enterprise
+205_C	Previous occupation - student
+205_D	Previous occupation - unemployed and available to labour market
+205_E	Previous occupation - no gainful activity and not available to labour market
+205_T	Previous occupation - Total
+206_A	Previous branch experience - yes
+206_B	Previous branch experience - no
+206_T	Previous branch experience - total
+207_A	Previous experience running an enterprise - no
+207_B	Previous experience running an enterprise - once
+207_C	Previous experience running an enterprise - more than once
+207_T	Previous experience running an enterprise - Total
+208_A	Training received to help start-up - yes, on own initiative
+208_B	Training received to help start-up - yes, upon request of public authorities
+208_C	Training received to help start-up - none
+208_T	Training received to help start-up - Total
+209_A	Sources of advice - family and friends
+209_B	Sources of advice - training course for entrepreneurs
+209_C	Sources of advice - professional acquaintances
+209_D	Sources of advice - professional consultants
+209_E	Sources of advice - unemployment administration
+209_F	Sources of advice - organisations specialising in business start-ups
+209_G	Sources of advice - financial institution
+209_H	Sources of advice - no access to any relevant advice
+209_I	Sources of advice - no advice needed
+209_T	Sources of advice - Total
+210_A	Other current gainful activity - yes
+210_B	Other current gainful activity - no
+210_T	Other current gainful activity - Total
+211_A	Age group - below 30 years
+211_B	Age group - 30 to 39 years
+211_C	Age group - 40 years or older
+211_T	Age group - Total
+212_A	Gender - female
+212_B	Gender - male
+212_T	Gender - Total
+213_A	Citizenship - domestic
+213_B	Citizenship - foreign - within EU
+213_C	Citizenship - foreign - outside EU
+213_T	Citizenship - Total
+214_A	Educational background - ISCED 1 or 2
+214_B	Educational background - ISCED 3
+214_C	Educational background - ISCED 4
+214_D	Educational background - ISCED 5 or 6
+214_T	Educational background - Total
+301_A	Current management - alone
+301_B	Current management - with someone else
+301_C	Current management - paid managers only
+301_T	Current management - Total
+302_A	Persons employed - unpaid or self-employed
+302_B	Persons employed - paid employees
+303_A	Turnover in 2004
+304_A	Turnover in 2005
+305_A	Origin of turnover - 1 customer
+305_B	Origin of turnover - 2 to 4 customers
+305_C	Origin of turnover - 5 or more customers
+305_T	Origin of turnover - Total
+306_A	Sales markets - local/regional
+306_B	Sales markets - national
+306_C	Sales markets - within EU
+306_D	Sales markets - outside EU
+306_T	Sales markets - Total
+307_A	Judgement of profitability - very good
+307_B	Judgement of profitability - good
+307_C	Judgement of profitability - barely sufficient
+307_D	Judgement of profitability - poor
+307_T	Judgement of profitability - Total
+308_A	Cooperation with other enterprises - in a network
+308_B	Cooperation with other enterprises - as subcontractor
+308_C	Cooperation with other enterprises - as a franchisee or licensee
+308_D	Cooperation with other enterprises - in a joint venture
+308_E	Cooperation with other enterprises - none / not relevant
+308_T	Cooperation with other enterprises - Total
+309_A	Innovation in the enterprise - product innovation
+309_B	Innovation in the enterprise - process innovation
+309_C	Innovation in the enterprise - organisational innovation
+309_D	Innovation in the enterprise - marketing innovation
+309_T	Innovation in the enterprise - Total
+310_A	Impediments to selling products or services - competition too vigorous
+310_B	Impediments to selling products or services - too little demand
+310_C	Impediments to selling products or services - difficult pricing
+310_D	Impediments to selling products or services - lack of marketing skills
+310_T	Impediments to selling products or services - Total
+311_A	Impediments to developing the business activity - profitability
+311_B	Impediments to developing the business activity - availability of bank loans
+311_C	Impediments to developing the business activity - availability of risk capital
+311_D	Impediments to developing the business activity - availability of short term credit
+311_E	Impediments to developing the business activity - availability of qualified personnel
+311_F	Impediments to developing the business activity - staff costs
+311_G	Impediments to developing the business activity - regulatory and administrative burden
+311_H	Impediments to developing the business activity - adapting to new technical standards
+311_I	Impediments to developing the business activity - availability of managerial competences
+311_J	Impediments to developing the business activity - combining family and work
+311_K	Impediments to developing the business activity - finding partners
+311_L	Impediments to developing the business activity - non or late paying customers
+311_T	Impediments to developing the business activity - Total
+401_A	Strategic plans - continuing the enterprise
+401_B	Strategic plans - affiliation
+401_C	Strategic plans - close and start new enterprise in the same activity
+401_D	Strategic plans - close and start new enterprise in another activity
+401_E	Strategic plans - close without starting new enterprise
+401_T	Strategic plans - Total
+402_A	Expected development of business activity - increase of turnover
+402_B	Expected development of business activity - increase of number of employees
+402_C	Expected development of business activity - increase of variety of goods and services for sale
+402_D	Expected development of business activity - increase of profitability
+402_T	Expected development of business activity - Total
+403_A	Highest priority if earnings increase - hire more employees
+403_B	Highest priority if earnings increase - increase remuneration of employees
+403_C	Highest priority if earnings increase - invest in the activity of the enterprise
+403_D	Highest priority if earnings increase - pay off loans or credits
+403_E	Highest priority if earnings increase - increase own salary from the enterprise
+403_F	Highest priority if earnings increase - reduce own working time
+403_G	Highest priority if earnings increase - none / not relevant
+403_T	Highest priority if earnings increase - Total
