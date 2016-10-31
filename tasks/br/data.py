@@ -46,7 +46,7 @@ class ImportCSV(BaseParams, CSV2TempTableTask):
         return DownloadData(resolution=self.resolution, state=self.state)
 
     def read_method(self, fname):
-        return 'sed "s/;$//" {}'.format(fname)
+        return 'sed "s/;.$//" {}'.format(fname)
 
     def input_csv(self):
         return '"{downloadpath}/"*/*/*"/{tablename}_{state}.csv"'.format(
