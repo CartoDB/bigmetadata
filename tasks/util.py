@@ -899,7 +899,10 @@ class TableToCartoViaImportAPI(Task):
                 url=url,
                 api_key=api_key
             ))
-        import_id = json.loads(curl_resp)["item_queue_id"]
+        try:
+            import_id = json.loads(curl_resp)["item_queue_id"]
+        except ValueError:
+            raise Exception(curl_resp)
         while True:
             resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
                 url=os.environ['CARTODB_URL'],

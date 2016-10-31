@@ -5,7 +5,7 @@ from tasks.util import TagsTask
 class LicenseTags(TagsTask):
 
     def version(self):
-        return 1
+        return 3
 
     def tags(self):
         return [
@@ -107,7 +107,7 @@ class UnitTags(TagsTask):
 class SectionTags(TagsTask):
 
     def version(self):
-        return 3
+        return 5
 
     def tags(self):
         return [
@@ -153,7 +153,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 19
+        return 20
 
     def tags(self):
         return [
@@ -221,4 +221,8 @@ class SubsectionTags(TagsTask):
                    name='Population segments',
                    type='subsection',
                    description='Segmentations of the population'),
+            OBSTag(id='environmental',
+                   name='Environmental',
+                   type='subsection',
+                   description='Attributes of the natural environment'),
         ]
