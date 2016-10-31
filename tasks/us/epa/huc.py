@@ -47,6 +47,9 @@ download page can be found `here <https://www.epa.gov/enviroatlas/forms/enviroat
 
 class HUCColumns(ColumnsTask):
 
+    def version(self):
+        return 3
+
     def requires(self):
         return {
             'source': SourceTags(),
@@ -61,13 +64,15 @@ class HUCColumns(ColumnsTask):
         license_ = input_['license']['no-restrictions']
         usa = input_['sections']['united_states']
         environmental = input_['subsections']['environmental']
+        boundary = input_['subsections']['boundary']
 
         hydro_unit = OBSColumn(
+            id='hydro_unit',
             name='Hydrological Unit',
             description='',
             type='Geometry',
             weight=5,
-            tags=[source, license_, usa, environmental]
+            tags=[source, license_, usa, environmental, boundary]
         )
         huc_12 = OBSColumn(
             weight=0,
@@ -76,7 +81,7 @@ class HUCColumns(ColumnsTask):
         )
 
         return OrderedDict([
-            ('hydro_unit', hydro_unit),
+            ('the_geom', hydro_unit),
             ('huc_12', huc_12),
         ])
 
@@ -84,7 +89,7 @@ class HUCColumns(ColumnsTask):
 class HUC(TableTask):
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
@@ -101,7 +106,7 @@ class HUC(TableTask):
     def populate(self):
         session = current_session()
         session.execute('''
-            INSERT INTO {output} (hydro_unit, huc_12)
-            SELECT ST_MakeValid(ST_Simplify(wkb_geometry, 0.0005)) hydro_unit, huc_12
+            INSERT INTO {output} (the_geom, huc_12)
+            SELECT ST_MakeValid(ST_Simplify(wkb_geometry, 0.0005)) the_geom, huc_12
             FROM {input}'''.format(input=self.input()['data'].table,
                                    output=self.output().table))
