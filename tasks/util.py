@@ -1091,6 +1091,31 @@ class TempTableTask(Task):
         return target
 
 
+class GdbFeatureClass2TempTableTask(TempTableTask):
+    '''
+    A task that extracts one vector shape layer from a geodatabase to a
+    TempTableTask.
+    '''
+
+    feature_class = Parameter()
+
+    def input_gdb(self):
+        '''
+        This method must be implemented by subclasses.  Should return a path
+        to a GDB to convert to shapes.
+        '''
+        raise NotImplementedError("Must define `input_gdb` method")
+
+    def run(self):
+        shell('''
+              PG_USE_COPY=yes ogr2ogr -f "PostgreSQL" PG:"dbname=$PGDATABASE \
+              active_schema={schema}" -t_srs "EPSG:4326" -nlt MultiPolygon \
+              -nln {tablename} {infile}
+              '''.format(schema=self.output().schema,
+                         infile=self.input_gdb(),
+                         tablename=self.output().tablename))
+
+
 class Shp2TempTableTask(TempTableTask):
     '''
     A task that loads :meth:`~.util.Shp2TempTableTask.input_shp()` into a
