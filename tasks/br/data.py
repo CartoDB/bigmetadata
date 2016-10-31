@@ -38,7 +38,7 @@ class DownloadData(BaseParams, DownloadUnzipTask):
 
 class ImportCSV(BaseParams, CSV2TempTableTask):
 
-    tablename = Parameter()
+    tablename = Parameter(default='PessoaRenda')
     encoding = 'latin1'
     delimiter = ';'
 
