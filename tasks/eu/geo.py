@@ -238,7 +238,7 @@ class NUTSGeometries(TableTask):
     level = IntParameter(default=3)
 
     def version(self):
-        return 3
+        return 4
 
     def timespan(self):
         return 2015

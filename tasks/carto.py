@@ -868,7 +868,8 @@ class OBSMeta(Task):
            , observatory.obs_column_table denom_geomref_ct
            , observatory.obs_column geomref_c
            , observatory.obs_column_to_column geomref_c2c
-      WHERE denom_c2c.source_id = numer_c.id
+      WHERE denom_c.weight > 0
+        AND denom_c2c.source_id = numer_c.id
         AND denom_c2c.target_id = denom_c.id
         AND denom_data_ct.column_id = denom_c.id
         AND denom_data_ct.table_id = denom_t.id
@@ -952,7 +953,8 @@ class OBSMeta(Task):
             observatory.obs_column_tag geom_ctag JOIN
             observatory.obs_tag geom_tag ON geom_tag.id = geom_ctag.tag_id
          ) ON geom_c.id = geom_ctag.column_id
-    WHERE numer_c.id = numer_data_ct.column_id
+    WHERE numer_c.weight > 0
+      AND numer_c.id = numer_data_ct.column_id
       AND numer_data_ct.table_id = numer_t.id
       AND numer_t.id = numer_geomref_ct.table_id
       AND numer_geomref_ct.column_id = geomref_c.id

@@ -132,9 +132,11 @@ class LicenseTags(TagsTask):
                        description='Reuse is authorised, provided the source is acknowledged.  Full information `here <https://ec.europa.eu/info/legal-notice_en#copyright-notice>`_')]
 
 
+CACHE = DICTablesCache()
+
+
 class FlexEurostatColumns(ColumnsTask):
 
-    cache = DICTablesCache()
     subsection = Parameter() # Ex. 'age_gender'
     units = Parameter() # Ex. 'people'
     table_name = Parameter()  # Ex. "DEMO_R_PJANAGGR3"
@@ -154,7 +156,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
         columns = OrderedDict()
@@ -167,7 +169,7 @@ class FlexEurostatColumns(ColumnsTask):
         license = input_['license']['eurostat-license']
         source = input_['source']['eurostat-source']
 
-        cache = self.cache
+        cache = CACHE
 
         session = current_session()
         resp = session.execute('''
@@ -201,7 +203,7 @@ class FlexEurostatColumns(ColumnsTask):
         for i in cross_prod:
             if len(cross_prod) > 1: # Multiple variables
                 var_code = underscore_slugify(self.table_name+"_".join(i.values()))
-                if len(i) == 1: # Only units are unique
+                if len(i) == 1: # Only one dimension
                     dimdefs = []
                     for unit_dic, unit_value in i.iteritems():
                         for possible_dimvalue, dimdef in cache.read('dic_lists/{dimension}.dic'.format(dimension=unit_dic)):
@@ -229,6 +231,7 @@ class FlexEurostatColumns(ColumnsTask):
                 except:
                     final_unit_tag = self.units
             tags = [eu, subsectiontags[self.subsection], unittags[final_unit_tag]]
+
             columns[var_code] = OBSColumn(
                 id=var_code,
                 name=description,
@@ -238,7 +241,7 @@ class FlexEurostatColumns(ColumnsTask):
                 aggregate=None, #???
                 targets={}, #???
                 tags=tags,
-                extra=i
+                extra=i,
                 )
             columns[var_code + '_flag'] = OBSColumn(
                 id=var_code + '_flag',
@@ -248,13 +251,46 @@ class FlexEurostatColumns(ColumnsTask):
                 weight=0,
                 aggregate=None, #???
                 targets={}, #???
-                tags=tags,
-                extra=i
+                tags={},
+                extra=i,
             )
 
         for colname, col in columns.iteritems():
             col.tags.append(source)
             col.tags.append(license)
+
+
+        targets_dict = {}
+        for colname, col in columns.iteritems():
+            if 'flag' not in col.id:
+                for i,v in col.extra.iteritems():
+                    if v == 'TOTAL' or v == 'T':
+                        temp = dict((key,value) for key, value in col.extra.iteritems() if key != i)
+                        targets_dict[tuple(temp.items())] = colname
+        for colname, col in columns.iteritems():
+            denoms = {}
+            for nontotals,code in targets_dict.iteritems():
+                if all(item in col.extra.items() for item in nontotals) and code != colname:
+                    denoms[columns.get(code)] = 'denominator'
+            col.targets = denoms
+
+
+        # for colname, col in columns.iteritems():
+        #     highest_targets={}
+        #     for dimension, value in col.extra.iteritems():
+        #         if dimension == 'sex' and value == 'T':
+        #             highest_targets['col.extra.'] = colname
+        #         if dimension == 'age' and value == 'TOTAL':
+        #             highest_targets['age'] = colname
+        # for colname, col in columns.iteritems():
+        #     target_dict={}
+        #     for dimension, value in col.extra.iteritems():
+        #         if dimension == 'sex' and value != 'T':
+        #             target_dict[columns.get(highest_targets['sex'])] = 'denominator'
+        #         if dimension == 'age' and value != 'TOTAL':
+        #             target_dict[columns.get(highest_targets['sex'])] = 'denominator'
+        #     col.targets = target_dict
+
 
         return columns
 
@@ -268,7 +304,7 @@ class TableEU(TableTask):
     year = IntParameter()
 
     def version(self):
-        return 6
+        return 7
 
     def timespan(self):
         return str(self.year)
