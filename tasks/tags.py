@@ -37,7 +37,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 8
+        return 9
 
     def tags(self):
         return [
@@ -99,6 +99,14 @@ class UnitTags(TagsTask):
                    description=''),
             OBSTag(id='family_unit',
                    name='Families',
+                   type='unit',
+                   description=''),
+            OBSTag(id='inches',
+                   name='Inches',
+                   type='unit',
+                   description=''),
+            OBSTag(id='km2',
+                   name='Kilometers squared',
                    type='unit',
                    description=''),
         ]

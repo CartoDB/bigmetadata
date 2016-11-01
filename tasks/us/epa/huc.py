@@ -48,7 +48,7 @@ download page can be found `here <https://www.epa.gov/enviroatlas/forms/enviroat
 class HUCColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -68,8 +68,8 @@ class HUCColumns(ColumnsTask):
 
         hydro_unit = OBSColumn(
             id='hydro_unit',
-            name='Hydrological Unit',
-            description='',
+            name='Subwatershed hydrological unit',
+            description='Subwatershed areas, which are assigned unique twelve Digit Hydrologic Unit Codes. Numbers were assigned in an upstream to downstream fashion. Where no downstream/upstream relationship could be determined, numbers were assigned in a clockwise fashion.',
             type='Geometry',
             weight=5,
             tags=[source, license_, usa, environmental, boundary]

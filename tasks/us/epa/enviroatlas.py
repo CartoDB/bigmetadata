@@ -1,3 +1,5 @@
+from luigi import Parameter, WrapperTask
+
 from tasks.meta import OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
 from tasks.us.epa.huc import HUCColumns, SourceTags
@@ -19,16 +21,23 @@ class DownloadMetrics(DownloadUnzipTask):
         ))
 
 
-class LandCoverTempTable(CSV2TempTableTask):
+class EnviroAtlasTempTable(CSV2TempTableTask):
+
+    csv_name = Parameter()
 
     def requires(self):
         return DownloadMetrics()
 
     def input_csv(self):
-        return os.path.join(self.input().path, 'landcover.csv')
+        return os.path.join(self.input().path, self.csv_name)
 
 
-class LandCoverColumns(ColumnsTask):
+class EnviroAtlasColumns(ColumnsTask):
+
+    table = Parameter()
+
+    def version(self):
+        return 2
 
     def requires(self):
         return {
@@ -39,62 +48,86 @@ class LandCoverColumns(ColumnsTask):
             'units': UnitTags(),
         }
 
-    def columns(self):
-        input_ = self.input()
-        us = input_['sections']['united_states']
-        environmental = input_['subsections']['environmental']
-        license = input_['licenses']['no-restrictions']
-        source = input_['sources']['epa-enviroatlas']
-        ratio = input_['units']['ratio']
+    def solar_energy(self, usa, environmental, license_, source, units):
+        return OrderedDict([
+            ('sole_area', OBSColumn(
+                name='Area with solar energy potential',
+                tags=[usa, environmental, license_, source, units['km2']],
+                weight=5,
+                type='Numeric',
+                aggregate='sum',
+            )),
+            ('sole_mean', OBSColumn(
+                name='Annual Average direct normal solar resources kWh/m2/day',
+                tags=[usa, environmental, license_, source, units['ratio']],
+                weight=5,
+                type='Numeric',
+                aggregate='average',
+            ))
+        ])
 
+    def avgprecip(self, usa, environmental, license_, source, units):
+        inches = units['inches']
+        return OrderedDict([
+            ('meanprecip', OBSColumn(
+                name='Average annual precipitation',
+                description='Average annual precipitation in inches.',
+                aggregate='average',
+                type='Numeric',
+                weight=5,
+                tags=[usa, environmental, license_, source, inches],))
+        ])
+
+    def landcover(self, usa, environmental, license_, source, units):
+        ratio = units['ratio']
         pfor = OBSColumn(
             name='Forest land cover',
             description='Percentage of land area within the WBD 12-digit hydrologic unit that is classified as forest land cover (2006 NLCD codes: 41, 42, 43). A value of -1 indicates that no land cover data was located within the hydrologic unit.',
             type='Numeric',
             weight=5,
-            tags=[us, environmental, license, source, ratio],
+            tags=[usa, environmental, license_, source, ratio],
         )
         pwetl = OBSColumn(
             name='Wetland land cover',
             description='Percentage of land area within the WBD 12-digit hydrologic unit that is classified as wetland land cover (2006 NLCD codes: 90, 95). A value of -1 indicates that no land cover data was located within the hydrologic unit.',
             type='Numeric',
             weight=5,
-            tags=[us, environmental, license, source, ratio],
+            tags=[usa, environmental, license_, source, ratio],
         )
         pagt = OBSColumn(
             name='Agricultural/cultivated land cover',
             description='Percentage of land area within the WBD 12-digit hydrologic unit that is classified as agricultural/cultivated land cover (2006 NLCD codes: 21, 81, 82). A value of -1 indicates that no land cover data was located within the hydrologic unit.',
             type='Numeric',
             weight=5,
-            tags=[us, environmental, license, source, ratio],
+            tags=[usa, environmental, license_, source, ratio],
         )
         pagp = OBSColumn(
             name='Agricultural pasture land cover',
             description='Percentage of land area within the WBD 12-digit hydrologic unit that is classified as agricultural pasture land cover (2006 NLCD codes: 81). A value of -1 indicates that no land cover data was located within the hydrologic unit.',
             type='Numeric',
             weight=5,
-            tags=[us, environmental, license, source, ratio],
+            tags=[usa, environmental, license_, source, ratio],
         )
         pagc = OBSColumn(
             name='Agricultural cropland land cover',
             description='Percentage of land area within the WBD 12-digit hydrologic unit that is classified as agricultural cropland land cover (2006 NLCD codes: 82). A value of -1 indicates that no land cover data was located within the hydrologic unit.',
             type='Numeric',
             weight=5,
-            tags=[us, environmental, license, source, ratio],
+            tags=[usa, environmental, license_, source, ratio],
         )
         pfor90 = OBSColumn(
             name='Modified forest land cover',
             description='Percentage of land area within the WBD 12-digit hydrologic unit that is classified as modified forest land cover (2006 NLCD codes: 41, 42, 43, and 90). A value of -1 indicates that no land cover data was located within the hydrologic unit.',
             type='Numeric',
             weight=5,
-            tags=[us, environmental, license, source, ratio],
+            tags=[usa, environmental, license_, source, ratio],
         )
         pwetl95 = OBSColumn(
             name='Modified wetlands land cover',
             description='Percentage of land area within the WBD 12-digit hydrologic unit that is classified as modified wetlands land cover (2006 NLCD codes: 95). A value of -1 indicates that no land cover data was located within the hydrologic unit.',
             type='Numeric',
             weight=5,
-            tags=[us, environmental, license, source, ratio],
+            tags=[usa, environmental, license_, source, ratio],
         )
         return OrderedDict([
             ('pfor', pfor),
@@ -106,18 +139,36 @@ class LandCoverColumns(ColumnsTask):
             ('pwetl95', pwetl95),
         ])
 
+    def columns(self):
+        input_ = self.input()
+        usa = input_['sections']['united_states']
+        environmental = input_['subsections']['environmental']
+        license_ = input_['licenses']['no-restrictions']
+        source = input_['sources']['epa-enviroatlas']
+        units = input_['units']
 
-class LandCover(TableTask):
+        cols = getattr(self, self.table)(usa, environmental,
+                                         license_, source, units)
+        for colname, col in cols.iteritems():
+            col.id = '{}_{}'.format(self.table, colname)
+
+        return cols
+
+
+class EnviroAtlas(TableTask):
+
+    table = Parameter()
+    time = Parameter()
 
     def requires(self):
         return {
             'geom_cols': HUCColumns(),
-            'data_cols': LandCoverColumns(),
-            'data': LandCoverTempTable(),
+            'data_cols': EnviroAtlasColumns(table=self.table.lower()),
+            'data': EnviroAtlasTempTable(csv_name=self.table + '.csv'),
         }
 
     def timespan(self):
-        return '2006'
+        return self.time
 
     def columns(self):
         cols = OrderedDict()
@@ -128,12 +179,27 @@ class LandCover(TableTask):
 
     def populate(self):
         session = current_session()
+        cols = self.columns()
+        cols.pop('huc_12')
+        colnames = cols.keys()
         session.execute('''
-            INSERT INTO {output} (
-              huc_12, pfor, pwetl, pagt, pagp, pagc, pfor90, pwetl95
-            ) SELECT
-              huc_12, pfor::Numeric, pwetl::Numeric, pagt::Numeric,
-              pagp::Numeric, pagc::Numeric, pfor90::Numeric, pwetl95::Numeric
+            INSERT INTO {output} (huc_12, {colnames})
+            SELECT huc_12, {typed_colnames}::Numeric
             FROM {input}
         '''.format(input=self.input()['data'].table,
-                   output=self.output().table))
+                   output=self.output().table,
+                   colnames=', '.join(colnames),
+                   typed_colnames='::Numeric, '.join(colnames)))
+
+
+class AllTables(WrapperTask):
+
+    TABLES = [
+        ('AvgPrecip', '2010'),
+        ('landcover', '2006'),
+        ('solar_energy', '2012'),
+    ]
+
+    def requires(self):
+        for table, timespan in self.TABLES:
+            yield EnviroAtlas(table=table, time=timespan)
