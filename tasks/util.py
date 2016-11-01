@@ -910,6 +910,7 @@ class TableToCartoViaImportAPI(Task):
                 api_key=api_key
             ))
             if resp.json()['state'] == 'complete':
+                LOGGER.info("Waiting for import %s for %s", import_id, self.table)
                 break
             elif resp.json()['state'] == 'failure':
                 raise Exception('Import failed: {}'.format(resp.json()))
@@ -948,11 +949,11 @@ class TableToCartoViaImportAPI(Task):
                     colname=colname, data_type=data_type
                 ) for colname, data_type, _ in resp])
             if alter:
-                resp = query_cartodb(
-                    'ALTER TABLE {tablename} {alter}'.format(
-                        tablename=self.table,
-                        alter=alter)
-                )
+                alter_stmt = 'ALTER TABLE {tablename} {alter}'.format(
+                    tablename=self.table,
+                    alter=alter)
+                LOGGER.info(alter_stmt)
+                resp = query_cartodb(alter_stmt)
                 if resp.status_code != 200:
                     raise Exception('could not alter columns for "{tablename}":'
                                     '{err}'.format(tablename=self.table,

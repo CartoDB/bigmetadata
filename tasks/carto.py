@@ -1039,7 +1039,7 @@ class OBSMetaToLocal(OBSMeta):
 
 class SyncMetadata(WrapperTask):
 
-    force = BooleanParameter(default=True, significant=False)
+    no_force = BooleanParameter(default=False, significant=False)
 
     def requires(self):
         for table in ('obs_table', 'obs_column', 'obs_column_table',
@@ -1048,4 +1048,4 @@ class SyncMetadata(WrapperTask):
                       'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan',
                       'obs_column_table_tile',
                      ):
-            yield TableToCartoViaImportAPI(table=table, force=True)
+            yield TableToCartoViaImportAPI(table=table, force=not self.no_force)
