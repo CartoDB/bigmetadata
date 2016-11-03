@@ -182,6 +182,11 @@ class FrenchColumns(ColumnsTask):
                 denominators = denominators.split(',')
                 universes = universe.split(',')
 
+                delete = ['en 2012', '(princ)','(compl)']
+
+                for i in delete:
+                    if i in short_name:
+                        short_name = short_name.replace(i,'').strip()
                 # slugified_lib = underscore_slugify('{}'.format(short_name))
                 targets_dict = {}
                 for x in denominators:
@@ -312,7 +317,7 @@ class FranceCensus(TableTask):
     table_theme = Parameter()
 
     def version(self):
-        return 8
+        return 9
 
     def timespan(self):
         return '2012'

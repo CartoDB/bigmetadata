@@ -8,6 +8,7 @@ from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, C
 
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget, ListParameter
 from collections import OrderedDict
+from time import time
 
 import csv
 import os
@@ -40,6 +41,21 @@ class DownloadEurostat(Task):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 
+class ProcessCSV(Task):
+    table_code = Parameter()
+
+    def requires(self):
+        return DownloadEurostat(table_code=self.table_code)
+
+    def run(self):
+        shell("cat {infile} | tr '\' ',' | tr '\t' ',' > {outfile}".format(
+            outfile=self.output().path,
+            infile=self.input().path))
+
+    def output(self):
+        return LocalTarget(self.input().path + '.csv')
+
+
 class EUTempTable(CSV2TempTableTask):
 
     delimiter = Parameter(default=',', significant=False)
@@ -49,7 +65,7 @@ class EUTempTable(CSV2TempTableTask):
         return 5
 
     def requires(self):
-        return DownloadEurostat(table_code=self.table_name)
+        return ProcessCSV(table_code=self.table_name)
 
     def coldef(self):
         coldefs = super(EUTempTable, self).coldef()
@@ -61,15 +77,7 @@ class EUTempTable(CSV2TempTableTask):
         return coldefs
 
     def input_csv(self):
-        shell("cat {path} | tr '\' ',' | tr '\t' ',' > {path}.csv".format(
-            path=self.input().path))
-        return self.input().path + '.csv'
-
-
-class EUFormatTable(TempTableTask):
-
-    def requires(self):
-        return EUTempTable()
+        return self.input().path
 
 
 class DICTablesCache(object):
@@ -87,6 +95,8 @@ class DICTablesCache(object):
                     self._cache[fname].append(csv_line)
 
             LOGGER.info('Cached %s, with %s lines', fname, len(self._cache[fname]))
+        else:
+            LOGGER.debug('Cache hit for %s', fname)
 
         for line in self._cache[fname]:
             yield line
@@ -133,7 +143,6 @@ class LicenseTags(TagsTask):
 
 
 CACHE = DICTablesCache()
-
 
 class FlexEurostatColumns(ColumnsTask):
 
@@ -274,24 +283,6 @@ class FlexEurostatColumns(ColumnsTask):
                     denoms[columns.get(code)] = 'denominator'
             col.targets = denoms
 
-
-        # for colname, col in columns.iteritems():
-        #     highest_targets={}
-        #     for dimension, value in col.extra.iteritems():
-        #         if dimension == 'sex' and value == 'T':
-        #             highest_targets['col.extra.'] = colname
-        #         if dimension == 'age' and value == 'TOTAL':
-        #             highest_targets['age'] = colname
-        # for colname, col in columns.iteritems():
-        #     target_dict={}
-        #     for dimension, value in col.extra.iteritems():
-        #         if dimension == 'sex' and value != 'T':
-        #             target_dict[columns.get(highest_targets['sex'])] = 'denominator'
-        #         if dimension == 'age' and value != 'TOTAL':
-        #             target_dict[columns.get(highest_targets['sex'])] = 'denominator'
-        #     col.targets = target_dict
-
-
         return columns
 
 
@@ -312,7 +303,7 @@ class TableEU(TableTask):
     def requires(self):
         requirements = {
             'data': EUTempTable(table_name=self.table_name),
-            'csv': DownloadEurostat(table_code=self.table_name),
+            'csv': ProcessCSV(table_code=self.table_name),
             'meta': FlexEurostatColumns(table_name=self.table_name,
                                         subsection=self.subsection,
                                         units=self.unit),
@@ -321,13 +312,15 @@ class TableEU(TableTask):
         return requirements
 
     def columns(self):
+        input_ = self.input()
         cols = OrderedDict()
-        cols['nuts{}_id'.format(self.nuts_level)] = self.input()['geometa']['nuts{}_id'.format(self.nuts_level)]
-        cols.update(self.input()['meta'])
+        cols['nuts{}_id'.format(self.nuts_level)] = input_['geometa']['nuts{}_id'.format(self.nuts_level)]
+        cols.update(input_['meta'])
         return cols
 
     def populate(self):
-        path_to_csv = self.input()['csv'].path + '.csv'
+        input_ = self.input()
+        path_to_csv = input_['csv'].path
         with open(path_to_csv) as csvfile:
             header = csvfile.next()
             header = re.split(',',header)
@@ -335,14 +328,16 @@ class TableEU(TableTask):
             header[i] = val.strip()
             if "geo" in val:
                 geo = val
+            if r"unit" in val:
+                unit = val
         # print header
         session = current_session()
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (nuts{level}_id)'.format(
             output=self.output().table,
             level=self.nuts_level))
         session.flush()
-        column_targets = self.columns()
-        for colname, coltarget in column_targets.iteritems():
+        column_targets = self._columns
+        for colname, coltarget in column_targets.items():
             # print colname
             if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
                 col = coltarget.get(session)
@@ -359,13 +354,17 @@ class TableEU(TableTask):
                     multiple = ''
                 keys = extra.keys()
                 vals = [extra[k_] for k_ in keys]
-                session.execute('''
+                # metabase unit does not correspond to headers due to lack of
+                # \time
+                if 'unit' in keys:
+                    keys[keys.index('unit')] = unit
+                stmt = '''
                     INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
                     SELECT "{geo}",
                       {multiply}NullIf(SPLIT_PART("{year}", ' ', 1), ':')::Numeric,
                       NullIf(SPLIT_PART("{year}", ' ', 2), '')::Text
                     FROM {input}
-                    WHERE ({input_dims}) = ('{output_dims}')
+                    WHERE ("{input_dims}") = ('{output_dims}')
                     ON CONFLICT (nuts{level}_id)
                        DO UPDATE SET {colname} = EXCLUDED.{colname}'''.format(
                            geo=geo,
@@ -373,17 +372,52 @@ class TableEU(TableTask):
                            colname=colname,
                            multiply=multiple,
                            year=self.timespan(),
-                           input_dims=', '.join(keys),
+                           input_dims='", "'.join(keys),
                            output_dims="', '".join(vals),
                            output=self.output().table,
-                           input=self.input()['data'].table
-                       ))
+                           input=input_['data'].table
+                       )
+                LOGGER.info(stmt)
+                session.execute(stmt)
+
+
+class AllEUTableYears(Task):
+
+    table_name = Parameter()
+    subsection = Parameter()
+    nuts_level = IntParameter()
+    unit = Parameter()
+
+    def requires(self):
+        return ProcessCSV(table_code=self.table_name)
+
+    def run(self):
+        csv_path = self.input().path
+        with open(csv_path, 'r') as csvfile:
+            headers = csvfile.next().split(',')
+
+        years = [h[-4:] for h in headers if h[-4:].isdigit()]
+        for year in years:
+            yield TableEU(table_name=self.table_name,
+                          subsection=self.subsection,
+                          nuts_level=self.nuts_level,
+                          unit=self.unit,
+                          year=year
+            )
+        self._complete = True
+
+    def complete(self):
+        return getattr(self, '_complete', False)
+
 
 class EURegionalTables(WrapperTask):
+
     def requires(self):
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
             reader = csv.reader(wrappertables)
             for subsection, table_code, nuts, units in reader:
                 nuts = int(nuts)
-                for year in range(2010, 2016):
-                    yield TableEU(table_name=table_code, subsection=subsection, nuts_level=nuts, unit=units, year=year)
+                yield AllEUTableYears(table_name=table_code,
+                                      subsection=subsection,
+                                      nuts_level=nuts,
+                                      unit=units)
