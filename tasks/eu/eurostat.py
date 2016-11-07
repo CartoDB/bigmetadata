@@ -85,22 +85,36 @@ class DICTablesCache(object):
     def __init__(self):
         self._cache = {}
 
-    def read(self, fname):
+    def get(self, fname):
         if fname not in self._cache:
             LOGGER.info('Caching %s', fname)
             with open(os.path.join(os.path.dirname(__file__), fname), 'r') as fhandle:
                 reader = csv.reader(fhandle, delimiter='\t')
-                self._cache[fname] = []
-                for csv_line in reader:
-                    self._cache[fname].append(csv_line)
+                self._cache[fname] = {}
+                for key, val in reader:
+                    self._cache[fname][key] = val
 
             LOGGER.info('Cached %s, with %s lines', fname, len(self._cache[fname]))
         else:
             LOGGER.debug('Cache hit for %s', fname)
 
-        for line in self._cache[fname]:
-            yield line
+        return self._cache[fname]
 
+class DownloadMetabase(Task):
+    URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=metabase.txt.gz'
+
+    def download(self):
+        shell('wget -O {output}.gz "{url}"'.format(
+            output=self.output().path,
+            url=self.URL))
+
+    def run(self):
+        self.output().makedirs()
+        self.download()
+        shell('gunzip {output}.gz'.format(output=self.output().path))
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 class MetabaseTable(CSV2TempTableTask):
 
@@ -115,7 +129,7 @@ class MetabaseTable(CSV2TempTableTask):
         ]
 
     def input_csv(self):
-        return os.path.join(os.path.dirname(__file__), 'metabase.txt')
+        return DownloadMetabase().output().path
 
     def after_copy(self):
         session = current_session()
@@ -294,7 +308,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 10
+        return 11
 
     def columns(self):
         columns = OrderedDict()
@@ -333,41 +347,42 @@ class FlexEurostatColumns(ColumnsTask):
         ))
         cross_prod = resp.fetchone()[0]
 
-        for possible_tablenames, table_description in cache.read('table_dic.dic'):
-            if self.table_name.lower() == possible_tablenames.lower():
-                table_desc = table_description
-                variable_name = table_description.split('by')[0].strip()
-                break
+        tables = cache.get('table_dic.dic')
+
+        table_desc = tables[self.table_name]
+        variable_name = table_desc.split('by')[0].strip()
+        # for possible_tablenames, table_description in cache.get('table_dic.dic')
+        #     if self.table_name.lower() == possible_tablenames.lower():
+                # table_desc = table_description
+                # variable_name = table_description.split('by')[0].strip()
+                # break
+
         for i in cross_prod:
             if len(cross_prod) > 1: # Multiple variables
                 var_code = underscore_slugify(self.table_name+"_".join(i.values()))
-                if len(i) == 1: # Only one dimension
+                if len(i) == 1: # Only one dimension, usually "unit"
                     dimdefs = []
                     for unit_dic, unit_value in i.iteritems():
-                        for possible_dimvalue, dimdef in cache.read('dic_lists/{dimension}.dic'.format(dimension=unit_dic)):
-                            if unit_value == possible_dimvalue:
-                                dimdefs.append(dimdef)
+                        units = cache.get('dic_lists/{dimension}.dic'.format(dimension=unit_dic))
+                        dimdefs.append(units[unit_value])
                     description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
-                else:
+                else: # multiple dimensions, ignore "unit" when building name
                     dimdefs = []
                     for dimname, dimvalue in i.iteritems():
-                        for possible_dimvalue, dimdef in cache.read('dic_lists/{dimension}.dic'.format(dimension=dimname)):
-                            if dimvalue == possible_dimvalue:
-                                if dimname != "unit": # Only take non-unit definitions for name. This may be problematic
-                                    dimdefs.append(dimdef)
+                        dim_dic = cache.get('dic_lists/{dimension}.dic'.format(dimension=dimname))
+                        dimdefs.append(dim_dic[dimvalue])
                     description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
             else: # Only one variable
                 var_code = underscore_slugify(self.table_name)
                 description = variable_name
-            for possible_unit, unitdef in cache.read('dic_lists/unit.dic'):
-                try:
-                    if i['unit'] == possible_unit:
-                        if "percentage" in unitdef.lower() or "per" in unitdef.lower():
-                            final_unit_tag = "ratio"
-                        else:
-                            final_unit_tag = self.units
-                except:
+            try:
+                unitdef = units[i['unit']]
+                if "percentage" in unitdef.lower() or "per" in unitdef.lower():
+                    final_unit_tag = "ratio"
+                else:
                     final_unit_tag = self.units
+            except:
+                final_unit_tag = self.units
             tags = [eu, subsectiontags[self.subsection], unittags[final_unit_tag]]
 
             columns[var_code] = OBSColumn(
@@ -423,7 +438,7 @@ class TableEU(TableTask):
     year = Parameter()
 
     def version(self):
-        return 7
+        return 8
 
     def timespan(self):
         return str(self.year).replace('_',' - ')
@@ -452,6 +467,7 @@ class TableEU(TableTask):
         with open(path_to_csv) as csvfile:
             header = csvfile.next()
             header = re.split(',',header)
+        unit = None
         for i,val in enumerate(header):
             header[i] = val.strip()
             if "geo" in val:
@@ -484,9 +500,10 @@ class TableEU(TableTask):
                 keys = extra.keys()
                 vals = [extra[k_] for k_ in keys]
                 # metabase unit does not correspond to headers due to lack of
-                # \time
-                if 'unit' in keys:
-                    keys[keys.index('unit')] = unit
+                # \time"
+                if unit:
+                    if 'unit' in keys:
+                        keys[keys.index('unit')] = unit
                 stmt = '''
                     INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
                     SELECT "{geo}",
@@ -507,6 +524,8 @@ class TableEU(TableTask):
                            input=input_['data'].table
                        )
                 LOGGER.info(stmt)
+                # import pdb
+                # pdb.set_trace()
                 session.execute(stmt)
 
 
