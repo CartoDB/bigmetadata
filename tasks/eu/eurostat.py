@@ -144,6 +144,135 @@ class LicenseTags(TagsTask):
 
 CACHE = DICTablesCache()
 
+
+def simplify_description(description):
+    description = description.replace(
+     'Employer business demography - ',
+     '')
+    description = description.replace(
+     'Business demography - ',
+     '')
+    description = description.replace(
+     'number of persons employed in the reference period (t) among enterprises newly born in t divided by the number of enterprises newly born in t,',
+     '')
+    description = description.replace(
+     'Industry, construction and services except insurance activities of holding companies,',
+     '')
+    description = description.replace(
+     'Number of births of enterprises in t',
+     'Number of enterprise births')
+
+    description = description.replace(
+     'number of persons employed in the reference period (t) among enterprises newly born in t divided by the number of enterprises newly born in t,',
+     '')
+    description = description.replace(
+     'number of persons employed in the reference period (t) among enterprises newly born in t-3 having survived to t divided by the number of enterprises in t newly born in t-3 having survived to t,',
+     '')
+    description = description.replace(
+     'number of enterprise births in the reference period (t) divided by the number of enterprises active in t,',
+     '')
+    description = description.replace('Birth rate: number of enterprise births in the reference period (t) divided by the number of enterprises active in t,','Enterprise birth rate:')
+
+    description = description.replace('Death rate: number of enterprise deaths in the reference period (t) divided by the number of enterprises active in t,',
+    'Enterprise death rate:')
+
+    description = description.replace('Number of persons employed in enterprises newly born in t-3 having survived to t, divided by the number of persons employed in the population of active enterprises in t,'
+    ,'')
+
+    description = description.replace('Employment share of enterprise births: number of persons employed in the reference period (t) among enterprises newly born in t divided by the number of persons employed in t among the stock of enterprises active in t,'
+    ,'Employment share of new enterprises: ')
+
+    description = description.replace('number of persons employed in the reference period (t) among enterprise deaths divided by the number of persons employed in t among the stock of active enterprises in t,'
+    ,'')
+
+    description = description.replace('number of employees in the reference period (t) among enterprises newly born in t divided by the number of persons employed in t among enterprises newly born in t,'
+    ,'')
+
+    description = description.replace('Number of births of enterprises in t,'
+    ,'Enterprise births:')
+
+    description = description.replace('Number of deaths of enterprises in t,'
+    ,'Enterprise deaths:')
+
+    description = description.replace('Number of employees in the population of active enterprises in t,'
+    ,'Employees of active enterprises:')
+
+    description = description.replace('Number of employees in the population of births in t,'
+    ,'Employees of new enterprises:')
+
+    description = description.replace('Number of employees in the population of deaths in t,'
+    ,'Employees in the population of enterprise deaths:')
+
+    description = description.replace('Number of persons employed in the population of enterprises newly born in t-3 having survived to t,'
+    ,'People employed in surviving three-year old enterprises:')
+
+    description = description.replace('Number of persons employed in the year of birth in the population of enterprises newly born in t-3 having survived to t,'
+    ,'People continuously employed in surviving three-year old enterprises:')
+
+    description = description.replace('Population of active enterprises in t,'
+    ,'Active enterprises:')
+
+    description = description.replace('number of persons employed in the reference period (t) among enterprises newly born in t-3 having survived to t divided by the number of persons employed in t-3 by the same enterprises, expressed as a percentage growth rate,'
+    ,'')
+
+    description = description.replace(
+    'Number of enterprises newly born in t-3 having survived to t',
+    'Number of surviving three-year old enterprises'
+    )
+
+    description = description.replace(
+    'Number of persons employed in the population of active enterprises in t',
+    'People employed in active enterprises'
+    )
+
+    description = description.replace(
+    'Number of persons employed in the population of births in t',
+    'People employed in new enterprises'
+    )
+
+    description = description.replace(
+    'Number of persons employed in the population of deaths in t',
+    'People employed in the population of enterprise deaths'
+    )
+
+    description = description.replace(
+    'Proportion of enterprise births in the reference period (t) by size class,',
+    'Proportion of enterprise births by size class:'
+    )
+
+    description = description.replace(
+    'Hotels; holiday and other short-stay accommodation; camping grounds, recreational vehicle parks and trailer parks',
+    'Hotels, holiday, campgrounds, and other short-stay accomodations'
+    )
+    description = description.replace(
+    'Arts, entertainment and recreation; other service activities; activities of household and extra-territorial organizations and bodies',
+    'Arts, entertainment, recreation, and other service activities')
+
+    description = description.replace(
+    'Proportion of enterprise deaths in the reference period (t) by size class,',
+    'Proportion of enterprise deaths by size class:'
+    )
+
+    description = description.replace(
+    'number of persons employed in the reference period (t) among enterprise deaths  in t divided by the number of enterprise deaths in t',
+    ''
+    )
+
+    description = description.replace(
+     'Industry, construction and services except insurance activities of holding companies,',
+     '')
+    description = description.replace(
+    'Professional, scientific and technical activities; administrative and support service activities'
+    ,'Professional, scientific, technical, administrative and support service activities')
+
+    description = description.replace(
+    'Financial and insurance activities; real estate activities except activities of holding companies',
+    'Financial, insurance, and real estate activities'
+    )
+
+    description = re.sub(r' zero$', ' zero employees', description)
+    return description
+
 class FlexEurostatColumns(ColumnsTask):
 
     subsection = Parameter() # Ex. 'age_gender'
@@ -165,7 +294,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 7
+        return 10
 
     def columns(self):
         columns = OrderedDict()
@@ -243,20 +372,19 @@ class FlexEurostatColumns(ColumnsTask):
 
             columns[var_code] = OBSColumn(
                 id=var_code,
-                name=description,
+                name=simplify_description(description),
                 type='Numeric',
-                description=table_desc,
+                description=description,
                 weight=1,
-                aggregate=None, #???
+                  aggregate=None, #???
                 targets={}, #???
                 tags=tags,
                 extra=i,
                 )
             columns[var_code + '_flag'] = OBSColumn(
                 id=var_code + '_flag',
-                name=description + ' flag',
+                name='',
                 type='Text',
-                description=table_desc,
                 weight=0,
                 aggregate=None, #???
                 targets={}, #???
@@ -292,13 +420,13 @@ class TableEU(TableTask):
     subsection = Parameter()
     nuts_level = IntParameter()
     unit = Parameter()
-    year = IntParameter()
+    year = Parameter()
 
     def version(self):
         return 7
 
     def timespan(self):
-        return str(self.year)
+        return str(self.year).replace('_',' - ')
 
     def requires(self):
         requirements = {
@@ -342,16 +470,17 @@ class TableEU(TableTask):
             if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
                 col = coltarget.get(session)
                 extra = col.extra
-                if 'unit' in extra.keys():
-                    multiplier = extra['unit']
-                    if "THS" in multiplier or "1000" in multiplier or multiplier == 'KTOE':
-                        multiple = '1000*'
-                    if "MIO" in multiplier:
-                        multiple = '1000000*'
-                    else:
-                        multiple = ''
-                else:
-                    multiple = ''
+                multiple = ''
+                # if 'unit' in extra.keys():
+                #     multiplier = extra['unit']
+                #     if "THS" in multiplier or "1000" in multiplier or multiplier == 'KTOE':
+                #         multiple = '1000*'
+                #     if "MIO" in multiplier:
+                #         multiple = '1000000*'
+                #     else:
+                #         multiple = ''
+                # else:
+                #     multiple = ''
                 keys = extra.keys()
                 vals = [extra[k_] for k_ in keys]
                 # metabase unit does not correspond to headers due to lack of
@@ -371,7 +500,7 @@ class TableEU(TableTask):
                            level=self.nuts_level,
                            colname=colname,
                            multiply=multiple,
-                           year=self.timespan(),
+                           year=self.year,
                            input_dims='", "'.join(keys),
                            output_dims="', '".join(vals),
                            output=self.output().table,
@@ -396,7 +525,7 @@ class AllEUTableYears(Task):
         with open(csv_path, 'r') as csvfile:
             headers = csvfile.next().split(',')
 
-        years = [h[-4:] for h in headers if h[-4:].isdigit()]
+        years = [h.strip() for h in headers if h.strip()[-4:].isdigit()]
         for year in years:
             yield TableEU(table_name=self.table_name,
                           subsection=self.subsection,
