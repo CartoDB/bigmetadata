@@ -128,6 +128,9 @@ class MetabaseTable(CSV2TempTableTask):
             ('value', 'TEXT',),
         ]
 
+    def requires(self):
+        return DownloadMetabase()
+
     def input_csv(self):
         return DownloadMetabase().output().path
 
