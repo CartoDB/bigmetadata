@@ -311,7 +311,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 14
+        return 16
 
     def columns(self):
         columns = OrderedDict()
@@ -383,26 +383,29 @@ class FlexEurostatColumns(ColumnsTask):
                 description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
 
             try:
+                units = cache.get('dic_lists/unit.dic')
                 unitdef = units[i['unit']]
-                if "percentage" in unitdef.lower() or "per" in unitdef.lower():
+                if "percentage" in unitdef.lower() or "per" in unitdef.lower() or "rate" in unitdef.lower():
                     final_unit_tag = "ratio"
+                    aggregate = None
                 else:
                     final_unit_tag = self.units
+                    aggregate = 'sum'
             except:
                 final_unit_tag = self.units
+                aggregate = 'sum'
             tags = [eu, subsectiontags[self.subsection], unittags[final_unit_tag]]
 
             if ('ths' in var_code or 'th_t' in var_code) and '(thousand persons)' not in description:
                 description = description + ' (thousands)'
-            if ('P_HTHAB') in var_code:
-                ''
+
             columns[var_code] = OBSColumn(
                 id=var_code,
                 name=simplify_description(description),
                 type='Numeric',
                 description=description,
                 weight=1,
-                  aggregate=None, #???
+                aggregate=aggregate, #???
                 targets={}, #???
                 tags=tags,
                 extra=i,
@@ -437,6 +440,11 @@ class FlexEurostatColumns(ColumnsTask):
                     denoms[columns.get(code)] = 'denominator'
             col.targets = denoms
 
+        nonsum = ['proportion','average','percentage','rate',r'%','share']
+        for colname, col in columns.iteritems():
+            if 'flag' not in col.id:
+                if any(word in col.name.lower() for word in nonsum):
+                    col.aggregate=None
         return columns
 
 
