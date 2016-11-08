@@ -311,7 +311,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 11
+        return 14
 
     def columns(self):
         columns = OrderedDict()
@@ -361,23 +361,27 @@ class FlexEurostatColumns(ColumnsTask):
                 # break
 
         for i in cross_prod:
+            dimdefs = []
             if len(cross_prod) > 1: # Multiple variables
                 var_code = underscore_slugify(self.table_name+"_".join(i.values()))
                 if len(i) == 1: # Only one dimension, usually "unit"
-                    dimdefs = []
                     for unit_dic, unit_value in i.iteritems():
                         units = cache.get('dic_lists/{dimension}.dic'.format(dimension=unit_dic))
                         dimdefs.append(units[unit_value])
                     description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
                 else: # multiple dimensions, ignore "unit" when building name
-                    dimdefs = []
                     for dimname, dimvalue in i.iteritems():
-                        dim_dic = cache.get('dic_lists/{dimension}.dic'.format(dimension=dimname))
-                        dimdefs.append(dim_dic[dimvalue])
-                    description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
+                        if dimname != 'unit':
+                            dim_dic = cache.get('dic_lists/{dimension}.dic'.format(dimension=dimname))
+                            dimdefs.append(dim_dic[dimvalue])
+                        description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
             else: # Only one variable
                 var_code = underscore_slugify(self.table_name)
-                description = variable_name
+                for unit_dic, unit_value in i.iteritems():
+                    units = cache.get('dic_lists/{dimension}.dic'.format(dimension=unit_dic))
+                    dimdefs.append(units[unit_value])
+                description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
+
             try:
                 unitdef = units[i['unit']]
                 if "percentage" in unitdef.lower() or "per" in unitdef.lower():
@@ -388,6 +392,10 @@ class FlexEurostatColumns(ColumnsTask):
                 final_unit_tag = self.units
             tags = [eu, subsectiontags[self.subsection], unittags[final_unit_tag]]
 
+            if ('ths' in var_code or 'th_t' in var_code) and '(thousand persons)' not in description:
+                description = description + ' (thousands)'
+            if ('P_HTHAB') in var_code:
+                ''
             columns[var_code] = OBSColumn(
                 id=var_code,
                 name=simplify_description(description),
@@ -560,6 +568,14 @@ class AllEUTableYears(Task):
     def complete(self):
         return getattr(self, '_complete', False)
 
+class EUColumns(WrapperTask):
+    def requires(self):
+        with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
+            reader = csv.reader(wrappertables)
+            for subsection, table_code, nuts, units in reader:
+                yield FlexEurostatColumns(subsection=subsection,
+                                          table_name=table_code,
+                                          units=units)
 
 class EURegionalTables(WrapperTask):
 
