@@ -379,9 +379,11 @@ class CartoDBTarget(Target):
         return self.tablename
 
     def exists(self):
-        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 0'.format(
+        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 1'.format(
             tablename=self.tablename))
-        return resp.status_code == 200
+        if resp.status_code != 200:
+            return False
+        return resp.json()['total_rows'] > 0
 
     def remove(self):
         api_key = os.environ['CARTODB_API_KEY']
