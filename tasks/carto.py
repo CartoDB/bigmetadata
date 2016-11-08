@@ -1101,4 +1101,25 @@ class SyncMetadata(WrapperTask):
                       'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan',
                       'obs_column_table_tile',
                      ):
-            yield TableToCartoViaImportAPI(table=table, force=not self.no_force)
+            if table == 'obs_meta':
+                yield TableToCartoViaImportAPI(
+                    columns=[
+                        'numer_id', 'denom_id', 'geom_id', 'numer_name',
+                        'denom_name', 'geom_name', 'numer_description',
+                        'denom_description', 'geom_description',
+                        'numer_aggregate', 'denom_aggregate', 'geom_aggregate',
+                        'numer_type', 'denom_type', 'geom_type', 'numer_colname',
+                        'denom_colname', 'geom_colname', 'numer_geomref_colname',
+                        'denom_geomref_colname', 'geom_geomref_colname',
+                        'numer_tablename', 'denom_tablename', 'geom_tablename',
+                        'numer_timespan', 'denom_timespan', 'numer_weight',
+                        'denom_weight', 'geom_weight', 'geom_timespan',
+                        'numer_tags', 'denom_tags', 'geom_tags', 'timespan_tags',
+                        'section_tags', 'subsection_tags', 'unit_tags',
+                        'numer_extra', 'numer_ct_extra', 'denom_extra',
+                        'denom_ct_extra', 'geom_extra', 'geom_ct_extra'
+                    ],
+                    table=table,
+                    force=not self.no_force)
+            else:
+                yield TableToCartoViaImportAPI(table=table, force=not self.no_force)

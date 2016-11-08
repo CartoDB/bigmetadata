@@ -879,6 +879,7 @@ class TableToCartoViaImportAPI(Task):
     force = BooleanParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
     table = Parameter()
+    columns = ListParameter(default=[])
 
     def run(self):
         url = os.environ['CARTODB_URL']
@@ -888,12 +889,21 @@ class TableToCartoViaImportAPI(Task):
         except OSError:
             pass
         tmp_file_path = os.path.join('tmp', classpath(self), self.table + '.csv')
-        shell(r'''psql -c '\copy {schema}.{tablename} TO '"'"{tmp_file_path}"'"'
-              WITH CSV HEADER' '''.format(
-                  schema=self.schema,
-                  tablename=self.table,
-                  tmp_file_path=tmp_file_path,
-              ))
+        if not self.columns:
+            shell(r'''psql -c '\copy {schema}.{tablename} TO '"'"{tmp_file_path}"'"'
+                  WITH CSV HEADER' '''.format(
+                      schema=self.schema,
+                      tablename=self.table,
+                      tmp_file_path=tmp_file_path,
+                  ))
+        else:
+            shell(r'''psql -c '\copy (SELECT {columns} FROM {schema}.{tablename}) TO '"'"{tmp_file_path}"'"'
+                  WITH CSV HEADER' '''.format(
+                      schema=self.schema,
+                      tablename=self.table,
+                      tmp_file_path=tmp_file_path,
+                      columns=', '.join(self.columns),
+                  ))
         curl_resp = shell(
             'curl -s -F privacy=public -F type_guessing=false '
             '  -F file=@{tmp_file_path} "{url}/api/v1/imports/?api_key={api_key}"'.format(
