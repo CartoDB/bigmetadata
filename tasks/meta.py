@@ -96,9 +96,9 @@ def catalog_lonlat(column_id):
                        , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
                        , 'fr.insee.P12_ACTOCC15P_ILT45D'):
         return (4.938408371206558, -52.32908248901367)
-    elif column_id.startswith('fr'):
+    elif column_id.startswith('fr.'):
         return (48.860875144709475, 2.3613739013671875)
-    elif column_id.startswith('ca'):
+    elif column_id.startswith('ca.'):
         return (43.65594991256823, -79.37965393066406)
     elif column_id.startswith('us.census.'):
         return (40.7, -73.9)
