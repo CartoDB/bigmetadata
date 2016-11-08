@@ -207,11 +207,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-<<<<<<< HEAD
         return 21
-=======
-        return 20
->>>>>>> master
 
     def tags(self):
         return [
