@@ -209,7 +209,7 @@ class NUTSColumns(ColumnsTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         input_ = self.input()
@@ -217,19 +217,20 @@ class NUTSColumns(ColumnsTask):
         subsection = input_['subsections']['boundary']
         source_license = input_['source_license']
 
-        nuts3 = OBSColumn(
+        nuts = OBSColumn(
             id='nuts{}'.format(self.level),
             type='Geometry',
             name='NUTS Level {}'.format(self.level),
             tags=[section, subsection, source_license['eurographics-license'],
-                  source_license['eurographics-source']]
+                  source_license['eurographics-source']],
+            weight=self.level,
         )
 
         return OrderedDict([
             ('nuts{}_id'.format(self.level), OBSColumn(
                 type='Text',
-                targets={nuts3: GEOM_REF})),
-            ('the_geom', nuts3)
+                targets={nuts: GEOM_REF})),
+            ('the_geom', nuts)
         ])
 
 
