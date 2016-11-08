@@ -127,7 +127,6 @@ class UnitTags(TagsTask):
                    name='Families',
                    type='unit',
                    description=''),
-<<<<<<< HEAD
             OBSTag(id='hours',
                    name='Hours',
                    type='unit',
@@ -142,14 +141,14 @@ class UnitTags(TagsTask):
                    description=''),
             OBSTag(id='kilometres',
                    name='Kilometres',
-=======
+                   type='unit',
+                   description=''),
             OBSTag(id='inches',
                    name='Inches',
                    type='unit',
                    description=''),
             OBSTag(id='km2',
                    name='Kilometers squared',
->>>>>>> master
                    type='unit',
                    description=''),
         ]
