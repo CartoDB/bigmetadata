@@ -127,6 +127,7 @@ class UnitTags(TagsTask):
                    name='Families',
                    type='unit',
                    description=''),
+<<<<<<< HEAD
             OBSTag(id='hours',
                    name='Hours',
                    type='unit',
@@ -141,6 +142,14 @@ class UnitTags(TagsTask):
                    description=''),
             OBSTag(id='kilometres',
                    name='Kilometres',
+=======
+            OBSTag(id='inches',
+                   name='Inches',
+                   type='unit',
+                   description=''),
+            OBSTag(id='km2',
+                   name='Kilometers squared',
+>>>>>>> master
                    type='unit',
                    description=''),
         ]
@@ -199,7 +208,11 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
+<<<<<<< HEAD
         return 21
+=======
+        return 20
+>>>>>>> master
 
     def tags(self):
         return [
@@ -279,4 +292,8 @@ class SubsectionTags(TagsTask):
                    name='Energy',
                    type='subsection',
                    description='Measures related to energy production and consumption.'),
+            OBSTag(id='environmental',
+                   name='Environmental',
+                   type='subsection',
+                   description='Attributes of the natural environment'),
         ]
