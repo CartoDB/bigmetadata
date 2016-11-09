@@ -1,0 +1,13 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - branca"
+V002,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - preta"
+V003,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - amarela"
+V004,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - parda"
+V005,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - indígena"
+V006,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - branca"
+V007,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - preta"
+V008,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - amarela"
+V009,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - parda"
+V010,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - indígena"

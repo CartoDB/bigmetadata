@@ -1,0 +1,257 @@
+Nome da variável,Descrição da variável
+Cod_seto,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Filhos somente do responsável com menos de 1 ano de idade
+V002,Filhos somente do responsável com 1 ano de idade
+V003,Filhos somente do responsável com 2 anos de idade
+V004,Filhos somente do responsável com 3 anos de idade
+V005,Filhos somente do responsável com 4 anos de idade
+V006,Filhos somente do responsável com 5 anos de idade
+V007,Filhos somente do responsável com 6 anos de idade
+V008,Filhos somente do responsável com 7 anos de idade
+V009,Filhos somente do responsável com 8 anos de idade
+V010,Filhos somente do responsável com 9 anos de idade
+V011,Filhos somente do responsável com 10 anos de idade
+V012,Filhos somente do responsável com 11 anos de idade
+V013,Filhos somente do responsável com 12 anos de idade
+V014,Filhos somente do responsável com 13 anos de idade
+V015,Filhos somente do responsável com 14 anos de idade
+V016,Filhos somente do responsável com 15 anos de idade
+V017,Filhos somente do responsável com 16 anos de idade
+V018,Filhos somente do responsável com 17 anos de idade
+V019,Filhos somente do responsável com 18 anos de idade
+V020,Filhos somente do responsável com 19 anos de idade
+V021,Filhos somente do responsável com 20 anos de idade
+V022,Filhos somente do responsável com 21 anos de idade
+V023,Filhos somente do responsável com 22 anos de idade
+V024,Filhos somente do responsável com 23 anos de idade
+V025,Filhos somente do responsável com 24 anos de idade
+V026,Filhos somente do responsável com 25 anos de idade
+V027,Filhos somente do responsável com 26 anos de idade
+V028,Filhos somente do responsável com 27 anos de idade
+V029,Filhos somente do responsável com 28 anos de idade
+V030,Filhos somente do responsável com 29 anos de idade
+V031,Filhos somente do responsável com 30 anos de idade
+V032,Filhos somente do responsável com 31 anos de idade
+V033,Filhos somente do responsável com 32 anos de idade
+V034,Filhos somente do responsável com 33 anos de idade
+V035,Filhos somente do responsável com 34 anos de idade
+V036,Filhos somente do responsável com 35 anos de idade
+V037,Filhos somente do responsável com 36 anos de idade
+V038,Filhos somente do responsável com 37 anos de idade
+V039,Filhos somente do responsável com 38 anos de idade
+V040,Filhos somente do responsável com 39 anos de idade
+V041,Filhos somente do responsável com 40 anos de idade
+V042,Filhos somente do responsável com 41 anos de idade
+V043,Filhos somente do responsável com 42 anos de idade
+V044,Filhos somente do responsável com 43 anos de idade
+V045,Filhos somente do responsável com 44 anos de idade
+V046,Filhos somente do responsável com 45 anos de idade
+V047,Filhos somente do responsável com 46 anos de idade
+V048,Filhos somente do responsável com 47 anos de idade
+V049,Filhos somente do responsável com 48 anos de idade
+V050,Filhos somente do responsável com 49 anos de idade
+V051,Filhos somente do responsável com 50 anos ou mais de idade
+V052,Enteados com menos de 1 ano de idade
+V053,Enteados com 1 ano de idade
+V054,Enteados com 2 anos de idade
+V055,Enteados com 3 anos de idade
+V056,Enteados com 4 anos de idade
+V057,Enteados com 5 anos de idade
+V058,Enteados com 6 anos de idade
+V059,Enteados com 7 anos de idade
+V060,Enteados com 8 anos de idade
+V061,Enteados com 9 anos de idade
+V062,Enteados com 10 anos de idade
+V063,Enteados com 11 anos de idade
+V064,Enteados com 12 anos de idade
+V065,Enteados com 13 anos de idade
+V066,Enteados com 14 anos de idade
+V067,Enteados com 15 anos de idade
+V068,Enteados com 16 anos de idade
+V069,Enteados com 17 anos de idade
+V070,Enteados com 18 anos de idade
+V071,Enteados com 19 anos de idade
+V072,Enteados com 20 anos de idade
+V073,Enteados com 21 anos de idade
+V074,Enteados com 22 anos de idade
+V075,Enteados com 23 anos de idade
+V076,Enteados com 24 anos de idade
+V077,Enteados com 25 anos de idade
+V078,Enteados com 26 anos de idade
+V079,Enteados com 27 anos de idade
+V080,Enteados com 28 anos de idade
+V081,Enteados com 29 anos de idade
+V082,Enteados com 30 anos de idade
+V083,Enteados com 31 anos de idade
+V084,Enteados com 32 anos de idade
+V085,Enteados com 33 anos de idade
+V086,Enteados com 34 anos de idade
+V087,Enteados com 35 anos de idade
+V088,Enteados com 36 anos de idade
+V089,Enteados com 37 anos de idade
+V090,Enteados com 38 anos de idade
+V091,Enteados com 39 anos de idade
+V092,Enteados com 40 anos de idade
+V093,Enteados com 41 anos de idade
+V094,Enteados com 42 anos de idade
+V095,Enteados com 43 anos de idade
+V096,Enteados com 44 anos de idade
+V097,Enteados com 45 anos de idade
+V098,Enteados com 46 anos de idade
+V099,Enteados com 47 anos de idade
+V100,Enteados com 48 anos de idade
+V101,Enteados com 49 anos de idade
+V102,Enteados com 50 ou mais anos de idade
+V103,Filhas do responsável e do cônjuge com menos de 1 ano de idade
+V104,Filhas do responsável e do cônjuge com 1 ano de idade
+V105,Filhas do responsável e do cônjuge com 2 anos de idade
+V106,Filhas do responsável e do cônjuge com 3 anos de idade
+V107,Filhas do responsável e do cônjuge com 4 anos de idade
+V108,Filhas do responsável e do cônjuge com 5 anos de idade
+V109,Filhas do responsável e do cônjuge com 6 anos de idade
+V110,Filhas do responsável e do cônjuge com 7 anos de idade
+V111,Filhas do responsável e do cônjuge com 8 anos de idade
+V112,Filhas do responsável e do cônjuge com 9 anos de idade
+V113,Filhas do responsável e do cônjuge com 10 anos de idade
+V114,Filhas do responsável e do cônjuge com 11 anos de idade
+V115,Filhas do responsável e do cônjuge com 12 anos de idade
+V116,Filhas do responsável e do cônjuge com 13 anos de idade
+V117,Filhas do responsável e do cônjuge com 14 anos de idade
+V118,Filhas do responsável e do cônjuge com 15 anos de idade
+V119,Filhas do responsável e do cônjuge com 16 anos de idade
+V120,Filhas do responsável e do cônjuge com 17 anos de idade
+V121,Filhas do responsável e do cônjuge com 18 anos de idade
+V122,Filhas do responsável e do cônjuge com 19 anos de idade
+V123,Filhas do responsável e do cônjuge com 20 anos de idade
+V124,Filhas do responsável e do cônjuge com 21 anos de idade
+V125,Filhas do responsável e do cônjuge com 22 anos de idade
+V126,Filhas do responsável e do cônjuge com 23 anos de idade
+V127,Filhas do responsável e do cônjuge com 24 anos de idade
+V128,Filhas do responsável e do cônjuge com 25 anos de idade
+V129,Filhas do responsável e do cônjuge com 26 anos de idade
+V130,Filhas do responsável e do cônjuge com 27 anos de idade
+V131,Filhas do responsável e do cônjuge com 28 anos de idade
+V132,Filhas do responsável e do cônjuge com 29 anos de idade
+V133,Filhas do responsável e do cônjuge com 30 anos de idade
+V134,Filhas do responsável e do cônjuge com 31 anos de idade
+V135,Filhas do responsável e do cônjuge com 32 anos de idade
+V136,Filhas do responsável e do cônjuge com 33 anos de idade
+V137,Filhas do responsável e do cônjuge com 34 anos de idade
+V138,Filhas do responsável e do cônjuge com 35 anos de idade
+V139,Filhas do responsável e do cônjuge com 36 anos de idade
+V140,Filhas do responsável e do cônjuge com 37 anos de idade
+V141,Filhas do responsável e do cônjuge com 38 anos de idade
+V142,Filhas do responsável e do cônjuge com 39 anos de idade
+V143,Filhas do responsável e do cônjuge com 40 anos de idade
+V144,Filhas do responsável e do cônjuge com 41 anos de idade
+V145,Filhas do responsável e do cônjuge com 42 anos de idade
+V146,Filhas do responsável e do cônjuge com 43 anos de idade
+V147,Filhas do responsável e do cônjuge com 44 anos de idade
+V148,Filhas do responsável e do cônjuge com 45 anos de idade
+V149,Filhas do responsável e do cônjuge com 46 anos de idade
+V150,Filhas do responsável e do cônjuge com 47 anos de idade
+V151,Filhas do responsável e do cônjuge com 48 anos de idade
+V152,Filhas do responsável e do cônjuge com 49 anos de idade
+V153,Filhas do responsável e do cônjuge com 50 anos ou mais de idade
+V154,Filhas somente do responsável com menos de 1 ano de idade
+V155,Filhas somente do responsável com 1 ano de idade
+V156,Filhas somente do responsável com 2 anos de idade
+V157,Filhas somente do responsável com 3 anos de idade
+V158,Filhas somente do responsável com 4 anos de idade
+V159,Filhas somente do responsável com 5 anos de idade
+V160,Filhas somente do responsável com 6 anos de idade
+V161,Filhas somente do responsável com 7 anos de idade
+V162,Filhas somente do responsável com 8 anos de idade
+V163,Filhas somente do responsável com 9 anos de idade
+V164,Filhas somente do responsável com 10 anos de idade
+V165,Filhas somente do responsável com 11 anos de idade
+V166,Filhas somente do responsável com 12 anos de idade
+V167,Filhas somente do responsável com 13 anos de idade
+V168,Filhas somente do responsável com 14 anos de idade
+V169,Filhas somente do responsável com 15 anos de idade
+V170,Filhas somente do responsável com 16 anos de idade
+V171,Filhas somente do responsável com 17 anos de idade
+V172,Filhas somente do responsável com 18 anos de idade
+V173,Filhas somente do responsável com 19 anos de idade
+V174,Filhas somente do responsável com 20 anos de idade
+V175,Filhas somente do responsável com 21 anos de idade
+V176,Filhas somente do responsável com 22 anos de idade
+V177,Filhas somente do responsável com 23 anos de idade
+V178,Filhas somente do responsável com 24 anos de idade
+V179,Filhas somente do responsável com 25 anos de idade
+V180,Filhas somente do responsável com 26 anos de idade
+V181,Filhas somente do responsável com 27 anos de idade
+V182,Filhas somente do responsável com 28 anos de idade
+V183,Filhas somente do responsável com 29 anos de idade
+V184,Filhas somente do responsável com 30 anos de idade
+V185,Filhas somente do responsável com 31 anos de idade
+V186,Filhas somente do responsável com 32 anos de idade
+V187,Filhas somente do responsável com 33 anos de idade
+V188,Filhas somente do responsável com 34 anos de idade
+V189,Filhas somente do responsável com 35 anos de idade
+V190,Filhas somente do responsável com 36 anos de idade
+V191,Filhas somente do responsável com 37 anos de idade
+V192,Filhas somente do responsável com 38 anos de idade
+V193,Filhas somente do responsável com 39 anos de idade
+V194,Filhas somente do responsável com 40 anos de idade
+V195,Filhas somente do responsável com 41 anos de idade
+V196,Filhas somente do responsável com 42 anos de idade
+V197,Filhas somente do responsável com 43 anos de idade
+V198,Filhas somente do responsável com 44 anos de idade
+V199,Filhas somente do responsável com 45 anos de idade
+V200,Filhas somente do responsável com 46 anos de idade
+V201,Filhas somente do responsável com 47 anos de idade
+V202,Filhas somente do responsável com 48 anos de idade
+V203,Filhas somente do responsável com 49 anos de idade
+V204,Filhas somente do responsável com 50 anos ou mais de idade
+V205,Enteadas com menos de 1 ano de idade
+V206,Enteadas com 1 ano de idade
+V207,Enteadas com 2 anos de idade
+V208,Enteadas com 3 anos de idade
+V209,Enteadas com 4 anos de idade
+V210,Enteadas com 5 anos de idade
+V211,Enteadas com 6 anos de idade
+V212,Enteadas com 7 anos de idade
+V213,Enteadas com 8 anos de idade
+V214,Enteadas com 9 anos de idade
+V215,Enteadas com 10 anos de idade
+V216,Enteadas com 11 anos de idade
+V217,Enteadas com 12 anos de idade
+V218,Enteadas com 13 anos de idade
+V219,Enteadas com 14 anos de idade
+V220,Enteadas com 15 anos de idade
+V221,Enteadas com 16 anos de idade
+V222,Enteadas com 17 anos de idade
+V223,Enteadas com 18 anos de idade
+V224,Enteadas com 19 anos de idade
+V225,Enteadas com 20 anos de idade
+V226,Enteadas com 21 anos de idade
+V227,Enteadas com 22 anos de idade
+V228,Enteadas com 23 anos de idade
+V229,Enteadas com 24 anos de idade
+V230,Enteadas com 25 anos de idade
+V231,Enteadas com 26 anos de idade
+V232,Enteadas com 27 anos de idade
+V233,Enteadas com 28 anos de idade
+V234,Enteadas com 29 anos de idade
+V235,Enteadas com 30 anos de idade
+V236,Enteadas com 31 anos de idade
+V237,Enteadas com 32 anos de idade
+V238,Enteadas com 33 anos de idade
+V239,Enteadas com 34 anos de idade
+V240,Enteadas com 35 anos de idade
+V241,Enteadas com 36 anos de idade
+V242,Enteadas com 37 anos de idade
+V243,Enteadas com 38 anos de idade
+V244,Enteadas com 39 anos de idade
+V245,Enteadas com 40 anos de idade
+V246,Enteadas com 41 anos de idade
+V247,Enteadas com 42 anos de idade
+V248,Enteadas com 43 anos de idade
+V249,Enteadas com 44 anos de idade
+V250,Enteadas com 45 anos de idade
+V251,Enteadas com 46 anos de idade
+V252,Enteadas com 47 anos de idade
+V253,Enteadas com 48 anos de idade
+V254,Enteadas com 49 anos de idade

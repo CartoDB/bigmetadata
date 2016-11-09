@@ -1,0 +1,137 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Mulheres em domicílios particulares e domicílios coletivos
+V002,Mulheres em domicílios particulares permanentes
+V003,Mulheres responsáveis pelo domicílio particular
+V004,Cônjuges ou companheiros(as) (de sexo diferente e do mesmo sexo da pessoa responsável) em domicílios particulares
+V005,Filhas do responsável e do cônjuge em domicílios particulares
+V006,Filhas somente do responsável em domicílios particulares
+V007,Enteadas em domicílios particulares
+V008,Noras em domicílios particulares
+V009,"Mães, madrastas em domicílios particulares"
+V010,Sogras em domicílios particulares
+V011,Netas em domicílios particulares
+V012,Bisnetas em domicílios particulares
+V013,Irmãs em domicílios particulares
+V014,Avós em domicílios particulares
+V015,Outros parentes em domicílios particulares do sexo feminino
+V016,Agregadas em domicílios particulares
+V017,"Convivente em domicílios particulares, do sexo feminino"
+V018,"Pensionistas em domicílios particulares, do sexo feminino"
+V019,Empregadas domésticas em domicílios particulares
+V020,"Parentes dos(as) empregados(as) domésticos(as) em domicílios particulares ,do sexo feminino"
+V021,Individuais em domicílio coletivo do sexo feminino
+V022,Mulheres com menos de 1 ano de idade
+V023,Mulheres com menos de 1 mês de idade
+V024,Mulheres com 1 mês de idade
+V025,Mulheres com 2 meses de idade
+V026,Mulheres com 3 meses de idade
+V027,Mulheres com 4 meses de idade
+V028,Mulheres com 5 meses de idade
+V029,Mulheres com 6 meses de idade
+V030,Mulheres com 7 meses de idade
+V031,Mulheres com 8 meses de idade
+V032,Mulheres com 9 meses de idade
+V033,Mulheres com 10 meses de idade
+V034,Mulheres com 11 meses de idade
+V035,Mulheres com 1 ano de idade
+V036,Mulheres com 2 anos de idade
+V037,Mulheres com 3 anos de idade
+V038,Mulheres com 4 anos de idade
+V039,Mulheres com 5 anos de idade
+V040,Mulheres com 6 anos de idade
+V041,Mulheres com 7 anos de idade
+V042,Mulheres com 8 anos de idade
+V043,Mulheres com 9 anos de idade 
+V044,Mulheres com 10 anos de idade
+V045,Mulheres com 11 anos de idade
+V046,Mulheres com 12 anos de idade
+V047,Mulheres com 13 anos de idade
+V048,Mulheres com 14 anos de idade
+V049,Mulheres com 15 anos de idade
+V050,Mulheres com 16 anos de idade
+V051,Mulheres com 17 anos de idade
+V052,Mulheres com 18 anos de idade
+V053,Mulheres com 19 anos de idade
+V054,Mulheres com 20 anos de idade
+V055,Mulheres com 21 anos de idade
+V056,Mulheres com 22 anos de idade
+V057,Mulheres com 23 anos de idade
+V058,Mulheres com 24 anos de idade
+V059,Mulheres com 25 anos de idade
+V060,Mulheres com 26 anos de idade
+V061,Mulheres com 27 anos de idade
+V062,Mulheres com 28 anos de idade
+V063,Mulheres com 29 anos de idade
+V064,Mulheres com 30 anos de idade
+V065,Mulheres com 31 anos de idade
+V066,Mulheres com 32 anos de idade
+V067,Mulheres com 33 anos de idade
+V068,Mulheres com 34 anos de idade
+V069,Mulheres com 35 anos de idade
+V070,Mulheres com 36 anos de idade
+V071,Mulheres com 37 anos de idade
+V072,Mulheres com 38 anos de idade
+V073,Mulheres com 39 anos de idade
+V074,Mulheres com 40 anos de idade
+V075,Mulheres com 41 anos de idade
+V076,Mulheres com 42 anos de idade
+V077,Mulheres com 43 anos de idade
+V078,Mulheres com 44 anos de idade
+V079,Mulheres com 45 anos de idade
+V080,Mulheres com 46 anos de idade
+V081,Mulheres com 47 anos de idade
+V082,Mulheres com 48 anos de idade
+V083,Mulheres com 49 anos de idade
+V084,Mulheres com 50 anos de idade
+V085,Mulheres com 51 anos de idade
+V086,Mulheres com 52 anos de idade
+V087,Mulheres com 53 anos de idade
+V088,Mulheres com 54 anos de idade
+V089,Mulheres com 55 anos de idade
+V090,Mulheres com 56 anos de idade
+V091,Mulheres com 57 anos de idade
+V092,Mulheres com 58 anos de idade
+V093,Mulheres com 59 anos de idade
+V094,Mulheres com 60 anos de idade
+V095,Mulheres com 61 anos de idade
+V096,Mulheres com 62 anos de idade
+V097,Mulheres com 63 anos de idade
+V098,Mulheres com 64 anos de idade
+V099,Mulheres com 65 anos de idade
+V100,Mulheres com 66 anos de idade
+V101,Mulheres com 67 anos de idade
+V102,Mulheres com 68 anos de idade
+V103,Mulheres com 69 anos de idade
+V104,Mulheres com 70 anos de idade
+V105,Mulheres com 71 anos de idade
+V106,Mulheres com 72 anos de idade
+V107,Mulheres com 73 anos de idade
+V108,Mulheres com 74 anos de idade
+V109,Mulheres com 75 anos de idade
+V110,Mulheres com 76 anos de idade
+V111,Mulheres com 77 anos de idade
+V112,Mulheres com 78 anos de idade
+V113,Mulheres com 79 anos de idade
+V114,Mulheres com 80 anos de idade
+V115,Mulheres com 81 anos de idade
+V116,Mulheres com 82 anos de idade
+V117,Mulheres com 83 anos de idade
+V118,Mulheres com 84 anos de idade
+V119,Mulheres com 85 anos de idade
+V120,Mulheres com 86 anos de idade
+V121,Mulheres com 87 anos de idade
+V122,Mulheres com 88 anos de idade
+V123,Mulheres com 89 anos de idade
+V124,Mulheres com 90 anos de idade
+V125,Mulheres com 91 anos de idade
+V126,Mulheres com 92 anos de idade
+V127,Mulheres com 93 anos de idade
+V128,Mulheres com 94 anos de idade
+V129,Mulheres com 95 anos de idade
+V130,Mulheres com 96 anos de idade
+V131,Mulheres com 97 anos de idade
+V132,Mulheres com 98 anos de idade
+V133,Mulheres com 99 anos de idade
+V134,Mulheres com 100 anos ou mais de idade

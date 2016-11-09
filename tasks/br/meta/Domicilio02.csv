@@ -1,0 +1,135 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Moradores em domicílios particulares e domicílios coletivos
+V002,Moradores em domicílios particulares permanentes
+V003,Moradores em domicílios particulares permanentes do tipo casa
+V004,Moradores em domicílios particulares permanentes do tipo casa de vila ou em condomínio
+V005,Moradores em domicílios particulares permanentes do tipo apartamento
+V006,Moradores em domicílios particulares permanentes próprios e quitados
+V007,Moradores em domicílios particulares permanentes próprios e em aquisição
+V008,Moradores em domicílios particulares permanentes alugados
+V009,Moradores em domicílios particulares permanentes cedidos por empregador
+V010,Moradores em domicílios particulares permanentes cedidos de outra forma
+V011,"Moradores em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)"
+V012,Moradores em domicílios particulares permanentes com abastecimento de água da rede geral
+V013,Moradores em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade
+V014,Moradores em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna
+V015,Moradores em domicílios particulares permanentes com outra forma de abastecimento de água
+V016,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário
+V017,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
+V018,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
+V019,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
+V020,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
+V021,"Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V022,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
+V023,Moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário
+V024,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores
+V025,Moradores em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores
+V026,Moradores em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores
+V027,Moradores em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores
+V028,Moradores em domicílios particulares permanentes com 4 ou mais banheiros de uso exclusivo dos moradores 
+V029,Moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores
+V030,Moradores em domicílios particulares permanentes com lixo coletado
+V031,Moradores em domicílios particulares permanentes com lixo coletado por serviço de limpeza
+V032,Moradores em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza
+V033,Moradores em domicílios particulares permanentes com lixo queimado na propriedade
+V034,Moradores em domicílios particulares permanentes com lixo enterrado na propriedade
+V035,Moradores em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro
+V036,"Moradores em domicílios particulares permanentes com lixo jogado em rio, lago ou mar"
+V037,Moradores em domicílios particulares permanentes com outro destino do lixo
+V038,Moradores em domicílios particulares permanentes com energia elétrica
+V039,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora
+V040,Moradores em domicílios particulares permanentes com energia elétrica de outras fontes
+V041,Moradores em domicílios particulares permanentes sem energia elétrica
+V042,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor de uso exclusivo
+V043,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
+V044,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor
+V045,Homens moradores em domicílios particulares e domicílios coletivos
+V046,Homens moradores em domicílios particulares permanentes
+V047,Homens moradores em domicílios particulares permanentes do tipo casa
+V048,Homens moradores em domicílios particulares permanentes do tipo casa de vila ou em condomínio
+V049,Homens moradores em domicílios particulares permanentes do tipo apartamento
+V050,Homens moradores em domicílios particulares permanentes próprios e quitados
+V051,Homens moradores em domicílios particulares permanentes próprios e em aquisição
+V052,Homens moradores em domicílios particulares permanentes alugados
+V053,Homens moradores em domicílios particulares permanentes cedidos por empregador
+V054,Homens moradores em domicílios particulares permanentes cedidos de outra forma
+V055,"Homens moradores em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)"
+V056,Homens moradores em domicílios particulares permanentes com abastecimento de água da rede geral
+V057,Homens moradores em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade
+V058,Homens moradores em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna
+V059,Homens moradores em domicílios particulares permanentes com outra forma de abastecimento de água
+V060,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário
+V061,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
+V062,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
+V063,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
+V064,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
+V065,"Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V066,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
+V067,Homens moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário
+V068,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores
+V069,Homens moradores em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores
+V070,Homens moradores em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores
+V071,Homens moradores em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores
+V072,Homens moradores em domicílios particulares permanentes com 4 ou mais  banheiros de uso exclusivo dos moradores
+V073,Homens moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores
+V074,Homens moradores em domicílios particulares permanentes com lixo coletado
+V075,Homens moradores em domicílios particulares permanentes com lixo coletado por serviço de limpeza
+V076,Homens moradores em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza
+V077,Homens moradores em domicílios particulares permanentes com lixo queimado na propriedade
+V078,Homens moradores em domicílios particulares permanentes com lixo enterrado na propriedade
+V079,Homens moradores em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro
+V080,"Homens moradores em domicílios particulares permanentes com lixo jogado em rio, lago ou mar"
+V081,Homens moradores em domicílios particulares permanentes com outro destino do lixo
+V082,Homens moradores em domicílios particulares permanentes com energia elétrica
+V083,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora
+V084,Homens moradores em domicílios particulares permanentes com energia elétrica de outras fontes
+V085,Homens moradores em domicílios particulares permanentes sem energia elétrica
+V086,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor de uso exclusivo
+V087,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
+V088,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor
+V089,Mulheres moradoras em domicílios particulares e domicílios coletivos
+V090,Mulheres moradoras em domicílios particulares permanentes
+V091,Mulheres moradoras em domicílios particulares permanentes do tipo casa
+V092,Mulheres moradoras em domicílios particulares permanentes do tipo casa de vila ou em condomínio
+V093,Mulheres moradoras em domicílios particulares permanentes do tipo apartamento
+V094,Mulheres moradoras em domicílios particulares permanentes próprios e quitados
+V095,Mulheres moradoras em domicílios particulares permanentes próprios e em aquisição
+V096,Mulheres moradoras em domicílios particulares permanentes alugados
+V097,Mulheres moradoras em domicílios particulares permanentes cedidos por empregador
+V098,Mulheres moradoras em domicílios particulares permanentes cedidos de outra forma
+V099,"Mulheres moradoras em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)"
+V100,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água da rede geral
+V101,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade
+V102,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna
+V103,Mulheres moradoras em domicílios particulares permanentes com outra forma de abastecimento de água
+V104,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário
+V105,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
+V106,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
+V107,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
+V108,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
+V109,"Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V110,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
+V111,Mulheres moradoras em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário
+V112,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores
+V113,Mulheres moradoras em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores
+V114,Mulheres moradoras em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores
+V115,Mulheres moradoras em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores
+V116,Mulheres moradoras em domicílios particulares permanentes com 4 ou mais banheiros de uso exclusivo dos moradores
+V117,Mulheres moradoras em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores
+V118,Mulheres moradoras em domicílios particulares permanentes com lixo coletado
+V119,Mulheres moradoras em domicílios particulares permanentes com lixo coletado por serviço de limpeza
+V120,Mulheres moradoras em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza
+V121,Mulheres moradoras em domicílios particulares permanentes com lixo queimado na propriedade
+V122,Mulheres moradoras em domicílios particulares permanentes com lixo enterrado na propriedade
+V123,Mulheres moradoras em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro
+V124,"Mulheres moradoras em domicílios particulares permanentes com lixo jogado em rio, lago ou mar"
+V125,Mulheres moradoras em domicílios particulares permanentes com outro destino do lixo
+V126,Mulheres moradoras em domicílios particulares permanentes com energia elétrica
+V127,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora
+V128,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de outras fontes
+V129,Mulheres moradoras em domicílios particulares permanentes sem energia elétrica
+V130,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora  e com medidor de uso exclusivo
+V131,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
+V132,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor

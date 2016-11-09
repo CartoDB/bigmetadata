@@ -1,0 +1,135 @@
+NOME DA VARIÁVEL,DESCRIÇÃO DA VARIÁVEL
+Cod_setor,Código do setor censitário
+Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Pessoas responsáveis com rendimento nominal mensal de até 1/2 salário mínimo
+V002,Pessoas responsáveis com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo
+V003,Pessoas responsáveis com rendimento nominal mensal de mais de 1 a 2 salários mínimos
+V004,Pessoas responsáveis com rendimento nominal mensal de mais de 2 a 3 salários mínimos
+V005,Pessoas responsáveis com rendimento nominal mensal de mais de 3 a 5 salários mínimos
+V006,Pessoas responsáveis com rendimento nominal mensal de mais de 5 a 10 salários mínimos
+V007,Pessoas responsáveis com rendimento nominal mensal de mais de 10 a 15 salários mínimos
+V008,Pessoas responsáveis com rendimento nominal mensal de mais de 15 a 20 salários mínimos
+V009,Pessoas responsáveis com rendimento nominal mensal de mais de 20 salários mínimos
+V010,Pessoas responsáveis sem rendimento nominal mensal
+V011,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de até 1/2 salário mínimo
+V012,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo
+V013,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 1 a 2 salários mínimos
+V014,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 2 a 3 salários mínimos
+V015,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 3 a 5 salários mínimos
+V016,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 5 a 10 salários mínimos
+V017,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 10 a 15 salários mínimos
+V018,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 15 a 20 salários mínimos
+V019,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 20 salários mínimos
+V020,Pessoas responsáveis com ou sem rendimento
+V021,Pessoas responsáveis com rendimento positivo
+V022,Total do rendimento nominal mensal das pessoas responsáveis
+V023,"Pessoas responsáveis com rendimento nominal mensal de até ½ salário mínimo, do sexo masculino"
+V024,"Pessoas responsáveis com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo, do sexo masculino"
+V025,"Pessoas responsáveis com rendimento nominal mensal de mais de 1 a 2 salários mínimos, do sexo masculino"
+V026,"Pessoas responsáveis com rendimento nominal mensal de mais de 2 a 3 salários mínimos, do sexo masculino"
+V027,"Pessoas responsáveis com rendimento nominal mensal de mais de 3 a 5 salários mínimos, do sexo masculino"
+V028,"Pessoas responsáveis com rendimento nominal mensal de mais de 5 a 10 salários mínimos, do sexo masculino"
+V029,"Pessoas responsáveis com rendimento nominal mensal de mais de 10 a 15 salários mínimos, do sexo masculino"
+V030,"Pessoas responsáveis com rendimento nominal mensal de mais de 15 a 20 salários mínimos, do sexo masculino"
+V031,"Pessoas responsáveis com rendimento nominal mensal de mais de 20 salários mínimos, do sexo masculino"
+V032,"Pessoas responsáveis sem rendimento nominal mensal, do sexo masculino"
+V033,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de até ½ salário mínimo, do sexo masculino"
+V034,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de ½ a 1 salário mínimo, do sexo masculino"
+V035,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 1 a 2 salários mínimos, do sexo masculino "
+V036,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 2 a 3 salários mínimos, do sexo masculino"
+V037,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 3 a 5 salários mínimos, do sexo masculino"
+V038,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 5 a 10 salários mínimos, do sexo masculino"
+V039,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 10 a 15 salários mínimos, do sexo masculino"
+V040,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 15 a 20 salários mínimos, do sexo masculino"
+V041,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 20 salários mínimos, do sexo masculino"
+V042,"Pessoas responsáveis com ou sem rendimento, do sexo masculino"
+V043,"Pessoas responsáveis com rendimento positivo, do sexo masculino"
+V044,"Total do rendimento nominal mensal das pessoas responsáveis, do sexo masculino"
+V045,"Pessoas responsáveis com rendimento nominal mensal de até ½ salário mínimo, do sexo feminino"
+V046,"Pessoas responsáveis com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo, do sexo feminino"
+V047,"Pessoas responsáveis com rendimento nominal mensal de mais de 1 a 2 salários mínimos, do sexo feminino"
+V048,"Pessoas responsáveis com rendimento nominal mensal de mais de 2 a 3 salários mínimos, do sexo feminino"
+V049,"Pessoas responsáveis com rendimento nominal mensal de mais de 3 a 5 salários mínimos, do sexo feminino"
+V050,"Pessoas responsáveis com rendimento nominal mensal de mais de 5 a 10 salários mínimos, do sexo feminino"
+V051,"Pessoas responsáveis com rendimento nominal mensal de mais de 10 a 15 salários mínimos, do sexo feminino"
+V052,"Pessoas responsáveis com rendimento nominal mensal de mais de 15 a 20 salários mínimos, do sexo feminino"
+V053,"Pessoas responsáveis com rendimento nominal mensal de mais de 20 salários mínimos, do sexo feminino"
+V054,"Pessoas responsáveis sem rendimento nominal mensal, do sexo feminino"
+V055,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de até 1/2 salário mínimo, do sexo feminino"
+V056,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo, do sexo feminino"
+V057,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 1 a 2 salários mínimos, do sexo feminino"
+V058,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 2 a 3 salários mínimos, do sexo feminino"
+V059,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 3 a 5 salários mínimos, do sexo feminino"
+V060,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 5 a 10 salários mínimos, do sexo feminino"
+V061,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 10 a 15 salários mínimos, do sexo feminino"
+V062,"Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 15 a 20 salários mínimos, do sexo feminino"
+V063,Total do rendimento nominal mensal das pessoas responsáveis com rendimento nominal mensal de mais de 20 salários mínimos
+V064,"Pessoas responsáveis com ou sem rendimento, do sexo feminino"
+V065,"Pessoas responsáveis com rendimento positivo, do sexo feminino"
+V066,"Total do rendimento nominal mensal das pessoas responsáveis, do sexo feminino"
+V067,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de até 1/2 salário mínimo
+V068,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo
+V069,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1 a 2 salários mínimos
+V070,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 2 a 3 salários mínimos
+V071,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 3 a 5 salários mínimos
+V072,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 5 a 10 salários mínimos
+V073,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 10 a 15 salários mínimos
+V074,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 15 a 20 salários mínimos
+V075,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 20 salários mínimos
+V076,Pessoas responsáveis moradoras em domicílios particulares permanentes sem rendimento nominal mensal
+V077,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de até 1/2 salário mínimo
+V078,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo
+V079,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1 a 2 salários mínimos
+V080,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 2 a 3 salários mínimos
+V081,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 3 a 5 salários mínimos
+V082,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 5 a 10 salários mínimos
+V083,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 10 a 15 salários mínimos
+V084,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 15 a 20 salários mínimos
+V085,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 20 salários mínimos
+V086,Pessoas responPessoas responsáveis moradoras em domicílios particulares permanentes com ou sem Rendimentorrendimento
+V087,Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento positivo
+V088,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes
+V089,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de até 1/2 salário mínimo, do sexo masculino"
+V090,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo, do sexo masculino"
+V091,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1 a 2 salários mínimos, do sexo masculino"
+V092,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 2 a 3 salários mínimos, do sexo masculino"
+V093,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 3 a 5 salários mínimos, do sexo masculino"
+V094,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 5 a 10 salários mínimos, do sexo masculino"
+V095,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 10 a 15 salários mínimos, do sexo masculino"
+V096,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 15 a 20 salários mínimos, do sexo masculino"
+V097,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 20 salários mínimos, do sexo masculino"
+V098,"Pessoas responsáveis moradoras em domicílios particulares permanentes sem rendimento nominal mensal, do sexo masculino"
+V099,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de até ½ salário mínimo, do sexo masculino"
+V100,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo, do sexo masculino"
+V101,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1 a 2 salários mínimos, do sexo masculino "
+V102,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 2 a 3 salários mínimos, do sexo masculino"
+V103,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 3 a 5 salários mínimos, do sexo masculino"
+V104,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 5 a 10 salários mínimos, do sexo masculino"
+V105,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 10 a 15 salários mínimos, do sexo masculino"
+V106,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 15 a 20 salários mínimos, do sexo masculino"
+V107,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 20 salários mínimos, do sexo masculino"
+V108,"Pessoas responsáveis moradoras em domicílios particulares permanentes com ou sem rendimento, do sexo masculino"
+V109,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento positivo, do sexo masculino"
+V110,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes, do sexo masculino"
+V111,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de até ½ salário mínimo, do sexo feminino"
+V112,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo, do sexo feminino"
+V113,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1 a 2 salários mínimos, do sexo feminino "
+V114,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 2 a 3 salários mínimos, do sexo feminino"
+V115,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 3 a 5 salários mínimos, do sexo feminino"
+V116,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 5 a 10 salários mínimos, do sexo feminino"
+V117,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 10 a 15 salários mínimos, do sexo feminino"
+V118,"Pessoas responsáveis com rendimento nominal mensal de mais de 15 a 20 salários mínimos, do sexo feminino"
+V119,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 20 salários mínimos, do sexo feminino"
+V120,"Pessoas responsáveis moradoras em domicílios particulares permanentes sem rendimento nominal mensal, do sexo feminino"
+V121,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de até ½ salário mínimo, do sexo feminino"
+V122,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1/2 a 1 salário mínimo, do sexo feminino"
+V123,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 1 a 2 salários mínimos, do sexo feminino"
+V124,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 2 a 3 salários mínimos, do sexo feminino"
+V125,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 3 a 5 salários mínimos, do sexo feminino"
+V126,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 5 a 10 salários mínimos, do sexo feminino"
+V127,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 10 a 15 salários mínimos, do sexo feminino"
+V128,"Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 15 a 20 salários mínimos, do sexo feminino"
+V129,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento nominal mensal de mais de 20 salários mínimos
+V130,"Pessoas responsáveis moradoras em domicílios particulares permanentes com ou sem rendimento, do sexo feminino "
+V131,"Pessoas responsáveis moradoras em domicílios particulares permanentes com rendimento positivo, do sexo feminino "
+V132,Total do rendimento nominal mensal das pessoas responsáveis moradoras em domicílios particulares permanentes do sexo feminino

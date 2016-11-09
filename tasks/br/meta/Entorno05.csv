@@ -1,0 +1,223 @@
+NOME DA VARIÁVEL,DESCRIÇÃO DA VARIÁVEL
+Cod_setor,Código do setor
+Situação do setor,Código de situação do setor
+V843,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe identificação do logradouro
+V844,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe identificação do logradouro
+V845,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe identificação do logradouro
+V846,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe identificação do logradouro
+V847,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe identificação do logradouro
+V848,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe identificação do logradouro
+V849,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe identificação do logradouro
+V850,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe identificação do logradouro
+V851,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe identificação do logradouro
+V852,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe identificação do logradouro
+V853,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe identificação do logradouro
+V854,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe identificação do logradouro
+V855,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe iluminação pública
+V856,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe iluminação pública
+V857,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe iluminação pública
+V858,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe iluminação pública
+V859,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe iluminação pública
+V860,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe iluminação pública
+V861,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe iluminação pública
+V862,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe iluminação pública
+V863,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe iluminação pública
+V864,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe iluminação pública
+V865,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe iluminação pública
+V866,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe iluminação pública
+V867,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe pavimentação
+V868,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe pavimentação
+V869,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe pavimentação
+V870,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe pavimentação
+V871,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe pavimentação
+V872,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe pavimentação
+V873,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe pavimentação
+V874,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe pavimentação
+V875,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe pavimentação
+V876,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe pavimentação
+V877,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe pavimentação
+V878,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe pavimentação
+V879,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe calçada
+V880,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe calçada
+V881,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe calçada
+V882,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe calçada
+V883,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe calçada
+V884,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe calçada
+V885,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe calçada
+V886,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe calçada
+V887,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe calçada
+V888,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe calçada
+V889,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe calçada
+V890,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe calçada
+V891,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe meio-fio/guia
+V892,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe meio-fio/guia
+V893,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe meio-fio/guia
+V894,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe meio-fio/guia
+V895,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe meio-fio/guia
+V896,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe meio-fio/guia
+V897,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe meio-fio/guia
+V898,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe meio-fio/guia
+V899,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe meio-fio/guia
+V900,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe meio-fio/guia
+V901,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe meio-fio/guia
+V902,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe meio-fio/guia
+V903,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe bueiro/boca-de-lobo
+V904,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe bueiro/boca-de-lobo
+V905,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe bueiro/boca-de-lobo
+V906,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe bueiro/boca-de-lobo
+V907,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe bueiro/boca-de-lobo
+V908,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe bueiro/boca-de-lobo
+V909,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe bueiro/boca-de-lobo
+V910,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe bueiro/boca-de-lobo
+V911,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe bueiro/boca-de-lobo
+V912,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe bueiro/boca-de-lobo
+V913,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe bueiro/boca-de-lobo
+V914,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe bueiro/boca-de-lobo
+V915,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe rampa para cadeirante
+V916,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe rampa para cadeirante
+V917,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe rampa para cadeirante
+V918,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe rampa para cadeirante
+V919,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe rampa para cadeirante
+V920,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe rampa para cadeirante
+V921,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe rampa para cadeirante
+V922,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe rampa para cadeirante
+V923,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe rampa para cadeirante
+V924,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe rampa para cadeirante
+V925,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe rampa para cadeirante
+V926,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe rampa para cadeirante
+V927,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe arborização
+V928,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe arborização
+V929,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe arborização
+V930,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe arborização
+V931,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe arborização
+V932,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe arborização
+V933,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe arborização
+V934,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe arborização
+V935,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe arborização
+V936,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe arborização
+V937,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe arborização
+V938,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe arborização
+V939,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe esgoto a céu aberto
+V940,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe esgoto a céu aberto
+V941,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe esgoto a céu aberto
+V942,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe esgoto a céu aberto
+V943,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe esgoto a céu aberto
+V944,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe esgoto a céu aberto
+V945,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe esgoto a céu aberto
+V946,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe esgoto a céu aberto
+V947,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe esgoto a céu aberto
+V948,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe esgoto a céu aberto
+V949,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe esgoto a céu aberto
+V950,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe esgoto a céu aberto
+V951,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Existe lixo acumulado nos logradouros
+V952,Moradores em domicílios particulares permanentes com menos de 1 ano de idade – Não existe lixo acumulado nos logradouros
+V953,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Existe lixo acumulado nos logradouros
+V954,Moradores em domicílios particulares permanentes de 1 a 4 anos de idade – Não existe lixo acumulado nos logradouros
+V955,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Existe lixo acumulado nos logradouros
+V956,Moradores em domicílios particulares permanentes de 5 a 9 anos de idade – Não existe lixo acumulado nos logradouros
+V957,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Existe lixo acumulado nos logradouros
+V958,Moradores em domicílios particulares permanentes de 10 a 14 anos de idade – Não existe lixo acumulado nos logradouros
+V959,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Existe lixo acumulado nos logradouros
+V960,Moradores em domicílios particulares permanentes de 15 a 59 anos de idade – Não existe lixo acumulado nos logradouros
+V961,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Existe lixo acumulado nos logradouros
+V962,Moradores em domicílios particulares permanentes de 60 anos ou mais de idade – Não existe lixo acumulado nos logradouros
+V963,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe identificação do logradouro
+V964,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe identificação do logradouro
+V965,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe identificação do logradouro
+V966,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe identificação do logradouro
+V967,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe identificação do logradouro
+V968,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe identificação do logradouro
+V969,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe identificação do logradouro
+V970,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe identificação do logradouro
+V971,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe identificação do logradouro
+V972,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe identificação do logradouro
+V973,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe iluminação pública
+V974,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe iluminação pública
+V975,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe iluminação pública
+V976,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe iluminação pública
+V977,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe iluminação pública
+V978,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe iluminação pública
+V979,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe iluminação pública
+V980,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe iluminação pública
+V981,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe iluminação pública
+V982,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe iluminação pública
+V983,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe pavimentação
+V984,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe pavimentação
+V985,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe pavimentação
+V986,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe pavimentação
+V987,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe pavimentação
+V988,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe pavimentação
+V989,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe pavimentação
+V990,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe pavimentação
+V991,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe pavimentação
+V992,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe pavimentação
+V993,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe calçada
+V994,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe calçada
+V995,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe calçada
+V996,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe calçada
+V997,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe calçada
+V998,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe calçada
+V999,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe calçada
+V1000,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe calçada
+V1001,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe calçada
+V1002,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe calçada
+V1003,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe meio-fio/guia
+V1004,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe meio-fio/guia
+V1005,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe meio-fio/guia
+V1006,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe meio-fio/guia
+V1007,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe meio-fio/guia
+V1008,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe meio-fio/guia
+V1009,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe meio-fio/guia
+V1010,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe meio-fio/guia
+V1011,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe meio-fio/guia
+V1012,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe meio-fio/guia
+V1013,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe bueiro/boca-de-lobo
+V1014,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe bueiro/boca-de-lobo
+V1015,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe bueiro/boca-de-lobo
+V1016,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe bueiro/boca-de-lobo
+V1017,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe bueiro/boca-de-lobo
+V1018,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe bueiro/boca-de-lobo
+V1019,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe bueiro/boca-de-lobo
+V1020,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe bueiro/boca-de-lobo
+V1021,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe bueiro/boca-de-lobo
+V1022,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe bueiro/boca-de-lobo
+V1023,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe rampa para cadeirante
+V1024,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe rampa para cadeirante
+V1025,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe rampa para cadeirante
+V1026,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe rampa para cadeirante
+V1027,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe rampa para cadeirante
+V1028,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe rampa para cadeirante
+V1029,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe rampa para cadeirante
+V1030,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe rampa para cadeirante
+V1031,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe rampa para cadeirante
+V1032,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe rampa para cadeirante
+V1033,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe arborização
+V1034,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe arborização
+V1035,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe arborização
+V1036,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe arborização
+V1037,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe arborização
+V1038,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe arborização
+V1039,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe arborização
+V1040,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe arborização
+V1041,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe arborização
+V1042,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe arborização
+V1043,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe esgoto a céu aberto
+V1044,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe esgoto a céu aberto
+V1045,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe esgoto a céu aberto
+V1046,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe esgoto a céu aberto
+V1047,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe esgoto a céu aberto
+V1048,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe esgoto a céu aberto
+V1049,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe esgoto a céu aberto
+V1050,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe esgoto a céu aberto
+V1051,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe esgoto a céu aberto
+V1052,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe esgoto a céu aberto
+V1053,Moradores em domicílios particulares permanentes de cor ou raça branca – Existe lixo acumulado nos logradouros
+V1054,Moradores em domicílios particulares permanentes de cor ou raça branca – Não existe lixo acumulado nos logradouros
+V1055,Moradores em domicílios particulares permanentes de cor ou raça preta – Existe lixo acumulado nos logradouros
+V1056,Moradores em domicílios particulares permanentes de cor ou raça preta – Não existe lixo acumulado nos logradouros
+V1057,Moradores em domicílios particulares permanentes de cor ou raça amarela – Existe lixo acumulado nos logradouros
+V1058,Moradores em domicílios particulares permanentes de cor ou raça amarela – Não existe lixo acumulado nos logradouros
+V1059,Moradores em domicílios particulares permanentes de cor ou raça parda – Existe lixo acumulado nos logradouros
+V1060,Moradores em domicílios particulares permanentes de cor ou raça parda – Não existe lixo acumulado nos logradouros
+V1061,Moradores em domicílios particulares permanentes de cor ou raça indígena – Existe lixo acumulado nos logradouros
+V1062,Moradores em domicílios particulares permanentes de cor ou raça indígena – Não existe lixo acumulado nos logradouros

@@ -1,0 +1,219 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Pessoas Responsáveis
+V002,Pessoas Responsáveis com 10 anos de idade
+V003,Pessoas Responsáveis com 11 anos de idade
+V004,Pessoas Responsáveis com 12 anos de idade
+V005,Pessoas Responsáveis com 13 anos de idade
+V006,Pessoas Responsáveis com 14 anos de idade
+V007,Pessoas Responsáveis com 15 anos de idade
+V008,Pessoas Responsáveis com 16 anos de idade
+V009,Pessoas Responsáveis com 17 anos de idade
+V010,Pessoas Responsáveis com 18 anos de idade
+V011,Pessoas Responsáveis com 19 anos de idade
+V012,Pessoas Responsáveis com 20 anos de idade
+V013,Pessoas Responsáveis com 21 anos de idade
+V014,Pessoas Responsáveis com 22 anos de idade
+V015,Pessoas Responsáveis com 23 anos de idade
+V016,Pessoas Responsáveis com 24 anos de idade
+V017,Pessoas Responsáveis com 25 anos de idade
+V018,Pessoas Responsáveis com 26 anos de idade
+V019,Pessoas Responsáveis com 27 anos de idade
+V020,Pessoas Responsáveis com 28 anos de idade
+V021,Pessoas Responsáveis com 29 anos de idade
+V022,Pessoas Responsáveis com 30 anos de idade
+V023,Pessoas Responsáveis com 31 anos de idade
+V024,Pessoas Responsáveis com 32 anos de idade
+V025,Pessoas Responsáveis com 33 anos de idade
+V026,Pessoas Responsáveis com 34 anos de idade
+V027,Pessoas Responsáveis com 35 anos de idade
+V028,Pessoas Responsáveis com 36 anos de idade
+V029,Pessoas Responsáveis com 37 anos de idade
+V030,Pessoas Responsáveis com 38 anos de idade
+V031,Pessoas Responsáveis com 39 anos de idade
+V032,Pessoas Responsáveis com 40 anos de idade
+V033,Pessoas Responsáveis com 41 anos de idade
+V034,Pessoas Responsáveis com 42 anos de idade
+V035,Pessoas Responsáveis com 43 anos de idade
+V036,Pessoas Responsáveis com 44 anos de idade
+V037,Pessoas Responsáveis com 45 anos de idade
+V038,Pessoas Responsáveis com 46 anos de idade
+V039,Pessoas Responsáveis com 47 anos de idade
+V040,Pessoas Responsáveis com 48 anos de idade
+V041,Pessoas Responsáveis com 49 anos de idade
+V042,Pessoas Responsáveis com 50 anos de idade
+V043,Pessoas Responsáveis com 51 anos de idade
+V044,Pessoas Responsáveis com 52 anos de idade
+V045,Pessoas Responsáveis com 53 anos de idade
+V046,Pessoas Responsáveis com 54 anos de idade
+V047,Pessoas Responsáveis com 55 anos de idade
+V048,Pessoas Responsáveis com 56 anos de idade
+V049,Pessoas Responsáveis com 57 anos de idade
+V050,Pessoas Responsáveis com 58 anos de idade
+V051,Pessoas Responsáveis com 59 anos de idade
+V052,Pessoas Responsáveis com 60 anos de idade
+V053,Pessoas Responsáveis com 61 anos de idade
+V054,Pessoas Responsáveis com 62 anos de idade
+V055,Pessoas Responsáveis com 63 anos de idade
+V056,Pessoas Responsáveis com 64 anos de idade
+V057,Pessoas Responsáveis com 65 anos de idade
+V058,Pessoas Responsáveis com 66 anos de idade
+V059,Pessoas Responsáveis com 67 anos de idade
+V060,Pessoas Responsáveis com 68 anos de idade
+V061,Pessoas Responsáveis com 69 anos de idade
+V062,Pessoas Responsáveis com 70 anos de idade
+V063,Pessoas Responsáveis com 71 anos de idade
+V064,Pessoas Responsáveis com 72 anos de idade
+V065,Pessoas Responsáveis com 73 anos de idade
+V066,Pessoas Responsáveis com 74 anos de idade
+V067,Pessoas Responsáveis com 75 anos de idade
+V068,Pessoas Responsáveis com 76 anos de idade
+V069,Pessoas Responsáveis com 77 anos de idade
+V070,Pessoas Responsáveis com 78 anos de idade
+V071,Pessoas Responsáveis com 79 anos de idade
+V072,Pessoas Responsáveis com 80 anos de idade
+V073,Pessoas Responsáveis com 81 anos de idade
+V074,Pessoas Responsáveis com 82 anos de idade
+V075,Pessoas Responsáveis com 83 anos de idade
+V076,Pessoas Responsáveis com 84 anos de idade
+V077,Pessoas Responsáveis com 85 anos de idade
+V078,Pessoas Responsáveis com 86 anos de idade
+V079,Pessoas Responsáveis com 87 anos de idade
+V080,Pessoas Responsáveis com 88 anos de idade
+V081,Pessoas Responsáveis com 89 anos de idade
+V082,Pessoas Responsáveis com 90 anos de idade
+V083,Pessoas Responsáveis com 91 anos de idade
+V084,Pessoas Responsáveis com 92 anos de idade
+V085,Pessoas Responsáveis com 93 anos de idade
+V086,Pessoas Responsáveis com 94 anos de idade
+V087,Pessoas Responsáveis com 95 anos de idade
+V088,Pessoas Responsáveis com 96 anos de idade
+V089,Pessoas Responsáveis com 97 anos de idade
+V090,Pessoas Responsáveis com 98 anos de idade
+V091,Pessoas Responsáveis com 99 anos de idade
+V092,Pessoas Responsáveis com 100 ou mais anos de idade
+V093,Pessoas Responsáveis alfabetizados
+V094,Pessoas Responsáveis alfabetizados com 10 a 14 anos de idade
+V095,Pessoas Responsáveis alfabetizados com 15 a 19 anos de idade
+V096,Pessoas Responsáveis alfabetizados com 20 a 24 anos de idade
+V097,Pessoas Responsáveis alfabetizados com 25 a 29 anos de idade
+V098,Pessoas Responsáveis alfabetizados com 30 a 34 anos de idade
+V099,Pessoas Responsáveis alfabetizados com 35 a 39 anos de idade
+V100,Pessoas Responsáveis alfabetizados com 40 a 44 anos de idade
+V101,Pessoas Responsáveis alfabetizados com 45 a 49 anos de idade
+V102,Pessoas Responsáveis alfabetizados com 50 a 54 anos de idade
+V103,Pessoas Responsáveis alfabetizados com 55 a 59 anos de idade
+V104,Pessoas Responsáveis alfabetizados com 60 a 64 anos de idade
+V105,Pessoas Responsáveis alfabetizados com 65 a 69 anos de idade
+V106,Pessoas Responsáveis alfabetizados com 70 a 74 anos de idade
+V107,Pessoas Responsáveis alfabetizados com 75 a 79 anos de idade
+V108,Pessoas Responsáveis alfabetizados com 80 ou mais anos de idade
+V109,"Pessoas responsáveis, do sexo masculino"
+V110,"Pessoas responsáveis com 10 anos de idade, do sexo masculino"
+V111,"Pessoas responsáveis com 11 anos de idade, do sexo masculino"
+V112,"Pessoas responsáveis com 12 anos de idade, do sexo masculino"
+V113,"Pessoas responsáveis com 13 anos de idade, do sexo masculino"
+V114,"Pessoas responsáveis com 14 anos de idade, do sexo masculino"
+V115,"Pessoas responsáveis com 15 anos de idade, do sexo masculino"
+V116,"Pessoas responsáveis com 16 anos de idade, do sexo masculino"
+V117,"Pessoas responsáveis com 17 anos de idade, do sexo masculino"
+V118,"Pessoas responsáveis com 18 anos de idade, do sexo masculino"
+V119,"Pessoas responsáveis com 19 anos de idade, do sexo masculino"
+V120,"Pessoas responsáveis com 20 anos de idade, do sexo masculino"
+V121,"Pessoas responsáveis com 21 anos de idade, do sexo masculino"
+V122,"Pessoas responsáveis com 22 anos de idade, do sexo masculino"
+V123,"Pessoas responsáveis com 23 anos de idade, do sexo masculino"
+V124,"Pessoas responsáveis com 24 anos de idade, do sexo masculino"
+V125,"Pessoas responsáveis com 25 anos de idade, do sexo masculino"
+V126,"Pessoas responsáveis com 26 anos de idade, do sexo masculino"
+V127,"Pessoas responsáveis com 27 anos de idade, do sexo masculino"
+V128,"Pessoas responsáveis com 28 anos de idade, do sexo masculino"
+V129,"Pessoas responsáveis com 29 anos de idade, do sexo masculino"
+V130,"Pessoas responsáveis com 30 anos de idade, do sexo masculino"
+V131,"Pessoas responsáveis com 31 anos de idade, do sexo masculino"
+V132,"Pessoas responsáveis com 32 anos de idade, do sexo masculino"
+V133,"Pessoas responsáveis com 33 anos de idade, do sexo masculino"
+V134,"Pessoas responsáveis com 34 anos de idade, do sexo masculino"
+V135,"Pessoas responsáveis com 35 anos de idade, do sexo masculino"
+V136,"Pessoas responsáveis com 36 anos de idade, do sexo masculino"
+V137,"Pessoas responsáveis com 37 anos de idade, do sexo masculino"
+V138,"Pessoas responsáveis com 38 anos de idade, do sexo masculino"
+V139,"Pessoas responsáveis com 39 anos de idade, do sexo masculino"
+V140,"Pessoas responsáveis com 40 anos de idade, do sexo masculino"
+V141,"Pessoas responsáveis com 41 anos de idade, do sexo masculino"
+V142,"Pessoas responsáveis com 42 anos de idade, do sexo masculino"
+V143,"Pessoas responsáveis com 43 anos de idade, do sexo masculino"
+V144,"Pessoas responsáveis com 44 anos de idade, do sexo masculino"
+V145,"Pessoas responsáveis com 45 anos de idade, do sexo masculino"
+V146,"Pessoas responsáveis com 46 anos de idade, do sexo masculino"
+V147,"Pessoas responsáveis com 47 anos de idade, do sexo masculino"
+V148,"Pessoas responsáveis com 48 anos de idade, do sexo masculino"
+V149,"Pessoas responsáveis com 49 anos de idade, do sexo masculino"
+V150,"Pessoas responsáveis com 50 anos de idade, do sexo masculino"
+V151,"Pessoas responsáveis com 51 anos de idade, do sexo masculino"
+V152,"Pessoas responsáveis com 52 anos de idade, do sexo masculino"
+V153,"Pessoas responsáveis com 53 anos de idade, do sexo masculino"
+V154,"Pessoas responsáveis com 54 anos de idade, do sexo masculino"
+V155,"Pessoas responsáveis com 55 anos de idade, do sexo masculino"
+V156,"Pessoas responsáveis com 56 anos de idade, do sexo masculino"
+V157,"Pessoas responsáveis com 57 anos de idade, do sexo masculino"
+V158,"Pessoas responsáveis com 58 anos de idade, do sexo masculino"
+V159,"Pessoas responsáveis com 59 anos de idade, do sexo masculino"
+V160,"Pessoas responsáveis com 60 anos de idade, do sexo masculino"
+V161,"Pessoas responsáveis com 61 anos de idade, do sexo masculino"
+V162,"Pessoas responsáveis com 62 anos de idade, do sexo masculino"
+V163,"Pessoas responsáveis com 63 anos de idade, do sexo masculino"
+V164,"Pessoas responsáveis com 64 anos de idade, do sexo masculino"
+V165,"Pessoas responsáveis com 65 anos de idade, do sexo masculino"
+V166,"Pessoas responsáveis com 66 anos de idade, do sexo masculino"
+V167,"Pessoas responsáveis com 67 anos de idade, do sexo masculino"
+V168,"Pessoas responsáveis com 68 anos de idade, do sexo masculino"
+V169,"Pessoas responsáveis com 69 anos de idade, do sexo masculino"
+V170,"Pessoas responsáveis com 70 anos de idade, do sexo masculino"
+V171,"Pessoas responsáveis com 71 anos de idade, do sexo masculino"
+V172,"Pessoas responsáveis com 72 anos de idade, do sexo masculino"
+V173,"Pessoas responsáveis com 73 anos de idade, do sexo masculino"
+V174,"Pessoas responsáveis com 74 anos de idade, do sexo masculino"
+V175,"Pessoas responsáveis com 75 anos de idade, do sexo masculino"
+V176,"Pessoas responsáveis com 76 anos de idade, do sexo masculino"
+V177,"Pessoas responsáveis com 77 anos de idade, do sexo masculino"
+V178,"Pessoas responsáveis com 78 anos de idade, do sexo masculino"
+V179,"Pessoas responsáveis com 79 anos de idade, do sexo masculino"
+V180,"Pessoas responsáveis com 80 anos de idade, do sexo masculino"
+V181,"Pessoas responsáveis com 81 anos de idade, do sexo masculino"
+V182,"Pessoas responsáveis com 82 anos de idade, do sexo masculino"
+V183,"Pessoas responsáveis com 83 anos de idade, do sexo masculino"
+V184,"Pessoas responsáveis com 84 anos de idade, do sexo masculino"
+V185,"Pessoas responsáveis com 85 anos de idade, do sexo masculino"
+V186,"Pessoas responsáveis com 86 anos de idade, do sexo masculino"
+V187,"Pessoas responsáveis com 87 anos de idade, do sexo masculino"
+V188,"Pessoas responsáveis com 88 anos de idade, do sexo masculino"
+V189,"Pessoas responsáveis com 89 anos de idade, do sexo masculino"
+V190,"Pessoas responsáveis com 90 anos de idade, do sexo masculino"
+V191,"Pessoas responsáveis com 91 anos de idade, do sexo masculino"
+V192,"Pessoas responsáveis com 92 anos de idade, do sexo masculino"
+V193,"Pessoas responsáveis com 93 anos de idade, do sexo masculino"
+V194,"Pessoas responsáveis com 94 anos de idade, do sexo masculino"
+V195,"Pessoas responsáveis com 95 anos de idade, do sexo masculino"
+V196,"Pessoas responsáveis com 96 anos de idade, do sexo masculino"
+V197,"Pessoas responsáveis com 97 anos de idade, do sexo masculino"
+V198,"Pessoas responsáveis com 98 anos de idade, do sexo masculino"
+V199,"Pessoas responsáveis com 99 anos de idade, do sexo masculino"
+V200,"Pessoas responsáveis com 100 ou mais anos de idade, do sexo masculino"
+V201,"Pessoas alfabetizadas responsáveis, do sexo masculino"
+V202,"Pessoas alfabetizadas responsáveis com 10 a 14 anos de idade, do sexo masculino"
+V203,"Pessoas alfabetizadas responsáveis com 15 a 19 anos de idade, do sexo masculino"
+V204,"Pessoas alfabetizadas responsáveis com 20 a 24 anos de idade, do sexo masculino"
+V205,"Pessoas alfabetizadas responsáveis com 25 a 29 anos de idade, do sexo masculino"
+V206,"Pessoas alfabetizadas responsáveis com 30 a 34 anos de idade, do sexo masculino"
+V207,"Pessoas alfabetizadas responsáveis com 35 a 39 anos de idade, do sexo masculino"
+V208,"Pessoas alfabetizadas responsáveis com 40 a 44 anos de idade, do sexo masculino"
+V209,"Pessoas alfabetizadas responsáveis com 45 a 49 anos de idade, do sexo masculino"
+V210,"Pessoas alfabetizadas responsáveis com 50 a 54 anos de idade, do sexo masculino"
+V211,"Pessoas alfabetizadas responsáveis com 55 a 59 anos de idade, do sexo masculino"
+V212,"Pessoas alfabetizadas responsáveis com 60 a 64 anos de idade, do sexo masculino"
+V213,"Pessoas alfabetizadas responsáveis com 65 a 69 anos de idade, do sexo masculino"
+V214,"Pessoas alfabetizadas responsáveis com 70 a 74 anos de idade, do sexo masculino"
+V215,"Pessoas alfabetizadas responsáveis com 75 a 79 anos de idade, do sexo masculino"
+V216,"Pessoas alfabetizadas responsáveis com 80 ou mais anos de idade, do sexo masculino"

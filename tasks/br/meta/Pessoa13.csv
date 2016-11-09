@@ -1,0 +1,137 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Pessoas residentes em domicílios particulares e domicílios coletivos
+V002,Pessoas residentes em domicílios particulares permanentes
+V003,Responsáveis pelos domicílios particulares
+V004,Cônjuges ou companheiros(as) (de sexo diferente e do mesmo sexo da pessoa responsável) em domicílios particulares 
+V005,Filhos(as) do responsável e do cônjuge em domicílios particulares
+V006,Filhos(as) somente do responsável em domicílios particulares
+V007,Enteados(as) em domicílios particulares
+V008,Genros ou noras em domicílios particulares
+V009,"Pais, mães, padrastos ou madrastas em domicílios particulares"
+V010,Sogros (as) em domicílios particulares
+V011,Netos(as) em domicílios particulares
+V012,Bisnetos(as) em domicílios particulares
+V013,Irmãos ou irmãs em domicílios particulares
+V014,Avôs ou avós em domicílios particulares
+V015,Outros parentes em domicílios particulares
+V016,Agregados(as) em domicílios particulares
+V017,Conviventes em domicílios particulares
+V018,Pensionistas em domicílios particulares
+V019,Empregados(as) domésticos(as) em domicílios particulares
+V020,Parentes de empregados(as) domésticos(as) em domicílios particulares
+V021,Individuais em domicílio coletivo
+V022,Pessoas com menos de 1 ano de idade
+V023,Pessoas com menos de 1 mês de idade
+V024,Pessoas com 1 mês de idade
+V025,Pessoas com 2 meses de idade
+V026,Pessoas com 3 meses de idade
+V027,Pessoas com 4 meses de idade
+V028,Pessoas com 5 meses de idade
+V029,Pessoas com 6 meses de idade
+V030,Pessoas com 7 meses de idade
+V031,Pessoas com 8 meses de idade
+V032,Pessoas com 9 meses de idade
+V033,Pessoas com 10 meses de idade
+V034,Pessoas com 11 meses de idade
+V035,Pessoas de 1 ano de idade
+V036,Pessoas com 2 anos de idade
+V037,Pessoas com 3 anos de idade
+V038,Pessoas com 4 anos de idade
+V039,Pessoas com 5 anos de idade
+V040,Pessoas com 6 anos de idade
+V041,Pessoas com 7 anos de idade
+V042,Pessoas com 8 anos de idade
+V043,Pessoas com 9 anos de idade
+V044,Pessoas com 10 anos de idade
+V045,Pessoas com 11 anos de idade
+V046,Pessoas com 12 anos de idade
+V047,Pessoas com 13 anos de idade
+V048,Pessoas com 14 anos de idade
+V049,Pessoas com 15 anos de idade
+V050,Pessoas com 16 anos de idade
+V051,Pessoas com 17 anos de idade
+V052,Pessoas com 18 anos de idade
+V053,Pessoas com 19 anos de idade
+V054,Pessoas com 20 anos de idade
+V055,Pessoas com 21 anos de idade
+V056,Pessoas com 22 anos de idade
+V057,Pessoas com 23 anos de idade
+V058,Pessoas com 24 anos de idade
+V059,Pessoas com 25 anos de idade
+V060,Pessoas com 26 anos de idade
+V061,Pessoas com 27 anos de idade
+V062,Pessoas com 28 anos de idade
+V063,Pessoas com 29 anos de idade
+V064,Pessoas com 30 anos de idade
+V065,Pessoas com 31 anos de idade
+V066,Pessoas com 32 anos de idade
+V067,Pessoas com 33 anos de idade
+V068,Pessoas com 34 anos de idade
+V069,Pessoas com 35 anos de idade
+V070,Pessoas com 36 anos de idade
+V071,Pessoas com 37 anos de idade
+V072,Pessoas com 38 anos de idade
+V073,Pessoas com 39 anos de idade
+V074,Pessoas com 40 anos de idade
+V075,Pessoas com 41 anos de idade
+V076,Pessoas com 42 anos de idade
+V077,Pessoas com 43 anos de idade
+V078,Pessoas com 44 anos de idade
+V079,Pessoas com 45 anos de idade
+V080,Pessoas com 46 anos de idade
+V081,Pessoas com 47 anos de idade
+V082,Pessoas com 48 anos de idade
+V083,Pessoas com 49 anos de idade
+V084,Pessoas com 50 anos de idade
+V085,Pessoas com 51 anos de idade
+V086,Pessoas com 52 anos de idade
+V087,Pessoas com 53 anos de idade
+V088,Pessoas com 54 anos de idade
+V089,Pessoas com 55 anos de idade
+V090,Pessoas com 56 anos de idade
+V091,Pessoas com 57 anos de idade
+V092,Pessoas com 58 anos de idade
+V093,Pessoas com 59 anos de idade
+V094,Pessoas com 60 anos de idade
+V095,Pessoas com 61 anos de idade
+V096,Pessoas com 62 anos de idade
+V097,Pessoas com 63 anos de idade
+V098,Pessoas com 64 anos de idade
+V099,Pessoas com 65 anos de idade
+V100,Pessoas com 66 anos de idade
+V101,Pessoas com 67 anos de idade
+V102,Pessoas com 68 anos de idade
+V103,Pessoas com 69 anos de idade
+V104,Pessoas com 70 anos de idade
+V105,Pessoas com 71 anos de idade
+V106,Pessoas com 72 anos de idade
+V107,Pessoas com 73 anos de idade
+V108,Pessoas com 74 anos de idade
+V109,Pessoas com 75 anos de idade
+V110,Pessoas com 76 anos de idade
+V111,Pessoas com 77 anos de idade
+V112,Pessoas com 78 anos de idade
+V113,Pessoas com 79 anos de idade
+V114,Pessoas com 80 anos de idade
+V115,Pessoas com 81 anos de idade
+V116,Pessoas com 82 anos de idade
+V117,Pessoas com 83 anos de idade
+V118,Pessoas com 84 anos de idade
+V119,Pessoas com 85 anos de idade
+V120,Pessoas com 86 anos de idade
+V121,Pessoas com 87 anos de idade
+V122,Pessoas com 88 anos de idade
+V123,Pessoas com 89 anos de idade
+V124,Pessoas com 90 anos de idade
+V125,Pessoas com 91 anos de idade
+V126,Pessoas com 92 anos de idade
+V127,Pessoas com 93 anos de idade
+V128,Pessoas com 94 anos de idade
+V129,Pessoas com 95 anos de idade
+V130,Pessoas com 96 anos de idade
+V131,Pessoas com 97 anos de idade
+V132,Pessoas com 98 anos de idade
+V133,Pessoas com 99 anos de idade
+V134,Pessoas com 100 anos ou mais de idade

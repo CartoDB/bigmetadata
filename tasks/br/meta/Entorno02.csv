@@ -1,0 +1,223 @@
+NOME DA VARIÁVEL,DESCRIÇÃO DA VARIÁVEL
+Cod_setor,Código do setor
+Situação do setor,Código de situação do setor
+V202,Domicílios particulares permanentes com moradia adequada – Existe identificação do logradouro
+V203,Domicílios particulares permanentes com moradia adequada – Não existe identificação do logradouro
+V204,Domicílios particulares permanentes com moradia semi-adequada – Existe identificação do logradouro
+V205,Domicílios particulares permanentes com moradia semi-adequada – Não existe identificação do logradouro
+V206,Domicílios particulares permanentes com moradia inadequada – Existe identificação do logradouro
+V207,Domicílios particulares permanentes com moradia inadequada – Não existe identificação do logradouro
+V208,Domicílios particulares permanentes com moradia adequada – Existe iluminação pública
+V209,Domicílios particulares permanentes com moradia adequada – Não existe iluminação pública
+V210,Domicílios particulares permanentes com moradia semi-adequada – Existe iluminação pública
+V211,Domicílios particulares permanentes com moradia semi-adequada – Não existe iluminação pública
+V212,Domicílios particulares permanentes com moradia inadequada – Existe iluminação pública
+V213,Domicílios particulares permanentes com moradia inadequada – Não existe iluminação pública
+V214,Domicílios particulares permanentes com moradia adequada – Existe pavimentação
+V215,Domicílios particulares permanentes com moradia adequada – Não existe pavimentação
+V216,Domicílios particulares permanentes com moradia semi-adequada – Existe pavimentação
+V217,Domicílios particulares permanentes com moradia semi-adequada – Não existe pavimentação
+V218,Domicílios particulares permanentes com moradia inadequada – Existe pavimentação
+V219,Domicílios particulares permanentes com moradia inadequada – Não existe pavimentação
+V220,Domicílios particulares permanentes com moradia adequada – Existe calçada
+V221,Domicílios particulares permanentes com moradia adequada – Não existe calçada
+V222,Domicílios particulares permanentes com moradia semi-adequada – Existe calçada
+V223,Domicílios particulares permanentes com moradia semi-adequada – Não existe calçada
+V224,Domicílios particulares permanentes com moradia inadequada – Existe calçada
+V225,Domicílios particulares permanentes com moradia inadequada – Não existe calçada
+V226,Domicílios particulares permanentes com moradia adequada – Existe meio-fio/guia
+V227,Domicílios particulares permanentes com moradia adequada – Não existe meio-fio/guia
+V228,Domicílios particulares permanentes com moradia semi-adequada – Existe meio-fio/guia
+V229,Domicílios particulares permanentes com moradia semi-adequada – Não existe meio-fio/guia
+V230,Domicílios particulares permanentes com moradia inadequada – Existe meio-fio/guia
+V231,Domicílios particulares permanentes com moradia inadequada – Não existe meio-fio/guia
+V232,Domicílios particulares permanentes com moradia adequada – Existe bueiro/boca-de-lobo
+V233,Domicílios particulares permanentes com moradia adequada – Não existe bueiro/boca-de-lobo
+V234,Domicílios particulares permanentes com moradia semi-adequada – Existe bueiro/boca-de-lobo
+V235,Domicílios particulares permanentes com moradia semi-adequada – Não existe bueiro/boca-de-lobo
+V236,Domicílios particulares permanentes com moradia inadequada – Existe bueiro/boca-de-lobo
+V237,Domicílios particulares permanentes com moradia inadequada – Não existe bueiro/boca-de-lobo
+V238,Domicílios particulares permanentes com moradia adequada – Existe rampa para cadeirante
+V239,Domicílios particulares permanentes com moradia adequada – Não existe rampa para cadeirante
+V240,Domicílios particulares permanentes com moradia semi-adequada – Existe rampa para cadeirante
+V241,Domicílios particulares permanentes com moradia semi-adequada – Não existe rampa para cadeirante
+V242,Domicílios particulares permanentes com moradia inadequada – Existe rampa para cadeirante
+V243,Domicílios particulares permanentes com moradia inadequada – Não existe rampa para cadeirante
+V244,Domicílios particulares permanentes com moradia adequada – Existe arborização
+V245,Domicílios particulares permanentes com moradia adequada – Não existe arborização
+V246,Domicílios particulares permanentes com moradia semi-adequada – Existe arborização
+V247,Domicílios particulares permanentes com moradia semi-adequada – Não existe arborização
+V248,Domicílios particulares permanentes com moradia inadequada – Existe arborização
+V249,Domicílios particulares permanentes com moradia inadequada – Não existe arborização
+V250,Domicílios particulares permanentes com moradia adequada – Existe esgoto a céu aberto
+V251,Domicílios particulares permanentes com moradia adequada – Não existe esgoto a céu aberto
+V252,Domicílios particulares permanentes com moradia semi-adequada – Existe esgoto a céu aberto
+V253,Domicílios particulares permanentes com moradia semi-adequada – Não existe esgoto a céu aberto
+V254,Domicílios particulares permanentes com moradia inadequada – Existe esgoto a céu aberto
+V255,Domicílios particulares permanentes com moradia inadequada – Não existe esgoto a céu aberto
+V256,Domicílios particulares permanentes com moradia adequada – Existe lixo acumulado nos logradouros
+V257,Domicílios particulares permanentes com moradia adequada – Não existe lixo acumulado nos logradouros
+V258,Domicílios particulares permanentes com moradia semi-adequada – Existe lixo acumulado nos logradouros
+V259,Domicílios particulares permanentes com moradia semi-adequada – Não existe lixo acumulado nos logradouros
+V260,Domicílios particulares permanentes com moradia inadequada – Existe lixo acumulado nos logradouros
+V261,Domicílios particulares permanentes com moradia inadequada – Não existe lixo acumulado nos logradouros
+V262,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe identificação do logradouro
+V263,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe identificação do logradouro
+V264,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe identificação do logradouro
+V265,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe identificação do logradouro
+V266,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe identificação do logradouro
+V267,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe identificação do logradouro
+V268,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe identificação do logradouro
+V269,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe identificação do logradouro
+V270,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe identificação do logradouro
+V271,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe identificação do logradouro
+V272,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe identificação do logradouro
+V273,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe identificação do logradouro
+V274,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe iluminação pública
+V275,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe iluminação pública
+V276,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe iluminação pública
+V277,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe iluminação pública
+V278,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe iluminação pública
+V279,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe iluminação pública
+V280,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe iluminação pública
+V281,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe iluminação pública
+V282,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe iluminação pública
+V283,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe iluminação pública
+V284,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe iluminação pública
+V285,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe iluminação pública
+V286,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe pavimentação
+V287,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe pavimentação
+V288,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe pavimentação
+V289,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe pavimentação
+V290,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe pavimentação
+V291,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe pavimentação
+V292,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe pavimentação
+V293,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe pavimentação
+V294,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe pavimentação
+V295,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe pavimentação
+V296,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe pavimentação
+V297,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe pavimentação
+V298,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe calçada
+V299,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe calçada
+V300,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe calçada
+V301,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe calçada
+V302,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe calçada
+V303,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe calçada
+V304,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe calçada
+V305,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe calçada
+V306,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe calçada
+V307,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe calçada
+V308,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe calçada
+V309,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe calçada
+V310,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe meio-fio/guia
+V311,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe meio-fio/guia
+V312,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe meio-fio/guia
+V313,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe meio-fio/guia
+V314,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe meio-fio/guia
+V315,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe meio-fio/guia
+V316,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe meio-fio/guia
+V317,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe meio-fio/guia
+V318,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe meio-fio/guia
+V319,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe meio-fio/guia
+V320,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe meio-fio/guia
+V321,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe meio-fio/guia
+V322,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe bueiro/boca-de-lobo
+V323,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe bueiro/boca-de-lobo
+V324,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe bueiro/boca-de-lobo
+V325,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe bueiro/boca-de-lobo
+V326,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe bueiro/boca-de-lobo
+V327,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe bueiro/boca-de-lobo
+V328,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe bueiro/boca-de-lobo
+V329,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe bueiro/boca-de-lobo
+V330,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais 2 de SM – Existe bueiro/boca-de-lobo
+V331,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe bueiro/boca-de-lobo
+V332,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe bueiro/boca-de-lobo
+V333,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe bueiro/boca-de-lobo
+V334,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe rampa para cadeirante
+V335,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe rampa para cadeirante
+V336,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe rampa para cadeirante
+V337,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe rampa para cadeirante
+V338,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe rampa para cadeirante
+V339,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe rampa para cadeirante
+V340,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe rampa para cadeirante
+V341,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe rampa para cadeirante
+V342,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe rampa para cadeirante
+V343,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe rampa para cadeirante
+V344,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe rampa para cadeirante
+V345,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe rampa para cadeirante
+V346,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe arborização
+V347,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe arborização
+V348,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe arborização
+V349,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe arborização
+V350,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe arborização
+V351,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe arborização
+V352,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe arborização
+V353,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe arborização
+V354,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe arborização
+V355,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe arborização
+V356,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe arborização
+V357,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe arborização
+V358,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe esgoto a céu aberto
+V359,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe esgoto a céu aberto
+V360,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe esgoto a céu aberto
+V361,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe esgoto a céu aberto
+V362,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe esgoto a céu aberto
+V363,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe esgoto a céu aberto
+V364,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe esgoto a céu aberto
+V365,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe esgoto a céu aberto
+V366,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe esgoto a céu aberto
+V367,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe esgoto a céu aberto
+V368,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita - Existe esgoto a céu aberto
+V369,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe esgoto a céu aberto
+V370,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Existe lixo acumulado nos logradouros
+V371,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita até 1/4 do SM – Não existe lixo acumulado nos logradouros
+V372,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Existe lixo acumulado nos logradouros
+V373,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 SM – Não existe lixo acumulado nos logradouros
+V374,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Existe lixo acumulado nos logradouros
+V375,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 SM – Não existe lixo acumulado nos logradouros
+V376,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Existe lixo acumulado nos logradouros
+V377,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 SM – Não existe lixo acumulado nos logradouros
+V378,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Existe lixo acumulado nos logradouros
+V379,Domicílios particulares permanentes com rendimento nominal mensal domiciliar per capita de mais de 2 SM – Não existe lixo acumulado nos logradouros
+V380,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Existe lixo acumulado nos logradouros
+V381,Domicílios particulares permanentes sem rendimento nominal mensal domiciliar per capita – Não existe lixo acumulado nos logradouros
+V382,Domicílios particulares permanentes com responsável do sexo masculino – Existe identificação do logradouro
+V383,Domicílios particulares permanentes com responsável do sexo masculino – Não existe identificação do logradouro
+V384,Domicílios particulares permanentes com responsável do sexo feminino – Existe identificação do logradouro
+V385,Domicílios particulares permanentes com responsável do sexo feminino – Não existe identificação do logradouro
+V386,Domicílios particulares permanentes com responsável do sexo masculino – Existe iluminação pública
+V387,Domicílios particulares permanentes com responsável do sexo masculino – Não existe iluminação pública
+V388,Domicílios particulares permanentes com responsável do sexo feminino – Existe iluminação pública
+V389,Domicílios particulares permanentes com responsável do sexo feminino – Não existe iluminação pública
+V390,Domicílios particulares permanentes com responsável do sexo masculino – Existe pavimentação
+V391,Domicílios particulares permanentes com responsável do sexo masculino – Não existe pavimentação
+V392,Domicílios particulares permanentes com responsável do sexo feminino – Existe pavimentação
+V393,Domicílios particulares permanentes com responsável do sexo feminino – Não existe pavimentação
+V394,Domicílios particulares permanentes com responsável do sexo masculino – Existe calçada
+V395,Domicílios particulares permanentes com responsável do sexo masculino – Não existe calçada
+V396,Domicílios particulares permanentes com responsável do sexo feminino – Existe calçada
+V397,Domicílios particulares permanentes com responsável do sexo feminino – Não existe calçada
+V398,Domicílios particulares permanentes com responsável do sexo masculino – Existe meio-fio/guia
+V399,Domicílios particulares permanentes com responsável do sexo masculino – Não existe meio-fio/guia
+V400,Domicílios particulares permanentes com responsável do sexo feminino – Existe meio-fio/guia
+V401,Domicílios particulares permanentes com responsável do sexo feminino – Não existe meio-fio/guia
+V402,Domicílios particulares permanentes com responsável do sexo masculino – Existe bueiro/boca-de-lobo
+V403,Domicílios particulares permanentes com responsável do sexo masculino – Não existe bueiro/boca-de-lobo
+V404,Domicílios particulares permanentes com responsável do sexo feminino – Existe bueiro/boca-de-lobo
+V405,Domicílios particulares permanentes com responsável do sexo feminino – Não existe bueiro/boca-de-lobo
+V406,Domicílios particulares permanentes com responsável do sexo masculino – Existe rampa para cadeirante
+V407,Domicílios particulares permanentes com responsável do sexo masculino – Não existe rampa para cadeirante
+V408,Domicílios particulares permanentes com responsável do sexo feminino – Existe rampa para cadeirante
+V409,Domicílios particulares permanentes com responsável do sexo feminino – Não existe rampa para cadeirante
+V410,Domicílios particulares permanentes com responsável do sexo masculino – Existe arborização
+V411,Domicílios particulares permanentes com responsável do sexo masculino – Não existe arborização
+V412,Domicílios particulares permanentes com responsável do sexo feminino – Existe arborização
+V413,Domicílios particulares permanentes com responsável do sexo feminino – Não existe arborização
+V414,Domicílios particulares permanentes com responsável do sexo masculino – Existe esgoto a céu aberto
+V415,Domicílios particulares permanentes com responsável do sexo masculino – Não existe esgoto a céu aberto
+V416,Domicílios particulares permanentes com responsável do sexo feminino – Existe esgoto a céu aberto
+V417,Domicílios particulares permanentes com responsável do sexo feminino – Não existe esgoto a céu aberto
+V418,Domicílios particulares permanentes com responsável do sexo masculino – Existe lixo acumulado nos logradouros
+V419,Domicílios particulares permanentes com responsável do sexo masculino – Não existe lixo acumulado nos logradouros
+V420,Domicílios particulares permanentes com responsável do sexo feminino – Existe lixo acumulado nos logradouros
+V421,Domicílios particulares permanentes com responsável do sexo feminino – Não existe lixo acumulado nos logradouros

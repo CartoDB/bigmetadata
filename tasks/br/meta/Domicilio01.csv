@@ -1,0 +1,244 @@
+Nome da variável,Descrição da variável
+Cód_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Domicílios particulares e domicílios coletivos
+V002,Domicílios particulares permanentes
+V003,Domicílios particulares permanentes do tipo casa
+V004,Domicílios particulares permanentes do tipo casa de vila ou em condomínio
+V005,Domicílios particulares permanentes do tipo apartamento
+V006,Domicílios particulares permanentes próprios e quitados
+V007,Domicílios particulares permanentes próprios em aquisição
+V008,Domicílios particulares permanentes alugados
+V009,Domicílios particulares permanentes cedidos por empregador
+V010,Domicílios particulares permanentes cedidos de outra forma
+V011,"Domicílios particulares permanentes em outra condição de ocupação (não são próprios, alugados, nem cedidos)"
+V012,Domicílios particulares permanentes com abastecimento de água da rede geral
+V013,Domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade
+V014,Domicílios particulares permanentes com abastecimento de água da chuva armazenada em cisterna
+V015,Domicílios particulares permanentes com outra forma de abastecimento de água
+V016,Domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário
+V017,Domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
+V018,Domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
+V019,Domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
+V020,Domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
+V021,"Domicílios particulares permanentes, com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V022,Domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
+V023,Domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário
+V024,Domicílios particulares permanentes com banheiro de uso exclusivo dos moradores
+V025,Domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores
+V026,Domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores
+V027,Domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores
+V028,Domicílios particulares permanentes com 4 banheiros de uso exclusivo dos moradores
+V029,Domicílios particulares permanentes com 5 banheiros de uso exclusivo dos moradores
+V030,Domicílios particulares permanentes com 6 banheiros de uso exclusivo dos moradores
+V031,Domicílios particulares permanentes com 7 banheiros de uso exclusivo dos moradores
+V032,Domicílios particulares permanentes com 8 banheiros de uso exclusivo dos moradores
+V033,Domicílios particulares permanentes com 9 ou mais banheiros de uso exclusivo dos moradores
+V034,Domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores
+V035,Domicílios particulares permanentes com lixo coletado
+V036,Domicílios particulares permanentes com lixo coletado por serviço de limpeza
+V037,Domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza
+V038,Domicílios particulares permanentes com lixo queimado na propriedade
+V039,Domicílios particulares permanentes com lixo enterrado na propriedade
+V040,Domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro
+V041,"Domicílios particulares permanentes com lixo jogado em rio, lago ou mar"
+V042,Domicílios particulares permanentes com outro destino do lixo
+V043,Domicílios particulares permanentes com energia elétrica
+V044,Domicílios particulares permanentes com energia elétrica de companhia distribuidora
+V045,Domicílios particulares permanentes com energia elétrica de outras fontes
+V046,Domicílios particulares permanentes sem energia elétrica
+V047,Domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor de uso exclusivo
+V048,Domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
+V049,Domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor
+V050,Domicílios particulares permanentes com 1 morador
+V051,Domicílios particulares permanentes com 2 moradores
+V052,Domicílios particulares permanentes com 3 moradores
+V053,Domicílios particulares permanentes com 4 moradores
+V054,Domicílios particulares permanentes com 5 moradores
+V055,Domicílios particulares permanentes com 6 moradores
+V056,Domicílios particulares permanentes com 7 moradores
+V057,Domicílios particulares permanentes com 8 moradores
+V058,Domicílios particulares permanentes com 9 moradores
+V059,Domicílios particulares permanentes com 10 ou mais moradores
+V060,Domicílios particulares permanentes sem morador do sexo masculino
+V061,Domicílios particulares permanentes sem morador do sexo feminino
+V062,Domicílios particulares permanentes com homem responsável e mais 1 morador
+V063,Domicílios particulares permanentes com homem responsável e mais 2 moradores
+V064,Domicílios particulares permanentes com homem responsável e mais 3 moradores
+V065,Domicílios particulares permanentes com homem responsável e mais 4 moradores
+V066,Domicílios particulares permanentes com homem responsável e mais 5 moradores
+V067,Domicílios particulares permanentes com homem responsável e mais 6 ou mais moradores
+V068,"Domicílios particulares permanentes, com homem responsável e sem outro morador"
+V069,Domicílios particulares permanentes com homem responsável e 1 morador do sexo masculino
+V070,Domicílios particulares permanentes com homem responsável e 2 moradores do sexo masculino
+V071,Domicílios particulares permanentes com homem responsável e 3 moradores do sexo masculino
+V072,Domicílios particulares permanentes com homem responsável e 4 moradores do sexo masculino
+V073,Domicílios particulares permanentes com homem responsável e 5 moradores do sexo masculino
+V074,Domicílios particulares permanentes com homem responsável e 6 ou mais moradores do sexo masculino
+V075,Domicílios particulares permanentes com homem responsável e 1 morador sexo feminino
+V076,Domicílios particulares permanentes com homem responsável e 2 moradores do sexo feminino
+V077,Domicílios particulares permanentes com homem responsável e 3 moradores do sexo feminino
+V078,Domicílios particulares permanentes com homem responsável e 4 moradores do sexo feminino 
+V079,Domicílios particulares permanentes com homem responsável e 5 moradores do sexo feminino
+V080,Domicílios particulares permanentes com homem responsável e 6 ou mais moradores do sexo feminino
+V081,Domicílios particulares permanentes com mulher responsável e mais 1 morador
+V082,Domicílios particulares permanentes com mulher responsável e mais 2 moradores
+V083,Domicílios particulares permanentes com mulher responsável e mais 3 moradores
+V084,Domicílios particulares permanentes com mulher responsável e mais 4 moradores
+V085,Domicílios particulares permanentes com mulher responsável e mais 5 moradores
+V086,Domicílios particulares permanentes com mulher responsável e mais 6 ou mais moradores
+V087,Domicílios particulares permanentes com mulher responsável e sem outro morador
+V088,Domicílios particulares permanentes com mulher responsável e mais 1 morador do sexo masculino
+V089,Domicílios particulares permanentes com mulher responsável e mais 2 moradores do sexo masculino
+V090,Domicílios particulares permanentes com mulher responsável e mais 3 moradores do sexo masculino
+V091,Domicílios particulares permanentes com mulher responsável e mais 4 moradores do sexo masculino
+V092,Domicílios particulares permanentes com mulher responsável e mais 5 moradores do sexo masculino
+V093,Domicílios particulares permanentes com mulher responsável e mais 6 ou mais moradores do sexo masculino
+V094,Domicílios particulares permanentes com mulher responsável e mais 1 morador do sexo feminino
+V095,Domicílios particulares permanentes com mulher responsável e mais 2 moradores do sexo feminino
+V096,Domicílios particulares permanentes com mulher responsável e mais 3  moradores do sexo feminino
+V097,Domicílios particulares permanentes com mulher responsável e mais 4 moradores do sexo feminino
+V098,Domicílios particulares permanentes com mulher responsável e mais 5 moradores do sexo feminino
+V099,Domicílios particulares permanentes com mulher responsável e mais 6 ou mais moradores do sexo feminino
+V100,Domicílios particulares permanentes do tipo casa próprios e quitados
+V101,Domicílios particulares permanentes do tipo casa próprios e em aquisição
+V102,Domicílios particulares permanentes do tipo casa alugados
+V103,Domicílios particulares permanentes do tipo casa cedidos por empregador
+V104,Domicílios particulares permanentes do tipo casa cedidos de outra forma
+V105,Domicílios particulares permanentes do tipo casa em outra condição
+V106,Domicílios particulares permanentes do tipo casa com abastecimento de água da rede geral
+V107,Domicílios particulares permanentes do tipo casa com abastecimento de água de poço ou nascente na propriedade
+V108,Domicílios particulares permanentes do tipo casa com abastecimento de água da chuva armazenada em cisterna
+V109,Domicílios particulares permanentes do tipo casa com outra forma de abastecimento de água
+V110,Domicílios particulares permanentes do tipo casa com banheiro de uso exclusivo dos moradores ou sanitário
+V111,Domicílios particulares permanentes do tipo casa com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
+V112,Domicílios particulares permanentes do tipo casa com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
+V113,Domicílios particulares permanentes do tipo casa com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
+V114,Domicílios particulares permanentes do tipo casa com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
+V115,"Domicílios particulares permanentes do tipo casa com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V116,Domicílios particulares permanentes do tipo casa com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
+V117,Domicílios particulares permanentes do tipo casa sem banheiro de uso exclusivo dos moradores e nem sanitário
+V118,Domicílios particulares permanentes do tipo casa com banheiro de uso exclusivo dos moradores
+V119,Domicílios particulares permanentes do tipo casa com 1 banheiro de uso exclusivo dos moradores
+V120,Domicílios particulares permanentes do tipo casa com 2 banheiros de uso exclusivo dos moradores
+V121,Domicílios particulares permanentes do tipo casa com 3 banheiros de uso exclusivo dos moradores
+V122,Domicílios particulares permanentes do tipo casa com 4 ou mais banheiros
+V123,Domicílios particulares permanentes do tipo casa sem banheiro de uso exclusivo dos moradores
+V124,Domicílios particulares permanentes do tipo casa com lixo coletado
+V125,Domicílios particulares permanentes do tipo casa com lixo coletado por serviço de limpeza
+V126,Domicílios particulares permanentes do tipo casa com lixo coletado em caçamba de serviço de limpeza
+V127,Domicílios particulares permanentes do tipo casa com lixo queimado na propriedade
+V128,Domicílios particulares permanentes do tipo casa com lixo enterrado na propriedade
+V129,Domicílios particulares permanentes do tipo casa com lixo jogado em terreno baldio ou logradouro
+V130,"Domicílios particulares permanentes do tipo casa com lixo jogado em rio, lago ou mar"
+V131,Domicílios particulares permanentes do tipo casa com outro destino do lixo
+V132,Domicílios particulares permanentes do tipo casa com energia elétrica
+V133,Domicílios particulares permanentes do tipo casa com energia elétrica de companhia distribuidora
+V134,Domicílios particulares permanentes do tipo casa com energia elétrica de outras fontes
+V135,Domicílios particulares permanentes do tipo casa sem energia elétrica
+V136,Domicílios particulares permanentes do tipo casa com energia elétrica de companhia distribuidora e com medidor de uso exclusivo
+V137,Domicílios particulares permanentes do tipo casa com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
+V138,Domicílios particulares permanentes do tipo casa com energia elétrica de companhia distribuidora e sem medidor
+V139,Domicílios particulares permanentes do tipo casa de vila ou em condomínio próprios e quitados
+V140,Domicílios particulares permanentes do tipo casa de vila ou em condomínio próprios e em aquisição
+V141,Domicílios particulares permanentes do tipo casa de vila ou em condomínio alugados
+V142,Domicílios particulares permanentes do tipo casa de vila ou em condomínio cedidos por empregador
+V143,Domicílios particulares permanentes do tipo casa de vila ou em condomínio cedidos de outra forma
+V144,Domicílios particulares permanentes do tipo casa de vila ou em condomínio em outra condição
+V145,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com abastecimento de água da rede geral
+V146,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com abastecimento de água de poço ou nascente na propriedade
+V147,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com abastecimento de água da chuva armazenada em cisterna
+V148,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com outra forma de abastecimento de água
+V149,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com banheiro de uso exclusivo dos moradores ou sanitário
+V150,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
+V151,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
+V152,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
+V153,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
+V154,"Domicílios particulares permanentes do tipo casa de vila ou em condomínio com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V155,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
+V156,Domicílios particulares permanentes do tipo casa de vila ou em condomínio sem banheiro e nem sanitário
+V157,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com banheiro de uso exclusivo dos moradores
+V158,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com 1 banheiro de uso exclusivo dos moradores
+V159,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com 2 banheiros de uso exclusivo dos moradores
+V160,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com 3 banheiros de uso exclusivo dos moradores
+V161,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com 4 ou mais banheiros de uso exclusivo dos moradores
+V162,Domicílios particulares permanentes do tipo casa de vila ou em condomínio sem banheiro de uso exclusivo dos moradores
+V163,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com lixo coletado
+V164,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com lixo coletado por serviço de limpeza
+V165,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com lixo coletado em caçamba de serviço de limpeza
+V166,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com lixo queimado na propriedade
+V167,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com lixo enterrado na propriedade
+V168,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com lixo jogado em terreno baldio ou logradouro
+V169,"Domicílios particulares permanentes do tipo casa de vila ou em condomínio com lixo jogado em rio, lago ou mar"
+V170,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com outro destino do lixo
+V171,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com energia elétrica
+V172,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com energia elétrica de companhia distribuidora
+V173,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com energia elétrica de outras fontes
+V174,Domicílios particulares permanentes do tipo casa de vila ou em condomínio sem energia elétrica
+V175,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com energia elétrica de companhia distribuidora e com medidor de uso exclusivo
+V176,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
+V177,Domicílios particulares permanentes do tipo casa de vila ou em condomínio com energia elétrica de companhia distribuidora e sem medidor
+V178,Domicílios particulares permanentes do tipo apartamento próprios e quitados
+V179,Domicílios particulares permanentes do tipo apartamento próprios e em aquisição
+V180,Domicílios particulares permanentes do tipo apartamento alugados
+V181,Domicílios particulares permanentes do tipo apartamento cedidos por empregador
+V182,Domicílios particulares permanentes do tipo apartamento cedidos de outra forma
+V183,Domicílios particulares permanentes do tipo apartamento outra condição
+V184,Domicílios particulares permanentes do tipo apartamento com abastecimento de água da rede geral
+V185,Domicílios particulares permanentes do tipo apartamento com abastecimento de água de poço ou nascente na propriedade
+V186,Domicílios particulares permanentes do tipo apartamento com abastecimento de água de chuva armazenada em cisterna
+V187,Domicílios particulares permanentes do tipo apartamento com outra forma de abastecimento de água
+V188,Domicílios particulares permanentes do tipo apartamento com banheiro de uso exclusivo dos moradores ou sanitário
+V189,Domicílios particulares permanentes do tipo apartamento com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
+V190,Domicílios particulares permanentes do tipo apartamento com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
+V191,Domicílios particulares permanentes do tipo apartamento com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
+V192,Domicílios particulares permanentes do tipo apartamento com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
+V193,"Domicílios particulares permanentes do tipo apartamento com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V194,Domicílios particulares permanentes do tipo apartamento com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
+V195,Domicílios particulares permanentes do tipo apartamento sem banheiro de uso exclusivo dos moradores e nem sanitário
+V196,Domicílios particulares permanentes do tipo apartamento com banheiro de uso exclusivo dos moradores
+V197,Domicílios particulares permanentes do tipo apartamento com 1 banheiro de uso exclusivo dos moradores
+V198,Domicílios particulares permanentes do tipo apartamento com 2 banheiros de uso exclusivo dos moradores
+V199,Domicílios particulares permanentes do tipo apartamento com 3 banheiros de uso exclusivo dos moradores
+V200,Domicílios particulares permanentes do tipo apartamento com 4 ou mais banheiros de uso exclusivo dos moradores
+V201,Domicílios particulares permanentes do tipo apartamento sem banheiro de uso exclusivo dos moradores
+V202,Domicílios particulares permanentes do tipo apartamento com lixo coletado
+V203,Domicílios particulares permanentes do tipo apartamento com lixo coletado por serviço de limpeza
+V204,Domicílios particulares permanentes do tipo apartamento com lixo coletado em caçamba de serviço de limpeza
+V205,Domicílios particulares permanentes do tipo apartamento com lixo queimado na propriedade
+V206,Domicílios particulares permanentes do tipo apartamento com lixo enterrado na propriedade
+V207,Domicílios particulares permanentes do tipo apartamento com lixo jogado em terreno baldio ou logradouro
+V208,"Domicílios particulares permanentes do tipo apartamento com lixo jogado em rio, lago ou mar"
+V209,Domicílios particulares permanentes do tipo apartamento com outro destino do lixo
+V210,Domicílios particulares permanentes do tipo apartamento com energia elétrica
+V211,Domicílios particulares permanentes do tipo apartamento com energia elétrica de companhia distribuidora
+V212,Domicílios particulares permanentes do tipo apartamento com energia elétrica de outras fontes
+V213,Domicílios particulares permanentes do tipo apartamento sem energia elétrica
+V214,Domicílios particulares permanentes do tipo apartamento com energia elétrica de companhia distribuidora e com medidor de uso exclusivo
+V215,Domicílios particulares permanentes do tipo apartamento com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
+V216,Domicílios particulares permanentes do tipo apartamento com energia elétrica de companhia distribuidora e sem medidor
+V217,Domicílios particulares permanentes com lixo coletado e abastecimento de água da rede geral
+V218,Domicílios particulares permanentes com lixo coletado e abastecimento de água de poço ou nascente na propriedade
+V219,Domicílios particulares permanentes com lixo coletado e abastecimento de água de chuva armazenada em cisterna
+V220,Domicílios particulares permanentes com lixo coletado e outra forma de abastecimento de água
+V221,Domicílios particulares permanentes com lixo coletado e banheiro de uso exclusivo dos moradores ou sanitário
+V222,"Domicílios particulares permanentes com lixo coletado, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial"
+V223,"Domicílios particulares permanentes com lixo coletado, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica"
+V224,"Domicílios particulares permanentes com lixo coletado, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar"
+V225,"Domicílios particulares permanentes com lixo coletado, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala"
+V226,"Domicílios particulares permanentes com lixo coletado, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V227,"Domicílios particulares permanentes com lixo coletado, banheiro ou sanitário e esgotamento sanitário via outro escoadouro"
+V228,Domicílios particulares permanentes com lixo coletado e sem banheiro de uso exclusivo dos moradores e nem sanitário
+V229,Domicílios particulares permanentes com lixo coletado e banheiro
+V230,Domicílios particulares permanentes com outra forma de destino do lixo e abastecimento de água da rede geral
+V231,Domicílios particulares permanentes com outra forma de destino do lixo e abastecimento de água de poço ou nascente na propriedade
+V232,Domicílios particulares permanentes com outra forma de destino do lixo e abastecimento de água de chuva armazenada em cisterna
+V233,Domicílios particulares permanentes com outra forma de destino do lixo e outra forma de abastecimento de água
+V234,Domicílios particulares permanentes com outra forma de destino do lixo e banheiro ou sanitário
+V235,"Domicílios particulares permanentes com outra forma de destino do lixo, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial"
+V236,"Domicílios particulares permanentes com outra forma de destino do lixo, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica"
+V237,"Domicílios particulares permanentes com outra forma de destino do lixo, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar"
+V238,"Domicílios particulares permanentes com outra forma de destino do lixo, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala"
+V239,"Domicílios particulares permanentes com outra forma de destino do lixo, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
+V240,"Domicílios particulares permanentes com outra forma de destino do lixo, banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro"
+V241,Domicílios particulares permanentes com outra forma de destino do lixo e sem banheiro de uso exclusivo dos moradores e nem sanitário

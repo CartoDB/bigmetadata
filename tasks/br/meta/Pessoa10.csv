@@ -1,0 +1,6 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Total de pessoas de até 10 anos de idade que tinham registro de nascimento
+V002,Total de pessoas de até 10 anos de idade que não tinham registro de nascimento
+V003,Total de pessoas de até 10 anos de idade que não sabiam se tinham registro de nascimento (inclusive sem declaração)

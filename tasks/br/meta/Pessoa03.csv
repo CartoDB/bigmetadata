@@ -1,0 +1,254 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Pessoas Residentes
+V02,Pessoas Residentes e cor ou raça - branca
+V003,Pessoas Residentes e cor ou raça - preta
+V004,Pessoas Residentes e cor ou raça - amarela
+V005,Pessoas Residentes e cor ou raça - parda
+V006,Pessoas Residentes e cor ou raça - indígena
+V007,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - branca
+V008,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - preta
+V009,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - amarela
+V010,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - parda
+V011,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - indígena
+V012,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - branca
+V013,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - preta
+V014,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - amarela
+V015,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - parda
+V016,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - indígena
+V017,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – branca
+V018,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – preta
+V019,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – amarela
+V020,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – parda
+V021,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça - indígena
+V022,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – branca
+V023,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – preta
+V024,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – amarela
+V025,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – parda
+V026,Pessoas Residentes de15 a 19 anos de idade e cor ou raça - indígena
+V027,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – branca
+V028,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – preta
+V029,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – amarela
+V030,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – parda
+V031,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça - indígena
+V032,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – branca
+V033,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – preta
+V034,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – amarela
+V035,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – parda
+V036,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça - indígena
+V037,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - branca
+V038,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - preta
+V039,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - amarela
+V040,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - parda
+V041,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - indígena
+V042,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – branca
+V043,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – preta
+V044,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – amarela
+V045,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – parda
+V046,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça - indígena
+V047,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – branca
+V048,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – preta
+V049,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – amarela
+V050,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – parda
+V051,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça - indígena
+V052,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça - branca
+V053,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – preta
+V054,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – amarela
+V055,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – parda
+V056,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça - indígena
+V057,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – branca
+V058,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – preta
+V059,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – amarela
+V060,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – parda
+V061,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça - indígena
+V062,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – branca
+V063,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – preta
+V064,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – amarela
+V065,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – parda
+V066,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – indígena
+V067,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – branca
+V068,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – preta
+V069,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – amarela
+V070,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – parda
+V071,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça - indígena
+V072,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – branca
+V073,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – preta
+V074,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – amarela
+V075,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – parda
+V076,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça - indígena
+V077,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – branca
+V078,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – preta
+V079,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – amarela
+V080,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – parda
+V081,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça - indígena
+V082,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – branca
+V083,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – preta
+V084,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – amarela
+V085,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – parda
+V086,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça - indígena
+V087,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - branca"
+V088,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - preta"
+V089,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - amarela"
+V090,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - parda"
+V091,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - indígena"
+V092,"Pessoas de 7 a 9 anos de idade, do sexo masculino e cor ou raça - branca"
+V093,"Pessoas de 7 a 9 anos de idade, do sexo masculino e cor ou raça - preta"
+V094,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - amarela"
+V095,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - parda"
+V096,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - indígena"
+V097,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – branca"
+V098,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – preta"
+V099,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – amarela"
+V100,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – parda"
+V101,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça - indígena"
+V102,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – branca"
+V103,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – preta"
+V104,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – amarela"
+V105,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – parda"
+V106,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça - indígena"
+V107,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – branca"
+V108,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – preta"
+V109,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – amarela"
+V110,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – parda"
+V111,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça - indígena"
+V112,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – branca"
+V113,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – preta"
+V114,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – amarela"
+V115,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – parda"
+V116,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça - indígena"
+V117,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - branca"
+V118,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - preta"
+V119,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - amarela"
+V120,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - parda"
+V121,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - indígena"
+V122,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – branca"
+V123,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – preta"
+V124,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – amarela"
+V125,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – parda"
+V126,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça - indígena"
+V127,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – branca"
+V128,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – preta"
+V129,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – amarela"
+V130,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – parda"
+V131,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça - indígena"
+V132,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça - branca"
+V133,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – preta"
+V134,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – amarela"
+V135,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – parda"
+V136,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça - indígena"
+V137,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – branca"
+V138,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – preta"
+V139,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – amarela"
+V140,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – parda"
+V141,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça - indígena"
+V142,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – branca"
+V143,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – preta"
+V144,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – amarela"
+V145,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – parda"
+V146,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – indígena"
+V147,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – branca"
+V148,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – preta"
+V149,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – amarela"
+V150,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – parda"
+V151,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça - indígena"
+V152,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – branca"
+V153,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – preta"
+V154,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – amarela"
+V155,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – parda"
+V156,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça - indígena"
+V157,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – branca"
+V158,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – preta"
+V159,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – amarela"
+V160,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – parda"
+V161,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça - indígena"
+V162,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – branca"
+V163,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – preta"
+V164,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – amarela"
+V165,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – parda"
+V166,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça - indígena"
+V167,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - branca"
+V168,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - preta"
+V169,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - amarela"
+V170,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - parda"
+V171,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - indígena"
+V172,"Pessoas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - branca"
+V173,"Pessoas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - preta"
+V174,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - amarela"
+V175,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - parda"
+V176,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - indígena"
+V177,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – branca"
+V178,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – preta"
+V179,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – amarela"
+V180,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – parda"
+V181,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça - indígena"
+V182,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – branca"
+V183,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – preta"
+V184,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – amarela"
+V185,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – parda"
+V186,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça - indígena"
+V187,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – branca"
+V188,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – preta"
+V189,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – amarela"
+V190,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – parda"
+V191,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça - indígena"
+V192,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – branca"
+V193,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – preta"
+V194,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – amarela"
+V195,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – parda"
+V196,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça - indígena"
+V197,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - branca"
+V198,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - preta"
+V199,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - amarela"
+V200,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - parda"
+V201,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - indígena"
+V202,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – branca"
+V203,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – preta"
+V204,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – amarela"
+V205,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – parda"
+V206,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça - indígena"
+V207,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – branca"
+V208,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – preta"
+V209,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – amarela"
+V210,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – parda"
+V211,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça - indígena"
+V212,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça - branca"
+V213,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – preta"
+V214,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – amarela"
+V215,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – parda"
+V216,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça - indígena"
+V217,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – branca"
+V218,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – preta"
+V219,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – amarela"
+V220,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – parda"
+V221,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça - indígena"
+V222,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – branca"
+V223,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – preta"
+V224,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – amarela"
+V225,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – parda"
+V226,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – indígena"
+V227,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – branca"
+V228,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – preta"
+V229,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – amarela"
+V230,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – parda"
+V231,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça - indígena"
+V232,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – branca"
+V233,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – preta"
+V234,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – amarela"
+V235,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – parda"
+V236,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça - indígena"
+V237,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – branca"
+V238,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – preta"
+V239,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – amarela"
+V240,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – parda"
+V241,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça - indígena"
+V242,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – branca"
+V243,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – preta"
+V244,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – amarela"
+V245,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – parda"
+V246,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça - indígena"
+V247,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – branca"
+V248,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - preta"
+V249,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – amarela"
+V250,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - parda"
+V251,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – indígena"

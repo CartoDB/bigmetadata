@@ -1,0 +1,173 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Homens alfabetizados com 5 ou mais anos de idade
+V002,Homens alfabetizados com 5 anos de idade
+V003,Homens alfabetizados com 6 anos de idade
+V004,Homens alfabetizados com 7 anos de idade
+V005,Homens alfabetizados com 8 anos de idade
+V006,Homens alfabetizados com 9 anos de idade
+V007,Homens alfabetizados com 10 anos de idade
+V008,Homens alfabetizados com 11 anos de idade
+V009,Homens alfabetizados com 12 anos de idade
+V010,Homens alfabetizados com 13 anos de idade
+V011,Homens alfabetizados com 14 anos de idade
+V012,Homens alfabetizados com 15 anos de idade
+V013,Homens alfabetizados com 16 anos de idade
+V014,Homens alfabetizados com 17 anos de idade
+V015,Homens alfabetizados com 18 anos de idade
+V016,Homens alfabetizados com 19 anos de idade
+V017,Homens alfabetizados com 20 anos de idade
+V018,Homens alfabetizados com 21 anos de idade
+V019,Homens alfabetizados com 22 anos de idade
+V020,Homens alfabetizados com 23 anos de idade
+V021,Homens alfabetizados com 24 anos de idade
+V022,Homens alfabetizados com 25 anos de idade
+V023,Homens alfabetizados com 26 anos de idade
+V024,Homens alfabetizados com 27 anos de idade
+V025,Homens alfabetizados com 28 anos de idade
+V026,Homens alfabetizados com 29 anos de idade
+V027,Homens alfabetizados com 30 anos de idade
+V028,Homens alfabetizados com 31 anos de idade
+V029,Homens alfabetizados com 32 anos de idade
+V030,Homens alfabetizados com 33 anos de idade
+V031,Homens alfabetizados com 34 anos de idade
+V032,Homens alfabetizados com 35 anos de idade
+V033,Homens alfabetizados com 36 anos de idade
+V034,Homens alfabetizados com 37 anos de idade
+V035,Homens alfabetizados com 38 anos de idade
+V036,Homens alfabetizados com 39 anos de idade
+V037,Homens alfabetizados com 40 anos de idade
+V038,Homens alfabetizados com 41 anos de idade
+V039,Homens alfabetizados com 42 anos de idade
+V040,Homens alfabetizados com 43 anos de idade
+V041,Homens alfabetizados com 44 anos de idade
+V042,Homens alfabetizados com 45 anos de idade
+V043,Homens alfabetizados com 46 anos de idade
+V044,Homens alfabetizados com 47 anos de idade
+V045,Homens alfabetizados com 48 anos de idade
+V046,Homens alfabetizados com 49 anos de idade
+V047,Homens alfabetizados com 50 anos de idade
+V048,Homens alfabetizados com 51 anos de idade
+V049,Homens alfabetizados com 52 anos de idade
+V050,Homens alfabetizados com 53 anos de idade
+V051,Homens alfabetizados com 54 anos de idade
+V052,Homens alfabetizados com 55 anos de idade
+V053,Homens alfabetizados com 56 anos de idade
+V054,Homens alfabetizados com 57 anos de idade
+V055,Homens alfabetizados com 58 anos de idade
+V056,Homens alfabetizados com 59 anos de idade
+V057,Homens alfabetizados com 60 anos de idade
+V058,Homens alfabetizados com 61 anos de idade
+V059,Homens alfabetizados com 62 anos de idade
+V060,Homens alfabetizados com 63 anos de idade
+V061,Homens alfabetizados com 64 anos de idade
+V062,Homens alfabetizados com 65 anos de idade
+V063,Homens alfabetizados com 66 anos de idade
+V064,Homens alfabetizados com 67 anos de idade
+V065,Homens alfabetizados com 68 anos de idade
+V066,Homens alfabetizados com 69 anos de idade
+V067,Homens alfabetizados com 70 anos de idade
+V068,Homens alfabetizados com 71 anos de idade
+V069,Homens alfabetizados com 72 anos de idade
+V070,Homens alfabetizados com 73 anos de idade
+V071,Homens alfabetizados com 74 anos de idade
+V072,Homens alfabetizados com 75 anos de idade
+V073,Homens alfabetizados com 76 anos de idade
+V074,Homens alfabetizados com 77 anos de idade
+V075,Homens alfabetizados com 78 anos de idade
+V076,Homens alfabetizados com 79 anos de idade
+V077,Homens alfabetizados com 80 ou mais anos de idade
+V078,Homens responsáveis alfabetizados com 10 ou mais anos de idade em domicílios particulares
+V079,"Homens, cônjuges ou companheiros (de sexo diferente e do mesmo sexo da pessoa responsável) alfabetizados com 10 ou mais anos de idade em domicílios particulares"
+V080,Filhos ou enteados alfabetizados com 10 ou mais anos de idade em domicílios particulares
+V081,Pais ou sogros alfabetizados com 20 ou mais anos de idade em domicílios particulares
+V082,Netos ou bisnetos alfabetizados com 10 ou mais anos de idade em domicílios particulares
+V083,Irmãos alfabetizados com 10 ou mais anos de idade em domicílios particulares
+V084,Outros parentes homens alfabetizados com 10 ou mais anos de idade em domicílios particulares
+V085,Conviventes alfabetizados com 10 ou mais anos de idade em domicílios particulares
+V086,Mulheres alfabetizadas com 5 ou mais anos de idade
+V087,Mulheres alfabetizadas com 5 anos de idade
+V088,Mulheres alfabetizadas com 6 anos de idade
+V089,Mulheres alfabetizadas com 7 anos de idade
+V090,Mulheres alfabetizadas com 8 anos de idade
+V091,Mulheres alfabetizadas com 9 anos de idade
+V092,Mulheres alfabetizadas com 10 anos de idade
+V093,Mulheres alfabetizadas com 11 anos de idade
+V094,Mulheres alfabetizadas com 12 anos de idade
+V095,Mulheres alfabetizadas com 13 anos de idade
+V096,Mulheres alfabetizadas com 14 anos de idade
+V097,Mulheres alfabetizadas com 15 anos de idade
+V098,Mulheres alfabetizadas com 16 anos de idade
+V099,Mulheres alfabetizadas com 17 anos de idade
+V100,Mulheres alfabetizadas com 18 anos de idade
+V101,Mulheres alfabetizadas com 19 anos de idade
+V102,Mulheres alfabetizadas com 20 anos de idade
+V103,Mulheres alfabetizadas com 21 anos de idade
+V104,Mulheres alfabetizadas com 22 anos de idade
+V105,Mulheres alfabetizadas com 23 anos de idade
+V106,Mulheres alfabetizadas com 24 anos de idade
+V107,Mulheres alfabetizadas com 25 anos de idade
+V108,Mulheres alfabetizadas com 26 anos de idade
+V109,Mulheres alfabetizadas com 27 anos de idade
+V110,Mulheres alfabetizadas com 28 anos de idade
+V111,Mulheres alfabetizadas com 29 anos de idade
+V112,Mulheres alfabetizadas com 30 anos de idade
+V113,Mulheres alfabetizadas com 31 anos de idade
+V114,Mulheres alfabetizadas com 32 anos de idade
+V115,Mulheres alfabetizadas com 33 anos de idade
+V116,Mulheres alfabetizadas com 34 anos de idade
+V117,Mulheres alfabetizadas com 35 anos de idade
+V118,Mulheres alfabetizadas com 36 anos de idade
+V119,Mulheres alfabetizadas com 37 anos de idade
+V120,Mulheres alfabetizadas com 38 anos de idade
+V121,Mulheres alfabetizadas com 39 anos de idade
+V122,Mulheres alfabetizadas com 40 anos de idade
+V123,Mulheres alfabetizadas com 41 anos de idade
+V124,Mulheres alfabetizadas com 42 anos de idade
+V125,Mulheres alfabetizadas com 43 anos de idade
+V126,Mulheres alfabetizadas com 44 anos de idade
+V127,Mulheres alfabetizadas com 45 anos de idade
+V128,Mulheres alfabetizadas com 46 anos de idade
+V129,Mulheres alfabetizadas com 47 anos de idade
+V130,Mulheres alfabetizadas com 48 anos de idade
+V131,Mulheres alfabetizadas com 49 anos de idade
+V132,Mulheres alfabetizadas com 50 anos de idade
+V133,Mulheres alfabetizadas com 51 anos de idade
+V134,Mulheres alfabetizadas com 52 anos de idade
+V135,Mulheres alfabetizadas com 53 anos de idade
+V136,Mulheres alfabetizadas com 54 anos de idade
+V137,Mulheres alfabetizadas com 55 anos de idade
+V138,Mulheres alfabetizadas com 56 anos de idade
+V139,Mulheres alfabetizadas com 57 anos de idade
+V140,Mulheres alfabetizadas com 58 anos de idade
+V141,Mulheres alfabetizadas com 59 anos de idade
+V142,Mulheres alfabetizadas com 60 anos de idade
+V143,Mulheres alfabetizadas com 61 anos de idade
+V144,Mulheres alfabetizadas com 62 anos de idade
+V145,Mulheres alfabetizadas com 63 anos de idade
+V146,Mulheres alfabetizadas com 64 anos de idade
+V147,Mulheres alfabetizadas com 65 anos de idade
+V148,Mulheres alfabetizadas com 66 anos de idade
+V149,Mulheres alfabetizadas com 67 anos de idade
+V150,Mulheres alfabetizadas com 68 anos de idade
+V151,Mulheres alfabetizadas com 69 anos de idade
+V152,Mulheres alfabetizadas com 70 anos de idade
+V153,Mulheres alfabetizadas com 71 anos de idade
+V154,Mulheres alfabetizadas com 72 anos de idade
+V155,Mulheres alfabetizadas com 73 anos de idade
+V156,Mulheres alfabetizadas com 74 anos de idade
+V157,Mulheres alfabetizadas com 75 anos de idade
+V158,Mulheres alfabetizadas com 76 anos de idade
+V159,Mulheres alfabetizadas com 77 anos de idade
+V160,Mulheres alfabetizadas com 78 anos de idade
+V161,Mulheres alfabetizadas com 79 anos de idade
+V162,Mulheres alfabetizadas com 80 ou mais anos de idade 
+V163,Mulheres responsáveis alfabetizadas com 10 ou mais anos de idade em domicílios particulares
+V164,"Mulheres, cônjuges ou companheiras (de sexo diferente e do mesmo sexo da pessoa responsável) alfabetizadas com 10 ou mais anos de idade em domicílios particulares"
+V165,Filhas ou enteadas alfabetizadas com 10 ou mais anos de idade em domicílios particulares
+V166,Mães ou sogras alfabetizadas com 20 ou mais anos de idade em domicílios particulares
+V167,Netas ou bisnetas alfabetizadas com 10 ou mais anos de idade em domicílios particulares
+V168,Irmãs alfabetizadas com 10 ou mais anos de idade em domicílios particulares
+V169,Outros parentes mulheres alfabetizadas com 10 ou mais anos de idade em domicílios particulares
+V170,Conviventes alfabetizadas com 10 mais anos de idade em domicílios particulares

@@ -1,0 +1,137 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Homens residentes em domicílios particulares e domicílios coletivos
+V002,Homens residentes em domicílios particulares permanentes
+V003,Responsáveis pelos domicílios particulares
+V004,Cônjuges ou companheiros (de sexo diferente e do mesmo sexo da pessoa responsável) em domicílios particulares 
+V005,Filhos do responsável e do cônjuge em domicílios particulares
+V006,Filhos somente do responsável em domicílios particulares
+V007,Enteados em domicílios particulares
+V008,Genros ou noras em domicílios particulares
+V009,"Pais, mães, padrastos ou madrastas em domicílios particulares"
+V010,Sogros em domicílios particulares
+V011,Netos em domicílios particulares
+V012,Bisnetos em domicílios particulares
+V013,Irmãos ou irmãs em domicílios particulares
+V014,Avôs ou avós em domicílios particulares
+V015,"Outros parentes em domicílios particulares, do sexo masculino"
+V016,"Agregados em domicílios particulares, do sexo masculino"
+V017,"Conviventes em domicílios particulares, do sexo masculino"
+V018,"Pensionistas em domicílios particulares, do sexo masculino"
+V019,"Empregados domésticos em domicílios particulares, do sexo masculino"
+V020,"Parentes de empregados domésticos em domicílios particulares, do sexo masculino"
+V021,"Individuais em domicílio coletivo, do sexo masculino"
+V022,Homens com menos de 1 ano de idade
+V023,Homens com menos de 1 mês de idade
+V024,Homens com 1 mês de idade
+V025,Homens com 2 meses de idade
+V026,Homens com 3 meses de idade
+V027,Homens com 4 meses de idade
+V028,Homens com 5 meses de idade
+V029,Homens com 6 meses de idade
+V030,Homens com 7 meses de idade
+V031,Homens com 8 meses de idade
+V032,Homens com 9 meses de idade
+V033,Homens com 10 meses de idade
+V034,Homens com 11 meses de idade
+V035,Homens de 1 ano de idade
+V036,Homens com 2 anos de idade
+V037,Homens com 3 anos de idade
+V038,Homens com 4 anos de idade
+V039,Homens com 5 anos de idade
+V040,Homens com 6 anos de idade
+V041,Homens com 7 anos de idade
+V042,Homens com 8 anos de idade
+V043,Homens com 9 anos de idade
+V044,Homens com 10 anos de idade
+V045,Homens com 11 anos de idade
+V046,Homens com 12 anos de idade
+V047,Homens com 13 anos de idade
+V048,Homens com 14 anos de idade
+V049,Homens com 15 anos de idade
+V050,Homens com 16 anos de idade
+V051,Homens com 17 anos de idade
+V052,Homens com 18 anos de idade
+V053,Homens com 19 anos de idade
+V054,Homens com 20 anos de idade
+V055,Homens com 21 anos de idade
+V056,Homens com 22 anos de idade
+V057,Homens com 23 anos de idade
+V058,Homens com 24 anos de idade
+V059,Homens com 25 anos de idade
+V060,Homens com 26 anos de idade
+V061,Homens com 27 anos de idade
+V062,Homens com 28 anos de idade
+V063,Homens com 29 anos de idade
+V064,Homens com 30 anos de idade
+V065,Homens com 31 anos de idade
+V066,Homens com 32 anos de idade
+V067,Homens com 33 anos de idade
+V068,Homens com 34 anos de idade
+V069,Homens com 35 anos de idade
+V070,Homens com 36 anos de idade
+V071,Homens com 37 anos de idade
+V072,Homens com 38 anos de idade
+V073,Homens com 39 anos de idade
+V074,Homens com 40 anos de idade
+V075,Homens com 41 anos de idade
+V076,Homens com 42 anos de idade
+V077,Homens com 43 anos de idade
+V078,Homens com 44 anos de idade
+V079,Homens com 45 anos de idade
+V080,Homens com 46 anos de idade
+V081,Homens com 47 anos de idade
+V082,Homens com 48 anos de idade
+V083,Homens com 49 anos de idade
+V084,Homens com 50 anos de idade
+V085,Homens com 51 anos de idade
+V086,Homens com 52 anos de idade
+V087,Homens com 53 anos de idade
+V088,Homens com 54 anos de idade
+V089,Homens com 55 anos de idade
+V090,Homens com 56 anos de idade
+V091,Homens com 57 anos de idade
+V092,Homens com 58 anos de idade
+V093,Homens com 59 anos de idade
+V094,Homens com 60 anos de idade
+V095,Homens com 61 anos de idade
+V096,Homens com 62 anos de idade
+V097,Homens com 63 anos de idade
+V098,Homens com 64 anos de idade
+V099,Homens com 65 anos de idade
+V100,Homens com 66 anos de idade
+V101,Homens com 67 anos de idade
+V102,Homens com 68 anos de idade
+V103,Homens com 69 anos de idade
+V104,Homens com 70 anos de idade
+V105,Homens com 71 anos de idade
+V106,Homens com 72 anos de idade
+V107,Homens com 73 anos de idade
+V108,Homens com 74 anos de idade
+V109,Homens com 75 anos de idade
+V110,Homens com 76 anos de idade
+V111,Homens com 77 anos de idade
+V112,Homens com 78 anos de idade
+V113,Homens com 79 anos de idade
+V114,Homens com 80 anos de idade
+V115,Homens com 81 anos de idade
+V116,Homens com 82 anos de idade
+V117,Homens com 83 anos de idade
+V118,Homens com 84 anos de idade
+V119,Homens com 85 anos de idade
+V120,Homens com 86 anos de idade
+V121,Homens com 87 anos de idade
+V122,Homens com 88 anos de idade
+V123,Homens com 89 anos de idade
+V124,Homens com 90 anos de idade
+V125,Homens com 91 anos de idade
+V126,Homens com 92 anos de idade
+V127,Homens com 93 anos de idade
+V128,Homens com 94 anos de idade
+V129,Homens com 95 anos de idade
+V130,Homens com 96 anos de idade
+V131,Homens com 97 anos de idade
+V132,Homens com 98 anos de idade
+V133,Homens com 99 anos de idade
+V134,Homens com 100 anos ou mais de idade

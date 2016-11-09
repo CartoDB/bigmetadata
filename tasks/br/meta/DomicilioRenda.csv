@@ -1,0 +1,17 @@
+NOME DA VARIÁVEL,DESCRIÇÃO DA VARIÁVEL
+Cód_setor,Código do setor censitário
+Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Total de domicílios particulares improvisados
+V002,Total do rendimento nominal mensal dos domicílios particulares
+V003,Total do rendimento nominal mensal dos domicílios particulares permanentes
+V004,Total do rendimento nominal mensal dos domicílios particulares improvisados
+V005,Domicílios particulares com rendimento nominal mensal domiciliar per capita de até 1/8 salário mínimo
+V006,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 1/8 a 1/4 salário mínimo
+V007,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 salário mínimo
+V008,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 1/2 a 1 salário mínimo
+V009,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 1 a 2 salários mínimos
+V010,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 2 a 3 salários mínimos
+V011,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 3 a 5 salários mínimos
+V012,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 5 a 10 salários mínimos
+V013,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 10 salários mínimos
+V014,Domicílios particulares sem rendimento nominal mensal domiciliar per capita 

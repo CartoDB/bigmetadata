@@ -1,0 +1,88 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Pessoas alfabetizadas com 5 ou mais anos de idade
+V002,Pessoas alfabetizadas com 5 anos de idade
+V003,Pessoas alfabetizadas com 6 anos de idade
+V004,Pessoas alfabetizadas com 7 anos de idade
+V005,Pessoas alfabetizadas com 8 anos de idade
+V006,Pessoas alfabetizadas com 9 anos de idade
+V007,Pessoas alfabetizadas com 10 anos de idade
+V008,Pessoas alfabetizadas com 11 anos de idade
+V009,Pessoas alfabetizadas com 12 anos de idade
+V010,Pessoas alfabetizadas com 13 anos de idade
+V011,Pessoas alfabetizadas com 14 anos de idade
+V012,Pessoas alfabetizadas com 15 anos de idade
+V013,Pessoas alfabetizadas com 16 anos de idade
+V014,Pessoas alfabetizadas com 17 anos de idade
+V015,Pessoas alfabetizadas com 18 anos de idade
+V016,Pessoas alfabetizadas com 19 anos de idade
+V017,Pessoas alfabetizadas com 20 anos de idade
+V018,Pessoas alfabetizadas com 21 anos de idade
+V019,Pessoas alfabetizadas com 22 anos de idade
+V020,Pessoas alfabetizadas com 23 anos de idade
+V021,Pessoas alfabetizadas com 24 anos de idade
+V022,Pessoas alfabetizadas com 25 anos de idade
+V023,Pessoas alfabetizadas com 26 anos de idade
+V024,Pessoas alfabetizadas com 27 anos de idade
+V025,Pessoas alfabetizadas com 28 anos de idade
+V026,Pessoas alfabetizadas com 29 anos de idade
+V027,Pessoas alfabetizadas com 30 anos de idade
+V028,Pessoas alfabetizadas com 31 anos de idade
+V029,Pessoas alfabetizadas com 32 anos de idade
+V030,Pessoas alfabetizadas com 33 anos de idade
+V031,Pessoas alfabetizadas com 34 anos de idade
+V032,Pessoas alfabetizadas com 35 anos de idade
+V033,Pessoas alfabetizadas com 36 anos de idade
+V034,Pessoas alfabetizadas com 37 anos de idade
+V035,Pessoas alfabetizadas com 38 anos de idade
+V036,Pessoas alfabetizadas com 39 anos de idade
+V037,Pessoas alfabetizadas com 40 anos de idade
+V038,Pessoas alfabetizadas com 41 anos de idade
+V039,Pessoas alfabetizadas com 42 anos de idade
+V040,Pessoas alfabetizadas com 43 anos de idade
+V041,Pessoas alfabetizadas com 44 anos de idade
+V042,Pessoas alfabetizadas com 45 anos de idade
+V043,Pessoas alfabetizadas com 46 anos de idade
+V044,Pessoas alfabetizadas com 47 anos de idade
+V045,Pessoas alfabetizadas com 48 anos de idade
+V046,Pessoas alfabetizadas com 49 anos de idade
+V047,Pessoas alfabetizadas com 50 anos de idade
+V048,Pessoas alfabetizadas com 51 anos de idade
+V049,Pessoas alfabetizadas com 52 anos de idade
+V050,Pessoas alfabetizadas com 53 anos de idade
+V051,Pessoas alfabetizadas com 54 anos de idade
+V052,Pessoas alfabetizadas com 55 anos de idade
+V053,Pessoas alfabetizadas com 56 anos de idade
+V054,Pessoas alfabetizadas com 57 anos de idade
+V055,Pessoas alfabetizadas com 58 anos de idade
+V056,Pessoas alfabetizadas com 59 anos de idade
+V057,Pessoas alfabetizadas com 60 anos de idade
+V058,Pessoas alfabetizadas com 61 anos de idade
+V059,Pessoas alfabetizadas com 62 anos de idade
+V060,Pessoas alfabetizadas com 63 anos de idade
+V061,Pessoas alfabetizadas com 64 anos de idade
+V062,Pessoas alfabetizadas com 65 anos de idade
+V063,Pessoas alfabetizadas com 66 anos de idade
+V064,Pessoas alfabetizadas com 67 anos de idade
+V065,Pessoas alfabetizadas com 68 anos de idade
+V066,Pessoas alfabetizadas com 69 anos de idade
+V067,Pessoas alfabetizadas com 70 anos de idade
+V068,Pessoas alfabetizadas com 71 anos de idade
+V069,Pessoas alfabetizadas com 72 anos de idade
+V070,Pessoas alfabetizadas com 73 anos de idade
+V071,Pessoas alfabetizadas com 74 anos de idade
+V072,Pessoas alfabetizadas com 75 anos de idade
+V073,Pessoas alfabetizadas com 76 anos de idade
+V074,Pessoas alfabetizadas com 77 anos de idade
+V075,Pessoas alfabetizadas com 78 anos de idade
+V076,Pessoas alfabetizadas com 79 anos de idade
+V077,Pessoas alfabetizadas com 80 anos ou mais de idade 
+V078,Responsáveis alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
+V079,Cônjuges ou companheiros(as) (de sexo diferente e do mesmo sexo da pessoa responsável) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
+V080,Filhos(as) ou enteados(as) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
+V081,"Pais, mães ou sogros(as) alfabetizados(as) com 20 ou mais anos de idade em domicílios particulares"
+V082,Netos(as) ou bisnetos(as) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
+V083,Irmãos ou irmãs alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
+V084,Outros parentes alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
+V085,Conviventes alfabetizados com 10 ou mais anos de idade em domicílios particulares

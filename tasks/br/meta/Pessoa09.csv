@@ -1,0 +1,243 @@
+Nome da variável,Descrição da variável
+Cod_setor,Código do setor censitário
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
+V001,Genro ou nora com 10 a 14 anos de idade
+V002,Genro ou nora com 15 a 19 anos de idade
+V003,Genro ou nora com 20 a 24 anos de idade
+V004,Genro ou nora com 25 a 29 anos de idade
+V005,Genro ou nora com 30 a 34 anos de idade
+V006,Genro ou nora com 35 a 39 anos de idade
+V007,Genro ou nora com 40 a 44 anos de idade
+V008,Genro ou nora com 45 a 49 anos de idade
+V009,Genro ou nora com 50 a 54 anos de idade
+V010,Genro ou nora com 55 a 59 anos de idade
+V011,Genro ou nora com 60 a 64 anos de idade
+V012,Genro ou nora com 65 a 69 anos de idade
+V013,Genro ou nora com 70 a 74 anos de idade
+V014,Genro ou nora com 75 a 79 anos de idade
+V015,Genro ou nora com 80 anos ou mais de idade
+V016,Genro com 10 a 14 anos de idade
+V017,Genro com 15 a 19 anos de idade
+V018,Genro com 20 a 24 anos de idade
+V019,Genro com 25 a 29 anos de idade
+V020,Genro com 30 a 34 anos de idade
+V021,Genro com 35 a 39 anos de idade
+V022,Genro com 40 a 44 anos de idade
+V023,Genro com 45 a 49 anos de idade
+V024,Genro com 50 a 54 anos de idade
+V025,Genro com 55 a 59 anos de idade
+V026,Genro com 60 a 64 anos de idade
+V027,Genro com 65 a 69 anos de idade
+V028,Genro com 70 a 74 anos de idade
+V029,Genro com 75 a 79 anos de idade
+V030,Genro com 80 anos ou mais de idade
+V031,Nora com 10 a 14 anos de idade
+V032,Nora com 15 a 19 anos de idade
+V033,Nora com 20 a 24 anos de idade
+V034,Nora com 25 a 29 anos de idade
+V035,Nora com 30 a 34 anos de idade
+V036,Nora com 35 a 39 anos de idade
+V037,Nora com 40 a 44 anos de idade
+V038,Nora com 45 a 49 anos de idade
+V039,Nora com 50 a 54 anos de idade
+V040,Nora com 55 a 59 anos de idade
+V041,Nora com 60 a 64 anos de idade
+V042,Nora com 65 a 69 anos de idade
+V043,Nora com 70 a 74 anos de idade
+V044,Nora com 75 a 79 anos de idade
+V045,Nora com 80 anos ou mais de idade
+V046,"Pai, mãe, padrasto ou madrasta com 20 a 24 anos de idade"
+V047,"Pai, mãe, padrasto ou madrasta com 25 a 29 anos de idade"
+V048,"Pai, mãe, padrasto ou madrasta com 30 a 34 anos de idade"
+V049,"Pai, mãe, padrasto ou madrasta com 35 a 39 anos de idade"
+V050,"Pai, mãe, padrasto ou madrasta com 40 a 44 anos de idade"
+V051,"Pai, mãe, padrasto ou madrasta com 45 a 49 anos de idade"
+V052,"Pai, mãe, padrasto ou madrasta com 50 a 54 anos de idade"
+V053,"Pai, mãe, padrasto ou madrasta com 55 a 59 anos de idade"
+V054,"Pai, mãe, padrasto ou madrasta com 60 a 64 anos de idade"
+V055,"Pai, mãe, padrasto ou madrasta com 65 a 69 anos de idade"
+V056,"Pai, mãe, padrasto ou madrasta com 70 a 74 anos de idade"
+V057,"Pai, mãe, padrasto ou madrasta com 75 a 79 anos de idade"
+V058,"Pai, mãe, padrasto ou madrasta com 80 anos ou mais de idade"
+V059,Pai ou padrasto com 20 a 24 anos de idade
+V060,Pai ou padrasto com 25 a 29 anos de idade
+V061,Pai ou padrasto com 30 a 34 anos de idade
+V062,Pai ou padastro com 35 a 39 anos de idade
+V063,Pai ou padastro com 40 a 44 anos de idade
+V064,Pai ou padastro com 45 a 49 anos de idade
+V065,Pai ou padastro com 50 a 54 anos de idade
+V066,Pai ou padastro com 55 a 59 anos de idade
+V067,Pai ou padastro com 60 a 64 anos de idade
+V068,Pai ou padastro com 65 a 69 anos de idade
+V069,Pai ou padastro com 70 a 74 anos de idade
+V070,Pai ou padastro com 75 a 79 anos de idade
+V071,Pai ou padastro com 80 anos ou mais de idade
+V072,Mãe ou madastra com 20 a 24 anos de idade
+V073,Mãe ou madastra com 25 a 29 anos de idade
+V074,Mãe ou madastra com 30 a 34 anos de idade
+V075,Mãe ou madastra com 35 a 39 anos de idade
+V076,Mãe ou madastra com 40 a 44 anos de idade
+V077,Mãe ou madastra com 45 a 49 anos de idade
+V078,Mãe ou madastra com 50 a 54 anos de idade
+V079,Mãe ou madastra com 55 a 59 anos de idade
+V080,Mãe ou madastra com 60 a 64 anos de idade
+V081,Mãe ou madastra com 65 a 69 anos de idade
+V082,Mãe ou madastra com 70 a 74 anos de idade
+V083,Mãe ou madastra com 75 a 79 anos de idade
+V084,Mãe ou madastra com 80 anos ou mais de idade
+V085,Sogro(a) com 20 a 24 anos de idade
+V086,Sogro(a) com 25 a 29 anos de idade
+V087,Sogro(a) com 30 a 34 anos de idade
+V088,Sogro(a) com 35 a 39 anos de idade
+V089,Sogro(a) com 40 a 44 anos de idade
+V090,Sogro(a) com 45 a 49 anos de idade
+V091,Sogro(a) com 50 a 54 anos de idade
+V092,Sogro(a) com 55 a 59 anos de idade
+V093,Sogro(a) com 60 a 64 anos de idade
+V094,Sogro(a) com 65 a 69 anos de idade
+V095,Sogro(a) com 70 a 74 anos de idade
+V096,Sogro(a) com 75 a 79 anos de idade
+V097,Sogro(a) com 80 anos ou mais de idade
+V098,Sogro com 20 a 24 anos de idade
+V099,Sogro com 25 a 29 anos de idade
+V100,Sogro com 30 a 34 anos de idade
+V101,Sogro com 35 a 39 anos de idade
+V102,Sogro com 40 a 44 anos de idade
+V103,Sogro com 45 a 49 anos de idade
+V104,Sogro com 50 a 54 anos de idade
+V105,Sogro com 55 a 59 anos de idade
+V106,Sogro com 60 a 64 anos de idade
+V107,Sogro com 65 a 69 anos de idade
+V108,Sogro com 70 a 74 anos de idade
+V109,Sogro com 75 a 79 anos de idade
+V110,Sogro com 80 anos ou mais de idade
+V111,Sogra com 20 a 24 anos de idade
+V112,Sogra com 25 a 29 anos de idade
+V113,Sogra com 30 a 34 anos de idade
+V114,Sogra com 35 a 39 anos de idade
+V115,Sogra com 40 a 44 anos de idade
+V116,Sogra com 45 a 49 anos de idade
+V117,Sogra com 50 a 54 anos de idade
+V118,Sogra com 55 a 59 anos de idade
+V119,Sogra com 60 a 64 anos de idade
+V120,Sogra com 65 a 69 anos de idade
+V121,Sogra com 70 a 74 anos de idade
+V122,Sogra com 75 a 79 anos de idade
+V123,Sogra com 80 anos ou mais de idade
+V124,Neto(a) com 0 a 4 anos de idade
+V125,Neto(a) com 5 a 9 anos de idade
+V126,Neto(a) com 10 a 14 anos de idade
+V127,Neto(a) com 15 a 19 anos de idade
+V128,Neto(a) com 20 a 24 anos de idade
+V129,Neto(a) com 25 a 29 anos de idade
+V130,Neto(a) com 30 a 34 anos de idade
+V131,Neto(a) com 35 a 39 anos de idade
+V132,Neto(a) com 40 a 44 anos de idade
+V133,Neto(a) com 45 a 49 anos de idade
+V134,Neto(a) com 50 ou mais de idade
+V135,Neto com 0 a 4 anos de idade
+V136,Neto com 5 a 9 anos de idade
+V137,Neto com 10 a 14 anos de idade
+V138,Neto com 15 a 19 anos de idade
+V139,Neto com 20 a 24 anos de idade
+V140,Neto com 25 a 29 anos de idade
+V141,Neto com 30 a 34 anos de idade
+V142,Neto com 35 a 39 anos de idade
+V143,Neto com 40 a 44 anos de idade
+V144,Neto com 45 a 49 anos de idade
+V145,Neto com 50 anos ou mais de idade
+V146,Neta com 0 a 4 anos de idade
+V147,Neta com 5 a 9 anos de idade
+V148,Neta com 10 a 14 anos de idade
+V149,Neta com 15 a 19 anos de idade
+V150,Neta com 20 a 24 anos de idade
+V151,Neta com 25 a 29 anos de idade
+V152,Neta com 30 a 34 anos de idade
+V153,Neta com 35 a 39 anos de idade
+V154,Neta com 40 a 44 anos de idade
+V155,Neta com 45 a 49 anos de idade
+V156,Neta com 50 anos ou mais de idade
+V157,Bisneto(a) com 0 a 4 anos de idade
+V158,Bisneto(a) com 5 a 9 anos de idade
+V159,Bisneto(a) com 10 a 14 anos de idade
+V160,Bisneto(a) com 15 a 19 anos de idade
+V161,Bisneto(a) com 20 a 24 anos de idade
+V162,Bisneto(a) com 25 a 29 anos de idade
+V163,Bisneto(a) com 30 a 34 anos de idade
+V164,Bisneto(a) com 35 a 39 anos de idade
+V165,Bisneto(a) com 40 a 44 anos de idade
+V166,Bisneto(a) com 45 a 49 anos de idade
+V167,Bisneto(a) com 50 ou mais de idade
+V168,Bisneto com 0 a 4 anos de idade
+V169,Bisneto com 5 a 9 anos de idade
+V170,Bisneto com 10 a 14 anos de idade
+V171,Bisneto com 15 a 19 anos de idade
+V172,Bisneto com 20 a 24 anos de idade
+V173,Bisneto com 25 a 29 anos de idade
+V174,Bisneto com 30 a 34 anos de idade
+V175,Bisneto com 35 a 39 anos de idade
+V176,Bisneto com 40 a 44 anos de idade
+V177,Bisneto com 45 a 49 anos de idade
+V178,Bisneto com 50 anos ou mais de idade
+V179,Bisneta com 0 a 4 anos de idade
+V180,Bisneta com 5 a 9 anos de idade
+V181,Bisneta com 10 a 14 anos de idade
+V182,Bisneta com 15 a 19 anos de idade
+V183,Bisneta com 20 a 24 anos de idade
+V184,Bisneta com 25 a 29 anos de idade
+V185,Bisneta com 30 a 34 anos de idade
+V186,Bisneta com 35 a 39 anos de idade
+V187,Bisneta com 40 a 44 anos de idade
+V188,Bisneta com 45 a 49 anos de idade
+V189,Bisneta com 50 anos ou mais de idade
+V190,Irmão ou irmã com 0 a 4 anos de idade
+V191,Irmão ou irmã com 5 a 9 anos de idade
+V192,Irmão ou irmã com 10 a 14 anos de idade
+V193,Irmão ou irmã com 15 a 19 anos de idade
+V194,Irmão ou irmã com 20 a 24 anos de idade
+V195,Irmão ou irmã com 25 a 29 anos de idade
+V196,Irmão ou irmã com 30 a 34 anos de idade
+V197,Irmão ou irmã com 35 a 39 anos de idade
+V198,Irmão ou irmã com 40 a 44 anos de idade
+V199,Irmão ou irmã com 45 a 49 anos de idade
+V200,Irmão ou irmã com 50 a 54 anos de idade
+V201,Irmão ou irmã com 55 a 59 anos de idade
+V202,Irmão ou irmã com 60 a 64 anos de idade
+V203,Irmão ou irmã com 65 a 69 anos de idade
+V204,Irmão ou irmã com 70 a 74 anos de idade
+V205,Irmão ou irmã com 75 a 79 anos de idade
+V206,Irmão ou irmã com 80 anos ou mais de idade
+V207,Irmão com 0 a 4 anos de idade
+V208,Irmão com 5 a 9 anos de idade
+V209,Irmão com 10 a 14 anos de idade
+V210,Irmão com 15 a 19 anos de idade
+V211,Irmão com 20 a 24 anos de idade
+V212,Irmão com 25 a 29 anos de idade
+V213,Irmão com 30 a 34 anos de idade
+V214,Irmão com 35 a 39 anos de idade
+V215,Irmão com 40 a 44 anos de idade
+V216,Irmão com 45 a 49 anos de idade
+V217,Irmão com 50 a 54 anos de idade
+V218,Irmão com 55 a 59 anos de idade
+V219,Irmão com 60 a 64 anos de idade
+V220,Irmão com 65 a 69 anos de idade
+V221,Irmão com 70 a 74 anos de idade
+V222,Irmão com 75 a 79 anos de idade
+V223,Irmão com 80 anos ou mais de idade
+V224,Irmã com 0 a 4 anos de idade
+V225,Irmã com 5 a 9 anos de idade
+V226,Irmã com 10 a 14 anos de idade
+V227,Irmã com 15 a 19 anos de idade
+V228,Irmã com 20 a 24 anos de idade
+V229,Irmã com 25 a 29 anos de idade
+V230,Irmã com 30 a 34 anos de idade
+V231,Irmã com 35 a 39 anos de idade
+V232,Irmã com 40 a 44 anos de idade
+V233,Irmã com 45 a 49 anos de idade
+V234,Irmã com 50 a 54 anos de idade
+V235,Irmã com 55 a 59 anos de idade
+V236,Irmã com 60 a 64 anos de idade
+V237,Irmã com 65 a 69 anos de idade
+V238,Irmã com 70 a 74 anos de idade
+V239,Irmã com 75 a 79 anos de idade
+V240,Irmã com 80 anos ou mais de idade
