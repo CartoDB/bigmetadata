@@ -38,7 +38,7 @@ class DownloadData(BaseParams, DownloadUnzipTask):
 
 class ImportCSV(BaseParams, CSV2TempTableTask):
 
-    tablename = Parameter(default='PessoaRenda')
+    tablename = Parameter(default='Basico')
     encoding = 'latin1'
     delimiter = ';'
 
@@ -63,11 +63,16 @@ class ImportCSV(BaseParams, CSV2TempTableTask):
 
 class ImportAllCSV(BaseParams, WrapperTask):
 
-    TABLES = ['Basico', 'Domicilio01', 'Domicilio02', 'DomicilioRenda',
+    TABLES = ['Basico',
+              # Home
+              'Domicilio01', 'Domicilio02', 'DomicilioRenda',   # Renda --> Income
+              # Environment
               'Entorno01', 'Entorno02', 'Entorno03', 'Entorno04', 'Entorno05',
+              # People
               'Pessoa01', 'Pessoa02', 'Pessoa03', 'Pessoa04', 'Pessoa05',
               'Pessoa06', 'Pessoa07', 'Pessoa08', 'Pessoa09', 'Pessoa10',
               'Pessoa11', 'Pessoa12', 'Pessoa13', 'PessoaRenda',
+              # Responsible
               'Responsavel01', 'Responsavel02', 'ResponsavelRenda',]
 
     def requires(self):
