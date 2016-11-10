@@ -1,204 +1,204 @@
-NOME DA VARIÁVEL,DESCRIÇÃO DA VARIÁVEL
-Cod_setor,Código do setor
-Situação do setor,Código de situação do setor
-V001,Domicílios particulares permanentes
-V002,Domicílios particulares permanentes próprios – Existe identificação do logradouro
-V003,Domicílios particulares permanentes próprios – Não existe identificação do logradouro
-V004,Domicílios particulares permanentes alugados – Existe identificação do logradouro
-V005,Domicílios particulares permanentes alugados – Não existe identificação do logradouro
-V006,Domicílios particulares permanentes cedidos – Existe identificação do logradouro
-V007,Domicílios particulares permanentes cedidos – Não existe identificação do logradouro
-V008,Domicílios particulares permanentes próprios – Existe iluminação pública
-V009,Domicílios particulares permanentes próprios – Não existe iluminação pública
-V010,Domicílios particulares permanentes alugados – Existe iluminação pública
-V011,Domicílios particulares permanentes alugados – Não existe iluminação pública
-V012,Domicílios particulares permanentes cedidos – Existe iluminação pública
-V013,Domicílios particulares permanentes cedidos – Não existe iluminação pública
-V014,Domicílios particulares permanentes próprios – Existe pavimentação
-V015,Domicílios particulares permanentes próprios – Não existe pavimentação
-V016,Domicílios particulares permanentes alugados – Existe pavimentação
-V017,Domicílios particulares permanentes alugados – Não existe pavimentação
-V018,Domicílios particulares permanentes cedidos – Existe pavimentação
-V019,Domicílios particulares permanentes cedidos – Não existe pavimentação
-V020,Domicílios particulares permanentes próprios – Existe calçada
-V021,Domicílios particulares permanentes próprios – Não existe calçada
-V022,Domicílios particulares permanentes alugados – Existe calçada
-V023,Domicílios particulares permanentes alugados – Não existe calçada
-V024,Domicílios particulares permanentes cedidos – Existe calçada
-V025,Domicílios particulares permanentes cedidos – Não existe calçada
-V026,Domicílios particulares permanentes próprios – Existe meio-fio/guia
-V027,Domicílios particulares permanentes próprios – Não existe meio-fio/guia
-V028,Domicílios particulares permanentes alugados – Existe meio-fio/guia
-V029,Domicílios particulares permanentes alugados – Não existe meio-fio/guia
-V030,Domicílios particulares permanentes cedidos – Existe meio-fio/guia
-V031,Domicílios particulares permanentes cedidos – Não existe meio-fio/guia
-V032,Domicílios particulares permanentes próprios – Existe bueiro/boca-de-lobo
-V033,Domicílios particulares permanentes próprios – Não existe bueiro/boca-de-lobo
-V034,Domicílios particulares permanentes alugados – Existe bueiro/boca-de-lobo
-V035,Domicílios particulares permanentes alugados – Não existe bueiro/boca-de-lobo
-V036,Domicílios particulares permanentes cedidos – Existe bueiro/boca-de-lobo
-V037,Domicílios particulares permanentes cedidos – Não existe bueiro/boca-de-lobo
-V038,Domicílios particulares permanentes próprios – Existe rampa para cadeirante
-V039,Domicílios particulares permanentes próprios – Não existe rampa para cadeirante
-V040,Domicílios particulares permanentes alugados – Existe rampa para cadeirante
-V041,Domicílios particulares permanentes alugados – Não existe rampa para cadeirante
-V042,Domicílios particulares permanentes cedidos – Existe rampa para cadeirante
-V043,Domicílios particulares permanentes cedidos – Não existe rampa para cadeirante
-V044,Domicílios particulares permanentes próprios – Existe arborização
-V045,Domicílios particulares permanentes próprios – Não existe arborização
-V046,Domicílios particulares permanentes alugados – Existe arborização
-V047,Domicílios particulares permanentes alugados – Não existe arborização
-V048,Domicílios particulares permanentes cedidos – Existe arborização
-V049,Domicílios particulares permanentes cedidos – Não existe arborização
-V050,Domicílios particulares permanentes próprios – Existe esgoto a céu aberto
-V051,Domicílios particulares permanentes próprios – Não existe esgoto a céu aberto
-V052,Domicílios particulares permanentes alugados – Existe esgoto a céu aberto
-V053,Domicílios particulares permanentes alugados – Não existe esgoto a céu aberto
-V054,Domicílios particulares permanentes cedidos – Existe esgoto a céu aberto
-V055,Domicílios particulares permanentes cedidos – Não existe esgoto a céu aberto
-V056,Domicílios particulares permanentes próprios – Existe lixo acumulado nos logradouros
-V057,Domicílios particulares permanentes próprios – Não existe lixo acumulado nos logradouros
-V058,Domicílios particulares permanentes alugados – Existe lixo acumulado nos logradouros
-V059,Domicílios particulares permanentes alugados – Não existe lixo acumulado nos logradouros
-V060,Domicílios particulares permanentes cedidos – Existe lixo acumulado nos logradouros
-V061,Domicílios particulares permanentes cedidos – Não existe lixo acumulado nos logradouros
-V062,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe identificação do logradouro
-V063,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe identificação do logradouro
-V064,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe identificação do logradouro
-V065,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe identificação do logradouro
-V066,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe iluminação pública
-V067,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe iluminação pública
-V068,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe iluminação pública
-V069,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe iluminação pública
-V070,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe pavimentação
-V071,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe pavimentação
-V072,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe pavimentação
-V073,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe pavimentação
-V074,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe calçada
-V075,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe calçada
-V076,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe calçada
-V077,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe calçada
-V078,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe meio-fio/guia
-V079,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe meio-fio/guia
-V080,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe meio-fio/guia
-V081,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe meio-fio/guia
-V082,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe bueiro/boca-de-lobo
-V083,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe bueiro/boca-de-lobo
-V084,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe bueiro/boca-de-lobo
-V085,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe bueiro/boca-de-lobo
-V086,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe rampa para cadeirante
-V087,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe rampa para cadeirante
-V088,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe rampa para cadeirante
-V089,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe rampa para cadeirante
-V090,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe arborização
-V091,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe arborização
-V092,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe arborização
-V093,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe arborização
-V094,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe esgoto a céu aberto
-V095,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe esgoto a céu aberto
-V096,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe esgoto a céu aberto
-V097,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe esgoto a céu aberto
-V098,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe lixo acumulado nos logradouros
-V099,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe lixo acumulado nos logradouros
-V100,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe lixo acumulado nos logradouros
-V101,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe lixo acumulado nos logradouros
-V102,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe identificação do logradouro
-V103,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe identificação do logradouro
-V104,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe identificação do logradouro
-V105,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe identificação do logradouro
-V106,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe identificação do logradouro
-V107,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe identificação do logradouro
-V108,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe iluminação pública
-V109,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe iluminação pública
-V110,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe iluminação pública
-V111,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe iluminação pública
-V112,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe iluminação pública
-V113,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe iluminação pública
-V114,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe pavimentação
-V115,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe pavimentação
-V116,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe pavimentação
-V117,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe pavimentação
-V118,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe pavimentação
-V119,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe pavimentação
-V120,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe calçada
-V121,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe calçada
-V122,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe calçada
-V123,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe calçada
-V124,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe calçada
-V125,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe calçada
-V126,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe meio-fio/guia
-V127,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe meio-fio/guia
-V128,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe meio-fio/guia
-V129,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe meio-fio/guia
-V130,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe meio-fio/guia
-V131,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe meio-fio/guia
-V132,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe bueiro/boca-de-lobo
-V133,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe bueiro/boca-de-lobo
-V134,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe bueiro/boca-de-lobo
-V135,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe bueiro/boca-de-lobo
-V136,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe bueiro/boca-de-lobo
-V137,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe bueiro/boca-de-lobo
-V138,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe rampa para cadeirante
-V139,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe rampa para cadeirante
-V140,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe rampa para cadeirante
-V141,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe rampa para cadeirante
-V142,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe rampa para cadeirante
-V143,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe rampa para cadeirante
-V144,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe arborização
-V145,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe arborização
-V146,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe arborização
-V147,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe arborização
-V148,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe arborização
-V149,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe arborização
-V150,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe esgoto a céu aberto
-V151,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe esgoto a céu aberto
-V152,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe esgoto a céu aberto
-V153,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe esgoto a céu aberto
-V154,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe esgoto a céu aberto
-V155,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe esgoto a céu aberto
-V156,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe lixo acumulado nos logradouros
-V157,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe lixo acumulado nos logradouros
-V158,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe lixo acumulado nos logradouros
-V159,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe lixo acumulado nos logradouros
-V160,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe lixo acumulado nos logradouros
-V161,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe lixo acumulado nos logradouros
-V162,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe identificação do logradouro
-V163,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe identificação do logradouro
-V164,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe identificação do logradouro
-V165,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe identificação do logradouro
-V166,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe iluminação pública
-V167,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe iluminação pública
-V168,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe iluminação pública
-V169,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe iluminação pública
-V170,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe pavimentação
-V171,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe pavimentação
-V172,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe pavimentação
-V173,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe pavimentação
-V174,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe calçada
-V175,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe calçada
-V176,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe calçada
-V177,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe calçada
-V178,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe meio-fio/guia
-V179,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe meio-fio/guia
-V180,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe meio-fio/guia
-V181,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe meio-fio/guia
-V182,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe bueiro/boca-de-lobo
-V183,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe bueiro/boca-de-lobo
-V184,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe bueiro/boca-de-lobo
-V185,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe bueiro/boca-de-lobo
-V186,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe rampa para cadeirante
-V187,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe rampa para cadeirante
-V188,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe rampa para cadeirante
-V189,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe rampa para cadeirante
-V190,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe arborização
-V191,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe arborização
-V192,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe arborização
-V193,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe arborização
-V194,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe esgoto a céu aberto
-V195,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe esgoto a céu aberto
-V196,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe esgoto a céu aberto
-V197,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe esgoto a céu aberto
-V198,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe lixo acumulado nos logradouros
-V199,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe lixo acumulado nos logradouros
-V200,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe lixo acumulado nos logradouros
-V201,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe lixo acumulado nos logradouros
+NOME DA VARIÁVEL,DESCRIÇÃO DA VARIÁVEL,DESCRIPTION OF THE VARIABLE,unit,target,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor,Industry code,,,,120001000000000,120005000000000
+Situação do setor,Código de situação do setor,Sector status code,,,,1,1
+V001,Domicílios particulares permanentes,Permanent private households,housing_units,,Housing,282,260
+V002,Domicílios particulares permanentes próprios – Existe identificação do logradouro,Private permanent private homes - There is an identification of the public place,housing_units,V001,Housing,131,163
+V003,Domicílios particulares permanentes próprios – Não existe identificação do logradouro,Private permanent private homes - There is no street id,housing_units,V001,Housing,77,14
+V004,Domicílios particulares permanentes alugados – Existe identificação do logradouro,Permanent private households rented - There is an identification of the public place,housing_units,V001,Housing,35,32
+V005,Domicílios particulares permanentes alugados – Não existe identificação do logradouro,Permanent private households rented - There is no street id,housing_units,V001,Housing,18,1
+V006,Domicílios particulares permanentes cedidos – Existe identificação do logradouro,Permanent private households ceded - There is an identification of the public place,housing_units,V001,Housing,16,41
+V007,Domicílios particulares permanentes cedidos – Não existe identificação do logradouro,Permanent private households ceded - There is no street id,housing_units,V001,Housing,5,5
+V008,Domicílios particulares permanentes próprios – Existe iluminação pública,Private permanent private homes - Public lighting,housing_units,V001,Housing,208,177
+V009,Domicílios particulares permanentes próprios – Não existe iluminação pública,Private permanent private homes - No public lighting,housing_units,V001,Housing,0,0
+V010,Domicílios particulares permanentes alugados – Existe iluminação pública,Permanent private households rented - Public lighting,housing_units,V001,Housing,53,33
+V011,Domicílios particulares permanentes alugados – Não existe iluminação pública,Permanent private households rented - No public lighting,housing_units,V001,Housing,0,0
+V012,Domicílios particulares permanentes cedidos – Existe iluminação pública,Permanent private homes ceded - There is public lighting,housing_units,V001,Housing,21,46
+V013,Domicílios particulares permanentes cedidos – Não existe iluminação pública,Private permanent homes ceded - No public street lighting,housing_units,V001,Housing,0,0
+V014,Domicílios particulares permanentes próprios – Existe pavimentação,Private permanent private homes - There is paving,housing_units,V001,Housing,200,75
+V015,Domicílios particulares permanentes próprios – Não existe pavimentação,Private permanent private homes - There is no flooring,housing_units,V001,Housing,8,102
+V016,Domicílios particulares permanentes alugados – Existe pavimentação,Permanent private households rented - Paving exists,housing_units,V001,Housing,49,11
+V017,Domicílios particulares permanentes alugados – Não existe pavimentação,Permanent private households rented - There is no flooring,housing_units,V001,Housing,4,22
+V018,Domicílios particulares permanentes cedidos – Existe pavimentação,Private permanent homes ceded - There is paving,housing_units,V001,Housing,21,16
+V019,Domicílios particulares permanentes cedidos – Não existe pavimentação,Permanent private households assigned - There is no flooring,housing_units,V001,Housing,0,30
+V020,Domicílios particulares permanentes próprios – Existe calçada,Private permanent private homes - There is a sidewalk,housing_units,V001,Housing,58,26
+V021,Domicílios particulares permanentes próprios – Não existe calçada,Private permanent private homes - There is no sidewalk,housing_units,V001,Housing,150,151
+V022,Domicílios particulares permanentes alugados – Existe calçada,Permanent Private Residence Houses - There is a sidewalk,housing_units,V001,Housing,20,2
+V023,Domicílios particulares permanentes alugados – Não existe calçada,Permanent private households rented - There is no sidewalk,housing_units,V001,Housing,33,31
+V024,Domicílios particulares permanentes cedidos – Existe calçada,Permanent private homes ceded - There is a sidewalk,housing_units,V001,Housing,7,4
+V025,Domicílios particulares permanentes cedidos – Não existe calçada,Private permanent homes ceded - There is no sidewalk,housing_units,V001,Housing,14,42
+V026,Domicílios particulares permanentes próprios – Existe meio-fio/guia,Private permanent private homes - There is a curb / guide,housing_units,V001,Housing,189,77
+V027,Domicílios particulares permanentes próprios – Não existe meio-fio/guia,Private permanent private homes - No curb / guide,housing_units,V001,Housing,19,100
+V028,Domicílios particulares permanentes alugados – Existe meio-fio/guia,Permanent Private Residence Housed - There is a curb / guide,housing_units,V001,Housing,48,11
+V029,Domicílios particulares permanentes alugados – Não existe meio-fio/guia,Permanent private households rented - No curb / guide,housing_units,V001,Housing,5,22
+V030,Domicílios particulares permanentes cedidos – Existe meio-fio/guia,Private permanent homes ceded - There is a curb / guide,housing_units,V001,Housing,20,16
+V031,Domicílios particulares permanentes cedidos – Não existe meio-fio/guia,Permanent private households assigned - There is no curb / guide,housing_units,V001,Housing,1,30
+V032,Domicílios particulares permanentes próprios – Existe bueiro/boca-de-lobo,Own permanent private homes - There is manhole / mouth-of-wolf,housing_units,V001,Housing,102,5
+V033,Domicílios particulares permanentes próprios – Não existe bueiro/boca-de-lobo,Private permanent private dwellings - There is no manhole / mouth-of-wolf,housing_units,V001,Housing,106,172
+V034,Domicílios particulares permanentes alugados – Existe bueiro/boca-de-lobo,Private permanent residence hired - There is manhole / mouth-of-wolf,housing_units,V001,Housing,21,0
+V035,Domicílios particulares permanentes alugados – Não existe bueiro/boca-de-lobo,Household permanent private households - There is no manhole / mouth-of-wolf,housing_units,V001,Housing,32,33
+V036,Domicílios particulares permanentes cedidos – Existe bueiro/boca-de-lobo,Permanent private dwellings ceded - There is a manhole / mouth-of-wolf,housing_units,V001,Housing,6,0
+V037,Domicílios particulares permanentes cedidos – Não existe bueiro/boca-de-lobo,Permanent private households ceded - There is no manhole / mouth-of-wolf,housing_units,V001,Housing,15,46
+V038,Domicílios particulares permanentes próprios – Existe rampa para cadeirante,Private permanent private homes - There is a wheelchair ramp,housing_units,V001,Housing,8,33
+V039,Domicílios particulares permanentes próprios – Não existe rampa para cadeirante,Private permanent private homes - There is no wheelchair ramp,housing_units,V001,Housing,200,144
+V040,Domicílios particulares permanentes alugados – Existe rampa para cadeirante,Private permanent residence hired - There is a wheelchair ramp,housing_units,V001,Housing,3,4
+V041,Domicílios particulares permanentes alugados – Não existe rampa para cadeirante,Private permanent residence hired - No wheelchair ramp,housing_units,V001,Housing,50,29
+V042,Domicílios particulares permanentes cedidos – Existe rampa para cadeirante,Permanent private homes ceded - There is a wheelchair ramp,housing_units,V001,Housing,2,6
+V043,Domicílios particulares permanentes cedidos – Não existe rampa para cadeirante,Private permanent homes ceded - There is no wheelchair ramp,housing_units,V001,Housing,19,40
+V044,Domicílios particulares permanentes próprios – Existe arborização,Particular private permanent homes - There is afforestation,housing_units,V001,Housing,85,39
+V045,Domicílios particulares permanentes próprios – Não existe arborização,Private permanent private homes - There is no afforestation,housing_units,V001,Housing,123,138
+V046,Domicílios particulares permanentes alugados – Existe arborização,Permanent private households rented - There is afforestation,housing_units,V001,Housing,21,5
+V047,Domicílios particulares permanentes alugados – Não existe arborização,Permanent private households rented - There is no afforestation,housing_units,V001,Housing,32,28
+V048,Domicílios particulares permanentes cedidos – Existe arborização,Permanent private households ceded - There is afforestation,housing_units,V001,Housing,9,5
+V049,Domicílios particulares permanentes cedidos – Não existe arborização,Permanent private households ceded - There is no afforestation,housing_units,V001,Housing,12,41
+V050,Domicílios particulares permanentes próprios – Existe esgoto a céu aberto,Private permanent private homes - There is open sewage,housing_units,V001,Housing,11,58
+V051,Domicílios particulares permanentes próprios – Não existe esgoto a céu aberto,Private permanent private homes - There is no open sewage,housing_units,V001,Housing,197,119
+V052,Domicílios particulares permanentes alugados – Existe esgoto a céu aberto,Permanent private households leased - There is open sewage,housing_units,V001,Housing,1,17
+V053,Domicílios particulares permanentes alugados – Não existe esgoto a céu aberto,Permanent private households rented - No open sewage,housing_units,V001,Housing,52,16
+V054,Domicílios particulares permanentes cedidos – Existe esgoto a céu aberto,Permanent private households ceded - There is open sewage,housing_units,V001,Housing,1,20
+V055,Domicílios particulares permanentes cedidos – Não existe esgoto a céu aberto,Permanent private households ceded - There is no open sewage,housing_units,V001,Housing,20,26
+V056,Domicílios particulares permanentes próprios – Existe lixo acumulado nos logradouros,Own permanent private homes - There is accumulated garbage in the,housing_units,V001,Housing,0,0
+V057,Domicílios particulares permanentes próprios – Não existe lixo acumulado nos logradouros,Own permanent private homes - There is no accumulated garbage in the,housing_units,V001,Housing,208,177
+V058,Domicílios particulares permanentes alugados – Existe lixo acumulado nos logradouros,Permanent private households rented - There is accumulated garbage in the streets,housing_units,V001,Housing,0,0
+V059,Domicílios particulares permanentes alugados – Não existe lixo acumulado nos logradouros,Permanent private households rented - There is no accumulated garbage in the streets,housing_units,V001,Housing,53,33
+V060,Domicílios particulares permanentes cedidos – Existe lixo acumulado nos logradouros,Permanent private households ceded - There is accumulated garbage in the streets,housing_units,V001,Housing,0,0
+V061,Domicílios particulares permanentes cedidos – Não existe lixo acumulado nos logradouros,Permanent private households ceded - There is no accumulated garbage in the streets,housing_units,V001,Housing,21,46
+V062,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe identificação do logradouro,Permanent private households with general water distribution network - There is an identification of the public place,housing_units,V001,Housing,92,201
+V063,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe identificação do logradouro,Permanent private households with general water distribution network - No street identification,housing_units,V001,Housing,43,12
+V064,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe identificação do logradouro,Permanent private dwellings with well or spring in the property - There is identification of the public place,housing_units,V001,Housing,90,32
+V065,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe identificação do logradouro,Permanent private dwellings with well or spring on the property - No street id,housing_units,V001,Housing,57,2
+V066,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe iluminação pública,Permanent private households with a general water distribution network - Public lighting,housing_units,V001,Housing,135,213
+V067,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe iluminação pública,Permanent private households with general water distribution network - No public lighting,housing_units,V001,Housing,0,0
+V068,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe iluminação pública,Permanent private dwellings with well or spring on the property - There is public lighting,housing_units,V001,Housing,147,34
+V069,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe iluminação pública,Permanent private dwellings with well or spring on the property - No public lighting,housing_units,V001,Housing,0,0
+V070,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe pavimentação,Private permanent households with general water distribution network - Paving exists,housing_units,V001,Housing,131,89
+V071,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe pavimentação,Permanent private households with general water distribution network - No paving,housing_units,V001,Housing,4,124
+V072,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe pavimentação,Permanent private dwellings with well or spring on the property - There is paving,housing_units,V001,Housing,139,13
+V073,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe pavimentação,Permanent private dwellings with well or spring on the property - There is no flooring,housing_units,V001,Housing,8,21
+V074,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe calçada,Permanent private households with a general water distribution network - There is a sidewalk,housing_units,V001,Housing,44,31
+V075,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe calçada,Permanent private households with a general water distribution network - There is no sidewalk,housing_units,V001,Housing,91,182
+V076,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe calçada,Permanent private dwellings with well or spring on the property - Exist sidewalk,housing_units,V001,Housing,41,1
+V077,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe calçada,Permanent private dwellings with well or spring on the property - There is no sidewalk,housing_units,V001,Housing,106,33
+V078,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe meio-fio/guia,Permanent private households with a general water distribution network - There is a curb / guide,housing_units,V001,Housing,127,91
+V079,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe meio-fio/guia,Permanent private households with general water distribution network - No curb / guide,housing_units,V001,Housing,8,122
+V080,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe meio-fio/guia,Permanent private dwellings with well or spring on the property - There is a curb / guide,housing_units,V001,Housing,130,13
+V081,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe meio-fio/guia,Permanent private dwellings with well or spring on the property - No curb / guide,housing_units,V001,Housing,17,21
+V082,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe bueiro/boca-de-lobo,Private permanent households with a general water distribution network - There is a manhole / mouth-of-wolf,housing_units,V001,Housing,56,4
+V083,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe bueiro/boca-de-lobo,Permanent private households with a general water distribution network - There is no manhole / mouth-watering,housing_units,V001,Housing,79,209
+V084,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe bueiro/boca-de-lobo,Permanent private dwellings with well or spring in the property - There is manhole / mouth-of-wolf,housing_units,V001,Housing,73,1
+V085,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe bueiro/boca-de-lobo,Permanent private dwellings with well or spring on the property - There is no manhole / mouth-of-wolf,housing_units,V001,Housing,74,33
+V086,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe rampa para cadeirante,Permanent private households with general water distribution network - There is a wheelchair ramp,housing_units,V001,Housing,12,41
+V087,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe rampa para cadeirante,Permanent private households with general water distribution network - No wheelchair ramp,housing_units,V001,Housing,123,172
+V088,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe rampa para cadeirante,Private permanent homes with well or spring on the property - There is a wheelchair ramp,housing_units,V001,Housing,1,2
+V089,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe rampa para cadeirante,Permanent private dwellings with well or spring on the property - There is no wheelchair ramp,housing_units,V001,Housing,146,32
+V090,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe arborização,Permanent permanent households with general water distribution network - There is afforestation,housing_units,V001,Housing,65,37
+V091,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe arborização,Permanent private households with general water distribution network - There is no afforestation,housing_units,V001,Housing,70,176
+V092,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe arborização,Permanent private households with well or spring on the property - There is afforestation,housing_units,V001,Housing,50,11
+V093,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe arborização,Permanent private dwellings with well or spring on the property - There is no afforestation,housing_units,V001,Housing,97,23
+V094,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe esgoto a céu aberto,Permanent private households with a general water distribution network - Open sewage is available,housing_units,V001,Housing,7,73
+V095,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe esgoto a céu aberto,Private permanent households with general water distribution network - No open sewage,housing_units,V001,Housing,128,140
+V096,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe esgoto a céu aberto,Permanent private dwellings with well or spring on the property - There is open sewage,housing_units,V001,Housing,6,15
+V097,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe esgoto a céu aberto,Permanent private dwellings with well or spring on the property - There is no open sewage,housing_units,V001,Housing,141,19
+V098,Domicílios particulares permanentes com rede geral de distribuição de água  – Existe lixo acumulado nos logradouros,Permanent private households with a general water distribution network - There is accumulated garbage in the,housing_units,V001,Housing,0,0
+V099,Domicílios particulares permanentes com rede geral de distribuição de água  – Não existe lixo acumulado nos logradouros,Permanent private households with a general water distribution network - There is no accumulated garbage in the public places,housing_units,V001,Housing,135,213
+V100,Domicílios particulares permanentes com poço ou nascente na propriedade – Existe lixo acumulado nos logradouros,Permanent private dwellings with well or spring on the property - There is accumulated garbage in the streets,housing_units,V001,Housing,0,0
+V101,Domicílios particulares permanentes com poço ou nascente na propriedade – Não existe lixo acumulado nos logradouros,Permanent private dwellings with well or spring on the property - There is no accumulated garbage in the street,housing_units,V001,Housing,147,34
+V102,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe identificação do logradouro,Permanent private households with bathrooms or sanitary facilities and sanitary sewage from the general sewage network or rainwater network - There is an identification of the public place,housing_units,V001,Housing,5,24
+V103,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe identificação do logradouro,Permanent private households that had a toilet or sewage system and sewage from the general sewage network or rainwater network - There is no street identification,housing_units,V001,Housing,1,0
+V104,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe identificação do logradouro,Permanent private households with bathrooms or toilets and septic tank sewage - There is an identification of the public place,housing_units,V001,Housing,12,132
+V105,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe identificação do logradouro,Permanent private dwellings that had a bathroom or sanitary and septic tank sewage - There is no identification of the public place,housing_units,V001,Housing,5,8
+V106,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe identificação do logradouro,Permanent private households that did not have a bathroom or toilet - There is an identification of the public place,housing_units,V001,Housing,0,11
+V107,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe identificação do logradouro,Permanent private households that did not have a bathroom or toilet - No street identification,housing_units,V001,Housing,0,12
+V108,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe iluminação pública,Permanent private households that had a bathroom or sanitary sewer and the general sewage network or rainwater network - There is public lighting,housing_units,V001,Housing,6,24
+V109,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe iluminação pública,Permanent private households that had a toilet or sewage system and sewage from the general sewage network or rainwater network - No public lighting,housing_units,V001,Housing,0,0
+V110,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe iluminação pública,Private permanent households that had a bathroom or sanitary and septic tank sewage - Public lighting,housing_units,V001,Housing,17,140
+V111,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe iluminação pública,Private permanent households that had a bathroom or sanitary and septic tank sewage - No public lighting,housing_units,V001,Housing,0,0
+V112,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe iluminação pública,Permanent private households that did not have a bathroom or toilet - Public lighting,housing_units,V001,Housing,0,23
+V113,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe iluminação pública,Permanent private households that did not have a bathroom or toilet - No public lighting,housing_units,V001,Housing,0,0
+V114,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe pavimentação,Permanent private households that had a toilet or sewage system and sewage from the general sewage network or rainwater network - There is paving,housing_units,V001,Housing,6,16
+V115,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe pavimentação,Permanent private households that had a toilet or sewage system and sewage from the general sewage network or rainwater network - There is no paving,housing_units,V001,Housing,0,8
+V116,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe pavimentação,Permanent private households that had a bathroom or toilet and septic tank sewage - There is paving,housing_units,V001,Housing,16,43
+V117,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe pavimentação,Private permanent households that had a bathroom or sanitary and septic tank sewage - There is no flooring,housing_units,V001,Housing,1,97
+V118,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe pavimentação,Permanent private households that did not have a bathroom or toilet - Paving exists,housing_units,V001,Housing,0,4
+V119,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe pavimentação,Permanent private households that did not have a bathroom or toilet - There is no flooring,housing_units,V001,Housing,0,19
+V120,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe calçada,Permanent private households that had a toilet or sewage system and sewage from the general sewage network or rainwater network - There is a sidewalk,housing_units,V001,Housing,1,3
+V121,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe calçada,Permanent private households with bathrooms or toilets and sanitary sewage from the general sewage network or rainwater network - There is no sidewalk,housing_units,V001,Housing,5,21
+V122,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe calçada,Permanent private households that had a bathroom or toilet and septic tank sewage - There is a sidewalk,housing_units,V001,Housing,7,15
+V123,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe calçada,Permanent private households that had a bathroom or sanitary and septic tank sewage - There is no sidewalk,housing_units,V001,Housing,10,125
+V124,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe calçada,Permanent private households that did not have a bathroom or toilet - There is a sidewalk,housing_units,V001,Housing,0,0
+V125,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe calçada,Permanent private households that did not have a bathroom or toilet - There is no sidewalk,housing_units,V001,Housing,0,23
+V126,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe meio-fio/guia,Permanent private households that had bathrooms or sanitary facilities and sanitary sewage from the general sewage network or rainwater network - There is a curb / guide,housing_units,V001,Housing,6,16
+V127,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe meio-fio/guia,Permanent private households that had a bathroom or sanitary sewer system and sewage from the general sewage network or rainwater network - There is no curb / guide,housing_units,V001,Housing,0,8
+V128,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe meio-fio/guia,Permanent private households that had a bathroom or toilet and a septic tank sewer - There is a curb / guide,housing_units,V001,Housing,15,45
+V129,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe meio-fio/guia,Permanent private households that had a bathroom or toilet and a septic tank sewer - There is no curb / guide,housing_units,V001,Housing,2,95
+V130,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe meio-fio/guia,Permanent private households that did not have a bathroom or toilet - There is a curb / guide,housing_units,V001,Housing,0,4
+V131,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe meio-fio/guia,Permanent private households that did not have a bathroom or toilet - There is no curb / guide,housing_units,V001,Housing,0,19
+V132,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe bueiro/boca-de-lobo,Permanent private households with bathrooms or toilets and sanitary sewage from the general sewage network or rainwater network - There is a manhole / mouth-of-wolf,housing_units,V001,Housing,0,0
+V133,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe bueiro/boca-de-lobo,Permanent private homes that had a bathroom or sanitary sewer and sewage from the general sewer network or rainwater network - There is no manhole / mouth-of-wolf,housing_units,V001,Housing,6,24
+V134,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe bueiro/boca-de-lobo,Permanent private households that had a bathroom or sanitary and septic tank sewage - There is manhole / mouth-of-wolf,housing_units,V001,Housing,9,2
+V135,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe bueiro/boca-de-lobo,Permanent private households that had a bathroom or sanitary and septic tank sewage - There is no manhole / mouth-of-wolf,housing_units,V001,Housing,8,138
+V136,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe bueiro/boca-de-lobo,Permanent private households that did not have a bathroom or toilet - There is a manhole / mouth-of-wolf,housing_units,V001,Housing,0,0
+V137,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe bueiro/boca-de-lobo,Permanent private households that did not have a bathroom or toilet - There is no manhole / mouth-watering,housing_units,V001,Housing,0,23
+V138,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe rampa para cadeirante,Permanent private households that had a bathroom or sanitary and sewage from the general sewage system or rainwater system - There is a ramp for a wheelchair,housing_units,V001,Housing,0,9
+V139,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe rampa para cadeirante,Permanent private households with bathrooms or toilets and sanitary sewage from the general sewage system or rainwater system - There is no wheelchair ramp,housing_units,V001,Housing,6,15
+V140,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe rampa para cadeirante,Permanent private households that had a bathroom or toilet and septic tank sewage - There is a wheelchair ramp,housing_units,V001,Housing,0,18
+V141,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe rampa para cadeirante,Permanent private households with bathrooms or toilets and septic tank sewage - There is no wheelchair ramp,housing_units,V001,Housing,17,122
+V142,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe rampa para cadeirante,Permanent private households that did not have a bathroom or toilet - There is a wheelchair ramp,housing_units,V001,Housing,0,0
+V143,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe rampa para cadeirante,Permanent private households that did not have a bathroom or toilet - There is no wheelchair ramp,housing_units,V001,Housing,0,23
+V144,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe arborização,Private permanent households with bathrooms or toilets and sewage from the general sewage network or rainwater network - There is afforestation,housing_units,V001,Housing,0,6
+V145,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe arborização,Permanent private households with bathrooms or toilets and sanitary sewage from the general sewage network or rainwater network - There is no afforestation,housing_units,V001,Housing,6,18
+V146,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe arborização,Permanent private households that had a bathroom or sanitary and septic tank sewage - There is afforestation,housing_units,V001,Housing,6,22
+V147,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe arborização,Permanent private households that had a bathroom or sanitary and septic tank sewage - There is no afforestation,housing_units,V001,Housing,11,118
+V148,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe arborização,Permanent private households that did not have a bathroom or toilet - There is afforestation,housing_units,V001,Housing,0,6
+V149,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe arborização,Permanent private households that did not have a bathroom or toilet - There is no afforestation,housing_units,V001,Housing,0,17
+V150,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe esgoto a céu aberto,Permanent private households that had a toilet or sewage system and sewage from the general sewage network or rainwater network - There is open sewage,housing_units,V001,Housing,0,3
+V151,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe esgoto a céu aberto,Permanent private households with bathrooms or toilets and sanitary sewage from the general sewage network or rainwater network - There is no open sewage,housing_units,V001,Housing,6,21
+V152,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe esgoto a céu aberto,Permanent private households that had a toilet or sewage system and septic tank sewage - There is open sewage,housing_units,V001,Housing,1,59
+V153,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe esgoto a céu aberto,Permanent private households that had a bathroom or sanitary and septic tank sewage - There is no open sewage,housing_units,V001,Housing,16,81
+V154,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe esgoto a céu aberto,Permanent private households that did not have a bathroom or toilets - There is open sewage,housing_units,V001,Housing,0,10
+V155,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe esgoto a céu aberto,Permanent private households that did not have a bathroom or toilet - No open sewage,housing_units,V001,Housing,0,13
+V156,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Existe lixo acumulado nos logradouros,Permanent private households with bathrooms or toilets and sanitary sewage from the general sewage network or rainwater network - There is accumulated garbage in the public areas,housing_units,V001,Housing,0,0
+V157,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário da rede geral de esgoto ou rede pluvial – Não existe lixo acumulado nos logradouros,Permanent private households that had a bathroom or sanitary sewer and sewage from the general sewage network or rainwater network - There is no accumulated garbage in the street,housing_units,V001,Housing,6,24
+V158,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Existe lixo acumulado nos logradouros,Permanent private households that had a bathroom or toilet and a septic tank sewer - There is accumulated garbage in the street,housing_units,V001,Housing,0,0
+V159,Domicílios particulares permanentes que tinham banheiro ou sanitário e esgotamento sanitário de fossa séptica – Não existe lixo acumulado nos logradouros,Permanent private dwellings that had a bathroom or toilet and septic tank sewage - There is no accumulated garbage in the street,housing_units,V001,Housing,17,140
+V160,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Existe lixo acumulado nos logradouros,Permanent private households that did not have a bathroom or toilet - There is garbage accumulated in the public areas,housing_units,V001,Housing,0,0
+V161,Domicílios particulares permanentes que não tinham banheiro ou sanitário – Não existe lixo acumulado nos logradouros,Permanent private households that did not have a bathroom or toilet - There is no garbage accumulated in the streets,housing_units,V001,Housing,0,23
+V162,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe identificação do logradouro,Permanent private households with garbage collected directly by cleaning service - There is identification of the public place,housing_units,V001,Housing,180,226
+V163,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe identificação do logradouro,Permanent private households with garbage collected directly by cleaning service - No street identification,housing_units,V001,Housing,99,13
+V164,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe identificação do logradouro,Permanent private households with garbage deposited in a cleaning service bucket - There is an identification of the public place,housing_units,V001,Housing,0,2
+V165,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe identificação do logradouro,Permanent private households with garbage deposited in a cleaning service bucket - There is no street id,housing_units,V001,Housing,0,0
+V166,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe iluminação pública,Permanent private households with garbage collected directly by cleaning service - There is public lighting,housing_units,V001,Housing,279,239
+V167,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe iluminação pública,Permanent private households with garbage collected directly by cleaning service - No public lighting,housing_units,V001,Housing,0,0
+V168,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe iluminação pública,Permanent private households with garbage deposited in a cleaning service bucket - Public lighting,housing_units,V001,Housing,0,2
+V169,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe iluminação pública,Permanent private households with garbage deposited in cleaning service bucket - No public lighting,housing_units,V001,Housing,0,0
+V170,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe pavimentação,Permanent private households with garbage collected directly by cleaning service - There is paving,housing_units,V001,Housing,267,102
+V171,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe pavimentação,Permanent private households with garbage collected directly by cleaning service - There is no flooring,housing_units,V001,Housing,12,137
+V172,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe pavimentação,Permanent private households with garbage deposited in a cleaning service bucket - There is paving,housing_units,V001,Housing,0,0
+V173,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe pavimentação,Permanent private households with garbage deposited in a cleaning service bucket - There is no flooring,housing_units,V001,Housing,0,2
+V174,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe calçada,Permanent private households with garbage collected directly by cleaning service - There is sidewalk,housing_units,V001,Housing,85,32
+V175,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe calçada,Permanent private households with garbage collected directly by cleaning service - There is no sidewalk,housing_units,V001,Housing,194,207
+V176,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe calçada,Permanent private households with garbage deposited in a cleaning service bucket - There is a sidewalk,housing_units,V001,Housing,0,0
+V177,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe calçada,Permanent private households with trash deposited in a cleaning service bucket - There is no sidewalk,housing_units,V001,Housing,0,2
+V178,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe meio-fio/guia,Permanent private households with garbage collected directly by cleaning service - There is a curb / guide,housing_units,V001,Housing,257,104
+V179,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe meio-fio/guia,Permanent private households with garbage collected directly by cleaning service - There is no curb / guide,housing_units,V001,Housing,22,135
+V180,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe meio-fio/guia,Permanent private households with garbage deposited in a cleaning service bucket - There is a curb / guide,housing_units,V001,Housing,0,0
+V181,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe meio-fio/guia,Permanent private households with garbage deposited in a cleaning service bucket - There is no curb / guide,housing_units,V001,Housing,0,2
+V182,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe bueiro/boca-de-lobo,Permanent private households with garbage collected directly by cleaning service - There is manhole / mouth-of-wolf,housing_units,V001,Housing,129,5
+V183,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe bueiro/boca-de-lobo,Permanent private households with garbage collected directly by cleaning service - There is no manhole / mouth-of-wolf,housing_units,V001,Housing,150,234
+V184,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe bueiro/boca-de-lobo,Permanent private households with rubbish deposited in a cleaning service bucket - There is manhole / mouth-of-wolf,housing_units,V001,Housing,0,0
+V185,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe bueiro/boca-de-lobo,Permanent private households with rubbish deposited in a cleaning service bucket - There is no manhole / mouth-of-wolf,housing_units,V001,Housing,0,2
+V186,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe rampa para cadeirante,Permanent private households with garbage collected directly by cleaning service - There is a wheelchair ramp,housing_units,V001,Housing,13,43
+V187,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe rampa para cadeirante,Permanent private households with garbage collected directly by cleaning service - There is no wheelchair ramp,housing_units,V001,Housing,266,196
+V188,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe rampa para cadeirante,Permanent private households with garbage deposited in a cleaning service bucket - There is a wheelchair ramp,housing_units,V001,Housing,0,0
+V189,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe rampa para cadeirante,Permanent private households with garbage deposited in a cleaning service bucket - There is no wheelchair ramp,housing_units,V001,Housing,0,2
+V190,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe arborização,Permanent private households with garbage collected directly by cleaning service - There is afforestation,housing_units,V001,Housing,115,46
+V191,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe arborização,Permanent private households with garbage collected directly by cleaning service - There is no afforestation,housing_units,V001,Housing,164,193
+V192,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe arborização,Permanent private households with garbage deposited in a cleaning service bucket - There is afforestation,housing_units,V001,Housing,0,1
+V193,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe arborização,Permanent private households with garbage deposited in a cleaning service bucket - There is no afforestation,housing_units,V001,Housing,0,1
+V194,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe esgoto a céu aberto,Permanent private households with garbage collected directly by cleaning service - There is open sewage,housing_units,V001,Housing,13,87
+V195,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe esgoto a céu aberto,Permanent private households with garbage collected directly by cleaning service - No open sewage,housing_units,V001,Housing,266,152
+V196,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe esgoto a céu aberto,Permanent private households with garbage deposited in a cleaning service bucket - There is open sewage,housing_units,V001,Housing,0,2
+V197,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe esgoto a céu aberto,Permanent private households with garbage deposited in a cleaning service bucket - There is no open sewage,housing_units,V001,Housing,0,0
+V198,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Existe lixo acumulado nos logradouros,Permanent private households with garbage collected directly by cleaning service - There is accumulated garbage in the street,housing_units,V001,Housing,0,0
+V199,Domicílios particulares permanentes com lixo coletado diretamente por serviço de limpeza – Não existe lixo acumulado nos logradouros,Permanent private households with garbage collected directly by cleaning service - There is no garbage accumulated in the streets,housing_units,V001,Housing,279,239
+V200,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Existe lixo acumulado nos logradouros,Permanent private households with garbage deposited in a cleaning service bucket - There is accumulated garbage in the street,housing_units,V001,Housing,0,0
+V201,Domicílios particulares permanentes com lixo depositado em caçamba de serviço de limpeza – Não existe lixo acumulado nos logradouros,Permanent private households with garbage deposited in a cleaning service bucket - There is no garbage accumulated in the premises,housing_units,V001,Housing,0,2
