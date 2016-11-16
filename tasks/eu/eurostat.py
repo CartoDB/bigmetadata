@@ -388,6 +388,8 @@ class FlexEurostatColumns(ColumnsTask):
                 if "percentage" in unitdef.lower() or "per" in unitdef.lower() or "rate" in unitdef.lower():
                     final_unit_tag = "ratio"
                     aggregate = None
+                elif 'nama_aux_cra' in var_code:
+                    aggregate = None
                 else:
                     final_unit_tag = self.units
                     aggregate = 'sum'
