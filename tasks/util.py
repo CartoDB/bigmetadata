@@ -1223,7 +1223,7 @@ class CSV2TempTableTask(TempTableTask):
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
         header_row = shell('head -n 1 {csv}'.format(csv=csv)).strip()
-        return [(h, 'Text') for h in header_row.split(self.delimiter)]
+        return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
 
     def run(self):
         if isinstance(self.input_csv(), basestring):
