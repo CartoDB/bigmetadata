@@ -1,6 +1,6 @@
-Nome da variável,Descrição da variável
-Cod_setor,Código do setor censitário
-Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
-V001,Total de pessoas de até 10 anos de idade que tinham registro de nascimento
-V002,Total de pessoas de até 10 anos de idade que não tinham registro de nascimento
-V003,Total de pessoas de até 10 anos de idade que não sabiam se tinham registro de nascimento (inclusive sem declaração)
+Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,Total de pessoas de até 10 anos de idade que tinham registro de nascimento,Total of persons up to 10 years of age who had birth registration,people,,Health,179,232
+V002,Total de pessoas de até 10 anos de idade que não tinham registro de nascimento,Total of persons under 10 years of age who had no birth registration,people,,Health,0,3
+V003,Total de pessoas de até 10 anos de idade que não sabiam se tinham registro de nascimento (inclusive sem declaração),Total of persons up to 10 years of age who did not know if they had birth registration (including without declaration),people,,Health,0,0

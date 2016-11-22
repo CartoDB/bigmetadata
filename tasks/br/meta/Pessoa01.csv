@@ -1,88 +1,88 @@
-Nome da variável,Descrição da variável
-Cod_setor,Código do setor censitário
-Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
-V001,Pessoas alfabetizadas com 5 ou mais anos de idade
-V002,Pessoas alfabetizadas com 5 anos de idade
-V003,Pessoas alfabetizadas com 6 anos de idade
-V004,Pessoas alfabetizadas com 7 anos de idade
-V005,Pessoas alfabetizadas com 8 anos de idade
-V006,Pessoas alfabetizadas com 9 anos de idade
-V007,Pessoas alfabetizadas com 10 anos de idade
-V008,Pessoas alfabetizadas com 11 anos de idade
-V009,Pessoas alfabetizadas com 12 anos de idade
-V010,Pessoas alfabetizadas com 13 anos de idade
-V011,Pessoas alfabetizadas com 14 anos de idade
-V012,Pessoas alfabetizadas com 15 anos de idade
-V013,Pessoas alfabetizadas com 16 anos de idade
-V014,Pessoas alfabetizadas com 17 anos de idade
-V015,Pessoas alfabetizadas com 18 anos de idade
-V016,Pessoas alfabetizadas com 19 anos de idade
-V017,Pessoas alfabetizadas com 20 anos de idade
-V018,Pessoas alfabetizadas com 21 anos de idade
-V019,Pessoas alfabetizadas com 22 anos de idade
-V020,Pessoas alfabetizadas com 23 anos de idade
-V021,Pessoas alfabetizadas com 24 anos de idade
-V022,Pessoas alfabetizadas com 25 anos de idade
-V023,Pessoas alfabetizadas com 26 anos de idade
-V024,Pessoas alfabetizadas com 27 anos de idade
-V025,Pessoas alfabetizadas com 28 anos de idade
-V026,Pessoas alfabetizadas com 29 anos de idade
-V027,Pessoas alfabetizadas com 30 anos de idade
-V028,Pessoas alfabetizadas com 31 anos de idade
-V029,Pessoas alfabetizadas com 32 anos de idade
-V030,Pessoas alfabetizadas com 33 anos de idade
-V031,Pessoas alfabetizadas com 34 anos de idade
-V032,Pessoas alfabetizadas com 35 anos de idade
-V033,Pessoas alfabetizadas com 36 anos de idade
-V034,Pessoas alfabetizadas com 37 anos de idade
-V035,Pessoas alfabetizadas com 38 anos de idade
-V036,Pessoas alfabetizadas com 39 anos de idade
-V037,Pessoas alfabetizadas com 40 anos de idade
-V038,Pessoas alfabetizadas com 41 anos de idade
-V039,Pessoas alfabetizadas com 42 anos de idade
-V040,Pessoas alfabetizadas com 43 anos de idade
-V041,Pessoas alfabetizadas com 44 anos de idade
-V042,Pessoas alfabetizadas com 45 anos de idade
-V043,Pessoas alfabetizadas com 46 anos de idade
-V044,Pessoas alfabetizadas com 47 anos de idade
-V045,Pessoas alfabetizadas com 48 anos de idade
-V046,Pessoas alfabetizadas com 49 anos de idade
-V047,Pessoas alfabetizadas com 50 anos de idade
-V048,Pessoas alfabetizadas com 51 anos de idade
-V049,Pessoas alfabetizadas com 52 anos de idade
-V050,Pessoas alfabetizadas com 53 anos de idade
-V051,Pessoas alfabetizadas com 54 anos de idade
-V052,Pessoas alfabetizadas com 55 anos de idade
-V053,Pessoas alfabetizadas com 56 anos de idade
-V054,Pessoas alfabetizadas com 57 anos de idade
-V055,Pessoas alfabetizadas com 58 anos de idade
-V056,Pessoas alfabetizadas com 59 anos de idade
-V057,Pessoas alfabetizadas com 60 anos de idade
-V058,Pessoas alfabetizadas com 61 anos de idade
-V059,Pessoas alfabetizadas com 62 anos de idade
-V060,Pessoas alfabetizadas com 63 anos de idade
-V061,Pessoas alfabetizadas com 64 anos de idade
-V062,Pessoas alfabetizadas com 65 anos de idade
-V063,Pessoas alfabetizadas com 66 anos de idade
-V064,Pessoas alfabetizadas com 67 anos de idade
-V065,Pessoas alfabetizadas com 68 anos de idade
-V066,Pessoas alfabetizadas com 69 anos de idade
-V067,Pessoas alfabetizadas com 70 anos de idade
-V068,Pessoas alfabetizadas com 71 anos de idade
-V069,Pessoas alfabetizadas com 72 anos de idade
-V070,Pessoas alfabetizadas com 73 anos de idade
-V071,Pessoas alfabetizadas com 74 anos de idade
-V072,Pessoas alfabetizadas com 75 anos de idade
-V073,Pessoas alfabetizadas com 76 anos de idade
-V074,Pessoas alfabetizadas com 77 anos de idade
-V075,Pessoas alfabetizadas com 78 anos de idade
-V076,Pessoas alfabetizadas com 79 anos de idade
-V077,Pessoas alfabetizadas com 80 anos ou mais de idade 
-V078,Responsáveis alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
-V079,Cônjuges ou companheiros(as) (de sexo diferente e do mesmo sexo da pessoa responsável) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
-V080,Filhos(as) ou enteados(as) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
-V081,"Pais, mães ou sogros(as) alfabetizados(as) com 20 ou mais anos de idade em domicílios particulares"
-V082,Netos(as) ou bisnetos(as) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
-V083,Irmãos ou irmãs alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
-V084,Outros parentes alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares
-V085,Conviventes alfabetizados com 10 ou mais anos de idade em domicílios particulares
+Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,Pessoas alfabetizadas com 5 ou mais anos de idade,Persons with literacy at least 5 years of age,people,,Education,787,676
+V002,Pessoas alfabetizadas com 5 anos de idade,5-year-old literate,people,V001,Education,4,1
+V003,Pessoas alfabetizadas com 6 anos de idade,6-year-old literate,people,V001,Education,13,9
+V004,Pessoas alfabetizadas com 7 anos de idade,Literate 7 year olds,people,V001,Education,13,15
+V005,Pessoas alfabetizadas com 8 anos de idade,8-year-old literate,people,V001,Education,16,16
+V006,Pessoas alfabetizadas com 9 anos de idade,9-year-old literate,people,V001,Education,14,15
+V007,Pessoas alfabetizadas com 10 anos de idade,10-year-old literate,people,V001,Education,16,17
+V008,Pessoas alfabetizadas com 11 anos de idade,11-year old literate,people,V001,Education,22,22
+V009,Pessoas alfabetizadas com 12 anos de idade,12-year-old literate,people,V001,Education,20,16
+V010,Pessoas alfabetizadas com 13 anos de idade,13-year-old literate,people,V001,Education,26,29
+V011,Pessoas alfabetizadas com 14 anos de idade,14-year-old literate,people,V001,Education,16,24
+V012,Pessoas alfabetizadas com 15 anos de idade,People who are literate at 15 years of age,people,V001,Education,23,23
+V013,Pessoas alfabetizadas com 16 anos de idade,16-year-old literate,people,V001,Education,22,15
+V014,Pessoas alfabetizadas com 17 anos de idade,17-year-old literate,people,V001,Education,14,17
+V015,Pessoas alfabetizadas com 18 anos de idade,18-year-old literate,people,V001,Education,17,19
+V016,Pessoas alfabetizadas com 19 anos de idade,19-year-old literate,people,V001,Education,14,16
+V017,Pessoas alfabetizadas com 20 anos de idade,20-year-old literate,people,V001,Education,17,24
+V018,Pessoas alfabetizadas com 21 anos de idade,21-year-old literate,people,V001,Education,21,18
+V019,Pessoas alfabetizadas com 22 anos de idade,22-year-old literate,people,V001,Education,18,10
+V020,Pessoas alfabetizadas com 23 anos de idade,23-year-old literate people,people,V001,Education,10,13
+V021,Pessoas alfabetizadas com 24 anos de idade,24-year-old literate,people,V001,Education,16,18
+V022,Pessoas alfabetizadas com 25 anos de idade,People with literacy at 25 years of age,people,V001,Education,23,18
+V023,Pessoas alfabetizadas com 26 anos de idade,26-year-old literate,people,V001,Education,20,19
+V024,Pessoas alfabetizadas com 27 anos de idade,27-year-old literate,people,V001,Education,15,9
+V025,Pessoas alfabetizadas com 28 anos de idade,28-year-old literate,people,V001,Education,25,19
+V026,Pessoas alfabetizadas com 29 anos de idade,29-year-old literate,people,V001,Education,10,14
+V027,Pessoas alfabetizadas com 30 anos de idade,30-year-old literate,people,V001,Education,15,18
+V028,Pessoas alfabetizadas com 31 anos de idade,31-year-old literate,people,V001,Education,18,16
+V029,Pessoas alfabetizadas com 32 anos de idade,32-year-old literate people,people,V001,Education,13,16
+V030,Pessoas alfabetizadas com 33 anos de idade,33-year-old literate,people,V001,Education,6,7
+V031,Pessoas alfabetizadas com 34 anos de idade,34-year-old literate,people,V001,Education,13,18
+V032,Pessoas alfabetizadas com 35 anos de idade,35-year-old literate,people,V001,Education,14,13
+V033,Pessoas alfabetizadas com 36 anos de idade,36-year-old literate,people,V001,Education,12,13
+V034,Pessoas alfabetizadas com 37 anos de idade,37-year-old literate,people,V001,Education,15,13
+V035,Pessoas alfabetizadas com 38 anos de idade,38-year-old literate,people,V001,Education,16,13
+V036,Pessoas alfabetizadas com 39 anos de idade,39-year-old literate people,people,V001,Education,17,7
+V037,Pessoas alfabetizadas com 40 anos de idade,40-year-old literate people,people,V001,Education,6,10
+V038,Pessoas alfabetizadas com 41 anos de idade,41-year-old literate,people,V001,Education,10,9
+V039,Pessoas alfabetizadas com 42 anos de idade,42-year-old literate,people,V001,Education,10,5
+V040,Pessoas alfabetizadas com 43 anos de idade,43-year-old literate,people,V001,Education,11,7
+V041,Pessoas alfabetizadas com 44 anos de idade,44-year-old literate,people,V001,Education,10,5
+V042,Pessoas alfabetizadas com 45 anos de idade,45-year-old literate,people,V001,Education,7,7
+V043,Pessoas alfabetizadas com 46 anos de idade,46-year-old literate,people,V001,Education,6,4
+V044,Pessoas alfabetizadas com 47 anos de idade,47-year-old literate,people,V001,Education,6,4
+V045,Pessoas alfabetizadas com 48 anos de idade,48-year-old literate,people,V001,Education,11,7
+V046,Pessoas alfabetizadas com 49 anos de idade,49-year-old literate,people,V001,Education,16,5
+V047,Pessoas alfabetizadas com 50 anos de idade,50-year-old literate,people,V001,Education,12,3
+V048,Pessoas alfabetizadas com 51 anos de idade,51-year-old literate,people,V001,Education,11,5
+V049,Pessoas alfabetizadas com 52 anos de idade,52-year-old literate people,people,V001,Education,10,3
+V050,Pessoas alfabetizadas com 53 anos de idade,53-year-old literate,people,V001,Education,10,2
+V051,Pessoas alfabetizadas com 54 anos de idade,54-year-old literate,people,V001,Education,6,4
+V052,Pessoas alfabetizadas com 55 anos de idade,55-year-old literate,people,V001,Education,8,6
+V053,Pessoas alfabetizadas com 56 anos de idade,56-year-old literate,people,V001,Education,9,5
+V054,Pessoas alfabetizadas com 57 anos de idade,57-year-old literate,people,V001,Education,5,3
+V055,Pessoas alfabetizadas com 58 anos de idade,58-year-old literate,people,V001,Education,8,1
+V056,Pessoas alfabetizadas com 59 anos de idade,59-year-old literate,people,V001,Education,8,2
+V057,Pessoas alfabetizadas com 60 anos de idade,60-year-old literate people,people,V001,Education,3,2
+V058,Pessoas alfabetizadas com 61 anos de idade,61-year-old literate,people,V001,Education,6,1
+V059,Pessoas alfabetizadas com 62 anos de idade,62-year-old literate,people,V001,Education,1,3
+V060,Pessoas alfabetizadas com 63 anos de idade,63-year-old literate,people,V001,Education,6,2
+V061,Pessoas alfabetizadas com 64 anos de idade,64-year-old literate,people,V001,Education,2,2
+V062,Pessoas alfabetizadas com 65 anos de idade,People who are literate at 65 years of age,people,V001,Education,3,1
+V063,Pessoas alfabetizadas com 66 anos de idade,66-year-old literate people,people,V001,Education,5,2
+V064,Pessoas alfabetizadas com 67 anos de idade,67-year-old literate people,people,V001,Education,1,1
+V065,Pessoas alfabetizadas com 68 anos de idade,68-year-old literate,people,V001,Education,4,4
+V066,Pessoas alfabetizadas com 69 anos de idade,69-year-old literate,people,V001,Education,1,0
+V067,Pessoas alfabetizadas com 70 anos de idade,70-year-old literate people,people,V001,Education,1,2
+V068,Pessoas alfabetizadas com 71 anos de idade,71-year-old literate,people,V001,Education,0,0
+V069,Pessoas alfabetizadas com 72 anos de idade,72-year-old literate,people,V001,Education,1,3
+V070,Pessoas alfabetizadas com 73 anos de idade,73-year-old literate,people,V001,Education,3,1
+V071,Pessoas alfabetizadas com 74 anos de idade,74-year-old literate,people,V001,Education,3,0
+V072,Pessoas alfabetizadas com 75 anos de idade,75-year-old literate,people,V001,Education,0,1
+V073,Pessoas alfabetizadas com 76 anos de idade,76-year-old literate,people,V001,Education,1,2
+V074,Pessoas alfabetizadas com 77 anos de idade,People who are literate at age 77,people,V001,Education,0,0
+V075,Pessoas alfabetizadas com 78 anos de idade,People with literacy at age 78,people,V001,Education,0,1
+V076,Pessoas alfabetizadas com 79 anos de idade,79-year-old literate,people,V001,Education,0,0
+V077,Pessoas alfabetizadas com 80 anos ou mais de idade ,Literate people aged 80 years or over,people,V001,Education,2,1
+V078,Responsáveis alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares,Educated persons with 10 or more years of age in private households,people,V001,Education,242,216
+V079,Cônjuges ou companheiros(as) (de sexo diferente e do mesmo sexo da pessoa responsável) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares,Spouses or partners (of different sex and of the same sex as the responsible person) literate with 10 or more years of age in private households,family_unit,,Education,182,166
+V080,Filhos(as) ou enteados(as) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares,Children or literate stepchildren with 10 or more years of age in private households,family_unit,,Education,236,183
+V081,"Pais, mães ou sogros(as) alfabetizados(as) com 20 ou mais anos de idade em domicílios particulares","Parents, mothers or in-laws who are literate at least 20 years of age in private households",family_unit,,Education,5,2
+V082,Netos(as) ou bisnetos(as) alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares,Literate grandchildren or grandchildren with 10 years of age or more in private households,family_unit,,Education,21,26
+V083,Irmãos ou irmãs alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares,Sibling or literate sisters with 10 or more years of age in private households,family_unit,,Education,9,9
+V084,Outros parentes alfabetizados(as) com 10 ou mais anos de idade em domicílios particulares,Other literate relatives with 10 or more years of age in private households,family_unit,,Education,26,18
+V085,Conviventes alfabetizados com 10 ou mais anos de idade em domicílios particulares,Literate cohabitants with 10 or more years of age in private households,family_unit,,Education,1,0

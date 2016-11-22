@@ -1,207 +1,207 @@
-Nome da variável,Descrição da variável
-Cod_setor,Código do setor censitário
-Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
-V001,Filhos(as) do responsável e do cônjuge com menos de 1 ano de idade
-V002,Filhos(as) do responsável e do cônjuge com 1 ano de idade
-V003,Filhos(as) do responsável e do cônjuge com 2 anos de idade
-V004,Filhos(as) do responsável e do cônjuge com 3 anos de idade
-V005,Filhos(as) do responsável e do cônjuge com 4 anos de idade
-V006,Filhos(as) do responsável e do cônjuge com 5 anos de idade
-V007,Filhos(as) do responsável e do cônjuge com 6 anos de idade
-V008,Filhos(as) do responsável e do cônjuge com 7 anos de idade
-V009,Filhos(as) do responsável e do cônjuge com 8 anos de idade
-V010,Filhos(as) do responsável e do cônjuge com 9 anos de idade
-V011,Filhos(as) do responsável e do cônjuge com 10 anos de idade
-V012,Filhos(as) do responsável e do cônjuge com 11 anos de idade
-V013,Filhos(as) do responsável e do cônjuge com 12 anos de idade
-V014,Filhos(as) do responsável e do cônjuge com 13 anos de idade
-V015,Filhos(as) do responsável e do cônjuge com 14 anos de idade
-V016,Filhos(as) do responsável e do cônjuge com 15 anos de idade
-V017,Filhos(as) do responsável e do cônjuge com 16 anos de idade
-V018,Filhos(as) do responsável e do cônjuge com 17 anos de idade
-V019,Filhos(as) do responsável e do cônjuge com 18 anos de idade
-V020,Filhos(as) do responsável e do cônjuge com 19 anos de idade
-V021,Filhos(as) do responsável e do cônjuge com 20 anos de idade
-V022,Filhos(as) do responsável e do cônjuge com 21 anos de idade
-V023,Filhos(as) do responsável e do cônjuge com 22 anos de idade
-V024,Filhos(as) do responsável e do cônjuge com 23 anos de idade
-V025,Filhos(as) do responsável e do cônjuge com 24 anos de idade
-V026,Filhos(as) do responsável e do cônjuge com 25 anos de idade
-V027,Filhos(as) do responsável e do cônjuge com 26 anos de idade
-V028,Filhos(as) do responsável e do cônjuge com 27 anos de idade
-V029,Filhos(as) do responsável e do cônjuge com 28 anos de idade
-V030,Filhos(as) do responsável e do cônjuge com 29 anos de idade
-V031,Filhos(as) do responsável e do cônjuge com 30 anos de idade
-V032,Filhos(as) do responsável e do cônjuge com 31 anos de idade
-V033,Filhos(as) do responsável e do cônjuge com 32 anos de idade
-V034,Filhos(as) do responsável e do cônjuge com 33 anos de idade
-V035,Filhos(as) do responsável e do cônjuge com 34 anos de idade
-V036,Filhos(as) do responsável e do cônjuge com 35 anos de idade
-V037,Filhos(as) do responsável e do cônjuge com 36 anos de idade
-V038,Filhos(as) do responsável e do cônjuge com 37 anos de idade
-V039,Filhos(as) do responsável e do cônjuge com 38 anos de idade
-V040,Filhos(as) do responsável e do cônjuge com 39 anos de idade
-V041,Filhos(as) do responsável e do cônjuge com 40 anos de idade
-V042,Filhos(as) do responsável e do cônjuge com 41 anos de idade
-V043,Filhos(as) do responsável e do cônjuge com 42 anos de idade
-V044,Filhos(as) do responsável e do cônjuge com 43 anos de idade
-V045,Filhos(as) do responsável e do cônjuge com 44 anos de idade
-V046,Filhos(as) do responsável e do cônjuge com 45 anos de idade
-V047,Filhos(as) do responsável e do cônjuge com 46 anos de idade
-V048,Filhos(as) do responsável e do cônjuge com 47 anos de idade
-V049,Filhos(as) do responsável e do cônjuge com 48 anos de idade
-V050,Filhos(as) do responsável e do cônjuge com 49 anos de idade
-V051,Filhos(as) do responsável e do cônjuge com 50 anos ou mais de idade
-V052,Filhos(as) somente do responsável com menos de 1 ano de idade
-V053,Filhos(as) somente do responsável com 1 ano de idade
-V054,Filhos(as) somente do responsável com 2 anos de idade
-V055,Filhos(as) somente do responsável com 3 anos de idade
-V056,Filhos(as) somente do responsável com 4 anos de idade
-V057,Filhos(as) somente do responsável com 5 anos de idade
-V058,Filhos(as) somente do responsável com 6 anos de idade
-V059,Filhos(as) somente do responsável com 7 anos de idade
-V060,Filhos(as) somente do responsável com 8 anos de idade
-V061,Filhos(as) somente do responsável com 9 anos de idade
-V062,Filhos(as) somente do responsável com 10 anos de idade
-V063,Filhos(as) somente do responsável com 11 anos de idade
-V064,Filhos(as) somente do responsável com 12 anos de idade
-V065,Filhos(as) somente do responsável com 13 anos de idade
-V066,Filhos(as) somente do responsável com 14 anos de idade
-V067,Filhos(as) somente do responsável com 15 anos de idade
-V068,Filhos(as) somente do responsável com 16 anos de idade
-V069,Filhos(as) somente do responsável com 17 anos de idade
-V070,Filhos(as) somente do responsável com 18 anos de idade
-V071,Filhos(as) somente do responsável com 19 anos de idade
-V072,Filhos(as) somente do responsável com 20 anos de idade
-V073,Filhos(as) somente do responsável com 21 anos de idade
-V074,Filhos(as) somente do responsável com 22 anos de idade
-V075,Filhos(as) somente do responsável com 23 anos de idade
-V076,Filhos(as) somente do responsável com 24 anos de idade
-V077,Filhos(as) somente do responsável com 25 anos de idade
-V078,Filhos(as) somente do responsável com 26 anos de idade
-V079,Filhos(as) somente do responsável com 27 anos de idade
-V080,Filhos(as) somente do responsável com 28 anos de idade
-V081,Filhos(as) somente do responsável com 29 anos de idade
-V082,Filhos(as) somente do responsável com 30 anos de idade
-V083,Filhos(as) somente do responsável com 31 anos de idade
-V084,Filhos(as) somente do responsável com 32 anos de idade
-V085,Filhos(as) somente do responsável com 33 anos de idade
-V086,Filhos(as) somente do responsável com 34 anos de idade
-V087,Filhos(as) somente do responsável com 35 anos de idade
-V088,Filhos(as) somente do responsável com 36 anos de idade
-V089,Filhos(as) somente do responsável com 37 anos de idade
-V090,Filhos(as) somente do responsável com 38 anos de idade
-V091,Filhos(as) somente do responsável com 39 anos de idade
-V092,Filhos(as) somente do responsável com 40 anos de idade
-V093,Filhos(as) somente do responsável com 41 anos de idade
-V094,Filhos(as) somente do responsável com 42 anos de idade
-V095,Filhos(as) somente do responsável com 43 anos de idade
-V096,Filhos(as) somente do responsável com 44 anos de idade
-V097,Filhos(as) somente do responsável com 45 anos de idade
-V098,Filhos(as) somente do responsável com 46 anos de idade
-V099,Filhos(as) somente do responsável com 47 anos de idade
-V100,Filhos(as) somente do responsável com 48 anos de idade
-V101,Filhos(as) somente do responsável com 49 anos de idade
-V102,Filhos(as) somente do responsável com 50 anos ou mais de idade
-V103,Enteados(as) com menos de 1 ano de idade
-V104,Enteados(as) com 1 ano de idade
-V105,Enteados(as) com 2 anos de idade
-V106,Enteados(as) com 3 anos de idade
-V107,Enteados(as) com 4 anos de idade
-V108,Enteados(as) com 5 anos de idade
-V109,Enteados(as) com 6 anos de idade
-V110,Enteados(as) com 7 anos de idade
-V111,Enteados(as) com 8 anos de idade
-V112,Enteados(as) com 9 anos de idade
-V113,Enteados(as) com 10 anos de idade
-V114,Enteados(as) com 11 anos de idade
-V115,Enteados(as) com 12 anos de idade
-V116,Enteados(as) com 13 anos de idade
-V117,Enteados(as) com 14 anos de idade
-V118,Enteados(as) com 15 anos de idade
-V119,Enteados(as) com 16 anos de idade
-V120,Enteados(as) com 17 anos de idade
-V121,Enteados(as) com 18 anos de idade
-V122,Enteados(as) com 19 anos de idade
-V123,Enteados(as) com 20 anos de idade
-V124,Enteados(as) com 21 anos de idade
-V125,Enteados(as) com 22 anos de idade
-V126,Enteados(as) com 23 anos de idade
-V127,Enteados(as) com 24 anos de idade
-V128,Enteados(as) com 25 anos de idade
-V129,Enteados(as) com 26 anos de idade
-V130,Enteados(as) com 27 anos de idade
-V131,Enteados(as) com 28 anos de idade
-V132,Enteados(as) com 29 anos de idade
-V133,Enteados(as) com 30 anos de idade
-V134,Enteados(as) com 31 anos de idade
-V135,Enteados(as) com 32 anos de idade
-V136,Enteados(as) com 33 anos de idade
-V137,Enteados(as) com 34 anos de idade
-V138,Enteados(as) com 35 anos de idade
-V139,Enteados(as) com 36 anos de idade
-V140,Enteados(as) com 37 anos de idade
-V141,Enteados(as) com 38 anos de idade
-V142,Enteados(as) com 39 anos de idade
-V143,Enteados(as) com 40 anos de idade
-V144,Enteados(as) com 41 anos de idade
-V145,Enteados(as) com 42 anos de idade
-V146,Enteados(as) com 43 anos de idade
-V147,Enteados(as) com 44 anos de idade
-V148,Enteados(as) com 45 anos de idade
-V149,Enteados(as) com 46 anos de idade
-V150,Enteados(as) com 47 anos de idade
-V151,Enteados(as) com 48 anos de idade
-V152,Enteados(as) com 49 anos de idade
-V153,Enteados(as) com 50 ou mais anos de idade
-V154,Filhos do responsável e do cônjuge com menos de 1 ano de idade
-V155,Filhos do responsável e do cônjuge com 1 ano de idade
-V156,Filhos do responsável e do cônjuge com 2 anos de idade
-V157,Filhos do responsável e do cônjuge com 3 anos de idade
-V158,Filhos do responsável e do cônjuge com 4 anos de idade
-V159,Filhos do responsável e do cônjuge com 5 anos de idade
-V160,Filhos do responsável e do cônjuge com 6 anos de idade
-V161,Filhos do responsável e do cônjuge com 7 anos de idade
-V162,Filhos do responsável e do cônjuge com 8 anos de idade
-V163,Filhos do responsável e do cônjuge com 9 anos de idade
-V164,Filhos do responsável e do cônjuge com 10 anos de idade
-V165,Filhos do responsável e do cônjuge com 11 anos de idade
-V166,Filhos do responsável e do cônjuge com 12 anos de idade
-V167,Filhos do responsável e do cônjuge com 13 anos de idade
-V168,Filhos do responsável e do cônjuge com 14 anos de idade
-V169,Filhos do responsável e do cônjuge com 15 anos de idade
-V170,Filhos do responsável e do cônjuge com 16 anos de idade
-V171,Filhos do responsável e do cônjuge com 17 anos de idade
-V172,Filhos do responsável e do cônjuge com 18 anos de idade
-V173,Filhos do responsável e do cônjuge com 19 anos de idade
-V174,Filhos do responsável e do cônjuge com 20 anos de idade
-V175,Filhos do responsável e do cônjuge com 21 anos de idade
-V176,Filhos do responsável e do cônjuge com 22 anos de idade
-V177,Filhos do responsável e do cônjuge com 23 anos de idade
-V178,Filhos do responsável e do cônjuge com 24 anos de idade
-V179,Filhos do responsável e do cônjuge com 25 anos de idade
-V180,Filhos do responsável e do cônjuge com 26 anos de idade
-V181,Filhos do responsável e do cônjuge com 27 anos de idade
-V182,Filhos do responsável e do cônjuge com 28 anos de idade
-V183,Filhos do responsável e do cônjuge com 29 anos de idade
-V184,Filhos do responsável e do cônjuge com 30 anos de idade
-V185,Filhos do responsável e do cônjuge com 31 anos de idade
-V186,Filhos do responsável e do cônjuge com 32 anos de idade
-V187,Filhos do responsável e do cônjuge com 33 anos de idade
-V188,Filhos do responsável e do cônjuge com 34 anos de idade
-V189,Filhos do responsável e do cônjuge com 35 anos de idade
-V190,Filhos do responsável e do cônjuge com 36 anos de idade
-V191,Filhos do responsável e do cônjuge com 37 anos de idade
-V192,Filhos do responsável e do cônjuge com 38 anos de idade
-V193,Filhos do responsável e do cônjuge com 39 anos de idade
-V194,Filhos do responsável e do cônjuge com 40 anos de idade
-V195,Filhos do responsável e do cônjuge com 41 anos de idade
-V196,Filhos do responsável e do cônjuge com 42 anos de idade
-V197,Filhos do responsável e do cônjuge com 43 anos de idade
-V198,Filhos do responsável e do cônjuge com 44 anos de idade
-V199,Filhos do responsável e do cônjuge com 45 anos de idade
-V200,Filhos do responsável e do cônjuge com 46 anos de idade
-V201,Filhos do responsável e do cônjuge com 47 anos de idade
-V202,Filhos do responsável e do cônjuge com 48 anos de idade
-V203,Filhos do responsável e do cônjuge com 49 anos de idade
-V204,Filhos do responsável e do cônjuge com 50 anos ou mais de idade
+Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,1.20001E+14,1.20001E+14
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,Filhos(as) do responsável e do cônjuge com menos de 1 ano de idade,Child (ren) of guardian and spouse under 1 year of age,family_unit,,Age and Gender,5,17
+V002,Filhos(as) do responsável e do cônjuge com 1 ano de idade,Children of the guardian and spouse 1 year old,family_unit,,Age and Gender,7,17
+V003,Filhos(as) do responsável e do cônjuge com 2 anos de idade,Children of the guardian and the spouse with 2 years of age,family_unit,,Age and Gender,8,15
+V004,Filhos(as) do responsável e do cônjuge com 3 anos de idade,Children of the guardian and the spouse with 3 years of age,family_unit,,Age and Gender,6,17
+V005,Filhos(as) do responsável e do cônjuge com 4 anos de idade,Child (ren) of guardian and spouse 4 years old,family_unit,,Age and Gender,9,10
+V006,Filhos(as) do responsável e do cônjuge com 5 anos de idade,Children of the guardian and spouse of 5 years of age,family_unit,,Age and Gender,11,8
+V007,Filhos(as) do responsável e do cônjuge com 6 anos de idade,Children of the guardian and spouse of 6 years of age,family_unit,,Age and Gender,9,10
+V008,Filhos(as) do responsável e do cônjuge com 7 anos de idade,Children of the guardian and the spouse with 7 years of age,family_unit,,Age and Gender,6,14
+V009,Filhos(as) do responsável e do cônjuge com 8 anos de idade,Children of the guardian and spouse of 8 years of age,family_unit,,Age and Gender,5,6
+V010,Filhos(as) do responsável e do cônjuge com 9 anos de idade,Children of the guardian and spouse of 9 years of age,family_unit,,Age and Gender,9,6
+V011,Filhos(as) do responsável e do cônjuge com 10 anos de idade,Children of the guardian and the spouse with 10 years of age,family_unit,,Age and Gender,5,8
+V012,Filhos(as) do responsável e do cônjuge com 11 anos de idade,Children of the responsible spouse and 11-year-old spouse,family_unit,,Age and Gender,15,10
+V013,Filhos(as) do responsável e do cônjuge com 12 anos de idade,Child (ren) of guardian and spouse 12 years old,family_unit,,Age and Gender,11,6
+V014,Filhos(as) do responsável e do cônjuge com 13 anos de idade,Children of the guardian and the spouse with 13 years of age,family_unit,,Age and Gender,11,12
+V015,Filhos(as) do responsável e do cônjuge com 14 anos de idade,Children of the responsible spouse and 14-year-old spouse,family_unit,,Age and Gender,8,8
+V016,Filhos(as) do responsável e do cônjuge com 15 anos de idade,Children of the guardian and spouse of 15 years of age,family_unit,,Age and Gender,10,8
+V017,Filhos(as) do responsável e do cônjuge com 16 anos de idade,Children of the guardian and spouse of 16 years of age,family_unit,,Age and Gender,9,6
+V018,Filhos(as) do responsável e do cônjuge com 17 anos de idade,Children of the guardian and spouse of 17 years of age,family_unit,,Age and Gender,4,5
+V019,Filhos(as) do responsável e do cônjuge com 18 anos de idade,Children of the guardian and the spouse of 18 years of age,family_unit,,Age and Gender,5,5
+V020,Filhos(as) do responsável e do cônjuge com 19 anos de idade,Children of the guardian and the spouse at the age of 19,family_unit,,Age and Gender,7,6
+V021,Filhos(as) do responsável e do cônjuge com 20 anos de idade,Children of the guardian and spouse of 20 years of age,family_unit,,Age and Gender,7,4
+V022,Filhos(as) do responsável e do cônjuge com 21 anos de idade,Children of the guardian and spouse of 21 years of age,family_unit,,Age and Gender,6,4
+V023,Filhos(as) do responsável e do cônjuge com 22 anos de idade,Children of the guardian and spouse of 22 years of age,family_unit,,Age and Gender,5,0
+V024,Filhos(as) do responsável e do cônjuge com 23 anos de idade,Children of the guardian and the spouse at the age of 23,family_unit,,Age and Gender,2,1
+V025,Filhos(as) do responsável e do cônjuge com 24 anos de idade,Children of the guardian and the spouse at the age of 24,family_unit,,Age and Gender,5,0
+V026,Filhos(as) do responsável e do cônjuge com 25 anos de idade,Children of the guardian and spouse of 25 years of age,family_unit,,Age and Gender,5,2
+V027,Filhos(as) do responsável e do cônjuge com 26 anos de idade,Children of the guardian and the 26-year-old spouse,family_unit,,Age and Gender,6,2
+V028,Filhos(as) do responsável e do cônjuge com 27 anos de idade,Children of the guardian and the spouse at the age of 27,family_unit,,Age and Gender,3,1
+V029,Filhos(as) do responsável e do cônjuge com 28 anos de idade,Children of the guardian and the 28-year-old spouse,family_unit,,Age and Gender,4,2
+V030,Filhos(as) do responsável e do cônjuge com 29 anos de idade,Children of the guardian and the 29-year-old spouse,family_unit,,Age and Gender,1,0
+V031,Filhos(as) do responsável e do cônjuge com 30 anos de idade,Children of the responsible spouse and 30-year-old spouse,family_unit,,Age and Gender,0,0
+V032,Filhos(as) do responsável e do cônjuge com 31 anos de idade,Children of the guardian and the 31-year-old spouse,family_unit,,Age and Gender,0,0
+V033,Filhos(as) do responsável e do cônjuge com 32 anos de idade,Children of the guardian and spouse of 32 years of age,family_unit,,Age and Gender,2,1
+V034,Filhos(as) do responsável e do cônjuge com 33 anos de idade,Children of the guardian and the 33-year-old spouse,family_unit,,Age and Gender,0,1
+V035,Filhos(as) do responsável e do cônjuge com 34 anos de idade,Children of the guardian and spouse of 34 years of age,family_unit,,Age and Gender,0,0
+V036,Filhos(as) do responsável e do cônjuge com 35 anos de idade,Children of the guardian and the spouse at the age of 35,family_unit,,Age and Gender,1,0
+V037,Filhos(as) do responsável e do cônjuge com 36 anos de idade,Children of the guardian and spouse of 36 years of age,family_unit,,Age and Gender,1,0
+V038,Filhos(as) do responsável e do cônjuge com 37 anos de idade,Children of the responsible spouse and 37-year-old spouse,family_unit,,Age and Gender,0,0
+V039,Filhos(as) do responsável e do cônjuge com 38 anos de idade,Children of the guardian and the spouse of 38 years of age,family_unit,,Age and Gender,0,1
+V040,Filhos(as) do responsável e do cônjuge com 39 anos de idade,Children of the guardian and the spouse at the age of 39,family_unit,,Age and Gender,0,0
+V041,Filhos(as) do responsável e do cônjuge com 40 anos de idade,Children of the guardian and the spouse at the age of 40,family_unit,,Age and Gender,0,0
+V042,Filhos(as) do responsável e do cônjuge com 41 anos de idade,Children of the guardian and spouse of 41 years of age,family_unit,,Age and Gender,0,0
+V043,Filhos(as) do responsável e do cônjuge com 42 anos de idade,Children of the guardian and the 42-year-old spouse,family_unit,,Age and Gender,1,0
+V044,Filhos(as) do responsável e do cônjuge com 43 anos de idade,Children of the guardian and the 43-year-old spouse,family_unit,,Age and Gender,1,0
+V045,Filhos(as) do responsável e do cônjuge com 44 anos de idade,Children of the guardian and the spouse of 44 years of age,family_unit,,Age and Gender,0,0
+V046,Filhos(as) do responsável e do cônjuge com 45 anos de idade,Children of the guardian and the 45-year-old spouse,family_unit,,Age and Gender,0,0
+V047,Filhos(as) do responsável e do cônjuge com 46 anos de idade,Children of the guardian and spouse of 46 years of age,family_unit,,Age and Gender,0,1
+V048,Filhos(as) do responsável e do cônjuge com 47 anos de idade,Children of the guardian and the spouse at the age of 47,family_unit,,Age and Gender,0,0
+V049,Filhos(as) do responsável e do cônjuge com 48 anos de idade,Children of the guardian and the 48-year-old spouse,family_unit,,Age and Gender,0,0
+V050,Filhos(as) do responsável e do cônjuge com 49 anos de idade,Children of the guardian and the 49-year-old spouse,family_unit,,Age and Gender,0,0
+V051,Filhos(as) do responsável e do cônjuge com 50 anos ou mais de idade,Children of the guardian and spouse aged 50 years or over,family_unit,,Age and Gender,0,0
+V052,Filhos(as) somente do responsável com menos de 1 ano de idade,Children only the responsible person under the age of 1,family_unit,,Age and Gender,1,1
+V053,Filhos(as) somente do responsável com 1 ano de idade,Children under 1 year of age only,family_unit,,Age and Gender,1,5
+V054,Filhos(as) somente do responsável com 2 anos de idade,Children only the person responsible at 2 years of age,family_unit,,Age and Gender,1,1
+V055,Filhos(as) somente do responsável com 3 anos de idade,Children only the person responsible at 3 years of age,family_unit,,Age and Gender,3,5
+V056,Filhos(as) somente do responsável com 4 anos de idade,Children of the responsible only 4 years old,family_unit,,Age and Gender,4,2
+V057,Filhos(as) somente do responsável com 5 anos de idade,Children only the person responsible for 5 years of age,family_unit,,Age and Gender,2,4
+V058,Filhos(as) somente do responsável com 6 anos de idade,Children only the person responsible at 6 years of age,family_unit,,Age and Gender,3,5
+V059,Filhos(as) somente do responsável com 7 anos de idade,Children only the person responsible at the age of 7,family_unit,,Age and Gender,5,5
+V060,Filhos(as) somente do responsável com 8 anos de idade,Children only the person responsible at 8 years of age,family_unit,,Age and Gender,7,13
+V061,Filhos(as) somente do responsável com 9 anos de idade,Children only the person responsible at 9 years of age,family_unit,,Age and Gender,0,5
+V062,Filhos(as) somente do responsável com 10 anos de idade,Children only the person responsible for 10 years of age,family_unit,,Age and Gender,6,8
+V063,Filhos(as) somente do responsável com 11 anos de idade,Children only the person responsible at the age of 11,family_unit,,Age and Gender,5,5
+V064,Filhos(as) somente do responsável com 12 anos de idade,Children only the responsible person with 12 years of age,family_unit,,Age and Gender,4,4
+V065,Filhos(as) somente do responsável com 13 anos de idade,Children only the responsible person with 13 years of age,family_unit,,Age and Gender,10,8
+V066,Filhos(as) somente do responsável com 14 anos de idade,Children only the person responsible at the age of 14,family_unit,,Age and Gender,4,11
+V067,Filhos(as) somente do responsável com 15 anos de idade,Children only the person responsible for 15 years of age,family_unit,,Age and Gender,6,6
+V068,Filhos(as) somente do responsável com 16 anos de idade,Children only the person responsible at the age of 16,family_unit,,Age and Gender,8,5
+V069,Filhos(as) somente do responsável com 17 anos de idade,Children only the responsible person at the age of 17,family_unit,,Age and Gender,4,6
+V070,Filhos(as) somente do responsável com 18 anos de idade,Children only the person responsible at 18 years of age,family_unit,,Age and Gender,4,5
+V071,Filhos(as) somente do responsável com 19 anos de idade,Children only the person responsible at 19 years of age,family_unit,,Age and Gender,2,5
+V072,Filhos(as) somente do responsável com 20 anos de idade,Children only the 20 year old responsible person,family_unit,,Age and Gender,3,4
+V073,Filhos(as) somente do responsável com 21 anos de idade,Children only the person responsible at 21 years of age,family_unit,,Age and Gender,5,4
+V074,Filhos(as) somente do responsável com 22 anos de idade,Children of the only person responsible at 22 years of age,family_unit,,Age and Gender,1,1
+V075,Filhos(as) somente do responsável com 23 anos de idade,Children only the person responsible at 23 years of age,family_unit,,Age and Gender,2,0
+V076,Filhos(as) somente do responsável com 24 anos de idade,Children only the 24-year-old responsible,family_unit,,Age and Gender,3,0
+V077,Filhos(as) somente do responsável com 25 anos de idade,Children only the 25-year-old responsible,family_unit,,Age and Gender,5,5
+V078,Filhos(as) somente do responsável com 26 anos de idade,Children only the 26-year-old responsible,family_unit,,Age and Gender,4,2
+V079,Filhos(as) somente do responsável com 27 anos de idade,Children only the person responsible at the age of 27,family_unit,,Age and Gender,1,0
+V080,Filhos(as) somente do responsável com 28 anos de idade,Children only the 28-year-old responsible,family_unit,,Age and Gender,2,1
+V081,Filhos(as) somente do responsável com 29 anos de idade,Children only the 29 year old responsible person,family_unit,,Age and Gender,1,1
+V082,Filhos(as) somente do responsável com 30 anos de idade,Children only the 30-year-old responsible,family_unit,,Age and Gender,4,1
+V083,Filhos(as) somente do responsável com 31 anos de idade,Children only the 31-year-old responsible,family_unit,,Age and Gender,3,1
+V084,Filhos(as) somente do responsável com 32 anos de idade,Children only the 32-year-old responsible,family_unit,,Age and Gender,2,1
+V085,Filhos(as) somente do responsável com 33 anos de idade,Children only the 33-year-old responsible,family_unit,,Age and Gender,1,1
+V086,Filhos(as) somente do responsável com 34 anos de idade,Children only the 34-year-old responsible,family_unit,,Age and Gender,1,0
+V087,Filhos(as) somente do responsável com 35 anos de idade,Children only the 35-year-old responsible,family_unit,,Age and Gender,0,0
+V088,Filhos(as) somente do responsável com 36 anos de idade,Children of the only person responsible at 36 years of age,family_unit,,Age and Gender,0,0
+V089,Filhos(as) somente do responsável com 37 anos de idade,Children only the 37-year-old responsible,family_unit,,Age and Gender,1,0
+V090,Filhos(as) somente do responsável com 38 anos de idade,Children only the 38-year-old responsible,family_unit,,Age and Gender,0,0
+V091,Filhos(as) somente do responsável com 39 anos de idade,Children of the only person responsible at 39 years of age,family_unit,,Age and Gender,2,0
+V092,Filhos(as) somente do responsável com 40 anos de idade,Children only the 40-year-old responsible,family_unit,,Age and Gender,0,1
+V093,Filhos(as) somente do responsável com 41 anos de idade,Children only the 41-year-old responsible,family_unit,,Age and Gender,0,0
+V094,Filhos(as) somente do responsável com 42 anos de idade,Children only the 42-year-old responsible,family_unit,,Age and Gender,0,0
+V095,Filhos(as) somente do responsável com 43 anos de idade,Children only the 43-year-old responsible,family_unit,,Age and Gender,1,0
+V096,Filhos(as) somente do responsável com 44 anos de idade,Children only the 44-year-old responsible,family_unit,,Age and Gender,0,0
+V097,Filhos(as) somente do responsável com 45 anos de idade,Children only the 45-year-old responsible,family_unit,,Age and Gender,0,0
+V098,Filhos(as) somente do responsável com 46 anos de idade,Children only the 46-year-old responsible,family_unit,,Age and Gender,0,0
+V099,Filhos(as) somente do responsável com 47 anos de idade,Children only the person in charge at the age of 47,family_unit,,Age and Gender,0,0
+V100,Filhos(as) somente do responsável com 48 anos de idade,Children of the only person responsible at 48 years of age,family_unit,,Age and Gender,0,0
+V101,Filhos(as) somente do responsável com 49 anos de idade,Children only the 49-year-old responsible,family_unit,,Age and Gender,0,0
+V102,Filhos(as) somente do responsável com 50 anos ou mais de idade,Children only the person 50 years of age or older,family_unit,,Age and Gender,1,2
+V103,Enteados(as) com menos de 1 ano de idade,Stepchildren under 1 year of age,family_unit,,Age and Gender,0,1
+V104,Enteados(as) com 1 ano de idade,One-year-old step-children,family_unit,,Age and Gender,0,0
+V105,Enteados(as) com 2 anos de idade,2-year-old step-girls,family_unit,,Age and Gender,0,2
+V106,Enteados(as) com 3 anos de idade,3-year-old step-girls,family_unit,,Age and Gender,0,0
+V107,Enteados(as) com 4 anos de idade,4-year-old step-girls,family_unit,,Age and Gender,3,5
+V108,Enteados(as) com 5 anos de idade,5-year-old step-girls,family_unit,,Age and Gender,2,2
+V109,Enteados(as) com 6 anos de idade,6-year-old step-children,family_unit,,Age and Gender,4,4
+V110,Enteados(as) com 7 anos de idade,Stepchildren with 7 years of age,family_unit,,Age and Gender,1,2
+V111,Enteados(as) com 8 anos de idade,Stepchildren at 8 years of age,family_unit,,Age and Gender,2,2
+V112,Enteados(as) com 9 anos de idade,9-year-old step-children,family_unit,,Age and Gender,1,4
+V113,Enteados(as) com 10 anos de idade,10-year-old step-girls,family_unit,,Age and Gender,1,2
+V114,Enteados(as) com 11 anos de idade,11-year-old step-girls,family_unit,,Age and Gender,1,3
+V115,Enteados(as) com 12 anos de idade,12-year-old step-children,family_unit,,Age and Gender,2,1
+V116,Enteados(as) com 13 anos de idade,13-year-old step-children,family_unit,,Age and Gender,0,3
+V117,Enteados(as) com 14 anos de idade,14-year-old step-girls,family_unit,,Age and Gender,1,1
+V118,Enteados(as) com 15 anos de idade,15-year-old step-girls,family_unit,,Age and Gender,1,2
+V119,Enteados(as) com 16 anos de idade,16-year-old step-girls,family_unit,,Age and Gender,1,1
+V120,Enteados(as) com 17 anos de idade,17-year-old step-children,family_unit,,Age and Gender,2,0
+V121,Enteados(as) com 18 anos de idade,18-year-old step-girls,family_unit,,Age and Gender,1,2
+V122,Enteados(as) com 19 anos de idade,Step-children with 19 years of age,family_unit,,Age and Gender,0,0
+V123,Enteados(as) com 20 anos de idade,20-year-old step-girls,family_unit,,Age and Gender,0,1
+V124,Enteados(as) com 21 anos de idade,21-year-old step-girls,family_unit,,Age and Gender,0,0
+V125,Enteados(as) com 22 anos de idade,22-year-old step-girls,family_unit,,Age and Gender,0,1
+V126,Enteados(as) com 23 anos de idade,23-year-old step-children,family_unit,,Age and Gender,0,0
+V127,Enteados(as) com 24 anos de idade,24-year-old step-children,family_unit,,Age and Gender,0,0
+V128,Enteados(as) com 25 anos de idade,25-year-old step-girls,family_unit,,Age and Gender,1,0
+V129,Enteados(as) com 26 anos de idade,26-year-old step-children,family_unit,,Age and Gender,0,0
+V130,Enteados(as) com 27 anos de idade,27-year-old step-children,family_unit,,Age and Gender,0,0
+V131,Enteados(as) com 28 anos de idade,28-year-old step-children,family_unit,,Age and Gender,1,0
+V132,Enteados(as) com 29 anos de idade,29-year-old step-children,family_unit,,Age and Gender,0,0
+V133,Enteados(as) com 30 anos de idade,30-year-old step-girls,family_unit,,Age and Gender,0,0
+V134,Enteados(as) com 31 anos de idade,31-year-old step-children,family_unit,,Age and Gender,0,0
+V135,Enteados(as) com 32 anos de idade,32-year-old step-children,family_unit,,Age and Gender,0,0
+V136,Enteados(as) com 33 anos de idade,40-year-old step-girls,family_unit,,Age and Gender,0,0
+V137,Enteados(as) com 34 anos de idade,34-year-old step-girls,family_unit,,Age and Gender,0,0
+V138,Enteados(as) com 35 anos de idade,40-year-old stepchildren,family_unit,,Age and Gender,0,0
+V139,Enteados(as) com 36 anos de idade,36-year-old step-children,family_unit,,Age and Gender,0,0
+V140,Enteados(as) com 37 anos de idade,40-year-old stepchildren,family_unit,,Age and Gender,0,0
+V141,Enteados(as) com 38 anos de idade,38-year-old stepchildren,family_unit,,Age and Gender,0,0
+V142,Enteados(as) com 39 anos de idade,40-year-old step-girls,family_unit,,Age and Gender,0,0
+V143,Enteados(as) com 40 anos de idade,40-year-old step-girls,family_unit,,Age and Gender,0,0
+V144,Enteados(as) com 41 anos de idade,40-year-old stepchildren,family_unit,,Age and Gender,0,0
+V145,Enteados(as) com 42 anos de idade,40-year-old step-girls,family_unit,,Age and Gender,0,0
+V146,Enteados(as) com 43 anos de idade,40-year-old stepchildren,family_unit,,Age and Gender,0,0
+V147,Enteados(as) com 44 anos de idade,44-year-old step-children,family_unit,,Age and Gender,0,0
+V148,Enteados(as) com 45 anos de idade,40-year-old step-girls,family_unit,,Age and Gender,0,0
+V149,Enteados(as) com 46 anos de idade,40-year-old step-children,family_unit,,Age and Gender,0,0
+V150,Enteados(as) com 47 anos de idade,40-year-old step-girls,family_unit,,Age and Gender,0,0
+V151,Enteados(as) com 48 anos de idade,48-year-old step-girls,family_unit,,Age and Gender,0,0
+V152,Enteados(as) com 49 anos de idade,49-year-old step-children,family_unit,,Age and Gender,0,0
+V153,Enteados(as) com 50 ou mais anos de idade,Stepchildren aged 50 or over,family_unit,,Age and Gender,0,0
+V154,Filhos do responsável e do cônjuge com menos de 1 ano de idade,Children of guardian and spouse under 1 year of age,family_unit,V001,Age and Gender,3,8
+V155,Filhos do responsável e do cônjuge com 1 ano de idade,Sons of spouse and 1-year-old spouse,family_unit,V002,Age and Gender,3,10
+V156,Filhos do responsável e do cônjuge com 2 anos de idade,Children of the responsible person and the spouse with 2 years of age,family_unit,V003,Age and Gender,4,8
+V157,Filhos do responsável e do cônjuge com 3 anos de idade,Children of the guardian and the spouse with 3 years of age,family_unit,V004,Age and Gender,4,10
+V158,Filhos do responsável e do cônjuge com 4 anos de idade,Children of the guardian and the spouse with 4 years of age,family_unit,V005,Age and Gender,6,4
+V159,Filhos do responsável e do cônjuge com 5 anos de idade,Children of the guardian and the spouse with 5 years of age,family_unit,V006,Age and Gender,6,5
+V160,Filhos do responsável e do cônjuge com 6 anos de idade,Children of the guardian and the spouse with 6 years of age,family_unit,V007,Age and Gender,6,6
+V161,Filhos do responsável e do cônjuge com 7 anos de idade,Children of the guardian and the spouse with 7 years of age,family_unit,V008,Age and Gender,3,7
+V162,Filhos do responsável e do cônjuge com 8 anos de idade,Children of the guardian and the spouse with 8 years of age,family_unit,V009,Age and Gender,3,3
+V163,Filhos do responsável e do cônjuge com 9 anos de idade,Children of the responsible spouse and 9-year-old spouse,family_unit,V010,Age and Gender,4,1
+V164,Filhos do responsável e do cônjuge com 10 anos de idade,Sons of 10-year-old guardian and spouse,family_unit,V011,Age and Gender,2,7
+V165,Filhos do responsável e do cônjuge com 11 anos de idade,Children of the responsible spouse and 11-year-old spouse,family_unit,V012,Age and Gender,6,7
+V166,Filhos do responsável e do cônjuge com 12 anos de idade,Children of guardian and spouse 12 years old,family_unit,V013,Age and Gender,4,2
+V167,Filhos do responsável e do cônjuge com 13 anos de idade,Children of the guardian and the spouse with 13 years of age,family_unit,V014,Age and Gender,2,7
+V168,Filhos do responsável e do cônjuge com 14 anos de idade,Sons of the responsible spouse and 14-year-old spouse,family_unit,V015,Age and Gender,3,4
+V169,Filhos do responsável e do cônjuge com 15 anos de idade,Children of the guardian and the spouse with 15 years of age,family_unit,V016,Age and Gender,2,4
+V170,Filhos do responsável e do cônjuge com 16 anos de idade,Children of the guardian and the spouse of 16 years of age,family_unit,V017,Age and Gender,6,4
+V171,Filhos do responsável e do cônjuge com 17 anos de idade,Children of the responsible spouse and 17-year-old spouse,family_unit,V018,Age and Gender,1,4
+V172,Filhos do responsável e do cônjuge com 18 anos de idade,Children of the guardian and the spouse with 18 years of age,family_unit,V019,Age and Gender,3,4
+V173,Filhos do responsável e do cônjuge com 19 anos de idade,Children of the responsible spouse and 19-year-old spouse,family_unit,V020,Age and Gender,3,2
+V174,Filhos do responsável e do cônjuge com 20 anos de idade,Children of the guardian and the spouse with 20 years of age,family_unit,V021,Age and Gender,5,4
+V175,Filhos do responsável e do cônjuge com 21 anos de idade,Children of the responsible spouse and 21-year-old spouse,family_unit,V022,Age and Gender,2,1
+V176,Filhos do responsável e do cônjuge com 22 anos de idade,Children of 22-year-old guardian and spouse,family_unit,V023,Age and Gender,2,0
+V177,Filhos do responsável e do cônjuge com 23 anos de idade,Children of the responsible person and the spouse with 23 years of age,family_unit,V024,Age and Gender,1,1
+V178,Filhos do responsável e do cônjuge com 24 anos de idade,Children of the guardian and the spouse with 24 years of age,family_unit,V025,Age and Gender,3,0
+V179,Filhos do responsável e do cônjuge com 25 anos de idade,Sons of the responsible spouse and 25-year-old spouse,family_unit,V026,Age and Gender,3,2
+V180,Filhos do responsável e do cônjuge com 26 anos de idade,Children of the guardian and the spouse with 26 years of age,family_unit,V027,Age and Gender,2,0
+V181,Filhos do responsável e do cônjuge com 27 anos de idade,Children of the guardian and the spouse with 27 years of age,family_unit,V028,Age and Gender,1,0
+V182,Filhos do responsável e do cônjuge com 28 anos de idade,Children of the responsible spouse and 28-year-old spouse,family_unit,V029,Age and Gender,4,2
+V183,Filhos do responsável e do cônjuge com 29 anos de idade,Sons of 29-year-old spouse and spouse,family_unit,V030,Age and Gender,0,0
+V184,Filhos do responsável e do cônjuge com 30 anos de idade,Sons of 30-year-old spouse and spouse,family_unit,V031,Age and Gender,0,0
+V185,Filhos do responsável e do cônjuge com 31 anos de idade,Children of the guardian and the 31-year-old spouse,family_unit,V032,Age and Gender,0,0
+V186,Filhos do responsável e do cônjuge com 32 anos de idade,Sons of 32-year-old spouse and spouse,family_unit,V033,Age and Gender,1,0
+V187,Filhos do responsável e do cônjuge com 33 anos de idade,Sons and 33-year-old spouse,family_unit,V034,Age and Gender,0,1
+V188,Filhos do responsável e do cônjuge com 34 anos de idade,Children of guardian and spouse at 34 years of age,family_unit,V035,Age and Gender,0,0
+V189,Filhos do responsável e do cônjuge com 35 anos de idade,Sons of 35-year-old guardian and spouse,family_unit,V036,Age and Gender,1,0
+V190,Filhos do responsável e do cônjuge com 36 anos de idade,Sons of 36-year-old guardian and spouse,family_unit,V037,Age and Gender,0,0
+V191,Filhos do responsável e do cônjuge com 37 anos de idade,Children of the responsible person and the 37-year-old spouse,family_unit,V038,Age and Gender,0,0
+V192,Filhos do responsável e do cônjuge com 38 anos de idade,Sons of 38-year-old guardian and spouse,family_unit,V039,Age and Gender,0,0
+V193,Filhos do responsável e do cônjuge com 39 anos de idade,Children of guardian and spouse at 39 years of age,family_unit,V040,Age and Gender,0,0
+V194,Filhos do responsável e do cônjuge com 40 anos de idade,Sons of 40-year-old spouse and spouse,family_unit,V041,Age and Gender,0,0
+V195,Filhos do responsável e do cônjuge com 41 anos de idade,Sons of 41-year-old spouse and spouse,family_unit,V042,Age and Gender,0,0
+V196,Filhos do responsável e do cônjuge com 42 anos de idade,Sons and 42-year-old spouse,family_unit,V043,Age and Gender,0,0
+V197,Filhos do responsável e do cônjuge com 43 anos de idade,Sons of 43-year-old spouse and spouse,family_unit,V044,Age and Gender,1,0
+V198,Filhos do responsável e do cônjuge com 44 anos de idade,Sons of 44-year-old guardian and spouse,family_unit,V045,Age and Gender,0,0
+V199,Filhos do responsável e do cônjuge com 45 anos de idade,Sons of 45-year-old guardian and spouse,family_unit,V046,Age and Gender,0,0
+V200,Filhos do responsável e do cônjuge com 46 anos de idade,Sons of 46-year-old guardian and spouse,family_unit,V047,Age and Gender,0,0
+V201,Filhos do responsável e do cônjuge com 47 anos de idade,Children of the guardian and the spouse with 47 years of age,family_unit,V048,Age and Gender,0,0
+V202,Filhos do responsável e do cônjuge com 48 anos de idade,Children of guardian and spouse at 48 years of age,family_unit,V049,Age and Gender,0,0
+V203,Filhos do responsável e do cônjuge com 49 anos de idade,Sons of 49-year-old spouse and spouse,family_unit,V050,Age and Gender,0,0
+V204,Filhos do responsável e do cônjuge com 50 anos ou mais de idade,Children of the guardian and spouse aged 50 years or over,family_unit,V051,Age and Gender,0,0

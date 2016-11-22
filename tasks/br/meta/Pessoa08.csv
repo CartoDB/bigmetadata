@@ -1,257 +1,258 @@
-Nome da variável,Descrição da variável
-Cod_seto,Código do setor censitário
-Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
-V001,Filhos somente do responsável com menos de 1 ano de idade
-V002,Filhos somente do responsável com 1 ano de idade
-V003,Filhos somente do responsável com 2 anos de idade
-V004,Filhos somente do responsável com 3 anos de idade
-V005,Filhos somente do responsável com 4 anos de idade
-V006,Filhos somente do responsável com 5 anos de idade
-V007,Filhos somente do responsável com 6 anos de idade
-V008,Filhos somente do responsável com 7 anos de idade
-V009,Filhos somente do responsável com 8 anos de idade
-V010,Filhos somente do responsável com 9 anos de idade
-V011,Filhos somente do responsável com 10 anos de idade
-V012,Filhos somente do responsável com 11 anos de idade
-V013,Filhos somente do responsável com 12 anos de idade
-V014,Filhos somente do responsável com 13 anos de idade
-V015,Filhos somente do responsável com 14 anos de idade
-V016,Filhos somente do responsável com 15 anos de idade
-V017,Filhos somente do responsável com 16 anos de idade
-V018,Filhos somente do responsável com 17 anos de idade
-V019,Filhos somente do responsável com 18 anos de idade
-V020,Filhos somente do responsável com 19 anos de idade
-V021,Filhos somente do responsável com 20 anos de idade
-V022,Filhos somente do responsável com 21 anos de idade
-V023,Filhos somente do responsável com 22 anos de idade
-V024,Filhos somente do responsável com 23 anos de idade
-V025,Filhos somente do responsável com 24 anos de idade
-V026,Filhos somente do responsável com 25 anos de idade
-V027,Filhos somente do responsável com 26 anos de idade
-V028,Filhos somente do responsável com 27 anos de idade
-V029,Filhos somente do responsável com 28 anos de idade
-V030,Filhos somente do responsável com 29 anos de idade
-V031,Filhos somente do responsável com 30 anos de idade
-V032,Filhos somente do responsável com 31 anos de idade
-V033,Filhos somente do responsável com 32 anos de idade
-V034,Filhos somente do responsável com 33 anos de idade
-V035,Filhos somente do responsável com 34 anos de idade
-V036,Filhos somente do responsável com 35 anos de idade
-V037,Filhos somente do responsável com 36 anos de idade
-V038,Filhos somente do responsável com 37 anos de idade
-V039,Filhos somente do responsável com 38 anos de idade
-V040,Filhos somente do responsável com 39 anos de idade
-V041,Filhos somente do responsável com 40 anos de idade
-V042,Filhos somente do responsável com 41 anos de idade
-V043,Filhos somente do responsável com 42 anos de idade
-V044,Filhos somente do responsável com 43 anos de idade
-V045,Filhos somente do responsável com 44 anos de idade
-V046,Filhos somente do responsável com 45 anos de idade
-V047,Filhos somente do responsável com 46 anos de idade
-V048,Filhos somente do responsável com 47 anos de idade
-V049,Filhos somente do responsável com 48 anos de idade
-V050,Filhos somente do responsável com 49 anos de idade
-V051,Filhos somente do responsável com 50 anos ou mais de idade
-V052,Enteados com menos de 1 ano de idade
-V053,Enteados com 1 ano de idade
-V054,Enteados com 2 anos de idade
-V055,Enteados com 3 anos de idade
-V056,Enteados com 4 anos de idade
-V057,Enteados com 5 anos de idade
-V058,Enteados com 6 anos de idade
-V059,Enteados com 7 anos de idade
-V060,Enteados com 8 anos de idade
-V061,Enteados com 9 anos de idade
-V062,Enteados com 10 anos de idade
-V063,Enteados com 11 anos de idade
-V064,Enteados com 12 anos de idade
-V065,Enteados com 13 anos de idade
-V066,Enteados com 14 anos de idade
-V067,Enteados com 15 anos de idade
-V068,Enteados com 16 anos de idade
-V069,Enteados com 17 anos de idade
-V070,Enteados com 18 anos de idade
-V071,Enteados com 19 anos de idade
-V072,Enteados com 20 anos de idade
-V073,Enteados com 21 anos de idade
-V074,Enteados com 22 anos de idade
-V075,Enteados com 23 anos de idade
-V076,Enteados com 24 anos de idade
-V077,Enteados com 25 anos de idade
-V078,Enteados com 26 anos de idade
-V079,Enteados com 27 anos de idade
-V080,Enteados com 28 anos de idade
-V081,Enteados com 29 anos de idade
-V082,Enteados com 30 anos de idade
-V083,Enteados com 31 anos de idade
-V084,Enteados com 32 anos de idade
-V085,Enteados com 33 anos de idade
-V086,Enteados com 34 anos de idade
-V087,Enteados com 35 anos de idade
-V088,Enteados com 36 anos de idade
-V089,Enteados com 37 anos de idade
-V090,Enteados com 38 anos de idade
-V091,Enteados com 39 anos de idade
-V092,Enteados com 40 anos de idade
-V093,Enteados com 41 anos de idade
-V094,Enteados com 42 anos de idade
-V095,Enteados com 43 anos de idade
-V096,Enteados com 44 anos de idade
-V097,Enteados com 45 anos de idade
-V098,Enteados com 46 anos de idade
-V099,Enteados com 47 anos de idade
-V100,Enteados com 48 anos de idade
-V101,Enteados com 49 anos de idade
-V102,Enteados com 50 ou mais anos de idade
-V103,Filhas do responsável e do cônjuge com menos de 1 ano de idade
-V104,Filhas do responsável e do cônjuge com 1 ano de idade
-V105,Filhas do responsável e do cônjuge com 2 anos de idade
-V106,Filhas do responsável e do cônjuge com 3 anos de idade
-V107,Filhas do responsável e do cônjuge com 4 anos de idade
-V108,Filhas do responsável e do cônjuge com 5 anos de idade
-V109,Filhas do responsável e do cônjuge com 6 anos de idade
-V110,Filhas do responsável e do cônjuge com 7 anos de idade
-V111,Filhas do responsável e do cônjuge com 8 anos de idade
-V112,Filhas do responsável e do cônjuge com 9 anos de idade
-V113,Filhas do responsável e do cônjuge com 10 anos de idade
-V114,Filhas do responsável e do cônjuge com 11 anos de idade
-V115,Filhas do responsável e do cônjuge com 12 anos de idade
-V116,Filhas do responsável e do cônjuge com 13 anos de idade
-V117,Filhas do responsável e do cônjuge com 14 anos de idade
-V118,Filhas do responsável e do cônjuge com 15 anos de idade
-V119,Filhas do responsável e do cônjuge com 16 anos de idade
-V120,Filhas do responsável e do cônjuge com 17 anos de idade
-V121,Filhas do responsável e do cônjuge com 18 anos de idade
-V122,Filhas do responsável e do cônjuge com 19 anos de idade
-V123,Filhas do responsável e do cônjuge com 20 anos de idade
-V124,Filhas do responsável e do cônjuge com 21 anos de idade
-V125,Filhas do responsável e do cônjuge com 22 anos de idade
-V126,Filhas do responsável e do cônjuge com 23 anos de idade
-V127,Filhas do responsável e do cônjuge com 24 anos de idade
-V128,Filhas do responsável e do cônjuge com 25 anos de idade
-V129,Filhas do responsável e do cônjuge com 26 anos de idade
-V130,Filhas do responsável e do cônjuge com 27 anos de idade
-V131,Filhas do responsável e do cônjuge com 28 anos de idade
-V132,Filhas do responsável e do cônjuge com 29 anos de idade
-V133,Filhas do responsável e do cônjuge com 30 anos de idade
-V134,Filhas do responsável e do cônjuge com 31 anos de idade
-V135,Filhas do responsável e do cônjuge com 32 anos de idade
-V136,Filhas do responsável e do cônjuge com 33 anos de idade
-V137,Filhas do responsável e do cônjuge com 34 anos de idade
-V138,Filhas do responsável e do cônjuge com 35 anos de idade
-V139,Filhas do responsável e do cônjuge com 36 anos de idade
-V140,Filhas do responsável e do cônjuge com 37 anos de idade
-V141,Filhas do responsável e do cônjuge com 38 anos de idade
-V142,Filhas do responsável e do cônjuge com 39 anos de idade
-V143,Filhas do responsável e do cônjuge com 40 anos de idade
-V144,Filhas do responsável e do cônjuge com 41 anos de idade
-V145,Filhas do responsável e do cônjuge com 42 anos de idade
-V146,Filhas do responsável e do cônjuge com 43 anos de idade
-V147,Filhas do responsável e do cônjuge com 44 anos de idade
-V148,Filhas do responsável e do cônjuge com 45 anos de idade
-V149,Filhas do responsável e do cônjuge com 46 anos de idade
-V150,Filhas do responsável e do cônjuge com 47 anos de idade
-V151,Filhas do responsável e do cônjuge com 48 anos de idade
-V152,Filhas do responsável e do cônjuge com 49 anos de idade
-V153,Filhas do responsável e do cônjuge com 50 anos ou mais de idade
-V154,Filhas somente do responsável com menos de 1 ano de idade
-V155,Filhas somente do responsável com 1 ano de idade
-V156,Filhas somente do responsável com 2 anos de idade
-V157,Filhas somente do responsável com 3 anos de idade
-V158,Filhas somente do responsável com 4 anos de idade
-V159,Filhas somente do responsável com 5 anos de idade
-V160,Filhas somente do responsável com 6 anos de idade
-V161,Filhas somente do responsável com 7 anos de idade
-V162,Filhas somente do responsável com 8 anos de idade
-V163,Filhas somente do responsável com 9 anos de idade
-V164,Filhas somente do responsável com 10 anos de idade
-V165,Filhas somente do responsável com 11 anos de idade
-V166,Filhas somente do responsável com 12 anos de idade
-V167,Filhas somente do responsável com 13 anos de idade
-V168,Filhas somente do responsável com 14 anos de idade
-V169,Filhas somente do responsável com 15 anos de idade
-V170,Filhas somente do responsável com 16 anos de idade
-V171,Filhas somente do responsável com 17 anos de idade
-V172,Filhas somente do responsável com 18 anos de idade
-V173,Filhas somente do responsável com 19 anos de idade
-V174,Filhas somente do responsável com 20 anos de idade
-V175,Filhas somente do responsável com 21 anos de idade
-V176,Filhas somente do responsável com 22 anos de idade
-V177,Filhas somente do responsável com 23 anos de idade
-V178,Filhas somente do responsável com 24 anos de idade
-V179,Filhas somente do responsável com 25 anos de idade
-V180,Filhas somente do responsável com 26 anos de idade
-V181,Filhas somente do responsável com 27 anos de idade
-V182,Filhas somente do responsável com 28 anos de idade
-V183,Filhas somente do responsável com 29 anos de idade
-V184,Filhas somente do responsável com 30 anos de idade
-V185,Filhas somente do responsável com 31 anos de idade
-V186,Filhas somente do responsável com 32 anos de idade
-V187,Filhas somente do responsável com 33 anos de idade
-V188,Filhas somente do responsável com 34 anos de idade
-V189,Filhas somente do responsável com 35 anos de idade
-V190,Filhas somente do responsável com 36 anos de idade
-V191,Filhas somente do responsável com 37 anos de idade
-V192,Filhas somente do responsável com 38 anos de idade
-V193,Filhas somente do responsável com 39 anos de idade
-V194,Filhas somente do responsável com 40 anos de idade
-V195,Filhas somente do responsável com 41 anos de idade
-V196,Filhas somente do responsável com 42 anos de idade
-V197,Filhas somente do responsável com 43 anos de idade
-V198,Filhas somente do responsável com 44 anos de idade
-V199,Filhas somente do responsável com 45 anos de idade
-V200,Filhas somente do responsável com 46 anos de idade
-V201,Filhas somente do responsável com 47 anos de idade
-V202,Filhas somente do responsável com 48 anos de idade
-V203,Filhas somente do responsável com 49 anos de idade
-V204,Filhas somente do responsável com 50 anos ou mais de idade
-V205,Enteadas com menos de 1 ano de idade
-V206,Enteadas com 1 ano de idade
-V207,Enteadas com 2 anos de idade
-V208,Enteadas com 3 anos de idade
-V209,Enteadas com 4 anos de idade
-V210,Enteadas com 5 anos de idade
-V211,Enteadas com 6 anos de idade
-V212,Enteadas com 7 anos de idade
-V213,Enteadas com 8 anos de idade
-V214,Enteadas com 9 anos de idade
-V215,Enteadas com 10 anos de idade
-V216,Enteadas com 11 anos de idade
-V217,Enteadas com 12 anos de idade
-V218,Enteadas com 13 anos de idade
-V219,Enteadas com 14 anos de idade
-V220,Enteadas com 15 anos de idade
-V221,Enteadas com 16 anos de idade
-V222,Enteadas com 17 anos de idade
-V223,Enteadas com 18 anos de idade
-V224,Enteadas com 19 anos de idade
-V225,Enteadas com 20 anos de idade
-V226,Enteadas com 21 anos de idade
-V227,Enteadas com 22 anos de idade
-V228,Enteadas com 23 anos de idade
-V229,Enteadas com 24 anos de idade
-V230,Enteadas com 25 anos de idade
-V231,Enteadas com 26 anos de idade
-V232,Enteadas com 27 anos de idade
-V233,Enteadas com 28 anos de idade
-V234,Enteadas com 29 anos de idade
-V235,Enteadas com 30 anos de idade
-V236,Enteadas com 31 anos de idade
-V237,Enteadas com 32 anos de idade
-V238,Enteadas com 33 anos de idade
-V239,Enteadas com 34 anos de idade
-V240,Enteadas com 35 anos de idade
-V241,Enteadas com 36 anos de idade
-V242,Enteadas com 37 anos de idade
-V243,Enteadas com 38 anos de idade
-V244,Enteadas com 39 anos de idade
-V245,Enteadas com 40 anos de idade
-V246,Enteadas com 41 anos de idade
-V247,Enteadas com 42 anos de idade
-V248,Enteadas com 43 anos de idade
-V249,Enteadas com 44 anos de idade
-V250,Enteadas com 45 anos de idade
-V251,Enteadas com 46 anos de idade
-V252,Enteadas com 47 anos de idade
-V253,Enteadas com 48 anos de idade
-V254,Enteadas com 49 anos de idade
+Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2
+Cod_seto,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,Filhos somente do responsável com menos de 1 ano de idade,Children only responsible for children under 1 year of age,family_unit,Pessoa07 V052 ,Age and Gender,1,1
+V002,Filhos somente do responsável com 1 ano de idade,Children only responsible for 1 year of age,family_unit,Pessoa07 V053 ,Age and Gender,0,3
+V003,Filhos somente do responsável com 2 anos de idade,Children only responsible for 2 year old,family_unit,Pessoa07 V054,Age and Gender,0,1
+V004,Filhos somente do responsável com 3 anos de idade,Children only responsible for 3 year old,family_unit,Pessoa07 V055,Age and Gender,3,2
+V005,Filhos somente do responsável com 4 anos de idade,Children only responsible for 4 year old,family_unit,Pessoa07 V056,Age and Gender,1,0
+V006,Filhos somente do responsável com 5 anos de idade,Children only 5-year-old responsible,family_unit,Pessoa07 V057,Age and Gender,0,2
+V007,Filhos somente do responsável com 6 anos de idade,Children only of the responsible person with 6 years of age,family_unit,Pessoa07 V058,Age and Gender,2,2
+V008,Filhos somente do responsável com 7 anos de idade,Children only responsible for 7 year old,family_unit,Pessoa07 V059,Age and Gender,1,3
+V009,Filhos somente do responsável com 8 anos de idade,Only 8-year-old responsible children,family_unit,Pessoa07 V060,Age and Gender,3,7
+V010,Filhos somente do responsável com 9 anos de idade,Children only of the responsible person with 9 years of age,family_unit,Pessoa07 V061,Age and Gender,0,2
+V011,Filhos somente do responsável com 10 anos de idade,Only 10-year-old responsible children,family_unit,Pessoa07 V062,Age and Gender,3,3
+V012,Filhos somente do responsável com 11 anos de idade,Children only responsible person with 11 years of age,family_unit,Pessoa07 V063,Age and Gender,1,2
+V013,Filhos somente do responsável com 12 anos de idade,Children only responsible for 12 year old,family_unit,Pessoa07 V064,Age and Gender,2,3
+V014,Filhos somente do responsável com 13 anos de idade,Only 13-year-old responsible children,family_unit,Pessoa07 V065,Age and Gender,4,4
+V015,Filhos somente do responsável com 14 anos de idade,Only 14-year-old responsible children,family_unit,Pessoa07 V066,Age and Gender,2,8
+V016,Filhos somente do responsável com 15 anos de idade,Children only responsible for 15 years of age,family_unit,Pessoa07 V067,Age and Gender,4,2
+V017,Filhos somente do responsável com 16 anos de idade,Children only responsible for 16 year old,family_unit,Pessoa07 V068,Age and Gender,4,3
+V018,Filhos somente do responsável com 17 anos de idade,Children only responsible for 17 year old,family_unit,Pessoa07 V069,Age and Gender,2,5
+V019,Filhos somente do responsável com 18 anos de idade,Children only responsible for 18 year old,family_unit,Pessoa07 V070,Age and Gender,3,2
+V020,Filhos somente do responsável com 19 anos de idade,Children only responsible for 19 year old,family_unit,Pessoa07 V071,Age and Gender,2,3
+V021,Filhos somente do responsável com 20 anos de idade,Children only responsible for 20 year old,family_unit,Pessoa07 V072,Age and Gender,1,3
+V022,Filhos somente do responsável com 21 anos de idade,Children only of the responsible person with 21 years of age,family_unit,Pessoa07 V073,Age and Gender,5,2
+V023,Filhos somente do responsável com 22 anos de idade,Only 22-year-old responsible children,family_unit,Pessoa07 V074,Age and Gender,1,1
+V024,Filhos somente do responsável com 23 anos de idade,Children only responsible person at 23 years of age,family_unit,Pessoa07 V075,Age and Gender,2,0
+V025,Filhos somente do responsável com 24 anos de idade,Children only 24-year-old responsible,family_unit,Pessoa07 V076,Age and Gender,2,0
+V026,Filhos somente do responsável com 25 anos de idade,Children only responsible 25 year old,family_unit,Pessoa07 V077,Age and Gender,3,1
+V027,Filhos somente do responsável com 26 anos de idade,Only 26-year-old responsible children,family_unit,Pessoa07 V078,Age and Gender,1,0
+V028,Filhos somente do responsável com 27 anos de idade,Children only of the responsible at 27 years of age,family_unit,Pessoa07 V079,Age and Gender,1,0
+V029,Filhos somente do responsável com 28 anos de idade,Only 28-year-old responsible children,family_unit,Pessoa07 V080,Age and Gender,0,1
+V030,Filhos somente do responsável com 29 anos de idade,Children only the responsible 29 year old,family_unit,Pessoa07 V081,Age and Gender,1,1
+V031,Filhos somente do responsável com 30 anos de idade,Children only responsible 30 year old,family_unit,Pessoa07 V082,Age and Gender,3,1
+V032,Filhos somente do responsável com 31 anos de idade,Only 31-year-old responsible children,family_unit,Pessoa07 V083,Age and Gender,0,1
+V033,Filhos somente do responsável com 32 anos de idade,Only 32-year-old responsible children,family_unit,Pessoa07 V084,Age and Gender,2,1
+V034,Filhos somente do responsável com 33 anos de idade,Children only the 33 year old responsible,family_unit,Pessoa07 V085,Age and Gender,0,1
+V035,Filhos somente do responsável com 34 anos de idade,Only 34-year-old responsible children,family_unit,Pessoa07 V086,Age and Gender,0,0
+V036,Filhos somente do responsável com 35 anos de idade,Only 35-year-old responsible children,family_unit,Pessoa07 V087,Age and Gender,0,0
+V037,Filhos somente do responsável com 36 anos de idade,Only 36-year-old responsible children,family_unit,Pessoa07 V088,Age and Gender,0,0
+V038,Filhos somente do responsável com 37 anos de idade,Only 37-year-old responsible children,family_unit,Pessoa07 V089,Age and Gender,1,0
+V039,Filhos somente do responsável com 38 anos de idade,Only 38-year-old responsible children,family_unit,Pessoa07 V090,Age and Gender,0,0
+V040,Filhos somente do responsável com 39 anos de idade,Only 39-year-old responsible children,family_unit,Pessoa07 V091,Age and Gender,0,0
+V041,Filhos somente do responsável com 40 anos de idade,Children only the 40 year old responsible,family_unit,Pessoa07 V092,Age and Gender,0,0
+V042,Filhos somente do responsável com 41 anos de idade,Only 41-year-old responsible children,family_unit,Pessoa07 V093,Age and Gender,0,0
+V043,Filhos somente do responsável com 42 anos de idade,Children only the 42-year-old responsible,family_unit,Pessoa07 V094,Age and Gender,0,0
+V044,Filhos somente do responsável com 43 anos de idade,Children only the 43-year-old responsible,family_unit,Pessoa07 V095,Age and Gender,1,0
+V045,Filhos somente do responsável com 44 anos de idade,Children only the 44-year-old responsible,family_unit,Pessoa07 V096,Age and Gender,0,0
+V046,Filhos somente do responsável com 45 anos de idade,Children only of 45 year old responsible,family_unit,Pessoa07 V097,Age and Gender,0,0
+V047,Filhos somente do responsável com 46 anos de idade,Only the 46-year-old,family_unit,Pessoa07 V098,Age and Gender,0,0
+V048,Filhos somente do responsável com 47 anos de idade,Only the 47-year-old responsible,family_unit,Pessoa07 V099,Age and Gender,0,0
+V049,Filhos somente do responsável com 48 anos de idade,Children only of the 48 year old responsible,family_unit,Pessoa07 V100,Age and Gender,0,0
+V050,Filhos somente do responsável com 49 anos de idade,Children only the 49 year old responsible,family_unit,Pessoa07 V101,Age and Gender,0,0
+V051,Filhos somente do responsável com 50 anos ou mais de idade,Children only responsible person 50 years of age or older,family_unit,Pessoa07 V102,Age and Gender,1,1
+V052,Enteados com menos de 1 ano de idade,Stepchildren under 1 year of age,family_unit,Pessoa07 V103,Age and Gender,0,0
+V053,Enteados com 1 ano de idade,Stepchildren at 1 year of age,family_unit,Pessoa07 V104,Age and Gender,0,0
+V054,Enteados com 2 anos de idade,Stepchildren with 2 years of age,family_unit,Pessoa07 V105,Age and Gender,0,2
+V055,Enteados com 3 anos de idade,Stepchildren with 3 years of age,family_unit,Pessoa07 V106,Age and Gender,0,0
+V056,Enteados com 4 anos de idade,Stepchildren at 4 years of age,family_unit,Pessoa07 V107,Age and Gender,1,2
+V057,Enteados com 5 anos de idade,Stepchildren with 5 years of age,family_unit,Pessoa07 V108,Age and Gender,1,1
+V058,Enteados com 6 anos de idade,Stepchildren with 6 years of age,family_unit,Pessoa07 V109,Age and Gender,1,3
+V059,Enteados com 7 anos de idade,Stepchildren with 7 years of age,family_unit,Pessoa07 V110,Age and Gender,0,2
+V060,Enteados com 8 anos de idade,Stepchildren with 8 years of age,family_unit,Pessoa07 V111,Age and Gender,0,0
+V061,Enteados com 9 anos de idade,Stepchildren with 9 years of age,family_unit,Pessoa07 V112,Age and Gender,0,1
+V062,Enteados com 10 anos de idade,Stepchildren with 10 years of age,family_unit,Pessoa07 V113,Age and Gender,1,0
+V063,Enteados com 11 anos de idade,Stepchildren with 11 years old,family_unit,Pessoa07 V114,Age and Gender,0,1
+V064,Enteados com 12 anos de idade,Stepchildren with 12 years of age,family_unit,Pessoa07 V115,Age and Gender,1,1
+V065,Enteados com 13 anos de idade,Stepchildren with 13 years of age,family_unit,Pessoa07 V116,Age and Gender,0,2
+V066,Enteados com 14 anos de idade,Stepchildren with 14 years of age,family_unit,Pessoa07 V117,Age and Gender,0,0
+V067,Enteados com 15 anos de idade,Stepchildren with 15 years of age,family_unit,Pessoa07 V118,Age and Gender,0,2
+V068,Enteados com 16 anos de idade,16-year-old stepchildren,family_unit,Pessoa07 V119,Age and Gender,0,0
+V069,Enteados com 17 anos de idade,Stepchildren with 17 years of age,family_unit,Pessoa07 V120,Age and Gender,0,0
+V070,Enteados com 18 anos de idade,Stepchildren at 18 years of age,family_unit,Pessoa07 V121,Age and Gender,1,1
+V071,Enteados com 19 anos de idade,Stepchildren with 19 years of age,family_unit,Pessoa07 V122,Age and Gender,0,0
+V072,Enteados com 20 anos de idade,20-year-old stepchildren,family_unit,Pessoa07 V123,Age and Gender,0,1
+V073,Enteados com 21 anos de idade,21-year-old stepchildren,family_unit,Pessoa07 V124,Age and Gender,0,0
+V074,Enteados com 22 anos de idade,22-year-old stepchildren,family_unit,Pessoa07 V125,Age and Gender,0,1
+V075,Enteados com 23 anos de idade,23-year-old stepchildren,family_unit,Pessoa07 V126,Age and Gender,0,0
+V076,Enteados com 24 anos de idade,Stepchildren with 24 years of age,family_unit,Pessoa07 V127,Age and Gender,0,0
+V077,Enteados com 25 anos de idade,Stepchildren with 25 years of age,family_unit,Pessoa07 V128,Age and Gender,0,0
+V078,Enteados com 26 anos de idade,Stepchildren at 26 years of age,family_unit,Pessoa07 V129,Age and Gender,0,0
+V079,Enteados com 27 anos de idade,27-year-old stepchildren,family_unit,Pessoa07 V130,Age and Gender,0,0
+V080,Enteados com 28 anos de idade,28-year-old stepchildren,family_unit,Pessoa07 V131,Age and Gender,1,0
+V081,Enteados com 29 anos de idade,29-year-old stepchildren,family_unit,Pessoa07 V132,Age and Gender,0,0
+V082,Enteados com 30 anos de idade,30-year-old stepchildren,family_unit,Pessoa07 V133,Age and Gender,0,0
+V083,Enteados com 31 anos de idade,31-year-old stepchildren,family_unit,Pessoa07 V134,Age and Gender,0,0
+V084,Enteados com 32 anos de idade,32-year-old stepchildren,family_unit,Pessoa07 V135,Age and Gender,0,0
+V085,Enteados com 33 anos de idade,40-year-old stepchildren,family_unit,Pessoa07 V136,Age and Gender,0,0
+V086,Enteados com 34 anos de idade,34-year-old stepchildren,family_unit,Pessoa07 V137,Age and Gender,0,0
+V087,Enteados com 35 anos de idade,40-year-old stepchildren,family_unit,Pessoa07 V138,Age and Gender,0,0
+V088,Enteados com 36 anos de idade,36-year-old stepchildren,family_unit,Pessoa07 V139,Age and Gender,0,0
+V089,Enteados com 37 anos de idade,37-year-old stepchildren,family_unit,Pessoa07 V140,Age and Gender,0,0
+V090,Enteados com 38 anos de idade,38-year-old stepchildren,family_unit,Pessoa07 V141,Age and Gender,0,0
+V091,Enteados com 39 anos de idade,39-year-old stepchildren,family_unit,Pessoa07 V142,Age and Gender,0,0
+V092,Enteados com 40 anos de idade,40-year-old stepchildren,family_unit,Pessoa07 V143,Age and Gender,0,0
+V093,Enteados com 41 anos de idade,41-year-old stepchildren,family_unit,Pessoa07 V144,Age and Gender,0,0
+V094,Enteados com 42 anos de idade,40-year-old stepchildren,family_unit,Pessoa07 V145,Age and Gender,0,0
+V095,Enteados com 43 anos de idade,40-year-old stepchildren,family_unit,Pessoa07 V146,Age and Gender,0,0
+V096,Enteados com 44 anos de idade,44-year-old step-girls,family_unit,Pessoa07 V147,Age and Gender,0,0
+V097,Enteados com 45 anos de idade,40-year-old stepchildren,family_unit,Pessoa07 V148,Age and Gender,0,0
+V098,Enteados com 46 anos de idade,40-year-old stepchildren,family_unit,Pessoa07 V149,Age and Gender,0,0
+V099,Enteados com 47 anos de idade,Stepchildren at 47 years of age,family_unit,Pessoa07 V150,Age and Gender,0,0
+V100,Enteados com 48 anos de idade,48-year-old stepchildren,family_unit,Pessoa07 V151,Age and Gender,0,0
+V101,Enteados com 49 anos de idade,49-year-old stepchildren,family_unit,Pessoa07 V152,Age and Gender,0,0
+V102,Enteados com 50 ou mais anos de idade,Stepchildren aged 50 or over,family_unit,Pessoa07 V153,Age and Gender,0,0
+V103,Filhas do responsável e do cônjuge com menos de 1 ano de idade,Daughters of guardian and spouse under 1 year of age,family_unit,Pessoa07 V001,Age and Gender,2,9
+V104,Filhas do responsável e do cônjuge com 1 ano de idade,Daughters of spouse and 1-year-old spouse,family_unit,Pessoa07 V002,Age and Gender,4,7
+V105,Filhas do responsável e do cônjuge com 2 anos de idade,Daughters of guardian and spouse 2 years old,family_unit,Pessoa07 V003,Age and Gender,4,7
+V106,Filhas do responsável e do cônjuge com 3 anos de idade,Daughters of spouse and 3-year-old spouse,family_unit,Pessoa07 V004,Age and Gender,2,7
+V107,Filhas do responsável e do cônjuge com 4 anos de idade,Daughters of spouse and 4-year-old spouse,family_unit,Pessoa07 V005,Age and Gender,3,6
+V108,Filhas do responsável e do cônjuge com 5 anos de idade,Daughters of the guardian and the spouse with 5 years of age,family_unit,Pessoa07 V006,Age and Gender,5,3
+V109,Filhas do responsável e do cônjuge com 6 anos de idade,Daughters of guardian and spouse 6 years old,family_unit,Pessoa07 V007,Age and Gender,3,4
+V110,Filhas do responsável e do cônjuge com 7 anos de idade,Daughters of the guardian and the spouse with 7 years of age,family_unit,Pessoa07 V008,Age and Gender,3,7
+V111,Filhas do responsável e do cônjuge com 8 anos de idade,Daughters of guardian and spouse 8 years old,family_unit,Pessoa07 V009,Age and Gender,2,3
+V112,Filhas do responsável e do cônjuge com 9 anos de idade,Daughters of spouse and 9-year-old spouse,family_unit,Pessoa07 V010,Age and Gender,5,5
+V113,Filhas do responsável e do cônjuge com 10 anos de idade,Daughters of 10-year-old guardian and spouse,family_unit,Pessoa07 V011,Age and Gender,3,1
+V114,Filhas do responsável e do cônjuge com 11 anos de idade,Daughters of spouse and 11-year-old spouse,family_unit,Pessoa07 V012,Age and Gender,9,3
+V115,Filhas do responsável e do cônjuge com 12 anos de idade,Daughters of guardian and spouse 12 years old,family_unit,Pessoa07 V013,Age and Gender,7,4
+V116,Filhas do responsável e do cônjuge com 13 anos de idade,Daughters of the guardian and the spouse with 13 years of age,family_unit,Pessoa07 V014,Age and Gender,9,5
+V117,Filhas do responsável e do cônjuge com 14 anos de idade,Daughters of spouse and 14-year-old spouse,family_unit,Pessoa07 V015,Age and Gender,5,4
+V118,Filhas do responsável e do cônjuge com 15 anos de idade,Daughters of 15-year-old guardian and spouse,family_unit,Pessoa07 V016,Age and Gender,8,4
+V119,Filhas do responsável e do cônjuge com 16 anos de idade,Daughters of 16-year-old guardian and spouse,family_unit,Pessoa07 V017,Age and Gender,3,2
+V120,Filhas do responsável e do cônjuge com 17 anos de idade,Daughters of 17-year-old responsible spouse and spouse,family_unit,Pessoa07 V018,Age and Gender,3,1
+V121,Filhas do responsável e do cônjuge com 18 anos de idade,Daughters of guardian and spouse 18 years of age,family_unit,Pessoa07 V019,Age and Gender,2,1
+V122,Filhas do responsável e do cônjuge com 19 anos de idade,Daughters of spouse and 19-year-old spouse,family_unit,Pessoa07 V020,Age and Gender,4,4
+V123,Filhas do responsável e do cônjuge com 20 anos de idade,Daughters of 20-year-old guardian and spouse,family_unit,Pessoa07 V021,Age and Gender,2,0
+V124,Filhas do responsável e do cônjuge com 21 anos de idade,Daughters of spouse and 21-year-old spouse,family_unit,Pessoa07 V022,Age and Gender,4,3
+V125,Filhas do responsável e do cônjuge com 22 anos de idade,Daughters of 22-year-old guardian and spouse,family_unit,Pessoa07 V023,Age and Gender,3,0
+V126,Filhas do responsável e do cônjuge com 23 anos de idade,Daughters of the guardian and spouse at 23 years of age,family_unit,Pessoa07 V024,Age and Gender,1,0
+V127,Filhas do responsável e do cônjuge com 24 anos de idade,Daughters of 24-year-old guardian and spouse,family_unit,Pessoa07 V025,Age and Gender,2,0
+V128,Filhas do responsável e do cônjuge com 25 anos de idade,Daughters of 25-year-old guardian and spouse,family_unit,Pessoa07 V026,Age and Gender,2,0
+V129,Filhas do responsável e do cônjuge com 26 anos de idade,Daughters of 26-year-old guardian and spouse,family_unit,Pessoa07 V027,Age and Gender,4,2
+V130,Filhas do responsável e do cônjuge com 27 anos de idade,Daughters of spouse and 27-year-old spouse,family_unit,Pessoa07 V028,Age and Gender,2,1
+V131,Filhas do responsável e do cônjuge com 28 anos de idade,Daughters of spouse and 28-year-old spouse,family_unit,Pessoa07 V029,Age and Gender,0,0
+V132,Filhas do responsável e do cônjuge com 29 anos de idade,Daughters of 29-year-old guardian and spouse,family_unit,Pessoa07 V030,Age and Gender,1,0
+V133,Filhas do responsável e do cônjuge com 30 anos de idade,Daughters of 30-year-old guardian and spouse,family_unit,Pessoa07 V031,Age and Gender,0,0
+V134,Filhas do responsável e do cônjuge com 31 anos de idade,Daughters of the spouse and 31-year-old spouse,family_unit,Pessoa07 V032,Age and Gender,0,0
+V135,Filhas do responsável e do cônjuge com 32 anos de idade,Daughters of 32-year-old guardian and spouse,family_unit,Pessoa07 V033,Age and Gender,1,1
+V136,Filhas do responsável e do cônjuge com 33 anos de idade,Daughters of spouse and 33-year-old spouse,family_unit,Pessoa07 V034,Age and Gender,0,0
+V137,Filhas do responsável e do cônjuge com 34 anos de idade,Daughters of 34-year-old guardian and spouse,family_unit,Pessoa07 V035,Age and Gender,0,0
+V138,Filhas do responsável e do cônjuge com 35 anos de idade,Daughters of 35-year-old guardian and spouse,family_unit,Pessoa07 V036,Age and Gender,0,0
+V139,Filhas do responsável e do cônjuge com 36 anos de idade,Daughters of 36-year-old guardian and spouse,family_unit,Pessoa07 V037,Age and Gender,1,0
+V140,Filhas do responsável e do cônjuge com 37 anos de idade,Daughters of spouse and 37-year-old spouse,family_unit,Pessoa07 V038,Age and Gender,0,0
+V141,Filhas do responsável e do cônjuge com 38 anos de idade,Daughters of 38-year-old guardian and spouse,family_unit,Pessoa07 V039,Age and Gender,0,1
+V142,Filhas do responsável e do cônjuge com 39 anos de idade,Daughters of guardian and spouse at 39 years of age,family_unit,Pessoa07 V040,Age and Gender,0,0
+V143,Filhas do responsável e do cônjuge com 40 anos de idade,Daughters of 40-year-old spouse and spouse,family_unit,Pessoa07 V041,Age and Gender,0,0
+V144,Filhas do responsável e do cônjuge com 41 anos de idade,Daughters of 41-year-old guardian and spouse,family_unit,Pessoa07 V042,Age and Gender,0,0
+V145,Filhas do responsável e do cônjuge com 42 anos de idade,Daughters of 42-year-old guardian and spouse,family_unit,Pessoa07 V043,Age and Gender,1,0
+V146,Filhas do responsável e do cônjuge com 43 anos de idade,Daughters of 43-year-old guardian and spouse,family_unit,Pessoa07 V044,Age and Gender,0,0
+V147,Filhas do responsável e do cônjuge com 44 anos de idade,Daughters of 44-year-old guardian and spouse,family_unit,Pessoa07 V045,Age and Gender,0,0
+V148,Filhas do responsável e do cônjuge com 45 anos de idade,Daughters of 45-year-old guardian and spouse,family_unit,Pessoa07 V046,Age and Gender,0,0
+V149,Filhas do responsável e do cônjuge com 46 anos de idade,Daughters of 46-year-old guardian and spouse,family_unit,Pessoa07 V047,Age and Gender,0,1
+V150,Filhas do responsável e do cônjuge com 47 anos de idade,Daughters of guardian and spouse at 47 years of age,family_unit,Pessoa07 V048,Age and Gender,0,0
+V151,Filhas do responsável e do cônjuge com 48 anos de idade,Daughters of guardian and spouse at 48 years of age,family_unit,Pessoa07 V049,Age and Gender,0,0
+V152,Filhas do responsável e do cônjuge com 49 anos de idade,Daughters of 49-year-old guardian and spouse,family_unit,Pessoa07 V050,Age and Gender,0,0
+V153,Filhas do responsável e do cônjuge com 50 anos ou mais de idade,Daughters of guardian and spouse aged 50 years or over,family_unit,Pessoa07 V051,Age and Gender,0,0
+V154,Filhas somente do responsável com menos de 1 ano de idade,Daughters only responsible person under 1 year of age,family_unit,Pessoa07 V052,Age and Gender,0,0
+V155,Filhas somente do responsável com 1 ano de idade,Daughters only of 1 year old responsible,family_unit,Pessoa07 V053,Age and Gender,1,2
+V156,Filhas somente do responsável com 2 anos de idade,Daughters only of 2 year old responsible,family_unit,Pessoa07 V054,Age and Gender,1,0
+V157,Filhas somente do responsável com 3 anos de idade,Daughters only of 3 year old responsible,family_unit,Pessoa07 V055,Age and Gender,0,3
+V158,Filhas somente do responsável com 4 anos de idade,Daughters only of 4 year old responsible,family_unit,Pessoa07 V056,Age and Gender,3,2
+V159,Filhas somente do responsável com 5 anos de idade,Daughters only of 5 year old responsible,family_unit,Pessoa07 V057,Age and Gender,2,2
+V160,Filhas somente do responsável com 6 anos de idade,Daughters only of 6 year old responsible,family_unit,Pessoa07 V058,Age and Gender,1,3
+V161,Filhas somente do responsável com 7 anos de idade,Daughters only of 7 year old responsible,family_unit,Pessoa07 V059,Age and Gender,4,2
+V162,Filhas somente do responsável com 8 anos de idade,Only 8-year-old responsible daughters,family_unit,Pessoa07 V060,Age and Gender,4,6
+V163,Filhas somente do responsável com 9 anos de idade,Daughters only of 9 year old responsible,family_unit,Pessoa07 V061,Age and Gender,0,3
+V164,Filhas somente do responsável com 10 anos de idade,Daughters only of 10 year old responsible,family_unit,Pessoa07 V062,Age and Gender,3,5
+V165,Filhas somente do responsável com 11 anos de idade,Daughters only of 11 year old responsible,family_unit,Pessoa07 V063,Age and Gender,4,3
+V166,Filhas somente do responsável com 12 anos de idade,Daughters only of 12 year old responsible,family_unit,Pessoa07 V064,Age and Gender,2,1
+V167,Filhas somente do responsável com 13 anos de idade,Daughters only of 13 year old responsible,family_unit,Pessoa07 V065,Age and Gender,6,4
+V168,Filhas somente do responsável com 14 anos de idade,Daughters only of 14 year old responsible,family_unit,Pessoa07 V066,Age and Gender,2,3
+V169,Filhas somente do responsável com 15 anos de idade,Daughters only of 15 year old responsible,family_unit,Pessoa07 V067,Age and Gender,2,4
+V170,Filhas somente do responsável com 16 anos de idade,Daughters only of 16 year old responsible,family_unit,Pessoa07 V068,Age and Gender,4,2
+V171,Filhas somente do responsável com 17 anos de idade,Daughters only of 17 year old responsible,family_unit,Pessoa07 V069,Age and Gender,2,1
+V172,Filhas somente do responsável com 18 anos de idade,Daughters only of the responsible person with 18 years of age,family_unit,Pessoa07 V070,Age and Gender,1,3
+V173,Filhas somente do responsável com 19 anos de idade,Daughters only of 19 year old responsible,family_unit,Pessoa07 V071,Age and Gender,0,2
+V174,Filhas somente do responsável com 20 anos de idade,Daughters only of 20 year old responsible,family_unit,Pessoa07 V072,Age and Gender,2,1
+V175,Filhas somente do responsável com 21 anos de idade,Daughters only of 21 year old responsible,family_unit,Pessoa07 V073,Age and Gender,0,2
+V176,Filhas somente do responsável com 22 anos de idade,Daughters only of 22 year old responsible,family_unit,Pessoa07 V074,Age and Gender,0,0
+V177,Filhas somente do responsável com 23 anos de idade,Daughters only of 23 year old responsible,family_unit,Pessoa07 V075,Age and Gender,0,0
+V178,Filhas somente do responsável com 24 anos de idade,Daughters only of 24 year old responsible,family_unit,Pessoa07 V076,Age and Gender,1,0
+V179,Filhas somente do responsável com 25 anos de idade,Daughters only of 25-year-old responsible,family_unit,Pessoa07 V077,Age and Gender,2,4
+V180,Filhas somente do responsável com 26 anos de idade,Daughters only of 26 year old responsible,family_unit,Pessoa07 V078,Age and Gender,3,2
+V181,Filhas somente do responsável com 27 anos de idade,Daughters only of 27 year old responsible,family_unit,Pessoa07 V079,Age and Gender,0,0
+V182,Filhas somente do responsável com 28 anos de idade,Daughters only of 28 year old responsible,family_unit,Pessoa07 V080,Age and Gender,2,0
+V183,Filhas somente do responsável com 29 anos de idade,Daughters only of 29 year old responsible,family_unit,Pessoa07 V081,Age and Gender,0,0
+V184,Filhas somente do responsável com 30 anos de idade,Daughters only of 30 year old responsible,family_unit,Pessoa07 V082,Age and Gender,1,0
+V185,Filhas somente do responsável com 31 anos de idade,Daughters only of the 31 year old responsible,family_unit,Pessoa07 V083,Age and Gender,3,0
+V186,Filhas somente do responsável com 32 anos de idade,Daughters only of 32-year-old responsible,family_unit,Pessoa07 V084,Age and Gender,0,0
+V187,Filhas somente do responsável com 33 anos de idade,Daughters only of 33 year old responsible,family_unit,Pessoa07 V085,Age and Gender,1,0
+V188,Filhas somente do responsável com 34 anos de idade,Daughters only of 34 year old responsible,family_unit,Pessoa07 V086,Age and Gender,1,0
+V189,Filhas somente do responsável com 35 anos de idade,Daughters only of 35 year old responsible,family_unit,Pessoa07 V087,Age and Gender,0,0
+V190,Filhas somente do responsável com 36 anos de idade,Daughters only of 36 year old responsible,family_unit,Pessoa07 V088,Age and Gender,0,0
+V191,Filhas somente do responsável com 37 anos de idade,Daughters only of 37 year old responsible,family_unit,Pessoa07 V089,Age and Gender,0,0
+V192,Filhas somente do responsável com 38 anos de idade,Daughters only of 38-year-old responsible,family_unit,Pessoa07 V090,Age and Gender,0,0
+V193,Filhas somente do responsável com 39 anos de idade,Daughters only of 39 year old responsible,family_unit,Pessoa07 V091,Age and Gender,2,0
+V194,Filhas somente do responsável com 40 anos de idade,Daughters only of 40 year old responsible,family_unit,Pessoa07 V092,Age and Gender,0,1
+V195,Filhas somente do responsável com 41 anos de idade,Daughters only of 41-year-old responsible,family_unit,Pessoa07 V093,Age and Gender,0,0
+V196,Filhas somente do responsável com 42 anos de idade,Daughters only of 42-year-old responsible,family_unit,Pessoa07 V094,Age and Gender,0,0
+V197,Filhas somente do responsável com 43 anos de idade,Daughters only of 43 year old responsible,family_unit,Pessoa07 V095,Age and Gender,0,0
+V198,Filhas somente do responsável com 44 anos de idade,Daughters only of 44-year-old responsible,family_unit,Pessoa07 V096,Age and Gender,0,0
+V199,Filhas somente do responsável com 45 anos de idade,Daughters only of 45 year old responsible,family_unit,Pessoa07 V097,Age and Gender,0,0
+V200,Filhas somente do responsável com 46 anos de idade,Daughters only of 46 year old responsible,family_unit,Pessoa07 V098,Age and Gender,0,0
+V201,Filhas somente do responsável com 47 anos de idade,Daughters only of 47 year old responsible,family_unit,Pessoa07 V099,Age and Gender,0,0
+V202,Filhas somente do responsável com 48 anos de idade,Daughters only of 48-year-old responsible,family_unit,Pessoa07 V100,Age and Gender,0,0
+V203,Filhas somente do responsável com 49 anos de idade,Daughters only of the 49 year old responsible,family_unit,Pessoa07 V101,Age and Gender,0,0
+V204,Filhas somente do responsável com 50 anos ou mais de idade,Daughters only responsible person 50 years of age or older,family_unit,Pessoa07 V102,Age and Gender,0,1
+V205,Enteadas com menos de 1 ano de idade,Stepchildren under 1 year of age,family_unit,Pessoa07 V103,Age and Gender,0,1
+V206,Enteadas com 1 ano de idade,Stepdaughters with 1 year old,family_unit,Pessoa07 V104,Age and Gender,0,0
+V207,Enteadas com 2 anos de idade,Stepdaughters with 2 years of age,family_unit,Pessoa07 V105,Age and Gender,0,0
+V208,Enteadas com 3 anos de idade,Stepdaughters with 3 years old,family_unit,Pessoa07 V106,Age and Gender,0,0
+V209,Enteadas com 4 anos de idade,Stepchildren at 4 years of age,family_unit,Pessoa07 V107,Age and Gender,2,3
+V210,Enteadas com 5 anos de idade,Stepdaughters with 5 years old,family_unit,Pessoa07 V108,Age and Gender,1,1
+V211,Enteadas com 6 anos de idade,Stepdaughters with 6 years of age,family_unit,Pessoa07 V109,Age and Gender,3,1
+V212,Enteadas com 7 anos de idade,Stepdaughters with 7 years of age,family_unit,Pessoa07 V110,Age and Gender,1,0
+V213,Enteadas com 8 anos de idade,Stepdaughters with 8 years of age,family_unit,Pessoa07 V111,Age and Gender,2,2
+V214,Enteadas com 9 anos de idade,Stepdaughters with 9 years of age,family_unit,Pessoa07 V112,Age and Gender,1,3
+V215,Enteadas com 10 anos de idade,Stepdaughters with 10 years of age,family_unit,Pessoa07 V113,Age and Gender,0,2
+V216,Enteadas com 11 anos de idade,Stepdaughters with 11 years of age,family_unit,Pessoa07 V114,Age and Gender,1,2
+V217,Enteadas com 12 anos de idade,Stepdaughters with 12 years old,family_unit,Pessoa07 V115,Age and Gender,1,0
+V218,Enteadas com 13 anos de idade,Stepdaughters with 13 years of age,family_unit,Pessoa07 V116,Age and Gender,0,1
+V219,Enteadas com 14 anos de idade,Stepdaughters with 14 years of age,family_unit,Pessoa07 V117,Age and Gender,1,1
+V220,Enteadas com 15 anos de idade,Stepdaughters with 15 years of age,family_unit,Pessoa07 V118,Age and Gender,1,0
+V221,Enteadas com 16 anos de idade,Stepdaughters with 16 years of age,family_unit,Pessoa07 V119,Age and Gender,1,1
+V222,Enteadas com 17 anos de idade,Stepdaughters with 17 years of age,family_unit,Pessoa07 V120,Age and Gender,2,0
+V223,Enteadas com 18 anos de idade,Stepdaughters with 18 years of age,family_unit,Pessoa07 V121,Age and Gender,0,1
+V224,Enteadas com 19 anos de idade,Stepdaughters with 19 years of age,family_unit,Pessoa07 V122,Age and Gender,0,0
+V225,Enteadas com 20 anos de idade,Stepdaughters with 20 years of age,family_unit,Pessoa07 V123,Age and Gender,0,0
+V226,Enteadas com 21 anos de idade,Stepdaughters with 21 years of age,family_unit,Pessoa07 V124,Age and Gender,0,0
+V227,Enteadas com 22 anos de idade,Stepdaughters with 22 years of age,family_unit,Pessoa07 V125,Age and Gender,0,0
+V228,Enteadas com 23 anos de idade,Stepdaughters with 23 years of age,family_unit,Pessoa07 V126,Age and Gender,0,0
+V229,Enteadas com 24 anos de idade,Stepdaughters with 24 years of age,family_unit,Pessoa07 V127,Age and Gender,0,0
+V230,Enteadas com 25 anos de idade,Stepdaughters with 25 years of age,family_unit,Pessoa07 V128,Age and Gender,1,0
+V231,Enteadas com 26 anos de idade,Stepdaughters with 26 years of age,family_unit,Pessoa07 V129,Age and Gender,0,0
+V232,Enteadas com 27 anos de idade,Stepdaughters with 27 years of age,family_unit,Pessoa07 V130,Age and Gender,0,0
+V233,Enteadas com 28 anos de idade,Stepdaughters with 28 years of age,family_unit,Pessoa07 V131,Age and Gender,0,0
+V234,Enteadas com 29 anos de idade,Stepdaughters with 29 years of age,family_unit,Pessoa07 V132,Age and Gender,0,0
+V235,Enteadas com 30 anos de idade,Stepdaughters with 30 years of age,family_unit,Pessoa07 V133,Age and Gender,0,0
+V236,Enteadas com 31 anos de idade,31-year-old stepdaughters,family_unit,Pessoa07 V134,Age and Gender,0,0
+V237,Enteadas com 32 anos de idade,32-year-old Stepdaughters,family_unit,Pessoa07 V135,Age and Gender,0,0
+V238,Enteadas com 33 anos de idade,Stepdaughters with 33 years of age,family_unit,Pessoa07 V136,Age and Gender,0,0
+V239,Enteadas com 34 anos de idade,34-year-old stepchildren,family_unit,Pessoa07 V137,Age and Gender,0,0
+V240,Enteadas com 35 anos de idade,Stepdaughters with 35 years of age,family_unit,Pessoa07 V138,Age and Gender,0,0
+V241,Enteadas com 36 anos de idade,Stepdaughters with 36 years of age,family_unit,Pessoa07 V139,Age and Gender,0,0
+V242,Enteadas com 37 anos de idade,Stepchildren with 37 years of age,family_unit,Pessoa07 V140,Age and Gender,0,0
+V243,Enteadas com 38 anos de idade,Stepdaughters with 38 years of age,family_unit,Pessoa07 V141,Age and Gender,0,0
+V244,Enteadas com 39 anos de idade,Stepdaughters with 39 years of age,family_unit,Pessoa07 V142,Age and Gender,0,0
+V245,Enteadas com 40 anos de idade,40-year-old stepchildren,family_unit,Pessoa07 V143,Age and Gender,0,0
+V246,Enteadas com 41 anos de idade,Stepdaughters at 41 years of age,family_unit,Pessoa07 V144,Age and Gender,0,0
+V247,Enteadas com 42 anos de idade,Stepdaughters with 42 years of age,family_unit,Pessoa07 V145,Age and Gender,0,0
+V248,Enteadas com 43 anos de idade,Stepdaughters with 43 years of age,family_unit,Pessoa07 V146,Age and Gender,0,0
+V249,Enteadas com 44 anos de idade,44-year-old stepdaughters,family_unit,Pessoa07 V147,Age and Gender,0,0
+V250,Enteadas com 45 anos de idade,Stepdaughters with 45 years of age,family_unit,Pessoa07 V148,Age and Gender,0,0
+V251,Enteadas com 46 anos de idade,Stepdaughters with 46 years of age,family_unit,Pessoa07 V149,Age and Gender,0,0
+V252,Enteadas com 47 anos de idade,Stepdaughters with 47 years of age,family_unit,Pessoa07 V150,Age and Gender,0,0
+V253,Enteadas com 48 anos de idade,48-year-old stepchildren,family_unit,Pessoa07 V151,Age and Gender,0,0
+V254,Enteadas com 49 anos de idade,Stepdaughters with 49 years of age,family_unit,Pessoa07 V152,Age and Gender,0,0
+,,,family_unit,Pessoa07 V153,Age and Gender,0,0

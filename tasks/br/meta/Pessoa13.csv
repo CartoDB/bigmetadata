@@ -1,1 +1,137 @@
-Nome da vari‡vel,Descri‹o da vari‡vel,Variable description,unit,target,subsection,data_sample1,data_sample2Cod_setor,C—digo do setor censit‡rio,Census sector code,,,,120001305000001,120001305000002Situacao,C—digo de situa‹o do setor censit‡rio (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1V001,Pessoas residentes em domic’lios particulares e domic’lios coletivos,People living in private households and collective households,people,,age_gender,957,1211V002,Pessoas residentes em domic’lios particulares permanentes,Persons residing in permanent private households,people,V001,age_gender,957,1203V003,Respons‡veis pelos domic’lios particulares,Responsible for private households,people,V002,age_gender,282,344V004,C™njuges ou companheiros(as) (de sexo diferente e do mesmo sexo da pessoa respons‡vel) em domic’lios particulares ,Spouses or partners (of different sex and of the same sex as the responsible person) in private households,people,V002,age_gender,197,245V005,Filhos(as) do respons‡vel e do c™njuge em domic’lios particulares,Children of the guardian and the spouse in private households,people,V002,age_gender,210,300V006,Filhos(as) somente do respons‡vel em domic’lios particulares,Children (as) only of the responsible in particular domiciles,people,V002,age_gender,123,161V007,Enteados(as) em domic’lios particulares,Stepchildren in private households,people,V002,age_gender,25,54V008,Genros ou noras em domic’lios particulares,Grooms or daughters-in-law in private homes,people,V002,age_gender,10,7V009,"Pais, m‹es, padrastos ou madrastas em domic’lios particulares","Parents, mothers, stepfathers or stepmothers in private homes",people,V002,age_gender,3,11V010,Sogros (as) em domic’lios particulares,Individuals in private homes,people,V002,age_gender,3,2V011,Netos(as) em domic’lios particulares,Grandchildren in private households,people,V002,age_gender,62,54V012,Bisnetos(as) em domic’lios particulares,Great-grandchildren in private households,people,V002,age_gender,1,1V013,Irm‹os ou irm‹s em domic’lios particulares,Brothers or sisters in private homes,people,V002,age_gender,11,6V014,Av™s ou av—s em domic’lios particulares,Grandparents or grandparents in private homes,people,V002,age_gender,0,0V015,Outros parentes em domic’lios particulares,Other relatives in private households,people,V002,age_gender,24,15V016,Agregados(as) em domic’lios particulares,Aggregates in private households,people,V002,age_gender,1,6V017,Conviventes em domic’lios particulares,Cohabitants in private homes,people,V002,age_gender,1,5V018,Pensionistas em domic’lios particulares,Pensioners in private homes,people,V002,age_gender,4,0V019,Empregados(as) domsticos(as) em domic’lios particulares,Household employees in private households,people,V002,age_gender,0,0V020,Parentes de empregados(as) domsticos(as) em domic’lios particulares,Relatives of domestic servants in private households,people,V002,age_gender,0,0V021,Individuais em domic’lio coletivo,Individuals in collective residence,people,V001,age_gender,0,0V022,Pessoas com menos de 1 ano de idade,Persons under 1 year of age,people,V001,age_gender,8,29V023,Pessoas com menos de 1 ms de idade,People under 1 month old,people,V022,age_gender,0,1V024,Pessoas com 1 ms de idade,People 1 month old,people,V022,age_gender,0,2V025,Pessoas com 2 meses de idade,People 2 months old,people,V022,age_gender,0,3V026,Pessoas com 3 meses de idade,People 3 months old,people,V022,age_gender,1,4V027,Pessoas com 4 meses de idade,People 4 months old,people,V022,age_gender,0,0V028,Pessoas com 5 meses de idade,People 5 months old,people,V022,age_gender,0,2V029,Pessoas com 6 meses de idade,People 6 months old,people,V022,age_gender,0,0V030,Pessoas com 7 meses de idade,People 7 months old,people,V022,age_gender,2,3V031,Pessoas com 8 meses de idade,People 8 months old,people,V022,age_gender,2,1V032,Pessoas com 9 meses de idade,People 9 months old,people,V022,age_gender,1,3V033,Pessoas com 10 meses de idade,People 10 months old,people,V022,age_gender,0,3V034,Pessoas com 11 meses de idade,People 11 months old,people,V022,age_gender,2,7V035,Pessoas de 1 ano de idade,1 year old,people,V001,age_gender,16,20V036,Pessoas com 2 anos de idade,People 2 years old,people,V001,age_gender,14,27V037,Pessoas com 3 anos de idade,3 year olds,people,V001,age_gender,11,38V038,Pessoas com 4 anos de idade,People 4 years old,people,V001,age_gender,22,18V039,Pessoas com 5 anos de idade,People 5 years old,people,V001,age_gender,21,34V040,Pessoas com 6 anos de idade,People 6 years old,people,V001,age_gender,21,28V041,Pessoas com 7 anos de idade,7 year olds,people,V001,age_gender,16,31V042,Pessoas com 8 anos de idade,8 year olds,people,V001,age_gender,20,23V043,Pessoas com 9 anos de idade,People with 9 years of age,people,V001,age_gender,14,17V044,Pessoas com 10 anos de idade,10 year olds,people,V001,age_gender,16,29V045,Pessoas com 11 anos de idade,11-year-olds,people,V001,age_gender,22,41V046,Pessoas com 12 anos de idade,12 year olds,people,V001,age_gender,20,23V047,Pessoas com 13 anos de idade,13-year-olds,people,V001,age_gender,26,36V048,Pessoas com 14 anos de idade,People with 14 years of age,people,V001,age_gender,17,31V049,Pessoas com 15 anos de idade,15 year olds,people,V001,age_gender,23,36V050,Pessoas com 16 anos de idade,People with 16 years of age,people,V001,age_gender,22,35V051,Pessoas com 17 anos de idade,People with 17 years of age,people,V001,age_gender,14,27V052,Pessoas com 18 anos de idade,People 18 years old,people,V001,age_gender,17,23V053,Pessoas com 19 anos de idade,People 19 years old,people,V001,age_gender,14,30V054,Pessoas com 20 anos de idade,People with 20 years of age,people,V001,age_gender,17,20V055,Pessoas com 21 anos de idade,People with 21 years of age,people,V001,age_gender,21,18V056,Pessoas com 22 anos de idade,People with 22 years of age,people,V001,age_gender,18,17V057,Pessoas com 23 anos de idade,People with 23 years of age,people,V001,age_gender,11,17V058,Pessoas com 24 anos de idade,People with 24 years of age,people,V001,age_gender,16,15V059,Pessoas com 25 anos de idade,People 25 years old,people,V001,age_gender,23,24V060,Pessoas com 26 anos de idade,People with 26 years of age,people,V001,age_gender,20,24V061,Pessoas com 27 anos de idade,People with 27 years of age,people,V001,age_gender,15,18V062,Pessoas com 28 anos de idade,People with 28 years of age,people,V001,age_gender,27,14V063,Pessoas com 29 anos de idade,People with 29 years of age,people,V001,age_gender,10,18V064,Pessoas com 30 anos de idade,30-year-olds,people,V001,age_gender,16,26V065,Pessoas com 31 anos de idade,31-year-olds,people,V001,age_gender,18,17V066,Pessoas com 32 anos de idade,32-year-olds,people,V001,age_gender,14,20V067,Pessoas com 33 anos de idade,33-year-olds,people,V001,age_gender,7,22V068,Pessoas com 34 anos de idade,34-year-olds,people,V001,age_gender,14,23V069,Pessoas com 35 anos de idade,35-year-olds,people,V001,age_gender,14,17V070,Pessoas com 36 anos de idade,People with 36 years of age,people,V001,age_gender,13,13V071,Pessoas com 37 anos de idade,37-year-olds,people,V001,age_gender,15,13V072,Pessoas com 38 anos de idade,38-year-olds,people,V001,age_gender,16,19V073,Pessoas com 39 anos de idade,People 39 years old,people,V001,age_gender,18,11V074,Pessoas com 40 anos de idade,People 40 years old,people,V001,age_gender,7,13V075,Pessoas com 41 anos de idade,People with 41 years of age,people,V001,age_gender,10,13V076,Pessoas com 42 anos de idade,42-year-olds,people,V001,age_gender,11,21V077,Pessoas com 43 anos de idade,43-year-olds,people,V001,age_gender,12,12V078,Pessoas com 44 anos de idade,44-year-olds,people,V001,age_gender,12,8V079,Pessoas com 45 anos de idade,45-year-olds,people,V001,age_gender,9,9V080,Pessoas com 46 anos de idade,46-year-olds,people,V001,age_gender,7,6V081,Pessoas com 47 anos de idade,47-year-olds,people,V001,age_gender,7,12V082,Pessoas com 48 anos de idade,48-year-olds,people,V001,age_gender,11,6V083,Pessoas com 49 anos de idade,49-year-olds,people,V001,age_gender,17,12V084,Pessoas com 50 anos de idade,50-year-olds,people,V001,age_gender,12,6V085,Pessoas com 51 anos de idade,51-year-olds,people,V001,age_gender,11,8V086,Pessoas com 52 anos de idade,People with 52 years of age,people,V001,age_gender,11,8V087,Pessoas com 53 anos de idade,53-year-olds,people,V001,age_gender,10,5V088,Pessoas com 54 anos de idade,54-year-olds,people,V001,age_gender,6,6V089,Pessoas com 55 anos de idade,55-year-olds,people,V001,age_gender,11,5V090,Pessoas com 56 anos de idade,56-year-olds,people,V001,age_gender,11,6V091,Pessoas com 57 anos de idade,57-year-olds,people,V001,age_gender,6,3V092,Pessoas com 58 anos de idade,People with 58 years of age,people,V001,age_gender,9,7V093,Pessoas com 59 anos de idade,59-year-olds,people,V001,age_gender,9,4V094,Pessoas com 60 anos de idade,60-year-olds,people,V001,age_gender,7,11V095,Pessoas com 61 anos de idade,61-year-olds,people,V001,age_gender,10,8V096,Pessoas com 62 anos de idade,62-year-olds,people,V001,age_gender,2,11V097,Pessoas com 63 anos de idade,63-year-olds,people,V001,age_gender,6,6V098,Pessoas com 64 anos de idade,64-year-olds,people,V001,age_gender,3,7V099,Pessoas com 65 anos de idade,65 year olds,people,V001,age_gender,5,6V100,Pessoas com 66 anos de idade,66-year-olds,people,V001,age_gender,8,6V101,Pessoas com 67 anos de idade,67-year-olds,people,V001,age_gender,2,5V102,Pessoas com 68 anos de idade,68-year-olds,people,V001,age_gender,7,3V103,Pessoas com 69 anos de idade,69-year-olds,people,V001,age_gender,2,4V104,Pessoas com 70 anos de idade,70-year-olds,people,V001,age_gender,3,5V105,Pessoas com 71 anos de idade,71-year-olds,people,V001,age_gender,1,1V106,Pessoas com 72 anos de idade,72-year-olds,people,V001,age_gender,4,5V107,Pessoas com 73 anos de idade,73-year-olds,people,V001,age_gender,3,1V108,Pessoas com 74 anos de idade,74-year-olds,people,V001,age_gender,4,5V109,Pessoas com 75 anos de idade,75-year-olds,people,V001,age_gender,0,2V110,Pessoas com 76 anos de idade,76-year-olds,people,V001,age_gender,2,2V111,Pessoas com 77 anos de idade,77-year-olds,people,V001,age_gender,2,1V112,Pessoas com 78 anos de idade,78-year-olds,people,V001,age_gender,1,1V113,Pessoas com 79 anos de idade,79-year-olds,people,V001,age_gender,0,4V114,Pessoas com 80 anos de idade,80 year olds,people,V001,age_gender,2,2V115,Pessoas com 81 anos de idade,81-year-olds,people,V001,age_gender,0,0V116,Pessoas com 82 anos de idade,82 year olds,people,V001,age_gender,1,2V117,Pessoas com 83 anos de idade,83-year-olds,people,V001,age_gender,1,0V118,Pessoas com 84 anos de idade,84-year-olds,people,V001,age_gender,0,1V119,Pessoas com 85 anos de idade,85-year-olds,people,V001,age_gender,0,0V120,Pessoas com 86 anos de idade,86-year-olds,people,V001,age_gender,0,0V121,Pessoas com 87 anos de idade,87-year-olds,people,V001,age_gender,1,0V122,Pessoas com 88 anos de idade,88-year-olds,people,V001,age_gender,1,0V123,Pessoas com 89 anos de idade,89-year-olds,people,V001,age_gender,2,0V124,Pessoas com 90 anos de idade,90-year-olds,people,V001,age_gender,0,0V125,Pessoas com 91 anos de idade,91-year-olds,people,V001,age_gender,1,0V126,Pessoas com 92 anos de idade,92-year-olds,people,V001,age_gender,0,0V127,Pessoas com 93 anos de idade,93-year-olds,people,V001,age_gender,0,0V128,Pessoas com 94 anos de idade,94-year-olds,people,V001,age_gender,0,0V129,Pessoas com 95 anos de idade,95-year-olds,people,V001,age_gender,0,0V130,Pessoas com 96 anos de idade,96-year-olds,people,V001,age_gender,0,0V131,Pessoas com 97 anos de idade,97-year-olds,people,V001,age_gender,0,0V132,Pessoas com 98 anos de idade,98-year-olds,people,V001,age_gender,0,0V133,Pessoas com 99 anos de idade,99 year olds,people,V001,age_gender,0,0V134,Pessoas com 100 anos ou mais de idade,People 100 years of age or older,people,V001,age_gender,0,0
+Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2,
+Cod_setor,Código do setor censitário,Census sector code,,,,1.20001E+14,1.20001E+14,1.2001E+14
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1,1
+V001,Pessoas residentes em domicílios particulares e domicílios coletivos,People living in private households and collective households,people,,Housing,957,914,1086
+V002,Pessoas residentes em domicílios particulares permanentes,Persons residing in permanent private households,people,V001,Housing,957,914,1084
+V003,Responsáveis pelos domicílios particulares,Responsible for private households,people,V002,Housing,282,257,326
+V004,Cônjuges ou companheiros(as) (de sexo diferente e do mesmo sexo da pessoa responsável) em domicílios particulares ,Spouses or partners (of different sex and of the same sex as the responsible person) in private households,people,V002,Housing,197,186,210
+V005,Filhos(as) do responsável e do cônjuge em domicílios particulares,Children of the guardian and the spouse in private households,people,V002,Housing,210,214,223
+V006,Filhos(as) somente do responsável em domicílios particulares,Children (as) only of the responsible in particular domiciles,people,V002,Housing,123,134,162
+V007,Enteados(as) em domicílios particulares,Stepchildren in private households,people,V002,Housing,25,39,16
+V008,Genros ou noras em domicílios particulares,Grooms or daughters-in-law in private homes,people,V002,Housing,10,4,14
+V009,"Pais, mães, padrastos ou madrastas em domicílios particulares","Parents, mothers, stepfathers or stepmothers in private homes",people,V002,Housing,3,1,10
+V010,Sogros (as) em domicílios particulares,Individuals in private homes,people,V002,Housing,3,2,4
+V011,Netos(as) em domicílios particulares,Grandchildren in private households,people,V002,Housing,62,46,70
+V012,Bisnetos(as) em domicílios particulares,Great-grandchildren in private households,people,V002,Housing,1,2,1
+V013,Irmãos ou irmãs em domicílios particulares,Brothers or sisters in private homes,people,V002,Housing,11,9,10
+V014,Avôs ou avós em domicílios particulares,Grandparents or grandparents in private homes,people,V002,Housing,0,0,0
+V015,Outros parentes em domicílios particulares,Other relatives in private households,people,V002,Housing,24,18,23
+V016,Agregados(as) em domicílios particulares,Aggregates in private households,people,V002,Housing,1,1,0
+V017,Conviventes em domicílios particulares,Cohabitants in private homes,people,V002,Housing,1,1,17
+V018,Pensionistas em domicílios particulares,Pensioners in private homes,people,V002,Housing,4,0,0
+V019,Empregados(as) domésticos(as) em domicílios particulares,Household employees in private households,people,V002,Housing,0,0,0
+V020,Parentes de empregados(as) domésticos(as) em domicílios particulares,Relatives of domestic servants in private households,people,V002,Housing,0,0,0
+V021,Individuais em domicílio coletivo,Individuals in collective residence,people,V001,Housing,0,0,0
+V022,Pessoas com menos de 1 ano de idade,Persons under 1 year of age,people,V001,Age and Gender,8,20,18
+V023,Pessoas com menos de 1 mês de idade,People under 1 month old,people,V022,Age and Gender,0,1,1
+V024,Pessoas com 1 mês de idade,People 1 month old,people,V022,Age and Gender,0,1,2
+V025,Pessoas com 2 meses de idade,People 2 months old,people,V022,Age and Gender,0,0,0
+V026,Pessoas com 3 meses de idade,People 3 months old,people,V022,Age and Gender,1,3,3
+V027,Pessoas com 4 meses de idade,People 4 months old,people,V022,Age and Gender,0,2,0
+V028,Pessoas com 5 meses de idade,People 5 months old,people,V022,Age and Gender,0,2,3
+V029,Pessoas com 6 meses de idade,People 6 months old,people,V022,Age and Gender,0,0,1
+V030,Pessoas com 7 meses de idade,People 7 months old,people,V022,Age and Gender,2,1,4
+V031,Pessoas com 8 meses de idade,People 8 months old,people,V022,Age and Gender,2,1,0
+V032,Pessoas com 9 meses de idade,People 9 months old,people,V022,Age and Gender,1,3,2
+V033,Pessoas com 10 meses de idade,People 10 months old,people,V022,Age and Gender,0,2,0
+V034,Pessoas com 11 meses de idade,People 11 months old,people,V022,Age and Gender,2,4,2
+V035,Pessoas de 1 ano de idade,1 year old,people,V001,Age and Gender,16,23,28
+V036,Pessoas com 2 anos de idade,People 2 years old,people,V001,Age and Gender,14,19,22
+V037,Pessoas com 3 anos de idade,3 year olds,people,V001,Age and Gender,11,27,22
+V038,Pessoas com 4 anos de idade,People 4 years old,people,V001,Age and Gender,22,19,20
+V039,Pessoas com 5 anos de idade,People 5 years old,people,V001,Age and Gender,21,18,21
+V040,Pessoas com 6 anos de idade,People 6 years old,people,V001,Age and Gender,21,24,11
+V041,Pessoas com 7 anos de idade,7 year olds,people,V001,Age and Gender,16,24,19
+V042,Pessoas com 8 anos de idade,8 year olds,people,V001,Age and Gender,20,23,29
+V043,Pessoas com 9 anos de idade,People with 9 years of age,people,V001,Age and Gender,14,17,20
+V044,Pessoas com 10 anos de idade,10 year olds,people,V001,Age and Gender,16,21,23
+V045,Pessoas com 11 anos de idade,11-year-olds,people,V001,Age and Gender,22,23,10
+V046,Pessoas com 12 anos de idade,12 year olds,people,V001,Age and Gender,20,17,21
+V047,Pessoas com 13 anos de idade,13-year-olds,people,V001,Age and Gender,26,29,21
+V048,Pessoas com 14 anos de idade,People with 14 years of age,people,V001,Age and Gender,17,25,24
+V049,Pessoas com 15 anos de idade,15 year olds,people,V001,Age and Gender,23,23,24
+V050,Pessoas com 16 anos de idade,People with 16 years of age,people,V001,Age and Gender,22,16,25
+V051,Pessoas com 17 anos de idade,People with 17 years of age,people,V001,Age and Gender,14,19,29
+V052,Pessoas com 18 anos de idade,People 18 years old,people,V001,Age and Gender,17,19,15
+V053,Pessoas com 19 anos de idade,People 19 years old,people,V001,Age and Gender,14,17,35
+V054,Pessoas com 20 anos de idade,People with 20 years of age,people,V001,Age and Gender,17,24,24
+V055,Pessoas com 21 anos de idade,People with 21 years of age,people,V001,Age and Gender,21,19,17
+V056,Pessoas com 22 anos de idade,People with 22 years of age,people,V001,Age and Gender,18,11,21
+V057,Pessoas com 23 anos de idade,People with 23 years of age,people,V001,Age and Gender,11,13,25
+V058,Pessoas com 24 anos de idade,People with 24 years of age,people,V001,Age and Gender,16,18,25
+V059,Pessoas com 25 anos de idade,People 25 years old,people,V001,Age and Gender,23,19,30
+V060,Pessoas com 26 anos de idade,People with 26 years of age,people,V001,Age and Gender,20,21,12
+V061,Pessoas com 27 anos de idade,People with 27 years of age,people,V001,Age and Gender,15,11,14
+V062,Pessoas com 28 anos de idade,People with 28 years of age,people,V001,Age and Gender,27,19,10
+V063,Pessoas com 29 anos de idade,People with 29 years of age,people,V001,Age and Gender,10,15,28
+V064,Pessoas com 30 anos de idade,30-year-olds,people,V001,Age and Gender,16,19,19
+V065,Pessoas com 31 anos de idade,31-year-olds,people,V001,Age and Gender,18,17,11
+V066,Pessoas com 32 anos de idade,32-year-olds,people,V001,Age and Gender,14,18,12
+V067,Pessoas com 33 anos de idade,33-year-olds,people,V001,Age and Gender,7,8,21
+V068,Pessoas com 34 anos de idade,34-year-olds,people,V001,Age and Gender,14,20,18
+V069,Pessoas com 35 anos de idade,35-year-olds,people,V001,Age and Gender,14,14,12
+V070,Pessoas com 36 anos de idade,People with 36 years of age,people,V001,Age and Gender,13,13,16
+V071,Pessoas com 37 anos de idade,37-year-olds,people,V001,Age and Gender,15,13,12
+V072,Pessoas com 38 anos de idade,38-year-olds,people,V001,Age and Gender,16,15,20
+V073,Pessoas com 39 anos de idade,People 39 years old,people,V001,Age and Gender,18,7,14
+V074,Pessoas com 40 anos de idade,People 40 years old,people,V001,Age and Gender,7,16,18
+V075,Pessoas com 41 anos de idade,People with 41 years of age,people,V001,Age and Gender,10,9,18
+V076,Pessoas com 42 anos de idade,42-year-olds,people,V001,Age and Gender,11,5,11
+V077,Pessoas com 43 anos de idade,43-year-olds,people,V001,Age and Gender,12,7,15
+V078,Pessoas com 44 anos de idade,44-year-olds,people,V001,Age and Gender,12,6,10
+V079,Pessoas com 45 anos de idade,45-year-olds,people,V001,Age and Gender,9,7,5
+V080,Pessoas com 46 anos de idade,46-year-olds,people,V001,Age and Gender,7,5,16
+V081,Pessoas com 47 anos de idade,47-year-olds,people,V001,Age and Gender,7,4,10
+V082,Pessoas com 48 anos de idade,48-year-olds,people,V001,Age and Gender,11,9,16
+V083,Pessoas com 49 anos de idade,49-year-olds,people,V001,Age and Gender,17,5,5
+V084,Pessoas com 50 anos de idade,50-year-olds,people,V001,Age and Gender,12,3,8
+V085,Pessoas com 51 anos de idade,51-year-olds,people,V001,Age and Gender,11,5,5
+V086,Pessoas com 52 anos de idade,People with 52 years of age,people,V001,Age and Gender,11,4,16
+V087,Pessoas com 53 anos de idade,53-year-olds,people,V001,Age and Gender,10,2,9
+V088,Pessoas com 54 anos de idade,54-year-olds,people,V001,Age and Gender,6,4,9
+V089,Pessoas com 55 anos de idade,55-year-olds,people,V001,Age and Gender,11,8,5
+V090,Pessoas com 56 anos de idade,56-year-olds,people,V001,Age and Gender,11,6,5
+V091,Pessoas com 57 anos de idade,57-year-olds,people,V001,Age and Gender,6,5,7
+V092,Pessoas com 58 anos de idade,People with 58 years of age,people,V001,Age and Gender,9,3,4
+V093,Pessoas com 59 anos de idade,59-year-olds,people,V001,Age and Gender,9,3,5
+V094,Pessoas com 60 anos de idade,60-year-olds,people,V001,Age and Gender,7,3,7
+V095,Pessoas com 61 anos de idade,61-year-olds,people,V001,Age and Gender,10,1,8
+V096,Pessoas com 62 anos de idade,62-year-olds,people,V001,Age and Gender,2,3,3
+V097,Pessoas com 63 anos de idade,63-year-olds,people,V001,Age and Gender,6,5,1
+V098,Pessoas com 64 anos de idade,64-year-olds,people,V001,Age and Gender,3,2,7
+V099,Pessoas com 65 anos de idade,65 year olds,people,V001,Age and Gender,5,3,3
+V100,Pessoas com 66 anos de idade,66-year-olds,people,V001,Age and Gender,8,4,4
+V101,Pessoas com 67 anos de idade,67-year-olds,people,V001,Age and Gender,2,3,5
+V102,Pessoas com 68 anos de idade,68-year-olds,people,V001,Age and Gender,7,6,2
+V103,Pessoas com 69 anos de idade,69-year-olds,people,V001,Age and Gender,2,1,4
+V104,Pessoas com 70 anos de idade,70-year-olds,people,V001,Age and Gender,3,3,0
+V105,Pessoas com 71 anos de idade,71-year-olds,people,V001,Age and Gender,1,3,2
+V106,Pessoas com 72 anos de idade,72-year-olds,people,V001,Age and Gender,4,5,5
+V107,Pessoas com 73 anos de idade,73-year-olds,people,V001,Age and Gender,3,3,1
+V108,Pessoas com 74 anos de idade,74-year-olds,people,V001,Age and Gender,4,1,4
+V109,Pessoas com 75 anos de idade,75-year-olds,people,V001,Age and Gender,0,1,1
+V110,Pessoas com 76 anos de idade,76-year-olds,people,V001,Age and Gender,2,3,3
+V111,Pessoas com 77 anos de idade,77-year-olds,people,V001,Age and Gender,2,0,6
+V112,Pessoas com 78 anos de idade,78-year-olds,people,V001,Age and Gender,1,3,6
+V113,Pessoas com 79 anos de idade,79-year-olds,people,V001,Age and Gender,0,1,0
+V114,Pessoas com 80 anos de idade,80 year olds,people,V001,Age and Gender,2,2,3
+V115,Pessoas com 81 anos de idade,81-year-olds,people,V001,Age and Gender,0,1,1
+V116,Pessoas com 82 anos de idade,82 year olds,people,V001,Age and Gender,1,1,1
+V117,Pessoas com 83 anos de idade,83-year-olds,people,V001,Age and Gender,1,1,1
+V118,Pessoas com 84 anos de idade,84-year-olds,people,V001,Age and Gender,0,0,2
+V119,Pessoas com 85 anos de idade,85-year-olds,people,V001,Age and Gender,0,0,0
+V120,Pessoas com 86 anos de idade,86-year-olds,people,V001,Age and Gender,0,0,0
+V121,Pessoas com 87 anos de idade,87-year-olds,people,V001,Age and Gender,1,0,0
+V122,Pessoas com 88 anos de idade,88-year-olds,people,V001,Age and Gender,1,0,3
+V123,Pessoas com 89 anos de idade,89-year-olds,people,V001,Age and Gender,2,0,1
+V124,Pessoas com 90 anos de idade,90-year-olds,people,V001,Age and Gender,0,1,3
+V125,Pessoas com 91 anos de idade,91-year-olds,people,V001,Age and Gender,1,1,1
+V126,Pessoas com 92 anos de idade,92-year-olds,people,V001,Age and Gender,0,0,0
+V127,Pessoas com 93 anos de idade,93-year-olds,people,V001,Age and Gender,0,0,1
+V128,Pessoas com 94 anos de idade,94-year-olds,people,V001,Age and Gender,0,0,1
+V129,Pessoas com 95 anos de idade,95-year-olds,people,V001,Age and Gender,0,0,0
+V130,Pessoas com 96 anos de idade,96-year-olds,people,V001,Age and Gender,0,0,1
+V131,Pessoas com 97 anos de idade,97-year-olds,people,V001,Age and Gender,0,0,0
+V132,Pessoas com 98 anos de idade,98-year-olds,people,V001,Age and Gender,0,0,0
+V133,Pessoas com 99 anos de idade,99 year olds,people,V001,Age and Gender,0,0,0
+V134,Pessoas com 100 anos ou mais de idade,People 100 years of age or older,people,V001,Age and Gender,0,0,0

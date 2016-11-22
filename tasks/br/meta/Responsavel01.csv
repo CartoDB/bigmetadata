@@ -1,111 +1,111 @@
-Nome da variável,Descrição da variável
-Cod_setor,Código do setor censitário
-Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
-V001,"Pessoas responsáveis, do sexo feminino"
-V002,"Pessoas responsáveis com 10 anos de idade, do sexo feminino"
-V003,"Pessoas responsáveis com 11 anos de idade, do sexo feminino"
-V004,"Pessoas responsáveis com 12 anos de idade, do sexo feminino"
-V005,"Pessoas responsáveis com 13 anos de idade, do sexo feminino"
-V006,"Pessoas responsáveis com 14 anos de idade, do sexo feminino"
-V007,"Pessoas responsáveis com 15 anos de idade, do sexo feminino"
-V008,"Pessoas responsáveis com 16 anos de idade, do sexo feminino"
-V009,"Pessoas responsáveis com 17 anos de idade, do sexo feminino"
-V010,"Pessoas responsáveis com 18 anos de idade, do sexo feminino"
-V011,"Pessoas responsáveis com 19 anos de idade, do sexo feminino"
-V012,"Pessoas responsáveis com 20 anos de idade, do sexo feminino"
-V013,"Pessoas responsáveis com 21 anos de idade, do sexo feminino"
-V014,"Pessoas responsáveis com 22 anos de idade, do sexo feminino"
-V015,"Pessoas responsáveis com 23 anos de idade, do sexo feminino"
-V016,"Pessoas responsáveis com 24 anos de idade, do sexo feminino"
-V017,"Pessoas responsáveis com 25 anos de idade, do sexo feminino"
-V018,"Pessoas responsáveis com 26 anos de idade, do sexo feminino"
-V019,"Pessoas responsáveis com 27 anos de idade, do sexo feminino"
-V020,"Pessoas responsáveis com 28 anos de idade, do sexo feminino"
-V021,"Pessoas responsáveis com 29 anos de idade, do sexo feminino"
-V022,"Pessoas responsáveis com 30 anos de idade, do sexo feminino"
-V023,"Pessoas responsáveis com 31 anos de idade, do sexo feminino"
-V024,"Pessoas responsáveis com 32 anos de idade, do sexo feminino"
-V025,"Pessoas responsáveis com 33 anos de idade, do sexo feminino"
-V026,"Pessoas responsáveis com 34 anos de idade, do sexo feminino"
-V027,"Pessoas responsáveis com 35 anos de idade, do sexo feminino"
-V028,"Pessoas responsáveis com 36 anos de idade, do sexo feminino"
-V029,"Pessoas responsáveis com 37 anos de idade, do sexo feminino"
-V030,"Pessoas responsáveis com 38 anos de idade, do sexo feminino"
-V031,"Pessoas responsáveis com 39 anos de idade, do sexo feminino"
-V032,"Pessoas responsáveis com 40 anos de idade, do sexo feminino"
-V033,"Pessoas responsáveis com 41 anos de idade, do sexo feminino"
-V034,"Pessoas responsáveis com 42 anos de idade, do sexo feminino"
-V035,"Pessoas responsáveis com 43 anos de idade, do sexo feminino"
-V036,"Pessoas responsáveis com 44 anos de idade, do sexo feminino"
-V037,"Pessoas responsáveis com 45 anos de idade, do sexo feminino"
-V038,"Pessoas responsáveis com 46 anos de idade, do sexo feminino"
-V039,"Pessoas responsáveis com 47 anos de idade, do sexo feminino"
-V040,"Pessoas responsáveis com 48 anos de idade, do sexo feminino"
-V041,"Pessoas responsáveis com 49 anos de idade, do sexo feminino"
-V042,"Pessoas responsáveis com 50 anos de idade, do sexo feminino"
-V043,"Pessoas responsáveis com 51 anos de idade, do sexo feminino"
-V044,"Pessoas responsáveis com 52 anos de idade, do sexo feminino"
-V045,"Pessoas responsáveis com 53 anos de idade, do sexo feminino"
-V046,"Pessoas responsáveis com 54 anos de idade, do sexo feminino"
-V047,"Pessoas responsáveis com 55 anos de idade, do sexo feminino"
-V048,"Pessoas responsáveis com 56 anos de idade, do sexo feminino"
-V049,"Pessoas responsáveis com 57 anos de idade, do sexo feminino"
-V050,"Pessoas responsáveis com 58 anos de idade, do sexo feminino"
-V051,"Pessoas responsáveis com 59 anos de idade, do sexo feminino"
-V052,"Pessoas responsáveis com 60 anos de idade, do sexo feminino"
-V053,"Pessoas responsáveis com 61 anos de idade, do sexo feminino"
-V054,"Pessoas responsáveis com 62 anos de idade, do sexo feminino"
-V055,"Pessoas responsáveis com 63 anos de idade, do sexo feminino"
-V056,"Pessoas responsáveis com 64 anos de idade, do sexo feminino"
-V057,"Pessoas responsáveis com 65 anos de idade, do sexo feminino"
-V058,"Pessoas responsáveis com 66 anos de idade, do sexo feminino"
-V059,"Pessoas responsáveis com 67 anos de idade, do sexo feminino"
-V060,"Pessoas responsáveis com 68 anos de idade, do sexo feminino"
-V061,"Pessoas responsáveis com 69 anos de idade, do sexo feminino"
-V062,"Pessoas responsáveis com 70 anos de idade, do sexo feminino"
-V063,"Pessoas responsáveis com 71 anos de idade, do sexo feminino"
-V064,"Pessoas responsáveis com 72 anos de idade, do sexo feminino"
-V065,"Pessoas responsáveis com 73 anos de idade, do sexo feminino"
-V066,"Pessoas responsáveis com 74 anos de idade, do sexo feminino"
-V067,"Pessoas responsáveis com 75 anos de idade, do sexo feminino"
-V068,"Pessoas responsáveis com 76 anos de idade, do sexo feminino"
-V069,"Pessoas responsáveis com 77 anos de idade, do sexo feminino"
-V070,"Pessoas responsáveis com 78 anos de idade, do sexo feminino"
-V071,"Pessoas responsáveis com 79 anos de idade, do sexo feminino"
-V072,"Pessoas responsáveis com 80 anos de idade, do sexo feminino"
-V073,"Pessoas responsáveis com 81 anos de idade, do sexo feminino"
-V074,"Pessoas responsáveis com 82 anos de idade, do sexo feminino"
-V075,"Pessoas responsáveis com 83 anos de idade, do sexo feminino"
-V076,"Pessoas responsáveis com 84 anos de idade, do sexo feminino"
-V077,"Pessoas responsáveis com 85 anos de idade, do sexo feminino"
-V078,"Pessoas responsáveis com 86 anos de idade, do sexo feminino"
-V079,"Pessoas responsáveis com 87 anos de idade, do sexo feminino"
-V080,"Pessoas responsáveis com 88 anos de idade, do sexo feminino"
-V081,"Pessoas responsáveis com 89 anos de idade, do sexo feminino"
-V082,"Pessoas responsáveis com 90 anos de idade, do sexo feminino"
-V083,"Pessoas responsáveis com 91 anos de idade, do sexo feminino"
-V084,"Pessoas responsáveis com 92 anos de idade, do sexo feminino"
-V085,"Pessoas responsáveis com 93 anos de idade, do sexo feminino"
-V086,"Pessoas responsáveis com 94 anos de idade, do sexo feminino"
-V087,"Pessoas responsáveis com 95 anos de idade, do sexo feminino"
-V088,"Pessoas responsáveis com 96 anos de idade, do sexo feminino"
-V089,"Pessoas responsáveis com 97 anos de idade, do sexo feminino"
-V090,"Pessoas responsáveis com 98 anos de idade, do sexo feminino"
-V091,"Pessoas responsáveis com 99 anos de idade, do sexo feminino"
-V092,"Pessoas responsáveis com 100 ou mais anos de idade, do sexo feminino"
-V093,"Pessoas alfabetizadas responsáveis, do sexo feminino"
-V094,"Pessoas alfabetizadas responsáveis com 10 a 14 anos de idade, do sexo feminino"
-V095,"Pessoas alfabetizadas responsáveis com 15 a 19 anos de idade, do sexo feminino"
-V096,"Pessoas alfabetizadas responsáveis com 20 a 24 anos de idade, do sexo feminino"
-V097,"Pessoas alfabetizadas responsáveis com 25 a 29 anos de idade, do sexo feminino"
-V098,"Pessoas alfabetizadas responsáveis com 30 a 34 anos de idade, do sexo feminino"
-V099,"Pessoas alfabetizadas responsáveis com 35 a 39 anos de idade, do sexo feminino"
-V100,"Pessoas alfabetizadas responsáveis com 40 a 44 anos de idade, do sexo feminino"
-V101,"Pessoas alfabetizadas responsáveis com 45 a 49 anos de idade, do sexo feminino"
-V102,"Pessoas alfabetizadas responsáveis com 50 a 54 anos de idade, do sexo feminino"
-V103,"Pessoas alfabetizadas responsáveis com 55 a 59 anos de idade, do sexo feminino"
-V104,"Pessoas alfabetizadas responsáveis com 60 a 64 anos de idade, do sexo feminino"
-V105,"Pessoas alfabetizadas responsáveis com 65 a 69 anos de idade, do sexo feminino"
-V106,"Pessoas alfabetizadas responsáveis com 70 a 74 anos de idade, do sexo feminino"
-V107,"Pessoas alfabetizadas responsáveis com 75 a 79 anos de idade, do sexo feminino"
-V108,"Pessoas alfabetizadas responsáveis com 80 ou mais anos de idade, do sexo feminino"
+Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,1.20E+14,1.20E+14
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,"Pessoas responsáveis, do sexo feminino","Responsible persons, female",people,Responsavel02 V001,age_gender,237,183
+V002,"Pessoas responsáveis com 10 anos de idade, do sexo feminino","Responsible persons with 10 years of age, female",people,V001,age_gender,0,0
+V003,"Pessoas responsáveis com 11 anos de idade, do sexo feminino","Responsible persons with 11 years of age, female",people,V001,age_gender,1,0
+V004,"Pessoas responsáveis com 12 anos de idade, do sexo feminino","Responsible persons with 12 years of age, female",people,V001,age_gender,0,0
+V005,"Pessoas responsáveis com 13 anos de idade, do sexo feminino","Responsible persons with 13 years of age, female",people,V001,age_gender,0,0
+V006,"Pessoas responsáveis com 14 anos de idade, do sexo feminino","Responsible persons with 14 years of age, female",people,V001,age_gender,0,0
+V007,"Pessoas responsáveis com 15 anos de idade, do sexo feminino","Responsible persons with 15 years of age, female",people,V001,age_gender,3,0
+V008,"Pessoas responsáveis com 16 anos de idade, do sexo feminino","Responsible persons with 16 years of age, female",people,V001,age_gender,1,0
+V009,"Pessoas responsáveis com 17 anos de idade, do sexo feminino","Responsible persons with 17 years of age, female",people,V001,age_gender,6,4
+V010,"Pessoas responsáveis com 18 anos de idade, do sexo feminino","Responsible persons with 18 years of age, female",people,V001,age_gender,2,1
+V011,"Pessoas responsáveis com 19 anos de idade, do sexo feminino","Responsible persons with 19 years of age, female",people,V001,age_gender,1,3
+V012,"Pessoas responsáveis com 20 anos de idade, do sexo feminino","Responsible persons with 20 years of age, female",people,V001,age_gender,3,1
+V013,"Pessoas responsáveis com 21 anos de idade, do sexo feminino","Responsible persons with 21 years of age, female",people,V001,age_gender,4,7
+V014,"Pessoas responsáveis com 22 anos de idade, do sexo feminino","Responsible persons with 22 years of age, female",people,V001,age_gender,4,4
+V015,"Pessoas responsáveis com 23 anos de idade, do sexo feminino",Responsible persons with a 23-year-old female,people,V001,age_gender,7,3
+V016,"Pessoas responsáveis com 24 anos de idade, do sexo feminino",Responsible persons with 24-year-old female,people,V001,age_gender,10,10
+V017,"Pessoas responsáveis com 25 anos de idade, do sexo feminino","Responsible persons with 25 years of age, female",people,V001,age_gender,7,5
+V018,"Pessoas responsáveis com 26 anos de idade, do sexo feminino","Responsible persons with 26 years of age, female",people,V001,age_gender,14,4
+V019,"Pessoas responsáveis com 27 anos de idade, do sexo feminino",Responsible persons with a 27-year-old female,people,V001,age_gender,9,7
+V020,"Pessoas responsáveis com 28 anos de idade, do sexo feminino","Responsible persons with 28 years of age, female",people,V001,age_gender,9,4
+V021,"Pessoas responsáveis com 29 anos de idade, do sexo feminino",Responsible persons with 29-year-old female,people,V001,age_gender,5,4
+V022,"Pessoas responsáveis com 30 anos de idade, do sexo feminino","Responsible persons with 30 years of age, female",people,V001,age_gender,8,6
+V023,"Pessoas responsáveis com 31 anos de idade, do sexo feminino","Responsible persons with 31 years of age, female",people,V001,age_gender,6,6
+V024,"Pessoas responsáveis com 32 anos de idade, do sexo feminino","Responsible persons with 32 years of age, female",people,V001,age_gender,9,4
+V025,"Pessoas responsáveis com 33 anos de idade, do sexo feminino","Responsible persons with 33 years of age, female",people,V001,age_gender,6,7
+V026,"Pessoas responsáveis com 34 anos de idade, do sexo feminino","Responsible persons with 34 years of age, female",people,V001,age_gender,3,6
+V027,"Pessoas responsáveis com 35 anos de idade, do sexo feminino","Responsible persons with 35 years of age, female",people,V001,age_gender,8,3
+V028,"Pessoas responsáveis com 36 anos de idade, do sexo feminino","Responsible persons with 36 years of age, female",people,V001,age_gender,5,3
+V029,"Pessoas responsáveis com 37 anos de idade, do sexo feminino","Responsible persons with 37 years of age, female",people,V001,age_gender,6,5
+V030,"Pessoas responsáveis com 38 anos de idade, do sexo feminino","Responsible persons with 38 years of age, female",people,V001,age_gender,4,5
+V031,"Pessoas responsáveis com 39 anos de idade, do sexo feminino","Responsible persons with 39 years of age, female",people,V001,age_gender,3,5
+V032,"Pessoas responsáveis com 40 anos de idade, do sexo feminino","Responsible persons with 40 years of age, female",people,V001,age_gender,6,7
+V033,"Pessoas responsáveis com 41 anos de idade, do sexo feminino","Responsible persons with 41 years of age, female",people,V001,age_gender,3,6
+V034,"Pessoas responsáveis com 42 anos de idade, do sexo feminino","Responsible persons with 42 years of age, female",people,V001,age_gender,6,2
+V035,"Pessoas responsáveis com 43 anos de idade, do sexo feminino","Responsible persons with 43 years of age, female",people,V001,age_gender,5,6
+V036,"Pessoas responsáveis com 44 anos de idade, do sexo feminino","Responsible persons with 44 years of age, female",people,V001,age_gender,6,4
+V037,"Pessoas responsáveis com 45 anos de idade, do sexo feminino","Responsible persons with 45 years of age, female",people,V001,age_gender,7,2
+V038,"Pessoas responsáveis com 46 anos de idade, do sexo feminino","Responsible persons with 46 years of age, female",people,V001,age_gender,8,1
+V039,"Pessoas responsáveis com 47 anos de idade, do sexo feminino","Responsible persons with 47 years of age, female",people,V001,age_gender,1,2
+V040,"Pessoas responsáveis com 48 anos de idade, do sexo feminino","Responsible persons with 48 years of age, female",people,V001,age_gender,3,2
+V041,"Pessoas responsáveis com 49 anos de idade, do sexo feminino","Responsible persons with 49 years of age, female",people,V001,age_gender,6,1
+V042,"Pessoas responsáveis com 50 anos de idade, do sexo feminino","Responsible persons with 50 years of age, female",people,V001,age_gender,1,2
+V043,"Pessoas responsáveis com 51 anos de idade, do sexo feminino","Responsible persons with 51 years of age, female",people,V001,age_gender,2,1
+V044,"Pessoas responsáveis com 52 anos de idade, do sexo feminino","Responsible persons with 52 years of age, female",people,V001,age_gender,2,2
+V045,"Pessoas responsáveis com 53 anos de idade, do sexo feminino","Responsible persons with 53 years of age, female",people,V001,age_gender,0,0
+V046,"Pessoas responsáveis com 54 anos de idade, do sexo feminino","Responsible persons with 54 years of age, female",people,V001,age_gender,2,2
+V047,"Pessoas responsáveis com 55 anos de idade, do sexo feminino","Responsible persons with 55 years of age, female",people,V001,age_gender,5,2
+V048,"Pessoas responsáveis com 56 anos de idade, do sexo feminino","Responsible persons with 56 years of age, female",people,V001,age_gender,0,1
+V049,"Pessoas responsáveis com 57 anos de idade, do sexo feminino","Responsible persons with 57 years of age, female",people,V001,age_gender,4,3
+V050,"Pessoas responsáveis com 58 anos de idade, do sexo feminino","Responsible persons with 58 years of age, female",people,V001,age_gender,1,4
+V051,"Pessoas responsáveis com 59 anos de idade, do sexo feminino","Responsible persons with 59 years of age, female",people,V001,age_gender,1,1
+V052,"Pessoas responsáveis com 60 anos de idade, do sexo feminino","Responsible persons with 60 years of age, female",people,V001,age_gender,3,0
+V053,"Pessoas responsáveis com 61 anos de idade, do sexo feminino","Responsible persons with 61 years of age, female",people,V001,age_gender,2,1
+V054,"Pessoas responsáveis com 62 anos de idade, do sexo feminino",Responsible people with 62-year-old female,people,V001,age_gender,1,2
+V055,"Pessoas responsáveis com 63 anos de idade, do sexo feminino","Responsible persons with 63 years of age, female",people,V001,age_gender,1,0
+V056,"Pessoas responsáveis com 64 anos de idade, do sexo feminino","Responsible persons with 64 years of age, female",people,V001,age_gender,1,1
+V057,"Pessoas responsáveis com 65 anos de idade, do sexo feminino","Responsible persons with 65 years of age, female",people,V001,age_gender,4,5
+V058,"Pessoas responsáveis com 66 anos de idade, do sexo feminino","Responsible persons 66 years of age, female",people,V001,age_gender,3,1
+V059,"Pessoas responsáveis com 67 anos de idade, do sexo feminino","Responsible persons with 67 years of age, female",people,V001,age_gender,0,2
+V060,"Pessoas responsáveis com 68 anos de idade, do sexo feminino","Responsible persons with 68 years of age, female",people,V001,age_gender,1,4
+V061,"Pessoas responsáveis com 69 anos de idade, do sexo feminino","Responsible persons with 69 years of age, female",people,V001,age_gender,1,1
+V062,"Pessoas responsáveis com 70 anos de idade, do sexo feminino","Responsible persons with 70 years of age, female",people,V001,age_gender,2,0
+V063,"Pessoas responsáveis com 71 anos de idade, do sexo feminino",Responsible people with a 71 year old female,people,V001,age_gender,0,1
+V064,"Pessoas responsáveis com 72 anos de idade, do sexo feminino","Responsible persons with 72 years of age, female",people,V001,age_gender,0,2
+V065,"Pessoas responsáveis com 73 anos de idade, do sexo feminino",Responsible persons with 73-year-old female,people,V001,age_gender,0,0
+V066,"Pessoas responsáveis com 74 anos de idade, do sexo feminino","Responsible persons with 74 years of age, female",people,V001,age_gender,1,0
+V067,"Pessoas responsáveis com 75 anos de idade, do sexo feminino","Responsible persons with 75 years of age, female",people,V001,age_gender,1,0
+V068,"Pessoas responsáveis com 76 anos de idade, do sexo feminino","Responsible persons with 76 years of age, female",people,V001,age_gender,1,1
+V069,"Pessoas responsáveis com 77 anos de idade, do sexo feminino","Responsible persons with 77 years of age, female",people,V001,age_gender,1,0
+V070,"Pessoas responsáveis com 78 anos de idade, do sexo feminino","Responsible persons with 78 years of age, female",people,V001,age_gender,0,0
+V071,"Pessoas responsáveis com 79 anos de idade, do sexo feminino","Responsible persons with 79 years of age, female",people,V001,age_gender,0,0
+V072,"Pessoas responsáveis com 80 anos de idade, do sexo feminino","Responsible persons with 80 years of age, female",people,V001,age_gender,0,0
+V073,"Pessoas responsáveis com 81 anos de idade, do sexo feminino","Responsible persons with 81 years of age, female",people,V001,age_gender,0,1
+V074,"Pessoas responsáveis com 82 anos de idade, do sexo feminino","Responsible people with 82 years of age, female",people,V001,age_gender,0,1
+V075,"Pessoas responsáveis com 83 anos de idade, do sexo feminino",Responsible people with 83-year-old female,people,V001,age_gender,1,0
+V076,"Pessoas responsáveis com 84 anos de idade, do sexo feminino","Responsible persons with 84 years of age, female",people,V001,age_gender,0,0
+V077,"Pessoas responsáveis com 85 anos de idade, do sexo feminino","Responsible persons with 85 years of age, female",people,V001,age_gender,0,1
+V078,"Pessoas responsáveis com 86 anos de idade, do sexo feminino","Responsible persons with 86 years of age, female",people,V001,age_gender,0,0
+V079,"Pessoas responsáveis com 87 anos de idade, do sexo feminino",Responsible people with 87-year-old female,people,V001,age_gender,0,0
+V080,"Pessoas responsáveis com 88 anos de idade, do sexo feminino","Responsible persons with 88 years of age, female",people,V001,age_gender,0,1
+V081,"Pessoas responsáveis com 89 anos de idade, do sexo feminino","Responsible persons with 89 years of age, female",people,V001,age_gender,0,0
+V082,"Pessoas responsáveis com 90 anos de idade, do sexo feminino","Responsible persons with 90 years of age, female",people,V001,age_gender,0,0
+V083,"Pessoas responsáveis com 91 anos de idade, do sexo feminino","Responsible persons with 91 years of age, female",people,V001,age_gender,0,0
+V084,"Pessoas responsáveis com 92 anos de idade, do sexo feminino","Responsible persons with 92 years of age, female",people,V001,age_gender,0,0
+V085,"Pessoas responsáveis com 93 anos de idade, do sexo feminino",Responsible people with 93-year-old female,people,V001,age_gender,0,0
+V086,"Pessoas responsáveis com 94 anos de idade, do sexo feminino","Responsible persons with 94 years of age, female",people,V001,age_gender,0,0
+V087,"Pessoas responsáveis com 95 anos de idade, do sexo feminino","Responsible persons with 95 years of age, female",people,V001,age_gender,0,0
+V088,"Pessoas responsáveis com 96 anos de idade, do sexo feminino","Responsible persons with 96 years of age, female",people,V001,age_gender,0,0
+V089,"Pessoas responsáveis com 97 anos de idade, do sexo feminino","Responsible persons with 97 years of age, female",people,V001,age_gender,0,0
+V090,"Pessoas responsáveis com 98 anos de idade, do sexo feminino","Responsible persons with 98 years of age, female",people,V001,age_gender,0,0
+V091,"Pessoas responsáveis com 99 anos de idade, do sexo feminino","Responsible persons with 99 years of age, female",people,V001,age_gender,0,0
+V092,"Pessoas responsáveis com 100 ou mais anos de idade, do sexo feminino","Responsible persons with 100 or more years of age, female",people,V001,age_gender,0,0
+V093,"Pessoas alfabetizadas responsáveis, do sexo feminino",Responsible literate female people,people,Responsavel02 V093,education,192,155
+V094,"Pessoas alfabetizadas responsáveis com 10 a 14 anos de idade, do sexo feminino","Responsible literate persons with 10 to 14 years of age, female",people,V093,education,1,0
+V095,"Pessoas alfabetizadas responsáveis com 15 a 19 anos de idade, do sexo feminino","Responsible literate persons with 15 to 19 years of age, female",people,V093,education,12,8
+V096,"Pessoas alfabetizadas responsáveis com 20 a 24 anos de idade, do sexo feminino","Responsible literate people aged 20 to 24 years, female",people,V093,education,27,25
+V097,"Pessoas alfabetizadas responsáveis com 25 a 29 anos de idade, do sexo feminino","Responsible literate persons 25 to 29 years of age, female",people,V093,education,43,23
+V098,"Pessoas alfabetizadas responsáveis com 30 a 34 anos de idade, do sexo feminino","Responsible literate persons aged 30 to 34, female",people,V093,education,28,25
+V099,"Pessoas alfabetizadas responsáveis com 35 a 39 anos de idade, do sexo feminino","Responsible literate people with 35 to 39 years of age, female",people,V093,education,21,21
+V100,"Pessoas alfabetizadas responsáveis com 40 a 44 anos de idade, do sexo feminino","Responsible literate people aged 40 to 44 years, female",people,V093,education,19,21
+V101,"Pessoas alfabetizadas responsáveis com 45 a 49 anos de idade, do sexo feminino","Responsible literate people with 45 to 49 years of age, female",people,V093,education,18,5
+V102,"Pessoas alfabetizadas responsáveis com 50 a 54 anos de idade, do sexo feminino","Responsible literate people aged 50 to 54 years, female",people,V093,education,5,6
+V103,"Pessoas alfabetizadas responsáveis com 55 a 59 anos de idade, do sexo feminino","Responsible literate persons aged 55 to 59 years, female",people,V093,education,9,7
+V104,"Pessoas alfabetizadas responsáveis com 60 a 64 anos de idade, do sexo feminino","Responsible literate people aged 60 to 64, female",people,V093,education,4,3
+V105,"Pessoas alfabetizadas responsáveis com 65 a 69 anos de idade, do sexo feminino","Responsible literate people aged 65 to 69 years, female",people,V093,education,4,9
+V106,"Pessoas alfabetizadas responsáveis com 70 a 74 anos de idade, do sexo feminino","Responsible literate people aged 70 to 74 years, female",people,V093,education,1,1
+V107,"Pessoas alfabetizadas responsáveis com 75 a 79 anos de idade, do sexo feminino","Responsible literate people aged 75 to 79 years, female",people,V093,education,0,0
+V108,"Pessoas alfabetizadas responsáveis com 80 ou mais anos de idade, do sexo feminino","Responsible literate people with 80 or more years of age, female",people,V093,education,0,1

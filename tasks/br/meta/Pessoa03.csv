@@ -1,254 +1,158 @@
-Nome da variável,Descrição da variável
-Cod_setor,Código do setor censitário
-Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls)
-V001,Pessoas Residentes
-V02,Pessoas Residentes e cor ou raça - branca
-V003,Pessoas Residentes e cor ou raça - preta
-V004,Pessoas Residentes e cor ou raça - amarela
-V005,Pessoas Residentes e cor ou raça - parda
-V006,Pessoas Residentes e cor ou raça - indígena
-V007,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - branca
-V008,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - preta
-V009,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - amarela
-V010,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - parda
-V011,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - indígena
-V012,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - branca
-V013,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - preta
-V014,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - amarela
-V015,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - parda
-V016,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - indígena
-V017,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – branca
-V018,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – preta
-V019,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – amarela
-V020,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – parda
-V021,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça - indígena
-V022,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – branca
-V023,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – preta
-V024,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – amarela
-V025,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – parda
-V026,Pessoas Residentes de15 a 19 anos de idade e cor ou raça - indígena
-V027,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – branca
-V028,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – preta
-V029,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – amarela
-V030,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – parda
-V031,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça - indígena
-V032,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – branca
-V033,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – preta
-V034,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – amarela
-V035,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – parda
-V036,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça - indígena
-V037,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - branca
-V038,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - preta
-V039,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - amarela
-V040,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - parda
-V041,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - indígena
-V042,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – branca
-V043,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – preta
-V044,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – amarela
-V045,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – parda
-V046,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça - indígena
-V047,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – branca
-V048,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – preta
-V049,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – amarela
-V050,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – parda
-V051,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça - indígena
-V052,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça - branca
-V053,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – preta
-V054,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – amarela
-V055,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – parda
-V056,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça - indígena
-V057,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – branca
-V058,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – preta
-V059,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – amarela
-V060,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – parda
-V061,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça - indígena
-V062,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – branca
-V063,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – preta
-V064,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – amarela
-V065,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – parda
-V066,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – indígena
-V067,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – branca
-V068,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – preta
-V069,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – amarela
-V070,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – parda
-V071,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça - indígena
-V072,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – branca
-V073,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – preta
-V074,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – amarela
-V075,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – parda
-V076,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça - indígena
-V077,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – branca
-V078,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – preta
-V079,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – amarela
-V080,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – parda
-V081,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça - indígena
-V082,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – branca
-V083,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – preta
-V084,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – amarela
-V085,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – parda
-V086,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça - indígena
-V087,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - branca"
-V088,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - preta"
-V089,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - amarela"
-V090,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - parda"
-V091,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - indígena"
-V092,"Pessoas de 7 a 9 anos de idade, do sexo masculino e cor ou raça - branca"
-V093,"Pessoas de 7 a 9 anos de idade, do sexo masculino e cor ou raça - preta"
-V094,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - amarela"
-V095,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - parda"
-V096,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - indígena"
-V097,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – branca"
-V098,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – preta"
-V099,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – amarela"
-V100,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – parda"
-V101,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça - indígena"
-V102,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – branca"
-V103,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – preta"
-V104,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – amarela"
-V105,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – parda"
-V106,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça - indígena"
-V107,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – branca"
-V108,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – preta"
-V109,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – amarela"
-V110,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – parda"
-V111,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça - indígena"
-V112,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – branca"
-V113,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – preta"
-V114,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – amarela"
-V115,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – parda"
-V116,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça - indígena"
-V117,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - branca"
-V118,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - preta"
-V119,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - amarela"
-V120,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - parda"
-V121,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - indígena"
-V122,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – branca"
-V123,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – preta"
-V124,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – amarela"
-V125,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – parda"
-V126,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça - indígena"
-V127,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – branca"
-V128,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – preta"
-V129,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – amarela"
-V130,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – parda"
-V131,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça - indígena"
-V132,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça - branca"
-V133,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – preta"
-V134,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – amarela"
-V135,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – parda"
-V136,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça - indígena"
-V137,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – branca"
-V138,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – preta"
-V139,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – amarela"
-V140,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – parda"
-V141,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça - indígena"
-V142,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – branca"
-V143,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – preta"
-V144,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – amarela"
-V145,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – parda"
-V146,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – indígena"
-V147,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – branca"
-V148,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – preta"
-V149,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – amarela"
-V150,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – parda"
-V151,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça - indígena"
-V152,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – branca"
-V153,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – preta"
-V154,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – amarela"
-V155,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – parda"
-V156,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça - indígena"
-V157,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – branca"
-V158,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – preta"
-V159,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – amarela"
-V160,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – parda"
-V161,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça - indígena"
-V162,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – branca"
-V163,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – preta"
-V164,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – amarela"
-V165,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – parda"
-V166,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça - indígena"
-V167,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - branca"
-V168,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - preta"
-V169,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - amarela"
-V170,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - parda"
-V171,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - indígena"
-V172,"Pessoas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - branca"
-V173,"Pessoas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - preta"
-V174,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - amarela"
-V175,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - parda"
-V176,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - indígena"
-V177,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – branca"
-V178,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – preta"
-V179,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – amarela"
-V180,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – parda"
-V181,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça - indígena"
-V182,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – branca"
-V183,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – preta"
-V184,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – amarela"
-V185,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – parda"
-V186,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça - indígena"
-V187,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – branca"
-V188,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – preta"
-V189,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – amarela"
-V190,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – parda"
-V191,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça - indígena"
-V192,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – branca"
-V193,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – preta"
-V194,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – amarela"
-V195,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – parda"
-V196,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça - indígena"
-V197,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - branca"
-V198,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - preta"
-V199,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - amarela"
-V200,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - parda"
-V201,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - indígena"
-V202,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – branca"
-V203,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – preta"
-V204,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – amarela"
-V205,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – parda"
-V206,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça - indígena"
-V207,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – branca"
-V208,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – preta"
-V209,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – amarela"
-V210,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – parda"
-V211,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça - indígena"
-V212,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça - branca"
-V213,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – preta"
-V214,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – amarela"
-V215,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – parda"
-V216,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça - indígena"
-V217,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – branca"
-V218,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – preta"
-V219,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – amarela"
-V220,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – parda"
-V221,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça - indígena"
-V222,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – branca"
-V223,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – preta"
-V224,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – amarela"
-V225,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – parda"
-V226,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – indígena"
-V227,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – branca"
-V228,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – preta"
-V229,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – amarela"
-V230,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – parda"
-V231,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça - indígena"
-V232,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – branca"
-V233,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – preta"
-V234,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – amarela"
-V235,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – parda"
-V236,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça - indígena"
-V237,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – branca"
-V238,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – preta"
-V239,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – amarela"
-V240,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – parda"
-V241,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça - indígena"
-V242,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – branca"
-V243,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – preta"
-V244,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – amarela"
-V245,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – parda"
-V246,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça - indígena"
-V247,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – branca"
-V248,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - preta"
-V249,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – amarela"
-V250,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - parda"
-V251,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – indígena"
+Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
+Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo masculino e cor ou raça - branca","Literate people 7 to 9 years of age, males and color or race - white",people,,Education,7,8
+V002,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo masculino e cor ou raça – preta","Literate people 7 to 9 years of age, male and color or race - black",people,,Education,0,0
+V003,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 7 to 9 years, male and color or race - yellow",people,,Education,0,0
+V004,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo masculino e cor ou raça – parda","Literate people 7 to 9 years of age, male and color or race - brown",people,,Education,12,12
+V005,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo masculino e cor ou raça – indígena","Literate people 7 to 9 years of age, male and color or race - indigenous",people,,Education,0,0
+V006,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – branca","Literate people aged 10 to 14, male and color or race - white",people,,Education,9,21
+V007,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 10 to 14, male and color or black race",people,,Education,0,1
+V008,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – amarela","Literate persons aged 10 to 14, male and color or race - yellow",people,,Education,1,1
+V009,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – parda","Literate people aged 10 to 14, male and color or race - brown",people,,Education,29,39
+V010,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons aged 10 to 14, male and color or race - indigenous",people,,Education,0,0
+V011,"Pessoas alfabetizadas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – branca","Literate people aged 15 to 19, male and color or race - white",people,,Education,10,12
+V012,"Pessoas alfabetizadas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – preta","Literate persons aged 15 to 19, male and color or black race",people,,Education,1,1
+V013,"Pessoas alfabetizadas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 15 to 19, male and color or race - yellow",people,,Education,1,0
+V014,"Pessoas alfabetizadas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – parda","Literate persons aged 15 to 19 years old, male and color or race - brown",people,,Education,29,25
+V015,"Pessoas alfabetizadas de 15 a 19 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons aged 15 to 19, male and color or race - indigenous",people,,Education,0,0
+V016,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – branca","Literate people aged 15 to 17, male and color or race - white",people,V011,Education,8,6
+V017,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 15 to 17, male and black or color",people,V012,Education,1,1
+V018,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 15 to 17, male and color or race - yellow",people,V013,Education,1,0
+V019,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – parda","Literate people aged 15 to 17, male and color or race - brown",people,V014,Education,16,18
+V020,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons aged 15 to 17, male and color or race - indigenous",people,V015,Education,0,0
+V021,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – branca","Literate people 18 or 19 years of age, male and color or race - white",people,V011,Education,2,6
+V022,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – preta","Literate persons 18 or 19 years of age, male and color or black race",people,V012,Education,0,0
+V023,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – amarela","Literate persons aged 18 or 19 years old, male and color or race - yellow",people,V013,Education,0,0
+V024,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – parda","Literate persons aged 18 or 19 years old, male and color or race - brown",people,V014,Education,13,7
+V025,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons of 18 or 19 years of age, male and color or race - indigenous",people,V015,Education,0,0
+V026,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - branca","Literate people aged 20 to 24, male and color or race - white",people,,Education,13,23
+V027,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - preta","Literate people aged 20 to 24, male and black or color",people,,Education,2,4
+V028,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - amarela","Literate people aged 20 to 24, male and color or race - yellow",people,,Education,1,0
+V029,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - parda","Literate persons aged 20 to 24, male and color or race - brown",people,,Education,28,19
+V030,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons aged 20 to 24 years, male and color or race - indigenous",people,,Education,0,0
+V031,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – branca","Literate people aged 25-29, male and color or race - white",people,,Education,11,15
+V032,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 25-29, male and black or color",people,,Education,0,2
+V033,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 25-29, male and color or race - yellow",people,,Education,0,1
+V034,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – parda","Literate people aged 25-29, male and color or race - brown",people,,Education,29,17
+V035,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons aged 25-29, male and color or race - indigenous",people,,Education,0,0
+V036,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – branca","Literate people aged 30 to 34, male and color or race - white",people,,Education,9,12
+V037,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 30 to 34, male and color or black race",people,,Education,0,3
+V038,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 30 to 34, male and color or race - yellow",people,,Education,0,0
+V039,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – parda","Literate persons aged 30 to 34, male and color or race - brown",people,,Education,15,15
+V040,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons aged 30 to 34, male and color or race - indigenous",people,,Education,0,0
+V041,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo masculino e cor ou raça - branca","Literate people aged 35 to 39, male and color or race - white",people,,Education,9,11
+V042,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 35 to 39 years, male and color or race - black",people,,Education,0,1
+V043,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – amarela","Literate persons aged 35 to 39, male and color or race - yellow",people,,Education,0,0
+V044,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – parda","Literate persons aged 35 to 39, male and color or race - brown",people,,Education,24,18
+V045,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons aged 35 to 39, male and color or race - indigenous",people,,Education,0,0
+V046,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – branca","40-44 year old male, male and color or race - white",people,,Education,6,4
+V047,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 40 to 44 years, male and color or race - black",people,,Education,1,4
+V048,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 40 to 44 years, male and color or race - yellow",people,,Education,0,0
+V049,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – parda","Literate people aged 40 to 44 years old, male and color or race - brown",people,,Education,15,11
+V050,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons aged 40 to 44, male and color or race - indigenous",people,,Education,0,0
+V051,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – branca","Literate persons aged 45 to 49, male and color or race - white",people,,Education,6,6
+V052,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – preta","Literate persons aged 45 to 49, male and color or black race",people,,Education,3,3
+V053,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – amarela","Literate persons aged 45 to 49 years, male and color or race - yellow",people,,Education,0,0
+V054,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – parda","Literate persons aged 45 to 49, male and color or race - brown",people,,Education,16,7
+V055,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – indígena","Literate persons aged 45 to 49, male and color or race - indigenous",people,,Education,0,0
+V056,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – branca","Literate people aged 50-54, male and color or race - white",people,,Education,14,3
+V057,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 50 to 54, male and black or color",people,,Education,1,0
+V058,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 50-54, male and color or race - yellow",people,,Education,2,0
+V059,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – parda","Literate people aged 50-54, male and color or race - brown",people,,Education,10,3
+V060,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo masculino e cor ou raça - indígena","Persons literate from 50 to 54 years of age, male and color or race - indigenous",people,,Education,0,0
+V061,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – branca","Literate people aged 55-59, male and color or race - white",people,,Education,9,4
+V062,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 55-59, male and black or color",people,,Education,2,1
+V063,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 55-59, male and yellow color or race",people,,Education,0,0
+V064,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – parda","Literate persons aged 55-59, male and color or race - brown",people,,Education,12,3
+V065,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo masculino e cor ou raça - indígena","Literate persons 55-59 years of age, male and color or race - indigenous",people,,Education,0,0
+V066,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – branca","Literate people aged 60 to 69 years old, male and color or race - white",people,,Education,9,1
+V067,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – preta","Literate people aged 60 to 69 years, male and color or black race",people,,Education,2,1
+V068,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people aged 60 to 69 years, male and color or race - yellow",people,,Education,0,0
+V069,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – parda","Literate people aged 60 to 69 years old, male and color or race - brown",people,,Education,10,8
+V070,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo masculino e cor ou raça - indígena","Literate people aged 60 to 69 years, male and color or race - indigenous",people,,Education,0,0
+V071,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – branca","Persons literate 70 years of age or older, male and color or race - white",people,,Education,3,1
+V072,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – preta","Literate people 70 years of age or older, male and black or color",people,,Education,0,0
+V073,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – amarela","Literate persons 70 years of age or older, male and color or race - yellow",people,,Education,0,0
+V074,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – parda","Literate people 70 years of age or older, male and color or race - brown",people,,Education,5,5
+V075,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo masculino e cor ou raça - indígena","Persons literate 70 years of age or older, male and color or race - indigenous",people,,Education,0,0
+V076,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - branca","Literate people of 5 or 6 years of age, female and color or race - white",people,,Education,0,4
+V077,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - preta","Literate people of 5 or 6 years of age, female and color or race - black",people,,Education,0,0
+V078,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - amarela","Literate people aged 5 or 6 years, female and color or race - yellow",people,,Education,0,0
+V079,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - parda","Literate people of 5 or 6 years of age, female and color or race - brown",people,,Education,8,3
+V080,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people of 5 or 6 years of age, female and color or race - indigenous",people,,Education,0,0
+V081,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - branca","Literate people 7 to 9 years of age, female and color or race - white",people,,Education,6,11
+V082,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - preta","Literate people 7 to 9 years of age, female and color or race - black",people,,Education,0,2
+V083,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - amarela","Literate people aged 7 to 9 years, female and color or race - yellow",people,,Education,0,1
+V084,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - parda","Literate people from 7 to 9 years of age, female and color or race - brown",people,,Education,18,12
+V085,"Pessoas alfabetizadas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people 7 to 9 years of age, female and color or race - indigenous",people,,Education,0,0
+V086,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – branca","Literate people 10 to 14 years of age, female and color or race - white",people,,Education,21,21
+V087,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – preta","Literate people 10 to 14 years of age, female and color or race - black",people,,Education,0,0
+V088,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 10 to 14 years, female and color or race - yellow",people,,Education,1,2
+V089,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 10 to 14, female and color or race - brown",people,,Education,39,23
+V090,"Pessoas alfabetizadas de 10 a 14 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 10 to 14 years, female and color or race - indigenous",people,,Education,0,0
+V091,"Pessoas de15 a 19 anos de idade, do sexo feminino e cor ou raça – branca","Persons 15 to 19 years of age, female and color or race - white",people,,Education,15,22
+V092,"Pessoas de15 a 19 anos de idade, do sexo feminino e cor ou raça – preta","Persons 15 to 19 years of age, female and color or race - black",people,,Education,1,3
+V093,"Pessoas alfabetizadas de15 a 19 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 15 to 19 years, female and color or race - yellow",people,,Education,1,1
+V094,"Pessoas alfabetizadas de15 a 19 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 15 to 19, female and color or race - brown",people,,Education,32,26
+V095,"Pessoas alfabetizadas de15 a 19 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 15 to 19, female and color or race - indigenous",people,,Education,0,0
+V096,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – branca","Literate people aged 15 to 17, female and color or race - white",people,V091,Education,10,14
+V097,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – preta","Literate people aged 15 to 17 years, female and color or race - black",people,V092,Education,1,2
+V098,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 15 to 17 years, female and color or race - yellow",people,V093,Education,0,1
+V099,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 15 to 17, female and color or race - brown",people,V094,Education,22,13
+V100,"Pessoas alfabetizadas de 15 a 17 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 15 to 17 years, female and color or race - indigenous",people,V095,Education,0,0
+V101,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – branca","Literate persons 18 or 19 years of age, female and color or race - white",people,V091,Education,5,8
+V102,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – preta","Literate persons 18 or 19 years of age, female and color or race - black",people,V092,Education,0,1
+V103,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – amarela","Literate persons aged 18 or 19, female and color or race - yellow",people,V093,Education,1,0
+V104,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – parda","Literate persons 18 or 19 years of age, female and color or race - brown",people,V094,Education,10,13
+V105,"Pessoas alfabetizadas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça - indígena","Literate persons of 18 or 19 years of age, female and color or race - indigenous",people,V095,Education,0,0
+V106,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - branca","People aged 20 to 24, female and color or race - white",people,,Education,14,14
+V107,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - preta","People who are literate from 20 to 24 years of age, female and color or race - black",people,,Education,0,2
+V108,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - amarela","Literate people aged 20 to 24 years, female and color or race - yellow",people,,Education,3,1
+V109,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - parda","Literate people aged 20 to 24, female and color or race - brown",people,,Education,21,20
+V110,"Pessoas alfabetizadas de 20 a 24 anos de idade, do sexo feminino e cor ou raça -indígena","People who are literate from 20 to 24 years of age, female and color or race - indigenous",people,,Education,0,0
+V111,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – branca","Literate people 25 to 29 years of age, female and color or race - white",people,,Education,21,10
+V112,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – preta","Literate people aged 25 to 29 years, female and color or race - black",people,,Education,2,3
+V113,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 25 to 29, female and color or race - yellow",people,,Education,1,1
+V114,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 25-29, female and color or race - brown",people,,Education,29,30
+V115,"Pessoas alfabetizadas de 25 a 29 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 25-29, female and color or race - indigenous",people,,Education,0,0
+V116,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – branca","Literate people 30 to 34 years of age, female and color or race - white",people,,Education,14,21
+V117,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – preta","Literate people aged 30 to 34, female and color or race - black",people,,Education,1,2
+V118,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 30 to 34, female and color or race - yellow",people,,Education,0,0
+V119,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 30 to 34, female and color or race - brown",people,,Education,26,22
+V120,"Pessoas alfabetizadas de 30 a 34 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 30 to 34, female and color or race - indigenous",people,,Education,0,0
+V121,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo feminino e cor ou raça - branca","People who are literate from 35 to 39 years of age, female and color or race - white",people,,Education,14,12
+V122,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – preta","Literate people aged 35 to 39 years, female and color or race - black",people,,Education,2,2
+V123,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – amarela","Persons literate from 35 to 39 years of age, female and color or race - yellow",people,,Education,0,0
+V124,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 35 to 39, female and color or race - brown",people,,Education,25,15
+V125,"Pessoas alfabetizadas de 35 a 39 anos de idade, do sexo feminino e cor ou raça - indígena","Literate persons aged 35 to 39 years, female and color or race - indigenous",people,,Education,0,0
+V126,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – branca","40-44 year old female, female and color or race - white",people,,Education,11,5
+V127,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – preta","Literate people 40 to 44 years of age, female and color or race - black",people,,Education,0,1
+V128,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 40 to 44 years, female and color or race - yellow",people,,Education,0,1
+V129,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 40 to 44, female and color or race - brown",people,,Education,14,10
+V130,"Pessoas alfabetizadas de 40 a 44 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 40 to 44 years, female and color or race - indigenous",people,,Education,0,0
+V131,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – branca","Literate people aged 45 to 49, female and color or race - white",people,,Education,7,3
+V132,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – preta","Persons who are literate from 45 to 49 years of age, female and color or race - black",people,,Education,2,1
+V133,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 45 to 49, female and color or race - yellow",people,,Education,1,0
+V134,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – parda","Literate persons aged 45 to 49, female and color or race - brown",people,,Education,11,7
+V135,"Pessoas alfabetizadas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – indígena","Literate persons aged 45 to 49, female and color or race - indigenous",people,,Education,0,0
+V136,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – branca","Literate people aged 50-54, female and color or race - white",people,,Education,6,6
+V137,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – preta","People who are literate from 50 to 54 years of age, female and color or race - black",people,,Education,0,1
+V138,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 50 to 54, female and color or race - yellow",people,,Education,0,0
+V139,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 50-54, female and color or race - brown",people,,Education,16,4
+V140,"Pessoas alfabetizadas de 50 a 54 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 50-54, female and color or race - indigenous",people,,Education,0,0
+V141,"Pessoas alfabetizadas de 55 a 59 anos de idade,  do sexo feminino e cor ou raça – branca","Literate people aged 55-59, female and color or race - white",people,,Education,10,4
+V142,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – preta","Literate people aged 55-59, female and color or black race",people,,Education,1,0
+V143,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 55-59, female and color or race - yellow",people,,Education,0,0
+V144,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 55-59, female and color or race - brown",people,,Education,4,5
+V145,"Pessoas alfabetizadas de 55 a 59 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 55-59, female and color or race - indigenous",people,,Education,0,0
+V146,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – branca","Literate people aged 60 to 69 years, female and color or race - white",people,,Education,9,5
+V147,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – preta","Literate people aged 60 to 69 years, female and color or race - black",people,,Education,0,0
+V148,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – amarela","Literate people aged 60 to 69 years, female and color or race - yellow",people,,Education,0,0
+V149,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – parda","Literate people aged 60 to 69 years, female and color or race - brown",people,,Education,2,3
+V150,"Pessoas alfabetizadas de 60 a 69 anos de idade, do sexo feminino e cor ou raça - indígena","Literate people aged 60 to 69 years, female and color or race - indigenous",people,,Education,0,0
+V151,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – branca","Literate people 70 years of age or older, female and color or race - white",people,,Education,1,2
+V152,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – preta","Literate people 70 years of age or older, female and color or race - black",people,,Education,0,0
+V153,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – amarela","Persons literate 70 years of age or older, female and color or race - yellow",people,,Education,0,0
+V154,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – parda","Literate people 70 years of age or older, female and color or race - brown",people,,Education,2,3
+V155,"Pessoas alfabetizadas de 70 anos ou mais de idade, do sexo feminino e cor ou raça - indígena","Literate people 70 years of age or older, female and color or race - indigenous",people,,Education,0,0
