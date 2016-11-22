@@ -1,7 +1,7 @@
 Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2
 Cod_setor,Código do setor censitário,Census sector code,,,,1.20E+14,1.20E+14
 Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
-V001,"Pessoas responsáveis, do sexo feminino","Responsible persons, female",people,Responsavel02 V001,age_gender,237,183
+V001,"Pessoas responsáveis, do sexo feminino","Responsible persons, female",people,responsavel02_V001,age_gender,237,183
 V002,"Pessoas responsáveis com 10 anos de idade, do sexo feminino","Responsible persons with 10 years of age, female",people,V001,age_gender,0,0
 V003,"Pessoas responsáveis com 11 anos de idade, do sexo feminino","Responsible persons with 11 years of age, female",people,V001,age_gender,1,0
 V004,"Pessoas responsáveis com 12 anos de idade, do sexo feminino","Responsible persons with 12 years of age, female",people,V001,age_gender,0,0
@@ -93,7 +93,7 @@ V089,"Pessoas responsáveis com 97 anos de idade, do sexo feminino","Responsible 
 V090,"Pessoas responsáveis com 98 anos de idade, do sexo feminino","Responsible persons with 98 years of age, female",people,V001,age_gender,0,0
 V091,"Pessoas responsáveis com 99 anos de idade, do sexo feminino","Responsible persons with 99 years of age, female",people,V001,age_gender,0,0
 V092,"Pessoas responsáveis com 100 ou mais anos de idade, do sexo feminino","Responsible persons with 100 or more years of age, female",people,V001,age_gender,0,0
-V093,"Pessoas alfabetizadas responsáveis, do sexo feminino",Responsible literate female people,people,Responsavel02 V093,education,192,155
+V093,"Pessoas alfabetizadas responsáveis, do sexo feminino",Responsible literate female people,people,responsavel02_V093,education,192,155
 V094,"Pessoas alfabetizadas responsáveis com 10 a 14 anos de idade, do sexo feminino","Responsible literate persons with 10 to 14 years of age, female",people,V093,education,1,0
 V095,"Pessoas alfabetizadas responsáveis com 15 a 19 anos de idade, do sexo feminino","Responsible literate persons with 15 to 19 years of age, female",people,V093,education,12,8
 V096,"Pessoas alfabetizadas responsáveis com 20 a 24 anos de idade, do sexo feminino","Responsible literate people aged 20 to 24 years, female",people,V093,education,27,25
