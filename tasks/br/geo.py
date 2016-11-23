@@ -130,7 +130,7 @@ class GeographyColumns(BaseParams, ColumnsTask):
             name=GEOGRAPHY_NAMES[self.resolution],
             description=GEOGRAPHY_DESCS[self.resolution],
             weight=self.weights[self.resolution],
-            tags=[sections['ca'], subsections['boundary']],
+            tags=[sections['br'], subsections['boundary']],
         )
         geom_id = OBSColumn(
             type='Text',
