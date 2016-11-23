@@ -1,10 +1,10 @@
-NOME DA VARIÁVEL,DESCRIÇÃO DA VARIÁVEL,DESCRIPTION OF THE VARIABLE,unit,target,subsection,data_sample1,data_sample2
+NOME DA VARIÁVEL,DESCRIÇÃO DA VARIÁVEL,DESCRIPTION OF THE VARIABLE,unit,denominators,subsection,data_sample1,data_sample2
 Cód_setor,Código do setor censitário,Census sector code,,,,1.20E+14,1.20E+14
 Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
-V001,Total de domicílios particulares improvisados,Total of improvised private households,housing_unit,,housing,3,1
+V001,Total de domicílios particulares improvisados,Total of improvised private households,households,,housing,3,1
 V002,Total do rendimento nominal mensal dos domicílios particulares,Total nominal monthly income of private households,money,,housing,253690,259735
-V003,Total do rendimento nominal mensal dos domicílios particulares permanentes,Total nominal monthly income of permanent private households,money,V002,housing,252628,258845
-V004,Total do rendimento nominal mensal dos domicílios particulares improvisados,Total monthly nominal income of makeshift private households,money,V002,housing,1062,890
+V003,Total do rendimento nominal mensal dos domicílios particulares permanentes,Total nominal monthly income of permanent private households,money,DomicilioRenda_V002,housing,252628,258845
+V004,Total do rendimento nominal mensal dos domicílios particulares improvisados,Total monthly nominal income of makeshift private households,money,DomicilioRenda_V002,housing,1062,890
 V005,Domicílios particulares com rendimento nominal mensal domiciliar per capita de até 1/8 salário mínimo,Households with nominal monthly household income per capita up to 1/8 minimum wage,households,,income,35,5
 V006,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 1/8 a 1/4 salário mínimo,Households with nominal monthly household income per capita of more than 1/8 to 1/4 minimum salary,households,,income,40,30
 V007,Domicílios particulares com rendimento nominal mensal domiciliar per capita de mais de 1/4 a 1/2 salário mínimo,Households with nominal monthly household income per capita of more than 1/4 to 1/2 minimum salary,households,,income,65,58

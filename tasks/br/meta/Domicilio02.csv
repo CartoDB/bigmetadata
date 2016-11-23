@@ -1,135 +1,135 @@
-Nome da variável,Descrição da variável
-Cod_setor,Código do setor censitário
-Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls)
-V001,Moradores em domicílios particulares e domicílios coletivos
-V002,Moradores em domicílios particulares permanentes
-V003,Moradores em domicílios particulares permanentes do tipo casa
-V004,Moradores em domicílios particulares permanentes do tipo casa de vila ou em condomínio
-V005,Moradores em domicílios particulares permanentes do tipo apartamento
-V006,Moradores em domicílios particulares permanentes próprios e quitados
-V007,Moradores em domicílios particulares permanentes próprios e em aquisição
-V008,Moradores em domicílios particulares permanentes alugados
-V009,Moradores em domicílios particulares permanentes cedidos por empregador
-V010,Moradores em domicílios particulares permanentes cedidos de outra forma
-V011,"Moradores em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)"
-V012,Moradores em domicílios particulares permanentes com abastecimento de água da rede geral
-V013,Moradores em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade
-V014,Moradores em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna
-V015,Moradores em domicílios particulares permanentes com outra forma de abastecimento de água
-V016,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário
-V017,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
-V018,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
-V019,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
-V020,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
-V021,"Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
-V022,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
-V023,Moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário
-V024,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores
-V025,Moradores em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores
-V026,Moradores em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores
-V027,Moradores em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores
-V028,Moradores em domicílios particulares permanentes com 4 ou mais banheiros de uso exclusivo dos moradores 
-V029,Moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores
-V030,Moradores em domicílios particulares permanentes com lixo coletado
-V031,Moradores em domicílios particulares permanentes com lixo coletado por serviço de limpeza
-V032,Moradores em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza
-V033,Moradores em domicílios particulares permanentes com lixo queimado na propriedade
-V034,Moradores em domicílios particulares permanentes com lixo enterrado na propriedade
-V035,Moradores em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro
-V036,"Moradores em domicílios particulares permanentes com lixo jogado em rio, lago ou mar"
-V037,Moradores em domicílios particulares permanentes com outro destino do lixo
-V038,Moradores em domicílios particulares permanentes com energia elétrica
-V039,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora
-V040,Moradores em domicílios particulares permanentes com energia elétrica de outras fontes
-V041,Moradores em domicílios particulares permanentes sem energia elétrica
-V042,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor de uso exclusivo
-V043,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
-V044,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor
-V045,Homens moradores em domicílios particulares e domicílios coletivos
-V046,Homens moradores em domicílios particulares permanentes
-V047,Homens moradores em domicílios particulares permanentes do tipo casa
-V048,Homens moradores em domicílios particulares permanentes do tipo casa de vila ou em condomínio
-V049,Homens moradores em domicílios particulares permanentes do tipo apartamento
-V050,Homens moradores em domicílios particulares permanentes próprios e quitados
-V051,Homens moradores em domicílios particulares permanentes próprios e em aquisição
-V052,Homens moradores em domicílios particulares permanentes alugados
-V053,Homens moradores em domicílios particulares permanentes cedidos por empregador
-V054,Homens moradores em domicílios particulares permanentes cedidos de outra forma
-V055,"Homens moradores em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)"
-V056,Homens moradores em domicílios particulares permanentes com abastecimento de água da rede geral
-V057,Homens moradores em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade
-V058,Homens moradores em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna
-V059,Homens moradores em domicílios particulares permanentes com outra forma de abastecimento de água
-V060,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário
-V061,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
-V062,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
-V063,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
-V064,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
-V065,"Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
-V066,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
-V067,Homens moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário
-V068,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores
-V069,Homens moradores em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores
-V070,Homens moradores em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores
-V071,Homens moradores em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores
-V072,Homens moradores em domicílios particulares permanentes com 4 ou mais  banheiros de uso exclusivo dos moradores
-V073,Homens moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores
-V074,Homens moradores em domicílios particulares permanentes com lixo coletado
-V075,Homens moradores em domicílios particulares permanentes com lixo coletado por serviço de limpeza
-V076,Homens moradores em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza
-V077,Homens moradores em domicílios particulares permanentes com lixo queimado na propriedade
-V078,Homens moradores em domicílios particulares permanentes com lixo enterrado na propriedade
-V079,Homens moradores em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro
-V080,"Homens moradores em domicílios particulares permanentes com lixo jogado em rio, lago ou mar"
-V081,Homens moradores em domicílios particulares permanentes com outro destino do lixo
-V082,Homens moradores em domicílios particulares permanentes com energia elétrica
-V083,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora
-V084,Homens moradores em domicílios particulares permanentes com energia elétrica de outras fontes
-V085,Homens moradores em domicílios particulares permanentes sem energia elétrica
-V086,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor de uso exclusivo
-V087,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
-V088,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor
-V089,Mulheres moradoras em domicílios particulares e domicílios coletivos
-V090,Mulheres moradoras em domicílios particulares permanentes
-V091,Mulheres moradoras em domicílios particulares permanentes do tipo casa
-V092,Mulheres moradoras em domicílios particulares permanentes do tipo casa de vila ou em condomínio
-V093,Mulheres moradoras em domicílios particulares permanentes do tipo apartamento
-V094,Mulheres moradoras em domicílios particulares permanentes próprios e quitados
-V095,Mulheres moradoras em domicílios particulares permanentes próprios e em aquisição
-V096,Mulheres moradoras em domicílios particulares permanentes alugados
-V097,Mulheres moradoras em domicílios particulares permanentes cedidos por empregador
-V098,Mulheres moradoras em domicílios particulares permanentes cedidos de outra forma
-V099,"Mulheres moradoras em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)"
-V100,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água da rede geral
-V101,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade
-V102,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna
-V103,Mulheres moradoras em domicílios particulares permanentes com outra forma de abastecimento de água
-V104,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário
-V105,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial
-V106,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica
-V107,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar
-V108,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala
-V109,"Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar"
-V110,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro
-V111,Mulheres moradoras em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário
-V112,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores
-V113,Mulheres moradoras em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores
-V114,Mulheres moradoras em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores
-V115,Mulheres moradoras em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores
-V116,Mulheres moradoras em domicílios particulares permanentes com 4 ou mais banheiros de uso exclusivo dos moradores
-V117,Mulheres moradoras em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores
-V118,Mulheres moradoras em domicílios particulares permanentes com lixo coletado
-V119,Mulheres moradoras em domicílios particulares permanentes com lixo coletado por serviço de limpeza
-V120,Mulheres moradoras em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza
-V121,Mulheres moradoras em domicílios particulares permanentes com lixo queimado na propriedade
-V122,Mulheres moradoras em domicílios particulares permanentes com lixo enterrado na propriedade
-V123,Mulheres moradoras em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro
-V124,"Mulheres moradoras em domicílios particulares permanentes com lixo jogado em rio, lago ou mar"
-V125,Mulheres moradoras em domicílios particulares permanentes com outro destino do lixo
-V126,Mulheres moradoras em domicílios particulares permanentes com energia elétrica
-V127,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora
-V128,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de outras fontes
-V129,Mulheres moradoras em domicílios particulares permanentes sem energia elétrica
-V130,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora  e com medidor de uso exclusivo
-V131,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio
-V132,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor
+Nome da variável,Descrição da variável,Variable description,unit,denominators,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,1.20E+14,1.20E+14
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,8
+V001,Moradores em domicílios particulares e domicílios coletivos,Residents in private homes and collective households,housing_units,Domicilio01_V001,housing,914,1153
+V002,Moradores em domicílios particulares permanentes,Residents in permanent private households,housing_units,Domicilio02_V001,housing,914,1153
+V003,Moradores em domicílios particulares permanentes do tipo casa,Residents in permanent private dwellings of the house type,housing_units,Domicilio02_V002,housing,904,1143
+V004,Moradores em domicílios particulares permanentes do tipo casa de vila ou em condomínio,Residents in permanent private dwellings of the type of village house or in condominium,housing_units,Domicilio02_V002,housing,0,5
+V005,Moradores em domicílios particulares permanentes do tipo apartamento,Residents in permanent private dwellings of the apartment type,housing_units,Domicilio02_V002,housing,10,5
+V006,Moradores em domicílios particulares permanentes próprios e quitados,Residents in their own permanent homes and removed,housing_units,Domicilio02_V002,housing,688,1005
+V007,Moradores em domicílios particulares permanentes próprios e em aquisição,Residents in private households owning and purchasing,housing_units,Domicilio02_V002,housing,0,0
+V008,Moradores em domicílios particulares permanentes alugados,Residents in permanent private households rented,housing_units,Domicilio02_V002,housing,135,0
+V009,Moradores em domicílios particulares permanentes cedidos por empregador,Residents in permanent private households provided by employer,housing_units,Domicilio02_V002,housing,29,54
+V010,Moradores em domicílios particulares permanentes cedidos de outra forma,Residents in permanent private households otherwise disposed of,housing_units,Domicilio02_V002,housing,62,94
+V011,"Moradores em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)","Residents in permanent private households with other occupancy conditions (they are not owned, rented, or sold)",housing_units,Domicilio02_V002,housing,0,0
+V012,Moradores em domicílios particulares permanentes com abastecimento de água da rede geral,Residents in permanent private households with water supply in the general network,housing_units,Domicilio02_V002,housing,488,0
+V013,Moradores em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade,Residents in permanent private households with well or spring water supply in the property,housing_units,Domicilio02_V002,housing,403,818
+V014,Moradores em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna,Residents in permanent private homes with rainwater supply stored in cistern,housing_units,Domicilio02_V002,housing,0,0
+V015,Moradores em domicílios particulares permanentes com outra forma de abastecimento de água,Residents in permanent private households with another form of water supply,housing_units,Domicilio02_V002,housing,23,335
+V016,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário,Residents in permanent private households with bathrooms exclusively for residents or sanitary,housing_units,Domicilio02_V002,housing,914,552
+V017,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial,Residents in permanent private households with bathrooms for the exclusive use of residents or sanitary and sanitary sewage via general sewage or rainwater network,housing_units,Domicilio02_V016,housing,6,0
+V018,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica,Residents in permanent private households with bathrooms for the exclusive use of the residents or sanitary and sanitary sewage via the septic tank,housing_units,Domicilio02_V016,housing,11,172
+V019,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar,Residents in permanent private households with bathrooms for the exclusive use of residents or sanitary and sanitary sewage via the rudimentary fossa,housing_units,Domicilio02_V016,housing,825,23
+V020,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala,Residents in permanent private households with bathrooms for the exclusive use of residents or sanitary and sanitary sewage via ditch,housing_units,Domicilio02_V016,housing,7,344
+V021,"Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar","Residents in permanent private households with bathrooms for the exclusive use of residents or sanitary and sanitary sewage via river, lake or sea",housing_units,Domicilio02_V016,housing,0,5
+V022,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro,Residents in permanent private households with bathrooms for the exclusive use of the residents or sanitary and sewage through another sewer,housing_units,Domicilio02_V016,housing,65,8
+V023,Moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário,Residents in permanent private households without bathroom for the exclusive use of residents and nor sanitary,housing_units,Domicilio02_V016,housing,0,601
+V024,Moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores,Residents in permanent private households with bathrooms exclusively for residents,housing_units,Domicilio02_V002,housing,849,189
+V025,Moradores em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores,Residents in permanent private households with 1 bathroom for the exclusive use of residents,housing_units,Domicilio02_V024,housing,773,171
+V026,Moradores em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores,Residents in permanent private households with 2 bathrooms exclusively for residents,housing_units,Domicilio02_V024,housing,65,12
+V027,Moradores em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores,Residents in permanent private homes with 3 bathrooms exclusively for residents,housing_units,Domicilio02_V024,housing,3,6
+V028,Moradores em domicílios particulares permanentes com 4 ou mais banheiros de uso exclusivo dos moradores ,Residents in permanent private households with 4 or more bathrooms for the exclusive use of residents,housing_units,Domicilio02_V024,housing,8,0
+V029,Moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores,Residents in permanent private households with no bathroom exclusively for residents,housing_units,Domicilio02_V002,housing,65,964
+V030,Moradores em domicílios particulares permanentes com lixo coletado,Residents in permanent private households with garbage collected,housing_units,Domicilio02_V002,housing,885,0
+V031,Moradores em domicílios particulares permanentes com lixo coletado por serviço de limpeza,Residents in permanent private households with garbage collected by cleaning service,housing_units,Domicilio02_V030,housing,885,0
+V032,Moradores em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza,Residents in permanent private households with garbage collected in a cleaning service bucket,housing_units,Domicilio02_V030,housing,0,0
+V033,Moradores em domicílios particulares permanentes com lixo queimado na propriedade,Residents in permanent private households with burned garbage on the property,housing_units,Domicilio02_V002,housing,29,962
+V034,Moradores em domicílios particulares permanentes com lixo enterrado na propriedade,Residents in permanent private households with rubbish buried in the property,housing_units,Domicilio02_V002,housing,0,72
+V035,Moradores em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro,Residents in permanent private households with rubbish thrown in wasteland or public place,housing_units,Domicilio02_V002,housing,0,119
+V036,"Moradores em domicílios particulares permanentes com lixo jogado em rio, lago ou mar","Residents in permanent private households with garbage thrown in river, lake or sea",housing_units,Domicilio02_V002,housing,0,0
+V037,Moradores em domicílios particulares permanentes com outro destino do lixo,Residents in permanent private households with another garbage destination,housing_units,Domicilio02_V002,housing,0,0
+V038,Moradores em domicílios particulares permanentes com energia elétrica,Residents in permanent households with electricity,housing_units,Domicilio02_V002,housing,914,822
+V039,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora,Residents in permanent private households with electricity distribution company,housing_units,Domicilio02_V038,housing,914,822
+V040,Moradores em domicílios particulares permanentes com energia elétrica de outras fontes,Residents in permanent private households with electricity from other sources,housing_units,Domicilio02_V038,housing,0,0
+V041,Moradores em domicílios particulares permanentes sem energia elétrica,Residents in permanent households without electricity,housing_units,Domicilio02_V002,housing,0,331
+V042,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor de uso exclusivo,Residents in permanent private households with electricity distribution company and with meter of exclusive use,housing_units,Domicilio02_V038,housing,882,787
+V043,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio,Residents in permanent private households with electricity distribution company and with meter common to more than one household,housing_units,Domicilio02_V038,housing,29,35
+V044,Moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor,Residents in permanent private households with electricity from distributing company and without meter,housing_units,Domicilio02_V038,housing,3,0
+V045,Homens moradores em domicílios particulares e domicílios coletivos,Men living in private homes and collective households,housing_units,Domicilio02_V002,age_gender|housing,455,645
+V046,Homens moradores em domicílios particulares permanentes,Men living in permanent private households,housing_units,Domicilio02_V045,age_gender|housing,455,645
+V047,Homens moradores em domicílios particulares permanentes do tipo casa,Men living in private households,housing_units,Domicilio02_V046,age_gender|housing,449,638
+V048,Homens moradores em domicílios particulares permanentes do tipo casa de vila ou em condomínio,Men living in private dwellings of the type of village house or condominium,housing_units,Domicilio02_V046,age_gender|housing,0,3
+V049,Homens moradores em domicílios particulares permanentes do tipo apartamento,Men living in private dwellings of the apartment type,housing_units,Domicilio02_V046,age_gender|housing,6,4
+V050,Homens moradores em domicílios particulares permanentes próprios e quitados,Men living in their own private households,housing_units,Domicilio02_V046,age_gender|housing,336,562
+V051,Homens moradores em domicílios particulares permanentes próprios e em aquisição,Men living in private households own,housing_units,Domicilio02_V046,age_gender|housing,0,0
+V052,Homens moradores em domicílios particulares permanentes alugados,Men living in private households permanently rented,housing_units,Domicilio02_V046,age_gender|housing,70,0
+V053,Homens moradores em domicílios particulares permanentes cedidos por empregador,Men living in permanent private households provided by employer,housing_units,Domicilio02_V046,age_gender|housing,14,32
+V054,Homens moradores em domicílios particulares permanentes cedidos de outra forma,Men living in permanent private households otherwise provided,housing_units,Domicilio02_V046,age_gender|housing,35,51
+V055,"Homens moradores em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)","Men living in permanent private households with other occupancy conditions (they are not owned, rented, or sold)",housing_units,Domicilio02_V046,age_gender|housing,0,0
+V056,Homens moradores em domicílios particulares permanentes com abastecimento de água da rede geral,Men living in private permanent homes with water supply from the general network,housing_units,Domicilio02_V046,age_gender|housing,246,0
+V057,Homens moradores em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade,Men living in private permanent homes with water supply from well or spring on the property,housing_units,Domicilio02_V046,age_gender|housing,196,462
+V058,Homens moradores em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna,Men living in private permanent homes with rainwater supply stored in cistern,housing_units,Domicilio02_V046,age_gender|housing,0,0
+V059,Homens moradores em domicílios particulares permanentes com outra forma de abastecimento de água,Men living in permanent private households with another form of water supply,housing_units,Domicilio02_V046,age_gender|housing,13,183
+V060,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário,Men living in private permanent homes with bathrooms exclusively for residents or sanitary,housing_units,Domicilio02_V046,age_gender|housing,455,301
+V061,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial,Male residents in permanent private households with bathrooms exclusively for residents or sanitary and sewage via general sewage or rainwater network,housing_units,Domicilio02_V060,age_gender|housing,4,0
+V062,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica,Male residents in permanent private households with bathrooms exclusively for residents or sanitary and sewage via septic tank,housing_units,Domicilio02_V060,age_gender|housing,4,91
+V063,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar,Men living in private permanent homes with bathrooms for the exclusive use of the residents or sanitary and sanitary sewage via the rudimentary fossa,housing_units,Domicilio02_V060,age_gender|housing,415,15
+V064,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala,Male residents in permanent private households with bathrooms exclusively for residents or sanitary and sanitary sewage via ditch,housing_units,Domicilio02_V060,age_gender|housing,3,185
+V065,"Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar","Men living in private permanent homes with bathrooms for the exclusive use of residents or sanitary and sanitary sewage via river, lake or sea",housing_units,Domicilio02_V060,age_gender|housing,0,4
+V066,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro,Male residents in permanent private households with bathrooms for the exclusive use of the residents or sanitary and sewage through another sewer,housing_units,Domicilio02_V060,age_gender|housing,29,6
+V067,Homens moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário,Men living in private permanent households without a bathroom for the exclusive use of the residents and neither sanitary,housing_units,Domicilio02_V046,age_gender|housing,0,344
+V068,Homens moradores em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores,Men living in private permanent homes with bathrooms exclusively for residents,housing_units,Domicilio02_V045,age_gender|housing,427,105
+V069,Homens moradores em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores,Men living in permanent private households with 1 bathroom exclusively for residents,housing_units,Domicilio02_V068,age_gender|housing,388,95
+V070,Homens moradores em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores,Men living in private permanent homes with 2 bathrooms exclusively for residents,housing_units,Domicilio02_V068,age_gender|housing,33,6
+V071,Homens moradores em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores,Men living in permanent private households with 3 bathrooms exclusively for residents,housing_units,Domicilio02_V068,age_gender|housing,1,4
+V072,Homens moradores em domicílios particulares permanentes com 4 ou mais  banheiros de uso exclusivo dos moradores,Men living in permanent private households with 4 or more bathrooms exclusively for residents,housing_units,Domicilio02_V068,age_gender|housing,5,0
+V073,Homens moradores em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores,Men living in private households without a bathroom for the exclusive use of residents,housing_units,Domicilio02_V045,age_gender|housing,28,540
+V074,Homens moradores em domicílios particulares permanentes com lixo coletado,Men living in private households with garbage collected,housing_units,Domicilio02_V046,age_gender|housing,437,0
+V075,Homens moradores em domicílios particulares permanentes com lixo coletado por serviço de limpeza,Men living in permanent private households with garbage collected by cleaning service,housing_units,Domicilio02_V074,age_gender|housing,437,0
+V076,Homens moradores em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza,Male residents in permanent private households with garbage collected in a cleaning service bucket,housing_units,Domicilio02_V074,age_gender|housing,0,0
+V077,Homens moradores em domicílios particulares permanentes com lixo queimado na propriedade,Men living in private households with burned garbage on the property,housing_units,Domicilio02_V046,age_gender|housing,18,539
+V078,Homens moradores em domicílios particulares permanentes com lixo enterrado na propriedade,Men living in private households with rubbish buried in the property,housing_units,Domicilio02_V046,age_gender|housing,0,41
+V079,Homens moradores em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro,Men living in private households with garbage permanently dumped on wasteland or public land,housing_units,Domicilio02_V046,age_gender|housing,0,65
+V080,"Homens moradores em domicílios particulares permanentes com lixo jogado em rio, lago ou mar","Men living in private permanent homes with garbage thrown in river, lake or sea",housing_units,Domicilio02_V046,age_gender|housing,0,0
+V081,Homens moradores em domicílios particulares permanentes com outro destino do lixo,Men living in permanent private households with another garbage destination,housing_units,Domicilio02_V046,age_gender|housing,0,0
+V082,Homens moradores em domicílios particulares permanentes com energia elétrica,Men living in private permanent households with electricity,housing_units,Domicilio02_V046,age_gender|housing,455,455
+V083,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora,Men living in permanent private households with electricity from a distribution company,housing_units,Domicilio02_V082,age_gender|housing,455,455
+V084,Homens moradores em domicílios particulares permanentes com energia elétrica de outras fontes,Men living in private permanent households with electricity from other sources,housing_units,Domicilio02_V082,age_gender|housing,0,0
+V085,Homens moradores em domicílios particulares permanentes sem energia elétrica,Men living in private permanent households without electricity,housing_units,Domicilio02_V046,age_gender|housing,0,190
+V086,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor de uso exclusivo,Men living in permanent private households with electricity distribution company and with meter of exclusive use,housing_units,Domicilio02_V083,age_gender|housing,435,436
+V087,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio,Men living in private permanent households with electricity from a distribution company and with a meter common to more than one household,housing_units,Domicilio02_V083,age_gender|housing,18,19
+V088,Homens moradores em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor,Men living in private permanent households with electricity from a distribution company and without a meter,housing_units,Domicilio02_V083,age_gender|housing,2,0
+V089,Mulheres moradoras em domicílios particulares e domicílios coletivos,Women living in private homes and collective households,housing_units,Domicilio02_V002,age_gender|housing,459,508
+V090,Mulheres moradoras em domicílios particulares permanentes,Women living in permanent private households,housing_units,Domicilio02_V089,age_gender|housing,459,508
+V091,Mulheres moradoras em domicílios particulares permanentes do tipo casa,Women living in private households,housing_units,Domicilio02_V090,age_gender|housing,455,505
+V092,Mulheres moradoras em domicílios particulares permanentes do tipo casa de vila ou em condomínio,"Women living in private dwellings, such as a village house or a condominium",housing_units,Domicilio02_V090,age_gender|housing,0,2
+V093,Mulheres moradoras em domicílios particulares permanentes do tipo apartamento,Women living in private dwellings of the apartment type,housing_units,Domicilio02_V090,age_gender|housing,4,1
+V094,Mulheres moradoras em domicílios particulares permanentes próprios e quitados,Women living in private homes permanently owned and removed,housing_units,Domicilio02_V090,age_gender|housing,352,443
+V095,Mulheres moradoras em domicílios particulares permanentes próprios e em aquisição,Women living in private households own,housing_units,Domicilio02_V090,age_gender|housing,0,0
+V096,Mulheres moradoras em domicílios particulares permanentes alugados,Women living in private households permanently rented,housing_units,Domicilio02_V090,age_gender|housing,65,0
+V097,Mulheres moradoras em domicílios particulares permanentes cedidos por empregador,Women living in permanent private households provided by employer,housing_units,Domicilio02_V090,age_gender|housing,15,22
+V098,Mulheres moradoras em domicílios particulares permanentes cedidos de outra forma,Women living in permanent private households otherwise provided,housing_units,Domicilio02_V090,age_gender|housing,27,43
+V099,"Mulheres moradoras em domicílios particulares permanentes com outra condição de ocupação (não são próprios, alugados, nem cedidos)","Women living in permanent private households with other occupancy conditions (they are not owned, rented, or sold)",housing_units,Domicilio02_V090,age_gender|housing,0,0
+V100,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água da rede geral,Women living in permanent private households with water supply in the general network,housing_units,Domicilio02_V090,age_gender|housing,242,0
+V101,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água de poço ou nascente na propriedade,Women living in private permanent homes with water supply from well or spring on the property,housing_units,Domicilio02_V090,age_gender|housing,207,356
+V102,Mulheres moradoras em domicílios particulares permanentes com abastecimento de água de chuva armazenada em cisterna,Women living in private dwellings with rainwater supply stored in cistern,housing_units,Domicilio02_V090,age_gender|housing,0,0
+V103,Mulheres moradoras em domicílios particulares permanentes com outra forma de abastecimento de água,Women living in permanent private households with another form of water supply,housing_units,Domicilio02_V090,age_gender|housing,10,152
+V104,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário,Women living in private permanent homes with bathrooms exclusively for residents or sanitary,housing_units,Domicilio02_V090,age_gender|housing,459,251
+V105,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rede geral de esgoto ou pluvial,Women living in permanent private households with bathrooms for the exclusive use of residents or sanitary and sanitary sewage via general sewage or rainwater network,housing_units,Domicilio02_V104,age_gender|housing,2,0
+V106,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa séptica,Women living in private permanent homes with bathrooms for the exclusive use of the residents or sanitary and sanitary sewage via the septic tank,housing_units,Domicilio02_V104,age_gender|housing,7,81
+V107,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via fossa rudimentar,Women living in permanent private households with bathrooms exclusively for the residents or sanitary and sanitary sewage via the rudimentary fossa,housing_units,Domicilio02_V104,age_gender|housing,410,8
+V108,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via vala,Women living in private permanent homes with bathrooms for the exclusive use of residents or sanitary and sanitary sewage via ditch,housing_units,Domicilio02_V104,age_gender|housing,4,159
+V109,"Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via rio, lago ou mar","Women living in permanent private households with bathrooms exclusively for residents or sanitary and sanitary sewage via river, lake or sea",housing_units,Domicilio02_V104,age_gender|housing,0,1
+V110,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores ou sanitário e esgotamento sanitário via outro escoadouro,Women living in permanent private households with bathrooms for the exclusive use of the residents or sanitary and sewage through another sewer,housing_units,Domicilio02_V104,age_gender|housing,36,2
+V111,Mulheres moradoras em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores e nem sanitário,Women living in private households with no bathroom for the exclusive use of the residents and no sanitary,housing_units,Domicilio02_V090,age_gender|housing,0,257
+V112,Mulheres moradoras em domicílios particulares permanentes com banheiro de uso exclusivo dos moradores,Women living in private permanent homes with bathrooms exclusively for residents,housing_units,Domicilio02_V089,age_gender|housing,422,84
+V113,Mulheres moradoras em domicílios particulares permanentes com 1 banheiro de uso exclusivo dos moradores,Women living in permanent private households with 1 bathroom exclusively for residents,housing_units,Domicilio02_V112,age_gender|housing,385,76
+V114,Mulheres moradoras em domicílios particulares permanentes com 2 banheiros de uso exclusivo dos moradores,Women living in permanent private households with 2 bathrooms exclusively for residents,housing_units,Domicilio02_V112,age_gender|housing,32,6
+V115,Mulheres moradoras em domicílios particulares permanentes com 3 banheiros de uso exclusivo dos moradores,Women living in private permanent homes with 3 bathrooms exclusively for residents,housing_units,Domicilio02_V112,age_gender|housing,2,2
+V116,Mulheres moradoras em domicílios particulares permanentes com 4 ou mais banheiros de uso exclusivo dos moradores,Women living in private households with 4 or more bathrooms exclusively for residents,housing_units,Domicilio02_V112,age_gender|housing,3,0
+V117,Mulheres moradoras em domicílios particulares permanentes sem banheiro de uso exclusivo dos moradores,Women living in private households with no bathroom exclusively for residents,housing_units,Domicilio02_V089,age_gender|housing,37,424
+V118,Mulheres moradoras em domicílios particulares permanentes com lixo coletado,Women living in private households with garbage collected,housing_units,Domicilio02_V090,age_gender|housing,448,0
+V119,Mulheres moradoras em domicílios particulares permanentes com lixo coletado por serviço de limpeza,Women living in permanent private households with garbage collected by cleaning service,housing_units,Domicilio02_V118,age_gender|housing,448,0
+V120,Mulheres moradoras em domicílios particulares permanentes com lixo coletado em caçamba de serviço de limpeza,Women living in private households with garbage collected in a cleaning service bucket,housing_units,Domicilio02_V118,age_gender|housing,0,0
+V121,Mulheres moradoras em domicílios particulares permanentes com lixo queimado na propriedade,Women living in private households with burned garbage on the property,housing_units,Domicilio02_V090,age_gender|housing,11,423
+V122,Mulheres moradoras em domicílios particulares permanentes com lixo enterrado na propriedade,Women living in private households with rubbish buried in the property,housing_units,Domicilio02_V090,age_gender|housing,0,31
+V123,Mulheres moradoras em domicílios particulares permanentes com lixo jogado em terreno baldio ou logradouro,Women living in private households with garbage permanently dumped on land or public land,housing_units,Domicilio02_V090,age_gender|housing,0,54
+V124,"Mulheres moradoras em domicílios particulares permanentes com lixo jogado em rio, lago ou mar","Women living in private households with garbage strewn in river, lake or sea",housing_units,Domicilio02_V090,age_gender|housing,0,0
+V125,Mulheres moradoras em domicílios particulares permanentes com outro destino do lixo,Women living in permanent private households with another garbage destination,housing_units,Domicilio02_V090,age_gender|housing,0,0
+V126,Mulheres moradoras em domicílios particulares permanentes com energia elétrica,Women living in permanent private households with electricity,housing_units,Domicilio02_V090,age_gender|housing,459,367
+V127,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora,Women living in permanent private households with electricity from a distribution company,housing_units,Domicilio02_V126,age_gender|housing,459,367
+V128,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de outras fontes,Women living in private permanent households with electricity from other sources,housing_units,Domicilio02_V126,age_gender|housing,0,0
+V129,Mulheres moradoras em domicílios particulares permanentes sem energia elétrica,Women living in private households without electricity,housing_units,Domicilio02_V090,age_gender|housing,0,141
+V130,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora  e com medidor de uso exclusivo,Women living in permanent private households with electricity distribution company and with meter of exclusive use,housing_units,Domicilio02_V127,age_gender|housing,447,351
+V131,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora e com medidor comum a mais de um domicílio,Women living in permanent private households with electricity from a distribution company and with a meter common to more than one household,housing_units,Domicilio02_V127,age_gender|housing,11,16
+V132,Mulheres moradoras em domicílios particulares permanentes com energia elétrica de companhia distribuidora e sem medidor,Women living in permanent private households with electricity distribution company and without meter,housing_units,Domicilio02_V127,age_gender|housing,1,0
