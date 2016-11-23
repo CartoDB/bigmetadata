@@ -128,7 +128,7 @@ class Columns(ColumnsTask):
             # Skip first row (header)
             # next(reader, None)
             for line in reader:
-                col_id, col_name, col_name_en, col_unit, denominators, col_subsections, \
+                col_id, col_name_pt, col_name_en, col_unit, denominators, col_subsections, \
                   data_sample_1, data_sample_2 = line
 
                 # skip header rows
