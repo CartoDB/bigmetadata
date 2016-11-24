@@ -131,8 +131,8 @@ class Columns(ColumnsTask):
 
         # get numeric value
         num = col_id.split('V')[1]
-        # should be 3 digits
-        if len(num) != 3:
+        # should be 3 digits min
+        if len(num) < 3:
             return False
 
         # ensure its an number
@@ -157,6 +157,11 @@ class Columns(ColumnsTask):
         column_reqs.update(input_.get('Domicilio01', {}))
         column_reqs.update(input_.get('Entorno01', {}))
         column_reqs.update(input_.get('Entorno03', {}))
+        column_reqs.update(input_.get('Pessoa13', {}))
+        column_reqs.update(input_.get('Pessoa01', {}))
+        column_reqs.update(input_.get('Pessoa07', {}))
+        column_reqs.update(input_.get('Pessoa03', {}))
+        column_reqs.update(input_.get('Responsavel02', {}))
 
         filepath = "meta/{tablename}.csv".format(tablename=self.tablename)
 
@@ -164,11 +169,17 @@ class Columns(ColumnsTask):
         with open(os.path.join(os.path.dirname(__file__),filepath)) as tsvfile:
             reader = csv.reader(tsvfile, delimiter=',', quotechar='"')
 
-            # Skip first row (header)
-            # next(reader, None)
             for line in reader:
-                col_id, col_name_pt, col_name_en, col_unit, denominators, col_subsections, \
-                  data_sample_1, data_sample_2 = line
+                # skip headers
+                if not line[0].startswith('V'):
+                    continue
+
+                col_id = line[0]
+                col_name_pt = line[1]
+                col_name_en = line[2]
+                col_unit = line[3]
+                denominators = line[4]
+                col_subsections = line[5]
 
                 # validate the col_id (VXXX)
                 if not self.validate_id(col_id):
