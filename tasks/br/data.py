@@ -12,6 +12,19 @@ from collections import OrderedDict
 from tasks.br.geo import BaseParams, GEOGRAPHIES
 
 
+TABLES = ['Basico',
+          # Home
+          'Domicilio01', 'Domicilio02', 'DomicilioRenda',   # Renda --> Income
+          # Environment
+          'Entorno01', 'Entorno02', 'Entorno03', 'Entorno04', 'Entorno05',
+          # People
+          'Pessoa01', 'Pessoa02', 'Pessoa03', 'Pessoa04', 'Pessoa05',
+          'Pessoa06', 'Pessoa07', 'Pessoa08', 'Pessoa09', 'Pessoa10',
+          'Pessoa11', 'Pessoa12', 'Pessoa13', 'PessoaRenda',
+          # Responsible
+          'Responsavel01', 'Responsavel02', 'ResponsavelRenda',]
+
+
 class DownloadData(BaseParams, DownloadUnzipTask):
 
     URL = 'ftp://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_do_Universo/Agregados_por_Setores_Censitarios/'
@@ -37,7 +50,7 @@ class DownloadData(BaseParams, DownloadUnzipTask):
         ))
 
 
-class ImportCSV(BaseParams, CSV2TempTableTask):
+class ImportData(BaseParams, CSV2TempTableTask):
 
     tablename = Parameter(default='Basico')
     encoding = 'latin1'
@@ -62,23 +75,11 @@ class ImportCSV(BaseParams, CSV2TempTableTask):
         )
 
 
-class ImportAllCSV(BaseParams, WrapperTask):
-
-    TABLES = ['Basico',
-              # Home
-              'Domicilio01', 'Domicilio02', 'DomicilioRenda',   # Renda --> Income
-              # Environment
-              'Entorno01', 'Entorno02', 'Entorno03', 'Entorno04', 'Entorno05',
-              # People
-              'Pessoa01', 'Pessoa02', 'Pessoa03', 'Pessoa04', 'Pessoa05',
-              'Pessoa06', 'Pessoa07', 'Pessoa08', 'Pessoa09', 'Pessoa10',
-              'Pessoa11', 'Pessoa12', 'Pessoa13', 'PessoaRenda',
-              # Responsible
-              'Responsavel01', 'Responsavel02', 'ResponsavelRenda',]
+class ImportAllData(BaseParams, WrapperTask):
 
     def requires(self):
-        for table in self.TABLES:
-            yield ImportCSV(resolution=self.resolution, state=self.state,
+        for table in TABLES:
+            yield ImportData(resolution=self.resolution, state=self.state,
                             tablename=table)
 
 
@@ -120,7 +121,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 2
+        return 5
 
     def validate_id(self, col_id):
 
@@ -213,3 +214,10 @@ class Columns(ColumnsTask):
                     cols[col_id].tags.append(subsection_tag)
 
         return cols
+
+
+class ImportAllColumns(WrapperTask):
+
+    def requires(self):
+        for table in TABLES:
+            yield Columns(tablename=table)
