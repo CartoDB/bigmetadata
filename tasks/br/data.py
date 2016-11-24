@@ -30,16 +30,16 @@ class DownloadData(BaseParams, DownloadUnzipTask):
     URL = 'ftp://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_do_Universo/Agregados_por_Setores_Censitarios/'
 
     def _get_filename(self):
-        regex = self.state
+        state = self.state.upper()
 
-        if regex == 'sp':
-            regex = 'sp_capital'    # SP_Capital_20150728.zip
+        if state == 'SP':
+            state = 'SP_Capital'    # SP_Capital_20150728.zip
 
         cmd = 'curl -s {url}'.format(url=self.URL)
         cmd += ' | '
         cmd += 'awk \'{print $9}\''
         cmd += ' | '
-        cmd += 'grep -i {state}_'.format(state=regex)
+        cmd += 'grep {state}_[0-9].*zip$'.format(state=state)
 
         return shell(cmd)
 
@@ -68,10 +68,15 @@ class ImportData(BaseParams, CSV2TempTableTask):
         )
 
     def input_csv(self):
-        return '"{downloadpath}/"*/*/*"/{tablename}_{state}.csv"'.format(
+        if self.state == 'sp':
+            state_code = 'SP1'
+        else:
+            state_code = self.state.upper()
+
+        return '"{downloadpath}/"*/*/*"/{tablename}_{state_code}.csv"'.format(
             downloadpath=self.input().path,
             tablename=self.tablename,
-            state=self.state.upper(),
+            state_code=state_code
         )
 
 
@@ -139,6 +144,10 @@ class Columns(ColumnsTask):
         if self.tablename in ('Responsavel01'):
             requirements['Responsavel02'] = Columns(tablename='Responsavel02')
 
+        if self.tablename in ('Basico'):
+            requirements['Pessoa13'] = Columns(tablename='Pessoa13')
+            requirements['ResponsavelRenda'] = Columns(tablename='ResponsavelRenda')
+
 
         return requirements
 
@@ -184,6 +193,7 @@ class Columns(ColumnsTask):
         column_reqs.update(input_.get('Pessoa07', {}))
         column_reqs.update(input_.get('Pessoa03', {}))
         column_reqs.update(input_.get('Responsavel02', {}))
+        column_reqs.update(input_.get('Basico', {}))
 
         filepath = "meta/{tablename}.csv".format(tablename=self.tablename)
 
