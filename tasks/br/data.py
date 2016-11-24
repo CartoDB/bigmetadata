@@ -9,7 +9,7 @@ from tasks.meta import GEOM_REF, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from abc import ABCMeta
 from collections import OrderedDict
-from tasks.br.geo import BaseParams, GEOGRAPHIES
+from tasks.br.geo import BaseParams, GEOGRAPHIES, STATES
 
 
 TABLES = ['Basico',
@@ -75,12 +75,34 @@ class ImportData(BaseParams, CSV2TempTableTask):
         )
 
 
-class ImportAllData(BaseParams, WrapperTask):
+class ImportAllTables(BaseParams, WrapperTask):
 
     def requires(self):
         for table in TABLES:
+            yield Columns(tablename=table)
             yield ImportData(resolution=self.resolution, state=self.state,
                             tablename=table)
+
+class ImportAllStates(BaseParams, WrapperTask):
+
+    def requires(self):
+        for state in STATES:
+            yield ImportAllTables(resolution=self.resolution, state=state)
+
+
+class ImportAllResolutions(BaseParams, WrapperTask):
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            yield ImportAllTables(resolution=resolution, state=self.state)
+
+
+class ImportAll(BaseParams, WrapperTask):
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            for state in STATES:
+                yield ImportAllTables(resolution=resolution, state=state)
 
 
 class Columns(ColumnsTask):
