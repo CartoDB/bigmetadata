@@ -1,243 +1,243 @@
-Nome da variável,Descrição da variável,Variable description,unit,target,subsection,data_sample1,data_sample2
+Nome da variável,Descrição da variável,Variable description,unit,denominators,subsection,data_sample1,data_sample2
 Cod_setor,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
 Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
-V001,Genro ou nora com 10 a 14 anos de idade,Son-in-law or daughter-in-law with 10 to 14 years of age,family_unit,,Age and Gender,0,0
-V002,Genro ou nora com 15 a 19 anos de idade,Son-in-law or daughter-in-law 15-19 years old,family_unit,,Age and Gender,1,1
-V003,Genro ou nora com 20 a 24 anos de idade,Son-in-law or daughter-in-law 20 to 24 years old,family_unit,,Age and Gender,2,1
-V004,Genro ou nora com 25 a 29 anos de idade,Son-in-law or daughter-in-law 25 to 29 years old,family_unit,,Age and Gender,3,1
-V005,Genro ou nora com 30 a 34 anos de idade,Son-in-law or daughter-in-law 30 to 34 years old,family_unit,,Age and Gender,1,0
-V006,Genro ou nora com 35 a 39 anos de idade,Son-in-law or daughter-in-law with 35 to 39 years of age,family_unit,,Age and Gender,1,1
-V007,Genro ou nora com 40 a 44 anos de idade,Son-in-law or daughter-in-law 40 to 44 years old,family_unit,,Age and Gender,1,0
-V008,Genro ou nora com 45 a 49 anos de idade,Son-in-law or daughter-in-law with 45 to 49 years of age,family_unit,,Age and Gender,0,0
-V009,Genro ou nora com 50 a 54 anos de idade,Son-in-law or daughter-in-law from 50 to 54 years old,family_unit,,Age and Gender,0,0
-V010,Genro ou nora com 55 a 59 anos de idade,Son-in-law or daughter-in-law 55-59 years old,family_unit,,Age and Gender,1,0
-V011,Genro ou nora com 60 a 64 anos de idade,Son-in-law or daughter-in-law 60 to 64 years old,family_unit,,Age and Gender,0,0
-V012,Genro ou nora com 65 a 69 anos de idade,Son-in-law or daughter-in-law with 65 to 69 years of age,family_unit,,Age and Gender,0,0
-V013,Genro ou nora com 70 a 74 anos de idade,Son-in-law or daughter-in-law 70 to 74 years old,family_unit,,Age and Gender,0,0
-V014,Genro ou nora com 75 a 79 anos de idade,Son-in-law or daughter-in-law 75 to 79 years old,family_unit,,Age and Gender,0,0
-V015,Genro ou nora com 80 anos ou mais de idade,Son-in-law or daughter-in-law 80 years of age or older,family_unit,,Age and Gender,0,0
-V016,Genro com 10 a 14 anos de idade,Son in law with 10 to 14 years old,family_unit,V001,Age and Gender,0,0
-V017,Genro com 15 a 19 anos de idade,Son in law with 15 to 19 years old,family_unit,V002,Age and Gender,1,1
-V018,Genro com 20 a 24 anos de idade,Son in law with 20 to 24 years old,family_unit,V003,Age and Gender,0,0
-V019,Genro com 25 a 29 anos de idade,Son in law with 25 to 29 years of age,family_unit,V004,Age and Gender,1,1
-V020,Genro com 30 a 34 anos de idade,Son in law with 30 to 34 years of age,family_unit,V005,Age and Gender,0,0
-V021,Genro com 35 a 39 anos de idade,Son in law with 35 to 39 years old,family_unit,V006,Age and Gender,0,1
-V022,Genro com 40 a 44 anos de idade,Son in law with 40 to 44 years old,family_unit,V007,Age and Gender,0,0
-V023,Genro com 45 a 49 anos de idade,Son in law with 45 to 49 years of age,family_unit,V008,Age and Gender,0,0
-V024,Genro com 50 a 54 anos de idade,Son in law with 50 to 54 years old,family_unit,V009,Age and Gender,0,0
-V025,Genro com 55 a 59 anos de idade,Son in law 55-59 years old,family_unit,V010,Age and Gender,1,0
-V026,Genro com 60 a 64 anos de idade,Son in law with 60 to 64 years old,family_unit,V011,Age and Gender,0,0
-V027,Genro com 65 a 69 anos de idade,Son in law with 65 to 69 years old,family_unit,V012,Age and Gender,0,0
-V028,Genro com 70 a 74 anos de idade,70-74 year old son-in-law,family_unit,V013,Age and Gender,0,0
-V029,Genro com 75 a 79 anos de idade,Son in law with 75 to 79 years of age,family_unit,V014,Age and Gender,0,0
-V030,Genro com 80 anos ou mais de idade,"Son-in-law, 80 years of age or older",family_unit,V015,Age and Gender,0,0
-V031,Nora com 10 a 14 anos de idade,"Nora, 10 to 14 years old",family_unit,V001,Age and Gender,0,0
-V032,Nora com 15 a 19 anos de idade,"Nora, 15-19 years old",family_unit,V002,Age and Gender,0,0
-V033,Nora com 20 a 24 anos de idade,"Nora, 20 to 24 years old",family_unit,V003,Age and Gender,2,1
-V034,Nora com 25 a 29 anos de idade,"Nora, 25 to 29 years old",family_unit,V004,Age and Gender,2,0
-V035,Nora com 30 a 34 anos de idade,"Nora, 30 to 34 years old",family_unit,V005,Age and Gender,1,0
-V036,Nora com 35 a 39 anos de idade,"Nora, 35-39 years old",family_unit,V006,Age and Gender,1,0
-V037,Nora com 40 a 44 anos de idade,"Nora, 40-44 years old",family_unit,V007,Age and Gender,1,0
-V038,Nora com 45 a 49 anos de idade,"Nora, 45 to 49 years old",family_unit,V008,Age and Gender,0,0
-V039,Nora com 50 a 54 anos de idade,"Nora, 50-54 years old",family_unit,V009,Age and Gender,0,0
-V040,Nora com 55 a 59 anos de idade,"Nora, 55-59 years old",family_unit,V010,Age and Gender,0,0
-V041,Nora com 60 a 64 anos de idade,"Nora, 60 to 64 years old",family_unit,V011,Age and Gender,0,0
-V042,Nora com 65 a 69 anos de idade,"Nora, 65 to 69 years old",family_unit,V012,Age and Gender,0,0
-V043,Nora com 70 a 74 anos de idade,"Nora, 70 to 74 years old",family_unit,V013,Age and Gender,0,0
-V044,Nora com 75 a 79 anos de idade,"Nora, 75-79 years old",family_unit,V014,Age and Gender,0,0
-V045,Nora com 80 anos ou mais de idade,"Nora, 80 years old and over",family_unit,V015,Age and Gender,0,0
-V046,"Pai, mãe, padrasto ou madrasta com 20 a 24 anos de idade","Father, mother, stepfather or stepmother with 20 to 24 years of age",family_unit,,Age and Gender,0,0
-V047,"Pai, mãe, padrasto ou madrasta com 25 a 29 anos de idade","Father, mother, stepfather or stepmother 25 to 29 years old",family_unit,,Age and Gender,0,0
-V048,"Pai, mãe, padrasto ou madrasta com 30 a 34 anos de idade","Father, mother, stepfather or stepmother with 30 to 34 years of age",family_unit,,Age and Gender,0,0
-V049,"Pai, mãe, padrasto ou madrasta com 35 a 39 anos de idade","Father, mother, stepfather or stepmother with 35 to 39 years of age",family_unit,,Age and Gender,1,0
-V050,"Pai, mãe, padrasto ou madrasta com 40 a 44 anos de idade","Father, mother, stepfather or stepmother 40-44 years old",family_unit,,Age and Gender,0,0
-V051,"Pai, mãe, padrasto ou madrasta com 45 a 49 anos de idade","Father, mother, stepfather or stepmother with 45 to 49 years of age",family_unit,,Age and Gender,0,0
-V052,"Pai, mãe, padrasto ou madrasta com 50 a 54 anos de idade","Father, mother, stepfather or stepmother, 50-54 years old",family_unit,,Age and Gender,0,1
-V053,"Pai, mãe, padrasto ou madrasta com 55 a 59 anos de idade","Father, mother, stepfather or stepmother, 55-59 years old",family_unit,,Age and Gender,2,0
-V054,"Pai, mãe, padrasto ou madrasta com 60 a 64 anos de idade","Father, mother, stepfather or stepmother with 60 to 64 years of age",family_unit,,Age and Gender,0,0
-V055,"Pai, mãe, padrasto ou madrasta com 65 a 69 anos de idade","Father, mother, stepfather or stepmother 65-69 years old",family_unit,,Age and Gender,0,0
-V056,"Pai, mãe, padrasto ou madrasta com 70 a 74 anos de idade","Father, mother, stepfather or stepmother, 70-74 years old",family_unit,,Age and Gender,0,0
-V057,"Pai, mãe, padrasto ou madrasta com 75 a 79 anos de idade","Father, mother, stepfather or stepmother aged 75 to 79 years old",family_unit,,Age and Gender,0,0
-V058,"Pai, mãe, padrasto ou madrasta com 80 anos ou mais de idade","Father, mother, stepfather or stepmother, 80 years of age or older",family_unit,,Age and Gender,0,0
-V059,Pai ou padrasto com 20 a 24 anos de idade,"Father or stepfather, 20 to 24 years old",family_unit,V046,Age and Gender,0,0
-V060,Pai ou padrasto com 25 a 29 anos de idade,"Father or stepfather, 25 to 29 years old",family_unit,V047,Age and Gender,0,0
-V061,Pai ou padrasto com 30 a 34 anos de idade,Father or stepfather with 30 to 34 years of age,family_unit,V048,Age and Gender,0,0
-V062,Pai ou padastro com 35 a 39 anos de idade,Father or stepfather with 35 to 39 years of age,family_unit,V049,Age and Gender,0,0
-V063,Pai ou padastro com 40 a 44 anos de idade,Father or stepfather from 40 to 44 years old,family_unit,V050,Age and Gender,0,0
-V064,Pai ou padastro com 45 a 49 anos de idade,Father or stepfather with 45 to 49 years of age,family_unit,V051,Age and Gender,0,0
-V065,Pai ou padastro com 50 a 54 anos de idade,"Father or stepfather, 50-54 years old",family_unit,V052,Age and Gender,0,0
-V066,Pai ou padastro com 55 a 59 anos de idade,"Father or stepfather, 55-59 years old",family_unit,V053,Age and Gender,1,0
-V067,Pai ou padastro com 60 a 64 anos de idade,Father or stepfather from 60 to 64 years old,family_unit,V054,Age and Gender,0,0
-V068,Pai ou padastro com 65 a 69 anos de idade,Father or stepfather with 65 to 69 years of age,family_unit,V055,Age and Gender,0,0
-V069,Pai ou padastro com 70 a 74 anos de idade,Father or stepfather from 70 to 74 years old,family_unit,V056,Age and Gender,0,0
-V070,Pai ou padastro com 75 a 79 anos de idade,Father or stepfather aged 75 to 79 years,family_unit,V057,Age and Gender,0,0
-V071,Pai ou padastro com 80 anos ou mais de idade,"Father or stepfather, 80 years of age or older",family_unit,V058,Age and Gender,0,0
-V072,Mãe ou madastra com 20 a 24 anos de idade,Mother or step-mom 20 to 24 years old,family_unit,V046,Age and Gender,0,0
-V073,Mãe ou madastra com 25 a 29 anos de idade,Mother or step-mother with 25 to 29 years of age,family_unit,V047,Age and Gender,0,0
-V074,Mãe ou madastra com 30 a 34 anos de idade,Mother or step-mother with 30 to 34 years of age,family_unit,V048,Age and Gender,0,0
-V075,Mãe ou madastra com 35 a 39 anos de idade,Mother or step-mother with 35 to 39 years of age,family_unit,V049,Age and Gender,1,0
-V076,Mãe ou madastra com 40 a 44 anos de idade,Mother or step-mom 40 to 44 years old,family_unit,V050,Age and Gender,0,0
-V077,Mãe ou madastra com 45 a 49 anos de idade,Mother or step-mother with 45 to 49 years of age,family_unit,V051,Age and Gender,0,0
-V078,Mãe ou madastra com 50 a 54 anos de idade,Mother or step-mom 50 to 54 years old,family_unit,V052,Age and Gender,0,1
-V079,Mãe ou madastra com 55 a 59 anos de idade,Mother or step-mom 55-59 years old,family_unit,V053,Age and Gender,1,0
-V080,Mãe ou madastra com 60 a 64 anos de idade,Mother or step-mother from 60 to 64 years old,family_unit,V054,Age and Gender,0,0
-V081,Mãe ou madastra com 65 a 69 anos de idade,Mother or step-mother with 65 to 69 years of age,family_unit,V055,Age and Gender,0,0
-V082,Mãe ou madastra com 70 a 74 anos de idade,Mother or step-mother from 70 to 74 years old,family_unit,V056,Age and Gender,0,0
-V083,Mãe ou madastra com 75 a 79 anos de idade,Mother or step-mother from 75 to 79 years old,family_unit,V057,Age and Gender,0,0
-V084,Mãe ou madastra com 80 anos ou mais de idade,Mother or step-mother who is 80 years of age or older,family_unit,V058,Age and Gender,0,0
-V085,Sogro(a) com 20 a 24 anos de idade,Father-in-law 20 to 24 years old,family_unit,,Age and Gender,0,0
-V086,Sogro(a) com 25 a 29 anos de idade,Father-in-law 25 to 29 years old,family_unit,,Age and Gender,0,0
-V087,Sogro(a) com 30 a 34 anos de idade,Father-in-law with 30 to 34 years of age,family_unit,,Age and Gender,0,0
-V088,Sogro(a) com 35 a 39 anos de idade,Father-in-law with 35 to 39 years of age,family_unit,,Age and Gender,0,0
-V089,Sogro(a) com 40 a 44 anos de idade,Father-in-law 40-44 years old,family_unit,,Age and Gender,0,0
-V090,Sogro(a) com 45 a 49 anos de idade,Father-in-law with 45 to 49 years of age,family_unit,,Age and Gender,0,0
-V091,Sogro(a) com 50 a 54 anos de idade,50- to 54-year-old father-in-law,family_unit,,Age and Gender,0,0
-V092,Sogro(a) com 55 a 59 anos de idade,Father-in-law 55-59 years old,family_unit,,Age and Gender,0,0
-V093,Sogro(a) com 60 a 64 anos de idade,Father-in-law 60 to 64 years old,family_unit,,Age and Gender,0,0
-V094,Sogro(a) com 65 a 69 anos de idade,Father-in-law 65-69 years old,family_unit,,Age and Gender,0,0
-V095,Sogro(a) com 70 a 74 anos de idade,Father-in-law 70 to 74 years old,family_unit,,Age and Gender,1,1
-V096,Sogro(a) com 75 a 79 anos de idade,Father-in-law 75 to 79 years old,family_unit,,Age and Gender,0,1
-V097,Sogro(a) com 80 anos ou mais de idade,"Father-in-law, 80 years of age or older",family_unit,,Age and Gender,2,0
-V098,Sogro com 20 a 24 anos de idade,A 20-to-24-year-old father-in-law,family_unit,V085,Age and Gender,0,0
-V099,Sogro com 25 a 29 anos de idade,Father-in-law 25 to 29 years old,family_unit,V086,Age and Gender,0,0
-V100,Sogro com 30 a 34 anos de idade,Sogro with 30 to 34 years of age,family_unit,V087,Age and Gender,0,0
-V101,Sogro com 35 a 39 anos de idade,Sogro with 35 to 39 years of age,family_unit,V088,Age and Gender,0,0
-V102,Sogro com 40 a 44 anos de idade,A 40-to-44-year-old father-in-law,family_unit,V089,Age and Gender,0,0
-V103,Sogro com 45 a 49 anos de idade,Sogro with 45 to 49 years of age,family_unit,V090,Age and Gender,0,0
-V104,Sogro com 50 a 54 anos de idade,50- to 54-year-old father-in-law,family_unit,V091,Age and Gender,0,0
-V105,Sogro com 55 a 59 anos de idade,55- to 59-year-old father-in-law,family_unit,V092,Age and Gender,0,0
-V106,Sogro com 60 a 64 anos de idade,Father-in-law 60 to 64 years old,family_unit,V093,Age and Gender,0,0
-V107,Sogro com 65 a 69 anos de idade,65-69 year old father-in-law,family_unit,V094,Age and Gender,0,0
-V108,Sogro com 70 a 74 anos de idade,Father-in-law 70 to 74 years old,family_unit,V095,Age and Gender,0,1
-V109,Sogro com 75 a 79 anos de idade,75-79 year old father-in-law,family_unit,V096,Age and Gender,0,1
-V110,Sogro com 80 anos ou mais de idade,"Father-in-law, 80 years of age or older",family_unit,V097,Age and Gender,2,0
-V111,Sogra com 20 a 24 anos de idade,Mother in law with 20 to 24 years of age,family_unit,V085,Age and Gender,0,0
-V112,Sogra com 25 a 29 anos de idade,Mother in law with 25 to 29 years of age,family_unit,V086,Age and Gender,0,0
-V113,Sogra com 30 a 34 anos de idade,Mother in law with 30 to 34 years of age,family_unit,V087,Age and Gender,0,0
-V114,Sogra com 35 a 39 anos de idade,Mother in law with 35 to 39 years old,family_unit,V088,Age and Gender,0,0
-V115,Sogra com 40 a 44 anos de idade,Mother-in-law 40 to 44 years old,family_unit,V089,Age and Gender,0,0
-V116,Sogra com 45 a 49 anos de idade,Mother-in-law 45 to 49 years old,family_unit,V090,Age and Gender,0,0
-V117,Sogra com 50 a 54 anos de idade,50- to 54-year-old mother-in-law,family_unit,V091,Age and Gender,0,0
-V118,Sogra com 55 a 59 anos de idade,Mother-in-law 55-59 years old,family_unit,V092,Age and Gender,0,0
-V119,Sogra com 60 a 64 anos de idade,Mother-in-law 60 to 64 years old,family_unit,V093,Age and Gender,0,0
-V120,Sogra com 65 a 69 anos de idade,Mother in law with 65 to 69 years old,family_unit,V094,Age and Gender,0,0
-V121,Sogra com 70 a 74 anos de idade,Mother in law with 70 to 74 years of age,family_unit,V095,Age and Gender,1,0
-V122,Sogra com 75 a 79 anos de idade,Mother-in-law 75 to 79 years old,family_unit,V096,Age and Gender,0,0
-V123,Sogra com 80 anos ou mais de idade,"Mother-in-law, 80 years of age or older",family_unit,V097,Age and Gender,0,0
-V124,Neto(a) com 0 a 4 anos de idade,Neto (0 to 4 years old),family_unit,,Age and Gender,22,7
-V125,Neto(a) com 5 a 9 anos de idade,Grandchild with 5 to 9 years of age,family_unit,,Age and Gender,19,14
-V126,Neto(a) com 10 a 14 anos de idade,Neto (a) with 10 to 14 years of age,family_unit,,Age and Gender,13,17
-V127,Neto(a) com 15 a 19 anos de idade,Neto (a) with 15 to 19 years of age,family_unit,,Age and Gender,8,4
-V128,Neto(a) com 20 a 24 anos de idade,Neto (a) with 20 to 24 years of age,family_unit,,Age and Gender,0,2
-V129,Neto(a) com 25 a 29 anos de idade,Neto (a) with 25 to 29 years of age,family_unit,,Age and Gender,0,1
-V130,Neto(a) com 30 a 34 anos de idade,Grandson with 30 to 34 years of age,family_unit,,Age and Gender,0,1
-V131,Neto(a) com 35 a 39 anos de idade,Neto (a) with 35 to 39 years of age,family_unit,,Age and Gender,0,0
-V132,Neto(a) com 40 a 44 anos de idade,Neto (a) with 40 to 44 years of age,family_unit,,Age and Gender,0,0
-V133,Neto(a) com 45 a 49 anos de idade,Neto (a) with 45 to 49 years of age,family_unit,,Age and Gender,0,0
-V134,Neto(a) com 50 ou mais de idade,Grandchild with 50 or older,family_unit,,Age and Gender,0,0
-V135,Neto com 0 a 4 anos de idade,Grandson 0 to 4 years old,family_unit,V124,Age and Gender,11,1
-V136,Neto com 5 a 9 anos de idade,Grandchild with 5 to 9 years of age,family_unit,V125,Age and Gender,12,4
-V137,Neto com 10 a 14 anos de idade,Grandson 10 to 14 years old,family_unit,V126,Age and Gender,7,10
-V138,Neto com 15 a 19 anos de idade,Grandson 15-19 years old,family_unit,V127,Age and Gender,3,1
-V139,Neto com 20 a 24 anos de idade,Neto with 20 to 24 years of age,family_unit,V128,Age and Gender,0,2
-V140,Neto com 25 a 29 anos de idade,Neto with 25 to 29 years of age,family_unit,V129,Age and Gender,0,0
-V141,Neto com 30 a 34 anos de idade,Grandson with 30 to 34 years of age,family_unit,V130,Age and Gender,0,0
-V142,Neto com 35 a 39 anos de idade,Neto with 35 to 39 years of age,family_unit,V131,Age and Gender,0,0
-V143,Neto com 40 a 44 anos de idade,Neto with 40 to 44 years of age,family_unit,V132,Age and Gender,0,0
-V144,Neto com 45 a 49 anos de idade,Neto with 45 to 49 years of age,family_unit,V133,Age and Gender,0,0
-V145,Neto com 50 anos ou mais de idade,Neto aged 50 years or over,family_unit,V134,Age and Gender,0,0
-V146,Neta com 0 a 4 anos de idade,Granddaughter 0 to 4 years old,family_unit,V124,Age and Gender,11,6
-V147,Neta com 5 a 9 anos de idade,Granddaughter with 5 to 9 years of age,family_unit,V125,Age and Gender,7,10
-V148,Neta com 10 a 14 anos de idade,Granddaughter with 10 to 14 years of age,family_unit,V126,Age and Gender,6,7
-V149,Neta com 15 a 19 anos de idade,Granddaughter with 15 to 19 years of age,family_unit,V127,Age and Gender,5,3
-V150,Neta com 20 a 24 anos de idade,Granddaughter with 20 to 24 years of age,family_unit,V128,Age and Gender,0,0
-V151,Neta com 25 a 29 anos de idade,Granddaughter with 25 to 29 years of age,family_unit,V129,Age and Gender,0,1
-V152,Neta com 30 a 34 anos de idade,Granddaughter with 30 to 34 years of age,family_unit,V130,Age and Gender,0,1
-V153,Neta com 35 a 39 anos de idade,Granddaughter with 35 to 39 years of age,family_unit,V131,Age and Gender,0,0
-V154,Neta com 40 a 44 anos de idade,Neta from 40 to 44 years old,family_unit,V132,Age and Gender,0,0
-V155,Neta com 45 a 49 anos de idade,Granddaughter with 45 to 49 years of age,family_unit,V133,Age and Gender,0,0
-V156,Neta com 50 anos ou mais de idade,Granddaughter aged 50 years and over,family_unit,V134,Age and Gender,0,0
-V157,Bisneto(a) com 0 a 4 anos de idade,Grandchild with 0 to 4 years of age,family_unit,,Age and Gender,1,1
-V158,Bisneto(a) com 5 a 9 anos de idade,Grandchild with 5 to 9 years of age,family_unit,,Age and Gender,0,0
-V159,Bisneto(a) com 10 a 14 anos de idade,Great-grandmother 10 to 14 years old,family_unit,,Age and Gender,0,1
-V160,Bisneto(a) com 15 a 19 anos de idade,Great-great-grandmother 15-19 years old,family_unit,,Age and Gender,0,0
-V161,Bisneto(a) com 20 a 24 anos de idade,20- to 24-year-old grandson,family_unit,,Age and Gender,0,0
-V162,Bisneto(a) com 25 a 29 anos de idade,Great-grandmother 25 to 29 years old,family_unit,,Age and Gender,0,0
-V163,Bisneto(a) com 30 a 34 anos de idade,Great-grandmother 30 to 34 years old,family_unit,,Age and Gender,0,0
-V164,Bisneto(a) com 35 a 39 anos de idade,Great-grandchild with 35 to 39 years of age,family_unit,,Age and Gender,0,0
-V165,Bisneto(a) com 40 a 44 anos de idade,Great-grandmother 40-44 years old,family_unit,,Age and Gender,0,0
-V166,Bisneto(a) com 45 a 49 anos de idade,Great-grandchild with 45 to 49 years of age,family_unit,,Age and Gender,0,0
-V167,Bisneto(a) com 50 ou mais de idade,Grandchild with 50 or older,family_unit,,Age and Gender,0,0
-V168,Bisneto com 0 a 4 anos de idade,Great-grandmother 0 to 4 years old,family_unit,V157,Age and Gender,0,1
-V169,Bisneto com 5 a 9 anos de idade,Great-grandchild 5 to 9 years old,family_unit,V158,Age and Gender,0,0
-V170,Bisneto com 10 a 14 anos de idade,10- to 14-year-old great-grandchild,family_unit,V159,Age and Gender,0,1
-V171,Bisneto com 15 a 19 anos de idade,Great-grandmother 15-19 years old,family_unit,V160,Age and Gender,0,0
-V172,Bisneto com 20 a 24 anos de idade,Great-grandmother 20 to 24 years old,family_unit,V161,Age and Gender,0,0
-V173,Bisneto com 25 a 29 anos de idade,Great-grandmother 25 to 29 years old,family_unit,V162,Age and Gender,0,0
-V174,Bisneto com 30 a 34 anos de idade,Great-grandmother 30 to 34 years old,family_unit,V163,Age and Gender,0,0
-V175,Bisneto com 35 a 39 anos de idade,"Great-great-great-grandchild, 35-39 years old",family_unit,V164,Age and Gender,0,0
-V176,Bisneto com 40 a 44 anos de idade,Great-grandmother 40-44 years old,family_unit,V165,Age and Gender,0,0
-V177,Bisneto com 45 a 49 anos de idade,Great-grandmother 45 to 49 years old,family_unit,V166,Age and Gender,0,0
-V178,Bisneto com 50 anos ou mais de idade,Great-great-great-grandmother 50 years of age or older,family_unit,V167,Age and Gender,0,0
-V179,Bisneta com 0 a 4 anos de idade,Great-grandmother 0 to 4 years old,family_unit,V157,Age and Gender,1,0
-V180,Bisneta com 5 a 9 anos de idade,Great-grandmother 5 to 9 years old,family_unit,V158,Age and Gender,0,0
-V181,Bisneta com 10 a 14 anos de idade,Great-grandmother 10 to 14 years old,family_unit,V159,Age and Gender,0,0
-V182,Bisneta com 15 a 19 anos de idade,Great-great-great-grandmother 15-19 years old,family_unit,V160,Age and Gender,0,0
-V183,Bisneta com 20 a 24 anos de idade,Great-grandmother 20-24 years old,family_unit,V161,Age and Gender,0,0
-V184,Bisneta com 25 a 29 anos de idade,Great-grandmother 25 to 29 years old,family_unit,V162,Age and Gender,0,0
-V185,Bisneta com 30 a 34 anos de idade,Great-grandmother 30 to 34 years old,family_unit,V163,Age and Gender,0,0
-V186,Bisneta com 35 a 39 anos de idade,Great-grandmother 35-39 years old,family_unit,V164,Age and Gender,0,0
-V187,Bisneta com 40 a 44 anos de idade,Great-grandmother 40-44 years old,family_unit,V165,Age and Gender,0,0
-V188,Bisneta com 45 a 49 anos de idade,Great-grandmother 45 to 49 years old,family_unit,V166,Age and Gender,0,0
-V189,Bisneta com 50 anos ou mais de idade,Great-grandmother 50 years of age or older,family_unit,V167,Age and Gender,0,0
-V190,Irmão ou irmã com 0 a 4 anos de idade,Brother or sister 0 to 4 years old,family_unit,,Age and Gender,0,0
-V191,Irmão ou irmã com 5 a 9 anos de idade,Brother or sister with 5 to 9 years of age,family_unit,,Age and Gender,1,0
-V192,Irmão ou irmã com 10 a 14 anos de idade,Brother or sister with 10 to 14 years of age,family_unit,,Age and Gender,0,1
-V193,Irmão ou irmã com 15 a 19 anos de idade,Brother or sister 15-19 years old,family_unit,,Age and Gender,2,5
-V194,Irmão ou irmã com 20 a 24 anos de idade,Brother or sister between 20 and 24 years of age,family_unit,,Age and Gender,5,2
-V195,Irmão ou irmã com 25 a 29 anos de idade,Brother or sister 25 to 29 years of age,family_unit,,Age and Gender,2,0
-V196,Irmão ou irmã com 30 a 34 anos de idade,Brother or sister with 30 to 34 years of age,family_unit,,Age and Gender,0,0
-V197,Irmão ou irmã com 35 a 39 anos de idade,Brother or sister with 35 to 39 years of age,family_unit,,Age and Gender,0,0
-V198,Irmão ou irmã com 40 a 44 anos de idade,Brother or sister between 40 and 44 years of age,family_unit,,Age and Gender,1,0
-V199,Irmão ou irmã com 45 a 49 anos de idade,Brother or sister with 45 to 49 years of age,family_unit,,Age and Gender,0,0
-V200,Irmão ou irmã com 50 a 54 anos de idade,Brother or sister 50-54 years old,family_unit,,Age and Gender,0,0
-V201,Irmão ou irmã com 55 a 59 anos de idade,"Brother or sister, 55-59 years old",family_unit,,Age and Gender,0,0
-V202,Irmão ou irmã com 60 a 64 anos de idade,Brother or sister 60 to 64 years old,family_unit,,Age and Gender,0,0
-V203,Irmão ou irmã com 65 a 69 anos de idade,Brother or sister with 65 to 69 years of age,family_unit,,Age and Gender,0,0
-V204,Irmão ou irmã com 70 a 74 anos de idade,"Brother or sister, 70-74 years old",family_unit,,Age and Gender,0,0
-V205,Irmão ou irmã com 75 a 79 anos de idade,Brother or sister with 75 to 79 years of age,family_unit,,Age and Gender,0,1
-V206,Irmão ou irmã com 80 anos ou mais de idade,Brother or sister who is 80 years of age or older,family_unit,,Age and Gender,0,0
-V207,Irmão com 0 a 4 anos de idade,Brother 0 to 4 years old,family_unit,V190,Age and Gender,0,0
-V208,Irmão com 5 a 9 anos de idade,Brother with 5 to 9 years of age,family_unit,V191,Age and Gender,1,0
-V209,Irmão com 10 a 14 anos de idade,Brother 10 to 14 years old,family_unit,V192,Age and Gender,0,1
-V210,Irmão com 15 a 19 anos de idade,Brother 15-19 years old,family_unit,V193,Age and Gender,2,2
-V211,Irmão com 20 a 24 anos de idade,Brother 20 to 24 years old,family_unit,V194,Age and Gender,3,2
-V212,Irmão com 25 a 29 anos de idade,Brother 25 to 29 years of age,family_unit,V195,Age and Gender,2,0
-V213,Irmão com 30 a 34 anos de idade,Brother with 30 to 34 years of age,family_unit,V196,Age and Gender,0,0
-V214,Irmão com 35 a 39 anos de idade,Brother with 35 to 39 years of age,family_unit,V197,Age and Gender,0,0
-V215,Irmão com 40 a 44 anos de idade,Brother 40-44 years old,family_unit,V198,Age and Gender,1,0
-V216,Irmão com 45 a 49 anos de idade,Brother 45 to 49 years old,family_unit,V199,Age and Gender,0,0
-V217,Irmão com 50 a 54 anos de idade,Brother 50-54 years old,family_unit,V200,Age and Gender,0,0
-V218,Irmão com 55 a 59 anos de idade,Brother 55-59 years old,family_unit,V201,Age and Gender,0,0
-V219,Irmão com 60 a 64 anos de idade,Brother 60 to 64 years old,family_unit,V202,Age and Gender,0,0
-V220,Irmão com 65 a 69 anos de idade,Brother 65-69 years old,family_unit,V203,Age and Gender,0,0
-V221,Irmão com 70 a 74 anos de idade,"Brother, 70-74 years old",family_unit,V204,Age and Gender,0,0
-V222,Irmão com 75 a 79 anos de idade,Brother 75 to 79 years old,family_unit,V205,Age and Gender,0,0
-V223,Irmão com 80 anos ou mais de idade,Brother at least 80 years of age,family_unit,V206,Age and Gender,0,0
-V224,Irmã com 0 a 4 anos de idade,Sister 0 to 4 years old,family_unit,V190,Age and Gender,0,0
-V225,Irmã com 5 a 9 anos de idade,"Sister, 5-9 years old",family_unit,V191,Age and Gender,0,0
-V226,Irmã com 10 a 14 anos de idade,Sister 10 to 14 years old,family_unit,V192,Age and Gender,0,0
-V227,Irmã com 15 a 19 anos de idade,15-19 year old sister,family_unit,V193,Age and Gender,0,3
-V228,Irmã com 20 a 24 anos de idade,Sister 20 to 24 years old,family_unit,V194,Age and Gender,2,0
-V229,Irmã com 25 a 29 anos de idade,Sister 25 to 29 years old,family_unit,V195,Age and Gender,0,0
-V230,Irmã com 30 a 34 anos de idade,Sister 30 to 34 years old,family_unit,V196,Age and Gender,0,0
-V231,Irmã com 35 a 39 anos de idade,Sister with 35 to 39 years of age,family_unit,V197,Age and Gender,0,0
-V232,Irmã com 40 a 44 anos de idade,Sister 40-44 years old,family_unit,V198,Age and Gender,0,0
-V233,Irmã com 45 a 49 anos de idade,Sister with 45 to 49 years of age,family_unit,V199,Age and Gender,0,0
-V234,Irmã com 50 a 54 anos de idade,Sister 50-54 years old,family_unit,V200,Age and Gender,0,0
-V235,Irmã com 55 a 59 anos de idade,Sister 55-59 years old,family_unit,V201,Age and Gender,0,0
-V236,Irmã com 60 a 64 anos de idade,Sister 60 to 64 years old,family_unit,V202,Age and Gender,0,0
-V237,Irmã com 65 a 69 anos de idade,Sister 65-69 years old,family_unit,V203,Age and Gender,0,0
-V238,Irmã com 70 a 74 anos de idade,"Sister, 70-74 years old",family_unit,V204,Age and Gender,0,0
-V239,Irmã com 75 a 79 anos de idade,"Sister, 75-79 years old",family_unit,V205,Age and Gender,0,1
-V240,Irmã com 80 anos ou mais de idade,Sister aged 80 years or over,family_unit,V206,Age and Gender,0,0
+V001,Genro ou nora com 10 a 14 anos de idade,Son-in-law or daughter-in-law with 10 to 14 years of age,people,,families|age_gender,0,0
+V002,Genro ou nora com 15 a 19 anos de idade,Son-in-law or daughter-in-law 15-19 years old,people,,families|age_gender,1,1
+V003,Genro ou nora com 20 a 24 anos de idade,Son-in-law or daughter-in-law 20 to 24 years old,people,,families|age_gender,2,1
+V004,Genro ou nora com 25 a 29 anos de idade,Son-in-law or daughter-in-law 25 to 29 years old,people,,families|age_gender,3,1
+V005,Genro ou nora com 30 a 34 anos de idade,Son-in-law or daughter-in-law 30 to 34 years old,people,,families|age_gender,1,0
+V006,Genro ou nora com 35 a 39 anos de idade,Son-in-law or daughter-in-law with 35 to 39 years of age,people,,families|age_gender,1,1
+V007,Genro ou nora com 40 a 44 anos de idade,Son-in-law or daughter-in-law 40 to 44 years old,people,,families|age_gender,1,0
+V008,Genro ou nora com 45 a 49 anos de idade,Son-in-law or daughter-in-law with 45 to 49 years of age,people,,families|age_gender,0,0
+V009,Genro ou nora com 50 a 54 anos de idade,Son-in-law or daughter-in-law from 50 to 54 years old,people,,families|age_gender,0,0
+V010,Genro ou nora com 55 a 59 anos de idade,Son-in-law or daughter-in-law 55-59 years old,people,,families|age_gender,1,0
+V011,Genro ou nora com 60 a 64 anos de idade,Son-in-law or daughter-in-law 60 to 64 years old,people,,families|age_gender,0,0
+V012,Genro ou nora com 65 a 69 anos de idade,Son-in-law or daughter-in-law with 65 to 69 years of age,people,,families|age_gender,0,0
+V013,Genro ou nora com 70 a 74 anos de idade,Son-in-law or daughter-in-law 70 to 74 years old,people,,families|age_gender,0,0
+V014,Genro ou nora com 75 a 79 anos de idade,Son-in-law or daughter-in-law 75 to 79 years old,people,,families|age_gender,0,0
+V015,Genro ou nora com 80 anos ou mais de idade,Son-in-law or daughter-in-law 80 years of age or older,people,,families|age_gender,0,0
+V016,Genro com 10 a 14 anos de idade,Son in law with 10 to 14 years old,people,Pessoa09_V001,families|age_gender,0,0
+V017,Genro com 15 a 19 anos de idade,Son in law with 15 to 19 years old,people,Pessoa09_V002,families|age_gender,1,1
+V018,Genro com 20 a 24 anos de idade,Son in law with 20 to 24 years old,people,Pessoa09_V003,families|age_gender,0,0
+V019,Genro com 25 a 29 anos de idade,Son in law with 25 to 29 years of age,people,Pessoa09_V004,families|age_gender,1,1
+V020,Genro com 30 a 34 anos de idade,Son in law with 30 to 34 years of age,people,Pessoa09_V005,families|age_gender,0,0
+V021,Genro com 35 a 39 anos de idade,Son in law with 35 to 39 years old,people,Pessoa09_V006,families|age_gender,0,1
+V022,Genro com 40 a 44 anos de idade,Son in law with 40 to 44 years old,people,Pessoa09_V007,families|age_gender,0,0
+V023,Genro com 45 a 49 anos de idade,Son in law with 45 to 49 years of age,people,Pessoa09_V008,families|age_gender,0,0
+V024,Genro com 50 a 54 anos de idade,Son in law with 50 to 54 years old,people,Pessoa09_V009,families|age_gender,0,0
+V025,Genro com 55 a 59 anos de idade,Son in law 55-59 years old,people,Pessoa09_V010,families|age_gender,1,0
+V026,Genro com 60 a 64 anos de idade,Son in law with 60 to 64 years old,people,Pessoa09_V011,families|age_gender,0,0
+V027,Genro com 65 a 69 anos de idade,Son in law with 65 to 69 years old,people,Pessoa09_V012,families|age_gender,0,0
+V028,Genro com 70 a 74 anos de idade,70-74 year old son-in-law,people,Pessoa09_V013,families|age_gender,0,0
+V029,Genro com 75 a 79 anos de idade,Son in law with 75 to 79 years of age,people,Pessoa09_V014,families|age_gender,0,0
+V030,Genro com 80 anos ou mais de idade,"Son-in-law, 80 years of age or older",people,Pessoa09_V015,families|age_gender,0,0
+V031,Nora com 10 a 14 anos de idade,"Nora, 10 to 14 years old",people,Pessoa09_V001,families|age_gender,0,0
+V032,Nora com 15 a 19 anos de idade,"Nora, 15-19 years old",people,Pessoa09_V002,families|age_gender,0,0
+V033,Nora com 20 a 24 anos de idade,"Nora, 20 to 24 years old",people,Pessoa09_V003,families|age_gender,2,1
+V034,Nora com 25 a 29 anos de idade,"Nora, 25 to 29 years old",people,Pessoa09_V004,families|age_gender,2,0
+V035,Nora com 30 a 34 anos de idade,"Nora, 30 to 34 years old",people,Pessoa09_V005,families|age_gender,1,0
+V036,Nora com 35 a 39 anos de idade,"Nora, 35-39 years old",people,Pessoa09_V006,families|age_gender,1,0
+V037,Nora com 40 a 44 anos de idade,"Nora, 40-44 years old",people,Pessoa09_V007,families|age_gender,1,0
+V038,Nora com 45 a 49 anos de idade,"Nora, 45 to 49 years old",people,Pessoa09_V008,families|age_gender,0,0
+V039,Nora com 50 a 54 anos de idade,"Nora, 50-54 years old",people,Pessoa09_V009,families|age_gender,0,0
+V040,Nora com 55 a 59 anos de idade,"Nora, 55-59 years old",people,Pessoa09_V010,families|age_gender,0,0
+V041,Nora com 60 a 64 anos de idade,"Nora, 60 to 64 years old",people,Pessoa09_V011,families|age_gender,0,0
+V042,Nora com 65 a 69 anos de idade,"Nora, 65 to 69 years old",people,Pessoa09_V012,families|age_gender,0,0
+V043,Nora com 70 a 74 anos de idade,"Nora, 70 to 74 years old",people,Pessoa09_V013,families|age_gender,0,0
+V044,Nora com 75 a 79 anos de idade,"Nora, 75-79 years old",people,Pessoa09_V014,families|age_gender,0,0
+V045,Nora com 80 anos ou mais de idade,"Nora, 80 years old and over",people,Pessoa09_V015,families|age_gender,0,0
+V046,"Pai, mãe, padrasto ou madrasta com 20 a 24 anos de idade","Father, mother, stepfather or stepmother with 20 to 24 years of age",people,,families|age_gender,0,0
+V047,"Pai, mãe, padrasto ou madrasta com 25 a 29 anos de idade","Father, mother, stepfather or stepmother 25 to 29 years old",people,,families|age_gender,0,0
+V048,"Pai, mãe, padrasto ou madrasta com 30 a 34 anos de idade","Father, mother, stepfather or stepmother with 30 to 34 years of age",people,,families|age_gender,0,0
+V049,"Pai, mãe, padrasto ou madrasta com 35 a 39 anos de idade","Father, mother, stepfather or stepmother with 35 to 39 years of age",people,,families|age_gender,1,0
+V050,"Pai, mãe, padrasto ou madrasta com 40 a 44 anos de idade","Father, mother, stepfather or stepmother 40-44 years old",people,,families|age_gender,0,0
+V051,"Pai, mãe, padrasto ou madrasta com 45 a 49 anos de idade","Father, mother, stepfather or stepmother with 45 to 49 years of age",people,,families|age_gender,0,0
+V052,"Pai, mãe, padrasto ou madrasta com 50 a 54 anos de idade","Father, mother, stepfather or stepmother, 50-54 years old",people,,families|age_gender,0,1
+V053,"Pai, mãe, padrasto ou madrasta com 55 a 59 anos de idade","Father, mother, stepfather or stepmother, 55-59 years old",people,,families|age_gender,2,0
+V054,"Pai, mãe, padrasto ou madrasta com 60 a 64 anos de idade","Father, mother, stepfather or stepmother with 60 to 64 years of age",people,,families|age_gender,0,0
+V055,"Pai, mãe, padrasto ou madrasta com 65 a 69 anos de idade","Father, mother, stepfather or stepmother 65-69 years old",people,,families|age_gender,0,0
+V056,"Pai, mãe, padrasto ou madrasta com 70 a 74 anos de idade","Father, mother, stepfather or stepmother, 70-74 years old",people,,families|age_gender,0,0
+V057,"Pai, mãe, padrasto ou madrasta com 75 a 79 anos de idade","Father, mother, stepfather or stepmother aged 75 to 79 years old",people,,families|age_gender,0,0
+V058,"Pai, mãe, padrasto ou madrasta com 80 anos ou mais de idade","Father, mother, stepfather or stepmother, 80 years of age or older",people,,families|age_gender,0,0
+V059,Pai ou padrasto com 20 a 24 anos de idade,"Father or stepfather, 20 to 24 years old",people,Pessoa09_V046,families|age_gender,0,0
+V060,Pai ou padrasto com 25 a 29 anos de idade,"Father or stepfather, 25 to 29 years old",people,Pessoa09_V047,families|age_gender,0,0
+V061,Pai ou padrasto com 30 a 34 anos de idade,Father or stepfather with 30 to 34 years of age,people,Pessoa09_V048,families|age_gender,0,0
+V062,Pai ou padastro com 35 a 39 anos de idade,Father or stepfather with 35 to 39 years of age,people,Pessoa09_V049,families|age_gender,0,0
+V063,Pai ou padastro com 40 a 44 anos de idade,Father or stepfather from 40 to 44 years old,people,Pessoa09_V050,families|age_gender,0,0
+V064,Pai ou padastro com 45 a 49 anos de idade,Father or stepfather with 45 to 49 years of age,people,Pessoa09_V051,families|age_gender,0,0
+V065,Pai ou padastro com 50 a 54 anos de idade,"Father or stepfather, 50-54 years old",people,Pessoa09_V052,families|age_gender,0,0
+V066,Pai ou padastro com 55 a 59 anos de idade,"Father or stepfather, 55-59 years old",people,Pessoa09_V053,families|age_gender,1,0
+V067,Pai ou padastro com 60 a 64 anos de idade,Father or stepfather from 60 to 64 years old,people,Pessoa09_V054,families|age_gender,0,0
+V068,Pai ou padastro com 65 a 69 anos de idade,Father or stepfather with 65 to 69 years of age,people,Pessoa09_V055,families|age_gender,0,0
+V069,Pai ou padastro com 70 a 74 anos de idade,Father or stepfather from 70 to 74 years old,people,Pessoa09_V056,families|age_gender,0,0
+V070,Pai ou padastro com 75 a 79 anos de idade,Father or stepfather aged 75 to 79 years,people,Pessoa09_V057,families|age_gender,0,0
+V071,Pai ou padastro com 80 anos ou mais de idade,"Father or stepfather, 80 years of age or older",people,Pessoa09_V058,families|age_gender,0,0
+V072,Mãe ou madastra com 20 a 24 anos de idade,Mother or step-mom 20 to 24 years old,people,Pessoa09_V046,families|age_gender,0,0
+V073,Mãe ou madastra com 25 a 29 anos de idade,Mother or step-mother with 25 to 29 years of age,people,Pessoa09_V047,families|age_gender,0,0
+V074,Mãe ou madastra com 30 a 34 anos de idade,Mother or step-mother with 30 to 34 years of age,people,Pessoa09_V048,families|age_gender,0,0
+V075,Mãe ou madastra com 35 a 39 anos de idade,Mother or step-mother with 35 to 39 years of age,people,Pessoa09_V049,families|age_gender,1,0
+V076,Mãe ou madastra com 40 a 44 anos de idade,Mother or step-mom 40 to 44 years old,people,Pessoa09_V050,families|age_gender,0,0
+V077,Mãe ou madastra com 45 a 49 anos de idade,Mother or step-mother with 45 to 49 years of age,people,Pessoa09_V051,families|age_gender,0,0
+V078,Mãe ou madastra com 50 a 54 anos de idade,Mother or step-mom 50 to 54 years old,people,Pessoa09_V052,families|age_gender,0,1
+V079,Mãe ou madastra com 55 a 59 anos de idade,Mother or step-mom 55-59 years old,people,Pessoa09_V053,families|age_gender,1,0
+V080,Mãe ou madastra com 60 a 64 anos de idade,Mother or step-mother from 60 to 64 years old,people,Pessoa09_V054,families|age_gender,0,0
+V081,Mãe ou madastra com 65 a 69 anos de idade,Mother or step-mother with 65 to 69 years of age,people,Pessoa09_V055,families|age_gender,0,0
+V082,Mãe ou madastra com 70 a 74 anos de idade,Mother or step-mother from 70 to 74 years old,people,Pessoa09_V056,families|age_gender,0,0
+V083,Mãe ou madastra com 75 a 79 anos de idade,Mother or step-mother from 75 to 79 years old,people,Pessoa09_V057,families|age_gender,0,0
+V084,Mãe ou madastra com 80 anos ou mais de idade,Mother or step-mother who is 80 years of age or older,people,Pessoa09_V058,families|age_gender,0,0
+V085,Sogro(a) com 20 a 24 anos de idade,Father-in-law 20 to 24 years old,people,,families|age_gender,0,0
+V086,Sogro(a) com 25 a 29 anos de idade,Father-in-law 25 to 29 years old,people,,families|age_gender,0,0
+V087,Sogro(a) com 30 a 34 anos de idade,Father-in-law with 30 to 34 years of age,people,,families|age_gender,0,0
+V088,Sogro(a) com 35 a 39 anos de idade,Father-in-law with 35 to 39 years of age,people,,families|age_gender,0,0
+V089,Sogro(a) com 40 a 44 anos de idade,Father-in-law 40-44 years old,people,,families|age_gender,0,0
+V090,Sogro(a) com 45 a 49 anos de idade,Father-in-law with 45 to 49 years of age,people,,families|age_gender,0,0
+V091,Sogro(a) com 50 a 54 anos de idade,50- to 54-year-old father-in-law,people,,families|age_gender,0,0
+V092,Sogro(a) com 55 a 59 anos de idade,Father-in-law 55-59 years old,people,,families|age_gender,0,0
+V093,Sogro(a) com 60 a 64 anos de idade,Father-in-law 60 to 64 years old,people,,families|age_gender,0,0
+V094,Sogro(a) com 65 a 69 anos de idade,Father-in-law 65-69 years old,people,,families|age_gender,0,0
+V095,Sogro(a) com 70 a 74 anos de idade,Father-in-law 70 to 74 years old,people,,families|age_gender,1,1
+V096,Sogro(a) com 75 a 79 anos de idade,Father-in-law 75 to 79 years old,people,,families|age_gender,0,1
+V097,Sogro(a) com 80 anos ou mais de idade,"Father-in-law, 80 years of age or older",people,,families|age_gender,2,0
+V098,Sogro com 20 a 24 anos de idade,A 20-to-24-year-old father-in-law,people,Pessoa09_V085,families|age_gender,0,0
+V099,Sogro com 25 a 29 anos de idade,Father-in-law 25 to 29 years old,people,Pessoa09_V086,families|age_gender,0,0
+V100,Sogro com 30 a 34 anos de idade,Sogro with 30 to 34 years of age,people,Pessoa09_V087,families|age_gender,0,0
+V101,Sogro com 35 a 39 anos de idade,Sogro with 35 to 39 years of age,people,Pessoa09_V088,families|age_gender,0,0
+V102,Sogro com 40 a 44 anos de idade,A 40-to-44-year-old father-in-law,people,Pessoa09_V089,families|age_gender,0,0
+V103,Sogro com 45 a 49 anos de idade,Sogro with 45 to 49 years of age,people,Pessoa09_V090,families|age_gender,0,0
+V104,Sogro com 50 a 54 anos de idade,50- to 54-year-old father-in-law,people,Pessoa09_V091,families|age_gender,0,0
+V105,Sogro com 55 a 59 anos de idade,55- to 59-year-old father-in-law,people,Pessoa09_V092,families|age_gender,0,0
+V106,Sogro com 60 a 64 anos de idade,Father-in-law 60 to 64 years old,people,Pessoa09_V093,families|age_gender,0,0
+V107,Sogro com 65 a 69 anos de idade,65-69 year old father-in-law,people,Pessoa09_V094,families|age_gender,0,0
+V108,Sogro com 70 a 74 anos de idade,Father-in-law 70 to 74 years old,people,Pessoa09_V095,families|age_gender,0,1
+V109,Sogro com 75 a 79 anos de idade,75-79 year old father-in-law,people,Pessoa09_V096,families|age_gender,0,1
+V110,Sogro com 80 anos ou mais de idade,"Father-in-law, 80 years of age or older",people,Pessoa09_V097,families|age_gender,2,0
+V111,Sogra com 20 a 24 anos de idade,Mother in law with 20 to 24 years of age,people,Pessoa09_V085,families|age_gender,0,0
+V112,Sogra com 25 a 29 anos de idade,Mother in law with 25 to 29 years of age,people,Pessoa09_V086,families|age_gender,0,0
+V113,Sogra com 30 a 34 anos de idade,Mother in law with 30 to 34 years of age,people,Pessoa09_V087,families|age_gender,0,0
+V114,Sogra com 35 a 39 anos de idade,Mother in law with 35 to 39 years old,people,Pessoa09_V088,families|age_gender,0,0
+V115,Sogra com 40 a 44 anos de idade,Mother-in-law 40 to 44 years old,people,Pessoa09_V089,families|age_gender,0,0
+V116,Sogra com 45 a 49 anos de idade,Mother-in-law 45 to 49 years old,people,Pessoa09_V090,families|age_gender,0,0
+V117,Sogra com 50 a 54 anos de idade,50- to 54-year-old mother-in-law,people,Pessoa09_V091,families|age_gender,0,0
+V118,Sogra com 55 a 59 anos de idade,Mother-in-law 55-59 years old,people,Pessoa09_V092,families|age_gender,0,0
+V119,Sogra com 60 a 64 anos de idade,Mother-in-law 60 to 64 years old,people,Pessoa09_V093,families|age_gender,0,0
+V120,Sogra com 65 a 69 anos de idade,Mother in law with 65 to 69 years old,people,Pessoa09_V094,families|age_gender,0,0
+V121,Sogra com 70 a 74 anos de idade,Mother in law with 70 to 74 years of age,people,Pessoa09_V095,families|age_gender,1,0
+V122,Sogra com 75 a 79 anos de idade,Mother-in-law 75 to 79 years old,people,Pessoa09_V096,families|age_gender,0,0
+V123,Sogra com 80 anos ou mais de idade,"Mother-in-law, 80 years of age or older",people,Pessoa09_V097,families|age_gender,0,0
+V124,Neto(a) com 0 a 4 anos de idade,Neto (0 to 4 years old),people,,families|age_gender,22,7
+V125,Neto(a) com 5 a 9 anos de idade,Grandchild with 5 to 9 years of age,people,,families|age_gender,19,14
+V126,Neto(a) com 10 a 14 anos de idade,Neto (a) with 10 to 14 years of age,people,,families|age_gender,13,17
+V127,Neto(a) com 15 a 19 anos de idade,Neto (a) with 15 to 19 years of age,people,,families|age_gender,8,4
+V128,Neto(a) com 20 a 24 anos de idade,Neto (a) with 20 to 24 years of age,people,,families|age_gender,0,2
+V129,Neto(a) com 25 a 29 anos de idade,Neto (a) with 25 to 29 years of age,people,,families|age_gender,0,1
+V130,Neto(a) com 30 a 34 anos de idade,Grandson with 30 to 34 years of age,people,,families|age_gender,0,1
+V131,Neto(a) com 35 a 39 anos de idade,Neto (a) with 35 to 39 years of age,people,,families|age_gender,0,0
+V132,Neto(a) com 40 a 44 anos de idade,Neto (a) with 40 to 44 years of age,people,,families|age_gender,0,0
+V133,Neto(a) com 45 a 49 anos de idade,Neto (a) with 45 to 49 years of age,people,,families|age_gender,0,0
+V134,Neto(a) com 50 ou mais de idade,Grandchild with 50 or older,people,,families|age_gender,0,0
+V135,Neto com 0 a 4 anos de idade,Grandson 0 to 4 years old,people,Pessoa09_V124,families|age_gender,11,1
+V136,Neto com 5 a 9 anos de idade,Grandchild with 5 to 9 years of age,people,Pessoa09_V125,families|age_gender,12,4
+V137,Neto com 10 a 14 anos de idade,Grandson 10 to 14 years old,people,Pessoa09_V126,families|age_gender,7,10
+V138,Neto com 15 a 19 anos de idade,Grandson 15-19 years old,people,Pessoa09_V127,families|age_gender,3,1
+V139,Neto com 20 a 24 anos de idade,Neto with 20 to 24 years of age,people,Pessoa09_V128,families|age_gender,0,2
+V140,Neto com 25 a 29 anos de idade,Neto with 25 to 29 years of age,people,Pessoa09_V129,families|age_gender,0,0
+V141,Neto com 30 a 34 anos de idade,Grandson with 30 to 34 years of age,people,Pessoa09_V130,families|age_gender,0,0
+V142,Neto com 35 a 39 anos de idade,Neto with 35 to 39 years of age,people,Pessoa09_V131,families|age_gender,0,0
+V143,Neto com 40 a 44 anos de idade,Neto with 40 to 44 years of age,people,Pessoa09_V132,families|age_gender,0,0
+V144,Neto com 45 a 49 anos de idade,Neto with 45 to 49 years of age,people,Pessoa09_V133,families|age_gender,0,0
+V145,Neto com 50 anos ou mais de idade,Neto aged 50 years or over,people,Pessoa09_V134,families|age_gender,0,0
+V146,Neta com 0 a 4 anos de idade,Granddaughter 0 to 4 years old,people,Pessoa09_V124,families|age_gender,11,6
+V147,Neta com 5 a 9 anos de idade,Granddaughter with 5 to 9 years of age,people,Pessoa09_V125,families|age_gender,7,10
+V148,Neta com 10 a 14 anos de idade,Granddaughter with 10 to 14 years of age,people,Pessoa09_V126,families|age_gender,6,7
+V149,Neta com 15 a 19 anos de idade,Granddaughter with 15 to 19 years of age,people,Pessoa09_V127,families|age_gender,5,3
+V150,Neta com 20 a 24 anos de idade,Granddaughter with 20 to 24 years of age,people,Pessoa09_V128,families|age_gender,0,0
+V151,Neta com 25 a 29 anos de idade,Granddaughter with 25 to 29 years of age,people,Pessoa09_V129,families|age_gender,0,1
+V152,Neta com 30 a 34 anos de idade,Granddaughter with 30 to 34 years of age,people,Pessoa09_V130,families|age_gender,0,1
+V153,Neta com 35 a 39 anos de idade,Granddaughter with 35 to 39 years of age,people,Pessoa09_V131,families|age_gender,0,0
+V154,Neta com 40 a 44 anos de idade,Neta from 40 to 44 years old,people,Pessoa09_V132,families|age_gender,0,0
+V155,Neta com 45 a 49 anos de idade,Granddaughter with 45 to 49 years of age,people,Pessoa09_V133,families|age_gender,0,0
+V156,Neta com 50 anos ou mais de idade,Granddaughter aged 50 years and over,people,Pessoa09_V134,families|age_gender,0,0
+V157,Bisneto(a) com 0 a 4 anos de idade,Grandchild with 0 to 4 years of age,people,,families|age_gender,1,1
+V158,Bisneto(a) com 5 a 9 anos de idade,Grandchild with 5 to 9 years of age,people,,families|age_gender,0,0
+V159,Bisneto(a) com 10 a 14 anos de idade,Great-grandmother 10 to 14 years old,people,,families|age_gender,0,1
+V160,Bisneto(a) com 15 a 19 anos de idade,Great-great-grandmother 15-19 years old,people,,families|age_gender,0,0
+V161,Bisneto(a) com 20 a 24 anos de idade,20- to 24-year-old grandson,people,,families|age_gender,0,0
+V162,Bisneto(a) com 25 a 29 anos de idade,Great-grandmother 25 to 29 years old,people,,families|age_gender,0,0
+V163,Bisneto(a) com 30 a 34 anos de idade,Great-grandmother 30 to 34 years old,people,,families|age_gender,0,0
+V164,Bisneto(a) com 35 a 39 anos de idade,Great-grandchild with 35 to 39 years of age,people,,families|age_gender,0,0
+V165,Bisneto(a) com 40 a 44 anos de idade,Great-grandmother 40-44 years old,people,,families|age_gender,0,0
+V166,Bisneto(a) com 45 a 49 anos de idade,Great-grandchild with 45 to 49 years of age,people,,families|age_gender,0,0
+V167,Bisneto(a) com 50 ou mais de idade,Grandchild with 50 or older,people,,families|age_gender,0,0
+V168,Bisneto com 0 a 4 anos de idade,Great-grandmother 0 to 4 years old,people,Pessoa09_V157,families|age_gender,0,1
+V169,Bisneto com 5 a 9 anos de idade,Great-grandchild 5 to 9 years old,people,Pessoa09_V158,families|age_gender,0,0
+V170,Bisneto com 10 a 14 anos de idade,10- to 14-year-old great-grandchild,people,Pessoa09_V159,families|age_gender,0,1
+V171,Bisneto com 15 a 19 anos de idade,Great-grandmother 15-19 years old,people,Pessoa09_V160,families|age_gender,0,0
+V172,Bisneto com 20 a 24 anos de idade,Great-grandmother 20 to 24 years old,people,Pessoa09_V161,families|age_gender,0,0
+V173,Bisneto com 25 a 29 anos de idade,Great-grandmother 25 to 29 years old,people,Pessoa09_V162,families|age_gender,0,0
+V174,Bisneto com 30 a 34 anos de idade,Great-grandmother 30 to 34 years old,people,Pessoa09_V163,families|age_gender,0,0
+V175,Bisneto com 35 a 39 anos de idade,"Great-great-great-grandchild, 35-39 years old",people,Pessoa09_V164,families|age_gender,0,0
+V176,Bisneto com 40 a 44 anos de idade,Great-grandmother 40-44 years old,people,Pessoa09_V165,families|age_gender,0,0
+V177,Bisneto com 45 a 49 anos de idade,Great-grandmother 45 to 49 years old,people,Pessoa09_V166,families|age_gender,0,0
+V178,Bisneto com 50 anos ou mais de idade,Great-great-great-grandmother 50 years of age or older,people,Pessoa09_V167,families|age_gender,0,0
+V179,Bisneta com 0 a 4 anos de idade,Great-grandmother 0 to 4 years old,people,Pessoa09_V157,families|age_gender,1,0
+V180,Bisneta com 5 a 9 anos de idade,Great-grandmother 5 to 9 years old,people,Pessoa09_V158,families|age_gender,0,0
+V181,Bisneta com 10 a 14 anos de idade,Great-grandmother 10 to 14 years old,people,Pessoa09_V159,families|age_gender,0,0
+V182,Bisneta com 15 a 19 anos de idade,Great-great-great-grandmother 15-19 years old,people,Pessoa09_V160,families|age_gender,0,0
+V183,Bisneta com 20 a 24 anos de idade,Great-grandmother 20-24 years old,people,Pessoa09_V161,families|age_gender,0,0
+V184,Bisneta com 25 a 29 anos de idade,Great-grandmother 25 to 29 years old,people,Pessoa09_V162,families|age_gender,0,0
+V185,Bisneta com 30 a 34 anos de idade,Great-grandmother 30 to 34 years old,people,Pessoa09_V163,families|age_gender,0,0
+V186,Bisneta com 35 a 39 anos de idade,Great-grandmother 35-39 years old,people,Pessoa09_V164,families|age_gender,0,0
+V187,Bisneta com 40 a 44 anos de idade,Great-grandmother 40-44 years old,people,Pessoa09_V165,families|age_gender,0,0
+V188,Bisneta com 45 a 49 anos de idade,Great-grandmother 45 to 49 years old,people,Pessoa09_V166,families|age_gender,0,0
+V189,Bisneta com 50 anos ou mais de idade,Great-grandmother 50 years of age or older,people,Pessoa09_V167,families|age_gender,0,0
+V190,Irmão ou irmã com 0 a 4 anos de idade,Brother or sister 0 to 4 years old,people,,families|age_gender,0,0
+V191,Irmão ou irmã com 5 a 9 anos de idade,Brother or sister with 5 to 9 years of age,people,,families|age_gender,1,0
+V192,Irmão ou irmã com 10 a 14 anos de idade,Brother or sister with 10 to 14 years of age,people,,families|age_gender,0,1
+V193,Irmão ou irmã com 15 a 19 anos de idade,Brother or sister 15-19 years old,people,,families|age_gender,2,5
+V194,Irmão ou irmã com 20 a 24 anos de idade,Brother or sister between 20 and 24 years of age,people,,families|age_gender,5,2
+V195,Irmão ou irmã com 25 a 29 anos de idade,Brother or sister 25 to 29 years of age,people,,families|age_gender,2,0
+V196,Irmão ou irmã com 30 a 34 anos de idade,Brother or sister with 30 to 34 years of age,people,,families|age_gender,0,0
+V197,Irmão ou irmã com 35 a 39 anos de idade,Brother or sister with 35 to 39 years of age,people,,families|age_gender,0,0
+V198,Irmão ou irmã com 40 a 44 anos de idade,Brother or sister between 40 and 44 years of age,people,,families|age_gender,1,0
+V199,Irmão ou irmã com 45 a 49 anos de idade,Brother or sister with 45 to 49 years of age,people,,families|age_gender,0,0
+V200,Irmão ou irmã com 50 a 54 anos de idade,Brother or sister 50-54 years old,people,,families|age_gender,0,0
+V201,Irmão ou irmã com 55 a 59 anos de idade,"Brother or sister, 55-59 years old",people,,families|age_gender,0,0
+V202,Irmão ou irmã com 60 a 64 anos de idade,Brother or sister 60 to 64 years old,people,,families|age_gender,0,0
+V203,Irmão ou irmã com 65 a 69 anos de idade,Brother or sister with 65 to 69 years of age,people,,families|age_gender,0,0
+V204,Irmão ou irmã com 70 a 74 anos de idade,"Brother or sister, 70-74 years old",people,,families|age_gender,0,0
+V205,Irmão ou irmã com 75 a 79 anos de idade,Brother or sister with 75 to 79 years of age,people,,families|age_gender,0,1
+V206,Irmão ou irmã com 80 anos ou mais de idade,Brother or sister who is 80 years of age or older,people,,families|age_gender,0,0
+V207,Irmão com 0 a 4 anos de idade,Brother 0 to 4 years old,people,Pessoa09_V190,families|age_gender,0,0
+V208,Irmão com 5 a 9 anos de idade,Brother with 5 to 9 years of age,people,Pessoa09_V191,families|age_gender,1,0
+V209,Irmão com 10 a 14 anos de idade,Brother 10 to 14 years old,people,Pessoa09_V192,families|age_gender,0,1
+V210,Irmão com 15 a 19 anos de idade,Brother 15-19 years old,people,Pessoa09_V193,families|age_gender,2,2
+V211,Irmão com 20 a 24 anos de idade,Brother 20 to 24 years old,people,Pessoa09_V194,families|age_gender,3,2
+V212,Irmão com 25 a 29 anos de idade,Brother 25 to 29 years of age,people,Pessoa09_V195,families|age_gender,2,0
+V213,Irmão com 30 a 34 anos de idade,Brother with 30 to 34 years of age,people,Pessoa09_V196,families|age_gender,0,0
+V214,Irmão com 35 a 39 anos de idade,Brother with 35 to 39 years of age,people,Pessoa09_V197,families|age_gender,0,0
+V215,Irmão com 40 a 44 anos de idade,Brother 40-44 years old,people,Pessoa09_V198,families|age_gender,1,0
+V216,Irmão com 45 a 49 anos de idade,Brother 45 to 49 years old,people,Pessoa09_V199,families|age_gender,0,0
+V217,Irmão com 50 a 54 anos de idade,Brother 50-54 years old,people,Pessoa09_V200,families|age_gender,0,0
+V218,Irmão com 55 a 59 anos de idade,Brother 55-59 years old,people,Pessoa09_V201,families|age_gender,0,0
+V219,Irmão com 60 a 64 anos de idade,Brother 60 to 64 years old,people,Pessoa09_V202,families|age_gender,0,0
+V220,Irmão com 65 a 69 anos de idade,Brother 65-69 years old,people,Pessoa09_V203,families|age_gender,0,0
+V221,Irmão com 70 a 74 anos de idade,"Brother, 70-74 years old",people,Pessoa09_V204,families|age_gender,0,0
+V222,Irmão com 75 a 79 anos de idade,Brother 75 to 79 years old,people,Pessoa09_V205,families|age_gender,0,0
+V223,Irmão com 80 anos ou mais de idade,Brother at least 80 years of age,people,Pessoa09_V206,families|age_gender,0,0
+V224,Irmã com 0 a 4 anos de idade,Sister 0 to 4 years old,people,Pessoa09_V190,families|age_gender,0,0
+V225,Irmã com 5 a 9 anos de idade,"Sister, 5-9 years old",people,Pessoa09_V191,families|age_gender,0,0
+V226,Irmã com 10 a 14 anos de idade,Sister 10 to 14 years old,people,Pessoa09_V192,families|age_gender,0,0
+V227,Irmã com 15 a 19 anos de idade,15-19 year old sister,people,Pessoa09_V193,families|age_gender,0,3
+V228,Irmã com 20 a 24 anos de idade,Sister 20 to 24 years old,people,Pessoa09_V194,families|age_gender,2,0
+V229,Irmã com 25 a 29 anos de idade,Sister 25 to 29 years old,people,Pessoa09_V195,families|age_gender,0,0
+V230,Irmã com 30 a 34 anos de idade,Sister 30 to 34 years old,people,Pessoa09_V196,families|age_gender,0,0
+V231,Irmã com 35 a 39 anos de idade,Sister with 35 to 39 years of age,people,Pessoa09_V197,families|age_gender,0,0
+V232,Irmã com 40 a 44 anos de idade,Sister 40-44 years old,people,Pessoa09_V198,families|age_gender,0,0
+V233,Irmã com 45 a 49 anos de idade,Sister with 45 to 49 years of age,people,Pessoa09_V199,families|age_gender,0,0
+V234,Irmã com 50 a 54 anos de idade,Sister 50-54 years old,people,Pessoa09_V200,families|age_gender,0,0
+V235,Irmã com 55 a 59 anos de idade,Sister 55-59 years old,people,Pessoa09_V201,families|age_gender,0,0
+V236,Irmã com 60 a 64 anos de idade,Sister 60 to 64 years old,people,Pessoa09_V202,families|age_gender,0,0
+V237,Irmã com 65 a 69 anos de idade,Sister 65-69 years old,people,Pessoa09_V203,families|age_gender,0,0
+V238,Irmã com 70 a 74 anos de idade,"Sister, 70-74 years old",people,Pessoa09_V204,families|age_gender,0,0
+V239,Irmã com 75 a 79 anos de idade,"Sister, 75-79 years old",people,Pessoa09_V205,families|age_gender,0,1
+V240,Irmã com 80 anos ou mais de idade,Sister aged 80 years or over,people,Pessoa09_V206,families|age_gender,0,0
