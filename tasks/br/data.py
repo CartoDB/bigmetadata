@@ -122,6 +122,27 @@ class Columns(ColumnsTask):
     def version(self):
         return 2
 
+    def validate_id(self, col_id):
+
+        # ids start with V
+        if not col_id.startswith('V'):
+            return False
+
+        # get numeric value
+        num = col_id.split('V')[1]
+        # should be 3 digits
+        if len(num) != 3:
+            return False
+
+        # ensure its an number
+        try:
+            num = int(num)
+        except ValueError:
+            return False
+
+        return True
+
+
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
@@ -148,8 +169,9 @@ class Columns(ColumnsTask):
                 col_id, col_name_pt, col_name_en, col_unit, denominators, col_subsections, \
                   data_sample_1, data_sample_2 = line
 
-                # skip header rows
-                if not col_id.startswith('V'):
+                # validate the col_id (VXXX)
+                if not self.validate_id(col_id):
+                    print('*******col_id not valid', col_id)
                     continue
 
                 # parse targets
