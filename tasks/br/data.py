@@ -100,6 +100,23 @@ class Columns(ColumnsTask):
 
         if self.tablename in ('Entorno04', 'Entorno05'):
             requirements['Entorno03'] = Columns(tablename='Entorno03')
+
+        if self.tablename in ('Pessoa11', 'Pessoa12'):
+            requirements['Pessoa13'] = Columns(tablename='Pessoa13')
+
+        if self.tablename in ('Pessoa02', 'Pessoa04'):
+            requirements['Pessoa01'] = Columns(tablename='Pessoa01')
+
+        if self.tablename in ('Pessoa08'):
+            requirements['Pessoa07'] = Columns(tablename='Pessoa07')
+
+        if self.tablename in ('Pessoa05'):
+            requirements['Pessoa03'] = Columns(tablename='Pessoa03')
+
+        if self.tablename in ('Responsavel01'):
+            requirements['Responsavel02'] = Columns(tablename='Responsavel02')
+
+
         return requirements
 
     def version(self):
