@@ -2,7 +2,7 @@ Nome da variável,Descrição da variável,Variable description,unit,denominators,su
 Cod_setor,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
 Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
 V001,Pessoas Residentes,Resident People,people,Pessoa13_V001,race_ethnicity,957,914
-V02,Pessoas Residentes e cor ou raça - branca,People Residents and color or race - white,people,Pessoa03_V001,race_ethnicity,337,360
+V002,Pessoas Residentes e cor ou raça - branca,People Residents and color or race - white,people,Pessoa03_V001,race_ethnicity,337,360
 V003,Pessoas Residentes e cor ou raça - preta,Resident People and color or race - black,people,Pessoa03_V001,race_ethnicity,27,46
 V004,Pessoas Residentes e cor ou raça - amarela,People Residents and color or race - yellow,people,Pessoa03_V001,race_ethnicity,14,9
 V005,Pessoas Residentes e cor ou raça - parda,People Residents and color or race - brown,people,Pessoa03_V001,race_ethnicity,579,499
