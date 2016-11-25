@@ -1,0 +1,137 @@
+Nome da variável,Descrição da variável,Variable description,unit,denominators,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,Mulheres em domicílios particulares e domicílios coletivos,Women in private households and collective households,people,Pessoa13_V001,housing|families,487,459
+V002,Mulheres em domicílios particulares permanentes,Women in permanent private households,people,Pessoa12_V001,housing|families,487,459
+V003,Mulheres responsáveis pelo domicílio particular,Women responsible for private residence,people,Pessoa12_V001,housing|families,67,77
+V004,Cônjuges ou companheiros(as) (de sexo diferente e do mesmo sexo da pessoa responsável) em domicílios particulares,Spouses or partners (of different sex and of the same sex as the responsible person) in private households,people,Pessoa12_V001,housing|families,173,159
+V005,Filhas do responsável e do cônjuge em domicílios particulares,Daughters of guardian and spouse in private households,people,Pessoa12_V001,housing|families,110,96
+V006,Filhas somente do responsável em domicílios particulares,Daughters only of the responsible in particular domiciles,people,Pessoa12_V001,housing|families,60,62
+V007,Enteadas em domicílios particulares,Stepchildren in private households,people,Pessoa12_V001,housing|families,18,19
+V008,Noras em domicílios particulares,Normas in private homes,people,Pessoa12_V001,housing|families,7,1
+V009,"Mães, madrastas em domicílios particulares","Mothers, stepmothers in private homes",people,Pessoa12_V001,housing|families,2,1
+V010,Sogras em domicílios particulares,Sogras in private homes,people,Pessoa12_V001,housing|families,1,0
+V011,Netas em domicílios particulares,Net in private homes,people,Pessoa12_V001,housing|families,29,28
+V012,Bisnetas em domicílios particulares,Bisnotes in private households,people,Pessoa12_V001,housing|families,1,0
+V013,Irmãs em domicílios particulares,Sisters in private homes,people,Pessoa12_V001,housing|families,2,4
+V014,Avós em domicílios particulares,Grandparents in private homes,people,Pessoa12_V001,housing|families,0,0
+V015,Outros parentes em domicílios particulares do sexo feminino,Other relatives in private households,people,Pessoa12_V001,housing|families,13,12
+V016,Agregadas em domicílios particulares,Aggregated in private households,people,Pessoa12_V001,housing|families,1,0
+V017,"Convivente em domicílios particulares, do sexo feminino","Cohabiting in private households, female",people,Pessoa12_V001,housing|families,0,0
+V018,"Pensionistas em domicílios particulares, do sexo feminino","Pensioners in private households, female",people,Pessoa12_V001,housing|families,3,0
+V019,Empregadas domésticas em domicílios particulares,Domestic servants in private homes,people,Pessoa12_V001,housing|families,0,0
+V020,"Parentes dos(as) empregados(as) domésticos(as) em domicílios particulares ,do sexo feminino","Relatives of domestic workers in private households, female",people,Pessoa12_V001,housing|families,0,0
+V021,Individuais em domicílio coletivo do sexo feminino,Individuals in a collective female domicile,people,Pessoa12_V001,housing|families,0,0
+V022,Mulheres com menos de 1 ano de idade,Women under 1 year of age,people,Pessoa12_V001,age_gender,3,11
+V023,Mulheres com menos de 1 mês de idade,Women less than 1 month old,people,Pessoa12_V022,age_gender,0,0
+V024,Mulheres com 1 mês de idade,Women 1 month old,people,Pessoa12_V022,age_gender,0,0
+V025,Mulheres com 2 meses de idade,Women 2 months old,people,Pessoa12_V022,age_gender,0,0
+V026,Mulheres com 3 meses de idade,Women 3 months old,people,Pessoa12_V022,age_gender,1,2
+V027,Mulheres com 4 meses de idade,Women 4 months old,people,Pessoa12_V022,age_gender,0,2
+V028,Mulheres com 5 meses de idade,Women 5 months old,people,Pessoa12_V022,age_gender,0,0
+V029,Mulheres com 6 meses de idade,Women 6 months old,people,Pessoa12_V022,age_gender,0,0
+V030,Mulheres com 7 meses de idade,Women 7 months old,people,Pessoa12_V022,age_gender,1,0
+V031,Mulheres com 8 meses de idade,Women 8 months old,people,Pessoa12_V022,age_gender,0,1
+V032,Mulheres com 9 meses de idade,Women 9 months old,people,Pessoa12_V022,age_gender,1,1
+V033,Mulheres com 10 meses de idade,Women 10 months old,people,Pessoa12_V022,age_gender,0,2
+V034,Mulheres com 11 meses de idade,Women 11 months old,people,Pessoa12_V022,age_gender,0,3
+V035,Mulheres com 1 ano de idade,1 year old women,people,Pessoa12_V001,age_gender,9,10
+V036,Mulheres com 2 anos de idade,Two-year-old women,people,Pessoa12_V001,age_gender,8,8
+V037,Mulheres com 3 anos de idade,Three-year-old women,people,Pessoa12_V001,age_gender,2,13
+V038,Mulheres com 4 anos de idade,Four-year-old women,people,Pessoa12_V001,age_gender,12,12
+V039,Mulheres com 5 anos de idade,Women 5 years old,people,Pessoa12_V001,age_gender,10,10
+V040,Mulheres com 6 anos de idade,6-year-old women,people,Pessoa12_V001,age_gender,9,11
+V041,Mulheres com 7 anos de idade,7-year-old women,people,Pessoa12_V001,age_gender,11,11
+V042,Mulheres com 8 anos de idade,8-year-old women,people,Pessoa12_V001,age_gender,8,12
+V043,Mulheres com 9 anos de idade ,9-year-old women,people,Pessoa12_V001,age_gender,7,13
+V044,Mulheres com 10 anos de idade,Women with 10 years of age,people,Pessoa12_V001,age_gender,8,9
+V045,Mulheres com 11 anos de idade,Women with 11 years of age,people,Pessoa12_V001,age_gender,14,10
+V046,Mulheres com 12 anos de idade,Women with 12 years of age,people,Pessoa12_V001,age_gender,11,8
+V047,Mulheres com 13 anos de idade,Women with 13 years of age,people,Pessoa12_V001,age_gender,17,12
+V048,Mulheres com 14 anos de idade,Women with 14 years of age,people,Pessoa12_V001,age_gender,11,10
+V049,Mulheres com 15 anos de idade,Women with 15 years of age,people,Pessoa12_V001,age_gender,14,13
+V050,Mulheres com 16 anos de idade,Women aged 16 years old,people,Pessoa12_V001,age_gender,10,9
+V051,Mulheres com 17 anos de idade,Women 17 years old,people,Pessoa12_V001,age_gender,9,8
+V052,Mulheres com 18 anos de idade,Women 18 years old,people,Pessoa12_V001,age_gender,9,11
+V053,Mulheres com 19 anos de idade,19-year-old women,people,Pessoa12_V001,age_gender,7,11
+V054,Mulheres com 20 anos de idade,Women with 20 years of age,people,Pessoa12_V001,age_gender,7,11
+V055,Mulheres com 21 anos de idade,Women 21 years old,people,Pessoa12_V001,age_gender,12,12
+V056,Mulheres com 22 anos de idade,22-year-old women,people,Pessoa12_V001,age_gender,8,3
+V057,Mulheres com 23 anos de idade,23-year-old women,people,Pessoa12_V001,age_gender,5,6
+V058,Mulheres com 24 anos de idade,24-year-old women,people,Pessoa12_V001,age_gender,6,7
+V059,Mulheres com 25 anos de idade,25-year-old women,people,Pessoa12_V001,age_gender,12,9
+V060,Mulheres com 26 anos de idade,26-year-old women,people,Pessoa12_V001,age_gender,13,13
+V061,Mulheres com 27 anos de idade,Women 27 years old,people,Pessoa12_V001,age_gender,9,8
+V062,Mulheres com 28 anos de idade,28-year-old women,people,Pessoa12_V001,age_gender,14,10
+V063,Mulheres com 29 anos de idade,29-year-old women,people,Pessoa12_V001,age_gender,6,5
+V064,Mulheres com 30 anos de idade,30-year-old women,people,Pessoa12_V001,age_gender,12,15
+V065,Mulheres com 31 anos de idade,31-year-old women,people,Pessoa12_V001,age_gender,11,11
+V066,Mulheres com 32 anos de idade,32 year old women,people,Pessoa12_V001,age_gender,7,11
+V067,Mulheres com 33 anos de idade,33-year-old women,people,Pessoa12_V001,age_gender,5,3
+V068,Mulheres com 34 anos de idade,34-year-old women,people,Pessoa12_V001,age_gender,7,9
+V069,Mulheres com 35 anos de idade,35-year-old women,people,Pessoa12_V001,age_gender,7,8
+V070,Mulheres com 36 anos de idade,Women with 36 years of age,people,Pessoa12_V001,age_gender,8,6
+V071,Mulheres com 37 anos de idade,37-year-old women,people,Pessoa12_V001,age_gender,10,6
+V072,Mulheres com 38 anos de idade,38-year-old women,people,Pessoa12_V001,age_gender,8,7
+V073,Mulheres com 39 anos de idade,39-year-old women,people,Pessoa12_V001,age_gender,9,3
+V074,Mulheres com 40 anos de idade,40-year-old women,people,Pessoa12_V001,age_gender,0,7
+V075,Mulheres com 41 anos de idade,41-year-old women,people,Pessoa12_V001,age_gender,7,5
+V076,Mulheres com 42 anos de idade,42-year-old women,people,Pessoa12_V001,age_gender,6,3
+V077,Mulheres com 43 anos de idade,43-year-old women,people,Pessoa12_V001,age_gender,5,2
+V078,Mulheres com 44 anos de idade,44-year-old women,people,Pessoa12_V001,age_gender,9,2
+V079,Mulheres com 45 anos de idade,45-year-old women,people,Pessoa12_V001,age_gender,5,3
+V080,Mulheres com 46 anos de idade,46-year-old women,people,Pessoa12_V001,age_gender,2,2
+V081,Mulheres com 47 anos de idade,47-year-old women,people,Pessoa12_V001,age_gender,3,1
+V082,Mulheres com 48 anos de idade,48-year-old women,people,Pessoa12_V001,age_gender,5,6
+V083,Mulheres com 49 anos de idade,49-year-old women,people,Pessoa12_V001,age_gender,6,2
+V084,Mulheres com 50 anos de idade,50-year-old women,people,Pessoa12_V001,age_gender,5,1
+V085,Mulheres com 51 anos de idade,51-year-old women,people,Pessoa12_V001,age_gender,4,3
+V086,Mulheres com 52 anos de idade,52-year-old women,people,Pessoa12_V001,age_gender,6,1
+V087,Mulheres com 53 anos de idade,53-year-old women,people,Pessoa12_V001,age_gender,5,2
+V088,Mulheres com 54 anos de idade,54-year-old women,people,Pessoa12_V001,age_gender,3,4
+V089,Mulheres com 55 anos de idade,55-year-old women,people,Pessoa12_V001,age_gender,7,6
+V090,Mulheres com 56 anos de idade,56-year-old women,people,Pessoa12_V001,age_gender,3,4
+V091,Mulheres com 57 anos de idade,57-year-old women,people,Pessoa12_V001,age_gender,2,2
+V092,Mulheres com 58 anos de idade,58-year-old women,people,Pessoa12_V001,age_gender,5,2
+V093,Mulheres com 59 anos de idade,59-year-old women,people,Pessoa12_V001,age_gender,3,1
+V094,Mulheres com 60 anos de idade,60-year-old women,people,Pessoa12_V001,age_gender,3,1
+V095,Mulheres com 61 anos de idade,61-year-old women,people,Pessoa12_V001,age_gender,5,0
+V096,Mulheres com 62 anos de idade,62-year-old women,people,Pessoa12_V001,age_gender,0,2
+V097,Mulheres com 63 anos de idade,63-year-old women,people,Pessoa12_V001,age_gender,3,2
+V098,Mulheres com 64 anos de idade,64-year-old women,people,Pessoa12_V001,age_gender,1,1
+V099,Mulheres com 65 anos de idade,65-year-old women,people,Pessoa12_V001,age_gender,1,0
+V100,Mulheres com 66 anos de idade,66-year-old women,people,Pessoa12_V001,age_gender,5,3
+V101,Mulheres com 67 anos de idade,67-year-old women,people,Pessoa12_V001,age_gender,1,1
+V102,Mulheres com 68 anos de idade,68-year-old women,people,Pessoa12_V001,age_gender,2,4
+V103,Mulheres com 69 anos de idade,69-year-old women,people,Pessoa12_V001,age_gender,1,0
+V104,Mulheres com 70 anos de idade,70-year-old women,people,Pessoa12_V001,age_gender,2,1
+V105,Mulheres com 71 anos de idade,71-year-old women,people,Pessoa12_V001,age_gender,0,2
+V106,Mulheres com 72 anos de idade,72-year-old women,people,Pessoa12_V001,age_gender,1,3
+V107,Mulheres com 73 anos de idade,73-year-old women,people,Pessoa12_V001,age_gender,0,0
+V108,Mulheres com 74 anos de idade,74-year-old women,people,Pessoa12_V001,age_gender,2,0
+V109,Mulheres com 75 anos de idade,75-year-old women,people,Pessoa12_V001,age_gender,0,0
+V110,Mulheres com 76 anos de idade,76-year-old women,people,Pessoa12_V001,age_gender,0,0
+V111,Mulheres com 77 anos de idade,77-year-old women,people,Pessoa12_V001,age_gender,0,0
+V112,Mulheres com 78 anos de idade,78-year-old women,people,Pessoa12_V001,age_gender,0,2
+V113,Mulheres com 79 anos de idade,79-year-old women,people,Pessoa12_V001,age_gender,0,0
+V114,Mulheres com 80 anos de idade,80-year-old women,people,Pessoa12_V001,age_gender,1,2
+V115,Mulheres com 81 anos de idade,81-year-old women,people,Pessoa12_V001,age_gender,0,0
+V116,Mulheres com 82 anos de idade,82-year-old women,people,Pessoa12_V001,age_gender,0,0
+V117,Mulheres com 83 anos de idade,83-year-old women,people,Pessoa12_V001,age_gender,0,0
+V118,Mulheres com 84 anos de idade,84-year-old women,people,Pessoa12_V001,age_gender,0,0
+V119,Mulheres com 85 anos de idade,85-year-old women,people,Pessoa12_V001,age_gender,0,0
+V120,Mulheres com 86 anos de idade,86-year-old women,people,Pessoa12_V001,age_gender,0,0
+V121,Mulheres com 87 anos de idade,87-year-old women,people,Pessoa12_V001,age_gender,1,0
+V122,Mulheres com 88 anos de idade,88-year-old women,people,Pessoa12_V001,age_gender,0,0
+V123,Mulheres com 89 anos de idade,89-year-old women,people,Pessoa12_V001,age_gender,2,0
+V124,Mulheres com 90 anos de idade,90-year-old women,people,Pessoa12_V001,age_gender,0,1
+V125,Mulheres com 91 anos de idade,91-year-old women,people,Pessoa12_V001,age_gender,0,0
+V126,Mulheres com 92 anos de idade,92-year-old women,people,Pessoa12_V001,age_gender,0,0
+V127,Mulheres com 93 anos de idade,93-year-old women,people,Pessoa12_V001,age_gender,0,0
+V128,Mulheres com 94 anos de idade,Women with 94 years of age,people,Pessoa12_V001,age_gender,0,0
+V129,Mulheres com 95 anos de idade,95-year-old women,people,Pessoa12_V001,age_gender,0,0
+V130,Mulheres com 96 anos de idade,96-year-old women,people,Pessoa12_V001,age_gender,0,0
+V131,Mulheres com 97 anos de idade,97-year-old women,people,Pessoa12_V001,age_gender,0,0
+V132,Mulheres com 98 anos de idade,98-year-old women,people,Pessoa12_V001,age_gender,0,0
+V133,Mulheres com 99 anos de idade,99-year-old women,people,Pessoa12_V001,age_gender,0,0
+V134,Mulheres com 100 anos ou mais de idade,Women aged 100 years or over,people,Pessoa12_V001,age_gender,0,0

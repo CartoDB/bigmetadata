@@ -1196,6 +1196,7 @@ class CSV2TempTableTask(TempTableTask):
 
     delimiter = Parameter(default=',', significant=False)
     has_header = BooleanParameter(default=True, significant=False)
+    encoding = Parameter(default='utf8', significant=False)
 
     def input_csv(self):
         '''
@@ -1222,8 +1223,12 @@ class CSV2TempTableTask(TempTableTask):
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
+
         header_row = shell('head -n 1 {csv}'.format(csv=csv)).strip()
         return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
+
+    def read_method(self, fname):
+        return 'cat "{input}"'.format(input=fname)
 
     def run(self):
         if isinstance(self.input_csv(), basestring):
@@ -1232,18 +1237,21 @@ class CSV2TempTableTask(TempTableTask):
             csvs = self.input_csv()
 
         session = current_session()
-        session.execute('CREATE TABLE {output} ({coldef})'.format(
+        session.execute(u'CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
-            coldef=', '.join(['"{}" {}'.format(*c) for c in self.coldef()])
+            coldef=u', '.join([u'"{}" {}'.format(c[0].decode(self.encoding), c[1]) for c in self.coldef()])
         ))
         session.commit()
-        options = ['''DELIMITER '"'{}'"' '''.format(self.delimiter)]
+        options = ['''
+           DELIMITER '"'{delimiter}'"' ENCODING '"'{encoding}'"'
+        '''.format(delimiter=self.delimiter,
+                   encoding=self.encoding)]
         if self.has_header:
             options.append('CSV HEADER')
         try:
             for csv in csvs:
-                shell(r'''psql -c '\copy {table} FROM '"'{input}'"' {options}' '''.format(
-                    input=csv,
+                shell(r'''{read_method} | psql -c '\copy {table} FROM STDIN {options}' '''.format(
+                    read_method=self.read_method(csv),
                     table=self.output().table,
                     options=' '.join(options)
                 ))
