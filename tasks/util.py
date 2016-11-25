@@ -379,9 +379,11 @@ class CartoDBTarget(Target):
         return self.tablename
 
     def exists(self):
-        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 0'.format(
+        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 1'.format(
             tablename=self.tablename))
-        return resp.status_code == 200
+        if resp.status_code != 200:
+            return False
+        return resp.json()['total_rows'] > 0
 
     def remove(self):
         api_key = os.environ['CARTODB_API_KEY']
@@ -877,6 +879,7 @@ class TableToCartoViaImportAPI(Task):
     force = BooleanParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
     table = Parameter()
+    columns = ListParameter(default=[])
 
     def run(self):
         url = os.environ['CARTODB_URL']
@@ -886,12 +889,21 @@ class TableToCartoViaImportAPI(Task):
         except OSError:
             pass
         tmp_file_path = os.path.join('tmp', classpath(self), self.table + '.csv')
-        shell(r'''psql -c '\copy {schema}.{tablename} TO '"'"{tmp_file_path}"'"'
-              WITH CSV HEADER' '''.format(
-                  schema=self.schema,
-                  tablename=self.table,
-                  tmp_file_path=tmp_file_path,
-              ))
+        if not self.columns:
+            shell(r'''psql -c '\copy {schema}.{tablename} TO '"'"{tmp_file_path}"'"'
+                  WITH CSV HEADER' '''.format(
+                      schema=self.schema,
+                      tablename=self.table,
+                      tmp_file_path=tmp_file_path,
+                  ))
+        else:
+            shell(r'''psql -c '\copy (SELECT {columns} FROM {schema}.{tablename}) TO '"'"{tmp_file_path}"'"'
+                  WITH CSV HEADER' '''.format(
+                      schema=self.schema,
+                      tablename=self.table,
+                      tmp_file_path=tmp_file_path,
+                      columns=', '.join(self.columns),
+                  ))
         curl_resp = shell(
             'curl -s -F privacy=public -F type_guessing=false '
             '  -F file=@{tmp_file_path} "{url}/api/v1/imports/?api_key={api_key}"'.format(
@@ -899,7 +911,10 @@ class TableToCartoViaImportAPI(Task):
                 url=url,
                 api_key=api_key
             ))
-        import_id = json.loads(curl_resp)["item_queue_id"]
+        try:
+            import_id = json.loads(curl_resp)["item_queue_id"]
+        except ValueError:
+            raise Exception(curl_resp)
         while True:
             resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
                 url=os.environ['CARTODB_URL'],
@@ -907,6 +922,7 @@ class TableToCartoViaImportAPI(Task):
                 api_key=api_key
             ))
             if resp.json()['state'] == 'complete':
+                LOGGER.info("Waiting for import %s for %s", import_id, self.table)
                 break
             elif resp.json()['state'] == 'failure':
                 raise Exception('Import failed: {}'.format(resp.json()))
@@ -945,11 +961,11 @@ class TableToCartoViaImportAPI(Task):
                     colname=colname, data_type=data_type
                 ) for colname, data_type, _ in resp])
             if alter:
-                resp = query_cartodb(
-                    'ALTER TABLE {tablename} {alter}'.format(
-                        tablename=self.table,
-                        alter=alter)
-                )
+                alter_stmt = 'ALTER TABLE {tablename} {alter}'.format(
+                    tablename=self.table,
+                    alter=alter)
+                LOGGER.info(alter_stmt)
+                resp = query_cartodb(alter_stmt)
                 if resp.status_code != 200:
                     raise Exception('could not alter columns for "{tablename}":'
                                     '{err}'.format(tablename=self.table,
@@ -1095,6 +1111,31 @@ def clear_temp_table(task):
         session.flush()
 
 
+class GdbFeatureClass2TempTableTask(TempTableTask):
+    '''
+    A task that extracts one vector shape layer from a geodatabase to a
+    TempTableTask.
+    '''
+
+    feature_class = Parameter()
+
+    def input_gdb(self):
+        '''
+        This method must be implemented by subclasses.  Should return a path
+        to a GDB to convert to shapes.
+        '''
+        raise NotImplementedError("Must define `input_gdb` method")
+
+    def run(self):
+        shell('''
+              PG_USE_COPY=yes ogr2ogr -f "PostgreSQL" PG:"dbname=$PGDATABASE \
+              active_schema={schema}" -t_srs "EPSG:4326" -nlt MultiPolygon \
+              -nln {tablename} {infile}
+              '''.format(schema=self.output().schema,
+                         infile=self.input_gdb(),
+                         tablename=self.output().tablename))
+
+
 class Shp2TempTableTask(TempTableTask):
     '''
     A task that loads :meth:`~.util.Shp2TempTableTask.input_shp()` into a
@@ -1182,8 +1223,9 @@ class CSV2TempTableTask(TempTableTask):
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell(u'head -n 1 {csv}'.format(csv=csv)).strip()
-        return [(h, 'Text') for h in header_row.split(self.delimiter) if h]
+
+        header_row = shell('head -n 1 {csv}'.format(csv=csv)).strip()
+        return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
 
     def read_method(self, fname):
         return 'cat "{input}"'.format(input=fname)
@@ -1213,10 +1255,16 @@ class CSV2TempTableTask(TempTableTask):
                     table=self.output().table,
                     options=' '.join(options)
                 ))
+            self.after_copy()
         except:
+            session.rollback()
             session.execute('DROP TABLE IF EXISTS {output}'.format(
                 output=self.output().table))
+            session.commit()
             raise
+
+    def after_copy(self):
+        pass
 
 
 class LoadPostgresFromURL(TempTableTask):

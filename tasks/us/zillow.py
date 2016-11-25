@@ -115,6 +115,27 @@ def hometype_measures():
             yield hometype, hometype_human, measure, measure_human, measure_unit
 
 
+class SourceTags(TagsTask):
+
+    def tags(self):
+        return [OBSTag(id='zillow-source',
+                       name='Zillow Data',
+                       type='source',
+                       description='Zillow makes available data free for reuse `here <http://www.zillow.com/research/data/>`_.', )]
+
+
+class LicenseTags(TagsTask):
+
+    def version(self):
+        return 2
+
+    def tags(self):
+        return [OBSTag(id='zillow-license',
+                       name='Zillow Terms of Use for "Aggregate Data"',
+                       type='license',
+                       description='May be used for non-personal uses, e.g., real estate market analysis. More information `here <http://www.zillow.com/corp/Terms.htm>`_', )]
+
+
 class ZillowTags(TagsTask):
 
     def version(self):
@@ -166,10 +187,12 @@ class ZillowValueColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
         input_ = self.input()
@@ -177,6 +200,8 @@ class ZillowValueColumns(ColumnsTask):
         united_states = input_['sections']['united_states']
         housing = input_['subsections']['housing']
         units = input_['units']
+        source = input_['source']['zillow-source']
+        license = input_['license']['zillow-license']
 
         columns = OrderedDict()
 
@@ -194,29 +219,10 @@ class ZillowValueColumns(ColumnsTask):
                                 measure_description=MEASURES_DESCRIPTION[measure],
                                 hometype_description=HOMETYPES_DESCRIPTION[hometype],
                                 ),
-                            tags=[tag, united_states, housing, units[measure_unit]])
+                            tags=[tag, united_states, housing, units[measure_unit], license, source])
             columns[col_id] = col
         return columns
 
-
-class ZillowTimeValueColumns(ColumnsTask):
-
-    def columns(self):
-        columns = OrderedDict()
-
-        # TODO generate value columns
-        for year in xrange(1996, 2017):
-            for month in xrange(1, 13):
-                yr_str = str(year).zfill(2)
-                mo_str = str(month).zfill(2)
-
-                columns['{yr}_{mo}'.format(
-                    yr=yr_str, mo=mo_str)] = OBSColumn(
-                        type='Numeric',
-                        name='',
-                        description='',
-                        weight=0)
-        return columns
 
 class ZillowGeoColumns(ColumnsTask):
 

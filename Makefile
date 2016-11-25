@@ -29,14 +29,14 @@ tiger:
 	  --module tasks.us.census.tiger AllSumLevels --year 2014
 #	  --parallel-scheduling --workers=8
 
-catalog:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --force --images \
-	  --parallel-scheduling --workers=3
-
 catalog-noimage:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Catalog --force \
+	  --parallel-scheduling --workers=3
+
+catalog:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.sphinx Catalog --force --images \
 	  --parallel-scheduling --workers=3
 
 pdf-catalog:
@@ -161,3 +161,8 @@ tiles:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.util GenerateAllRasterTiles \
 	  --parallel-scheduling --workers=5
+
+eurostat-data:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
+	  --parallel-scheduling --workers=2

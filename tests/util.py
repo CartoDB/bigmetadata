@@ -16,31 +16,30 @@ class FakeTask(object):
     task_id = 'fake'
 
 
-def recreate_db():
+def recreate_db(dbname='test'):
     if not os.environ.get('TRAVIS'):
         check_output('''
         psql -d gis -c "SELECT pg_terminate_backend(pg_stat_activity.pid)
                  FROM pg_stat_activity
-                 WHERE pg_stat_activity.datname = 'test'
+                 WHERE pg_stat_activity.datname = '{dbname}'
                    AND pid <> pg_backend_pid();"
-        ''', shell=True)
-    check_output('dropdb --if-exists test', shell=True)
-    check_output('createdb test -E UTF8 -T template0', shell=True)
-    check_output('psql -d test -c "CREATE EXTENSION IF NOT EXISTS postgis"', shell=True)
-    check_output('psql -d test -c "CREATE SCHEMA IF NOT EXISTS observatory"', shell=True)
+        '''.format(dbname=dbname), shell=True)
+    check_output('dropdb --if-exists {dbname}'.format(dbname=dbname), shell=True)
+    check_output('createdb {dbname} -E UTF8 -T template0'.format(dbname=dbname), shell=True)
+    check_output('psql -d {dbname} -c "CREATE EXTENSION IF NOT EXISTS postgis"'.format(
+        dbname=dbname), shell=True)
+    check_output('psql -d {dbname} -c "CREATE SCHEMA IF NOT EXISTS observatory"'.format(
+        dbname=dbname), shell=True)
+    os.environ['PGDATABASE'] = dbname
 
-recreate_db()
 
-
-from tasks.util import shell
 from contextlib import contextmanager
-from tasks.meta import (get_engine, current_session, Base, session_commit,
-                        session_rollback)
 from luigi.worker import Worker
 from luigi.scheduler import CentralPlannerScheduler
 
 
 def setup():
+    from tasks.meta import current_session, Base
     if Base.metadata.bind.url.database != 'test':
         raise Exception('Can only run tests on database "test"')
     session = current_session()
@@ -49,6 +48,7 @@ def setup():
 
 
 def teardown():
+    from tasks.meta import current_session, Base
     if Base.metadata.bind.url.database != 'test':
         raise Exception('Can only run tests on database "test"')
     session = current_session()
@@ -68,9 +68,9 @@ def runtask(task):
     try:
         for klass, cb_dict in task._event_callbacks.iteritems():
             if isinstance(task, klass):
-                 start_callbacks = cb_dict.get('event.core.start', [])
-                 for scb in start_callbacks:
-                     scb(task)
+                start_callbacks = cb_dict.get('event.core.start', [])
+                for scb in start_callbacks:
+                    scb(task)
         task.run()
         task.on_success()
     except Exception as exc:
@@ -81,6 +81,7 @@ def runtask(task):
 @contextmanager
 def session_scope():
     """Provide a transactional scope around a series of operations."""
+    from tasks.meta import current_session, session_commit, session_rollback
     try:
         yield current_session()
         session_commit(None)

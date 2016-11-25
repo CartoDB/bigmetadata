@@ -5,7 +5,7 @@ from tasks.util import TagsTask
 class LicenseTags(TagsTask):
 
     def version(self):
-        return 1
+        return 3
 
     def tags(self):
         return [
@@ -21,7 +21,7 @@ class LicenseTags(TagsTask):
             OBSTag(id='uk_ogl',
                     name='UK Open Government Licence (OGL)',
                     type='license',
-                    description='http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/'),
+                    description='The Licensor grants you a worldwide, royalty-free, perpetual, non-exclusive licence to use the Information subject to the conditions `here <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/>`_.'),
             OBSTag(id='ine_property',
                     name='National Statistics Institute (INE) Property',
                     type='license',
@@ -51,7 +51,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 8
+        return 10
 
     def tags(self):
         return [
@@ -143,6 +143,14 @@ class UnitTags(TagsTask):
                    name='Kilometres',
                    type='unit',
                    description=''),
+            OBSTag(id='inches',
+                   name='Inches',
+                   type='unit',
+                   description=''),
+            OBSTag(id='km2',
+                   name='Kilometers squared',
+                   type='unit',
+                   description=''),
         ]
 
 
@@ -203,7 +211,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 19
+        return 21
 
     def tags(self):
         return [
@@ -267,12 +275,24 @@ class SubsectionTags(TagsTask):
                    name='Commerce & Economy',
                    type='subsection',
                    description='Broader measures of economic and commercial activity.'),
+            OBSTag(id='business_demography',
+                   name='Business Demography',
+                   type='subsection',
+                   description = 'Measures of enterprise growth and decline.'),
             OBSTag(id='segments',
                    name='Population segments',
                    type='subsection',
                    description='Segmentations of the population.'),
+            OBSTag(id='society',
+                   name='Society',
+                   type='subsection',
+                   description='Measures of society quality of life'),
             OBSTag(id='energy',
                    name='Energy',
                    type='subsection',
                    description='Measures related to energy production and consumption.'),
+            OBSTag(id='environmental',
+                   name='Environmental',
+                   type='subsection',
+                   description='Attributes of the natural environment'),
         ]

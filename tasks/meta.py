@@ -39,7 +39,6 @@ _engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format
 ))
 
 
-
 def get_engine():
 
     @event.listens_for(_engine, "connect")
@@ -69,22 +68,20 @@ def catalog_lonlat(column_id):
                        'us.census.tiger.school_district_secondary',
                        'us.census.tiger.school_district_elementary_clipped',
                        'us.census.tiger.school_district_secondary_clipped'):
-        return (-73.7067, 40.7025)
+        return (40.7025, -73.7067)
     elif column_id.startswith('uk'):
         if 'WA' in column_id:
-            return (-3.184833526611328, 51.46844551219723)
+            return (51.46844551219723, -3.184833526611328)
         else:
-            return (-0.08883476257324219, 51.51461834694225)
+            return (51.51461834694225, -0.08883476257324219)
     elif column_id.startswith('es'):
-        return (-2.51141249535454, 42.8226119029222)
+        return (42.8226119029222, -2.51141249535454)
     elif column_id.startswith('us.zillow'):
-        return (-81.3544048197256, 28.3305906291771)
+        return (28.3305906291771, -81.3544048197256)
     elif column_id.startswith('mx.'):
-        return (-99.17019367218018, 19.41347699386547)
-    elif column_id.startswith('ca.'):
-        return (-79.39716339111328, 43.65694347778308)
+        return (19.41347699386547, -99.17019367218018)
     elif column_id.startswith('th.'):
-        return (100.49263000488281, 13.725377712079784)
+        return (13.725377712079784, 100.49263000488281)
     # cols for French Guyana only
     elif column_id in ('fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
                        , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
@@ -98,11 +95,11 @@ def catalog_lonlat(column_id):
                        , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
                        , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
                        , 'fr.insee.P12_ACTOCC15P_ILT45D'):
-        return (-52.32908248901367, 4.938408371206558)
-    elif column_id.startswith('fr'):
-        return (2.3613739013671875, 48.860875144709475)
-    elif column_id.startswith('ca'):
-        return (-79.37965393066406, 43.65594991256823)
+        return (4.938408371206558, -52.32908248901367)
+    elif column_id.startswith('fr.'):
+        return (48.860875144709475, 2.3613739013671875)
+    elif column_id.startswith('ca.'):
+        return (43.65594991256823, -79.37965393066406)
     elif column_id.startswith('us.census.'):
         return (40.7, -73.9)
     elif column_id.startswith('us.dma.'):
@@ -117,6 +114,8 @@ def catalog_lonlat(column_id):
         return (40.7, -73.9)
     elif column_id.startswith('eu.'):
         return (52.52207036136366, 13.40606689453125)
+    elif column_id.startswith('us.epa.'):
+        return (40.7, -73.9)
     else:
         raise Exception('No catalog point set for {}'.format(column_id))
 
@@ -402,6 +401,12 @@ class OBSColumn(Base):
         children.sort(key=lambda x: natural_sort_key(x.name))
         return children
 
+    def is_geomref(self):
+        '''
+        Returns True if the column is a geomref, else Null
+        '''
+        return GEOM_REF in self.targets.values()
+
     def has_children(self):
         '''
         Returns True if this column has children, False otherwise.
@@ -448,6 +453,34 @@ class OBSColumn(Base):
         Return tuple (longitude, latitude) for the catalog for this measurement.
         '''
         return catalog_lonlat(self.id)
+
+    def geom_timespans(self):
+        '''
+        Return a dict of geom columns and timespans that this measure is
+        available for.
+        '''
+        geom_timespans = {}
+        for table in self.tables:
+            table = table.table
+            geomref_column = table.geomref_column()
+            geom_column = [t for t, rt in geomref_column.targets.iteritems()
+                           if rt == GEOM_REF][0]
+            if geom_column not in geom_timespans:
+                geom_timespans[geom_column] = []
+            geom_timespans[geom_column].append(table.timespan)
+        return geom_timespans
+
+    def source_tags(self):
+        '''
+        Return source tags.
+        '''
+        return [tag for tag in self.tags if tag.type.lower() == 'source']
+
+    def license_tags(self):
+        '''
+        Return license tags.
+        '''
+        return [tag for tag in self.tags if tag.type.lower() == 'license']
 
 
 class OBSTable(Base):
@@ -506,6 +539,27 @@ class OBSTable(Base):
     description = Column(Text)
 
     version = Column(Numeric, default=0, nullable=False)
+
+    def geom_column(self):
+        '''
+        Return the column geometry column for this table, if it has one.
+
+        Returns None if there is none.
+        '''
+        for col in self.columns:
+            if lower(col.type) == 'geometry':
+                return col
+
+    def geomref_column(self):
+        '''
+        Return the geomref column for this table, if it has one.
+
+        Returns None if there is none.
+        '''
+        for col in self.columns:
+            col = col.column
+            if col.is_geomref():
+                return col
 
 
 class OBSTag(Base):
