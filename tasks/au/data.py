@@ -8,7 +8,6 @@ from tasks.meta import current_session
 from tasks.au.geo import (
     GEO_STE,
     GEOGRAPHIES, GeographyColumns, Geography, BaseParams)
-from tasks.au.cols_bcp import BCPColumns
 
 
 PROFILES = (
