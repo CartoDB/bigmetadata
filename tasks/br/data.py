@@ -1,5 +1,6 @@
 import os
 import csv
+import pandas as pd
 
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 
@@ -59,13 +60,8 @@ class ImportData(BaseParams, CSV2TempTableTask):
     def requires(self):
         return DownloadData(resolution=self.resolution, state=self.state)
 
-    def read_method(self, fname):
-        coldef = self.coldef()
-        numcols = len(coldef)
-        return r"cut -d ';' -f 1-{numcols} {fname} | tr -d '\015'".format(
-            fname=fname,
-            numcols=numcols
-        )
+    def version(self):
+        return 1
 
     def input_csv(self):
         if self.state == 'sp':
@@ -73,11 +69,24 @@ class ImportData(BaseParams, CSV2TempTableTask):
         else:
             state_code = self.state.upper()
 
-        return '"{downloadpath}/"*/*/*"/{tablename}_{state_code}.csv"'.format(
-            downloadpath=self.input().path,
+        filename = '{tablename}_{state_code}.[xX][lL][sS]'.format(
             tablename=self.tablename,
             state_code=state_code
         )
+
+        path = shell('find {downloadpath} -name "{filename}"'.format(downloadpath=self.input().path, filename=filename))
+
+        df = pd.read_excel(path.split('\n')[0])
+        df.to_csv(
+            os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
+            state_code=state_code)),
+            index=False,
+            sep=';',
+            encoding='utf8'
+        )
+
+        return os.path.join(self.input().path,'{tablename}_{state_code}.csv'.format(tablename=self.tablename,
+            state_code=state_code))
 
 
 class ImportAllTables(BaseParams, WrapperTask):
@@ -112,7 +121,7 @@ class ImportAll(BaseParams, WrapperTask):
 
 class Columns(ColumnsTask):
 
-    tablename = Parameter(default='Domicilio02')
+    tablename = Parameter(default='Basico')
 
     def requires(self):
         requirements = {
