@@ -10,7 +10,13 @@ from tasks.meta import GEOM_REF, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from abc import ABCMeta
 from collections import OrderedDict
-from tasks.br.geo import BaseParams, GEOGRAPHIES, STATES
+from tasks.br.geo import (
+    BaseParams,
+    GEOGRAPHIES,
+    STATES,
+    Geography,
+    GeographyColumns
+)
 
 
 TABLES = ['Basico',
@@ -273,3 +279,54 @@ class ImportAllColumns(WrapperTask):
     def requires(self):
         for table in TABLES:
             yield Columns(tablename=table)
+
+
+#####################################
+# COPY TO OBSERVATORY
+#####################################
+class Censos(BaseParams, TableTask):
+
+    tablename = Parameter(default='Basico')
+
+    def requires(self):
+        return {
+            'data': ImportData(resolution=self.resolution, state=self.state, tablename=self.tablename),
+            'geo': Geography(resolution=self.resolution, state=self.state),
+            'geometa': GeographyColumns(resolution=self.resolution, state=self.state),
+            'meta': Columns(tablename=self.tablename),
+        }
+
+    def timespan(self):
+        return '2010'
+
+    def columns(self):
+        cols = OrderedDict()
+        input_ = self.input()
+        cols['Cod_setor'] = input_['geometa']['geom_id']
+        for colname, coltarget in input_['meta'].iteritems():
+            # if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
+            cols[colname] = coltarget
+        return cols
+
+    def populate(self):
+        session = current_session()
+        column_targets = self.columns()
+        out_colnames = column_targets.keys()
+        in_colnames = ['{}::{}'.format(colname.split('_')[1], ct.get(session).type)
+                              for colname, ct in column_targets.iteritems()]
+        in_colnames[0] = 'Cod_setor'
+
+        cmd =   'INSERT INTO {output} ({out_colnames}) ' \
+                'SELECT {in_colnames} FROM {input} '.format(
+                    output=self.output().table,
+                    input=self.input()['data'].table,
+                    in_colnames=', '.join(in_colnames),
+                    out_colnames=', '.join(out_colnames))
+        session.execute(cmd)
+
+
+class CensosAllTables(BaseParams, WrapperTask):
+
+    def requires(self):
+        for table in TABLES:
+            yield Censos(resolution=self.resolution, state=self.state, tablename=table)
