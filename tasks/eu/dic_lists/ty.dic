@@ -1,0 +1,27 @@
+TY0001	Current expenditure plus capital expenditure
+TY0002	Investments
+TY0003	End-of-pipe
+TY0004	Integrated technologies
+TY0005	Current expenditure
+TY0006	Internal current expenditure
+TY0007	Wages
+TY0008	Other
+TY0009	External current expenditure
+TY0010	Fees and other payments to public bodies
+TY0011	Payments to private enterprises
+TY0012	Operational benefits from environmental protection activities
+TY0013	Sales of related goods and services
+TY0014	Saving/Costs offsets
+TY0015	Labour inputs - number of persons
+TY0016	Capital expenditure
+TOT_EGSS	Total environmental goods and services sector
+ANC	Ancillary activities
+MKT	Market activities
+ES_CS	Market activities: environmental specific and connected services
+GDC	Market activities: connected goods
+GDA	Market activities: adapted goods
+TCE	Market activities: end-of-pipe technologies
+TCI	Market activities: integrated technologies
+C_REP	Market activities: cleaner and more resource efficient products
+NMKT	Non-market activities
+OWN_USE	Own final use activities

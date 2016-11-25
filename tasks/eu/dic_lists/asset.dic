@@ -1,0 +1,68 @@
+N1	Produced assets
+N1N	Inventories and valuables
+N11	Total fixed assets
+N11N	Cultivated assets and intangible fixed assets
+N111	Tangible fixed assets
+N1111	Dwellings
+N1112	Other buildings and structures
+N11121	Non-residential buildings
+N11122	Other structures
+N111M	Total construction
+N1113	Machinery and equipment
+N11131	Transport equipment
+N11132	Other machinery and equipment
+N111321	Other machinery and equipment: office machinery and hardware
+N111322	Other machinery and equipment: radio, tv and communiation equipment
+N111329	Other machinery and equipment n.e.c.
+N1114	Cultivated assets
+N112	Intangible fixed assets
+N1121	Mineral exploration 
+N1122	Computer software 
+N1123	Entertainment, literary or artistic originals 
+N1129	Other intangible fixed assets n.e.c.
+N113_N114	Machinery and equipment + weapon systems
+N1132	ICT equipment
+N11321	Computer hardware
+N11322	Telecommunications equipment
+N1139_N114	Other machinery and equipment+ weapon systems
+N115	Cultivated biological resources
+N117	Intellectual property products
+N1173	Computer software and databases
+N12	Inventories
+N13	Valuables
+N2	Non-produced assets
+N21	Tangible non-produced assets
+N211	Land
+N212	Subsoil assets
+N21A	Non-cultivated biological resources and water resources
+N22	Intangible non-produced assets
+T11	Total fixed assets (net)
+T11N	Cultivated assets and intangible fixed assets (net)
+T111	Tangible fixed assets (net)
+T1111	Dwellings (net)
+T1112	Other buildings and structures (net)
+T11121	Non-residential buildings (net)
+T11122	Other structures n.e.c. (net)
+T1113	Machinery and equipment (net)
+T11131	Transport equipment (net)
+T11132	Other machinery and equipment (net)
+T111321	Other machinery and equipment: office machinery and hardware (net)
+T111322	Other machinery and equipment: radio, tv and communiation equipment (net)
+T111329	Other machinery and equipment n.e.c. (net)
+T1114	Cultivated assets (net)
+T111M	Total construction (net)
+T112	Intangible fixed assets (net)
+T1121	Mineral exploration  (net)
+T1122	Computer software (net)
+T1123	Entertainment, literary or artistic originals (net)
+T113_T114	Machinery and equipment + weapon systems (net)
+T1132	ICT equipment (net)
+T11321	Computer hardware (net)
+T11322	Telecommunications equipment (net)
+T1139_T114	Other machinery and equipment+ weapon systems (net)
+T115	Cultivated biological resources (net)
+T117	Intellectual property products (net)
+T1173	Computer software and databases (net)
+T2	Non-produced assets (net)
+T21	Tangible non-produced assets (net)
+NAP	Not applicable

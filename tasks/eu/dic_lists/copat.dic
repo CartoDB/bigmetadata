@@ -1,0 +1,12 @@
+TOTAL	Total
+SGL	Single inventors/applicants
+NAT	Co-patenting involving inventors/applicants from the reporting country
+NAT_EU	Co-patenting involving inventors/applicants from the reporting country and one or more EU Member States
+NAT_EU_NEU	Co-patenting involving inventors/applicants from the reporting country, one or more EU Member States and one or more non-EU countries
+NAT_NEU	Co-patenting involving inventors/applicants from the reporting country and one or more non-EU countries
+EUI_NEUA	Share of co-patenting involving EU inventors and non-EU applicants in the total of EU's domestic inventions
+NEUI_EUA	Share of co-patenting involving non-EU inventors and EU applicants in the total of EU's domestic applications
+EU_NEU	Co-patenting between EU Member States and non-EU countries
+EU_EU	Co-patenting between EU Member States
+EUA_NEUA	Share of co-patenting involving EU and non-EU applicants in the total of all international patents
+EUI_NEUI	Share of co-patenting involving EU and non-EU inventors in the total of all international patents

@@ -1,0 +1,32 @@
+MAT_ON	Day-to-day rates
+MAT_M01	1-month rates
+MAT_M03	3-month rates
+MAT_M06	6-month rates
+MAT_M12	12-month rates
+DEPRT	Official deposit rates
+LOANS	Official lending rates
+REFI	Official refinancing operation rates
+OTHER	Other official rates
+DR	Discount rate
+CBAR	Central bank advances rate
+DDMR	Day-to-day money rate
+TBRT	Treasury bill rate
+CGBY	Long-term government bond yields
+PSBY	Private sector bond yields
+HGBY	Harmonised government bond yields
+MTGBY	Medium-term government bond yields
+RDDR	National minus US interest rates: discount rate
+RDDDMR	National minus US interest rates: short term rates
+RDGBY	National minus US interest rates: central government bond yields
+MCBY	EMU convergence criterion bond yields
+MCBYMOV	Moving average over 12 months
+CBRR	Central bank reference rate
+3MR	3-month money market rates
+DEPR	Commercial bank deposit rates
+LENR	Commercial bank lending rates
+MAT_Y02	2 years' maturity
+MAT_Y03	3 years' maturity
+MAT_Y05	5 years' maturity
+MAT_Y07	7 years' maturity
+MAT_Y10	10 years' maturity
+MCSPE	Maastricht criterion special indicator 

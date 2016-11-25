@@ -1,0 +1,15 @@
+TOTAL	Total
+C001	Goods road transport enterprises
+C002	Employment on goods road transport enterprises
+C003	Investment and maintenance expenditures on road transport vehicles
+C004	Investment and maintenance expenditures on road infrastructure
+C005	Expenditure on rolling stock in principal railway enterprises
+C006	Expenditure on infrastructure in principal railway enterprises
+C007	Investment and maintenance expenditures on vessels in goods inland waterways transport enterprises
+C008	Investment and maintenance expenditures on inland waterways transport infrastrastructure
+TRAN	Expenditures on transport
+SHOP	Expenditures on shopping
+REST	Expenditures on restaurants/cafés
+ACC	Expenditures on accommodation
+DUR	Expenditures on durables and valuable goods
+OTH	Other expenditures

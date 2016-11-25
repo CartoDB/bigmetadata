@@ -1,0 +1,536 @@
+DE1001V	Population on the 1st of January, total
+DE1002V	Population on the 1st of January, male
+DE1003V	Population on the 1st of January, female
+DE1040V	Population on the 1st of January, 0-4 years, total
+DE1041V	Population on the 1st of January, 0-4 years, male
+DE1042V	Population on the 1st of January, 0-4 years, female
+DE1074V	Population on the 1st of January, 5-9 years, total
+DE1075V	Population on the 1st of January, 5-9 years, male
+DE1076V	Population on the 1st of January, 5-9 years, female
+DE1077V	Population on the 1st of January, 10-14 years, total
+DE1078V	Population on the 1st of January, 10-14 years, male
+DE1079V	Population on the 1st of January, 10-14 years, female
+DE1046V	Population on the 1st of January, 15-19 years, total
+DE1047V	Population on the 1st of January, 15-19 years, male
+DE1048V	Population on the 1st of January, 15-19 years, female
+DE1049V	Population on the 1st of January, 20-24 years, total
+DE1050V	Population on the 1st of January, 20-24 years, male
+DE1051V	Population on the 1st of January, 20-24 years, female
+DE1058V	Population on the 1st of January, 25-34 years, total
+DE1059V	Population on the 1st of January, 25-34 years, male
+DE1060V	Population on the 1st of January, 25-34 years, female
+DE1061V	Population on the 1st of January, 35-44 years, total
+DE1062V	Population on the 1st of January, 35-44 years, male
+DE1063V	Population on the 1st of January, 35-44 years, female
+DE1064V	Population on the 1st of January, 45-54 years, total
+DE1065V	Population on the 1st of January, 45-54 years, male
+DE1066V	Population on the 1st of January, 45-54 years, female
+DE1025V	Population on the 1st of January, 55-64 years, total
+DE1026V	Population on the 1st of January, 55-64 years, male
+DE1027V	Population on the 1st of January, 55-64 years, female
+DE1028V	Population on the 1st of January, 65-74 years, total
+DE1029V	Population on the 1st of January, 65-74 years, male
+DE1030V	Population on the 1st of January, 65-74 years, female
+DE1055V	Population on the 1st of January, 75 years and over, total
+DE1056V	Population on the 1st of January, 75 years and over, male
+DE1057V	Population on the 1st of January, 75 years and over, female
+DE1073V	Median population age
+DE2001V	Nationals
+DE2002V	EU foreigners
+DE2003V	Non-EU foreigners
+DE2008V	Native-born
+DE2009V	Foreign-born
+DE2010V	Foreign-born in a EU country
+DE2011V	Foreign-born in a non-EU country
+DE2012V	Foreigners
+DE3001V	Private households (excluding institutional households)
+DE3017V	Population living in private households (excluding institutional households)
+DE3002V	One person households
+DE3005V	Lone parent private households (with children aged 0 to under 18)
+DE3008V	Lone pensioner (above retirement age) households
+DE3011V	Households with children aged 0 to under 18
+SA1001V	Number of conventional dwellings
+SA1004V	Number of houses
+SA1005V	Number of apartments
+SA1007V	Number of households living in houses
+SA1008V	Number of households living in apartments
+SA1011V	Households owning their own dwelling
+SA1012V	Households in social housing
+SA1013V	Households in private rented housing
+SA1029V	Number of people in accommodation for the homeless
+SA1050V	Average price for buying a house - EUR
+SA1051V	Average price for buying an apartment - EUR
+SA1049V	Average annual rent for housing per m² - EUR
+SA1018V	Dwellings lacking basic amenities
+SA1025V	Empty conventional dwellings
+SA1022V	Average area of living accommodation - m²/person
+SA2004V	Infant Mortality per year
+SA2007V	Number of live births per year
+SA2013V	Number of deaths per year under 65 due to diseases of the circulatory or respiratory systems
+SA2016V	Total deaths under 65 per year
+SA2017V	Total deaths under 65 per year, male
+SA2018V	Total deaths under 65 per year, female
+SA2019V	Total deaths per year
+SA2020V	Total deaths per year, male
+SA2021V	Total deaths per year, female
+SA3005V	Number of murders and violent deaths
+EC1001V	Economically active population, total
+EC1002V	Economically active population, male
+EC1003V	Economically active population, female
+EC1174V	Economically active population, 20-64, total
+EC1175V	Economically active population, 20-64, male
+EC1176V	Economically active population, 20-64, female
+EC1145V	Economically active population 55-64, total
+EC1146V	Economically active population 55-64, male
+EC1147V	Economically active population 55-64, female
+EC1010V	Persons unemployed, total
+EC1011V	Persons unemployed, male
+EC1012V	Persons unemployed, female
+EC1177V	Persons employed, 20-64, total
+EC1178V	Persons employed, 20-64, male
+EC1179V	Persons employed, 20-64, female
+EC1180V	Persons employed, 55-64, total
+EC1181V	Persons employed, 55-64, male
+EC1182V	Persons employed, 55-64, female
+EC2021V	All companies
+EC2039V	Number of  local units - all economic activities
+EC2020V	Total employment/jobs (work place based)
+EC2008V	Employment (jobs) in agriculture, fishery (NACE Rev. 2, A)
+EC2009V	Employment (jobs) in mining, manufacturing, energy (NACE Rev. 2, B-E)
+EC2022V	Employment (jobs) in construction (NACE Rev. 2, F)
+EC2032V	Employment (jobs) in trade, transport, hotels, restaurants (NACE Rev. 2, G to I)
+EC2033V	Employment (jobs) in information and communication (NACE Rev. 2, J)
+EC2034V	Employment (jobs) in financial and insurance activities (NACE Rev. 2, K)
+EC2035V	Employment (jobs) in real estate activities (NACE Rev. 2, L)
+EC2036V	Employment (jobs) in professional, scientific and technical activities; administrative and support service activities (NACE Rev. 2, M and N)
+EC2037V	Employment (jobs) in public administration, defence, education, human health and social work activities (NACE Rev. 2, O to Q)
+EC2038V	Employment (jobs) in arts, entertainment and recreation; other service activities; activities of household and extra-territorial organizations and bodies (NACE Rev. 2, R to U)
+EC2030V	Gross Domestic Product of NUTS-3 region in million Euro
+EC2031V	Gross Domestic Product per inhabitant in PPS of NUTS-3 region
+EC3039V	Median disposable annual household income - EUR
+EC3040V	Average disposable annual household income - EUR
+EC3064V	Share of persons living in households with very low work intensity - %
+EC3065V	Share of persons at risk of poverty after social transfers -%
+EC3066V	Share of severely materially deprived persons -%
+EC3067V	Share of persons at risk of poverty or social exclusion -%
+TE1001V	Number of children 0-4 in day care or school
+TE1039V	Share of early leavers from education and training, total -%
+TE1040V	Share of early leavers from education and training, male -%
+TE1041V	Share of early leavers from education and training, female -%
+TE1026V	Students in higher education (ISCED level 5-8 from 2014 onwards), total
+TE1027V	Students in higher education (ISCED level 5-8 from 2014 onwards), male
+TE1028V	Students in higher education (ISCED level 5-8 from 2014 onwards), female
+TE2025V	Persons (aged 25-64) with ISCED level 0, 1or 2 as the highest level of education
+TE2028V	Persons (aged 25-64) with ISCED level 3 or 4 as the highest level of education
+TE2031V	Persons aged 25-64 with ISCED level 5, 6, 7 or 8 as the highest level of education, from 2014 onwards
+EN1002V	Total number of hours of sunshine per day
+EN1003V	Average temperature of warmest month - degrees
+EN1004V	Average temperature of coldest month - degrees
+EN1005V	Rainfall - litre/m²
+EN2002V	Number of days ozone O³ concentrations exceed 120 µg/m³
+EN2003V	Number of hours nitrogen dioxide NO² concentrations exceed 200 µg/m³
+EN2005V	Number of days particulate matter PM10 concentrations exceed 50 µg/m³
+EN2025V	Accumulated ozone concentration in excess 70 µg/m³
+EN2026V	Annual average concentration of NO² (µg/m³)
+EN2027V	Annual average concentration of PM10 (µg/m³)
+EN2030V	Number of days particulate matter PM2.5 concentrations exceed 50 µg/m³
+EN2033V	Number of residents exposed to road traffic noise >65 dB(A) at day time
+EN2035V	Number of residents exposed to road traffic noise >55 dB(A) at night time
+EN2032V	Number of residents exposed to rail traffic (incl. tram) noise >65dB(A) at daytime
+EN2036V	Number of residents exposed to rail traffic (incl. tram) noise >55dB(A) at night-time
+EN2028V	Number of residents exposed to air traffic noise >65 dB(A) at day time
+EN2029V	Number of residents exposed to air traffic noise >55 dB(A) at night time
+EN3003V	Total use of water - m³
+EN3012V	Share of population connected to potable drinking water system - %
+EN3013V	Share of population connected to sewerage treatment system - %
+EN3010V	Price of a m³ of domestic water - Euro
+EN3011V	Share of the urban waste water load (in population equivalents) treated according to the applicable standard -%
+EN4008V	Municipal waste generated (domestic and commercial), total - 1000 t
+EN5015V	Water and wetland - km²
+EN5012V	Green space area - km²
+EN5016V	Land used for agricultural purposes - km²
+EN5026V	Other land use - km²
+EN5001V	Green space to which the public has access - km²
+EN5109V	Overbound - underbound based on population (qualitative indicator)
+EN5110V	Overbound - underbound based on area (qualitative indicator)
+EN5200V	Share of land (%): Continuous residential urban fabric
+EN5201V	Share of land (%): Discontinuous residential urban fabric
+EN5202V	Share of land (%): Industrial, commercial, public, military and private units
+EN5203V	Share of land (%): Transport infrastructure
+EN5204V	Share of land (%): Other artificial areas
+EN5205V	Share of land (%): Green urban areas and sports and leisure facilities
+EN5206V	Share of land (%): Agricultural areas
+EN5207V	Share of land (%): Natural areas
+TT1003V	Share of journeys to work by car -%
+TT1010V	Share of journeys to work by public transport (rail, metro, bus, tram) -%
+TT1006V	Share of journeys to work by motor cycle -%
+TT1007V	Share of journeys to work by bicycle -%
+TT1008V	Share of journeys to work by foot -%
+TT1012V	Share of journeys to work by car or motor cycle -%
+TT1019V	Average time of journey to work - minutes
+TT1020V	Average length of journey to work by private car - km
+TT1064V	People commuting into the city
+TT1065V	People commuting out of the city
+TT1079V	Length of bicycle network (dedicated cycle paths and lanes) - km
+TT1080V	Cost of a combined monthly ticket (all modes of public transport) for 5-10 km in the central zone - EUR
+TT1081V	Cost of a taxi ride of 5 km to the centre at day time - EUR
+TT1057V	Number of private cars registered
+TT1060V	Number of deaths in road accidents
+TT1071V	Accessibility by air (EU27 = 100) - index
+TT1072V	Accessibility by rail (EU27 = 100) - index
+TT1073V	Accessibility by road (EU27 = 100) - index
+TT1074V	Multimodal accessibility (EU27 = 100) - index
+CR1003V	Number of cinema seats (total capacity)
+CR1005V	Cinema attendance (per year)
+CR1007V	Number of museum visitors (per year)
+CR1008V	Number of theatres
+CR1010V	Number of public libraries (all distribution points)
+CR1015V	Number of public swimming pools (indoor and outdoor, excluding beaches)
+CR2001V	Total nights spent in tourist accommodation establishments
+CR2009V	Number of bed-places in tourist accommodation establishments
+CR2004V	Number of air passengers using nearest airport
+CR2005V	Number of air passengers using nearest airport - total arrivals
+CR2006V	Number of air passengers using nearest airport - domestic arrivals
+CR2007V	Number of air passengers using nearest airport - total departures
+CR2008V	Number of air passengers using nearest airport - domestic departures
+PS1012V	Public transport in the city, for example bus, tram or metro: very satisfied
+PS1013V	Public transport in the city, for example bus, tram or metro: rather satisfied
+PS1014V	Public transport in the city, for example bus, tram or metro: rather unsatisfied
+PS1015V	Public transport in the city, for example bus, tram or metro: not at all satisfied
+PS1016V	Public transport in the city, for example bus, tram or metro: don't know / no answer
+PS1022V	Schools in the city: very satisfied
+PS1023V	Schools in the city: rather satisfied
+PS1024V	Schools in the city: rather unsatisfied
+PS1025V	Schools in the city: not at all satisfied
+PS1026V	Schools in the city: don't know / no answer
+PS1032V	Health care services offered by hospitals in the city: very satisfied
+PS1033V	Health care services offered by hospitals in the city: rather satisfied
+PS1034V	Health care services offered by hospitals in the city: rather unsatisfied
+PS1035V	Health care services offered by hospitals in the city: not at all satisfied
+PS1036V	Health care services offered by hospitals in the city: don't know / no answer
+PS1042V	Health care services offered by doctors in the city: very satisfied
+PS1043V	Health care services offered by doctors in the city: rather satisfied
+PS1044V	Health care services offered by doctors in the city: rather unsatisfied
+PS1045V	Health care services offered by doctors in the city: not at all satisfied
+PS1046V	Health care services offered by doctors in the city: don't know / no answer
+PS1052V	Green spaces such as public parcs or gardens: very satisfied
+PS1053V	Green spaces such as public parcs or gardens: rather satisfied
+PS1054V	Green spaces such as public parcs or gardens: rather unsatisfied
+PS1055V	Green spaces such as public parcs or gardens: not at all satisfied
+PS1056V	Green spaces such as public parcs or gardens: don't know / no answer
+PS1062V	Sports facilities such as sport fields and indoor sport halls in the city: very satisfied
+PS1063V	Sports facilities such as sport fields and indoor sport halls in the city: rather satisfied
+PS1064V	Sports facilities such as sport fields and indoor sport halls in the city: rather unsatisfied
+PS1065V	Sports facilities such as sport fields and indoor sport halls in the city: not at all satisfied
+PS1066V	Sports facilities such as sport fields and indoor sport halls in the city: don't know / no answer
+PS1072V	Cinemas in the city: very satisfied
+PS1073V	Cinemas in the city: rather satisfied
+PS1074V	Cinemas in the city: rather unsatisfied
+PS1075V	Cinemas in the city: not at all satisfied
+PS1076V	Cinemas in the city: don't know / no answer
+PS1082V	Cultural facilities such as concert halls, theatres, museums and libraries in the city: very satisfied
+PS1083V	Cultural facilities such as concert halls, theatres, museums and libraries in the city: rather satisfied
+PS1084V	Cultural facilities such as concert halls, theatres, museums and libraries in the city: rather unsatisfied
+PS1085V	Cultural facilities such as concert halls, theatres, museums and libraries in the city: not at all satisfied
+PS1086V	Cultural facilities such as concert halls, theatres, museums and libraries in the city: don't know / no answer
+PS1092V	Public Internet access such as internet cafes or libraries in the city: very satisfied
+PS1093V	Public Internet access such as internet cafes or libraries in the city: rather satisfied
+PS1094V	Public Internet access such as internet cafes or libraries in the city: rather unsatisfied
+PS1095V	Public Internet access such as internet cafes or libraries in the city: not at all satisfied
+PS1096V	Public Internet access such as internet cafes or libraries in the city: don't know / no answer
+PS1102V	Internet access at home in the city: very satisfied
+PS1103V	Internet access at home in the city: rather satisfied
+PS1104V	Internet access at home in the city: rather unsatisfied
+PS1105V	Internet access at home in the city: not at all satisfied
+PS1106V	Internet access at home in the city: don't know / no answer
+PS2012V	In this city it is easy to find a good job: strongly agree
+PS2013V	In this city it is easy to find a good job: somewhat agree
+PS2014V	In this city it is easy to find a good job: somewhat disagree
+PS2015V	In this city it is easy to find a good job: strongly disagree
+PS2016V	In this city it is easy to find a good job: don't know / no answer
+PS2022V	Foreigners who live in this city are well integrated: strongly agree
+PS2023V	Foreigners who live in this city are well integrated: somewhat agree
+PS2024V	Foreigners who live in this city are well integrated: somewhat disagree
+PS2025V	Foreigners who live in this city are well integrated: strongly disagree
+PS2026V	Foreigners who live in this city are well integrated: don't know / no answer
+PS2032V	In this city, it is easy to find good housing at a reasonable price: strongly agree
+PS2033V	In this city, it is easy to find good housing at a reasonable price: somewhat agree
+PS2034V	In this city, it is easy to find good housing at a reasonable price: somewhat disagree
+PS2035V	In this city, it is easy to find good housing at a reasonable price: strongly disagree
+PS2036V	In this city, it is easy to find good housing at a reasonable price: don't know / no answer
+PS2042V	When you contact administrative services of this city, they help you efficiently: strongly agree
+PS2043V	When you contact administrative services of this city, they help you efficiently: somewhat agree
+PS2044V	When you contact administrative services of this city, they help you efficiently: somewhat disagree
+PS2045V	When you contact administrative services of this city, they help you efficiently: strongly disagree
+PS2046V	When you contact administrative services of this city, they help you efficiently: don't know / no answer
+PS2052V	In this city, air pollution is a big problem: strongly agree
+PS2053V	In this city, air pollution is a big problem: somewhat agree
+PS2054V	In this city, air pollution is a big problem: somewhat disagree
+PS2055V	In this city, air pollution is a big problem: strongly disagree
+PS2056V	In this city, air pollution is a big problem: don't know / no answer
+PS2062V	In this city, noise is a big problem: strongly agree
+PS2063V	In this city, noise is a big problem: somewhat agree
+PS2064V	In this city, noise is a big problem: somewhat disagree
+PS2065V	In this city, noise is a big problem: strongly disagree
+PS2066V	In this city, noise is a big problem: don't know / no answer
+PS2072V	this city is a clean city: strongly agree
+PS2073V	this city is a clean city: somewhat agree
+PS2074V	this city is a clean city: somewhat disagree
+PS2075V	this city is a clean city: strongly disagree
+PS2076V	this city is a clean city: don't know / no answer
+PS2082V	This city spends its resources in a responsible way: strongly agree
+PS2083V	This city spends its resources in a responsible way: somewhat agree
+PS2084V	This city spends its resources in a responsible way: somewhat disagree
+PS2085V	This city spends its resources in a responsible way: strongly disagree
+PS2086V	This city spends its resources in a responsible way: don't know / no answer
+PS2092V	You are satisfied to live in this city: strongly agree
+PS2093V	You are satisfied to live in this city: somewhat agree
+PS2094V	You are satisfied to live in this city: somewhat disagree
+PS2095V	You are satisfied to live in this city: strongly disagree
+PS2096V	You are satisfied to live in this city: don't know / no answer
+PS2102V	In the next five years, it will be more pleasant to live in this city: strongly agree
+PS2103V	In the next five years, it will be more pleasant to live in this city: somewhat agree
+PS2104V	In the next five years, it will be more pleasant to live in this city: somewhat disagree
+PS2105V	In the next five years, it will be more pleasant to live in this city: strongly disagree
+PS2106V	In the next five years, it will be more pleasant to live in this city: don't know / no answer
+PS3014V	You have difficulty paying your bills at the end of the month: rarely or never
+PS3024V	You feel safe in the neighborhood you live in: rarely or never
+PS3042V	Health care services offered by doctors and hospitals in this city: very satisfied
+PS3043V	Health care services offered by doctors and hospitals in this city: rather satisfied
+PS3044V	Health care services offered by doctors and hospitals in this city: rather unsatisfied
+PS3045V	Health care services offered by doctors and hospitals in this city: not at all satisfied
+PS3046V	Health care services offered by doctors and hospitals in this city: don't know / no answer
+PS3052V	The beauty of streets and buildings in your neighborhood: very satisfied
+PS3053V	The beauty of streets and buildings in your neighborhood: rather satisfied
+PS3054V	The beauty of streets and buildings in your neighborhood: rather unsatisfied
+PS3055V	The beauty of streets and buildings in your neighborhood: not at all satisfied
+PS3056V	The beauty of streets and buildings in your neighborhood: don't know / no answer
+PS3062V	Public spaces in this city such as markets, squares, pedestrian areas: very satisfied
+PS3063V	Public spaces in this city such as markets, squares, pedestrian areas: rather satisfied
+PS3064V	Public spaces in this city such as markets, squares, pedestrian areas: rather unsatisfied
+PS3065V	Public spaces in this city such as markets, squares, pedestrian areas: not at all satisfied
+PS3066V	Public spaces in this city such as markets, squares, pedestrian areas: don't know / no answer4
+PS3072V	Outdoor recreation outside / around this city, such as walking, cycling or picnicking : very satisfied
+PS3073V	Outdoor recreation outside / around this city, such as walking, cycling or picnicking : rather satisfied
+PS3074V	Outdoor recreation outside / around this city, such as walking, cycling or picnicking : rather unsatisfied
+PS3075V	Outdoor recreation outside / around this city, such as walking, cycling or picnicking : not at all satisfied
+PS3076V	Outdoor recreation outside / around this city, such as walking, cycling or picnicking : don't know / no answer
+PS3082V	The presence of foreigners is good for this city: strongly agree
+PS3083V	The presence of foreigners is good for this city: somewhat agree
+PS3084V	The presence of foreigners is good for this city: somewhat disagree
+PS3085V	The presence of foreigners is good for this city: strongly disagree
+PS3086V	The presence of foreigners is good for this city: don't know / no answer
+PS3092V	Generally speaking, most people in this city can be trusted: strongly agree
+PS3093V	Generally speaking, most people in this city can be trusted: somewhat agree
+PS3094V	Generally speaking, most people in this city can be trusted: somewhat disagree
+PS3095V	Generally speaking, most people in this city can be trusted: strongly disagree
+PS3096V	Generally speaking, most people in this city can be trusted: don't know / no answer
+PS3112V	In this city, poverty is a problem: strongly agree
+PS3113V	In this city, poverty is a problem: somewhat agree
+PS3114V	In this city, poverty is a problem: somewhat disagree
+PS3115V	In this city, poverty is a problem: strongly disagree
+PS3116V	In this city, poverty is a problem: don't know / no answer
+PS3122V	This city is committed to the fight against climate change (e.g; reducing energy consumption in housing or promoting alternatives to transport by car): strongly agree
+PS3123V	This city is committed to the fight against climate change (e.g; reducing energy consumption in housing or promoting alternatives to transport by car): somewhat agree
+PS3124V	This city is committed to the fight against climate change (e.g; reducing energy consumption in housing or promoting alternatives to transport by car): somewhat disagree
+PS3125V	This city is committed to the fight against climate change (e.g; reducing energy consumption in housing or promoting alternatives to transport by car): strongly disagree
+PS3126V	This city is committed to the fight against climate change (e.g; reducing energy consumption in housing or promoting alternatives to transport by car): don't know / no answer
+PS3132V	This city is a healthy city to live in: strongly agree
+PS3133V	This city is a healthy city to live in: somewhat agree
+PS3134V	This city is a healthy city to live in: somewhat disagree
+PS3135V	This city is a healthy city to live in: strongly disagree
+PS3136V	This city is a healthy city to live in: don't know / no answer
+PS3142V	You have difficulty paying your bills at the end of the month: always
+PS3143V	You have difficulty paying your bills at the end of the month: sometimes
+PS3144V	You have difficulty paying your bills at the end of the month: rarely
+PS3145V	You have difficulty paying your bills at the end of the month: never
+PS3146V	You have difficulty paying your bills at the end of the month: don't know / no answer
+PS3151V	Minutes per day spent travelling to work/training place: less than 10 minutes
+PS3152V	Minutes per day spent travelling to work/training place: 10-20 minutes
+PS3153V	Minutes per day spent travelling to work/training place: 20-30 minutes
+PS3154V	Minutes per day spent travelling to work/training place: 30-45 minuts
+PS3155V	Minutes per day spent travelling to work/training place: 45-60 minutes
+PS3156V	Minutes per day spent travelling to work/training place: more than 60 minutes
+PS3157V	Minutes per day spent travelling to work/training place: does not cummute, work from home
+PS3158V	Minutes per day spent travelling to work or training place: No work or training
+PS3159V	Minutes per day spent travelling to work/training place: don't know / no answer
+PS3161V	Means of transport primarily used to go to work/training place: public transport
+PS3162V	Means of transport primarily used to go to work/training place: car
+PS3163V	Means of transport primarily used to go to work/training place: bicycle
+PS3164V	Means of transport primarily used to go to work/training place: walking
+PS3165V	Means of transport primarily used to go to work/training place: motorcycle
+PS3166V	Means of transport primarily used to go to work/training place: other
+PS3167V	Means of transport primarily used to go to work/training place: don't know / no answer
+PS3168V	Means of transport primarily used to go to work/training place: train
+PS3169V	Means of transport primarily used to go to work/training place: ship or boat
+PS3170V	Means of transport primarily used to go to work/training place: none
+PS3171V	How often do you use public transport in this city?: never
+PS3172V	How often do you use public transport in this city?: less than once a month
+PS3173V	How often do you use public transport in this city?: more than once a month
+PS3174V	How often do you use public transport in this city?: at least once a week, but not every day
+PS3175V	How often do you use public transport in this city?: every day
+PS3176V	How often do you use public transport in this city?: don't know / no answer
+PS3181V	Why don't you use public transport?: not frequent enough
+PS3182V	Why don't you use public transport?: too congested
+PS3183V	Why don't you use public transport?: time schedule is not reliable
+PS3184V	Why don't you use public transport?: not adapted to my itinerary
+PS3185V	Why don't you use public transport? Not easy to access
+PS3186V	Why don't you use public transport? Not safe
+PS3187V	Why don't you use public transport?: I do not like public transport
+PS3188V	Why don't you use public transport?: too expensive
+PS3189V	Why don't you use public transport?: other
+PS3191V	Why don't you use public transport?: don't know / no answer
+PS3211V	Most important in my city: Urban safety
+PS3212V	Most important in my city: air pollution
+PS3213V	Most important in my city: noise
+PS3214V	Most important in my city: public transport
+PS3215V	Most important in my city: health services
+PS3216V	Most important in my city: social services
+PS3217V	Most important in my city: education and training
+PS3220V	Most important in my city: Unemployment
+PS3221V	Most important in my city: jobs creation / reduce unemployment
+PS3222V	Most important in my city: housing conditions
+PS3223V	Most important in my city: road infrastructure
+PS3224V	Most important in my city: don't know / no answer
+PS3230V	State of streets and buildings in my neighbourhood: very satisfied
+PS3231V	State of streets and buildings in my neighbourhood: rather satisfied
+PS3232V	State of streets and buildings in my neighbourhood: rather unsatisfied
+PS3233V	State of streets and buildings in my neighbourhood: not at all satisfied
+PS3234V	State of streets and buildings in my neighbourhood: don't know / no answer
+PS3250V	Availability of retail shops: very satisfied
+PS3251V	Availability of retail shops: rather satisfied
+PS3252V	Availability of retail shops: rather unsatisfied
+PS3253V	Availability of retail shops: not at all satisfied
+PS3254V	Availability of retail shops: don't know / no answer
+PS3260V	The quality of the air in the city: very satisfied
+PS3261V	The quality of the air in the city: rather satisfied
+PS3262V	The quality of the air in the city: rather unsatisfied
+PS3263V	The quality of the air in the city: not at all satisfied
+PS3264V	The quality of the air in the city: don't know / no answer
+PS3270V	The noise level in the city: very satisfied
+PS3271V	The noise level in the city: rather satisfied
+PS3272V	The noise level in the city: rather unsatisfied
+PS3273V	The noise level in the city: not at all satisfied
+PS3274V	The noise level in the city: don't know / no answer
+PS3280V	The cleanliness in the city: very satisfied
+PS3281V	The cleanliness in the city: rather satisfied
+PS3282V	The cleanliness in the city: rather unsatisfied
+PS3283V	The cleanliness in the city: not at all satisfied
+PS3284V	The cleanliness in the city: don't know / no answer
+PS3290V	You feel safe in this city: strongly agree
+PS3291V	You feel safe in this city: somewhat agree
+PS3292V	You feel safe in this city: somewhat disagree
+PS3293V	You feel safe in this city: strongly disagree
+PS3294V	You feel safe in this city: don't know / no answer
+PS3300V	You feel safe in the neighborhood you live in: strongly agree
+PS3301V	You feel safe in the neighborhood you live in: somewhat agree
+PS3302V	You feel safe in the neighborhood you live in: somewhat disagree
+PS3303V	You feel safe in the neighborhood you live in: strongly disagree
+PS3304V	You feel safe in the neighborhood you live in: don't know / no answer
+PS3310V	Most people in my neighbourhood can be trusted: strongly agree
+PS3311V	Most people in my neighbourhood can be trusted: somewhat agree
+PS3312V	Most people in my neighbourhood can be trusted: somewhat disagree
+PS3313V	Most people in my neighbourhood can be trusted: strongly disagree
+PS3314V	Most people in my neighbourhood can be trusted: don't know / no answer
+PS3320V	The public administration of the city can be trusted: strongly agree
+PS3321V	The public administration of the city can be trusted: somewhat agree
+PS3322V	The public administration of the city can be trusted: somewhat disagree
+PS3323V	The public administration of the city can be trusted: strongly disagree
+PS3324V	The public administration of the city can be trusted: don't know / no answer
+PS3330V	Your personal job situation: very satisfied
+PS3331V	Your personal job situation: fairly satisfied
+PS3332V	Your personal job situation: not very satisfied
+PS3333V	Your personal job situation: not at all satisfied
+PS3334V	Your personal job situation: don't know / no answer
+PS3340V	The financial situation of your household: very satisfied
+PS3341V	The financial situation of your household: fairly satisfied
+PS3342V	The financial situation of your household: not very satisfied
+PS3343V	The financial situation of your household: not at all satisfied
+PS3344V	The financial situation of your household: don't know / no answer
+PS3350V	The life you lead: very satisfied
+PS3351V	The life you lead: fairly satisfied
+PS3352V	The life you lead: not very satisfied
+PS3353V	The life you lead: not at all satisfied
+PS3354V	The life you lead: don't know / no answer
+PS3360V	I'm satisfied to live in this city: strongly agree
+PS3361V	I'm satisfied to live in this city: somewhat agree
+PS3362V	I'm satisfied to live in this city: somewhat disagree
+PS3363V	I'm satisfied to live in this city: strongly disagree
+PS3364V	I'm satisfied to live in this city: don't know / no answer
+PS9112V	Public transport in the city, for example bus, tram or metro: satisfied
+PS9322V	This city is committed to the fight against climate change (e.g., reducing energy consumption in housing or promoting alternatives to transport by car): agree
+PS9370V	The noise level in the city: satisfied
+PS9182V	Cultural facilities such as concert halls, theatres, museums and libraries in the city: satisfied
+PS9340V	The financial situation of your household: satisfied
+PS9232V	In this city, it is easy to find good housing at a reasonable price: agree
+PS9222V	Foreigners who live in this city are well integrated: agree
+PS9382V	The presence of foreigners is good for this city: agree
+PS9342V	Health care services offered by doctors and hospitals in this city: satisfied
+PS9122V	Schools in the city: satisfied
+PS9392V	Generally speaking, most people in this city can be trusted: agree
+PS9242V	When you contact administrative services of this city, they help you efficiently: agree
+PS9292V	You are satisfied to live in this city: agree
+PS9330V	Your personal job situation: satisfied
+DE1040I	Proportion of population aged 0-4 years
+DE1084I	Proportion of population aged 5-9 years
+DE1085I	Proportion of population aged 10-14 years
+DE1046I	Proportion of population aged 15-19 years
+DE1049I	Proportion of population aged 20-24 years
+DE1073I	Proportion of population aged 25-34 years
+DE1076I	Proportion of population aged 35-44 years
+DE1064I	Proportion of population aged 45-54 years
+DE1025I	Proportion of total population aged 55-64
+DE1028I	Proportion of population aged 65-74 years
+DE1055I	Proportion of population aged 75 years and over
+DE1003I	Women per 100 men
+DE1057I	Women per 100 men - aged 75 years and over
+DE1061I	Population change over 1 year
+DE1058I	Age dependency ratio (population aged 0-19 and 65 and more to population aged 20-64)
+DE1059I	Young-age dependency ratio (population aged 0-19 to population 20-64 years)
+DE1060I	Old age dependency ratio (population 65 and over to population 20 to 64 years)
+DE2001I	Nationals as a proportion of population
+DE2007I	Foreigners as a proportion of population
+DE2008I	Native-born as a proportion of population
+DE2009I	Foreign-born as a proportion of population
+DE2002I	EU foreigners as a proportion of population
+DE2003I	Non-EU foreigners as a proportion of population
+DE3004I	Average size of households
+DE3002I	Proportion of households that are 1-person households
+DE3005I	Proportion of households that are lone-parent households
+DE3008I	Proportion of households that are lone-pensioner households
+DE3011I	Proportion of households with children aged 0-17
+DE3016I	Lone parent households per 100 households with children aged 0-17
+SA1011I	Proportion of households living in owned dwellings
+SA1007I	Proportion of households living in houses
+SA1008I	Proportion of households living in apartments
+SA2029I	Crude death rate (per 1000 inhabitants)
+SA2016I	Mortality rate for <65 per year
+SA2017I	Mortality rate for <65 per year (Male)
+SA2018I	Mortality rate for <65 per year (Female)
+SA2013I	Mortality rate for individuals under 65 from heart diseases and respiratory illness
+SA2007I	Crude birth rate (per 1000 inhabitants)
+SA2004I	Infant mortality rate (per 1000 live births)
+EC1020I	Unemployment rate
+EC1011I	Unemployment rate, male
+EC1012I	Unemployment rate, female
+EC1001I	Activity rate
+EC1002I	Activity rate, male
+EC1003I	Activity rate, female
+EC2008I	Proportion of employment in agriculture fishery
+EC2009I	Proportion of employment in industries (NACE Rev.1.1 C-E)
+EC2022I	Proportion of employment in construction (NACE Rev.1.1 F)
+TE1001I	Number of Children 0-4 in day care (publ.&priv) per 1000 children 0-4
+TE1026I	Share of students in higher education in the total population (per 1000 persons)
+TE2028I	Proportion of working age population qualified at level 3 or 4 ISCED
+TE2031I	Proportion of population aged 25-64 qualified at level 5 to 8 ISCED, from 2014 onwards
+EN2029I	Proportion of residents exposed to air traffic noise >55 dB(A) at night time
+EN2032I	Proportion of residents exposed to rail traffic noise >65 dB(A) at day time
+EN2036I	Proportion of residents exposed to rail traffic noise >55 dB(A) at night time
+EN2033I	Proportion of residents exposed to road traffic noise >65 dB(A) at day time
+EN2035I	Proportion of residents exposed to road traffic noise >55 dB(A) at night time
+TT1057I	Number of registered cars per 1000 population
+TT1013I	Number of registered motor cycles per 1000 population
+TT1060I	People killed in road accidents per 10000 pop.
+CR1003I	Number of cinema seats per 1000 residents
+CR2011I	Total nights spent in tourist accommodation establishments per resident population
+CR2010I	Number of available beds per 1000 residents

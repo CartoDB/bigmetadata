@@ -1,0 +1,327 @@
+TOTAL	Total
+A-R_V-Y	All causes of death (A00-Y89) excluding S00-T98
+A-T_Z	All causes of diseases (A00-Z99) excluding V00-Y98
+A-T_Z_XNB	All causes of diseases (A00-Z99) excluding V00-Y98 and Z38
+A_B	Certain infectious and parasitic diseases (A00-B99)
+INFECT	Certain infectious diseases (A00-A40, A42-B99)
+BAC_PRO_INF	Selected invasive bacterial and protozoal infections (A38-A41, A46, A481, B50-B54, G00, G03, J02, L03)
+A15-A19_B90	Tuberculosis
+A00-A08	Intestinal infectious diseases except diarrhoea
+A00	Cholera
+A01	Typhoid and paratyphoid fevers
+A02	Other salmonella infections
+A03	Shigellosis
+A06	Amoebiasis
+A09	Diarrhoea and gastroenteritis of presumed infectious origin
+A15	Respiratory tuberculosis bacteriologically and histologically confirmed
+A21	Tularaemia
+A22	Anthrax
+A23	Brucellosis
+A26	Erysipeloid
+A27	Leptospirosis
+A35	Other tetanus
+A36	Diphtheria
+A39	Meningococcal infection
+A40_A41	Septicaemia
+A41	Other sepsis
+A46	Erysipelas
+A70	Chlamydia psittaci infections
+A78	Q fever
+A79	Other rickettsioses
+A80	Acute poliomyelitis
+A82	Rabies
+B01	Varicella [chickenpox]
+B05	Measles
+B06	Rubella
+B15-B19_B942	Viral hepatitis and sequelae of viral hepatitis
+B15-B19	Viral hepatitis
+B15	Acute hepatitis A
+B16	Acute hepatitis B
+B171_B182	Hepatitis C
+B20-B24	Human immunodeficiency virus [HIV] disease
+B24	Unspecified human immunodeficiency virus [HIV] disease
+B26	Mumps
+B54	Unspecified malaria
+A_B_OTH	Other infectious and parasitic diseases (remainder of A00-B99)
+C00-D48	Neoplasms
+C	Malignant neoplasms (C00-C97)
+C00-C14	Malignant neoplasm of lip, oral cavity, pharynx
+C15	Malignant neoplasm of oesophagus
+C16	Malignant neoplasm of stomach
+C18-C21	Malignant neoplasm of colon, rectosigmoid junction, rectum, anus and anal canal
+C18	Malignant neoplasm of colon
+C19-C21	Malignant neoplasm of rectosigmoid junction, rectum, anus and anal canal
+C22	Malignant neoplasm of liver and intrahepatic bile ducts
+C25	Malignant neoplasm of pancreas
+C31	Malignant neoplasm of accessory sinuses
+C32-C34	Malignant neoplasm of larynx,  trachea, bronchus and lung
+C32	Malignant neoplasm of larynx
+C33_C34	Malignant neoplasm of trachea, bronchus and lung
+C33	Malignant neoplasm of trachea
+C34	Malignant neoplasm of bronchus and lung
+C43_C44	Malignant neoplasms of skin
+C43	Malignant melanoma of skin
+C44	Other malignant neoplasms of skin
+C45	Mesothelioma
+C50	Malignant neoplasm of breast
+C53-C55	Malignant neoplasm of uterus
+C53	Malignant neoplasm of cervix uteri
+C54_C55	Malignant neoplasm of other parts of uterus
+C54	Malignant neoplasm of corpus uteri
+C56	Malignant neoplasm of ovary
+C61	Malignant neoplasm of prostate
+C62	Malignant neoplasm of testis
+C64	Malignant neoplasm of kidney, except renal pelvis
+C67	Malignant neoplasm of bladder
+C70-C72	Malignant neoplasm of brain and central nervous system
+C71	Malignant neoplasm of brain
+C73	Malignant neoplasm of thyroid gland
+C81-C96	Malignant neoplasms, stated or presumed to be primary, of lymphoid, haematopoietic and related tissue
+C81-C86	Hodgkin disease and lymphomas
+C81	Hodgkin disease
+C88_C90_C96	Other malignant neoplasm of lymphoid, haematopoietic and related tissue
+C91-C95	Leukaemia
+C91_C920	Lymphoid and acute myeloblastic leukaemia
+C95	Leukaemia of unspecified cell type
+C_OTH	Other malignant neoplasms (remainder of C00-C97)
+D00-D48	Non-malignant neoplasms (benign and uncertain)
+D00-D09	In situ neoplasms
+D04	Carcinoma in situ of skin
+D10-D36	Benign neoplasms
+D12	Benign neoplasm of colon, rectum, anus and anal canal
+D25	Leiomyoma of uterus
+D00-D48_OTH	Other in situ neoplasms, benign neoplasms and neoplasms of uncertain or unknown behaviour (remainder of D00-D48)
+D50-D89	Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism
+D50-D64	Anaemias
+D59	Acquired haemolytic anaemia
+D64	Other anaemias
+D65-D89	Other diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism
+D70	Agranulocytosis
+E	Endocrine, nutritional and metabolic diseases (E00-E90)
+E10-E14	Diabetes mellitus
+E_OTH	Other endocrine, nutritional and metabolic diseases (remainder of E00-E90)
+ALCOHOL	Alcohol related diseases, excluding external causes (F10, G312, G621, I426, K292, K70, K73, K740-K742, K746, K860)
+F01_F03_G30	Dementia including Alzheimer disease
+F	Mental and behavioural disorders (F00-F99)
+F00-F03	Dementia
+F00_F03	Dementia
+F01_F03	Dementia
+F10	Mental and behavioural disorders due to use of alcohol
+F11-F19	Mental and behavioural disorders due to psychoactive substance use
+TOXICO	Drug dependence, toxicomania (F11-F16, F18-F19)
+F20-F29	Schizophrenia, schizotypal and delusional disorders
+F20	Schizophrenia
+F30-F39	Mood [affective] disorders
+F31	Bipolar affective disorder
+F32_F33	Depressive disorders
+F_OTH	Other mental and behavioural disorders (remainder of F00-F99)
+INFECT_OTH	Other infectious diseases (G00, G03-G04, G06, G08-G09, H00-H01, H10, H16, H20, H30, H46, H60, H65-H66, H68, H70, I00-I02, I30, I33, I38, I40, I80, J00-J16, J20-J22, J31-J32, J36-J37, J40-J42, J85-J86, K04-K05, K20, K29, K35-K37, K61, K65, K73, K75, K81, K85, L00-L08, M00, M02, N10-N12, N15, N30, N34, N39, N41, N45, N49, N61, N70-N73, N75-N76, O23, O85-O86, O91, O98, P35-P39, R50)
+G_H	Diseases of the nervous system and the sense organs (G00-H95)
+G	Diseases of the nervous system (G00-G99)
+G00-G03	Meningitis
+G20	Parkinson disease
+G30	Alzheimer disease
+G35	Multiple sclerosis
+G40_G41	Epilepsy, status epilepticus
+G40	Epilepsy
+G45	Transient cerebral ischaemic attacks and related syndromes
+G50	Disorders of trigeminal nerve
+G92	Toxic encephalopathy
+G_OTH	Other diseases of the nervous system (remainder of G00-G99)
+H	Diseases of sensory organs (H00-H95)
+H00-H59	Diseases of the eye and adnexa
+H10	Conjunctivitis
+H25_H26_H28	Cataract
+H00-H59_OTH	Other diseases of the eye and adnexa (remainder of H00-H59)
+H60-H95	Diseases of the ear and mastoid process
+G_H_OTH	Other diseases of the nervous system and the sense organs (remainder of G00-H95)
+I	Diseases of the circulatory system (I00-I99)
+I01-I09	Rheumatic and other valvular heart disease
+I10-I15	Hypertensive diseases
+I20-I25	Ischaemic heart diseases
+I20	Angina pectoris
+I21_I22	Acute myocardial infarction including subsequent myocardial infarction
+I21	Acute myocardial infarction
+I20_I23-I25	Other ischaemic heart diseases
+I23-I25	Other ischaemic heart disease
+THROM_PU_EMB	Thrombosis with pulmonary embolism (I26, I801-I803, I809, I829)
+I26-I28	Pulmonary heart disease and diseases of pulmonary circulation
+I30-I51	Other heart diseases
+HEART_OTH	Other heart diseases (I30-I33, I39-I52)
+I44-I49	Conduction disorders and cardiac arrhythmias
+I50	Heart failure
+I60-I69	Cerebrovascular diseases
+I70	Atherosclerosis
+I71	Aortic aneurysm and dissection
+I83	Varicose veins of lower extremities
+I_OTH	Other diseases of the circulatory system (remainder of I00-I99)
+J	Diseases of the respiratory system (J00-J99)
+J00-J11	Acute upper respiratory infections and influenza
+J09-J11	Influenza (including swine flu)
+J10_J11	Influenza
+J12-J18	Pneumonia
+J18	Pneumonia, organism unspecified
+J20-J22	Other acute lower respiratory infections
+J35	Chronic diseases of tonsils and adenoids
+UPRESPIR_OTH	Other diseases of upper respiratory tract (J30-J34, J36-J39)
+J40-J44	Chronic obstructive pulmonary disorder
+J41-J44	Chronic bronchitis, emphysema, other chronic obstructive pulmonary disease
+J40-J47	Chronic lower respiratory diseases
+J44	Other chronic obstructive pulmonary disease
+J45_J46	Asthma and status asthmaticus
+J45	Asthma
+J40-J44_J47	Other lower respiratory diseases
+J60-J99	Other diseases of the respiratory system
+J60	Coalworker's pneumoconiosis
+J61	Pneumoconiosis due to asbestos and other mineral fibres
+J62	Pneumoconiosis due to dust containing silica
+J65	Pneumoconiosis associated with tuberculosis
+J67	Hypersensitivity pneumonitis due to organic dust
+J90	Pleural effusion, not elsewhere classified
+J92	Pleural plaque
+J_OTH	Other diseases of the respiratory system (remainder of J00-J99)
+K	Diseases of the digestive system (K00-K93)
+K00-K08	Disorders of teeth and supporting structures
+K09-K14	Other diseases of oral cavity, salivary glands and jaws
+K20-K23	Diseases of oesophagus
+K25-K28	Ulcer of stomach, duodenum and jejunum
+K29-K31	Dyspepsia and other diseases of stomach and duodenum
+ACUTE_INTEST	Acute abdomen, appendicitis, intestinal obstruction, cholecystitis/lithiasis, pancreatitis, hernia (K35-K38, K40-K46, K80-K83, K85, K861-K869, K915)
+K35-K38	Diseases of appendix
+K40	Inguinal hernia
+K41-K46	Other abdominal hernia
+K50_K51	Crohn disease and ulcerative colitis
+K52	Other noninfective gastroenteritis and colitis
+K56	Paralytic ileus and intestinal obstruction without hernia
+K57	Diverticular disease of intestine
+K60-K62	Diseases of anus and rectum
+INTESTINE_OTH	Other diseases of intestine (K55,K58-K59,K63)
+K70_K73_K74	Chronic liver disease
+K70	Alcoholic liver disease
+K71-K77	Other diseases of liver
+K71	Toxic liver disease
+K80	Cholelithiasis
+K81-K83	Other diseases of gallbladder and biliary tract
+K85-K87	Diseases of pancreas
+K_OTH	Other diseases of the digestive system (remainder of K00-K93)
+L	Diseases of the skin and subcutaneous tissue (L00-L99)
+L00-L08	Infections of the skin and subcutaneous tissue
+L20-L45	Dermatitis, eczema and papulosquamous disorders
+L_OTH	Other diseases of the skin and subcutaneous tissue (remainder of L00-L99)
+M	Diseases of the musculoskeletal system and connective tissue (M00-M99)
+RHEUM_ARTHRO	Rheumatoid arthritis and arthrosis (M05-M06,M15-M19)
+M16	Coxarthrosis [arthrosis of hip]
+M17	Gonarthrosis [arthrosis of knee]
+M23	Internal derangement of knee
+ARTHROPAT_OTH	Other arthropathies (M00-M15, M18-M22 ,M24-M25)
+M30-M36	Systemic connective tissue disorders
+M40-M49	Deforming dorsopathies and spondylopathies
+M50_M51	Cervical disc disorders, other intervertebral disc disorders
+M54	Dorsalgia
+M60-M79	Soft tissue disorders
+M53_M80-M99	Other disorders of the musculoskeletal system and connective tissue
+M_OTH	Other diseases of the musculoskeletal system and connective tissue (remainder of M00-M99)
+N	Diseases of the genitourinary system (N00-N99)
+N00-N29	Diseases of kidney and ureter
+N00-N16	Glomerular and renal tubulo-interstitial diseases
+NEPHR	Nephritis and nephrosis (N00-N07, N17-N19, N25-N27)
+URO_PROST	Obstructive uropathy and prostatic hyperplasia (N13, N20-N21, N35, N40, N991)
+N14	Drug- and heavy-metal-induced tubulo-interstitial and tubular conditions
+N17-N19	Renal failure
+N18	Chronic renal failure
+N20-N23	Urolithiasis
+N25-N39	Other diseases of the urinary system
+N40	Hyperplasia of prostate
+N41-N51	Other diseases of male genital organs
+N60-N64	Disorders of breast
+N70-N77	Inflammatory diseases of female pelvic organs
+N91-N95	Menstrual, menopausal and other female genital conditions
+N_OTH	Other diseases of the genitourinary system (remainder of N00-N99)
+O	Pregnancy, childbirth and the puerperium (O00-O99)
+O04	Medical abortion
+ABORT_OTH	Other pregnancy with abortive outcome (O00-O03,O05-O08)
+O10-O48	Complications of pregnancy predominantly in the antenatal period
+O60-O75	Complications of labour and delivery
+O80	Single spontaneous delivery
+O81-O84	Other delivery
+O85-O92	Complications predominantly related to the puerperium
+O95-O99	Other obstetric conditions
+P	Certain conditions originating in the perinatal period (P00-P96)
+P00-P96_A33	Complications of perinatal period
+P00-P04	Fetus and newborn affected by maternal factors and by complications of pregnancy, labour and delivery
+P05-P08	Disorders related to length of gestation and fetal growth
+P07	Disorders related to short gestation and low birth weight, not elsewhere classified 
+PERINAT_OTH	Other perinatal conditions (P10-P15, P70-P74, P76-P78, P80-P83, P90-P96)
+P20-P29	Respiratory and cardiovascular disorders specific to the perinatal period
+P20-P21	Intrauterine hypoxia and birth asphyxia
+P22	Respiratory distress of newborn
+P23-P29	Other respiratory disorders originating in the perinatal period
+P35-P39	Infections specific to the perinatal period
+P50-P61	Haemorrhagic and haematological disorders of fetus and newborn
+P_OTH	Other conditions originating in the perinatal period (remainder of P00-P96)
+Q	Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)
+Q00-Q07	Congenital malformations of the nervous system
+MALFORM_OTH	Other malformations (Q10-Q18, Q30-Q89)
+Q20-Q28	Congenital malformations of the circulatory system
+Q30-Q34	Congenital malformations of the respiratory system
+Q60-Q64	Congenital malformations of the urinary system
+Q65-Q79	Congenital malformations and deformations of the musculoskeletal system
+Q90-Q99	Chromosomal abnormalities, not elsewhere classified
+Q_OTH	Other congenital malformations and chromosomal abnormalities
+R	Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)
+R07	Pain in throat and chest
+R10	Abdominal and pelvic pain
+R69	Unknown and unspecified causes of morbidity
+R95	Sudden infant death syndrome
+R96-R99	Ill-defined and unknown causes of mortality
+R_OTH	Other symptoms, signs and abnormal clinical and laboratory findings (remainder of R00-R99)
+S_T	Injury, poisoning and certain other consequences of external causes (S00-T98)
+INJ_OTH	Other injuries (S10-S51, S53-S71, S73-S81, S83-T14, T79)
+S06	Intracranial injury
+INJ_HEAD_OTH	Other injuries to the head (S00-S05, S07-S09)
+S52	Fracture of forearm
+S72	Fracture of femur
+S82	Fracture of lower leg, including ankle
+S93	Dislocation, sprain and strain of joints and ligaments at ankle and foot level
+T20-T32	Burns and corrosions
+T36-T65	Poisonings by drugs, medicaments and biological substances and toxic effects
+T80-T88	Complications of surgical and medical care, not elsewhere classified
+T90-T98	Sequelae of injuries, of poisoning and of other consequences of external causes
+S_T_OTH	Other and unspecified effects of external causes (remainder of S00-T98)
+V01-Y89	External causes of morbidity and mortality (V01-Y89)
+ACC	Accidents (V01-X59, Y85, Y86)
+V_Y85	Transport accidents (V01-V99, Y85)
+V01-X59	Accidents
+V	Transport accidents (V01-V99)
+V01-V09	Pedestrian injured in transport accident
+V10-V19	Pedal cyclist injured in transport accident
+V20-V29	Motorcycle rider injured in transport accident
+V30-V39	Occupant of three-wheeled motor vehicle injured in transport accident
+V40-V49	Car occupant injured in transport accident
+V50-V59	Occupant of pick-up truck or van injured in transport accident
+V60-V69	Occupant of heavy transport vehicle injured in transport accident
+V70-V79	Bus occupant injured in transport accident
+ACC_TRNS_OTH	Other land transport accidents, other and unspecified transport accidents (V80-V89, V98-V99)
+W00-X59	Other external causes of accidental injury
+ACC_OTH	Other accidents (W20-W64, W75-X39, X50-X59, Y86)
+W00-W19	Falls
+W65-W74	Accidental drowning and submersion
+SUIC_SELFINJ	Suicide and self-inflicted injuries (X60-X84, Y10-Y34)
+X60-X84_Y870	Intentional self-harm
+X40-X49	Accidental poisoning by and exposure to noxious substances
+X60-X84	Intentional self-harm
+X85-Y09_Y871	Assault
+X85-Y09	Assault
+Y10-Y34_Y872	Event of undetermined intent
+Y10-Y34	Event of undetermined intent
+SURG_MED_MIS	Misadventures to patients during surgical and medical care (Y60-Y69, Y83-Y84)
+V01-Y89_OTH	Other external causes of morbidity and mortality (remainder of V01-Y89)
+Z	Factors influencing health status and contact with health services (Z00-Z99)
+Z03	Medical observation and evaluation for suspected diseases and conditions
+Z30	Contraceptive management
+Z38	Liveborn infants according to place of birth
+Z51	Other medical care
+Z_OTH	Other factors influencing health status and contact with health services (remainder of Z00-Z99)
+U	Codes for special purposes (U00-U99)
+OTH	All categories not elsewhere classified
+UNK	Unknown

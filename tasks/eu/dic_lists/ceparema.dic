@@ -1,0 +1,34 @@
+TOTAL	Total environmental protection and resource management activities
+TOT_CEPA	Total environmental protection activities
+CEPA1-3	Protection of ambient air and climate; wastewater management; waste management
+CEPA1_4_5_7	Protection of ambient air and climate; protection and remediation of soil, groundwater and surface water; noise and vibration abatement; protection against radiation
+CEPA1_4-9	Protection of ambient air and climate; protection and remediation of soil, groundwater and surface water; noise and vibration abatement; protection of biodiversity and landscapes; protection against radiation; environmental research and development; other environmental protection activities
+CEPA1	Protection of ambient air and climate
+CEPA112_122	Protection of climate and ozone layer
+CEPA2	Wastewater management
+CEPA3	Waste management
+CEPA4-9	Protection and remediation of soil, groundwater and surface water; noise and vibration abatement; protection of biodiversity and landscapes; protection against radiation; environmental research and development; other environmental protection activities
+CEPA4	Protection and remediation of soil, groundwater and surface water
+CEPA5	Noise and vibration abatement (excluding workplace protection)
+CEPA6	Protection of biodiversity and landscapes
+CEPA7-9	Protection against radiation; environmental research and development; other environmental protection activities
+CEPA7	Protection against radiation (excluding external safety)
+CEPA8_9	Environmental research and development; other environmental protection activities
+CEPA8	Environmental research and development
+CEPA812	Environmental research and development for the protection of atmosphere and climate
+CEPA9	Other environmental protection activities
+TOT_CREMA	Total resource management activities
+CREMA10	Management of waters
+CREMA11	Management of forest resources
+CREMA11A	Management of forest areas
+CREMA11B	Minimisation of the intake of forest resources
+CREMA12	Management of wild flora and fauna
+CREMA13	Management of energy resources
+CREMA13A	Production of energy from renewable sources
+CREMA13B	Heat/energy saving and management
+CREMA13C	Minimisation of the use of fossil energy as raw materials
+CREMA14	Management of minerals
+CREMA15	Research and development activities for resource management
+CREMA15A	Research and development activities for the production of energy from renewable sources
+CREMA16	Other resource management activities
+CREMA12_15_16	Management of wild flora and fauna; research and development activities for resource management; other resource management activities

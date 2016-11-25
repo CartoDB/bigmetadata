@@ -1,0 +1,11 @@
+RUNW	Number of runways
+LGT_RUNW	Total length of paved runways longer than 2438 m
+CHECK	Total check-in facilities
+CHECK_CONV	Conventional check-in desks
+CHECK_SELF	Self service check-in kiosks
+GATE	Total gates
+GATE_FIBI	Gates equipped with fingers/bridges
+GATE_OTH	Other gates
+PARK	Total parking places
+PARK_SH	Short stay places
+PARK_ML	Medium and long stay places

@@ -20,7 +20,7 @@ from slugify import slugify
 import requests
 
 from luigi import (Task, Parameter, LocalTarget, Target, BooleanParameter,
-                   ListParameter, DateParameter, WrapperTask)
+                   ListParameter, DateParameter, WrapperTask, Event)
 from luigi.s3 import S3Target
 
 from sqlalchemy import Table, types, Column
@@ -379,9 +379,11 @@ class CartoDBTarget(Target):
         return self.tablename
 
     def exists(self):
-        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 0'.format(
+        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 1'.format(
             tablename=self.tablename))
-        return resp.status_code == 200
+        if resp.status_code != 200:
+            return False
+        return resp.json()['total_rows'] > 0
 
     def remove(self):
         api_key = os.environ['CARTODB_API_KEY']
@@ -877,6 +879,7 @@ class TableToCartoViaImportAPI(Task):
     force = BooleanParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
     table = Parameter()
+    columns = ListParameter(default=[])
 
     def run(self):
         url = os.environ['CARTODB_URL']
@@ -886,12 +889,21 @@ class TableToCartoViaImportAPI(Task):
         except OSError:
             pass
         tmp_file_path = os.path.join('tmp', classpath(self), self.table + '.csv')
-        shell(r'''psql -c '\copy {schema}.{tablename} TO '"'"{tmp_file_path}"'"'
-              WITH CSV HEADER' '''.format(
-                  schema=self.schema,
-                  tablename=self.table,
-                  tmp_file_path=tmp_file_path,
-              ))
+        if not self.columns:
+            shell(r'''psql -c '\copy {schema}.{tablename} TO '"'"{tmp_file_path}"'"'
+                  WITH CSV HEADER' '''.format(
+                      schema=self.schema,
+                      tablename=self.table,
+                      tmp_file_path=tmp_file_path,
+                  ))
+        else:
+            shell(r'''psql -c '\copy (SELECT {columns} FROM {schema}.{tablename}) TO '"'"{tmp_file_path}"'"'
+                  WITH CSV HEADER' '''.format(
+                      schema=self.schema,
+                      tablename=self.table,
+                      tmp_file_path=tmp_file_path,
+                      columns=', '.join(self.columns),
+                  ))
         curl_resp = shell(
             'curl -s -F privacy=public -F type_guessing=false '
             '  -F file=@{tmp_file_path} "{url}/api/v1/imports/?api_key={api_key}"'.format(
@@ -899,7 +911,10 @@ class TableToCartoViaImportAPI(Task):
                 url=url,
                 api_key=api_key
             ))
-        import_id = json.loads(curl_resp)["item_queue_id"]
+        try:
+            import_id = json.loads(curl_resp)["item_queue_id"]
+        except ValueError:
+            raise Exception(curl_resp)
         while True:
             resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
                 url=os.environ['CARTODB_URL'],
@@ -907,6 +922,7 @@ class TableToCartoViaImportAPI(Task):
                 api_key=api_key
             ))
             if resp.json()['state'] == 'complete':
+                LOGGER.info("Waiting for import %s for %s", import_id, self.table)
                 break
             elif resp.json()['state'] == 'failure':
                 raise Exception('Import failed: {}'.format(resp.json()))
@@ -945,11 +961,11 @@ class TableToCartoViaImportAPI(Task):
                     colname=colname, data_type=data_type
                 ) for colname, data_type, _ in resp])
             if alter:
-                resp = query_cartodb(
-                    'ALTER TABLE {tablename} {alter}'.format(
-                        tablename=self.table,
-                        alter=alter)
-                )
+                alter_stmt = 'ALTER TABLE {tablename} {alter}'.format(
+                    tablename=self.table,
+                    alter=alter)
+                LOGGER.info(alter_stmt)
+                resp = query_cartodb(alter_stmt)
                 if resp.status_code != 200:
                     raise Exception('could not alter columns for "{tablename}":'
                                     '{err}'.format(tablename=self.table,
@@ -1080,15 +1096,44 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
-            schema=classpath(self)))
-        target = PostgresTarget(classpath(self), self.task_id)
-        #if not getattr(self, 'wiped', False) and (self.force or target.empty()):
-        if getattr(self, 'first_time', True) and (self.force or target.empty()):
-            shell("psql -c 'DROP TABLE IF EXISTS \"{schema}\".{tablename}'".format(
-                schema=classpath(self), tablename=self.task_id))
-        self.first_time = False
-        return target
+        return PostgresTarget(classpath(self), self.task_id)
+
+
+@TempTableTask.event_handler(Event.START)
+def clear_temp_table(task):
+    target = task.output()
+    shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
+        schema=classpath(task)))
+    if task.force or target.empty():
+        session = current_session()
+        session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
+		        schema=classpath(task), tablename=task.task_id))
+        session.flush()
+
+
+class GdbFeatureClass2TempTableTask(TempTableTask):
+    '''
+    A task that extracts one vector shape layer from a geodatabase to a
+    TempTableTask.
+    '''
+
+    feature_class = Parameter()
+
+    def input_gdb(self):
+        '''
+        This method must be implemented by subclasses.  Should return a path
+        to a GDB to convert to shapes.
+        '''
+        raise NotImplementedError("Must define `input_gdb` method")
+
+    def run(self):
+        shell('''
+              PG_USE_COPY=yes ogr2ogr -f "PostgreSQL" PG:"dbname=$PGDATABASE \
+              active_schema={schema}" -t_srs "EPSG:4326" -nlt MultiPolygon \
+              -nln {tablename} {infile}
+              '''.format(schema=self.output().schema,
+                         infile=self.input_gdb(),
+                         tablename=self.output().tablename))
 
 
 class Shp2TempTableTask(TempTableTask):
@@ -1096,6 +1141,8 @@ class Shp2TempTableTask(TempTableTask):
     A task that loads :meth:`~.util.Shp2TempTableTask.input_shp()` into a
     temporary Postgres table.  That method must be overriden.
     '''
+
+    encoding = Parameter(default='latin1', significant=False)
 
     def input_shp(self):
         '''
@@ -1115,11 +1162,12 @@ class Shp2TempTableTask(TempTableTask):
         operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no '.format(
             schema=schema)
         for shp in shps:
-            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
+            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING={encoding} ' \
                     'ogr2ogr -f PostgreSQL PG:"dbname=$PGDATABASE ' \
                     'active_schema={schema}" -t_srs "EPSG:4326" ' \
                     '-nlt MultiPolygon -nln {table} ' \
                     '{operation} \'{input}\' '.format(
+                        encoding=self.encoding,
                         schema=schema,
                         table=tablename,
                         input=shp,
@@ -1174,8 +1222,8 @@ class CSV2TempTableTask(TempTableTask):
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell('head -n 1 {csv}'.format(csv=csv))
-        return [(h, 'Text') for h in header_row.split(self.delimiter)]
+        header_row = shell('head -n 1 {csv}'.format(csv=csv)).strip()
+        return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
 
     def run(self):
         if isinstance(self.input_csv(), basestring):
@@ -1186,7 +1234,7 @@ class CSV2TempTableTask(TempTableTask):
         session = current_session()
         session.execute('CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
-            coldef=', '.join(['{} {}'.format(*c) for c in self.coldef()])
+            coldef=', '.join(['"{}" {}'.format(*c) for c in self.coldef()])
         ))
         session.commit()
         options = ['''DELIMITER '"'{}'"' '''.format(self.delimiter)]
@@ -1199,10 +1247,16 @@ class CSV2TempTableTask(TempTableTask):
                     table=self.output().table,
                     options=' '.join(options)
                 ))
+            self.after_copy()
         except:
+            session.rollback()
             session.execute('DROP TABLE IF EXISTS {output}'.format(
                 output=self.output().table))
+            session.commit()
             raise
+
+    def after_copy(self):
+        pass
 
 
 class LoadPostgresFromURL(TempTableTask):
@@ -1274,7 +1328,7 @@ class TableTask(Task):
         '''
         This method must populate (most often via ``INSERT``) the output table.
 
-        For example: 
+        For example:
         '''
         raise NotImplementedError('Must implement populate method that '
                                    'populates the table')

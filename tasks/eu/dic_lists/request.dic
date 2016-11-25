@@ -1,0 +1,17 @@
+TOTAL	Total requests (requests and re-examination requests)
+REQ	Requests
+RX_REQ	Re-examination requests
+INFO	Requests for information
+INFO_GEN	Requests for information: general reasons (Article 34.5)
+INFO_UAM	Requests for information: family of unaccompanied minors (Articles 6.5 and 8.6)
+INFO_DEP	Requests for information: family of dependent persons (Article 16.4)
+RESP	Responses to requests for information
+RESP_GEN	Responses to requests for information: general reasons (Article 34.5)
+RG_W1-5	Responses to requests for information received within 5 weeks: general reasons (Article 34.5)
+RG_W_GT5	Responses to requests for information received in more than 5 weeks: general reasons (Article 34.5)
+RESP_UAM	Responses to requests for information: family of unaccompanied minors (Articles 6.5 and 8.6)
+RU_W1-5	Responses to requests for information received within 5 weeks: family of unaccompanied minors (Articles 6.5 and 8.6)
+RU_W_GT5	Responses to requests for information received in more than 5 weeks: family of unaccompanied minors (Articles 6.5 and 8.6)
+RESP_DEP	Responses to requests for information: family of dependent persons (Article 16.4)
+RD_W1-5	Responses to requests for information received within 5 weeks: family of dependent persons (Article 16.4)
+RD_W_GT5	Responses to requests for information received in more than 5 weeks: family of dependent persons (Article 16.4)

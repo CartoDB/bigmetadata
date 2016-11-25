@@ -10,7 +10,7 @@ from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
                    DateParameter)
 from luigi.s3 import S3Target
 from tasks.util import shell
-from tasks.meta import current_session, OBSTag
+from tasks.meta import current_session, OBSTag, OBSColumn
 from tasks.carto import GenerateStaticImage, ImagesForMeasure, GenerateThumb
 
 from datetime import date
@@ -27,7 +27,8 @@ ENV.filters['strip_tag_id'] = strip_tag_id
 
 SECTION_TEMPLATE = ENV.get_template('section.html')
 SUBSECTION_TEMPLATE = ENV.get_template('subsection.html')
-
+LICENSES_TEMPLATE = ENV.get_template('licenses.html')
+SOURCES_TEMPLATE = ENV.get_template('sources.html')
 
 
 class GenerateRST(Task):
@@ -50,22 +51,24 @@ class GenerateRST(Task):
         requirements = {}
         for section_subsection, _ in self.output().iteritems():
             section_id, subsection_id = section_subsection
-            subsection = session.query(OBSTag).get(subsection_id)
+            #subsection = session.query(OBSTag).get(subsection_id)
+            resp = session.execute('''
+                SELECT DISTINCT numer_id
+                FROM observatory.obs_meta
+                WHERE numer_tags ? 'section/{section_id}'
+                  AND numer_tags ? 'subsection/{subsection_id}'
+                ORDER BY numer_id
+            '''.format(section_id=section_id,
+                       subsection_id=subsection_id))
             if self.images:
-                if '.. cartofigure:: ' in subsection.description:
-                    viz_id = re.search(r'\.\. cartofigure:: (\S+)', subsection.description).groups()[0]
-                    if self.format == 'pdf':
-                        img = GenerateThumb(viz=viz_id)
-                    else:
-                        img = GenerateStaticImage(viz=viz_id)
-                    requirements[viz_id] = img
-                for column in subsection.columns:
-                    if column.type.lower() == 'numeric' and column.weight > 0 and not column.id.startswith('uk'):
+                for row in resp:
+                    column_id = row[0]
+                    if column_id.startswith('uk'):
                         if self.format == 'pdf':
-                            img = GenerateThumb(measure=column.id, force=False)
+                            img = GenerateThumb(measure=column_id, force=False)
                         else:
-                            img = ImagesForMeasure(measure=column.id, force=False)
-                        requirements[column.id] = img
+                            img = ImagesForMeasure(measure=column_id, force=False)
+                        requirements[column_id] = img
 
         return requirements
 
@@ -74,14 +77,20 @@ class GenerateRST(Task):
         session = current_session()
         i = 0
         for section in session.query(OBSTag).filter(OBSTag.type == 'section'):
+            targets[(section.id, 'tags.boundary')] = LocalTarget(
+                'catalog/source/{section}/boundary.rst'.format(
+                    section=strip_tag_id(section.id)))
             for subsection in session.query(OBSTag).filter(OBSTag.type == 'subsection'):
                 i += 1
-                if i > 1 and self.preview:
+                if i > 10 and self.preview:
                     break
                 targets[(section.id, subsection.id)] = LocalTarget(
                     'catalog/source/{section}/{subsection}.rst'.format(
                         section=strip_tag_id(section.id),
                         subsection=strip_tag_id(subsection.id)))
+
+        targets[('licenses', None)] = LocalTarget('catalog/source/licenses.rst')
+        targets[('sources', None)] = LocalTarget('catalog/source/sources.rst')
         return targets
 
     def template_globals(self):
@@ -90,31 +99,77 @@ class GenerateRST(Task):
             'IMAGE_PATH': image_path
         }
 
+    def build_licenses(self, target):
+        session = current_session()
+        fhandle = target.open('w')
+        fhandle.write(LICENSES_TEMPLATE.render(
+            licenses=session.query(OBSTag).filter(
+                OBSTag.type == 'license').order_by(OBSTag.name),
+            **self.template_globals()
+        ).encode('utf8'))
+        fhandle.close()
+
+    def build_sources(self, target):
+        session = current_session()
+        fhandle = target.open('w')
+        fhandle.write(SOURCES_TEMPLATE.render(
+            sources=session.query(OBSTag).filter(
+                OBSTag.type == 'source').order_by(OBSTag.name),
+            **self.template_globals()
+        ).encode('utf8'))
+        fhandle.close()
+
     def run(self):
         session = current_session()
         for section_subsection, target in self.output().iteritems():
             section_id, subsection_id = section_subsection
+
+            if section_id == 'licenses':
+                self.build_licenses(target)
+                continue
+            elif section_id == 'sources':
+                self.build_sources(target)
+                continue
+
             section = session.query(OBSTag).get(section_id)
             subsection = session.query(OBSTag).get(subsection_id)
+
+            if subsection_id == 'tags.boundary':
+                resp = session.execute('''
+                    SELECT DISTINCT c.id
+                    FROM observatory.obs_tag section_t,
+                         observatory.obs_column_tag section_ct,
+                         observatory.obs_tag subsection_t,
+                         observatory.obs_column_tag subsection_ct,
+                         observatory.obs_column c
+                    WHERE section_t.id = section_ct.tag_id
+                      AND subsection_t.id = subsection_ct.tag_id
+                      AND c.id = section_ct.column_id
+                      AND c.id = subsection_ct.column_id
+                      AND subsection_t.id = '{subsection_id}'
+                      AND section_t.id = '{section_id}'
+                      AND subsection_t.type = 'subsection'
+                      AND section_t.type = 'section'
+                    GROUP BY c.id
+                    ORDER BY c.id
+                '''.format(section_id=section_id,
+                           subsection_id=subsection_id))
+            else:
+                resp = session.execute('''
+                    SELECT DISTINCT numer_id
+                    FROM observatory.obs_meta
+                    WHERE numer_tags ? 'section/{section_id}'
+                      AND numer_tags ? 'subsection/{subsection_id}'
+                    ORDER BY numer_id
+                '''.format(section_id=section_id,
+                           subsection_id=subsection_id))
+
             target.makedirs()
             fhandle = target.open('w')
 
-            if '.. cartofigure:: ' in subsection.description:
-                viz_id = re.search(r'\.\. cartofigure:: (\S+)', subsection.description).groups()[0]
-                viz_path = os.path.join('../', *self.input()[viz_id].path.split(os.path.sep)[2:])
-                subsection.description = re.sub(r'\.\. cartofigure:: (\S+)',
-                                                '.. figure:: {}'.format(viz_path),
-                                                subsection.description)
             columns = []
-            for col in subsection.columns:
-                if section not in col.tags:
-                    continue
-
-                if col.weight < 1:
-                    continue
-
-                if not col.tables:
-                    continue
+            for col_id in resp:
+                col = session.query(OBSColumn).get(col_id)
 
                 # tags with denominators will appear beneath that denominator
                 if not col.has_denominators():
@@ -132,7 +187,8 @@ class GenerateRST(Task):
 
             columns.sort(lambda x, y: cmp(x.name, y.name))
 
-            with open('catalog/source/{}.rst'.format(strip_tag_id(section.id)), 'w') as section_fhandle:
+            with open('catalog/source/{}.rst'.format(strip_tag_id(section_id)), 'w') \
+                    as section_fhandle:
                 section_fhandle.write(SECTION_TEMPLATE.render(
                     section=section, **self.template_globals()))
             if columns:

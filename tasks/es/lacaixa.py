@@ -36,7 +36,8 @@ class AnuarioColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
-            'censustags': SourceTags()
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def columns(self):
@@ -550,21 +551,36 @@ class AnuarioColumns(ColumnsTask):
             ('malls', malls),
         ])
 
-	lacaixa_source = input_['censustags']['lacaixa-source']
-	for _, col in columns.iteritems():
-		col.tags.append(lacaixa_source)
-	return columns
+        source = input_['source']['lacaixa-source']
+        license = input_['license']['lacaixa-license']
+        for _, col in columns.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+        return columns
 
 class SourceTags(TagsTask):
-	def version(self):
-		return 1
+    def version(self):
+        return 2
 
-	def tags(self):
-		return [OBSTag(id='lacaixa-source',
-                name='Spain Economic Yearbook',
-                type='source',
-                description='The la Caixa publication of the `Spain Economic Yearbook <http://www.caixabankresearch.com/>`_')
-            ]
+    def tags(self):
+        return [
+            OBSTag(id='lacaixa-source',
+                   name='CaixaBank Spain Economic Yearbook',
+                   type='source',
+                   description='The CaixaBank publication of the `Spain Economic Yearbook <http://www.caixabankresearch.com/>`_')
+        ]
+
+
+class LicenseTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='lacaixa-license',
+                       name='CaixaBank legal disclaimer',
+                       type='source',
+                       description='More information `here <https://www.caixabank.com/general/avisolegal_en.html>`_.')
+               ]
 
 
 class Anuario(TableTask):

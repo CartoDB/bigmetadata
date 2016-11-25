@@ -1,0 +1,15 @@
+TOTAL	Total 
+AIR	Air 
+LAND	Land 
+RAIL	Railways
+ROAD	Roads
+PRV	Private cars, motorcycles, vans
+PUB	Public transport
+BUS	Bus, coach 
+CAR	Motor vehicle 
+BIKE	Bicycles
+FOOT	On foot
+WW	Waterway
+SEA	Maritime
+IWW	Inland waterways
+OTH	Other 

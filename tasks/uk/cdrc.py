@@ -5,10 +5,23 @@ from luigi import Task, Parameter, LocalTarget
 from tasks.util import (TableTask, TagsTask, ColumnsTask, classpath, shell,
                         DownloadUnzipTask, Shp2TempTableTask)
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
-from tasks.tags import LicenseTags, SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 
 from collections import OrderedDict
 import os
+
+
+class OpenDemographicsLicenseTags(TagsTask):
+
+    def tags(self):
+        return [OBSTag(id='opengeodemographics-license',
+                       name='Open Geodemographics license',
+                       type='license',
+                       description='Free to download and reuse, even for '
+                                   'commercial sector applications.  More '
+                                   'information `here <http://www.opengeodemographics.com/index.php#why-section>`_'
+                      )]
+
 
 class SourceTags(TagsTask):
 
@@ -46,17 +59,20 @@ class ImportOutputAreas(Shp2TempTableTask):
 class OutputAreaColumns(ColumnsTask):
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
-            'sourcetag': SourceTags()
+            'source': SourceTags(),
+            'license': LicenseTags()
         }
 
     def columns(self):
         input_ = self.input()
+        license = input_['license']['uk_ogl']
+        source = input_['source']['cdrc-source']
         geom = OBSColumn(
             type='Geometry',
             name='Census Output Areas',
@@ -73,7 +89,7 @@ class OutputAreaColumns(ColumnsTask):
                         'changed). -`Wikipedia <https://en.wikipedia.org/'
                         'wiki/ONS_coding_system#Geography_of_the_UK_Census>`_',
             weight=8,
-            tags=[input_['subsections']['boundary'], input_['sections']['uk'], input_['sourcetag']['cdrc-source']]
+            tags=[input_['subsections']['boundary'], input_['sections']['uk'], source, license]
         )
         geomref = OBSColumn(
             type='Text',
@@ -243,10 +259,12 @@ class OutputAreaClassificationColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'license': OpenDemographicsLicenseTags(),
+            'source': SourceTags(),
         }
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         input_ = self.input()
@@ -256,6 +274,8 @@ class OutputAreaClassificationColumns(ColumnsTask):
             (catname, {'description': '', 'details': {}}) for catname in d.keys()
         ])
         segmentation = input_['units']['segmentation']
+        license = input_['license']['opengeodemographics-license']
+        source = input_['source']['cdrc-source']
         return OrderedDict([
             ('sprgrp', OBSColumn(
                 type='Text',
@@ -271,7 +291,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.sprgrp_mapping)},
-                tags=[uk, segments, segmentation],
+                tags=[uk, segments, segmentation, license, source],
             )),
             ('grp', OBSColumn(
                 type='Text',
@@ -287,7 +307,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.grp_mapping)},
-                tags=[uk, segments, segmentation],
+                tags=[uk, segments, segmentation, license, source],
             )),
             ('subgrp', OBSColumn(
                 type='Text',
@@ -303,7 +323,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.subgrp_mapping)},
-                tags=[uk, segments, segmentation],
+                tags=[uk, segments, segmentation, license, source],
             )),
         ])
 

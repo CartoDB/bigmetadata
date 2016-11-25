@@ -1,0 +1,381 @@
+CA	Current account
+CKA	Current plus capital account (balance = Net lending (+) / net borrowing (-))
+D1	Primary income: Compensation of employees
+D11	Primary income: Wages and salaries excluding employers' social contributions
+D12	Primary income: Employers' social contributions
+D2	Primary income: Taxes on production and imports
+D21	Primary income: Taxes on products
+D2121EU1	Primary income: Taxes and duties on imports, Customs duties, Traditional Own Resources
+D2122EU2	Primary income: Taxes and duties on imports, Agricultural levies, Trade with non member countries under the CAP, Traditional Own Resources
+D214AEU3	Primary income: Taxes on products, Sugar/isoglucose production levies, Traditional Own Resources
+D21EU	Primary income: Taxes on products involving EU Institutions, Traditional Own Resources
+D29	Primary income: Other taxes on production
+D29EU	Primary income: Other taxes on production - ECSC levy
+D3	Primary income: Subsidies
+D31	Primary income: Subsidies on products
+D31EU	Primary income: Subsidies on products, EU Institutions
+D31EU1	Primary income: Subsidies on products - Agriculture and fishery
+D39	Primary income: Other subsidies on production excluding subsidies on products
+D39EU	Primary income: Other subsidies on production excluding subsidies on products, EU Institutions
+D39EU1	Primary income: Subsidies on production - Agriculture and fishery
+D39EU2	Primary income: Subsidies on production - Grants for interest relief
+D39EU3	Primary income: Subsidies on production - Other excluding agriculture, fishery and grants for interest of relief
+D4	Property income
+D41	Primary income: interest
+D41__D__FLA	Primary income: Direct Investment, debt instruments, interest
+D41__O__FLA	Primary income: Other Investment, interest
+D41__O__F12	Primary income: Other Investment, interest on SDR
+D41__P__F3	Primary income: Portfolio Investment, debt securities, interest
+D41__P__F3__S	Primary income: Portfolio Investment, debt securities, interest, short term
+D41__P__F3__L	Primary income: Portfolio Investment, debt securities, interest, long term
+D41__R__FLA	Primary income: Reserve assets, interest
+D41G	Primary income: Interest before FISIM
+D41G__D__FLA	Primary income: Direct Investment, debt instruments, interest before FISIM
+D41G__O__FLA	Primary income: Other investment, interest before FISIM
+D41G__R__FLA	Primary income: Reserve assets, interest before FISIM
+D42	Primary income: Dividends and withdrawals from income of quasi corporations
+D42__P__F51	Primary income: Portfolio investment, equity securities; Dividends and withdrawals from income of quasi corporations
+D422__O__F5	Primary income: Other investment, Withdrawals from income of quasi corporations
+D42S	Primary income: Dividends, withdrawals from income of quasi corporations and income distributed to investment fund shareholders (excluding RIE)
+D42S__D__F5	Primary income: Direct Investment, equity, dividends, withdrawals from income of quasi corporations and income distributed to investment fund shareholders (excluding RIE)
+D42S__D1__F5	Primary income: Direct investment, Equity, Direct investor in direct investment enterprises, dividends, withdrawals from income of quasi corporations and income distributed to investment fund shareholders (excluding RIE)
+D42S__D2__F5	Primary income: Direct Investment, Equity, Direct investment enterprises in direct Investor (Reverse Investment), dividends, withdrawals from income of quasi corporations and income distributed to investment fund shareholders
+D42S__D3__F5	Primary income: Direct investment, equity, between fellow enterprises, dividends, withdrawals from income of quasi corporations and income distributed to investment fund shareholders
+D43	Primary income: Reinvested earnings on foreign direct investment (excluding investment funds)
+D43S__D__F5	Primary income: Reinvested earnings on foreign direct investment (including investment funds)
+D4431__P__F52	Primary income: Portfolio investment, investment fund shares; dividends attributable to collective investment fund shareholders
+D4432__P__F52	Primary income: Portfolio investment, investment fund shares; Reinvested earnings attributable to collective investment fund shareholders
+D44P__O__F6	Primary income: Other Investment income attributable to policy holders (insurance, pension and standardized guarantee schemes)
+D45	Primary income: Rent
+D4O	Primary income: Other primary income
+D4P__F	Primary income: Investment income
+D4P__D__F	Primary income: Investment income; Direct investment
+D4P__O__F	Primary income: Investment income; Other investment
+D4P__P__F	Primary income: Investment income; Portfolio investment
+D4P__R__F	Primary income: Investment income; Reserve assets
+D4Q__D__FL	Primary income: Direct Investment, debt instruments
+D4Q__D1__FL	Primary income: Direct Investment, debt instruments, Direct investor in direct Investment enterprises
+D4Q__D2__FL	Primary income: Direct Investment, debt instruments, Direct investment enterprises in direct investor (Reverse Investment)
+D4Q__D3__FL	Primary income: Direct Investment, debt instruments, Direct investment between fellow enterprises
+D4S__D__F5	Primary income: Direct Investment income attributable to equity and investment fund shareholders
+D4S__P__F5	Primary income: Portfolio Investment income on equity and investment fund shares
+D5	Secondary income: Current taxes on income, wealth, etc.
+D51	Secondary income: Taxes on income
+D59	Secondary income: Other current taxes
+D5Z	Secondary income: Current taxes on income, wealth, etc. payable by border, seasonal, and other short-term workers
+D6	Secondary income: Social contributions and benefits
+D61	Secondary income: Social contributions
+D61Z	Secondary income: Social contributions payable by border, seasonal, and other short-term workers
+D62	Secondary income: Social benefits other than social transfers in kind
+D63	Secondary income: Social transfers in kind
+D7	Secondary income: Other current transfers
+D71	Secondary income: Net non-life insurance premiums
+D72	Secondary income: Non-life insurance claims
+D73	Secondary income: Current transfers within general government
+D74	Secondary income: Current international cooperation
+D74EU	Secondary income: Current international cooperation involving the EU institutions
+D74EU1	Secondary income: Current international cooperation -European Development Fund
+D74EU2	Secondary income: Current international cooperation -European Social Fund
+D74EU3	Secondary income: Current international cooperation -Agriculture and Fishery
+D74EU4	Secondary income: Current international cooperation -European Regional Development Fund
+D74EU5	Secondary income: Current international cooperation - European Coal and Steel Community
+D74EU6	Secondary income: Current international cooperation - Other
+D75	Secondary income: Miscellaneous current transfers
+D751	Secondary income: Current transfers to NPISH (Non-Profit Institutions serving Households)
+D752	Secondary income: Personal transfers (Current transfers between resident and non resident households)
+D752O	Secondary income: Personal transfers other than Workers' remittances
+D752W	Secondary income: Workers' remittances
+D759	Secondary income: Other miscellaneous current transfers
+D76	Secondary income: VAT-and GNI-based EU own resources
+D761	Secondary income: VAT-based third EU own resource
+D762	Secondary income: GNI-based fourth EU own resource
+D762K	Secondary income: Current transfers - UK rebate
+D763	Secondary income: Miscellaneous non-tax contributions of the governments to the institutions of the EU
+D7N	Secondary income: Current international cooperation and miscellaneous current transfers
+D7O	Secondary income: All miscellaneous current transfers
+D8	Secondary income : Adjustment for change in pension entitlements
+D9	Capital transfers
+D91	Capital taxes
+D92	Investment grants
+D92EU	Investment grants involving EU Institutions
+D92EU1	Agriculture and Fishery grants
+D92EU2	European Regional Development Fund - grants
+D92EU3	European Development Fund: EU Commission capital transfers to third countries
+D92EU4	Cohesion funds
+D92EU5	Investment grants - Other
+D99	Other capital transfers
+D99A	Other capital transfers: Debt forgiveness
+D99B	Other capital transfers excluding debt forgiveness
+D99EU	Other capital transfers involving EU Institutions
+D99EU1	Other capital transfers - Agriculture and Fishery
+D99EU2	Other capital transfers - Other
+EO	Net errors and omissions
+G	Goods
+G1	General merchandise on a balance of payments basis
+G1Z	General merchandise on a balance of payments basis, re-exports
+G2	Net exports of goods under merchanting
+G21	Goods acquired under merchanting
+G22	Goods sold under merchanting
+G3	Nonmonetary gold
+G4EU	Branding - quasi-transit trade adjustment
+GS	Goods and services
+GSIN1	Goods, services and primary income
+IN	Primary and secondary income
+IN1	Primary income
+IN2	Secondary income
+IN21	Secondary income, current transfers
+IN22	Secondary income: Other current transfers excluding personal transfers
+KA	Capital account
+KAFA	Capital and financial account
+NP	Gross acquisitions / disposals of nonproduced nonfinancial assets
+R1	Supplementary item: Personal Remittances
+R1WR	Supplementary item: Workers remittances and compensation of employees
+R2	Supplementary item: Total Remittances
+R3	Supplementary item: Remittances and transfers
+S	Services
+S1	Services: EBOPS 2010 complementary groupings: Audio-visual transactions
+S1Z	Services: EBOPS 2010 complementary groupings: Audio-visual transactions; Licences to use audio-visual products
+S2	Services: EBOPS 2010 complementary groupings: Cultural transactions
+S3	Services: EBOPS 2010 complementary groupings: Computer software transactions
+S3Z	Services: EBOPS 2010 complementary groupings: Computer software transactions; Licences to use computer software products
+S4	Services: EBOPS 2010 complementary groupings: Call-centre services
+S6	Services: EBOPS 2010 complementary groupings: Total trade-related transactions
+S7	Services: EBOPS 2010 complementary groupings: Environmental transactions
+S8	Services: EBOPS 2010 complementary groupings: Total health services
+S9	Services: EBOPS 2010 complementary groupings: Total education services
+SA	Services: Manufacturing services on physical inputs owned by others
+SAY	Services: Goods for processing in reporting economy - Goods returned, Goods received
+SAZ	Services: Goods for processing abroad - Goods sent, Goods returned
+SB	Services: Maintenance and repair services n.i.e.
+SC	Services: Transport
+SC1	Services: Sea transport
+SC11	Services: Sea transport; Passenger
+SC11Z	Services: Sea transport; Passenger; Of which: Payable by border, seasonal, and other short-term workers
+SC12	Services: Sea transport; Freight
+SC13	Services: Sea transport; Other than passenger and freight
+SC2	Services: Air transport
+SC21	Services: Air transport; Passenger
+SC21Z	Services: Air transport; Passenger; Of which: Payable by border, seasonal, and other short-term workers
+SC22	Services: Air transport; Freight
+SC23	Services: Air transport; Other than passenger and freight
+SC3	Services: Other modes of transport
+SC31	Services: Other modes of transport; Passenger
+SC31Z	Services: Other modes of transport; Passenger; Of which: Payable by border, seasonal, and other short-term workers
+SC32	Services: Other modes of transport; Freight
+SC33	Services: Other modes of transport; Other than passenger and freight
+SC3A	Services: Space transport
+SC3B	Services: Rail transport
+SC3B1	Services: Rail transport; Passenger
+SC3B2	Services: Rail transport; Freight
+SC3B3	Services: Rail transport; Other than passenger and freight
+SC3C	Services: Road transport
+SC3C1	Services: Road transport; Passenger
+SC3C2	Services: Road transport; Freight
+SC3C3	Services: Road transport; Other than passenger and freigh
+SC3D	Services: Inland waterway transport
+SC3D1	Services: Inland waterway transport; Passenger
+SC3D2	Services: Inland waterway transport; Freight
+SC3D3	Services: Inland waterway transport; Other than passenger and freight
+SC3E	Services: Pipeline transport
+SC3F	Services: Electricity transmission
+SC3G	Services: Other supporting and auxiliary transport services
+SC4	Services: Postal and courier services
+SC41X	Services: Postal services
+SC42X	Services: Courier services
+SCA	Services: All modes of transport; Passenger
+SCAZ	Services: All modes of transport; Passenger; Of which: payable by border, seasonal, and other short-term workers
+SCB	Services: All modes of transport; Freight
+SCC	Services: All modes of transport; Other than passenger and freight
+SCC1	Services: All modes of transport; Other than passenger and freight; Other than Postal and courier services
+SD	Services: Travel
+SD1	Services: Travel; Goods (Travel)
+SD2	Services: Travel; Local transport services
+SD3	Services: Travel; Accommodation services
+SD4	Services: Travel; Food-serving services
+SD5	Services: Travel; Other services than goods (Travel), local transport services, accommodation services, and food-serving services
+SD5Y	Services: Travel; Other services than goods (Travel), local transport services, accommodation services, and food-serving services; Of which: Education services
+SD5Z	Services: Travel; Other services than goods (Travel), local transport services, accommodation services, and food-serving services; Of which: Health services
+SDA	Services: Travel; Business
+SDA1	Services: Travel; Business; Acquisition of goods and services by border, seasonal, and other short-term workers
+SDA2	Services: Travel; Business; Other than acquisition of goods and services by border, seasonal, and other short-term workers
+SDB	Services: Travel; Personal
+SDB1	Services: Travel; Personal; Health-related
+SDB2	Services: Travel; Personal; Education-related
+SDB3	Services: Travel; Personal; Other than heath-related and education-related
+SDZ	Services: Tourism-related services in travel and passenger transport
+SE	Services: Construction
+SE1	Services: Construction abroad
+SE2	Services: Construction in the reporting economy
+SF	Services: Insurance and pension services
+SF1	Services: Direct insurance
+SF11	Services: Life insurance
+SF11Y	Services: Gross life insurance premiums receivable (credits) and payable (debits)
+SF11Z	Services: Gross life insurance claims receivable (credits) and payable (debits)
+SF12	Services: Freight insurance
+SF12Y	Services: Gross freight insurance premiums receivable (credits) and payable (debits)
+SF12Z	Services: Gross freight insurance claims receivable (credits) and payable (debits)
+SF13	Services: Direct insurance other than life and freight insurance
+SF13Y	Services: Gross direct insurance (other than life and freight insurance), premiums receivable (credits) and payable (debits)
+SF13Z	Services: Gross direct insurance (other than life and freight insurance), claims receivable (credits) and payable (debits)
+SF2	Services: Reinsurance
+SF3	Services: Auxiliary insurance services
+SF4	Services: Pension and standardized guarantee services
+SF41	Services: Pension services
+SF42	Services: Standardized guarantee services
+SG	Services: Financial services
+SG1	Services: Financial services explicitly charged and other financial services
+SG2	Services: Financial intermediation services indirectly measured (FISIM)
+SH	Services: Charges for the use of intellectual property n.i.e.
+SH1	Services: Franchises and trademarks licensing fees
+SH2	Services: Licences for the use of outcomes of research and development
+SH3	Services: Licences to reproduce and/or distribute computer software
+SH4	Services: Licences to reproduce and/or distribute audio-visual and related products
+SH41	Services: Licences to reproduce and/or distribute audio-visual products
+SH42	Services: Licences to reproduce and/or distribute other than audio-visual products
+SI	Services: Telecommunications, computer, and information services
+SI1	Services: Telecommunications services
+SI2	Services: Computer services
+SI21	Services: Computer software
+SI21Z	Services: Computer software; Of which: Software originals
+SI22	Services: Computer services other than computer software
+SI3	Services: Information services
+SI31	Services: News agency services
+SI32	Services: Information services other than news agency services
+SJ	Services: Other business services
+SJ1	Services: Research and development services
+SJ11	Services: Work undertaken on a systematic basis to increase the stock of knowledge
+SJ111	Services: Provision of customized and non-customized research and development services
+SJ112	Services: Sale of proprietary rights arising from research and development
+SJ1121	Services: Patents
+SJ1122	Services: Copyrights arising from research and development
+SJ1123	Services: Industrial processes and designs
+SJ1124	Services: Sales of proprietary rights arising from research and development other than patents, copyrights arising from research and development and industrial processes and designs
+SJ12	Services: Research and development services other than work undertaken on a systematic basis to increase the stock of knowledge
+SJ2	Services: Professional and management consulting services
+SJ21	Services: Legal, accounting, management consulting, and public relations services
+SJ211	Services: Legal services
+SJ212	Services: Accounting, auditing, bookkeeping, and tax consulting services
+SJ213	Services: Business and management consulting and public relations services
+SJ22	Services: Advertising, market research, and public opinion polling services
+SJ22Z	Services: Advertising, market research, and public opinion polling services; Of which: Convention, trade-fair and exhibition organization services
+SJ3	Services: Technical, trade-related, and other business services
+SJ31	Services: Architectural, engineering, scientific, and other technical services
+SJ311	Services: Architectural services
+SJ312	Services: Engineering services
+SJ313	Services: Scientific and other technical services
+SJ32	Services: Waste treatment and de-pollution, agricultural and mining services
+SJ321	Services: Waste treatment and de-pollution
+SJ322	Services: Services incidental to agriculture, forestry and fishing
+SJ323	Services: Services incidental to mining, and oil and gas extraction
+SJ32X	Memo grouping: Services, Services incidental to agriculture and mining
+SJ33	Services: Operating leasing services
+SJ34	Services: Trade-related services
+SJ35	Services: Other business services n.i.e.
+SJ35Z	Services: Other business services n.i.e.; Of which: Employment services, i.e., search, placement and supply services of personnel
+SK	Services: Personal, cultural, and recreational services
+SK1	Services: Audiovisual and related services
+SK11	Services: Audio-visual services
+SK11Z	Services: Audio-visual services; Of which: Audio-visual originals
+SK12	Services: Artistic related services
+SK2	Services: Personal, cultural, and recreational services other than audiovisual and related services
+SK21	Services: Personal, cultural, and recreational services other than audiovisual and related services; Health services
+SK22	Services: Personal, cultural, and recreational services other than audiovisual and related services; Education services
+SK23	Services: Personal, cultural, and recreational services other than audiovisual and related services; Heritage and recreational services
+SK24	Services: Personal, cultural, and recreational services other than audiovisual and related services; Personal services other than health, education and heritage and recreational services
+SL	Services: Government goods and services n.i.e.
+SL1	Services: Embassies and consulates
+SL2	Services: Military units and agencies
+SL3	Services: Government goods and services n.i.e. other than embassies and consulates and military units and agencies
+SL31X	Memo item: Services, Government services: reimbursement of MSs' cost of collecting own resources
+SL32X	Memo item: Services, Government services: building rentals
+SL33X	Memo item: Services, Government services: other government services n.i.e.
+SOX	Services: Commercial services
+SN	Services: Services not allocated
+FA	Financial account
+FA__D__F	Financial account; Direct Investment
+FA__D__F5	Financial account; Direct Investment, Equity and investment fund shares/units
+FA__D__F51	Financial account; Direct Investment; Equity
+FA__D__F511	Financial account; Direct Investment; Equity; Listed shares
+FA__D__F512	Financial account; Direct Investment; Equity; Unlisted shares
+FA__D__F519	Financial account; Direct Investment; Equity; Other equity (e.g. real estate)
+FA__D__F52	Financial account; Direct Investment; Investment fund shares/units
+FA__D__F5A	Financial account; Direct Investment; Equity other than reinvestment of earnings
+FA__D1__F5A	Financial account; Direct Investment; Equity other than reinvestment of earnings; in Direct investment enterprise
+FA__D2__F5A	Financial account; Direct Investment; Equity other than reinvestment of earnings; in Direct investor (reverse investment)
+FA__D3__F5A	Financial account; Direct Investment; Equity other than reinvestment of earnings; between fellow enterprises
+FA__D1__F5	Financial account; Direct Investment; Equity and investment fund shares; in Direct investment enterprise
+FA__D2__F5	Financial account; Direct Investment; Equity and investment fund shares; in Direct investor (reverse investment)
+FA__D3__F5	Financial account; Direct Investment; Equity and investment fund shares; between fellow enterprises
+FA__D__F5B	Financial account; Direct Investment; Reinvestment of earnings
+FA__D__FL	Financial account; Direct Investment; Debt instruments
+FA__D1__FL	Financial account; Direct Investment; Debt instruments; in Direct investment enterprise
+FA__D2__FL	Financial account; Direct Investment; Debt instruments; in Direct investor (reverse investment)
+FA__D3__FL	Financial account; Direct Investment; Debt instruments; between Fellow enterprises
+FA__P__F	Financial account; Portfolio Investment
+FA__P__F5	Financial account; Portfolio Investment; Equity and investment fund shares/units
+FA__P__F51	Financial account; Portfolio Investment; Equity
+FA__P__F511	Financial account; Portfolio Investment; Equity; Listed shares
+FA__P__F512	Financial account; Portfolio Investment; Equity; Unlisted shares
+FA__P__F519	Financial account; Portfolio Investment; Equity; Other equity
+FA__P__F52	Financial account; Portfolio Investment; Investment fund shares/units
+FA__P__F52B	Financial account; Portfolio Investment; Reinvestment of earnings
+FA__P__F3	Financial account; Portfolio Investment; Debt securities
+FA__P__F3__S	Financial account; Portfolio Investment; Debt securities; Short term
+FA__P__F3__T__EUR	Financial account; Portfolio Investment; Debt securities; currency of denomination Euro
+FA__P__F3__T__USD	Financial account; Portfolio Investment; Debt securities; currency of denomination US Dollar
+FA__P__F3__T__X4	Financial account; Portfolio Investment; Debt securities; all currencies of denomination except EUR and USD
+FA__P__F3__S__EUR	Financial account; Portfolio Investment; Debt securities; Short term; currency of denomination Euro
+FA__P__F3__S__USD	Financial account; Portfolio Investment; Debt securities; Short term; currency of denomination US Dollar
+FA__P__F3__S__X4	Financial account; Portfolio Investment; Debt securities; Short term; all currencies of denomination except EUR and USD
+FA__P__F3__L	Financial account; Portfolio Investment; Debt securities; Long term
+FA__P__F3__LS	Financial account; Portfolio Investment; Debt securities; Long-term original maturity (over 1 year) with short-term residual maturity (up to 1 year)
+FA__P__F3__LL	Financial account; Portfolio Investment; Debt securities; Long-term original maturity (over 1 year) with long-term residual maturity (over 1 year)
+FA__P__F3__L__EUR	Financial account; Portfolio Investment; Debt securities; Long term; currency of denomination Euro
+FA__P__F3__L__USD	Financial account; Portfolio Investment; Debt securities; Long term; currency of denomination US Dollar
+FA__P__F3__L__X4	Financial account; Portfolio Investment; Debt securities; Long term; all currencies of denomination except EUR and USD
+FA__F__F7	Financial account; Financial derivatives and employee stock options
+FA__O__F	Financial account; Other Investment
+FA__O__F12	Financial account; Other Investment; SDRs
+FA__O__F2	Financial account; Other Investment; Currency and deposits
+FA__O__F2__T__EUR	Financial account; Other Investment; Currency and deposits in Euro currency
+FA__O__F2__S	Financial account; Other Investment; Currency and deposits; Short term
+FA__O__F2__L	Financial account; Other Investment; Currency and deposits; Long term
+FA__O__F21__EUR	Financial account; Other Investment; Currency; Intra-Eurosystem technical claims and liabilities
+FA__O__F21__S__EUR	Financial account; Other Investment; Currency; Intra-Eurosystem technical claims and liabilities; short term
+FA__O__F4	Financial account; Other Investment; Loans
+FA__O__F4__S	Financial account; Other Investment; Loans; Short term
+FA__O__F4__L	Financial account; Other Investment; Loans; Long term
+FA__O__F519	Financial account; Other Investment; Other equity
+FA__O__F6	Financial account; Other Investment; Insurance, pension and standardized guarantee schemes
+FA__O__F81	Financial account; Other Investment; Trade credits and advances
+FA__O__F81__S	Financial account; Other Investment; Trade credits and advances; Short term
+FA__O__F81__L	Financial account; Other Investment; Trade credits and advances; Long term
+FA__O__F89	Financial account; Other Investment; Other accounts receivable/payable
+FA__O__F89__S	Financial account; Other Investment; Other accounts receivable/payable; Short term
+FA__O__F89__L	Financial account; Other Investment; Other accounts receivable/payable; Long term
+FA__R__F	Financial account; Reserve assets
+FA__R__F1	Financial account; Reserve assets; Monetary gold and SDRs
+FA__R__F11	Financial account; Reserve assets; Monetary gold
+FA__R__F11A	Financial account; Reserve assets; Gold bullion
+FA__R__F11B	Financial account; Reserve assets; Unallocated gold accounts
+FA__R__F12	Financial account; Reserve assets; SDRs
+FA__R__F2	Financial account; Reserve assets; Currency and deposits
+FA__R__FK	Financial account; Reserve assets; Reserve Position in the IMF
+FA__R__FR1	Financial account; Reserve assets; Securities (Equity, investment fund shares/units and debt securities)
+FA__R__FR2	Financial account; Reserve assets; Other reserve assets (currency, deposits, securities, financial derivatives and other claims)
+FA__R__FR41	Financial account; Reserve assets; Other claims
+FA__R__F3	Financial account; Reserve assets; Debt securities
+FA__R__F3__S	Financial account; Reserve assets; Debt securities; Short term
+FA__R__F3__L	Financial account; Reserve assets; Debt securities; Long term
+FA__R__F5	Financial account; Reserve assets; Equity and investment fund shares/units
+FA__R__F71	Financial account; Reserve assets; Financial derivatives
+FA__T__F1	Financial account; All functional categories; Monetary gold and SDRs
+FA__T__F2	Financial account; All functional categories; Currency and deposits
+FA__T__F3	Financial account; All functional categories; Debt securities
+FA__T__F4	Financial account; All functional categories; Loans
+FA__T__F5	Financial account; All functional categories; Equity and investment fund shares/units
+FA__T__F6	Financial account; All functional categories; Insurance, pension and standardized guarantee schemes
+FA__T__F7	Financial account; All functional categories; Financial derivatives and employee stock options
+FA__T__F8	Financial account; All functional categories; Other accounts receivable/payable
+FA__FNED	Net external debt
+FA__FGED	Gross external debt

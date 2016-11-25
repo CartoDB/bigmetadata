@@ -1,0 +1,7 @@
+CIRR	Euro CIRR curve for export credits
+YIELD	Euro par Yield Curve
+ZEROCOUP	Zero coupon Yield Curve
+AAA	Rating-specific Yield Curves
+YCSR_RT	Zero-coupon yield curve spot rate
+PYC_RT	Par yield curve
+YCIF_RT	Yield curve instantaneous forward rate

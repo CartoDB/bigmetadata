@@ -1,0 +1,9 @@
+TOTAL	Corresponding (total) number of students enrolled
+0	No languages
+1	1 language
+GE1	1 language or more
+2	2 languages
+GE2	2 languages or more
+3	3 languages
+GE3	3 languages or more
+GE4	4 languages or more

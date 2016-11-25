@@ -1,0 +1,41 @@
+HP1-9	All providers of health care
+HP1_3	Hospitals and providers of ambulatory health care
+HP1	Hospitals
+HP1_PUB	Publically owned hospital
+HP1_NPP	Not-for-profit privately owned hospital
+HP1_PP	For-profit privately owned hospital
+HP11	General hospitals
+HP12	Mental health and substance abuse hospitals
+HP13	Speciality (other then mental health and substance abuse hospitals)
+HP2	Nursing and residential care facilities
+HP21	Nursing care facilities
+HP22	Residential mental retardation, mental health and substance abuse facilities
+HP23	Community care facilities for the elderly
+HP29	All other residential care facilities
+HP3	Providers of ambulatory health care
+HP31	Offices of physicians
+HP32	Offices of dentists
+HP33	Offices of other health practitioners
+HP34	Out-patient care centres
+HP35	Medical and diagnostic laboratories
+HP36	Providers of home health care services
+HP39	Other providers of ambulatory health care
+HP4	Retail sale and other providers of medical goods
+HP41	Dispensing chemists
+HP42	Retail sale and other suppliers of optical glasses and other vision products
+HP43	Retail sale and other suppliers of hearing aids
+HP44-49	Retail sale and other suppliers of medical appliances; All other miscellaneous sale and other suppliers of pharmaceuticals and medical goods
+HP5	Provision and administration of public health programmes
+HP6	General health administration and insurance
+HP61	Government administration of health
+HP62	Social security funds
+HP63_64	Providers of private insurance
+HP63	Other social insurance
+HP64	Other (private) insurance
+HP69	All other providers of health administration
+HP7	Other industries (rest of the economy)
+HP71	Establishments as providers of occupational health care services
+HP72	Private households as providers of home care
+HP79	All other industries as secondary producers of health care
+HP9	Rest of the world
+HP0	Not elsewhere classified

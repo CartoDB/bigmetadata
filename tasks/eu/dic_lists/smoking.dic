@@ -1,0 +1,9 @@
+TOTAL	Total
+DSM	Daily smoker
+NSM	Non-smoker
+NVSM	Never smoked
+DSM_GE20	Daily cigarette smoker, 20 or more per day
+DSM_LT20	Daily cigarette smoker, less than 20 per day
+OCSM	Occasional smoker
+EX_DSM	Former daily smoker
+EX_OCSM	Former occasional smoker

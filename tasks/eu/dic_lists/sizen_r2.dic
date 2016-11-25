@@ -1,0 +1,65 @@
+10_C10_S951_XK	All enterprises, without financial sector (10 persons employed or more)
+10_C10_N82_XK	All enterprises, without financial sector (10 persons employed or more) (for comparison with 2009)
+S_C10_S951_XK	Small enterprises (10-49 persons employed), without financial sector
+S_C10_N82_XK	Small enterprises (10-49 persons employed), without financial sector (for comparison with 2009)
+M_C10_S951_XK	Medium enterprises (50-249 persons employed), without financial sector
+M_C10_N82_XK	Medium enterprises (50-249 persons employed), without financial sector (for comparison with 2009)
+SM_C10_S951_XK	SMEs (10-249 persons employed), without financial sector
+SM_C10_N82_XK	SMEs (10-249 persons employed), without financial sector (for comparison with 2009)
+L_C10_S951_XK	Large enterprises (250 persons employed or more), without financial sector
+L_C10_N82_XK	Large enterprises (250 persons employed or more), without financial sector (for comparison with 2009)
+VS_C10_S951_XK	Very small enterprises (1-9 persons employed), without financial sector 
+VS_C10_N82_XK	Very small enterprises (1-9 persons employed), without financial sector  (for comparison with 2009)
+MI_C10_S951_XK	Mini enterprises (5-9 persons employed), without financial sector
+MI_C10_N82_XK	Mini enterprises (5-9 persons employed), without financial sector (for comparison with 2009)
+MC_C10_S951_XK	Micro enterprises (1-4 persons employed), without financial sector
+MC_C10_N82_XK	Micro enterprises (1-4 persons employed), without financial sector (for comparison with 2009)
+10_BB	All enterprises (10 persons employed or more), without financial sector, which use broadband
+10_NBB	All enterprises (10 persons employed or more), without financial sector, which have internet access but do not use broadband
+10_C10_18	Manufacture of products based on: food, beverages, tobacco, textile, leather, wood, pulp and paper; publishing and printing (10 persons employed or more)
+10_C10_33	Manufacturing (10 persons employed or more)
+10_C19_22	Manufacture of coke, refined petroleum, chemical & basic pharmaceutical products, rubber & plastics (10 persons employed or more)
+10_C19_23	Manufacture of coke, refined petroleum, chemical & basic pharmaceutical products, rubber & plastics, other non-metallic mineral products (10 persons employed or more)
+10_C23_25	Manufacture of other non-metallic mineral products, basic metals & fabricated metal products excluding machines & equipments (10 persons employed or more)
+10_C24_25	Manufacture of basic metals & fabricated metal products excluding machines & equipments (10 persons employed or more)
+10_C26_33	Manufacture of computers, electric & optical products, electrical equipment, machinery & equipment n.e.c, motor vehicles, other transport equipment, furniture, other manufacturing, repair & installation of machinery & equipment (10 persons employed or more)
+10_D35_E39	Electricity, gas, steam, air conditioning and water supply (10 persons employed or more)
+10_F41_43	Construction (10 persons employed or more)
+10_G45_47	Wholesale and retail trade; repair of motor vehicles and motorcycles (10 persons employed or more)
+10_H49_53	Transportation and storage (10 persons employed or more)
+10_I55	Accommodation (10 persons employed or more)
+10_I56	Food and beverage service activities (10 persons employed or more)
+10_J58_63	Information and communication (10 persons employed or more)
+10_L68	Real estate activities (10 persons employed or more)
+10_M69_74	Professional, scientific and technical activities (10 persons employed or more)
+10_N77_82	Administrative and support service activities (10 persons employed or more)
+10_ICT_T	ICT sector (10 persons employed or more)
+10_K6FINS	Financial and insurance activities (10 persons employed or more)
+10_C10_12	Manufacture of beverages, food and tobacco products (10 persons employed or more)
+10_C13_15	Manufacture of textiles, wearing apparel, leather and related products (10 persons employed or more)
+10_C16_18	Manufacture of wood & products of wood & cork, except furniture; articles of straw & plaiting materials; paper & paper products; printing & reproduction of recorded media (10 persons employed or more)
+10_C26	Manufacture of computer, electronic and optical products (10 persons employed or more)
+10_C27_28	Manufacture of electrical equipment, machinery and equipment n.e.c. (10 persons employed or more)
+10_C29_30	Manufacture of motor vehicles, trailers and semi-trailers, other transport equipment (10 persons employed or more)
+10_C31_33	Manufacture of furniture and other manufacturing; repair and installation of machinery and equipment (10 persons employed or more)
+10_G45	Trade of motor vehicles and motorcycles (10 persons employed or more)
+10_G46	Wholesale trade, except of motor vehicles and motorcycles (10 persons employed or more)
+10_G47	Retail trade, except of motor vehicles and motorcycles (10 persons employed or more)
+10_I55_56	Accommodation and Food and beverage service activities (10 persons employed or more)
+10_J58_60	Publishing activities; motion picture, video & television programme production, sound recording & music publishing; programming & broadcasting (10 persons employed or more)
+10_J61	Telecommunications (10 persons employed or more)
+10_J62_63	Computer programming, consultancy and related activities, information service activities (10 persons employed or more)
+10_N77_82_X79	Activities for rental and leasing, employment, security & investigation , services to buildings &landscape, office administrative, office support & other business support (10 persons employed or more)
+10_N79	Travel agency; tour operator reservation service and related activities (10 persons employed or more)
+10_S951	Repair of computers and communication equipment (10 persons employed or more)
+10_K64	Other monetary intermediation, other credit granting (10 persons employed or more)
+10_K65	Insurance, reinsurance (10 persons employed or more)
+10_K66	Security and commodity contracts brokerage, other activities auxiliary to financial services, except insurance and pension funding (10 persons employed or more)
+10_SIINT	All enterprises (10 persons employed or more), without financial sector, which share electronically information within the enterprise
+10_SIINTX	All enterprises (10 persons employed or more), without financial sector, which do not share electronically information within the enterprise
+10_SIEXT	All enterprises (10 persons employed or more), without financial sector, which share electronically information with business partners
+10_SIEXTX	All enterprises (10 persons employed or more), without financial sector, which do not share electronically information with business partners
+10_MOBBB	All enterprises (10 persons employed or more), without financial sector, which use mobile broadband
+10_NMOBBB	All enterprises (10 persons employed or more), without financial sector, which have Internet access but do not use mobile broadband
+10_ECOM	All enterprises which send / receive orders via any computer networks
+10_ECOMX	All enterprises which don't send / receive orders via any computer networks

@@ -1,0 +1,124 @@
+B9_S13	General government net borrowing (-)/net lending (+)
+B9_S1311	Central government net borrowing (-)/net lending (+)
+B9_S1312	State government net borrowing (-)/net lending (+)
+B9_S1313	Local government net borrowing (-)/net lending (+)
+B9_S1314	Social security funds net borrowing (-)/net lending (+)
+GGGD	General government consolidated gross debt
+GGGD_AF2	General government consolidated gross debt - Currency and deposits
+GGGD_AF33	General government consolidated gross debt - Securities other than shares, excluding financial derivatives
+GGGD_AF331	General government consolidated gross debt - short term securities other than shares, excluding financial derivatives
+GGGD_AF332	General government consolidated gross debt - long-term securities other than shares, excluding financial derivatives
+GGGD_AF4	General government consolidated gross debt - Loans
+GGGD_AF41	General government consolidated gross debt - Short-term loans
+GGGD_AF42	General government consolidated gross debt - Long-term loans
+N5	General government net borrowing (-)/net lending (+)
+F20F30	General government consolidated gross debt - Currency and deposits
+F40	General government gross debt - Bills and short-term bonds
+F50	General government gross debt - Long-term bonds
+F79	General government gross debt - Other short-term loans
+F89	General government gross debt - Other medium and long-term loans
+P41	Gross fixed capital formation
+PANB	Net balance to be financed by the state (public accounts)
+R41	Interest expenditure
+S61	Central government net borrowing (-)/net lending (+)
+S62	Local government net borrowing (-)/net lending (+)
+S63	Social security funds net borrowing (-)/net lending (+)
+P51	Gross fixed capital formation
+D41	Interest (consolidated)
+NBFS	Net balance to be financed by the state (public accounts)
+PRIMBAL	Primary balance
+INTINVT	International investment position: Total
+DIRINVT	Direct investment: Total
+DIRINVEQ	Direct investment : Equity
+DIRINVEQMFI	Direct investment, equity capital and reinvested earnings, MFIs (excluding central banks)
+DIRINVEQOTH	Direct investment, equity capital and reinvested earnings, Non-MFIs
+DIRINVOTH	Direct investment: Other capital
+DIRINVOTHMFI	Direct investment, other capital, MFIs (excluding central banks)
+DIRINVOTHOTH	Direct investment, other capital, Non-MFIs
+PORINVT	Portfolio investment: Total
+PORINVEQST	Portfolio investment: Equity, securities: Total
+PORINVEQSMA	Portfolio investment: Equity, securities: monetary authorities
+PORINVEQSGG	Portfolio investment: Equity, securities: general government
+PORINVEQSMFI	Portfolio investment: Equity, securities: MFI excluding central banks
+PORINVEQSOS	Portfolio investment: Equity, securities: other sectors
+PORINVDBT	Portfolio investment, debt instrument: Total
+PORINVDBBNT	Portfolio investment, debt instrument: Bonds and notes: Total
+PORINVDBBNMA	Portfolio investment, debt instrument: Bonds and notes: Monetary authorities
+PORINVDBBNGG	Portfolio investment, debt instrument: Bonds and notes: general government
+PORINVDBBNMFI	Portfolio investment, debt instrument: Bonds and notes: MFI excluding central banks
+PORINVDBBNOS	Portfolio investment, debt instrument: Bonds and notes: other sectors
+PORINVDBMMT	Portfolio investment, debt instrument: Money market instruments: total
+PORINVDBMMMA	Portfolio investment, debt instrument: Money market instruments: monetary authorities
+PORINVDBMMGG	Portfolio investment, debt instrument: Money market instruments: General government
+PORINVDBMMMFI	Portfolio investment, debt instrument: Money market instruments: MFI excluding central banks
+PORINVDBMMOS	Portfolio investment, debt instrument: Money market instruments: other sectors
+FINDERT	Financial derivatives: Total
+FINDERMA	Financial derivatives: Monetary authorities
+FINDERGG	Financial derivatives: General government
+FINDERMFI	Financial derivatives: MFI excluding central banks
+FINDEROS	Financial derivatives: Other sectors
+OTHINVT	Other investment: Total
+OTHINVMAT	Other investment: Monetary authorities: total
+OTHINVMALCD	Other investment: Monetary authorities: loans/ currency and deposits
+OTHINVMAOTH	Other investment: monetary authorities: others
+OTHINVGGT	Other investment: General government: total
+OTHINVGGTRC	Other investment: General government: trade credits
+OTHINVGGLCD	Other investment: General government: loans/currency and deposits
+OTHINVGGOTH	Other investment: General government: others
+OTHINVMFIT	Other investment: MFI excluding central banks: Total
+OTHINVMFILCD	Other investment: MFI excluding central banks: loans/currency and deposits
+OTHINVMFIOTH	Other investment: MFI excluding central banks: others
+OTHINVOTHERT	Other investment: other sectors: Total
+OTHINVOTHERTRC	Other investment: other sectors: Trade credits
+OTHINVOTHERLCD	Other investment: other sectors: loans/currency and deposits
+OTHINVOTHEROTH	Other investment: other sectors: others
+OTIVSL	Other investment, other sectors, loans
+RESASSETST	Reserves assets: total
+RESASSETSG	Reserves assets: Monetary gold
+RESASSETSR	Reserves assets: special drawing rights
+RESASSETSF	Reserves assets: reserve positions in the IMF
+RESASSETSX	Reserves assets: foreign exchange
+RESASSETSC	Reserves assets: foreign exchange, currency and deposits
+RESASSETSA	Reserves assets: foreign exchange, currency and deposits with monetary authorities and the BIS
+RESASSETSM	Reserves assets: foreign exchange, currency and deposits with other MFIs 
+RESASSETSS	Reserves assets: securities
+RESASSETSE	Reserves assets: securities, equities
+RESASSETSB	Reserves assets: securities, bonds and notes
+RESASSETSI	Reserves assets: securities, money market instruments
+RESASSETSD	Reserves assets: financial deriviatives
+RESASSETSO	Reserves assets: other claims
+ISSUES	Issues
+REDEMPT	Redemptions
+NET_ISS	Net issues
+AMOUNT	Amount outstanding
+FEGMAR	Foreign exchange - Gross market values
+FENAM	Foreign exchange derivatives - Notional amounts
+IRGMAR	Interest rate derivatives - Gross market values
+IRNAM	Interest rate derivatives - Notional amounts
+GROSFORDEBT	Gross foreign debt
+EXPORTRATIO	Debt/export
+CGGD	Central government gross debt
+GOVREV	General government revenue
+GOVEXP	General government expenditure
+DEBT_CENGOV	Central government gross debt (not ESA)
+DEBT_GENGOV	General government consolidated gross debt (not ESA)
+NETFORDEBT	Net external debt 
+DEF_CENGOV	Central government net borrowing (-)/net lending (+) (not ESA)
+DEF_GENGOV	General government net borrowing (-)/net lending (+) (not ESA)
+DIRINVTAB	Direct investment, Abroad, Total
+DIRINVEQAB	Direct investment, Abroad, equity capital and reinvested earnings
+DIRINVEQMFIAB	Direct investment, Abroad, equity capital and reinvested earnings, MFIs (excluding central banks)
+DIRINVEQOTHAB	Direct investment, Abroad, equity capital and reinvested earnings, Non-MFIs
+DIRINVOTHAB	Direct investment, Abroad: Other capital
+DIRINVOTHMFIAB	Direct investment, Abroad, other capital, MFIs (excluding central banks)
+DIRINVOTHOTHAB	Direct investment, Abroad, other capital, Non-MFIs
+DIRINVTIN	Direct investment, In the reporting economy, Total
+DIRINVEQIN	Direct investment, In the reporting economy, equity capital and reinvested earnings
+DIRINVEQMFIIN	Direct investment, In the reporting economy, equity capital and reinvested earnings, MFIs (excluding central banks)
+DIRINVEQOTHIN	Direct investment, In the reporting economy, equity capital and reinvested earnings, Non-MFIs
+DIRINVOTHIN	Direct investment, In the reporting economy: Other capital
+DIRINVOTHMFIIN	Direct investment, In the reporting economy, other capital, MFIs (excluding central banks)
+DIRINVOTHOTHIN	Direct investment, In the reporting economy, other capital, Non-MFIs
+LOAN	Loan finance
+EQUIT	Equity finance
+OTH	Other type of finance

@@ -1,0 +1,29 @@
+TOTAL	Total
+0	Zero
+1-4	From 1 to 4 employees
+1-5	From 1 to 5 employees
+1-9	From 1 to 9 employees
+1-10	From 1 to 10 employees
+LE4	4 employees or fewer
+5-9	From 5 to 9 employees
+GE5	5 employees or more
+6-9	From 6 to 9 employees
+LT10	Fewer than 10 employees
+LE10	10 employees or fewer
+10-19	From 10 to 19 employees
+10-49	From 10 to 49 employees
+10-249	From 10 to 249 employees
+GE10	10 employees or more
+GT10	More than 10 employees
+11-19	From 11 to 19 employees
+11-49	From 11 to 49 employees
+20-49	From 20 to 49 employees
+50-249	From 50 to 249 employees
+GE50	50 employees or more
+250-499	From 250 to 499 employees
+GE250	250 employees or more
+500-999	From 500 to 999 employees
+GE500	500 employees or more
+GE1000	1 000 employees or more
+NRP	No response
+UNK	Unknown

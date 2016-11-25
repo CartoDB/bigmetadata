@@ -1,0 +1,24 @@
+SAL	Number of employees
+HRS_WKD_SAL	Hours actually worked by the employees per year
+HRS_PAY_SAL	Hours paid for employees per year
+APPR	Number of apprentices
+HRS_WKD_APPR	Hours actually worked by the apprentices per year
+HRS_WKD_PER_SAL	Average hours actually worked per year, per employee
+HRS_PAY_PER_SAL	Average hours paid per year, per employee
+HRS_WKD_PER_APPR	Average hours actually worked per year, per apprentice
+HRS_PAY_PER_APPR	Average hours paid per year, per apprentice
+COST	Labour cost
+COST_SAL	Labour cost (excluding apprentices)
+COST_APPR	Labour cost for apprentices
+COST_M	Monthly labour cost
+COST_H	Hourly labour cost
+DIR_COST	Wages and salaries 
+DIR_COST_SAL	Wages and salaries (excluding apprentices)
+DIR_PAY_SAL	Direct remuneration, bonuses and allowances (excluding apprentices)
+DIR_PAY_APPR	Wages and salaries for apprentices
+TMP	Number of temporary employees
+COST_TMP_NAC	Employment cost for temporary employees - national currency
+COST_TMP_EUR	Employment cost for temporary employees - euro
+HRS_WKD_TMP	Hours worked by temporary employees
+RT_PAY_WKD	Ratio between hours paid and actually worked
+HRS_PAY_NWKD	Hours paid but not actually worked

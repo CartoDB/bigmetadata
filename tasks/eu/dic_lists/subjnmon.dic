@@ -1,0 +1,19 @@
+TOTAL	Total
+EM_GSD	Households making ends meet with great difficulty, with difficulty or with some difficulty
+EM_FVE	Households making ends meet fairly easily, easily or very easily
+EM_GD	Households making ends meet with great difficulty
+EM_D	Households making ends meet with difficulty
+EM_SD	Households making ends meet with some difficulty
+EM_FE	Households making ends meet fairly easily
+EM_E	Households making ends meet easily
+EM_VE	Households making ends meet very easily
+N_SAVE	Households that are unable to save regularly (i.e. normally no money left to save)
+SAVE	Households able to save regularly (i.e. normally some money left to save)
+N_WARM	Households that cannot afford keeping home adequately warm
+N_HOLI	Households that cannot afford paying for a week annual holiday away from home
+N_FURN	Households that cannot afford replacing any worn-out furniture
+N_CLOT	Households that cannot afford buying new rather than second hand clothes
+N_MEAT	Households that cannot afford eating meat or chicken or fish every second day
+N_FRIE	Households that cannot afford having friends for a drink or meal once a week
+MBN_GE1	Households that cannot afford at least one out of the six basic necessities (see list)
+MBN_GE2	Households that cannot afford at least two out of the six basic necessities (see list)

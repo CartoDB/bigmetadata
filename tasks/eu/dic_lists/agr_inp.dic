@@ -1,0 +1,313 @@
+INP	Input total
+INP_S1	Intermediate consumption
+SED	Seeds and planting stock
+SED_IN	Seeds and planting stock supplied by other agricultural holdings
+SED_OUT	Seeds and planting stock purchased from outside the agricultural 'industry'
+ARP	Animals for rearing and production
+NRG_LUB	Energy products and lubricants
+NRG	Energy products
+NRG_E	Electricity
+NRG_G	Gas
+NRG_F	Fuels and propellants
+NRG_FH	Fuels for heating
+NRG_FH_G	Heating gas oil
+NRG_R	Residual fuel oil
+NRG_FM	Motor fuels
+NRG_FM_S	Motor spirit
+NRG_FM_D	Diesel oil
+LUB	Lubricants
+NRG_LUB_OTH	Other energy products and lubricants
+FER	Fertilisers and soil improvers
+FER_IN	Fertilisers supplied by other agricultural holdings
+FER_OUT	Fertilisers purchased from outside the agricultural 'industry'
+FER_S	Straight fertilisers
+FER_S_N	Nitrogenous fertilisers
+FER_S_N_SA	Sulphate of ammonia
+FER_S_N_AN1	Ammonium nitrate (20.5% N)
+FER_S_N_AN2	Ammonium nitrate (21% N)
+FER_S_N_AN3S	Ammonium nitrate (26% N) (in sacks)
+FER_S_N_AN3B	Ammonium nitrate (26% N) (in bulk)
+FER_S_N_AN4	Ammonium nitrate (33% N)
+FER_S_N_AN4S	Ammonium nitrate (33% N) (in sacks)
+FER_S_N_AN4B	Ammonium nitrate (33% N) (in bulk)
+FER_S_N_AA	Anhydrous ammonia (82% N)
+FER_S_N_NH	Urea
+FER_S_N_UAN	Urea - ammonium nitrate solution (UAN)
+FER_S_N_OTH	Other nitrogenous fertilisers
+FER_S_P	Phosphatic fertilisers
+FER_S_P_PR	Phosphate rock
+FER_S_P_AP	Ammonium phosphate
+FER_S_P_SP	Superphosphate (18% P2O5)
+FER_S_P_TSP	Triple superphosphate (46% P2O5)
+FER_S_K	Potassic fertilisers
+FER_S_K_MOP	Muriate of potash
+FER_S_K_SOP	Sulphate of potash
+FER_C	Compound fertilisers
+FER_C_NP	NP fertilisers
+FER_C_NP1	NP fertilisers 1 - 1 - 0
+FER_C_NP2	Diammonium phosphate (DAP)
+FER_C_NP3	Monoammonium phosphate (MAP)
+FER_C_NP_OTH	Other NP fertilisers
+FER_C_PK	PK fertilisers
+FER_C_PK1	PK fertilisers 0 - 1 - 1
+FER_C_PK2	PK fertilisers 0 - 20 - 20
+FER_C_PK3	Potassium nitrate
+FER_C_PK4	PK fertilisers 0 - 20 - 25
+FER_C_NPK	NPK fertilisers
+FER_C_NPK1	NPK fertilisers 1 - 0.5 - 0.5
+FER_C_NPK2	NPK fertilisers 20 - 10 - 10
+FER_C_NPK3S	NPK fertilisers 1 - 1 - 1 (in sacks)
+FER_C_NPK4S	NPK fertilisers 17 - 17 - 17 (in sacks)
+FER_C_NPK3B	NPK fertilisers 1 - 1 - 1 (in bulk)
+FER_C_NPK4B	NPK fertilisers 17 - 17 - 17 (in bulk)
+FER_C_NPK5C	NPK complex fertilisers 15 - 15 - 15
+FER_C_NPK5M	NPK blended fertilisers 15 - 15 - 15
+FER_C_NPK6	NPK fertilisers 26 - 2 - 3
+FER_C_NPK7	NPK fertilisers 20 - 4 - 8
+FER_C_NPK8	NPK fertilisers 18 - 5 - 10
+FER_C_NPK9	NPK fertilisers 23 - 5 - 10
+FER_C_NPK10	NPK fertilisers 18 - 3 - 12
+FER_C_NPK11	NPK fertilisers 12 - 6 - 17
+FER_C_NPK12	NPK fertilisers 14 - 9 - 10
+FER_C_NPK13	NPK fertilisers 1 - 1 - 2
+FER_C_NPK14	NPK fertilisers 9 - 9 - 18
+FER_C_NPK15	NPK fertilisers 1 - 2 - 2
+FER_C_NPK16	NPK fertilisers 10 - 20 - 20
+FER_OTH	Other fertilisers and soil improvers
+PES	Plant protection products
+PES_F	Fungicides and bactericides
+F01	Inorganic fungicides
+F01_01	Copper compounds
+F01_02	Inorganic sulfur
+F01_99	Other inorganic fungicides
+F02	Fungicides based on carbamates and dithiocarbamates
+F02_01	Carbanilate fungicides
+F02_02	Carbamate fungicides
+F02_03	Dithiocarbamate fungicides
+F02_99	Other fungicides based on carbamates and dithiocarbamates
+F03	Fungicides based on benzimidazoles
+F03_01	Benzimidazole fungicides
+F03_99	Other fungicides based on benzimidazoles
+F04	Fungicides based on imidazoles and triazoles
+F04_01	Conazole fungicides
+F04_02	Imidazole fungicides
+F04_99	Other fungicides based on imidazoles and triazoles
+F05	Fungicides based on morpholines
+F05_01	Morpholine fungicides
+F05_99	Other fungicides based on morpholines
+F06	Biological fungicides
+F06_01	Biological fungicides
+F06_99	Other biological fungicides
+F99	Other fungicides
+F99_01	Aliphatic nitrogen fungicides
+F99_02	Amide fungicides
+F99_03	Anilide fungicides
+F99_05	Aromatic fungicides
+F99_06	Dicarboximide fungicides
+F99_07	Dinitroaniline fungicides
+F99_08	Dinitrophenol fungicides
+F99_09	Organophosphorus fungicides
+F99_10	Oxazole fungicides
+F99_11	Phenylpyrrole fungicides
+F99_12	Phthalimide fungicides
+F99_13	Pyrimidine fungicides
+F99_14	Quinoline fungicides
+F99_15	Quinone fungicides
+F99_16	Strobilurine fungicides
+F99_17	Urea fungicides
+F99_99	Unclassified fungicides
+PES_I	Insecticides and acaricides
+I01	Insecticides based on pyrethroids
+I01_01	Pyrethroid insecticides
+I01_99	Other insecticides based on pyrethroids
+I02	Insecticides based on chlorinated hydrocarbons
+I02_99	Other insecticides based on chlorinated hydrocarbons
+I03	Insecticides based on carbamates and oxime-carbamate
+I03_01	Oxime-carbamate insecticides
+I03_02	Carbamate insecticides
+I03_99	Other insecticides based on carbamates and oxime-carbamate
+I04	Insecticides based on organophosphates
+I04_01	Organophosphorus insecticides
+I04_99	Other insecticides based on organophosphates
+I05	Biological and botanical product-based insecticides
+I05_01	Biological insecticides
+I05_99	Other biological and botanical product based insecticides
+I99	Other insecticides
+I99_01	Insecticides produced by fermentation
+I99_03	Benzoylurea insecticides
+I99_04	Carbazate insecticides
+I99_05	Diazylhydrazine insecticides
+I99_06	Insect growth regulators
+I99_07	Insect pheromones
+I99_08	Nitroguanidine insecticides
+I99_09	Organotin insecticides
+I99_10	Oxadiazine insecticides
+I99_11	Phenyl-ether insecticides
+I99_12	Pyrazole (phenyl-) insecticides
+I99_13	Pyridine insecticides
+I99_14	Pyridylmethylamine insecticides
+I99_15	Sulfite ester insecticides
+I99_16	Tetrazine insecticides
+I99_17	Tetronic acid insecticides
+I99_99	Unclassified insecticides-acaricides
+PES_H	Herbicides, haulm destructors and moss killers
+H01	Herbicides based on phenoxy-phytohormones
+H01_01	Phenoxy herbicides
+H01_99	Other herbicides based on phenoxy-phytohormones
+H02	Herbicides based on triazines and triazinones
+H02_02	Triazine herbicides
+H02_03	Triazinone herbicides
+H02_99	Other herbicides based on triazines and triazinones
+H03	Herbicides based on amides and anilides
+H03_01	Amide herbicides
+H03_02	Anilide herbicides
+H03_03	Chloroacetanilide herbicides
+H03_99	Other herbicides based on amides and anilides
+H04	Herbicides based on carbamates and bis-carbamates
+H04_01	Bis-carbamate herbicides
+H04_02	Carbamate herbicides
+H04_99	Other herbicides based on carbamates and bis-carbamates
+H05	Herbicides based on dinitroaniline derivatives
+H05_01	Dinitroaniline herbicides
+H05_99	Other herbicides based on dinitroaniline derivatives
+H06	Herbicides based on derivatives of urea, of uracil or of sulfonylurea
+H06_01	Sulfonylurea herbicides
+H06_02	Uracil herbicides
+H06_03	Urea herbicides
+H06_99	Other herbicides based on derivatives of urea, of uracil or of sulfonylurea
+H99	Other herbicides
+H99_01	Aryloxyphenoxy- propionic herbicides
+H99_02	Benzofurane herbicides
+H99_03	Benzoic-acid herbicides
+H99_04	Bipyridylium herbicides
+H99_05	Cyclohexanedione herbicides
+H99_06	Diazine herbicides
+H99_07	Dicarboximide herbicides
+H99_08	Diphenyl ether herbicides
+H99_09	Imidazolinone herbicides
+H99_10	Inorganic herbicides
+H99_11	Isoxazole herbicides
+H99_13	Nitrile herbicides
+H99_14	Organophosphorus herbicides
+H99_15	Phenylpyrazole herbicides
+H99_16	Pyridazinone herbicides
+H99_17	Pyridinecarboxamide herbicides
+H99_18	Pyridinecarboxylic-acid herbicides
+H99_19	Pyridyloxyacetic-acid herbicides
+H99_20	Quinoline herbicides
+H99_21	Thiadiazine herbicides
+H99_22	Thiocarbamate herbicides
+H99_23	Triazole herbicides
+H99_24	Triazolinone herbicides
+H99_25	Triazolone herbicides
+H99_26	Triketone herbicides
+H99_99	Unclassified herbicides
+PES_M	Molluscicides
+M01	Molluscicides
+M01_01	Molluscicides
+PES_PGR	Plant growth regulators
+PGR01	Physiological plant growth regulators
+PGR01_01	Physiological plant growth regulators
+PGR01_99	Other physiological plant growth regulators
+PGR02	Anti-sprouting products
+PGR02_02	Antisprouting products
+PGR02_99	Other antisprouting products
+PGR03	Other plant growth regulators
+PGR03_99	Other plant growth regulators
+PES_ZR	Other plant protection products
+ZR01	Mineral oils
+ZR02	Vegetal oils
+ZR02_01	Vegetal oils
+ZR03	Soil sterilants (incl. nematicides)
+ZR03_01	Methyl bromide
+ZR03_99	Other soil sterilants
+ZR04	Rodenticides
+ZR04_01	Rodenticides
+ZR99	All other plant protection products
+ZR99_01	Disinfectants
+ZR99_99	Other plant protection products
+FDS	Animal feedingstuffs
+FDS_IN	Feedingstuffs supplied by other agricultural holdings
+FDS_OUT	Feedingstuffs purchased from outside the agricultural 'industry'
+FDS_OWN	Feedingstuffs produced and consumed by the same holding
+FDS_S	Straight feedingstuffs
+FDS_S_CM	Feedingstuffs: cereals and milling by-products
+FDS_S_CM_FW	Feedingstuffs: fodder wheat
+FDS_S_CM_BAR	Feedingstuffs: barley
+FDS_S_CM_OAT	Feedingstuffs: oats
+FDS_S_CM_MAI	Feedingstuffs: maize
+FDS_S_CM_WB	Feedingstuffs: wheat bran
+FDS_S_CM_GB	Feedingstuffs: ground barley
+FDS_S_CM_GM	Feedingstuffs: ground maize
+FDS_S_OC	Feedingstuffs: oil-cakes
+FDS_S_OC_L	Feedingstuffs: linseed cake (expeller)
+FDS_S_OC_TSM	Feedingstuffs: toasted extracted soyabean meal
+FDS_S_ANI	Feedingstuffs of animal origin
+FDS_S_ANI_A	Feedingstuffs: Animal meal
+FDS_S_ANI_F	Feedingstuffs: Fish meal
+FDS_S_OTH	Other straight feedingstuffs
+FDS_S_OTH_FDB	Feedingstuffs: field beans
+FDS_S_OTH_FDP	Feedingstuffs: field peas
+FDS_S_OTH_FOP	Feedingstuffs: fodder peas
+FDS_S_OTH_DSB	Feedingstuffs: dried sugar beet pulp
+FDS_S_OTH_MH	Feedingstuffs: meadow hay
+FDS_S_OTH_DL	Feedingstuffs: dried lucerne
+FDS_S_OTH_CS	Feedingstuffs: cereal straw
+FDS_C	Compound feedingstuffs
+FDS_C_CAL	Compound feedingstuffs for calves
+FDS_C_CAL_1	Complementary feed for rearing calves
+FDS_C_CAL_2MS	Milk replacer for fattening calves (in sacks)
+FDS_C_CAL_2MB	Milk replacer for fattening calves (in bulk)
+FDS_C_CATXCAL	Compound feedingstuffs for cattle (excluding calves)
+FDS_C_CAT_1	Complementary feed for dairy cattle (grass-fed)
+FDS_C_CAT_2S	Complementary feed for dairy cattle (stall-fed) (in sacks)
+FDS_C_CAT_2B	Complementary feed for dairy cattle (stall-fed) (in bulk)
+FDS_C_CAT_P2S	Protein-rich complementary feed for dairy cattle (stall-fed) (in sacks)
+FDS_C_CAT_P2B	Protein-rich complementary feed for dairy cattle (stall-fed) (in bulk)
+FDS_C_CAT_3S	Complementary feed for cattle fattening (in sacks)
+FDS_C_CAT_3B	Complementary feed for cattle fattening (in bulk)
+FDS_C_CAT_P3S	Protein-rich complementary feed for cattle fattening (in sacks)
+FDS_C_CAT_P3B	Protein-rich complementary feed for cattle fattening (in bulk)
+FDS_C_PIG	Compound feedingstuffs for pigs
+FDS_C_PIG_1S	Complete feed for rearing pigs (in sacks)
+FDS_C_PIG_1B	Complete feed for rearing pigs (in bulk)
+FDS_C_PIG_2S	Complete feed for sows (in sacks)
+FDS_C_PIG_2B	Complete feed for sows (in bulk)
+FDS_C_PIG_3S	Complete feed for fattening pigs (in sacks)
+FDS_C_PIG_3B	Complete feed for fattening pigs (in bulk)
+FDS_C_PLT	Compound feedingstuffs for poultry
+FDS_C_PLT_1S	Baby chick feed (in sacks)
+FDS_C_PLT_1B	Baby chick feed (in bulk)
+FDS_C_PLT_2S	Complete feed for rearing pullet (in sacks)
+FDS_C_PLT_2B	Complete feed for rearing pullet (in bulk)
+FDS_C_PLT_3S	Complete feed for battery laying hens (in sacks)
+FDS_C_PLT_3B	Complete feed for battery laying hens (in bulk)
+FDS_C_PLT_4S	Complete feed for broiler production (in sacks)
+FDS_C_PLT_4B	Complete feed for broiler production (in bulk)
+FDS_C_OTH	Other compound feedingstuffs
+MTL	Material and small tools
+MNT	Maintenance and repair of plants
+MNT_BLD	Maintenance of buildings
+VET	Veterinary services
+AGR	Agricultural services
+AGR_FISIM	Financial intermediation services indirectly measured (FISIM)
+GEN	General expenses
+INP_S1_OTH	Other intermediate consumption
+INP_S2	Investment goods and services
+MAC	Machinery and other equipment
+MAC_2WHL	Rotovator and other 2 wheels equipment
+MAC_CLT	Machinery and plant for cultivation
+MAC_HVT	Machinery and plant for harvesting
+MAC_INS	Farm machinery and installations
+MAC_INS_CRP	Machinery and installations for crop production
+MAC_INS_ANI	Machinery and installations for animal production
+MAC_INS_OTH	Other farm machinery and installations
+MAC_TSP	Transport equiment
+MAC_TSP_TRT	Tractors
+MAC_TSP_OTH	Other vehicles
+BLD	Buildings and structures
+BLD_FRM	Farm buildings
+BLD_IMP	Engineering and soil improvement operations
+BLD_OTH	Other buildings and structures
+INP_S2_OTH	Other investment goods and services
+INP_OTH	Other investment

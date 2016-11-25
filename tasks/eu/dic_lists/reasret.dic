@@ -1,0 +1,154 @@
+YES	Yes
+NO	No
+NRP	No answer
+NAP	Not applicable
+UNK	Unknown
+OTH	Any other type of working schedule
+TOTAL	Total
+TCARE1	Childcare services (including paid childminders), pre-school
+TCARE2	Partner who is living in the household
+TCARE3	Relatives/neighbours/friends (unpaid)
+TCARE4	No childcare used
+TCRED9	Not applicable (the respondent has no child up to 14 years old in the household or/and is not working)
+RCARE1	The person regularly takes care of other children up to 14
+RCARE2	The person regularly takes care of relatives/friends aged 15 or more in need of care
+RCARE3	The person regularly takes care of other children up to 14 and of relatives/friends aged 15 or more in need of care
+CHORG2	Wish to work or to work more (and reduce caring time)
+CHORG3	Wish to work less to have more time for caring
+CHORG9	Not applicable (the respondent cares of no child/relative/friend in need of care)
+NWCHI0	No childcare services available
+NWCHI1	Lack of childcare services during the day
+NWCHI2	Lack of childcare services at special times
+NWCHI3	Lack of childcare services during the day or at special times
+NWCHI4	Childcare services are too expensive
+NWCHI5	Available childcare services are not of sufficient quality
+NWCHI6	Other reason not linked with the lack of suitable childcare services
+NWCHI7	Other reason linked with the lack of suitable childcare services
+NWCHI9	Not applicable (the respondent does not wish to work or work more and reduce the time for caring about children up to 14 and/or has no care responsibility)
+REDUC2	The person took special arrangements because of lack of alternative childcare services during the day
+REDUC3	The person took special arrangements because of lack of alternative childcare services at special times
+REDUC4	The person took special arrangements because alternative childcare services too expensive
+REDUC5	The person took special arrangements because alternative childcare services not of sufficient quality
+REDUC6	The person took special arrangements, always because of other reasons
+NWCAR0	No care services available
+NWCAR1	Lack of care services during the day
+NWCAR2	Lack of care services at special times
+NWCAR3	Lack of care services during the day or at special times
+NWCAR4	Care services are too expensive
+NWCAR5	Available care services are not of sufficient quality
+NWCAR6	Other reason not linked with the lack of suitable care services
+NWCAR7	Other reason linked with the lack of suitable care services
+NWCAR9	Not applicable (the respondent does not wish to work or work more and reduce the time for caring about relatives/friends in need of care)
+POSTO1	Generally possible
+POSTO2	Rarely possible
+POSTO3	Not possible
+TMOFF2	Yes, 'special leave' days remunerated
+TMOFF3	Yes, 'special leave' days not at all remunerated
+TMOFF4	Yes, other arrangements always used
+POSTIM9	Not applicable (the respondent is not working)
+RDHR3	No, but the person plans to do so within the next 5 years
+RDHR45	No and the person has no plans or does not know for the next 5 years
+PAGS94	Between 50 and 59 years old
+PAGS95	Between 60 and 64 years old
+PAGS96	At 65 years old or after or the person plans to work as long as possible
+PAGS97	No exact planned age and the person does not know at all when he/she will stop working
+PAGS98	The person has already stopped all work for pay or profit
+STAFT1	Unemployed
+STAFT2	In retirement or early retirement
+STAFT3	Long term sick or disabled
+STAFT4	Any other main reason for retirement or early retirement 
+FXWRK1	More flexible working time arrangements would contribute/have contributed to person staying longer at work
+FXWRK2	More flexible working time arrangements would not contribute/have contributed to person staying longer at work
+OPSKL1	More opportunities to update skills would contribute/have contributed to person staying longer at work
+OPSKL2	More opportunities to update skills would not contribute/have contributed to person staying longer at work
+HLSAF1	Better health and/or safety at work would contribute/have contributed to person staying longer at work
+HLSAF2	Better health and/or safety at work would not contribute/have contributed to person staying longer at work
+OTBNF1	A disability pension or a sick pension
+OTBNF2	An early retirement scheme allowance
+OTBNF3	Another individual benefit not elsewhere classified
+OTBNF4	Combination of the three previous cases
+FINCT1	To increase retirement pension entitlements
+FINCT2	To provide sufficient household income
+FINCT3	No financial incentive
+RRT158	Job lost or job-related problems or other
+RRT27	Reached retirement age or preference to stop working
+RRT346	Health or care-related or financial reasons
+OWNMS0	Person cannot determine how or when to do the work
+OWNMS1	Person can determine how to do the work
+OWNMS2	Person can determine when to do the work
+OWNMS3	Person can determine when and how to do the work
+OWNMS8	Person does not know
+SINCU0	Works regularly for more than one client or customer
+SINCU1	Works regularly for just one client or customer
+SHPAT1	Continuous shift work, usually four-shift system
+SHPAT2	Semi-continuous shift work, usually three-shift system
+SHPAT3	Two-shift system: double day-shift
+SHPAT4	Sometimes night, sometimes day-shift
+SHPAT5	Fixed shift work
+SHPAT6	Other type of shift work
+ANWKH0	Person does not have an annualised hours contract
+ANWKH1	Person has an annualised hours contract
+OCLWK0	Person is not on an on-call job
+OCLWK1	Person reports to work only when called
+WKPFT1	Less hours per day
+WKPFT2	Half a day less per week
+WKPFT3	Less days per week
+WKPFT4	Less hours per day and less days per week
+WKPFT5	One week in two
+WKPFT6	Any other working time pattern
+VARHR1	Person has reduced her or his credit hours
+VARHR2	Person has taken a few hours off (without the need to take holidays)
+VARHR3	Person has taken half a day, one or more days off
+VARHR4	Person has reduced her/his credit hours balance or has taken a few hours off and has also taken half a day, one or more days off (on different days of the week)
+VARHR5	Person wanted to take credit hours but could not do so (and has not taken holidays)
+VARHR6	Person wanted to take a few hours, half a day, one or more days off but could not do so
+VARHR7	Other (hours actually worked is more than contractual, lay-off etc.)
+WKT1P0	Shift work or on-call work is not convenient for personal life situation
+WKT1P1	Shift work is convenient for personal life situation
+WKT1P2	On-call work is convenient for personal life situation
+WKT2P1	Work in the evening, at night or during weekend is convenient for personal life situation
+WKT2P3	Work in the evening, at night or during weekend is not convenient for personal life situation
+VAWKH1	Fixed start and end of a working day
+VAWKH2	Staggered working hours, banded start and end
+VAWKH3	Working time banking with possibility only to take hours off
+VAWKH4	Working time banking with possibility to take full days off (besides taking hours off)
+VAWKH5	Start and end of working day varying by individual agreement
+VAWKH6	Determines own work schedule (no formal boundaries)
+VAWKH7	Any other type of variable working hours
+DETMS0	Subordinate relationship
+DETMS1	Determines own work methods and schedule
+SINGF0	Works regularly for more than one firm or customer
+SINGF1	Works regularly for one firm or customer
+TERCT1	Job or work ceases to exist when product or services are provided
+TERCT2	Temporary job under contract for a fixed period
+TERCT3	Job or work continues to exist after product or services are provided
+VAWKT1	Fixed start and end of a working day or varying working time as decided by the employer
+VAWKT2	Annualised hours contract
+VAWKT3	Flexitime/working time banking
+VAWKT4	Daily number of hours fixed, but some flexibility within the day
+VAWKT5	Determines own work schedule (no formal boundaries)
+VAWKT6	Other
+CMCRH0	Cannot use credit hours to take full days or weeks off
+CMCRH1	Can use credit hours to take full days or weeks off (besides to take hours off)
+CONTH0	Other
+CONTH1	A minimum number of hours is agreed by contract but the number of hours actually worked may exceed this minimum and they are not paid at overtime rate
+CONTH2	Reports to work only when called
+RESHW1	Shift work was the type of job person was looking for (personal initiative)
+RESHW2	Shift work was not the type of job person was looking for but no similar job available without shift work (similar within this occupation or industry)
+REWAR1	These working time arrangements were the type of job person was looking for (personal initiative)
+REWAR2	These working time arrangements were not the type of job person was looking for but no similar job available with ordinary working time arrangements (similar within this occupation or industry)
+ANYPENS	Persons receiving any pension
+STATOAP	Persons receiving only statutory old-age pension
+ONLYOAP	Persons receiving only an old-age pension
+FINARR	Favourable financial arrangements to leave
+NOTJOB	Lost job and/or could not find a job
+MAXAGE	Had reached the maximum retirement age
+ELIGIB	Had reached eligibility for a pension
+OTHJRR	Other job-related reasons
+HEALTH	Own health or disability
+FAMCAR	Family or care-related reasons
+OTHREA	Other reasons
+PENENT	To establish or increase future retirement pension entitlements
+SUFINC	To provide sufficient personal/household income
+ENTINC	To establish/increase future retirement pension entitlements and to provide sufficient personal/household income
+NONFIN	Non-financial reasons, e.g. work satisfaction

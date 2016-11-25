@@ -1,0 +1,24 @@
+OP	All operators
+PRD	Producers
+PRD_AGRI	Agricultural producers 
+PRD_AGRI_PRC	Agricultural producers which are also processors
+PRD_AGRI_IMP	Agricultural producers which are also importers 
+PRD_AGRI_OTH	Agricultural producers - others (n.e.c.)
+PRD_AQUA	Aquaculture producers 
+PRD_AQUA_PL	Aquaculture producers of aquatic plants 
+PRD_ONL	Producers only
+PRD_PRC	Producers which are also processors
+PRD_IMP	Producers which are also importers
+PRD_PRC_IMP	Producers which are also processors and importers
+PRC	Processors
+PRC_IMP	Processors which are also importers
+PRC_OTH	Processors - other (n.e.c.)
+PRC_ONL	Processors only
+IMP	Importers
+IMP_ONL	Importers only
+EXP	Exporters 
+OTH	Other operators
+OTH_TRD	Other operators - traders 
+OTH_TRD_WHLS	Other operators - traders - wholesalers 
+OTH_TRD_RTL	Other operators - traders - retailers 
+OTH_NEC	Other operators n.e.c.

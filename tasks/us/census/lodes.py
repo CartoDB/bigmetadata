@@ -8,11 +8,12 @@ import subprocess
 
 from collections import OrderedDict
 from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSColumnTag,
-                        current_session)
+                        current_session, OBSTag)
 from tasks.util import (shell, TempTableTask, classpath,
-                        ColumnsTask, TableTask)
-from tasks.tags import SectionTags, SubsectionTags
+                        ColumnsTask, TableTask, TagsTask)
+from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns
+from tasks.us.census.acs import ACSTags
 
 from luigi import (Task, Parameter, LocalTarget, BooleanParameter, WrapperTask,
                    IntParameter)
@@ -76,18 +77,37 @@ class DownloadLODESFile(Task):
         return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
 
 
-class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
-
-    def requires(self):
-        return {
-            'tags': SubsectionTags()
-        }
+class SourceTags(TagsTask):
 
     def version(self):
         return 1
 
+    def tags(self):
+        return [OBSTag(id='lehd-lodes',
+                       name='',
+                       type='source',
+                       description='')]
+
+
+class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': SubsectionTags(),
+            'sections': SectionTags(),
+            'license': LicenseTags(),
+            'source': SourceTags(),
+        }
+
+    def version(self):
+        return 2
+
     def columns(self):
-        tags = self.input()['tags']
+        input_ = self.input()
+        tags = input_['tags']
+        source = input_['source']['lehd-lodes']
+        license = input_['license']['no-restrictions']
+
         total_jobs = OBSColumn(
             type='Integer',
             name='Total Jobs',
@@ -96,7 +116,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
             aggregate='sum',
             tags=[tags['employment']]
         )
-        return OrderedDict([
+        cols = OrderedDict([
             #work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code
             ('total_jobs', total_jobs),
             ('jobs_age_29_or_younger', OBSColumn(
@@ -547,6 +567,10 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 weight=0
             )),
         ])
+        for colname, col in cols.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+        return cols
 
 
 class DownloadWorkplaceAreaCharacteristics(Task):

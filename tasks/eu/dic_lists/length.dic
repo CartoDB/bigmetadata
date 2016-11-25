@@ -1,0 +1,31 @@
+TOTAL	Total
+M_LT6	Less than 6 metres
+M6-7	From 6 to 7 metres
+M8-9	From 8 to 9 metres
+M10-11	From 10 to 11 metres
+M12-14	From 12 to 14 metres
+M15-16	From 15 to 16 metres
+M17	17 metres
+M18-23	From 18 to 23 metres
+M24-29	From 24 to 29 metres
+M30-35	From 30 to 35 metres
+M36-39	From 36 to 39 metres
+M40-44	From 40 to 44 metres
+M45-59	From 45 to 59 metres
+M60-74	From 60 to 74 metres
+M75-99	From 75 to 99 metres
+M100-149	From 100 to 149 metres
+M_GE150	150 metres or over
+KM_LT50	Less than 50 km
+KM50-149	From 50 to 149 km
+KM150-299	From 150 to 299 km
+KM150-499	From 150 to 499 km
+KM_LT300	Less than 300 km
+KM_GE300	300 km or over
+KM300-499	From 300 to 499 km
+KM_GE500	500 km or over
+KM500-999	From 500 to 999 km
+KM1000-1999	From 1 000 to 1 999 km
+KM2000-5999	From 2 000 to 5 999 km
+KM_GE6000	6 000 km or over
+UNK	Unknown

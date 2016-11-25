@@ -1,0 +1,33 @@
+PROD	Volume index of production
+TOVT	Index of turnover - Total
+TOVD	Index of turnover - Domestic market
+TOVE	Index of turnover - Non domestic market
+TOVV	Index of deflated turnover
+TOVZ	non-domestic turnover - euro area market
+TOVX	non-domestic turnover - non euro area market
+EMPL	Employment (number of persons employed)
+HOWK	Volume of work done (hours worked)
+WAGE	Gross wages and salaries
+IMPR	Import price index
+IMPX	Import price index - non euro area
+IMPZ	Import price index - euro area
+CREG	Car registrations
+PRIN	Domestic output price index - in national currency
+PREN	Non-domestic output price index - in national currency
+PREZ	Non-domestic output price index - euro area
+PREX	Non-domestic output price index - non euro area
+PRON	Total output price index - in national currency
+PRBB	Service producer prices for businesses
+CSTI	Construction cost index - in national currency
+CSTL	Labour cost index in construction - in national currency
+CSTM	Input prices for materials - in national currency
+CSTO	Output price index in construction - in national currency
+PNUM	Building permits - number of dwellings 
+PSQM	Building permits - m2 of useful floor area
+FIN_SIT	Financial situation of the business
+FIN_COS	Cost (interest and other) of obtaining finance
+FIN_DEB	Debt/turnover ratio of business
+FIN_OTH	Other terms or conditions of finance
+FIN_BUR	Burden or effort of obtaining finance
+FIN_WIL	Willingness of banks to provide finance
+OTH	Other reason(s)

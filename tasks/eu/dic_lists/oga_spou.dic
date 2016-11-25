@@ -1,0 +1,10 @@
+TOTAL	Total
+OGA_MT_HLD	Holder-manager spending more time on other gainful activities than on his own holding
+OGA_MT_SPOU	Spouse spending more time on other gainful activities than on his own holding
+OGA_LT_HLD	Holder-manager spending less time on other gainful activities than on his own holding
+OGA_LT_SPOU	Spouse spending less time on other gainful activities than on his own holding
+NOGA_HLD	Holder-manager has no other gainful activity
+NOGA_SPOU	Spouse has no other gainful activity
+NSPOU	No spouse
+NMAN_NHLD	Sole-holder is not the manager
+LEG_GRP	Holding is a legal person or group holding

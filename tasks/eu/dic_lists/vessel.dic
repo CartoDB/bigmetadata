@@ -1,0 +1,37 @@
+TOTAL	Total
+MER	Merchant ship
+MER_NF	Merchant ship under national flag
+MER_FF	Merchant ship under foreign flag belonging to a resident company
+LBK	Liquid bulk tanker
+LBK_OIL	Oil tanker
+LBK_CHM	Chemical tanker
+LBK_LGAS	Liquefied gas tanker
+LBK_TB	Tanker barge
+LBK_OTH	Other tanker
+DBK	Dry bulk carrier
+DBK_OIL	Bulk/oil carrier
+DBK_BC	Bulk carrier
+ODC	Other dry cargo
+ODC_CNT	Container ship
+ODC_SPE	Specialised carrier
+ODC_GEN	General cargo, non-specialised
+ODC_PRO	Passenger and Ro-ro passenger ship
+ODC_RO	Ro-ro cargo
+ODC_DCB	Dry cargo barge
+ODC_PAS	Passenger ship
+ODC_PCRU	Cruise ship
+ODC_PAS_XCR	Passenger ship (excluding cruise ship)
+MSC	Miscellaneous type of vessel
+MSC_FISH	Fishing vessel
+MSC_OFF	Offshore activities vessel
+MSC_TOW	Tug and pusher craft
+MSC_OTH	Other type of vessel (dredger, research vessel, other)
+BAR_SP	Self-propelled barge
+BAR_NSP	Not self-propelled barge
+BAR_SPT	Self-propelled tanker barge
+BAR_NSPT	Not self-propelled tanker barge
+SEA	Seagoing vessel
+TUG_PUSH	Tug and pusher
+DUM_PUSV	Dumb and pushed vessel
+OTH_GD	Other goods carrying vessel
+UNK	Unknown

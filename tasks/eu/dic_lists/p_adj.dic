@@ -1,0 +1,12 @@
+CP	Current price
+NP	Nominal price 
+RP	Real price 
+NV	Nominal value
+RV	Real value 
+NI	Nominal index
+RI	Real index
+VOL	Volume
+CLV00	Chain-linked volumes, reference year 2000 (at 2000 exchange rates) 
+CLV05	Chain-linked volumes, reference year 2005 (at 2005 exchange rates) 
+VW	Value weight
+NAP	Not applicable 
