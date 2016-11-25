@@ -4,7 +4,7 @@ from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
 from tasks.meta import GEOM_REF, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags
-
+from abc import ABCMeta
 from collections import OrderedDict
 
 
@@ -67,10 +67,14 @@ GEOGRAPHY_NAMES = {
     GEO_RA: 'Remoteness Areas',
 }
 
-class DownloadGeography(DownloadUnzipTask):
+class BaseParams:
+    __metaclass__ = ABCMeta
 
-    resolution = Parameter(default=GEO_STE)
     year = Parameter(default='2011')
+    resolution = Parameter(default=GEO_STE)
+
+
+class DownloadGeography(BaseParams, DownloadUnzipTask):
 
     URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/Boundaries_{year}_{resolution}/\$File/{year}_{resolution}_shape.zip'
 
@@ -80,13 +84,10 @@ class DownloadGeography(DownloadUnzipTask):
         ))
 
 
-class ImportGeography(Shp2TempTableTask):
+class ImportGeography(BaseParams, Shp2TempTableTask):
     '''
     Import geographies into postgres by geography level
     '''
-
-    resolution = Parameter(default=GEO_STE)
-    year = Parameter(default='2011')
 
     def requires(self):
         return DownloadGeography(resolution=self.resolution, year=self.year)
@@ -99,9 +100,7 @@ class ImportGeography(Shp2TempTableTask):
             yield shp
 
 
-class GeographyColumns(ColumnsTask):
-
-    resolution = Parameter(default=GEO_STE)
+class GeographyColumns(BaseParams, ColumnsTask):
 
     weights = {
         GEO_STE: 17,
@@ -124,7 +123,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 7
+        return 1
 
     def requires(self):
         return {
@@ -154,12 +153,7 @@ class GeographyColumns(ColumnsTask):
         ])
 
 
-class Geography(TableTask):
-    '''
-    '''
-
-    resolution = Parameter(default=GEO_STE)
-    year = Parameter(default='2011')
+class Geography(BaseParams, TableTask):
 
     def version(self):
         return 1
