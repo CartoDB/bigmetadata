@@ -1,13 +1,15 @@
 import os
 import urllib
+import csv
 
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
-from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, CSV2TempTableTask
-from tasks.meta import current_session
+from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, CSV2TempTableTask, ColumnsTask
+from tasks.meta import current_session, OBSColumn
 from tasks.au.geo import (
     GEO_STE,
     GEOGRAPHIES, GeographyColumns, Geography, BaseParams)
+from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 
 PROFILES = (
@@ -119,24 +121,6 @@ class Columns(BaseDataParams, ColumnsTask):
     def version(self):
         return 1
 
-    def validate_id(self, col_id):
-
-        # ids start with V
-        if not col_id.startswith('B'):
-            return False
-
-        # get numeric value
-        num = col_id.split('B')[1]
-
-        # ensure its an number
-        try:
-            num = int(num)
-        except ValueError:
-            return False
-
-        return True
-
-
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
@@ -148,32 +132,26 @@ class Columns(BaseDataParams, ColumnsTask):
         # column req's from other tables
         column_reqs = {}
 
-        filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile, self.profile)
+        filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile=self.profile)
 
         session = current_session()
         with open(os.path.join(os.path.dirname(__file__),filepath)) as csv_meta_file:
             reader = csv.reader(csv_meta_file, delimiter=',', quotechar='"')
 
             for line in reader:
-                # # skip headers
+                # # skip 4 headers
+                next(reader, None)
                 if not line[0].startswith('B'):
                     continue
 
                 col_id = line[1]
                 col_name_en = line[2]
                 denominators = line[3]
-                tablename = line[4]
                 col_unit = line[5]
                 col_subsections = line[6]
+                tablename = line[7]
 
-                # validate the col_id (VXXX)
-                if not self.validate_id(col_id):
-                    print('*******col_id not valid', col_id)
-                    continue
-
-                # parse targets
                 denominators = denominators.split('|')
-                # print(denominators)
                 # universes = universes.split('|')
 
                 targets_dict = {}
@@ -210,7 +188,6 @@ class Columns(BaseDataParams, ColumnsTask):
                     cols[col_id].tags.append(subsection_tag)
 
         return cols
-
 
 
 #####################################
