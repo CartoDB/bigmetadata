@@ -4,6 +4,7 @@ Test ColumnTask classes
 
 
 from tests.util import runtask, setup, teardown
+
 from tasks.es.ine import FiveYearPopulationColumns
 from tasks.meta import (get_engine, current_session, Base,
                         session_rollback, OBSColumn, current_session)
