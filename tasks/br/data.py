@@ -222,7 +222,7 @@ class Columns(ColumnsTask):
                     continue
 
                 col_id = line[0]
-                col_name_pt = line[1]
+                col_name_pt = line[1].decode('latin1')
                 col_name_en = line[2]
                 col_unit = line[3]
                 denominators = line[4]
@@ -252,7 +252,7 @@ class Columns(ColumnsTask):
                 cols[col_id] = OBSColumn(
                     id=col_id,
                     type='Numeric',
-                    name=col_name_en,
+                    name=col_name_pt,
                     description ='',
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
@@ -312,9 +312,9 @@ class Censos(BaseParams, TableTask):
         session = current_session()
         column_targets = self.columns()
         out_colnames = column_targets.keys()
-        in_colnames = ['{}::{}'.format(colname.split('_')[1], ct.get(session).type)
+        in_colnames = ['"{}"::{}'.format(colname.split('_')[1], ct.get(session).type)
                               for colname, ct in column_targets.iteritems()]
-        in_colnames[0] = 'Cod_setor'
+        in_colnames[0] = '"Cod_setor"'
 
         cmd =   'INSERT INTO {output} ({out_colnames}) ' \
                 'SELECT {in_colnames} FROM {input} '.format(
