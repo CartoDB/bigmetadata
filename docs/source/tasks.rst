@@ -6,7 +6,11 @@ Subpackages
 
 .. toctree::
 
+    tasks.br
+    tasks.ca
     tasks.es
+    tasks.eu
+    tasks.fr
     tasks.mx
     tasks.th
     tasks.uk
