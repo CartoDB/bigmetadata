@@ -68,7 +68,7 @@ class ImportData(BaseDataParams, CSV2TempTableTask):
             path=self.input().path,
             year=self.year,
             tablename=self.tablename,
-            state=self.state,
+            state=self.state.upper(),
             resolution=self.resolution,
             header=self.header,
             )
