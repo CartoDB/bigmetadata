@@ -64,7 +64,7 @@ class ImportData(BaseParams, CSV2TempTableTask):
     delimiter = ';'
 
     def requires(self):
-        return DownloadData(resolution=self.resolution, state=self.state)
+        return DownloadData(state=self.state)
 
     def version(self):
         return 1
@@ -99,30 +99,14 @@ class ImportAllTables(BaseParams, WrapperTask):
 
     def requires(self):
         for table in TABLES:
-            yield Columns(tablename=table)
-            yield ImportData(resolution=self.resolution, state=self.state,
-                            tablename=table)
+            yield ImportData(state=self.state, tablename=table)
+
 
 class ImportAllStates(BaseParams, WrapperTask):
 
     def requires(self):
         for state in STATES:
-            yield ImportAllTables(resolution=self.resolution, state=state)
-
-
-class ImportAllResolutions(BaseParams, WrapperTask):
-
-    def requires(self):
-        for resolution in GEOGRAPHIES:
-            yield ImportAllTables(resolution=resolution, state=self.state)
-
-
-class ImportAll(BaseParams, WrapperTask):
-
-    def requires(self):
-        for resolution in GEOGRAPHIES:
-            for state in STATES:
-                yield ImportAllTables(resolution=resolution, state=state)
+            yield ImportAllTables(state=state)
 
 
 class Columns(ColumnsTask):
@@ -290,7 +274,7 @@ class Censos(BaseParams, TableTask):
 
     def requires(self):
         return {
-            'data': ImportData(resolution=self.resolution, state=self.state, tablename=self.tablename),
+            'data': ImportData(state=self.state, tablename=self.tablename),
             'geo': Geography(resolution=self.resolution, state=self.state),
             'geometa': GeographyColumns(resolution=self.resolution, state=self.state),
             'meta': Columns(tablename=self.tablename),
