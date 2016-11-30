@@ -330,3 +330,26 @@ class CensosAllTables(BaseParams, WrapperTask):
     def requires(self):
         for table in TABLES:
             yield Censos(resolution=self.resolution, state=self.state, tablename=table)
+
+
+class CensosAllStates(BaseParams, WrapperTask):
+
+    def requires(self):
+        for state in STATES:
+            yield CensosAllTables(resolution=self.resolution, state=state)
+
+
+class CensosAllGeographies(BaseParams, WrapperTask):
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            yield CensosAllTables(resolution=resolution, state=self.state)
+
+
+class CensosAllGeographiesAllStates(WrapperTask):
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            for state in STATES:
+                yield CensosAllTables(resolution=resolution, state=state)
+
