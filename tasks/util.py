@@ -251,7 +251,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
             / (50000), 0, 0, ARRAY['32BF', '32BF', '32BF'],
                              ARRAY[-1, -1, -1],
                              ARRAY[0, 0, 0]
-          ), ARRAY[1, 2, 3], 50, 50) rast
+          ), ARRAY[1, 2, 3], 25, 25) rast
           FROM observatory.obs_table
           WHERE id = '{table_id}'
           ) foo
@@ -262,15 +262,16 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                  ARRAY_AGG(cnt) counts,
                  ARRAY_AGG(percent_fill) percents FROM (
           SELECT id, ROW(FIRST(geom),
-                        -- determine median area of tiger geometries
+                        -- determine median area of geometries
                         Coalesce(Nullif(
                           percentile_cont(0.5) within group (
-                          order by st_area(st_transform(tiger.{colname}, 3857)) / 1000000)
+                          order by st_area(tiger.{colname}::Geography) / 1000000)
                           , 0), null)
                      )::geomval median,
                      ROW(FIRST(geom),
                       -- determine number of geoms, including fractions
-                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
+                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(
+                               tiger.{colname}, foo.geom)) /
                           ST_Area(tiger.{colname})), 0), null)
                      )::geomval cnt,
                      ROW(FIRST(geom),
