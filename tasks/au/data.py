@@ -193,11 +193,13 @@ class Columns(BaseDataParams, ColumnsTask):
 #####################################
 # COPY TO OBSERVATORY
 #####################################
-class BCP(BaseParams, TableTask):
+class BCP(BaseDataParams, TableTask):
+
+    tablename = Parameter(default='B01')
 
     def requires(self):
         return {
-            'data': ImportAllTables(resolution=self.resolution, profile=PROFILE_BCP),
+            'data': ImportData(resolution=self.resolution, state=self.state, profile=PROFILE_BCP, tablename=self.tablename),
             'geo': Geography(resolution=self.resolution, year=self.year),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': Columns(),
@@ -248,8 +250,30 @@ class BCP(BaseParams, TableTask):
         session.execute(cmd)
 
 
-class AllBCPResolutions(BaseParams, WrapperTask):
+class BCPAllTables(BaseParams, WrapperTask):
+
+    def requires(self):
+        for table in TABLES:
+            yield BCP(resolution=self.resolution, state=self.state, tablename=table)
+
+
+class BCPAllStates(BaseDataParams, WrapperTask):
+
+    def requires(self):
+        for state in STATES:
+            yield BCPAllTables(resolution=self.resolution, state=state)
+
+
+class BCPAllGeographies(BaseDataParams, WrapperTask):
 
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield BCP(resolution=resolution, profile=PROFILE_BCP)
+            yield BCPAllTables(resolution=resolution, state=self.state)
+
+
+class BCPAllGeographiesAllStates(WrapperTask):
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            for state in STATES:
+                yield BCPAllTables(resolution=resolution, state=state)
