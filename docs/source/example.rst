@@ -632,20 +632,12 @@ been run before for this year & quarter combination.
 .. code:: python
 
     table_task = QCEW(year=2014, qtr=4)
+    runtask(table_task)
     table_task.complete()
-
-
-
 
 .. parsed-literal::
 
     True
-
-
-
-.. code:: python
-
-    runtask(table_task)
 
 The table should exist in metadata, as well as in data, with all
 relations well-defined.

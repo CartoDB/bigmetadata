@@ -8,7 +8,7 @@ from nose import with_setup
 from nose.tools import (assert_equal, assert_is_not_none, assert_is_none,
                         assert_true, assert_false, with_setup, assert_greater)
 
-from tests.util import runtask, setup, teardown, current_session
+from tests.util import runtask, setup, teardown
 
 from tasks.meta import OBSColumn, OBSTable, OBSColumnTableTile, current_session
 from tasks.util import ColumnsTask, TableTask, Shp2TempTableTask, classpath, \

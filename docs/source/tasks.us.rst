@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     tasks.us.census
+    tasks.us.epa
 
 Submodules
 ----------
