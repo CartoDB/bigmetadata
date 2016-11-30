@@ -194,7 +194,7 @@ class Columns(ColumnsTask):
         column_reqs.update(input_.get('Pessoa07', {}))
         column_reqs.update(input_.get('Pessoa03', {}))
         column_reqs.update(input_.get('Responsavel02', {}))
-        column_reqs.update(input_.get('Basico', {}))
+        column_reqs.update(input_.get('ResponsavelRenda', {}))
 
         filepath = "meta/{tablename}.csv".format(tablename=self.tablename)
 
