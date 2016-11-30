@@ -83,6 +83,8 @@ class ImportData(BaseParams, CSV2TempTableTask):
         path = shell('find {downloadpath} -name "{filename}"'.format(downloadpath=self.input().path, filename=filename))
 
         df = pd.read_excel(path.split('\n')[0])
+        if self.tablename != 'Basico':
+            df = df.apply(pd.to_numeric, errors="coerce")
         df.to_csv(
             os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
             state_code=state_code)),
