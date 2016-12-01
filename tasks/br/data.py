@@ -80,7 +80,7 @@ class ImportData(BaseParams, CSV2TempTableTask):
             state_code=state_code
         )
 
-        path = shell('find {downloadpath} -name "{filename}"'.format(downloadpath=self.input().path, filename=filename))
+        path = shell('find {downloadpath} -iname "{filename}"'.format(downloadpath=self.input().path, filename=filename))
 
         df = pd.read_excel(path.split('\n')[0])
         if self.tablename != 'Basico':
