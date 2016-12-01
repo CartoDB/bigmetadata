@@ -82,11 +82,23 @@ class BaseParams:
 
 class DownloadGeography(BaseParams, DownloadUnzipTask):
 
-    URL = 'ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2010/setores_censitarios_shp/{state}/{state}_{resolution}.zip'
+    PATH = 'ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2010/setores_censitarios_shp/{state}/'
+
+    FILENAME = '{state}_{resolution}.zip'
 
     def download(self):
+
+        path = self.PATH.format(state=self.state)
+
+        res = self.resolution
+        if self.state == 'go':
+            res = res.replace('_', '%20_')
+
+        filename = self.FILENAME.format(state=self.state, resolution=res)
+
         shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL.format(state=self.state, resolution=self.resolution)
+            output=self.output().path,
+            url=path + filename
         ))
 
 
