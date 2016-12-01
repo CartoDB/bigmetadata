@@ -199,7 +199,7 @@ class BCP(BaseDataParams, TableTask):
 
     def requires(self):
         return {
-            'data': ImportData(resolution=self.resolution, state=self.state, profile=PROFILE_BCP, tablename=self.tablename),
+            'data': ImportData(resolution=self.resolution, state=self.state, profile='BCP', tablename=self.tablename),
             'geo': Geography(resolution=self.resolution, year=self.year),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': Columns(),
@@ -250,7 +250,7 @@ class BCP(BaseDataParams, TableTask):
         session.execute(cmd)
 
 
-class BCPAllTables(BaseParams, WrapperTask):
+class BCPAllTables(BaseDataParams, WrapperTask):
 
     def requires(self):
         for table in TABLES:
