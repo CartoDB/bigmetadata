@@ -91,7 +91,7 @@ class DownloadGeography(BaseParams, DownloadUnzipTask):
         path = self.PATH.format(state=self.state)
 
         res = self.resolution
-        if self.state == 'go':
+        if self.state == 'go': #exception here for go
             res = res.replace('_', '%20_')
 
         filename = self.FILENAME.format(state=self.state, resolution=res)
@@ -113,6 +113,20 @@ class ImportGeography(BaseParams, Shp2TempTableTask):
         )
         for shp in shell(cmd).strip().split('\n'):
             yield shp
+
+
+class ImportAllStates(BaseParams, WrapperTask):
+
+    def requires(self):
+        for state in STATES:
+            yield ImportGeography(state=state)
+
+
+class ImportAllGeographies(BaseParams, WrapperTask):
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            yield ImportGeography(resolution=resolution)
 
 
 class GeographyColumns(BaseParams, ColumnsTask):
