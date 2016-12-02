@@ -301,6 +301,25 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
         FROM emptyraster er, pixelspertile ppt
         WHERE er.id = ppt.id
         ;
+        UPDATE observatory.obs_column_table_tile
+        SET tile = st_setvalues(st_setvalues(st_setvalues(tile,
+                    1, geomvals, false),
+                    2, geomvals, false),
+                    3, geomvals, false)
+        FROM (
+            SELECT table_id, column_id, tile_id, array_agg(((geomval).geom, 0)::geomval) geomvals FROM (
+                SELECT table_id, column_id, tile_id, st_dumpaspolygons(tile, 1, false) geomval
+                FROM observatory.obs_column_table_tile
+                WHERE column_id = '{column_id}'
+                  AND table_id = '{table_id}'
+            ) bar
+            WHERE (geomval).val = -1
+            GROUP BY table_id, column_id, tile_id
+        ) foo
+          WHERE obs_column_table_tile.table_id = foo.table_id
+            AND obs_column_table_tile.column_id = foo.column_id
+            AND obs_column_table_tile.tile_id = foo.tile_id
+        ;
     '''.format(table_id=table_id, column_id=column_id,
                colname=colname, tablename=tablename)
     resp = session.execute(query)
