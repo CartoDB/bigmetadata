@@ -301,6 +301,11 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
         FROM emptyraster er, pixelspertile ppt
         WHERE er.id = ppt.id
         ;
+    '''.format(table_id=table_id, column_id=column_id,
+               colname=colname, tablename=tablename)
+    resp = session.execute(query)
+    assert resp.rowcount > 0
+    resp = session.execute('''
         UPDATE observatory.obs_column_table_tile
         SET tile = st_setvalues(st_setvalues(st_setvalues(tile,
                     1, geomvals, false),
@@ -319,11 +324,8 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
           WHERE obs_column_table_tile.table_id = foo.table_id
             AND obs_column_table_tile.column_id = foo.column_id
             AND obs_column_table_tile.tile_id = foo.tile_id
-        ;
-    '''.format(table_id=table_id, column_id=column_id,
-               colname=colname, tablename=tablename)
-    resp = session.execute(query)
-    assert resp.rowcount > 0
+       ; '''.format(table_id=table_id, column_id=column_id,
+                    colname=colname, tablename=tablename))
 
 
 class PostgresTarget(Target):
