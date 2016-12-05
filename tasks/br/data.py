@@ -274,6 +274,9 @@ class Censos(BaseParams, TableTask):
 
     tablename = Parameter(default='Basico')
 
+    def version(self):
+        return 2
+
     def requires(self):
         return {
             'data': ImportData(state=self.state, tablename=self.tablename),
