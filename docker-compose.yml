@@ -5,7 +5,7 @@
     "image": "recessionporn/bigmetadata_postgres",
     "volumes": [
       "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf",
-#      "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
+      "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
                                               # will cause persistence issues!!
       "./observatory-extension:/observatory-extension"
     ],
@@ -17,6 +17,7 @@
       "./conf/nginx.conf:/etc/nginx/conf.d/default.conf:ro",
       "./catalog/build/html:/usr/share/nginx/html/catalog/:ro",
       "./docs/build/html:/usr/share/nginx/html/docs/:ro",
+      "./perftest:/usr/share/nginx/html/perftest/:ro",
     ],
     "ports": [
        "80:80"
