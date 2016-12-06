@@ -292,8 +292,13 @@ class Censos(BaseParams, TableTask):
         cols = OrderedDict()
         input_ = self.input()
         cols['Cod_setor'] = input_['geometa']['geom_id']
+        # For some reason, state 'go' is missing columns 843 through 860 in
+        # Entorno05
+        skip_pre_861 = self.tablename == 'Entorno05' and self.state.lower() == 'go'
         for colname, coltarget in input_['meta'].iteritems():
             # if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
+            if skip_pre_861 and int(colname.split('V')[-1]) < 861:
+                continue
             cols[colname] = coltarget
         return cols
 
