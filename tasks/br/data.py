@@ -299,18 +299,31 @@ class ImportAllColumns(WrapperTask):
 #####################################
 # COPY TO OBSERVATORY
 #####################################
-class Censos(BaseParams, TableTask):
+class Censos(TableTask):
 
     tablename = Parameter(default='Basico')
+    resolution = Parameter()
 
     def version(self):
-        return 2
+        return 3
+
+    def states(self):
+        '''
+        Exclude Basico/mg, which seems to be missing
+        '''
+        if self.tablename == 'Basico':
+            return [s for s in STATES if s != 'mg']
+        else:
+            return STATES
 
     def requires(self):
+        import_data = {}
+        for state in self.states():
+            import_data[state] = ImportData(state=state, tablename=self.tablename)
         return {
-            'data': ImportData(state=self.state, tablename=self.tablename),
-            'geo': Geography(resolution=self.resolution, state=self.state),
-            'geometa': GeographyColumns(resolution=self.resolution, state=self.state),
+            'data': import_data,
+            'geo': Geography(resolution=self.resolution),
+            'geometa': GeographyColumns(resolution=self.resolution),
             'meta': Columns(tablename=self.tablename),
         }
 
@@ -339,40 +352,28 @@ class Censos(BaseParams, TableTask):
                               for colname, ct in column_targets.iteritems()]
         in_colnames[0] = '"Cod_setor"'
 
-        cmd =   'INSERT INTO {output} ({out_colnames}) ' \
-                'SELECT {in_colnames} FROM {input} '.format(
-                    output=self.output().table,
-                    input=self.input()['data'].table,
-                    in_colnames=', '.join(in_colnames),
-                    out_colnames=', '.join(out_colnames))
+        for _, input_ in self.input()['data'].iteritems():
+            intable = input_.table
+            cmd = 'INSERT INTO {output} ({out_colnames}) ' \
+                  'SELECT {in_colnames} FROM {input} '.format(
+                        output=self.output().table,
+                        input=intable,
+                        in_colnames=', '.join(in_colnames),
+                        out_colnames=', '.join(out_colnames))
         session.execute(cmd)
 
 
-class CensosAllTables(BaseParams, WrapperTask):
+class CensosAllTables(WrapperTask):
+
+    resolution = Parameter()
 
     def requires(self):
         for table in TABLES:
-            yield Censos(resolution=self.resolution, state=self.state, tablename=table)
+            yield Censos(resolution=self.resolution, tablename=table)
 
 
-class CensosAllStates(BaseParams, WrapperTask):
-
-    def requires(self):
-        for state in STATES:
-            yield CensosAllTables(resolution=self.resolution, state=state)
-
-
-class CensosAllGeographies(BaseParams, WrapperTask):
+class CensosAllGeographiesAllTables(WrapperTask):
 
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield CensosAllTables(resolution=resolution, state=self.state)
-
-
-class CensosAllGeographiesAllStates(WrapperTask):
-
-    def requires(self):
-        for resolution in GEOGRAPHIES:
-            for state in STATES:
-                yield CensosAllTables(resolution=resolution, state=state)
-
+            yield CensosAllTables(resolution=resolution)

@@ -129,7 +129,9 @@ class ImportAllGeographies(BaseParams, WrapperTask):
             yield ImportGeography(resolution=resolution)
 
 
-class GeographyColumns(BaseParams, ColumnsTask):
+class GeographyColumns(ColumnsTask):
+
+    resolution = Parameter()
 
     weights = {
         GEO_M: 4,
@@ -170,14 +172,19 @@ class GeographyColumns(BaseParams, ColumnsTask):
         ])
 
 
-class Geography(BaseParams, TableTask):
+class Geography(TableTask):
+
+    resolution = Parameter()
 
     def version(self):
         return 2
 
     def requires(self):
+        import_data = {}
+        for state in STATES:
+            import_data[state] = ImportGeography(state=state, resolution=self.resolution)
         return {
-            'data': ImportGeography(resolution=self.resolution, state=self.state),
+            'data': import_data,
             'columns': GeographyColumns(resolution=self.resolution)
         }
 
@@ -189,33 +196,19 @@ class Geography(BaseParams, TableTask):
 
     def populate(self):
         session = current_session()
-        session.execute('INSERT INTO {output} '
-                        'SELECT {code} as geom_id, '
-                        '       wkb_geometry as geom '
-                        'FROM {input} '.format(
-                            output=self.output().table,
-                            code=GEOGRAPHY_CODES[self.resolution],
-                            input=self.input()['data'].table))
+        for _, input_ in self.input()['data'].iteritems():
+            intable = input_.table
+            session.execute('INSERT INTO {output} '
+                            'SELECT {code} as geom_id, '
+                            '       wkb_geometry as geom '
+                            'FROM {input} '.format(
+                                output=self.output().table,
+                                code=GEOGRAPHY_CODES[self.resolution],
+                                input=intable))
 
 
 class AllGeographies(BaseParams, WrapperTask):
 
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield Geography(resolution=resolution, state=self.state)
-
-
-class AllStates(BaseParams, WrapperTask):
-
-    def requires(self):
-        for state in STATES:
-            yield Geography(resolution=self.resolution, state=state)
-
-
-class AllGeographiesAllStates(WrapperTask):
-
-    def requires(self):
-        for resolution in GEOGRAPHIES:
-            for state in STATES:
-                yield Geography(resolution=resolution, state=state)
-
+            yield Geography(resolution=resolution)
