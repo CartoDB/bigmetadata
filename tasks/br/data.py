@@ -305,7 +305,7 @@ class Censos(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def states(self):
         '''
@@ -336,11 +336,10 @@ class Censos(TableTask):
         cols['Cod_setor'] = input_['geometa']['geom_id']
         # For some reason, state 'go' is missing columns 843 through 860 in
         # Entorno05
-        skip_pre_861 = self.tablename == 'Entorno05' and self.state.lower() == 'go'
         for colname, coltarget in input_['meta'].iteritems():
             # if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
-            if skip_pre_861 and int(colname.split('V')[-1]) < 861:
-                continue
+            #if skip_pre_861 and int(colname.split('V')[-1]) < 861:
+            #    continue
             cols[colname] = coltarget
         return cols
 
@@ -351,6 +350,7 @@ class Censos(TableTask):
         in_colnames = ['"{}"::{}'.format(colname.split('_')[1], ct.get(session).type)
                               for colname, ct in column_targets.iteritems()]
         in_colnames[0] = '"Cod_setor"'
+        skip_pre_861 = self.tablename == 'Entorno05' and self.state.lower() == 'go'
 
         for _, input_ in self.input()['data'].iteritems():
             intable = input_.table
@@ -360,7 +360,7 @@ class Censos(TableTask):
                         input=intable,
                         in_colnames=', '.join(in_colnames),
                         out_colnames=', '.join(out_colnames))
-        session.execute(cmd)
+            session.execute(cmd)
 
 
 class CensosAllTables(WrapperTask):
