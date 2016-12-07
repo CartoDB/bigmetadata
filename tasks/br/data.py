@@ -1,12 +1,14 @@
+# -*- coding: utf-8 -*-
+
 import os
 import csv
 import pandas as pd
 
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 
-from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
+from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask, TagsTask,
                         ColumnsTask, TableTask, classpath, CSV2TempTableTask)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
+from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from abc import ABCMeta
 from collections import OrderedDict
@@ -30,6 +32,29 @@ TABLES = ['Basico',
           'Pessoa11', 'Pessoa12', 'Pessoa13', 'PessoaRenda',
           # Responsible
           'Responsavel01', 'Responsavel02', 'ResponsavelRenda',]
+
+
+class SourceTags(TagsTask):
+
+    def tags(self):
+        return [
+            OBSTag(id='ibge-censo',
+                   name='Censo Demográfico Instituto Brasileiro de Geografia e Estatística (IBGE)',
+                   type='source',
+                   description=u'The `Instituto Brasileiro de Geografia e Estatística <http://ibge.gov.br>`_ `Censo Demográfico <http://censo2010.ibge.gov.br/>`')
+        ]
+
+
+class LicenseTags(TagsTask):
+
+    def tags(self):
+        return [
+            OBSTag(id='ibge-license',
+                   name='Law No. 12,527, OF November 18, 2011',
+                   type='license',
+                   description=u'Full text is `here <http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Lei/L12527.htm>`_')
+        ]
+
 
 
 class DownloadData(BaseParams, DownloadUnzipTask):
@@ -120,6 +145,8 @@ class Columns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'source': SourceTags(),
+            'license': LicenseTags()
         }
         if self.tablename == 'Domicilio02':
             requirements['Domicilio01'] = Columns(tablename='Domicilio01')
@@ -183,6 +210,8 @@ class Columns(ColumnsTask):
         subsectiontags = input_['subsections']
         unittags = input_['units']
         brasil = input_['sections']['br']
+        source = input_['source']['ibge-censo']
+        license = input_['license']['ibge-license']
 
         # column req's from other tables
         column_reqs = {}
@@ -246,7 +275,7 @@ class Columns(ColumnsTask):
                     aggregate='sum',
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
-                    tags=[brasil, unittags[col_unit]],
+                    tags=[source, license, brasil, unittags[col_unit]],
                     targets= targets_dict
                 )
 
