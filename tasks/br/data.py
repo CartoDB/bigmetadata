@@ -15,9 +15,10 @@ from collections import OrderedDict
 from tasks.br.geo import (
     BaseParams,
     GEOGRAPHIES,
-    STATES,
+    DATA_STATES,
     Geography,
-    GeographyColumns
+    GeographyColumns,
+    GEO_I
 )
 
 
@@ -57,21 +58,17 @@ class LicenseTags(TagsTask):
 
 
 
-class DownloadData(BaseParams, DownloadUnzipTask):
+class DownloadData(DownloadUnzipTask):
 
+    state = Parameter()
     URL = 'ftp://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_do_Universo/Agregados_por_Setores_Censitarios/'
 
     def _get_filename(self):
-        state = self.state.upper()
-
-        if state == 'SP':
-            state = 'SP_Capital'    # SP_Capital_20150728.zip
-
         cmd = 'curl -s {url}'.format(url=self.URL)
         cmd += ' | '
         cmd += 'awk \'{print $9}\''
         cmd += ' | '
-        cmd += 'grep {state}_[0-9].*zip$'.format(state=state)
+        cmd += 'grep -i {state}_[0-9].*zip$'.format(state=self.state)
 
         return shell(cmd)
 
@@ -82,9 +79,10 @@ class DownloadData(BaseParams, DownloadUnzipTask):
         ))
 
 
-class ImportData(BaseParams, CSV2TempTableTask):
+class ImportData(CSV2TempTableTask):
 
-    tablename = Parameter(default='Basico')
+    state = Parameter()
+    tablename = Parameter()
     encoding = 'latin1'
     delimiter = ';'
 
@@ -95,8 +93,10 @@ class ImportData(BaseParams, CSV2TempTableTask):
         return 1
 
     def input_csv(self):
-        if self.state == 'sp':
+        if self.state.lower() == 'sp_capital':
             state_code = 'SP1'
+        elif self.state.lower() == 'sp_exceto_a_capital':
+            state_code = 'SP2'
         else:
             state_code = self.state.upper()
 
@@ -132,7 +132,7 @@ class ImportAllTables(BaseParams, WrapperTask):
 class ImportAllStates(BaseParams, WrapperTask):
 
     def requires(self):
-        for state in STATES:
+        for state in DATA_STATES:
             yield ImportAllTables(state=state)
 
 
@@ -312,9 +312,9 @@ class Censos(TableTask):
         Exclude Basico/mg, which seems to be missing
         '''
         if self.tablename == 'Basico':
-            return [s for s in STATES if s != 'mg']
+            return [s for s in DATA_STATES if s != 'mg']
         else:
-            return STATES
+            return DATA_STATES
 
     def requires(self):
         import_data = {}
@@ -344,22 +344,33 @@ class Censos(TableTask):
         return cols
 
     def populate(self):
+        if self.resolution != 'setores_censitarios':
+            raise Exception('Data only supported for setores_censitarios')
         session = current_session()
         column_targets = self.columns()
         out_colnames = column_targets.keys()
-        in_colnames = ['"{}"::{}'.format(colname.split('_')[1], ct.get(session).type)
-                              for colname, ct in column_targets.iteritems()]
-        in_colnames[0] = '"Cod_setor"'
-        skip_pre_861 = self.tablename == 'Entorno05' and self.state.lower() == 'go'
 
-        for _, input_ in self.input()['data'].iteritems():
+        for state, input_ in self.input()['data'].iteritems():
             intable = input_.table
+
+            in_colnames = ['"{}"::{}'.format(colname.split('_')[1], ct.get(session).type)
+                           for colname, ct in column_targets.iteritems()]
+            # skip_pre_861
+            if self.tablename == 'Entorno05' and state.lower() == 'go':
+                for i, in_colname in enumerate(in_colnames):
+                    if i == 0:
+                        continue
+                    if int(in_colname.split('::')[0].split('V')[-1].replace('"', '')) < 861:
+                        in_colnames[i] = 'NULL'
+
+            in_colnames[0] = '"Cod_setor"'
+
             cmd = 'INSERT INTO {output} ({out_colnames}) ' \
                   'SELECT {in_colnames} FROM {input} '.format(
-                        output=self.output().table,
-                        input=intable,
-                        in_colnames=', '.join(in_colnames),
-                        out_colnames=', '.join(out_colnames))
+                      output=self.output().table,
+                      input=intable,
+                      in_colnames=', '.join(in_colnames),
+                      out_colnames=', '.join(out_colnames))
             session.execute(cmd)
 
 
@@ -375,5 +386,5 @@ class CensosAllTables(WrapperTask):
 class CensosAllGeographiesAllTables(WrapperTask):
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
+        for resolution in (GEO_I, ):
             yield CensosAllTables(resolution=resolution)

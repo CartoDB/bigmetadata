@@ -73,6 +73,37 @@ STATES = (
     'to'
 )
 
+DATA_STATES = (
+    'ac',
+    'al',
+    'am',
+    'ap',
+    'ba',
+    'ce',
+    'df',
+    'es',
+    'go',
+    'ma',
+    'mg',
+    'ms',
+    'mt',
+    'pa',
+    'pb',
+    'pe',
+    'pi',
+    'pr',
+    'rj',
+    'rn',
+    'ro',
+    'rr',
+    'rs',
+    'sc',
+    'se',
+    'sp_capital',
+    'sp_exceto_a_capital',
+    'to'
+)
+
 class BaseParams:
     __metaclass__ = ABCMeta
 
