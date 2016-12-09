@@ -139,7 +139,7 @@ class Columns(BaseDataParams, ColumnsTask):
             reader = csv.reader(csv_meta_file, delimiter=',', quotechar='"')
 
             for line in reader:
-                # # skip 4 headers
+                # skip header
                 next(reader, None)
                 if not line[0].startswith('B'):
                     continue
@@ -150,6 +150,10 @@ class Columns(BaseDataParams, ColumnsTask):
                 col_unit = line[5]
                 col_subsections = line[6]
                 tablename = line[7]
+                if tablename == 'B02':
+                    col_agg = line[9]
+                else:
+                    col_agg = None
 
                 denominators = denominators.split('|')
                 # universes = universes.split('|')
@@ -173,7 +177,7 @@ class Columns(BaseDataParams, ColumnsTask):
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
-                    aggregate='sum',
+                    aggregate= col_agg or 'sum',
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
                     tags=[country, unittags[col_unit]],
