@@ -1556,8 +1556,10 @@ class CreateGeomIndexes(Task):
 
 class DropOrphanTables(Task):
     '''
-    Remove tables that aren't documented anywhere in metadata.
+    Remove tables that aren't documented anywhere in metadata.  Cleaning.
     '''
+
+    force = BooleanParameter(default=False)
 
     def run(self):
         session = current_session()
@@ -1571,13 +1573,15 @@ WHERE table_name LIKE 'obs_%'
 ''')
         for row in resp:
             tablename = row[0]
-            cnt = session.execute(
-                'select count(*) from observatory.{}'.format(tablename)).fetchone()[0]
-            if cnt > 0:
-                raise Exception('not automatically dropping {}, it has {} rows'.format(
-                    tablename, cnt))
-            else:
-                session.execute('drop table observatory.{}'.format(tablename))
+            if not self.force:
+                cnt = session.execute(
+                    'select count(*) from observatory.{}'.format(tablename)).fetchone()[0]
+                if cnt > 0:
+                    LOGGER.warn('not automatically dropping {}, it has {} rows'.format(
+                        tablename, cnt))
+                    continue
+            session.execute('drop table observatory.{}'.format(tablename))
+        session.commit()
 
 
 class Carto2TempTableTask(TempTableTask):
