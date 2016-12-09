@@ -305,7 +305,7 @@ class Censos(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def states(self):
         '''
