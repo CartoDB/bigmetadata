@@ -1048,6 +1048,35 @@ GROUP BY numer_timespan
     }
 
 
+class DropRemoteOrphanTables(Task):
+    '''
+    Clean up & remove tables that are not linked to in the deployed obs_table.
+    '''
+
+    start = IntParameter(default=1)
+    end = IntParameter(default=10)
+
+    def run(self):
+
+        resp = query_cartodb('SELECT tablename FROM obs_table')
+        tablenames = set([r['tablename'] for r in resp.json()['rows']])
+        remote_tables = []
+        for page in xrange(self.start, self.end + 1):
+            remote_tables.extend(shell("curl -s '{cartodb_url}/datasets?page={page}' "
+                                       "| grep -Eo 'obs_[0-f]{{40}}' | uniq".format(
+                                           cartodb_url=os.environ['CARTODB_URL'],
+                                           page=page
+                                       )).strip().split('\n'))
+        for table in remote_tables:
+            LOGGER.info('keeping %s', table)
+            if table not in tablenames:
+                LOGGER.info('removing %s', table)
+                try:
+                    CartoDBTarget(table).remove()
+                except Exception as err:
+                    LOGGER.warn(err)
+
+
 class OBSMetaToLocal(OBSMeta):
 
     def run(self):
