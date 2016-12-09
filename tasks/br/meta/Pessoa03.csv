@@ -1,0 +1,254 @@
+Nome da variável,Descrição da variável,Variable description,unit,denominators,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
+Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,Pessoas Residentes,Resident People,people,Pessoa13_V001,race_ethnicity,957,914
+V002,Pessoas Residentes e cor ou raça - branca,People Residents and color or race - white,people,Pessoa03_V001,race_ethnicity,337,360
+V003,Pessoas Residentes e cor ou raça - preta,Resident People and color or race - black,people,Pessoa03_V001,race_ethnicity,27,46
+V004,Pessoas Residentes e cor ou raça - amarela,People Residents and color or race - yellow,people,Pessoa03_V001,race_ethnicity,14,9
+V005,Pessoas Residentes e cor ou raça - parda,People Residents and color or race - brown,people,Pessoa03_V001,race_ethnicity,579,499
+V006,Pessoas Residentes e cor ou raça - indígena,People Residents and color or race - indigenous,people,Pessoa03_V001,race_ethnicity,0,0
+V007,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - branca,Residents 0 to 4 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,41,58
+V008,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - preta,Residents 0 to 4 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,0,1
+V009,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - amarela,People Residents 0 to 4 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,0,0
+V010,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - parda,People Residents 0 to 4 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,30,49
+V011,Pessoas Residentes de 0 a 4 anos de idade e cor ou raça - indígena,Residents 0 to 4 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V012,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - branca,People Residents 5 to 9 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,31,40
+V013,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - preta,Residents 5 to 9 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,0,3
+V014,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - amarela,Residents 5 to 9 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,1,1
+V015,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - parda,Residents 5 to 9 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,60,62
+V016,Pessoas Residentes de 5 a 9 anos de idade e cor ou raça - indígena,Residents 5 to 9 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V017,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – branca,Residents 10 to 14 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,30,43
+V018,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – preta,Residents 10 to 14 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,0,1
+V019,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – amarela,Residents 10 to 14 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,2,3
+V020,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça – parda,Residents 10 to 14 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,69,68
+V021,Pessoas Residentes de 10 a 14 anos de idade e cor ou raça - indígena,Residents 10 to 14 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V022,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – branca,Residents 15 to 19 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,25,37
+V023,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – preta,Residents 15 to 19 years old and color or race - black,people,Pessoa03_V003,race_ethnicity,2,4
+V024,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – amarela,People Residents 15 to 19 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,2,1
+V025,Pessoas Residentes de15 a 19 anos de idade e cor ou raça – parda,People Residents 15 to 19 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,61,52
+V026,Pessoas Residentes de15 a 19 anos de idade e cor ou raça - indígena,Residents 15 to 19 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V027,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – branca,Residents 15 to 17 years of age and color or race - white,people,Pessoa03_V022,race_ethnicity,18,22
+V028,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – preta,Residents 15 to 17 years of age and color or race - black,people,Pessoa03_V023,race_ethnicity,2,3
+V029,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – amarela,Residents 15 to 17 years of age and color or race - yellow,people,Pessoa03_V024,race_ethnicity,1,1
+V030,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça – parda,Residents 15 to 17 years of age and color or race - brown,people,Pessoa03_V025,race_ethnicity,38,32
+V031,Pessoas Residentes de 15 a 17 anos de idade e cor ou raça - indígena,Residents 15 to 17 years of age and color or race - indigenous,people,Pessoa03_V026,race_ethnicity,0,0
+V032,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – branca,Residents 18 and 19 years old and color or race - white,people,Pessoa03_V022,race_ethnicity,7,15
+V033,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – preta,Residents 18 and 19 years of age and color or race - black,people,Pessoa03_V023,race_ethnicity,0,1
+V034,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – amarela,Residents 18 and 19 years of age and color or race - yellow,people,Pessoa03_V024,race_ethnicity,1,0
+V035,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça – parda,Residents 18 and 19 years of age and color or race - brown,people,Pessoa03_V025,race_ethnicity,23,20
+V036,Pessoas Residentes de 18 ou 19 anos de idade e cor ou raça - indígena,Residents 18 and 19 years of age and color or race - indigenous,people,Pessoa03_V026,race_ethnicity,0,0
+V037,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - branca,Residents 20-24 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,27,37
+V038,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - preta,Residents 20 to 24 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,2,6
+V039,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - amarela,Residents 20 to 24 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,4,1
+V040,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - parda,Residents 20 to 24 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,50,41
+V041,Pessoas Residentes de 20 a 24 anos de idade e cor ou raça - indígena,Residents 20 to 24 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V042,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – branca,Residents aged 25-29 years and color or race - white,people,Pessoa03_V002,race_ethnicity,32,26
+V043,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – preta,Residents 25-29 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,2,6
+V044,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – amarela,Resident People 25-29 years and color or race - yellow,people,Pessoa03_V004,race_ethnicity,1,2
+V045,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça – parda,Resident People 25 to 29 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,60,51
+V046,Pessoas Residentes de 25 a 29 anos de idade e cor ou raça - indígena,Residents 25-29 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V047,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – branca,Resident Persons 30 to 34 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,23,36
+V048,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – preta,Residents 30 to 34 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,1,6
+V049,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – amarela,Resident People 30 to 34 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,0,0
+V050,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça – parda,Resident People 30 to 34 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,45,40
+V051,Pessoas Residentes de 30 a 34 anos de idade e cor ou raça - indígena,Residents 30 to 34 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V052,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça - branca,Residents 35-39 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,24,25
+V053,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – preta,Residents 35-39 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,2,3
+V054,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – amarela,Resident Persons aged 35 to 39 years and color or race - yellow,people,Pessoa03_V004,race_ethnicity,0,0
+V055,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça – parda,Resident Persons 35 to 39 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,50,34
+V056,Pessoas Residentes de 35 a 39 anos de idade e cor ou raça - indígena,Residents 35-39 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V057,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – branca,Residents 40-44 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,19,10
+V058,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – preta,Residents 40-44 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,1,6
+V059,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – amarela,Residents 40-44 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,0,1
+V060,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça – parda,Residents 40-44 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,32,26
+V061,Pessoas Residentes de 40 a 44 anos de idade e cor ou raça - indígena,Residents 40-44 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V062,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – branca,Resident Persons 45 to 49 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,14,10
+V063,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – preta,Residents aged 45 to 49 years and color or race - black,people,Pessoa03_V003,race_ethnicity,5,4
+V064,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – amarela,Residents aged 45 to 49 years and color or race - yellow,people,Pessoa03_V004,race_ethnicity,1,0
+V065,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – parda,Resident Persons 45 to 49 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,31,16
+V066,Pessoas Residentes de 45 a 49 anos de idade e cor ou raça – indígena,Residents 45 to 49 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V067,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – branca,Residents 50-54 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,20,10
+V068,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – preta,Residents 50-54 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,1,1
+V069,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – amarela,Residents 50-54 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,2,0
+V070,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça – parda,Resident People 50-54 years old and color or race - brown,people,Pessoa03_V005,race_ethnicity,27,7
+V071,Pessoas Residentes de 50 a 54 anos de idade e cor ou raça - indígena,Residents 50-54 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V072,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – branca,Residents 55-59 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,21,12
+V073,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – preta,Residents 55-59 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,3,1
+V074,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – amarela,Residents 55-59 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,0,0
+V075,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça – parda,Residents 55-59 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,22,12
+V076,Pessoas Residentes de 55 a 59 anos de idade e cor ou raça - indígena,Residents 55-59 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V077,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – branca,Residents 60-69 years of age and color or race - white,people,Pessoa03_V002,race_ethnicity,22,9
+V078,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – preta,Residents 60-69 years of age and color or race - black,people,Pessoa03_V003,race_ethnicity,5,1
+V079,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – amarela,Residents 60-69 years of age and color or race - yellow,people,Pessoa03_V004,race_ethnicity,0,0
+V080,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça – parda,Residents 60-69 years of age and color or race - brown,people,Pessoa03_V005,race_ethnicity,25,21
+V081,Pessoas Residentes de 60 a 69 anos de idade e cor ou raça - indígena,Residents 60-69 years of age and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V082,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – branca,Residents 70 years of age and older and color or race - white,people,Pessoa03_V002,race_ethnicity,8,7
+V083,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – preta,Residents 70 years of age or older and color or race - black,people,Pessoa03_V003,race_ethnicity,3,3
+V084,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – amarela,Residents 70 years of age and older and color or race - yellow,people,Pessoa03_V004,race_ethnicity,1,0
+V085,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça – parda,People Residents 70 years of age and older and color or race - brown,people,Pessoa03_V005,race_ethnicity,17,20
+V086,Pessoas Residentes de 70 anos ou mais de idade e cor ou raça - indígena,Residents 70 years of age or older and color or race - indigenous,people,Pessoa03_V006,race_ethnicity,0,0
+V087,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - branca","Persons 5 or 6 years old, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,15,5
+V088,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - preta","Persons of 5 or 6 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,1
+V089,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - amarela","Persons 5 or 6 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V090,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - parda","Persons 5 and 6 years old, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,8,15
+V091,"Pessoas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 5 or 6 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V092,"Pessoas de 7 a 9 anos de idade, do sexo masculino e cor ou raça - branca","People 7 to 9 years old, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,8,10
+V093,"Pessoas de 7 a 9 anos de idade, do sexo masculino e cor ou raça - preta","Persons 7 to 9 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V094,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - amarela","Persons 7 to 9 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V095,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - parda","Persons 7 to 9 years old, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,16,18
+V096,"Pessoas de 7  a 9 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 7 to 9 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V097,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – branca","Persons 10 to 14 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,9,21
+V098,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – preta","Persons 10 to 14 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,1
+V099,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 10 to 14 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,1
+V100,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça – parda","Persons 10 to 14 years of age, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,30,43
+V101,"Pessoas de 10 a 14 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 10 to 14 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V102,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – branca","Persons 15 to 19 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,10,15
+V103,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – preta","Persons 15 to 19 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,1,1
+V104,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 15 to 19 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,0
+V105,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça – parda","Persons 15 to 19 years old, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,29,26
+V106,"Pessoas de 15 a 19 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 15 to 19 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V107,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – branca","Persons 15 to 17 years old, male and color or race - white",people,Pessoa03_V102,race_ethnicity|age_gender,8,8
+V108,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – preta","Persons 15 to 17 years of age, male and color or race - black",people,Pessoa03_V103,race_ethnicity|age_gender,1,1
+V109,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 15 to 17 years of age, male and color or race - yellow",people,Pessoa03_V104,race_ethnicity|age_gender,1,0
+V110,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça – parda","Persons 15 to 17 years old, male and color or race - brown",people,Pessoa03_V105,race_ethnicity|age_gender,16,19
+V111,"Pessoas de 15 a 17 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 15 to 17 years of age, male and color or race - indigenous",people,Pessoa03_V106,race_ethnicity|age_gender,0,0
+V112,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – branca","Persons 18 or 19 years old, male and color or race - white",people,Pessoa03_V102,race_ethnicity|age_gender,2,7
+V113,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – preta","Persons 18 or 19 years of age, male and black or color",people,Pessoa03_V103,race_ethnicity|age_gender,0,0
+V114,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 18 or 19 years old, male and color or race - yellow",people,Pessoa03_V104,race_ethnicity|age_gender,0,0
+V115,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça – parda","Persons 18 and 19 years old, male and color or race - brown",people,Pessoa03_V105,race_ethnicity|age_gender,13,7
+V116,"Pessoas de 18 ou 19 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 18 or 19 years of age, male and color or race - indigenous",people,Pessoa03_V106,race_ethnicity|age_gender,0,0
+V117,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - branca","Persons 20 to 24 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,13,23
+V118,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - preta","Persons 20 to 24 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,2,4
+V119,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - amarela","Persons 20 to 24 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,0
+V120,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - parda","Persons 20 to 24 years of age, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,29,19
+V121,"Pessoas de 20 a 24 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 20 to 24 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V122,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – branca","Persons 25 to 29 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,11,16
+V123,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – preta","Persons 25 to 29 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,3
+V124,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 25 to 29 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,1
+V125,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça – parda","Persons 25 to 29 years old, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,30,20
+V126,"Pessoas de 25 a 29 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 25 to 29 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V127,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – branca","Persons 30 to 34 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,9,14
+V128,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – preta","Persons 30 to 34 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,3
+V129,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 30 to 34 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V130,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça – parda","Persons 30 to 34 years old, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,18,16
+V131,"Pessoas de 30 a 34 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 30 to 34 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V132,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça - branca","Persons 35 to 39 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,9,13
+V133,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – preta","Persons 35 to 39 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,1
+V134,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 35 to 39 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V135,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça – parda","Persons 35 to 39 years old, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,25,18
+V136,"Pessoas de 35 a 39 anos de idade, do sexo masculino e cor ou raça - indígena","Persons aged 35 to 39 years, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V137,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – branca","Persons 40-44 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,8,4
+V138,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – preta","Persons 40 to 44 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,1,5
+V139,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 40 to 44 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V140,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça – parda","Persons 40 to 44 years of age, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,16,15
+V141,"Pessoas de 40 a 44 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 40-44 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V142,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – branca","Persons 45 to 49 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,7,6
+V143,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – preta","Persons 45 to 49 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,3,3
+V144,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 45-49 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V145,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – parda","Persons 45 to 49 years old, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,20,7
+V146,"Pessoas de 45 a 49 anos de idade, do sexo masculino e cor ou raça – indígena","Persons between 45 and 49 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V147,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – branca","Persons 50-54 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,14,4
+V148,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – preta","Persons 50-54 years old, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,1,0
+V149,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 50 to 54 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,2,0
+V150,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça – parda","Persons 50-54 years old, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,10,3
+V151,"Pessoas de 50 a 54 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 50-54 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V152,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – branca","Persons 55-59 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,10,5
+V153,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – preta","Persons 55-59 years old, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,2,1
+V154,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 55-59 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V155,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça – parda","Persons 55-59 years of age, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,14,4
+V156,"Pessoas de 55 a 59 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 55-59 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V157,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – branca","Persons 60-69 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,11,3
+V158,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – preta","Persons 60 to 69 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,3,1
+V159,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – amarela","Persons 60-69 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V160,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça – parda","Persons 60 to 69 years of age, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,16,13
+V161,"Pessoas de 60 a 69 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 60-69 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V162,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – branca","Persons 70 years of age or older, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,5,4
+V163,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – preta","Persons 70 years of age or older, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,2,1
+V164,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – amarela","Persons 70 years of age or older, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,0
+V165,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça – parda","Persons 70 years of age or older, males, and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,12,14
+V166,"Pessoas de 70 anos ou mais de idade, do sexo masculino e cor ou raça - indígena","Persons 70 years of age or older, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V167,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - branca","Persons 5 or 6 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,2,9
+V168,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - preta","Persons 5 or 6 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V169,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - amarela","Persons 5 or 6 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,0
+V170,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - parda","Persons 5 or 6 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,16,12
+V171,"Pessoas de 5 ou 6 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 5 or 6 years old, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V172,"Pessoas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - branca","People 7 to 9 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,6,16
+V173,"Pessoas de 7 a 9 anos de idade, do sexo feminino e cor ou raça - preta","People 7 to 9 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,2
+V174,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - amarela","Persons 7 to 9 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,1
+V175,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - parda","People 7 to 9 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,20,17
+V176,"Pessoas de 7  a 9 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 7 to 9 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V177,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – branca","Persons 10 to 14 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,21,22
+V178,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – preta","Persons 10 to 14 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V179,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 10 to 14 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,2
+V180,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça – parda","Persons 10 to 14 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,39,25
+V181,"Pessoas de 10 a 14 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 10 to 14 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V182,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – branca","Persons 15 to 19 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,15,22
+V183,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – preta","Persons 15 to 19 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,1,3
+V184,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 15 to 19 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,1
+V185,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça – parda","Persons 15 to 19 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,32,26
+V186,"Pessoas de 15 a 19 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 15 to 19 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V187,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – branca","Persons 15 to 17 years of age, female and color or race - white",people,Pessoa03_V182,race_ethnicity|age_gender,10,14
+V188,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – preta","Persons 15 to 17 years of age, female and color or race - black",people,Pessoa03_V183,race_ethnicity|age_gender,1,2
+V189,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 15 to 17 years of age, female and color or race - yellow",people,Pessoa03_V184,race_ethnicity|age_gender,0,1
+V190,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça – parda","Persons 15 to 17 years of age, female and color or race - brown",people,Pessoa03_V185,race_ethnicity|age_gender,22,13
+V191,"Pessoas de 15 a 17 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 15 to 17 years of age, female and color or race - indigenous",people,Pessoa03_V186,race_ethnicity|age_gender,0,0
+V192,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – branca","Persons 18 or 19 years of age, female and color or race - white",people,Pessoa03_V182,race_ethnicity|age_gender,5,8
+V193,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – preta","Persons 18 or 19 years of age, female and color or race - black",people,Pessoa03_V183,race_ethnicity|age_gender,0,1
+V194,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 18 or 19 years of age, female and color or race - yellow",people,Pessoa03_V184,race_ethnicity|age_gender,1,0
+V195,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça – parda","Persons 18 or 19 years of age, female and color or race - brown",people,Pessoa03_V185,race_ethnicity|age_gender,10,13
+V196,"Pessoas de 18 ou 19 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 18 or 19 years of age, female and color or race - indigenous",people,Pessoa03_V186,race_ethnicity|age_gender,0,0
+V197,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - branca","People 20 to 24 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,14,14
+V198,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - preta","Persons 20 to 24 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,2
+V199,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - amarela","Persons 20 to 24 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,3,1
+V200,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - parda","Persons 20 to 24 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,21,22
+V201,"Pessoas de 20 a 24 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 20 to 24 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V202,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – branca","Persons 25 to 29 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,21,10
+V203,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – preta","Persons 25 to 29 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,2,3
+V204,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 25 to 29 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,1
+V205,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça – parda","Persons 25 to 29 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,30,31
+V206,"Pessoas de 25 a 29 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 25 to 29 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V207,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – branca","People 30 to 34 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,14,22
+V208,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – preta","Persons 30 to 34 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,1,3
+V209,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 30 to 34 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V210,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça – parda","Persons 30 to 34 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,27,24
+V211,"Pessoas de 30 a 34 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 30 to 34 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V212,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça - branca","Persons 35 to 39 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,15,12
+V213,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – preta","Persons 35 to 39 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,2,2
+V214,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 35 to 39 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V215,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça – parda","Persons 35 to 39 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,25,16
+V216,"Pessoas de 35 a 39 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 35 to 39 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V217,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – branca","People 40-44 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,11,6
+V218,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – preta","Persons 40 to 44 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,1
+V219,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 40 to 44 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,1
+V220,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça – parda","Persons 40 to 44 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,16,11
+V221,"Pessoas de 40 a 44 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 40 to 44 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V222,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – branca","Persons 45 to 49 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,7,4
+V223,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – preta","Persons 45 to 49 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,2,1
+V224,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 45 to 49 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,1,0
+V225,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – parda","Persons 45 to 49 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,11,9
+V226,"Pessoas de 45 a 49 anos de idade, do sexo feminino e cor ou raça – indígena","Persons 45 to 49 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V227,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – branca","People 50-54 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,6,6
+V228,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – preta","Persons 50 to 54 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,1
+V229,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 50 to 54 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V230,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça – parda","Persons 50 to 54 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,17,4
+V231,"Pessoas de 50 a 54 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 50-54 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V232,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – branca","Persons 55-59 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,11,7
+V233,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – preta","Persons 55-59 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,1,0
+V234,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 55-59 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V235,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça – parda","Persons 55-59 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,8,8
+V236,"Pessoas de 55 a 59 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 55-59 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V237,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – branca","Persons 60-69 years of age, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,11,6
+V238,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – preta","Persons 60 to 69 years of age, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,2,0
+V239,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – amarela","Persons 60 to 69 years of age, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V240,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça – parda","Persons 60 to 69 years of age, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,9,8
+V241,"Pessoas de 60 a 69 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 60 to 69 years of age, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V242,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – branca","Persons 70 years of age or older, female and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,3,3
+V243,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – preta","Persons 70 years of age or older, female and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,1,2
+V244,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – amarela","Persons 70 years of age or older, female and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V245,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça – parda","Persons 70 years of age or older, female and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,5,6
+V246,"Pessoas de 70 anos ou mais de idade, do sexo feminino e cor ou raça - indígena","Persons 70 years of age or older, female and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V247,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – branca","Literate people of 5 or 6 years of age, male and color or race - white",people,Pessoa03_V001,race_ethnicity|age_gender,6,1
+V248,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - preta","Literate people of 5 or 6 years of age, male and color or race - black",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V249,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – amarela","Literate people of 5 or 6 years of age, male and color or race - yellow",people,Pessoa03_V001,race_ethnicity|age_gender,0,0
+V250,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça - parda","Literate people of 5 or 6 years of age, male and color or race - brown",people,Pessoa03_V001,race_ethnicity|age_gender,3,2
+V251,"Pessoas alfabetizadas de 5 ou 6 anos de idade, do sexo masculino e cor ou raça – indígena","Literate persons of 5 or 6 years of age, male and color or race - indigenous",people,Pessoa03_V001,race_ethnicity|age_gender,0,0

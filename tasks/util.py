@@ -251,7 +251,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
             / (50000), 0, 0, ARRAY['32BF', '32BF', '32BF'],
                              ARRAY[-1, -1, -1],
                              ARRAY[0, 0, 0]
-          ), ARRAY[1, 2, 3], 50, 50) rast
+          ), ARRAY[1, 2, 3], 25, 25) rast
           FROM observatory.obs_table
           WHERE id = '{table_id}'
           ) foo
@@ -262,15 +262,16 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                  ARRAY_AGG(cnt) counts,
                  ARRAY_AGG(percent_fill) percents FROM (
           SELECT id, ROW(FIRST(geom),
-                        -- determine median area of tiger geometries
+                        -- determine median area of geometries
                         Coalesce(Nullif(
                           percentile_cont(0.5) within group (
-                          order by st_area(st_transform(tiger.{colname}, 3857)) / 1000000)
+                          order by st_area(tiger.{colname}::Geography) / 1000000)
                           , 0), null)
                      )::geomval median,
                      ROW(FIRST(geom),
                       -- determine number of geoms, including fractions
-                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
+                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(
+                               tiger.{colname}, foo.geom)) /
                           ST_Area(tiger.{colname})), 0), null)
                      )::geomval cnt,
                      ROW(FIRST(geom),
@@ -304,6 +305,27 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                colname=colname, tablename=tablename)
     resp = session.execute(query)
     assert resp.rowcount > 0
+    resp = session.execute('''
+        UPDATE observatory.obs_column_table_tile
+        SET tile = st_setvalues(st_setvalues(st_setvalues(tile,
+                    1, geomvals, false),
+                    2, geomvals, false),
+                    3, geomvals, false)
+        FROM (
+            SELECT table_id, column_id, tile_id, array_agg(((geomval).geom, 0)::geomval) geomvals FROM (
+                SELECT table_id, column_id, tile_id, st_dumpaspolygons(tile, 1, false) geomval
+                FROM observatory.obs_column_table_tile
+                WHERE column_id = '{column_id}'
+                  AND table_id = '{table_id}'
+            ) bar
+            WHERE (geomval).val = -1
+            GROUP BY table_id, column_id, tile_id
+        ) foo
+          WHERE obs_column_table_tile.table_id = foo.table_id
+            AND obs_column_table_tile.column_id = foo.column_id
+            AND obs_column_table_tile.tile_id = foo.tile_id
+       ; '''.format(table_id=table_id, column_id=column_id,
+                    colname=colname, tablename=tablename))
 
 
 class PostgresTarget(Target):
@@ -1196,6 +1218,7 @@ class CSV2TempTableTask(TempTableTask):
 
     delimiter = Parameter(default=',', significant=False)
     has_header = BooleanParameter(default=True, significant=False)
+    encoding = Parameter(default='utf8', significant=False)
 
     def input_csv(self):
         '''
@@ -1225,6 +1248,9 @@ class CSV2TempTableTask(TempTableTask):
         header_row = shell('head -n 1 "{csv}"'.format(csv=csv)).strip()
         return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
 
+    def read_method(self, fname):
+        return 'cat "{input}"'.format(input=fname)
+
     def run(self):
         if isinstance(self.input_csv(), basestring):
             csvs = [self.input_csv()]
@@ -1232,18 +1258,21 @@ class CSV2TempTableTask(TempTableTask):
             csvs = self.input_csv()
 
         session = current_session()
-        session.execute('CREATE TABLE {output} ({coldef})'.format(
+        session.execute(u'CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
-            coldef=', '.join(['"{}" {}'.format(*c) for c in self.coldef()])
+            coldef=u', '.join([u'"{}" {}'.format(c[0].decode(self.encoding), c[1]) for c in self.coldef()])
         ))
         session.commit()
-        options = ['''DELIMITER '"'{}'"' '''.format(self.delimiter)]
+        options = ['''
+           DELIMITER '"'{delimiter}'"' ENCODING '"'{encoding}'"'
+        '''.format(delimiter=self.delimiter,
+                   encoding=self.encoding)]
         if self.has_header:
             options.append('CSV HEADER')
         try:
             for csv in csvs:
-                shell(r'''psql -c '\copy {table} FROM '"'{input}'"' {options}' '''.format(
-                    input=csv,
+                shell(r'''{read_method} | psql -c '\copy {table} FROM STDIN {options}' '''.format(
+                    read_method=self.read_method(csv),
                     table=self.output().table,
                     options=' '.join(options)
                 ))
@@ -1526,8 +1555,10 @@ class CreateGeomIndexes(Task):
 
 class DropOrphanTables(Task):
     '''
-    Remove tables that aren't documented anywhere in metadata.
+    Remove tables that aren't documented anywhere in metadata.  Cleaning.
     '''
+
+    force = BooleanParameter(default=False)
 
     def run(self):
         session = current_session()
@@ -1541,13 +1572,15 @@ WHERE table_name LIKE 'obs_%'
 ''')
         for row in resp:
             tablename = row[0]
-            cnt = session.execute(
-                'select count(*) from observatory.{}'.format(tablename)).fetchone()[0]
-            if cnt > 0:
-                raise Exception('not automatically dropping {}, it has {} rows'.format(
-                    tablename, cnt))
-            else:
-                session.execute('drop table observatory.{}'.format(tablename))
+            if not self.force:
+                cnt = session.execute(
+                    'select count(*) from observatory.{}'.format(tablename)).fetchone()[0]
+                if cnt > 0:
+                    LOGGER.warn('not automatically dropping {}, it has {} rows'.format(
+                        tablename, cnt))
+                    continue
+            session.execute('drop table observatory.{}'.format(tablename))
+        session.commit()
 
 
 class Carto2TempTableTask(TempTableTask):

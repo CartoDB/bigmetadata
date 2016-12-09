@@ -39,6 +39,8 @@ html_context = {
     ],
 }
 
+sys.setrecursionlimit(2500)
+
 # "Inline" extension to allow use of Sphinx-specific (vs docutils/ReST)
 # methods.
 def setup(app):

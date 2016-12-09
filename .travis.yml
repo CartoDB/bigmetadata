@@ -9,6 +9,10 @@
   ],
   "script": "make travis-etl-unittest",
   "addons": {
-    "postgresql": "9.4",
+    "postgresql": "9.5",
   },
+  "install": [
+    "sudo apt-get install -y postgresql-9.5-postgis-2.3",
+    "sudo service postgresql restart"
+  ]
 }
