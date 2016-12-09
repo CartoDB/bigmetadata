@@ -4,10 +4,11 @@
   "postgres": {
     "image": "recessionporn/bigmetadata_postgres",
     "volumes": [
-      "./postgres/postgresql.conf:/etc/postgresql/9.4/main/postgresql.conf",
+      "./postgres/postgresql.conf:/etc/postgresql/9.5/main/postgresql.conf",
       "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
                                               # will cause persistence issues!!
-      "./observatory-extension:/observatory-extension"
+      "./observatory-extension:/observatory-extension",
+      "./tmp:/bigmetadata/tmp"
     ],
     "privileged": true
   },
