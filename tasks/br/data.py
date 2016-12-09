@@ -180,7 +180,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 5
+        return 6
 
     def validate_id(self, col_id):
 
