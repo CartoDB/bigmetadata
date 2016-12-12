@@ -326,6 +326,23 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
             AND obs_column_table_tile.tile_id = foo.tile_id
        ; '''.format(table_id=table_id, column_id=column_id,
                     colname=colname, tablename=tablename))
+    resp = session.execute('''
+       DROP TABLE IF EXISTS observatory.obs_column_table_tile_simple;
+       CREATE TABLE observatory.obs_column_table_tile_simple AS
+       SELECT table_id, column_id, tile_id, ST_Reclass(
+         ST_Band(tile, ARRAY[2, 3]),
+         ROW(1, '0-65535:0-65535', '16BUI', 0)::reclassarg,
+         ROW(2, '0-1:0-255', '8BUI', 0)::reclassarg
+       ) AS tile
+       FROM observatory.obs_column_table_tile ;
+
+       CREATE UNIQUE INDEX ON observatory.obs_column_table_tile_simple
+       (table_id, column_id, tile_id);
+
+       CREATE INDEX ON observatory.obs_column_table_tile_simple USING GIST
+       (ST_ConvexHull(tile));
+       '''.format(table_id=table_id, column_id=column_id,
+                    colname=colname, tablename=tablename))
 
 
 class PostgresTarget(Target):
