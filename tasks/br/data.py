@@ -180,7 +180,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 5
+        return 6
 
     def validate_id(self, col_id):
 
@@ -242,6 +242,10 @@ class Columns(ColumnsTask):
                 col_unit = line[3]
                 denominators = line[4]
                 col_subsections = line[5]
+                if self.tablename == 'Basico':
+                    col_agg = line[6]
+                else:
+                    col_agg = None
 
                 # validate the col_id (VXXX)
                 if not self.validate_id(col_id):
@@ -272,7 +276,7 @@ class Columns(ColumnsTask):
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
-                    aggregate='sum',
+                    aggregate= col_agg or 'sum',
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
                     tags=[source, license, brasil, unittags[col_unit]],
