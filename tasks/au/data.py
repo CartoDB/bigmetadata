@@ -4,7 +4,8 @@ import csv
 
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
-from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, CSV2TempTableTask, ColumnsTask
+from tasks.util import (DownloadUnzipTask, shell, TableTask, TempTableTask,
+                        classpath, CSV2TempTableTask, ColumnsTask, TagsTask)
 from tasks.meta import current_session, OBSColumn
 from tasks.au.geo import (
     GEO_STE,
@@ -33,6 +34,18 @@ TABLES = ['B01','B02','B03','B04A','B04B','B05','B06','B07','B08A','B08B','B09',
 
 
 URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_{header}-header.zip'
+
+
+class SourceTags(TagsTask):
+
+    def tags(self):
+        return []
+
+
+class LicenseTags(TagsTask):
+
+    def tags(self):
+        return []
 
 
 class BaseDataParams(BaseParams):

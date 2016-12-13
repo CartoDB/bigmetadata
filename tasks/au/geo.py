@@ -144,6 +144,7 @@ class GeographyColumns(BaseParams, ColumnsTask):
         )
         geom_id = OBSColumn(
             type='Text',
+            id=self.resolution + '_id',
             weight=0,
             targets={geom: GEOM_REF},
         )
@@ -174,7 +175,7 @@ class Geography(BaseParams, TableTask):
         session = current_session()
         session.execute('INSERT INTO {output} '
                         'SELECT ogc_fid as geom_id, '
-                        '       wkb_geometry as geom '
+                        '       wkb_geometry as the_geom '
                         'FROM {input} '.format(
                             output=self.output().table,
                             code=self.resolution.replace('_', ''),
