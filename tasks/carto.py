@@ -1130,6 +1130,7 @@ class OBSMetaToLocal(OBSMeta):
                     RENAME TO obs_meta_{dimension}'''.format(
                         dimension=dimension
                     ))
+            session.commit()
             self._complete = True
         except:
             session.rollback()
