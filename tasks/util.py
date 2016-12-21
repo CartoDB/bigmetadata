@@ -332,7 +332,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
        SELECT table_id, column_id, tile_id, ST_Reclass(
          ST_Band(tile, ARRAY[2, 3]),
          ROW(1, '[0-65535]:0-65535, [65536-4294967296:65535-65535', '16BUI', 0)::reclassarg,
-         ROW(2, '[0-1]:0-255', '8BUI', 0)::reclassarg
+         ROW(2, '[0-1]:0-255, (1-100]:255-255', '8BUI', 0)::reclassarg
        ) AS tile
        FROM observatory.obs_column_table_tile ;
 
