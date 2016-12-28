@@ -60,7 +60,7 @@ $(window).ready(function () {
       };
     });
 
-    var svgWidth = 150;
+    var svgWidth = 250;
     var svgHeight = 150;
 
     var chartEnter = testsDiv.data(data).enter()
