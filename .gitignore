@@ -28,3 +28,4 @@ luigi.cfg
 observatory-extension
 *.key
 *.pdf
+perftest/*.json
