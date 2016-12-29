@@ -968,8 +968,8 @@ class OBSMeta(Task):
       AND geom_geomref_ct.table_id = geom_t.id
       AND geom_geom_ct.column_id = geom_c.id
       AND geom_geom_ct.table_id = geom_t.id
-      AND geom_c.type ILIKE 'geometry'
-      AND numer_c.type NOT ILIKE 'geometry'
+      AND geom_c.type ILIKE 'geometry%'
+      AND numer_c.type NOT ILIKE 'geometry%'
       AND numer_c.id != geomref_c.id
       AND numer_ctag.column_id = numer_c.id
       AND numer_ctag.tag_id = numer_tag.id

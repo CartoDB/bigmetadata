@@ -295,4 +295,12 @@ class SubsectionTags(TagsTask):
                    name='Environmental',
                    type='subsection',
                    description='Attributes of the natural environment'),
+            OBSTag(id='roads',
+                   name='Roads',
+                   type='subsection',
+                   description=''),
+            OBSTag(id='poi',
+                   name='Points of Interest',
+                   type='subsection',
+                   description=''),
         ]

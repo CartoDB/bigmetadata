@@ -701,33 +701,81 @@ class AllSumLevels(WrapperTask):
             yield ShorelineClip(year=self.year, geography=geo)
 
 
+class SharedTigerColumns(ColumnsTask):
+
+    def version(self):
+        return 2
+
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+        }
+
+    def columns(self):
+        input_ = self.input()
+        return OrderedDict([
+            ('fullname', OBSColumn(
+                type='Text',
+                name='Name of the feature',
+                weight=3,
+                tags=[input_['sections']['united_states'],
+                      input_['source']['tiger-source'],
+                      input_['license']['no-restrictions']]
+            )),
+            ('mtfcc', OBSColumn(
+                type='Text',
+                name='MAF/TIGER Feature Class Code Definitions',
+                description='''The MAF/TIGER Feature Class Code (MTFCC) is
+                a 5-digit code assigned by the Census Bureau intended to
+                classify and describe geographic objects or features. These
+                codes can be found in the TIGER/Line products.  A full list of
+                code meanings can be found `here
+                <https://www.census.gov/geo/reference/mtfcc.html>`_.''',
+                weight=3,
+                tags=[input_['sections']['united_states'],
+                      input_['source']['tiger-source'],
+                      input_['license']['no-restrictions']]
+            ))
+        ])
+
+
 class PointLandmarkColumns(ColumnsTask):
     '''
     Point landmark column definitions
     '''
 
     def version(self):
-        return 4
+        return 8
+
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+        }
 
     def columns(self):
+        input_ = self.input()
         geom = OBSColumn(
-            id='pointlm',
+            id='pointlm_geom',
             type='Geometry(Point)',
-            weight=5
+            weight=5,
+            tags=[input_['sections']['united_states'],
+                  input_['subsections']['poi'],
+                  input_['source']['tiger-source'],
+                  input_['license']['no-restrictions']]
         )
         cols = OrderedDict([
-            ('pointid', OBSColumn(
+            ('pointlm_id', OBSColumn(
                 type='Text',
                 weight=0,
                 targets={geom: GEOM_REF}
             )),
-            ('fullname', OBSColumn(
-                type='Text'
-            )),
-            ('mtfcc', OBSColumn(
-                type='Text'
-            )),
-            ('geom', geom)
+            ('pointlm_geom', geom)
         ])
         return cols
 
@@ -743,14 +791,22 @@ class PointLandmark(TableTask):
         return {
             'data': TigerGeographyShapefileToSQL(year=self.year,
                                                  geography='POINTLM'),
-            'meta': PointLandmarkColumns()
+            'meta': PointLandmarkColumns(),
+            'shared': SharedTigerColumns()
         }
 
     def timespan(self):
         return self.year
 
     def columns(self):
-        return self.input()['meta']
+        shared = self.input()['shared']
+        cols = self.input()['meta']
+        return OrderedDict([
+            ('pointid', cols['pointlm_id']),
+            ('fullname', shared['fullname']),
+            ('mtfcc', shared['mtfcc']),
+            ('geom', cols['pointlm_geom']),
+        ])
 
     def populate(self):
         session = current_session()
@@ -766,30 +822,37 @@ class PriSecRoadsColumns(ColumnsTask):
     '''
 
     def version(self):
-        return 1
+        return 5
+
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+        }
 
     def columns(self):
+        input_ = self.input()
         geom = OBSColumn(
-            id='prisecroads',
+            id='prisecroads_geom',
             type='Geometry(LineString)',
-            weight=5
+            weight=5,
+            tags=[input_['sections']['united_states'],
+                  input_['subsections']['roads'],
+                  input_['source']['tiger-source'],
+                  input_['license']['no-restrictions']]
         )
         cols = OrderedDict([
-            ('linearid', OBSColumn(
+            ('prisecroads_id', OBSColumn(
                 type='Text',
                 weight=0,
                 targets={geom: GEOM_REF}
             )),
-            ('fullname', OBSColumn(
-                type='Text'
-            )),
             ('rttyp', OBSColumn(
                 type='Text'
             )),
-            ('mtfcc', OBSColumn(
-                type='Text'
-            )),
-            ('geom', geom)
+            ('prisecroads_geom', geom)
         ])
         return cols
 
@@ -805,14 +868,23 @@ class PriSecRoads(TableTask):
         return {
             'data': TigerGeographyShapefileToSQL(year=self.year,
                                                  geography='PRISECROADS'),
-            'meta': PriSecRoadsColumns()
+            'meta': PriSecRoadsColumns(),
+            'shared': SharedTigerColumns()
         }
 
     def timespan(self):
         return self.year
 
     def columns(self):
-        return self.input()['meta']
+        shared = self.input()['shared']
+        cols = self.input()['meta']
+        return OrderedDict([
+            ('linearid', cols['prisecroads_id']),
+            ('fullname', shared['fullname']),
+            ('rttyp', cols['rttyp']),
+            ('mtfcc', shared['mtfcc']),
+            ('geom', cols['prisecroads_geom']),
+        ])
 
     def populate(self):
         session = current_session()

@@ -1769,7 +1769,7 @@ class GenerateRasterTiles(Task):
                                FROM observatory.obs_table t,
                                     observatory.obs_column_table ct,
                                     observatory.obs_column c
-                               WHERE c.type ILIKE 'geometry'
+                               WHERE c.type ILIKE 'geometry%'
                                  AND c.id = '{column_id}'
                                  AND t.id = '{table_id}'
                                  AND c.id = ct.column_id
@@ -1811,7 +1811,7 @@ class GenerateAllRasterTiles(WrapperTask):
                  observatory.obs_column c
             WHERE t.id = ct.table_id
               AND c.id = ct.column_id
-              AND c.type ILIKE 'geometry'
+              AND c.type ILIKE 'geometry%'
         ''')
         for table_id, column_id in resp:
             yield GenerateRasterTiles(table_id=table_id, column_id=column_id)
