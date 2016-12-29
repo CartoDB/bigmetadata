@@ -787,6 +787,9 @@ class PointLandmark(TableTask):
 
     year = Parameter()
 
+    def version(self):
+        return 2
+
     def requires(self):
         return {
             'data': TigerGeographyShapefileToSQL(year=self.year,
@@ -871,6 +874,9 @@ class PriSecRoads(TableTask):
             'meta': PriSecRoadsColumns(),
             'shared': SharedTigerColumns()
         }
+
+    def version(self):
+        return 2
 
     def timespan(self):
         return self.year

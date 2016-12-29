@@ -261,23 +261,23 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                  ARRAY_AGG(median) medians,
                  ARRAY_AGG(cnt) counts,
                  ARRAY_AGG(percent_fill) percents FROM (
-          SELECT id, ROW(FIRST(geom),
+          SELECT id, ROW(FIRST(foo.geom),
                         -- determine median area of geometries
                         Coalesce(Nullif(
                           percentile_cont(0.5) within group (
                           order by st_area(tiger.{colname}::Geography) / 1000000)
                           , 0), null)
                      )::geomval median,
-                     ROW(FIRST(geom),
+                     ROW(FIRST(foo.geom),
                       -- determine number of geoms, including fractions
                       Coalesce(Nullif(SUM(ST_Area(ST_Intersection(
                                tiger.{colname}, foo.geom)) /
                           ST_Area(tiger.{colname})), 0), null)
                      )::geomval cnt,
-                     ROW(FIRST(geom),
+                     ROW(FIRST(foo.geom),
                       -- determine % pixel area filled with geoms
                       SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom))) /
-                          ST_Area(FIRST(geom))
+                          ST_Area(FIRST(foo.geom))
                      )::geomval percent_fill
           FROM
           (
@@ -1452,7 +1452,7 @@ class TableTask(Task):
     def create_geom_summaries(self, output):
         geometry_columns = [
             (colname, coltarget._id) for colname, coltarget in
-            self.columns().iteritems() if coltarget._column.type.lower() == 'geometry'
+            self.columns().iteritems() if coltarget._column.type.lower().startswith('geometry')
         ]
 
         if len(geometry_columns) == 0:
