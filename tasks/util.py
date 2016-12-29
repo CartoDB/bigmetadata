@@ -26,8 +26,8 @@ from luigi.s3 import S3Target
 from sqlalchemy import Table, types, Column
 from sqlalchemy.dialects.postgresql import JSON
 
-from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry,
-                        OBSColumnTable, OBSTag, current_session,
+from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
+                        Linestring, OBSColumnTable, OBSTag, current_session,
                         session_commit, session_rollback)
 
 
@@ -634,6 +634,10 @@ class TableTarget(Target):
             # Column info for sqlalchemy's internal metadata
             if col.type.lower() == 'geometry':
                 coltype = Geometry
+            elif col.type.lower().startswith('geometry(point'):
+                coltype = Point
+            elif col.type.lower().startswith('geometry(linestring'):
+                coltype = Linestring
 
             # For enum type, pull keys from extra["categories"]
             elif col.type.lower().startswith('enum'):

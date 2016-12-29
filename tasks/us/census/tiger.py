@@ -13,7 +13,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask, TagsTask, Carto2TempTableTask
                        )
-from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
+from tasks.meta import (OBSColumnTable, OBSColumn, current_session, GEOM_REF,
                         OBSColumnTag, OBSTag, OBSColumnToColumn, current_session)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 
@@ -243,8 +243,8 @@ class GeoidColumns(ColumnsTask):
                 name=col.name + ' Geoids',
                 weight=0,
                 targets={
-                    col: 'geom_ref',
-                    clipped[colname + '_clipped']._column: 'geom_ref'
+                    col: GEOM_REF,
+                    clipped[colname + '_clipped']._column: GEOM_REF
                 }
             )
 
@@ -336,13 +336,20 @@ class TigerGeographyShapefileToSQL(TempTableTask):
             dir=os.path.join('tmp', classpath(self), str(self.year), self.geography)
         )).strip().split('\n')
 
+        cmd = 'ogrinfo {shpfile_path}'.format(shpfile_path=shapefiles[0])
+        resp = shell(cmd)
+        if 'Polygon' in resp:
+            nlt = '-nlt MultiPolygon'
+        else:
+            nlt = ''
+
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
                 'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE active_schema={schema}" ' \
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} ' \
+                '-t_srs "EPSG:4326" {nlt} -nln {tablename} ' \
                 '-lco OVERWRITE=yes ' \
                 '-lco SCHEMA={schema} {shpfile_path} '.format(
                     tablename=self.output().tablename,
-                    schema=self.output().schema,
+                    schema=self.output().schema, nlt=nlt,
                     shpfile_path=shapefiles.pop())
         shell(cmd)
 
@@ -353,10 +360,10 @@ class TigerGeographyShapefileToSQL(TempTableTask):
                 'echo \'{shapefiles}\' | xargs -P 16 -I shpfile_path '
                 'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE '
                 'active_schema={schema}" -append '
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} '
+                '-t_srs "EPSG:4326" {nlt} -nln {tablename} '
                 'shpfile_path '.format(
                     shapefiles='\n'.join([shp for shp in shape_group if shp]),
-                    tablename=self.output().tablename,
+                    tablename=self.output().tablename, nlt=nlt,
                     schema=self.output().schema))
             print 'imported {} shapefiles'.format((i + 1) * 500)
 
@@ -692,6 +699,128 @@ class AllSumLevels(WrapperTask):
                     'block', 'congressional_district'):
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
+
+
+class PointLandmarkColumns(ColumnsTask):
+    '''
+    Point landmark column definitions
+    '''
+
+    def version(self):
+        return 4
+
+    def columns(self):
+        geom = OBSColumn(
+            id='pointlm',
+            type='Geometry(Point)',
+            weight=5
+        )
+        cols = OrderedDict([
+            ('pointid', OBSColumn(
+                type='Text',
+                weight=0,
+                targets={geom: GEOM_REF}
+            )),
+            ('fullname', OBSColumn(
+                type='Text'
+            )),
+            ('mtfcc', OBSColumn(
+                type='Text'
+            )),
+            ('geom', geom)
+        ])
+        return cols
+
+
+class PointLandmark(TableTask):
+    '''
+    Point landmark data from the census
+    '''
+
+    year = Parameter()
+
+    def requires(self):
+        return {
+            'data': TigerGeographyShapefileToSQL(year=self.year,
+                                                 geography='POINTLM'),
+            'meta': PointLandmarkColumns()
+        }
+
+    def timespan(self):
+        return self.year
+
+    def columns(self):
+        return self.input()['meta']
+
+    def populate(self):
+        session = current_session()
+        session.execute('''
+            INSERT INTO {output}
+            SELECT pointid, fullname, mtfcc, geom
+            FROM {input}'''.format(output=self.output().table,
+                                   input=self.input()['data'].table))
+
+class PriSecRoadsColumns(ColumnsTask):
+    '''
+    Primary & secondary roads column definitions
+    '''
+
+    def version(self):
+        return 1
+
+    def columns(self):
+        geom = OBSColumn(
+            id='prisecroads',
+            type='Geometry(LineString)',
+            weight=5
+        )
+        cols = OrderedDict([
+            ('linearid', OBSColumn(
+                type='Text',
+                weight=0,
+                targets={geom: GEOM_REF}
+            )),
+            ('fullname', OBSColumn(
+                type='Text'
+            )),
+            ('rttyp', OBSColumn(
+                type='Text'
+            )),
+            ('mtfcc', OBSColumn(
+                type='Text'
+            )),
+            ('geom', geom)
+        ])
+        return cols
+
+
+class PriSecRoads(TableTask):
+    '''
+    Primary & Secondary roads from the census
+    '''
+
+    year = Parameter()
+
+    def requires(self):
+        return {
+            'data': TigerGeographyShapefileToSQL(year=self.year,
+                                                 geography='PRISECROADS'),
+            'meta': PriSecRoadsColumns()
+        }
+
+    def timespan(self):
+        return self.year
+
+    def columns(self):
+        return self.input()['meta']
+
+    def populate(self):
+        session = current_session()
+        session.execute('''
+            INSERT INTO {output}
+            SELECT linearid, fullname, rttyp, mtfcc, geom
+            FROM {input}'''.format(output=self.output().table,
+                                   input=self.input()['data'].table))
 
 
 def load_sumlevels():

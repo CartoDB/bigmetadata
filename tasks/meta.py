@@ -146,6 +146,30 @@ class Geometry(UserDefinedType):
         return func.ST_AsText(col, type_=self)
 
 
+class Linestring(UserDefinedType):
+
+    def get_col_spec(self):
+        return "GEOMETRY (LINESTRING, 4326)"
+
+    def bind_expression(self, bindvalue):
+        return func.ST_GeomFromText(bindvalue, 4326, type_=self)
+
+    def column_expression(self, col):
+        return func.ST_AsText(col, type_=self)
+
+
+class Point(UserDefinedType):
+
+    def get_col_spec(self):
+        return "GEOMETRY (POINT, 4326)"
+
+    def bind_expression(self, bindvalue):
+        return func.ST_GeomFromText(bindvalue, 4326, type_=self)
+
+    def column_expression(self, col):
+        return func.ST_AsText(col, type_=self)
+
+
 metadata = MetaData(bind=get_engine(), schema='observatory')
 Base = declarative_base(metadata=metadata)
 
