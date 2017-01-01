@@ -270,9 +270,15 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                      )::geomval median,
                      ROW(FIRST(foo.geom),
                       -- determine number of geoms, including fractions
-                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(
-                               tiger.{colname}, foo.geom)) /
-                          ST_Area(tiger.{colname})), 0), null)
+                      Nullif(SUM(CASE ST_GeometryType(tiger.{colname})
+                        WHEN 'ST_Point' THEN 1
+                        WHEN 'ST_LineString' THEN
+                          ST_Length(ST_Intersection(tiger.{colname}, foo.geom)) /
+                              ST_Length(tiger.{colname})
+                        ELSE
+                          ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
+                              ST_Area(tiger.{colname})
+                       END), 0)
                      )::geomval cnt,
                      ROW(FIRST(foo.geom),
                       -- determine % pixel area filled with geoms
