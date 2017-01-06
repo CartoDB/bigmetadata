@@ -203,9 +203,13 @@ class GeomColumns(ColumnsTask):
 class Attributes(ColumnsTask):
 
     def version(self):
-        return 1
+        return 2
+
+    def requires(self):
+        return SectionTags()
 
     def columns(self):
+        united_states = self.input()['united_states']
         return OrderedDict([
             ('aland', OBSColumn(
                 type='Numeric',
@@ -218,6 +222,12 @@ class Attributes(ColumnsTask):
                 name='Water area',
                 aggregate='sum',
                 weight=0,
+            )),
+            ('name', OBSColumn(
+                type='Text',
+                name='Name of feature',
+                weight=3,
+                tags=[united_states]
             ))
         ])
 
@@ -600,6 +610,7 @@ class ShorelineClip(TableTask):
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
             ('aland', self.input()['attributes']['aland']),
+            ('name', self.input()['attributes']['name']),
         ])
 
     def timespan(self):
@@ -609,10 +620,10 @@ class ShorelineClip(TableTask):
         session = current_session()
         stmt = ('INSERT INTO {output} '
                 'SELECT geoid, ST_Union(ST_MakePolygon(ST_ExteriorRing(the_geom))) AS the_geom, '
-                '       MAX(aland) aland '
+                '       MAX(aland) aland, cdb_observatory.FIRST(name) name '
                 'FROM ( '
                 '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
-                '           aland '
+                '           aland, name '
                 '    FROM {input} '
                 ") holes WHERE GeometryType(the_geom) = 'POLYGON' "
                 'GROUP BY geoid'.format(
@@ -646,7 +657,7 @@ class SumLevel(TableTask):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         tiger = DownloadTiger(year=self.year)
@@ -663,6 +674,7 @@ class SumLevel(TableTask):
             ('the_geom', self.input()['geoms'][self.geography]),
             ('aland', self.input()['attributes']['aland']),
             ('awater', self.input()['attributes']['awater']),
+            ('name', self.input()['attributes']['name']),
         ])
 
     def timespan(self):
@@ -674,8 +686,8 @@ class SumLevel(TableTask):
             inputschema='tiger' + str(self.year),
             input_tablename=self.input_tablename,
         )
-        session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater) '
-                        'SELECT {geoid}, geom the_geom, {aland}, {awater} '
+        session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater, name) '
+                        'SELECT {geoid}, geom the_geom, {aland}, {awater}, name '
                         'FROM {from_clause} '.format(
                             geoid=self.geoid,
                             output=self.output().table,

@@ -3025,14 +3025,23 @@ class DownloadACS(LoadPostgresFromURL):
 class QuantileColumns(ColumnsTask):
 
     def requires(self):
-        return Columns()
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'censustags': ACSTags(),
+            'segmenttags': SegmentTags(),
+            'unittags': UnitTags(),
+            'license': LicenseTags(),
+            'columns': Columns(),
+        }
 
     def version(self):
-        return 5
+        return 6
 
     def columns(self):
         quantile_columns = OrderedDict()
-        for colname, coltarget in self.input().iteritems():
+        input_ = self.input()
+        for colname, coltarget in input_['columns'].iteritems():
             col = coltarget.get(current_session())
             quantile_columns[colname+'_quantile'] = OBSColumn(
                 id=col.id.split('.')[-1]+'_quantile',
@@ -3041,6 +3050,8 @@ class QuantileColumns(ColumnsTask):
                 description=col.description,
                 aggregate='quantile',
                 targets={col: 'quantile_source'},
+                tags=[input_['license']['no-restrictions'], input_['censustags']['acs'],
+                      input_['sections']['united_states']],
                 weight=1
             )
         return quantile_columns
