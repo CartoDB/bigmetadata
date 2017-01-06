@@ -6,7 +6,7 @@ from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
 from tasks.util import (DownloadUnzipTask, shell, TableTask, TempTableTask,
                         classpath, CSV2TempTableTask, ColumnsTask, TagsTask)
-from tasks.meta import current_session, OBSColumn
+from tasks.meta import current_session, OBSColumn, OBSTag
 from tasks.au.geo import (
     GEO_STE,
     GEOGRAPHIES, GeographyColumns, Geography, BaseParams)
@@ -39,13 +39,23 @@ URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20d
 class SourceTags(TagsTask):
 
     def tags(self):
-        return []
+        return [
+            OBSTag(id='au-census',
+                   name='Australian Bureau of Statistics (ABS)',
+                   type='source',
+                   description=u'The `Australian Bureau of Statistics <http://abs.gov.au/websitedbs/censushome.nsf/home/datapacks>`')
+        ]
 
 
 class LicenseTags(TagsTask):
 
     def tags(self):
-        return []
+        return [
+            OBSTag(id='au-datapacks-license',
+                   name='Creative Commons Attribution 2.5 Australia licence',
+                   type='license',
+                   description=u'DataPacks is licenced under a `Creative Commons Attribution 2.5 Australia licence <https://creativecommons.org/licenses/by/2.5/au/>`_')
+        ]
 
 
 class BaseDataParams(BaseParams):
