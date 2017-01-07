@@ -888,41 +888,44 @@ class OBSMeta(Task):
     ) SELECT numer_c.id numer_id,
            denom_id,
            geom_c.id geom_id,
+            FIRST(numer_t.id) numer_tid,
+            FIRST(denom_tid) denom_tid,
+            FIRST(geom_t.id ORDER BY geom_t.timespan DESC) geom_tid,
             FIRST(numer_c.name) numer_name,
             FIRST(denom_name) denom_name,
-            FIRST(geom_c.name) geom_name,
+            FIRST(geom_c.name ORDER BY geom_t.timespan DESC) geom_name,
             FIRST(numer_c.description) numer_description,
             FIRST(denom_description) denom_description,
-            FIRST(geom_c.description) geom_description,
+            FIRST(geom_c.description ORDER BY geom_t.timespan DESC) geom_description,
             FIRST(numer_c.aggregate) numer_aggregate,
             FIRST(denom_aggregate) denom_aggregate,
-            FIRST(geom_c.aggregate) geom_aggregate,
+            FIRST(geom_c.aggregate ORDER BY geom_t.timespan DESC) geom_aggregate,
             FIRST(numer_c.type) numer_type,
             FIRST(denom_type) denom_type,
-            FIRST(geom_c.type) geom_type,
+            FIRST(geom_c.type ORDER BY geom_t.timespan DESC) geom_type,
             FIRST(numer_data_ct.colname) numer_colname,
             FIRST(denom_colname) denom_colname,
-            FIRST(geom_geom_ct.colname) geom_colname,
+            FIRST(geom_geom_ct.colname ORDER BY geom_t.timespan DESC) geom_colname,
             FIRST(numer_geomref_ct.colname) numer_geomref_colname,
             FIRST(denom_geomref_colname) denom_geomref_colname,
-            FIRST(geom_geomref_ct.colname) geom_geomref_colname,
+            FIRST(geom_geomref_ct.colname ORDER BY geom_t.timespan DESC) geom_geomref_colname,
             FIRST(numer_t.tablename) numer_tablename,
             FIRST(denom_tablename) denom_tablename,
-            FIRST(geom_t.tablename) geom_tablename,
-            FIRST(numer_t.timespan) numer_timespan,
+            FIRST(geom_t.tablename ORDER BY geom_t.timespan DESC) geom_tablename,
+            numer_t.timespan numer_timespan,
             FIRST(denom_timespan) denom_timespan,
             FIRST(numer_c.weight) numer_weight,
             FIRST(denom_weight) denom_weight,
-            FIRST(geom_c.weight) geom_weight,
-            FIRST(geom_t.timespan) geom_timespan
-           , FIRST(geom_t.the_geom)::geometry AS the_geom
+            FIRST(geom_c.weight ORDER BY geom_t.timespan DESC) geom_weight,
+            FIRST(geom_t.timespan ORDER BY geom_t.timespan DESC) geom_timespan
+           , FIRST(geom_t.the_geom ORDER BY geom_t.timespan DESC)::geometry AS the_geom
            , JSONB_OBJECT_AGG(
               numer_tag.type || '/' || numer_tag.id, numer_tag.name
             ) numer_tags,
             FIRST(denom_tags) denom_tags,
             JSONB_OBJECT_AGG(
               geom_tag.type || '/' || geom_tag.id, geom_tag.name
-            ) FILTER (WHERE geom_tag.type IS NOT NULL) geom_tags,
+            ORDER BY geom_t.timespan DESC) FILTER (WHERE geom_tag.type IS NOT NULL) geom_tags,
             NULL::JSONB timespan_tags,
             ARRAY_AGG(DISTINCT numer_tag.id)
               FILTER (WHERE numer_tag.type = 'section') section_tags,
@@ -934,8 +937,8 @@ class OBSMeta(Task):
             FIRST(numer_data_ct.extra)::JSONB numer_ct_extra,
             FIRST(denom_extra) denom_extra,
             FIRST(denom_ct_extra) denom_ct_extra,
-            FIRST(geom_c.extra)::JSONB geom_extra,
-            FIRST(geom_geom_ct.extra)::JSONB geom_ct_extra
+            FIRST(geom_c.extra ORDER BY geom_t.timespan DESC)::JSONB geom_extra,
+            FIRST(geom_geom_ct.extra ORDER BY geom_t.timespan DESC)::JSONB geom_ct_extra
     FROM observatory.obs_column_table numer_data_ct,
          observatory.obs_table numer_t,
          observatory.obs_column_table numer_geomref_ct,
@@ -965,8 +968,8 @@ class OBSMeta(Task):
       AND geom_geomref_ct.table_id = geom_t.id
       AND geom_geom_ct.column_id = geom_c.id
       AND geom_geom_ct.table_id = geom_t.id
-      AND geom_c.type ILIKE 'geometry'
-      AND numer_c.type NOT ILIKE 'geometry'
+      AND geom_c.type ILIKE 'geometry%'
+      AND numer_c.type NOT ILIKE 'geometry%'
       AND numer_c.id != geomref_c.id
       AND numer_ctag.column_id = numer_c.id
       AND numer_ctag.tag_id = numer_tag.id
@@ -975,8 +978,7 @@ class OBSMeta(Task):
         numer_t.timespan = leftjoined_denoms.denom_timespan
         AND geomref_c.id = leftjoined_denoms.geomref_id
       ))
-    GROUP BY numer_c.id, denom_id, geom_c.id,
-             numer_t.id, denom_tid, geom_t.id
+    GROUP BY numer_c.id, denom_id, geom_c.id, numer_t.timespan
     '''
 
     DIMENSIONS = {
@@ -1082,9 +1084,9 @@ class OBSMetaToLocal(OBSMeta):
     def run(self):
         session = current_session()
         try:
-            session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
             session.execute(self.FIRST_AGGREGATE)
-            session.execute('CREATE TABLE observatory.obs_meta AS {select}'.format(
+            session.execute('CREATE TABLE observatory.obs_meta_next AS {select}'.format(
                 select=self.QUERY
             ))
             # confirm that there won't be ambiguity with selection of geom
@@ -1095,20 +1097,39 @@ class OBSMetaToLocal(OBSMeta):
             # between a geomref pointing to a shoreline clipped & non shoreline
             # clipped dataset, vs to two totally different geometries each with
             # legit but different versions of data columns)
-            session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
-                            '(numer_id, denom_id, numer_timespan, geom_weight)')
-            session.execute('CREATE INDEX ON observatory.obs_meta USING gist '
+            session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta_next '
+                            '(numer_id, geom_id, numer_timespan, denom_id)')
+            session.execute('CREATE INDEX ON observatory.obs_meta_next USING gist '
                             '(the_geom)')
             for dimension, query in self.DIMENSIONS.iteritems():
-                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
+                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next_{dimension}'.format(
                     dimension=dimension))
-                session.execute('CREATE TABLE observatory.obs_meta_{dimension} '
+                session.execute('CREATE TABLE observatory.obs_meta_next_{dimension} '
                                 'AS {select}'.format(
                                     dimension=dimension,
                                     select=query
                                 ))
-                session.execute('CREATE INDEX ON observatory.obs_meta_{dimension} USING gist '
+                session.execute('CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist '
                                 '(the_geom)'.format(dimension=dimension))
+            session.commit()
+        except:
+            session.rollback()
+            raise
+
+        try:
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
+            session.execute('ALTER TABLE observatory.obs_meta_next RENAME TO obs_meta'.format(
+                select=self.QUERY
+            ))
+            for dimension, query in self.DIMENSIONS.iteritems():
+                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
+                    dimension=dimension
+                ))
+                session.execute('''
+                    ALTER TABLE observatory.obs_meta_next_{dimension}
+                    RENAME TO obs_meta_{dimension}'''.format(
+                        dimension=dimension
+                    ))
             session.commit()
             self._complete = True
         except:

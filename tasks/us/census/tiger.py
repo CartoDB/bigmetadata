@@ -13,7 +13,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask, TagsTask, Carto2TempTableTask
                        )
-from tasks.meta import (OBSColumnTable, OBSColumn, current_session,
+from tasks.meta import (OBSColumnTable, OBSColumn, current_session, GEOM_REF,
                         OBSColumnTag, OBSTag, OBSColumnToColumn, current_session)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 
@@ -203,9 +203,13 @@ class GeomColumns(ColumnsTask):
 class Attributes(ColumnsTask):
 
     def version(self):
-        return 1
+        return 2
+
+    def requires(self):
+        return SectionTags()
 
     def columns(self):
+        united_states = self.input()['united_states']
         return OrderedDict([
             ('aland', OBSColumn(
                 type='Numeric',
@@ -218,6 +222,12 @@ class Attributes(ColumnsTask):
                 name='Water area',
                 aggregate='sum',
                 weight=0,
+            )),
+            ('name', OBSColumn(
+                type='Text',
+                name='Name of feature',
+                weight=3,
+                tags=[united_states]
             ))
         ])
 
@@ -243,8 +253,8 @@ class GeoidColumns(ColumnsTask):
                 name=col.name + ' Geoids',
                 weight=0,
                 targets={
-                    col: 'geom_ref',
-                    clipped[colname + '_clipped']._column: 'geom_ref'
+                    col: GEOM_REF,
+                    clipped[colname + '_clipped']._column: GEOM_REF
                 }
             )
 
@@ -336,13 +346,20 @@ class TigerGeographyShapefileToSQL(TempTableTask):
             dir=os.path.join('tmp', classpath(self), str(self.year), self.geography)
         )).strip().split('\n')
 
+        cmd = 'ogrinfo {shpfile_path}'.format(shpfile_path=shapefiles[0])
+        resp = shell(cmd)
+        if 'Polygon' in resp:
+            nlt = '-nlt MultiPolygon'
+        else:
+            nlt = ''
+
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
                 'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE active_schema={schema}" ' \
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} ' \
+                '-t_srs "EPSG:4326" {nlt} -nln {tablename} ' \
                 '-lco OVERWRITE=yes ' \
                 '-lco SCHEMA={schema} {shpfile_path} '.format(
                     tablename=self.output().tablename,
-                    schema=self.output().schema,
+                    schema=self.output().schema, nlt=nlt,
                     shpfile_path=shapefiles.pop())
         shell(cmd)
 
@@ -353,10 +370,10 @@ class TigerGeographyShapefileToSQL(TempTableTask):
                 'echo \'{shapefiles}\' | xargs -P 16 -I shpfile_path '
                 'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE '
                 'active_schema={schema}" -append '
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {tablename} '
+                '-t_srs "EPSG:4326" {nlt} -nln {tablename} '
                 'shpfile_path '.format(
                     shapefiles='\n'.join([shp for shp in shape_group if shp]),
-                    tablename=self.output().tablename,
+                    tablename=self.output().tablename, nlt=nlt,
                     schema=self.output().schema))
             print 'imported {} shapefiles'.format((i + 1) * 500)
 
@@ -593,6 +610,7 @@ class ShorelineClip(TableTask):
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
             ('aland', self.input()['attributes']['aland']),
+            ('name', self.input()['attributes']['name']),
         ])
 
     def timespan(self):
@@ -602,10 +620,10 @@ class ShorelineClip(TableTask):
         session = current_session()
         stmt = ('INSERT INTO {output} '
                 'SELECT geoid, ST_Union(ST_MakePolygon(ST_ExteriorRing(the_geom))) AS the_geom, '
-                '       MAX(aland) aland '
+                '       MAX(aland) aland, cdb_observatory.FIRST(name) name '
                 'FROM ( '
                 '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
-                '           aland '
+                '           aland, name '
                 '    FROM {input} '
                 ") holes WHERE GeometryType(the_geom) = 'POLYGON' "
                 'GROUP BY geoid'.format(
@@ -639,7 +657,7 @@ class SumLevel(TableTask):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         tiger = DownloadTiger(year=self.year)
@@ -656,6 +674,7 @@ class SumLevel(TableTask):
             ('the_geom', self.input()['geoms'][self.geography]),
             ('aland', self.input()['attributes']['aland']),
             ('awater', self.input()['attributes']['awater']),
+            ('name', self.input()['attributes']['name']),
         ])
 
     def timespan(self):
@@ -667,8 +686,8 @@ class SumLevel(TableTask):
             inputschema='tiger' + str(self.year),
             input_tablename=self.input_tablename,
         )
-        session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater) '
-                        'SELECT {geoid}, geom the_geom, {aland}, {awater} '
+        session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater, name) '
+                        'SELECT {geoid}, geom the_geom, {aland}, {awater}, name '
                         'FROM {from_clause} '.format(
                             geoid=self.geoid,
                             output=self.output().table,
@@ -692,6 +711,206 @@ class AllSumLevels(WrapperTask):
                     'block', 'congressional_district'):
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
+
+
+class SharedTigerColumns(ColumnsTask):
+
+    def version(self):
+        return 2
+
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+        }
+
+    def columns(self):
+        input_ = self.input()
+        return OrderedDict([
+            ('fullname', OBSColumn(
+                type='Text',
+                name='Name of the feature',
+                weight=3,
+                tags=[input_['sections']['united_states'],
+                      input_['source']['tiger-source'],
+                      input_['license']['no-restrictions']]
+            )),
+            ('mtfcc', OBSColumn(
+                type='Text',
+                name='MAF/TIGER Feature Class Code Definitions',
+                description='''The MAF/TIGER Feature Class Code (MTFCC) is
+                a 5-digit code assigned by the Census Bureau intended to
+                classify and describe geographic objects or features. These
+                codes can be found in the TIGER/Line products.  A full list of
+                code meanings can be found `here
+                <https://www.census.gov/geo/reference/mtfcc.html>`_.''',
+                weight=3,
+                tags=[input_['sections']['united_states'],
+                      input_['source']['tiger-source'],
+                      input_['license']['no-restrictions']]
+            ))
+        ])
+
+
+class PointLandmarkColumns(ColumnsTask):
+    '''
+    Point landmark column definitions
+    '''
+
+    def version(self):
+        return 8
+
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+        }
+
+    def columns(self):
+        input_ = self.input()
+        geom = OBSColumn(
+            id='pointlm_geom',
+            type='Geometry(Point)',
+            weight=5,
+            tags=[input_['sections']['united_states'],
+                  input_['subsections']['poi'],
+                  input_['source']['tiger-source'],
+                  input_['license']['no-restrictions']]
+        )
+        cols = OrderedDict([
+            ('pointlm_id', OBSColumn(
+                type='Text',
+                weight=0,
+                targets={geom: GEOM_REF}
+            )),
+            ('pointlm_geom', geom)
+        ])
+        return cols
+
+
+class PointLandmark(TableTask):
+    '''
+    Point landmark data from the census
+    '''
+
+    year = Parameter()
+
+    def version(self):
+        return 2
+
+    def requires(self):
+        return {
+            'data': TigerGeographyShapefileToSQL(year=self.year,
+                                                 geography='POINTLM'),
+            'meta': PointLandmarkColumns(),
+            'shared': SharedTigerColumns()
+        }
+
+    def timespan(self):
+        return self.year
+
+    def columns(self):
+        shared = self.input()['shared']
+        cols = self.input()['meta']
+        return OrderedDict([
+            ('pointid', cols['pointlm_id']),
+            ('fullname', shared['fullname']),
+            ('mtfcc', shared['mtfcc']),
+            ('geom', cols['pointlm_geom']),
+        ])
+
+    def populate(self):
+        session = current_session()
+        session.execute('''
+            INSERT INTO {output}
+            SELECT pointid, fullname, mtfcc, geom
+            FROM {input}'''.format(output=self.output().table,
+                                   input=self.input()['data'].table))
+
+class PriSecRoadsColumns(ColumnsTask):
+    '''
+    Primary & secondary roads column definitions
+    '''
+
+    def version(self):
+        return 5
+
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+        }
+
+    def columns(self):
+        input_ = self.input()
+        geom = OBSColumn(
+            id='prisecroads_geom',
+            type='Geometry(LineString)',
+            weight=5,
+            tags=[input_['sections']['united_states'],
+                  input_['subsections']['roads'],
+                  input_['source']['tiger-source'],
+                  input_['license']['no-restrictions']]
+        )
+        cols = OrderedDict([
+            ('prisecroads_id', OBSColumn(
+                type='Text',
+                weight=0,
+                targets={geom: GEOM_REF}
+            )),
+            ('rttyp', OBSColumn(
+                type='Text'
+            )),
+            ('prisecroads_geom', geom)
+        ])
+        return cols
+
+
+class PriSecRoads(TableTask):
+    '''
+    Primary & Secondary roads from the census
+    '''
+
+    year = Parameter()
+
+    def requires(self):
+        return {
+            'data': TigerGeographyShapefileToSQL(year=self.year,
+                                                 geography='PRISECROADS'),
+            'meta': PriSecRoadsColumns(),
+            'shared': SharedTigerColumns()
+        }
+
+    def version(self):
+        return 2
+
+    def timespan(self):
+        return self.year
+
+    def columns(self):
+        shared = self.input()['shared']
+        cols = self.input()['meta']
+        return OrderedDict([
+            ('linearid', cols['prisecroads_id']),
+            ('fullname', shared['fullname']),
+            ('rttyp', cols['rttyp']),
+            ('mtfcc', shared['mtfcc']),
+            ('geom', cols['prisecroads_geom']),
+        ])
+
+    def populate(self):
+        session = current_session()
+        session.execute('''
+            INSERT INTO {output}
+            SELECT linearid, fullname, rttyp, mtfcc, geom
+            FROM {input}'''.format(output=self.output().table,
+                                   input=self.input()['data'].table))
 
 
 def load_sumlevels():

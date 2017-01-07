@@ -26,8 +26,8 @@ from luigi.s3 import S3Target
 from sqlalchemy import Table, types, Column
 from sqlalchemy.dialects.postgresql import JSON
 
-from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry,
-                        OBSColumnTable, OBSTag, current_session,
+from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
+                        Linestring, OBSColumnTable, OBSTag, current_session,
                         session_commit, session_rollback)
 
 
@@ -261,23 +261,29 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                  ARRAY_AGG(median) medians,
                  ARRAY_AGG(cnt) counts,
                  ARRAY_AGG(percent_fill) percents FROM (
-          SELECT id, ROW(FIRST(geom),
+          SELECT id, ROW(FIRST(foo.geom),
                         -- determine median area of geometries
                         Coalesce(Nullif(
                           percentile_cont(0.5) within group (
                           order by st_area(tiger.{colname}::Geography) / 1000000)
                           , 0), null)
                      )::geomval median,
-                     ROW(FIRST(geom),
+                     ROW(FIRST(foo.geom),
                       -- determine number of geoms, including fractions
-                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(
-                               tiger.{colname}, foo.geom)) /
-                          ST_Area(tiger.{colname})), 0), null)
+                      Nullif(SUM(CASE ST_GeometryType(tiger.{colname})
+                        WHEN 'ST_Point' THEN 1
+                        WHEN 'ST_LineString' THEN
+                          ST_Length(ST_Intersection(tiger.{colname}, foo.geom)) /
+                              ST_Length(tiger.{colname})
+                        ELSE
+                          ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
+                              ST_Area(tiger.{colname})
+                       END), 0)
                      )::geomval cnt,
-                     ROW(FIRST(geom),
+                     ROW(FIRST(foo.geom),
                       -- determine % pixel area filled with geoms
                       SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom))) /
-                          ST_Area(FIRST(geom))
+                          ST_Area(FIRST(foo.geom))
                      )::geomval percent_fill
           FROM
           (
@@ -331,8 +337,8 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
        CREATE TABLE observatory.obs_column_table_tile_simple AS
        SELECT table_id, column_id, tile_id, ST_Reclass(
          ST_Band(tile, ARRAY[2, 3]),
-         ROW(1, '0-65535:0-65535', '16BUI', 0)::reclassarg,
-         ROW(2, '0-1:0-255', '8BUI', 0)::reclassarg
+         ROW(1, '[0-65535]::0-65535, [65536-4294967296::65535-65535', '16BUI', 0)::reclassarg,
+         ROW(2, '[0-1]::0-255, (1-100]::255-255', '8BUI', 0)::reclassarg
        ) AS tile
        FROM observatory.obs_column_table_tile ;
 
@@ -634,6 +640,10 @@ class TableTarget(Target):
             # Column info for sqlalchemy's internal metadata
             if col.type.lower() == 'geometry':
                 coltype = Geometry
+            elif col.type.lower().startswith('geometry(point'):
+                coltype = Point
+            elif col.type.lower().startswith('geometry(linestring'):
+                coltype = Linestring
 
             # For enum type, pull keys from extra["categories"]
             elif col.type.lower().startswith('enum'):
@@ -1397,23 +1407,26 @@ class TableTask(Task):
     def the_geom(self, output, colname):
         session = current_session()
         return session.execute(
-            'SELECT ST_AsText('
-            '  ST_Multi( '
-            '    ST_CollectionExtract( '
-            '      ST_MakeValid( '
-            '        ST_SnapToGrid( '
-            '          ST_Buffer( '
-            '            ST_Union( '
-            '              ST_MakeValid( '
-            '                ST_Simplify( '
-            '                  ST_SnapToGrid({geom_colname}, 0.3) '
-            '                , 0) '
+            'SELECT ST_AsText( '
+            '  ST_Intersection( '
+            '    ST_MakeEnvelope(-179.999, -89.999, 179.999, 89.999, 4326), '
+            '    ST_Multi( '
+            '      ST_CollectionExtract( '
+            '        ST_MakeValid( '
+            '          ST_SnapToGrid( '
+            '            ST_Buffer( '
+            '              ST_Union( '
+            '                ST_MakeValid( '
+            '                  ST_Simplify( '
+            '                    ST_SnapToGrid({geom_colname}, 0.3) '
+            '                  , 0) '
+            '                ) '
             '              ) '
-            '            ) '
-            '          , 0.3, 2) '
-            '        , 0.3) '
-            '      ) '
-            '    , 3) '
+            '            , 0.3, 2) '
+            '          , 0.3) '
+            '        ) '
+            '      , 3) '
+            '    ) '
             '  ) '
             ') the_geom '
             'FROM {output}'.format(
@@ -1447,7 +1460,7 @@ class TableTask(Task):
     def create_geom_summaries(self, output):
         geometry_columns = [
             (colname, coltarget._id) for colname, coltarget in
-            self.columns().iteritems() if coltarget._column.type.lower() == 'geometry'
+            self.columns().iteritems() if coltarget._column.type.lower().startswith('geometry')
         ]
 
         if len(geometry_columns) == 0:
@@ -1764,7 +1777,7 @@ class GenerateRasterTiles(Task):
                                FROM observatory.obs_table t,
                                     observatory.obs_column_table ct,
                                     observatory.obs_column c
-                               WHERE c.type ILIKE 'geometry'
+                               WHERE c.type ILIKE 'geometry%'
                                  AND c.id = '{column_id}'
                                  AND t.id = '{table_id}'
                                  AND c.id = ct.column_id
@@ -1806,7 +1819,7 @@ class GenerateAllRasterTiles(WrapperTask):
                  observatory.obs_column c
             WHERE t.id = ct.table_id
               AND c.id = ct.column_id
-              AND c.type ILIKE 'geometry'
+              AND c.type ILIKE 'geometry%'
         ''')
         for table_id, column_id in resp:
             yield GenerateRasterTiles(table_id=table_id, column_id=column_id)
