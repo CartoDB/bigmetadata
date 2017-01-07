@@ -224,9 +224,15 @@ class BCP(BaseDataParams, TableTask):
 
     tablename = Parameter(default='B01')
 
+    def version(self):
+        return 1
+
     def requires(self):
+        import_data = {}
+        for state in STATES:
+            import_data[state] = ImportData(resolution=self.resolution, state=state, profile='BCP', tablename=self.tablename)
         return {
-            'data': ImportData(resolution=self.resolution, state=self.state, profile='BCP', tablename=self.tablename),
+            'data': import_data,
             'geo': Geography(resolution=self.resolution, year=self.year),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': Columns(),
@@ -248,59 +254,47 @@ class BCP(BaseDataParams, TableTask):
         session = current_session()
         columns = self.columns()
         out_colnames = columns.keys()
-        in_table = self.input()['data']
-        in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
-        in_colnames[0] = 'region_id'
-        for i, in_c in enumerate(in_colnames):
-            cmd =   "SELECT 'exists' FROM information_schema.columns " \
-                    "WHERE table_schema = '{schema}' " \
-                    "  AND table_name = '{tablename}' " \
-                    "  AND column_name = '{colname}' " \
-                    "  LIMIT 1".format(
-                        schema=in_table.schema,
-                        tablename=in_table.tablename.lower(),
-                        colname=in_c.lower())
-            # remove columns that aren't in input table
-            if session.execute(cmd).fetchone() is None:
-                in_colnames[i] = None
-                out_colnames[i] = None
-        in_colnames = [
-            "CASE {ic}::TEXT WHEN '-6' THEN NULL ELSE {ic} END".format(ic=ic) for ic in in_colnames if ic is not None]
-        out_colnames = [oc for oc in out_colnames if oc is not None]
 
-        cmd =   'INSERT INTO {output} ({out_colnames}) ' \
-                'SELECT {in_colnames} FROM {input} '.format(
-                    output=self.output().table,
-                    input=in_table.table,
-                    in_colnames=', '.join(in_colnames),
-                    out_colnames=', '.join(out_colnames))
-        session.execute(cmd)
+        for state, input_ in self.input()['data'].iteritems():
+            in_table = input_
+            in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
+            in_colnames[0] = 'region_id'
+            for i, in_c in enumerate(in_colnames):
+                cmd =   "SELECT 'exists' FROM information_schema.columns " \
+                        "WHERE table_schema = '{schema}' " \
+                        "  AND table_name = '{tablename}' " \
+                        "  AND column_name = '{colname}' " \
+                        "  LIMIT 1".format(
+                            schema=in_table.schema,
+                            tablename=in_table.tablename.lower(),
+                            colname=in_c.lower())
+                # remove columns that aren't in input table
+                if session.execute(cmd).fetchone() is None:
+                    in_colnames[i] = None
+                    out_colnames[i] = None
+            in_colnames = [
+                "CASE {ic}::TEXT WHEN '-6' THEN NULL ELSE {ic} END".format(ic=ic) for ic in in_colnames if ic is not None]
+            out_colnames = [oc for oc in out_colnames if oc is not None]
+
+            cmd =   'INSERT INTO {output} ({out_colnames}) ' \
+                    'SELECT {in_colnames} FROM {input} '.format(
+                        output=self.output().table,
+                        input=in_table.table,
+                        in_colnames=', '.join(in_colnames),
+                        out_colnames=', '.join(out_colnames))
+            session.execute(cmd)
 
 
 class BCPAllTables(BaseDataParams, WrapperTask):
 
     def requires(self):
         for table in TABLES:
-            yield BCP(resolution=self.resolution, state=self.state, tablename=table)
+            yield BCP(resolution=self.resolution, tablename=table)
 
 
-class BCPAllStates(BaseDataParams, WrapperTask):
-
-    def requires(self):
-        for state in STATES:
-            yield BCPAllTables(resolution=self.resolution, state=state)
-
-
-class BCPAllGeographies(BaseDataParams, WrapperTask):
+class BCPAllGeographiesAllTables(WrapperTask):
 
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield BCPAllTables(resolution=resolution, state=self.state)
+            yield BCPAllTables(resolution=resolution)
 
-
-class BCPAllGeographiesAllStates(WrapperTask):
-
-    def requires(self):
-        for resolution in GEOGRAPHIES:
-            for state in STATES:
-                yield BCPAllTables(resolution=resolution, state=state)
