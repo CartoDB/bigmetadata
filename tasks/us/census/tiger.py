@@ -703,14 +703,16 @@ class SumLevel(TableTask):
             inputschema='tiger' + str(self.year),
             input_tablename=self.input_tablename,
         )
-        session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater, name) '
-                        'SELECT {geoid}, geom the_geom, {aland}, {awater}, {name} '
+        in_colnames = [self.geoid, 'geom', self.aland, self.awater]
+        if self.name:
+            in_colnames.append(self.name)
+        out_colnames = self.columns().keys()
+        session.execute('INSERT INTO {output} ({out_colnames}) '
+                        'SELECT {in_colnames} '
                         'FROM {from_clause} '.format(
-                            geoid=self.geoid,
                             output=self.output().table,
-                            aland=self.aland,
-                            awater=self.awater,
-                            name=self.name,
+                            in_colnames=', '.join(in_colnames),
+                            out_colnames=', '.join(out_colnames),
                             from_clause=from_clause
                         ))
 
