@@ -234,83 +234,119 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     '''
     Add entries to obs_column_table_tile for the given table and column.
     '''
+    tablename_ns = tablename.split('.')[-1]
     query = '''
         DELETE FROM observatory.obs_column_table_tile
         WHERE table_id = '{table_id}'
-          AND column_id = '{column_id}';
-        INSERT INTO observatory.obs_column_table_tile
-        WITH emptyraster as (
-          SELECT ROW_NUMBER() OVER () AS id, rast FROM (
-          SELECT ST_Tile(ST_AsRaster(
+          AND column_id = '{column_id}';'''.format(
+              table_id=table_id, column_id=column_id)
+    resp = session.execute(query)
+
+    query = '''
+        DROP TABLE IF EXISTS raster_empty_{tablename_ns};
+        CREATE TEMPORARY TABLE raster_empty_{tablename_ns} AS
+        SELECT ROW_NUMBER() OVER () AS id, rast FROM (
+          WITH tilesize AS (SELECT
+            CASE WHEN ST_Area(the_geom) > 5000 THEN 250
+                 ELSE 50 END AS tilesize
+            FROM observatory.obs_table
+            WHERE id = '{table_id}'
+          ) SELECT ST_Tile(ST_AsRaster(
             the_geom,
             (st_xmax(st_transform(the_geom, 3857))
               - st_xmin(st_transform(the_geom, 3857)))::INT
-            / (50000),
+                              / (tilesize * 1000),
             (st_ymax(st_transform(the_geom, 3857))
               - st_ymin(st_transform(the_geom, 3857)))::INT
-            / (50000), 0, 0, ARRAY['32BF', '32BF', '32BF'],
-                             ARRAY[-1, -1, -1],
-                             ARRAY[0, 0, 0]
+                              / (tilesize * 1000),
+            0, 0, ARRAY['32BF', '32BF', '32BF'],
+            ARRAY[-1, -1, -1],
+            ARRAY[0, 0, 0]
           ), ARRAY[1, 2, 3], 25, 25) rast
-          FROM observatory.obs_table
+          FROM observatory.obs_table, tilesize
           WHERE id = '{table_id}'
-          ) foo
-        ),
-        pixelspertile AS (
-          SELECT id,
-                 ARRAY_AGG(median) medians,
-                 ARRAY_AGG(cnt) counts,
-                 ARRAY_AGG(percent_fill) percents FROM (
-          SELECT id, ROW(FIRST(foo.geom),
-                        -- determine median area of geometries
-                        Coalesce(Nullif(
-                          percentile_cont(0.5) within group (
-                          order by st_area(tiger.{colname}::Geography) / 1000000)
-                          , 0), null)
-                     )::geomval median,
-                     ROW(FIRST(foo.geom),
-                      -- determine number of geoms, including fractions
-                      Nullif(SUM(CASE ST_GeometryType(tiger.{colname})
-                        WHEN 'ST_Point' THEN 1
-                        WHEN 'ST_LineString' THEN
-                          ST_Length(ST_Intersection(tiger.{colname}, foo.geom)) /
-                              ST_Length(tiger.{colname})
-                        ELSE
-                          ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
-                              ST_Area(tiger.{colname})
-                       END), 0)
-                     )::geomval cnt,
-                     ROW(FIRST(foo.geom),
-                      -- determine % pixel area filled with geoms
-                      SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom))) /
-                          ST_Area(FIRST(foo.geom))
-                     )::geomval percent_fill
-          FROM
-          (
-            SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
-            FROM emptyraster,
-                 {tablename} tiger
-            WHERE emptyraster.rast && tiger.{colname}
-            GROUP BY id
-          ) foo,
-            {tablename} tiger
-            WHERE foo.geom && tiger.{colname}
-            GROUP BY id, x, y
-          ) bar
-          GROUP BY id
-        )
-        SELECT '{table_id}', '{column_id}', er.id,
-               ST_SetValues(ST_SetValues(ST_SetValues(er.rast,
-               1, medians),
-               2, counts),
-               3, percents) geom
-        FROM emptyraster er, pixelspertile ppt
-        WHERE er.id = ppt.id
-        ;
-    '''.format(table_id=table_id, column_id=column_id,
-               colname=colname, tablename=tablename)
+          ) foo;
+        '''.format(table_id=table_id, tablename_ns=tablename_ns)
     resp = session.execute(query)
     assert resp.rowcount > 0
+
+    query = '''
+      DROP TABLE IF EXISTS raster_pap_{tablename_ns};
+      CREATE TEMPORARY TABLE raster_pap_{tablename_ns} As
+      SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
+           FROM raster_empty_{tablename_ns} rast,
+                {tablename} vector
+           WHERE rast.rast && vector.{colname}
+           GROUP BY id;
+    '''.format(tablename_ns=tablename_ns, tablename=tablename, colname=colname)
+    resp = session.execute(query)
+    assert resp.rowcount > 0
+
+    query = '''
+      CREATE UNIQUE INDEX ON raster_pap_{tablename_ns} (id, x, y);
+      CREATE INDEX ON raster_pap_{tablename_ns} using gist (geom);
+    '''.format(tablename_ns=tablename_ns, colname=colname)
+    resp = session.execute(query)
+
+    query = '''
+      DROP TABLE IF EXISTS raster_vals_{tablename_ns};
+      CREATE TEMPORARY TABLE raster_vals_{tablename_ns} AS
+      WITH vector AS (SELECT ST_SimplifyVW({colname}, 0.0005) the_geom
+                      FROM {tablename} vector)
+      SELECT id
+             , (null::geometry, null::numeric)::geomval median
+             , (FIRST(geom),
+               -- determine number of geoms, including fractions
+               Nullif(SUM(CASE ST_GeometryType(vector.the_geom)
+                 WHEN 'ST_Point' THEN 1
+                 WHEN 'ST_LineString' THEN
+                   ST_Length(ST_ClipByBox2D(vector.the_geom, ST_Envelope(geom))) /
+                       ST_Length(vector.the_geom)
+                 ELSE
+                   CASE WHEN geom @ vector.the_geom THEN
+                             ST_Area(geom) / ST_Area(vector.the_geom)
+                        WHEN vector.the_geom @ geom THEN 1
+                        ELSE ST_Area(ST_ClipByBox2D(vector.the_geom, ST_Envelope(geom))) /
+                             ST_Area(vector.the_geom)
+                   END
+                END), 0)
+              )::geomval cnt
+             , (FIRST(geom),
+               -- determine % pixel area filled with geoms
+               SUM(CASE WHEN geom @ vector.the_geom THEN 1
+                        WHEN vector.the_geom @ geom THEN
+                             ST_Area(vector.the_geom) / ST_Area(geom)
+                        ELSE ST_Area(ST_ClipByBox2D(vector.the_geom, ST_Envelope(geom))) /
+                             ST_Area(geom)
+               END)
+              )::geomval percent_fill
+         FROM raster_pap_{tablename_ns}, {tablename} vector
+         WHERE geom && vector.the_geom
+         GROUP BY id, x, y;
+    '''.format(tablename_ns=tablename_ns, tablename=tablename, colname=colname)
+    resp = session.execute(query)
+    assert resp.rowcount > 0
+
+    query = '''
+        INSERT INTO observatory.obs_column_table_tile
+        WITH pixelspertile AS (SELECT id,
+          ARRAY_AGG(median) medians,
+          ARRAY_AGG(cnt) counts,
+          ARRAY_AGG(percent_fill) percents
+        FROM raster_vals_{tablename_ns}
+        GROUP BY id)
+        SELECT '{table_id}', '{column_id}', er.id,
+                 ST_SetValues(ST_SetValues(ST_SetValues(er.rast,
+                 1, medians),
+                 2, counts),
+                 3, percents) geom
+          FROM raster_empty_{tablename_ns} er, pixelspertile ppt
+          WHERE er.id = ppt.id
+       '''.format(tablename_ns=tablename_ns, tablename=tablename,
+                  table_id=table_id, column_id=column_id)
+    resp = session.execute(query)
+    assert resp.rowcount > 0
+
     resp = session.execute('''
         UPDATE observatory.obs_column_table_tile
         SET tile = st_setvalues(st_setvalues(st_setvalues(tile,
@@ -319,7 +355,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                     3, geomvals, false)
         FROM (
             SELECT table_id, column_id, tile_id, array_agg(((geomval).geom, 0)::geomval) geomvals FROM (
-                SELECT table_id, column_id, tile_id, st_dumpaspolygons(tile, 1, false) geomval
+                SELECT table_id, column_id, tile_id, st_dumpaspolygons(tile, 2, false) geomval
                 FROM observatory.obs_column_table_tile
                 WHERE column_id = '{column_id}'
                   AND table_id = '{table_id}'
@@ -1156,7 +1192,7 @@ def clear_temp_table(task):
     if task.force or target.empty():
         session = current_session()
         session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
-		        schema=classpath(task), tablename=task.task_id))
+            schema=classpath(task), tablename=task.task_id))
         session.flush()
 
 
@@ -1437,11 +1473,21 @@ class TableTask(Task):
 
     def run(self):
         output = self.output()
+
+        LOGGER.info('update_create_table')
         output.update_or_create_table()
+
+        LOGGER.info('populate')
         self.populate()
+
+        LOGGER.info('update_or_create_metadata')
         output.update_or_create_metadata()
+
+        LOGGER.info('create_indexes')
         self.create_indexes(output)
         current_session().flush()
+
+        LOGGER.info('create_geom_summaries')
         self.create_geom_summaries(output)
 
     def create_indexes(self, output):
@@ -1630,6 +1676,7 @@ class Carto2TempTableTask(TempTableTask):
         'string': 'TEXT',
         'number': 'NUMERIC',
         'geometry': 'GEOMETRY',
+        'date': 'TIMESTAMP',
     }
 
     @property
