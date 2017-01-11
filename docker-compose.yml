@@ -8,8 +8,19 @@
       "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
                                               # will cause persistence issues!!
       "./observatory-extension:/observatory-extension",
+      "./dataservices-api:/dataservices-api",
+      "./data-services:/data-services",
+      "./cartodb-postgresql:/cartodb-postgresql",
       "./tmp:/bigmetadata/tmp"
     ],
+    "environment": {
+      "PGHOST": "postgres",
+      "PGUSER": "docker",
+      "PGPASSWORD": "docker",
+      "PGDATABASE": "gis",
+      "LC_ALL": "C.UTF-8",
+      "LANG": "C.UTF-8"
+    },
     "privileged": true
   },
   "nginx": {

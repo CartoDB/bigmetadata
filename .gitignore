@@ -29,3 +29,6 @@ observatory-extension
 *.key
 *.pdf
 perftest/*.json
+data-services
+dataservices-api
+cartodb-postgresql
