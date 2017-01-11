@@ -9,7 +9,7 @@ from tasks.util import (DownloadUnzipTask, shell, TableTask, TempTableTask,
 from tasks.meta import current_session, OBSColumn, OBSTag
 from tasks.au.geo import (
     GEO_STE,
-    GEOGRAPHIES, GeographyColumns, Geography, BaseParams)
+    GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 
@@ -58,14 +58,13 @@ class LicenseTags(TagsTask):
         ]
 
 
-class BaseDataParams(BaseParams):
+class DownloadData(DownloadUnzipTask):
 
-    profile = Parameter(default='BCP')
-    state = Parameter(default='AUST')
-    header = Parameter(default='short')
-
-
-class DownloadData(BaseDataParams, DownloadUnzipTask):
+    year = Parameter()
+    resolution = Parameter()
+    profile = Parameter()
+    state = Parameter()
+    header = Parameter()
 
     def download(self):
         urllib.urlretrieve(url=URL.format(
@@ -79,12 +78,19 @@ class DownloadData(BaseDataParams, DownloadUnzipTask):
 
 
 
-class ImportData(BaseDataParams, CSV2TempTableTask):
+class ImportData(CSV2TempTableTask):
 
-    tablename = Parameter(default='B01')
+    tablename = Parameter()
+
+    year = Parameter()
+    resolution = Parameter()
+    state = Parameter()
+    profile = Parameter(default='BCP')
+    header = Parameter(default='short')
 
     def requires(self):
-        return DownloadData(resolution=self.resolution, profile=self.profile, state=self.state)
+        return DownloadData(resolution=self.resolution, profile=self.profile,
+                            state=self.state, year=self.year, header=self.header)
 
     def input_csv(self):
         cmd = 'find {path} -name \'{year}Census_{tablename}_{state}_{resolution}_{header}.csv\''.format(
@@ -101,37 +107,53 @@ class ImportData(BaseDataParams, CSV2TempTableTask):
         return path
 
 
-class ImportAllTables(BaseDataParams, WrapperTask):
+class ImportAllTables(WrapperTask):
+
+    year = Parameter()
+    resolution = Parameter()
+    state = Parameter()
 
     def requires(self):
         for table in TABLES:
             yield ImportData(resolution=self.resolution, state=self.state,
-                            tablename=table)
+                             year=self.year, tablename=table)
 
 
-class ImportAllStates(BaseDataParams, WrapperTask):
+class ImportAllStates(WrapperTask):
+
+    year = Parameter()
+    resolution = Parameter()
 
     def requires(self):
         for state in STATES:
-            yield ImportAllTables(resolution=self.resolution, state=state)
+            yield ImportAllTables(resolution=self.resolution, state=state,
+                                  year=self.year)
 
 
-class ImportAllResolutions(BaseDataParams, WrapperTask):
+class ImportAllResolutions(WrapperTask):
+
+    year = Parameter()
+    state = Parameter()
 
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield ImportAllTables(resolution=resolution, state=self.state)
+            yield ImportAllTables(resolution=resolution, state=self.state, year=self.year)
 
 
-class ImportAll(BaseDataParams, WrapperTask):
+class ImportAll(WrapperTask):
+
+    year = Parameter()
 
     def requires(self):
         for resolution in GEOGRAPHIES:
             for state in STATES:
-                yield ImportAllTables(resolution=resolution, state=state)
+                yield ImportAllTables(resolution=resolution, state=state, year=self.year)
 
 
-class Columns(BaseDataParams, ColumnsTask):
+class Columns(ColumnsTask):
+
+    year = Parameter()
+    profile = Parameter()
 
     def requires(self):
         requirements = {
@@ -220,9 +242,12 @@ class Columns(BaseDataParams, ColumnsTask):
 #####################################
 # COPY TO OBSERVATORY
 #####################################
-class BCP(BaseDataParams, TableTask):
+class BCP(TableTask):
 
-    tablename = Parameter(default='B01')
+    tablename = Parameter()
+    year = Parameter()
+    resolution = Parameter()
+    profile = Parameter(default='BCP')
 
     def version(self):
         return 1
@@ -230,12 +255,15 @@ class BCP(BaseDataParams, TableTask):
     def requires(self):
         import_data = {}
         for state in STATES:
-            import_data[state] = ImportData(resolution=self.resolution, state=state, profile='BCP', tablename=self.tablename)
+            import_data[state] = ImportData(resolution=self.resolution,
+                                            state=state, profile=self.profile,
+                                            tablename=self.tablename,
+                                            year=self.year)
         return {
             'data': import_data,
             'geo': Geography(resolution=self.resolution, year=self.year),
             'geometa': GeographyColumns(resolution=self.resolution),
-            'meta': Columns(),
+            'meta': Columns(year=self.year, profile=self.profile),
         }
 
     def timespan(self):
@@ -285,16 +313,20 @@ class BCP(BaseDataParams, TableTask):
             session.execute(cmd)
 
 
-class BCPAllTables(BaseDataParams, WrapperTask):
+class BCPAllTables(WrapperTask):
+
+    year = Parameter()
+    resolution = Parameter()
 
     def requires(self):
         for table in TABLES:
-            yield BCP(resolution=self.resolution, tablename=table)
+            yield BCP(resolution=self.resolution, tablename=table, year=self.year)
 
 
 class BCPAllGeographiesAllTables(WrapperTask):
 
+    year = Parameter()
+
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield BCPAllTables(resolution=resolution)
-
+            yield BCPAllTables(resolution=resolution, year=self.year)
