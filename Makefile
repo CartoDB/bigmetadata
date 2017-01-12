@@ -135,28 +135,7 @@ dataservices-api: extension
 	docker exec $$(docker-compose ps -q postgres) sh -c 'cd dataservices-api/client && make install'
 	docker exec $$(docker-compose ps -q postgres) sh -c 'cd dataservices-api/server/extension && make install'
 	docker exec $$(docker-compose ps -q postgres) sh -c 'cd dataservices-api/server/lib/python/cartodb_services && pip install -r requirements.txt && pip install --upgrade .'
-	docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS cartodb CASCADE;"
-	docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS cdb_geocoder CASCADE;"
-	docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS plproxy CASCADE;"
-	docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS cdb_dataservices_server CASCADE;"
-	docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS cdb_dataservices_client CASCADE;"
-	docker-compose run --rm bigmetadata psql -c "DROP SCHEMA IF EXISTS cdb_dataservices_client CASCADE;"
-	docker exec $$(docker-compose ps -q postgres) sh -c 'dropuser --if-exists publicuser && createuser publicuser'
-	docker-compose run --rm bigmetadata psql -c "CREATE EXTENSION cartodb;"
-	docker-compose run --rm bigmetadata psql -c "CREATE EXTENSION cdb_geocoder;"
-	docker-compose run --rm bigmetadata psql -c "CREATE EXTENSION plproxy;"
-	docker-compose run --rm bigmetadata psql -c "CREATE EXTENSION cdb_dataservices_server;"
-	docker-compose run --rm bigmetadata psql -c "CREATE EXTENSION cdb_dataservices_client;"
-	docker-compose run --rm bigmetadata psql -c "INSERT INTO cartodb.cdb_conf VALUES ('logger_conf','{}');"
-	# right now this last line has to be pasted manually since we can't
-	# escape properly
-#docker-compose run --rm bigmetadata psql -c "
-#INSERT INTO cartodb.cdb_conf VALUES ('redis_metadata_config','{"timeout":1000,"redis_db":0,"redis_host": "localhost", "redis_port": 6379}');
-#INSERT INTO cartodb.cdb_conf VALUES ('redis_metrics_config','{"redis_host": "localhost", "redis_port": 6379}');
-#INSERT INTO cartodb.cdb_conf VALUES ('heremaps_conf','{"geocoder":{"app_id":"","app_code":"","geocoder_cost_per_hit":""},"isolines":{"app_id":"","app_code":""}}');
-#INSERT INTO cartodb.cdb_conf VALUES ('mapzen_conf','{"matrix":{"api_key":"","monthly_quota":""},"routing":{"api_key":"","monthly_quota":""},"geocoder":{"api_key":"","monthly_quota":""}}');
-#INSERT INTO cartodb.cdb_conf VALUES ('data_observatory_conf','{"period_end_date":"2100/1/1","connection":{"whitelist":[],"staging":"","production":"dbname=gis host=127.0.0.1 port=5432 user=docker password=docker"}}');
-#      "
+	docker-compose run --rm bigmetadata psql -f /bigmetadata/postgres/dataservices_config.sql
 
 ## in redis:
 # hset rails:users:observatory period_end_date 2100/1/1
