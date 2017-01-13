@@ -21,4 +21,6 @@ INSERT INTO cartodb.cdb_conf VALUES ('heremaps_conf',
 INSERT INTO cartodb.cdb_conf VALUES ('mapzen_conf',
   '{"matrix":{"api_key":"","monthly_quota":""},"routing":{"api_key":"","monthly_quota":""},"geocoder":{"api_key":"","monthly_quota":""}}');
 INSERT INTO cartodb.cdb_conf VALUES ('data_observatory_conf',
-  '{"period_end_date":"2100/1/1","connection":{"whitelist":[],"staging":"","production":"dbname=gis host=127.0.0.1 port=5432 user=docker password=docker"}}');
+  '{"period_end_date":"2100/1/1","connection":{"whitelist":[],"staging":"dbname=gis host=127.0.0.1 port=5432 user=docker password=docker","production":"dbname=gis host=127.0.0.1 port=5432 user=docker password=docker"}}');
+INSERT INTO cartodb.cdb_conf VALUES ('user_config', '{"is_organization": false, "entity_name": "publicuser"}');
+INSERT INTO cartodb.cdb_conf VALUES ('geocoder_server_config', '{"connection_str": "dbname=gis host=127.0.0.1 port=5432 user=docker password=docker"}');

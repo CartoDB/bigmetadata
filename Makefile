@@ -130,17 +130,22 @@ extension:
 # update dataservices-api in our DB container
 # Depends on having a dataservices-api folder linked
 dataservices-api: extension
-	docker exec $$(docker-compose ps -q postgres) sh -c 'cd cartodb-postgresql && make install'
-	docker exec $$(docker-compose ps -q postgres) sh -c 'cd data-services/geocoder/extension && make install'
-	docker exec $$(docker-compose ps -q postgres) sh -c 'cd dataservices-api/client && make install'
-	docker exec $$(docker-compose ps -q postgres) sh -c 'cd dataservices-api/server/extension && make install'
-	docker exec $$(docker-compose ps -q postgres) sh -c 'cd dataservices-api/server/lib/python/cartodb_services && pip install -r requirements.txt && pip install --upgrade .'
+	docker exec $$(docker-compose ps -q postgres) sh -c ' \
+	  cd /cartodb-postgresql && make install && \
+	  cd /data-services/geocoder/extension && make install && \
+	  cd /dataservices-api/client && make install && \
+	  cd /dataservices-api/server/extension && make install && \
+	  cd /dataservices-api/server/lib/python/cartodb_services && \
+	  pip install -r requirements.txt && pip install --upgrade .'
 	docker-compose run --rm bigmetadata psql -f /bigmetadata/postgres/dataservices_config.sql
 
 ## in redis:
 # hset rails:users:observatory period_end_date 2100/1/1
 # hset rails:users:observatory obs_general_quota 100000
 # hset rails:users:observatory obs_snapshot_quota 100000
+# hset rails:users:publicuser period_end_date 2100/1/1
+# hset rails:users:publicuser obs_general_quota 100000
+# hset rails:users:publicuser obs_snapshot_quota 100000
 
 
 sh-sql:
@@ -161,6 +166,15 @@ extension-unittest:
 	                && chmod -R a+w src/pg/test/results \
 	                && make install \
 	                && su postgres -c 'make test'"
+
+dataservices-api-client-unittest:
+	docker exec -it \
+	  $$(docker-compose ps -q postgres) \
+	  /bin/bash -c "cd dataservices-api/client \
+	                && chmod -R a+w test \
+	                && make install \
+	                && su postgres -c 'PGUSER=postgres make installcheck'"
+	                #&& su postgres -c 'whoami'"
 
 etl-unittest:
 	docker-compose run --rm bigmetadata /bin/bash -c \
