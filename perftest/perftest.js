@@ -175,6 +175,9 @@ $(window).ready(function () {
       })
       .enter()
       .append("rect")
+      .on('click', function (d) {
+        $('#stmt').text(d.stmt);
+      })
       .attr("class", function (d) {
         return 'bar color_' + d.color;
       })
