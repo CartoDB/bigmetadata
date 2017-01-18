@@ -14,7 +14,6 @@
       "./tmp:/bigmetadata/tmp"
     ],
     "environment": {
-      "PGHOST": "localhost",
       "PGUSER": "docker",
       "PGPASSWORD": "docker",
       "PGDATABASE": "gis",
