@@ -138,14 +138,10 @@ dataservices-api: extension
 	  cd /dataservices-api/server/lib/python/cartodb_services && \
 	  pip install -r requirements.txt && pip install --upgrade .'
 	docker-compose run --rm bigmetadata psql -f /bigmetadata/postgres/dataservices_config.sql
+	docker exec $$(docker-compose ps -q redis) sh -c \
+	  "$$(cat postgres/dataservices_config.redis)"
 
 ## in redis:
-# hset rails:users:observatory period_end_date 2100/1/1
-# hset rails:users:observatory obs_general_quota 100000
-# hset rails:users:observatory obs_snapshot_quota 100000
-# hset rails:users:publicuser period_end_date 2100/1/1
-# hset rails:users:publicuser obs_general_quota 100000
-# hset rails:users:publicuser obs_snapshot_quota 100000
 
 
 sh-sql:
@@ -173,8 +169,18 @@ dataservices-api-client-unittest:
 	  /bin/bash -c "cd dataservices-api/client \
 	                && chmod -R a+w test \
 	                && make install \
-	                && su postgres -c 'PGUSER=postgres make installcheck'"
-	                #&& su postgres -c 'whoami'"
+	                && su postgres -c 'PGUSER=postgres make installcheck'" || :
+	test $$(grep '^[-+] ' dataservices-api/client/test/regression.diffs | grep -Ev '(CONTEXT|PL/pgSQL)' | tee dataservices-api/client/test/regression.diffs | wc -l) = 0
+
+dataservices-api-server-unittest:
+	docker exec -it \
+	  $$(docker-compose ps -q postgres) \
+	  /bin/bash -c "cd dataservices-api/server/extension \
+	                && chmod -R a+w test \
+	                && make install \
+	                && su postgres -c 'PGUSER=postgres make installcheck'" || :
+
+dataservices-api-unittest: dataservices-api-server-unittest dataservices-api-client-unittest
 
 etl-unittest:
 	docker-compose run --rm bigmetadata /bin/bash -c \
