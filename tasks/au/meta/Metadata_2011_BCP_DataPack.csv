@@ -1,5 +1,5 @@
 Sequential,Short,Long,DENOMINATORS,DataPack file,unit,subsection,Profile table,Column heading description in profile,
-B1,Tot_P_M,Total_Persons_Males,B01_Tot_P_P,B01a,people,age_gender,B01a,Males,
+B1,Tot_P_M,Total_Persons_Males,B01_Tot_P_P,B01,people,age_gender,B01a,Males,
 B2,Tot_P_F,Total_Persons_Females,B01_Tot_P_P,B01,people,age_gender,B01a,Females,
 B3,Tot_P_P,Total_Persons_Persons,,B01,people,age_gender,B01a,Persons,
 B4,Age_0_4_yr_M,Age_groups_0_4_years_Males,B01_Tot_P_M,B01,people,age_gender,B01a,Males,
@@ -107,7 +107,7 @@ B105,Count_psns_occ_priv_dwgs_P,Count_of_Persons_in_occupied_private_dwellings_P
 B106,Count_Persons_other_dwgs_M,Count_of_Persons_in_other_dwellings_Males,B01_Tot_P_M,B01,people,housing|age_gender,B01b,Males,
 B107,Count_Persons_other_dwgs_F,Count_of_Persons_in_other_dwellings_Females,B01_Tot_P_F,B01,people,housing|age_gender,B01b,Females,
 B108,Count_Persons_other_dwgs_P,Count_of_Persons_in_other_dwellings_Persons,B01_Tot_P_P,B01,people,housing|age_gender,B01b,Persons,
-B109,Median_age_persons,Median_age_of_persons,B01_Tot_P_P,B02,people,age_gender,B02,Median age of persons,median
+B109,Median_age_persons,Median_age_of_persons,,B02,people,age_gender,B02,Median age of persons,median
 B110,Median_mortgage_repay_monthly,Median_mortgage_repayment_monthly,,B02,money,housing,B02,Median mortgage repayment ($/monthly),median
 B111,Median_Tot_prsnl_inc_weekly,Median_total_personal_income_weekly,,B02,money,housing,B02,Median total personal income ($/weekly),median
 B112,Median_rent_weekly_,Median_rent_weekly,,B02,money,housing,B02,Median rent ($/weekly),median
