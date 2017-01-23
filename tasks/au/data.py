@@ -18,7 +18,7 @@ PROFILES = (
 )
 
 STATES = (
-    'AUST',
+    # 'AUST',
     'NSW',
     'Vic',
     'Qld',
