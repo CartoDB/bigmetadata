@@ -251,7 +251,6 @@ class BCP(TableTask):
     tablename = Parameter()
     year = Parameter()
     resolution = Parameter()
-    profile = Parameter(default='BCP')
 
     def version(self):
         return 1
@@ -260,14 +259,14 @@ class BCP(TableTask):
         import_data = {}
         for state in STATES:
             import_data[state] = ImportData(resolution=self.resolution,
-                                            state=state, profile=self.profile,
+                                            state=state, profile='BCP',
                                             tablename=self.tablename,
                                             year=self.year)
         return {
             'data': import_data,
             'geo': Geography(resolution=self.resolution, year=self.year),
             'geometa': GeographyColumns(resolution=self.resolution),
-            'meta': Columns(year=self.year, profile=self.profile),
+            'meta': Columns(year=self.year, profile='BCP', tablename=self.tablename),
         }
 
     def timespan(self):
