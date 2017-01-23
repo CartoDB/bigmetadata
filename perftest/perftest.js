@@ -1,5 +1,48 @@
 /* globals d3, $, _ */
 
+function cssSafe(x) {
+  return '_' + String(x).replace(/[^0-9a-zA-Z]/g, '').toLowerCase();
+}
+
+function activateFilter(_) {
+  var filterVals = '';
+  $('#filters select').map(function (i, el) {
+    var val = $(el).val();
+    if (val !== '') {
+      filterVals += '.' + val;
+    }
+  });
+  $('.chart').each(function (i, el) {
+    var $el = $(el);
+    if (filterVals === '') {
+      $el.show();
+    } else if ($el.is(filterVals)) {
+      $el.show();
+    } else {
+      $el.hide();
+    }
+  });
+}
+
+function addFilter(key, val) {
+  var valText = String(val);
+  var keyText = String(key);
+  key = cssSafe(key);
+  val = key + cssSafe(val);
+  var $filter = $('select#' + key);
+  if ($filter.length === 0) {
+    $filter = $('<select id="' + key + '" />');
+    $filter.appendTo($('<div />').appendTo($('#filters')));
+    $filter.append($('<option value="">All</option>'));
+    $('<label for="' + key + '" />').text(keyText).insertBefore($filter);
+    $filter.on('change', activateFilter);
+  }
+  var $option = $('option#' + val, $filter);
+  if ($option.length === 0) {
+    $option = $('<option value="' + val + '" id="' + val + '" />').text(valText).appendTo($filter);
+  }
+}
+
 $(window).ready(function () {
   var shas = window.location.hash.substr(1).split('..');
   var $gets = [];
@@ -43,6 +86,9 @@ $(window).ready(function () {
             results: [],
           };
         }
+        _.each(_.pairs(test.params), function (kv) {
+          addFilter(kv[0], kv[1]);
+        });
         for (var j = 0; j < test.results.length ; j += 1) {
           var r = test.results[j];
           r.sha = d.sha;
@@ -65,15 +111,18 @@ $(window).ready(function () {
 
     var chartEnter = testsDiv.data(data).enter()
                              .append('div')
-                             .attr('class', 'chart');
+                             .attr('class', function (data) {
+                               var classes = 'chart ';
+                               _.each(_.pairs(data.params), function (kv) {
+                                 classes += ' ' +
+                                   cssSafe(kv[0]) + cssSafe(kv[1]);
+                               });
+                               return classes;
+                             });
 
     var legend = chartEnter.append('div').attr('class', 'legend')
                            .text(function (d) {
-                             return d.params.api_method + ', ' +
-                                 d.params.geom_complexity + ', ' +
-                                 d.params.geom + ', ' +
-                                 d.params.normalization + ', ' +
-                                 d.params.boundary;
+                             return JSON.stringify(_.values(d.params), null, 1);
                            });
     var svgEnter = chartEnter.append("svg")
                              .attr("width", svgWidth)
@@ -126,6 +175,9 @@ $(window).ready(function () {
       })
       .enter()
       .append("rect")
+      .on('click', function (d) {
+        $('#stmt').text(d.stmt + ';');
+      })
       .attr("class", function (d) {
         return 'bar color_' + d.color;
       })

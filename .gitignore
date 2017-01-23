@@ -29,3 +29,8 @@ observatory-extension
 *.key
 *.pdf
 perftest/*.json
+Windshaft-cartodb
+carto_conf
+cartodb-postgresql/
+data-services/
+dataservices-api/

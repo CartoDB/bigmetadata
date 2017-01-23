@@ -58,8 +58,10 @@
     }
 
     .legend {
-      height: 20px;
-      font: Helvetica, sans-serif;
+      width: 200px;
+      font-family: Helvetica, sans-serif;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart {
@@ -71,12 +73,23 @@
       display: inline-block;
     }
 
+    #stmt {
+      font-family: Courier, monospace;
+      background: black;
+      color: #6f6;
+      padding: 4px;
+    }
+
 
     </style>
   </head>
 
   <body>
     <div id="colors">
+    </div>
+    <div id="filters">
+    </div>
+    <div id="stmt">
     </div>
     <div id="tests">
     </div>

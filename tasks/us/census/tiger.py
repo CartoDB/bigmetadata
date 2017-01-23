@@ -620,7 +620,7 @@ class ShorelineClip(TableTask):
         session = current_session()
         stmt = ('INSERT INTO {output} '
                 'SELECT geoid, ST_Union(ST_MakePolygon(ST_ExteriorRing(the_geom))) AS the_geom, '
-                '       MAX(aland) aland, cdb_observatory.FIRST(name) name '
+                '       MAX(aland) AS aland, cdb_observatory.FIRST(name) AS name '
                 'FROM ( '
                 '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
                 '           aland, name '
@@ -653,6 +653,20 @@ class SumLevel(TableTask):
         return 'awater10' if self.has_10_suffix() else 'awater'
 
     @property
+    def name(self):
+        if self.geography in ('state', 'county', 'census_tract', 'place',
+                              'school_district_elementary', 'cbsa', 'metdiv',
+                              'school_district_secondary',
+                              'school_district_unified'):
+            return 'name'
+        elif self.geography in ('congressional_district', 'block_group'):
+            return 'namelsad'
+        elif self.geography in ('block'):
+            return 'name10'
+        elif self.geography in ('puma'):
+            return 'namelsad10'
+
+    @property
     def input_tablename(self):
         return SUMLEVELS_BY_SLUG[self.geography]['table']
 
@@ -669,13 +683,16 @@ class SumLevel(TableTask):
         }
 
     def columns(self):
-        return OrderedDict([
+        cols = OrderedDict([
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography]),
             ('aland', self.input()['attributes']['aland']),
             ('awater', self.input()['attributes']['awater']),
-            ('name', self.input()['attributes']['name']),
         ])
+        if self.name:
+            cols['name'] = self.input()['attributes']['name']
+
+        return cols
 
     def timespan(self):
         return self.year
@@ -686,13 +703,16 @@ class SumLevel(TableTask):
             inputschema='tiger' + str(self.year),
             input_tablename=self.input_tablename,
         )
-        session.execute('INSERT INTO {output} (geoid, the_geom, aland, awater, name) '
-                        'SELECT {geoid}, geom the_geom, {aland}, {awater}, name '
+        in_colnames = [self.geoid, 'geom', self.aland, self.awater]
+        if self.name:
+            in_colnames.append(self.name)
+        out_colnames = self.columns().keys()
+        session.execute('INSERT INTO {output} ({out_colnames}) '
+                        'SELECT {in_colnames} '
                         'FROM {from_clause} '.format(
-                            geoid=self.geoid,
                             output=self.output().table,
-                            aland=self.aland,
-                            awater=self.awater,
+                            in_colnames=', '.join(in_colnames),
+                            out_colnames=', '.join(out_colnames),
                             from_clause=from_clause
                         ))
 
