@@ -160,6 +160,8 @@ class Columns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'source': SourceTags(),
+            'license': LicenseTags()
         }
         return requirements
 
@@ -173,6 +175,8 @@ class Columns(ColumnsTask):
         subsectiontags = input_['subsections']
         unittags = input_['units']
         country = input_['sections']['au']
+        source = input_['source']['au-census']
+        license = input_['license']['au-datapacks-license']
 
         # column req's from other tables
         column_reqs = {}
@@ -225,7 +229,7 @@ class Columns(ColumnsTask):
                     aggregate= col_agg or 'sum',
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
-                    tags=[country, unittags[col_unit]],
+                    tags=[source, license, country, unittags[col_unit]],
                     targets= targets_dict
                 )
 
