@@ -205,6 +205,9 @@ class Columns(ColumnsTask):
         if self.tablename == 'B42A':
             requirements['B42B'] = Columns(tablename='B42B', year=self.year, profile=self.profile)
 
+        if self.tablename == 'B44A':
+            requirements['B44B'] = Columns(tablename='B44B', year=self.year, profile=self.profile)
+
 
         return requirements
 
