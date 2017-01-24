@@ -216,6 +216,17 @@ class Columns(ColumnsTask):
             requirements['B41C'] = Columns(tablename='B41C', year=self.year, profile=self.profile)
         if self.tablename == 'B41B':
             requirements['B41C'] = Columns(tablename='B41C', year=self.year, profile=self.profile)
+
+        if self.tablename == 'B43A':
+            requirements['B43B'] = Columns(tablename='B43B', year=self.year, profile=self.profile)
+            requirements['B43C'] = Columns(tablename='B43C', year=self.year, profile=self.profile)
+            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
+        if self.tablename == 'B43B':
+            requirements['B43C'] = Columns(tablename='B43C', year=self.year, profile=self.profile)
+            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
+        if self.tablename == 'B43C':
+            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
+
         return requirements
 
     def version(self):
@@ -251,6 +262,9 @@ class Columns(ColumnsTask):
         column_reqs.update(input_.get('B45B', {}))
         column_reqs.update(input_.get('B41B', {}))
         column_reqs.update(input_.get('B41C', {}))
+        column_reqs.update(input_.get('B43B', {}))
+        column_reqs.update(input_.get('B43C', {}))
+        column_reqs.update(input_.get('B43D', {}))
 
         filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile=self.profile)
 
