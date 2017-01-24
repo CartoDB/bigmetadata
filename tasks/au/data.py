@@ -154,6 +154,7 @@ class Columns(ColumnsTask):
 
     year = Parameter()
     profile = Parameter()
+    tablename = Parameter()
 
     def requires(self):
         requirements = {
@@ -188,20 +189,23 @@ class Columns(ColumnsTask):
             reader = csv.reader(csv_meta_file, delimiter=',', quotechar='"')
 
             for line in reader:
-                # skip header
-                next(reader, None)
                 if not line[0].startswith('B'):
                     continue
 
-                col_id = line[1]
-                col_name_en = line[2]
-                denominators = line[3]
-                col_unit = line[5]
-                col_subsections = line[6]
-                tablename = line[7]
+                # ignore tables we don't care about right now
+                if not line[4].startswith(self.tablename):
+                    continue
+
+                col_id = line[1]            #B: short
+                col_name_en = line[2]       #C: long
+                denominators = line[3]      #D: denominators
+                tablename = line[4]        #H: datapack file
+                col_unit = line[5]          #F: unit
+                col_subsections = line[6]   #G: subsection
+                tablename_old = line[7]         #H: profile table
                 desc = line[8]              #I: Column heading description in profile
                 if tablename == 'B02':
-                    col_agg = line[9]
+                    col_agg = line[9]       #J: (for B02 only)
                 else:
                     col_agg = None
 
@@ -284,36 +288,23 @@ class BCP(TableTask):
 
     def populate(self):
         session = current_session()
-        columns = self.columns()
-        out_colnames = columns.keys()
+        column_targets = self.columns()
+        out_colnames = column_targets.keys()
 
         for state, input_ in self.input()['data'].iteritems():
-            in_table = input_
-            in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
-            in_colnames[0] = 'region_id'
-            for i, in_c in enumerate(in_colnames):
-                cmd =   "SELECT 'exists' FROM information_schema.columns " \
-                        "WHERE table_schema = '{schema}' " \
-                        "  AND table_name = '{tablename}' " \
-                        "  AND column_name = '{colname}' " \
-                        "  LIMIT 1".format(
-                            schema=in_table.schema,
-                            tablename=in_table.tablename.lower(),
-                            colname=in_c.lower())
-                # remove columns that aren't in input table
-                if session.execute(cmd).fetchone() is None:
-                    in_colnames[i] = None
-                    out_colnames[i] = None
-            in_colnames = [
-                "CASE {ic}::TEXT WHEN '-6' THEN NULL ELSE {ic} END".format(ic=ic) for ic in in_colnames if ic is not None]
-            out_colnames = [oc for oc in out_colnames if oc is not None]
+            intable = input_.table
 
-            cmd =   'INSERT INTO {output} ({out_colnames}) ' \
-                    'SELECT {in_colnames} FROM {input} '.format(
-                        output=self.output().table,
-                        input=in_table.table,
-                        in_colnames=', '.join(in_colnames),
-                        out_colnames=', '.join(out_colnames))
+            in_colnames = ['"{}"::{}'.format(colname.replace(self.tablename+'_', ''), ct.get(session).type)
+                           for colname, ct in column_targets.iteritems()]
+
+            in_colnames[0] = '"region_id"'
+
+            cmd = 'INSERT INTO {output} ({out_colnames}) ' \
+                  'SELECT {in_colnames} FROM {input} '.format(
+                      output=self.output().table,
+                      input=intable,
+                      in_colnames=', '.join(in_colnames),
+                      out_colnames=', '.join(out_colnames))
             session.execute(cmd)
 
 
