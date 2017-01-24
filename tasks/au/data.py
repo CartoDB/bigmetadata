@@ -193,6 +193,19 @@ class Columns(ColumnsTask):
         if self.tablename == 'B20A':
             requirements['B20B'] = Columns(tablename='B20B', year=self.year, profile=self.profile)
 
+        if self.tablename == 'B22A':
+            requirements['B22B'] = Columns(tablename='B22B', year=self.year, profile=self.profile)
+
+        if self.tablename == 'B23A':
+            requirements['B23B'] = Columns(tablename='B23B', year=self.year, profile=self.profile)
+
+        if self.tablename == 'B40A':
+            requirements['B40B'] = Columns(tablename='B40B', year=self.year, profile=self.profile)
+
+        if self.tablename == 'B42A':
+            requirements['B42B'] = Columns(tablename='B42B', year=self.year, profile=self.profile)
+
+
         return requirements
 
     def version(self):
