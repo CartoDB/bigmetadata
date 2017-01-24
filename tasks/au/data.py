@@ -164,6 +164,12 @@ class Columns(ColumnsTask):
             'source': SourceTags(),
             'license': LicenseTags()
         }
+        # all tables except B01/B02 require B01
+        if self.tablename != 'B01' and self.tablename != 'B02':
+            requirements['B01'] = Columns(tablename='B01', year=self.year, profile=self.profile)
+        if self.tablename == 'B04A':
+            requirements['B04B'] = Columns(tablename='B04B', year=self.year, profile=self.profile)
+
         return requirements
 
     def version(self):
@@ -181,6 +187,8 @@ class Columns(ColumnsTask):
 
         # column req's from other tables
         column_reqs = {}
+        column_reqs.update(input_.get('B01', {}))
+        column_reqs.update(input_.get('B04B', {}))
 
         filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile=self.profile)
 
