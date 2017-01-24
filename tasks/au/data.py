@@ -199,6 +199,7 @@ class Columns(ColumnsTask):
                 col_unit = line[5]
                 col_subsections = line[6]
                 tablename = line[7]
+                desc = line[8]              #I: Column heading description in profile
                 if tablename == 'B02':
                     col_agg = line[9]
                 else:
@@ -222,7 +223,7 @@ class Columns(ColumnsTask):
                     id=col_id,
                     type='Numeric',
                     name=col_name_en.replace('_', ' '),
-                    description ='',
+                    description =desc,
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
