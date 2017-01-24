@@ -233,6 +233,17 @@ class Columns(ColumnsTask):
         column_reqs.update(input_.get('B08B', {}))
         column_reqs.update(input_.get('B10B', {}))
         column_reqs.update(input_.get('B10C', {}))
+        column_reqs.update(input_.get('B11B', {}))
+        column_reqs.update(input_.get('B12B', {}))
+        column_reqs.update(input_.get('B16B', {}))
+        column_reqs.update(input_.get('B17B', {}))
+        column_reqs.update(input_.get('B20B', {}))
+        column_reqs.update(input_.get('B22B', {}))
+        column_reqs.update(input_.get('B23B', {}))
+        column_reqs.update(input_.get('B40B', {}))
+        column_reqs.update(input_.get('B42B', {}))
+        column_reqs.update(input_.get('B44B', {}))
+        column_reqs.update(input_.get('B45B', {}))
 
         filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile=self.profile)
 
