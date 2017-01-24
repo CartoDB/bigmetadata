@@ -190,6 +190,9 @@ class Columns(ColumnsTask):
         if self.tablename == 'B17A':
             requirements['B17B'] = Columns(tablename='B17B', year=self.year, profile=self.profile)
 
+        if self.tablename == 'B20A':
+            requirements['B20B'] = Columns(tablename='B20B', year=self.year, profile=self.profile)
+
         return requirements
 
     def version(self):
