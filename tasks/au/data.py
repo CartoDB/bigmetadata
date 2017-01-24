@@ -172,6 +172,12 @@ class Columns(ColumnsTask):
         if self.tablename == 'B08A':
             requirements['B08B'] = Columns(tablename='B08B', year=self.year, profile=self.profile)
 
+        if self.tablename == 'B10A':
+            requirements['B10B'] = Columns(tablename='B10B', year=self.year, profile=self.profile)
+            requirements['B10C'] = Columns(tablename='B10C', year=self.year, profile=self.profile)
+        if self.tablename == 'B10B':
+            requirements['B10C'] = Columns(tablename='B10C', year=self.year, profile=self.profile)
+
         return requirements
 
     def version(self):
@@ -192,6 +198,8 @@ class Columns(ColumnsTask):
         column_reqs.update(input_.get('B01', {}))
         column_reqs.update(input_.get('B04B', {}))
         column_reqs.update(input_.get('B08B', {}))
+        column_reqs.update(input_.get('B10B', {}))
+        column_reqs.update(input_.get('B10C', {}))
 
         filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile=self.profile)
 
