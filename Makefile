@@ -29,6 +29,16 @@ tiger:
 	  --module tasks.us.census.tiger AllSumLevels --year 2014
 #	  --parallel-scheduling --workers=8
 
+au-data:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.au.data BCPAllGeographiesAllTables --year 2011 \
+	  --parallel-scheduling --workers=8
+
+au-geo:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.au.geo AllGeographies --year 2011 \
+	  --parallel-scheduling --workers=8
+
 catalog-noimage:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Catalog --force \
