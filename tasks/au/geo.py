@@ -104,7 +104,7 @@ class GeographyColumns(ColumnsTask):
     resolution = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
@@ -141,7 +141,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
