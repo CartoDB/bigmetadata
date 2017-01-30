@@ -230,7 +230,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 1
+        return 2
 
     def columns(self):
         cols = OrderedDict()
@@ -342,7 +342,7 @@ class BCP(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         import_data = {}
