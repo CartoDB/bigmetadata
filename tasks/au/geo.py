@@ -168,6 +168,8 @@ class Geography(TableTask):
 
 class AllGeographies(WrapperTask):
 
+    year = Parameter()
+
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield Geography(resolution=resolution)
+            yield Geography(resolution=resolution, year=self.year)
