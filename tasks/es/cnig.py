@@ -5,7 +5,7 @@ from luigi import Task, Parameter, LocalTarget, WrapperTask
 from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 from tasks.meta import OBSColumn, GEOM_REF, OBSTag
 
 from collections import OrderedDict
@@ -76,7 +76,7 @@ class SourceTags(TagsTask):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return {
@@ -84,6 +84,7 @@ class GeometryColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'source': SourceTags(),
             'license': LicenseTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
@@ -92,6 +93,8 @@ class GeometryColumns(ColumnsTask):
         subsections = input_['subsections']
         source = input_['source']['cnig-source']
         license = input_['license']['cnig-license']
+        boundary_type = input_['boundary']
+
         ccaa = OBSColumn(
             type='Geometry',
             name='Autonomous Community',
@@ -107,7 +110,7 @@ class GeometryColumns(ColumnsTask):
                         'used primarily as electoral districts and geographic '
                         'references.  Provinces do not cross between autonomous '
                         'communities.',
-            tags=[sections['spain'], subsections['boundary']],
+            tags=[sections['spain'], subsections['boundary'], boundary_type['cartographic_boundary'], boundary_type['interpolation_boundary']],
         )
         muni = OBSColumn(
             type='Geometry',
@@ -115,7 +118,7 @@ class GeometryColumns(ColumnsTask):
             weight=8,
             description='The lowest level of territorial organization in Spain. '
                         'Municipal boundaries do not cross between provinces. ',
-            tags=[sections['spain'], subsections['boundary']],
+            tags=[sections['spain'], subsections['boundary'], boundary_type['cartographic_boundary'], boundary_type['interpolation_boundary']],
         )
         columns = OrderedDict([
             ('ccaa', ccaa),

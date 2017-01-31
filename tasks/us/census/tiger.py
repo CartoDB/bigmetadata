@@ -15,7 +15,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                        )
 from tasks.meta import (OBSColumnTable, OBSColumn, current_session, GEOM_REF,
                         OBSColumnTag, OBSTag, OBSColumnToColumn, current_session)
-from tasks.tags import SectionTags, SubsectionTags, LicenseTags
+from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
                    IntParameter)
@@ -39,7 +39,7 @@ class SourceTags(TagsTask):
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 11
+        return 12
 
     def requires(self):
         return {
@@ -48,6 +48,7 @@ class ClippedGeomColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'source': SourceTags(),
             'license': LicenseTags(),
+            'boundary':BoundaryTags(),
         }
 
     def columns(self):
@@ -58,6 +59,7 @@ class ClippedGeomColumns(ColumnsTask):
         subsections = input_['subsections']
         source = input_['source']['tiger-source']
         license = input_['license']['no-restrictions']
+        boundary_type = input_['boundary']
 
         for colname, coltarget in self.input()['geom_columns'].iteritems():
             col = coltarget.get(session)
@@ -68,10 +70,16 @@ class ClippedGeomColumns(ColumnsTask):
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
                 targets={col: 'cartography'},
-                tags=[sections['united_states'], subsections['boundary'],
+                tags=[boundary_type['cartographic_boundary'],sections['united_states'],
+                      subsections['boundary'],
                       source, license]
             )
 
+        interpolated_boundaries = ['block_clipped', 'block_group_clipped', 'puma_clipped','census_tract_clipped','county_clipped','state_clipped']
+
+        for clipped_colname, col in cols.iteritems():
+            if clipped_colname in interpolated_boundaries:
+                col.tags.extend(boundary_type['interpolation_boundary'])
         return cols
 
 
@@ -86,6 +94,7 @@ class GeomColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'source': SourceTags(),
             'license': LicenseTags(),
+            'boundary': BoundaryTags(),
         }
 
     def _generate_desc(self, sumlevel):
