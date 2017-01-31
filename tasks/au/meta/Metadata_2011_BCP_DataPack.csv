@@ -1,7 +1,7 @@
 Sequential,Short,Long,DENOMINATORS,DataPack file,unit,subsection,Profile table,Column heading description in profile,
+B3,Tot_P_P,Total_Persons_Persons,,B01,people,age_gender,B01a,Persons,
 B1,Tot_P_M,Total_Persons_Males,B01_Tot_P_P,B01,people,age_gender,B01a,Males,
 B2,Tot_P_F,Total_Persons_Females,B01_Tot_P_P,B01,people,age_gender,B01a,Females,
-B3,Tot_P_P,Total_Persons_Persons,,B01,people,age_gender,B01a,Persons,
 B4,Age_0_4_yr_M,Age_groups_0_4_years_Males,B01_Tot_P_M,B01,people,age_gender,B01a,Males,
 B5,Age_0_4_yr_F,Age_groups_0_4_years_Females,B01_Tot_P_F,B01,people,age_gender,B01a,Females,
 B6,Age_0_4_yr_P,Age_groups_0_4_years_Persons,B01_Tot_P_P,B01,people,age_gender,B01a,Persons,

@@ -230,7 +230,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         cols = OrderedDict()
@@ -297,9 +297,14 @@ class Columns(ColumnsTask):
                 # universes = universes.split('|')
 
                 targets_dict = {}
-                for x in denominators:
-                    x = x.strip()
-                    targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'denominator'
+                for denom_id in denominators:
+                    denom_id = denom_id.strip()
+                    if not denom_id:
+                        continue
+                    if denom_id in column_reqs:
+                        targets_dict[column_reqs[denom_id].get(session)] = 'denominator'
+                    else:
+                        targets_dict[cols[denom_id]] = 'denominator'
                 # for x in universes:
                 #     x = x.strip()
                 #     targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'universe'
@@ -409,3 +414,12 @@ class BCPAllGeographiesAllTables(WrapperTask):
     def requires(self):
         for resolution in GEOGRAPHIES:
             yield BCPAllTables(resolution=resolution, year=self.year)
+
+
+class BCPAllColumns(WrapperTask):
+
+    year = Parameter()
+
+    def requires(self):
+        for table in TABLES:
+            yield Columns(profile='BCP', tablename=table, year=self.year)
