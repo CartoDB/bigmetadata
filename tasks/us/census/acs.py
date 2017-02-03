@@ -34,7 +34,7 @@ LOGGER = get_logger(__name__)
 class ACSTags(TagsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def tags(self):
         return [
@@ -46,6 +46,10 @@ class ACSTags(TagsTask):
                    name='US Population Segments',
                    type='subsection',
                    description='Segmentation of the United States population'),
+            OBSTag(id='margin_of_error',
+                   name='Margin of Error',
+                   type='margin_of_error',
+                   description='Margin of Error')
         ]
 
 
@@ -3021,6 +3025,38 @@ class DownloadACS(LoadPostgresFromURL):
         cursor.execute('DROP SCHEMA IF EXISTS {schema} CASCADE'.format(schema=self.schema))
         self.load_from_url(self.url_template.format(year=self.year, sample=self.sample))
 
+class MOEColumns(ColumnsTask):
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'censustags': ACSTags(),
+            'segmenttags': SegmentTags(),
+            'unittags': UnitTags(),
+            'license': LicenseTags(),
+            'columns': Columns(),
+        }
+
+    def version(self):
+        return 1
+
+    def columns(self):
+        moe_columns = OrderedDict()
+        input_ = self.input()
+        for colname, coltarget in input_['columns'].iteritems():
+            col = coltarget.get(current_session())
+            moe_columns[colname+'_moe'] = OBSColumn(
+                id=col.id.split('.')[-1]+'_moe',
+                type='Numeric',
+                name='Margin of Error for '+col.name,
+                description=col.description,
+                aggregate=None,
+                targets={col: 'margin_of_error'},
+                tags=[input_['license']['no-restrictions'], input_['censustags']['acs'],
+                      input_['sections']['united_states'], input_['ACSTags']['margin_of_error']],
+                weight=1
+            )
+        return moe_columns
 
 class QuantileColumns(ColumnsTask):
 
