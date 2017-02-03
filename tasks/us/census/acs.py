@@ -3053,7 +3053,7 @@ class MOEColumns(ColumnsTask):
                 aggregate=None,
                 targets={col: 'margin_of_error'},
                 tags=[input_['license']['no-restrictions'], input_['censustags']['acs'],
-                      input_['sections']['united_states'], input_['ACSTags']['margin_of_error']],
+                      input_['sections']['united_states'], input_['censustags']['margin_of_error']],
                 weight=1
             )
         return moe_columns
