@@ -76,7 +76,7 @@ class GeometryColumns(ColumnsTask):
             type="Geometry",
             weight=10,
             description='The smallest division of the Spanish Census.',
-            tags=[sections['spain'], subsections['boundary'], boundary_type['interpolation'],
+            tags=[sections['spain'], subsections['boundary'], boundary_type['interpolation_boundary'],
                   boundary_type['cartographic_boundary']],
         )
         cusec_id = OBSColumn(

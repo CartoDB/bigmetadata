@@ -1118,7 +1118,7 @@ class OBSMetaToLocal(OBSMeta):
 
         try:
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
-            session.execute('ALTER TABLE observatory.obs_meta_next RENAME TO obs_meta'.format(
+            session.execute('ALTER TABLE IF EXISTS observatory.obs_meta_next RENAME TO obs_meta'.format(
                 select=self.QUERY
             ))
             for dimension, query in self.DIMENSIONS.iteritems():
@@ -1126,7 +1126,7 @@ class OBSMetaToLocal(OBSMeta):
                     dimension=dimension
                 ))
                 session.execute('''
-                    ALTER TABLE observatory.obs_meta_next_{dimension}
+                    ALTER TABLE IF EXISTS observatory.obs_meta_next_{dimension}
                     RENAME TO obs_meta_{dimension}'''.format(
                         dimension=dimension
                     ))
