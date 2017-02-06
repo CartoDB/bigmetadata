@@ -158,7 +158,7 @@ class Geometry(TableTask):
     id_aux = Parameter()
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
