@@ -34,14 +34,15 @@ class ImportGeometry(Shp2TempTableTask):
 
     resolution = Parameter()
     timestamp = Parameter()
+    id_aux = Parameter() #X for Peninsula and Balearic Islands, Y for Canary Islands
 
     def requires(self):
         return DownloadGeometry(seq='114023')
 
     def input_shp(self):
         path = os.path.join('SIANE_CARTO_BASE_S_3M', 'anual', self.timestamp,
-                            'SE89_3_ADMIN_{resolution}_A_X.shp'.format(
-                                resolution=self.resolution.upper()))
+                            'SE89_3_ADMIN_{resolution}_A_{aux}.shp'.format(
+                                resolution=self.resolution.upper(),aux=self.id_aux))
         return os.path.join(self.input().path, path)
 
 
@@ -154,6 +155,7 @@ class Geometry(TableTask):
 
     resolution = Parameter()
     timestamp = Parameter(default='20150101')
+    id_aux = Parameter()
 
     def version(self):
         return 9
@@ -163,7 +165,8 @@ class Geometry(TableTask):
             'geom_columns': GeometryColumns(),
             'geomref_columns': GeomRefColumns(),
             'data': ImportGeometry(resolution=self.resolution,
-                                   timestamp=self.timestamp)
+                                   timestamp=self.timestamp,
+                                   id_aux=self.id_aux)
         }
 
     def timespan(self):
@@ -200,4 +203,5 @@ class AllGeometries(WrapperTask):
 
     def requires(self):
         for resolution in ('ccaa', 'muni', 'prov', ):
-            yield Geometry(resolution=resolution)
+            for id_aux in ['x','y']:
+                yield Geometry(resolution=resolution, id_aux=id_aux)
