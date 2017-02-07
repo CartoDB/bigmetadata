@@ -305,7 +305,6 @@ class Columns(ColumnsTask):
                     col_agg = None
 
                 denominators = denominators.split('|')
-                # universes = universes.split('|')
 
                 targets_dict = {}
                 for denom_id in denominators:
@@ -316,9 +315,6 @@ class Columns(ColumnsTask):
                         targets_dict[column_reqs[denom_id].get(session)] = 'denominator'
                     else:
                         targets_dict[cols[denom_id]] = 'denominator'
-                # for x in universes:
-                #     x = x.strip()
-                #     targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'universe'
                 targets_dict.pop(None, None)
 
                 col_id = tablename+'_'+col_id
