@@ -291,7 +291,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     # Travis doesn't support ST_ClipByBox2D because of old GEOS version, but
     # our Docker container supports this optimization
     if os.environ.get('TRAVIS'):
-        st_clip = 'ST_Clip'
+        st_clip = 'ST_Intersection'
     else:
         st_clip = 'ST_ClipByBox2D'
 
