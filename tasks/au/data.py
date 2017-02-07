@@ -1,6 +1,7 @@
 import os
 import urllib
 import csv
+import re
 
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
@@ -199,6 +200,14 @@ class Columns(ColumnsTask):
         if self.tablename == 'B23A':
             requirements['B23B'] = Columns(tablename='B23B', year=self.year, profile=self.profile)
 
+        pattern = re.compile('B2[6-8]')
+        if pattern.match(self.tablename):
+            requirements['B25'] = Columns(tablename='B25', year=self.year, profile=self.profile)
+
+        pattern = re.compile('B3[1-6]')
+        if pattern.match(self.tablename):
+            requirements['B29'] = Columns(tablename='B29', year=self.year, profile=self.profile)
+
         if self.tablename == 'B40A':
             requirements['B40B'] = Columns(tablename='B40B', year=self.year, profile=self.profile)
 
@@ -256,6 +265,8 @@ class Columns(ColumnsTask):
         column_reqs.update(input_.get('B20B', {}))
         column_reqs.update(input_.get('B22B', {}))
         column_reqs.update(input_.get('B23B', {}))
+        column_reqs.update(input_.get('B25', {}))
+        column_reqs.update(input_.get('B29', {}))
         column_reqs.update(input_.get('B40B', {}))
         column_reqs.update(input_.get('B42B', {}))
         column_reqs.update(input_.get('B44B', {}))
