@@ -294,13 +294,12 @@ class Columns(ColumnsTask):
                 col_id = line[1]            #B: short
                 col_name_en = line[2]       #C: long
                 denominators = line[3]      #D: denominators
-                tablename = line[4]        #H: datapack file
+                tablename = line[4]         #H: Tablename
                 col_unit = line[5]          #F: unit
                 col_subsections = line[6]   #G: subsection
-                tablename_old = line[7]         #H: profile table
-                desc = line[8]              #I: Column heading description in profile
+                desc = line[7]              #H: Column heading description in profile
                 if tablename == 'B02':
-                    col_agg = line[9]       #J: (for B02 only)
+                    col_agg = line[8]       #I: AGG (for B02 only)
                 else:
                     col_agg = None
 
@@ -317,7 +316,6 @@ class Columns(ColumnsTask):
                         targets_dict[cols[denom_id]] = 'denominator'
                 targets_dict.pop(None, None)
 
-                col_id = tablename+'_'+col_id
 
                 cols[col_id] = OBSColumn(
                     id=col_id,
