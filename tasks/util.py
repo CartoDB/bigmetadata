@@ -288,6 +288,13 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     '''.format(tablename_ns=tablename_ns, colname=colname)
     resp = session.execute(query)
 
+    # Travis doesn't support ST_ClipByBox2D because of old GEOS version, but
+    # our Docker container supports this optimization
+    if os.environ.get('TRAVIS'):
+        st_clip = 'ST_Clip'
+    else:
+        st_clip = 'ST_ClipByBox2D'
+
     query = '''
       DROP TABLE IF EXISTS raster_vals_{tablename_ns};
       CREATE TEMPORARY TABLE raster_vals_{tablename_ns} AS
@@ -300,13 +307,13 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                Nullif(SUM(CASE ST_GeometryType(vector.the_geom)
                  WHEN 'ST_Point' THEN 1
                  WHEN 'ST_LineString' THEN
-                   ST_Length(ST_ClipByBox2D(vector.the_geom, ST_Envelope(geom))) /
+                   ST_Length({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                        ST_Length(vector.the_geom)
                  ELSE
                    CASE WHEN geom @ vector.the_geom THEN
                              ST_Area(geom) / ST_Area(vector.the_geom)
                         WHEN vector.the_geom @ geom THEN 1
-                        ELSE ST_Area(ST_ClipByBox2D(vector.the_geom, ST_Envelope(geom))) /
+                        ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                              ST_Area(vector.the_geom)
                    END
                 END), 0)
@@ -316,14 +323,15 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                SUM(CASE WHEN geom @ vector.the_geom THEN 1
                         WHEN vector.the_geom @ geom THEN
                              ST_Area(vector.the_geom) / ST_Area(geom)
-                        ELSE ST_Area(ST_ClipByBox2D(vector.the_geom, ST_Envelope(geom))) /
+                        ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                              ST_Area(geom)
                END)
               )::geomval percent_fill
          FROM raster_pap_{tablename_ns}, {tablename} vector
          WHERE geom && vector.the_geom
          GROUP BY id, x, y;
-    '''.format(tablename_ns=tablename_ns, tablename=tablename, colname=colname)
+    '''.format(tablename_ns=tablename_ns, tablename=tablename, colname=colname,
+               st_clip=st_clip)
     resp = session.execute(query)
     assert resp.rowcount > 0
 
