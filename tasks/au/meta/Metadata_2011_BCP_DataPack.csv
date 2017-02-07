@@ -1360,7 +1360,7 @@ B1249,B09_Australia_P,Australia_Persons,B09_Tot_P,B09,people,nationality|age_gen
 B1248,B09_Australia_F,Australia_Females,B09_Australia_P,B09,people,nationality|age_gender,Females,,1248
 B1247,B09_Australia_M,Australia_Males,B09_Australia_P,B09,people,nationality|age_gender,Males,,1247
 B1936,B10C_Tot_Tot,Total_Total,B01_Tot_P_P,B10C,people,migration|nationality,Total,,1936
-B1935,B10C_Tot_Yr_arrival_NS,Total_Year_of_arrival_not_stated,B10C_Tot_Yr_arrival_NS,B10C,people,migration|nationality,Year of arrival not stated,,1935
+B1935,B10C_Tot_Yr_arrival_NS,Total_Year_of_arrival_not_stated,,B10C,people,migration|nationality,Year of arrival not stated,,1935
 B1934,B10C_Tot_2011,Total_Year_of_arrival_2011,B10C_Tot_Yr_arrival_NS,B10C,people,migration|nationality,2011,,1934
 B1933,B10C_Tot_2010,Total_Year_of_arrival_2010,B10C_Tot_Yr_arrival_NS,B10C,people,migration|nationality,2010,,1933
 B1932,B10C_Tot_2009,Total_Year_of_arrival_2009,B10C_Tot_Yr_arrival_NS,B10C,people,migration|nationality,2009,,1932
