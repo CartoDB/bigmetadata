@@ -239,7 +239,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 4
+        return 5
 
     def columns(self):
         cols = OrderedDict()
