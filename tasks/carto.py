@@ -995,7 +995,7 @@ SELECT numer_id::TEXT,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
        ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
-FROM observatory.obs_meta
+FROM observatory.obs_meta_next
 GROUP BY numer_id
         ''',
         'denom': '''
@@ -1012,7 +1012,7 @@ SELECT denom_id::TEXT,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
        ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
-FROM observatory.obs_meta
+FROM observatory.obs_meta_next
 GROUP BY denom_id
         ''',
         'geom': '''
@@ -1028,7 +1028,7 @@ SELECT geom_id::TEXT,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
-FROM observatory.obs_meta
+FROM observatory.obs_meta_next
 GROUP BY geom_id
         ''',
         'timespan': '''
@@ -1044,7 +1044,7 @@ SELECT numer_timespan::TEXT timespan_id,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
        ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
-FROM observatory.obs_meta
+FROM observatory.obs_meta_next
 GROUP BY numer_timespan
         '''
     }
