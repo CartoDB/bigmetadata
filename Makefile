@@ -186,7 +186,7 @@ etl-unittest:
 	docker-compose run --rm bigmetadata /bin/bash -c \
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  PGDATABASE=test nosetests -v \
-	    tests/test_meta.py tests/test_util.py \
+	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
 travis-etl-unittest:
@@ -200,7 +200,7 @@ travis-etl-unittest:
 	             -e TRAVIS=$$TRAVIS \
 	   recessionporn/bigmetadata /bin/bash -c \
 	   'nosetests -v \
-	    tests/test_meta.py tests/test_util.py \
+	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
 restore:
