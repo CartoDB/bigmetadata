@@ -205,7 +205,7 @@ class NUTSColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'source_license': SourceLicenseTags()
+            'source_license': SourceLicenseTags(),
             'boundary': BoundaryTags()
         }
 
