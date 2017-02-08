@@ -3312,7 +3312,7 @@ B3327,B17B_F_1000_1249_35_44_yrs,Females 1000-1249 Age 35-44 years,B17B_F_1000_1
 B3326,B17B_F_1000_1249_25_34_yrs,Females 1000-1249 Age 25-34 years,B17B_F_1000_1249_Tot,B17B,people,age_gender|income,25-34 years|FEMALES,,3326,Total Personal Income (Weekly)
 B3325,B17B_F_1000_1249_20_24_yrs,Females 1000-1249 Age 20-24 years,B17B_F_1000_1249_Tot,B17B,people,age_gender|income,20-24 years|FEMALES,,3325,Total Personal Income (Weekly)
 B3324,B17B_F_1000_1249_15_19_yrs,Females 1000-1249 Age 15-19 years,B17B_F_1000_1249_Tot,B17B,people,age_gender|income,15-19 years|FEMALES,,3324,Total Personal Income (Weekly)
-B3323,B17A_F_800_999_Tot,Females 800-999 Total,B17A_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3323,Total Personal Income (Weekly)
+B3323,B17A_F_800_999_Tot,Females 800-999 Total,B17B_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3323,Total Personal Income (Weekly)
 B3322,B17A_F_800_999_85ov,Females 800-999 Age 85 years and over,B17A_F_800_999_Tot,B17A,people,age_gender|income,85 years and over|FEMALES,,3322,Total Personal Income (Weekly)
 B3321,B17A_F_800_999_75_84_yrs,Females 800-999 Age 75-84 years,B17A_F_800_999_Tot,B17A,people,age_gender|income,75-84 years|FEMALES,,3321,Total Personal Income (Weekly)
 B3320,B17A_F_800_999_65_74_yrs,Females 800-999 Age 65-74 years,B17A_F_800_999_Tot,B17A,people,age_gender|income,65-74 years|FEMALES,,3320,Total Personal Income (Weekly)
@@ -3322,7 +3322,7 @@ B3317,B17A_F_800_999_35_44_yrs,Females 800-999 Age 35-44 years,B17A_F_800_999_To
 B3316,B17A_F_800_999_25_34_yrs,Females 800-999 Age 25-34 years,B17A_F_800_999_Tot,B17A,people,age_gender|income,25-34 years|FEMALES,,3316,Total Personal Income (Weekly)
 B3315,B17A_F_800_999_20_24_yrs,Females 800-999 Age 20-24 years,B17A_F_800_999_Tot,B17A,people,age_gender|income,20-24 years|FEMALES,,3315,Total Personal Income (Weekly)
 B3314,B17A_F_800_999_15_19_yrs,Females 800-999 Age 15-19 years,B17A_F_800_999_Tot,B17A,people,age_gender|income,15-19 years|FEMALES,,3314,Total Personal Income (Weekly)
-B3313,B17A_F_600_799_Tot,Females 600-799 Total,B17A_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3313,Total Personal Income (Weekly)
+B3313,B17A_F_600_799_Tot,Females 600-799 Total,B17B_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3313,Total Personal Income (Weekly)
 B3312,B17A_F_600_799_85ov,Females 600-799 Age 85 years and over,B17A_F_600_799_Tot,B17A,people,age_gender|income,85 years and over|FEMALES,,3312,Total Personal Income (Weekly)
 B3311,B17A_F_600_799_75_84_yrs,Females 600-799 Age 75-84 years,B17A_F_600_799_Tot,B17A,people,age_gender|income,75-84 years|FEMALES,,3311,Total Personal Income (Weekly)
 B3310,B17A_F_600_799_65_74_yrs,Females 600-799 Age 65-74 years,B17A_F_600_799_Tot,B17A,people,age_gender|income,65-74 years|FEMALES,,3310,Total Personal Income (Weekly)
@@ -3332,7 +3332,7 @@ B3307,B17A_F_600_799_35_44_yrs,Females 600-799 Age 35-44 years,B17A_F_600_799_To
 B3306,B17A_F_600_799_25_34_yrs,Females 600-799 Age 25-34 years,B17A_F_600_799_Tot,B17A,people,age_gender|income,25-34 years|FEMALES,,3306,Total Personal Income (Weekly)
 B3305,B17A_F_600_799_20_24_yrs,Females 600-799 Age 20-24 years,B17A_F_600_799_Tot,B17A,people,age_gender|income,20-24 years|FEMALES,,3305,Total Personal Income (Weekly)
 B3304,B17A_F_600_799_15_19_yrs,Females 600-799 Age 15-19 years,B17A_F_600_799_Tot,B17A,people,age_gender|income,15-19 years|FEMALES,,3304,Total Personal Income (Weekly)
-B3303,B17A_F_400_599_Tot,Females 400-599 Total,B17A_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3303,Total Personal Income (Weekly)
+B3303,B17A_F_400_599_Tot,Females 400-599 Total,B17B_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3303,Total Personal Income (Weekly)
 B3302,B17A_F_400_599_85ov,Females 400-599 Age 85 years and over,B17A_F_400_599_Tot,B17A,people,age_gender|income,85 years and over|FEMALES,,3302,Total Personal Income (Weekly)
 B3301,B17A_F_400_599_75_84_yrs,Females 400-599 Age 75-84 years,B17A_F_400_599_Tot,B17A,people,age_gender|income,75-84 years|FEMALES,,3301,Total Personal Income (Weekly)
 B3300,B17A_F_400_599_65_74_yrs,Females 400-599 Age 65-74 years,B17A_F_400_599_Tot,B17A,people,age_gender|income,65-74 years|FEMALES,,3300,Total Personal Income (Weekly)
@@ -3342,7 +3342,7 @@ B3297,B17A_F_400_599_35_44_yrs,Females 400-599 Age 35-44 years,B17A_F_400_599_To
 B3296,B17A_F_400_599_25_34_yrs,Females 400-599 Age 25-34 years,B17A_F_400_599_Tot,B17A,people,age_gender|income,25-34 years|FEMALES,,3296,Total Personal Income (Weekly)
 B3295,B17A_F_400_599_20_24_yrs,Females 400-599 Age 20-24 years,B17A_F_400_599_Tot,B17A,people,age_gender|income,20-24 years|FEMALES,,3295,Total Personal Income (Weekly)
 B3294,B17A_F_400_599_15_19_yrs,Females 400-599 Age 15-19 years,B17A_F_400_599_Tot,B17A,people,age_gender|income,15-19 years|FEMALES,,3294,Total Personal Income (Weekly)
-B3293,B17A_F_300_399_Tot,Females 300-399 Total,B17A_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3293,Total Personal Income (Weekly)
+B3293,B17A_F_300_399_Tot,Females 300-399 Total,B17B_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3293,Total Personal Income (Weekly)
 B3292,B17A_F_300_399_85ov,Females 300-399 Age 85 years and over,B17A_F_300_399_Tot,B17A,people,age_gender|income,85 years and over|FEMALES,,3292,Total Personal Income (Weekly)
 B3291,B17A_F_300_399_75_84_yrs,Females 300-399 Age 75-84 years,B17A_F_300_399_Tot,B17A,people,age_gender|income,75-84 years|FEMALES,,3291,Total Personal Income (Weekly)
 B3290,B17A_F_300_399_65_74_yrs,Females 300-399 Age 65-74 years,B17A_F_300_399_Tot,B17A,people,age_gender|income,65-74 years|FEMALES,,3290,Total Personal Income (Weekly)
@@ -3352,7 +3352,7 @@ B3287,B17A_F_300_399_35_44_yrs,Females 300-399 Age 35-44 years,B17A_F_300_399_To
 B3286,B17A_F_300_399_25_34_yrs,Females 300-399 Age 25-34 years,B17A_F_300_399_Tot,B17A,people,age_gender|income,25-34 years|FEMALES,,3286,Total Personal Income (Weekly)
 B3285,B17A_F_300_399_20_24_yrs,Females 300-399 Age 20-24 years,B17A_F_300_399_Tot,B17A,people,age_gender|income,20-24 years|FEMALES,,3285,Total Personal Income (Weekly)
 B3284,B17A_F_300_399_15_19_yrs,Females 300-399 Age 15-19 years,B17A_F_300_399_Tot,B17A,people,age_gender|income,15-19 years|FEMALES,,3284,Total Personal Income (Weekly)
-B3283,B17A_F_200_299_Tot,Females 200-299 Total,B17A_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3283,Total Personal Income (Weekly)
+B3283,B17A_F_200_299_Tot,Females 200-299 Total,B17B_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3283,Total Personal Income (Weekly)
 B3282,B17A_F_200_299_85ov,Females 200-299 Age 85 years and over,B17A_F_200_299_Tot,B17A,people,age_gender|income,85 years and over|FEMALES,,3282,Total Personal Income (Weekly)
 B3281,B17A_F_200_299_75_84_yrs,Females 200-299 Age 75-84 years,B17A_F_200_299_Tot,B17A,people,age_gender|income,75-84 years|FEMALES,,3281,Total Personal Income (Weekly)
 B3280,B17A_F_200_299_65_74_yrs,Females 200-299 Age 65-74 years,B17A_F_200_299_Tot,B17A,people,age_gender|income,65-74 years|FEMALES,,3280,Total Personal Income (Weekly)
@@ -3362,7 +3362,7 @@ B3277,B17A_F_200_299_35_44_yrs,Females 200-299 Age 35-44 years,B17A_F_200_299_To
 B3276,B17A_F_200_299_25_34_yrs,Females 200-299 Age 25-34 years,B17A_F_200_299_Tot,B17A,people,age_gender|income,25-34 years|FEMALES,,3276,Total Personal Income (Weekly)
 B3275,B17A_F_200_299_20_24_yrs,Females 200-299 Age 20-24 years,B17A_F_200_299_Tot,B17A,people,age_gender|income,20-24 years|FEMALES,,3275,Total Personal Income (Weekly)
 B3274,B17A_F_200_299_15_19_yrs,Females 200-299 Age 15-19 years,B17A_F_200_299_Tot,B17A,people,age_gender|income,15-19 years|FEMALES,,3274,Total Personal Income (Weekly)
-B3273,B17A_F_1_199_Tot,Females 1-199 Total,B17A_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3273,Total Personal Income (Weekly)
+B3273,B17A_F_1_199_Tot,Females 1-199 Total,B17B_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3273,Total Personal Income (Weekly)
 B3272,B17A_F_1_199_85ov,Females 1-199 Age 85 years and over,B17A_F_1_199_Tot,B17A,people,age_gender|income,85 years and over|FEMALES,,3272,Total Personal Income (Weekly)
 B3271,B17A_F_1_199_75_84_yrs,Females 1-199 Age 75-84 years,B17A_F_1_199_Tot,B17A,people,age_gender|income,75-84 years|FEMALES,,3271,Total Personal Income (Weekly)
 B3270,B17A_F_1_199_65_74_yrs,Females 1-199 Age 65-74 years,B17A_F_1_199_Tot,B17A,people,age_gender|income,65-74 years|FEMALES,,3270,Total Personal Income (Weekly)
@@ -3372,7 +3372,7 @@ B3267,B17A_F_1_199_35_44_yrs,Females 1-199 Age 35-44 years,B17A_F_1_199_Tot,B17A
 B3266,B17A_F_1_199_25_34_yrs,Females 1-199 Age 25-34 years,B17A_F_1_199_Tot,B17A,people,age_gender|income,25-34 years|FEMALES,,3266,Total Personal Income (Weekly)
 B3265,B17A_F_1_199_20_24_yrs,Females 1-199 Age 20-24 years,B17A_F_1_199_Tot,B17A,people,age_gender|income,20-24 years|FEMALES,,3265,Total Personal Income (Weekly)
 B3264,B17A_F_1_199_15_19_yrs,Females 1-199 Age 15-19 years,B17A_F_1_199_Tot,B17A,people,age_gender|income,15-19 years|FEMALES,,3264,Total Personal Income (Weekly)
-B3263,B17A_F_Neg_Nil_income_Tot,Females Negative Nil income Total,B17A_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3263,Total Personal Income (Weekly)
+B3263,B17A_F_Neg_Nil_income_Tot,Females Negative Nil income Total,B17B_F_Tot_Tot,B17A,people,age_gender|income,Total|FEMALES,,3263,Total Personal Income (Weekly)
 B3262,B17A_F_Neg_Nil_incme_85_yrs_ovr,Females Negative Nil income Age 85 years and over,B17A_F_Neg_Nil_income_Tot,B17A,people,age_gender|income,85 years and over|FEMALES,,3262,Total Personal Income (Weekly)
 B3261,B17A_F_Neg_Nil_income_75_84_yrs,Females Negative Nil income Age 75-84 years,B17A_F_Neg_Nil_income_Tot,B17A,people,age_gender|income,75-84 years|FEMALES,,3261,Total Personal Income (Weekly)
 B3260,B17A_F_Neg_Nil_income_65_74_yrs,Females Negative Nil income Age 65-74 years,B17A_F_Neg_Nil_income_Tot,B17A,people,age_gender|income,65-74 years|FEMALES,,3260,Total Personal Income (Weekly)
@@ -4476,7 +4476,7 @@ B4521,B23B_F_GrpH_Mem_35_44,Females Group household member Age 35-44 years,B23B_
 B4520,B23B_F_GrpH_Mem_25_34,Females Group household member Age 25-34 years,B23B_F_GrpH_Mem_Tot,B23B,people,families|age_gender,25-34 years|FEMALES,,4520,Relationship in Household
 B4519,B23B_F_GrpH_Mem_15_24,Females Group household member Age 15-24 years,B23B_F_GrpH_Mem_Tot,B23B,people,families|age_gender,15-24 years|FEMALES,,4519,Relationship in Household
 B4518,B23B_F_GrpH_Mem_0_14,Females Group household member Age 0-14 years,B23B_F_GrpH_Mem_Tot,B23B,people,families|age_gender,0-14 years|FEMALES,,4518,Relationship in Household
-B4517,B23A_F_URI_in_FH_Tot,Females Unrelated individual living in family household Total,B23A_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4517,Relationship in Household
+B4517,B23A_F_URI_in_FH_Tot,Females Unrelated individual living in family household Total,B23B_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4517,Relationship in Household
 B4516,B23A_F_URI_in_FH_85ov,Females Unrelated individual living in family household Age 85 years and over,B23A_F_URI_in_FH_Tot,B23A,people,families|age_gender,85 years and over|FEMALES,,4516,Relationship in Household
 B4515,B23A_F_URI_in_FH_75_84,Females Unrelated individual living in family household Age 75-84 years,B23A_F_URI_in_FH_Tot,B23A,people,families|age_gender,75-84 years|FEMALES,,4515,Relationship in Household
 B4514,B23A_F_URI_in_FH_65_74,Females Unrelated individual living in family household Age 65-74 years,B23A_F_URI_in_FH_Tot,B23A,people,families|age_gender,65-74 years|FEMALES,,4514,Relationship in Household
@@ -4486,7 +4486,7 @@ B4511,B23A_F_URI_in_FH_35_44,Females Unrelated individual living in family house
 B4510,B23A_F_URI_in_FH_25_34,Females Unrelated individual living in family household Age 25-34 years,B23A_F_URI_in_FH_Tot,B23A,people,families|age_gender,25-34 years|FEMALES,,4510,Relationship in Household
 B4509,B23A_F_URI_in_FH_15_24,Females Unrelated individual living in family household Age 15-24 years,B23A_F_URI_in_FH_Tot,B23A,people,families|age_gender,15-24 years|FEMALES,,4509,Relationship in Household
 B4508,B23A_F_URI_in_FH_0_14,Females Unrelated individual living in family household Age 0-14 years,B23A_F_URI_in_FH_Tot,B23A,people,families|age_gender,0-14 years|FEMALES,,4508,Relationship in Household
-B4507,B23A_F_OthRI_Tot,Females Other related individual Total,B23A_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4507,Relationship in Household
+B4507,B23A_F_OthRI_Tot,Females Other related individual Total,B23B_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4507,Relationship in Household
 B4506,B23A_F_OthRI_85ov,Females Other related individual Age 85 years and over,B23A_F_OthRI_Tot,B23A,people,families|age_gender,85 years and over|FEMALES,,4506,Relationship in Household
 B4505,B23A_F_OthRI_75_84,Females Other related individual Age 75-84 years,B23A_F_OthRI_Tot,B23A,people,families|age_gender,75-84 years|FEMALES,,4505,Relationship in Household
 B4504,B23A_F_OthRI_65_74,Females Other related individual Age 65-74 years,B23A_F_OthRI_Tot,B23A,people,families|age_gender,65-74 years|FEMALES,,4504,Relationship in Household
@@ -4496,7 +4496,7 @@ B4501,B23A_F_OthRI_35_44,Females Other related individual Age 35-44 years,B23A_F
 B4500,B23A_F_OthRI_25_34,Females Other related individual Age 25-34 years,B23A_F_OthRI_Tot,B23A,people,families|age_gender,25-34 years|FEMALES,,4500,Relationship in Household
 B4499,B23A_F_OthRI_15_24,Females Other related individual Age 15-24 years,B23A_F_OthRI_Tot,B23A,people,families|age_gender,15-24 years|FEMALES,,4499,Relationship in Household
 B4498,B23A_F_OthRI_0_14,Females Other related individual Age 0-14 years,B23A_F_OthRI_Tot,B23A,people,families|age_gender,0-14 years|FEMALES,,4498,Relationship in Household
-B4497,B23A_F_NDpChl_Tot,Females Non dependent child Total,B23A_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4497,Relationship in Household
+B4497,B23A_F_NDpChl_Tot,Females Non dependent child Total,B23B_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4497,Relationship in Household
 B4496,B23A_F_NDpChl_85ov,Females Non dependent child Age 85 years and over,B23A_F_NDpChl_Tot,B23A,people,families|age_gender,85 years and over|FEMALES,,4496,Relationship in Household
 B4495,B23A_F_NDpChl_75_84,Females Non dependent child Age 75-84 years,B23A_F_NDpChl_Tot,B23A,people,families|age_gender,75-84 years|FEMALES,,4495,Relationship in Household
 B4494,B23A_F_NDpChl_65_74,Females Non dependent child Age 65-74 years,B23A_F_NDpChl_Tot,B23A,people,families|age_gender,65-74 years|FEMALES,,4494,Relationship in Household
@@ -4506,7 +4506,7 @@ B4491,B23A_F_NDpChl_35_44,Females Non dependent child Age 35-44 years,B23A_F_NDp
 B4490,B23A_F_NDpChl_25_34,Females Non dependent child Age 25-34 years,B23A_F_NDpChl_Tot,B23A,people,families|age_gender,25-34 years|FEMALES,,4490,Relationship in Household
 B4489,B23A_F_NDpChl_15_24,Females Non dependent child Age 15-24 years,B23A_F_NDpChl_Tot,B23A,people,families|age_gender,15-24 years|FEMALES,,4489,Relationship in Household
 B4488,B23A_F_NDpChl_0_14,Females Non dependent child Age 0-14 years,B23A_F_NDpChl_Tot,B23A,people,families|age_gender,0-14 years|FEMALES,,4488,Relationship in Household
-B4487,B23A_F_DpStu_Tot,Females Dependent student Aged 15-24 years Total,B23A_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4487,Relationship in Household
+B4487,B23A_F_DpStu_Tot,Females Dependent student Aged 15-24 years Total,B23B_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4487,Relationship in Household
 B4486,B23A_F_DpStu_85ov,Females Dependent student Aged 15-24 years Age 85 years and over,B23A_F_DpStu_Tot,B23A,people,families|age_gender,85 years and over|FEMALES,,4486,Relationship in Household
 B4485,B23A_F_DpStu_75_84,Females Dependent student Aged 15-24 years Age 75-84 years,B23A_F_DpStu_Tot,B23A,people,families|age_gender,75-84 years|FEMALES,,4485,Relationship in Household
 B4484,B23A_F_DpStu_65_74,Females Dependent student Aged 15-24 years Age 65-74 years,B23A_F_DpStu_Tot,B23A,people,families|age_gender,65-74 years|FEMALES,,4484,Relationship in Household
@@ -4516,7 +4516,7 @@ B4481,B23A_F_DpStu_35_44,Females Dependent student Aged 15-24 years Age 35-44 ye
 B4480,B23A_F_DpStu_25_34,Females Dependent student Aged 15-24 years Age 25-34 years,B23A_F_DpStu_Tot,B23A,people,families|age_gender,25-34 years|FEMALES,,4480,Relationship in Household
 B4479,B23A_F_DpStu_15_24,Females Dependent student Aged 15-24 years Age 15-24 years,B23A_F_DpStu_Tot,B23A,people,families|age_gender,15-24 years|FEMALES,,4479,Relationship in Household
 B4478,B23A_F_DpStu_0_14,Females Dependent student Aged 15-24 years Age 0-14 years,B23A_F_DpStu_Tot,B23A,people,families|age_gender,0-14 years|FEMALES,,4478,Relationship in Household
-B4477,B23A_F_CU_15_Tot,Females Child under 15 Total,B23A_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4477,Relationship in Household
+B4477,B23A_F_CU_15_Tot,Females Child under 15 Total,B23B_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4477,Relationship in Household
 B4476,B23A_F_CU15_85ov,Females Child under 15 Age 85 years and over,B23A_F_CU_15_Tot,B23A,people,families|age_gender,85 years and over|FEMALES,,4476,Relationship in Household
 B4475,B23A_F_CU15_75_84,Females Child under 15 Age 75-84 years,B23A_F_CU_15_Tot,B23A,people,families|age_gender,75-84 years|FEMALES,,4475,Relationship in Household
 B4474,B23A_F_CU15_65_74,Females Child under 15 Age 65-74 years,B23A_F_CU_15_Tot,B23A,people,families|age_gender,65-74 years|FEMALES,,4474,Relationship in Household
@@ -4526,7 +4526,7 @@ B4471,B23A_F_CU15_35_44,Females Child under 15 Age 35-44 years,B23A_F_CU_15_Tot,
 B4470,B23A_F_CU15_25_34,Females Child under 15 Age 25-34 years,B23A_F_CU_15_Tot,B23A,people,families|age_gender,25-34 years|FEMALES,,4470,Relationship in Household
 B4469,B23A_F_CU15_15_24,Females Child under 15 Age 15-24 years,B23A_F_CU_15_Tot,B23A,people,families|age_gender,15-24 years|FEMALES,,4469,Relationship in Household
 B4468,B23A_F_CU15_0_14,Females Child under 15 Age 0-14 years,B23A_F_CU_15_Tot,B23A,people,families|age_gender,0-14 years|FEMALES,,4468,Relationship in Household
-B4467,B23A_F_LonePnt_Tot,Females Lone parent Total,B23A_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4467,Relationship in Household
+B4467,B23A_F_LonePnt_Tot,Females Lone parent Total,B23B_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4467,Relationship in Household
 B4466,B23A_F_LonePnt_85ov,Females Lone parent Age 85 years and over,B23A_F_LonePnt_Tot,B23A,people,families|age_gender,85 years and over|FEMALES,,4466,Relationship in Household
 B4465,B23A_F_LonePnt_75_84,Females Lone parent Age 75-84 years,B23A_F_LonePnt_Tot,B23A,people,families|age_gender,75-84 years|FEMALES,,4465,Relationship in Household
 B4464,B23A_F_LonePnt_65_74,Females Lone parent Age 65-74 years,B23A_F_LonePnt_Tot,B23A,people,families|age_gender,65-74 years|FEMALES,,4464,Relationship in Household
@@ -4536,7 +4536,7 @@ B4461,B23A_F_LonePnt_35_44,Females Lone parent Age 35-44 years,B23A_F_LonePnt_To
 B4460,B23A_F_LonePnt_25_34,Females Lone parent Age 25-34 years,B23A_F_LonePnt_Tot,B23A,people,families|age_gender,25-34 years|FEMALES,,4460,Relationship in Household
 B4459,B23A_F_LonePnt_15_24,Females Lone parent Age 15-24 years,B23A_F_LonePnt_Tot,B23A,people,families|age_gender,15-24 years|FEMALES,,4459,Relationship in Household
 B4458,B23A_F_LonePnt_0_14,Females Lone parent Age 0-14 years,B23A_F_LonePnt_Tot,B23A,people,families|age_gender,0-14 years|FEMALES,,4458,Relationship in Household
-B4457,B23A_F_Ptn_in_DFM_Tot,Females Partner in de facto marriage Total,B23A_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4457,Relationship in Household
+B4457,B23A_F_Ptn_in_DFM_Tot,Females Partner in de facto marriage Total,B23B_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4457,Relationship in Household
 B4456,B23A_F_Ptn_in_DFM_85ov,Females Partner in de facto marriage Age 85 years and over,B23A_F_Ptn_in_DFM_Tot,B23A,people,families|age_gender,85 years and over|FEMALES,,4456,Relationship in Household
 B4455,B23A_F_Ptn_in_DFM_75_84,Females Partner in de facto marriage Age 75-84 years,B23A_F_Ptn_in_DFM_Tot,B23A,people,families|age_gender,75-84 years|FEMALES,,4455,Relationship in Household
 B4454,B23A_F_Ptn_in_DFM_65_74,Females Partner in de facto marriage Age 65-74 years,B23A_F_Ptn_in_DFM_Tot,B23A,people,families|age_gender,65-74 years|FEMALES,,4454,Relationship in Household
@@ -4546,7 +4546,7 @@ B4451,B23A_F_Ptn_in_DFM_35_44,Females Partner in de facto marriage Age 35-44 yea
 B4450,B23A_F_Ptn_in_DFM_25_34,Females Partner in de facto marriage Age 25-34 years,B23A_F_Ptn_in_DFM_Tot,B23A,people,families|age_gender,25-34 years|FEMALES,,4450,Relationship in Household
 B4449,B23A_F_Ptn_in_DFM_15_24,Females Partner in de facto marriage Age 15-24 years,B23A_F_Ptn_in_DFM_Tot,B23A,people,families|age_gender,15-24 years|FEMALES,,4449,Relationship in Household
 B4448,B23A_F_Ptn_in_DFM_0_14,Females Partner in de facto marriage Age 0-14 years,B23A_F_Ptn_in_DFM_Tot,B23A,people,families|age_gender,0-14 years|FEMALES,,4448,Relationship in Household
-B4447,B23A_F_Wife_in_RM_Tot,Females Wife in a registered marriage Total,B23A_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4447,Relationship in Household
+B4447,B23A_F_Wife_in_RM_Tot,Females Wife in a registered marriage Total,B23B_F_Tot_Tot,B23A,people,families|age_gender,Total|FEMALES,,4447,Relationship in Household
 B4446,B23A_F_Wife_in_RM_85ov,Females Wife in a registered marriage Age 85 years and over,B23A_F_Wife_in_RM_Tot,B23A,people,families|age_gender,85 years and over|FEMALES,,4446,Relationship in Household
 B4445,B23A_F_Wife_in_RM_75_84,Females Wife in a registered marriage Age 75-84 years,B23A_F_Wife_in_RM_Tot,B23A,people,families|age_gender,75-84 years|FEMALES,,4445,Relationship in Household
 B4444,B23A_F_Wife_in_RM_65_74,Females Wife in a registered marriage Age 65-74 years,B23A_F_Wife_in_RM_Tot,B23A,people,families|age_gender,65-74 years|FEMALES,,4444,Relationship in Household
