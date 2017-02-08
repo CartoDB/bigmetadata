@@ -292,7 +292,7 @@ class Columns(ColumnsTask):
                     continue
 
                 col_id = line[1]            #B: short
-                col_name_en = line[2]       #C: long
+                col_name = line[2]          #C: name
                 denominators = line[3]      #D: denominators
                 tablename = line[4]         #H: Tablename
                 col_unit = line[5]          #F: unit
@@ -302,6 +302,7 @@ class Columns(ColumnsTask):
                     col_agg = line[8]       #I: AGG (for B02 only)
                 else:
                     col_agg = None
+                tabledesc = line[10]             #K: Table description
 
                 denominators = denominators.split('|')
 
@@ -320,8 +321,8 @@ class Columns(ColumnsTask):
                 cols[col_id] = OBSColumn(
                     id=col_id,
                     type='Numeric',
-                    name=col_name_en.replace('_', ' '),
-                    description ='',
+                    name=col_name,
+                    description =tabledesc,
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
