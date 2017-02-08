@@ -28,8 +28,6 @@ def recreate_db(dbname='test'):
     check_output('createdb {dbname} -E UTF8 -T template0'.format(dbname=dbname), shell=True)
     check_output('psql -d {dbname} -c "CREATE EXTENSION IF NOT EXISTS postgis"'.format(
         dbname=dbname), shell=True)
-    check_output('psql -d {dbname} -c "CREATE SCHEMA IF NOT EXISTS observatory"'.format(
-        dbname=dbname), shell=True)
     os.environ['PGDATABASE'] = dbname
 
 
@@ -44,6 +42,9 @@ def setup():
         raise Exception('Can only run tests on database "test"')
     session = current_session()
     session.rollback()
+    session.execute('DROP SCHEMA IF EXISTS observatory CASCADE')
+    session.execute('CREATE SCHEMA observatory')
+    session.commit()
     Base.metadata.create_all()
 
 
@@ -54,6 +55,8 @@ def teardown():
     session = current_session()
     session.rollback()
     Base.metadata.drop_all()
+    session.execute('DROP SCHEMA IF EXISTS observatory CASCADE')
+    session.commit()
 
 
 def runtask(task):
