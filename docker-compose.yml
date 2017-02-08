@@ -8,7 +8,20 @@
       "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
                                               # will cause persistence issues!!
       "./observatory-extension:/observatory-extension",
+      "./dataservices-api:/dataservices-api",
+      "./data-services:/data-services",
+      "./cartodb-postgresql:/cartodb-postgresql",
       "./tmp:/bigmetadata/tmp"
+    ],
+    "environment": {
+      "PGUSER": "docker",
+      "PGPASSWORD": "docker",
+      "PGDATABASE": "gis",
+      "LC_ALL": "C.UTF-8",
+      "LANG": "C.UTF-8"
+    },
+    "links": [
+      "redis:localhost"
     ],
     "privileged": true
   },
@@ -95,5 +108,11 @@
     "env_file": ".env",
     "working_dir": "/tmp/ipython",
     "command": "sh -c /bigmetadata/ipython/start.sh"
+  },
+  "redis": {
+    "image": "redis",
+    "ports": [
+      "6379"
+    ]
   },
 }
