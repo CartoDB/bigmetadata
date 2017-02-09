@@ -59,15 +59,25 @@ def teardown():
     session.commit()
 
 
-def runtask(task):
+def runtask(task, prereqs_only=False, superclasses=None):
     '''
     Run deps of tasks then the task, faking session management
+
+    superclasses is a list of classes that we will be willing to run as
+    pre-reqs, other pre-reqs will be ignored.  Can be useful when testing to
+    only run metadata classes, for example.
     '''
     if task.complete():
         return
     for dep in task.deps():
-        runtask(dep)
-        assert dep.complete() is True
+        if superclasses:
+            for klass in superclasses:
+                if isinstance(dep, klass):
+                    runtask(dep, superclasses=superclasses)
+                    assert dep.complete() is True
+        else:
+            runtask(dep)
+            assert dep.complete() is True
     try:
         for klass, cb_dict in task._event_callbacks.iteritems():
             if isinstance(task, klass):

@@ -706,7 +706,7 @@ class TableTarget(Target):
         self._table.drop(checkfirst=True)
         self._table.create()
 
-    def update_or_create_metadata(self):
+    def update_or_create_metadata(self, _testmode=False):
         session = current_session()
 
         colinfo = {}
@@ -777,6 +777,7 @@ class TableTarget(Target):
             # include analysis
             if col.type.lower() in ('numeric', 'geometry',):
                 # do not include linkage for any column that is 100% null
+                # unless we are in test mode
                 stats = {
                     'count': colinfo.get('cnt'),
                     'notnull': colinfo.get('col%s_notnull' % i),
@@ -787,7 +788,7 @@ class TableTarget(Target):
                     'mode': colinfo.get('col%s_mode' % i),
                     'stddev': colinfo.get('col%s_stddev' % i),
                 }
-                if stats['notnull'] == 0:
+                if stats['notnull'] == 0 and not _testmode:
                     if coltable_existed:
                         session.delete(coltable)
                     elif coltable in session:
@@ -1434,6 +1435,16 @@ class TableTask(Task):
         raise NotImplementedError('Must implement populate method that '
                                    'populates the table')
 
+    def fake_populate(self):
+        '''
+        Put one empty row in the table
+        '''
+        session = current_session()
+        session.execute('INSERT INTO {output} ({col}) VALUES (NULL)'.format(
+            output=self.output().table,
+            col=self.columns().keys()[0]
+        ))
+
     def description(self):
         '''
         Optional description for the :class:`~tasks.util.OBSTable`.  Not
@@ -1479,24 +1490,33 @@ class TableTask(Task):
                 output=output.table
             )).fetchone()['the_geom']
 
+    @property
+    def _testmode(self):
+        return getattr(self, '_test', False)
+
     def run(self):
         output = self.output()
 
         LOGGER.info('update_create_table')
         output.update_or_create_table()
 
-        LOGGER.info('populate')
-        self.populate()
+        if self._testmode:
+            LOGGER.info('fake_populate')
+            self.fake_populate()
+        else:
+            LOGGER.info('populate')
+            self.populate()
 
         LOGGER.info('update_or_create_metadata')
-        output.update_or_create_metadata()
+        output.update_or_create_metadata(_testmode=self._testmode)
 
-        LOGGER.info('create_indexes')
-        self.create_indexes(output)
-        current_session().flush()
+        if not self._testmode:
+            LOGGER.info('create_indexes')
+            self.create_indexes(output)
+            current_session().flush()
 
-        LOGGER.info('create_geom_summaries')
-        self.create_geom_summaries(output)
+            LOGGER.info('create_geom_summaries')
+            self.create_geom_summaries(output)
 
     def create_indexes(self, output):
         session = current_session()

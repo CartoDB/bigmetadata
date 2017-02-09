@@ -389,7 +389,7 @@ class OBSColumn(Base):
     description = Column(Text) # human-readable description to provide in
                                  # bigmetadata
 
-    weight = Column(Numeric, default=0)
+    weight = Column(Numeric, default=1)
     aggregate = Column(Text) # what aggregate operation to use when adding
                                # these together across geoms: AVG, SUM etc.
 
