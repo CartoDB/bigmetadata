@@ -16,6 +16,8 @@ classes that don't need parameters set.
 
 Tests are run with:
 
+.. code:: shell
+
     make etl-unittest
 
 API unit tests
@@ -24,6 +26,10 @@ API unit tests
 API unit tests make sure the observatory-extension, which reads data and
 metadata from the ETL, are working right.
 
+.. code:: shell
+
+    make extension-unittest
+
 ``TODO``
 
 Integration tests
@@ -31,6 +37,10 @@ Integration tests
 
 Integration tests ensure that the data from the ETL that is set for deployment
 is is able to return a measure for every piece of metadata.
+
+.. code:: shell
+
+    make extension-autotest
 
 ``TODO``
 
