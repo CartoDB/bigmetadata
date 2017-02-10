@@ -196,7 +196,7 @@ etl-unittest:
 	docker-compose run --rm bigmetadata /bin/bash -c \
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  PGDATABASE=test nosetests -v \
-	    tests/test_meta.py tests/test_util.py \
+	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
 travis-etl-unittest:
@@ -210,7 +210,7 @@ travis-etl-unittest:
 	             -e TRAVIS=$$TRAVIS \
 	   recessionporn/bigmetadata /bin/bash -c \
 	   'nosetests -v \
-	    tests/test_meta.py tests/test_util.py \
+	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
 	    tests/test_columntasks.py tests/test_tabletasks.py'
 
 restore:
@@ -228,6 +228,15 @@ eurostat-data:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
 	  --parallel-scheduling --workers=2
+
+ps:
+	docker-compose ps
+
+stop:
+	docker-compose stop
+
+up:
+	docker-compose up -d
 
 #restore:
 #	docker exec -it bigmetadata_postgres_1 /bin/bash -c "export PGUSER=docker && export PGPASSWORD=docker && export PGHOST=localhost && pg_restore -j4 -O -d gis -x -e /bigmetadata/tmp/carto/Dump_2016_11_16_c14c5977ac.dump >/bigmetadata/tmp/restore.log 2>&1"
