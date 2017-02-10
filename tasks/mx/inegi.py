@@ -188,7 +188,7 @@ class GeographyColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'source': SourceTags(),
-            'license': LicenseTags()
+            'license': LicenseTags(),
             'boundary': BoundaryTags()
         }
 
