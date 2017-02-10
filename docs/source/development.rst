@@ -64,12 +64,13 @@ over again.  These tasks are meant to take care of the most repetitive aspects.
    :members:
    :show-inheritance:
 
-Running pieces of the ETL
+Running and Re-Running Pieces of the ETL
 -------------------------
 
 When doing local development, it's advisable to run small pieces of the ETL
 locally to make sure everything works correctly.  You can use the ``make --
-run`` helper, documented in :ref:`run-any-task`.
+run`` helper, documented in :ref:`run-any-task`. There are several methods for
+re-running pieces of the ETL depending on the task and are described below:
 
 Using ``--force`` during development
 ************************************
