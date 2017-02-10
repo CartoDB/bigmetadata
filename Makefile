@@ -219,5 +219,14 @@ eurostat-data:
 	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
 	  --parallel-scheduling --workers=2
 
+ps:
+	docker-compose ps
+
+stop:
+	docker-compose stop
+
+up:
+	docker-compose up -d
+
 #restore:
 #	docker exec -it bigmetadata_postgres_1 /bin/bash -c "export PGUSER=docker && export PGPASSWORD=docker && export PGHOST=localhost && pg_restore -j4 -O -d gis -x -e /bigmetadata/tmp/carto/Dump_2016_11_16_c14c5977ac.dump >/bigmetadata/tmp/restore.log 2>&1"
