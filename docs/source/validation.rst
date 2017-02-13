@@ -396,6 +396,7 @@ Do you have both the data and geometries in your table?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can check by running:
+
 .. code:: sql
 
     SELECT * FROM observatory.obs_table
@@ -406,6 +407,7 @@ then you are missing a geometry table. You will need to write a second
 :ref:`TableTask` with follows the following structure:
 
 .. code:: python
+
    class Geometry(TableTask):
 
         def timespan(self):
