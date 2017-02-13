@@ -82,6 +82,7 @@ a :ref:`tasks.util.TempTableTask` that you've modified in the course of
 development and need to re-run:
 
 .. code:: python
+
     from tasks.util import TempTableTask
     from tasks.meta import current_session
 
