@@ -118,6 +118,8 @@ def catalog_lonlat(column_id):
         return (40.7, -73.9)
     elif column_id.startswith('br.'):
         return (-43.19, -22.9)
+    elif column_id.startswith('au.'):
+        return (-33.8806, 151.2131)
     else:
         raise Exception('No catalog point set for {}'.format(column_id))
 

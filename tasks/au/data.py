@@ -394,12 +394,12 @@ class BCP(TableTask):
 
             in_colnames[0] = '"region_id"'
 
-            cmd = 'INSERT INTO {output} ({out_colnames}) ' \
+            cmd = 'INSERT INTO {output} ("{out_colnames}") ' \
                   'SELECT {in_colnames} FROM {input} '.format(
                       output=self.output().table,
                       input=intable,
                       in_colnames=', '.join(in_colnames),
-                      out_colnames=', '.join(out_colnames))
+                      out_colnames='", "'.join(out_colnames))
             session.execute(cmd)
 
 

@@ -123,10 +123,13 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
-.PHONY: run catalog docs carto restore dataservices-api
+.PHONY: run run-parallel catalog docs carto restore dataservices-api
 
 run:
 	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
+
+run-parallel:
+	docker-compose run --rm bigmetadata luigi --parallel-scheduling --workers=8 --module tasks.$(RUN_ARGS)
 
 dump: test
 	docker-compose run --rm bigmetadata luigi --module tasks.carto DumpS3
