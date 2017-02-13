@@ -62,7 +62,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 16
+        return 17
 
     def columns(self):
         input_ = self.input()
@@ -125,6 +125,7 @@ class Columns(ColumnsTask):
             description="The median age of all people in a given geographic area.",
             aggregate='median',
             weight=2,
+            targets={total_pop: 'universe'},
             tags=[subsections['age_gender'], unit_years]
         )
         white_pop = OBSColumn(
@@ -742,6 +743,7 @@ class Columns(ColumnsTask):
             "alimony.",
             weight=8,
             aggregate='median',
+            targets={households: 'universe'},
             tags=[subsections['income'], unit_money])
         gini_index = OBSColumn(
             id='B19083001',
@@ -763,6 +765,7 @@ class Columns(ColumnsTask):
             description='Per capita income is the mean income computed for every man, woman, and child in a particular group. It is derived by dividing the total income of a particular group by the total population.',
             weight=7,
             aggregate='average',
+            targets={total_pop: 'universe'},
             tags=[subsections['income'], unit_money])
         housing_units = OBSColumn(
             id='B25001001',
@@ -846,6 +849,7 @@ class Columns(ColumnsTask):
             "asked for the rental unit at the time of interview.",
             weight=8,
             aggregate='median',
+            targets={housing_units_renter_occupied: 'universe'},
             tags=[subsections['housing'], unit_money])
         percent_income_spent_on_rent = OBSColumn(
             id='B25071001',
@@ -860,6 +864,7 @@ class Columns(ColumnsTask):
             "living in the household.",
             weight=4,
             aggregate='average',
+            targets={households: 'universe'},
             tags=[subsections['housing'], subsections['income'], unit_ratio])
         owner_occupied_housing_units = OBSColumn(
             id='B25075001',
@@ -2630,7 +2635,7 @@ class Columns(ColumnsTask):
         renter_occupied_housing_units_paying_cash_median_gross_rent = OBSColumn(
             id='B25064001',
             type='Numeric',
-            aggregate='median',
+            aggregate='sum',
             name='Renter-Occupied Housing Units Paying Cash Rent Median Gross Rent',
             description='',
             weight=0,
@@ -2653,6 +2658,7 @@ class Columns(ColumnsTask):
             name='Owner-Occupied Housing Units Median Value',
             description='The middle value (median) in a geographic area owner occupied housing units.',
             weight=1,
+            targets={owner_occupied_housing_units: 'universe'},
             tags=[subsections['housing'], unit_housing],
         )
 
