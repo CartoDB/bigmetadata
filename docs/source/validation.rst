@@ -287,7 +287,7 @@ schema:
 If nothing is appearing in ``obs_meta``, chances are you are missing some
 metadata:
 
-Have you defined and executed a :ref:`tasks.util.TableTask` that links to your columns?
+Have you defined and executed a proper :ref:`tasks.util.TableTask`?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can check to see if these links exist by checking ``obs_column_table``:
@@ -349,17 +349,20 @@ a ``geom_ref`` relationship.  Here's an example:
     from tasks.util import ColumnsTask, TableTask
     from tasks.meta import OBSColumn, GEOM_REF
 
-    class MyGeomColumnsTask(ColumnsTask):
-
+    class MyGeoColumnsTask(ColumnsTask):
         def columns(self):
-           geom = OBSColumn(type='Geometry', name='My geom')
-           geomref = OBSColumn(type='Text', targets={
-               geom: GEOM_REF
-           })
-           return OrderedDict([
-               ('geom', geom),
-               ('geomref', geomref)
-           ])
+
+            geom = OBSColumn(
+              type='Geometry')
+
+            geomref = OBSColumn(
+              type='Text',
+              targets={geom: GEOM_REF})
+
+            return OrderedDict([
+              ('geom', geom),
+              ('geomref', geomref)
+            ])
 
     class MyColumnsTask(ColumnsTask):
 
@@ -373,7 +376,7 @@ a ``geom_ref`` relationship.  Here's an example:
 
         def requires(self):
             return {
-                'geom_columns': MyGeomColumnsTask(),
+                'geom_columns': MyGeoColumnsTask(),
                 'data_columns': MyColumnsTask()
              }
 
@@ -388,6 +391,8 @@ a ``geom_ref`` relationship.  Here's an example:
 
 The above code would ensure that all columns existing inside ``MyTableTask``
 would be appropriately linked to any geometries that connect to ``geomref``.
+
+
 
 Regenerate and look at the Catalog
 **********************************
