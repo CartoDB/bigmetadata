@@ -39,7 +39,7 @@ class SourceTags(TagsTask):
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 12
+        return 13
 
     def requires(self):
         return {
@@ -79,7 +79,7 @@ class ClippedGeomColumns(ColumnsTask):
 
         for clipped_colname, col in cols.iteritems():
             if clipped_colname in interpolated_boundaries:
-                col.tags.extend(boundary_type['interpolation_boundary'])
+                col.tags.append(boundary_type['interpolation_boundary'])
         return cols
 
 
