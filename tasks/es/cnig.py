@@ -42,7 +42,7 @@ class ImportGeometry(Shp2TempTableTask):
     def input_shp(self):
         path = os.path.join('SIANE_CARTO_BASE_S_3M', 'anual', self.timestamp,
                             'SE89_3_ADMIN_{resolution}_A_{aux}.shp'.format(
-                                resolution=self.resolution.upper(),aux=self.id_aux))
+                                resolution=self.resolution.upper(),aux=self.id_aux).lower())
         return os.path.join(self.input().path, path)
 
 
