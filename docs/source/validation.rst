@@ -213,7 +213,7 @@ When you use :ref:`run-any-task` to run individual components:
 * Are tables and columns being added to the ``observatory.obs_table`` and
   ``observatory.obs_column`` metadata tables?
 
-Provided :ref:`tasks.util.TableTask` and `tasks.util.ColumnTask` classes were
+Provided :ref:`tasks.util.TableTask` and :ref:`tasks.util.ColumnTask` classes were
 executed, it's wise to jump into the database and check to make sure entries
 were made in those tables.
 
