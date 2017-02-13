@@ -81,7 +81,7 @@ overwriting all output it has already created.  For example, if you have
 a :ref:`tasks.util.TempTableTask` that you've modified in the course of
 development and need to re-run:
 
-```
+.. code:: python
     from tasks.util import TempTableTask
     from tasks.meta import current_session
 
@@ -92,7 +92,6 @@ development and need to re-run:
             session.execute('''
                CREATE TABLE {} AS SELECT 'foo' AS mycol;
             ''')
-```
 
 Running ``make -- run path.to.module MyTempTable`` will only work once, even
 after making changes to the ``run`` method.
