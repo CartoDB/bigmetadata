@@ -1107,6 +1107,8 @@ class OBSMetaToLocal(OBSMeta):
                             '(numer_id, geom_id, numer_timespan, denom_id)')
             session.execute('CREATE INDEX ON observatory.obs_meta_next USING gist '
                             '(the_geom)')
+            session.execute('CREATE INDEX ON observatory.obs_meta_next USING gin '
+                            '(numer_tags)')
             for dimension, query in self.DIMENSIONS.iteritems():
                 session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next_{dimension}'.format(
                     dimension=dimension))
