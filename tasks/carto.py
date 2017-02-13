@@ -846,7 +846,9 @@ class OBSMeta(Task):
            geomref_c.id geomref_id,
            FIRST(denom_c.name) denom_name,
            FIRST(denom_c.description) denom_description,
+           FIRST(denom_t.description) denom_t_description,
            FIRST(denom_c.aggregate) denom_aggregate,
+           FIRST(denom_c2c.reltype) denom_reltype,
            FIRST(denom_c.type) denom_type,
            FIRST(denom_data_ct.colname) denom_colname,
            FIRST(denom_geomref_ct.colname) denom_geomref_colname,
@@ -875,7 +877,7 @@ class OBSMeta(Task):
         AND denom_data_ct.table_id = denom_t.id
         AND denom_c.id = denom_ctag.column_id
         AND denom_ctag.tag_id = denom_tag.id
-        AND denom_c2c.reltype = 'denominator'
+        AND LOWER(denom_c2c.reltype) IN ('denominator', 'universe')
         AND denom_geomref_ct.table_id = denom_t.id
         AND denom_geomref_ct.column_id = geomref_c.id
         AND geomref_c2c.reltype = 'geom_ref'
@@ -895,13 +897,17 @@ class OBSMeta(Task):
             FIRST(denom_name) denom_name,
             FIRST(geom_c.name ORDER BY geom_t.timespan DESC) geom_name,
             FIRST(numer_c.description) numer_description,
+            FIRST(numer_t.description) numer_t_description,
             FIRST(denom_description) denom_description,
+            FIRST(denom_t_description) denom_t_description,
             FIRST(geom_c.description ORDER BY geom_t.timespan DESC) geom_description,
+            FIRST(geom_t.description ORDER BY geom_t.timespan DESC) geom_t_description,
             FIRST(numer_c.aggregate) numer_aggregate,
             FIRST(denom_aggregate) denom_aggregate,
             FIRST(geom_c.aggregate ORDER BY geom_t.timespan DESC) geom_aggregate,
             FIRST(numer_c.type) numer_type,
             FIRST(denom_type) denom_type,
+            FIRST(denom_reltype) denom_reltype,
             FIRST(geom_c.type ORDER BY geom_t.timespan DESC) geom_type,
             FIRST(numer_data_ct.colname) numer_colname,
             FIRST(denom_colname) denom_colname,
