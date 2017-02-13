@@ -384,7 +384,7 @@ class BCP(TableTask):
     def populate(self):
         session = current_session()
         column_targets = self.columns()
-        out_colnames = column_targets.keys()
+        out_colnames = [oc.lower() for oc in column_targets.keys()]
 
         for state, input_ in self.input()['data'].iteritems():
             intable = input_.table
