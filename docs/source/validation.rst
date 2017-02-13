@@ -392,7 +392,36 @@ a ``geom_ref`` relationship.  Here's an example:
 The above code would ensure that all columns existing inside ``MyTableTask``
 would be appropriately linked to any geometries that connect to ``geomref``.
 
+Do you have both the data and geometries in your table?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+You can check by running:
+.. code:: sql
+
+    SELECT * FROM observatory.obs_table
+    WHERE id LIKE 'my.schema.%';
+
+If there is only one table and it has a null "the_geom" boundary,
+then you are missing a geometry table. You will need to write a second
+:ref:`TableTask` with follows the following structure:
+
+.. code:: python
+   class Geometry(TableTask):
+
+        def timespan(self):
+            # Return timespan here
+
+        def requires(self):
+           return {
+               'meta': MyGeoColumnsTask(),
+               'data': RawGeometry()
+           }
+           
+       def columns(self):
+           return self.input()['meta']
+
+        def populate(self):
+            # Populate the output table here
 
 Regenerate and look at the Catalog
 **********************************
