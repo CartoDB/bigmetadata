@@ -407,15 +407,15 @@ then you are missing a geometry table. For example:
 
 .. code:: sql
 
-SELECT * from observatory.obs_table
-WHERE id LIKE 'es.ine.five_year_population%';
+   SELECT * from observatory.obs_table
+   WHERE id LIKE 'es.ine.five_year_population%';
 
 .. code:: shell
 
-                   id                   |                  tablename                   | timespan | the_geom | description | version 
-----------------------------------------+----------------------------------------------+----------+----------+-------------+---------
- es.ine.five_year_population_99914b932b | obs_24b656e9e23d1dac2c8ab5786a388f9bf0f4e5ae | 2015     |          |             |       5
-(1 row)
+                      id                   |                  tablename                   | timespan | the_geom | description | version 
+   ----------------------------------------+----------------------------------------------+----------+----------+-------------+---------
+    es.ine.five_year_population_99914b932b | obs_24b656e9e23d1dac2c8ab5786a388f9bf0f4e5ae | 2015     |          |             |       5
+   (1 row)
 
 Notice that the_geom is empty. You will need to write a second :ref:`TableTask` with the 
 following structure:
