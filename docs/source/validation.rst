@@ -440,7 +440,7 @@ following structure:
             # Populate the output table here
 
 Regenerate and look at the Catalog
-**********************************
+--------------
 
 Once :ref:`tasks.carto.OBSMetaToLocal` has been run, you can generate the
 catalog.
