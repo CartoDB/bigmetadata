@@ -183,7 +183,7 @@ Specify section, subsection, source tags and license tags for all columns
 
 When defining your :ref:`tasks.meta.OBSColumn` objects in
 a :ref:`tasks.util.ColumnsTask` class, make sure each column is assigned
-a :ref:`tasks.util.OBSTag` of ``type`` ``section``, ``subsection``, ``source``,
+a :ref:`tasks.util.OBSTag` of ``type``, ``section``, ``subsection``, ``source``,
 and ``license``.  Use shared tags from :ref:`tasks.tags` when possible, in
 particular for ``section`` and ``subsection``.
 
