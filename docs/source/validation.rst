@@ -455,7 +455,7 @@ catalog.
 4. Is a table with a boundary/timespan matrix appearing beneath each measure?
 
 Upload to a test CARTO server
-*****************************
+--------------
 
 ``TODO``
 
