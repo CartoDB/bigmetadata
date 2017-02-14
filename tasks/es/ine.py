@@ -12,7 +12,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
                         classpath, PostgresTarget)
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 
 
 class DownloadGeometry(Task):
@@ -53,7 +53,7 @@ class RawGeometry(TempTableTask):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
@@ -61,6 +61,7 @@ class GeometryColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'source': SourceTags(),
             'license': LicenseTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
@@ -69,12 +70,14 @@ class GeometryColumns(ColumnsTask):
         subsections = input_['subsections']
         license = input_['license']['ine-license']
         source = input_['source']['ine-source']
+        boundary_type = input_['boundary']
         cusec_geom = OBSColumn(
             name=u'Secci\xf3n Censal',
             type="Geometry",
             weight=10,
             description='The smallest division of the Spanish Census.',
-            tags=[sections['spain'], subsections['boundary']],
+            tags=[sections['spain'], subsections['boundary'], boundary_type['interpolation_boundary'],
+                  boundary_type['cartographic_boundary']],
         )
         cusec_id = OBSColumn(
             name=u"Secci\xf3n Censal",
