@@ -54,7 +54,7 @@ GEOGRAPHY = {
     GEO_SA1: {'name': 'Statistical Area Level 1', 'weight': 13, 'region_col': 'SA1_7DIGIT'},
     GEO_GCCSA: {'name': 'Greater Capital City Statistical Areas', 'weight': 12, 'region_col': 'GCCSA_CODE'},
     GEO_LGA: {'name': 'Local Government Areas', 'weight': 11, 'region_col': 'LGA_CODE'},
-    GEO_SLA: {'name': 'Statistical Local Areas', 'weight': 10, 'region_col': 'SLA_CODE'},
+    GEO_SLA: {'name': 'Statistical Local Areas', 'weight': 10, 'region_col': 'SLA_MAIN'},
     GEO_SSC: {'name': 'State Suburbs', 'weight': 9, 'region_col': 'SSC_CODE'},
     GEO_POA: {'name': 'Postal Areas', 'weight': 8, 'region_col': 'POA_CODE'},
     GEO_CED: {'name': 'Commonwealth Electoral Divisions', 'weight': 7, 'region_col': 'CED_CODE'},

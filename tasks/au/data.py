@@ -386,6 +386,7 @@ class BCP(TableTask):
         column_targets = self.columns()
         out_colnames = [oc.lower() for oc in column_targets.keys()]
 
+        failstates = []
         for state, input_ in self.input()['data'].iteritems():
             intable = input_.table
 
@@ -393,7 +394,19 @@ class BCP(TableTask):
             for colname, target in column_targets.iteritems():
 
                 # weird trailing underscore for australia but no states
-                if state.lower() != 'aust' and colname.endswith('Median_rent_weekly_'):
+                if colname.endswith('Median_rent_weekly_') and \
+                   ((self.resolution == 'RA' and state.lower() != 'aust') or \
+                    (self.resolution == 'SA4' and state.lower() in ('vic', 'wa', 'ot')) or \
+                    (self.resolution == 'SA3' and state.lower() in ('vic', 'wa')) or \
+                    (self.resolution == 'SA2' and state.lower() in ('vic', 'wa', 'nsw')) or \
+                    (self.resolution == 'SA1' and state.lower() in ('vic', 'wa', 'qld', 'nt', 'sa', 'nsw')) or \
+                    (self.resolution == 'GCCSA' and state.lower() in ('vic', 'wa', 'ot')) or \
+                    (self.resolution == 'LGA' and state.lower() in ('wa')) or \
+                    (self.resolution == 'SLA' and state.lower() in ('wa')) or \
+                    (self.resolution == 'SSC' and state.lower() in ('vic', 'wa', 'qld', 'nt', 'sa', 'nsw')) or \
+                    (self.resolution == 'POA' and state.lower() in ('wa', 'qld', 'nsw')) or \
+                    (self.resolution == 'CED' and state.lower() in ('vic', 'wa')) or \
+                    (self.resolution == 'SED' and state.lower() in ('wa', 'ot'))):
                     colname = colname.replace('Median_rent_weekly_', 'Median_rent_weekly')
 
                 in_colnames.append('"{}"::{}'.format(
@@ -409,7 +422,14 @@ class BCP(TableTask):
                       input=intable,
                       in_colnames=', '.join(in_colnames),
                       out_colnames='", "'.join(out_colnames))
-            session.execute(cmd)
+            try:
+                session.execute(cmd)
+            except Exception as err:
+                failstates.append(state)
+                session.rollback()
+        if failstates:
+            raise Exception('Error with columns states: {}, resolution: {}, tablename: {}'.format(
+                failstates, self.resolution, self.tablename))
 
 
 class BCPAllTables(WrapperTask):
