@@ -838,153 +838,248 @@ class OBSMeta(Task):
     '''
 
     QUERY = '''
-    WITH denoms as (
-      SELECT
-           numer_c.id numer_id,
-           denom_c.id denom_id,
-           denom_t.id denom_tid,
-           geomref_c.id geomref_id,
-           FIRST(denom_c.name) denom_name,
-           FIRST(denom_c.description) denom_description,
-           FIRST(denom_t.description) denom_t_description,
-           FIRST(denom_c.aggregate) denom_aggregate,
-           FIRST(denom_c2c.reltype) denom_reltype,
-           FIRST(denom_c.type) denom_type,
-           FIRST(denom_data_ct.colname) denom_colname,
-           FIRST(denom_geomref_ct.colname) denom_geomref_colname,
-           FIRST(denom_t.tablename) denom_tablename,
-           FIRST(denom_t.timespan) denom_timespan,
-           FIRST(denom_c.weight) denom_weight,
-           JSONB_OBJECT_AGG(
-             denom_tag.type || '/' || denom_tag.id, denom_tag.name
-           ) FILTER (WHERE denom_tag.type IS NOT NULL) denom_tags,
-           FIRST(denom_c.extra)::JSONB denom_extra,
-           FIRST(denom_data_ct.extra)::JSONB denom_ct_extra
-      FROM observatory.obs_column numer_c
-           , observatory.obs_column_to_column denom_c2c
-           , observatory.obs_column denom_c
-           , observatory.obs_column_table denom_data_ct
-           , observatory.obs_table denom_t
-           , observatory.obs_column_tag denom_ctag
-           , observatory.obs_tag denom_tag
-           , observatory.obs_column_table denom_geomref_ct
-           , observatory.obs_column geomref_c
-           , observatory.obs_column_to_column geomref_c2c
-      WHERE denom_c.weight > 0
-        AND denom_c2c.source_id = numer_c.id
-        AND denom_c2c.target_id = denom_c.id
-        AND denom_data_ct.column_id = denom_c.id
-        AND denom_data_ct.table_id = denom_t.id
-        AND denom_c.id = denom_ctag.column_id
-        AND denom_ctag.tag_id = denom_tag.id
-        AND LOWER(denom_c2c.reltype) IN ('denominator', 'universe')
-        AND denom_geomref_ct.table_id = denom_t.id
-        AND denom_geomref_ct.column_id = geomref_c.id
+      CREATE TABLE {obs_meta} AS
+      WITH denoms as (
+        SELECT
+             numer_c.id numer_id,
+             denom_c.id denom_id,
+             denom_t.id denom_tid,
+             geomref_c.id geomref_id,
+             null::varchar denom_name,
+             null::varchar denom_description,
+             null::varchar denom_t_description,
+             null::varchar denom_aggregate,
+             null::varchar denom_type,
+             null::varchar denom_reltype,
+             null::varchar denom_colname,
+             FIRST(denom_geomref_ct.colname) denom_geomref_colname,
+             null::varchar denom_tablename,
+             FIRST(denom_t.timespan) denom_timespan,
+             null::int as denom_weight,
+             null::jsonb as denom_tags,
+             null::jsonb denom_extra,
+             null::jsonb denom_ct_extra
+        FROM observatory.obs_column numer_c
+             , observatory.obs_column_to_column denom_c2c
+             , observatory.obs_column denom_c
+             , observatory.obs_column_table denom_data_ct
+             , observatory.obs_table denom_t
+             , observatory.obs_column_tag denom_ctag
+             , observatory.obs_tag denom_tag
+             , observatory.obs_column_table denom_geomref_ct
+             , observatory.obs_column geomref_c
+             , observatory.obs_column_to_column geomref_c2c
+        WHERE denom_c.weight > 0
+          AND denom_c2c.source_id = numer_c.id
+          AND denom_c2c.target_id = denom_c.id
+          AND denom_data_ct.column_id = denom_c.id
+          AND denom_data_ct.table_id = denom_t.id
+          AND denom_c.id = denom_ctag.column_id
+          AND denom_ctag.tag_id = denom_tag.id
+          AND denom_c2c.reltype IN ('denominator', 'universe')
+          AND denom_geomref_ct.table_id = denom_t.id
+          AND denom_geomref_ct.column_id = geomref_c.id
+          AND geomref_c2c.reltype = 'geom_ref'
+          AND geomref_c2c.source_id = geomref_c.id
+        GROUP BY numer_c.id, denom_c.id, denom_t.id, geomref_c.id
+      ), leftjoined_denoms AS (
+        SELECT numer_c.id all_numer_id, denoms.*
+        FROM observatory.obs_column numer_c
+             LEFT JOIN denoms ON numer_c.id = denoms.numer_id
+      ) SELECT numer_c.id numer_id,
+             denom_id,
+             geom_c.id geom_id,
+             FIRST(numer_t.id) numer_tid,
+             FIRST(denom_tid) denom_tid,
+             FIRST(geom_t.id ORDER BY geom_t.timespan DESC) geom_tid,
+             null::varchar numer_name,
+             null::varchar denom_name,
+             null::varchar geom_name,
+             null::varchar numer_description,
+             null::varchar denom_description,
+             null::varchar geom_description,
+             null::varchar numer_t_description,
+             null::varchar denom_t_description,
+             null::varchar geom_t_description,
+             null::varchar numer_aggregate,
+             null::varchar denom_aggregate,
+             null::varchar geom_aggregate,
+             null::varchar numer_type,
+             null::varchar denom_type,
+             null::varchar denom_reltype,
+             null::varchar geom_type,
+             null::varchar numer_colname,
+             null::varchar denom_colname,
+             null::varchar geom_colname,
+             FIRST(numer_geomref_ct.colname) numer_geomref_colname,
+             FIRST(denom_geomref_colname) denom_geomref_colname,
+             FIRST(geom_geomref_ct.colname ORDER BY geom_t.timespan DESC) geom_geomref_colname,
+             null::varchar numer_tablename,
+             null::varchar denom_tablename,
+             null::varchar geom_tablename,
+             numer_t.timespan numer_timespan,
+             null::varchar denom_timespan,
+             null::numeric numer_weight,
+             null::numeric denom_weight,
+             null::numeric geom_weight,
+             null::varchar geom_timespan,
+             null::geometry the_geom,
+             null::jsonb numer_tags,
+             null::jsonb denom_tags,
+             null::jsonb geom_tags,
+             null::jsonb timespan_tags,
+             null::varchar[] section_tags,
+             null::varchar[] subsection_tags,
+             null::varchar[] unit_tags,
+             null::jsonb numer_extra ,
+             null::jsonb numer_ct_extra ,
+             null::jsonb denom_extra,
+             null::jsonb denom_ct_extra,
+             null::jsonb geom_extra,
+             null::jsonb geom_ct_extra
+      FROM observatory.obs_column_table numer_data_ct,
+           observatory.obs_table numer_t,
+           observatory.obs_column_table numer_geomref_ct,
+           observatory.obs_column geomref_c,
+           observatory.obs_column_to_column geomref_c2c,
+           observatory.obs_column_table geom_geom_ct,
+           observatory.obs_column_table geom_geomref_ct,
+           observatory.obs_table geom_t,
+           observatory.obs_column_tag numer_ctag,
+           observatory.obs_tag numer_tag,
+           observatory.obs_column numer_c,
+           leftjoined_denoms,
+           observatory.obs_column geom_c
+           LEFT JOIN (
+              observatory.obs_column_tag geom_ctag JOIN
+              observatory.obs_tag geom_tag ON geom_tag.id = geom_ctag.tag_id
+           ) ON geom_c.id = geom_ctag.column_id
+      WHERE numer_c.weight > 0
+        AND numer_c.id = numer_data_ct.column_id
+        AND numer_data_ct.table_id = numer_t.id
+        AND numer_t.id = numer_geomref_ct.table_id
+        AND numer_geomref_ct.column_id = geomref_c.id
         AND geomref_c2c.reltype = 'geom_ref'
-        AND geomref_c2c.source_id = geomref_c.id
-      GROUP BY numer_c.id, denom_c.id, denom_t.id, geomref_c.id
-    ), leftjoined_denoms AS (
-      SELECT numer_c.id all_numer_id, denoms.*
-      FROM observatory.obs_column numer_c
-           LEFT JOIN denoms ON numer_c.id = denoms.numer_id
-    ) SELECT numer_c.id numer_id,
-           denom_id,
-           geom_c.id geom_id,
-            FIRST(numer_t.id) numer_tid,
-            FIRST(denom_tid) denom_tid,
-            FIRST(geom_t.id ORDER BY geom_t.timespan DESC) geom_tid,
-            FIRST(numer_c.name) numer_name,
-            FIRST(denom_name) denom_name,
-            FIRST(geom_c.name ORDER BY geom_t.timespan DESC) geom_name,
-            FIRST(numer_c.description) numer_description,
-            FIRST(numer_t.description) numer_t_description,
-            FIRST(denom_description) denom_description,
-            FIRST(denom_t_description) denom_t_description,
-            FIRST(geom_c.description ORDER BY geom_t.timespan DESC) geom_description,
-            FIRST(geom_t.description ORDER BY geom_t.timespan DESC) geom_t_description,
-            FIRST(numer_c.aggregate) numer_aggregate,
-            FIRST(denom_aggregate) denom_aggregate,
-            FIRST(geom_c.aggregate ORDER BY geom_t.timespan DESC) geom_aggregate,
-            FIRST(numer_c.type) numer_type,
-            FIRST(denom_type) denom_type,
-            FIRST(denom_reltype) denom_reltype,
-            FIRST(geom_c.type ORDER BY geom_t.timespan DESC) geom_type,
-            FIRST(numer_data_ct.colname) numer_colname,
-            FIRST(denom_colname) denom_colname,
-            FIRST(geom_geom_ct.colname ORDER BY geom_t.timespan DESC) geom_colname,
-            FIRST(numer_geomref_ct.colname) numer_geomref_colname,
-            FIRST(denom_geomref_colname) denom_geomref_colname,
-            FIRST(geom_geomref_ct.colname ORDER BY geom_t.timespan DESC) geom_geomref_colname,
-            FIRST(numer_t.tablename) numer_tablename,
-            FIRST(denom_tablename) denom_tablename,
-            FIRST(geom_t.tablename ORDER BY geom_t.timespan DESC) geom_tablename,
-            numer_t.timespan numer_timespan,
-            FIRST(denom_timespan) denom_timespan,
-            FIRST(numer_c.weight) numer_weight,
-            FIRST(denom_weight) denom_weight,
-            FIRST(geom_c.weight ORDER BY geom_t.timespan DESC) geom_weight,
-            FIRST(geom_t.timespan ORDER BY geom_t.timespan DESC) geom_timespan
-           , FIRST(geom_t.the_geom ORDER BY geom_t.timespan DESC)::geometry AS the_geom
-           , JSONB_OBJECT_AGG(
-              numer_tag.type || '/' || numer_tag.id, numer_tag.name
-            ) numer_tags,
-            FIRST(denom_tags) denom_tags,
-            JSONB_OBJECT_AGG(
-              geom_tag.type || '/' || geom_tag.id, geom_tag.name
-            ORDER BY geom_t.timespan DESC) FILTER (WHERE geom_tag.type IS NOT NULL) geom_tags,
-            NULL::JSONB timespan_tags,
-            ARRAY_AGG(DISTINCT numer_tag.id)
-              FILTER (WHERE numer_tag.type = 'section') section_tags,
-            ARRAY_AGG(DISTINCT numer_tag.id)
-              FILTER (WHERE numer_tag.type = 'subsection') subsection_tags,
-            ARRAY_AGG(DISTINCT numer_tag.id)
-              FILTER (WHERE numer_tag.type = 'unit') unit_tags,
-            FIRST(numer_c.extra)::JSONB numer_extra,
-            FIRST(numer_data_ct.extra)::JSONB numer_ct_extra,
-            FIRST(denom_extra) denom_extra,
-            FIRST(denom_ct_extra) denom_ct_extra,
-            FIRST(geom_c.extra ORDER BY geom_t.timespan DESC)::JSONB geom_extra,
-            FIRST(geom_geom_ct.extra ORDER BY geom_t.timespan DESC)::JSONB geom_ct_extra
-    FROM observatory.obs_column_table numer_data_ct,
-         observatory.obs_table numer_t,
-         observatory.obs_column_table numer_geomref_ct,
-         observatory.obs_column geomref_c,
-         observatory.obs_column_to_column geomref_c2c,
-         observatory.obs_column_table geom_geom_ct,
-         observatory.obs_column_table geom_geomref_ct,
-         observatory.obs_table geom_t,
-         observatory.obs_column_tag numer_ctag,
-         observatory.obs_tag numer_tag,
-         observatory.obs_column numer_c,
-         leftjoined_denoms,
-         observatory.obs_column geom_c
-         LEFT JOIN (
-            observatory.obs_column_tag geom_ctag JOIN
-            observatory.obs_tag geom_tag ON geom_tag.id = geom_ctag.tag_id
-         ) ON geom_c.id = geom_ctag.column_id
-    WHERE numer_c.weight > 0
-      AND numer_c.id = numer_data_ct.column_id
-      AND numer_data_ct.table_id = numer_t.id
-      AND numer_t.id = numer_geomref_ct.table_id
-      AND numer_geomref_ct.column_id = geomref_c.id
-      AND geomref_c2c.reltype = 'geom_ref'
-      AND geomref_c.id = geomref_c2c.source_id
-      AND geom_c.id = geomref_c2c.target_id
-      AND geom_geomref_ct.column_id = geomref_c.id
-      AND geom_geomref_ct.table_id = geom_t.id
-      AND geom_geom_ct.column_id = geom_c.id
-      AND geom_geom_ct.table_id = geom_t.id
-      AND geom_c.type ILIKE 'geometry%'
-      AND numer_c.type NOT ILIKE 'geometry%'
-      AND numer_c.id != geomref_c.id
-      AND numer_ctag.column_id = numer_c.id
-      AND numer_ctag.tag_id = numer_tag.id
-      AND numer_c.id = leftjoined_denoms.all_numer_id
-      AND (leftjoined_denoms.numer_id IS NULL OR (
-        numer_t.timespan = leftjoined_denoms.denom_timespan
-        AND geomref_c.id = leftjoined_denoms.geomref_id
-      ))
-    GROUP BY numer_c.id, denom_id, geom_c.id, numer_t.timespan
+        AND geomref_c.id = geomref_c2c.source_id
+        AND geom_c.id = geomref_c2c.target_id
+        AND geom_geomref_ct.column_id = geomref_c.id
+        AND geom_geomref_ct.table_id = geom_t.id
+        AND geom_geom_ct.column_id = geom_c.id
+        AND geom_geom_ct.table_id = geom_t.id
+        AND geom_c.type ILIKE 'geometry%'
+        AND numer_c.type NOT ILIKE 'geometry%'
+        AND numer_c.id != geomref_c.id
+        AND numer_ctag.column_id = numer_c.id
+        AND numer_ctag.tag_id = numer_tag.id
+        AND numer_c.id = leftjoined_denoms.all_numer_id
+        AND (leftjoined_denoms.numer_id IS NULL OR (
+          numer_t.timespan = leftjoined_denoms.denom_timespan
+          AND geomref_c.id = leftjoined_denoms.geomref_id
+        ))
+      GROUP BY numer_c.id, denom_id, geom_c.id, numer_t.timespan;
+
+      CREATE UNIQUE INDEX ON {obs_meta} (numer_id, geom_id, numer_timespan, denom_id);
+
+      -- update numer coltable info
+      UPDATE {obs_meta} SET
+        numer_name = name,
+        numer_description = c.description,
+        numer_t_description = t.description,
+        numer_aggregate = aggregate,
+        numer_type = type,
+        numer_colname = colname,
+        numer_tablename = tablename,
+        numer_timespan = timespan,
+        numer_weight = weight,
+        numer_extra = c.extra,
+        numer_ct_extra = ct.extra
+      FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+      WHERE c.id = numer_id
+        AND t.id = numer_tid
+        AND c.id = ct.column_id
+        AND t.id = ct.table_id;
+
+      -- update denom coltable info
+      UPDATE {obs_meta} SET
+        denom_name = name,
+        denom_description = c.description,
+        denom_t_description = t.description,
+        denom_aggregate = aggregate,
+        denom_type = type,
+        denom_colname = colname,
+        denom_tablename = tablename,
+        denom_timespan = timespan,
+        denom_weight = weight,
+        denom_extra = c.extra,
+        denom_ct_extra = ct.extra
+      FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+      WHERE c.id = denom_id
+        AND t.id = denom_tid
+        AND c.id = ct.column_id
+        AND t.id = ct.table_id;
+
+     -- update geom coltable info
+     UPDATE {obs_meta} SET
+       geom_name = name,
+       geom_description = c.description,
+       geom_t_description = t.description,
+       geom_aggregate = aggregate,
+       geom_type = type,
+       geom_colname = colname,
+       geom_tablename = tablename,
+       geom_timespan = timespan,
+       the_geom = t.the_geom,
+       geom_weight = weight,
+       geom_extra = c.extra,
+       geom_ct_extra = ct.extra
+     FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+     WHERE c.id = geom_id
+       AND t.id = geom_tid
+       AND c.id = ct.column_id
+       AND t.id = ct.table_id;
+
+     -- update coltag info
+     DROP TABLE IF EXISTS _obs_coltags;
+     CREATE TEMPORARY TABLE _obs_coltags AS
+     SELECT
+       c.id,
+       JSONB_OBJECT_AGG(
+         t.type || '/' || t.id, t.name
+       ) tags,
+       ARRAY_AGG(DISTINCT t.id) FILTER (WHERE t.type = 'section') section_tags,
+       ARRAY_AGG(DISTINCT t.id) FILTER (WHERE t.type = 'subsection') subsection_tags,
+       ARRAY_AGG(DISTINCT t.id) FILTER (WHERE t.type = 'unit') unit_tags
+     FROM observatory.obs_column c, observatory.obs_column_tag ct, observatory.obs_tag t
+     WHERE c.id = ct.column_id
+       AND t.id = ct.tag_id
+     GROUP BY c.id;
+     CREATE UNIQUE INDEX ON _obs_coltags (id);
+
+     UPDATE {obs_meta} SET
+       numer_tags = tags,
+       section_tags = _obs_coltags.section_tags,
+       subsection_tags = _obs_coltags.subsection_tags,
+       unit_tags = _obs_coltags.unit_tags
+     FROM _obs_coltags WHERE id = numer_id;
+
+     UPDATE {obs_meta} SET
+       geom_tags = tags
+     FROM _obs_coltags WHERE id = geom_id;
+
+     UPDATE {obs_meta} SET
+       denom_tags = tags
+     FROM _obs_coltags WHERE id = denom_id;
+
+     -- update denom reltype info
+     UPDATE {obs_meta} SET
+       denom_reltype = c2c.reltype
+     FROM observatory.obs_column source,
+          observatory.obs_column_to_column c2c,
+          observatory.obs_column target
+     WHERE c2c.source_id = source.id
+       AND c2c.target_id = target.id
+       AND source.id = numer_id
+       AND target.id = denom_id;
     '''
 
     DIMENSIONS = {
@@ -1092,9 +1187,7 @@ class OBSMetaToLocal(OBSMeta):
         try:
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
             session.execute(self.FIRST_AGGREGATE)
-            session.execute('CREATE TABLE observatory.obs_meta_next AS {select}'.format(
-                select=self.QUERY
-            ))
+            session.execute(self.QUERY.format(obs_meta='observatory.obs_meta_next'))
             # confirm that there won't be ambiguity with selection of geom
             # a common issue we're running into is that a single geom_ref is
             # pointing to several different types of geometries-- this isn't
@@ -1107,6 +1200,8 @@ class OBSMetaToLocal(OBSMeta):
                             '(numer_id, geom_id, numer_timespan, denom_id)')
             session.execute('CREATE INDEX ON observatory.obs_meta_next USING gist '
                             '(the_geom)')
+            session.execute('CREATE INDEX ON observatory.obs_meta_next USING gin '
+                            '(numer_tags)')
             for dimension, query in self.DIMENSIONS.iteritems():
                 session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next_{dimension}'.format(
                     dimension=dimension))
@@ -1124,9 +1219,7 @@ class OBSMetaToLocal(OBSMeta):
 
         try:
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
-            session.execute('ALTER TABLE observatory.obs_meta_next RENAME TO obs_meta'.format(
-                select=self.QUERY
-            ))
+            session.execute('ALTER TABLE observatory.obs_meta_next RENAME TO obs_meta')
             for dimension, query in self.DIMENSIONS.iteritems():
                 session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
                     dimension=dimension
