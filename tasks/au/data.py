@@ -389,8 +389,17 @@ class BCP(TableTask):
         for state, input_ in self.input()['data'].iteritems():
             intable = input_.table
 
-            in_colnames = ['"{}"::{}'.format(colname.replace(self.tablename+'_', ''), ct.get(session).type)
-                           for colname, ct in column_targets.iteritems()]
+            in_colnames = []
+            for colname, target in column_targets.iteritems():
+
+                # weird trailing underscore for australia but no states
+                if state.lower() != 'aust' and colname.endswith('Median_rent_weekly_'):
+                    colname = colname.replace('Median_rent_weekly_', 'Median_rent_weekly')
+
+                in_colnames.append('"{}"::{}'.format(
+                    colname.replace(self.tablename + '_', ''),
+                    target.get(session).type)
+                )
 
             in_colnames[0] = '"region_id"'
 
