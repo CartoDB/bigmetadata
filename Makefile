@@ -241,5 +241,11 @@ stop:
 up:
 	docker-compose up -d
 
+meta:
+	docker-compose run --rm bigmetadata luigi\
+	  --module tasks.carto OBSMetaToLocal
+
+releasetest: extension-fixtures extension-perftest-record extension-unittest extension-autotest
+
 #restore:
 #	docker exec -it bigmetadata_postgres_1 /bin/bash -c "export PGUSER=docker && export PGPASSWORD=docker && export PGHOST=localhost && pg_restore -j4 -O -d gis -x -e /bigmetadata/tmp/carto/Dump_2016_11_16_c14c5977ac.dump >/bigmetadata/tmp/restore.log 2>&1"

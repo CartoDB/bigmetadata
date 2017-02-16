@@ -1091,7 +1091,8 @@ class OBSMeta(Task):
         'numer': ['''
 CREATE TABLE {obs_meta} AS
 SELECT numer_id ,
-         NULL::TEXT numer_name, --FIRST(numer_description)::TEXT numer_description,
+         NULL::TEXT numer_name, --FIRST(numer_description)::TEXT numer_name,
+         NULL::TEXT numer_description, --FIRST(numer_description)::TEXT numer_description,
          NULL::JSONB numer_tags, --FIRST(numer_tags)::JSONB numer_tags,
          NULL::NUMERIC numer_weight, --FIRST(numer_weight)::NUMERIC numer_weight,
          NULL::JSONB numer_extra, --FIRST(numer_extra)::JSONB numer_extra,
