@@ -837,7 +837,7 @@ class OBSMeta(Task):
     );
     '''
 
-    QUERY = '''
+    QUERIES = ['''
       CREATE TABLE {obs_meta} AS
       WITH denoms as (
         SELECT
@@ -977,10 +977,11 @@ class OBSMeta(Task):
           AND geomref_c.id = leftjoined_denoms.geomref_id
         ))
       GROUP BY numer_c.id, denom_id, geom_c.id, numer_t.timespan;
+      ''',
 
-      CREATE UNIQUE INDEX ON {obs_meta} (numer_id, geom_id, numer_timespan, denom_id);
+      '''CREATE UNIQUE INDEX ON {obs_meta} (numer_id, geom_id, numer_timespan, denom_id);''',
 
-      -- update numer coltable info
+      '''-- update numer coltable info
       UPDATE {obs_meta} SET
         numer_name = name,
         numer_description = c.description,
@@ -997,9 +998,9 @@ class OBSMeta(Task):
       WHERE c.id = numer_id
         AND t.id = numer_tid
         AND c.id = ct.column_id
-        AND t.id = ct.table_id;
+        AND t.id = ct.table_id;''',
 
-      -- update denom coltable info
+      '''-- update denom coltable info
       UPDATE {obs_meta} SET
         denom_name = name,
         denom_description = c.description,
@@ -1016,9 +1017,9 @@ class OBSMeta(Task):
       WHERE c.id = denom_id
         AND t.id = denom_tid
         AND c.id = ct.column_id
-        AND t.id = ct.table_id;
+        AND t.id = ct.table_id;''',
 
-     -- update geom coltable info
+     '''-- update geom coltable info
      UPDATE {obs_meta} SET
        geom_name = name,
        geom_description = c.description,
@@ -1036,9 +1037,9 @@ class OBSMeta(Task):
      WHERE c.id = geom_id
        AND t.id = geom_tid
        AND c.id = ct.column_id
-       AND t.id = ct.table_id;
+       AND t.id = ct.table_id;''',
 
-     -- update coltag info
+     '''-- update coltag info
      DROP TABLE IF EXISTS _obs_coltags;
      CREATE TEMPORARY TABLE _obs_coltags AS
      SELECT
@@ -1053,24 +1054,24 @@ class OBSMeta(Task):
      WHERE c.id = ct.column_id
        AND t.id = ct.tag_id
      GROUP BY c.id;
-     CREATE UNIQUE INDEX ON _obs_coltags (id);
+     CREATE UNIQUE INDEX ON _obs_coltags (id);''',
 
-     UPDATE {obs_meta} SET
+     '''UPDATE {obs_meta} SET
        numer_tags = tags,
        section_tags = _obs_coltags.section_tags,
        subsection_tags = _obs_coltags.subsection_tags,
        unit_tags = _obs_coltags.unit_tags
-     FROM _obs_coltags WHERE id = numer_id;
+     FROM _obs_coltags WHERE id = numer_id;''',
 
-     UPDATE {obs_meta} SET
+     '''UPDATE {obs_meta} SET
        geom_tags = tags
-     FROM _obs_coltags WHERE id = geom_id;
+     FROM _obs_coltags WHERE id = geom_id;''',
 
-     UPDATE {obs_meta} SET
+     '''UPDATE {obs_meta} SET
        denom_tags = tags
-     FROM _obs_coltags WHERE id = denom_id;
+     FROM _obs_coltags WHERE id = denom_id;''',
 
-     -- update denom reltype info
+     '''-- update denom reltype info
      UPDATE {obs_meta} SET
        denom_reltype = c2c.reltype
      FROM observatory.obs_column source,
@@ -1080,63 +1081,179 @@ class OBSMeta(Task):
        AND c2c.target_id = target.id
        AND source.id = numer_id
        AND target.id = denom_id;
-    '''
+    ''',
+    '''CREATE INDEX ON {obs_meta} USING gist (the_geom)''',
+    '''CREATE INDEX ON {obs_meta} USING gin (numer_tags)'''
+    ]
 
     DIMENSIONS = {
-        'numer': '''
-SELECT numer_id::TEXT,
-       FIRST(numer_name)::TEXT numer_name,
-       FIRST(numer_description)::TEXT numer_description,
-       FIRST(numer_tags)::JSONB numer_tags,
-       FIRST(numer_weight)::NUMERIC numer_weight,
-       FIRST(numer_extra)::JSONB numer_extra,
-       FIRST(numer_type)::TEXT numer_type,
-       FIRST(numer_aggregate)::TEXT numer_aggregate,
-       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
-       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+        # before took 206s
+        'numer': ['''
+CREATE TABLE {obs_meta} AS
+SELECT numer_id ,
+         NULL::TEXT numer_name, --FIRST(numer_description)::TEXT numer_description,
+         NULL::JSONB numer_tags, --FIRST(numer_tags)::JSONB numer_tags,
+         NULL::NUMERIC numer_weight, --FIRST(numer_weight)::NUMERIC numer_weight,
+         NULL::JSONB numer_extra, --FIRST(numer_extra)::JSONB numer_extra,
+         NULL::TEXT numer_type, --FIRST(numer_type)::TEXT numer_type,
+         NULL::TEXT numer_aggregate, --FIRST(numer_aggregate)::TEXT numer_aggregate,
+         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+         ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
+         NULL::Geometry(Geometry, 4326) the_geom -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta_next
-GROUP BY numer_id
+GROUP BY numer_id;
         ''',
-        'denom': '''
+        ''' ALTER TABLE {obs_meta} ADD PRIMARY KEY (numer_id); ''',
+        '''
+UPDATE {obs_meta} SET
+numer_name = obs_meta.numer_name,
+numer_tags = obs_meta.numer_tags,
+numer_weight = obs_meta.numer_weight,
+numer_extra = obs_meta.numer_extra,
+numer_type = obs_meta.numer_type,
+numer_aggregate = obs_meta.numer_aggregate
+FROM observatory.obs_meta_next obs_meta
+WHERE obs_meta.numer_id = {obs_meta}.numer_id;
+        ''',
+        '''CREATE INDEX ON observatory.obs_meta_next (numer_id, geom_tid); ''',
+        '''
+WITH geom_tids AS (
+  SELECT  ARRAY_AGG(distinct geom_tid) geom_tids, numer_id
+  FROM observatory.obs_meta_next
+  GROUP BY numer_id
+), unique_geom_ids AS (
+  SELECT ARRAY_AGG(distinct numer_id) numer_ids, geom_tids
+  FROM geom_tids
+  GROUP BY geom_tids
+), union_geoms AS (
+  SELECT numer_ids, geom_tids, ST_Union(the_geom) the_geom
+  FROM unique_geom_ids, observatory.obs_table
+  WHERE id = ANY(geom_tids)
+  GROUP BY numer_ids, geom_tids
+) UPDATE {obs_meta}
+SET the_geom = union_geoms.the_geom
+FROM union_geoms
+WHERE {obs_meta}.numer_id = ANY(union_geoms.numer_ids);
+        '''
+        ],
+        'denom': ['''
+CREATE UNIQUE INDEX ON observatory.obs_meta_next (denom_id, numer_id, geom_id, numer_timespan, denom_timespan);
+        ''',
+        '''
+CREATE TABLE {obs_meta} AS
 SELECT denom_id::TEXT,
-       FIRST(denom_name)::TEXT denom_name,
-       FIRST(denom_description)::TEXT denom_description,
-       FIRST(denom_tags)::JSONB denom_tags,
-       FIRST(denom_weight)::NUMERIC denom_weight,
-       'denominator'::TEXT reltype,
-       FIRST(denom_extra)::JSONB denom_extra,
-       FIRST(denom_type)::TEXT denom_type,
-       FIRST(denom_aggregate)::TEXT denom_aggregate,
-       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-       ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
-       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+         NULL::TEXT denom_name, --FIRST(denom_name)::TEXT denom_name,
+         NULL::TEXT denom_description, --FIRST(denom_description)::TEXT denom_description,
+         NULL::JSONB denom_tags, --FIRST(denom_tags)::JSONB denom_tags,
+         NULL::NUMERIC denom_weight, --FIRST(denom_weight)::NUMERIC denom_weight,
+         NULL::TEXT reltype, --'denominator'::TEXT reltype,
+         NULL::JSONB denom_extra, --FIRST(denom_extra)::JSONB denom_extra,
+         NULL::TEXT denom_type, --FIRST(denom_type)::TEXT denom_type,
+         NULL::TEXT denom_aggregate, --FIRST(denom_aggregate)::TEXT denom_aggregate,
+         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+         ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
+         NULL::Geometry(Geometry, 4326) the_geom -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta_next
-GROUP BY denom_id
+WHERE denom_id IS NOT NULL
+GROUP BY denom_id;
         ''',
-        'geom': '''
+        '''
+ALTER TABLE {obs_meta} ADD PRIMARY KEY (denom_id);
+        ''',
+        '''
+UPDATE {obs_meta} SET
+denom_name = obs_meta.denom_name,
+denom_tags = obs_meta.denom_tags,
+denom_weight = obs_meta.denom_weight,
+reltype = obs_meta.denom_reltype,
+denom_extra = obs_meta.denom_extra,
+denom_type = obs_meta.denom_type,
+denom_aggregate = obs_meta.denom_aggregate
+FROM observatory.obs_meta_next obs_meta
+WHERE obs_meta.denom_id = {obs_meta}.denom_id;
+        ''',
+        '''CREATE INDEX ON observatory.obs_meta_next (denom_id, geom_tid); ''',
+        '''
+WITH geom_tids AS (
+  SELECT  ARRAY_AGG(geom_tid) geom_tids, numer_id
+  FROM observatory.obs_meta_next
+  GROUP BY numer_id
+) , unique_geom_ids AS (
+  SELECT ARRAY_AGG(numer_id) numer_ids, geom_tids
+  FROM geom_tids
+  GROUP BY geom_tids
+), union_geoms AS (
+  SELECT numer_ids, geom_tids, ST_Union(the_geom) the_geom
+  FROM unique_geom_ids, observatory.obs_table
+  WHERE id = ANY(geom_tids)
+  GROUP BY numer_ids, geom_tids
+) UPDATE {obs_meta}
+SET the_geom = union_geoms.the_geom
+FROM union_geoms
+WHERE {obs_meta}.denom_id = ANY(union_geoms.numer_ids);
+        '''
+        ],
+        'geom': [
+        ''' CREATE UNIQUE INDEX ON observatory.obs_meta_next
+        (geom_id, numer_id, numer_timespan, geom_timespan, denom_id);
+        ''',
+        '''
+CREATE TABLE {obs_meta} AS
 SELECT geom_id::TEXT,
-       FIRST(geom_name)::TEXT geom_name,
-       FIRST(geom_description)::TEXT geom_description,
-       FIRST(geom_tags)::JSONB geom_tags,
-       FIRST(geom_weight)::NUMERIC geom_weight,
-       FIRST(geom_extra)::JSONB geom_extra,
-       FIRST(geom_type)::TEXT geom_type,
-       FIRST(geom_aggregate)::TEXT geom_aggregate,
-       ST_SetSRID(FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
-       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-       ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
-FROM observatory.obs_meta_next
-GROUP BY geom_id
+         NULL::TEXT geom_name, --FIRST(geom_name)::TEXT geom_name,
+         NULL::TEXT geom_description, --FIRST(geom_description)::TEXT geom_description,
+         NULL::JSONB geom_tags, --FIRST(geom_tags)::JSONB geom_tags,
+         NULL::NUMERIC geom_weight, --FIRST(geom_weight)::NUMERIC geom_weight,
+         NULL::JSONB geom_extra, --FIRST(geom_extra)::JSONB geom_extra,
+         NULL::TEXT geom_type, --FIRST(geom_type)::TEXT geom_type,
+         NULL::TEXT geom_aggregate, --FIRST(geom_aggregate)::TEXT geom_aggregate
+         NULL::Geometry(Geometry, 4326) the_geom, --ST_SetSRID(FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
+         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+         ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
+  FROM observatory.obs_meta_next
+  GROUP BY geom_id;
         ''',
-        'timespan': '''
+        ''' ALTER TABLE {obs_meta} ADD PRIMARY KEY (geom_id); ''',
+        '''
+UPDATE {obs_meta} SET
+geom_name = obs_meta.geom_name,
+geom_tags = obs_meta.geom_tags,
+geom_weight = obs_meta.geom_weight,
+geom_extra = obs_meta.geom_extra,
+geom_type = obs_meta.geom_type,
+geom_aggregate = obs_meta.geom_aggregate
+FROM observatory.obs_meta_next obs_meta
+WHERE obs_meta.geom_id = {obs_meta}.geom_id;
+        ''',
+        '''
+WITH geom_tids AS (
+  SELECT  ARRAY_AGG(geom_tid) geom_tids, geom_id
+  FROM observatory.obs_meta_next
+  GROUP BY geom_id
+) , unique_geom_ids AS (
+  SELECT ARRAY_AGG(geom_id) geom_ids, geom_tids
+  FROM geom_tids
+  GROUP BY geom_tids
+), union_geoms AS (
+  SELECT geom_ids, geom_tids, ST_Union(the_geom) the_geom
+  FROM unique_geom_ids, observatory.obs_table
+  WHERE id = ANY(geom_tids)
+  GROUP BY geom_ids, geom_tids
+) UPDATE {obs_meta}
+SET the_geom = union_geoms.the_geom
+FROM union_geoms
+WHERE {obs_meta}.geom_id = ANY(union_geoms.geom_ids);
+        '''
+        ],
+        'timespan': ['''
+CREATE TABLE {obs_meta} AS
 SELECT numer_timespan::TEXT timespan_id,
        numer_timespan::TEXT timespan_name,
        NULL::TEXT timespan_description,
-       FIRST(timespan_tags)::JSONB timespan_tags,
+       NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
        NULL::NUMERIC timespan_weight,
        NULL::JSONB timespan_extra,
        NULL::TEXT timespan_type,
@@ -1144,10 +1261,38 @@ SELECT numer_timespan::TEXT timespan_id,
        ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
        ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
        ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-       ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       NULL::Geometry(Geometry, 4326) the_geom --, ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta_next
-GROUP BY numer_timespan
+GROUP BY numer_timespan;
+        ''',
         '''
+ALTER TABLE {obs_meta} ADD PRIMARY KEY (timespan_id);
+        ''',
+        '''
+UPDATE {obs_meta} SET
+timespan_tags = obs_meta.timespan_tags
+FROM observatory.obs_meta_next obs_meta
+WHERE obs_meta.numer_timespan = {obs_meta}.timespan_id;
+        ''',
+        '''
+WITH geom_tids AS (
+  SELECT  ARRAY_AGG(geom_tid) geom_tids, numer_timespan
+  FROM observatory.obs_meta_next
+  GROUP BY numer_timespan
+) , unique_geom_ids AS (
+  SELECT ARRAY_AGG(numer_timespan) numer_timespans, geom_tids
+  FROM geom_tids
+  GROUP BY geom_tids
+), union_geoms AS (
+  SELECT numer_timespans, geom_tids, ST_Union(the_geom) the_geom
+  FROM unique_geom_ids, observatory.obs_table
+  WHERE id = ANY(geom_tids)
+  GROUP BY numer_timespans, geom_tids
+) UPDATE {obs_meta}
+SET the_geom = union_geoms.the_geom
+FROM union_geoms
+WHERE {obs_meta}.timespan_id = ANY(union_geoms.numer_timespans);
+        ''']
     }
 
 
@@ -1187,34 +1332,49 @@ class OBSMetaToLocal(OBSMeta):
         try:
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
             session.execute(self.FIRST_AGGREGATE)
-            session.execute(self.QUERY.format(obs_meta='observatory.obs_meta_next'))
-            # confirm that there won't be ambiguity with selection of geom
-            # a common issue we're running into is that a single geom_ref is
-            # pointing to several different types of geometries-- this isn't
-            # necessarily the end of the world, but causes problems if those
-            # geometries have their own unique data (think of the difference
-            # between a geomref pointing to a shoreline clipped & non shoreline
-            # clipped dataset, vs to two totally different geometries each with
-            # legit but different versions of data columns)
-            session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta_next '
-                            '(numer_id, geom_id, numer_timespan, denom_id)')
-            session.execute('CREATE INDEX ON observatory.obs_meta_next USING gist '
-                            '(the_geom)')
-            session.execute('CREATE INDEX ON observatory.obs_meta_next USING gin '
-                            '(numer_tags)')
-            for dimension, query in self.DIMENSIONS.iteritems():
-                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next_{dimension}'.format(
-                    dimension=dimension))
-                session.execute('CREATE TABLE observatory.obs_meta_next_{dimension} '
-                                'AS {select}'.format(
-                                    dimension=dimension,
-                                    select=query
-                                ))
-                session.execute('CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist '
-                                '(the_geom)'.format(dimension=dimension))
+            for i, q in enumerate(self.QUERIES):
+                before = time.time()
+                query = q.format(obs_meta='observatory.obs_meta_next')
+                LOGGER.info(query)
+                session.execute(query)
+                after = time.time()
+                LOGGER.info('time taken: {}'.format(int(after - before)))
+                if i == 1:
+                    session.commit()
             session.commit()
         except:
             session.rollback()
+            raise
+
+        shell("psql -c 'VACUUM ANALYZE observatory.obs_meta_next'")
+
+        try:
+            for dimension, queries in self.DIMENSIONS.iteritems():
+                before = time.time()
+                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next_{dimension}'.format(
+                    dimension=dimension))
+                for q in queries:
+                    before = time.time()
+                    query = q.format(obs_meta='observatory.obs_meta_next_{}'.format(dimension))
+                    LOGGER.info(query)
+                    session.execute(query)
+                    session.flush()
+                    after = time.time()
+                    LOGGER.info('time taken: {}'.format(int(after - before)))
+                #session.execute('CREATE TABLE observatory.obs_meta_next_{dimension} '
+                #                'AS {select}'.format(
+                #                    dimension=dimension,
+                #                    select=query
+                #                ))
+                session.execute('CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist '
+                                '(the_geom)'.format(dimension=dimension))
+                after = time.time()
+                LOGGER.info('time taken: {}'.format(int(after - before)))
+            session.commit()
+        except:
+            session.rollback()
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
+            session.commit()
             raise
 
         try:
@@ -1233,6 +1393,8 @@ class OBSMetaToLocal(OBSMeta):
             self._complete = True
         except:
             session.rollback()
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
+            session.commit()
             raise
 
     def complete(self):
