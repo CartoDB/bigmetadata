@@ -1023,9 +1023,13 @@ class TableToCartoViaImportAPI(Task):
             print resp.json()['state']
             time.sleep(1)
 
-        # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
-        assert resp.json()['table_name'] == self.table # the copy should not have a
-                                                       # mutilated name (like '_1', '_2' etc)
+        # If CARTO still renames our table to _1, just force alter it
+        if resp.json()['table_name'] != self.table:
+            query_cartodb('ALTER TABLE {oldname} RENAME TO {newname}'.format(
+                oldname=resp.json()['table_name'],
+                newname=self.table
+            ))
+            assert resp.status_code == 200
 
         # fix broken column data types -- alter everything that's not character
         # varying back to it
