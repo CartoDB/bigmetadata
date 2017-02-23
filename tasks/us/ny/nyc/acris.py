@@ -1,5 +1,4 @@
 from tasks.socrata import LoadSocrataCSV
-from tasks.us.ny.nyc.bytes import PLUTO
 
 from luigi import Task, Parameter
 
@@ -11,5 +10,5 @@ class Deeds(Task):
         yield LoadSocrataCSV(domain='data.cityofnewyork.us', dataset='8h5j-fqxa') # real legals
         yield LoadSocrataCSV(domain='data.cityofnewyork.us', dataset='bnx9-e6tj') # real master
         yield LoadSocrataCSV(domain='data.cityofnewyork.us', dataset='7isb-wh4c') # control codes
-        yield PLUTO(year=2014)
+        #yield PLUTO(year=2014)
 

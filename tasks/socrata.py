@@ -13,7 +13,7 @@ tasks to download and create metadata
 import json
 import os
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
-from tasks.util import (LoadPostgresFromURL, classpath, pg_cursor)
+from tasks.util import (LoadPostgresFromURL, classpath)
 from psycopg2 import ProgrammingError
 
 
