@@ -200,7 +200,13 @@ etl-unittest:
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  PGDATABASE=test nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
-	    tests/test_columntasks.py tests/test_tabletasks.py'
+	    tests/test_tabletasks.py'
+
+etl-metadatatest:
+	docker-compose run --rm bigmetadata /bin/bash -c \
+	  'while : ; do pg_isready -t 1 && break; done && \
+	  PGDATABASE=test nosetests -v \
+	    tests/test_metadata.py'
 
 travis-etl-unittest:
 	docker run \
@@ -214,7 +220,7 @@ travis-etl-unittest:
 	   recessionporn/bigmetadata /bin/bash -c \
 	   'nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
-	    tests/test_columntasks.py tests/test_tabletasks.py'
+	    tests/test_tabletasks.py tests/test_metadata.py'
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)

@@ -523,12 +523,8 @@ class ColumnTarget(Target):
     '''
     '''
 
-    def __init__(self, schema, name, column, task):
-        self.schema = schema
-        self.name = name
-        self._id = '.'.join([schema, name])
-        column.id = self._id
-        #self._id = column.id
+    def __init__(self, column, task):
+        self._id = column.id
         self._task = task
         self._column = column
 
@@ -864,9 +860,18 @@ class ColumnsTask(Task):
     def output(self):
         #if self.deps() and not all([d.complete() for d in self.deps()]):
         #    raise Exception('Must run prerequisites first')
-        output = OrderedDict({})
         session = current_session()
+
+        # Return columns from database if the task is already finished
+        if hasattr(self, '_colids') and self.complete():
+            return OrderedDict([
+                (colkey, ColumnTarget(session.query(OBSColumn).get(cid), self))
+                for colkey, cid in self.colids.iteritems()
+            ])
+
+        # Otherwise, run `columns` (slow!) to generate output
         already_in_session = [obj for obj in session]
+        output = OrderedDict()
         for col_key, col in self.columns().iteritems():
             if not isinstance(col, OBSColumn):
                 raise RuntimeError(
@@ -874,13 +879,25 @@ class ColumnsTask(Task):
                     '"{col}" is type {type}'.format(col=col_key, type=type(col)))
             if not col.version:
                 col.version = self.version()
-            output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
+            col.id = '.'.join([classpath(self), col.id or col_key])
+            output[col_key] = ColumnTarget(col, self)
         now_in_session = [obj for obj in session]
         for obj in now_in_session:
             if obj not in already_in_session:
                 if obj in session:
                     session.expunge(obj)
         return output
+
+    @property
+    def colids(self):
+        '''
+        Return colids for the output columns, this can be cached
+        '''
+        if not hasattr(self, '_colids'):
+            self._colids = OrderedDict([
+                (colkey, ct._id) for colkey, ct in self.output().iteritems()
+            ])
+        return self._colids
 
     def complete(self):
         '''
@@ -894,17 +911,16 @@ class ColumnsTask(Task):
         else:
             #_complete = super(ColumnsTask, self).complete()
             # bulk check that all columns exist at proper version
-            colids = ["'{}'".format(ct._id) for ct in self.output().values()]
             cnt = current_session().execute(
                 '''
                 SELECT COUNT(*)
                 FROM observatory.obs_column
-                WHERE id IN ({ids}) AND version = '{version}'
+                WHERE id IN ('{ids}') AND version = '{version}'
                 '''.format(
-                    ids=','.join(colids),
+                    ids="', '".join(self.colids.values()),
                     version=self.version()
                 )).fetchone()[0]
-            return cnt == len(colids)
+            return cnt == len(self.colids.values())
 
 
 class TagsTask(Task):
@@ -1922,3 +1938,20 @@ class GenerateAllRasterTiles(WrapperTask):
         ''')
         for table_id, column_id in resp:
             yield GenerateRasterTiles(table_id=table_id, column_id=column_id)
+
+
+class MetaWrapper(WrapperTask):
+    '''
+    End-product wrapper for a set of tasks that should yield entries into the
+    `obs_meta` table.
+    '''
+
+    def tables(self):
+        raise NotImplementedError('''
+          Must override `tables` with a function that yields TableTasks
+                                  ''')
+
+    def requires(self):
+        for t in self.tables():
+            assert isinstance(t, TableTask)
+            yield t

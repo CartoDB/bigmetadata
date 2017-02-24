@@ -6,6 +6,10 @@ import os
 import luigi
 from subprocess import check_output
 
+import importlib
+import inspect
+import os
+
 
 EMPTY_RASTER = '0100000000000000000000F03F000000000000F0BF0000000000000000' \
         '000000000000000000000000000000000000000000000000000000000A000A00'
@@ -59,7 +63,7 @@ def teardown():
     session.commit()
 
 
-def runtask(task, prereqs_only=False, superclasses=None):
+def runtask(task, superclasses=None):
     '''
     Run deps of tasks then the task, faking session management
 
@@ -101,3 +105,22 @@ def session_scope():
     except Exception as e:
         session_rollback(None, e)
         raise
+
+
+def collect_tasks(TaskClass):
+    '''
+    Returns a set of task classes whose parent is the passed `TaskClass`
+    '''
+    tasks = set()
+    for dirpath, _, files in os.walk('tasks'):
+        for filename in files:
+            if filename.endswith('.py'):
+                modulename = '.'.join([
+                    dirpath.replace(os.path.sep, '.'),
+                    filename.replace('.py', '')
+                ])
+                module = importlib.import_module(modulename)
+                for _, obj in inspect.getmembers(module):
+                    if inspect.isclass(obj) and issubclass(obj, TaskClass) and obj != TaskClass:
+                        tasks.add((obj, ))
+    return tasks
