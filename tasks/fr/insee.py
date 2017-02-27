@@ -367,3 +367,15 @@ class AllGeomsThemesTables(WrapperTask):
         topics = ['population', 'housing', 'education', 'household', 'employment']
         for table_theme in topics:
             yield FranceCensus(table_theme=table_theme)
+
+class InseeMetaWrapper(MetaWrapper):
+
+    topic = Parameter()
+
+    params = {
+        'topic': ['population', 'housing', 'education', 'household', 'employment']
+    }
+
+    def tables(self):
+        yield OutputAreas()
+        yield FranceCensus(table_theme=self.topic)
