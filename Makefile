@@ -220,7 +220,8 @@ travis-etl-unittest:
 	   recessionporn/bigmetadata /bin/bash -c \
 	   'nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
-	    tests/test_tabletasks.py tests/test_metadata.py'
+	    tests/test_tabletasks.py && \
+	    nosetests -v tests/test_metadata.py'
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
