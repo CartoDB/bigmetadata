@@ -1,6 +1,7 @@
 from tests.util import runtask, setup, teardown, collect_tasks
 
 from tasks.util import TableTask
+
 # Monkeypatch TableTask
 TableTask._test = True
 
@@ -10,25 +11,6 @@ from tasks.util import MetaWrapper, TagsTask, ColumnsTask
 
 from nose_parameterized import parameterized
 from nose.tools import assert_greater, with_setup
-
-
-# {
-#   'geo': ['state', 'zcta', 'tract'],
-#   'table': ['B01', 'B02', 'B03', 'B04']
-# }
-
-# [{'geo': 'state', 'table': 'B01'},
-#  {'geo': 'zcta',  'table': 'B01'},
-#  {'geo': 'tract', 'table': 'B01'},
-#  {'geo': 'state', 'table': 'B02'},
-#  {'geo': 'zcta',  'table': 'B02'},
-#  {'geo': 'tract', 'table': 'B02'},
-#  {'geo': 'state', 'table': 'B03'},
-#  {'geo': 'zcta',  'table': 'B03'},
-#  {'geo': 'tract', 'table': 'B03'},
-#  {'geo': 'state', 'table': 'B04'},
-#  {'geo': 'zcta',  'table': 'B04'},
-#  {'geo': 'tract', 'table': 'B04'}]
 
 
 def cross(orig_list, b_name, b_list):

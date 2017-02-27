@@ -112,8 +112,11 @@ def collect_tasks(TaskClass):
     Returns a set of task classes whose parent is the passed `TaskClass`
     '''
     tasks = set()
+    test_module = os.environ.get('TEST_MODULE', '').replace('.', os.path.sep)
     for dirpath, _, files in os.walk('tasks'):
         for filename in files:
+            if not os.path.join(dirpath, filename).startswith(test_module):
+                continue
             if filename.endswith('.py'):
                 modulename = '.'.join([
                     dirpath.replace(os.path.sep, '.'),
