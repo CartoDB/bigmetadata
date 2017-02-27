@@ -1946,8 +1946,7 @@ class MetaWrapper(WrapperTask):
     `obs_meta` table.
     '''
 
-    def params(self):
-        return {}
+    params = {}
 
     def tables(self):
         raise NotImplementedError('''
