@@ -2,7 +2,7 @@
 
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath)
+                        underscore_slugify, shell, classpath, MetaWrapper)
 from tasks.meta import current_session, DENOMINATOR, GEOM_REF, UNIVERSE
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
