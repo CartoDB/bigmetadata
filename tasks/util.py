@@ -1946,6 +1946,9 @@ class MetaWrapper(WrapperTask):
     `obs_meta` table.
     '''
 
+    def params(self):
+        return {}
+
     def tables(self):
         raise NotImplementedError('''
           Must override `tables` with a function that yields TableTasks

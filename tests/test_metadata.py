@@ -12,8 +12,18 @@ from nose_parameterized import parameterized
 from nose.tools import assert_greater, with_setup
 
 
-@parameterized(collect_tasks(MetaWrapper))
+def collect_meta_wrappers():
+    tasks = collect_tasks()
+    for t in tasks:
+        params = []
+        keys, vals = t.items()
+        #for key, vals in t.iteritems():
+            #params
+        #yield t, 
+
+
 @with_setup(setup, teardown)
+@parameterized(collect_tasks(MetaWrapper))
 def test_table_task(klass):
 
     task = klass()

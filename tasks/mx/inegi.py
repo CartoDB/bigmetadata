@@ -323,8 +323,16 @@ class AllCensus(WrapperTask):
                 yield Census(resolution=resolution, table=table)
 
 
-#class CensusWrapper(MetaWrapper):
-#
-#    def tables(self):
-#        #yield Geography(resolution='entidad')
-#        yield Census(resolution='ageb', table='pob')
+class CensusWrapper(MetaWrapper):
+
+    resolution = Parameter()
+    table = Parameter()
+
+    params = {
+        'resolution': RESOLUTIONS,
+        'table': DEMOGRAPHIC_TABLES.keys()
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield Census(resolution=self.resolution, table=self.table)
