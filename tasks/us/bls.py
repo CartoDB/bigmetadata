@@ -1,12 +1,12 @@
 from tasks.util import (TempTableTask, TableTask, ColumnsTask,
                         DownloadUnzipTask, TagsTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath)
+                        underscore_slugify, shell, classpath, MetaWrapper)
 from tasks.meta import current_session, DENOMINATOR
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector,
                             get_parent_code)
 from tasks.meta import OBSTable, OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns
+from tasks.us.census.tiger import GeoidColumns, SumLevel
 
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask
@@ -264,3 +264,19 @@ class AllQCEW(WrapperTask):
         for year in xrange(2012, 2016):
             for qtr in xrange(1, 5):
                 yield QCEW(year=year, qtr=qtr)
+
+class QCEWMetaWrapper(MetaWrapper):
+
+    year = IntParameter()
+    qtr = IntParameter()
+    geography = Parameter()
+
+    params = {
+        'year': range(2012,2016),
+        'qtr': range(1,5),
+        'geography': ['county']
+    }
+
+    def tables(self):
+        yield QCEW(year=self.year, qtr=self.qtr)
+        yield SumLevel(year=str(self.year), geography=self.geography)

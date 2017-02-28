@@ -8,7 +8,7 @@ tasks to download and create metadata
 
 from tasks.tags import SubsectionTags, SectionTags
 from tasks.meta import (GEOM_REF, current_session, GEOM_NAME, OBSColumn)
-from tasks.util import ColumnsTask, TableTask, Carto2TempTableTask
+from tasks.util import ColumnsTask, TableTask, Carto2TempTableTask, MetaWrapper
 
 from collections import OrderedDict
 

@@ -19,7 +19,7 @@ from psycopg2 import ProgrammingError
 
 from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
-                        ColumnTarget, ColumnsTask, TagsTask)
+                        ColumnTarget, ColumnsTask, TagsTask, MetaWrapper)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
 from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
                                    SUMLEVELS_BY_SLUG)
@@ -3226,3 +3226,22 @@ class ExtractAll(WrapperTask):
             geographies.remove('zcta5')
         for geo in geographies:
             yield Quantiles(geography=geo, year=self.year, sample=self.sample)
+
+class ACSMetaWrapper(MetaWrapper):
+
+    geography = Parameter()
+    year = Parameter()
+    sample = Parameter()
+
+    params = {
+        'geography':['state', 'county', 'census_tract', 'block_group',
+                           'puma', 'zcta5', 'school_district_elementary',
+                           'congressional_district',
+                           'school_district_secondary',
+                           'school_district_unified', 'cbsa', 'place'],
+        'year': ['2015','2014','2010'],
+        'sample': ['5','1']
+    }
+
+    def tables(self):
+        yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
