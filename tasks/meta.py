@@ -178,8 +178,11 @@ class Point(UserDefinedType):
         return func.ST_AsText(col, type_=self)
 
 
-metadata = MetaData(bind=get_engine(), schema='observatory')
-Base = declarative_base(metadata=metadata)
+if os.environ.get('READTHEDOCS') == 'True':
+    Base = declarative_base()
+else:
+    metadata = MetaData(bind=get_engine(), schema='observatory')
+    Base = declarative_base(metadata=metadata)
 
 
 # A connection between a table and a column
@@ -820,20 +823,21 @@ UNIVERSE = 'universe'
 GEOM_REF = 'geom_ref'
 GEOM_NAME = 'geom_name'
 
-_engine = get_engine()
-_engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
-_engine.execute('''
-    CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
-    RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
-            SELECT $1;
-    $$;
+if not os.environ.get('READTHEDOCS') == 'True':
+    _engine = get_engine()
+    _engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
+    _engine.execute('''
+        CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
+        RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
+                SELECT $1;
+        $$;
 
-    -- And then wrap an aggregate around it
-    DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
-    CREATE AGGREGATE public.FIRST (
-            sfunc    = public.first_agg,
-            basetype = anyelement,
-            stype    = anyelement
-    );
-''')
-Base.metadata.create_all()
+        -- And then wrap an aggregate around it
+        DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
+        CREATE AGGREGATE public.FIRST (
+                sfunc    = public.first_agg,
+                basetype = anyelement,
+                stype    = anyelement
+        );
+    ''')
+    Base.metadata.create_all()
