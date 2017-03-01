@@ -432,7 +432,7 @@ following structure:
                'meta': MyGeoColumnsTask(),
                'data': RawGeometry()
            }
-           
+
        def columns(self):
            return self.input()['meta']
 
@@ -449,10 +449,33 @@ catalog.
 
      make catalog
 
+You can view the generated Catalog in a browser window by going to the IP and
+port address for the nginx process. The current processes are shown with
+``docker-compose ps`` or ``make ps``.
+
 1. Are there any nasty typos or missing data?
+
+   * Variable names should be unique, human-readable, and concise. If the
+     variable needs more in-depth definition, this should go in the
+     "description" of the variable.
+
 2. Does the nesting look right?  Are there columns not nested?
+
+   * Variables that are denominators should also have subcolumns of direct
+     nested variables.
+
+   * There may be repetitive nesting if a variable is nested under two
+     denominators, which is fine.
+
 3. Are sources and licenses populated for all measures?
+
+   * A source and license :ref:`tasks.util.OBSTag` must be written for new
+     sources and licenses
+
 4. Is a table with a boundary/timespan matrix appearing beneath each measure?
+
+   * If not, hardcode the sample latitude and longitude in :ref:`tasks.meta.catalog_lonlat`.
+
 
 Upload to a test CARTO server
 --------------
