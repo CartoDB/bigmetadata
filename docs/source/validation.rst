@@ -480,5 +480,16 @@ port address for the nginx process. The current processes are shown with
 Upload to a test CARTO server
 --------------
 
-``TODO``
+If you set a ``CARTODB_API_KEY`` and ``CARTODB_URL`` in your ``.env`` file, in
+the format:
 
+.. code:: shell
+
+    CARTODB_API_KEY=your_api_key
+    CARTODB_URL=https://username.carto.com
+
+You will now be able to upload your data and metadata to CARTO for previewing.
+
+.. code:: shell
+
+    make sync
