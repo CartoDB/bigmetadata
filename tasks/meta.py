@@ -179,6 +179,7 @@ class Point(UserDefinedType):
 
 
 if os.environ.get('READTHEDOCS') == 'True':
+    metadata = None
     Base = declarative_base()
 else:
     metadata = MetaData(bind=get_engine(), schema='observatory')
