@@ -599,25 +599,25 @@ class EURegionalTables(WrapperTask):
                                       nuts_level=nuts,
                                       unit=units)
 
-class EUMetaWrapper(MetaWrapper):
-
-    table_name = Parameter()
-    subsection = Parameter()
-    nuts_level = Parameter()
-    unit = Parameter()
-    year = Parameter()
-
-    params = {
-        'table_name': ,
-        'subsection': ,
-        'nuts_level': ,
-        'unit': ,
-        'year': ,
-    }
-
-    def tables(self):
-        yield TableEU(table_name=self.table_name,
-                      subsection=self.subsection,
-                      nuts_level=self.nuts_level,
-                      unit=self.unit,
-                      year=self.year)
+# class EUMetaWrapper(MetaWrapper):
+#
+#     table_name = Parameter()
+#     subsection = Parameter()
+#     nuts_level = Parameter()
+#     unit = Parameter()
+#     year = Parameter()
+#
+#     params = {
+#         'table_name': ,
+#         'subsection': ,
+#         'nuts_level': ,
+#         'unit': ,
+#         'year': ,
+#     }
+#
+#     def tables(self):
+#         yield TableEU(table_name=self.table_name,
+#                       subsection=self.subsection,
+#                       nuts_level=self.nuts_level,
+#                       unit=self.unit,
+#                       year=self.year)
