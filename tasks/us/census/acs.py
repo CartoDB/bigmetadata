@@ -82,7 +82,7 @@ class Columns(ColumnsTask):
             name='Housing units without rent as percentage of income computed',
             description='Gross rent from over 50 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -90,14 +90,14 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],subsections['income'],unit_housing)   
+            tags=[subsections['housing'],subsections['income'],unit_housing])
         rent_over_50_percent = OBSColumn(
             id='B25070010',
             type='Numeric',
             name='Housing units spending over 50 percent income on rent',
             description='Gross rent over 50 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -105,14 +105,14 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],subsections['income'],unit_housing)
+            tags=[subsections['housing'],subsections['income'],unit_housing])
         rent_40_to_50_percent = OBSColumn(
             id='B25070009',
             type='Numeric',
             name='40.0 To 49.9 Percent',
             description='Gross rent from 40.0 to 49.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -120,14 +120,14 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],subsections['income'],unit_housing)
+            tags=[subsections['housing'],subsections['income'],unit_housing])
         rent_35_to_40_percent = OBSColumn(
             id='B25070008',
             type='Numeric',
             name='35.0 To 39.9 Percent',
             description='Gross rent from 35.0 to 39.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -135,14 +135,14 @@ class Columns(ColumnsTask):
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],subsections['income'],unit_housing)
+            tags=[subsections['housing'],subsections['income'],unit_housing])
         rent_30_to_35_percent = OBSColumn(
             id='B25070007',
             type='Numeric',
             name='30.0 To 34.9 Percent',
             description='Gross rent from 30.0 to 34.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -157,7 +157,7 @@ class Columns(ColumnsTask):
             name='25.0 To 29.9 Percent',
             description='Gross rent from 25.0 to 29.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -172,7 +172,7 @@ class Columns(ColumnsTask):
             name='20.0 To 24.9 Percent',
             description='Gross rent from 20.0 to 24.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -187,7 +187,7 @@ class Columns(ColumnsTask):
             name='15.0 To 19.9 Percent',
             description='Gross rent from 15.0 to 19.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -202,7 +202,7 @@ class Columns(ColumnsTask):
     		name='10.0 To 14.9 Percent',
     		description='Gross rent from 10.0 to 14.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
@@ -217,7 +217,7 @@ class Columns(ColumnsTask):
             name='Less Than 10.0 Percent',
             description='Gross rent less than 10 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). ' 
+            '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". /n/n'
