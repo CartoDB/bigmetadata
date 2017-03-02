@@ -115,6 +115,27 @@ def hometype_measures():
             yield hometype, hometype_human, measure, measure_human, measure_unit
 
 
+class SourceTags(TagsTask):
+
+    def tags(self):
+        return [OBSTag(id='zillow-source',
+                       name='Zillow Data',
+                       type='source',
+                       description='Zillow makes available data free for reuse `here <http://www.zillow.com/research/data/>`_.', )]
+
+
+class LicenseTags(TagsTask):
+
+    def version(self):
+        return 2
+
+    def tags(self):
+        return [OBSTag(id='zillow-license',
+                       name='Zillow Terms of Use for "Aggregate Data"',
+                       type='license',
+                       description='May be used for non-personal uses, e.g., real estate market analysis. More information `here <http://www.zillow.com/corp/Terms.htm>`_', )]
+
+
 class ZillowTags(TagsTask):
 
     def version(self):
@@ -166,10 +187,12 @@ class ZillowValueColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
         input_ = self.input()
@@ -177,6 +200,8 @@ class ZillowValueColumns(ColumnsTask):
         united_states = input_['sections']['united_states']
         housing = input_['subsections']['housing']
         units = input_['units']
+        source = input_['source']['zillow-source']
+        license = input_['license']['zillow-license']
 
         columns = OrderedDict()
 
@@ -194,29 +219,10 @@ class ZillowValueColumns(ColumnsTask):
                                 measure_description=MEASURES_DESCRIPTION[measure],
                                 hometype_description=HOMETYPES_DESCRIPTION[hometype],
                                 ),
-                            tags=[tag, united_states, housing, units[measure_unit]])
+                            tags=[tag, united_states, housing, units[measure_unit], license, source])
             columns[col_id] = col
         return columns
 
-
-class ZillowTimeValueColumns(ColumnsTask):
-
-    def columns(self):
-        columns = OrderedDict()
-
-        # TODO generate value columns
-        for year in xrange(1996, 2017):
-            for month in xrange(1, 13):
-                yr_str = str(year).zfill(2)
-                mo_str = str(month).zfill(2)
-
-                columns['{yr}_{mo}'.format(
-                    yr=yr_str, mo=mo_str)] = OBSColumn(
-                        type='Numeric',
-                        name='',
-                        description='',
-                        weight=0)
-        return columns
 
 class ZillowGeoColumns(ColumnsTask):
 
@@ -266,7 +272,8 @@ class WideZillow(CSV2TempTableTask):
     geography = Parameter() # example: Zip
     hometype = Parameter() # example: SingleFamilyResidence
     measure = Parameter()
-    force = BooleanParameter(default=True, significant=False)
+    last_year = IntParameter()
+    last_month = IntParameter()
 
     def requires(self):
         return DownloadZillow(geography=self.geography, hometype=self.hometype,
@@ -283,7 +290,7 @@ class Zillow(TableTask):
     geography = Parameter() # example: Zip
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         requirements = {
@@ -294,7 +301,8 @@ class Zillow(TableTask):
             table_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                      measure=measure)
             requirements[table_id] = WideZillow(
-                geography=self.geography, hometype=hometype, measure=measure)
+                geography=self.geography, hometype=hometype, measure=measure,
+                last_month=datetime.now().month, last_year=datetime.now().year)
 
         return requirements
 
@@ -322,39 +330,36 @@ class Zillow(TableTask):
         session = current_session()
 
         insert = True
+        input_ = self.input()
+        output = self.output()
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
+            output=output.table))
+        session.flush()
         for hometype, _, measure, _, _ in hometype_measures():
             col_id = hometype + '_' + measure
-            input_table = self.input()[col_id].table
-            if insert:
-                stmt = 'INSERT INTO {output} (region_name, {col_id}) ' \
-                        'SELECT "RegionName", "{year}-{month}"::NUMERIC ' \
-                        'FROM {input_table} '
-            else:
-                stmt = 'UPDATE {output} ' \
-                        'SET {col_id} = "{year}-{month}"::NUMERIC ' \
-                        'FROM {input_table} WHERE ' \
-                        '{input_table}."RegionName" = {output}.region_name '
+            input_table = input_[col_id].table
+            stmt = '''INSERT INTO {output} (region_name, {col_id})
+                      SELECT "RegionName", "{year}-{month}"::NUMERIC
+                      FROM {input_table}
+                      ON CONFLICT (region_name)
+                         DO UPDATE SET {col_id} = EXCLUDED.{col_id}'''
             session.execute(stmt.format(
-                output=self.output().table,
+                output=output.table,
                 year=str(self.year).zfill(2),
                 month=str(self.month).zfill(2),
                 col_id=col_id,
                 input_table=input_table))
             if insert:
-                session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
-                    output=self.output().table))
-            insert = False
+                insert = False
 
 
 class AllZillow(WrapperTask):
 
     def requires(self):
+        now = datetime.now()
         for geography in ('Zip', ):
-            for year in xrange(2010, 2030):
+            for year in xrange(2010, now.year + 1):
                 for month in xrange(1, 13):
-                    now = datetime.now()
-                    if now.year < year:
-                        continue
-                    elif now.year == year and now.month <= month:
+                    if now.year == year and now.month <= month:
                         continue
                     yield Zillow(geography=geography, year=year, month=month)

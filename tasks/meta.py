@@ -11,7 +11,7 @@ import weakref
 import luigi
 from luigi import Task, BooleanParameter, Target, Event
 
-from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric,
+from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric, cast,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
                         ForeignKeyConstraint, Table, exc, func, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import JSON
@@ -20,6 +20,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, composite, backref
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm.collections import attribute_mapped_collection
+from sqlalchemy.schema import ForeignKeyConstraint
+from sqlalchemy.sql import expression
 from sqlalchemy.types import UserDefinedType
 
 
@@ -28,23 +30,27 @@ def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
             for text in re.split(_nsre, s)]
 
 
-_engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
-    user=os.environ.get('PGUSER', 'postgres'),
-    password=os.environ.get('PGPASSWORD', ''),
-    host=os.environ.get('PGHOST', 'localhost'),
-    port=os.environ.get('PGPORT', '5432'),
-    db=os.environ.get('PGDATABASE', 'postgres')
-))
+def get_engine(user=None, password=None, host=None, port=None,
+               db=None, readonly=False):
 
+    engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
+        user=user or os.environ.get('PGUSER', 'postgres'),
+        password=password or os.environ.get('PGPASSWORD', ''),
+        host=host or os.environ.get('PGHOST', 'localhost'),
+        port=port or os.environ.get('PGPORT', '5432'),
+        db=db or os.environ.get('PGDATABASE', 'postgres')
+    ))
 
+    @event.listens_for(engine, 'begin')
+    def receive_begin(conn):
+        if readonly:
+            conn.execute('SET TRANSACTION READ ONLY')
 
-def get_engine():
-
-    @event.listens_for(_engine, "connect")
+    @event.listens_for(engine, "connect")
     def connect(dbapi_connection, connection_record):
         connection_record.info['pid'] = os.getpid()
 
-    @event.listens_for(_engine, "checkout")
+    @event.listens_for(engine, "checkout")
     def checkout(dbapi_connection, connection_record, connection_proxy):
         pid = os.getpid()
         if connection_record.info['pid'] != pid:
@@ -54,22 +60,130 @@ def get_engine():
                 "attempting to check out in pid %s" %
                 (connection_record.info['pid'], pid)
             )
-    return _engine
+
+    return engine
 
 
-metadata = MetaData(bind=get_engine(), schema='observatory')
-Base = declarative_base(metadata=metadata)
+def catalog_lonlat(column_id):
+    # TODO we should do this from metadata instead of hardcoding
+    if column_id == 'whosonfirst.wof_disputed_geom':
+        return (76.57, 33.78)
+    elif column_id == 'whosonfirst.wof_marinearea_geom':
+        return (-68.47, 43.33)
+    elif column_id in ('us.census.tiger.school_district_elementary',
+                       'us.census.tiger.school_district_secondary',
+                       'us.census.tiger.school_district_elementary_clipped',
+                       'us.census.tiger.school_district_secondary_clipped'):
+        return (40.7025, -73.7067)
+    elif column_id.startswith('uk'):
+        if 'WA' in column_id:
+            return (51.46844551219723, -3.184833526611328)
+        else:
+            return (51.51461834694225, -0.08883476257324219)
+    elif column_id.startswith('es'):
+        return (42.8226119029222, -2.51141249535454)
+    elif column_id.startswith('us.zillow'):
+        return (28.3305906291771, -81.3544048197256)
+    elif column_id.startswith('mx.'):
+        return (19.41347699386547, -99.17019367218018)
+    elif column_id.startswith('th.'):
+        return (13.725377712079784, 100.49263000488281)
+    # cols for French Guyana only
+    elif column_id in ('fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
+                       , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
+                       , 'fr.insee.P12_RP_MIDUR', 'fr.insee.P12_RP_CLIM'
+                       , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
+                       , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
+                       , 'fr.insee.P12_ACTOCC15P_ILT45D'
+                       , 'fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
+                       , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
+                       , 'fr.insee.P12_RP_MIDUR', 'fr.insee.P12_RP_CLIM'
+                       , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
+                       , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
+                       , 'fr.insee.P12_ACTOCC15P_ILT45D'):
+        return (4.938408371206558, -52.32908248901367)
+    elif column_id.startswith('fr.'):
+        return (48.860875144709475, 2.3613739013671875)
+    elif column_id.startswith('ca.'):
+        return (43.65594991256823, -79.37965393066406)
+    elif column_id.startswith('us.census.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.dma.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.ihme.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.bls.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.qcew.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('whosonfirst.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('eu.'):
+        return (52.52207036136366, 13.40606689453125)
+    elif column_id.startswith('us.epa.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('br.'):
+        return (-43.19, -22.9)
+    elif column_id.startswith('au.'):
+        return (-33.8806, 151.2131)
+    else:
+        raise Exception('No catalog point set for {}'.format(column_id))
+
+
+class Raster(UserDefinedType):
+
+    def get_col_spec(self):
+        return "Raster"
+
+    def bind_expression(self, bindvalue):
+        return cast(bindvalue, Raster)
+
+    def column_expression(self, col):
+        return cast(col, Raster)
 
 
 class Geometry(UserDefinedType):
+
     def get_col_spec(self):
-        return "GEOMETRY"
+        return "GEOMETRY (GEOMETRY, 4326)"
 
     def bind_expression(self, bindvalue):
-        return func.ST_GeomFromText(bindvalue, type_=self)
+        return func.ST_GeomFromText(bindvalue, 4326, type_=self)
 
     def column_expression(self, col):
         return func.ST_AsText(col, type_=self)
+
+
+class Linestring(UserDefinedType):
+
+    def get_col_spec(self):
+        return "GEOMETRY (LINESTRING, 4326)"
+
+    def bind_expression(self, bindvalue):
+        return func.ST_GeomFromText(bindvalue, 4326, type_=self)
+
+    def column_expression(self, col):
+        return func.ST_AsText(col, type_=self)
+
+
+class Point(UserDefinedType):
+
+    def get_col_spec(self):
+        return "GEOMETRY (POINT, 4326)"
+
+    def bind_expression(self, bindvalue):
+        return func.ST_GeomFromText(bindvalue, 4326, type_=self)
+
+    def column_expression(self, col):
+        return func.ST_AsText(col, type_=self)
+
+
+if os.environ.get('READTHEDOCS') == 'True':
+    metadata = None
+    Base = declarative_base()
+else:
+    metadata = MetaData(bind=get_engine(), schema='observatory')
+    Base = declarative_base(metadata=metadata)
 
 
 # A connection between a table and a column
@@ -120,6 +234,9 @@ class OBSColumnTable(Base):
 
     column = relationship("OBSColumn", back_populates="tables")
     table = relationship("OBSTable", back_populates="columns")
+
+    #tiles = relationship("OBSColumnTableTile", back_populates='column_table',
+    #                     cascade='all,delete')
 
     extra = Column(JSON)
 
@@ -284,7 +401,7 @@ class OBSColumn(Base):
     description = Column(Text) # human-readable description to provide in
                                  # bigmetadata
 
-    weight = Column(Numeric, default=0)
+    weight = Column(Numeric, default=1)
     aggregate = Column(Text) # what aggregate operation to use when adding
                                # these together across geoms: AVG, SUM etc.
 
@@ -321,6 +438,12 @@ class OBSColumn(Base):
         children = [col for col, reltype in self.sources.iteritems() if reltype == 'denominator']
         children.sort(key=lambda x: natural_sort_key(x.name))
         return children
+
+    def is_geomref(self):
+        '''
+        Returns True if the column is a geomref, else Null
+        '''
+        return GEOM_REF in self.targets.values()
 
     def has_children(self):
         '''
@@ -362,6 +485,40 @@ class OBSColumn(Base):
         areas.
         '''
         return self.aggregate == 'sum'
+
+    def catalog_lonlat(self):
+        '''
+        Return tuple (longitude, latitude) for the catalog for this measurement.
+        '''
+        return catalog_lonlat(self.id)
+
+    def geom_timespans(self):
+        '''
+        Return a dict of geom columns and timespans that this measure is
+        available for.
+        '''
+        geom_timespans = {}
+        for table in self.tables:
+            table = table.table
+            geomref_column = table.geomref_column()
+            geom_column = [t for t, rt in geomref_column.targets.iteritems()
+                           if rt == GEOM_REF][0]
+            if geom_column not in geom_timespans:
+                geom_timespans[geom_column] = []
+            geom_timespans[geom_column].append(table.timespan)
+        return geom_timespans
+
+    def source_tags(self):
+        '''
+        Return source tags.
+        '''
+        return [tag for tag in self.tags if tag.type.lower() == 'source']
+
+    def license_tags(self):
+        '''
+        Return license tags.
+        '''
+        return [tag for tag in self.tags if tag.type.lower() == 'license']
 
 
 class OBSTable(Base):
@@ -420,6 +577,27 @@ class OBSTable(Base):
     description = Column(Text)
 
     version = Column(Numeric, default=0, nullable=False)
+
+    def geom_column(self):
+        '''
+        Return the column geometry column for this table, if it has one.
+
+        Returns None if there is none.
+        '''
+        for col in self.columns:
+            if lower(col.type) == 'geometry':
+                return col
+
+    def geomref_column(self):
+        '''
+        Return the geomref column for this table, if it has one.
+
+        Returns None if there is none.
+        '''
+        for col in self.columns:
+            col = col.column
+            if col.is_geomref():
+                return col
 
 
 class OBSTag(Base):
@@ -527,6 +705,27 @@ class OBSDumpVersion(Base):
     dump_id = Column(Text, primary_key=True)
 
 
+class OBSColumnTableTile(Base):
+    '''
+    This table contains column/table summary data using raster tiles.
+    '''
+    __tablename__ = 'obs_column_table_tile'
+
+    table_id = Column(Text, primary_key=True)
+    column_id = Column(Text, primary_key=True)
+    tile_id = Column(Integer, primary_key=True)
+
+    tile = Column(Raster)
+
+    #column_table = relationship('OBSColumnTable', back_populates="tiles")
+
+    constraint = ForeignKeyConstraint(
+        ('table_id', 'column_id', ),
+        ('obs_column_table.table_id', 'obs_column_table.column_id', ),
+        ondelete='cascade'
+    )
+
+
 class CurrentSession(object):
 
     def __init__(self):
@@ -621,8 +820,25 @@ def fromkeys(d, l):
     return dict((k, v) for k, v in d.iteritems() if v is not None)
 
 DENOMINATOR = 'denominator'
+UNIVERSE = 'universe'
 GEOM_REF = 'geom_ref'
 GEOM_NAME = 'geom_name'
 
-_engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
-Base.metadata.create_all()
+if not os.environ.get('READTHEDOCS') == 'True':
+    _engine = get_engine()
+    _engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
+    _engine.execute('''
+        CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
+        RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
+                SELECT $1;
+        $$;
+
+        -- And then wrap an aggregate around it
+        DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
+        CREATE AGGREGATE public.FIRST (
+                sfunc    = public.first_agg,
+                basetype = anyelement,
+                stype    = anyelement
+        );
+    ''')
+    Base.metadata.create_all()

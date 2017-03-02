@@ -1,9 +1,11 @@
 from luigi import Task, Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
-                        ColumnsTask, TableTask)
+                        ColumnsTask, TableTask, MetaWrapper)
 from tasks.meta import GEOM_REF, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
+from tasks.tags import SectionTags, SubsectionTags
+from tasks.mx.inegi_columns import SourceTags, LicenseTags
 
 from collections import OrderedDict
 
@@ -170,16 +172,30 @@ class GeographyColumns(ColumnsTask):
         'servicios_area': 3,
     }
 
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags()
+        }
+
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        license = input_['license']['inegi-license']
+        source = input_['source']['inegi-source']
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
             name=RESNAMES[self.resolution],
             description=RESDESCS[self.resolution],
             weight=self.weights[self.resolution],
+            tags=[sections['mx'], subsections['boundary'], license, source]
         )
         geom_ref = OBSColumn(
             id=self.resolution + '_cvegeo',
@@ -305,3 +321,18 @@ class AllCensus(WrapperTask):
                 continue
             for table in DEMOGRAPHIC_TABLES.keys():
                 yield Census(resolution=resolution, table=table)
+
+
+class CensusWrapper(MetaWrapper):
+
+    resolution = Parameter()
+    table = Parameter()
+
+    params = {
+        'resolution': RESOLUTIONS,
+        'table': DEMOGRAPHIC_TABLES.keys()
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield Census(resolution=self.resolution, table=self.table)

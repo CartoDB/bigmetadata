@@ -1,0 +1,887 @@
+TOTAL	Total - all NACE activities
+A-O_X_L	All NACE activities (except public administration; activities of households and extra-territorial organizations)
+A_D-K	Agriculture; manufacturing; electricity, gas and water supply; construction; wholesale and retail trade; hotels and restaurants; transport; financial intermediation; real estate
+A_D-H_J_K	Agriculture; manufacturing; electricity, gas and water supply; construction; wholesale and retail trade; hotels and restaurants; financial intermediation; real estate
+A-C	Agriculture; fishing; mining and quarrying
+A_B	Agriculture; fishing
+A	Agriculture, hunting and forestry
+A01	Agriculture, hunting and related service activities
+A011	Growing of crops; market gardening; horticulture
+A0111	Growing of cereals and other crops n.e.c.
+A0112	Growing of vegetables, horticultural specialities and nursery products
+A0113	Growing of fruit, nuts, beverage and spice crops
+A012	Farming of animals
+A0121	Farming of cattle, dairy farming
+A0122	Farming of sheep, goats, horses, asses, mules and hinnies
+A0123	Farming of swine
+A0124	Farming of poultry
+A0125	Other farming of animals
+A013	Growing of crops combined with farming of animals (mixed farming)
+A014	Agricultural and animal husbandry service activities, except veterinary activities; landscape gardening
+A0141	Agricultural service activities; landscape gardening
+A0142	Animal husbandry service activities, except veterinary activities
+A015	Hunting, trapping and game propagation including related service activities
+A02	Forestry, logging and related service activities
+A020	Forestry, logging and related service activities
+A0201	Forestry and logging
+A0202	Forestry and logging related service activities
+B	Fishing
+B05	Fishing, fish farming and related service activities
+B050	Fishing, fish farming and related service activities
+B0501	Fishing
+B0502	Fish farming
+TOT_INN	All core NACE activities related to innovation activities (C, D, E, I, J, G51, K72, K74.2, K74.3)
+EP_C-F	Industry (except recycling) (CA10 to DN36 and E)
+C-O	All NACE activities (except agriculture; fishing; activities of households and extra-territorial organizations)
+C-O_X_L	All NACE activities (except agriculture; fishing; public administration; activities of households and extra-territorial organizations)
+C-K_O	All NACE activities covered by CVTS (Continuing Vocational Training)
+C-K	Industry and services (except public administration and community services; activities of households and extra-territorial organizations)
+C-K_X_K7415	Industry and services (except management activities of holding companies; public administration and community services; activities of households and extra-territorial organizations)
+C-K_X_J	Business economy - Industry and services (except financial intermediation)
+C_E-I_K	Services related to 'International Sourcing Statistics'' (C, E, F, G, H, I, K)
+C_E_F_H_I	Mining and quarrying; electricity, gas and water supply; construction; hotels and restaurants; transport and communication
+C-F	Industry
+C-E	Industry (except construction)
+C_E_F	Industry (except manufacturing)
+C_E	Mining and quarrying; electricity, gas and water supply
+C	Mining and quarrying
+CA	Mining and quarrying of energy producing materials
+CA10	Mining of coal and lignite; extraction of peat
+CA101	Mining and agglomeration of hard coal
+CA102	Mining and agglomeration of lignite
+CA103	Extraction and agglomeration of peat
+CA11	Extraction of crude petroleum and natural gas; service activities incidental to oil and gas extraction, excluding surveying
+CA111	Extraction of crude petroleum and natural gas
+CA112	Service activities incidental to oil and gas extraction, excluding surveying
+CA12_CB	Mining of uranium and thorium ores; mining of metal ores and other mining and quarrying
+CA12	Mining of uranium and thorium ores
+CA120	Mining of uranium and thorium ores
+CB	Mining and quarrying except of energy producing materials
+CB13	Mining of metal ores
+CB131	Mining of iron ores
+CB132	Mining of non-ferrous metal ores, except uranium and thorium ores
+CB14	Other mining and quarrying
+CB141	Quarrying of stone
+CB1411	Quarrying of ornamental and building stone
+CB1412	Quarrying of limestone, gypsum and chalk
+CB1413	Quarrying of slate
+CB142	Quarrying of sand and clay
+CB1421	Operation of gravel and sand pits
+CB1422	Mining of clays and kaolin
+CB143	Mining of chemical and fertilizer minerals
+CB144	Production of salt
+CB145	Other mining and quarrying n.e.c.
+D-O_DS	Total of activities related to 'Demand for Services' (D to O)
+KIA	Total knowledge-intensive activities
+KIABI	Knowledge-intensive activities - business industries
+HTC	High-technology sectors (high-technology manufacturing and knowledge-intensive high-technology services)
+D	Manufacturing
+D_HTC_MH	High and medium high-technology manufacturing (DG, DK, DL, DM34, DM35.2, DM35.3, DM35.4, DM35.5)
+DG_DK-DM	High and medium high-technology manufacturing, including DM35.1
+D_HTC	High-technology manufacturing (DG24.4, DL30, DL32, DL33, DM35.3)
+D_HTC_M	Medium high-technology manufacturing (DG (except DG24.4); DK, DL31, DM34, DM35.2, DM35.4, DM35.5)
+D_LTC_LM	Low and medium low-technology manufacturing (DA to DF, DH to DJ, DM35.1 and DN)
+D_LTC	Low-technology manufacturing (DA to DE and DN)
+D_LTC_M	Medium low-technology manufacturing (DF, DH to DJ and DM35.1)
+D_TXW	Manufacture of textiles, wearing apparel, wood and paper products; printing and reproduction
+DF_DH-DJ	Medium low-technology manufacturing, except DM35.1
+DA	Manufacture of food products, beverages and tobacco
+DA15	Manufacture of food products and beverages
+DA151	Production, processing, preserving of meat and meat products
+DA1511	Production and preserving of meat
+DA1512	Production and preserving of poultrymeat
+DA1513	Production of meat and poultrymeat products
+DA152	Processing and preserving of fish and fish products
+DA153	Processing and preserving of fruit and vegetables
+DA1531	Processing and preserving of potatoes
+DA1532	Manufacture of fruit and vegetable juice
+DA1533	Processing and preserving of fruit and vegetables n.e.c.
+DA154	Manufacture of vegetable and animal oils and fats
+DA1541	Manufacture of crude oils and fats
+DA1542	Manufacture of refined oils and fats
+DA1543	Manufacture of margarine and similar edible fats
+DA155	Manufacture of dairy products
+DA1551	Operation of dairies and cheese making
+DA1552	Manufacture of ice cream
+DA156	Manufacture of grain mill products, starches and starch products
+DA1561	Manufacture of grain mill products
+DA1562	Manufacture of starches and starch products
+DA157	Manufacture of prepared animal feeds
+DA1571	Manufacture of prepared feeds for farm animals
+DA1572	Manufacture of prepared pet foods
+DA158	Manufacture of other food products
+DA1581	Manufacture of bread; manufacture of fresh pastry goods and cakes
+DA1582	Manufacture of rusks and biscuits; manufacture of preserved pastry goods and cakes
+DA1583	Manufacture of sugar
+DA1584	Manufacture of cocoa; chocolate and sugar confectionery
+DA1585	Manufacture of macaroni, noodles, couscous and similar farinaceous products
+DA1586	Processing of tea and coffee
+DA1587	Manufacture of condiments and seasonings
+DA1588	Manufacture of homogenized food preparations and dietetic food
+DA1589	Manufacture of other food products n.e.c.
+DA159	Manufacture of beverages
+DA1591	Manufacture of distilled potable alcoholic beverages
+DA1592	Production of ethyl alcohol from fermented materials
+DA1593	Manufacture of wines
+DA1594	Manufacture of cider and other fruit wines
+DA1595	Manufacture of other non-distilled fermented beverages
+DA1596	Manufacture of beer
+DA1597	Manufacture of malt
+DA1598	Production of mineral waters and soft drinks
+DA16	Manufacture of tobacco products
+DA160	Manufacture of tobacco products
+DB_DC	Manufacture of textiles and textile products; leather and leather products
+DB	Manufacture of textiles and textile products
+DB17	Manufacture of textiles
+DB171	Preparation and spinning of textile fibres
+DB1711	Preparation and spinning of cotton-type fibres
+DB1712	Preparation and spinning of woollen-type fibres
+DB1713	Preparation and spinning of worsted-type fibres
+DB1714	Preparation and spinning of flax-type fibres
+DB1715	Throwing and preparation of silk, including from noils, and throwing and texturing of synthetic or artificial filament yarns
+DB1716	Manufacture of sewing threads
+DB1717	Preparation and spinning of other textile fibres
+DB172	Textile weaving
+DB1721	Cotton-type weaving
+DB1722	Woollen-type weaving
+DB1723	Worsted-type weaving
+DB1724	Silk-type weaving
+DB1725	Other textile weaving
+DB173	Finishing of textiles
+DB174	Manufacture of made-up textile articles, except apparel
+DB175	Manufacture of other textiles
+DB1751	Manufacture of carpets and rugs
+DB1752	Manufacture of cordage, rope, twine and netting
+DB1753	Manufacture of non-wovens and articles made from non-wovens, except apparel
+DB1754	Manufacture of other textiles n.e.c.
+DB176	Manufacture of knitted and crocheted fabrics
+DB177	Manufacture of knitted and crocheted articles
+DB1771	Manufacture of knitted and crocheted hosiery
+DB1772	Manufacture of knitted and crocheted pullovers, cardigans and similar articles
+DB18	Manufacture of wearing apparel; dressing; dyeing of fur
+DB181	Manufacture of leather clothes
+DB182	Manufacture of other wearing apparel and accessories
+DB1821	Manufacture of workwear
+DB1822	Manufacture of other outerwear
+DB1823	Manufacture of underwear
+DB1824	Manufacture of other wearing apparel and accessories n.e.c.
+DB183	Dressing and dyeing of fur; manufacture of articles of fur
+DC	Manufacture of leather and leather products
+DC19	Tanning and dressing of leather; manufacture of luggage, handbags, saddlery, harness and footwear
+DC191	Tanning and dressing of leather
+DC192	Manufacture of luggage, handbags and the like, saddler
+DC193	Manufacture of footwear
+DD_DN	Manufacture of wood and wood products; manufacturing n.e.c.
+DD_DE	Manufacture of wood and wood products, pulp, paper and paper products; publishing and printing
+DD	Manufacture of wood and wood products
+DD20	Manufacture of wood and of products of wood and cork, except furniture; manufacture of articles of straw and plaiting materials
+DD201	Sawmilling and planing of wood; impregnation of wood
+DD202	Manufacture of veneer sheets; manufacture of plywood, laminboard, particle board, fibre board and other panels and boards
+DD203	Manufacture of builders carpentry and joinery
+DD204	Manufacture of wooden containers
+DD205	Manufacture of other products of wood; manufacture of articles of cork, straw and plaiting materials
+DD2051	Manufacture of other products of wood
+DD2052	Manufacture of articles of cork, straw and plaiting materials
+DE	Manufacture of pulp, paper and paper products; publishing and printing
+DE21	Manufacture of pulp, paper and paper products
+DE211	Manufacture of pulp, paper and paperboard
+DE2111	Manufacture of pulp
+DE2112	Manufacture of paper and paperboard
+DE212	Manufacture of articles of paper and paperboard
+DE2121	Manufacture of corrugated paper and paperboard and of containers of paper and paperboard
+DE2122	Manufacture of household and sanitary goods and of toilet requisites
+DE2123	Manufacture of paper stationery
+DE2124	Manufacture of wallpaper
+DE2125	Manufacture of other articles of paper and paperboard n.e.c.
+DE22	Publishing, printing and reproduction of recorded media
+DE221	Publishing
+DE2211	Publishing of books
+DE2212	Publishing of newspapers
+DE2213	Publishing of journals and periodicals
+DE2214	Publishing of sound recordings
+DE2215	Other publishing
+DE222	Printing and service activities related to printing
+DE2221	Printing of newspapers
+DE2222	Printing n.e.c.
+DE2223	Bookbinding 
+DE2224	Pre-press activities
+DE2225	Ancillary activities related to printing 
+DE223	Reproduction of recorded media
+DE2231	Reproduction of sound recording
+DE2232	Reproduction of video recording
+DE2233	Reproduction of computer media
+DF-DI	Manufacture of coke, refined petroleum products and nuclear fuel; chemicals, chemical products and man-made fibres; rubber and plastic products; other non-metallic mineral products
+DF-DH	Manufacture of coke, refined petroleum products and nuclear fuel; chemicals, chemical products and man-made fibres; rubber and plastic products
+DF_DG	Manufacture of coke, refined petroleum products and nuclear fuel; chemicals, chemical products and man-made fibres
+DF	Manufacture of coke, refined petroleum products and nuclear fuel
+DF23	Manufacture of coke, refined petroleum products and nuclear fuel
+DF231_DF233	Manufacture of coke oven products; processing of nuclear fuel
+DF231	Manufacture of coke oven products
+DF232	Manufacture of refined petroleum products
+DF233	Processing of nuclear fuel
+DG_DH	Manufacture of chemicals; rubber and plastic products
+DG	Manufacture of chemicals, chemical products and man-made fibres
+DG24	Manufacture of chemicals and chemical products
+DG241	Manufacture of basic chemicals
+DG2411	Manufacture of industrial gases
+DG2412	Manufacture of dyes and pigments
+DG2413	Manufacture of other inorganic basic chemicals
+DG2414	Manufacture of other organic basic chemicals
+DG2415	Manufacture of fertilizers and nitrogen compounds
+DG2416	Manufacture of plastics in primary forms
+DG2417	Manufacture of synthetic rubber in primary forms
+DG242	Manufacture of pesticides and other agro-chemical products
+DG243	Manufacture of paints, varnishes and similar coatings, printing ink and mastics
+DG244	Manufacture of pharmaceuticals, medicinal chemicals and botanical products
+DG2441	Manufacture of basic pharmaceutical products
+DG2442	Manufacture of pharmaceutical preparations
+DG245	Manufacture of soap and detergents, cleaning and polishing preparations, perfumes and toilet preparations
+DG2451	Manufacture of soap and detergents, cleaning and polishing preparations
+DG2452	Manufacture of perfumes and toilet preparations
+DG246	Manufacture of other chemical products
+DG2461	Manufacture of explosives
+DG2462	Manufacture of glues and gelatines
+DG2463	Manufacture of essential oils
+DG2464	Manufacture of photographic chemical material
+DG2465	Manufacture of prepared unrecorded media
+DG2466	Manufacture of other chemical products n.e.c.
+DG247	Manufacture of man-made fibres
+DG24_X_DG244	Manufacture of chemicals and chemical products (except pharmaceuticals, medicinal chemicals and botanical products)
+DH_DI	Manufacture of rubber and plastic products; other non-metallic mineral products
+DH	Manufacture of rubber and plastic products
+DH25	Manufacture of rubber and plastic products
+DH251	Manufacture of rubber products
+DH2511	Manufacture of rubber tyres and tubes
+DH2512	Retreading and rebuilding of rubber tyres
+DH2513	Manufacture of other rubber products
+DH252	Manufacture of plastic products
+DH2521	Manufacture of plastic plates, sheets, tubes and profiles
+DH2522	Manufacture of plastic packing goods
+DH2523	Manufacture of builders' ware of plastic
+DH2524	Manufacture of other plastic products
+DI	Manufacture of other non-metallic mineral products
+DI26	Manufacture of other non-metallic mineral products
+DI261	Manufacture of glass and glass products
+DI2611	Manufacture of flat glass
+DI2612	Shaping and processing of flat glass
+DI2613	Manufacture of hollow glass
+DI2614	Manufacture of glass fibres
+DI2615	Manufacture and processing of other glass, including technical glassware
+DI262	Manufacture of non-refractory ceramic goods other than for construction purposes; manufacture of refractory ceramic products
+DI2621	Manufacture of ceramic household and ornamental articles
+DI2622	Manufacture of ceramic sanitary fixtures
+DI2623	Manufacture of ceramic insulators and insulating fittings
+DI2624	Manufacture of other technical ceramic products
+DI2625	Manufacture of other ceramic products
+DI2626	Manufacture of refractory ceramic products
+DI263	Manufacture of ceramic tiles and flags
+DI264	Manufacture of bricks, tiles and construction products, in baked clay
+DI265	Manufacture of cement, lime and plaster
+DI2651	Manufacture of cement
+DI2652	Manufacture of lime
+DI2653	Manufacture of plaster
+DI266	Manufacture of articles of concrete, plaster and cement
+DI2661	Manufacture of concrete products for construction purposes
+DI2662	Manufacture of plaster products for construction purposes
+DI2663	Manufacture of ready-mixed concrete
+DI2664	Manufacture of mortars
+DI2665	Manufacture of fibre cement
+DI2666	Manufacture of other articles of concrete, plaster and cement
+DI267	Cutting, shaping and finishing of ornamental and building stone
+DI2670	Cutting, shaping and finishing of ornamental and building stone
+DI268	Manufacture of other non-metallic mineral products
+DI2681	Production of abrasive products
+DI2682	Manufacture of other non-metallic mineral products n.e.c.
+DJ_DK	Manufacture of basic metals and fabricated metal products; machinery and equipment n.e.c.
+DJ_DN36	Manufacture of basic metals and fabricated metal products; furniture and manufacturing n.e.c.
+DJ	Manufacture of basic metals and fabricated metal products
+DJ27	Manufacture of basic metals
+DJ27_FER	Manufacture of basic iron and steel and of ferro-alloys; of tubes and other first processing of iron and steel; casting of iron and steel
+DJ271_DJ273	Manufacture of basic iron and steel and of ferro-alloys and other first processing of iron and steel 
+DJ271	Manufacture of basic iron and steel and of ferro-alloys 
+DJ272	Manufacture of tubes
+DJ2721	Manufacture of cast iron tubes
+DJ2722	Manufacture of steel tubes
+DJ273	Other first processing of iron and steel 
+DJ2731	Cold drawing
+DJ2732	Cold rolling of narrow strip
+DJ2733	Cold forming or folding
+DJ2734	Wire drawing
+DJ2735	Other first processing of iron and steel n.e.c.; production of non-ECSC ferro-alloys (included in DJ271 in NACE Rev.1.1)
+DJ27_NFER	Manufacture of basic precious and non-ferrous metals; casting of light metals and other non-ferrous metals
+DJ274	Manufacture of basic precious and non-ferrous metals
+DJ2741	Precious metals production
+DJ2742	Aluminium production
+DJ2743	Lead, zinc and tin production
+DJ2744	Copper production
+DJ2745	Other non-ferrous metal production
+DJ275	Casting of metals
+DJ2751	Casting of iron
+DJ2752	Casting of steel
+DJ2753	Casting of light metals
+DJ2754	Casting of other non-ferrous metals
+DJ28-DN36	Other manufacturing (DJ28, DK, DL, DM and DN36)
+DJ28-DM	Manufacture of fabricated metal products; electrical, optical and transport equipment
+DJ28	Manufacture of fabricated metal products, except machinery and equipment
+DJ281	Manufacture of structural metal products
+DJ2811	Manufacture of metal structures and parts of structures
+DJ2812	Manufacture of builders carpentry and joinery of metal
+DJ282	Manufacture of tanks, reservoirs and containers of metal; manufacture of central heating radiators and boilers
+DJ2821	Manufacture of tanks, reservoirs and containers of metal
+DJ2822	Manufacture of central heating radiators and boilers
+DJ283	Manufacture of steam generators, except central heating hot water boilers
+DJ284	Forging, pressing, stamping and roll forming of metal; powder metallurgy
+DJ285	Treatment and coating of metals; general mechanical engineering
+DJ2851	Treatment and coating of metals
+DJ2852	General mechanical engineering
+DJ286	Manufacture of cutlery, tools and general hardware
+DJ2861	Manufacture of cutlery
+DJ2862	Manufacture of tools
+DJ2863	Manufacture of locks and hinges
+DJ287	Manufacture of other fabricated metal products
+DJ2871	Manufacture of steel drums and similar containers
+DJ2872	Manufacture of light metal packaging
+DJ2873	Manufacture of wire products
+DJ2874	Manufacture of fasteners, screw machine products, chain and springs
+DJ2875	Manufacture of other fabricated metal products n.e.c.
+DK_DL	Manufacture of machinery, equipment n.e.c.; and electrical and optical equipment
+DK	Manufacture of machinery and equipment n.e.c.
+DK29	Manufacture of machinery and equipment n.e.c.
+DK291	Manufacture of machinery for the production and use of mechanical power, except aircraft, vehicle and cycle engines
+DK2911	Manufacture of engines and turbines, except aircraft, vehicle and cycle engines
+DK2912	Manufacture of pumps and compressors
+DK2913	Manufacture of taps and valves
+DK2914	Manufacture of bearings, gears, gearing and driving elements
+DK292	Manufacture of other general purpose machinery
+DK2921	Manufacture of furnaces and furnace burners
+DK2922	Manufacture of lifting and handling equipment
+DK2923	Manufacture of non-domestic cooling and ventilation equipment
+DK2924	Manufacture of other general purpose machinery n.e.c.
+DK293-DK296	Manufacture of agricultural and forestry machinery; machine-tools; other special purpose machinery; weapons and ammunition
+DK293	Manufacture of agricultural and forestry machinery
+DK2931	Manufacture of agricultural tractors
+DK2932	Manufacture of other agricultural and forestry machinery
+DK294	Manufacture of machine-tools
+DK2941	Manufacture of portable hand held power tools
+DK2942	Manufacture of other metalworking machine tools
+DK2943	Manufacture of other machine tools n.e.c.
+DK295	Manufacture of other special purpose machinery
+DK2951	Manufacture of machinery for metallurgy
+DK2952	Manufacture of machinery for mining, quarrying and construction
+DK2953	Manufacture of machinery for food, beverage and tobacco processing
+DK2954	Manufacture of machinery for textile, apparel and leather production
+DK2955	Manufacture of machinery for paper and paperboard production
+DK2956	Manufacture of other special purpose machinery n.e.c.
+DK296	Manufacture of weapons and ammunition
+DK297	Manufacture of domestic appliances n.e.c.
+DK2971	Manufacture of electric domestic appliances
+DK2972	Manufacture of non-electric domestic appliances
+DL	Manufacture of electrical and optical equipment
+DL30_DL32	Manufacture of office machinery and computers; radio, television and communication equipment
+DL30	Manufacture of office machinery and computers
+DL300	Manufacture of office machinery and computers
+DL3001	Manufacture of office machinery
+DL3002	Manufacture of computers and other information processing equipment
+DL31	Manufacture of electrical machinery and apparatus n.e.c.
+DL311	Manufacture of electric motors, generators and transformers
+DL312_DL313	Manufacture of electricity distribution, control apparatus and insulated wire and cable
+DL312	Manufacture of electricity distribution and control apparatus
+DL313	Manufacture of insulated wire and cable
+DL314	Manufacture of accumulators, primary cells and primary batteries
+DL315	Manufacture of lighting equipment and electric lamps
+DL316	Manufacture of electrical equipment n.e.c.
+DL3161	Manufacture of electrical equipment for engines and vehicles n.e.c.
+DL3162	Manufacture of other electrical equipment n.e.c.
+DL32	Manufacture of radio, television and communication equipment and apparatus
+DL321	Manufacture of electronic valves and tubes and other electronic components
+DL322	Manufacture of television and radio transmitters and apparatus for line telephony and line telegraphy
+DL323	Manufacture of television and radio receivers, sound or video recording or reproducing apparatus and associated goods
+DL33	Manufacture of medical, precision and optical instruments, watches and clocks
+DL331	Manufacture of medical and surgical equipment and orthopaedic appliances
+DL332	Manufacture of instruments and appliances for measuring, checking, testing, navigating and other purposes, except industrial process control equipment
+DL333	Manufacture of industrial process control equipment
+DL334	Manufacture of optical instruments and photographic equipment
+DL335	Manufacture of watches and clocks
+DM	Manufacture of transport equipment
+DM34	Manufacture of motor vehicles, trailers and semi-trailers
+DM341	Manufacture of motor vehicles
+DM342	Manufacture of bodies (coachwork) for motor vehicles; manufacture of trailers and semi-trailers
+DM343	Manufacture of parts and accessories for motor vehicles and their engines
+DM35	Manufacture of other transport equipment
+DM351	Building and repairing of ships and boats
+DM3511	Building and repairing of ships
+DM3512	Building and repairing of pleasure and sporting boats
+DM352	Manufacture of railway and tramway locomotives and rolling stock
+DM353	Manufacture of aircraft and spacecraft
+DM354_DM355	Manufacture of motorcycles, bicycles and other transport equipment n.e.c.
+DM354	Manufacture of motorcycles and bicycles
+DM3541	Manufacture of motorcycles
+DM3542	Manufacture of bicycles
+DM3543	Manufacture of invalid carriages
+DM355	Manufacture of other transport equipment n.e.c.
+DN	Manufacturing n.e.c.
+DN36	Manufacture of furniture; manufacturing n.e.c.
+DN361	Manufacture of furniture
+DN3611	Manufacture of chairs and seats
+DN3612	Manufacture of other office and shop furniture
+DN3613	Manufacture of other kitchen furniture
+DN3614	Manufacture of other furniture
+DN3615	Manufacture of mattresses
+DN362-DN366	Manufacture of jewellery and related articles, musical instruments, sports goods, games and toys and miscellaneous n.e.c
+DN362	Manufacture of jewellery and related articles
+DN3621	Striking of coins 
+DN3622	Manufacture of jewellery and related articles n.e.c.
+DN363	Manufacture of musical instruments
+DN364	Manufacture of sports goods
+DN365	Manufacture of games and toys
+DN366	Miscellaneous manufacturing n.e.c.
+DN3661	Manufacture of imitation jewellery
+DN3662	Manufacture of brooms and brushes
+DN3663	Other manufacturing n.e.c.
+DN37	Recycling
+DN371	Recycling of metal waste and scrap
+DN372	Recycling of non-metal waste and scrap
+D_OTH	Other manufacturing (DC, DI, DL31, DN36, DN37)
+E_F	Electricity, gas and water supply; Construction
+E	Electricity, gas and water supply
+E40	Electricity, gas, steam and hot water supply
+E401	Production and distribution of electricity
+E4011	Production of electricity
+E4012	Transmission of electricity
+E4013	Distribution and trade of electricity
+E402	Manufacture of gas; distribution of gaseous fuels through mains
+E4021	Manufacture of gas
+E4022	Distribution and trade of gaseous fuels through mains
+E403	Steam and hot water supply
+E41	Collection, purification and distribution of water
+E410	Collection, purification and distribution of water
+EP_BUS	Business sector total (all NACE activities except DN37, L and O90)
+EP_SPE	Private and public specialised producers of environmental protection services (DN37 and O90)
+EP_GOV	General government
+EP_OTH	Other business sectors (except producers of environmental services) (F to Q except L and O90)
+F	Construction
+F45	Construction
+F451	Site preparation
+F4511	Demolition and wrecking of buildings; earth moving
+F4512	Test drilling and boring
+F452	Building of complete constructions or parts thereof; civil engineering
+F4521	General construction of buildings and civil engineering works
+F4522	Erection of roof covering and frames
+F4523	Construction of motorways, roads, airfields and sport facilities
+F4524	Construction of water projects
+F4525	Other construction work involving special trades
+F453	Building installation
+F4531	Installation of electrical wiring and fittings
+F4532	Insulation work activities
+F4533	Plumbing
+F4534	Other building installation
+F454	Building completion
+F4541	Plastering
+F4542	Joinery installation
+F4543	Floor and wall covering
+F4544	Painting and glazing
+F4545	Other building completion
+F455	Renting of construction or demolition equipment with operator
+G-Q	Services
+G-P	Services (except extra-territorial organizations)
+G-O_X_L	Services (except public administration; activities of households and extra-territorial organizations)
+G-K_O_DS	Services related to 'Demand for Services' (G, H, I, K, O90, O92.1 and O92.2)
+G-K	Services (except public administration and community services; activities of households and extra-territorial organizations)
+G-K_X_K7415	Services (except management activities of holding companies; public administration and community services; activities of households and extra-territorial organizations)
+G-K_X_H	Services (except hotels and restaurants; public administration and community services; activities of households and extra-territorial organizations)
+G-K_X_J	Non-financial services (G to K except J)
+G-I	Wholesale and retail trade; hotels and restaurants; transport
+G_H_P	Wholesale and retail trade; hotels and restaurants; activities of households
+G-K_INN	Innovation core services activities (G51, I, J, K72, K74.2 and K74.3)
+EP_G-Q	Services (except transport; other service activities; private households; extra-territorial organizations)
+KIS	Total knowledge-intensive services
+KIS_HTC	Knowledge-intensive high-technology services (I64, K72 and K73)
+KIS_MKT	Knowledge-intensive market services (I61, I62, I64 and K)
+KIS_MKT_OTH	Knowledge-intensive market services (except financial intermediation and high-technology services)
+KIS_OTH	Other knowledge-intensive services
+KIBS_ISS	Knowledge-intensive business services related to 'International Sourcing Statistics' (I64.2, K72, K73, K74.1 to K74.4)
+KIBS_BD	Knowledge-intensive business services related to 'Business Demography' statistics (K72, K74.1 to K74.4, K74.81 and K74.83)
+LKIS	Total less knowledge-intensive services 
+LKIS_MKT	Less knowledge-intensive market services
+LKIS_OTH	Other less knowledge-intensive services
+G	Wholesale and retail trade; repair of motor vehicles, motorcycles and personal and household goods
+G50	Sale, maintenance and repair of motor vehicles and motorcycles; retail sale of automotive fuel
+G501-G503	Sale of motor vehicles; maintenance and repair of motor vehicles; sale of motor vehicle parts and accessories
+G501	Sale of motor vehicles
+G502	Maintenance and repair of motor vehicles
+G503	Sale of motor vehicle parts and accessories
+G504	Sale, maintenance and repair of motorcycles and related parts and accessories
+G505	Retail sale of automotive fuel
+G51	Wholesale trade and commission trade, except of motor vehicles and motorcycles
+G511	Wholesale on a fee or contract basis
+G5111	Agents involved in the sale of agricultural raw materials, live animals, textile raw materials and semi-finished goods
+G5112	Agents involved in the sale of fuels, ores, metals and industrial chemicals
+G5113	Agents involved in the sale of timber and building materials
+G5114	Agents involved in the sale of machinery, industrial equipment, ships and aircraft
+G5115	Agents involved in the sale of furniture, household goods, hardware and ironmongery
+G5116	Agents involved in the sale of textiles, clothing, footwear and leather goods
+G5117	Agents involved in the sale of food, beverages and tobacco
+G5118	Agents specializing in the sale of particular products or ranges of products n.e.c.
+G5119	Agents involved in the sale of a variety of goods
+G512	Wholesale of agricultural raw materials and live animals
+G5121	Wholesale of grain, seeds and animal feeds
+G5122	Wholesale of flowers and plants
+G5123	Wholesale of live animals
+G5124	Wholesale of hides, skins and leather
+G5125	Wholesale of unmanufactured tobacco
+G513	Wholesale of food, beverages and tobacco
+G5131	Wholesale of fruit and vegetables
+G5132	Wholesale of meat and meat products
+G5133	Wholesale of dairy produce, eggs and edible oils and fats
+G5134	Wholesale of alcoholic and other beverages
+G5135	Wholesale of tobacco products
+G5136	Wholesale of sugar and chocolate and sugar confectionery
+G5137	Wholesale of coffee, tea, cocoa and spices
+G5138	Wholesale of other food, including fish, crustaceans and molluscs
+G5139	Non-specialized wholesale of food, beverages and tobacco
+G514	Wholesale of household goods
+G5141	Wholesale of textiles
+G5142	Wholesale of clothing and footwear
+G5143	Wholesale of electrical household appliances and radio and television goods
+G5144	Wholesale of china and glassware, wallpaper and cleaning materials
+G5145	Wholesale of perfume and cosmetics
+G5146	Wholesale of pharmaceutical goods
+G5147	Wholesale of other household goods
+G515	Wholesale of non-agricultural intermediate products, waste and scrap
+G5151	Wholesale of solid, liquid and gaseous fuels and related products
+G5152	Wholesale of metals and metal ores
+G5153	Wholesale of wood, construction materials and sanitary equipment
+G5154	Wholesale of hardware, plumbing and heating equipment and supplies
+G5155	Wholesale of chemical products
+G5156	Wholesale of other intermediate products
+G5157	Wholesale of waste and scrap
+G518	Wholesale of machinery, equipment and supplies
+G5181	Wholesale of machine tools
+G5182	Wholesale of mining, construction and civil engineering machinery
+G5183	Wholesale of machinery for the textile industry and of sewing and knitting machines
+G5184_G5185	Wholesale of computers, computer peripheral equipment and software; and other office machinery and equipment
+G5184	Wholesale of computers, computer peripheral equipment and software
+G5185	Wholesale of other office machinery and equipment
+G5186_G5187	Wholesale of other electronic parts and equipment; and other machinery for use in industry, trade and navigation
+G5186	Wholesale of other electronic parts and equipment
+G5187	Wholesale of other machinery for use in industry, trade and navigation
+G5188	Wholesale of agricultural machinery and accessories and implements, including tractors
+G519	Other wholesale
+G5190	Other wholesale
+G52	Retail trade, except of motor vehicles and motorcycles; repair of personal and household goods
+G521	Retail sale in non-specialized stores
+G5211	Retail sale in non-specialized stores with food beverages or tobacco predominating
+G5212	Other retail sale in non-specialized stores
+G522	Retail sale of food, beverages and tobacco in specialized stores
+G5221	Retail sale of fruit and vegetables
+G5222	Retail sale of meat and meat products
+G5223	Retail sale of fish, crustaceans and molluscs
+G5224	Retail sale of bread, cakes, flour confectionery and sugar confectionery
+G5225	Retail sale of alcoholic and other beverages
+G5226	Retail sale of tobacco products
+G5227	Other retail sale of food, beverages and tobacco in specialized stores
+G523-G525	Non-food retail sale in specialised stores
+G523	Retail sale of pharmaceutical and medical goods, cosmetic and toilet articles
+G5231	Dispensing chemists
+G5232	Retail sale of medical and orthopaedic goods
+G5233	Retail sale of cosmetic and toilet articles
+G524	Other retail sale of new goods in specialized stores
+G5241	Retail sale of textiles
+G5242	Retail sale of clothing
+G5243	Retail sale of footwear and leather goods
+G5244	Retail sale of furniture, lighting equipment and household articles n.e.c.
+G5245	Retail sale of electrical household appliances and radio and television goods
+G5246	Retail sale of hardware, paints and glass
+G5247	Retail sale of books, newspapers and stationery
+G5248	Other retail sale in specialized stores
+G525	Retail sale of second-hand goods in stores
+G526	Retail sale not in stores
+G5261	Retail sale via mail order houses
+G5262	Retail sale via stalls and markets
+G5263	Other non-store retail sale
+G527	Repair of personal and household goods
+G5271	Repair of boots, shoes and other articles of leather
+G5272	Repair of electrical household goods
+G5273	Repair of watches, clocks and jewellery
+G5274	Repair n.e.c.
+H_I_K	Hotels and restaurants; transport; real estate
+H	Hotels and restaurants
+H55	Hotels and restaurants
+H551_H552	Hotels; camping sites and other provision of short-stay accommodation
+H551	Hotels
+H5510	Hotels
+H5511	Hotels and motels, with restaurant (in NACE Rev.1 only)
+H5512	Hotels and motels, without restaurant (in NACE Rev.1 only)
+H552	Camping sites and other provision of short-stay accommodation
+H5521	Youth hostels and mountain refuges
+H5522	Camping sites, including caravan sites
+H5523	Other provision of lodgings n.e.c.
+H553-H555	Restaurants; bars; canteens and catering
+H553	Restaurants
+H554	Bars
+H555	Canteens and catering
+H5551	Canteens
+H5552	Catering
+I	Transport, storage and communication
+I60-I64	Land transport; transport via pipelines; water transport; air transport; supporting and auxiliary transport activities; activities of travel agencies; post and telecommunications
+I60-I64_X_I642	Land transport; transport via pipelines; water transport; air transport; supporting and auxiliary transport activities; activities of travel agencies; post and courier activities
+I60-I63	Land transport; transport via pipelines; water transport; air transport; supporting and auxiliary transport activities; activities of travel agencies
+I60-I62_I642	Land transport; transport via pipelines; water transport; air transport; telecommunications
+I60-I62	Land transport; transport via pipelines; water transport; air transport
+I60_I611_I62	Land, sea and air transport
+I60	Land transport; transport via pipelines
+I601	Transport via railways
+I602	Other land transport
+I6021-I6023	Other scheduled passenger land transport; taxi operation; other land passenger transport
+I6021	Other scheduled passenger land transport
+I6022	Taxi operation
+I6023	Other land passenger transport
+I6024	Freight transport by road
+I603	Transport via pipelines
+I61	Water transport
+I611	Sea and coastal water transport
+I612	Inland water transport
+I62	Air transport
+I621	Scheduled air transport
+I622	Non-scheduled air transport
+I623	Space transport
+I63	Supporting and auxiliary transport activities; activities of travel agencies
+I631_I632_I634	Cargo handling and storage; other supporting transport activities; activities of other transport agencies
+I631_I632	Cargo handling and storage and other supporting transport activities
+I631	Cargo handling and storage
+I6311	Cargo handling
+I6312	Storage and warehousing
+I632	Other supporting transport activities
+I6321	Other supporting land transport activities
+I6322	Other supporting water transport activities
+I6323	Other supporting air transport activities
+I633	Activities of travel agencies and tour operators; tourist assistance activities n.e.c.
+I634	Activities of other transport agencies
+I64	Post and telecommunications
+I641	Post and courier activities
+I6411	National post activities
+I6412	Courier activities other than national post activities
+I642	Telecommunications
+J-Q	Financial intermediation, real estate, renting and business activities, public administration and defence; compulsory social security, education, health and social work, other community, social and personal service activities, activities of households, extra-territorial organizations and bodies
+J_K	Financial intermediation; real estate
+J_REB	Financial intermediation; Real estate, renting and business activities (without Computers and R&D)
+J	Financial intermediation
+J65_J66	Financial intermediation; insurance and pension funding, except compulsory social security
+J65	Financial intermediation, except insurance and pension funding
+J651	Monetary intermediation
+J6511	Central banking
+J6512_J652	Total credit institutions
+J6512	Other monetary intermediation
+J652_J66_J672	Other financial intermediation, insurance and activities auxiliary to insurance
+J652	Other financial intermediation
+J6521	Financial leasing
+J6522	Other credit granting
+J6523HC	Activities of financial holding companies
+J6523	Other financial intermediation n.e.c.
+J66_J672	Insurance and activities auxiliary to insurance
+J66	Insurance and pension funding, except compulsory social security
+J660	Insurance and pension funding, except compulsory social security
+J6601	Life insurance
+J6602	Pension funding
+J66021	Autonomous pension funds
+J66022	Non autonomous pension funds
+J6603	Non-life insurance
+J6604	Reinsurance specialist
+J6605	Composite insurance
+J67	Activities auxiliary to financial intermediation
+J671	Activities auxiliary to financial intermediation, except insurance and pension funding
+J6711	Administration of financial markets
+J6712	Security broking and fund management
+J6713	Activities auxiliary to financial intermediation n.e.c.
+J672	Activities auxiliary to insurance and pension funding
+J6721	Insurance, reinsurance and pension fund mediation services
+J6722	Activities auxiliaries to insurance and pension funding
+K-Q	Real estate; public administration and community services; activities of households; extra-territorial organizations
+K_O	Real estate; other service activities
+K	Real estate, renting and business activities
+K_INN	Innovation core business activities (K72, K74.2 and K74.3)
+K_X_K7415	Real estate (except management activities of holding companies)
+K70	Real estate activities
+K701	Real estate activities with own property
+K7011	Development and selling of real estate
+K7012	Buying and selling of own real estate
+K702	Letting of own property
+K703	Real estate activities on a fee or contract basis
+K7031	Real estate agencies
+K7032	Management of real estate on a fee or contract basis
+K71	Renting of machinery and equipment without operator and of personal and household goods
+K711_K712	Renting of automobiles; and other transport equipment
+K711	Renting of automobiles
+K712	Renting of other transport equipment
+K7121	Renting of other land transport equipment
+K7122	Renting of water transport equipment
+K7123	Renting of air transport equipment
+K713	Renting of other machinery and equipment
+K7131	Renting of agricultural machinery and equipment
+K7132	Renting of construction and civil engineering machinery and equipment
+K7133	Renting of office machinery and equipment, including computers
+K7134	Renting of other machinery and equipment n.e.c.
+K714	Renting of personal and household goods n.e.c.
+K72-K74	Computer, research and other business activities
+K72_K742	Computer and related activities; architectural and engineering activities and related technical consultancy
+K72	Computer and related activities
+K721	Hardware consultancy
+K722	Software consultancy and supply
+K7221	Publishing of software
+K7222	Other software consultancy and supply
+K723	Data processing
+K724	Database activities
+K725	Maintenance and repair of office, accounting and computing machinery
+K726	Other computer related activities
+K73	Research and development
+K731	Research and experimental development on natural sciences and engineering
+K732	Research and experimental development on social sciences and humanities
+K74	Other business activities
+K74_X_K7415	Other business activities (except management activities of holding companies)
+K74_PRO	Professional services (K74.11 to K74.14, K74.2 to K74.4, K74.81, K74.85)
+K74_OPR	Operational services (K74.5 to K74.7, K74.82, K74.86, K74.87)
+K74_INN	Other innovation core business activities (K74.2 and K74.3)
+K741-K744	Legal, accounting, book-keeping and auditing activities; tax consultancy; market research and public opinion polling; business and management consultancy; holdings, architectural and engineering activities and related technical consultancy, technical testing and analysis; advertising
+K741	Legal, accounting, book-keeping and auditing activities; tax consultancy; market research and public opinion polling; business and management consultancy; holdings
+K741_X_K7413	Legal, accounting, book-keeping and auditing activities; tax consultancy; business and management consultancy; holdings
+K7411-K7414	Legal activities; accounting, book-keeping and auditing activities; tax consultancy; market research and public opinion polling; business and management consultancy activities
+K7411	Legal activities
+K7412	Accounting, book-keeping and auditing activities; tax consultancy
+K7413	Market research and public opinion polling
+K7414_K7415	Business and management consultancy activities; nanagement activities of holding companies
+K7414	Business and management consultancy activities
+K7415	Management activities of holding companies
+K742_K743	Architectural and engineering activities and related technical consultancy; technical testing and analysis
+K742	Architectural and engineering activities and related technical consultancy
+K743	Technical testing and analysis
+K744	Advertising
+K745-K748	Labour recruitment and provision of personnel; investigation and security activities; industrial cleaning; miscellaneous business activities n.e.c.
+K745	Labour recruitment and provision of personnel
+K746	Investigation and security activities
+K747	Industrial cleaning
+K748	Miscellaneous business activities n.e.c.
+K7481	Photographic activities
+K7482	Packaging activities
+K7485_K7486	Secretarial and translation activities; call centre activities
+K7485	Secretarial and translation activities
+K7486	Call centre activities
+K7487	Other business activities n.e.c.
+K74_OTH	Other business activities (K743, K745-K748)
+L-Q	Public administration and community services; activities of households; extra-territorial organizations
+L-P	public administration and community services; activities of households
+L-O	Public administration and community services
+L_Q	Public administration; extra-territorial organizations
+L	Public administration and defence; compulsory social security
+L75	Public administration and defence; compulsory social security
+L751	Administration of the State and the economic and social policy of the community
+L7511	General (overall) public service activities
+L7512	Regulation of the activities of agencies that provide health care, education, cultural services and other social services, excluding social security
+L7513	Regulation of and contribution to more efficient operation of business
+L7514	Supporting service activities for the government as a whole
+L752	Provision of services to the community as a whole
+L7521	Foreign affairs
+L7522	Defence activities
+L7523	Justice and judicial activities
+L7524	Public security, law and order activities
+L7525	Fire service activities
+L753	Compulsory social security activities
+M-Q	Education; health; other service activities; activities of households; extra-territorial organizations
+M-O	Education; Health; Other service activities
+M-O_X_O91	Education; health; other service activities (except activities of membership organization n.e.c.)
+M	Education
+M80	Education
+M801	Primary education
+M802	Secondary education
+M8021	General secondary education
+M8022	Technical and vocational secondary education
+M803	Higher education
+M804	Adult and other education
+M8041	Driving school activities
+M8042	Adult and other education n.e.c.
+N	Health and social work
+N85	Health and social work
+N851	Human health activities
+N8511	Hospital activities
+N8512	Medical practice activities
+N8513	Dental practice activities
+N8514	Other human health activities
+N852	Veterinary activities
+N853	Social work activities
+N8531	Social work activities with accommodation
+N8532	Social work activities without accommodation
+O_P	Other service activities; activities of households
+O	Other community, social and personal service activities
+O_X_O91	Other community, social, personal service activities (except activities of membership organization n.e.c.)
+O90_O921_O922	Sewage and refuse disposal, sanitation and similar activities; motion picture and video, radio and television activities 
+O90	Sewage and refuse disposal, sanitation and similar activities
+O900	Sewage and refuse disposal, sanitation and similar activities
+O9001	Collection and treatment of sewage
+O9002	Collection and treatment of other waste
+O9003	Sanitation,remediation and similar activities
+O91	Activities of membership organization n.e.c.
+O911	Activities of business, employers' and professional organizations
+O9111	Activities of business and employers' organizations
+O9112	Activities of professional organizations
+O912	Activities of trade unions
+O913	Activities of other membership organizations
+O9131	Activities of religious organizations
+O9132	Activities of political organizations
+O9133	Activities of other membership organizations n.e.c.
+O92	Recreational, cultural and sporting activities
+O921-O923	Motion picture, video, radio, television and other entertainment activities
+O921	Motion picture and video activities
+O9211	Motion picture and video production
+O9212	Motion picture and video distribution
+O9213	Motion picture projection
+O922	Radio and television activities
+O923	Other entertainment activities
+O9231	Artistic and literary creation and interpretation
+O9232	Operation of arts facilities
+O9233	Fair and amusement park activities
+O9234	Other entertainment activities n.e.c.
+O924	News agency activities
+O925	Library, archives, museums and other cultural activities
+O9251	Library and archives activities
+O9252	Museums activities and preservation of historical sites and buildings
+O9253	Botanical and zoological gardens and nature reserves activities
+O926_O927	Sporting and other recreational activities
+O926	Sporting activities
+O9261	Operation of sports arenas and stadiums
+O9262	Other sporting activities
+O927	Other recreational activities
+O9271	Gambling and betting activities
+O9272	Other recreational activities n.e.c.
+O93	Other service activities
+O930	Other service activities
+O9301	Washing and dry-cleaning of textile and fur products
+O9302	Hairdressing and other beauty treatment
+O9303	Funeral and related activities
+O9304	Physical well-being activities
+O9305	Other service activities n.e.c.
+P	Activities of households
+P95	Activities of households as employers of domestic staff
+P950	Activities of households as employers of domestic staff
+P96	Undifferentiated goods producing activities of private households for own use
+P960	Undifferentiated goods producing activities of private households for own use
+P97	Undifferentiated services producing activities of private households for own use
+P970	Undifferentiated services producing activities of private households for own use
+Q	Extra-territorial organizations and bodies
+Q99	Extra-territorial organizations and bodies
+Q990	Extra-territorial organizations and bodies
+ICT	ICT sector (ICT manufacturing and ICT services)
+D_ICT	ICT manufacturing (DL30, DL31.3, DL32, DL33.2 and DL33.3)
+G-Q_ICT	ICT services (ICT wholesaling, ICT consultancy, I64.2)
+G51_ICT	ICT wholesaling (G51.43, G51.84 and G51.86)
+TOTAL_HH_NRES	All NACE activities plus households, non-residents and not allocated
+EP_HH	Households
+EP_NRES	Non-residents
+HH	Total activities by households
+HH_HEAT	Heating activities by households
+HH_OTH	Other activities by households
+HH_TRA	Transport activities by households
+PRV_RE	Private real estate activities
+TOT_FDI	All FDI activities
+NAL	Not allocated
+NRP	No response
+NSP	Not specified
+UNK	Unknown NACE activity

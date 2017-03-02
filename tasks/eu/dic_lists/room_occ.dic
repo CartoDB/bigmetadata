@@ -1,0 +1,10 @@
+TOTAL	Total
+LT0P5	Less than 0.5 room per occupant
+0P5-1	From 0.5 to 1 room per occupant
+1-1P25	From 1 to 1.25 rooms per occupant
+1P25-1P5	From 1.25 to 1.5 rooms per occupant
+1P5-2	From 1.5 to 2 rooms per occupant
+2-2P5	From 2 to 2.5 rooms per occupant
+2P5-3	From 2.5 to 3 rooms per occupant
+GE3	3 or more rooms per occupant
+UNK	Unknown

@@ -1,0 +1,101 @@
+var_code	short_name	long_name	unit	denominators	subsections	universe
+P12_POP1564	Pop 15-64 ans en 2012 (princ)	Nombre de personnes de 15 à 64 ans	people	P12_POP15P	age_gender	
+P12_H1564	Pop 15-64 ans Hommes en 2012 (princ)	Nombre d'hommes de 15 à 64 ans	people	P12_POP1564	age_gender	
+P12_H1524	Pop 15-24 ans Hommes en 2012 (princ)	Nombre d'hommes de 15 à 24 ans	people	P12_POP1524	age_gender	
+P12_H2554	Pop 25-54 ans Hommes en 2012 (princ)	Nombre d'hommes de 25 à 54 ans	people	P12_POP2554	age_gender	
+P12_H5564	Pop 55-64 ans Hommes en 2012 (princ)	Nombre d'hommes de 55 à 64 ans	people	P12_POP5564	age_gender	
+P12_F1564	Pop 15-64 ans Femmes en 2012 (princ)	Nombre de femmes de 15 à 64 ans	people	P12_POP1564	age_gender	
+P12_F1524	Pop 15-24 ans Femmes en 2012 (princ)	Nombre de femmes de 15 à 24 ans	people	P12_POP1524	age_gender	
+P12_F2554	Pop 25-54 ans Femmes en 2012 (princ)	Nombre de femmes de 25 à 54 ans	people	P12_POP2554	age_gender	
+P12_F5564	Pop 55-64 ans Femmes en 2012 (princ)	Nombre de femmes de 55 à 64 ans	people	P12_POP5564	age_gender	
+P12_ACT1564	Actifs 15-64 ans en 2012 (princ)	Nombre de personnes actives de 15 à 64 ans	people	P12_POP1564	employment	
+P12_ACT1524	Actifs 15-24 ans en 2012 (princ)	Nombre de personnes actives de 15 à 24 ans	people	P12_POP1524, P12_ACT1564	employment	
+P12_ACT2554	Actifs 25-54 ans en 2012 (princ)	Nombre de personnes actives de 25 à 54 ans	people	P12_POP2554, P12_ACT1564	employment	
+P12_ACT5564	Actifs 55-64 ans en 2012 (princ)	Nombre de personnes actives de 55 à 64 ans	people	P12_POP5564, P12_ACT1564	employment	
+P12_HACT1564	Actifs 15-64 ans Hommes en 2012 (princ)	Nombre d'hommes actifs de 15 à 64 ans	people	P12_ACT1564, P12_H1564	employment	
+P12_HACT1524	Actifs 15-24 ans Hommes en 2012 (princ)	Nombre d'hommes actifs de 15 à 24 ans	people	P12_ACT1524, P12_H1524, P12_HACT1564	employment	
+P12_HACT2554	Actifs 25-54 ans Hommes en 2012 (princ)	Nombre d'hommes actifs de 25 à 54 ans	people	P12_ACT2554, P12_H2554, P12_HACT1564	employment	
+P12_HACT5564	Actifs 55-64 ans Hommes en 2012 (princ)	Nombre d'hommes actifs de 55 à 64 ans	people	P12_ACT5564, P12_H5564, P12_HACT1564	employment	
+P12_FACT1564	Actifs 15-64 ans Femmes en 2012 (princ)	Nombre de femmes actives de 15 à 64 ans	people	P12_ACT1564, P12_F1564	employment	
+P12_FACT1524	Actifs 15-24 ans Femmes en 2012 (princ)	Nombre de femmes actives de 15 à 24 ans	people	P12_ACT1524, P12_F1524, P12_FACT1564	employment	
+P12_FACT2554	Actifs 25-54 ans Femmes en 2012 (princ)	Nombre de femmes actives de 25 à 54 ans	people	P12_ACT2554, P12_F2554, P12_FACT1564	employment	
+P12_FACT5564	Actifs 55-64 ans Femmes en 2012 (princ)	Nombre de femmes actives de 55 à 64 ans	people	P12_ACT5564, P12_F5564, P12_FACT1564	employment	
+P12_ACTOCC1564	Actifs occupés 15-64 ans en 2012 (princ)	Nombre de personnes actives occupées de 15 à 64 ans	people	P12_ACT1564	employment	
+P12_ACTOCC1524	Actifs occupés 15-24 ans en 2012 (princ)	Nombre de personnes actives occupées de 15 à 24 ans	people	P12_ACT1524, P12_ACTOCC1564	employment	
+P12_ACTOCC2554	Actifs occupés 25-54 ans en 2012 (princ)	Nombre de personnes actives occupées de 25 à 54 ans	people	P12_ACT2554, P12_ACTOCC1564	employment	
+P12_ACTOCC5564	Actifs occupés 55-64 ans en 2012 (princ)	Nombre de personnes actives occupées de 55 à 64 ans	people	P12_ACT5564, P12_ACTOCC1564	employment	
+P12_HACTOCC1564	Actifs occupés 15-64 ans Hommes en 2012 (princ)	Nombre d'hommes actifs occupés de 15 à 64 ans	people	P12_HACT1564	employment	
+P12_HACTOCC1524	Actifs occupés 15-24 ans Hommes en 2012 (princ)	Nombre d'hommes actifs occupés de 15 à 24 ans	people	P12_HACT1524, P12_HACTOCC1564	employment	
+P12_HACTOCC2554	Actifs occupés 25-54 ans Hommes en 2012 (princ)	Nombre d'hommes actifs occupés de 25 à 54 ans	people	P12_HACT2554, P12_HACTOCC1564	employment	
+P12_HACTOCC5564	Actifs occupés 55-64 ans Hommes en 2012 (princ)	Nombre d'hommes actifs occupés de 55 à 64 ans	people	P12_HACT5564, P12_HACTOCC1564	employment	
+P12_FACTOCC1564	Actifs occupés 15-64 ans Femmes en 2012 (princ)	Nombre de femmes actives occupées de 15 à 64 ans	people	P12_FACT1564	employment	
+P12_FACTOCC1524	Actifs occupés 15-24 ans Femmes en 2012 (princ)	Nombre de femmes actives occupées de 15 à 24 ans	people	P12_FACT1524, P12_FACTOCC1564	employment	
+P12_FACTOCC2554	Actifs occupés 25-54 ans Femmes en 2012 (princ)	Nombre de femmes actives occupées de 25 à 54 ans	people	P12_FACT2554, P12_FACTOCC1564	employment	
+P12_FACTOCC5564	Actifs occupés 55-64 ans Femmes en 2012 (princ)	Nombre de femmes actives occupées de 55 à 64 ans	people	P12_FACT5564, P12_FACTOCC1564	employment	
+P12_CHOM1564	Chômeurs 15-64 ans en 2012 (princ)	Nombre de chômeurs de 15 à 64 ans	people	P12_POP1564	employment	
+P12_CHOM1524	Chômeurs 15-24 ans en 2012 (princ)	Nombre de chômeurs de 15 à 24 ans	people	P12_POP1524, P12_CHOM1564	employment	
+P12_CHOM2554	Chômeurs 25-54 ans en 2012 (princ)	Nombre de chômeurs de 25 à 54 ans	people	P12_POP2554, P12_CHOM1564	employment	
+P12_CHOM5564	Chômeurs 55-64 ans en 2012 (princ)	Nombre de chômeurs de 55 à 64 ans	people	P12_POP5564, P12_CHOM1564	employment	
+P12_HCHOM1564	Chômeurs 15-64 ans Hommes en 2012 (princ)	Nombre de chômeurs hommes de 15 à 64 ans	people	P12_CHOM1564, P12_H1564	employment	
+P12_FCHOM1564	Chômeurs 15-64 ans Femmes en 2012 (princ)	Nombre de chômeurs femmes de 15 à 64 ans	people	P12_CHOM1564, P12_F1564	employment	
+P12_INACT1564	Inactifs 15-64 ans en 2012 (princ)	Nombre de personnes inactives de 15 à 64 ans	people	P12_POP1564	employment	
+P12_HINACT1564	Inactifs 15-64 ans Hommes en 2012 (princ)	Nombre d'hommes inactifs de 15 à 64 ans	people	P12_INACT1564, P12_H1564	employment	
+P12_FINACT1564	Inactifs 15-64 ans Femmes en 2012 (princ)	Nombre de femmes inactives de 15 à 64 ans	people	P12_INACT1564, P12_F1564	employment	
+P12_ETUD1564	Elèv. Etud. Stag. non rémunérés 15-64 ans en 2012 (princ)	Nombre d'élèves, étudiants et stagiaires non rémunérés de 15 à 64 ans	people	P12_POP1564	employment	
+P12_HETUD1564	Elèv. Etud. Stag. non rémunérés 15-64 ans Hommes en 2012 (princ)	Nombre d'élèves, étudiants et stagiaires non rémunérés hommes de 15 à 64 ans	people	P12_ETUD1564, P12_H1564	employment	
+P12_FETUD1564	Elèv. Etud. Stag. non rémunérés 15-64 ans Femmes en 2012 (princ)	Nombre d'élèves, étudiants et stagiaires non rémunérés femmes de 15 à 64 ans	people	P12_ETUD1564,  P12_F1564	employment	
+P12_RETR1564	Retraités Préretraités 15-64 ans en 2012 (princ)	Nombre de retraités ou préretraités de 15 à 64 ans	people	P12_POP1564	employment	
+P12_HRETR1564	Retraités Préretraités 15-64 ans Hommes en 2012 (princ)	Nombre de retraités ou préretraités hommes de 15 à 64 ans	people	P12_RETR1564, P12_H1564	employment	
+P12_FRETR1564	Retraités Préretraités 15-64 ans Femmes en 2012 (princ)	Nombre de retraités ou préretraités femmes de 15 à 64 ans	people	P12_RETR1564, P12_F1564	employment	
+P12_AINACT1564	Autres inactifs 15-64 ans en 2012 (princ)	Nombre d'autres inactifs de 15 à 64 ans	people	P12_POP1564	employment	
+P12_HAINACT1564	Autres inactifs 15-64 ans Hommes en 2012 (princ)	Nombre d'autres inactifs hommes de 15 à 64 ans	people	P12_AINACT1564,  P12_H1564	employment	
+P12_FAINACT1564	Autres inactifs 15-64 ans Femmes en 2012 (princ)	Nombre d'autres inactifs femmes de 15 à 64 ans	people	P12_AINACT1564,  P12_F1564	employment	
+C12_ACT1564	Actifs 15-64 ans en 2012 (compl)	Nombre de personnes actives de 15 à 64 ans	people		employment	
+C12_ACT1564_CS1	Actifs 15-64 ans Agriculteurs exploitants en 2012 (compl)	Nombre d'agriculteurs exploitants actifs de 15 à 64 ans	people	C12_ACT1564	employment	
+C12_ACT1564_CS2	Actifs 15-64 ans Artisans, Comm., Chefs entr. en 2012 (compl)	Nombre d'artisans, commerçants, chefs d'entreprise actifs de 15 à 64 ans	people	C12_ACT1564	employment	
+C12_ACT1564_CS3	Actifs 15-64 ans Cadres, Prof. intel. sup. en 2012 (compl)	Nombre de cadres et professions intellectuelles supérieures actifs de 15 à 64 ans	people	C12_ACT1564	employment	
+C12_ACT1564_CS4	Actifs 15-64 ans Prof. intermédiaires en 2012 (compl)	Nombre de professions intermédiaires actifs de 15 à 64 ans	people	C12_ACT1564	employment	
+C12_ACT1564_CS5	Actifs 15-64 ans Employés en 2012 (compl)	Nombre d'employés actifs de 15 à 64 ans	people	C12_ACT1564	employment	
+C12_ACT1564_CS6	Actifs 15-64 ans Ouvriers en 2012 (compl)	Nombre d'ouvriers actifs de 15 à 64 ans	people	C12_ACT1564	employment	
+C12_ACTOCC1564	Actifs occupés 15-64 ans en 2012 (compl)	Nombre de personnes actives occupées de 15 à 64 ans	people	C12_ACT1564	employment	
+C12_ACTOCC1564_CS1	Actifs occ 15-64 ans Agriculteurs exploitants en 2012 (compl)	Nombre d'agriculteurs exploitants actifs occupés de 15 à 64 ans	people	C12_ACT1564_CS1	employment	
+C12_ACTOCC1564_CS2	Actifs occ 15-64 ans Artisans, Comm., Chefs entr. en 2012 (compl)	Nombre d'artisans, commerçants, chefs d'entreprise actifs occupés de 15 à 64 ans	people	C12_ACT1564_CS2	employment	
+C12_ACTOCC1564_CS3	Actifs occ 15-64 ans Cadres Prof. intel. sup. en 2012 (compl)	Nombre de cadres, professions intellectuelles supérieures actifs occupés de 15 à 64 ans	people	C12_ACT1564_CS3	employment	
+C12_ACTOCC1564_CS4	Actifs occ 15-64 ans Prof. intermédiaires en 2012 (compl)	Nombre de professions intermédiaires actifs occupés de 15 à 64 ans	people	C12_ACT1564_CS4	employment	
+C12_ACTOCC1564_CS5	Actifs occupés 15-64 ans Employés en 2012 (compl)	Nombre d'employés actifs occupés de 15 à 64 ans	people	C12_ACT1564_CS5	employment	
+C12_ACTOCC1564_CS6	Actifs occupés 15-64 ans Ouvriers en 2012 (compl)	Nombre d'ouvriers actifs occupés de 15 à 64 ans	people	C12_ACT1564_CS6	employment	
+P12_ACTOCC15P	Actifs occupés 15 ans ou plus en 2012 (princ)	Nombre de personnes actives occupées de 15 ans ou plus	people	P12_POP15P	employment	
+P12_HACTOCC15P	Actifs occupés 15 ans ou plus Hommes en 2012 (princ)	Nombre d'hommes actifs occupés de 15 ans ou plus	people	P12_ACTOCC15P	employment	
+P12_FACTOCC15P	Actifs occupés 15 ans ou plus Femmes en 2012 (princ)	Nombre de femmes actives occupées de 15 ans ou plus	people	P12_ACTOCC15P	employment	
+P12_SAL15P	Salariés 15 ans ou plus en 2012 (princ)	Nombre de personnes salariées de 15 ans ou plus	people		employment	
+P12_HSAL15P	Salariés 15 ans ou plus Hommes en 2012 (princ)	Nombre d'hommes salariés de 15 ans ou plus	people	P12_SAL15P	employment	
+P12_FSAL15P	Salariés 15 ans ou plus Femmes en 2012 (princ)	Nombre de femmes salariées de 15 ans ou plus	people	P12_SAL15P	employment	
+P12_NSAL15P	Non-salariés 15 ans ou plus en 2012 (princ)	Nombre de personnes non-salariées de 15 ans ou plus	people		employment	
+P12_HNSAL15P	Non-salariés 15 ans ou plus Hommes en 2012 (princ)	Nombre d'hommes non-salariés de 15 ans ou plus	people	P12_NSAL15P	employment	
+P12_FNSAL15P	Non-salariés 15 ans ou plus Femmes en 2012 (princ)	Nombre de femmes non-salariées de 15 ans ou plus	people	P12_NSAL15P	employment	
+P12_ACTOCC15P_TP	Actifs occ 15 ans ou plus TP en 2012 (princ)	Nombre de personnes actives occupées de 15 ans ou plus à temps partiel	people	P12_ACTOCC15P	employment	
+P12_SAL15P_TP	Salariés 15 ans ou plus TP en 2012 (princ)	Nombre de personnes salariées de 15 ans ou plus à temps partiel	people	P12_SAL15P	employment	
+P12_HSAL15P_TP	Salariés 15 ans ou plus TP Hommes en 2012 (princ)	Nombre d'hommes salariés de 15 ans ou plus à temps partiel	people	P12_HSAL15P	employment	
+P12_FSAL15P_TP	Salariés 15 ans ou plus TP Femmes en 2012 (princ)	Nombre de femmes salariées de 15 ans ou plus à temps partiel	people	P12_FSAL15P	employment	
+P12_NSAL15P_TP	Non-salariés 15 ans ou plus TP en 2012 (princ)	Nombre de personnes non-salariées de 15 ans ou plus à temps partiel	people	P12_NSAL15P	employment	
+P12_SAL15P_CDI	Salariés 15 ans ou plus Fonct publ, CDI en 2012 (princ)	Nombre de personnes salariées de 15 ans ou plus titulaires de la fonction publique ou d'un contrat à durée indéterminée	people	P12_SAL15P	employment	
+P12_SAL15P_CDD	Salariés 15 ans ou plus CDD en 2012 (princ)	Nombre de personnes salariées de 15 ans ou plus ayant un contrat à durée déterminée	people	P12_SAL15P	employment	
+P12_SAL15P_INTERIM	Salariés 15 ans ou plus Intérim en 2012 (princ)	Nombre de personnes salariées de 15 ans ou plus intérimaires	people	P12_SAL15P	employment	
+P12_SAL15P_EMPAID	Salariés 15 ans ou plus Emplois aidés en 2012 (princ)	Nombre de personnes salariées de 15 ans ou plus Emplois aidés	people	P12_SAL15P	employment	
+P12_SAL15P_APPR	Salariés 15 ans ou plus Apprentissage - Stage en 2012 (princ)	Nombre de personnes salariées de 15 ans ou plus en apprentissage ou stagiaires	people	P12_SAL15P	employment	
+P12_NSAL15P_INDEP	Non-salariés 15 ans ou plus Indépendants en 2012 (princ)	Nombre de personnes non-salariées de 15 ans ou plus indépendants	people	P12_NSAL15P	employment	
+P12_NSAL15P_EMPLOY	Non-salariés 15 ans ou plus Employeurs en 2012 (princ)	Nombre de personnes non-salariées de 15 ans ou plus employeurs	people	P12_NSAL15P	employment	
+P12_NSAL15P_AIDFAM	Non-salariés 15 ans ou plus Aides familiaux en 2012 (princ)	Nombre de personnes non-salariées de 15 ans ou plus aides familiaux	people	P12_NSAL15P	employment	
+P12_ACTOCC15P_ILT1	Actif occ 15 ans ou plus travaille commune résidence en 2012 (princ)	Nombre d'actifs occupés de 15 ans ou plus qui travaillent dans la commune de résidence	people	P12_ACTOCC15P	employment, transportation	
+P12_ACTOCC15P_ILT2P	Actif occ 15 ans ou plus travaille autre commune que commune résidence en 2012 (princ)	Nombre d'actifs occupés de 15 ans ou plus qui travaillent dans une autre commune que la commune de résidence	people	P12_ACTOCC15P	employment, transportation	
+P12_ACTOCC15P_ILT2	Actif occ 15 ans ou plus travaille autre commune même dépt résidence en 2012 (princ)	Nombre d'actifs occupés de 15 ans ou plus qui travaillent dans une autre commune située dans le département de résidence	people	P12_ACTOCC15P	employment, transportation	
+P12_ACTOCC15P_ILT3	Actif occ 15 ans ou plus travaille autre dépt même région résidence en 2012 (princ)	Nombre d'actifs occupés de 15 ans ou plus qui travaillent dans une autre commune située dans un autre département de la région de résidence	people	P12_ACTOCC15P	employment, transportation	
+P12_ACTOCC15P_ILT4	Actif occ 15 ans ou plus travaille autre région en métropole en 2012 (princ)	Nombre d'actifs occupés de 15 ans ou plus qui travaillent dans une commune située dans une autre région en France métropolitaine	people	P12_ACTOCC15P	employment, transportation	
+P12_ACTOCC15P_ILT5	Actif occ 15 ans ou plus travaille autre région hors métropole en 2012 (princ)	Nombre d'actifs occupés de 15 ans ou plus qui travaillent ailleurs, hors de France métropolitaine (Département d'outre-mer, Collectivité d'outre-mer ou à l'étranger)	people	P12_ACTOCC15P	employment, transportation	
+P12_ACTOCC15P_ILT45D	Actif occ 15 ans ou plus DOM travaille autre région en 2012 (princ)	Nombre d'actifs occupés de 15 ans ou plus dans les DOM qui travaillent dans une autre région	people	P12_ACTOCC15P	employment, transportation	
+C12_ACTOCC15P	Actif occ 15 ans ou plus en 2012 (compl)	Nombre d'actifs occupés de 15 ans ou plus	people		employment	
+C12_ACTOCC15P_PAS	Actif occ 15 ans ou plus pas de transport en 2012 (compl)	Nombre d'actifs occupés de 15 ans ou plus qui n'utilisent pas de moyen de transport pour aller travailler	people	C12_ACTOCC15P	employment, transportation	
+C12_ACTOCC15P_MAR	Actif occ 15 ans ou plus marche à pied en 2012 (compl)	Nombre d'actifs occupés de 15 ans ou plus qui vont travailler principalement à pied	people	C12_ACTOCC15P	employment, transportation	
+C12_ACTOCC15P_DROU	Actif occ 15 ans ou plus deux roues en 2012 (compl)	Nombre d'actifs occupés de 15 ans ou plus qui utilisent principalement un deux roues pour aller travailler	people	C12_ACTOCC15P	employment, transportation	
+C12_ACTOCC15P_VOIT	Actif occ 15 ans ou plus voiture, camion en 2012 (compl)	Nombre d'actifs occupés de 15 ans ou plus qui utilisent principalement une voiture ou un camion pour aller travailler	people	C12_ACTOCC15P	employment, transportation	
+C12_ACTOCC15P_TCOM	Actif occ 15 ans ou plus transport en commun en 2012 (compl)	Nombre d'actifs occupés de 15 ans ou plus qui utilisent principalement les transports en commun pour aller travailler	people	C12_ACTOCC15P	employment, transportation	

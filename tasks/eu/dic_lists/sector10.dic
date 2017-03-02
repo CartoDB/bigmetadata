@@ -1,0 +1,16 @@
+S1	Total economy
+S121	Central Bank
+S12T	Monetary Financial Institutions (MFI) other than central bank
+S122	Deposit-taking corporations except the central bank
+S123	Money market funds
+S13	General Government
+S1P	Other sectors than MFIs and general government
+S12M	Financial Corporations other than MFIs
+S1V	Non-Financial Corporations, households and non-profit institutions serving households
+S1A	Affiliates
+S1W	Other sectors than General Government
+S1Z	Sectors other than deposit-taking corporations and general government
+S1X	Monetary authorities
+S12R	Other financial corporations
+S1N	Not sectorised
+S12K	Monetary financial institutions (MFI)

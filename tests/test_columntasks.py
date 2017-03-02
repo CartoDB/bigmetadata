@@ -3,16 +3,25 @@ Test ColumnTask classes
 '''
 
 
-from tests.util import session_scope, runtask
-from tasks.es.ine import FiveYearPopulationColumns
-from tasks.meta import (get_engine, current_session, Base, session_commit,
-                        session_rollback, OBSColumn)
-from tasks.util import ColumnsTask, TableTask, classpath
+from tests.util import runtask, setup, teardown
 
-from nose import with_setup
-from nose.tools import assert_greater
+from tasks.es.ine import FiveYearPopulationColumns
+from tasks.meta import (get_engine, current_session, Base,
+                        session_rollback, OBSColumn, current_session)
+from tasks.util import ColumnsTask, TableTask, TagsTask, classpath
+
+# Monkeypatch TableTask
+TableTask._test = True
+
+from tasks.carto import OBSMetaToLocal
+
+from nose.tools import assert_greater, with_setup, assert_true
 from nose.plugins.skip import SkipTest
 from nose_parameterized import parameterized
+
+from tasks.ca.statcan.data import NHS, Census
+from tasks.us.census.acs import Extract
+from tasks.us.census.tiger import SumLevel
 
 import importlib
 import inspect
@@ -35,20 +44,20 @@ def collect_tasks(TaskClass):
     return tasks
 
 
-
 @parameterized(collect_tasks(ColumnsTask))
+@with_setup(setup, teardown)
 def test_column_task(klass):
     # Ensure every column task runs and produces some kind of independent
     # metadata.
-    with session_scope() as session:
-        # TODO: test columnstasks that have params
-        if klass.get_param_names():
-            raise SkipTest('Cannot test ColumnsTask with params')
-        task = klass()
-        runtask(task)
-        assert_greater(
-            session.query(OBSColumn).filter(
-                OBSColumn.id.startswith(classpath(task))).count(), 0)
+    # TODO: test columnstasks that have params
+    if klass.get_param_names():
+        raise SkipTest('Cannot test ColumnsTask with params')
+    task = klass()
+    runtask(task)
+    assert_greater(
+        current_session().query(OBSColumn).filter(
+            OBSColumn.id.startswith(classpath(task))).count(), 0)
+
 
 
 #@parameterized(collect_tasks(TableTask))

@@ -1,0 +1,9 @@
+TOTAL	All enterprises (enterprise group + not enterprise group)
+EG	Enterprise group
+HD_EG	Group head
+HD_EGG	Global group head
+SUB	Subsidiary
+SUB_NAT	Subsidiary with global group head in own country
+SUB_EU27	Subsidiary with global group head in EU27
+SUB_XEU27	Subsidiary with global group head in extra-EU27
+NEG	Not enterprise group

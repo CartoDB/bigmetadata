@@ -1,0 +1,106 @@
+TOTAL	Total Waste
+W01-05	Chemical and medical wastes (subtotal)
+W011	Spent solvents
+W012	Acid, alkaline or saline wastes
+W013	Used oils
+W014	Spent chemical catalysts
+W02A	Chemical wastes
+W032	Industrial effluent sludges
+W033	Sludges and liquid wastes from waste treatment
+W05	Health care and biological wastes
+W06_07A	Recyclable wastes (subtotal, W06+W07 except W077)
+W061	Metal wastes, ferrous
+W062	Metal wastes, non-ferrous
+W063	Metal wastes, mixed ferrous and non-ferrous
+W071	Glass wastes
+W072	Paper and cardboard wastes
+W073	Rubber wastes
+W074	Plastic wastes
+W075	Wood wastes
+W076	Textile wastes
+W077_08	Equipment (subtotal, W077+W08A+W081+W0841)
+W077	Waste containing PCB
+W08A	Discarded equipment (except discarded vehicles and batteries and accumulators waste) (W08 except W081, W0841)
+W081	Discarded vehicles
+W0841	Batteries and accumulators wastes
+W09	Animal and vegetal wastes (subtotal, W091+W092+W093)
+W091	Animal and mixed food waste
+W092	Vegetal wastes
+W093	Animal faeces, urine and manure
+W10	Mixed ordinary wastes (subtotal, W101+W102+W103)
+W101	Household and similar wastes
+W102	Mixed and undifferentiated materials
+W103	Sorting residues
+W11	Common sludges
+W12-13	Mineral and solidified wastes (subtotal)
+W121	Mineral waste from construction and demolition
+W12B	Other mineral wastes (W122+W123+W125)
+W124	Combustion wastes
+W126	Soils
+W127	Dredging spoils
+W128_13	Mineral wastes from waste treatment and stabilised wastes
+W01-03_X_013	Chemical wastes, liquids and sludges (valid up to 2008)
+W031	Chemical deposits and residues
+W06	Metallic wastes (W061+W062+W063)
+W091_092	Animal and mixed food waste; vegetal wastes (W091+W092)
+W11_127	Common sludges and dredging spoils (W11+W127, valid up to 2008)
+W12_X_127NH	Mineral waste (except non-hazardous dredging spoils, valid up to 2008)
+W12A	Mineral wastes (except combustion wastes, contaminated soils and polluted dredging spoils) (W121+122+W123+W125+W126, valid up to 2008)
+W126_127	Soils and dredging spoils (W126+W127, valid up to 2008)
+W13	Solidified, stabilised or vitrified wastes (valid up to 2008)
+RCV_OTH	Other recovered wastes (valid up to 2008)
+DSP_OTH	Other disposed wastes (valid up to 2008)
+INC_OTH	Other incinerated wastes (valid up to 2008)
+TOT_X_MIN	Waste excluding major mineral wastes
+W1501	Packaging
+W150101	Paper and cardboard packaging
+W150102	Plastic packaging
+W150103	Wooden packaging
+W150104	Metallic packaging
+W15010401	Aluminium packaging
+W15010402	Steel packaging
+W150107	Glass packaging
+W150199	Other packaging
+DMDP	Total dismantling and de-pollution
+LIQ	Liquids (excluding fuel) (LoW: 1301 until 1306+1406+160113 until 160115+160121+160122+160199)
+EXP	End-of-life vehicles: total weight of vehicles exported
+W160103	End-of-life vehicles: tyres
+W160107	End-of-life vehicles: oil filters
+W1601A	End-of-life vehicles: other materials arising from depollution (excluding fuel) (LoW: 160108 until 160111+160121)
+W1601B	End-of-life vehicles: metal components (LoW: 160117+160118)
+W160119	End-of-life vehicles: large plastic parts
+W160120	End-of-life vehicles: glass
+W1601C	End-of-life vehicles: other arising from dismantling (LoW: 160122+160199)
+W1606	Batteries and accumulators
+W160601	Lead batteries
+W160601PB	Lead content of batteries
+W160602	Ni-Cd batteries
+W160602CD	Cadmium content of batteries
+W1606B	Portable batteries and accumulators
+W160605	Other batteries and accumulators
+W1608	Catalysts
+W1910	Total shredding
+W191001	Ferrous scrap (steel) from shredding
+W191002	Non-ferrous materials (aluminium, copper, zinc, lead, etc.)  from shredding
+W1910A	Shredder Light Fraction (SLF) (LoW: 191003+191004)
+W1910B	Other materials arising from shredding (LoW: 191005+191006)
+NMIN	Waste excluding major mineral wastes
+CHEM_B	Chemical wastes (W014+W02+W031)
+CHEM_A	Chemical wastes, liquids and sludges (W011+W012+CHEM_B+W032+W033)
+W02	Chemical preparation wastes
+W09A	Animal and vegetal wastes (except animal waste of food preparation and products; and animal faeces, urine and manure) (W09 except W0911, W093)
+W0911	Animal waste of food preparation and products
+W12	Mineral wastes
+EE_LHA	Large household appliances
+EE_SHA	Small household appliances
+EE_ITT	IT and telecommunications equipment
+EE_CON	Consumer equipment
+EE_LIT	Lighting equipment
+EE_GDL	Gas discharge lamps
+EE_EET	Electrical and electronic tools
+EE_TLS	Toys, leisure and sports equipment
+EE_MED	Medical devices
+EE_MON	Monitoring and control instruments
+EE_ATD	Automatic dispensers
+ORG	Organic material
+ORG_OTH	Other in-organic material

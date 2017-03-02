@@ -1,0 +1,17 @@
+TOTAL	Total
+A1_33	Single person without children, 33% of AW
+A1_50	Single person without children, 50% of AW
+A1_67	Single person without children, 67% of AW
+A1_80	Single person without children, 80% of AW
+A1_100	Single person without children, 100% of AW
+A1_125	Single person without children, 125% of AW
+A1_167	Single person without children, 167% of AW
+A1_2CH_67	Single person with 2 children, 67% of AW
+CPL_2CH_33_0	One-earner married couple, at 33% of AW, with two children
+CPL_2CH_100_0	One-earner married couple, at 100% of AW, with two children
+CPL_2CH_100_33	Two-earner married couple, one at 100%, the other at 33% of AW, with two children
+CPL_2CH_100_67	Two-earner married couple, one at 100%, the other at 67% of AW, with two children
+CPL_2CH_100_100	Two-earner married couple, one at 100%, the other at 100% of AW, with two children
+CPL_100_33	Two-earner married couple, one at 100%, the other at 33% of AW, with no children
+CPL_100_100	Two-earner married couple, one at 100%, the other at 100% of AW, with no children
+EM042	Single person without children

@@ -1,0 +1,181 @@
+CPA_A01	Products of agriculture, hunting and related services
+CPA_A02	Products of forestry, logging and related services
+CPA_A03	Fish and other fishing products; aquaculture products; support services to fishing
+CPA_B	Mining and quarrying
+CPA_C10-12	Food, beverages and tobacco products
+CPA_C13-15	Textiles, wearing apparel, leather and related products
+CPA_C16	Wood and of products of wood and cork, except furniture; articles of straw and plaiting materials
+CPA_C17	Paper and paper products
+CPA_C18	Printing and recording services
+CPA_C19	Coke and refined petroleum products
+CPA_C20	Chemicals and chemical products
+CPA_C21	Basic pharmaceutical products and pharmaceutical preparations
+CPA_C22	Rubber and plastic products
+CPA_C23	Other non-metallic mineral products
+CPA_C24	Basic metals
+CPA_C25	Fabricated metal products, except machinery and equipment
+CPA_C26	Computer, electronic and optical products
+CPA_C27	Electrical equipment
+CPA_C28	Machinery and equipment n.e.c.
+CPA_C29	Motor vehicles, trailers and semi-trailers
+CPA_C30	Other transport equipment
+CPA_C31_32	Furniture and other manufactured goods
+CPA_C33	Repair and installation services of machinery and equipment
+CPA_D	Electricity, gas, steam and air conditioning
+CPA_E36	Natural water; water treatment and supply services
+CPA_E37-39	Sewerage services; sewage sludge; waste collection, treatment and disposal services; materials recovery services; remediation services and other waste management services
+CPA_F	Constructions and construction works
+CPA_G45	Wholesale and retail trade and repair services of motor vehicles and motorcycles
+CPA_G46	Wholesale trade services, except of motor vehicles and motorcycles
+CPA_G47	Retail trade services, except of motor vehicles and motorcycles
+CPA_H49	Land transport services and transport services via pipelines
+CPA_H50	Water transport services
+CPA_H51	Air transport services
+CPA_H52	Warehousing and support services for transportation
+CPA_H53	Postal and courier services
+CPA_I	Accommodation and food services
+CPA_J58	Publishing services
+CPA_J59_60	Motion picture, video and television programme production services, sound recording and music publishing; programming and broadcasting services
+CPA_J61	Telecommunications services
+CPA_J62_63	Computer programming, consultancy and related services; Information services
+CPA_K64	Financial services, except insurance and pension funding
+CPA_K65	Insurance, reinsurance and pension funding services, except compulsory social security
+CPA_K66	Services auxiliary to financial services and insurance services
+CPA_L68B	Real estate services excluding imputed rents
+CPA_L68A	Imputed rents of owner-occupied dwellings
+CPA_M69_70	Legal and accounting services; services of head offices; management consultancy services
+CPA_M71	Architectural and engineering services; technical testing and analysis services
+CPA_M72	Scientific research and development services
+CPA_M73	Advertising and market research services
+CPA_M74_75	Other professional, scientific and technical services and veterinary services
+CPA_N77	Rental and leasing services
+CPA_N78	Employment services
+CPA_N79	Travel agency, tour operator and other reservation services and related services
+CPA_N80-82	Security and investigation services; services to buildings and landscape; office administrative, office support and other business support services
+CPA_O	Public administration and defence services; compulsory social security services
+CPA_P	Education services
+CPA_Q86	Human health services
+CPA_Q87_88	Residential care services; social work services without accommodation
+CPA_R90-92	Creative, arts, entertainment, library, archive, museum, other cultural services; gambling and betting services
+CPA_R93	Sporting services and amusement and recreation services
+CPA_S94	Services furnished by membership organisations
+CPA_S95	Repair services of computers and personal and household goods
+CPA_S96	Other personal services
+CPA_T	Services of households as employers; undifferentiated goods and services produced by households for own use
+CPA_U	Services provided by extraterritorial organisations and bodies
+CPA_A	Products of agriculture, forestry and fishing
+CPA_B-E	Industrial products (except construction works)
+CPA_G-I	Wholesale and retail trade, transport, accomodation and food service activities
+CPA_J	Information and communication services
+CPA_K	Financial and insurance services
+CPA_L	Real estate services
+CPA_M_N	Professional, scientific and technical services; administrative and support services
+CPA_O-Q	Public administration, defence, education, human health and social work services
+CPA_R-U	Arts, entertainment and recreation; other services; services of household and extra-territorial organizations and bodies
+A01	Crop and animal production, hunting and related service activities
+A02	Forestry and logging
+A03	Fishing and aquaculture
+B	Mining and quarrying
+C10-12	Manufacture of food products; beverages and tobacco products
+C13-15	Manufacture of textiles, wearing apparel, leather and related products
+C16	Manufacture of wood and of products of wood and cork, except furniture; manufacture of articles of straw and plaiting materials
+C17	Manufacture of paper and paper products
+C18	Printing and reproduction of recorded media
+C19	Manufacture of coke and refined petroleum products
+C20	Manufacture of chemicals and chemical products
+C21	Manufacture of basic pharmaceutical products and pharmaceutical preparations
+C22	Manufacture of rubber and plastic products
+C23	Manufacture of other non-metallic mineral products
+C24	Manufacture of basic metals
+C25	Manufacture of fabricated metal products, except machinery and equipment
+C26	Manufacture of computer, electronic and optical products
+C27	Manufacture of electrical equipment
+C28	Manufacture of machinery and equipment n.e.c.
+C29	Manufacture of motor vehicles, trailers and semi-trailers
+C30	Manufacture of other transport equipment
+C31_32	Manufacture of furniture; other manufacturing
+C33	Repair and installation of machinery and equipment
+D	Electricity, gas, steam and air conditioning supply
+E36	Water collection, treatment and supply
+E37-39	Sewerage, waste management, remediation activities
+F	Construction
+G45	Wholesale and retail trade and repair of motor vehicles and motorcycles
+G46	Wholesale trade, except of motor vehicles and motorcycles
+G47	Retail trade, except of motor vehicles and motorcycles
+H49	Land transport and transport via pipelines
+H50	Water transport
+H51	Air transport
+H52	Warehousing and support activities for transportation
+H53	Postal and courier activities
+I	Accommodation and food service activities
+J58	Publishing activities
+J59_60	Publishing, motion picture, video, television programme production; sound recording, programming and broadcasting activities
+J61	Telecommunications
+J62_63	Computer programming, consultancy, and information service activities
+K64	Financial service activities, except insurance and pension funding
+K65	Insurance, reinsurance and pension funding, except compulsory social security
+K66	Activities auxiliary to financial services and insurance activities
+L68B	Real estate activities excluding imputed rents
+L68A	Imputed rents of owner-occupied dwellings
+M69_70	Legal and accounting activities; activities of head offices; management consultancy activities
+M71	Architectural and engineering activities; technical testing and analysis
+M72	Scientific research and development
+M73	Advertising and market research
+M74_75	Other professional, scientific and technical activities; veterinary activities
+N77	Rental and leasing activities
+N78	Employment activities
+N79	Travel agency, tour operator reservation service and related activities
+N80-82	Security and investigation, service and landscape, office administrative and support activities
+O	Public administration and defence; compulsory social security
+P	Education
+Q86	Human health activities
+Q87_88	Residential care activities and social work activities without accommodation
+R90-92	Creative, arts and entertainment activities; libraries, archives, museums and other cultural activities; gambling and betting activities
+R93	Sports activities and amusement and recreation activities
+S94	Activities of membership organisations
+S95	Repair of computers and personal and household goods
+S96	Other personal service activities
+T	Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use
+U	Activities of extraterritorial organisations and bodies
+A	Agriculture, forestry and fishing
+B-E	Industry (except construction)
+G-I	Wholesale and retail trade, transport, accomodation and food service activities
+J	Information and communication
+K	Financial and insurance activities
+L	Real estate activities
+M_N	Professional, scientific and technical activities; administrative and support service activities
+O-Q	Public administration, defence, education, human health and social work services
+R-U	Arts, entertainment and recreation; other service activities; activities of household and extra-territorial organizations and bodies
+TOTAL	Total
+ADJ_P7	Cif/fob adjustments on imports
+OP_RES	Direct purchases abroad by residents
+TOTADJ	Total adjusted
+P11	Market output
+P12	Output for own final use
+P13	Other non-market output
+ADJ_P6	Cif/fob adjustments on exports
+OP_NRES	Purchases on the domestic territory by non-residents
+P2_ADJ	Total intermediate consumption /final use
+D1	Compensation of employees
+D11	Wages and salaries
+D29X39	Other taxes less other subsidies on production
+P51C	Consumption of fixed capital
+B2A3N	Operating surplus and mixed income, net
+B2A3G	Operating surplus and mixed income, gross
+B3G	Mixed income, gross
+B1G	Value added, gross
+P1	Output
+P51G	Gross capital formation
+LE	Closing balance sheet
+IMP	Use of imported products
+D21X31	Taxes less subsidies on products
+P2	Intermediate consumption
+EMP_DC	Total employment domestic concept
+TU	Total use
+P7_B0	Imports of goods and services from the EU Member States
+P7_U2	Imports of goods and services from members of the Monetary Union
+P7_U3	Imports of goods and services from non-members of the Monetary Union
+P7_D0	Imports of goods and services from the institutions of the EU
+P7	Imports of goods and services
+TS_BP	Total supply at basic prices
+NAP	Not applicable

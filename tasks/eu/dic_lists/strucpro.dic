@@ -1,0 +1,9 @@
+AR	Area (cultivation/harvested/production) (1000 ha)
+PR	Harvested production (1000 t)
+YI	Yield (100 kg/ha)
+HOL	Number of holders (1000)
+ANI	Number of animals (1000)
+HA	Area (1 000 ha)
+MC	Humidity
+MA	Main area (1000 ha)
+HU	Humidity (%)

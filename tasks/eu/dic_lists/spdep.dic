@@ -1,0 +1,175 @@
+TOTALNOREROUTE	Total expenditure
+ADMIN	Administration costs
+TRANSFER	Transfers to other schemes
+OTHER	Other expenditure
+OPROP	Other expenditure property income
+O_OTH	Other expenditure miscellaneous
+SPBENEFNOREROUTE	Social protection benefits
+SNONTARGETNOREROUTE	Non means-tested benefits
+STARGETNOREROUTE	Means-tested benefits
+STTCASH	Cash benefits
+SNTCASH	Cash benefits (non means-tested)
+STACASH	Cash benefits (means-tested)
+STTCPERIOD	Periodic cash benefits
+SNTCPERIOD	Periodic cash benefits (non means-tested)
+STACPERIOD	Periodic cash benefits (means-tested)
+STTCPSICK	Paid sick leave benefit
+SNTCPSICK	Paid sick leave benefit (non means-tested)
+STACPSICK	Paid sick leave benefit (means-tested)
+STTCPDISPEN	Disability pension
+SNTCPDISPEN	Disability pension (non means-tested)
+STACPDISPEN	Disability pension (means-tested)
+STTCPEARLYRED	Early retirement benefit due to reduced capacity to work
+SNTCPEARLYRED	Early retirement benefit due to reduced capacity to work (non means-tested)
+STACPEARLYRED	Early retirement benefit due to reduced capacity to work (means-tested)
+STTCPOLDPEN	Old age pension
+SNTCPOLDPEN	Old age pension (non means-tested)
+STACPOLDPEN	Old age pension (means-tested)
+STTCPANTPEN	Anticipated old age pension
+SNTCPANTPEN	Anticipated old age pension (non means-tested)
+STACPANTPEN	Anticipated old age pension (means-tested)
+STTCPPARPEN	Partial pension
+SNTCPPARPEN	Partial pension (non means-tested)
+STACPPARPEN	Partial pension (means-tested)
+STTCPCARE	Periodic care allowance
+SNTCPCARE	Periodic care allowance (non means-tested)
+STACPCARE	Periodic care allowance (means-tested)
+STTCPECOHAND	Periodic economic integration of the handicapped
+SNTCPECOHAND	Periodic economic integration of the handicapped (non means-tested)
+STACPECOHAND	Periodic economic integration of the handicapped (means-tested)
+STTCPSURVPEN	Survivors pension
+SNTCPSURVPEN	Survivors pension (non means-tested)
+STACPSURVPEN	Survivors pension (means-tested)
+STTCPCHILD	Income maintenance benefit in the event of childbirth
+SNTCPCHILD	Income maintenance benefit in the event of childbirth (non means-tested)
+STACPCHILD	Income maintenance benefit in the event of childbirth (means-tested)
+STTCPPARENT	Periodic parental leave benefit
+SNTCPPARENT	Parental leave benefit periodic (non means-tested)
+STACPPARENT	Parental leave benefit periodic (means-tested)
+STTCPALLOW	Family or child allowance
+SNTCPALLOW	Family or child allowance (non means-tested)
+STACPALLOW	Family or child allowance (means-tested)
+STTCPFULLUNEMP	Full unemployment benefits
+SNTCPFULLUNEMP	Full unemployment benefits (non means-tested)
+STACPFULLUNEMP	Full unemployment benefits (means-tested)
+STTCPPARTUNEMP	Partial unemployment
+SNTCPPARTUNEMP	Partial unemployment. (non means-tested)
+STACPPARTUNEMP	Partial unemployment (means-tested)
+STTKPLACEMENT	Placement services and job search assistance
+SNTKPLACEMENT	Placement services and job search assistance (non means-tested)
+STAKPLACEMENT	Placement services and job search assistance (means-tested)
+STTCPEARLYMARK	Early retirement benefit for labour market reasons
+SNTCPEARLYMARK	Early retirement benefit for labour market reasons (non means-tested)
+STACPEARLYMARK	Early retirement benefit for labour market reasons (means-tested)
+STTCPVOCAT	Periodic benefit vocational training
+SNTCPVOCAT	Periodic benefit vocational training (non means-tested)
+STACPVOCAT	Periodic benefit vocational training (means-tested)
+STTCPINCSUP	Income support
+SNTCPINCSUP	Income support (non means-tested)
+STACPINCSUP	Income support (means-tested)
+STTCP_OTH	Other periodic cash benefits
+SNTCP_OTH	Other periodic cash benefits (non means-tested)
+STACP_OTH	Other periodic cash benefits (means-tested)
+STTCLUMP	Lump sum cash benefits
+SNTCLUMP	Lump sum cash benefits (non means-tested)
+STACLUMP	Lump sum cash benefits (means-tested)
+STTCLCARE	Lump sum care allowance
+SNTCLCARE	Lump sum care allowance (non means-tested)
+STACLCARE	Lump sum care allowance (means-tested)
+STTCLECOHAND	Lump sum economic integration of the handicapped
+SNTCLECOHAND	Lump sum economic integration of the handicapped (non means-tested)
+STACLECOHAND	Lump sum economic integration of the handicapped (means-tested)
+STTCLDEATH	Death grant
+SNTCLDEATH	Death grant (non means-tested)
+STACLDEATH	Death grant (means-tested)
+STTCLBIRTH	Birth grant
+SNTCLBIRTH	Birth grant (non means-tested)
+STACLBIRTH	Birth grant (means-tested)
+STTCLPARENT	Parental leave benefits lump sum
+SNTCLPARENT	Parental leave benefits lump sum (non means-tested)
+STACLPARENT	Parental leave benefits lump sum (means-tested)
+STTCLVOCAT	Lump sum benefit vocational training
+SNTCLVOCAT	Lump sum benefit vocational training (non means-tested)
+STACLVOCAT	Lump sum benefit vocational training (means-tested)
+STTCLRED	Lump sum benefit redundancy compensation
+SNTCLRED	Lump sum benefit redundancy compensation (non means-tested)
+STACLRED	Lump sum benefit redundancy compensation (means-tested)
+STTCL_OTH	Other lump sum cash benefits
+SNTCL_OTH	Other lump sum cash benefits (non means-tested)
+STACL_OTH	Other lump sum cash benefits (means-tested)
+STTKIND	Benefits in kind
+SNTKIND	Benefits in kind (non means-tested)
+STAKIND	Benefits in kind (means-tested)
+STTKINCARE	In-patient care
+SNTKINCARE	In-patient care (non means-tested)
+STAKINCARE	In-patient care (means-tested)
+STTKIDIRECT	In-patient care direct provision
+SNTKIDIRECT	In-patient care direct provision (non means-tested)
+STAKIDIRECT	In-patient care direct provision (means-tested)
+STTKIREMB	In-patient care reimbursment
+SNTKIREMB	In-patient care remboursment (non means-tested)
+STAKIREMB	In-patient care remboursment (means-tested)
+STTKOUTCARE	Out-patient care
+SNTKOUTCARE	Out-patient care (non means-tested)
+STAKOUTCARE	Out-patient care (means-tested)
+STTKODIR_PHAR	Out-patient care direct provision of pharmaceutical products
+SNTKODIR_PHAR	Out-patient care direct provision of pharmaceitical products (non means-tested)
+STAKODIR_PHAR	Out-patient care direct provision of pharm. products (means-tested)
+STTKODIR_OTH	Out-patient care other direct provision
+SNTKODIR_OTH	Out-patient care other direct provision (non means-tested)
+STAKODIR_OTH	Out-patient care other direct provision (means-tested)
+STTKOREMB_PHAR	Out-patient care reimbursment of pharmaceutical products
+SNTKOREMB_PHAR	Out-patient care rembursment of pharmaceutical products (non means-tested)
+STAKOREMB_PHAR	Out-patient care rembursment of pharmaceutical products (means-tested)
+STTKOREMB_OTH	Out-patient care other reimbursment
+SNTKOREMB_OTH	Out-patient care other rembursment (non means-tested)
+STAKOREMB_OTH	Out-patient care other rembursment (means-tested)
+STTKCHILD	Child day care
+SNTKCHILD	Child day care (non means-tested)
+STAKCHILD	Child day care (means-tested)
+STTKACCOMOD	Accomodation
+SNTKACCOMOD	Accommodation (non means-tested)
+STAKACCOMOD	Accommodation (means-tested)
+STTKASSIST	Assistance in carrying daily tasks
+SNTKASSIST	Assistance in carrying daily tasks (non means-tested)
+STAKASSIST	Assistance in carrying daily tasks (means-tested)
+STTKREHAB	Rehabilitation
+SNTKREHAB	Rehabilitation (non means-tested)
+STAKREHAB	Rehabilitation (means-tested)
+STTKFUNERAL	Funeral expenses
+SNTKFUNERAL	Funeral expenses (non means-tested)
+STAKFUNERAL	Funeral expenses (means-tested)
+STTKHOME	Home help
+SNTKHOME	Home help (non means-tested)
+STAKHOME	Home help (means-tested)
+STTKMOBIL	Mobility and resettlement benefits
+SNTKMOBIL	Mobility and resettlement benefits (non means-tested)
+STAKMOBIL	Mobility and resettlement benefits (means-tested)
+STTKVOCAT	Vocational training
+SNTKVOCAT	Vocational training (non means-tested)
+STAKVOCAT	Vocational training (means-tested)
+STTKRENT	Rent benefits
+SNTKRENT	Rent benefits (non means-tested)
+STAKRENT	Rent benefits (means-tested)
+STTKRHOUSE	Social housing
+SNTKRHOUSE	Social housing (non means-tested)
+STAKRHOUSE	Social housing (means-tested)
+STTKR_OTH	Other rent benefits
+SNTKR_OTH	Other rent benefits (non means-tested)
+STAKR_OTH	Other rent benefits (means-tested)
+STTKOWNER	Benefits to owner-occupiers
+SNTKOWNER	Benefits to owner-occupiers (non means-tested)
+STAKOWNER	Benefits to owner-occupiers (means-tested)
+STTKDRUGS	Rehabilitation of alcohol and drugs abusers
+SNTKDRUGS	Rehabilitation of alcohol and drugs abusers (non means-tested)
+STAKDRUGS	Rehabilitation of alcohol and drugs abusers (means-tested)
+STTK_OTH	Other benefits in kind
+SNTK_OTH	Other benefits in kind (non means-tested)
+STAK_OTH	Other benefits in kind (means-tested)
+TOTAL	Total expenditure including transactions between schemes
+SPBENEF	Social protection benefits including transactions between schemes
+SNONTARGET	Non means-tested benefits including transactions between schemes
+STARGET	Means-tested benefits including transactions between schemes
+STTREROUTE	Re-routed social contributions between schemes
+SNTREROUTE	Re-routed social contributions between schemes (non means-tested)
+STAREROUTE	Re-routed social contributions between schemes (means-tested)

@@ -1,0 +1,16 @@
+HAZ_NHAZ	Hazardous and non-hazardous - Total
+HAZ	Hazardous
+HLTH	Hazardous to health 
+HLTH_CMR	Carcinogenic, mutagenic and reprotoxic (CMR) health hazard 
+HLTH_CHRTOX	Chronic toxic health hazard 
+HLTH_VTOX	Very toxic health hazard 
+HLTH_TOX	Toxic health hazard 
+HLTH_HRM	Harmful health hazard 
+ENV	Hazardous to the environment 
+ENV_SGNACU	Significant acute environmental hazard 
+ENV_SEVCHR	Severe chronic environmental hazard 
+ENV_SGNCHR	Significant chronic environmental hazard 
+ENV_MODCHR	Moderate chronic environmental hazard 
+ENV_CHR	Chronic environmental hazard 
+NHAZ	Non-hazardous
+OTH	Other

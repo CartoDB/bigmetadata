@@ -1,0 +1,21 @@
+NGDP	Net balance at current prices (in % of GDP)
+NMLD	Net balance (in 1 000 million ECU/EUR)
+COVR	Cover rates (in %)
+CA1	Credits by geographical zone (credits as % of partner World credits)
+DA1	Debits by geographical zone (debits as % of partner World debits)
+CMLD	Exports (in 1 000 million ECU/EUR)
+DMLD	Imports (in 1 000 million ECU/EUR)
+STOCKS	Direct investment stocks - Million ECU/EUR
+FLOWS	Direct investment flows - Million ECU/EUR
+INCOME	Direct investment income - Million ECU/EUR
+FGDP	GDP (flows in % of GDP)
+SGDP	GDP (stocks in % of GDP)
+TI100	Market integration - Trade integration of goods
+TI200	Market integration - Trade integration of services
+TIFDI	Market integration - Foreign Direct Investment intensity - Average value of inward and outward Foreign Direct Investment flows divided by GDP, multiplied by 100
+TUR	Turnover - Million ECU/EUR
+EMP	Number of persons employed
+ENT	Number of enterprises
+PEC	Personnel costs - Million ECU/EUR
+GIT	Gross investments in tangible goods - Million ECU/EUR
+VAC	Value added at factor cost - Million ECU/EUR

@@ -1,0 +1,7 @@
+TOTAL	Total
+SAME_REG	Same region as the purchaser
+OTH_REG	Other region but the same country as the purchaser
+EU15_NNAT	EU-15 Member States
+EU_OTH_NNAT	EU-10 Member States (countries that joined the EU in May 2004)
+EU_FOR	Outside EU
+UNK	Unknown

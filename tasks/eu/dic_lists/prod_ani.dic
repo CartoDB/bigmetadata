@@ -1,0 +1,68 @@
+11110000	Young cattle - prices per 100 kg live weight
+11111000	Young cattle (store) - prices per head
+11112000	Heifers - prices per 100 kg live weight
+11112100	Heifers (store) - prices per head
+11113000	Cows - prices per 100 kg live weight
+11114000	Bullocks - prices per 100 kg live weight
+11120000	Calves - prices per 100 kg live weight
+11121000	Calves (of a few days) - prices per head
+11122000	Calves (of a few weeks) - prices per head
+11210000	Pigs (light) - prices per 100 kg live weight
+11220000	Pigs (carcasses) (grade II) - prices per 100 kg
+11230000	Pigs (carcasses) (grade I) - prices per 100 kg
+11240000	Piglets - prices per 100 kg live weight
+11300000	Horses - prices per 100 kg live weight
+11410000	Sheep - prices per 100 kg live weight
+11411000	Suckling lambs - prices per 100 kg live weight
+11412000	Fattening lambs - prices per 100 kg live weight
+11420000	Goats - prices per 100 kg live weight
+11421000	Kids - prices per 100 kg live weight
+11510000	Chickens (live 1st choice) - prices per 100 kg live weight
+11511000	Broiling fowl (slaughtered) - prices per 100 kg dead weight
+11591000	Ducks (slaughtered) - prices per 100 kg dead weight
+11592000	Turkey (slaughtered) - prices per 100 kg by carcase weight
+11593000	Geese (slaughtered) - prices per 100 kg by carcase weight
+11910000	Rabbits - prices per 100 kg live weight
+12111000	Raw cows' milk 3.7% fat content - prices per 100 kg
+12112000	Raw cows' milk actual fat content - prices per 100 kg
+12113000	Whole cows' milk for human consumption - prices per 100 litres
+12191000	Raw sheep milk - prices per 100 kg
+12192000	Raw goats' milk - prices per 100 kg
+12200000	Fresh eggs (whole country) - prices per 100 items
+12910000	Raw wool - prices per 100 kg
+12920000	Honey - prices per 100 kg
+P001	Total fishery products
+P002	Total edible fishery products
+P101	Fish: fresh, chilled or frozen
+P201	Fish: salted, smoked or dried
+P301	Fish: preparations and conserves
+P401	Crustaceans and Molluscs: fresh, chilled, frozen, dried, salted
+P501	Crustaceans and Molluscs: preparations and conserves
+P601	Meals, Solubles, etc
+P701	Oils and Fats
+P901	Inedible products n.e.i.
+P902	Sponges, Corals, etc
+P903	Aquatic plants
+LP_M	Meat (total) (1000 kg)
+LP_M01	Beef (1000 kg)
+LP_M02	Pork (1000 kg)
+LP_M03	Sheep (1000 kg)
+LP_M04	Goats (1000 kg)
+LP_M05	Poultry (1000 kg)
+LP_M06	Equidae (1000 kg)
+LP_M07	Rabbits (1000 kg)
+LP_M08	Other meat (1000 kg)
+LP_D01	Raw milk (1000 l)
+LP_D011	Cows'milk
+LP_D012	Ewes' milk
+LP_D013	Goats' milk
+LP_D02	Cream (1000 l)
+LP_D03	Other dairy products measured by volume (1000 l)
+LP_D04	Butter (1000 kg)
+LP_D05	Cheese (1000 kg)
+LP_D06	Other dairy products measured by weight (1000 kg)
+LP_E	Eggs (1000 kg)
+LP_E01	Eggs for consumption (1000 kg)
+LP_H	Honey (1000 kg)
+LP_OTHERS_W	Other products measured  by weight (1000 kg)
+LP_OTHERS_V	Other products measured  by volume (1000 l)

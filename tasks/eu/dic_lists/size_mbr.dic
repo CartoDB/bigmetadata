@@ -1,0 +1,7 @@
+TOTAL	Total
+LT50	Fewer than 50 members
+50-100	From 50 to 100 members
+101-1000	From 101 to 1 000 members
+1001-10000	From 1 001 to 10 000 members
+10001-100000	From 10 001 to 100 000 members
+GT100000	More than 100 000 members

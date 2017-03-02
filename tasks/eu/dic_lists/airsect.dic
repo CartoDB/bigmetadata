@@ -1,0 +1,110 @@
+TOT_X_5	Total emissions
+TOT_IA	Total emissions including international aviation
+TOT_NET	Total net emissions (sectors 1-7, including 5. LULUCF)
+1	Energy
+1_A	Fuel Combustion - Sectoral Approach
+1_A_1	Energy Industries
+1_A_1A	Public Electricity and Heat Production
+1_A_1B	Petroleum Refining
+1_A_1C	Manufacture of Solid Fuels and Other Energy Industries
+1_A_2	Manufacturing Industries and Construction
+1_A_2A	Iron and Steel
+1_A_2B	Non-Ferrous Metals
+1_A_2C	Chemicals
+1_A_2D	Pulp, Paper and Print
+1_A_2E	Food Processing, Beverages and Tobacco
+1_A_2F	Other
+1_A_3	Transport
+1_A_3A	Civil Aviation
+1_A_3B	Road Transport
+1_A_3C	Railways
+1_A_3D	Navigation
+1_A_3E	Other Transport
+1_A_4	Other Sectors
+1_A_4A	Commercial/Institutional
+1_A_4B	Residential
+1_A_4C	Agriculture/Forestry/Fisheries
+1_A_5	Other (Not elsewhere specified)
+1_B	Fugitive Emissions from Fuels
+1_B_1	Solid Fuels
+1_B_2	Oil and Natural Gas
+1_C1	International Bunkers
+1_C1_A	International aviation
+1_C1_B	International maritime transport
+1_C2	Multilateral Operations
+1_C3	CO2 Emissions from Biomass
+2	Industrial Processes
+2_A	Mineral Products
+2_B	Chemical Industry
+2_C	Metal Production
+2_D	Other Production
+2_E	Production of Halocarbons and SF6
+2_F	Consumption of Halocarbons and SF6
+2_G	Other
+3	Solvent and Other Product Use
+4	Agriculture
+4_A	Enteric Fermentation
+4_A_1	Enteric fermentation: Cattle
+4_A_2	Enteric fermentation: Buffalo
+4_A_3	Enteric fermentation: Sheep
+4_A_4	Enteric fermentation: Goats
+4_A_5	Enteric fermentation: Camels and Llamas
+4_A_6	Enteric fermentation: Horses
+4_A_7	Enteric fermentation: Mules and Asses
+4_A_8	Enteric fermentation:Swine
+4_A_9	Enteric fermentation: Poultry
+4_A_10	Enteric fermentation: Other livestock
+4_B	Manure Management
+4_B_1	Manure management: Cattle
+4_B_2	Manure management: Buffalo
+4_B_3	Manure management: Sheep
+4_B_4	Manure management: Goats
+4_B_5	Manure management: Camels and llamas
+4_B_6	Manure management: Horses
+4_B_7	Manure management: Mules and asses
+4_B_8	Manure management: Swine
+4_B_9	Manure management: Poultry
+4_B_10	Manure management: Other livestock
+4_B_11	Manure management: Anaerobic lagoon
+4_B_12	Manure management: Liquid system
+4_B_13	Manure management: Solid storage and dry lot
+4_B_14	Manure management: Other agricultural waste management system
+4_C	Rice Cultivation
+4_C_1	Rice cultivation: Irrigated
+4_C_2	Rice cultivation: Rainfed
+4_C_3	Rice cultivation: Deep water
+4_C_4	Rice cultivation: Other
+4_D	Agricultural Soils
+4_D_1	Agricultural soils: Direct soil emissions
+4_D_2	Agricultural soils: Pasture, range and paddock manure
+4_D_3	Agricultural soils: Indirect emissions
+4_D_4	Agricultural soils: Other
+4_E	Prescribed Burning of Savannas
+4_F	Field Burning of Agricultural Residues
+4_F_1	Field burning of agricultural residues: Cereals
+4_F_2	Field burning of agricultural residues: Pulse
+4_F_3	Field burning of agricultural residues: Tuber and roots
+4_F_4	Field burning of agricultural residues: Sugar cane
+4_F_5	Field burning of agricultural residues: Other
+4_G	Other
+5	LULUCF (land use, land use change and forestry)
+6	Waste
+6_A	Solid Waste Disposal on Land
+6_B	Wastewater Handling
+6_C	Waste Incineration
+6_D	Other
+7	Other
+TOT_NAT	Total sectors of emissions for the national territory
+SE1_EPD	Energy production and distribution (NFR 1A1a, b, c, 1B1a, b, c, 1B2ai, aiv, av, b, c, d)
+SE1_EUI	Energy use in industry (NFR 1A2a, b, c, d, e, f, gvii, gviii)
+SE1_RD	Road transport (NFR 1A3b)
+SE1_NRD	Non-road transport (NFR 1A3a, c, d and 1A4ciii)
+SE1_RD_NRD	Road and non-road transport (NFR 1A3a, b, c, d and 1A4ciii)
+SE1_CIH	Commercial, institutional and households (NFR 1A4ai, aii, bi, bii, ci, cii, 1A5a, b)
+SE2_IP	Industrial processes and product use (NFR 2A1-6, 2B1-7, 2C1-7, 2D3, 2G, 2H, 2I, 2J, 2K, 2L)
+SE3_SPU	Solvent and other product use (NFR 3A1-3, 3B1-2, 3C, 3D1-3)
+SE4_AGR	Agriculture (NFR 3B1-4, 3D, 3F, 3I)
+SE6_WST	Waste (NFR 5A, 5B, 5C1-2, 5D1-3, 5E)
+SE7_OTH	Other (NFR 6A)
+90	International aviation
+91	International maritime transport

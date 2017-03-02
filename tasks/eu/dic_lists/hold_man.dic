@@ -1,0 +1,7 @@
+TOTAL	Total
+HOLDMAN	Holder is manager
+SPSMAN	Spouse of holder is manager
+FAMMAN	Manager not holder but member of holder's family
+NONFAMMAN	Manager is not member of holder's family
+LEGENT	Holding is legal entity
+GRPHLD	Group holding

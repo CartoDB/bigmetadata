@@ -1,22 +1,24 @@
-{%- macro build_column(col, subsection, image_path, depth=0) %}
+{%- macro build_column(col, subsection, image_path, format, depth=0) %}
 
 .. _{{ col.id }}:
 
 {{ col.name }}
 {%
   if depth == 0
-%}---------------------------------------------------------------------------{%
+%}------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------{%
   elif depth == 1
-%}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^{%
+%}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^{%
   else
-%}"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{%
+%}""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{%
   endif
 %}
 
+{% if format != 'pdf' %}
 {% if col.has_catalog_image() %}
 .. figure:: {{ image_path }}/{{ col.id }}.png
   :width: 100 %
   :align: center
+{% endif %}
 {% endif %}
 
 {% if col.description %}{{ col.description }}{% endif %}
@@ -40,20 +42,7 @@ Obtain "{{ col.name }}" geometry at one point:
 
 .. code-block:: postgresql
 
-{% if 'whosonfirst.wof_disputed_geom' == col.id %}
-  {% set point = 'CDB_LatLng(33.78, 76.57)' %}
-{% elif 'whosonfirst.wof_marinearea_geom' == col.id %}
-  {% set point = 'CDB_LatLng(43.33, -68.47)' %}
-{% elif col.id in ('us.census.tiger.school_district_elementary',
-                   'us.census.tiger.school_district_secondary') %}
-  {% set point = 'CDB_LatLng(40.7025, -73.7067)' %}
-{% elif 'es.ine' in col.id %}
-  {% set point = 'CDB_LatLng(40.39, -3.7)' %}
-{% elif 'us.zillow' in col.id %}
-  {% set point = 'CDB_LatLng(28.3305906291771, -81.3544048197256)' %}
-{% else %}
-  {% set point = 'CDB_LatLng(40.7, -73.9)' %}
-{% endif %}
+{% set point = 'CDB_LatLng(%s, %s)'|format(col.catalog_lonlat().0, col.catalog_lonlat().1) %}
 
 {% if col.type|lower == 'text' %}
 
@@ -145,26 +134,61 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
 {% endif %}
 {% endif %}
-{# preview map #}
-{#
-.. rst-class:: cartodb-static-map
-   {{ table.tablename }}.{{ coltable.colname }}
-   #}
 
-{% if format == 'html' %}
-{% for coltable in col.tables %}
-    {% set table = coltable.table %}
-    {#:{{ table.timespan }}:#}
+{% if col.geom_timespans()|length > 0 %}
 
-    `On Carto <http://observatory.cartodb.com/tables/{{ table.tablename }}>`_
-{% endfor %}
+.. raw:: html
+
+   <table border="1" class="docutils">
+   <thead valign="bottom">
+   <tr class="row-odd"><th class="head">Boundary</th>
+   <th class="head">Time (default is latest)</th>
+   </tr>
+   </thead>
+   <tbody valign="top">
+
+
+   {% for geomcol, timespans in col.geom_timespans().items() %}
+.. raw:: html
+
+   <tr class="row-even"><td>
+
+:ref:`{{ geomcol.id }}`
+
+.. raw:: html
+
+   </td>
+   <td>
+
+{{ timespans|sort(True)|join(', ') }}
+
+.. raw:: html
+
+   </td>
+
+   {% endfor %}
+
+.. raw:: html
+
+   </tr>
+   </tbody>
+   </table>
+
 {% endif %}
 
 {% for target, reltype in col.targets.iteritems() %}
-:{{ reltype }}:
+:{{ reltype|capitalize }}:
 
     :ref:`{{ target.id }}`
 {% endfor %}
+
+:Source:
+
+    {% for source in col.source_tags() %}:ref:`{{ source.id }}`{% endfor %}
+
+:License:
+
+    {% for license in col.license_tags() %}:ref:`{{ license.id }}`{% endfor %}
 
 {% if col.has_children() %}
 .. contents:: Subcolumns of {{ col.name }}
@@ -173,7 +197,7 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
   {% for child in col.children() %}
   {% if child.weight > 0 and subsection in child.tags %}
-  {{ build_column(child, subsection, image_path, depth + 1) }}
+  {{ build_column(child, subsection, image_path, format, depth + 1) }}
   {% endif %}
   {% endfor %}
 {% endif %}

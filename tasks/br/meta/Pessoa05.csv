@@ -1,0 +1,13 @@
+Nome da variável,Descrição da variável,Variable description,unit,denominators,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,120001305000001,120001305000012
+Situação,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,1,1
+V001,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - branca","People 0 to 4 years old, male and color or race - white",people,Pessoa03_V001,age_gender|race_ethnicity,20,27
+V002,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - preta","Persons 0 to 4 years of age, male and color or race - black",people,Pessoa03_V001,age_gender|race_ethnicity,0,1
+V003,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - amarela","Persons 0 to 4 years of age, male and color or race - yellow",people,Pessoa03_V001,age_gender|race_ethnicity,0,0
+V004,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - parda","People 0 to 4 years of age, male and color or race - brown",people,Pessoa03_V001,age_gender|race_ethnicity,17,26
+V005,"Pessoas de 0 a 4 anos de idade, do sexo masculino e cor ou raça - indígena","Persons 0 to 4 years of age, male and color or race - indigenous",people,Pessoa03_V001,age_gender|race_ethnicity,0,0
+V006,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - branca","People 0 to 4 years of age, female and color or race - white",people,Pessoa03_V001,age_gender|race_ethnicity,21,31
+V007,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - preta","People 0 to 4 years of age, female and color or race - black",people,Pessoa03_V001,age_gender|race_ethnicity,0,0
+V008,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - amarela","People 0 to 4 years of age, female and color or race - yellow",people,Pessoa03_V001,age_gender|race_ethnicity,0,0
+V009,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - parda","People 0 to 4 years of age, female and color or race - brown",people,Pessoa03_V001,age_gender|race_ethnicity,13,23
+V010,"Pessoas de 0 a 4 anos de idade, do sexo feminino e cor ou raça - indígena","Persons 0 to 4 years of age, female and color or race - indigenous",people,Pessoa03_V001,age_gender|race_ethnicity,0,0

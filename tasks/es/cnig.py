@@ -2,11 +2,11 @@
 # #http://centrodedescargas.cnig.es/CentroDescargas/inicio.do
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
-from tasks.util import (ColumnsTask, TableTask, shell, classpath,
+from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
-from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.meta import OBSColumn, GEOM_REF
+from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.meta import OBSColumn, GEOM_REF, OBSTag
 
 from collections import OrderedDict
 import os
@@ -45,20 +45,53 @@ class ImportGeometry(Shp2TempTableTask):
         return os.path.join(self.input().path, path)
 
 
+class LicenseTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='cnig-license',
+                    name='License of CNIG',
+                    type='license',
+                   description='Royal Decree 663/2007, more information `here <https://www.cnig.es/propiedadIntelectual.do>`_.'
+                    )]
+
+
+class SourceTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='cnig-source',
+                    name='National Center for Geographic Information (CNIG)',
+                    type='source',
+                    description='`The National Center for Geographic Information (CNIG) <https://www.cnig.es/>`_'
+                    )]
+
+
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def columns(self):
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        source = input_['source']['cnig-source']
+        license = input_['license']['cnig-license']
         ccaa = OBSColumn(
             type='Geometry',
             name='Autonomous Community',
@@ -84,12 +117,17 @@ class GeometryColumns(ColumnsTask):
                         'Municipal boundaries do not cross between provinces. ',
             tags=[sections['spain'], subsections['boundary']],
         )
-        return OrderedDict([
+        columns = OrderedDict([
             ('ccaa', ccaa),
             ('prov', prov),
             ('muni', muni),
         ])
 
+        for _, col in columns.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+
+        return columns
 
 class GeomRefColumns(ColumnsTask):
 
@@ -118,7 +156,7 @@ class Geometry(TableTask):
     timestamp = Parameter(default='20150101')
 
     def version(self):
-        return 4
+        return 9
 
     def requires(self):
         return {
@@ -163,4 +201,3 @@ class AllGeometries(WrapperTask):
     def requires(self):
         for resolution in ('ccaa', 'muni', 'prov', ):
             yield Geometry(resolution=resolution)
-

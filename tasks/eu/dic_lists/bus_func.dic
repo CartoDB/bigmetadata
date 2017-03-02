@@ -1,0 +1,11 @@
+CORE_F	Core function (Production of goods and services for the market)
+SUP_F	Support function
+DIST_F	Distribution and logistics
+MK_F	Marketing, sales and after sales services
+ICT_F	ICT services
+ADM_F	Administrative and management
+ENG_F	Engineering and related technical services
+RD_F	Research and development
+RD_ENG_F	Research, development, engineering and related technical services
+OTHER	Other functions
+CO_SUP_F	Core and/or support function

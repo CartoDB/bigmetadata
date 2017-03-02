@@ -1,0 +1,49 @@
+POP	Population
+ACT_INAC	Active and inactive persons
+ACT	Active persons
+EMP_W	Persons employed or previously employed
+EMP	Employed persons
+EMP_FT	Employed persons working full-time
+EMP_PT	Employed persons working part-time
+LEAV	Employed persons on temporary leave from work
+SAL	Employees
+SAL_PERM	Employees with a permanent job
+SAL_TEMP	Employees with a temporary job
+MW_IS	Manual workers in industry and services
+NMW_IS	Non-manual workers in industry and services
+NSAL	Employed persons except employees
+SELF	Self-employed persons
+SELF_S	Self-employed persons with employees (employers)
+SELF_NS	Self-employed persons without employees (own-account workers)
+CFAM_COOP	Contributing family workers and members of producers' cooperatives
+CFAM	Contributing family workers
+NCFAM	Employed persons except contributing family workers
+COOP	Members of producers' cooperatives
+EMP_OTH	Other employed persons
+EMP_UNK	Employed persons - unknown
+NEMP	Not employed persons
+UNE	Unemployed persons
+UNE_W	Unemployed persons, having worked before
+UNE_NW	Unemployed persons, having never worked before
+ACT_UNK	Active population - unknown
+INAC	Inactive persons
+LT_MWA	Persons below the minimum working age
+INAC_GE65	Inactive persons - 65 years or over
+EDUC	Students
+ARM	Persons in compulsory military or community service
+HOME_IO	Homemakers and other inactive persons
+HOME	Homemakers
+DIS	Disabled persons
+INC	Retired persons and capital income recipients
+RET	Retired persons
+INAC_OTH	Other inactive persons
+INAC_UNK	Inactive persons - unknown
+OTH	Others
+NAP	Not applicable
+NRP	No response
+UNK	Unknown
+WANT	Persons would like to work (seeking employment or not)
+NWANT	Persons do not want to work
+PRACT	Practising
+PACT	Professionally active
+LIC	Licensed to practice

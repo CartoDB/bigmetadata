@@ -1,0 +1,15 @@
+TOTAL	Total - all species
+CONIF	Coniferous
+C_FIR	Coniferous: Fir/Spruce (Abies alba, Picea abies)
+C_PIN	Coniferous: Pine (Pinus sylvestris)
+C_NSP	Coniferous: non specified
+NCONIF	Non-coniferous
+NC_OAK	Non-coniferous: Oak (Quercus spp.) 
+NC_BEE	Non-coniferous: Beech (Fagus spp.)
+NC_BIR	Non-coniferous: Birch (Betula spp.)
+NC_MAP	Non-coniferous: Maple (Acer spp.)
+NC_CHE	Non-coniferous: Cherry (Prunus spp.)
+NC_ASH	Non-coniferous: Ash (Fraxinus spp.)
+NC_POP	Non-coniferous: Poplar (Populus spp.)
+NC_EUC	Non-coniferous: Eucalyptus (Eucalyptus spp.)
+NC_TRO	Non-coniferous: Tropical species

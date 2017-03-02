@@ -1,0 +1,219 @@
+Nome da variável,Descrição da variável,Variable description,unit,denominators,subsection,data_sample1,data_sample2
+Cod_setor,Código do setor censitário,Census sector code,,,,1.20E+14,1.20E+14
+Situacao,Código de situação do setor censitário (ver planilha Basico_UF.xls),Code of situation of the census sector (see worksheet Basico_UF.xls),,,,8,1
+V001,Pessoas Responsáveis,Responsible People,people,,age_gender,225,393
+V002,Pessoas Responsáveis com 10 anos de idade,Responsible Persons with 10 years of age,people,Responsavel02_V001,age_gender,0,0
+V003,Pessoas Responsáveis com 11 anos de idade,Responsible Persons with 11 years of age,people,Responsavel02_V001,age_gender,0,0
+V004,Pessoas Responsáveis com 12 anos de idade,Responsible Persons with 12 years of age,people,Responsavel02_V001,age_gender,0,0
+V005,Pessoas Responsáveis com 13 anos de idade,Responsible Persons with 13 years of age,people,Responsavel02_V001,age_gender,0,0
+V006,Pessoas Responsáveis com 14 anos de idade,Responsible Persons with 14 years of age,people,Responsavel02_V001,age_gender,0,0
+V007,Pessoas Responsáveis com 15 anos de idade,Responsible Persons with 15 years of age,people,Responsavel02_V001,age_gender,0,0
+V008,Pessoas Responsáveis com 16 anos de idade,Responsible Persons with 16 years of age,people,Responsavel02_V001,age_gender,1,0
+V009,Pessoas Responsáveis com 17 anos de idade,Responsible Persons with 17 years of age,people,Responsavel02_V001,age_gender,0,2
+V010,Pessoas Responsáveis com 18 anos de idade,Responsible Persons with 18 years of age,people,Responsavel02_V001,age_gender,0,1
+V011,Pessoas Responsáveis com 19 anos de idade,Responsible Persons with 19 years of age,people,Responsavel02_V001,age_gender,3,2
+V012,Pessoas Responsáveis com 20 anos de idade,Responsible Persons with 20 years of age,people,Responsavel02_V001,age_gender,2,4
+V013,Pessoas Responsáveis com 21 anos de idade,Responsible Persons with 21 years of age,people,Responsavel02_V001,age_gender,3,6
+V014,Pessoas Responsáveis com 22 anos de idade,Responsible Persons with 22 years of age,people,Responsavel02_V001,age_gender,2,12
+V015,Pessoas Responsáveis com 23 anos de idade,Responsible Persons with 23 years of age,people,Responsavel02_V001,age_gender,4,6
+V016,Pessoas Responsáveis com 24 anos de idade,Responsible Persons with 24 years of age,people,Responsavel02_V001,age_gender,2,12
+V017,Pessoas Responsáveis com 25 anos de idade,Responsible Persons with 25 years of age,people,Responsavel02_V001,age_gender,3,10
+V018,Pessoas Responsáveis com 26 anos de idade,Responsible Persons with 26 years of age,people,Responsavel02_V001,age_gender,6,10
+V019,Pessoas Responsáveis com 27 anos de idade,Responsible Persons with 27 years of age,people,Responsavel02_V001,age_gender,6,13
+V020,Pessoas Responsáveis com 28 anos de idade,Responsible Persons with 28 years of age,people,Responsavel02_V001,age_gender,3,14
+V021,Pessoas Responsáveis com 29 anos de idade,Responsible Persons with 29 years of age,people,Responsavel02_V001,age_gender,5,14
+V022,Pessoas Responsáveis com 30 anos de idade,Responsible Persons with 30 years of age,people,Responsavel02_V001,age_gender,7,9
+V023,Pessoas Responsáveis com 31 anos de idade,Responsible Persons with 31 years of age,people,Responsavel02_V001,age_gender,7,10
+V024,Pessoas Responsáveis com 32 anos de idade,Responsible Persons with 32 years of age,people,Responsavel02_V001,age_gender,2,19
+V025,Pessoas Responsáveis com 33 anos de idade,Responsible Persons with 33 years of age,people,Responsavel02_V001,age_gender,4,10
+V026,Pessoas Responsáveis com 34 anos de idade,Responsible Persons with 34 years of age,people,Responsavel02_V001,age_gender,3,13
+V027,Pessoas Responsáveis com 35 anos de idade,Responsible Persons with 35 years of age,people,Responsavel02_V001,age_gender,5,3
+V028,Pessoas Responsáveis com 36 anos de idade,Responsible Persons with 36 years of age,people,Responsavel02_V001,age_gender,6,8
+V029,Pessoas Responsáveis com 37 anos de idade,Responsible Persons with 37 years of age,people,Responsavel02_V001,age_gender,7,8
+V030,Pessoas Responsáveis com 38 anos de idade,Responsible Persons with 38 years of age,people,Responsavel02_V001,age_gender,5,11
+V031,Pessoas Responsáveis com 39 anos de idade,Responsible Persons with 39 years of age,people,Responsavel02_V001,age_gender,6,10
+V032,Pessoas Responsáveis com 40 anos de idade,Responsible Persons 40 years of age,people,Responsavel02_V001,age_gender,4,10
+V033,Pessoas Responsáveis com 41 anos de idade,Responsible Persons with 41 years of age,people,Responsavel02_V001,age_gender,5,5
+V034,Pessoas Responsáveis com 42 anos de idade,Responsible People with 42 years of age,people,Responsavel02_V001,age_gender,3,4
+V035,Pessoas Responsáveis com 43 anos de idade,Responsible Persons with 43 years of age,people,Responsavel02_V001,age_gender,6,4
+V036,Pessoas Responsáveis com 44 anos de idade,Responsible Persons with 44 years of age,people,Responsavel02_V001,age_gender,7,12
+V037,Pessoas Responsáveis com 45 anos de idade,Responsible Persons with 45 years of age,people,Responsavel02_V001,age_gender,7,14
+V038,Pessoas Responsáveis com 46 anos de idade,Responsible Persons with 46 years of age,people,Responsavel02_V001,age_gender,6,5
+V039,Pessoas Responsáveis com 47 anos de idade,Responsible People with 47 years of age,people,Responsavel02_V001,age_gender,5,1
+V040,Pessoas Responsáveis com 48 anos de idade,Responsible People with 48 years of age,people,Responsavel02_V001,age_gender,5,5
+V041,Pessoas Responsáveis com 49 anos de idade,Responsible Persons with 49 years of age,people,Responsavel02_V001,age_gender,5,8
+V042,Pessoas Responsáveis com 50 anos de idade,Responsible People with 50 years of age,people,Responsavel02_V001,age_gender,9,8
+V043,Pessoas Responsáveis com 51 anos de idade,Responsible Persons with 51 years of age,people,Responsavel02_V001,age_gender,2,6
+V044,Pessoas Responsáveis com 52 anos de idade,Responsible People with 52 years of age,people,Responsavel02_V001,age_gender,4,7
+V045,Pessoas Responsáveis com 53 anos de idade,Responsible Persons with 53 years of age,people,Responsavel02_V001,age_gender,3,8
+V046,Pessoas Responsáveis com 54 anos de idade,Responsible Persons with 54 years of age,people,Responsavel02_V001,age_gender,2,6
+V047,Pessoas Responsáveis com 55 anos de idade,Responsible Persons 55 years of age,people,Responsavel02_V001,age_gender,6,9
+V048,Pessoas Responsáveis com 56 anos de idade,Responsible Persons with 56 years of age,people,Responsavel02_V001,age_gender,5,4
+V049,Pessoas Responsáveis com 57 anos de idade,Responsible Persons with 57 years of age,people,Responsavel02_V001,age_gender,3,1
+V050,Pessoas Responsáveis com 58 anos de idade,Responsible Persons with 58 years of age,people,Responsavel02_V001,age_gender,2,5
+V051,Pessoas Responsáveis com 59 anos de idade,Responsible People with 59 years of age,people,Responsavel02_V001,age_gender,3,4
+V052,Pessoas Responsáveis com 60 anos de idade,Responsible People with 60 years of age,people,Responsavel02_V001,age_gender,4,8
+V053,Pessoas Responsáveis com 61 anos de idade,Responsible People with 61 years of age,people,Responsavel02_V001,age_gender,1,3
+V054,Pessoas Responsáveis com 62 anos de idade,Responsible Persons with 62 years of age,people,Responsavel02_V001,age_gender,1,0
+V055,Pessoas Responsáveis com 63 anos de idade,Responsible Persons with 63 years of age,people,Responsavel02_V001,age_gender,4,6
+V056,Pessoas Responsáveis com 64 anos de idade,Responsible Persons with 64 years of age,people,Responsavel02_V001,age_gender,4,2
+V057,Pessoas Responsáveis com 65 anos de idade,Responsible Persons 65 years of age,people,Responsavel02_V001,age_gender,5,5
+V058,Pessoas Responsáveis com 66 anos de idade,Responsible Persons 66 years of age,people,Responsavel02_V001,age_gender,0,2
+V059,Pessoas Responsáveis com 67 anos de idade,Responsible Persons with 67 years of age,people,Responsavel02_V001,age_gender,2,3
+V060,Pessoas Responsáveis com 68 anos de idade,Responsible Persons at 68 years of age,people,Responsavel02_V001,age_gender,3,3
+V061,Pessoas Responsáveis com 69 anos de idade,Responsible People with 69 years of age,people,Responsavel02_V001,age_gender,3,1
+V062,Pessoas Responsáveis com 70 anos de idade,Responsible Persons with 70 years of age,people,Responsavel02_V001,age_gender,3,2
+V063,Pessoas Responsáveis com 71 anos de idade,Responsible Persons with 71 years of age,people,Responsavel02_V001,age_gender,2,2
+V064,Pessoas Responsáveis com 72 anos de idade,Responsible Persons with 72 years of age,people,Responsavel02_V001,age_gender,2,1
+V065,Pessoas Responsáveis com 73 anos de idade,Responsible Persons with 73 years of age,people,Responsavel02_V001,age_gender,2,4
+V066,Pessoas Responsáveis com 74 anos de idade,Responsible People with 74 years of age,people,Responsavel02_V001,age_gender,1,3
+V067,Pessoas Responsáveis com 75 anos de idade,Responsible Persons with 75 years of age,people,Responsavel02_V001,age_gender,1,3
+V068,Pessoas Responsáveis com 76 anos de idade,Responsible Persons with 76 years of age,people,Responsavel02_V001,age_gender,0,1
+V069,Pessoas Responsáveis com 77 anos de idade,Responsible Persons with 77 years of age,people,Responsavel02_V001,age_gender,0,1
+V070,Pessoas Responsáveis com 78 anos de idade,Responsible Persons with 78 years of age,people,Responsavel02_V001,age_gender,0,1
+V071,Pessoas Responsáveis com 79 anos de idade,Responsible People with 79 years of age,people,Responsavel02_V001,age_gender,1,0
+V072,Pessoas Responsáveis com 80 anos de idade,Responsible People with 80 years of age,people,Responsavel02_V001,age_gender,0,2
+V073,Pessoas Responsáveis com 81 anos de idade,Responsible Persons with 81 years of age,people,Responsavel02_V001,age_gender,0,1
+V074,Pessoas Responsáveis com 82 anos de idade,Responsible People with 82 years of age,people,Responsavel02_V001,age_gender,0,1
+V075,Pessoas Responsáveis com 83 anos de idade,Responsible People with 83 years of age,people,Responsavel02_V001,age_gender,0,0
+V076,Pessoas Responsáveis com 84 anos de idade,Responsible People with 84 years of age,people,Responsavel02_V001,age_gender,0,0
+V077,Pessoas Responsáveis com 85 anos de idade,Responsible Persons with 85 years of age,people,Responsavel02_V001,age_gender,1,1
+V078,Pessoas Responsáveis com 86 anos de idade,Responsible Persons with 86 years of age,people,Responsavel02_V001,age_gender,0,1
+V079,Pessoas Responsáveis com 87 anos de idade,Responsible People with 87 years of age,people,Responsavel02_V001,age_gender,0,1
+V080,Pessoas Responsáveis com 88 anos de idade,Responsible People with 88 years of age,people,Responsavel02_V001,age_gender,0,1
+V081,Pessoas Responsáveis com 89 anos de idade,Responsible Persons with 89 years of age,people,Responsavel02_V001,age_gender,0,0
+V082,Pessoas Responsáveis com 90 anos de idade,Responsible Persons with 90 years of age,people,Responsavel02_V001,age_gender,1,0
+V083,Pessoas Responsáveis com 91 anos de idade,Responsible Persons with 91 years of age,people,Responsavel02_V001,age_gender,0,1
+V084,Pessoas Responsáveis com 92 anos de idade,Responsible Persons with 92 years of age,people,Responsavel02_V001,age_gender,0,0
+V085,Pessoas Responsáveis com 93 anos de idade,Responsible Persons with 93 years of age,people,Responsavel02_V001,age_gender,0,0
+V086,Pessoas Responsáveis com 94 anos de idade,Responsible People with 94 years of age,people,Responsavel02_V001,age_gender,0,0
+V087,Pessoas Responsáveis com 95 anos de idade,Responsible Persons with 95 years of age,people,Responsavel02_V001,age_gender,0,0
+V088,Pessoas Responsáveis com 96 anos de idade,Responsible People with 96 years of age,people,Responsavel02_V001,age_gender,0,0
+V089,Pessoas Responsáveis com 97 anos de idade,Responsible Persons with 97 years of age,people,Responsavel02_V001,age_gender,0,0
+V090,Pessoas Responsáveis com 98 anos de idade,Responsible People with 98 years of age,people,Responsavel02_V001,age_gender,0,0
+V091,Pessoas Responsáveis com 99 anos de idade,Responsible People with 99 years of age,people,Responsavel02_V001,age_gender,0,0
+V092,Pessoas Responsáveis com 100 ou mais anos de idade,Responsible Persons aged 100 or over,people,Responsavel02_V001,age_gender,0,0
+V093,Pessoas Responsáveis alfabetizados,Responsible literate people,people,Responsavel02_V001,education|age_gender,177,260
+V094,Pessoas Responsáveis alfabetizados com 10 a 14 anos de idade,Responsible persons literate with 10 to 14 years of age,people,Responsavel02_V093,education|age_gender,0,0
+V095,Pessoas Responsáveis alfabetizados com 15 a 19 anos de idade,Responsible persons literate with 15 to 19 years of age,people,Responsavel02_V093,education|age_gender,4,5
+V096,Pessoas Responsáveis alfabetizados com 20 a 24 anos de idade,Responsible people literate 20 to 24 years old,people,Responsavel02_V093,education|age_gender,11,33
+V097,Pessoas Responsáveis alfabetizados com 25 a 29 anos de idade,Responsible persons literate 25 to 29 years of age,people,Responsavel02_V093,education|age_gender,21,52
+V098,Pessoas Responsáveis alfabetizados com 30 a 34 anos de idade,Responsible people literate 30 to 34 years old,people,Responsavel02_V093,education|age_gender,18,48
+V099,Pessoas Responsáveis alfabetizados com 35 a 39 anos de idade,Responsible people literate from 35 to 39 years of age,people,Responsavel02_V093,education|age_gender,26,30
+V100,Pessoas Responsáveis alfabetizados com 40 a 44 anos de idade,Responsible persons literate 40 to 44 years old,people,Responsavel02_V093,education|age_gender,22,22
+V101,Pessoas Responsáveis alfabetizados com 45 a 49 anos de idade,Responsible persons literate with 45 to 49 years of age,people,Responsavel02_V093,education|age_gender,22,16
+V102,Pessoas Responsáveis alfabetizados com 50 a 54 anos de idade,Responsible people literate 50 to 54 years old,people,Responsavel02_V093,education|age_gender,15,23
+V103,Pessoas Responsáveis alfabetizados com 55 a 59 anos de idade,Responsible people literate 55-59 years old,people,Responsavel02_V093,education|age_gender,13,10
+V104,Pessoas Responsáveis alfabetizados com 60 a 64 anos de idade,Responsible people literate from 60 to 64 years old,people,Responsavel02_V093,education|age_gender,10,8
+V105,Pessoas Responsáveis alfabetizados com 65 a 69 anos de idade,Responsible persons literate with 65 to 69 years of age,people,Responsavel02_V093,education|age_gender,8,4
+V106,Pessoas Responsáveis alfabetizados com 70 a 74 anos de idade,Responsible people literate from 70 to 74 years old,people,Responsavel02_V093,education|age_gender,5,6
+V107,Pessoas Responsáveis alfabetizados com 75 a 79 anos de idade,Responsible people literate from 75 to 79 years old,people,Responsavel02_V093,education|age_gender,2,1
+V108,Pessoas Responsáveis alfabetizados com 80 ou mais anos de idade,Responsible persons literate with 80 or more years of age,people,Responsavel02_V093,education|age_gender,0,2
+V109,"Pessoas responsáveis, do sexo masculino","Responsible persons, male",people,Responsavel02_V001,age_gender,150,236
+V110,"Pessoas responsáveis com 10 anos de idade, do sexo masculino","Responsible persons with 10 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V111,"Pessoas responsáveis com 11 anos de idade, do sexo masculino","Responsible persons with 11 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V112,"Pessoas responsáveis com 12 anos de idade, do sexo masculino","Responsible persons with 12 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V113,"Pessoas responsáveis com 13 anos de idade, do sexo masculino","Responsible persons with 13 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V114,"Pessoas responsáveis com 14 anos de idade, do sexo masculino","Responsible persons with 14 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V115,"Pessoas responsáveis com 15 anos de idade, do sexo masculino","Responsible persons with 15 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V116,"Pessoas responsáveis com 16 anos de idade, do sexo masculino","Responsible persons with 16 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V117,"Pessoas responsáveis com 17 anos de idade, do sexo masculino","Responsible persons with 17 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V118,"Pessoas responsáveis com 18 anos de idade, do sexo masculino","Responsible persons with 18 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V119,"Pessoas responsáveis com 19 anos de idade, do sexo masculino","Responsible persons with 19 years of age, male",people,Responsavel02_V109,age_gender,2,2
+V120,"Pessoas responsáveis com 20 anos de idade, do sexo masculino","Responsible persons with 20 years of age, male",people,Responsavel02_V109,age_gender,1,2
+V121,"Pessoas responsáveis com 21 anos de idade, do sexo masculino","Responsible persons with 21 years of age, male",people,Responsavel02_V109,age_gender,2,4
+V122,"Pessoas responsáveis com 22 anos de idade, do sexo masculino","Responsible persons with 22 years of age, male",people,Responsavel02_V109,age_gender,2,6
+V123,"Pessoas responsáveis com 23 anos de idade, do sexo masculino","Responsible persons with 23 years of age, male",people,Responsavel02_V109,age_gender,3,5
+V124,"Pessoas responsáveis com 24 anos de idade, do sexo masculino","Responsible persons with 24 years of age, male",people,Responsavel02_V109,age_gender,1,9
+V125,"Pessoas responsáveis com 25 anos de idade, do sexo masculino","Responsible persons with 25 years of age, male",people,Responsavel02_V109,age_gender,1,6
+V126,"Pessoas responsáveis com 26 anos de idade, do sexo masculino","Responsible persons with 26 years of age, male",people,Responsavel02_V109,age_gender,3,6
+V127,"Pessoas responsáveis com 27 anos de idade, do sexo masculino","Responsible persons with 27 years of age, male",people,Responsavel02_V109,age_gender,4,7
+V128,"Pessoas responsáveis com 28 anos de idade, do sexo masculino","Responsible persons with 28 years of age, male",people,Responsavel02_V109,age_gender,1,6
+V129,"Pessoas responsáveis com 29 anos de idade, do sexo masculino","Responsible persons with 29 years of age, male",people,Responsavel02_V109,age_gender,2,9
+V130,"Pessoas responsáveis com 30 anos de idade, do sexo masculino","Responsible persons with 30 years of age, male",people,Responsavel02_V109,age_gender,5,7
+V131,"Pessoas responsáveis com 31 anos de idade, do sexo masculino",Responsible persons with a 31-year-old male,people,Responsavel02_V109,age_gender,3,5
+V132,"Pessoas responsáveis com 32 anos de idade, do sexo masculino","Responsible persons with 32 years of age, male",people,Responsavel02_V109,age_gender,2,10
+V133,"Pessoas responsáveis com 33 anos de idade, do sexo masculino","Responsible persons with 33 years of age, male",people,Responsavel02_V109,age_gender,4,6
+V134,"Pessoas responsáveis com 34 anos de idade, do sexo masculino","Responsible persons with 34 years of age, male",people,Responsavel02_V109,age_gender,1,7
+V135,"Pessoas responsáveis com 35 anos de idade, do sexo masculino","Responsible persons with 35 years of age, male",people,Responsavel02_V109,age_gender,4,3
+V136,"Pessoas responsáveis com 36 anos de idade, do sexo masculino","Responsible persons with 36 years of age, male",people,Responsavel02_V109,age_gender,3,5
+V137,"Pessoas responsáveis com 37 anos de idade, do sexo masculino","Responsible persons with 37 years of age, male",people,Responsavel02_V109,age_gender,5,3
+V138,"Pessoas responsáveis com 38 anos de idade, do sexo masculino","Responsible persons with 38 years of age, male",people,Responsavel02_V109,age_gender,3,6
+V139,"Pessoas responsáveis com 39 anos de idade, do sexo masculino","Responsible persons with 39 years of age, male",people,Responsavel02_V109,age_gender,4,7
+V140,"Pessoas responsáveis com 40 anos de idade, do sexo masculino","Responsible persons with 40 years of age, male",people,Responsavel02_V109,age_gender,3,5
+V141,"Pessoas responsáveis com 41 anos de idade, do sexo masculino","Responsible persons with 41 years of age, male",people,Responsavel02_V109,age_gender,4,4
+V142,"Pessoas responsáveis com 42 anos de idade, do sexo masculino","Responsible persons with 42 years of age, males",people,Responsavel02_V109,age_gender,2,3
+V143,"Pessoas responsáveis com 43 anos de idade, do sexo masculino","Responsible persons with 43 years of age, male",people,Responsavel02_V109,age_gender,3,1
+V144,"Pessoas responsáveis com 44 anos de idade, do sexo masculino","Responsible persons aged 44 years, male",people,Responsavel02_V109,age_gender,4,7
+V145,"Pessoas responsáveis com 45 anos de idade, do sexo masculino","Responsible persons with 45 years of age, male",people,Responsavel02_V109,age_gender,6,12
+V146,"Pessoas responsáveis com 46 anos de idade, do sexo masculino","Responsible persons with 46 years of age, male",people,Responsavel02_V109,age_gender,5,3
+V147,"Pessoas responsáveis com 47 anos de idade, do sexo masculino","Responsible persons with 47 years of age, male",people,Responsavel02_V109,age_gender,3,1
+V148,"Pessoas responsáveis com 48 anos de idade, do sexo masculino","Responsible persons with 48 years of age, male",people,Responsavel02_V109,age_gender,2,3
+V149,"Pessoas responsáveis com 49 anos de idade, do sexo masculino","Responsible persons with 49 years of age, male",people,Responsavel02_V109,age_gender,5,6
+V150,"Pessoas responsáveis com 50 anos de idade, do sexo masculino","Responsible persons with 50 years of age, male",people,Responsavel02_V109,age_gender,4,1
+V151,"Pessoas responsáveis com 51 anos de idade, do sexo masculino","Responsible persons with 51 years of age, male",people,Responsavel02_V109,age_gender,1,3
+V152,"Pessoas responsáveis com 52 anos de idade, do sexo masculino","Responsible persons with 52 years of age, male",people,Responsavel02_V109,age_gender,3,2
+V153,"Pessoas responsáveis com 53 anos de idade, do sexo masculino","Responsible persons with 53 years of age, male",people,Responsavel02_V109,age_gender,1,5
+V154,"Pessoas responsáveis com 54 anos de idade, do sexo masculino","Responsible persons with 54 years of age, male",people,Responsavel02_V109,age_gender,2,6
+V155,"Pessoas responsáveis com 55 anos de idade, do sexo masculino","Responsible persons with 55 years of age, male",people,Responsavel02_V109,age_gender,4,5
+V156,"Pessoas responsáveis com 56 anos de idade, do sexo masculino","Responsible persons with 56 years of age, male",people,Responsavel02_V109,age_gender,3,4
+V157,"Pessoas responsáveis com 57 anos de idade, do sexo masculino","Responsible persons with 57 years of age, male",people,Responsavel02_V109,age_gender,3,0
+V158,"Pessoas responsáveis com 58 anos de idade, do sexo masculino","Responsible persons with 58 years of age, male",people,Responsavel02_V109,age_gender,2,2
+V159,"Pessoas responsáveis com 59 anos de idade, do sexo masculino","Responsible persons with 59 years of age, male",people,Responsavel02_V109,age_gender,2,3
+V160,"Pessoas responsáveis com 60 anos de idade, do sexo masculino","Responsible persons with 60 years of age, male",people,Responsavel02_V109,age_gender,3,5
+V161,"Pessoas responsáveis com 61 anos de idade, do sexo masculino","Responsible persons with 61 years of age, male",people,Responsavel02_V109,age_gender,1,2
+V162,"Pessoas responsáveis com 62 anos de idade, do sexo masculino","Responsible persons with 62 years of age, male",people,Responsavel02_V109,age_gender,1,0
+V163,"Pessoas responsáveis com 63 anos de idade, do sexo masculino","Responsible persons with 63 years of age, male",people,Responsavel02_V109,age_gender,4,1
+V164,"Pessoas responsáveis com 64 anos de idade, do sexo masculino","Responsible persons with 64 years of age, male",people,Responsavel02_V109,age_gender,3,1
+V165,"Pessoas responsáveis com 65 anos de idade, do sexo masculino","Responsible persons with 65 years of age, male",people,Responsavel02_V109,age_gender,4,4
+V166,"Pessoas responsáveis com 66 anos de idade, do sexo masculino","Responsible persons with 66 years of age, male",people,Responsavel02_V109,age_gender,0,2
+V167,"Pessoas responsáveis com 67 anos de idade, do sexo masculino","Responsible persons with 67 years of age, male",people,Responsavel02_V109,age_gender,1,2
+V168,"Pessoas responsáveis com 68 anos de idade, do sexo masculino","Responsible persons with 68 years of age, male",people,Responsavel02_V109,age_gender,2,2
+V169,"Pessoas responsáveis com 69 anos de idade, do sexo masculino","Responsible persons with 69 years of age, male",people,Responsavel02_V109,age_gender,2,0
+V170,"Pessoas responsáveis com 70 anos de idade, do sexo masculino","Responsible persons with 70 years of age, male",people,Responsavel02_V109,age_gender,3,2
+V171,"Pessoas responsáveis com 71 anos de idade, do sexo masculino",Responsible persons with a 71 year old male,people,Responsavel02_V109,age_gender,2,1
+V172,"Pessoas responsáveis com 72 anos de idade, do sexo masculino","Responsible persons with 72 years of age, male",people,Responsavel02_V109,age_gender,2,1
+V173,"Pessoas responsáveis com 73 anos de idade, do sexo masculino","Responsible persons with 73 years of age, male",people,Responsavel02_V109,age_gender,2,0
+V174,"Pessoas responsáveis com 74 anos de idade, do sexo masculino","Responsible persons with 74 years of age, male",people,Responsavel02_V109,age_gender,0,3
+V175,"Pessoas responsáveis com 75 anos de idade, do sexo masculino","Responsible persons with 75 years of age, male",people,Responsavel02_V109,age_gender,0,3
+V176,"Pessoas responsáveis com 76 anos de idade, do sexo masculino","Responsible persons with 76 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V177,"Pessoas responsáveis com 77 anos de idade, do sexo masculino","Responsible persons with 77 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V178,"Pessoas responsáveis com 78 anos de idade, do sexo masculino","Responsible persons with 78 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V179,"Pessoas responsáveis com 79 anos de idade, do sexo masculino","Responsible persons with 79 years of age, male",people,Responsavel02_V109,age_gender,1,0
+V180,"Pessoas responsáveis com 80 anos de idade, do sexo masculino","Responsible persons with 80 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V181,"Pessoas responsáveis com 81 anos de idade, do sexo masculino","Responsible persons with 81 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V182,"Pessoas responsáveis com 82 anos de idade, do sexo masculino","Responsible persons with 82 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V183,"Pessoas responsáveis com 83 anos de idade, do sexo masculino",Responsible persons with 83-year-old males,people,Responsavel02_V109,age_gender,0,0
+V184,"Pessoas responsáveis com 84 anos de idade, do sexo masculino","Responsible persons with 84 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V185,"Pessoas responsáveis com 85 anos de idade, do sexo masculino","Responsible persons with 85 years of age, male",people,Responsavel02_V109,age_gender,1,0
+V186,"Pessoas responsáveis com 86 anos de idade, do sexo masculino","Responsible persons with 86 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V187,"Pessoas responsáveis com 87 anos de idade, do sexo masculino","Responsible persons with 87 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V188,"Pessoas responsáveis com 88 anos de idade, do sexo masculino","Responsible persons with 88 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V189,"Pessoas responsáveis com 89 anos de idade, do sexo masculino","Responsible persons with 89 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V190,"Pessoas responsáveis com 90 anos de idade, do sexo masculino","Responsible persons with 90 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V191,"Pessoas responsáveis com 91 anos de idade, do sexo masculino","Responsible persons with 91 years of age, male",people,Responsavel02_V109,age_gender,0,1
+V192,"Pessoas responsáveis com 92 anos de idade, do sexo masculino","Responsible persons with 92 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V193,"Pessoas responsáveis com 93 anos de idade, do sexo masculino","Responsible persons with 93 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V194,"Pessoas responsáveis com 94 anos de idade, do sexo masculino","Responsible persons with 94 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V195,"Pessoas responsáveis com 95 anos de idade, do sexo masculino","Responsible persons with 95 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V196,"Pessoas responsáveis com 96 anos de idade, do sexo masculino","Responsible persons with 96 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V197,"Pessoas responsáveis com 97 anos de idade, do sexo masculino","Responsible persons with 97 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V198,"Pessoas responsáveis com 98 anos de idade, do sexo masculino","Responsible persons with 98 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V199,"Pessoas responsáveis com 99 anos de idade, do sexo masculino","Responsible persons with 99 years of age, male",people,Responsavel02_V109,age_gender,0,0
+V200,"Pessoas responsáveis com 100 ou mais anos de idade, do sexo masculino","Responsible persons with 100 or more years of age, male",people,Responsavel02_V109,age_gender,0,0
+V201,"Pessoas alfabetizadas responsáveis, do sexo masculino","Responsible literate, male",people,Responsavel02_V093,education|age_gender,117,144
+V202,"Pessoas alfabetizadas responsáveis com 10 a 14 anos de idade, do sexo masculino",Responsible literate people with 10 to 14 year old males,people,Responsavel02_V201,education|age_gender,0,0
+V203,"Pessoas alfabetizadas responsáveis com 15 a 19 anos de idade, do sexo masculino","Responsible literate persons with 15 to 19 years of age, male",people,Responsavel02_V201,education|age_gender,2,4
+V204,"Pessoas alfabetizadas responsáveis com 20 a 24 anos de idade, do sexo masculino",Responsible literate people with 20 to 24 year old males,people,Responsavel02_V201,education|age_gender,8,22
+V205,"Pessoas alfabetizadas responsáveis com 25 a 29 anos de idade, do sexo masculino","Responsible literate persons aged 25 to 29 years, male",people,Responsavel02_V201,education|age_gender,9,29
+V206,"Pessoas alfabetizadas responsáveis com 30 a 34 anos de idade, do sexo masculino","Responsible literate persons with 30 to 34 years of age, male",people,Responsavel02_V201,education|age_gender,13,28
+V207,"Pessoas alfabetizadas responsáveis com 35 a 39 anos de idade, do sexo masculino",Responsible literate people with 35 to 39 year old males,people,Responsavel02_V201,education|age_gender,16,15
+V208,"Pessoas alfabetizadas responsáveis com 40 a 44 anos de idade, do sexo masculino","Responsible literate people aged 40 to 44 years old, male",people,Responsavel02_V201,education|age_gender,13,10
+V209,"Pessoas alfabetizadas responsáveis com 45 a 49 anos de idade, do sexo masculino","Responsible literate people with 45 to 49 years of age, male",people,Responsavel02_V201,education|age_gender,17,11
+V210,"Pessoas alfabetizadas responsáveis com 50 a 54 anos de idade, do sexo masculino","Responsible literate people aged 50-54 years, male",people,Responsavel02_V201,education|age_gender,10,9
+V211,"Pessoas alfabetizadas responsáveis com 55 a 59 anos de idade, do sexo masculino","Responsible literate people aged 55 to 59 years, male",people,Responsavel02_V201,education|age_gender,10,4
+V212,"Pessoas alfabetizadas responsáveis com 60 a 64 anos de idade, do sexo masculino","Responsible literate persons aged 60 to 64 years, male",people,Responsavel02_V201,education|age_gender,8,3
+V213,"Pessoas alfabetizadas responsáveis com 65 a 69 anos de idade, do sexo masculino","Responsible literate people aged 65-69 years, male",people,Responsavel02_V201,education|age_gender,6,4
+V214,"Pessoas alfabetizadas responsáveis com 70 a 74 anos de idade, do sexo masculino","Responsible literate people aged 70 to 74 years old, male",people,Responsavel02_V201,education|age_gender,4,3
+V215,"Pessoas alfabetizadas responsáveis com 75 a 79 anos de idade, do sexo masculino","Responsible literate people aged 75 to 79 years, male",people,Responsavel02_V201,education|age_gender,1,1
+V216,"Pessoas alfabetizadas responsáveis com 80 ou mais anos de idade, do sexo masculino","Responsible literate people with 80 or more years of age, male",people,Responsavel02_V201,education|age_gender,0,1

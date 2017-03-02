@@ -1,0 +1,21 @@
+ALLERGIC	Allergic effects
+CANCER	Cancer
+CARDIO_V	Cardiovascular disorders
+DENTAL	Dental disorders
+EYE	Eye disorders
+GASTROIN	Gastrointestinal disorders
+HEMATOLO	Hematological disorders
+HEARING	Hearing disorders
+HEPATIC	Hepatic disorders
+IRRI_SKI	Irritant effects of the skin or mucous membranes
+NEUROLOG	Neurological disorders
+PULMONAR	Pulmonary disorders
+MUSC_SKE	Musculo-skeletal disorders
+INFECTIO	Infectious diseases
+STOMACH	Stomach, liver, kidney or digestive problem
+STRESS	Stress, depression, anxiety
+SKIN_DIS	Skin problems
+HEAD_EYE	Headache, eyestrain
+OTHER	Other not elsewhere mentioned
+UNK	Unspecified
+TOTAL	Total

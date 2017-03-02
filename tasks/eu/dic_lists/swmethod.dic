@@ -1,0 +1,18 @@
+TOTAL	Total
+PUBOFFICE	Contact public employment office
+PRIVOFFICE	Contact private employment office
+PERSEMPR	Person contacted employer directly
+EMPRPERS	Employer contacted person directly
+REFRAC	Relatives, friends or acquaintances
+EDUC	Education or training institution
+APPLYEMP	Apply to employers directly
+ASKFRIENDS	Ask friends, relatives, trade unions
+PUBANSWADV	Publish or answer advertisements
+STUDYADV	Study advertisements
+TESTSINTER	Took test, interview, examination
+LOOKLAND	Look for land, premises, equipment
+LOOKLICENC	Look for permits, licenses, financial resources
+OTHER	Other method
+NAP	Not applicable
+NRP	No response
+NRESP	No answer

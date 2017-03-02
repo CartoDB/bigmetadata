@@ -1,0 +1,87 @@
+WA_1	Total gross abstraction
+WA_1_1	Abstraction by public water supply
+WA_1_2	Abstraction by agriculture, forestry, fishing (total)
+WA_1_2_1	Abstraction by agriculture, for irrigation purposes
+WA_1_3	Abstraction by mining and quarrying
+WA_1_4	Abstraction by manufacturing industry (total)
+WA_1_4_1	Abstraction by manufacturing industry, for foodprocessing industry
+WA_1_4_2	Abstraction by manufacturing industry, for cooling purposes
+WA_1_5	Abstraction by production of electricity, for cooling purposes
+WA_1_6	Abstraction by services
+WA_1_7	Construction and other industrial activities
+WA_1_8	Abstraction by households
+WA_1_8_1	Abstraction by households of which: Returned water
+WA_1_9	Returned water (before use or without use) - (only available for total surface and groundwater)
+WA_1_10	Net abstraction - (only available for total surface and groundwater)
+WA_1_11	Abstraction by any other economic activity (e.g. construction)
+WA_2	Water abstraction for purposes of hydroelectricity generation
+WEI	Water exploitation index
+W18_1	Population connected to public water supply (% of national population) - (only available for public water supply)
+W18_2	Total supply
+W18_2_1	Supply to agriculture, forestry, fishing (total)
+W18_2_1_1	Supply to agriculture, for irrigation purposes
+W18_2_2	Supply to mining and quarrying
+W18_2_3	Supply to manufacturing industries (Total)
+W18_2_3_1	Supply to food processing industry
+W18_2_3_2	Supply to basic metals industry
+W18_2_3_3	Supply to motor vehicles and transport equipment industry
+W18_2_3_4	Supply to the textiles industry
+W18_2_3_5	Supply to paper and paper products industry
+W18_2_3_6	Supply to chemicals, refined petroleum industry
+W18_2_3_7	Supply to other manufacturing industry
+W18_2_3_8	Supply to manufacturing industries, for cooling purposes
+W18_2_4	Supply to the production and distribution of electricity (Total)
+W18_2_4_1	Supply to the production and distribution of electricity, for cooling purposes
+W18_2_5	Supply to all industrial activities
+W18_2_6	Supply to construction
+W18_2_7	Supply to the domestic sector (Total)
+W18_2_7_1	Supply to the domestic sector, services
+W18_2_7_2	Supply to the domestic sector, households
+WW2_1	Primary treatment
+WW2_2	Secondary treatment
+WW2_3	Tertiary treatment
+WW2_3_1	Tertiary treatment with nitrogen removal
+WW2_3_2	Tertiary treatment with phosporus removal
+WW2_4	Total treatment
+WW2_4_1	Total treatment with at least secondary treatment - (available only for independent treatment)
+WW2_4_2	Total of which with dephosphatation facilities (old version)
+SL_1	Total sludge production
+SL_2	Total sludge disposal
+SL_2_1	Agricultural use
+SL_2_2	Compost and other applications
+SL_2_3	Landfill
+SL_2_4	Dumping at sea
+SL_2_5	Incineration
+SL_2_6	Others
+SL_3	Agricultural use
+SL_4	Compost and other applications
+SL_4_1	Agricultural use (in volume: 1 000 m3)
+SL_4_2	Compost and other applications (in volume: 1 000 m3)
+SL_4_3	Landfill (in volume: 1 000 m3)
+SL_4_4	Dumping at sea (in volume: 1 000 m3)
+SL_4_5	Incineration (in volume: 1 000 m3)
+SL_4_6	Others (in volume: 1 000 m3)
+SL_5	Landfill
+SL_6	Dumping at sea
+SL_6_1	Agricultural use (in dry solids: kg/capita)
+SL_6_2	Compost and other applications (in dry solids: kg/capita)
+SL_6_3	Landfill (in dry solids: kg/capita)
+SL_6_4	Dumping at sea (in dry solids: kg/capita)
+SL_6_5	Incineration (in dry solids: kg/capita)
+SL_6_6	Others (in dry solids: kg/capita)
+SL_7	Incineration
+SL_8	Others
+SL_8_1	Agricultural use (in volume: m3/capita)
+SL_8_2	Compost and other applications (in volume: m3/capita)
+SL_8_3	Landfill (in volume: m3/capita)
+SL_8_4	Dumping at sea (in volume: m3/capita)
+SL_8_5	Incineration (in volume: m3/capita)
+SL_8_6	Others (in volume: m3/capita)
+WA_3	Abstraction from artificial reservoirs
+WA_4	Illegal abstractions, total (estimates)
+WA_4_1	Illegal abstractions (estimates) : surface water
+WA_4_2	Illegal abstractions (estimates) : groundwater
+W18_2_8	Supply to other economic activities
+WA_1_12	Self abstraction for own use
+WW2_5	Secondary and Tertiary Treatment
+WW2_6	Idenpendent Treatment 

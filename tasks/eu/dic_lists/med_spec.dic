@@ -1,0 +1,40 @@
+GEN	Generalist medical practitioners
+GEN_PRAC	General practitioners
+GEN_OTH	Other generalist medical practitioners
+GEN_SPEC	Generalist and specialist medical practitioners
+GEN_SPEC_HOSP	Generalist and specialist medical practitioners in hospital
+SPEC	Specialist medical practitioners
+PAED	General paediatricians
+GYN	Gynaecologists and obstetricians
+PSY	Psychiatrists
+MED	Medical group of specialists
+MED_INT	Internal medicine
+MED_CAR	Cardiology
+MED_END	Endocrinology
+MED_GAS	Gastroenterology
+MED_RES	Respiratory medicine
+MED_ONC	Oncology
+MED_IMM	Immunology
+MED_NEU	Neurology
+MED_ORL	Otorhinolaryngology
+MED_RAD	Radiology
+MED_MIC	Microbiology-bacteriology
+MED_HAE	Haematology
+MED_DER	Dermatology
+MED_PAT	Pathology
+MED_OCC	Occupational medicine
+SURG	Surgical group of specialists
+SURG_GEN	General surgery
+SURG_NEU	Neurological surgery
+SURG_PLA	Plastic surgery
+SURG_OPH	Ophthalmology
+SURG_ORT	Orthopaedics
+SURG_THO	Thoracic surgery
+SURG_VAS	Vascular surgery
+SURG_ANE	Anaesthesiology and intensive care
+SURG_URO	Urology
+SURG_EME	Accident and emergency medicine
+OTH	Other specialists not elsewhere classified
+OTH_OCC	Occupational medicine
+OTH_NSP	Other categories not elsewhere classified
+NSP	Medical doctors not further defined

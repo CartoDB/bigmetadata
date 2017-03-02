@@ -1,8 +1,18 @@
 {
   "services": [
-    "docker"
+    "docker",
+    "postgresql",
   ],
   "sudo": "required",
-  "before_script": "cp .env.sample .env",
-  "script": "make etl-unittest",
+  "before_install": [
+    "openssl aes-256-cbc -K $encrypted_d303290e7d32_key -iv $encrypted_d303290e7d32_iv -in keys/id_rsa_observatory_extension.key.enc -out keys/id_rsa_observatory_extension.key -d"
+  ],
+  "script": "make travis-etl-unittest",
+  "addons": {
+    "postgresql": "9.5",
+  },
+  "install": [
+    "sudo apt-get install -y postgresql-9.5-postgis-2.3",
+    "sudo service postgresql restart"
+  ]
 }

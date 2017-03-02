@@ -1,0 +1,36 @@
+b	break in time series
+bc	break in time series, confidential
+bd	break in time series, definition differs (see metadata)
+bde	break in time series, estimated, definition differs (see metadata)
+bdep	break in time series, estimated, definition differs (see metadata), provisional
+bdf	break in time series, forecast, definition differs (see metadata)
+bdn	break in time series, definition differs (see metadata), not significant
+bdp	break in time series, definition differs (see metadata), provisional
+bdu	break in time series, definition differs (see metadata), low reliability
+be	break in time series, estimated
+bep	break in time series, estimated, provisional
+bf	break in time series, forecast
+bn	break in time series, not significant
+bp	break in time series, provisional
+bu	break in time series, low reliability
+bz	break in time series, not applicable
+c	confidential
+cp	confidential, provisional
+d	definition differs (see metadata)
+de	definition differs (see metadata), estimated
+dep	definition differs (see metadata), estimated, provisional
+df	definition differs (see metadata), forecast
+dn	definition differs (see metadata), not significant
+dp	definition differs (see metadata), provisional
+du	definition differs (see metadata), low reliability
+e	estimated
+ep	estimated, provisional
+f	forecast
+i	see metadata (phased out)
+n	not significant
+p	provisional
+pu	provisional, low reliability
+r	revised
+s	Eurostat estimate (phased out)
+u	low reliability
+z	not applicable

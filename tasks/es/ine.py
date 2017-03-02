@@ -8,11 +8,12 @@ from collections import OrderedDict
 from luigi import Task, LocalTarget
 from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSTag, current_session,
                         DENOMINATOR, GEOM_REF)
-from tasks.util import (LoadPostgresFromURL, classpath, shell,
+from tasks.util import (LoadPostgresFromURL, classpath, shell, LOGGER,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
-                        classpath, PostgresTarget)
+                        classpath, PostgresTarget, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from time import time
 
 
 class DownloadGeometry(Task):
@@ -53,17 +54,22 @@ class RawGeometry(TempTableTask):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 6
+        return 7
 
     def requires(self):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def columns(self):
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        license = input_['license']['ine-license']
+        source = input_['source']['ine-source']
         cusec_geom = OBSColumn(
             name=u'Secci\xf3n Censal',
             type="Geometry",
@@ -86,7 +92,7 @@ class GeometryColumns(ColumnsTask):
 class Geometry(TableTask):
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {
@@ -119,15 +125,20 @@ class SeccionColumns(ColumnsTask):
             'tags': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'license': LicenseTags(),
+            'source': SourceTags(),
         }
 
     def version(self):
-        return 39
+        return 40
 
     def columns(self):
-        spain = self.input()['sections']['spain']
-        tags = self.input()['tags']
-        units = self.input()['units']
+        input_ = self.input()
+        spain = input_['sections']['spain']
+        tags = input_['tags']
+        units = input_['units']
+        source = input_['source']['ine-source']
+        license = input_['license']['ine-license']
 
         total_pop = OBSColumn(
             id='t1_1',
@@ -1514,7 +1525,7 @@ class SeccionColumns(ColumnsTask):
             weight=5,
             tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
-        return OrderedDict([
+        columns = OrderedDict([
             ('total_pop', total_pop),
             ('male_pop', male_pop),
             ('female_pop', female_pop),
@@ -1664,7 +1675,38 @@ class SeccionColumns(ColumnsTask):
             ('households_4_people', households_4_people),
             ('households_5_people', households_5_people),
             ('households_6_more_people', households_6_more_people),
-        ])
+            ])
+
+        for _, col in columns.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+        return columns
+
+
+class LicenseTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='ine-license',
+                name='National Statistics Institute (INE)',
+                type='license',
+                description='`INE website <http://www.ine.es>`_')
+            ]
+
+
+class SourceTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(
+                id='ine-source',
+                name='National Statistics Institute (INE) Legal Notice',
+                type='source',
+                description='More information `here <http://ine.es/ss/Satellite?L=1&c=Page&cid=1254735849170&p=1254735849170&pagename=Ayuda%2FINELayout#>`_')
+        ]
 
 
 class SeccionDataDownload(Task):
@@ -1803,7 +1845,7 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
@@ -1811,14 +1853,19 @@ class FiveYearPopulationColumns(ColumnsTask):
             'tags': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'license': LicenseTags(),
+            'source': SourceTags()
         }
 
     def columns(self):
-        spain = self.input()['sections']['spain']
-        tags = self.input()['tags']
-        units = self.input()['units']
+        input_ = self.input()
+        spain = input_['sections']['spain']
+        tags = input_['tags']
+        units = input_['units']
+        license = input_['license']['ine-license']
+        source = input_['source']['ine-source']
         session = current_session()
-        total_pop = self.input()['seccion_columns']['total_pop'].get(session)
+        total_pop = input_['seccion_columns']['total_pop'].get(session)
         columns = OrderedDict([
             ('gender', OBSColumn(
                 type='Text',
@@ -1838,7 +1885,7 @@ class FiveYearPopulationColumns(ColumnsTask):
                 description='',
                 aggregate='sum',
                 weight=3,
-                tags=[spain, tags['age_gender'], units['people']]
+                tags=[spain, tags['age_gender'], units['people'], license, source]
             )
         columns['pop_100_more'] = OBSColumn(
             type='Numeric',
@@ -1848,7 +1895,7 @@ class FiveYearPopulationColumns(ColumnsTask):
             description='',
             aggregate='sum',
             weight=3,
-            tags=[tags['age_gender'], units['people'], spain]
+            tags=[tags['age_gender'], units['people'], spain, license, source]
         )
 
         return columns
@@ -1941,3 +1988,10 @@ class FiveYearPopulation(TableTask):
                             output=self.output().table,
                             input=self.input()['data'].table
                         ))
+
+
+class FiveYearPopulationMeta(MetaWrapper):
+
+    def tables(self):
+        yield FiveYearPopulation()
+        yield Geometry()

@@ -1,0 +1,16 @@
+TOTAL	Total
+IMG	Native and foreign born immigrants (first and second generation of immigrants)
+NBO	Native-born
+NBO_NAT_IMG	Native born with native background and native and foreign born immigrants (first and second generation of immigrants)
+NBO_NAT	Native-born with native background
+NBO_IMG	Native-born with mixed background and foreign background (second generation of immigrants)
+NBO_IMGMIX	Native-born with mixed background (second generation of immigrants)
+NBO_IMGFOR	Native-born with foreign background (second generation of immigrants)
+FBO	Foreign-born (first generation of immigrants)
+NRP	No response
+OTH	Other
+UNK	Unknown
+NBO_XNAT_FBO	Native and foreign born immigrants (first and second generation of immigrants)
+NBO_MIX_FOR	Native-born with mixed background and foreign background (second generation of immigrants)
+NBO_MIX	Native-born with mixed background (second generation of immigrants)
+NBO_FOR	Native-born with foreign background (second generation of immigrants)

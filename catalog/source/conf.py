@@ -39,6 +39,8 @@ html_context = {
     ],
 }
 
+sys.setrecursionlimit(2500)
+
 # "Inline" extension to allow use of Sphinx-specific (vs docutils/ReST)
 # methods.
 def setup(app):
@@ -91,8 +93,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'observatory'
-copyright = u'2016, CartoDB'
-author = u'CartoDB'
+copyright = u'2016, CARTO'
+author = u'CARTO'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -267,7 +269,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   (master_doc, 'bigmetadata.tex', u'Observatory Catalog',
-   u'CartoDB', 'manual'),
+   u'CARTO', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -328,7 +330,7 @@ texinfo_documents = [
 #texinfo_no_detailmenu = False
 
 pdf_documents = [
-    ('index', u'observatory', u'The Data Observatory', u'CartoDB', {
+    ('index', u'observatory', u'The Data Observatory', u'CARTO', {
     }),
 ]
 

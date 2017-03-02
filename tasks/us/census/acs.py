@@ -26,7 +26,7 @@ from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 
 LOGGER = get_logger(__name__)
 
@@ -41,7 +41,7 @@ class ACSTags(TagsTask):
             OBSTag(id='acs',
                    name='US American Community Survey',
                    type='source',
-                   description='The United States American Community Survey'),
+                   description='`The United States American Community Survey <https://www.census.gov/programs-surveys/acs/>`_'),
             OBSTag(id='segments',
                    name='US Population Segments',
                    type='subsection',
@@ -58,10 +58,11 @@ class Columns(ColumnsTask):
             'censustags': ACSTags(),
             'segmenttags': SegmentTags(),
             'unittags': UnitTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
-        return 15
+        return 17
 
     def columns(self):
         input_ = self.input()
@@ -274,6 +275,7 @@ class Columns(ColumnsTask):
             description="The median age of all people in a given geographic area.",
             aggregate='median',
             weight=2,
+            targets={total_pop: 'universe'},
             tags=[subsections['age_gender'], unit_years]
         )
         white_pop = OBSColumn(
@@ -891,6 +893,7 @@ class Columns(ColumnsTask):
             "alimony.",
             weight=8,
             aggregate='median',
+            targets={households: 'universe'},
             tags=[subsections['income'], unit_money])
         gini_index = OBSColumn(
             id='B19083001',
@@ -912,6 +915,7 @@ class Columns(ColumnsTask):
             description='Per capita income is the mean income computed for every man, woman, and child in a particular group. It is derived by dividing the total income of a particular group by the total population.',
             weight=7,
             aggregate='average',
+            targets={total_pop: 'universe'},
             tags=[subsections['income'], unit_money])
         housing_units = OBSColumn(
             id='B25001001',
@@ -995,6 +999,7 @@ class Columns(ColumnsTask):
             "asked for the rental unit at the time of interview.",
             weight=8,
             aggregate='median',
+            targets={housing_units_renter_occupied: 'universe'},
             tags=[subsections['housing'], unit_money])
         percent_income_spent_on_rent = OBSColumn(
             id='B25071001',
@@ -1009,6 +1014,7 @@ class Columns(ColumnsTask):
             "living in the household.",
             weight=4,
             aggregate='average',
+            targets={households: 'universe'},
             tags=[subsections['housing'], subsections['income'], unit_ratio])
         owner_occupied_housing_units = OBSColumn(
             id='B25075001',
@@ -1615,7 +1621,7 @@ class Columns(ColumnsTask):
             tags=[subsections['age_gender'], unit_people]
         )
         male_10_to_14 = OBSColumn(
-            id='B01001004',
+            id='B01001005',
             type='Numeric',
             name='Male age 10 to 14',
             description='The male population between the age of ten years to fourteen years within the specified area.',
@@ -2779,7 +2785,7 @@ class Columns(ColumnsTask):
         renter_occupied_housing_units_paying_cash_median_gross_rent = OBSColumn(
             id='B25064001',
             type='Numeric',
-            aggregate='median',
+            aggregate='sum',
             name='Renter-Occupied Housing Units Paying Cash Rent Median Gross Rent',
             description='',
             weight=0,
@@ -2802,6 +2808,7 @@ class Columns(ColumnsTask):
             name='Owner-Occupied Housing Units Median Value',
             description='The middle value (median) in a geographic area owner occupied housing units.',
             weight=1,
+            targets={owner_occupied_housing_units: 'universe'},
             tags=[subsections['housing'], unit_housing],
         )
 
@@ -3154,9 +3161,11 @@ class Columns(ColumnsTask):
         ])
         united_states_section = input_['sections']['united_states']
         acs_source = input_['censustags']['acs']
+        no_restrictions = input_['license']['no-restrictions']
         for _, col in columns.iteritems():
             col.tags.append(united_states_section)
             col.tags.append(acs_source)
+            col.tags.append(no_restrictions)
         return columns
 
 
@@ -3182,14 +3191,23 @@ class DownloadACS(LoadPostgresFromURL):
 class QuantileColumns(ColumnsTask):
 
     def requires(self):
-        return Columns()
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'censustags': ACSTags(),
+            'segmenttags': SegmentTags(),
+            'unittags': UnitTags(),
+            'license': LicenseTags(),
+            'columns': Columns(),
+        }
 
     def version(self):
-        return 5
+        return 6
 
     def columns(self):
         quantile_columns = OrderedDict()
-        for colname, coltarget in self.input().iteritems():
+        input_ = self.input()
+        for colname, coltarget in input_['columns'].iteritems():
             col = coltarget.get(current_session())
             quantile_columns[colname+'_quantile'] = OBSColumn(
                 id=col.id.split('.')[-1]+'_quantile',
@@ -3198,6 +3216,8 @@ class QuantileColumns(ColumnsTask):
                 description=col.description,
                 aggregate='quantile',
                 targets={col: 'quantile_source'},
+                tags=[input_['license']['no-restrictions'], input_['censustags']['acs'],
+                      input_['sections']['united_states']],
                 weight=1
             )
         return quantile_columns

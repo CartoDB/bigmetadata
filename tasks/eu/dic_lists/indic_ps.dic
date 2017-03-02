@@ -1,0 +1,111 @@
+ACC202	Offices open to public and postal agencies
+ACC2021	Fixed: Full services post offices/outlets
+ACC2022	Fixed: Other post agencies/outlets
+ACC2023	Mobile: Mobile post offices
+ACC203	Letter-boxes
+ACC204	Post office boxes
+ACC205	Places at which only stamps can be bought
+DOM501	Domestic service: % of letters (fastest service) delivered on-time according to national performance indicator
+EMP106	Persons employed for the provision of postal and related services domestically (average of the year, NBR)
+ITM401B	Postal and related services - total
+ITM402	Letter-post services - total
+ITM403	Letter-post services - reserved area
+ITM404	Small packets
+ITM405	Courier, express and parcel services (CEP) - total
+ITM406	Courier, express and parcel services (CEP) - ordinary parcels (up to 10/20kg)
+ITM407	Other postal and related services
+ITM408	Unadressed mail items
+LET409	Ordinary letters and postcards
+LET410	Direct mail
+LET411	Registered mail
+LET412	Insured mail
+LET413	Other letter post items
+PRI601	Domestic service: List price payable for the handling of a standard (1st class) letter weighing less than 20 g (universal service)
+PRI602	Intra-EU service: List price payable for the handling of a standard (1st class) letter weighing less than 20 g (universal service)
+ACC201	Access points of universal service providers (USP) under direct or indirect designation - total
+ACC201_01	Offices and postal agencies - total
+ACC201_01_01	Offices and postal agencies - fixed offices/outlets with full services
+ACC201_01_02	Offices and postal agencies - fixed offices/outlets without full services
+ACC201_01_03	Offices and postal agencies - mobile post offices
+ACC201_02	Letter-boxes
+ACC201_03	Post office boxes
+DTR401	Domestic postal traffic, by USP and non-USP - total
+DTR401_01	Domestic postal traffic, by USP and non-USP - letter mail
+DTR401_01_01	Domestic postal traffic, by USP under direct or indirect designation - letter mail
+DTR401_01_01_01	Domestic postal traffic, by USP under direct or indirect designation - letter-post bulk mail
+DTR401_01_02	Domestic postal traffic, by other operators - letter mail
+DTR401_01_02_01	Domestic postal traffic, by other operators - letter-post bulk mail
+DTR401_03	Domestic postal traffic, by USP and non-USP - courier express and parcels
+DTR401_03_01	Domestic postal traffic, by USP under direct or indirect designation - courier express and parcels
+DTR401_03_01_01	Domestic postal traffic, by USP under direct or indirect designation - ordinary parcels up to 10/20Kg
+DTR401_03_02	Domestic postal traffic, by other operators - courier express and parcels
+DTR401_03_02_01	Domestic postal traffic, by other operators - ordinary parcels up to 10/20 kg
+DTR401_03_02_02	Domestic postal traffic, by other operators - express and parcel services (CEP)
+EMP101	Persons employed in domestic postal services (UPS and non-UPS) - total
+EMP101_01	Persons employed by universal service providers (USP)
+EMP101_02	Persons employed by non-universal service providers (non-USP)
+EMP101_01_02	Persons employed by universal service providers (USP)
+EMP101_02_01	Persons employed by non-universal service providers (non-USP)
+EMP_101_HC	Persons employed in domestic postal services (UPS and non-UPS) - total, HC
+EMP_101_01_HC	Persons employed by universal service providers (USP) - HC
+EMP_101_02_HC	Persons employed by non-universal service providers (non-USP) - HC
+EMP_101_FTE	Persons employed in domestic postal services (UPS and non-UPS) - total, FTE
+EMP_101_01_FTE	Persons employed by universal service providers (USP) - FTE
+EMP_101_02_FTE	Persons employed by non-universal service providers (non-USP) - FTE
+FIN303	Turnover from domestic postal services - total
+FIN303_01	Turnover generated in the universal service area
+FIN303_02	Turnover generated in the non-universal service area
+FIN303_01_E	Turnover generated in the universal service area - EUR
+FIN303_01_MNAC	Turnover generated in the universal service area - million units of national currency
+ITR501	International inbound postal traffic (UPS and non-UPS) - total
+ITR501_01	International letter mail - total
+ITR501_01_01	International letter mail by USP under direct or indirect designation
+ITR501_01_01_01	International letter mail by USP under direct or indirect designation - bulk mail
+ITR501_01_02	International letter mail by all other postal operators
+ITR501_01_02_01	International letter mail by all other postal operators - bulk mail
+ITR501_03	International courier express and parcel
+ITR501_03_01	International courier express and parcel by USP under direct or indirect designation
+ITR501_03_01_01	International courier express and parcel by USP under direct or indirect designation - ordinary parcels up to 10/20 kg
+ITR501_03_02	International courier express and parcel by all other postal operators
+ITR501_03_02_01	International courier express and parcel by all other postal operators - ordinary parcels up to 10/20 kg
+ITR501_03_02_02	International courier express and parcel by all other postal operators - express and parcel services (CEP)
+NUM701	Enterprises providing postal services - total
+NUM701_01	Enterprises providing universal services under direct or indirect designation
+NUM701_02	Enterprises providing universal services or interchangeable with universal service obligation (USO)
+NUM701_03	Enterprises providing other postal services
+PRI901	Price of a standard letter (1st class), less than 20 g, by USP under direct or indirect designation - domestic letter service
+PRI902	Price of a standard letter (1st class), less than 20 g, by USP under direct or indirect designation - intra-EU letter service
+PRI903	Price of a standard letter (1st class), less than 20 g, by USP under direct or indirect designation - international letter service
+PRI904	Price of a standard ordinary parcel, up to 2 kg, by USP under direct or indirect designation - domestic parcel service
+PRI905	Price of a standard ordinary parcel, up to 2 kg, by USP under direct or indirect designation - intra-EU parcel service
+PRI906	Price of a standard ordinary parcel, up to 2 kg, by USP under direct or indirect designation - international parcel service
+PRI901_E	Price of a standard letter (1st class), less than 20 g, by USP under direct or indirect designation - domestic service, EUR
+PRI902_E	Price of a standard letter (1st class), less than 20 g, by USP under direct or indirect designation - intra-EU service, EUR
+PRI901_NAC	Price of a standard letter (1st class), less than 20 g, by USP under direct or indirect designation - domestic service, national currency
+PRI902_NAC	Price of a standard letter (1st class), less than 20 g, by USP under direct or indirect designation - intra-EU service, national currency
+QOS801	% of letters delivered by D+1 working days (fastest service) - domestic service
+QOS803	% of items delivered by D+3 working days - international service
+QOS804	% of items delivered by D+5 working days - international service
+USO601	Postal services by enterprises providing universal services (US) and universal service obligation (USO) - total
+USO601_01	Universal letter-post services (US and USO)
+USO601_01_01	Ordinary letters and postcards (US and USO)
+USO601_01_01_01	Ordinary letters and postcards, from operators providing US under direct or indirect designation
+USO601_01_01_02	Ordinary letters and postcards, from operators providing US or interchangeable USO services
+USO601_01_02	Universal bulk mail (US and USO)
+USO601_01_02_01	Universal bulk mail, from operators providing US under direct or indirect designation
+USO601_01_02_02	Universal bulk mail, from operators providing US or interchangeable USO services
+USO601_01_04	Registered mail (US and USO)
+USO601_01_04_01	Registered mail, from operators providing US under direct or indirect designation
+USO601_01_04_02	Registered mail, from operators providing US or interchangeable USO services
+USO601_01_05	Insured mail (US and USO)
+USO601_01_05_01	Insured mail, from operators providing US under direct or indirect designation
+USO601_01_05_02	Insured mail, from operators providing US or interchangeable USO services
+USO601_03	Universal parcel services (US and USO)
+USO601_03_01	Universal parcel services, from operators providing US under direct or indirect designation
+USO601_03_02	Universal parcel services, from operators providing US or interchangeable USO services
+USO601_04	International universal inbound letter mail (US and USO)
+USO601_04_01	International universal inbound letter mail, from operators providing US under direct or indirect designation
+USO601_04_02	International universal inbound letter mail, from operators providing US or interchangeable USO services
+USO601_05	International universal inbound parcel services (US and USO)
+USO601_05_01	International universal inbound parcel services, from operators providing US under direct or indirect designation
+USO601_05_02	International universal inbound parcel services, from operators providing US or interchangeable USO services

@@ -1,0 +1,62 @@
+TOT_NACE_HH	All NACE branches plus households
+DEU_RES	Domestic energy use - residence principle
+TOT_NRA	Production and consumption activities abroad by residents
+NRA_FISH	Fishing vessels operated abroad by residents
+NRA_LAND	Land transport operated abroad by residents
+NRA_WATER	Water transport operated abroad by residents
+NRA_AIR	Air transport operated abroad by residents
+TOT_NRES	Production and consumption activities on the territory by non-residents
+NRES_LAND	Land transport operated on the territory by non-residents
+NRES_WATER	Water transport operated on the territory by non-residents
+NRES_AIR	Air transport operated on the territory by non-residents
+ADJ_OTH	Adjustments and statistical discrepancy
+GIEC_TER	Gross inland energy consumption - territory principle
+TOT_CONV	Total emissions as reported to international conventions (UNFCCC and CLRTAP)
+AREA_KM2	Area (km2)
+PROTER_KM2	Protected terrestrial area (km2)
+PROTER_PC	Protected terrestrial area (%)
+SITETER_I	Sufficiency index, terrestrial sites
+PROMAR_KM2	Protected marine area (km2)
+SITEMAR_I	Sufficiency index, marine sites
+DE	Domestic Extraction
+IMP	Total Imports
+IMP_XEU	Extra EU Imports
+IMP_RME	Total Imports in Raw Material Equivalents
+EXP	Total Exports
+EXP_XEU	Extra EU Exports
+EXP_RME	Total Exports in Raw Material Equivalents
+DMC	Domestic Material Consumption
+DMI	Direct Material Inputs
+RMC	Raw Material Consumption
+RMI	Raw Material Input
+PEP_TOT	Primary energy production by fuel  - total
+PEP_COAL	Primary energy production by fuel - coal and lignite
+PEP_COIL	Primary energy production by fuel - crude oil
+PEP_GAS	Primary energy production by fuel -natural gas
+PEP_NUC	Primary energy production by fuel - nuclear energy
+PEP_RNW	Primary energy production by fuel - renewable energy
+FEC_TOT	Final energy consumption - total
+FEC_AGR	Final energy consumption - by agriculture, forestry, fishing
+FEC_IND	Final energy consumption - by all industrial activities
+FEC_SER	Final energy consumption - by services
+FEC_HH	Final energy consumption - by households
+RNW_FEC_PC	Share of renewable energy in final energy consumption
+AREA_CS	Surface area of contaminated sites
+AREA_NUS	Formerly developed and now underused or abandoned land (brownfileds) in urban areas 
+AREA_PCS	Surface area of potentially contaminated sites
+MN_RES	Number of main residencies
+NBR_CS	Estimated number of contaminated sites
+NBR_ICS	Number of identified contaminated sites
+NBR_IPCS	Identified potentially contaminated sites
+NBR_PCS	Surface area of potentially contaminated sites
+SC_RES	Number of secondary residencies
+CAP	Capacity (tonnes per year)
+CAP_RST	Rest capacity (cubic metres)
+FAC	Number of facilities
+FAC_CL	Closed facilities
+GHG_I90	Greenhouse gas emissions (in CO2 equivalent) indexed to 1990
+GHG_I_KBY	Greenhouse gas emissions without international aviation (in CO2 equivalent) indexed to Kyoto base year
+GHG_NETS_I	Greenhouse gas emissions in non-ETS (Emissions Trading System) sectors (EU Effort Sharing Decision base year=100)
+GHG_NETS	Greenhouse gas emissions in non-ETS (Emissions Trading System) sectors (million tonnes CO2 equivalent)
+PRD	Production of chemicals
+CONS	Consumption of chemicals

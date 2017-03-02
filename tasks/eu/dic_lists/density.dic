@@ -1,0 +1,34 @@
+TOTAL	Total
+LT140	Less than 140 trees per hectare
+140-399	From 140 to 399 trees per hectare
+LT250	Less than 250 trees per hectare
+250-499	From 250 to 499 trees per hectare
+LT300	Less than 300 trees per hectare
+300-599	From 300 to 599 trees per hectare
+LT400	Less than 400 trees per hectare
+400-799	From 400 to 799 trees per hectare
+400-1599	From 400 to 1 599 trees per hectare
+GE400	400 trees per hectare or over
+500-749	From 500 to 749 trees per hectare
+LT600	Less than 600 trees per hectare
+600-899	From 600 to 899 trees per hectare
+600-1199	From 600 to 1 199 trees per hectare
+750-999	From 750 to 999 trees per hectare
+GE750	750 trees per hectare or over
+800-1599	From 800 to 1 599 trees per hectare
+900-1199	From 900 to 1 199 trees per hectare
+1000-1499	From 1 000 to 1 499 trees per hectare
+LT1000	Less than 1 000 trees per hectare
+1200-1499	From 1 200 to 1 499 trees per hectare
+GE1200	1 200 trees per hectare or over
+1500-1999	From 1 500 to 1 999 trees per hectare
+GE1500	1 500 trees per hectare or over
+1600-2399	From 1 600 to 2 399 trees per hectare
+1600-3199	From 1 600 to 3 199 trees per hectare
+2000-2499	From 2 000 to 2 499 trees per hectare
+2400-3199	From 2 400 to 3 199 trees per hectare
+2500-2999	From 2 500 to 2 999 trees per hectare
+GE3000	3 000 trees per hectare or over
+3200-3999	From 3 200 to 3 999 trees per hectare
+GE3200	3 200 trees per hectare or over
+GE4000	4 000 trees per hectare or over

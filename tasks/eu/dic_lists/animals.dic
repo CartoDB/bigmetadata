@@ -1,0 +1,171 @@
+A0000	Total of live animals
+A0010	Livestock
+A0011	Grazing livestock
+A0019	Other livestock
+A1000	Live horses, asses, mules and hinnies
+A1100	Live horses
+A1100B	Horses for slaughter
+A1200	Live asses, mules and hinnies
+A1210	Asses
+A1220	Mules
+A1230	Hinnies
+A2000	Live bovine animals
+A2000B	Bovine animals for slaughter
+A2000D	Bovine animals for meat production
+A2000E	Bovine animals not for meat production
+A2010	Bovine animals, less than 1 year
+A2010B	Bovine animals, less than 1 year, for slaughter
+A2010C	Bovine animals, less than 1 year, not for slaughter
+A2020	Bovine animals, 1 year
+A2020B	Bovine animals, 1 year, for slaughter
+A2020C	Bovine animals, 1 year, not for slaughter
+A2030	Bovine animals, 2 years or over
+A2030B	Bovine animals, 2 years or over, for slaughter
+A2030C	Bovine animals, 2 years or over, not for slaughter
+A2100	Male bovine animals
+A2110	Male calves, less than 1 year
+A2110C	Male calves, less than 1 year, not for slaughter
+A2120	Male bovine animals, 1 year
+A2130	Male bovine animals, 2 years or over
+A2140	Male bovine animals, 1 years or over
+A2140A	Bullocks
+A2200_2300	Female bovine animals
+A2230_2330	Female bovine animals, 2 years or over
+A2200	Female bovine animals (having not calved)
+A2210	Female calves, less than 1 year
+A2210C	Female calves, less than 1 year, not for slaughter
+A2220	Heifers, 1 year
+A2220B	Heifers, 1 year, for slaughter
+A2220C	Heifers, 1 year, not for slaughter
+A2230	Heifers, 2 years or over
+A2230B	Heifers, 2 years or over, for slaughter
+A2230C	Heifers, 2 years or over, not for slaughter
+A2300	Cows
+A2300F	Dairy cows
+A2300G	Non dairy cows
+A2300H	Suckler cows
+A2330	Other cows, 2 years and over
+A2400	Buffaloes
+A2410	Breeding female buffaloes
+A2420	Other buffaloes
+A2421	Male buffaloes
+A2500	Live cattle
+A2510	Young cattle, less than 1 year
+A2511	Calves, less than 8 months
+A2511AA	Calves, aged of few days
+A2511AB	Calves, aged of few weeks
+A2512	Young cattle, aged from 8 months to less than 12 months
+A2900	Other bovine animals
+A3000	Live swine
+A3100	Live swine, domestic species
+A3110	Piglets, less than 20 kg
+A3120_3133	Breeding pigs
+A3120	Breeding sows
+A3120K	Covered sows
+A3120KA	Sows covered for the first time
+A3120L	Sows, not covered
+A3120LA	Gilts not yet covered
+A3130	Other pigs
+A3131	Pigs, from 20 kg to less than 50 kg
+A3132	Fattening pigs, 50 kg or over
+A3132X	Fattening pigs, from 50 kg to less than 80 kg
+A3132Y	Fattening pigs, from 80 kg to less than 110 kg
+A3132Z	Fattening pigs, 110 kg or over
+A3133	Breeding boars
+A3200	Live swine, wild species
+A4000	Live sheep and goats
+A4100	Live sheep
+A4110	Ewes and ewe-lambs, breeding females
+A4110K	Ewes and ewe-lambs put to the ram
+A4110KC	Milk ewes and ewe-lambs put to the ram
+A4110KD	Non milk ewes and ewe-lambs put to the ram
+A4120	Other sheep
+A4121	Lambs
+A4121H	Suckling lambs
+A4121P	Fattening lambs
+A4200	Live goats
+A4201	Goats, 12 months or less
+A4210	Goats, breeding females
+A4210K	Goats mated and having already kidded
+A4210KA	Goats mated for the first time
+A4210KB	Goats having already kidded
+A4210F	Dairy goats
+A4220	Other goats
+A5000	Live poultry
+A5010	Breeding poultry
+A5000X5100	Live poultry excluding chicken (species)
+A5100	Chicken (species)
+A5110	Hens
+A5110O	Laying hens
+A5110OH	Laying hens (producing eggs for consumption)
+A5110ONH	Laying hens (not producing eggs for consumption)
+A5120	Cocks
+A5130	Chicks of chicken
+A5130O	Chicks of laying hen breeds (laying)
+A5130ON	Chicks of laying hen breeds (selection)
+A5130P	Chicks of meat broiler breeds (fattening)
+A5130PN	Chicks of meat broiler breeds (selection)
+A5130M	Chicks of mixed meat-laying breeds
+A5130OM	Chicks used for laying
+A5130PM	Chicks used for fattening
+A5130N	Chicks of chicken (selection)
+A5131	Cockerels
+A5131P	Cockerels from sexing
+A5140	Broilers
+A5200	Ducks, geese, turkeys, Guinea fowls
+A5210	Ducks
+A5211P	Chicks of duck (fattening)
+A5220	Geese
+A5221P	Chicks of goose (fattening)
+A5230	Turkeys
+A5231P	Chicks of turkey (fattening)
+A5240	Guinea fowls
+A5241P	Chicks of Guinea fowls (fattening)
+A5200_6521	Other poultry including ostriches
+A5300	Other poultry
+A6000	Other animals
+A6100	Rodents
+A6110	Rabbits
+A6111	Rabbits, breeding females
+A6120	Other rodents
+A6121	Mice
+A6122	Rats
+A6123	Guinea pigs
+A6124	Hamsters
+A6125	Syrian (golden) hamsters
+A6126	Chinese hamsters
+A6127	Gerbils
+A6128	Mongolian gerbils
+A6200	Other big herbivores
+A6210	Deers
+A6220	Camels
+A6300	Carnivores
+A6310	Cats
+A6320	Dogs
+A6330	Ferrets
+A6340	Foxes
+A6390	Other carnivores
+A6400	Primates
+A6410	Prosimians
+A6420	Marmosets and tamarins
+A6430	Monkeys
+A6431	Squirrel monkeys
+A6432	Cynomolgus monkeys
+A6433	Rhesus monkeys
+A6440	Macaques and vervets
+A6450	Baboons
+A6490	Other species of primates
+A6500	Birds
+A6510	Birds, domestic species
+A6520	Birds, wild species
+A6521	Ostrich
+A6600	Reptiles and amphibians
+A6610	Reptiles
+A6620	Amphibians
+A6629	Other amphibians
+A6700	Insects
+A6710	Bees
+A6710R	Bees (hives)
+A6720	Other insects (excl. bees)
+A6900	Other live animals
+A6900A	Other animals excluding ostriches, rabbits, bees, insects and pet animals

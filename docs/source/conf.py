@@ -17,13 +17,11 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
-import subprocess
+from sphinx.apidoc import main
 import sys
 
-sys.path.insert(0, os.path.abspath('../../tasks'))
-sys.path.insert(0, os.path.abspath('../tasks'))
-sys.path.insert(0, os.path.abspath('tasks'))
-sys.path.insert(0, os.path.abspath('bigmetadata/tasks'))
+cur_dir = os.path.abspath(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(cur_dir, '..', '..', 'tasks'))
 
 # -- General configuration ------------------------------------------------
 
@@ -355,19 +353,14 @@ blockdiag_antialias = True
 # Cribbed from https://github.com/rtfd/readthedocs.org/issues/1139
 
 def run_apidoc(_):
-    modules = ['../../tasks']
-    for module in modules:
-        cur_dir = os.path.abspath(os.path.dirname(__file__))
-        output_path = os.path.join(cur_dir, module, 'doc')
-        cmd_path = 'sphinx-apidoc'
-        if hasattr(sys, 'real_prefix'):  # Check to see if we are in a virtualenv
-            # If we are, assemble the path manually
-            cmd_path = os.path.abspath(os.path.join(sys.prefix, 'bin', 'sphinx-apidoc'))
-        subprocess.check_call(['PYTHONPATH=' + ':'.join([
-            os.path.abspath('../../tasks'),
-            os.path.abspath('../tasks'),
-            os.path.abspath('tasks'),
-        ]), cmd_path, '-e', '-o', output_path, module, '--force'])
+    #cur_dir = os.path.abspath(os.path.dirname(__file__))
+    module = os.path.join(cur_dir, '..', '..', 'tasks')
+    #cmd_path = 'sphinx-apidoc'
+    #if hasattr(sys, 'real_prefix'):  # Check to see if we are in a virtualenv
+    #    # If we are, assemble the path manually
+    #    cmd_path = os.path.abspath(os.path.join(sys.prefix, 'bin', 'sphinx-apidoc'))
+    main(['-e', '-o', cur_dir, module, '--force'])
+    #subprocess.check_call([cmd_path, '-e', '-o', cur_dir, module, '--force'])
 
 def setup(app):
     app.connect('builder-inited', run_apidoc)

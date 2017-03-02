@@ -2,14 +2,25 @@
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 
-from tasks.meta import OBSColumn, DENOMINATOR, current_session
+from tasks.meta import OBSColumn, DENOMINATOR, current_session, OBSTag
 from tasks.util import (TableTask, ColumnsTask, classpath, shell,
-                        DownloadUnzipTask, TempTableTask)
+                        DownloadUnzipTask, TagsTask, TempTableTask)
 from tasks.uk.cdrc import OutputAreaColumns
-from tasks.tags import UnitTags, SectionTags, SubsectionTags
+from tasks.tags import UnitTags, SectionTags, SubsectionTags, LicenseTags
 
 from collections import OrderedDict
 import os
+
+class SourceTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='ons',
+                    name='Office for National Statistics (ONS)',
+                    type='source',
+                    description="The UK's largest independent producer of official statistics and the recognised national statistical institute of the UK (`ONS <https://www.ons.gov.uk/>`_)")]
 
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
@@ -54,13 +65,17 @@ class CensusColumns(ColumnsTask):
             'units': UnitTags(),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
-        return 2
+        return 4
 
     def columns(self):
         input_ = self.input()
+        source = input_['source']['ons']
+        license = input_['license']['uk_ogl']
         uk = input_['sections']['uk']
         subsections = input_['subsections']
         units = input_['units']
@@ -995,7 +1010,7 @@ class CensusColumns(ColumnsTask):
             tags=[uk, units['people'], subsections['employment'], ],
         )
 
-        return OrderedDict([
+        columns = OrderedDict([
             ('total_pop', total_pop),
             ('pop_0_to_24', pop_0_to_24),
             ('pop_25_to_49', pop_25_to_49),
@@ -1090,7 +1105,10 @@ class CensusColumns(ColumnsTask):
             ('never_worked', never_worked),
             ('long_term_unemployed', long_term_unemployed),
         ])
-
+        for _, col in columns.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+        return columns
 
 class ImportAllEnglandWalesLocal(Task):
 

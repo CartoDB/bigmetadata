@@ -4,18 +4,18 @@ Tasks to sync data locally to CartoDB
 
 from tasks.meta import (current_session, OBSTable, Base, OBSColumn,)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
-                        classpath, shell, PostgresTarget, TempTableTask,
+                        classpath, shell, PostgresTarget, TempTableTask, LOGGER,
                         CartoDBTarget, import_api, TableToCartoViaImportAPI)
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter, FloatParameter)
 from luigi.task_register import Register
 from luigi.s3 import S3Target
-from nose.tools import assert_equal
 from datetime import date
 from decimal import Decimal
 from cStringIO import StringIO
 from PIL import Image, ImageOps
+from pprint import pprint
 
 import requests
 
@@ -28,20 +28,6 @@ import requests
 META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_column',
                'obs_column_tag', 'obs_tag', 'obs_dump_version', )
 
-
-
-def should_upload(table):
-    '''
-    Determine whether a table has any important columns.  If so, it should be
-    uploaded, otherwise it should be ignored.
-    '''
-    # TODO this table doesn't want to upload
-    if table.tablename == 'obs_ffebc3eb689edab4faa757f75ca02c65d7db7327':
-        return False
-    for coltable in table.columns:
-        if coltable.column.weight > 0:
-            return True
-    return False
 
 
 class SyncColumn(WrapperTask):
@@ -97,20 +83,36 @@ class SyncData(WrapperTask):
 
 class SyncAllData(WrapperTask):
     '''
-    Sync all 
+    Sync all data to the linked CARTO account.
     '''
 
     force = BooleanParameter(default=False, significant=False)
 
     def requires(self):
-        tables = {}
-        session = current_session()
-        for table in session.query(OBSTable):
-            if should_upload(table):
-                tables[table.id] = table.tablename
+        existing_table_versions = dict([
+            (r['tablename'], r['version']) for r in query_cartodb(
+                'SELECT * FROM obs_table'
+            ).json()['rows']
+        ])
+        tables = dict([(k, v) for k, v in current_session().execute(
+            '''
+            SELECT tablename, t.version
+            FROM observatory.obs_table t,
+                 observatory.obs_column_table ct,
+                 observatory.obs_column c
+            WHERE t.id = ct.table_id
+              AND c.id = ct.column_id
+              AND t.tablename NOT IN ('obs_ffebc3eb689edab4faa757f75ca02c65d7db7327')
+              AND c.weight > 0
+            '''
+        )])
 
-        for table_id, tablename in tables.iteritems():
-            yield TableToCartoViaImportAPI(table=tablename, force=self.force)
+        for tablename, version in tables.iteritems():
+            if version > existing_table_versions.get(tablename):
+                force = True
+            else:
+                force = self.force
+            yield TableToCartoViaImportAPI(table=tablename, force=force)
 
 
 class ImagesForMeasure(Task):
@@ -198,6 +200,18 @@ class ImagesForMeasure(Task):
 @3:#f59e72;
 @2:#f9c098;
 @1:#fde0c5;''',
+        'tags.segmentation': '''
+@1:#7F3C8D;
+@2:#11A579;
+@3:#3969AC;
+@4:#F2B701;
+@5:#E73F74;
+@6:#80BA5A;
+@7:#E68310;
+@8:#008695;
+@9:#CF1C90;
+@10:#f97b72;
+@11:#A5AA99;''',
     }
 
     measure = Parameter()
@@ -218,7 +232,7 @@ class ImagesForMeasure(Task):
         session = current_session()
         measure = session.query(OBSColumn).get(self.measure)
         mainquery = '''
-SELECT numer_aggregate,
+SELECT numer_aggregate, numer_type,
        numer_colname, numer_geomref_colname,
        numer_tablename,
        geom_geomref_colname,
@@ -237,14 +251,13 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
         # how should we determine fallback resolution?
         if results is None:
-            query = mainquery.format(
-                measure=self.measure,
-                boundary_clause="")
+            query = mainquery.format(measure=self.measure, boundary_clause="")
             resp = session.execute(query)
             results = resp.fetchone()
 
-        numer_aggregate, numer_colname, numer_geomref_colname, numer_tablename, \
-                geom_geomref_colname, geom_colname, geom_tablename, denom_colname, \
+        numer_aggregate, numer_type, numer_colname, numer_geomref_colname, \
+                numer_tablename, geom_geomref_colname, geom_colname, \
+                geom_tablename, denom_colname, \
                 denom_tablename, denom_geomref_colname = results
 
         if denom_colname:
@@ -268,11 +281,11 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
             cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
                     "geom.the_geom_webmercator, " \
                     "numer.{numer_colname} / " \
-                    "  ST_Area(geom.the_geom_webmercator) * 1000000.0 measure " \
+                    "  ST_Area(geom.the_geom) * 1000000.0 measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
             statssql = "SELECT CDB_HeadsTailsBins(array_agg(distinct( " \
-                    '  (numer.{numer_colname} / ST_Area(geom.the_geom_webmercator) ' \
+                    '  (numer.{numer_colname} / ST_Area(geom.the_geom) ' \
                     '      * 1000000.0)::NUMERIC)), 4) as "headtails" ' \
                     "FROM {geom_tablename} as geom, " \
                     "     {numer_tablename} as numer " \
@@ -283,12 +296,21 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                     "  numer.{numer_colname} measure " \
                     "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
                     "  WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
-            statssql = "SELECT " \
-                    'CDB_HeadsTailsBins(array_agg( ' \
-                    '  distinct(numer.{numer_colname}::NUMERIC)), 4) as "headtails" ' \
-                    "FROM {geom_tablename} as geom, " \
-                    "     {numer_tablename} as numer " \
-                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
+            if numer_type.lower() == 'numeric':
+                statssql = "SELECT " \
+                        'CDB_HeadsTailsBins(array_agg( ' \
+                        '  distinct(numer.{numer_colname}::NUMERIC)), 4) as "headtails" ' \
+                        "FROM {geom_tablename} as geom, " \
+                        "     {numer_tablename} as numer " \
+                        "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
+            else:
+                statssql = '''
+                SELECT array_agg(category) categories FROM (
+                SELECT row_number() over () catname, {numer_colname} as category, COUNT(*) cnt
+                FROM {numer_tablename}
+                GROUP BY {numer_colname} ORDER BY COUNT(*) DESC
+                LIMIT 10
+                ) foo'''
 
         cartosql = cartosql.format(geom_colname=geom_colname,
                                    numer_colname=numer_colname,
@@ -310,8 +332,9 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                                    denom_geomref_colname=denom_geomref_colname)
 
         resp = query_cartodb(statssql)
-        assert resp.status_code == 200
-        headtails = resp.json()['rows'][0]['headtails']
+        if resp.status_code != 200:
+            raise Exception("Unable to obtain statssql: {}".format(
+                resp.text))
 
         if measure.unit():
             ramp = self.PALETTES.get(measure.unit().id, self.PALETTES['tags.ratio'])
@@ -319,17 +342,29 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
             ramp = self.PALETTES['tags.ratio']
 
         bucket_css = u''
-        for i, bucket in enumerate(headtails):
-            bucket_css = u'''
-[measure <= {bucket}] {{
-   polygon-fill: @{i};
-}}
-            '''.format(bucket=bucket, i=i+1) + bucket_css
+        if numer_type.lower() == 'numeric':
+            buckets = resp.json()['rows'][0]['headtails']
+
+
+            for i, bucket in enumerate(buckets):
+                bucket_css = u'''
+    [measure <= {bucket}] {{
+       polygon-fill: @{i};
+    }}
+                '''.format(bucket=bucket, i=i+1) + bucket_css
+        else:
+            buckets = resp.json()['rows'][0]['categories']
+            for i, bucket in enumerate(buckets):
+                bucket_css = u'''
+    [measure = "{bucket}"] {{
+       polygon-fill: @{i};
+    }}
+                '''.format(bucket=bucket, i=i+1) + bucket_css
 
         layers.append({
             'type': 'mapnik',
             'options': {
-                'layer_name': numer_tablename,
+                'layer_name': geom_tablename,
                 'cartocss': '''/** choropleth visualization */
 
 {ramp}
@@ -349,7 +384,7 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
   {bucket_css}
 }}'''.format(
     ramp=ramp,
-    bucketlen=len(headtails) + 1,
+    bucketlen=len(buckets) + 1,
     bucket_css=bucket_css),
                 'cartocss_version': "2.1.1",
                 'sql': cartosql,
@@ -372,8 +407,11 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
         }
         resp = requests.get(self.MAP_URL,
                             headers={'content-type':'application/json'},
-                            params={'config': json.dumps(config)})
-        return resp.json()
+                            params={'config': json.dumps(config)}).json()
+        if 'layergroupid' not in resp:
+            raise Exception('Named map returned no layergroupid: {}'.format(
+                pprint(resp)))
+        return resp
 
     def run(self):
         self.output().makedirs()
@@ -403,12 +441,12 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                               ))
 
         url1 = image_urls.pop(0)
-        print url1
+        LOGGER.info(url1)
         file1 = StringIO(requests.get(url1, stream=True).content)
         image1 = ImageOps.expand(Image.open(file1), border=10, fill='white')
 
         for url2 in image_urls:
-            print url2
+            LOGGER.info(url2)
             file2 = StringIO(requests.get(url2, stream=True).content)
 
             image2 = ImageOps.expand(Image.open(file2), border=10, fill='white')
@@ -425,6 +463,17 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
 
             image1 = result
         image1.save(self.output().path)
+
+    def complete(self):
+        '''
+        If we support this country,
+        '''
+        country = self.measure.split('.')[0]
+        if country in self.CENTER_ZOOM_BOUNDS:
+            return super(ImagesForMeasure, self).complete()
+        else:
+            LOGGER.warn('No info to create images for %s', self.measure)
+            return True
 
     def output(self, measure=None):
         if measure is None:
@@ -492,8 +541,11 @@ class GenerateStaticImage(Task):
         }
         resp = requests.get(self.MAP_URL,
                             headers={'content-type':'application/json'},
-                            params={'config': json.dumps(config)})
-        return resp.json()
+                            params={'config': json.dumps(config)}).json()
+        if 'layergroupid' not in resp:
+            raise Exception('Named map returned no layergroupid: {}'.format(
+                pprint(resp)))
+        return resp
 
     def run(self):
         self.output().makedirs()
@@ -507,7 +559,7 @@ class GenerateStaticImage(Task):
                     center_lon=config['center'][0],
                     center_lat=config['center'][1]
                 )
-        print img_url
+        LOGGER.info(img_url)
         shell('curl "{img_url}" > {output}'.format(img_url=img_url,
                                                    output=self.output().path))
 
@@ -575,7 +627,7 @@ class PurgeUndocumentedTables(Task):
                 if cnt == 0:
                     stmt = 'DROP TABLE observatory.{tablename} CASCADE'.format(
                         tablename=tablename)
-                    print(stmt)
+                    LOGGER.info(stmt)
                     session.execute(stmt)
                     session.commit()
                 else:
@@ -599,7 +651,7 @@ class PurgeMetadataTables(Task):
                 _id = resp.fetchall()[0][0]
                 stmt = "DELETE FROM observatory.obs_table " \
                         "WHERE id = '{id}'".format(id=_id)
-                print(stmt)
+                LOGGER.info(stmt)
                 session.execute(stmt)
                 session.commit()
 
@@ -620,12 +672,12 @@ class PurgeMetadataTables(Task):
                 if task_id.startswith(underscore_slugify(name)):
                     exists = True
             if exists is True:
-                print('{table} exists'.format(table=table))
+                LOGGER.info('{table} exists'.format(table=table))
             else:
                 # TODO drop table
                 import pdb
                 pdb.set_trace()
-                print table
+                LOGGER.info(table)
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
 
@@ -757,7 +809,7 @@ class DumpS3(Task):
         path = 's3://cartodb-observatory-data/{path}'.format(
             path=path
         )
-        print path
+        LOGGER.info(path)
         target = S3Target(path)
         if self.force:
             shell('aws s3 rm {output}'.format(
@@ -771,141 +823,615 @@ class OBSMeta(Task):
 
     force = BooleanParameter(default=True)
 
-    QUERY = '''
-    SELECT numer_c.id numer_id,
-           denom_c.id denom_id,
-           geom_c.id geom_id,
-           MAX(numer_c.name) numer_name,
-           MAX(denom_c.name) denom_name,
-           MAX(geom_c.name) geom_name,
-           MAX(numer_c.description) numer_description,
-           MAX(denom_c.description) denom_description,
-           MAX(geom_c.description) geom_description,
-           MAX(numer_c.aggregate) numer_aggregate,
-           MAX(denom_c.aggregate) denom_aggregate,
-           MAX(geom_c.aggregate) geom_aggregate,
-           MAX(numer_c.type) numer_type,
-           MAX(denom_c.type) denom_type,
-           MAX(geom_c.type) geom_type,
-           MAX(numer_data_ct.colname) numer_colname,
-           MAX(denom_data_ct.colname) denom_colname,
-           MAX(geom_geom_ct.colname) geom_colname,
-           MAX(numer_geomref_ct.colname) numer_geomref_colname,
-           MAX(denom_geomref_ct.colname) denom_geomref_colname,
-           MAX(geom_geomref_ct.colname) geom_geomref_colname,
-           MAX(numer_t.tablename) numer_tablename,
-           MAX(denom_t.tablename) denom_tablename,
-           MAX(geom_t.tablename) geom_tablename,
-           MAX(numer_t.timespan) numer_timespan,
-           MAX(denom_t.timespan) denom_timespan,
-           MAX(numer_c.weight) numer_weight,
-           MAX(denom_c.weight) denom_weight,
-           MAX(geom_c.weight) geom_weight,
-           MAX(geom_t.timespan) geom_timespan,
-           MAX(geom_t.the_geom_webmercator)::geometry AS the_geom_webmercator,
-           ARRAY_AGG(DISTINCT s_tag.id) section_tags,
-           ARRAY_AGG(DISTINCT ss_tag.id) subsection_tags,
-           ARRAY_AGG(DISTINCT unit_tag.id) unit_tags
-    FROM observatory.obs_column_table numer_data_ct,
-         observatory.obs_table numer_t,
-         observatory.obs_column_table numer_geomref_ct,
-         observatory.obs_column geomref_c,
-         observatory.obs_column_to_column geomref_c2c,
-         observatory.obs_column geom_c,
-         observatory.obs_column_table geom_geom_ct,
-         observatory.obs_column_table geom_geomref_ct,
-         observatory.obs_table geom_t,
-         observatory.obs_column_tag ss_ctag,
-         observatory.obs_tag ss_tag,
-         observatory.obs_column_tag s_ctag,
-         observatory.obs_tag s_tag,
-         observatory.obs_column_tag unit_ctag,
-         observatory.obs_tag unit_tag,
-         observatory.obs_column numer_c
-      LEFT JOIN (
-        observatory.obs_column_to_column denom_c2c
-        JOIN observatory.obs_column denom_c ON denom_c2c.target_id = denom_c.id
-        JOIN observatory.obs_column_table denom_data_ct ON denom_data_ct.column_id = denom_c.id
-        JOIN observatory.obs_table denom_t ON denom_data_ct.table_id = denom_t.id
-        JOIN observatory.obs_column_table denom_geomref_ct ON denom_geomref_ct.table_id = denom_t.id
-      ) ON denom_c2c.source_id = numer_c.id
-    WHERE numer_c.id = numer_data_ct.column_id
-      AND numer_data_ct.table_id = numer_t.id
-      AND numer_t.id = numer_geomref_ct.table_id
-      AND numer_geomref_ct.column_id = geomref_c.id
-      AND geomref_c2c.reltype = 'geom_ref'
-      AND geomref_c.id = geomref_c2c.source_id
-      AND geom_c.id = geomref_c2c.target_id
-      AND geom_geomref_ct.column_id = geomref_c.id
-      AND geom_geomref_ct.table_id = geom_t.id
-      AND geom_geom_ct.column_id = geom_c.id
-      AND geom_geom_ct.table_id = geom_t.id
-      AND geom_c.type ILIKE 'geometry'
-      AND numer_c.type NOT ILIKE 'geometry'
-      AND numer_c.id != geomref_c.id
-      AND unit_tag.type = 'unit'
-      AND ss_tag.type = 'subsection'
-      AND s_tag.type = 'section'
-      AND unit_ctag.column_id = numer_c.id
-      AND unit_ctag.tag_id = unit_tag.id
-      AND ss_ctag.column_id = numer_c.id
-      AND ss_ctag.tag_id = ss_tag.id
-      AND s_ctag.column_id = numer_c.id
-      AND s_ctag.tag_id = s_tag.id
-      AND (numer_c.id != denom_c.id OR denom_c.id IS NULL)
-      AND (denom_c2c.reltype = 'denominator' OR denom_c2c.reltype IS NULL)
-      AND (denom_geomref_ct.column_id = geomref_c.id OR denom_geomref_ct.column_id IS NULL)
-      AND (denom_t.timespan = numer_t.timespan OR denom_t.timespan IS NULL)
-    GROUP BY numer_c.id, denom_c.id, geom_c.id,
-             numer_t.id, denom_t.id, geom_t.id
+    FIRST_AGGREGATE = '''
+    CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
+    RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
+            SELECT $1;
+    $$;
+
+    DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
+    CREATE AGGREGATE public.FIRST (
+            sfunc    = public.first_agg,
+            basetype = anyelement,
+            stype    = anyelement
+    );
     '''
+
+    QUERIES = ['''
+      CREATE TABLE {obs_meta} AS
+      WITH denoms as (
+        SELECT
+             numer_c.id numer_id,
+             denom_c.id denom_id,
+             denom_t.id denom_tid,
+             geomref_c.id geomref_id,
+             null::varchar denom_name,
+             null::varchar denom_description,
+             null::varchar denom_t_description,
+             null::varchar denom_aggregate,
+             null::varchar denom_type,
+             null::varchar denom_reltype,
+             null::varchar denom_colname,
+             FIRST(denom_geomref_ct.colname) denom_geomref_colname,
+             null::varchar denom_tablename,
+             FIRST(denom_t.timespan) denom_timespan,
+             null::int as denom_weight,
+             null::jsonb as denom_tags,
+             null::jsonb denom_extra,
+             null::jsonb denom_ct_extra
+        FROM observatory.obs_column numer_c
+             , observatory.obs_column_to_column denom_c2c
+             , observatory.obs_column denom_c
+             , observatory.obs_column_table denom_data_ct
+             , observatory.obs_table denom_t
+             , observatory.obs_column_tag denom_ctag
+             , observatory.obs_tag denom_tag
+             , observatory.obs_column_table denom_geomref_ct
+             , observatory.obs_column geomref_c
+             , observatory.obs_column_to_column geomref_c2c
+        WHERE denom_c.weight > 0
+          AND denom_c2c.source_id = numer_c.id
+          AND denom_c2c.target_id = denom_c.id
+          AND denom_data_ct.column_id = denom_c.id
+          AND denom_data_ct.table_id = denom_t.id
+          AND denom_c.id = denom_ctag.column_id
+          AND denom_ctag.tag_id = denom_tag.id
+          AND denom_c2c.reltype IN ('denominator', 'universe')
+          AND denom_geomref_ct.table_id = denom_t.id
+          AND denom_geomref_ct.column_id = geomref_c.id
+          AND geomref_c2c.reltype = 'geom_ref'
+          AND geomref_c2c.source_id = geomref_c.id
+        GROUP BY numer_c.id, denom_c.id, denom_t.id, geomref_c.id
+      ), leftjoined_denoms AS (
+        SELECT numer_c.id all_numer_id, denoms.*
+        FROM observatory.obs_column numer_c
+             LEFT JOIN denoms ON numer_c.id = denoms.numer_id
+      ) SELECT numer_c.id numer_id,
+             denom_id,
+             geom_c.id geom_id,
+             FIRST(numer_t.id) numer_tid,
+             FIRST(denom_tid) denom_tid,
+             FIRST(geom_t.id ORDER BY geom_t.timespan DESC) geom_tid,
+             null::varchar numer_name,
+             null::varchar denom_name,
+             null::varchar geom_name,
+             null::varchar numer_description,
+             null::varchar denom_description,
+             null::varchar geom_description,
+             null::varchar numer_t_description,
+             null::varchar denom_t_description,
+             null::varchar geom_t_description,
+             null::varchar numer_aggregate,
+             null::varchar denom_aggregate,
+             null::varchar geom_aggregate,
+             null::varchar numer_type,
+             null::varchar denom_type,
+             null::varchar denom_reltype,
+             null::varchar geom_type,
+             null::varchar numer_colname,
+             null::varchar denom_colname,
+             null::varchar geom_colname,
+             FIRST(numer_geomref_ct.colname) numer_geomref_colname,
+             FIRST(denom_geomref_colname) denom_geomref_colname,
+             FIRST(geom_geomref_ct.colname ORDER BY geom_t.timespan DESC) geom_geomref_colname,
+             null::varchar numer_tablename,
+             null::varchar denom_tablename,
+             null::varchar geom_tablename,
+             numer_t.timespan numer_timespan,
+             null::varchar denom_timespan,
+             null::numeric numer_weight,
+             null::numeric denom_weight,
+             null::numeric geom_weight,
+             null::varchar geom_timespan,
+             null::geometry the_geom,
+             null::jsonb numer_tags,
+             null::jsonb denom_tags,
+             null::jsonb geom_tags,
+             null::jsonb timespan_tags,
+             null::varchar[] section_tags,
+             null::varchar[] subsection_tags,
+             null::varchar[] unit_tags,
+             null::jsonb numer_extra ,
+             null::jsonb numer_ct_extra ,
+             null::jsonb denom_extra,
+             null::jsonb denom_ct_extra,
+             null::jsonb geom_extra,
+             null::jsonb geom_ct_extra
+      FROM observatory.obs_column_table numer_data_ct,
+           observatory.obs_table numer_t,
+           observatory.obs_column_table numer_geomref_ct,
+           observatory.obs_column geomref_c,
+           observatory.obs_column_to_column geomref_c2c,
+           observatory.obs_column_table geom_geom_ct,
+           observatory.obs_column_table geom_geomref_ct,
+           observatory.obs_table geom_t,
+           observatory.obs_column_tag numer_ctag,
+           observatory.obs_tag numer_tag,
+           observatory.obs_column numer_c,
+           leftjoined_denoms,
+           observatory.obs_column geom_c
+           LEFT JOIN (
+              observatory.obs_column_tag geom_ctag JOIN
+              observatory.obs_tag geom_tag ON geom_tag.id = geom_ctag.tag_id
+           ) ON geom_c.id = geom_ctag.column_id
+      WHERE numer_c.weight > 0
+        AND numer_c.id = numer_data_ct.column_id
+        AND numer_data_ct.table_id = numer_t.id
+        AND numer_t.id = numer_geomref_ct.table_id
+        AND numer_geomref_ct.column_id = geomref_c.id
+        AND geomref_c2c.reltype = 'geom_ref'
+        AND geomref_c.id = geomref_c2c.source_id
+        AND geom_c.id = geomref_c2c.target_id
+        AND geom_geomref_ct.column_id = geomref_c.id
+        AND geom_geomref_ct.table_id = geom_t.id
+        AND geom_geom_ct.column_id = geom_c.id
+        AND geom_geom_ct.table_id = geom_t.id
+        AND geom_c.type ILIKE 'geometry%'
+        AND numer_c.type NOT ILIKE 'geometry%'
+        AND numer_c.id != geomref_c.id
+        AND numer_ctag.column_id = numer_c.id
+        AND numer_ctag.tag_id = numer_tag.id
+        AND numer_c.id = leftjoined_denoms.all_numer_id
+        AND (leftjoined_denoms.numer_id IS NULL OR (
+          numer_t.timespan = leftjoined_denoms.denom_timespan
+          AND geomref_c.id = leftjoined_denoms.geomref_id
+        ))
+      GROUP BY numer_c.id, denom_id, geom_c.id, numer_t.timespan;
+      ''',
+
+      '''CREATE UNIQUE INDEX ON {obs_meta} (numer_id, geom_id, numer_timespan, denom_id);''',
+
+      '''-- update numer coltable info
+      UPDATE {obs_meta} SET
+        numer_name = name,
+        numer_description = c.description,
+        numer_t_description = t.description,
+        numer_aggregate = aggregate,
+        numer_type = type,
+        numer_colname = colname,
+        numer_tablename = tablename,
+        numer_timespan = timespan,
+        numer_weight = weight,
+        numer_extra = c.extra,
+        numer_ct_extra = ct.extra
+      FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+      WHERE c.id = numer_id
+        AND t.id = numer_tid
+        AND c.id = ct.column_id
+        AND t.id = ct.table_id;''',
+
+      '''-- update denom coltable info
+      UPDATE {obs_meta} SET
+        denom_name = name,
+        denom_description = c.description,
+        denom_t_description = t.description,
+        denom_aggregate = aggregate,
+        denom_type = type,
+        denom_colname = colname,
+        denom_tablename = tablename,
+        denom_timespan = timespan,
+        denom_weight = weight,
+        denom_extra = c.extra,
+        denom_ct_extra = ct.extra
+      FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+      WHERE c.id = denom_id
+        AND t.id = denom_tid
+        AND c.id = ct.column_id
+        AND t.id = ct.table_id;''',
+
+     '''-- update geom coltable info
+     UPDATE {obs_meta} SET
+       geom_name = name,
+       geom_description = c.description,
+       geom_t_description = t.description,
+       geom_aggregate = aggregate,
+       geom_type = type,
+       geom_colname = colname,
+       geom_tablename = tablename,
+       geom_timespan = timespan,
+       the_geom = t.the_geom,
+       geom_weight = weight,
+       geom_extra = c.extra,
+       geom_ct_extra = ct.extra
+     FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+     WHERE c.id = geom_id
+       AND t.id = geom_tid
+       AND c.id = ct.column_id
+       AND t.id = ct.table_id;''',
+
+     '''-- update coltag info
+     DROP TABLE IF EXISTS _obs_coltags;
+     CREATE TEMPORARY TABLE _obs_coltags AS
+     SELECT
+       c.id,
+       JSONB_OBJECT_AGG(
+         t.type || '/' || t.id, t.name
+       ) tags,
+       ARRAY_AGG(DISTINCT t.id) FILTER (WHERE t.type = 'section') section_tags,
+       ARRAY_AGG(DISTINCT t.id) FILTER (WHERE t.type = 'subsection') subsection_tags,
+       ARRAY_AGG(DISTINCT t.id) FILTER (WHERE t.type = 'unit') unit_tags
+     FROM observatory.obs_column c, observatory.obs_column_tag ct, observatory.obs_tag t
+     WHERE c.id = ct.column_id
+       AND t.id = ct.tag_id
+     GROUP BY c.id;
+     CREATE UNIQUE INDEX ON _obs_coltags (id);''',
+
+     '''UPDATE {obs_meta} SET
+       numer_tags = tags,
+       section_tags = _obs_coltags.section_tags,
+       subsection_tags = _obs_coltags.subsection_tags,
+       unit_tags = _obs_coltags.unit_tags
+     FROM _obs_coltags WHERE id = numer_id;''',
+
+     '''UPDATE {obs_meta} SET
+       geom_tags = tags
+     FROM _obs_coltags WHERE id = geom_id;''',
+
+     '''UPDATE {obs_meta} SET
+       denom_tags = tags
+     FROM _obs_coltags WHERE id = denom_id;''',
+
+     '''-- update denom reltype info
+     UPDATE {obs_meta} SET
+       denom_reltype = c2c.reltype
+     FROM observatory.obs_column source,
+          observatory.obs_column_to_column c2c,
+          observatory.obs_column target
+     WHERE c2c.source_id = source.id
+       AND c2c.target_id = target.id
+       AND source.id = numer_id
+       AND target.id = denom_id;
+    ''',
+    '''CREATE INDEX ON {obs_meta} USING gist (the_geom)''',
+    '''CREATE INDEX ON {obs_meta} USING gin (numer_tags)'''
+    ]
+
+    DIMENSIONS = {
+        # before took 206s
+        'numer': ['''
+CREATE TABLE {obs_meta} AS
+SELECT numer_id ,
+         NULL::TEXT numer_name, --FIRST(numer_description)::TEXT numer_name,
+         NULL::TEXT numer_description, --FIRST(numer_description)::TEXT numer_description,
+         NULL::JSONB numer_tags, --FIRST(numer_tags)::JSONB numer_tags,
+         NULL::NUMERIC numer_weight, --FIRST(numer_weight)::NUMERIC numer_weight,
+         NULL::JSONB numer_extra, --FIRST(numer_extra)::JSONB numer_extra,
+         NULL::TEXT numer_type, --FIRST(numer_type)::TEXT numer_type,
+         NULL::TEXT numer_aggregate, --FIRST(numer_aggregate)::TEXT numer_aggregate,
+         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+         ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
+         NULL::Geometry(Geometry, 4326) the_geom -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+FROM observatory.obs_meta_next
+GROUP BY numer_id;
+        ''',
+        ''' ALTER TABLE {obs_meta} ADD PRIMARY KEY (numer_id); ''',
+        '''
+UPDATE {obs_meta} SET
+numer_name = obs_meta.numer_name,
+numer_tags = obs_meta.numer_tags,
+numer_weight = obs_meta.numer_weight,
+numer_extra = obs_meta.numer_extra,
+numer_type = obs_meta.numer_type,
+numer_aggregate = obs_meta.numer_aggregate
+FROM observatory.obs_meta_next obs_meta
+WHERE obs_meta.numer_id = {obs_meta}.numer_id;
+        ''',
+        '''CREATE INDEX ON observatory.obs_meta_next (numer_id, geom_tid); ''',
+        '''
+WITH geom_tids AS (
+  SELECT  ARRAY_AGG(distinct geom_tid) geom_tids, numer_id
+  FROM observatory.obs_meta_next
+  GROUP BY numer_id
+), unique_geom_ids AS (
+  SELECT ARRAY_AGG(distinct numer_id) numer_ids, geom_tids
+  FROM geom_tids
+  GROUP BY geom_tids
+), union_geoms AS (
+  SELECT numer_ids, geom_tids, ST_Union(the_geom) the_geom
+  FROM unique_geom_ids, observatory.obs_table
+  WHERE id = ANY(geom_tids)
+  GROUP BY numer_ids, geom_tids
+) UPDATE {obs_meta}
+SET the_geom = union_geoms.the_geom
+FROM union_geoms
+WHERE {obs_meta}.numer_id = ANY(union_geoms.numer_ids);
+        '''
+        ],
+        'denom': ['''
+CREATE UNIQUE INDEX ON observatory.obs_meta_next (denom_id, numer_id, geom_id, numer_timespan, denom_timespan);
+        ''',
+        '''
+CREATE TABLE {obs_meta} AS
+SELECT denom_id::TEXT,
+         NULL::TEXT denom_name, --FIRST(denom_name)::TEXT denom_name,
+         NULL::TEXT denom_description, --FIRST(denom_description)::TEXT denom_description,
+         NULL::JSONB denom_tags, --FIRST(denom_tags)::JSONB denom_tags,
+         NULL::NUMERIC denom_weight, --FIRST(denom_weight)::NUMERIC denom_weight,
+         NULL::TEXT reltype, --'denominator'::TEXT reltype,
+         NULL::JSONB denom_extra, --FIRST(denom_extra)::JSONB denom_extra,
+         NULL::TEXT denom_type, --FIRST(denom_type)::TEXT denom_type,
+         NULL::TEXT denom_aggregate, --FIRST(denom_aggregate)::TEXT denom_aggregate,
+         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+         ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
+         NULL::Geometry(Geometry, 4326) the_geom -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+FROM observatory.obs_meta_next
+WHERE denom_id IS NOT NULL
+GROUP BY denom_id;
+        ''',
+        '''
+ALTER TABLE {obs_meta} ADD PRIMARY KEY (denom_id);
+        ''',
+        '''
+UPDATE {obs_meta} SET
+denom_name = obs_meta.denom_name,
+denom_tags = obs_meta.denom_tags,
+denom_weight = obs_meta.denom_weight,
+reltype = obs_meta.denom_reltype,
+denom_extra = obs_meta.denom_extra,
+denom_type = obs_meta.denom_type,
+denom_aggregate = obs_meta.denom_aggregate
+FROM observatory.obs_meta_next obs_meta
+WHERE obs_meta.denom_id = {obs_meta}.denom_id;
+        ''',
+        '''CREATE INDEX ON observatory.obs_meta_next (denom_id, geom_tid); ''',
+        '''
+WITH geom_tids AS (
+  SELECT  ARRAY_AGG(geom_tid) geom_tids, numer_id
+  FROM observatory.obs_meta_next
+  GROUP BY numer_id
+) , unique_geom_ids AS (
+  SELECT ARRAY_AGG(numer_id) numer_ids, geom_tids
+  FROM geom_tids
+  GROUP BY geom_tids
+), union_geoms AS (
+  SELECT numer_ids, geom_tids, ST_Union(the_geom) the_geom
+  FROM unique_geom_ids, observatory.obs_table
+  WHERE id = ANY(geom_tids)
+  GROUP BY numer_ids, geom_tids
+) UPDATE {obs_meta}
+SET the_geom = union_geoms.the_geom
+FROM union_geoms
+WHERE {obs_meta}.denom_id = ANY(union_geoms.numer_ids);
+        '''
+        ],
+        'geom': [
+        ''' CREATE UNIQUE INDEX ON observatory.obs_meta_next
+        (geom_id, numer_id, numer_timespan, geom_timespan, denom_id);
+        ''',
+        '''
+CREATE TABLE {obs_meta} AS
+SELECT geom_id::TEXT,
+         NULL::TEXT geom_name, --FIRST(geom_name)::TEXT geom_name,
+         NULL::TEXT geom_description, --FIRST(geom_description)::TEXT geom_description,
+         NULL::JSONB geom_tags, --FIRST(geom_tags)::JSONB geom_tags,
+         NULL::NUMERIC geom_weight, --FIRST(geom_weight)::NUMERIC geom_weight,
+         NULL::JSONB geom_extra, --FIRST(geom_extra)::JSONB geom_extra,
+         NULL::TEXT geom_type, --FIRST(geom_type)::TEXT geom_type,
+         NULL::TEXT geom_aggregate, --FIRST(geom_aggregate)::TEXT geom_aggregate
+         NULL::Geometry(Geometry, 4326) the_geom, --ST_SetSRID(FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
+         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+         ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
+  FROM observatory.obs_meta_next
+  GROUP BY geom_id;
+        ''',
+        ''' ALTER TABLE {obs_meta} ADD PRIMARY KEY (geom_id); ''',
+        '''
+UPDATE {obs_meta} SET
+geom_name = obs_meta.geom_name,
+geom_tags = obs_meta.geom_tags,
+geom_weight = obs_meta.geom_weight,
+geom_extra = obs_meta.geom_extra,
+geom_type = obs_meta.geom_type,
+geom_aggregate = obs_meta.geom_aggregate
+FROM observatory.obs_meta_next obs_meta
+WHERE obs_meta.geom_id = {obs_meta}.geom_id;
+        ''',
+        '''
+WITH geom_tids AS (
+  SELECT  ARRAY_AGG(geom_tid) geom_tids, geom_id
+  FROM observatory.obs_meta_next
+  GROUP BY geom_id
+) , unique_geom_ids AS (
+  SELECT ARRAY_AGG(geom_id) geom_ids, geom_tids
+  FROM geom_tids
+  GROUP BY geom_tids
+), union_geoms AS (
+  SELECT geom_ids, geom_tids, ST_Union(the_geom) the_geom
+  FROM unique_geom_ids, observatory.obs_table
+  WHERE id = ANY(geom_tids)
+  GROUP BY geom_ids, geom_tids
+) UPDATE {obs_meta}
+SET the_geom = union_geoms.the_geom
+FROM union_geoms
+WHERE {obs_meta}.geom_id = ANY(union_geoms.geom_ids);
+        '''
+        ],
+        'timespan': ['''
+CREATE TABLE {obs_meta} AS
+SELECT numer_timespan::TEXT timespan_id,
+       numer_timespan::TEXT timespan_name,
+       NULL::TEXT timespan_description,
+       NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
+       NULL::NUMERIC timespan_weight,
+       NULL::JSONB timespan_extra,
+       NULL::TEXT timespan_type,
+       NULL::TEXT timespan_aggregate,
+       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
+       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
+       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       NULL::Geometry(Geometry, 4326) the_geom --, ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+FROM observatory.obs_meta_next
+GROUP BY numer_timespan;
+        ''',
+        '''
+ALTER TABLE {obs_meta} ADD PRIMARY KEY (timespan_id);
+        ''',
+        '''
+UPDATE {obs_meta} SET
+timespan_tags = obs_meta.timespan_tags
+FROM observatory.obs_meta_next obs_meta
+WHERE obs_meta.numer_timespan = {obs_meta}.timespan_id;
+        ''',
+        '''
+WITH geom_tids AS (
+  SELECT  ARRAY_AGG(geom_tid) geom_tids, numer_timespan
+  FROM observatory.obs_meta_next
+  GROUP BY numer_timespan
+) , unique_geom_ids AS (
+  SELECT ARRAY_AGG(numer_timespan) numer_timespans, geom_tids
+  FROM geom_tids
+  GROUP BY geom_tids
+), union_geoms AS (
+  SELECT numer_timespans, geom_tids, ST_Union(the_geom) the_geom
+  FROM unique_geom_ids, observatory.obs_table
+  WHERE id = ANY(geom_tids)
+  GROUP BY numer_timespans, geom_tids
+) UPDATE {obs_meta}
+SET the_geom = union_geoms.the_geom
+FROM union_geoms
+WHERE {obs_meta}.timespan_id = ANY(union_geoms.numer_timespans);
+        ''']
+    }
+
+
+class DropRemoteOrphanTables(Task):
+    '''
+    Clean up & remove tables that are not linked to in the deployed obs_table.
+    '''
+
+    start = IntParameter(default=1)
+    end = IntParameter(default=10)
+
+    def run(self):
+
+        resp = query_cartodb('SELECT tablename FROM obs_table')
+        tablenames = set([r['tablename'] for r in resp.json()['rows']])
+        remote_tables = []
+        for page in xrange(self.start, self.end + 1):
+            remote_tables.extend(shell("curl -s '{cartodb_url}/datasets?page={page}' "
+                                       "| grep -Eo 'obs_[0-f]{{40}}' | uniq".format(
+                                           cartodb_url=os.environ['CARTODB_URL'],
+                                           page=page
+                                       )).strip().split('\n'))
+        for table in remote_tables:
+            LOGGER.info('keeping %s', table)
+            if table not in tablenames:
+                LOGGER.info('removing %s', table)
+                try:
+                    CartoDBTarget(table).remove()
+                except Exception as err:
+                    LOGGER.warn(err)
 
 
 class OBSMetaToLocal(OBSMeta):
 
     def run(self):
         session = current_session()
-        session.execute('DROP TABLE IF EXISTS {output}'.format(
-            output=self.output().table
-        ))
-        session.execute('CREATE TABLE {output} AS {select}'.format(
-            output=self.output().table,
-            select=self.QUERY.replace('the_geom_webmercator', 'the_geom')
-        ))
-        # confirm that there won't be ambiguity with selection of geom
-        session.execute('CREATE UNIQUE INDEX ON observatory.obs_meta '
-                        '(numer_id, denom_id, numer_timespan, geom_weight)')
-        session.commit()
-        self.force = False
+        try:
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
+            session.execute(self.FIRST_AGGREGATE)
+            for i, q in enumerate(self.QUERIES):
+                before = time.time()
+                query = q.format(obs_meta='observatory.obs_meta_next')
+                LOGGER.info(query)
+                session.execute(query)
+                after = time.time()
+                LOGGER.info('time taken: {}'.format(int(after - before)))
+                if i == 1:
+                    session.commit()
+            session.commit()
+        except:
+            session.rollback()
+            raise
+
+        shell("psql -c 'VACUUM ANALYZE observatory.obs_meta_next'")
+
+        try:
+            for dimension, queries in self.DIMENSIONS.iteritems():
+                before = time.time()
+                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next_{dimension}'.format(
+                    dimension=dimension))
+                for q in queries:
+                    before = time.time()
+                    query = q.format(obs_meta='observatory.obs_meta_next_{}'.format(dimension))
+                    LOGGER.info(query)
+                    session.execute(query)
+                    session.flush()
+                    after = time.time()
+                    LOGGER.info('time taken: {}'.format(int(after - before)))
+                #session.execute('CREATE TABLE observatory.obs_meta_next_{dimension} '
+                #                'AS {select}'.format(
+                #                    dimension=dimension,
+                #                    select=query
+                #                ))
+                session.execute('CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist '
+                                '(the_geom)'.format(dimension=dimension))
+                after = time.time()
+                LOGGER.info('time taken: {}'.format(int(after - before)))
+            session.commit()
+        except:
+            session.rollback()
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
+            session.commit()
+            raise
+
+        try:
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
+            session.execute('ALTER TABLE observatory.obs_meta_next RENAME TO obs_meta')
+            for dimension, query in self.DIMENSIONS.iteritems():
+                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
+                    dimension=dimension
+                ))
+                session.execute('''
+                    ALTER TABLE observatory.obs_meta_next_{dimension}
+                    RENAME TO obs_meta_{dimension}'''.format(
+                        dimension=dimension
+                    ))
+            session.commit()
+            self._complete = True
+        except:
+            session.rollback()
+            session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
+            session.commit()
+            raise
 
     def complete(self):
-        if self.force:
-            return False
-        else:
-            return super(OBSMetaToLocal, self).complete()
-
-    def output(self):
-        return PostgresTarget('observatory', 'obs_meta')
+        return getattr(self, '_complete', False)
 
 
-class SyncMetadata(OBSMeta):
+class SyncMetadata(WrapperTask):
 
-    force = BooleanParameter(default=True, significant=False)
+    no_force = BooleanParameter(default=False, significant=False)
 
     def requires(self):
-        for tablename in META_TABLES:
-            yield TableToCartoViaImportAPI(table=tablename, force=True)
-
-    def run(self):
-        import_api({
-            'table_name': 'obs_meta',
-            'sql': self.QUERY.replace('\n', ' '),
-            'privacy': 'public'
-        })
-
-    def output(self):
-        target = CartoDBTarget(tablename='obs_meta')
-        if self.force and target.exists():
-            target.remove()
-            self.force = False
-        return target
+        for table in ('obs_table', 'obs_column', 'obs_column_table',
+                      'obs_tag', 'obs_column_tag', 'obs_dump_version',
+                      'obs_column_to_column', 'obs_meta', 'obs_meta_numer',
+                      'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan',
+                      'obs_column_table_tile',
+                     ):
+            if table == 'obs_meta':
+                yield TableToCartoViaImportAPI(
+                    columns=[
+                        'numer_id', 'denom_id', 'geom_id', 'numer_name',
+                        'denom_name', 'geom_name', 'numer_description',
+                        'denom_description', 'geom_description',
+                        'numer_aggregate', 'denom_aggregate', 'geom_aggregate',
+                        'numer_type', 'denom_type', 'geom_type', 'numer_colname',
+                        'denom_colname', 'geom_colname', 'numer_geomref_colname',
+                        'denom_geomref_colname', 'geom_geomref_colname',
+                        'numer_tablename', 'denom_tablename', 'geom_tablename',
+                        'numer_timespan', 'denom_timespan', 'numer_weight',
+                        'denom_weight', 'geom_weight', 'geom_timespan',
+                        'numer_tags', 'denom_tags', 'geom_tags', 'timespan_tags',
+                        'section_tags', 'subsection_tags', 'unit_tags',
+                        'numer_extra', 'numer_ct_extra', 'denom_extra',
+                        'denom_ct_extra', 'geom_extra', 'geom_ct_extra'
+                    ],
+                    table=table,
+                    force=not self.no_force)
+            else:
+                yield TableToCartoViaImportAPI(table=table, force=not self.no_force)

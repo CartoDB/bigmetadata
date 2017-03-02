@@ -2,10 +2,10 @@
 
 from luigi import Task, Parameter, LocalTarget
 
-from tasks.util import (shell, classpath, TableTask, ColumnsTask,
+from tasks.util import (shell, classpath, TagsTask, TableTask, ColumnsTask,
                         DownloadUnzipTask)
 from tasks.es.cnig import GeomRefColumns
-from tasks.meta import OBSColumn, DENOMINATOR, current_session
+from tasks.meta import OBSColumn, OBSTag, DENOMINATOR, current_session
 from tasks.tags import UnitTags, SubsectionTags, SectionTags
 
 from xlrd import open_workbook
@@ -29,13 +29,15 @@ class DownloadAnuario(DownloadUnzipTask):
 class AnuarioColumns(ColumnsTask):
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def columns(self):
@@ -450,6 +452,7 @@ class AnuarioColumns(ColumnsTask):
             extra={'source': {
                 'name': u'Act. com. grandes almacenes'
             }},
+
             targets={mixed_integrated_trade_businesses: DENOMINATOR},
         )
         superstores = OBSColumn(
@@ -508,7 +511,7 @@ class AnuarioColumns(ColumnsTask):
             }},
         )
 
-        return OrderedDict([
+        columns =  OrderedDict([
             ('telephones', telephones),
             ('motor_vehicles', motor_vehicles),
             ('automobiles', automobiles),
@@ -547,6 +550,37 @@ class AnuarioColumns(ColumnsTask):
             ('street_vendors', street_vendors),
             ('malls', malls),
         ])
+
+        source = input_['source']['lacaixa-source']
+        license = input_['license']['lacaixa-license']
+        for _, col in columns.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+        return columns
+
+class SourceTags(TagsTask):
+    def version(self):
+        return 2
+
+    def tags(self):
+        return [
+            OBSTag(id='lacaixa-source',
+                   name='CaixaBank Spain Economic Yearbook',
+                   type='source',
+                   description='The CaixaBank publication of the `Spain Economic Yearbook <http://www.caixabankresearch.com/>`_')
+        ]
+
+
+class LicenseTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='lacaixa-license',
+                       name='CaixaBank legal disclaimer',
+                       type='source',
+                       description='More information `here <https://www.caixabank.com/general/avisolegal_en.html>`_.')
+               ]
 
 
 class Anuario(TableTask):

@@ -1,0 +1,342 @@
+BP010	Total
+BP020	Trade in goods
+BP030	Trade in services
+BP040	Income
+BP050	Current transfers
+BP060	Capital account - Millions of euro - Monthly data
+BP070	Current and capital account - Millions of euro - Monthly data
+BP080	Total
+BP090	Direct investment
+BP100	Portfolio investment
+BP110	Financial derivatives
+BP120	Other investment
+BP130	Reserves assets
+BP140	Net errors and omissions
+BP200	Total
+BP210	Trade in goods
+BP220	Trade in services
+BP230	Income
+BP240	Current transfers
+BP_CA	Current account
+BP_CKA	Current and capital account - Millions of euro - Monthly data
+BP_EO	Net errors and omissions
+BP_G	Goods
+BP_IN1	Primary income
+BP_IN2	Secondary income
+BP_S	Services
+BP_FA	Financial account
+BP_FA__D__F	Financial account; Direct Investment
+BP_FA__P__F	Financial account; Portfolio Investment
+BP_FA__F__F7	Financial account; Financial derivatives and employee stock options
+BP_FA__O__F	Financial account; Other Investment
+BP_FA__R__F	Financial account; Reserve assets
+BP-100	Trade in goods
+BP-200	Trade in services
+BP-300	Income
+BP-379	Current transfers
+BP-993	Current account
+BP-994	Capital account
+BP-010	Current and capital account
+BP-995	Financial account
+BP-500	Direct investment
+BP-600	Portfolio investment
+BP-910	Financial derivatives
+BP-700	Other investment
+BP-802	Reserves assets
+BP-998	Net errors and omissions
+BS-IPT	Production development observed over the past 3 months
+BS-IEME	Employment expectations over the next 3 months
+BS-IOB	Assessment of order-book levels
+BS-IEOB	Assessment of export order-book levels
+BS-ISFP	Assessment of the current level of stocks of finished products
+BS-IPE	Production expectations over the next 3 months
+BS-ISPE	Selling price expectations over the next 3 months
+BS-ICI	Industrial confidence indicator
+BS-ICPC-BAL	Assessment of current production capacity
+BS-IPCO-BAL	Duration of production assured by current order-books
+BS-INO-BAL	New orders in recent months
+BS-IEE-BAL	Export expectations for the months ahead
+BS-ICU-PC	Current level of capacity utilization (%)
+BS-CP3M-DM-BAL	Competitive position over the past 3 months: on the domestic market
+BS-CP3M-FMIEU-BAL	Competitive position on foreign markets inside the EU over the past three months
+BS-CP3M-EXEU-BAL	Competitive position on foreign markets outside the EU over the past three months
+BS-FLP1-PC	Factors limiting the production - None
+BS-FLP2-PC	Factors limiting the production - Insufficient demand
+BS-FLP3-PC	Factors limiting the production - Labour
+BS-FLP4-PC	Factors limiting the production - Equipment
+BS-FLP5-PC	Factors limiting the production - Other
+BS-FLP6-PC	Factors limiting the production - Financial constraints
+BS-CTA-BAL	Building activity development over the past 3 months
+BS-COB-BAL	Evolution of the current overall order books
+BS-CEME-BAL	Employment expectations over the next 3 months
+BS-CPE-BAL	Price expectations over the next 3 months
+BS-CCI-BAL	Construction confidence indicator
+BS-FLBA1-PC	Factors limiting building activity - None
+BS-FLBA2-PC	Factors limiting building activity - Insufficient demand
+BS-FLBA3-PC	Factors limiting building activity - Weather conditions
+BS-FLBA4-PC	Factors limiting building activity - Shortage of labour
+BS-FLBA5-PC	Factors limiting building activity - Shortage of material and/or equipment
+BS-FLBA6-PC	Factors limiting building activity - Other
+BS-FLBA7-PC	Factors limiting building activity - Financial constraints
+BS-OTEB	Operating time ensured by current backlog
+BS-RPBS	Business activity (sales) development over the past 3 months
+BS-RAS	Volume of stocks currently hold
+BS-ROP	Expectations of the number of orders placed with suppliers over the next 3 months
+BS-REBS	Business activity expectations over the next 3 months
+BS-REM	Employment expectations over the next 3 months
+BS-RPE	Price expectations over the next 3 months
+BS-RCI	Retail confidence indicator
+BS-FS-LY	Financial situation over the last 12 months
+BS-FS-NY	Financial situation over the next 12 months
+BS-GES-LY	General economic situation over the last 12 months
+BS-GES-NY	General economic situation over the next 12 months
+BS-PT-LY	Price trends over the last 12 months
+BS-PT-NY	Price trends over the next 12 months
+BS-UE-NY	Unemployment expectations over the next 12 months
+BS-MP-PR	The current economic situation is adequate to make major  purchases
+BS-MP-NY	Major purchases over the next 12 months
+BS-SV-PR	The current economic situation is adequate for savings
+BS-SV-NY	Savings over the next 12 months
+BS-SFSH	Statement on financial situation of household
+BS-CSMCI	Consumer confidence indicator
+BS-IBC-NTY	Intention to buy a car within the next 12 months
+BS-PBH-NTY	Purchase or build a home within the next 12 months
+BS-HI-NY	Home improvements over the next 12 months
+BS-ESI-I	Economic sentiment indicator
+BS-ICI-BAL	Industrial confidence indicator
+BS-RCI-BAL	Retail confidence indicator
+BS-CSMCI-BAL	Consumer confidence indicator
+BS-SCI-BAL	Services Confidence Indicator
+BS-SABC	Business situation development over the past 3 months
+BS-SARM	Evolution of demand over the past 3 months
+BS-SAEM	Expectation of the demand over the next 3 months
+BS-SERM	Evolution of employment over the past 3 months
+BS-SEEM	Expectation of the employment over the next 3 months
+BS-SCI	Services Confidence Indicator
+BS-PE3M	Expectations of the prices over the next 3 months
+BS-BCI	Business Climate Indicator
+CP-HI00	HICP - All items (HICP=Harmonized Index of Consumer Prices)
+CP-HI01	HICP - Food and non alcoholic beverages
+CP-HI02	HICP - Alcoholic beverages and tobacco
+CP-HI03	HICP - Clothing and footwear
+CP-HI04	HICP - Housing, water, electricity,gas and other fuels
+CP-HI05	HICP - Furnishings, household equipment and maintenance
+CP-HI06	HICP - Health
+CP-HI07	HICP - Transport
+CP-HI08	HICP - Communication
+CP-HI09	HICP - Recreation and culture
+CP-HI10	HICP - Education
+CP-HI11	HICP - Hotels, cafes and restaurants
+CP-HI12	HICP - Miscellaneous goods and services
+CP-HI00XEF	HICP - All items excluding energy, food, alcohol and tobacco
+CP-HI00XTB	HICP - All items excluding tobacco
+CP-HIE	HICP - Energy
+CP-HIF	HICP - Food
+CP-HIFU	HICP - Unprocessed food
+CP-HIG	HICP - Total goods
+CP-HIIG	HICP - Industrial goods
+CP-HIS	HICP - Total services
+CP-HIIGXE	HICP - Non-energy industrial goods
+CP-HI00XE	HICP - All items excluding energy
+CP-HI00XEFU	HICP - All items excluding energy and unprocessed food
+CP-HI00XES	HICP - All items excluding energy and seasonal food
+ET-T	Total
+ET-CAP	Capital goods
+ET-CONS	Consumer goods
+ET-CONXT	Consumer goods (excluding transport equipment)
+ET-INTER	Intermediate goods
+IS-PPI	Output prices of the domestic market index (Producer price index) (NSA)
+IS-IO	New orders received index
+IS-IP	Production index
+IS-IP-CA	Production index - Calendar adjusted data, not seasonally adjusted data (CA)
+IS-IP-SA	Production index - Seasonally and calendar adjusted data (SCA)
+IS-IP-SCA	Production index - Seasonally and working days adjusted data (SCA)
+IS-EPI	Number of persons employed index
+IS-HWI	Hours worked index
+IS-WSI	Gross wages and salaries index
+IS-IPI	Cost index (input price index) - New residential buildings
+IS-PEI	Building permits index - New residential buildings
+IS-IT	Turnover index - Calendar adjusted data, not seasonally adjusted data (CA)
+IS-ITT	Turnover index - total
+IS-ITD	Turnover index - domestic market
+IS-ITND	Turnover index - non-domestic market
+IS-DIT	Deflated turnover index
+IS-IMPR	Import price index (NSA)
+IS-IMPX	Import price index - non euro area (NSA)
+IS-IMPZ	Import price index - euro area (NSA)
+IS-PNG-TJ	Production of natural gas, TJ (GCV)
+IS-CNG-TJ	Total consumption of natural gas, TJ (GCV)
+IS-ING-TJ	Imports of natural gas, TJ (GCV)
+IS-PEL-GWH	Production of electricity - GWh
+IS-CEL-GWH	Consumption of electricity - GWh
+IS-IEL-GWH	Imports of electricity - GWh
+IS-ROMS-T	Refinery output of motor spirit - 1000t
+IS-IDMS-T	Inland deliveries of motor spirit - 1000t
+IS-ROGD-T	Refinery output of gas/diesel oil - 1000t
+IS-IDGD-T	Inland deliveries of gas/diesel oil - 1000t
+LM-UN-T-TOT	Unemployment according to ILO definition - Total
+LM-UN-M-TOT	Unemployment according to ILO definition - Males
+LM-UN-F-TOT	Unemployment according to ILO definition - Females
+LM-UN-T-LE25	Unemployment according to ILO definition - Under 25 years - Total
+LM-UN-M-LE25	Unemployment according to ILO definition - Under 25 years - Males
+LM-UN-F-LE25	Unemployment according to ILO definition - Under 25 years - Females
+LM-UN-T-GT25	Unemployment according to ILO definition - Over 25 years - Total
+LM-UN-M-GT25	Unemployment according to ILO definition - Over 25 years - Males
+LM-UN-F-GT25	Unemployment according to ILO definition - Over 25 years - Females
+LM-LCI-TOT	Labour cost index - Total labour cost
+LM-LCI-SAL	Labour cost index - Wages and salaries
+LM-LCI-OTH	Labour cost index - Labour costs other than wages and salaries
+MF-CBDF-RT	Central bank interest rates: Deposit facility (end of period)
+MF-CBRO-RT	Central bank interest rates: Main refinancing operations (end of period)
+MF-CBLF-RT	Central bank interest rates: Marginal lending facility (end of period)
+MF-DDI-RT	Day-to-day money market interest rates (average)
+MF-3MI-RT	3-month interest rates (average)
+MF-EY1YM-RT	Euro yields - 1 year (average)
+MF-EY5YM-RT	Euro yields - 5 years (average)
+MF-EY10YM-RT	Euro yields - 10 years (average)
+MF-LTGBY-RT	Long term government bond yields - Maastricht definition (average)
+MF-EXA-RT	Exchange rates against the ECU/euro (average)
+MF-M1-NSA	Money supply M1 - NSA
+MF-M1-SA	Money supply M1 - SA
+MF-M2-NSA	Money supply M2 - NSA
+MF-M2-SA	Money supply M2 - SA
+MF-M3-NSA	Money supply M3 - NSA
+MF-M3-SA	Money supply M3 - SA
+MF-LER-NSA	Total loans to residents by MFIs - NSA
+MF-LGG-NSA	Loans to general government by MFIs - NSA
+MF-LOR-NSA	Loans to other residents by MFIs - NSA
+F4	Loans
+MF-SMC-MRD-EUR	Stock market capitalisation in milliard euro (end of period)
+MF-SP-I	Share price indices (average)
+MF-FOR-MIO-EUR	Foreign official reserves, including gold in million euro (end of period)
+NA-B1G-CP-MIO-EUR	Gross value added at current prices (mio euro)
+NA-B1G-CP	Gross value added at current prices
+NA-D1-CP-MIO-EUR	Compensation of employees at current prices (mio euro)
+NA-D11-CP-MIO-EUR	Gross wages and salaries at current prices (mio euro)
+NA-D11	Gross wages and salaries
+NA-B2G_B3G-CP-MIO-EUR	Gross operating surplus and mixed income (mio euro)
+NA-EMP-1000	Total employment (1000)
+NA-EMP	Total employment
+NA-SAL-1000	Employees (1000)
+NA-SAL	Employees
+NA-SELF-1000	Self-employed (1000)
+NA-SELF	Self-employed
+NA-B1GM-CP-MIO-EUR	Gross domestic product at market current prices (mio euro)
+NA-B1GM-KP-RT1	Gross domestic product at constant prices (% change t/t-1)
+NA-B1GM-CLV-I2000	Gross domestic product at constant prices (index 2000=100)
+NA-D21_M_D31	Taxes less subsidies on production and imports
+NA-B2G_B3G	Gross operating surplus and gross mixed income
+NA-D1	Compensation of employees
+NA-B5N	Net national income
+NA-B5G	Gross national income
+NA-B6N	Net disposable income
+NA-B6G	Gross disposable income
+NA-B8G	Gross saving
+NA-B8N	Net saving
+NA-B9	Net lending (+) /net borrowing (-)
+NA-D1_D4PAY	Primary incomes, payable
+NA-D1_D4REC	Primary incomes, receivable
+NA-D1_D4	Net primary income transfers
+NA-D5_TO_D7PAY	Current transfers, payable
+NA-D5_TO_D7REC	Current transfers, receivable
+NA-D5_TO_D7	Net current transfers
+NA-D9	Capital transfers, net
+NA-D9PAY	Capital transfers, payable
+NA-D9REC	Capital transfers, receivable
+NA-D8	Adjustment for the change in net equity of households in pension funds reserves
+NA-K2	Acquisitions less disposals of non-financial non-produced assets
+NA-K1	Consumption of fixed capital
+NA-D2_M_D3	Taxes on production and imports less subsidies
+NA-P119	Financial intermediation services indirectly measured (FISIM)
+NA-B1G	Gross value added
+NA-B1G-CLV2000	Gross value added in volumes
+NA-B1G-MIO-EUR-CLV2000	Gross value added - chain-linked volumes, reference year 2000 (at 2000 exchange rates) (mio euro)
+NA-B1G-MIO-EUR-CLV2005	Gross value added - chain-linked volumes, reference year 2005 (at 2005 exchange rates) (mio euro)
+NA-B1GM	Gross domestic product at market prices
+NA-P3	Final consumption expenditure
+NA-P3_S13	Final consumption expenditure: general government
+NA-P31_S14	Final consumption expenditure: households
+NA-P31_S15	Final consumption expenditure: NPISH
+NA-P31_S14_S15	Final consumption expenditure: household and NPISH
+NA-P5	Gross capital formation
+NA-P51	Gross fixed capital formation - total
+NA-P51-AB	Gross fixed capital formation: products of agriculture
+NA-P51-MET	Gross fixed capital formation: metal products and machinery
+NA-P51-DM	Gross fixed capital formation: transport equipment
+NA-P51-FA	Gross fixed capital formation: construction work - housing
+NA-P51-FB	Gross fixed capital formation: construction work - other constructions
+NA-P51-OTH	Gross fixed capital formation: other products
+NA-P52	Changes in inventories
+NA-P53	Acquisition less disposals of valuables
+NA-P3_P5	Domestic demand
+NA-P61	Exports of goods
+NA-P62	Exports of services
+NA-P6	Exports of goods and services
+NA-P71	Imports of goods
+NA-P72	Imports of services
+NA-P7	Imports of goods and services
+NA-B111	External balance: goods
+NA-B112	External balance: services
+NA-B11	External balance: total
+NA-GDEF	General government deficit (-) / surplus (+)
+NA-GDEBT	General government gross debt
+NA-GEXP	General government expenditure
+NA-GREV	General government revenue
+NA-GFINV	General government fixed investment
+NA-GPBAL	General government primary balance
+GD	Government consolidated gross debt
+NA-IGL-EU27	Intergovernmental lending within EU27 in the context of the financial crisis
+NA-IGL-EU25	Intergovernmental lending within EU25 in the context of the financial crisis
+NA-IGL-EA17	Intergovernmental lending within EA17 in the context of the financial crisis
+NA-IGL-EA16	Intergovernmental lending within EA16 in the context of the financial crisis
+INV_TOT	Total investment
+INV_BUS	Business investment
+INV_GOV	Government investment
+INV_HH	Households investment
+BS-FCI	Financial services Confidence Indicator
+BS-BSDP3	Assessment of business situation over the past 3 months
+BS-DEVP3	Evolution of demand over the past 3 months
+BS-DEXN3	Evolution of demand expected over the next 3 months
+BS-EEVP3	Evolution of employment over the past 3 months
+BS-EEXN3	Evolution of employment expected over the next 3 months
+BS-OIDP3	Operating income development over the last three months
+BS-OIEN3	Operating income expectations over the next three months
+BS-OEDP3	Operating expenses development over the last three months
+BS-OEEN3	Operating expenses expectations over the next three months
+BS-PDP3	Profitability development over the last three months
+BS-PEN3	Profitability expectations over the next three months
+BS-CEDP3	Capital expenditure development over the last 3 months
+BS-CEEN3	Capital expenditure expectations over the next 3 months
+BS-CPDTP3	Competitive position development over the past 3 months (total)
+BS-CPD1P3	Competitive position development over the past 3 months (in your country)
+BS-CPD2P3	Competitive position development over the past 3 months (within the euro area)
+BS-CPD3P3	Competitive position development over the past 3 months (within the EU)
+BS-CPD4P3	Competitive position development over the past 3 months (outside the EU)
+BS-CPETN3	Competitive position expectations over the next 3 months (total)
+BS-CPE1N3	Competitive position expectations over the next 3 months (in your country)
+BS-CPE2N3	Competitive position expectations over the next 3 months (within the euro area)
+BS-CPE3N3	Competitive position expectations over the next 3 months (within the EU)
+BS-CPE4N3	Competitive position expectations over the next 3 months (outside the EU)
+TOTAL	Total
+NEW_DW	New dwellings
+EXST_DW	Existing dwellings
+JOBRATE	Job vacancy rate
+INTINVT	International investment position: Total
+DIRINVT	Direct investment: Total
+PORINVT	Portfolio investment: Total
+FINDERT	Financial derivatives: Total
+OTHINVT	Other investment: Total
+RESASSETST	Reserves assets: total
+GROSFORDEBT	Gross foreign debt
+NETFORDEBT	Net external debt
+NEEREA17	Nominal Effective Exchange Rate - 17 trading partners (Euro Area)
+NEER27	Nominal Effective Exchange Rate - 27 trading partners
+NEER37	Nominal Effective Exchange Rate - 37 trading partners
+NEER42	Nominal Effective Exchange Rate - 42 trading partners
+REEREA17CPI	Real Effective Exchange Rate (deflator: consumer price indices - 17 trading partners - Euro Area)
+REER27CPI	Real Effective Exchange Rate (deflator: consumer price indices - 27 trading partners)
+REER37CPI	Real Effective Exchange Rate (deflator: consumer price indices - 37 trading partners)
+REER42CPI	Real Effective Exchange Rate (deflator: consumer price indices - 42 trading partners)
+IND_H	Headline indicators
+IND_A	Auxiliary indicators
+IND_T	All indicators

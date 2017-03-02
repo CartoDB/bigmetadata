@@ -9,14 +9,18 @@ The Data Observatory Catalog
 The Data Observatory is a pioneering data service that provides measurements of
 populations, jobs, commerce, and many other interesting location dimensions.
 Gain better understanding of the patterns and trends in your world's data with
-the Data Observatory and CartoDB.
+the Data Observatory and CARTO.
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
+   :maxdepth: 1
    :glob:
 
+   sources
+   licenses
+
    *
+
 
 Search
 ==================
@@ -41,10 +45,8 @@ will require that you provide attribution to the data source. Other Data may be
 protected by US or international copyright laws, treaties, or conventions. The
 Data and associated metadata are provided 'as-is,' without express or implied
 warranty of any kind, including, but not limited to, infringement,
-merchantability and fitness for a particular purpose. CartoDB is not
+merchantability and fitness for a particular purpose. CARTO is not
 responsible for the accuracy, completeness, timeliness or quality of the Data.*
 
-`Data Terms and Licenses 
+`Data Terms and Licenses
 <https://carto.com/docs/carto-engine/data/license/>`_.
-
-

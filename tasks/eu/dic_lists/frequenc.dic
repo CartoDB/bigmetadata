@@ -1,0 +1,41 @@
+TOTAL	Total
+DAY	Every day
+1D	Once a day
+GE1D	At least once a day
+GE2D	At least twice a day
+WEEK	Every week
+LT1W	Less than once a week
+GE1W	At least once a week
+1-3W	From 1 to 3 times a week
+4-6W	From 4 to 6 times a week
+MTH	Every month
+LT1M	Less than once a month
+1M	Once a month
+GE1M	At least once a month
+SEV_M	Several times a month
+NM12	Not in the last 12 months
+GE1Y	At least once a year
+ALW_NREG	Always or not regularly
+ALW	Always
+MOST	Most of the time
+REG	Regularly
+NREG	Not regularly
+SMT	Sometimes
+USU	Usually
+RAR	Rarely
+NVR_OCC	Never or occasionally
+NVR	Never
+NVR_NM12	Never or not in the last 12 months
+1-3	From 1 to 3 times
+1-6	From 1 to 6 times
+GE1	At least once
+4-6	From 4 to 6 times
+GE4	At least 4 times
+GT6	More than 6 times
+7-12	From 7 to 12 times
+GT12	More than 12 times
+ALPS	All positives
+NBINGE	No binge drinking
+NAP	Not applicable
+NRP	No response
+UNK	Unknown

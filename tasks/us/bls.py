@@ -1,11 +1,11 @@
 from tasks.util import (TempTableTask, TableTask, ColumnsTask,
-                        DownloadUnzipTask, CSV2TempTableTask,
+                        DownloadUnzipTask, TagsTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath)
 from tasks.meta import current_session, DENOMINATOR
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector,
                             get_parent_code)
 from tasks.meta import OBSTable, OBSColumn, OBSTag
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns
 
 from collections import OrderedDict
@@ -59,19 +59,32 @@ class SimpleQCEW(TempTableTask):
                             qtr=self.qtr,
                         ))
 
+class SourceTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='qcew',
+                       name='Quartery Census of Employment and Wages (QCEW)',
+                       type='source',
+                       description='`Bureau of Labor Statistics QCEW <http://www.bls.gov/cew/home.htm>`_')]
+
+
 
 class QCEWColumns(ColumnsTask):
 
     naics_code = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         requirements = {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
         parent_code = get_parent_code(self.naics_code)
         if parent_code:
@@ -169,10 +182,13 @@ class QCEWColumns(ColumnsTask):
             aggregate=None,
             tags=[units['ratio'], sections['united_states'], subsections['employment']],
         )
+
+        source = input_['source']['qcew']
+        license = input_['license']['no-restrictions']
+        for colname, col in cols.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
         return cols
-
-
-
 
 class QCEW(TableTask):
 
