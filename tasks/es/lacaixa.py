@@ -3,8 +3,8 @@
 from luigi import Task, Parameter, LocalTarget
 
 from tasks.util import (shell, classpath, TagsTask, TableTask, ColumnsTask,
-                        DownloadUnzipTask)
-from tasks.es.cnig import GeomRefColumns
+                        DownloadUnzipTask, MetaWrapper)
+from tasks.es.cnig import GeomRefColumns, Geometry
 from tasks.meta import OBSColumn, OBSTag, DENOMINATOR, current_session
 from tasks.tags import UnitTags, SubsectionTags, SectionTags
 
@@ -682,3 +682,17 @@ class Anuario(TableTask):
                         values=', '.join(values),
                     )
             session.execute(stmt)
+
+class AnuarioWrapper(MetaWrapper):
+
+    resolution = Parameter()
+    year = Parameter()
+
+    params = {
+        'resolution': ['ccaa', 'muni', 'prov'],
+        'year': ['2013']
+    }
+
+    def tables(self):
+        yield Anuario(resolution=self.resolution, year=self.year)
+        yield Geometry(resolution=self.resolution)

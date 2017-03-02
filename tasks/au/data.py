@@ -6,7 +6,8 @@ import re
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
 from tasks.util import (DownloadUnzipTask, shell, TableTask, TempTableTask,
-                        classpath, CSV2TempTableTask, ColumnsTask, TagsTask)
+                        classpath, CSV2TempTableTask, ColumnsTask, TagsTask,
+                        MetaWrapper)
 from tasks.meta import current_session, OBSColumn, OBSTag
 from tasks.au.geo import (
     GEO_STE,
@@ -458,3 +459,19 @@ class BCPAllColumns(WrapperTask):
     def requires(self):
         for table in TABLES:
             yield Columns(profile='BCP', tablename=table, year=self.year)
+
+class BCPMetaWrapper(MetaWrapper):
+
+    resolution = Parameter()
+    table = Parameter()
+    year = Parameter()
+
+    params = {
+        'resolution': GEOGRAPHIES,
+        'table': TABLES,
+        'year':['2011']
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution, year=self.year)
+        yield BCP(resolution=self.resolution, tablename=self.table, year=self.year)
