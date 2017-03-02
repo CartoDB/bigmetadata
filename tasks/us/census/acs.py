@@ -62,7 +62,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 17
+        return 18
 
     def columns(self):
         input_ = self.input()
@@ -76,17 +76,41 @@ class Columns(ColumnsTask):
         #segmenttags = input_['segmenttags']
         #tag_middle_aged_men = segmenttags['middle_aged_men']
         #tag_families_with_young_children = segmenttags['families_with_young_children']
+        housing_units = OBSColumn(
+            id='B25001001',
+            type='Numeric',
+            name='Housing Units',
+            description='A count of housing units in each geography.  A housing '
+            'unit is a house, an apartment, a mobile home or trailer, a group of '
+            'rooms, or a single room occupied as separate living quarters, or if '
+            'vacant, intended for occupancy as separate living quarters.',
+            weight=8,
+            aggregate='sum',
+            tags=[subsections['housing'], unit_housing])
+        occupied_housing_units = OBSColumn(
+            id='B25003001',
+            type='Numeric',
+            name='Occupied housing units',
+            description='A housing unit is classified as occupied if it is the usual place of residence of the person or group of people living in it at the time of enumeration.',
+            weight=5,
+            aggregate='sum',
+            targets={housing_units: 'denominator'},
+            tags=[subsections['housing'], unit_housing])
+        housing_units_renter_occupied = OBSColumn(
+            id='B25003003',
+            type='Numeric',
+            name='Renter occupied housing units',
+            description='All occupied units which are not owner occupied, whether they are rented for cash rent or occupied without payment of cash rent, are classified as renter-occupied.',
+            weight=5,
+            aggregate='sum',
+            targets={occupied_housing_units: 'denominator'},
+            tags=[subsections['housing'], unit_housing])
         rent_burden_not_computed = OBSColumn(
             id='B25070011',
             type='Numeric',
-            name='Housing units without rent as percentage of income computed',
-            description='Gross rent from over 50 percent of household income. '
-            'Computed ratio of monthly gross rent to monthly household income '
-            '(total household income divided by 12). '
-            'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
-            'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            name='Housing units without rent burden computed',
+            description= 'Units for which no rent is paid and units occupied by '
+            'households that reported no income or a net loss comprise this category',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
@@ -94,14 +118,14 @@ class Columns(ColumnsTask):
         rent_over_50_percent = OBSColumn(
             id='B25070010',
             type='Numeric',
-            name='Housing units spending over 50 percent income on rent',
+            name='Housing units spending over 50% income on rent',
             description='Gross rent over 50 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
@@ -109,14 +133,14 @@ class Columns(ColumnsTask):
         rent_40_to_50_percent = OBSColumn(
             id='B25070009',
             type='Numeric',
-            name='40.0 To 49.9 Percent',
+            name='Housing units spending 40 to 49.9% income on rent',
             description='Gross rent from 40.0 to 49.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
@@ -124,14 +148,14 @@ class Columns(ColumnsTask):
         rent_35_to_40_percent = OBSColumn(
             id='B25070008',
             type='Numeric',
-            name='35.0 To 39.9 Percent',
+            name='Housing units spending 35 to 39.9% income on rent',
             description='Gross rent from 35.0 to 39.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
@@ -139,94 +163,94 @@ class Columns(ColumnsTask):
         rent_30_to_35_percent = OBSColumn(
             id='B25070007',
             type='Numeric',
-            name='30.0 To 34.9 Percent',
+            name='Housing units spending 30 to 34.9% income on rent',
             description='Gross rent from 30.0 to 34.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],unit_housing])
+            tags=[subsections['housing'],subsections['income'],unit_housing])
         rent_25_to_30_percent = OBSColumn(
             id='B25070006',
             type='Numeric',
-            name='25.0 To 29.9 Percent',
+            name='Housing units spending 25 to 29.9% income on rent',
             description='Gross rent from 25.0 to 29.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],unit_housing])
+            tags=[subsections['housing'],subsections['income'],unit_housing])
         rent_20_to_25_percent = OBSColumn(
             id='B25070005',
             type='Numeric',
-            name='20.0 To 24.9 Percent',
+            name='Housing units spending 20 to 24.9% income on rent',
             description='Gross rent from 20.0 to 24.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],unit_housing])
+            tags=[subsections['housing'],subsections['income'],unit_housing])
         rent_15_to_20_percent = OBSColumn(
             id='B25070004',
             type='Numeric',
-            name='15.0 To 19.9 Percent',
+            name='Housing units spending 15 to 19.9% income on rent',
             description='Gross rent from 15.0 to 19.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],unit_housing])
+            tags=[subsections['housing'],subsections['income'],unit_housing])
     	rent_10_to_15_percent = OBSColumn(
     		id='B25070003',
     		type='Numeric',
-    		name='10.0 To 14.9 Percent',
+    		name='Housing units spending 10 to 14.9% income on rent',
     		description='Gross rent from 10.0 to 14.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
     		weight=5,
     		aggregate='sum',
     		targets={housing_units_renter_occupied:'denominator'},
-    		tags=[subsections['housing'],unit_housing])
+    		tags=[subsections['housing'],subsections['income'],unit_housing])
     	rent_under_10_percent = OBSColumn(
             id='B25070002',
             type='Numeric',
-            name='Less Than 10.0 Percent',
+            name='Housing units spending less than 10% on rent',
             description='Gross rent less than 10 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
-            'loss comprise the category, "Not computed". /n/n'
-            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. The information offers an excellent measure of housing affordability and excessive shelter costs. The data also serve to aid in the development of housing programs to meet the needs of people at different economic levels, and to provide assistance to agencies in determining policies on fair rent.',
+            'loss comprise the category, "Not computed". '
+            'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
             weight=5,
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
-            tags=[subsections['housing'],unit_housing])
-    	households = OBSColumn(
+            tags=[subsections['housing'],subsections['income'],unit_housing])
+        households = OBSColumn(
             id='B11001001',
             type='Numeric',
             name='Households',
@@ -917,17 +941,6 @@ class Columns(ColumnsTask):
             aggregate='average',
             targets={total_pop: 'universe'},
             tags=[subsections['income'], unit_money])
-        housing_units = OBSColumn(
-            id='B25001001',
-            type='Numeric',
-            name='Housing Units',
-            description='A count of housing units in each geography.  A housing '
-            'unit is a house, an apartment, a mobile home or trailer, a group of '
-            'rooms, or a single room occupied as separate living quarters, or if '
-            'vacant, intended for occupancy as separate living quarters.',
-            weight=8,
-            aggregate='sum',
-            tags=[subsections['housing'], unit_housing])
         vacant_housing_units = OBSColumn(
             id='B25002003',
             type='Numeric',
@@ -941,24 +954,6 @@ class Columns(ColumnsTask):
             weight=8,
             aggregate='sum',
             targets={housing_units: 'denominator'},
-            tags=[subsections['housing'], unit_housing])
-        occupied_housing_units = OBSColumn(
-            id='B25003001',
-            type='Numeric',
-            name='Renter occupied housing units',
-            description='A housing unit is classified as occupied if it is the usual place of residence of the person or group of people living in it at the time of enumeration.',
-            weight=1,
-            aggregate='sum',
-            targets={housing_units: 'denominator'},
-            tags=[subsections['housing'], unit_housing])
-        housing_units_renter_occupied = OBSColumn(
-            id='B25003003',
-            type='Numeric',
-            name='Renter occupied housing units',
-            description='All occupied units which are not owner occupied, whether they are rented for cash rent or occupied without payment of cash rent, are classified as renter-occupied.',
-            weight=1,
-            aggregate='sum',
-            targets={occupied_housing_units: 'denominator'},
             tags=[subsections['housing'], unit_housing])
         vacant_housing_units_for_rent = OBSColumn(
             id='B25004002',
@@ -2617,7 +2612,7 @@ class Columns(ColumnsTask):
             id='B19001005',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $20,000 To $24,999',
+            name='Households with income of $20,000 to $24,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $20,000 and $24,999.',
             weight=2,
@@ -2628,7 +2623,7 @@ class Columns(ColumnsTask):
             id='B19001006',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $25,000 To $29,999',
+            name='Households with income of $25,000 to $29,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $20,000 and $24,999.',
             weight=2,
@@ -2639,7 +2634,7 @@ class Columns(ColumnsTask):
             id='B19001007',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $30,000 To $34,999',
+            name='Households with income of $30,000 to $34,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $30,000 and $34,999.',
             weight=2,
@@ -2650,7 +2645,7 @@ class Columns(ColumnsTask):
             id='B19001008',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $35,000 To $39,999',
+            name='Households with income of $35,000 to $39,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $35,000 and $39,999.',
             weight=2,
@@ -2661,7 +2656,7 @@ class Columns(ColumnsTask):
             id='B19001009',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $40,000 To $44,999',
+            name='Households with income of $40,000 to $44,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $40,000 and $44,999.',
             weight=2,
@@ -2672,7 +2667,7 @@ class Columns(ColumnsTask):
             id='B19001010',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $45,000 To $49,999',
+            name='Households with income of $45,000 to $49,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $45,000 and $49,999.',
             weight=2,
@@ -2683,7 +2678,7 @@ class Columns(ColumnsTask):
             id='B19001011',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $50,000 To $59,999',
+            name='Households with income of $50,000 to $59,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $50,000 and $59,999.',
             weight=2,
@@ -2694,7 +2689,7 @@ class Columns(ColumnsTask):
             id='B19001012',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $60,000 To $74,999',
+            name='Households with income of $60,000 to $74,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $60,000 and $74,999.',
             weight=2,
@@ -2705,7 +2700,7 @@ class Columns(ColumnsTask):
             id='B19001013',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $75,000 To $99,999',
+            name='Households with income of $75,000 to $99,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $75,000 and $99,999.',
             weight=2,
@@ -2716,7 +2711,7 @@ class Columns(ColumnsTask):
             id='B19001014',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $100,000 To $124,999',
+            name='Households with income of $100,000 to $124,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $100,000 and $124,999.',
             weight=2,
@@ -2727,7 +2722,7 @@ class Columns(ColumnsTask):
             id='B19001015',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $125,000 To $149,999',
+            name='Households with income of $125,000 to $149,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $125,000 and $149,999.',
             weight=2,
@@ -2738,7 +2733,7 @@ class Columns(ColumnsTask):
             id='B19001016',
             type='Numeric',
             aggregate='sum',
-            name='Households with income of $150,000 To $199,999',
+            name='Households with income of $150,000 to $199,999',
             description='The number of households in a geographic area whose '
                         'annual income was between $150,000 and $1999,999.',
             weight=2,
@@ -3394,13 +3389,16 @@ class ACSMetaWrapper(MetaWrapper):
     sample = Parameter()
 
     params = {
-        'geography':['state', 'county', 'census_tract', 'block_group',
-                           'puma', 'zcta5', 'school_district_elementary',
-                           'congressional_district',
-                           'school_district_secondary',
-                           'school_district_unified', 'cbsa', 'place'],
-        'year': ['2015','2014','2010'],
-        'sample': ['5','1']
+        'geography':['state'],
+        'year': ['2015'],
+        'sample': ['5']
+        # 'geography':['state', 'county', 'census_tract', 'block_group',
+        #                    'puma', 'zcta5', 'school_district_elementary',
+        #                    'congressional_district',
+        #                    'school_district_secondary',
+        #                    'school_district_unified', 'cbsa', 'place'],
+        # 'year': ['2015','2014','2010'],
+        # 'sample': ['5','1']
     }
 
     def tables(self):
