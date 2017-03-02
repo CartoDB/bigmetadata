@@ -1,6 +1,6 @@
 from tasks.meta import OBSColumn, GEOM_REF, current_session
 from tasks.util import (Shp2TempTableTask, DownloadUnzipTask, shell, TableTask,
-                        ColumnsTask,)
+                        ColumnsTask,MetaWrapper)
 from tasks.poi import POIColumns
 from tasks.us.ny.nyc.columns import NYCColumns
 
@@ -819,3 +819,13 @@ class MapPLUTO(TableTask):
         session.execute('''create unique index on {output} (bbl)'''.format(
             output=self.output().table
         ))
+
+# class MapPLUTOMetaWrapper(MetaWrapper):
+#     release = Parameter()
+#
+#     params = {
+#         'release':['17','16','15']
+#     }
+#
+#     def tables(self):
+#         yield MapPLUTO(release=self.release)

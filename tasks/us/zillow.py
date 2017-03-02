@@ -13,10 +13,10 @@ from luigi import (Task, IntParameter, LocalTarget, BooleanParameter, Parameter,
                    WrapperTask)
 from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
                         CartoDBTarget, sql_to_cartodb_table,
-                        TableTask, ColumnsTask, TagsTask, CSV2TempTableTask)
+                        TableTask, ColumnsTask, TagsTask, CSV2TempTableTask, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag
-from tasks.us.census.tiger import GeoidColumns
+from tasks.us.census.tiger import GeoidColumns, SumLevel
 from psycopg2 import ProgrammingError
 
 ## cherry-picked datasets
@@ -363,3 +363,19 @@ class AllZillow(WrapperTask):
                     if now.year == year and now.month <= month:
                         continue
                     yield Zillow(geography=geography, year=year, month=month)
+
+class ZillowMetaWrapper(MetaWrapper):
+    geography = Parameter()
+    year = IntParameter()
+    month = IntParameter()
+
+    now = datetime.now()
+
+    params = {
+        'geography': ['Zip'],
+        'year': range(2010, now.year + 1),
+        'month': range(1, 13)
+    }
+    def tables(self):
+        yield Zillow(geography=self.geography, year=self.year, month=self.month)
+        yield SumLevel(year=str(self.year), geography='zcta5')

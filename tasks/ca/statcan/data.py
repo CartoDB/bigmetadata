@@ -4,7 +4,7 @@ import urllib
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
-from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath
+from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, MetaWrapper
 from tasks.meta import current_session
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
@@ -246,3 +246,30 @@ class AllNHSTopics(BaseParams, WrapperTask):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield NHS(resolution=resolution, survey=SURVEY_NHS, topic=topic)
+
+
+class CensusMetaWrapper(MetaWrapper):
+    resolution = Parameter()
+    topic = Parameter()
+
+    params = {
+        'topic': ['t{:03d}'.format(i) for i in range(1,11)],
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield Census(resolution=self.resolution, topic=self.topic, survey=SURVEY_CEN)
+
+class NHSMetaWrapper(MetaWrapper):
+    resolution = Parameter()
+    topic = Parameter()
+
+    params = {
+        'topic': ['t{:03d}'.format(i) for i in range(1,30)],
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield NHS(resolution=self.resolution, topic=self.topic, survey=SURVEY_NHS)
