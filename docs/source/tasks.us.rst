@@ -8,6 +8,7 @@ Subpackages
 
     tasks.us.census
     tasks.us.epa
+    tasks.us.ny
 
 Submodules
 ----------

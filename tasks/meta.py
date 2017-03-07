@@ -30,22 +30,27 @@ def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
             for text in re.split(_nsre, s)]
 
 
-_engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
-    user=os.environ.get('PGUSER', 'postgres'),
-    password=os.environ.get('PGPASSWORD', ''),
-    host=os.environ.get('PGHOST', 'localhost'),
-    port=os.environ.get('PGPORT', '5432'),
-    db=os.environ.get('PGDATABASE', 'postgres')
-))
+def get_engine(user=None, password=None, host=None, port=None,
+               db=None, readonly=False):
 
+    engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
+        user=user or os.environ.get('PGUSER', 'postgres'),
+        password=password or os.environ.get('PGPASSWORD', ''),
+        host=host or os.environ.get('PGHOST', 'localhost'),
+        port=port or os.environ.get('PGPORT', '5432'),
+        db=db or os.environ.get('PGDATABASE', 'postgres')
+    ))
 
-def get_engine():
+    @event.listens_for(engine, 'begin')
+    def receive_begin(conn):
+        if readonly:
+            conn.execute('SET TRANSACTION READ ONLY')
 
-    @event.listens_for(_engine, "connect")
+    @event.listens_for(engine, "connect")
     def connect(dbapi_connection, connection_record):
         connection_record.info['pid'] = os.getpid()
 
-    @event.listens_for(_engine, "checkout")
+    @event.listens_for(engine, "checkout")
     def checkout(dbapi_connection, connection_record, connection_proxy):
         pid = os.getpid()
         if connection_record.info['pid'] != pid:
@@ -55,7 +60,8 @@ def get_engine():
                 "attempting to check out in pid %s" %
                 (connection_record.info['pid'], pid)
             )
-    return _engine
+
+    return engine
 
 
 def catalog_lonlat(column_id):
@@ -118,6 +124,8 @@ def catalog_lonlat(column_id):
         return (40.7, -73.9)
     elif column_id.startswith('br.'):
         return (-43.19, -22.9)
+    elif column_id.startswith('au.'):
+        return (-33.8806, 151.2131)
     else:
         raise Exception('No catalog point set for {}'.format(column_id))
 
@@ -170,8 +178,12 @@ class Point(UserDefinedType):
         return func.ST_AsText(col, type_=self)
 
 
-metadata = MetaData(bind=get_engine(), schema='observatory')
-Base = declarative_base(metadata=metadata)
+if os.environ.get('READTHEDOCS') == 'True':
+    metadata = None
+    Base = declarative_base()
+else:
+    metadata = MetaData(bind=get_engine(), schema='observatory')
+    Base = declarative_base(metadata=metadata)
 
 
 # A connection between a table and a column
@@ -389,7 +401,7 @@ class OBSColumn(Base):
     description = Column(Text) # human-readable description to provide in
                                  # bigmetadata
 
-    weight = Column(Numeric, default=0)
+    weight = Column(Numeric, default=1)
     aggregate = Column(Text) # what aggregate operation to use when adding
                                # these together across geoms: AVG, SUM etc.
 
@@ -812,19 +824,21 @@ UNIVERSE = 'universe'
 GEOM_REF = 'geom_ref'
 GEOM_NAME = 'geom_name'
 
-_engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
-_engine.execute('''
-    CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
-    RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
-            SELECT $1;
-    $$;
+if not os.environ.get('READTHEDOCS') == 'True':
+    _engine = get_engine()
+    _engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
+    _engine.execute('''
+        CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
+        RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
+                SELECT $1;
+        $$;
 
-    -- And then wrap an aggregate around it
-    DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
-    CREATE AGGREGATE public.FIRST (
-            sfunc    = public.first_agg,
-            basetype = anyelement,
-            stype    = anyelement
-    );
-''')
-Base.metadata.create_all()
+        -- And then wrap an aggregate around it
+        DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
+        CREATE AGGREGATE public.FIRST (
+                sfunc    = public.first_agg,
+                basetype = anyelement,
+                stype    = anyelement
+        );
+    ''')
+    Base.metadata.create_all()

@@ -8,11 +8,20 @@ from tests.util import runtask, setup, teardown
 from tasks.es.ine import FiveYearPopulationColumns
 from tasks.meta import (get_engine, current_session, Base,
                         session_rollback, OBSColumn, current_session)
-from tasks.util import ColumnsTask, TableTask, classpath
+from tasks.util import ColumnsTask, TableTask, TagsTask, classpath
 
-from nose.tools import assert_greater, with_setup
+# Monkeypatch TableTask
+TableTask._test = True
+
+from tasks.carto import OBSMetaToLocal
+
+from nose.tools import assert_greater, with_setup, assert_true
 from nose.plugins.skip import SkipTest
 from nose_parameterized import parameterized
+
+from tasks.ca.statcan.data import NHS, Census
+from tasks.us.census.acs import Extract
+from tasks.us.census.tiger import SumLevel
 
 import importlib
 import inspect
@@ -35,7 +44,6 @@ def collect_tasks(TaskClass):
     return tasks
 
 
-
 @parameterized(collect_tasks(ColumnsTask))
 @with_setup(setup, teardown)
 def test_column_task(klass):
@@ -49,6 +57,7 @@ def test_column_task(klass):
     assert_greater(
         current_session().query(OBSColumn).filter(
             OBSColumn.id.startswith(classpath(task))).count(), 0)
+
 
 
 #@parameterized(collect_tasks(TableTask))

@@ -1,0 +1,7 @@
+redis-cli hset rails:users:observatory period_end_date 2100/1/1
+redis-cli hset rails:users:observatory obs_general_quota 100000
+redis-cli hset rails:users:observatory obs_snapshot_quota 100000
+
+redis-cli hset rails:users:publicuser period_end_date 2100/1/1
+redis-cli hset rails:users:publicuser obs_general_quota 100000
+redis-cli hset rails:users:publicuser obs_snapshot_quota 100000

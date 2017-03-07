@@ -17,7 +17,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
-import subprocess
+from sphinx.apidoc import main
 import sys
 
 cur_dir = os.path.abspath(os.path.dirname(__file__))
@@ -353,13 +353,14 @@ blockdiag_antialias = True
 # Cribbed from https://github.com/rtfd/readthedocs.org/issues/1139
 
 def run_apidoc(_):
-    cur_dir = os.path.abspath(os.path.dirname(__file__))
+    #cur_dir = os.path.abspath(os.path.dirname(__file__))
     module = os.path.join(cur_dir, '..', '..', 'tasks')
-    cmd_path = 'sphinx-apidoc'
-    if hasattr(sys, 'real_prefix'):  # Check to see if we are in a virtualenv
-        # If we are, assemble the path manually
-        cmd_path = os.path.abspath(os.path.join(sys.prefix, 'bin', 'sphinx-apidoc'))
-    subprocess.check_call([cmd_path, '-e', '-o', cur_dir, module, '--force'])
+    #cmd_path = 'sphinx-apidoc'
+    #if hasattr(sys, 'real_prefix'):  # Check to see if we are in a virtualenv
+    #    # If we are, assemble the path manually
+    #    cmd_path = os.path.abspath(os.path.join(sys.prefix, 'bin', 'sphinx-apidoc'))
+    main(['-e', '-o', cur_dir, module, '--force'])
+    #subprocess.check_call([cmd_path, '-e', '-o', cur_dir, module, '--force'])
 
 def setup(app):
     app.connect('builder-inited', run_apidoc)

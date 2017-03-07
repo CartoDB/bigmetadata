@@ -8,7 +8,20 @@
       "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
                                               # will cause persistence issues!!
       "./observatory-extension:/observatory-extension",
+      "./dataservices-api:/dataservices-api",
+      "./data-services:/data-services",
+      "./cartodb-postgresql:/cartodb-postgresql",
       "./tmp:/bigmetadata/tmp"
+    ],
+    "environment": {
+      "PGUSER": "docker",
+      "PGPASSWORD": "docker",
+      "PGDATABASE": "gis",
+      "LC_ALL": "C.UTF-8",
+      "LANG": "C.UTF-8"
+    },
+    "links": [
+      "redis:localhost"
     ],
     "privileged": true
   },
@@ -21,7 +34,7 @@
       "./perftest:/usr/share/nginx/html/perftest/:ro",
     ],
     "ports": [
-       "80:80"
+       "80"
     ],
   },
   "bigmetadata_daemon": {
@@ -35,7 +48,7 @@
       "./crontab:/etc/cron.d/cron",
     ],
     "ports": [
-      "8082:8082"
+      "8082"
     ],
     "environment": {
       "PYTHONPATH": "/bigmetadata",
@@ -74,7 +87,7 @@
   "ipython": {
     "build": "ipython",
     "ports": [
-      "8888:8888"
+      "8888"
     ],
     "links": [
       "bigmetadata_daemon",
@@ -95,5 +108,11 @@
     "env_file": ".env",
     "working_dir": "/tmp/ipython",
     "command": "sh -c /bigmetadata/ipython/start.sh"
+  },
+  "redis": {
+    "image": "redis",
+    "ports": [
+      "6379"
+    ]
   },
 }
