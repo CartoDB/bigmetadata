@@ -75,12 +75,12 @@ class GeometryColumns(ColumnsTask):
             type="Geometry",
             weight=10,
             description='The smallest division of the Spanish Census.',
-            tags=[sections['spain'], subsections['boundary']],
+            tags=[sections['spain'], subsections['boundary'],source,license],
         )
         cusec_id = OBSColumn(
             name=u"Secci\xf3n Censal",
             type="Text",
-            tags=[],
+            tags=[sections['spain'], subsections['boundary'],source,license],
             targets={cusec_geom: GEOM_REF}
         )
         return OrderedDict([
