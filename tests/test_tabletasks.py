@@ -28,6 +28,8 @@ class TestColumnsTask(ColumnsTask):
 
 class BaseTestTableTask(TableTask):
 
+    _test = False
+
     def timespan(self):
         return '2000'
 
