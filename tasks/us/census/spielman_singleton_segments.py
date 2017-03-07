@@ -8,8 +8,8 @@ import subprocess
 
 from collections import OrderedDict
 from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag, current_session
-from tasks.util import shell, classpath, ColumnsTask, TableTask
-from tasks.us.census.tiger import GeoidColumns
+from tasks.util import shell, classpath, ColumnsTask, TableTask, MetaWrapper
+from tasks.us.census.tiger import GeoidColumns, SumLevel
 from tasks.us.census.acs import ACSTags
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
@@ -292,7 +292,7 @@ class SpielmanSingletonColumns(ColumnsTask):
         ('Hispanic and Young', {
             'description' : 'Predominantly Hispanic, tends to have at most high school education, '
                 'lots of married couples and single mothers, high mobility within cities, '
-                'typically takes public transit and tends to rent.', 
+                'typically takes public transit and tends to rent.',
             'details' : {
                 "Education":{
                   "Less than highschool": "High",
@@ -432,7 +432,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Housing Upper Value Quantile":"Low" ,
               "Renter Occupied" : "Low",
               "Single Family Detached" : "High",
-              "Single Family Attached" : "High", 
+              "Single Family Attached" : "High",
               "Building with 2 Units" : "Low",
               "3-4 Units" : "Low",
               "5-9 Units" : "Low",
@@ -511,7 +511,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Housing Upper Value Quantile":"Low" ,
               "Renter Occupied" : "High",
               "Single Family Detached" : "Low",
-              "Single Family Attached" : "Low", 
+              "Single Family Attached" : "Low",
               "Building with 2 Units" : "Low",
               "3-4 Units" : "Low",
               "5-9 Units" : "Low",
@@ -589,7 +589,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Housing Upper Value Quantile":"Average" ,
               "Renter Occupied" : "High",
               "Single Family Detached" : "Low",
-              "Single Family Attached" : "Low", 
+              "Single Family Attached" : "Low",
               "Building with 2 Units" : "Low",
               "3-4 Units" : "Low",
               "5-9 Units" : "Low",
@@ -666,7 +666,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Vacancy" : "Average",
               "Renter Occupied" : "High",
               "Single Family Detached" : "Low",
-              "Single Family Attached" : "High", 
+              "Single Family Attached" : "High",
               "Building with 2 Units" : "High",
               "3-4 Units" : "High",
               "5-9 Units" : "High",
@@ -743,7 +743,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Vacancy" : "High",
               "Renter Occupied" : "High",
               "Single Family Detached" : "Low",
-              "Single Family Attached" : "High", 
+              "Single Family Attached" : "High",
               "Building with 2 Units" : "Average",
               "3-4 Units" : "High",
               "5-9 Units" : "High",
@@ -820,7 +820,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Vacancy" : "High",
               "Renter Occupied" : "Low",
               "Single Family Detached" : "Low",
-              "Single Family Attached" : "High", 
+              "Single Family Attached" : "High",
               "Building with 2 Units" : "Low",
               "3-4 Units" : "Low",
               "5-9 Units" : "Average",
@@ -897,7 +897,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Vacancy" : "High",
               "Renter Occupied" : "High",
               "Single Family Detached" : "Low",
-              "Single Family Attached" : "High", 
+              "Single Family Attached" : "High",
               "Building with 2 Units" : "High",
               "3-4 Units" : "High",
               "5-9 Units" : "High",
@@ -973,7 +973,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Vacancy" : "High",
               "Renter Occupied" : "High",
               "Single Family Detached" : "Average",
-              "Single Family Attached" : "Low", 
+              "Single Family Attached" : "Low",
               "Building with 2 Units" : "High",
               "3-4 Units" : "High",
               "5-9 Units" : "High",
@@ -1048,7 +1048,7 @@ class SpielmanSingletonColumns(ColumnsTask):
               "Vacancy" : "Average",
               "Renter Occupied" : "High",
               "Single Family Detached" : "Low",
-              "Single Family Attached" : "Average", 
+              "Single Family Attached" : "Average",
               "Building with 2 Units" : "High",
               "3-4 Units" : "High",
               "5-9 Units" : "High",
@@ -1117,6 +1117,10 @@ class SpielmanSingletonColumns(ColumnsTask):
             ('X2', x2)
         ])
 
+class SpielmanSingletonMetaWrapper(MetaWrapper):
+    def tables(self):
+        yield SpielmanSingletonTable()
+        yield SumLevel(year='2014', geography='census_tract')
 #
 # class LoadSpielmanSingletonToDB(self):
 #     def requires(self):

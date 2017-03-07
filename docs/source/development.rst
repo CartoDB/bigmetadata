@@ -64,12 +64,13 @@ over again.  These tasks are meant to take care of the most repetitive aspects.
    :members:
    :show-inheritance:
 
-Running pieces of the ETL
+Running and Re-Running Pieces of the ETL
 -------------------------
 
 When doing local development, it's advisable to run small pieces of the ETL
 locally to make sure everything works correctly.  You can use the ``make --
-run`` helper, documented in :ref:`run-any-task`.
+run`` helper, documented in :ref:`run-any-task`. There are several methods for
+re-running pieces of the ETL depending on the task and are described below:
 
 Using ``--force`` during development
 ************************************
@@ -79,6 +80,8 @@ you can use it to re-run a task that has already been run, ignoring and
 overwriting all output it has already created.  For example, if you have
 a :ref:`tasks.util.TempTableTask` that you've modified in the course of
 development and need to re-run:
+
+.. code:: python
 
     from tasks.util import TempTableTask
     from tasks.meta import current_session

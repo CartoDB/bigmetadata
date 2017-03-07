@@ -4,8 +4,8 @@ from luigi import Task, Parameter, LocalTarget, WrapperTask
 
 from tasks.meta import OBSColumn, DENOMINATOR, current_session, OBSTag
 from tasks.util import (TableTask, ColumnsTask, classpath, shell,
-                        DownloadUnzipTask, TagsTask, TempTableTask)
-from tasks.uk.cdrc import OutputAreaColumns
+                        DownloadUnzipTask, TagsTask, TempTableTask, MetaWrapper)
+from tasks.uk.cdrc import OutputAreaColumns, OutputAreas
 from tasks.tags import UnitTags, SectionTags, SubsectionTags, LicenseTags
 
 from collections import OrderedDict
@@ -1188,3 +1188,8 @@ class EnglandWalesLocal(TableTask):
                             output=self.output().table,
                             input=intable)
                 session.execute(stmt)
+
+class EnglandWalesMetaWrapper(MetaWrapper):
+    def tables(self):
+        yield EnglandWalesLocal()
+        yield OutputAreas()

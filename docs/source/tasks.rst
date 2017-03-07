@@ -6,6 +6,7 @@ Subpackages
 
 .. toctree::
 
+    tasks.au
     tasks.br
     tasks.ca
     tasks.es
@@ -23,7 +24,9 @@ Submodules
 
    tasks.carto
    tasks.meta
+   tasks.poi
    tasks.sched
+   tasks.socrata
    tasks.sphinx
    tasks.tags
    tasks.util
