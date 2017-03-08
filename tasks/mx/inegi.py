@@ -210,7 +210,6 @@ class GeographyColumns(ColumnsTask):
             weight=self.weights[self.resolution],
             tags=[sections['mx'], subsections['boundary'], license, source]
         )
-        geom['tags']
         geom_ref = OBSColumn(
             id=self.resolution + '_cvegeo',
             type='Text',
