@@ -2,7 +2,7 @@
 
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath)
+                        underscore_slugify, shell, classpath, MetaWrapper)
 from tasks.meta import current_session, DENOMINATOR, GEOM_REF, UNIVERSE
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
@@ -372,3 +372,15 @@ class AllGeomsThemesTables(WrapperTask):
         topics = ['population', 'housing', 'education', 'household', 'employment']
         for table_theme in topics:
             yield FranceCensus(table_theme=table_theme)
+
+class InseeMetaWrapper(MetaWrapper):
+
+    topic = Parameter()
+
+    params = {
+        'topic': ['population', 'housing', 'education', 'household', 'employment']
+    }
+
+    def tables(self):
+        yield OutputAreas()
+        yield FranceCensus(table_theme=self.topic)

@@ -3,7 +3,7 @@
 from luigi import Task, Parameter, LocalTarget
 
 from tasks.util import (TableTask, TagsTask, ColumnsTask, classpath, shell,
-                        DownloadUnzipTask, Shp2TempTableTask)
+                        DownloadUnzipTask, Shp2TempTableTask, MetaWrapper)
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
 
@@ -374,3 +374,8 @@ class OutputAreaClassifications(TableTask):
                             grp_case=grp_case,
                             subgrp_case=subgrp_case,
                         ))
+
+class CDRCMetaWrapper(MetaWrapper):
+    def tables(self):
+        yield OutputAreaClassifications()
+        yield OutputAreas()

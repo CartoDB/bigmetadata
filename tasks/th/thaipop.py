@@ -5,7 +5,7 @@ tasks to download and create metadata
 
 from tasks.tags import SubsectionTags, SectionTags, UnitTags
 from tasks.meta import (GEOM_REF, current_session, GEOM_NAME, OBSColumn)
-from tasks.util import ColumnsTask, TableTask, Carto2TempTableTask
+from tasks.util import ColumnsTask, TableTask, Carto2TempTableTask, MetaWrapper
 from collections import OrderedDict
 
 
@@ -96,3 +96,8 @@ class ThaiDistricts(TableTask):
                             output=self.output().table,
                             input=self.input()['data'].table
                         ))
+
+class ThaiMetaWrapper(MetaWrapper):
+    
+    def tables(self):
+        yield ThaiDistricts()

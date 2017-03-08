@@ -34,3 +34,4 @@ dataservices-api
 cartodb-postgresql
 Windshaft-cartodb
 carto_conf
+postgres/data

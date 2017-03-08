@@ -14,6 +14,8 @@ from tasks.meta import current_session, OBSTag, OBSColumn
 from tasks.carto import GenerateStaticImage, ImagesForMeasure, GenerateThumb
 
 from datetime import date
+from time import time
+from tasks.util import LOGGER
 
 ENV = Environment(loader=PackageLoader('catalog', 'templates'))
 
@@ -51,7 +53,8 @@ class GenerateRST(Task):
         requirements = {}
         for section_subsection, _ in self.output().iteritems():
             section_id, subsection_id = section_subsection
-            #subsection = session.query(OBSTag).get(subsection_id)
+
+            # this is much faster with a gin index on numer_tags
             resp = session.execute('''
                 SELECT DISTINCT numer_id
                 FROM observatory.obs_meta
@@ -60,15 +63,15 @@ class GenerateRST(Task):
                 ORDER BY numer_id
             '''.format(section_id=section_id,
                        subsection_id=subsection_id))
-            if self.images:
-                for row in resp:
-                    column_id = row[0]
-                    if column_id.startswith('uk'):
-                        if self.format == 'pdf':
-                            img = GenerateThumb(measure=column_id, force=False)
-                        else:
-                            img = ImagesForMeasure(measure=column_id, force=False)
-                        requirements[column_id] = img
+            #if self.images:
+            #    for row in resp:
+            #        column_id = row[0]
+            #        if column_id.startswith('uk'):
+            #            if self.format == 'pdf':
+            #                img = GenerateThumb(measure=column_id, force=False)
+            #            else:
+            #                img = ImagesForMeasure(measure=column_id, force=False)
+            #            requirements[column_id] = img
 
         return requirements
 
@@ -122,6 +125,7 @@ class GenerateRST(Task):
     def run(self):
         session = current_session()
         for section_subsection, target in self.output().iteritems():
+            before = time()
             section_id, subsection_id = section_subsection
 
             if section_id == 'licenses':
@@ -133,6 +137,8 @@ class GenerateRST(Task):
 
             section = session.query(OBSTag).get(section_id)
             subsection = session.query(OBSTag).get(subsection_id)
+
+            LOGGER.info('%s:', section_subsection)
 
             if subsection_id == 'tags.boundary':
                 resp = session.execute('''
@@ -199,6 +205,8 @@ class GenerateRST(Task):
             else:
                 fhandle.write('')
             fhandle.close()
+            after = time()
+            LOGGER.info('%s, %s', section_subsection, after - before)
 
 
 class Catalog(Task):

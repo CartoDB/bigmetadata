@@ -28,6 +28,9 @@ Contents:
     development
     convenience
     metadata
+    validation
+    testing
+    deployment
 
 
 Indices and tables

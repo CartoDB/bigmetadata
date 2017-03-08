@@ -3,7 +3,7 @@ from tasks.meta import (OBSTable, OBSColumn, OBSTag, current_session,
                         DENOMINATOR, GEOM_REF, UNIVERSE)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
-                        DownloadUnzipTask, CSV2TempTableTask,
+                        DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
                         underscore_slugify, shell, classpath, LOGGER)
 
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget, ListParameter
@@ -598,3 +598,26 @@ class EURegionalTables(WrapperTask):
                                       subsection=subsection,
                                       nuts_level=nuts,
                                       unit=units)
+
+# class EUMetaWrapper(MetaWrapper):
+#
+#     table_name = Parameter()
+#     subsection = Parameter()
+#     nuts_level = Parameter()
+#     unit = Parameter()
+#     year = Parameter()
+#
+#     params = {
+#         'table_name': ,
+#         'subsection': ,
+#         'nuts_level': ,
+#         'unit': ,
+#         'year': ,
+#     }
+#
+#     def tables(self):
+#         yield TableEU(table_name=self.table_name,
+#                       subsection=self.subsection,
+#                       nuts_level=self.nuts_level,
+#                       unit=self.unit,
+#                       year=self.year)

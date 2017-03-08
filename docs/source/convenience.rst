@@ -13,6 +13,8 @@ Makefile
 
 The Makefile makes it easier to run tasks.
 
+.. _run-any-task:
+
 Run any task
 ************
 
