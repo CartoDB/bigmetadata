@@ -536,8 +536,6 @@ class ColumnTarget(Target):
             return session.query(OBSColumn).get(self._id)
 
     def update_or_create(self):
-        session = current_session()
-        #session.add(self._column)
         self._column = current_session().merge(self._column)
 
     def exists(self):
@@ -708,52 +706,52 @@ class TableTarget(Target):
             metadata.tables[obs_table.id].drop()
         self._table = Table(obs_table.tablename, metadata, *columns,
                             extend_existing=True, schema='observatory')
-        #session.commit()
-        session.flush()
+        session.commit()
         self._table.drop(checkfirst=True)
         self._table.create()
 
     def update_or_create_metadata(self, _testmode=False):
         session = current_session()
 
-        #colinfo = {}
+        colinfo = {}
 
-        #postgres_max_cols = 1664
-        #query_width = 7
-        #maxsize = postgres_max_cols / query_width
-        #for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
-        #    select = []
-        #    for i, colname_coltarget in enumerate(group):
-        #        if colname_coltarget is None:
-        #            continue
-        #        colname, coltarget = colname_coltarget
-        #        col = coltarget.get(session)
-        #        coltype = col.type.lower()
-        #        i = i + (groupnum * maxsize)
-        #        if coltype == 'numeric':
-        #            select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-        #                          'max({colname}) col{i}_max, '
-        #                          'min({colname}) col{i}_min, '
-        #                          'avg({colname}) col{i}_avg, '
-        #                          'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
-        #                          'mode() within group (order by {colname}) col{i}_mode, '
-        #                          'stddev_pop({colname}) col{i}_stddev'.format(
-        #                              i=i, colname=colname.lower()))
-        #        elif coltype == 'geometry':
-        #            select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-        #                          'max(st_area({colname}::geography)) col{i}_max, '
-        #                          'min(st_area({colname}::geography)) col{i}_min, '
-        #                          'avg(st_area({colname}::geography)) col{i}_avg, '
-        #                          'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
-        #                          'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
-        #                          'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
-        #                              i=i, colname=colname.lower()))
+        if not _testmode:
+            postgres_max_cols = 1664
+            query_width = 7
+            maxsize = postgres_max_cols / query_width
+            for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
+                select = []
+                for i, colname_coltarget in enumerate(group):
+                    if colname_coltarget is None:
+                        continue
+                    colname, coltarget = colname_coltarget
+                    col = coltarget.get(session)
+                    coltype = col.type.lower()
+                    i = i + (groupnum * maxsize)
+                    if coltype == 'numeric':
+                        select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                      'max({colname}) col{i}_max, '
+                                      'min({colname}) col{i}_min, '
+                                      'avg({colname}) col{i}_avg, '
+                                      'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
+                                      'mode() within group (order by {colname}) col{i}_mode, '
+                                      'stddev_pop({colname}) col{i}_stddev'.format(
+                                          i=i, colname=colname.lower()))
+                    elif coltype == 'geometry':
+                        select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                      'max(st_area({colname}::geography)) col{i}_max, '
+                                      'min(st_area({colname}::geography)) col{i}_min, '
+                                      'avg(st_area({colname}::geography)) col{i}_avg, '
+                                      'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
+                                      'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
+                                      'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
+                                          i=i, colname=colname.lower()))
 
-        #    if select:
-        #        stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
-        #            select=', '.join(select), output=self.table)
-        #        resp = session.execute(stmt)
-        #        colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
+                if select:
+                    stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
+                        select=', '.join(select), output=self.table)
+                    resp = session.execute(stmt)
+                    colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
@@ -764,52 +762,54 @@ class TableTarget(Target):
             colname = colname.lower()
             col = coltarget.get(session)
 
-            coltable = OBSColumnTable(colname=colname, table=obs_table,
-                                      column=col)
+            if _testmode:
+                coltable = OBSColumnTable(colname=colname, table=obs_table,
+                                          column=col)
+            else:
+                # Column info for obs metadata
+                coltable = session.query(OBSColumnTable).filter_by(
+                    column_id=col.id, table_id=obs_table.id).first()
+                if coltable:
+                    coltable_existed = True
+                    coltable.colname = colname
+                else:
+                    # catch the case where a column id has changed
+                    coltable = session.query(OBSColumnTable).filter_by(
+                        table_id=obs_table.id, colname=colname).first()
+                    if coltable:
+                        coltable_existed = True
+                        coltable.column = col
+                    else:
+                        coltable_existed = False
+                        coltable = OBSColumnTable(colname=colname, table=obs_table,
+                                                  column=col)
 
-            # # Column info for obs metadata
-            # coltable = session.query(OBSColumnTable).filter_by(
-            #     column_id=col.id, table_id=obs_table.id).first()
-            # if coltable:
-            #     coltable_existed = True
-            #     coltable.colname = colname
-            # else:
-            #     # catch the case where a column id has changed
-            #     coltable = session.query(OBSColumnTable).filter_by(
-            #         table_id=obs_table.id, colname=colname).first()
-            #     if coltable:
-            #         coltable_existed = True
-            #         coltable.column = col
-            #     else:
-            #         coltable_existed = False
-            #         coltable = OBSColumnTable(colname=colname, table=obs_table,
-            #                                   column=col)
-        #    # include analysis
-        #    if col.type.lower() in ('numeric', 'geometry',):
-        #        # do not include linkage for any column that is 100% null
-        #        # unless we are in test mode
-        #        stats = {
-        #            'count': colinfo.get('cnt'),
-        #            'notnull': colinfo.get('col%s_notnull' % i),
-        #            'max': colinfo.get('col%s_max' % i),
-        #            'min': colinfo.get('col%s_min' % i),
-        #            'avg': colinfo.get('col%s_avg' % i),
-        #            'median': colinfo.get('col%s_median' % i),
-        #            'mode': colinfo.get('col%s_mode' % i),
-        #            'stddev': colinfo.get('col%s_stddev' % i),
-        #        }
-        #        if stats['notnull'] == 0 and not _testmode:
-        #            if coltable_existed:
-        #                session.delete(coltable)
-        #            elif coltable in session:
-        #                session.expunge(coltable)
-        #            continue
-        #        for k in stats.keys():
-        #            if stats[k] is not None:
-        #                stats[k] = float(stats[k])
-        #        coltable.extra = {
-        #            'stats': stats
-        #        }
+                # include analysis
+                if col.type.lower() in ('numeric', 'geometry',):
+                    # do not include linkage for any column that is 100% null
+                    # unless we are in test mode
+                    stats = {
+                        'count': colinfo.get('cnt'),
+                        'notnull': colinfo.get('col%s_notnull' % i),
+                        'max': colinfo.get('col%s_max' % i),
+                        'min': colinfo.get('col%s_min' % i),
+                        'avg': colinfo.get('col%s_avg' % i),
+                        'median': colinfo.get('col%s_median' % i),
+                        'mode': colinfo.get('col%s_mode' % i),
+                        'stddev': colinfo.get('col%s_stddev' % i),
+                    }
+                    if stats['notnull'] == 0:
+                        if coltable_existed:
+                            session.delete(coltable)
+                        elif coltable in session:
+                            session.expunge(coltable)
+                        continue
+                    for k in stats.keys():
+                        if stats[k] is not None:
+                            stats[k] = float(stats[k])
+                    coltable.extra = {
+                        'stats': stats
+                    }
             session.add(coltable)
 
 
@@ -886,11 +886,6 @@ class ColumnsTask(Task):
             if not col.version:
                 col.version = self.version()
             col.id = '.'.join([classpath(self), col.id or col_key])
-
-            # Replace actual OBSTag objects with references to the tag's ID
-            coltags = [OBSColumnTag(tag_id=t.id, column=col) for t in col.tags if t]
-            col.tags = []
-            col.column_column_tags = coltags
 
             output[col_key] = ColumnTarget(col, self)
         now_in_session = [obj for obj in session]
@@ -1444,11 +1439,6 @@ class TableTask(Task):
     corresponding to the defined columns, with a unique name.  It will also
     generate all relevant metadata for the table, and link it to the columns.
     '''
-
-    def input(self):
-        if not hasattr(self, '_input'):
-            self._input = super(TableTask, self).input()
-        return self._input
 
     def version(self):
         '''

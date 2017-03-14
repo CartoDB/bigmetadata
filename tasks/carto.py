@@ -1361,7 +1361,7 @@ class OBSMetaToLocal(OBSMeta):
                     session.execute(query)
                     session.flush()
                     after = time.time()
-                    LOGGER.info('time taken for %s:%s: %s', dimension, i, around(after - before, 2))
+                    LOGGER.info('time taken for %s:%s: %s', dimension, i, round(after - before, 2))
                 #session.execute('CREATE TABLE observatory.obs_meta_next_{dimension} '
                 #                'AS {select}'.format(
                 #                    dimension=dimension,

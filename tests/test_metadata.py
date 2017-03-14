@@ -12,6 +12,8 @@ from tasks.util import MetaWrapper, TagsTask, ColumnsTask
 from nose_parameterized import parameterized
 from nose.tools import assert_greater, with_setup
 
+import os
+
 
 def cross(orig_list, b_name, b_list):
     result = []
@@ -24,31 +26,16 @@ def cross(orig_list, b_name, b_list):
 
 
 def collect_meta_wrappers():
-    tasks = collect_tasks(MetaWrapper)
-    for t, in tasks:
+    test_all = os.environ.get('TEST_ALL', '') != ''
+    for t, in collect_tasks(MetaWrapper):
         outparams = [{}]
         for key, val in t.params.iteritems():
             outparams = cross(outparams, key, val)
         for params in outparams:
             yield t, params
-            break
+            if not test_all:
+                break
 
-
-#@parameterized(collect_meta_wrappers())
-#@with_setup(setup, teardown)
-#def test_table_task(klass, params):
-#
-#    task = klass(**params)
-#
-#    runtask(task, superclasses=[TagsTask, ColumnsTask, TableTask])
-#
-#    reload(tasks.carto)
-#    obs_meta_to_local = tasks.carto.OBSMetaToLocal()
-#
-#    runtask(obs_meta_to_local)
-#
-#    session = current_session()
-#    assert_greater(session.execute('SELECT COUNT(*) FROM observatory.obs_meta').fetchone()[0], 0)
 
 @with_setup(setup, teardown)
 @parameterized(collect_meta_wrappers())
