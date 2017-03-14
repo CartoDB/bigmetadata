@@ -33,7 +33,8 @@ def test_underscore_slugify():
 
 @with_setup(setup, teardown)
 def test_column_target_create_update():
-    col = ColumnTarget('tests', 'foobar', OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -53,7 +54,8 @@ def test_column_target_create_update():
         assert_equals(session.query(OBSColumn).count(), 1)
 
     # Can overwrite the existing column
-    col = ColumnTarget('tests', 'foobar', OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="foobar",
         description='foo-bar-baz',
@@ -76,7 +78,8 @@ def test_column_target_create_update():
 
 @with_setup(setup, teardown)
 def test_column_target_relations_create_update():
-    col = ColumnTarget("tests", "foobar", OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -120,7 +123,8 @@ def test_column_target_relations_create_update():
 
 @with_setup(setup, teardown)
 def test_column_target_many_inits():
-    col = ColumnTarget("tests", "foobar", OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -132,7 +136,8 @@ def test_column_target_many_inits():
         col.update_or_create()
         assert_equals(session.query(OBSColumn).count(), 1)
 
-    col = ColumnTarget("tests", "foobar", OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -147,13 +152,15 @@ def test_column_target_many_inits():
 
 @with_setup(setup, teardown)
 def test_table_target_many_inits():
-    pop_col = ColumnTarget("tests", "population", OBSColumn(
+    pop_col = ColumnTarget(OBSColumn(
+        id='tests.population',
         type='Numeric',
         name="Total Population",
         description='The total number of all',
         aggregate='sum',
         weight=10), FakeTask())
-    foo_col = ColumnTarget("tests", "foo", OBSColumn(
+    foo_col = ColumnTarget(OBSColumn(
+        id='tests.foo',
         type='Numeric',
         name="Foo Bar",
         description='moo boo foo',

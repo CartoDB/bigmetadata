@@ -1,7 +1,7 @@
 from luigi import Task, Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
-                        ColumnsTask, TableTask)
+                        ColumnsTask, TableTask, MetaWrapper)
 from tasks.meta import GEOM_REF, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
 from tasks.tags import SectionTags, SubsectionTags
@@ -321,3 +321,18 @@ class AllCensus(WrapperTask):
                 continue
             for table in DEMOGRAPHIC_TABLES.keys():
                 yield Census(resolution=resolution, table=table)
+
+
+class CensusWrapper(MetaWrapper):
+
+    resolution = Parameter()
+    table = Parameter()
+
+    params = {
+        'resolution': RESOLUTIONS,
+        'table': DEMOGRAPHIC_TABLES.keys()
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield Census(resolution=self.resolution, table=self.table)

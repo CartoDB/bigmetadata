@@ -6,6 +6,12 @@ import os
 import luigi
 from subprocess import check_output
 
+import importlib
+import inspect
+import os
+
+from time import time
+
 
 EMPTY_RASTER = '0100000000000000000000F03F000000000000F0BF0000000000000000' \
         '000000000000000000000000000000000000000000000000000000000A000A00'
@@ -59,16 +65,28 @@ def teardown():
     session.commit()
 
 
-def runtask(task):
+def runtask(task, superclasses=None):
     '''
     Run deps of tasks then the task, faking session management
+
+    superclasses is a list of classes that we will be willing to run as
+    pre-reqs, other pre-reqs will be ignored.  Can be useful when testing to
+    only run metadata classes, for example.
     '''
+    from tasks.util import LOGGER
     if task.complete():
         return
     for dep in task.deps():
-        runtask(dep)
-        assert dep.complete() is True
+        if superclasses:
+            for klass in superclasses:
+                if isinstance(dep, klass):
+                    runtask(dep, superclasses=superclasses)
+                    assert dep.complete() is True
+        else:
+            runtask(dep)
+            assert dep.complete() is True
     try:
+        before = time()
         for klass, cb_dict in task._event_callbacks.iteritems():
             if isinstance(task, klass):
                 start_callbacks = cb_dict.get('event.core.start', [])
@@ -76,6 +94,8 @@ def runtask(task):
                     scb(task)
         task.run()
         task.on_success()
+        after = time()
+        LOGGER.warn('runtask timing %s: %s', task, round(after - before, 2))
     except Exception as exc:
         task.on_failure(exc)
         raise
@@ -91,3 +111,25 @@ def session_scope():
     except Exception as e:
         session_rollback(None, e)
         raise
+
+
+def collect_tasks(TaskClass):
+    '''
+    Returns a set of task classes whose parent is the passed `TaskClass`
+    '''
+    tasks = set()
+    test_module = os.environ.get('TEST_MODULE', '').replace('.', os.path.sep)
+    for dirpath, _, files in os.walk('tasks'):
+        for filename in files:
+            if not os.path.join(dirpath, filename).startswith(test_module):
+                continue
+            if filename.endswith('.py'):
+                modulename = '.'.join([
+                    dirpath.replace(os.path.sep, '.'),
+                    filename.replace('.py', '')
+                ])
+                module = importlib.import_module(modulename)
+                for _, obj in inspect.getmembers(module):
+                    if inspect.isclass(obj) and issubclass(obj, TaskClass) and obj != TaskClass:
+                        tasks.add((obj, ))
+    return tasks

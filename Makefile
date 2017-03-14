@@ -42,6 +42,16 @@ tiger:
 	  --module tasks.us.census.tiger AllSumLevels --year 2015
 	  --parallel-scheduling --workers=8
 
+au-data:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.au.data BCPAllGeographiesAllTables --year 2011 \
+	  --parallel-scheduling --workers=8
+
+au-geo:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.au.geo AllGeographies --year 2011 \
+	  --parallel-scheduling --workers=8
+
 catalog-noimage:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.sphinx Catalog --force \
@@ -113,10 +123,20 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
-.PHONY: run catalog docs carto restore dataservices-api
+ifeq (run-parallel,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "run"
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(RUN_ARGS):;@:)
+endif
+
+.PHONY: run run-parallel catalog docs carto restore dataservices-api
 
 run:
 	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(RUN_ARGS)
+
+run-parallel:
+	docker-compose run --rm bigmetadata luigi --parallel-scheduling --workers=8 --module tasks.$(RUN_ARGS)
 
 dump: test
 	docker-compose run --rm bigmetadata luigi --module tasks.carto DumpS3
@@ -187,7 +207,14 @@ etl-unittest:
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  PGDATABASE=test nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
-	    tests/test_columntasks.py tests/test_tabletasks.py'
+	    tests/test_tabletasks.py'
+
+etl-metadatatest:
+	docker-compose run --rm bigmetadata /bin/bash -c \
+	  'while : ; do pg_isready -t 1 && break; done && \
+	  TEST_ALL=$(ALL) TEST_MODULE=tasks.$(MODULE) \
+	  PGDATABASE=test nosetests -v --with-timer \
+	    tests/test_metadata.py'
 
 travis-etl-unittest:
 	docker run \
@@ -201,7 +228,8 @@ travis-etl-unittest:
 	   recessionporn/bigmetadata /bin/bash -c \
 	   'nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
-	    tests/test_columntasks.py tests/test_tabletasks.py'
+	    tests/test_tabletasks.py && \
+	    nosetests -v tests/test_metadata.py'
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
@@ -218,6 +246,21 @@ eurostat-data:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
 	  --parallel-scheduling --workers=2
+
+ps:
+	docker-compose ps
+
+stop:
+	docker-compose stop
+
+up:
+	docker-compose up -d
+
+meta:
+	docker-compose run --rm bigmetadata luigi\
+	  --module tasks.carto OBSMetaToLocal
+
+releasetest: extension-fixtures extension-perftest-record extension-unittest extension-autotest
 
 #restore:
 #	docker exec -it bigmetadata_postgres_1 /bin/bash -c "export PGUSER=docker && export PGPASSWORD=docker && export PGHOST=localhost && pg_restore -j4 -O -d gis -x -e /bigmetadata/tmp/carto/Dump_2016_11_16_c14c5977ac.dump >/bigmetadata/tmp/restore.log 2>&1"

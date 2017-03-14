@@ -10,9 +10,9 @@ from collections import OrderedDict
 from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSColumnTag,
                         current_session, OBSTag)
 from tasks.util import (shell, TempTableTask, classpath,
-                        ColumnsTask, TableTask, TagsTask)
+                        ColumnsTask, TableTask, TagsTask, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns
+from tasks.us.census.tiger import GeoidColumns, SumLevel
 from tasks.us.census.acs import ACSTags
 
 from luigi import (Task, Parameter, LocalTarget, BooleanParameter, WrapperTask,
@@ -44,7 +44,7 @@ class DownloadLODESFile(Task):
     # [SEG] = (RAC/WAC only) Segment of the workforce, can have th e values of
     # "S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01", "SI02",
     # or "SI03". These correspond to the same segments of the workforce as are
-    # listed in the OD file structure above. 
+    # listed in the OD file structure above.
     # [PART] = (OD only) Part of the state file, can have a value of either "main" or "aux".
     #          Complimentary parts of the state file, the main part includes jobs with both
     #          workplace and residence in the state and the aux part includes jobs with the
@@ -689,3 +689,16 @@ CREATE TABLE {tablename} (
             cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
                   r"WITH CSV HEADER'".format(input=infile.path, tablename=self.output().table)
             shell(cmd)
+
+class LODESMetaWrapper(MetaWrapper):
+    geography = Parameter()
+    year = IntParameter()
+    
+    params = {
+        'geography': ['block'],
+        'year': [2013]
+    }
+
+    def tables(self):
+        yield WorkplaceAreaCharacteristics()
+        yield SumLevel(geography = self.geography, year=str(self.year))

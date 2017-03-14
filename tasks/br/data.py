@@ -7,7 +7,8 @@ import pandas as pd
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask, TagsTask,
-                        ColumnsTask, TableTask, classpath, CSV2TempTableTask)
+                        ColumnsTask, TableTask, classpath, CSV2TempTableTask,
+                        MetaWrapper)
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from abc import ABCMeta
@@ -392,3 +393,17 @@ class CensosAllGeographiesAllTables(WrapperTask):
     def requires(self):
         for resolution in (GEO_I, ):
             yield CensosAllTables(resolution=resolution)
+
+class CensosMetaWrapper(MetaWrapper):
+
+    resolution = Parameter()
+    tablename = Parameter()
+
+    params = {
+        'resolution': GEOGRAPHIES,
+        'tablename': TABLES
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield Censos(resolution=self.resolution, tablename=self.tablename)
