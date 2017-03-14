@@ -299,7 +299,12 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     query = '''
       DROP TABLE IF EXISTS raster_vals_{tablename_ns};
       CREATE TEMPORARY TABLE raster_vals_{tablename_ns} AS
-      WITH vector AS (SELECT ST_SimplifyVW({colname}, 0.0005) the_geom
+      WITH vector AS (SELECT CASE
+                        WHEN ST_GeometryType({colname}) IN ('ST_Polygon', 'ST_MultiPolygon')
+                          THEN ST_CollectionExtract(ST_MakeValid(
+                                 ST_SimplifyVW({colname}, 0.0005)), 3)
+                          ELSE {colname}
+                        END the_geom
                       FROM {tablename} vector)
       SELECT id
              , (null::geometry, null::numeric)::geomval median
@@ -311,9 +316,9 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                    ST_Length({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                        ST_Length(vector.the_geom)
                  ELSE
-                   CASE WHEN geom @ vector.the_geom THEN
+                   CASE WHEN ST_Within(geom, vector.the_geom) THEN
                              ST_Area(geom) / ST_Area(vector.the_geom)
-                        WHEN vector.the_geom @ geom THEN 1
+                        WHEN ST_Within(vector.the_geom, geom) THEN 1
                         ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                              ST_Area(vector.the_geom)
                    END
@@ -382,7 +387,6 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
        CREATE TABLE observatory.obs_column_table_tile_simple AS
        SELECT table_id, column_id, tile_id, ST_Reclass(
          ST_Band(tile, ARRAY[2, 3]),
-         ROW(1, '[0-65535]::0-65535, [65536-4294967296::65535-65535', '16BUI', 0)::reclassarg,
          ROW(2, '[0-1]::0-255, (1-100]::255-255', '8BUI', 0)::reclassarg
        ) AS tile
        FROM observatory.obs_column_table_tile ;
@@ -393,7 +397,24 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
        CREATE INDEX ON observatory.obs_column_table_tile_simple USING GIST
        (ST_ConvexHull(tile));
        '''.format(table_id=table_id, column_id=column_id,
-                    colname=colname, tablename=tablename))
+                  colname=colname, tablename=tablename))
+
+    real_num_geoms = session.execute('''
+        SELECT COUNT(*) FROM {tablename}
+    '''.format(tablename=tablename)).fetchone()[0]
+
+    est_num_geoms = session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
+        FROM observatory.obs_column_table_tile_simple
+        WHERE column_id = '{column_id}'
+          AND table_id = '{table_id}'
+    '''.format(column_id=column_id,
+               table_id=table_id)).fetchone()[0]
+
+    assert abs(real_num_geoms - est_num_geoms) / real_num_geoms < 0.25, \
+            "Estimate of {} total geoms more than 25% off real {} num geoms " \
+            "for column '{}' in table '{}' (tablename '{}')".format(
+                est_num_geoms, real_num_geoms, column_id, table_id, tablename)
 
 
 class PostgresTarget(Target):
