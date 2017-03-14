@@ -10,6 +10,8 @@ import importlib
 import inspect
 import os
 
+from time import time
+
 
 EMPTY_RASTER = '0100000000000000000000F03F000000000000F0BF0000000000000000' \
         '000000000000000000000000000000000000000000000000000000000A000A00'
@@ -71,6 +73,7 @@ def runtask(task, superclasses=None):
     pre-reqs, other pre-reqs will be ignored.  Can be useful when testing to
     only run metadata classes, for example.
     '''
+    from tasks.util import LOGGER
     if task.complete():
         return
     for dep in task.deps():
@@ -83,6 +86,7 @@ def runtask(task, superclasses=None):
             runtask(dep)
             assert dep.complete() is True
     try:
+        before = time()
         for klass, cb_dict in task._event_callbacks.iteritems():
             if isinstance(task, klass):
                 start_callbacks = cb_dict.get('event.core.start', [])
@@ -90,6 +94,8 @@ def runtask(task, superclasses=None):
                     scb(task)
         task.run()
         task.on_success()
+        after = time()
+        LOGGER.warn('runtask timing %s: %s', task, round(after - before, 2))
     except Exception as exc:
         task.on_failure(exc)
         raise
@@ -128,6 +134,7 @@ def collect_tasks(TaskClass):
                         tasks.add((obj, ))
     return tasks
 
+
 def cross(orig_list, b_name, b_list):
     result = []
     for orig_dict in orig_list:
@@ -141,6 +148,8 @@ def cross(orig_list, b_name, b_list):
 def collect_meta_wrappers():
     from tasks.util import MetaWrapper
 
+    test_all = os.environ.get('TEST_ALL', '') != ''
+
     tasks = collect_tasks(MetaWrapper)
     for t, in tasks:
         outparams = [{}]
@@ -148,3 +157,5 @@ def collect_meta_wrappers():
             outparams = cross(outparams, key, val)
         for params in outparams:
             yield t, params
+            if not test_all:
+                break
