@@ -282,7 +282,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     query = '''
       DROP TABLE IF EXISTS raster_pap_{tablename_ns};
       CREATE TEMPORARY TABLE raster_pap_{tablename_ns} As
-      SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
+      SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, False)).*
            FROM raster_empty_{tablename_ns} rast,
                 {tablename} vector
            WHERE rast.rast && vector.{colname}
@@ -414,7 +414,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     '''.format(column_id=column_id,
                table_id=table_id)).fetchone()[0]
 
-    assert abs(real_num_geoms - est_num_geoms) / real_num_geoms < 0.25, \
+    assert abs(real_num_geoms - est_num_geoms) / real_num_geoms < 0.05, \
             "Estimate of {} total geoms more than 25% off real {} num geoms " \
             "for column '{}' in table '{}' (tablename '{}')".format(
                 est_num_geoms, real_num_geoms, column_id, table_id, tablename)
@@ -1944,7 +1944,8 @@ class GenerateRasterTiles(Task):
             WHERE table_id = '{table_id}'
               AND column_id = '{column_id}'
         '''.format(table_id=self.table_id, column_id=self.column_id))
-        return resp.fetchone()[0] > 0
+        numrows = resp.fetchone()[0]
+        return numrows > 0
 
 
 class GenerateAllRasterTiles(WrapperTask):
