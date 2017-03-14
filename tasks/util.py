@@ -415,7 +415,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                table_id=table_id)).fetchone()[0]
 
     assert abs(real_num_geoms - est_num_geoms) / real_num_geoms < 0.05, \
-            "Estimate of {} total geoms more than 25% off real {} num geoms " \
+            "Estimate of {} total geoms more than 5% off real {} num geoms " \
             "for column '{}' in table '{}' (tablename '{}')".format(
                 est_num_geoms, real_num_geoms, column_id, table_id, tablename)
 
