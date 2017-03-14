@@ -13,7 +13,8 @@ from luigi import Task, BooleanParameter, Target, Event
 
 from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric, cast,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
-                        ForeignKeyConstraint, Table, exc, func, UniqueConstraint)
+                        ForeignKeyConstraint, Table, exc, func, UniqueConstraint,
+                        Index)
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
@@ -724,6 +725,25 @@ class OBSColumnTableTile(Base):
         ('obs_column_table.table_id', 'obs_column_table.column_id', ),
         ondelete='cascade'
     )
+
+
+class OBSColumnTableTileSimple(Base):
+    '''
+    This table contains column/table summary data using raster tiles.
+    '''
+    __tablename__ = 'obs_column_table_tile_simple'
+
+    table_id = Column(Text, primary_key=True)
+    column_id = Column(Text, primary_key=True)
+    tile_id = Column(Integer, primary_key=True)
+
+    tile = Column(Raster)
+
+    tct_constraint = UniqueConstraint(table_id, column_id, tile_id,
+                                      name='obs_column_table_tile_simple_tct')
+    cvxhull_restraint = Index('obs_column_table_simple_chtile',
+                              func.ST_ConvexHull(tile),
+                              postgresql_using='gist')
 
 
 class CurrentSession(object):

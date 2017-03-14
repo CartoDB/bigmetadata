@@ -236,6 +236,14 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     Add entries to obs_column_table_tile for the given table and column.
     '''
     tablename_ns = tablename.split('.')[-1]
+
+    query = '''
+        DELETE FROM observatory.obs_column_table_tile_simple
+        WHERE table_id = '{table_id}'
+          AND column_id = '{column_id}';'''.format(
+              table_id=table_id, column_id=column_id)
+    resp = session.execute(query)
+
     query = '''
         DELETE FROM observatory.obs_column_table_tile
         WHERE table_id = '{table_id}'
@@ -383,19 +391,14 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
        ; '''.format(table_id=table_id, column_id=column_id,
                     colname=colname, tablename=tablename))
     resp = session.execute('''
-       DROP TABLE IF EXISTS observatory.obs_column_table_tile_simple;
-       CREATE TABLE observatory.obs_column_table_tile_simple AS
+       INSERT INTO observatory.obs_column_table_tile_simple
        SELECT table_id, column_id, tile_id, ST_Reclass(
          ST_Band(tile, ARRAY[2, 3]),
          ROW(2, '[0-1]::0-255, (1-100]::255-255', '8BUI', 0)::reclassarg
        ) AS tile
-       FROM observatory.obs_column_table_tile ;
-
-       CREATE UNIQUE INDEX ON observatory.obs_column_table_tile_simple
-       (table_id, column_id, tile_id);
-
-       CREATE INDEX ON observatory.obs_column_table_tile_simple USING GIST
-       (ST_ConvexHull(tile));
+       FROM observatory.obs_column_table_tile
+       WHERE table_id='{table_id}'
+         AND column_id='{column_id}';
        '''.format(table_id=table_id, column_id=column_id,
                   colname=colname, tablename=tablename))
 
@@ -1946,10 +1949,12 @@ class GenerateRasterTiles(Task):
 
 class GenerateAllRasterTiles(WrapperTask):
 
+    force = BooleanParameter(default=False, significant=False)
+
     def requires(self):
         session = current_session()
         resp = session.execute('''
-            SELECT table_id, column_id
+            SELECT DISTINCT table_id, column_id
             FROM observatory.obs_table t,
                  observatory.obs_column_table ct,
                  observatory.obs_column c
@@ -1958,7 +1963,8 @@ class GenerateAllRasterTiles(WrapperTask):
               AND c.type ILIKE 'geometry%'
         ''')
         for table_id, column_id in resp:
-            yield GenerateRasterTiles(table_id=table_id, column_id=column_id)
+            yield GenerateRasterTiles(table_id=table_id, column_id=column_id,
+                                      force=self.force)
 
 
 class MetaWrapper(WrapperTask):

@@ -1,11 +1,13 @@
 from collections import OrderedDict
 from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
-                        assert_is_none, assert_true, assert_false)
+                        assert_is_none, assert_true, assert_false,
+                        assert_almost_equals)
 from tests.util import runtask, session_scope, setup, teardown, FakeTask
 
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
-                        TableTarget, TagTarget, TagsTask, PostgresTarget)
+                        TableTarget, TagTarget, TagsTask, PostgresTarget,
+                        generate_tile_summary)
 from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
 
@@ -407,3 +409,64 @@ def test_postgres_target_existencess():
     assert_equals(target._existenceness(), 2)
     assert_equals(target.empty(), False)
     assert_equals(target.exists(), True)
+
+
+def fake_table_for_rasters(geometries):
+    session = current_session()
+    table_id = 'foo_table'
+    column_id = 'foo_column'
+    tablename = 'observatory.foo'
+    colname = 'the_geom'
+    session.execute('''
+        CREATE TABLE {tablename} ({colname} geometry(geometry, 4326))
+    '''.format(tablename=tablename, colname=colname))
+    session.execute('''
+        INSERT INTO {tablename} ({colname}) VALUES {geometries}
+    '''.format(tablename=tablename, colname=colname,
+               geometries=', '.join(["(ST_SetSRID('{}'::geometry, 4326))".format(g) for g in geometries])
+              ))
+    session.execute('''
+        INSERT INTO observatory.obs_table (id, tablename, version, the_geom)
+        SELECT '{table_id}', '{tablename}', 1,
+                (SELECT ST_SetSRID(ST_Extent({colname}), 4326) FROM {tablename})
+    '''.format(table_id=table_id, tablename=tablename, colname=colname))
+    generate_tile_summary(session, table_id, column_id, tablename, colname)
+    session.commit()
+
+
+@with_setup(setup, teardown)
+def test_generate_tile_summary_singlegeom():
+    '''
+    generate_tile_summary should handle a single geometry properly.
+    '''
+    fake_table_for_rasters([
+        'POLYGON((0 0, 10 0, 10 10, 0 10, 0 0))'
+    ])
+    session = current_session()
+    assert_almost_equals(session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 2, false)).sum
+        FROM observatory.obs_column_table_tile
+    ''').fetchone()[0], 1, 1)
+    assert_almost_equals(session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
+        FROM observatory.obs_column_table_tile_simple
+    ''').fetchone()[0], 1, 1)
+
+
+@with_setup(setup, teardown)
+def test_generate_tile_summary_thousandgeom():
+    '''
+    generate_tile_summary should handle 1000 geometries properly.
+    '''
+    fake_table_for_rasters(100 * [
+        'POLYGON((0 0, 10 0, 10 10, 0 10, 0 0))'
+    ])
+    session = current_session()
+    assert_almost_equals(session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 2, false)).sum
+        FROM observatory.obs_column_table_tile
+    ''').fetchone()[0], 100, 1)
+    assert_almost_equals(session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
+        FROM observatory.obs_column_table_tile_simple
+    ''').fetchone()[0], 100, 1)
