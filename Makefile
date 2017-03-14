@@ -123,6 +123,13 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
+ifeq (run-parallel,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "run"
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(RUN_ARGS):;@:)
+endif
+
 .PHONY: run run-parallel catalog docs carto restore dataservices-api
 
 run:
@@ -205,7 +212,8 @@ etl-unittest:
 etl-metadatatest:
 	docker-compose run --rm bigmetadata /bin/bash -c \
 	  'while : ; do pg_isready -t 1 && break; done && \
-	  TEST_MODULE=tasks.$(MODULE) PGDATABASE=test nosetests -v \
+	  TEST_ALL=$(ALL) TEST_MODULE=tasks.$(MODULE) \
+	  PGDATABASE=test nosetests -v --with-timer \
 	    tests/test_metadata.py'
 
 travis-etl-unittest:

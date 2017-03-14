@@ -239,7 +239,8 @@ class QCEW(TableTask):
         columns = self.columns()
         colnames = columns.keys()
         select_colnames = []
-        for naics_code, naics_columns in self.input()['naics'].iteritems():
+        input_ = self.input()
+        for naics_code, naics_columns in input_['naics'].iteritems():
             for colname in naics_columns.keys():
                 select_colnames.append('''MAX(CASE
                     WHEN industry_code = '{naics_code}' THEN {colname} ELSE NULL
@@ -251,7 +252,7 @@ class QCEW(TableTask):
                     FROM {input}
                     GROUP BY area_fips '''.format(
                         output=self.output().table,
-                        input=self.input()['data'].table,
+                        input=input_['data'].table,
                         colnames=', '.join(colnames),
                         select_colnames=', '.join(select_colnames),
                     )
