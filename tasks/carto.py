@@ -776,6 +776,10 @@ class Dump(Task):
                 output=self.output().path))
         except Exception as err:
             session.rollback()
+            session.execute(
+                'DELETE FROM observatory.obs_dump_version '
+                "WHERE dump_id =  '{task_id}'".format(task_id=self.task_id))
+            session.commit()
             raise err
 
     def output(self):
