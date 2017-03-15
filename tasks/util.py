@@ -256,26 +256,27 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
         CREATE TEMPORARY TABLE raster_empty_{tablename_ns} AS
         SELECT ROW_NUMBER() OVER () AS id, rast FROM (
           WITH tilesize AS (SELECT
-            CASE WHEN ST_Area(the_geom) > 5000 THEN 250
-                 ELSE 50 END AS tilesize
-            FROM observatory.obs_table
-            WHERE id = '{table_id}'
+            CASE WHEN SUM(ST_Area({colname})) > 5000 THEN 250
+                 ELSE 50 END AS tilesize,
+            ST_SetSRID(ST_Extent({colname}), 4326) extent
+            FROM {tablename}
           ) SELECT ST_Tile(ST_AsRaster(
-            the_geom,
-            (st_xmax(st_transform(the_geom, 3857))
-              - st_xmin(st_transform(the_geom, 3857)))::INT
+            extent,
+            (st_xmax(st_transform(extent, 3857))
+              - st_xmin(st_transform(extent, 3857)))::INT
                               / (tilesize * 1000),
-            (st_ymax(st_transform(the_geom, 3857))
-              - st_ymin(st_transform(the_geom, 3857)))::INT
+            (st_ymax(st_transform(extent, 3857))
+              - st_ymin(st_transform(extent, 3857)))::INT
                               / (tilesize * 1000),
             0, 0, ARRAY['32BF', '32BF', '32BF'],
             ARRAY[-1, -1, -1],
             ARRAY[0, 0, 0]
           ), ARRAY[1, 2, 3], 25, 25) rast
-          FROM observatory.obs_table, tilesize
-          WHERE id = '{table_id}'
+          FROM tilesize
           ) foo;
-        '''.format(table_id=table_id, tablename_ns=tablename_ns)
+        '''.format(colname=colname,
+                   tablename=tablename,
+                   tablename_ns=tablename_ns)
     resp = session.execute(query)
     assert resp.rowcount > 0
 
@@ -403,7 +404,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                   colname=colname, tablename=tablename))
 
     real_num_geoms = session.execute('''
-        SELECT COUNT(*) FROM {tablename}
+        SELECT COUNT(the_geom) FROM {tablename}
     '''.format(tablename=tablename)).fetchone()[0]
 
     est_num_geoms = session.execute('''
