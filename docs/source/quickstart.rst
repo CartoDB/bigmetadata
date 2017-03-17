@@ -45,13 +45,26 @@ docker (which is equivalent to root) privileges:
 
 Then log out, and log in.
 
-.. caution::
+Start
+-----
 
-   On Docker for Mac, it's not possible to link a local volume into Postgres.
-   You'll need to comment out the line
-   ``"./postgres/data:/var/lib/postgresql"`` in ``docker-compose.yml`` in
-   order to get the ``postgres`` container running.  However, this also means
-   you'll lose data if you rebuild the ``postgres`` container.
+Before running tasks the first time, you'll need to download and start the
+containers.
+
+.. code:: shell
+
+  docker-compose up -d
+
+Once the containers are up, you need to confirm that the Postgres container has
+started.
+
+.. code:: shell
+
+  make psql
+
+This will attempt to launch into an interactive session with the container
+Postgres.  If it doesn't work, wait a little bit and try again.  The database
+takes some time to get running initially.
 
 Run
 ---
