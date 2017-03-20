@@ -3,6 +3,7 @@ from tasks.util import (Shp2TempTableTask, DownloadUnzipTask, shell, TableTask,
                         ColumnsTask,MetaWrapper)
 from tasks.poi import POIColumns
 from tasks.us.ny.nyc.columns import NYCColumns
+from tasks.us.ny.nyc.tags import NYCTags
 
 from luigi import Parameter
 
@@ -40,18 +41,19 @@ class MapPLUTOColumns(ColumnsTask):
 
     def requires(self):
         return {
-            'nyc': NYCColumns()
+            'tags': NYCTags(),
         }
 
     def version(self):
-        return 2
+        return 5
 
     def columns(self):
-        nyc = self.input()['nyc']
+        input_ = self.input()
         cols = OrderedDict([
             ("zonedist1", OBSColumn(
                 type="Text",
                 name='Zoning District 1',
+                weight=1,
                 description='''The zoning district classification of the tax
                 lot. If the tax lot is divided by a zoning boundary line,
                 ZoneDist1 represents the primary zoning district classification
@@ -70,6 +72,7 @@ class MapPLUTOColumns(ColumnsTask):
             ("zonedist2", OBSColumn(
                 type="Text",
                 name='Zoning District 2',
+                weight=1,
                 description='''If the tax lot is divided by zoning boundary
                 lines, ZoneDist2 represents the primary zoning classification
                 occupying the second greatest percentage of the tax lot's area.
@@ -77,6 +80,7 @@ class MapPLUTOColumns(ColumnsTask):
                 field is blank.''')),
             ("zonedist3", OBSColumn(
                 type="Text",
+                weight=1,
                 name='Zoning District 3',
                 description='''If the tax lot is divided by zoning boundary
                 lines, ZoneDist3 represents the primary zoning classification
@@ -85,6 +89,7 @@ class MapPLUTOColumns(ColumnsTask):
                 field is blank.''')),
             ("zonedist4", OBSColumn(
                 type="Text",
+                weight=1,
                 name='Zoning District 4',
                 description='''If the tax lot is divided by zoning boundary
                 lines, ZoneDist4 represents the primary zoning classification
@@ -93,37 +98,45 @@ class MapPLUTOColumns(ColumnsTask):
                 field is blank.''')),
             ("overlay1", OBSColumn(
                 type="Text",
+                weight=1,
                 name='Primary Commercial overlay',
                 description='''The commercial overlay assigned to the tax lot.'''
             )),
             ("overlay2", OBSColumn(
                 type="Text",
+                weight=1,
                 name='Secondary Commercial overlay',
                 description="""A commercial overlay associated with the tax lot. """,
             )),
             ("spdist1", OBSColumn(
                 type="text",
+                weight=1,
                 name="Primary special purpose district",
                 description="The special purpose district assigned to the tax lot.")),
             ("spdist2", OBSColumn(
                 type="text",
+                weight=1,
                 name="Secondary special purpose district",
                 description="The special purpose district assigned to the tax lot.")),
             ("spdist3", OBSColumn(
                 type="text",
+                weight=1,
                 name="Third special purpose district",
                 description="The special purpose district assigned to the tax lot.")),
             ("ltdheight", OBSColumn(
                 type="text",
+                weight=1,
                 name="Limited Height district",
                 description="")),
             ("splitzone", OBSColumn(
                 type="text",
+                weight=1,
                 name="Is the tax lot split by a zoning boundary",
                 description="""A code indicating whether the tax lot is split by
                 one or more zoning boundary lines.""")),
             ("bldgclass", OBSColumn(
                 type="text",
+                weight=1,
                 name="Building class",
                 description="""A code describing the major use of structures on
                 the tax lot.""",
@@ -371,6 +384,7 @@ class MapPLUTOColumns(ColumnsTask):
             ),
             ("landuse", OBSColumn(
                 type="text",
+                weight=1,
                 name="Land use category",
                 description="""A code for the tax lot's land use category,
                 modified for display of parks, New York City Department of
@@ -395,202 +409,243 @@ class MapPLUTOColumns(ColumnsTask):
             )),
             ("easements", OBSColumn(
                 type="text",
+                weight=1,
                 name="Easements",
                 description="""The number of easements on the tax lot. If the
                 number is zero, the tax lot has no easement""")),
             ("ownertype", OBSColumn(
                 type="text",
+                weight=1,
                 name="Ownership Type",
                 description="""A code indicating type of ownership for the tax lot.""")),
             ("ownername", OBSColumn(
                 type="text",
+                weight=1,
                 name="Owner name",
                 description="""The name of the owner of the tax lot (from RPAD).""")),
             ("lotarea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Lot Area",
                 description=""" """)),
             ("bldgarea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Building Area",
                 description=""" """)),
             ("comarea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Commercial Area",
                 description=""" """)),
             ("resarea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Residential Area",
                 description=""" """)),
             ("officearea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Office Area",
                 description=""" """)),
             ("retailarea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Retail Area",
                 description=""" """)
             ),
             ("garagearea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Garage Area",
                 description=""" """)
             ),
             ("strgearea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Storage Area",
                 description=""" """)
             ),
             ("factryarea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Factory Area",
                 description=""" """)
             ),
             ("otherarea", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Other Area",
                 description=""" """)
             ),
             ("areasource", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Area source",
                 description=""" """)
             ),
             ("numbldgs", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Number of buildings",
                 description=""" """)
             ),
             ("numfloors", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Floors",
                 description=""" """)
             ),
             ("unitsres", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Residential units",
                 description=""" """)
             ),
             ("unitstotal", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Total units",
                 description=""" """)
             ),
             ("lotfront", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Lot front",
                 description=""" """)
             ),
             ("lotdepth", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Lot depth",
                 description=""" """)
             ),
             ("bldgfront", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Building Front",
                 description=""" """)
             ),
             ("bldgdepth", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Building depth",
                 description=""" """)
             ),
             ("ext", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Has extension",
                 description="""A code identifying whether there is an extension or free
                 standing structure on the lot which is not the primary structure""")
             ),
             ("proxcode", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Proximity code",
                 description="""The physical relationship of the building to neighboring
                 buildings.""")
             ),
             ("irrlotcode", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Irregularly shaped code",
                 description="""A code indicating whether th e tax lot is irregularly shaped""")
             ),
             ("lottype", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Lot type code",
                 description="""A code indicating the location of the tax lot to
                 another tax lot and/or the water.""")
             ),
             ("bsmtcode", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Basement code",
                 description="""A code describing the basement type/grade.""")
             ),
             ("assessland", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Assessed land value",
                 description="""The tentative assessed land value for the upcoming fiscal year""")
             ),
             ("assesstot", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Assessed total value",
                 description="""The tentative assessed total value for the upcoming fiscal year """)
             ),
             ("exemptland", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Exempt land value",
                 description=""" """)
             ),
             ("exempttot", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Exempt total value",
                 description=""" """)
             ),
             ("yearbuilt", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Year built",
                 description=""" """)
             ),
             ("yearalter1", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Year of most recent alteration",
                 description=""" """)
             ),
             ("yearalter2", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Year of second most recent alteration",
                 description=""" """)
             ),
             ("histdist", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Historical district",
                 description=""" """)
             ),
             ("landmark", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Name of landmark",
                 description=""" """)
             ),
             ("builtfar", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Built floor area ratio (FAR)",
                 description=""" """)
             ),
             ("residfar", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Maximum allowable residential floor area ratio (FAR)",
                 description=""" """)
             ),
             ("commfar", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Maximum allowable commercial floor area ratio (FAR)",
                 description=""" """)
             ),
             ("facilfar", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Maximum allowable facilities floor area ratio (FAR)",
                 description=""" """)
             ),
             ("condono", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="Condo number",
                 description=""" """)
             ),
@@ -606,30 +661,36 @@ class MapPLUTOColumns(ColumnsTask):
             ),
             ("zonemap", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Zoning map number",
                 description=""" """)
             ),
             ("zmcode", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Zoning map border code",
                 description=""" """)
             ),
             ("sanborn", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Sanborn map number",
                 description=""" """)
             ),
             ("taxmap", OBSColumn(
                 type="Text",
+                weight=1,
                 name="Department of Finance tax map volume number",
                 description=""" """)
             ),
             ("edesignum", OBSColumn(
                 type="text",
+                weight=1,
                 name="E-Designation number",
                 description="")),
             ("appbbl", OBSColumn(
                 type="text",
+                weight=1,
                 name="Pre-apportionment BBL",
                 description="""The originating Borough, Tax Block and Tax Lot
                 from the apportionment prior to the merge, split or property's
@@ -637,18 +698,22 @@ class MapPLUTOColumns(ColumnsTask):
                 available for mergers, splits and conversions since 1984""")),
             ("appdate", OBSColumn(
                 type="text",
+                weight=1,
                 name="Apportionment date",
                 description="The date of the Apportionment in the format MM/DD/YYYY.")),
             ("plutomapid", OBSColumn(
                 type="Numeric",
+                weight=1,
                 name="PLUTO Map ID",
                 description="")),
             ("version", OBSColumn(
                 type="text",
+                weight=1,
                 name="MapPLUTO version number",
                 description="")),
             ("mappluto_f", OBSColumn(
                 type="text",
+                weight=1,
                 name="MapPLUTO Flag",
                 description="""The Department of Finance's DTM handles
                 condominium lots differently from many other MapPLUTO sources.
@@ -674,21 +739,19 @@ class MapPLUTOColumns(ColumnsTask):
             #    type="Numeric",
             #    name="",
             #    description="")),
-            ("wkb_geometry", OBSColumn(
-                type="Geometry",
-                name="",
-                description="",
-                #sources={
-                #    nyc['bbl']: GEOM_REF
-                #}
-            )),
         ])
         return cols
+
+    def tags(self, input_, col_key, col):
+        return input_['tags']['nyc']
 
 
 class MapPLUTO(TableTask):
 
     release = Parameter()
+
+    def version(self):
+        return 2
 
     def requires(self):
         data = {}
@@ -701,7 +764,6 @@ class MapPLUTO(TableTask):
             'nyc_columns': NYCColumns(),
             'poi_columns': POIColumns(),
         }
-
 
     def columns(self):
         input_ = self.input()
@@ -796,7 +858,7 @@ class MapPLUTO(TableTask):
             ("mappluto_f", pluto["mappluto_f"]),
             #("shape_leng", pluto["shape_leng"]),
             #("shape_area", pluto["shape_area"]),
-            ("wkb_geometry", pluto["wkb_geometry"]),
+            ("wkb_geometry", nyc["parcel"]),
         ])
 
     def timespan(self):
