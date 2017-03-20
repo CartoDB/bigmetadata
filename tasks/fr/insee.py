@@ -249,7 +249,7 @@ class ImportOutputAreas(Shp2TempTableTask):
 class OutputAreaColumns(ColumnsTask):
 
     def version(self):
-        return 2
+        return 4
 
     def requires(self):
         return {
@@ -272,13 +272,28 @@ class OutputAreaColumns(ColumnsTask):
             type='Text',
             name='DCOMIRIS',
             description='Full Code IRIS. Result of the concatenation of DEPCOM and IRIS attributes. ',
-            weight=0,
+            weight=1,
             targets={geom: GEOM_REF}
         )
+        commune_name = OBSColumn(
+            type='Text',
+            name='Name of Commune',
+            description='Name of the commune. ',
+            weight=1,
+        )
+        iris_name = OBSColumn(
+            type='Text',
+            name='Name of IRIS',
+            description='Name of the IRIS. This attribute may possibly be unfilled. For small undivided towns, the name of the IRIS is the name of the commune. ',
+            weight=1,
+        )
+
 
         return OrderedDict([
             ('the_geom', geom),
-            ('dcomiris', geomref)
+            ('dcomiris', geomref),
+            ('nom_com', commune_name),
+            ('nom_iris', iris_name)
         ])
 
 
@@ -305,7 +320,7 @@ class OutputAreas(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT DISTINCT ST_MakeValid(wkb_geometry), DCOMIRIS '
+                        'SELECT DISTINCT ST_MakeValid(wkb_geometry), DCOMIRIS, NOM_COM, NOM_IRIS '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input()['data'].table,
