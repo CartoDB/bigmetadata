@@ -134,6 +134,7 @@ def collect_tasks(TaskClass):
                         tasks.add((obj, ))
     return tasks
 
+
 def cross(orig_list, b_name, b_list):
     result = []
     for orig_dict in orig_list:
@@ -147,6 +148,8 @@ def cross(orig_list, b_name, b_list):
 def collect_meta_wrappers():
     from tasks.util import MetaWrapper
 
+    test_all = os.environ.get('TEST_ALL', '') != ''
+
     tasks = collect_tasks(MetaWrapper)
     for t, in tasks:
         outparams = [{}]
@@ -154,3 +157,5 @@ def collect_meta_wrappers():
             outparams = cross(outparams, key, val)
         for params in outparams:
             yield t, params
+            if not test_all:
+                break
