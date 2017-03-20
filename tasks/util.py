@@ -404,8 +404,9 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                   colname=colname, tablename=tablename))
 
     real_num_geoms = session.execute('''
-        SELECT COUNT(the_geom) FROM {tablename}
-    '''.format(tablename=tablename)).fetchone()[0]
+        SELECT COUNT({colname}) FROM {tablename}
+    '''.format(colname=colname,
+               tablename=tablename)).fetchone()[0]
 
     est_num_geoms = session.execute('''
         SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
@@ -903,6 +904,8 @@ class ColumnsTask(Task):
         # Otherwise, run `columns` (slow!) to generate output
         already_in_session = [obj for obj in session]
         output = OrderedDict()
+
+        input_ = self.input()
         for col_key, col in self.columns().iteritems():
             if not isinstance(col, OBSColumn):
                 raise RuntimeError(
@@ -911,6 +914,11 @@ class ColumnsTask(Task):
             if not col.version:
                 col.version = self.version()
             col.id = '.'.join([classpath(self), col.id or col_key])
+            tags = self.tags(input_, col_key, col)
+            if isinstance(tags, TagTarget):
+                col.tags.append(tags)
+            else:
+                col.tags.extend(tags)
 
             output[col_key] = ColumnTarget(col, self)
         now_in_session = [obj for obj in session]
@@ -953,6 +961,18 @@ class ColumnsTask(Task):
                     version=self.version()
                 )).fetchone()[0]
             return cnt == len(self.colids.values())
+
+    def tags(self, input_, col_key, col):
+        '''
+        Replace with an iterable of :class:`OBSColumn <tasks.meta.OBSColumn>`
+        that should be applied to each column
+
+        :param input_: A saved version of this class's :meth:`input <luigi.Task.input>`
+        :param col_key: The key of the column this will be applied to.
+        :param column: The :class:`OBSColumn <tasks.meta.OBSColumn>` these tags
+                       will be applied to.
+        '''
+        return []
 
 
 class TagsTask(Task):
@@ -1610,8 +1630,9 @@ class TableTask(Task):
             index_type = col.index_type
             if index_type:
                 index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
-                session.execute('CREATE INDEX {index_name} ON {table} '
+                session.execute('CREATE {unique} INDEX IF NOT EXISTS {index_name} ON {table} '
                                 'USING {index_type} ({colname})'.format(
+                                    unique='UNIQUE' if index_type == 'btree' else '',
                                     index_type=index_type,
                                     index_name=index_name,
                                     table=tablename, colname=colname))

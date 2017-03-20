@@ -259,6 +259,52 @@ def test_columns_task_creates_columns_only_when_run():
         assert_equals(session.query(OBSColumnTable).count(), 1)
 
 
+@with_setup(setup, teardown)
+def test_columns_task_with_tags_def_one_tag():
+
+    class TestColumnsTaskWithOneTag(TestColumnsTask):
+
+        def requires(self):
+            return {
+                'tags': TestTagsTask(),
+                'section': SectionTagsTask(),
+            }
+
+        def tags(self, input_, col_key, col):
+            return input_['section']['section']
+
+    task = TestColumnsTaskWithOneTag()
+    runtask(task)
+    output = task.output()
+    for coltarget in output.values():
+        assert_in('section', [t.name for t in coltarget._column.tags],
+                  'Section tag not added from tags method')
+
+
+@with_setup(setup, teardown)
+def test_columns_task_with_tags_def_two_tags():
+
+    class TestColumnsTaskWithTwoTags(TestColumnsTask):
+
+        def requires(self):
+            return {
+                'tags': TestTagsTask(),
+                'section': SectionTagsTask(),
+            }
+
+        def tags(self, input_, col_key, col):
+            return [input_['section']['section'],
+                    input_['section']['subsection']]
+
+    task = TestColumnsTaskWithTwoTags()
+    runtask(task)
+    output = task.output()
+    for coltarget in output.values():
+        assert_in('section', [t.name for t in coltarget._column.tags],
+                  'Section tag not added from tags method')
+        assert_in('subsection', [t.name for t in coltarget._column.tags],
+                  'Subsection tag not added from tags method')
+
 
 class TestTagsTask(TagsTask):
     def tags(self):
@@ -271,6 +317,20 @@ class TestTagsTask(TagsTask):
                    name='Population',
                    type='catalog',
                    description='')
+        ]
+
+
+class SectionTagsTask(TagsTask):
+    def tags(self):
+        return [
+            OBSTag(id='section',
+                   name='section',
+                   type='section',
+                   description=''),
+            OBSTag(id='subsection',
+                   name='subsection',
+                   type='subsection',
+                   description=''),
         ]
 
 
@@ -307,6 +367,31 @@ class TestColumnsTask(ColumnsTask):
                                 }
                                ),
         })
+
+
+class TestColumnsTaskWithTwoTags(TestColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': TestTagsTask(),
+            'section': SectionTagsTask(),
+        }
+
+    def tags(self, input_, col_key, col):
+        return [input_['section']['section'], input_['section']['subsection']]
+
+
+class TestColumnsTaskDependingOnCol(TestColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': TestTagsTask(),
+            'section': SectionTagsTask(),
+        }
+
+    def tags(self, input_, col_key, col):
+        if col_key == 'foobar':
+            return input_['section']['section']
 
 
 class TestTableTask(TableTask):
