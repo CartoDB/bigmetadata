@@ -256,23 +256,31 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
         CREATE TEMPORARY TABLE raster_empty_{tablename_ns} AS
         SELECT ROW_NUMBER() OVER () AS id, rast FROM (
           WITH tilesize AS (SELECT
-            CASE WHEN SUM(ST_Area({colname})) > 5000 THEN 250
-                 ELSE 50 END AS tilesize,
+            CASE WHEN SUM(ST_Area({colname})) > 5000 THEN 2.5
+                 ELSE 0.5 END AS tilesize,
             ST_SetSRID(ST_Extent({colname}), 4326) extent
             FROM {tablename}
-          ) SELECT ST_Tile(ST_AsRaster(
-            extent,
-            (st_xmax(st_transform(extent, 3857))
-              - st_xmin(st_transform(extent, 3857)))::INT
-                              / (tilesize * 1000),
-            (st_ymax(st_transform(extent, 3857))
-              - st_ymin(st_transform(extent, 3857)))::INT
-                              / (tilesize * 1000),
-            0, 0, ARRAY['32BF', '32BF', '32BF'],
-            ARRAY[-1, -1, -1],
-            ARRAY[0, 0, 0]
-          ), ARRAY[1, 2, 3], 25, 25) rast
-          FROM tilesize
+          ), summaries AS (
+            SELECT ST_XMin(extent) xmin, ST_XMax(extent) xmax,
+                   ST_YMin(extent) ymin, ST_YMax(extent) ymax
+            FROM tilesize
+          ) SELECT
+              ST_Tile(ST_SetSRID(
+                ST_AddBand(
+                  ST_MakeEmptyRaster(
+                    ((xmax - xmin) / tilesize)::Integer + 1,
+                    ((ymax - ymin) / tilesize)::Integer + 1,
+                    ((xmin / tilesize)::Integer)::Numeric * tilesize,
+                    ((ymax / tilesize)::Integer)::Numeric * tilesize,
+                    tilesize
+                  ), ARRAY[
+                    (1, '32BF', -1, 0)::addbandarg,
+                    (2, '32BF', -1, 0)::addbandarg,
+                    (3, '32BF', -1, 0)::addbandarg
+                  ])
+              , 4326)
+          , ARRAY[1, 2, 3], 25, 25) rast
+          FROM summaries, tilesize
           ) foo;
         '''.format(colname=colname,
                    tablename=tablename,
