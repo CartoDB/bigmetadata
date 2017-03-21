@@ -2,7 +2,7 @@ from luigi import Task, Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags
 from abc import ABCMeta
 from collections import OrderedDict
@@ -28,6 +28,12 @@ GEOGRAPHY_NAMES = {
     GEO_I: 'Census tracts',
 }
 
+GEOGRAPHY_NAME_SINGULAR = {
+    GEO_M: 'County',
+    GEO_D: 'District',
+    GEO_S: 'Subdistrict',
+}
+
 GEOGRAPHY_DESCS = {
     GEO_D: '',
     GEO_M: '',
@@ -36,10 +42,22 @@ GEOGRAPHY_DESCS = {
 }
 
 GEOGRAPHY_CODES = {
-    GEO_M: 'cd_geocodm',   # eg: 1200203
-    GEO_D: 'cd_geocodd',   # eg: 120020305
-    GEO_S: 'cd_geocods',   # eg: 12002030500
-    GEO_I: 'cd_geocodi',   # eg: 120020305000030
+    GEO_M: 'cd_geocodm',   # Counties eg: 1200203
+    GEO_D: 'cd_geocodd',   # Districts, eg: 120020305
+    GEO_S: 'cd_geocods',   # Subdistricts, eg: 12002030500
+    GEO_I: 'cd_geocodi',   # Census tracts, eg: 120020305000030
+}
+
+GEOGRAPHY_PROPERNAMES = {
+    GEO_M: 'nm_municip',            # Counties eg: 2700102 "Gua Branca"
+    GEO_D: 'nm_distrit',            # Districts, eg: 270010205 "Gua Branca"
+    GEO_S: 'nm_subdist',            # Subdistricts, eg: 27001020500 ""
+    GEO_I: ['nm_micro','nm_meso'],  # Census tracts, eg: 270010205000012 "Serrana do Serto Alagoano", "Serto Alagoana"
+}
+
+REGION_TYPE = {
+    'nm_micro': 'microregion',
+    'nm_meso': 'mesoregion',
 }
 
 # 27 Federative Units
@@ -172,7 +190,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 2
+        return 4
 
     def requires(self):
         return {
@@ -183,6 +201,8 @@ class GeographyColumns(ColumnsTask):
     def columns(self):
         sections = self.input()['sections']
         subsections = self.input()['subsections']
+        cols = OrderedDict()
+
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
@@ -197,11 +217,39 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
-        return OrderedDict([
-            ('geom_id', geom_id),   #
-            ('the_geom', geom),     # the_geom
-        ])
 
+        if self.resolution is not GEO_I:
+            geom_name = OBSColumn(
+                name="Name of the {}".format(GEOGRAPHY_NAMES[self.resolution]),
+                type='Text',
+                weight=1,
+                tags=[sections['br'], subsections['names']],
+                targets={geom: GEOM_NAME}
+            )
+            cols['geom_name'] = geom_name
+        else:
+            for resolution in GEOGRAPHIES:
+                if resolution is not GEO_I:
+                    cols['{}_name'.format(resolution)] = OBSColumn(
+                        name="Name of the {}".format(GEOGRAPHY_NAME_SINGULAR[resolution]),
+                        type='Text',
+                        weight=1,
+                        tags=[sections['br'], subsections['names']],
+                        targets={geom: GEOM_NAME}
+
+                    )
+            for region in GEOGRAPHY_PROPERNAMES[GEO_I]:
+                cols['{}'.format(region)] = OBSColumn(
+                    id="Name of the {}".format(REGION_TYPE[region]),
+                    type='Text',
+                    weight=1,
+                    tags=[sections['br'], subsections['names']],
+                    targets={geom: GEOM_NAME}
+                )
+        cols['geom_id'] = geom_id
+        cols['the_geom'] = geom
+
+        return cols
 
 class Geography(TableTask):
 
@@ -223,18 +271,28 @@ class Geography(TableTask):
         return 2010
 
     def columns(self):
-        return self.input()['columns']
+        cols = OrderedDict()
+        input_ = self.input()
+        for colname, coltarget in input_['columns'].iteritems():
+            cols[colname] = coltarget
+        return cols
 
     def populate(self):
         session = current_session()
         for _, input_ in self.input()['data'].iteritems():
             intable = input_.table
-            session.execute('INSERT INTO {output} '
-                            'SELECT {code} as geom_id, '
-                            '       wkb_geometry as geom '
+            column_targets = self.columns()
+            out_colnames = column_targets.keys()
+            in_columns = ['"{}"::{}'.format(colname, ct.get(session).type)
+                           for colname, ct in column_targets.iteritems()]
+            session.execute('INSERT INTO {output} ({out_colnames}) '
+                            'SELECT {in_columns} '
                             'FROM {input} '.format(
                                 output=self.output().table,
-                                code=GEOGRAPHY_CODES[self.resolution],
+                                out_colnames=', '.join(out_colnames),
+                                in_columns=in_columns,
+                                geo_codes=GEOGRAPHY_CODES[self.resolution],
+                                geo_prop_name=GEOGRAPHY_PROPERNAMES[self.resolution],
                                 input=intable))
 
 
