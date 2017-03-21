@@ -37,6 +37,8 @@ task once for each geography level, year, and month in that year.
 
 A generic example of using a :ref:`luigi.WrapperTask`:
 
+.. code:: python
+
     from luigi import WrapperTask, Task, Parameter
 
     class MyTask(Task):
@@ -75,6 +77,8 @@ parameters, it would be possible to run a task redundantly.
 
 An example of this:
 
+.. code:: python
+
     from tasks.util import DownloadUnzipTask
 
     class MyBadTask(DownloadUnzipTask):
@@ -95,6 +99,8 @@ Use default parameter values sparingly
 
 The above bad practice is easily paired with setting default values for
 parameters.  For example:
+
+.. code:: python
 
     from tasks.util import DownloadUnzipTask
 
@@ -141,6 +147,8 @@ you store a meaningful and unique ``geom_ref`` from the same table.
 
 For example:
 
+.. code:: python
+
     from tasks.util import ColumnsTask
     from tasks.meta import OBSColumn, GEOM_REF
     from luigi import Parameter
@@ -170,6 +178,23 @@ for both the ``geom`` and the ``geomref``.  If the ``+ '+id'`` concatenation
 were missing, it would mean that the metadata model would not properly link
 geomrefs to the geometries they refer to.
 
+Specify section, subsection, source tags and license tags for all columns
+****************************************************
+
+When defining your :ref:`tasks.meta.OBSColumn` objects in
+a :ref:`tasks.util.ColumnsTask` class, make sure each column is assigned
+a :ref:`tasks.util.OBSTag` of ``type``, ``section``, ``subsection``, ``source``,
+and ``license``.  Use shared tags from :ref:`tasks.tags` when possible, in
+particular for ``section`` and ``subsection``.
+
+Specify unit tags for all measure columns
+*****************************************
+
+When defining a :ref:`tasks.meta.OBSColumn` that will hold a measurement, make
+sure to define a ``unit`` using a tag.  This could be something like
+``people``, ``money``, etc.  There are standard units accessible in
+:ref:`tasks.tags`.
+
 Making sure ETL code works right
 --------------------------------
 
@@ -188,11 +213,15 @@ When you use :ref:`run-any-task` to run individual components:
 * Are tables and columns being added to the ``observatory.obs_table`` and
   ``observatory.obs_column`` metadata tables?
 
-Provided :ref:`tasks.util.TableTask` and `tasks.util.ColumnTask` classes were
+Provided :ref:`tasks.util.TableTask` and :ref:`tasks.util.ColumnTask` classes were
 executed, it's wise to jump into the database and check to make sure entries
 were made in those tables.
 
+.. code:: shell
+
     make psql
+
+.. code:: sql
 
     SELECT COUNT(*) FROM observatory.obs_column WHERE id LIKE 'path.to.module.%';
 
@@ -207,7 +236,7 @@ Delete old data to start from scratch to make sure everything works
 
 When using the proper utility classes, your data on disk, for example from
 downloads that are part of the ETL, will be saved to a file or folder
-`tmp/module.name/ClassName_Args`.
+``tmp/module.name/ClassName_Args``.
 
 In order to make sure the ETL is reproduceable, it's wise to delete this
 folder or move it to another location after development, and re-run to make
@@ -219,4 +248,248 @@ Making sure metadata works right
 Checking the metadata works right is one of the more challenging components of
 QA'ing new ETL code.
 
+Regenerate the ``obs_meta`` table
+*********************************
 
+The ``obs_meta`` table is a denormalized view of the underlying :ref:`metadata` 
+objects that you've created when running tasks.
+
+You can force the regeneration of this table using
+:ref:`tasks.carto.OBSMetaToLocal`
+
+.. code:: shell
+
+    make -- run carto OBSMetaToLocal
+
+Once the table is generated, you can take a look at it in SQL:
+
+.. code:: shell
+
+    make psql
+
+If the metadata is working correctly, you should have more entries in
+``obs_meta`` than before.  If you were starting from nothing, there should be
+more than 0 rows in the table.
+
+.. code:: sql
+
+    SELECT COUNT(*) FROM observatory.obs_meta;
+
+If you already had data, you can filter ``obs_meta`` to look for new rows with
+a schema corresponding to what you added.  For example, if you added metadata
+columns and tables in ``tasks/mx/inegi``, you should look for columns with that
+schema:
+
+.. code:: sql
+
+    SELECT COUNT(*) FROM observatory.obs_meta WHERE numer_id LIKE 'mx.inegi.%';
+
+If nothing is appearing in ``obs_meta``, chances are you are missing some
+metadata:
+
+Have you defined and executed a proper :ref:`tasks.util.TableTask`?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can check to see if these links exist by checking ``obs_column_table``:
+
+.. code:: shell
+
+    make psql
+
+.. code:: sql
+
+    SELECT COUNT(*) FROM observatory.obs_column_table
+    WHERE column_id LIKE 'my.schema.%'
+      AND table_id LIKE 'my.schema.%';
+
+If they don't exist, make sure that your Python code roughly corresponds to:
+
+.. code:: python
+
+    from tasks.util import ColumnsTask, TableTask
+
+    class MyColumnsTask(ColumnsTask):
+
+        def columns(self):
+            # Return OrderdDict of columns here
+
+    class MyTableTask(TableTask):
+
+        def timespan(self):
+            # Return timespan here
+
+        def requires(self):
+            return {
+                'columns': MyColumnsTask()
+             }
+
+        def columns(self):
+            return self.input()['columns']
+
+        def populate(self):
+            # Populate the output table here
+
+Unless the :ref:`TableTask` returns some of the columns from :ref:`ColumnsTask`
+in its own ``columns`` method, the links will not be initialized properly.
+
+Finally, double check that you actually ran the :ref:`TableTask` using ``make
+-- run my.schema MyTableTask``.
+
+Are you defining ``geom_ref`` relationships properly?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In cases where a :ref:`TableTask` does not have its own geometries, at least
+one of the columns returned from its ``columns`` method needs to be in
+a ``geom_ref`` relationship.  Here's an example:
+
+.. code:: python
+
+    from collections import OrderedDict
+
+    from tasks.util import ColumnsTask, TableTask
+    from tasks.meta import OBSColumn, GEOM_REF
+
+    class MyGeoColumnsTask(ColumnsTask):
+        def columns(self):
+
+            geom = OBSColumn(
+              type='Geometry')
+
+            geomref = OBSColumn(
+              type='Text',
+              targets={geom: GEOM_REF})
+
+            return OrderedDict([
+              ('geom', geom),
+              ('geomref', geomref)
+            ])
+
+    class MyColumnsTask(ColumnsTask):
+
+        def columns(self):
+            # Return OrderdDict of columns here
+
+    class MyTableTask(TableTask):
+
+        def timespan(self):
+            # Return timespan here
+
+        def requires(self):
+            return {
+                'geom_columns': MyGeoColumnsTask(),
+                'data_columns': MyColumnsTask()
+             }
+
+        def columns(self):
+            cols = OrderedDict()
+            cols['geomref'] = self.input()['geom_columns']['geomref']
+            cols.update(self.input()['data_columns'])
+            return cols
+
+        def populate(self):
+            # Populate the output table here
+
+The above code would ensure that all columns existing inside ``MyTableTask``
+would be appropriately linked to any geometries that connect to ``geomref``.
+
+Do you have both the data and geometries in your table?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can check by running:
+
+.. code:: sql
+
+    SELECT * FROM observatory.obs_table
+    WHERE id LIKE 'my.schema.%';
+
+If there is only one table and it has a null "the_geom" boundary,
+then you are missing a geometry table. For example:
+
+.. code:: sql
+
+   SELECT * from observatory.obs_table
+   WHERE id LIKE 'es.ine.five_year_population%';
+
+.. code:: shell
+
+                      id                   |                  tablename                   | timespan | the_geom | description | version 
+   ----------------------------------------+----------------------------------------------+----------+----------+-------------+---------
+    es.ine.five_year_population_99914b932b | obs_24b656e9e23d1dac2c8ab5786a388f9bf0f4e5ae | 2015     |          |             |       5
+   (1 row)
+
+Notice that the_geom is empty. You will need to write a second :ref:`TableTask` with the 
+following structure:
+
+.. code:: python
+
+   class Geometry(TableTask):
+
+        def timespan(self):
+            # Return timespan here
+
+        def requires(self):
+           return {
+               'meta': MyGeoColumnsTask(),
+               'data': RawGeometry()
+           }
+
+       def columns(self):
+           return self.input()['meta']
+
+        def populate(self):
+            # Populate the output table here
+
+Regenerate and look at the Catalog
+--------------
+
+Once :ref:`tasks.carto.OBSMetaToLocal` has been run, you can generate the
+catalog.
+
+.. code:: shell
+
+     make catalog
+
+You can view the generated Catalog in a browser window by going to the IP and
+port address for the nginx process. The current processes are shown with
+``docker-compose ps`` or ``make ps``.
+
+1. Are there any nasty typos or missing data?
+
+   * Variable names should be unique, human-readable, and concise. If the
+     variable needs more in-depth definition, this should go in the
+     "description" of the variable.
+
+2. Does the nesting look right?  Are there columns not nested?
+
+   * Variables that are denominators should also have subcolumns of direct
+     nested variables.
+
+   * There may be repetitive nesting if a variable is nested under two
+     denominators, which is fine.
+
+3. Are sources and licenses populated for all measures?
+
+   * A source and license :ref:`tasks.util.OBSTag` must be written for new
+     sources and licenses
+
+4. Is a table with a boundary/timespan matrix appearing beneath each measure?
+
+   * If not, hardcode the sample latitude and longitude in :ref:`tasks.meta.catalog_lonlat`.
+
+
+Upload to a test CARTO server
+--------------
+
+If you set a ``CARTODB_API_KEY`` and ``CARTODB_URL`` in your ``.env`` file, in
+the format:
+
+.. code:: shell
+
+    CARTODB_API_KEY=your_api_key
+    CARTODB_URL=https://username.carto.com
+
+You will now be able to upload your data and metadata to CARTO for previewing.
+
+.. code:: shell
+
+    make sync

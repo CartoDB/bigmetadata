@@ -776,6 +776,10 @@ class Dump(Task):
                 output=self.output().path))
         except Exception as err:
             session.rollback()
+            session.execute(
+                'DELETE FROM observatory.obs_dump_version '
+                "WHERE dump_id =  '{task_id}'".format(task_id=self.task_id))
+            session.commit()
             raise err
 
     def output(self):
@@ -1336,10 +1340,10 @@ class OBSMetaToLocal(OBSMeta):
             for i, q in enumerate(self.QUERIES):
                 before = time.time()
                 query = q.format(obs_meta='observatory.obs_meta_next')
-                LOGGER.info(query)
+                #LOGGER.info(query)
                 session.execute(query)
                 after = time.time()
-                LOGGER.info('time taken: {}'.format(int(after - before)))
+                LOGGER.info('time taken for obs_meta:%s: %s', i, round(after - before, 2))
                 if i == 1:
                     session.commit()
             session.commit()
@@ -1354,14 +1358,14 @@ class OBSMetaToLocal(OBSMeta):
                 before = time.time()
                 session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next_{dimension}'.format(
                     dimension=dimension))
-                for q in queries:
+                for i, q in enumerate(queries):
                     before = time.time()
                     query = q.format(obs_meta='observatory.obs_meta_next_{}'.format(dimension))
-                    LOGGER.info(query)
+                    #LOGGER.info(query)
                     session.execute(query)
                     session.flush()
                     after = time.time()
-                    LOGGER.info('time taken: {}'.format(int(after - before)))
+                    LOGGER.info('time taken for %s:%s: %s', dimension, i, round(after - before, 2))
                 #session.execute('CREATE TABLE observatory.obs_meta_next_{dimension} '
                 #                'AS {select}'.format(
                 #                    dimension=dimension,
@@ -1370,7 +1374,6 @@ class OBSMetaToLocal(OBSMeta):
                 session.execute('CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist '
                                 '(the_geom)'.format(dimension=dimension))
                 after = time.time()
-                LOGGER.info('time taken: {}'.format(int(after - before)))
             session.commit()
         except:
             session.rollback()

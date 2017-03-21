@@ -28,7 +28,7 @@ from sqlalchemy.dialects.postgresql import JSON
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
                         Linestring, OBSColumnTable, OBSTag, current_session,
-                        session_commit, session_rollback)
+                        session_commit, session_rollback, OBSColumnTag)
 
 
 def get_logger(name):
@@ -236,6 +236,14 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     Add entries to obs_column_table_tile for the given table and column.
     '''
     tablename_ns = tablename.split('.')[-1]
+
+    query = '''
+        DELETE FROM observatory.obs_column_table_tile_simple
+        WHERE table_id = '{table_id}'
+          AND column_id = '{column_id}';'''.format(
+              table_id=table_id, column_id=column_id)
+    resp = session.execute(query)
+
     query = '''
         DELETE FROM observatory.obs_column_table_tile
         WHERE table_id = '{table_id}'
@@ -248,33 +256,42 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
         CREATE TEMPORARY TABLE raster_empty_{tablename_ns} AS
         SELECT ROW_NUMBER() OVER () AS id, rast FROM (
           WITH tilesize AS (SELECT
-            CASE WHEN ST_Area(the_geom) > 5000 THEN 250
-                 ELSE 50 END AS tilesize
-            FROM observatory.obs_table
-            WHERE id = '{table_id}'
-          ) SELECT ST_Tile(ST_AsRaster(
-            the_geom,
-            (st_xmax(st_transform(the_geom, 3857))
-              - st_xmin(st_transform(the_geom, 3857)))::INT
-                              / (tilesize * 1000),
-            (st_ymax(st_transform(the_geom, 3857))
-              - st_ymin(st_transform(the_geom, 3857)))::INT
-                              / (tilesize * 1000),
-            0, 0, ARRAY['32BF', '32BF', '32BF'],
-            ARRAY[-1, -1, -1],
-            ARRAY[0, 0, 0]
-          ), ARRAY[1, 2, 3], 25, 25) rast
-          FROM observatory.obs_table, tilesize
-          WHERE id = '{table_id}'
+            CASE WHEN SUM(ST_Area({colname})) > 5000 THEN 2.5
+                 ELSE 0.5 END AS tilesize,
+            ST_SetSRID(ST_Extent({colname}), 4326) extent
+            FROM {tablename}
+          ), summaries AS (
+            SELECT ST_XMin(extent) xmin, ST_XMax(extent) xmax,
+                   ST_YMin(extent) ymin, ST_YMax(extent) ymax
+            FROM tilesize
+          ) SELECT
+              ST_Tile(ST_SetSRID(
+                ST_AddBand(
+                  ST_MakeEmptyRaster(
+                    ((xmax - xmin) / tilesize)::Integer + 1,
+                    ((ymax - ymin) / tilesize)::Integer + 1,
+                    ((xmin / tilesize)::Integer)::Numeric * tilesize,
+                    ((ymax / tilesize)::Integer)::Numeric * tilesize,
+                    tilesize
+                  ), ARRAY[
+                    (1, '32BF', -1, 0)::addbandarg,
+                    (2, '32BF', -1, 0)::addbandarg,
+                    (3, '32BF', -1, 0)::addbandarg
+                  ])
+              , 4326)
+          , ARRAY[1, 2, 3], 25, 25) rast
+          FROM summaries, tilesize
           ) foo;
-        '''.format(table_id=table_id, tablename_ns=tablename_ns)
+        '''.format(colname=colname,
+                   tablename=tablename,
+                   tablename_ns=tablename_ns)
     resp = session.execute(query)
     assert resp.rowcount > 0
 
     query = '''
       DROP TABLE IF EXISTS raster_pap_{tablename_ns};
       CREATE TEMPORARY TABLE raster_pap_{tablename_ns} As
-      SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
+      SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, False)).*
            FROM raster_empty_{tablename_ns} rast,
                 {tablename} vector
            WHERE rast.rast && vector.{colname}
@@ -299,7 +316,12 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     query = '''
       DROP TABLE IF EXISTS raster_vals_{tablename_ns};
       CREATE TEMPORARY TABLE raster_vals_{tablename_ns} AS
-      WITH vector AS (SELECT ST_SimplifyVW({colname}, 0.0005) the_geom
+      WITH vector AS (SELECT CASE
+                        WHEN ST_GeometryType({colname}) IN ('ST_Polygon', 'ST_MultiPolygon')
+                          THEN ST_CollectionExtract(ST_MakeValid(
+                                 ST_SimplifyVW({colname}, 0.0005)), 3)
+                          ELSE {colname}
+                        END the_geom
                       FROM {tablename} vector)
       SELECT id
              , (null::geometry, null::numeric)::geomval median
@@ -311,9 +333,9 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                    ST_Length({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                        ST_Length(vector.the_geom)
                  ELSE
-                   CASE WHEN geom @ vector.the_geom THEN
+                   CASE WHEN ST_Within(geom, vector.the_geom) THEN
                              ST_Area(geom) / ST_Area(vector.the_geom)
-                        WHEN vector.the_geom @ geom THEN 1
+                        WHEN ST_Within(vector.the_geom, geom) THEN 1
                         ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                              ST_Area(vector.the_geom)
                    END
@@ -378,22 +400,34 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
        ; '''.format(table_id=table_id, column_id=column_id,
                     colname=colname, tablename=tablename))
     resp = session.execute('''
-       DROP TABLE IF EXISTS observatory.obs_column_table_tile_simple;
-       CREATE TABLE observatory.obs_column_table_tile_simple AS
+       INSERT INTO observatory.obs_column_table_tile_simple
        SELECT table_id, column_id, tile_id, ST_Reclass(
          ST_Band(tile, ARRAY[2, 3]),
-         ROW(1, '[0-65535]::0-65535, [65536-4294967296::65535-65535', '16BUI', 0)::reclassarg,
          ROW(2, '[0-1]::0-255, (1-100]::255-255', '8BUI', 0)::reclassarg
        ) AS tile
-       FROM observatory.obs_column_table_tile ;
-
-       CREATE UNIQUE INDEX ON observatory.obs_column_table_tile_simple
-       (table_id, column_id, tile_id);
-
-       CREATE INDEX ON observatory.obs_column_table_tile_simple USING GIST
-       (ST_ConvexHull(tile));
+       FROM observatory.obs_column_table_tile
+       WHERE table_id='{table_id}'
+         AND column_id='{column_id}';
        '''.format(table_id=table_id, column_id=column_id,
-                    colname=colname, tablename=tablename))
+                  colname=colname, tablename=tablename))
+
+    real_num_geoms = session.execute('''
+        SELECT COUNT({colname}) FROM {tablename}
+    '''.format(colname=colname,
+               tablename=tablename)).fetchone()[0]
+
+    est_num_geoms = session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
+        FROM observatory.obs_column_table_tile_simple
+        WHERE column_id = '{column_id}'
+          AND table_id = '{table_id}'
+    '''.format(column_id=column_id,
+               table_id=table_id)).fetchone()[0]
+
+    assert abs(real_num_geoms - est_num_geoms) / real_num_geoms < 0.05, \
+            "Estimate of {} total geoms more than 5% off real {} num geoms " \
+            "for column '{}' in table '{}' (tablename '{}')".format(
+                est_num_geoms, real_num_geoms, column_id, table_id, tablename)
 
 
 class PostgresTarget(Target):
@@ -715,42 +749,43 @@ class TableTarget(Target):
 
         colinfo = {}
 
-        postgres_max_cols = 1664
-        query_width = 7
-        maxsize = postgres_max_cols / query_width
-        for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
-            select = []
-            for i, colname_coltarget in enumerate(group):
-                if colname_coltarget is None:
-                    continue
-                colname, coltarget = colname_coltarget
-                col = coltarget.get(session)
-                coltype = col.type.lower()
-                i = i + (groupnum * maxsize)
-                if coltype == 'numeric':
-                    select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                                  'max({colname}) col{i}_max, '
-                                  'min({colname}) col{i}_min, '
-                                  'avg({colname}) col{i}_avg, '
-                                  'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
-                                  'mode() within group (order by {colname}) col{i}_mode, '
-                                  'stddev_pop({colname}) col{i}_stddev'.format(
-                                      i=i, colname=colname.lower()))
-                elif coltype == 'geometry':
-                    select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                                  'max(st_area({colname}::geography)) col{i}_max, '
-                                  'min(st_area({colname}::geography)) col{i}_min, '
-                                  'avg(st_area({colname}::geography)) col{i}_avg, '
-                                  'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
-                                  'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
-                                  'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
-                                      i=i, colname=colname.lower()))
+        if not _testmode:
+            postgres_max_cols = 1664
+            query_width = 7
+            maxsize = postgres_max_cols / query_width
+            for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
+                select = []
+                for i, colname_coltarget in enumerate(group):
+                    if colname_coltarget is None:
+                        continue
+                    colname, coltarget = colname_coltarget
+                    col = coltarget.get(session)
+                    coltype = col.type.lower()
+                    i = i + (groupnum * maxsize)
+                    if coltype == 'numeric':
+                        select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                      'max({colname}) col{i}_max, '
+                                      'min({colname}) col{i}_min, '
+                                      'avg({colname}) col{i}_avg, '
+                                      'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
+                                      'mode() within group (order by {colname}) col{i}_mode, '
+                                      'stddev_pop({colname}) col{i}_stddev'.format(
+                                          i=i, colname=colname.lower()))
+                    elif coltype == 'geometry':
+                        select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                      'max(st_area({colname}::geography)) col{i}_max, '
+                                      'min(st_area({colname}::geography)) col{i}_min, '
+                                      'avg(st_area({colname}::geography)) col{i}_avg, '
+                                      'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
+                                      'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
+                                      'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
+                                          i=i, colname=colname.lower()))
 
-            if select:
-                stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
-                    select=', '.join(select), output=self.table)
-                resp = session.execute(stmt)
-                colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
+                if select:
+                    stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
+                        select=', '.join(select), output=self.table)
+                    resp = session.execute(stmt)
+                    colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
@@ -761,49 +796,54 @@ class TableTarget(Target):
             colname = colname.lower()
             col = coltarget.get(session)
 
-            # Column info for obs metadata
-            coltable = session.query(OBSColumnTable).filter_by(
-                column_id=col.id, table_id=obs_table.id).first()
-            if coltable:
-                coltable_existed = True
-                coltable.colname = colname
+            if _testmode:
+                coltable = OBSColumnTable(colname=colname, table=obs_table,
+                                          column=col)
             else:
-                # catch the case where a column id has changed
+                # Column info for obs metadata
                 coltable = session.query(OBSColumnTable).filter_by(
-                    table_id=obs_table.id, colname=colname).first()
+                    column_id=col.id, table_id=obs_table.id).first()
                 if coltable:
                     coltable_existed = True
-                    coltable.column = col
+                    coltable.colname = colname
                 else:
-                    coltable_existed = False
-                    coltable = OBSColumnTable(colname=colname, table=obs_table,
-                                              column=col)
-            # include analysis
-            if col.type.lower() in ('numeric', 'geometry',):
-                # do not include linkage for any column that is 100% null
-                # unless we are in test mode
-                stats = {
-                    'count': colinfo.get('cnt'),
-                    'notnull': colinfo.get('col%s_notnull' % i),
-                    'max': colinfo.get('col%s_max' % i),
-                    'min': colinfo.get('col%s_min' % i),
-                    'avg': colinfo.get('col%s_avg' % i),
-                    'median': colinfo.get('col%s_median' % i),
-                    'mode': colinfo.get('col%s_mode' % i),
-                    'stddev': colinfo.get('col%s_stddev' % i),
-                }
-                if stats['notnull'] == 0 and not _testmode:
-                    if coltable_existed:
-                        session.delete(coltable)
-                    elif coltable in session:
-                        session.expunge(coltable)
-                    continue
-                for k in stats.keys():
-                    if stats[k] is not None:
-                        stats[k] = float(stats[k])
-                coltable.extra = {
-                    'stats': stats
-                }
+                    # catch the case where a column id has changed
+                    coltable = session.query(OBSColumnTable).filter_by(
+                        table_id=obs_table.id, colname=colname).first()
+                    if coltable:
+                        coltable_existed = True
+                        coltable.column = col
+                    else:
+                        coltable_existed = False
+                        coltable = OBSColumnTable(colname=colname, table=obs_table,
+                                                  column=col)
+
+                # include analysis
+                if col.type.lower() in ('numeric', 'geometry',):
+                    # do not include linkage for any column that is 100% null
+                    # unless we are in test mode
+                    stats = {
+                        'count': colinfo.get('cnt'),
+                        'notnull': colinfo.get('col%s_notnull' % i),
+                        'max': colinfo.get('col%s_max' % i),
+                        'min': colinfo.get('col%s_min' % i),
+                        'avg': colinfo.get('col%s_avg' % i),
+                        'median': colinfo.get('col%s_median' % i),
+                        'mode': colinfo.get('col%s_mode' % i),
+                        'stddev': colinfo.get('col%s_stddev' % i),
+                    }
+                    if stats['notnull'] == 0:
+                        if coltable_existed:
+                            session.delete(coltable)
+                        elif coltable in session:
+                            session.expunge(coltable)
+                        continue
+                    for k in stats.keys():
+                        if stats[k] is not None:
+                            stats[k] = float(stats[k])
+                    coltable.extra = {
+                        'stats': stats
+                    }
             session.add(coltable)
 
 
@@ -872,6 +912,8 @@ class ColumnsTask(Task):
         # Otherwise, run `columns` (slow!) to generate output
         already_in_session = [obj for obj in session]
         output = OrderedDict()
+
+        input_ = self.input()
         for col_key, col in self.columns().iteritems():
             if not isinstance(col, OBSColumn):
                 raise RuntimeError(
@@ -880,6 +922,12 @@ class ColumnsTask(Task):
             if not col.version:
                 col.version = self.version()
             col.id = '.'.join([classpath(self), col.id or col_key])
+            tags = self.tags(input_, col_key, col)
+            if isinstance(tags, TagTarget):
+                col.tags.append(tags)
+            else:
+                col.tags.extend(tags)
+
             output[col_key] = ColumnTarget(col, self)
         now_in_session = [obj for obj in session]
         for obj in now_in_session:
@@ -921,6 +969,18 @@ class ColumnsTask(Task):
                     version=self.version()
                 )).fetchone()[0]
             return cnt == len(self.colids.values())
+
+    def tags(self, input_, col_key, col):
+        '''
+        Replace with an iterable of :class:`OBSColumn <tasks.meta.OBSColumn>`
+        that should be applied to each column
+
+        :param input_: A saved version of this class's :meth:`input <luigi.Task.input>`
+        :param col_key: The key of the column this will be applied to.
+        :param column: The :class:`OBSColumn <tasks.meta.OBSColumn>` these tags
+                       will be applied to.
+        '''
+        return []
 
 
 class TagsTask(Task):
@@ -1474,14 +1534,14 @@ class TableTask(Task):
         raise NotImplementedError('Must implement populate method that '
                                    'populates the table')
 
-    def fake_populate(self):
+    def fake_populate(self, output):
         '''
         Put one empty row in the table
         '''
         session = current_session()
         session.execute('INSERT INTO {output} ({col}) VALUES (NULL)'.format(
-            output=self.output().table,
-            col=self.columns().keys()[0]
+            output=output.table,
+            col=self._columns.keys()[0]
         ))
 
     def description(self):
@@ -1534,20 +1594,33 @@ class TableTask(Task):
         return getattr(self, '_test', False)
 
     def run(self):
+        LOGGER.info('getting output()')
+        before = time.time()
         output = self.output()
+        after = time.time()
+        LOGGER.info('time: %s', after - before)
 
-        LOGGER.info('update_create_table')
+        LOGGER.info('update_or_create_table')
+        before = time.time()
         output.update_or_create_table()
+        after = time.time()
+        LOGGER.info('time: %s', after - before)
 
         if self._testmode:
             LOGGER.info('fake_populate')
-            self.fake_populate()
+            before = time.time()
+            self.fake_populate(output)
+            after = time.time()
+            LOGGER.info('time: %s', after - before)
         else:
             LOGGER.info('populate')
             self.populate()
 
+        before = time.time()
         LOGGER.info('update_or_create_metadata')
         output.update_or_create_metadata(_testmode=self._testmode)
+        after = time.time()
+        LOGGER.info('time: %s', after - before)
 
         if not self._testmode:
             LOGGER.info('create_indexes')
@@ -1565,8 +1638,9 @@ class TableTask(Task):
             index_type = col.index_type
             if index_type:
                 index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
-                session.execute('CREATE INDEX {index_name} ON {table} '
+                session.execute('CREATE {unique} INDEX IF NOT EXISTS {index_name} ON {table} '
                                 'USING {index_type} ({colname})'.format(
+                                    unique='UNIQUE' if index_type == 'btree' else '',
                                     index_type=index_type,
                                     index_name=index_name,
                                     table=tablename, colname=colname))
@@ -1600,12 +1674,13 @@ class TableTask(Task):
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
-        return TableTarget(classpath(self),
+        tt = TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
                            OBSTable(description=self.description(),
                                     version=self.version(),
                                     timespan=self.timespan()),
                            self._columns, self)
+        return tt
 
     def complete(self):
         return TableTarget(classpath(self),
@@ -1920,15 +1995,18 @@ class GenerateRasterTiles(Task):
             WHERE table_id = '{table_id}'
               AND column_id = '{column_id}'
         '''.format(table_id=self.table_id, column_id=self.column_id))
-        return resp.fetchone()[0] > 0
+        numrows = resp.fetchone()[0]
+        return numrows > 0
 
 
 class GenerateAllRasterTiles(WrapperTask):
 
+    force = BooleanParameter(default=False, significant=False)
+
     def requires(self):
         session = current_session()
         resp = session.execute('''
-            SELECT table_id, column_id
+            SELECT DISTINCT table_id, column_id
             FROM observatory.obs_table t,
                  observatory.obs_column_table ct,
                  observatory.obs_column c
@@ -1937,7 +2015,8 @@ class GenerateAllRasterTiles(WrapperTask):
               AND c.type ILIKE 'geometry%'
         ''')
         for table_id, column_id in resp:
-            yield GenerateRasterTiles(table_id=table_id, column_id=column_id)
+            yield GenerateRasterTiles(table_id=table_id, column_id=column_id,
+                                      force=self.force)
 
 
 class MetaWrapper(WrapperTask):

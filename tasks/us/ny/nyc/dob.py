@@ -8,6 +8,7 @@ from tasks.meta import current_session, OBSColumn
 from collections import OrderedDict
 
 from tasks.us.ny.nyc.columns import NYCColumns
+from tasks.us.ny.nyc.tags import NYCTags
 from tasks.poi import POIColumns
 from datetime import datetime
 
@@ -111,14 +112,13 @@ class PermitIssuanceXLS2TempTableTask(TempTableTask):
 
 class PermitColumns(ColumnsTask):
 
-    #def requires(self):
-    #    return {
-    #        'nyc': NYCColumns(),
-    #        'poi': POIColumns(),
-    #    }
+    def requires(self):
+        return {
+            'tags': NYCTags(),
+        }
 
     def version(self):
-        return 2
+        return 4
 
     def columns(self):
         #nyc = self.input()['nyc']
@@ -126,38 +126,47 @@ class PermitColumns(ColumnsTask):
         return OrderedDict([
             ('job_num', OBSColumn(
                 type='TEXT',
+                weight=1,
                 name='Department of Buildings Job Number'
             )),
             ('job_doc_num', OBSColumn(
                 type='TEXT',
+                weight=1,
                 name='Department of Buildings Job document number'
             )),
             ('job_type', OBSColumn(
                 type='TEXT',
+                weight=1,
                 name='Job Type'
             )),
             ('self_cert', OBSColumn(
                 type='TEXT',
+                weight=1,
                 name='Self-cert'
             )),
             ('bldg_type', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Building Type',
             )),
             ('residential', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Residential',
             )),
             ('special_dist_1', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Special district 1',
             )),
             ('special_dist_2', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Special district 2',
             )),
             ('work_type', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Work Type',
                 extra={
                     'categories': {
@@ -195,14 +204,17 @@ class PermitColumns(ColumnsTask):
             )),
             ('permit_status', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Permit Status',
             )),
             ('filing_status', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Filing Status',
             )),
             ('permit_type', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Permit Type',
                 extra={
                     'categories': {
@@ -240,11 +252,13 @@ class PermitColumns(ColumnsTask):
             )),
             ('permit_sequence', OBSColumn(
                 type='Numeric',
+                weight=1,
                 name='Permit Sequence Number',
             )),
             ('permit_subtype', OBSColumn(
                 type='Text',
                 name='Permit Subtype',
+                weight=1,
                 extra={
                     'categories': {
                         'BL': 'Boiler',
@@ -281,105 +295,133 @@ class PermitColumns(ColumnsTask):
             )),
             ('oil_gas', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Oil gas',
             )),
             ('site_fill', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Site fill',
             )),
             ('filing_date', OBSColumn(
                 type='Date',
+                weight=1,
                 name='Filing date',
             )),
             ('issuance_date', OBSColumn(
                 type='Date',
+                weight=1,
                 name='Issuance date',
             )),
             ('expiration_date', OBSColumn(
                 type='Date',
+                weight=1,
                 name='Expiration date',
             )),
             ('job_start_date', OBSColumn(
                 type='Date',
+                weight=1,
                 name='Job start date',
             )),
             ('permittee_first_last_name', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Permittee first & last name',
             )),
             ('permittee_business_name', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Permittee business name',
             )),
             ('permittee_phone', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Permittee phone',
             )),
             ('permittee_license_type', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Permittee license type',
             )),
             ('permittee_license_number', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Permittee license number',
             )),
             ('permittee_other_title', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Permittee Other Title',
             )),
             ('acts_as_superintendent', OBSColumn(
                 type='Text',
+                weight=1,
                 name='Acts as superintent',
             )),
             ('hic_license', OBSColumn(
                 type='Text',
+                weight=1,
                 name='HIC License',
             )),
             ('site_safety_mgrs_name', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Site Safety Manager's name",
             )),
             ('site_safety_mgr_business_name', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Site Safety Manager's Business Name",
             )),
             ('superintendent_first_last_name', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Superintendent first & last name",
             )),
             ('superintendent_business_name', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Superintent business name",
             )),
             ('owner_business_type', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Owner's business type",
             )),
             ('non_profit', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Non-Profit",
             )),
             ('owner_business_name', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Owner's business name",
             )),
             ('owner_first_last_name', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Owner's first and last name",
             )),
             ('owner_house_street', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Owner's house street",
             )),
             ('city_state_zip', OBSColumn(
                 type='Text',
+                weight=1,
                 name='City, state and zip',
             )),
             ('owner_phone_number', OBSColumn(
                 type='Text',
+                weight=1,
                 name="Owner's phone number",
             )),
         ])
+
+    def tags(self, input_, col_key, col):
+        return [input_['tags']['nyc']]
 
 
 class PermitIssuance(TableTask):
