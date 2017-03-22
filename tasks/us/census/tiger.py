@@ -70,16 +70,29 @@ class ClippedGeomColumns(ColumnsTask):
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
                 targets={col: 'cartography'},
-                tags=[boundary_type['cartographic_boundary'],sections['united_states'],
+                tags=[sections['united_states'],
                       subsections['boundary'],
                       source, license]
             )
 
-        interpolated_boundaries = ['block_clipped', 'block_group_clipped', 'puma_clipped','census_tract_clipped','county_clipped','state_clipped']
-
-        for clipped_colname, col in cols.iteritems():
-            if clipped_colname in interpolated_boundaries:
+        interpolated_boundaries = ['block_clipped', 'block_group_clipped',
+                                    'puma_clipped','census_tract_clipped',
+                                    'county_clipped','state_clipped']
+        cartographic_boundaries = ['cbsa_clipped',
+                                    'school_district_elementary_clipped',
+                                    'place_clipped',
+                                    'school_district_secondary_clipped',
+                                    'zcta5_clipped',
+                                    'congressional_district_clipped',
+                                    'school_district_unified_clipped',
+                                    'block_clipped', 'block_group_clipped',
+                                    'puma_clipped','census_tract_clipped',
+                                    'county_clipped','state_clipped']
+        for colname, col in cols.iteritems():
+            if colname in interpolated_boundaries:
                 col.tags.append(boundary_type['interpolation_boundary'])
+            if colname in cartographic_boundaries:
+                col.tags.append(boundary_type['cartographic_boundary'])
         return cols
 
 
