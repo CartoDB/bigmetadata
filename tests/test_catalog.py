@@ -1,4 +1,5 @@
-from tests.util import runtask, setup, teardown, collect_meta_wrappers
+from tests.util import runtask, setup, teardown
+from tests.test_metadata import collect_meta_wrappers
 
 from tasks.carto import OBSMetaToLocal
 from tasks.meta import current_session
