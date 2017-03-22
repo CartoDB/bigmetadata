@@ -28,6 +28,19 @@
   * **{{ catname }}**: {{ category.description }}
   {% endfor %}
 {% endif %}
+
+{% if col.is_cartographic() %}
+.. note::
+
+   This boundary is suitable for cartography.
+{% endif %}
+
+{% if col.is_interpolation() %}
+.. note::
+
+   This boundary is suitable for interpolating measurements.
+{% endif %}
+
 {#
 Code example
 #}

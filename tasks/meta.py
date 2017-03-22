@@ -440,6 +440,24 @@ class OBSColumn(Base):
         children.sort(key=lambda x: natural_sort_key(x.name))
         return children
 
+    def is_cartographic(self):
+        '''
+        Returns True if this column is a geometry that can be used for cartography.
+        '''
+        for tag in self.tags:
+            if 'cartographic_boundary' in tag.id:
+                return True
+        return False
+
+    def is_interpolation(self):
+        '''
+        Returns True if this column is a geometry that can be used for interpolation.
+        '''
+        for tag in self.tags:
+            if 'interpolation_boundary' in tag.id:
+                return True
+        return False
+
     def is_geomref(self):
         '''
         Returns True if the column is a geomref, else Null
