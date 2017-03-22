@@ -59,14 +59,6 @@ def test_table_task(klass, params):
     session = current_session()
     assert_greater(session.execute('SELECT COUNT(*) FROM observatory.obs_meta').fetchone()[0], 0)
 
-    assert_greater(session.execute(
-        "SELECT COUNT(*) FROM observatory.obs_meta where geom_tags ? 'boundary_type/tags.interpolation_boundary'"
-    ).fetchone()[0], 0, 'No interpolation boundary found')
-
-    assert_greater(session.execute(
-        "SELECT COUNT(*) FROM observatory.obs_meta where geom_tags ? 'boundary_type/tags.cartographic_boundary'"
-    ).fetchone()[0], 0, 'No cartographic boundary found')
-
     session.execute('DROP TABLE observatory.obs_meta')
     session.execute('DELETE FROM observatory.obs_table')
     session.commit()
