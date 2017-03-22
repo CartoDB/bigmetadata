@@ -1,4 +1,4 @@
-from tests.util import runtask, setup, teardown, collect_meta_wrappers
+from tests.util import runtask, setup, teardown, collect_tasks
 
 from tasks.util import TableTask
 

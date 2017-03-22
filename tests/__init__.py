@@ -7,9 +7,6 @@ recreate_db('test')
 
 from tasks.util import TableTask
 
-# Monkeypatch TableTask
-TableTask._test = True
-
 
 def setup():
     '''
