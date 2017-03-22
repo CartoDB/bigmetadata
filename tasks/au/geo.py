@@ -3,7 +3,7 @@ from luigi import Parameter, WrapperTask
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
 from tasks.meta import GEOM_REF, OBSColumn, current_session
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from collections import OrderedDict
 
 
@@ -110,11 +110,14 @@ class GeographyColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
         sections = self.input()['sections']
         subsections = self.input()['subsections']
+        boundary_type = self.input()['boundary']
+
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
@@ -129,11 +132,27 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
-        return OrderedDict([
+
+        cartographic_boundaries = [GEO_LGA, GEO_POA, GEO_CED, GEO_SED, GEO_SSC,
+                                   GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4,
+                                   GEO_STE, GEO_GCCSA, GEO_UCL,
+                                   GEO_SOS, GEO_SOSR, GEO_SUA, GEO_RA]
+        interpolated_boundaries = [GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4,
+                                   GEO_STE, GEO_GCCSA, GEO_UCL,
+                                   GEO_SOS, GEO_SOSR, GEO_SUA, GEO_RA]
+
+
+        cols =  OrderedDict([
             ('geom_id', geom_id),
             ('the_geom', geom),
         ])
 
+        for colname, col in cols.iteritems():
+            if col.id in interpolated_boundaries:
+                col.tags.append(boundary_type['interpolation_boundary'])
+            if col.id in cartographic_boundaries:
+                col.tags.append(boundary_type['cartographic_boundary'])
+        return cols
 
 class Geography(TableTask):
 
