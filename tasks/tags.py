@@ -215,7 +215,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 21
+        return 23
 
     def tags(self):
         return [
@@ -282,7 +282,7 @@ class SubsectionTags(TagsTask):
             OBSTag(id='business_demography',
                    name='Business Demography',
                    type='subsection',
-                   description = 'Measures of enterprise growth and decline.'),
+                   description='Measures of enterprise growth and decline.'),
             OBSTag(id='segments',
                    name='Population segments',
                    type='subsection',
@@ -303,6 +303,10 @@ class SubsectionTags(TagsTask):
                    name='Roads',
                    type='subsection',
                    description=''),
+            OBSTag(id='names',
+                   name='Proper names',
+                   type='subsection',
+                   description='Proper names for boundaries and other features'),
             OBSTag(id='poi',
                    name='Points of Interest',
                    type='subsection',
