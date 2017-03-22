@@ -12,7 +12,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell, LOGGER,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
                         classpath, PostgresTarget, MetaWrapper)
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 from time import time
 
 
