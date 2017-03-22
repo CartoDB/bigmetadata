@@ -1,4 +1,4 @@
-from tests.util import runtask, setup, teardown, collect_meta_wrappers
+from tests.util import runtask, setup, teardown, collect_tasks
 
 from tasks.util import TableTask
 
@@ -11,6 +11,8 @@ from tasks.util import MetaWrapper, TagsTask, ColumnsTask
 
 from nose_parameterized import parameterized
 from nose.tools import assert_greater, with_setup
+
+import os
 
 
 def cross(orig_list, b_name, b_list):

@@ -143,19 +143,3 @@ def cross(orig_list, b_name, b_list):
             new_dict[b_name] = b_val
             result.append(new_dict)
     return result
-
-
-def collect_meta_wrappers():
-    from tasks.util import MetaWrapper
-
-    test_all = os.environ.get('TEST_ALL', '') != ''
-
-    tasks = collect_tasks(MetaWrapper)
-    for t, in tasks:
-        outparams = [{}]
-        for key, val in t.params.iteritems():
-            outparams = cross(outparams, key, val)
-        for params in outparams:
-            yield t, params
-            if not test_all:
-                break
