@@ -2,7 +2,7 @@ from luigi import Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
@@ -37,6 +37,14 @@ GEOGRAPHY_DESCS = {
     GEO_CD: '',
     GEO_CSD: '',
     GEO_CMA: '',
+}
+
+GEOGRAPHY_PROPERNAMES = {
+    GEO_CT: 'CTNAME',
+    GEO_PR: 'PRNAME',
+    GEO_CD: 'CDNAME',
+    GEO_CSD: 'CSDNAME',
+    GEO_CMA: 'CMANAME',
 }
 
 GEOGRAPHY_CODES = {
@@ -129,8 +137,15 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
+        geom_name = OBSColumn(
+            type='Text',
+            weight=1,
+            targets={geom: GEOM_NAME},
+            tags=[sections['ca'], subsections['names']]
+        )
         geom.tags.extend(boundary_type[i] for i in GEOGRAPHY_TAGS[self.resolution])
         return OrderedDict([
+            ('geom_name', geom_name),
             ('geom_id', geom_id),   # cvegeo
             ('the_geom', geom),     # the_geom
         ])
@@ -160,9 +175,11 @@ class Geography(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT {code}uid as geom_id, '
+                        'SELECT {name} as geom_name '
+                        '       {code}uid as geom_id, '
                         '       wkb_geometry as geom '
                         'FROM {input} '.format(
+                            name=GEOGRAPHY_PROPERNAMES[self.resolution()],
                             output=self.output().table,
                             code=self.resolution.replace('_', ''),
                             input=self.input()['data'].table))
