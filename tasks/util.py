@@ -794,6 +794,7 @@ class TableTarget(Target):
         for i, colname_coltarget in enumerate(self._columns.iteritems()):
             colname, coltarget = colname_coltarget
             colname = colname.lower()
+            # TODO likely optimization would be go get all coltarget columns at once instead of one at a time.
             col = coltarget.get(session)
 
             if _testmode:
@@ -898,16 +899,15 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
-        #if self.deps() and not all([d.complete() for d in self.deps()]):
-        #    raise Exception('Must run prerequisites first')
         session = current_session()
 
         # Return columns from database if the task is already finished
         if hasattr(self, '_colids') and self.complete():
-            return OrderedDict([
-                (colkey, ColumnTarget(session.query(OBSColumn).get(cid), self))
-                for colkey, cid in self.colids.iteritems()
-            ])
+            output = OrderedDict(zip(
+                self.colids.keys(),
+                [ColumnTarget(c, self) for c in session.query(OBSColumn).filter(OBSColumn.id.in_(self.colids.values())).all()]
+            ))
+            return output
 
         # Otherwise, run `columns` (slow!) to generate output
         already_in_session = [obj for obj in session]
@@ -1017,8 +1017,16 @@ class TagsTask(Task):
         return 0
 
     def output(self):
-        #if self.deps() and not all([d.complete() for d in self.deps()]):
-        #    raise Exception('Must run prerequisites first')
+        session = current_session()
+
+        # Return tags from database if the task is already finished
+        if hasattr(self, '_tagids') and self.complete():
+            output = OrderedDict(zip(
+                self.tagids.keys(),
+                [TagTarget(t, self) for t in session.query(OBSTag).filter(OBSTag.id.in_(self.tagids.values())).all()]
+            ))
+            return output
+
         output = {}
         for tag in self.tags():
             orig_id = tag.id
@@ -1027,6 +1035,17 @@ class TagsTask(Task):
                 tag.version = self.version()
             output[orig_id] = TagTarget(tag, self)
         return output
+
+    @property
+    def tagids(self):
+        '''
+        Return tagids for the output tags, this can be cached
+        '''
+        if not hasattr(self, '_tagids'):
+            self._tagids = OrderedDict([
+                (tagkey, tt._id) for tagkey, tt in self.output().iteritems()
+            ])
+        return self._tagids
 
     def complete(self):
         '''
@@ -1037,8 +1056,21 @@ class TagsTask(Task):
         deps = self.deps()
         if deps and not all([d.complete() for d in deps]):
             return False
+        #else:
+        #    return super(TagsTask, self).complete()
         else:
-            return super(TagsTask, self).complete()
+            #_complete = super(ColumnsTask, self).complete()
+            # bulk check that all columns exist at proper version
+            cnt = current_session().execute(
+                '''
+                SELECT COUNT(*)
+                FROM observatory.obs_tag
+                WHERE id IN ('{ids}') AND version = '{version}'
+                '''.format(
+                    ids="', '".join(self.tagids.values()),
+                    version=self.version()
+                )).fetchone()[0]
+            return cnt == len(self.tagids.values())
 
 
 class TableToCartoViaImportAPI(Task):
