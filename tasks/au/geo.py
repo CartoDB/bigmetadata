@@ -161,7 +161,7 @@ class GeographyColumns(ColumnsTask):
             description='',
             weight=1,
             targets={geom: GEOM_NAME},
-            tags=[source, license, sections['au'], subsections['boundary']],
+            tags=[source, license, sections['au'], subsections['names']],
         )
 
         return OrderedDict([
