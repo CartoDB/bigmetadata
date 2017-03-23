@@ -134,6 +134,7 @@ def collect_tasks(TaskClass):
                         tasks.add((obj, ))
     return tasks
 
+
 def cross(orig_list, b_name, b_list):
     result = []
     for orig_dict in orig_list:

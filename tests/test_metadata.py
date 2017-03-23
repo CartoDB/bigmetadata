@@ -1,4 +1,4 @@
-from tests.util import runtask, setup, teardown, collect_tasks
+from tests.util import runtask, setup, teardown, collect_tasks, cross
 
 from tasks.util import TableTask
 
@@ -14,15 +14,6 @@ from nose.tools import assert_greater, with_setup
 
 import os
 
-
-def cross(orig_list, b_name, b_list):
-    result = []
-    for orig_dict in orig_list:
-        for b_val in b_list:
-            new_dict = orig_dict.copy()
-            new_dict[b_name] = b_val
-            result.append(new_dict)
-    return result
 
 def collect_meta_wrappers():
     test_all = os.environ.get('TEST_ALL', '') != ''
