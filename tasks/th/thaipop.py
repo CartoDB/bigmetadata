@@ -33,6 +33,7 @@ class ThaiColumns(ColumnsTask):
         boundaries = inputs['subsections']['boundary']
         thailand = inputs['sections']['th']
         people = inputs['units']['people']
+        names = inputs['subsections']['names']
 
         the_geom = OBSColumn(
             name='District',
@@ -61,6 +62,7 @@ class ThaiColumns(ColumnsTask):
             name='Name of District',
             type='Text',
             weight=5,
+            tags=[thailand, names],
             targets={the_geom: GEOM_NAME},
         )
 
@@ -98,6 +100,6 @@ class ThaiDistricts(TableTask):
                         ))
 
 class ThaiMetaWrapper(MetaWrapper):
-    
+
     def tables(self):
         yield ThaiDistricts()
