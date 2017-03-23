@@ -143,7 +143,7 @@ class GeographyColumns(ColumnsTask):
             targets={geom: GEOM_NAME},
             tags=[sections['ca'], subsections['names']]
         )
-        geom.tags.extend(boundary_type[i] for i in GEOGRAPHY_TAGS[self.resolution])
+
         return OrderedDict([
             ('geom_name', geom_name),
             ('geom_id', geom_id),   # cvegeo
