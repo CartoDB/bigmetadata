@@ -13,7 +13,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask, TagsTask, Carto2TempTableTask
                        )
-from tasks.meta import (OBSColumnTable, OBSColumn, current_session, GEOM_REF, GEOM_NAME
+from tasks.meta import (OBSColumnTable, OBSColumn, current_session, GEOM_REF, GEOM_NAME,
                         OBSColumnTag, OBSTag, OBSColumnToColumn, current_session)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 
