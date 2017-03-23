@@ -1,8 +1,8 @@
 from luigi import Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
-                        ColumnsTask, TableTask)
-from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
+                        ColumnsTask, TableTask, TagsTask)
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag
 from tasks.tags import SectionTags, SubsectionTags
 from collections import OrderedDict
 
@@ -66,6 +66,27 @@ GEOGRAPHY = {
     GEO_RA: {'name': 'Remoteness Areas', 'weight': 1, 'region_col': 'RA_CODE', 'proper_name': 'RA_NAME'},
 }
 
+class SourceTags(TagsTask):
+
+    def tags(self):
+        return [
+            OBSTag(id='au-census',
+                   name='Australian Bureau of Statistics (ABS)',
+                   type='source',
+                   description=u'The `Australian Bureau of Statistics <http://abs.gov.au/websitedbs/censushome.nsf/home/datapacks>`')
+        ]
+
+
+class LicenseTags(TagsTask):
+
+    def tags(self):
+        return [
+            OBSTag(id='au-datapacks-license',
+                   name='Creative Commons Attribution 2.5 Australia licence',
+                   type='license',
+                   description=u'DataPacks is licenced under a `Creative Commons Attribution 2.5 Australia licence <https://creativecommons.org/licenses/by/2.5/au/>`_')
+        ]
+
 
 class DownloadGeography(DownloadUnzipTask):
 
@@ -110,18 +131,22 @@ class GeographyColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags()
         }
 
     def columns(self):
         sections = self.input()['sections']
         subsections = self.input()['subsections']
+        source = self.input()['source']['au-census']
+        license = self.input()['license']['au-datapacks-license']
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
             name=GEOGRAPHY[self.resolution]['name'],
             description='',
             weight=GEOGRAPHY[self.resolution]['weight'],
-            tags=[sections['au'], subsections['boundary']],
+            tags=[source, license, sections['au'], subsections['boundary']],
         )
         geom_id = OBSColumn(
             type='Text',
@@ -136,7 +161,7 @@ class GeographyColumns(ColumnsTask):
             description='',
             weight=1,
             targets={geom: GEOM_NAME},
-            tags=[sections['au'], subsections['boundary']],
+            tags=[source, license, sections['au'], subsections['boundary']],
         )
 
         return OrderedDict([
