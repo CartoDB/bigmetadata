@@ -657,7 +657,7 @@ class Anuario(TableTask):
             geom_ref = sheets[0].row(i)[1].value
             # exclude rows that are for a different resolution
             if 'total c.a.' in geom_name:
-                if self.resolution != 'cca':
+                if self.resolution != 'ccaa':
                     continue
             elif 'total prov.' in geom_name:
                 if self.resolution != 'prov':
@@ -689,7 +689,7 @@ class AnuarioWrapper(MetaWrapper):
     year = Parameter()
 
     params = {
-        'resolution': ['ccaa', 'muni', 'prov'],
+        'resolution': ['muni', 'prov'],
         'year': ['2013']
     }
 

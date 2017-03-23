@@ -22,8 +22,6 @@ class NHSColumns(ColumnsTask):
 
     def columns(self):
         input_ = self.input()
-        license = input_['license']['statcan-license']
-        source = input_['source']['statcan-nhs-2011']
 
         subsections = input_['subsections']
 
@@ -25530,7 +25528,9 @@ class NHSColumns(ColumnsTask):
             ('t029c009_m', t029c009_m),
             ('t029c009_f', t029c009_f),
         ])
-        for colname, col in cols.iteritems():
-            col.tags.append(license)
-            col.tags.append(source)
         return cols
+
+    def tags(self, input_, colkey, col):
+        license = input_['license']['statcan-license']
+        source = input_['source']['statcan-nhs-2011']
+        return [license, source]
