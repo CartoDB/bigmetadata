@@ -3,7 +3,7 @@ from luigi import Parameter, WrapperTask
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
-from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
+from tasks.tags import SectionTags, SubsectionTags
 
 from collections import OrderedDict
 
@@ -190,3 +190,9 @@ class AllGeographies(WrapperTask):
     def requires(self):
         for resolution in GEOGRAPHIES:
             yield Geography(resolution=resolution)
+
+class AllGeographyColumns(WrapperTask):
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            yield GeographyColumns(resolution=resolution)
