@@ -37,7 +37,7 @@ class ThaiColumns(ColumnsTask):
         the_geom = OBSColumn(
             name='District',
             description='Districts in Thailand, also known as amphoes, are '
-            'adminstrative regions analogous to counties that make up the provinces. '
+            'administrative regions analogous to counties that make up the provinces. '
             'There are 878 amphoes in Thailand and '
             '50 urban districts of Bangkok known as khets.',
             type='Geometry',
@@ -98,6 +98,6 @@ class ThaiDistricts(TableTask):
                         ))
 
 class ThaiMetaWrapper(MetaWrapper):
-    
+
     def tables(self):
         yield ThaiDistricts()
