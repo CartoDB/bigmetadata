@@ -322,7 +322,7 @@ class FranceCensus(TableTask):
     table_theme = Parameter()
 
     def version(self):
-        return 9
+        return 8
 
     def timespan(self):
         return '2012'
@@ -372,6 +372,7 @@ class AllGeomsThemesTables(WrapperTask):
         topics = ['population', 'housing', 'education', 'household', 'employment']
         for table_theme in topics:
             yield FranceCensus(table_theme=table_theme)
+
 
 class InseeMetaWrapper(MetaWrapper):
 

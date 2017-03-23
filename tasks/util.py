@@ -11,6 +11,9 @@ import logging
 import sys
 import time
 import re
+import importlib
+import inspect
+
 from hashlib import sha1
 from itertools import izip_longest
 from datetime import date
@@ -2036,3 +2039,64 @@ class MetaWrapper(WrapperTask):
         for t in self.tables():
             assert isinstance(t, TableTask)
             yield t
+
+
+def cross(orig_list, b_name, b_list):
+    result = []
+    for orig_dict in orig_list:
+        for b_val in b_list:
+            new_dict = orig_dict.copy()
+            new_dict[b_name] = b_val
+            result.append(new_dict)
+    return result
+
+
+class RunDiffToMaster(WrapperTask):
+    '''
+    Run MetaWrapper for all tasks that changed compared to master.
+    '''
+
+    def requires(self):
+        resp = shell("git diff master --name-only | grep '^tasks'")
+        for line in resp.split('\n'):
+            if not line:
+                continue
+            module = line.replace('.py', '')
+            LOGGER.info(module)
+            for task_klass, params in collect_meta_wrappers(test_module=module, test_all=True):
+                yield task_klass(**params)
+
+
+def collect_tasks(task_klass, test_module=None):
+    '''
+    Returns a set of task classes whose parent is the passed `TaskClass`.
+
+    Can limit to scope of tasks within module.
+    '''
+    tasks = set()
+    for dirpath, _, files in os.walk('tasks'):
+        for filename in files:
+            if test_module:
+                if not os.path.join(dirpath, filename).startswith(test_module):
+                    continue
+            if filename.endswith('.py'):
+                modulename = '.'.join([
+                    dirpath.replace(os.path.sep, '.'),
+                    filename.replace('.py', '')
+                ])
+                module = importlib.import_module(modulename)
+                for _, obj in inspect.getmembers(module):
+                    if inspect.isclass(obj) and issubclass(obj, task_klass) and obj != task_klass:
+                        tasks.add((obj, ))
+    return tasks
+
+
+def collect_meta_wrappers(test_module=None, test_all=True):
+    for t, in collect_tasks(MetaWrapper, test_module=test_module):
+        outparams = [{}]
+        for key, val in t.params.iteritems():
+            outparams = cross(outparams, key, val)
+        for params in outparams:
+            yield t, params
+            if not test_all:
+                break

@@ -345,7 +345,7 @@ class CensusWrapper(MetaWrapper):
     table = Parameter()
 
     params = {
-        'resolution': RESOLUTIONS,
+        'resolution': set(RESOLUTIONS) - set(['servicios_area']),
         'table': DEMOGRAPHIC_TABLES.keys()
     }
 
