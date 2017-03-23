@@ -39,8 +39,8 @@ RESDESCS = {
 RESTAGS = {
     'ageb': ['cartographic_boundary', 'interpolation_boundary'],
     'entidad': ['cartographic_boundary', 'interpolation_boundary'],
-    'localidad_rural_no_amanzanada': ['cartographic_boundary', 'interpolation_boundary'],
-    'localidad_urbana_y_rural_amanzanada': ['cartographic_boundary', 'interpolation_boundary'],
+    'localidad_rural_no_amanzanada': ['cartographic_boundary'],
+    'localidad_urbana_y_rural_amanzanada': ['cartographic_boundary'],
     'manzana': ['cartographic_boundary', 'interpolation_boundary'],
     'municipio': ['cartographic_boundary', 'interpolation_boundary'],
     'servicios_area': [],
