@@ -15,10 +15,15 @@ RESOLUTIONS = (
     'municipio', 'servicios_area',
 )
 
-RESNAMES = (
-    'ageb', 'entidad', 'localidad_urbana_y_rural_amanzanada', 'manzana',
-    'municipio', 'servicios_area',
-)
+RESNAMES = {
+    'ageb': 'Census area (urban areas only)',
+    'entidad': 'State',
+    'localidad_rural_no_amanzanada': 'Localidades (rural)',
+    'localidad_urbana_y_rural_amanzanada': 'Localidades (urban)',
+    'manzana': 'Census block (urban areas only)',
+    'municipio': 'Municipios',
+    'servicios_area': 'Service areas',
+}
 
 RESPROPNAMES = (
     'entidad', 'localidad_urbana_y_rural_amanzanada',
