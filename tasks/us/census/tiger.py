@@ -690,7 +690,7 @@ class SumLevel(TableTask):
         if self.name:
             cols['name'] =  OBSColumn(
                             type='Text',
-                            name='Proper name of {}'.format(self.input()['geoms'][self.geography].name),
+                            name='Proper name of {}'.format(self.input()['geoms'][self.geography]._name),
                             weight=3,
                             tags=[united_states, names],
                             targets={cols['the_geom']: GEOM_NAME}
