@@ -223,14 +223,6 @@ class Attributes(ColumnsTask):
                 aggregate='sum',
                 weight=0,
             )),
-            ('name', OBSColumn(
-                type='Text',
-                name='Name of feature',
-                weight=3,
-                tags=[united_states]
-                targets={geom: GEOM_NAME}
-}
-            ))
         ])
 
 
@@ -682,9 +674,13 @@ class SumLevel(TableTask):
             'attributes': Attributes(),
             'geoids': GeoidColumns(),
             'geoms': GeomColumns(),
+            'sections': SectionTags(),
+            'subsections': SubsectionTags()
         }
 
     def columns(self):
+        united_states = self.input()['sections']['united_states']
+        names = self.input()['subsections']['names']
         cols = OrderedDict([
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography]),
@@ -692,8 +688,13 @@ class SumLevel(TableTask):
             ('awater', self.input()['attributes']['awater']),
         ])
         if self.name:
-            cols['name'] = self.input()['attributes']['name']
-
+            cols['name'] =  OBSColumn(
+                            type='Text',
+                            name='Proper name of {}'.format(self.input()['geoms'][self.geography].name),
+                            weight=3,
+                            tags=[united_states, names],
+                            targets={cols['the_geom']: GEOM_NAME}
+                        )
         return cols
 
     def timespan(self):
