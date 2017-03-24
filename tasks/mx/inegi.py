@@ -2,7 +2,7 @@ from luigi import Task, Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask, MetaWrapper)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.mx.inegi_columns import SourceTags, LicenseTags
@@ -15,15 +15,15 @@ RESOLUTIONS = (
     'municipio', 'servicios_area',
 )
 
-RESNAMES = {
-    'ageb': 'Census area (urban areas only)',
-    'entidad': 'State',
-    'localidad_rural_no_amanzanada': 'Localidades (rural)',
-    'localidad_urbana_y_rural_amanzanada': 'Localidades (urban)',
-    'manzana': 'Census block (urban areas only)',
-    'municipio': 'Municipios',
-    'servicios_area': 'Service areas',
-}
+RESNAMES = (
+    'ageb', 'entidad', 'localidad_urbana_y_rural_amanzanada', 'manzana',
+    'municipio', 'servicios_area',
+)
+
+RESPROPNAMES = (
+    'entidad', 'localidad_urbana_y_rural_amanzanada',
+    'municipio', 'servicios_area'
+)
 
 RESDESCS = {
     'ageb': '',
@@ -221,19 +221,20 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
-        name = OBSColumn(
-            type='Text',
-            weight=0,
-        )
+        cols = OrderedDict([('wkb_geometry', geom),
+                            ('cvegeo', geom_ref)
+                        ])
 
-        geom.tags.extend(boundary_type[i] for i in RESTAGS[self.resolution])
+        if self.resolution in RESPROPNAMES:
+            cols['nomgeo'] = OBSColumn(
+                type='Text',
+                weight=1,
+                name= 'Nombre de {}'.format(self.resolution),
+                tags=[sections['mx'],subsections['names'],license, source],
+                targets={geom: GEOM_NAME}
+            )
 
-        return OrderedDict([
-            ('the_geom', geom),
-            ('cvegeo', geom_ref),
-            ('nomgeo', name),
-        ])
-
+        return cols
 
 class Geography(TableTask):
     '''
@@ -258,12 +259,17 @@ class Geography(TableTask):
 
     def populate(self):
         session = current_session()
-        session.execute('INSERT INTO {output} (the_geom, cvegeo) '
-                        'SELECT wkb_geometry, cvegeo '
+        column_targets = self.columns()
+        output_cols = ', '.join(column_targets.keys())
+        input_cols = ','.join(['{}::{}'.format(colname, ct.get(session).type)
+                               for colname, ct in column_targets.iteritems()])
+        session.execute('INSERT INTO {output} {output_cols} '
+                        'SELECT {input_cols} '
                         'FROM {input} '.format(
                             output=self.output().table,
-                            input=self.input()['data'].table))
-
+                            input=self.input()['data'].table,
+                            output_cols=output_cols,
+                            input_cols=input_cols))
 
 class Census(TableTask):
 
