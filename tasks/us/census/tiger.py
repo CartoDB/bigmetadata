@@ -22,6 +22,22 @@ from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
 from psycopg2 import ProgrammingError
 from decimal import Decimal
 
+READABLE_NAMES = {
+    'block_group':'US Census Block Groups',
+    'block':'US Census Blocks',
+    'census_tract':'US Census Tracts',
+    'congressional_district':'US Congressional Districts',
+    'county':'US County',
+    'puma':'US Census Public Use Microdata Areas',
+    'state':'US States',
+    'zcta5': 'US Census Zip Code Tabulation Areas',
+    'school_district_elementary':'Elementary School District',
+    'school_district_secondary':'Secondary School District',
+    'school_district_unified':'Unified School District',
+    'cbsa':'Core Based Statistical Area (CBSA)',
+    'place': 'Incorporated Places'}
+
+
 class SourceTags(TagsTask):
     def version(self):
         return 1
@@ -690,7 +706,7 @@ class SumLevel(TableTask):
         if self.name:
             cols['name'] =  OBSColumn(
                             type='Text',
-                            name='Proper name of {}'.format(self.input()['geoms'][self.geography]._name),
+                            name='Proper name of {}'.format(READABLE_NAMES[self.geography]),
                             weight=3,
                             tags=[united_states, names],
                             targets={cols['the_geom']: GEOM_NAME}
