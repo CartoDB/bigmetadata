@@ -1643,7 +1643,8 @@ class TableTask(Task):
                 index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
                 session.execute('CREATE {unique} INDEX IF NOT EXISTS {index_name} ON {table} '
                                 'USING {index_type} ({colname})'.format(
-                                    unique='UNIQUE' if index_type == 'btree' else '',
+                                    #unique='UNIQUE' if index_type == 'btree' else '',
+                                    unique='',
                                     index_type=index_type,
                                     index_name=index_name,
                                     table=tablename, colname=colname))
