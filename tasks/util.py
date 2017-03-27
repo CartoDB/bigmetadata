@@ -2052,13 +2052,17 @@ def cross(orig_list, b_name, b_list):
     return result
 
 
-class RunDiffToMaster(WrapperTask):
+class RunDiff(WrapperTask):
     '''
     Run MetaWrapper for all tasks that changed compared to master.
     '''
 
+    compare = Parameter()
+
     def requires(self):
-        resp = shell("git diff master --name-only | grep '^tasks'")
+        resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
+            compare=self.compare
+        ))
         for line in resp.split('\n'):
             if not line:
                 continue
