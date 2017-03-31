@@ -1,6 +1,8 @@
-{%- macro build_column(col, subsection, image_path, format, depth=0) %}
+{%- macro build_column(parent_id, children_ids, all_columns, subsection, image_path, format, depth=0) %}
 
-.. _{{ col.id }}:
+.. _{{ parent_id }}:
+
+{% set col = all_columns[parent_id] %}
 
 {{ col.name }}
 {%
@@ -13,13 +15,15 @@
   endif
 %}
 
-{% if format != 'pdf' %}
-{% if col.has_catalog_image() %}
-.. figure:: {{ image_path }}/{{ col.id }}.png
-  :width: 100 %
-  :align: center
-{% endif %}
-{% endif %}
+{#
+      {% if format != 'pdf' %}
+      {% if col.has_catalog_image() %}
+      .. figure:: {{ image_path }}/{{ col.id }}.png
+        :width: 100 %
+        :align: center
+      {% endif %}
+      {% endif %}
+#}
 
 {% if col.description %}{{ col.description }}{% endif %}
 
@@ -29,126 +33,130 @@
   {% endfor %}
 {% endif %}
 
-{% if col.is_cartographic() %}
-.. note::
+{#
+    {% if col.is_cartographic() %}
+    .. note::
 
-   This boundary is suitable for cartography.
-{% endif %}
+       This boundary is suitable for cartography.
+    {% endif %}
 
-{% if col.is_interpolation() %}
-.. note::
+    {% if col.is_interpolation() %}
+    .. note::
 
-   This boundary is suitable for interpolating measurements.
-{% endif %}
+       This boundary is suitable for interpolating measurements.
+    {% endif %}
+#}
 
 {#
 Code example
 #}
 
-{% if col.type|lower == 'text' %}
-Obtain category of "{{ col.name }}" at one point:
-{% elif col.type|lower == 'numeric' %}
-Measure "{{ col.name }}" {% if col.summable() %} density per sq. kilometer {% endif %} for one point:
-{% elif col.type|lower == 'geometry' %}
-Obtain "{{ col.name }}" geometry at one point:
-{% endif %}
+{#
+    {% if col.type|lower == 'text' %}
+    Obtain category of "{{ col.name }}" at one point:
+    {% elif col.type|lower == 'numeric' %}
+    Measure "{{ col.name }}" {% if col.summable() %} density per sq. kilometer {% endif %} for one point:
+    {% elif col.type|lower == 'geometry' %}
+    Obtain "{{ col.name }}" geometry at one point:
+    {% endif %}
 
-.. code-block:: postgresql
+    .. code-block:: postgresql
 
-{% set point = 'CDB_LatLng(%s, %s)'|format(col.catalog_lonlat().0, col.catalog_lonlat().1) %}
+    {% set point = 'CDB_LatLng(%s, %s)'|format(col.catalog_lonlat().0, col.catalog_lonlat().1) %}
 
-{% if col.type|lower == 'text' %}
+    {% if col.type|lower == 'text' %}
 
-  UPDATE {table_name}
-    SET {new_text_column} =
-      OBS_GetCategory(
-        {{ point }},
-        '{{ col.id }}'
-      );
+      UPDATE {table_name}
+        SET {new_text_column} =
+          OBS_GetCategory(
+            {{ point }},
+            '{{ col.id }}'
+          );
 
-{% elif col.type|lower == 'numeric' %}
+    {% elif col.type|lower == 'numeric' %}
 
-  UPDATE {table_name}
-    SET {new_numeric_column} =
-      OBS_GetMeasure(
-        {{ point }},
-        '{{ col.id }}'
-      );
+      UPDATE {table_name}
+        SET {new_numeric_column} =
+          OBS_GetMeasure(
+            {{ point }},
+            '{{ col.id }}'
+          );
 
-{% elif col.type|lower == 'geometry' %}
+    {% elif col.type|lower == 'geometry' %}
 
-  INSERT INTO {tablename}(the_geom)
-    SELECT OBS_GetBoundary(
-      {{ point }},
-      '{{ col.id }}'
-    )
+      INSERT INTO {tablename}(the_geom)
+        SELECT OBS_GetBoundary(
+          {{ point }},
+          '{{ col.id }}'
+        )
 
-{% endif %}
+    {% endif %}
 
-{% if col.type|lower == 'text' %}
-{% elif col.type|lower == 'numeric' %}
-{% if col.summable() %}
-Measure "{{ col.name }}" within an area:
+    {% if col.type|lower == 'text' %}
+    {% elif col.type|lower == 'numeric' %}
+    {% if col.summable() %}
+    Measure "{{ col.name }}" within an area:
 
-.. code-block:: postgresql
+    .. code-block:: postgresql
 
-    UPDATE {table_name}
-      SET {new_numeric_column} =
-        OBS_GetMeasure(
+        UPDATE {table_name}
+          SET {new_numeric_column} =
+            OBS_GetMeasure(
+              ST_Buffer({{ point }}, 0.01),
+              '{{ col.id }}'
+            );
+
+    {% else %}
+
+    {{ col.name }} is only available for point lookups.
+    {% endif %}
+    {% elif col.type|lower == 'geometry' %}
+
+    Obtain all "{{ col.name }}" geometries within an area:
+
+    .. code-block:: postgresql
+
+      INSERT INTO {new_table_name} (the_geom, {geo_id_column})
+        SELECT *
+        FROM OBS_GetBoundariesByGeometry(
           ST_Buffer({{ point }}, 0.01),
           '{{ col.id }}'
-        );
+        )
 
-{% else %}
+    {% endif %}
 
-{{ col.name }} is only available for point lookups.
-{% endif %}
-{% elif col.type|lower == 'geometry' %}
+    {% if col.has_denominators() %}
+    {% set denominator = col.denominators()[0] %}
+    Measure "{{ col.name }}" percent of "{{ denominator.name }}" at one point:
 
-Obtain all "{{ col.name }}" geometries within an area:
+    .. code-block:: postgresql
 
-.. code-block:: postgresql
+      UPDATE {table_name}
+        SET {new_numeric_column} =
+          OBS_GetMeasure(
+            {{ point }},
+            '{{ col.id }}',
+            'denominator'
+          );
 
-  INSERT INTO {new_table_name} (the_geom, {geo_id_column})
-    SELECT *
-    FROM OBS_GetBoundariesByGeometry(
-      ST_Buffer({{ point }}, 0.01),
-      '{{ col.id }}'
-    )
+    {% if col.summable() %}
+    Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
-{% endif %}
+    .. code-block:: postgresql
 
-{% if col.has_denominators() %}
-{% set denominator = col.denominators()[0] %}
-Measure "{{ col.name }}" percent of "{{ denominator.name }}" at one point:
+      UPDATE {table_name}
+        SET {new_numeric_column} =
+          OBS_GetMeasure(
+            ST_Buffer({{ point }}, 0.01),
+            '{{ col.id }}',
+            'denominator'
+          );
 
-.. code-block:: postgresql
+    {% endif %}
+    {% endif %}
+#}
 
-  UPDATE {table_name}
-    SET {new_numeric_column} =
-      OBS_GetMeasure(
-        {{ point }},
-        '{{ col.id }}',
-        'denominator'
-      );
-
-{% if col.summable() %}
-Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
-
-.. code-block:: postgresql
-
-  UPDATE {table_name}
-    SET {new_numeric_column} =
-      OBS_GetMeasure(
-        ST_Buffer({{ point }}, 0.01),
-        '{{ col.id }}',
-        'denominator'
-      );
-
-{% endif %}
-{% endif %}
-
-{% if col.geom_timespans()|length > 0 %}
+{% if col.geom_timespans|length > 0 %}
 
 .. raw:: html
 
@@ -161,19 +169,19 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
    <tbody valign="top">
 
 
-   {% for geomcol, timespans in col.geom_timespans().items() %}
+   {% for _, gt in col.geom_timespans.iteritems() %}
 .. raw:: html
 
    <tr class="row-even"><td>
 
-:ref:`{{ geomcol.id }}`
+:ref:`{{ gt.geom_id }}`
 
 .. raw:: html
 
    </td>
    <td>
 
-{{ timespans|sort(True)|join(', ') }}
+{{ gt.timespans|sort(True)|join(', ') }}
 
 .. raw:: html
 
@@ -189,29 +197,27 @@ Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
 
 {% endif %}
 
-{% for target, reltype in col.targets.iteritems() %}
-:{{ reltype|capitalize }}:
+{% if col.denoms|length > 0 %}
+:Related columns:
 
-    :ref:`{{ target.id }}`
-{% endfor %}
+    {% for denom_id in col.denoms %}:ref:`{{ denom_id }}`{% endfor %}
+{% endif %}
 
 :Source:
 
-    {% for source in col.source_tags() %}:ref:`{{ source.id }}`{% endfor %}
+    {% for tag_id in col.sources %}:ref:`{{ tag_id }}`{% endfor %}
 
 :License:
 
-    {% for license in col.license_tags() %}:ref:`{{ license.id }}`{% endfor %}
+    {% for tag_id in col.licenses %}:ref:`{{ tag_id }}`{% endfor %}
 
-{% if col.has_children() %}
+{% if children_ids and parent_id in children_ids  %}
 .. contents:: Subcolumns of {{ col.name }}
    :local:
    :depth: 1
 
-  {% for child in col.children() %}
-  {% if child.weight > 0 and subsection in child.tags %}
-  {{ build_column(child, subsection, image_path, format, depth + 1) }}
-  {% endif %}
+  {% for child_id in children_ids[parent_id] %}
+  {{ build_column(child_id, children_ids, all_columns, subsection, image_path, format, depth + 1) }}
   {% endfor %}
 {% endif %}
 {%- endmacro %}

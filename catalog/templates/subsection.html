@@ -11,8 +11,8 @@
    :local:
    :depth: 10
 
-{% for col in columns %}
+{% for parent_id, children_ids in column_children_ids %}
 
-{{ macros.build_column(col, subsection, IMAGE_PATH, format) }}
+{{ macros.build_column(parent_id, children_ids, all_columns, subsection, IMAGE_PATH, format) }}
 
 {% endfor %}
