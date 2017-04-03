@@ -13,7 +13,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask,
                         underscore_slugify, TableTask, ColumnTarget,
                         ColumnsTask, TagsTask, Carto2TempTableTask
                        )
-from tasks.meta import (OBSColumnTable, OBSColumn, current_session, GEOM_REF, GEOM_NAME,
+from tasks.meta import (OBSColumnTable, OBSColumn, GEOM_REF, GEOM_NAME,
                         OBSColumnTag, OBSTag, OBSColumnToColumn, current_session)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 
@@ -21,22 +21,6 @@ from luigi import (Task, WrapperTask, Parameter, LocalTarget, BooleanParameter,
                    IntParameter)
 from psycopg2 import ProgrammingError
 from decimal import Decimal
-
-READABLE_NAMES = {
-    'block_group':'US Census Block Groups',
-    'block':'US Census Blocks',
-    'census_tract':'US Census Tracts',
-    'congressional_district':'US Congressional Districts',
-    'county':'US County',
-    'puma':'US Census Public Use Microdata Areas',
-    'state':'US States',
-    'zcta5': 'US Census Zip Code Tabulation Areas',
-    'school_district_elementary':'Elementary School District',
-    'school_district_secondary':'Secondary School District',
-    'school_district_unified':'Unified School District',
-    'cbsa':'Core Based Statistical Area (CBSA)',
-    'place': 'Incorporated Places'}
-
 
 class SourceTags(TagsTask):
     def version(self):
@@ -265,6 +249,34 @@ class GeoidColumns(ColumnsTask):
                 targets={
                     col: GEOM_REF,
                     clipped[colname + '_clipped']._column: GEOM_REF
+                }
+            )
+
+        return cols
+
+class GeonameColumns(ColumnsTask):
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return {
+            'raw': GeomColumns(),
+            'clipped': ClippedGeomColumns()
+        }
+
+    def columns(self):
+        cols = OrderedDict()
+        clipped = self.input()['clipped']
+        for colname, coltarget in self.input()['raw'].iteritems():
+            col = coltarget._column
+            cols[colname + '_geoname'] = OBSColumn(
+                type='Text',
+                name=col.name + ' Proper Name',
+                weight=0,
+                targets={
+                    col: GEOM_NAME,
+                    clipped[colname + '_clipped']._column: GEOM_NAME
                 }
             )
 
@@ -613,6 +625,7 @@ class ShorelineClip(TableTask):
             'geoms': ClippedGeomColumns(),
             'geoids': GeoidColumns(),
             'attributes': Attributes(),
+            'geonames': GeonameColumns()
         }
 
     def columns(self):
@@ -620,7 +633,7 @@ class ShorelineClip(TableTask):
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
             ('aland', self.input()['attributes']['aland']),
-            ('name', self.input()['attributes']['name']),
+            ('name', self.input()['geonames'][self.geography + '_geoname']),
         ])
 
     def timespan(self):
@@ -691,26 +704,19 @@ class SumLevel(TableTask):
             'geoids': GeoidColumns(),
             'geoms': GeomColumns(),
             'sections': SectionTags(),
-            'subsections': SubsectionTags()
+            'subsections': SubsectionTags(),
+            'geonames': GeonameColumns(),
         }
 
     def columns(self):
         united_states = self.input()['sections']['united_states']
-        names = self.input()['subsections']['names']
         cols = OrderedDict([
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography]),
             ('aland', self.input()['attributes']['aland']),
             ('awater', self.input()['attributes']['awater']),
+            ('geoname',self.input()['geonames'][self.geography + '_geoname'])
         ])
-        if self.name:
-            cols['name'] =  OBSColumn(
-                            type='Text',
-                            name='Proper name of {}'.format(READABLE_NAMES[self.geography]),
-                            weight=3,
-                            tags=[united_states, names],
-                            targets={cols['the_geom']: GEOM_NAME}
-                        )
         return cols
 
     def timespan(self):
