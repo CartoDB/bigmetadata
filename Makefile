@@ -223,6 +223,7 @@ travis-etl-unittest:
 	    tests/test_tabletasks.py'
 
 travis-diff-catalog:
+	git fetch origin master
 	./run-travis.sh 'python -c "from tests.util import recreate_db; recreate_db()"'
 	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.util RunDiff --compare master'
 	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx Catalog'

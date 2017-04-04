@@ -79,7 +79,7 @@ class GenerateRST(Task):
         return requirements
 
     def complete(self):
-        return self.getattr(self, '_complete', False)
+        return getattr(self, '_complete', False)
 
     def output(self):
         targets = {}
