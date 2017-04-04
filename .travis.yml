@@ -26,3 +26,6 @@ deploy:
   upload-dir: catalogs
   acl: public_read
   skip_cleanup: true
+  on:
+    repo: CartoDB/bigmetadata
+    all_branches: true
