@@ -223,8 +223,8 @@ travis-etl-unittest:
 	    tests/test_tabletasks.py'
 
 travis-diff-catalog:
-	./run-travis.sh 'luigi --local-scheduler --module tasks.util RunDiff --compare master'
-	./run-travis.sh 'luigi --local-scheduler --module tasks.sphinx Catalog'
+	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.util RunDiff --compare master'
+	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx Catalog'
 
 travis-etl-metadatatest:
 	./run-travis.sh 'nosetests -v tests/test_metadata.py'
