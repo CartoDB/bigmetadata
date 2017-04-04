@@ -23,7 +23,7 @@ deploy:
     secure: YI5WmRplKG/D+kk3dFD1amIUnGlYVEVpr+OrveU75NSajfro9Dn5W9Q14vZvBU+S7QK8SsmlDqUKHthvqXItTJGy9gyRkigH1jKEY2EdeLHZHD/vezaNNpOWH16VdFxx0fIKRkboEdh+rkocRQDaRgTPCbnx7yw+9sHGA4XaG+P/rh0S+Fp5z2Y8NLp/KORoiaIFiYbgaTs97GJjGBj9L2dm6vK7okPNZlEbGGoxolQbekTNfr6Q5gYzyS7lV0ZapLFm5rEGnbzOwJTFXQXj2edmGKALC9zbE1AcIa/P28Qlqj3hcffFkCZ5RjadgZxKrHYiRNC+SkhlL/F+ujbmS8x49ADq5AGd/v7L/rglhuGcNAs6mTBoZ3y7BUzOefVDfTRCZt2VRNlU4OW5lstnCogJlVXoiWM2IFnQhQnwhFYCfR8hJAq4ibDEiYUCOp4TdRm6Mz2tCSQbMdoOP5aS9ncGVajegn7Z/XJAVM4OfJBzW9aLzOcRNZ071MzcNePaHUSjcrci6v8LlPIIB5Y83xI8sZQGlXdeJY4muZCoXegmjhvPPTxbDvwQs38GIIgMjc8+azEXtpONnow05xrssyBd3NCbSshKUErHmvd0vd4nhLlCVdJmOfpi/fxCODlEmoxKnkwdQ2pFMwArVVpZm/EyY8sNJ3OhAvbIQMZPJl4=
   bucket: data-observatory-catalog
   local-dir: catalog/build/html/
-  upload-dir: "catalogs/$TRAVIS_PULL_REQUEST_BRANCH"
+  upload-dir: "catalogs/$TRAVIS_BRANCH"
   acl: public_read
   skip_cleanup: true
   on:
