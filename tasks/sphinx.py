@@ -8,7 +8,8 @@ from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
 from luigi.s3 import S3Target
 from tasks.util import shell
 from tasks.meta import current_session, OBSTag, OBSColumn
-from tasks.carto import GenerateStaticImage, ImagesForMeasure, GenerateThumb
+from tasks.carto import (GenerateStaticImage, ImagesForMeasure, GenerateThumb,
+                         OBSMetaToLocal)
 
 from datetime import date
 from time import time
@@ -50,7 +51,9 @@ class GenerateRST(Task):
 
     def requires(self):
         #session = current_session()
-        requirements = {}
+        requirements = {
+            'meta': OBSMetaToLocal()
+        }
         for section_subsection, _ in self.output().iteritems():
             section_id, subsection_id = section_subsection
 
@@ -74,6 +77,9 @@ class GenerateRST(Task):
             #            requirements[column_id] = img
 
         return requirements
+
+    def complete(self):
+        return self.getattr(self, '_complete', False)
 
     def output(self):
         targets = {}
@@ -367,6 +373,7 @@ class GenerateRST(Task):
                         ), 'w') as subcolumn_fhandle:
                             subcolumn_fhandle.write(COLUMN_TEMPLATE.render(
                                 col=all_columns[subchild_id], **self.template_globals()).encode('utf8'))
+        self._complete = True
 
 
 class Catalog(Task):
@@ -376,15 +383,16 @@ class Catalog(Task):
     images = BooleanParameter(default=False)
 
     def requires(self):
-        return GenerateRST(force=self.force, format=self.format,
-                           images=self.images)
+        return  GenerateRST(force=self.force, format=self.format,
+                               images=self.images)
 
     def complete(self):
-        return False
+        return getattr(self, '_complete', False)
 
     def run(self):
         shell("SPHINXOPTS='-j 4' cd catalog && make {}".format(self.format))
         #shell("cd catalog && make {}".format(self.format))
+        self._complete = True
 
 
 class PDFCatalogToS3(Task):

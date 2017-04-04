@@ -1496,6 +1496,13 @@ class TableTask(Task):
     generate all relevant metadata for the table, and link it to the columns.
     '''
 
+    def _requires(self):
+        reqs = super(TableTask, self)._requires()
+        if self._testmode:
+            return [r for r in reqs if isinstance(r, (TagsTask, TableTask, ColumnsTask,))]
+        else:
+            return reqs
+
     def version(self):
         '''
         Must return a version control number, which is useful for forcing a
@@ -1594,6 +1601,8 @@ class TableTask(Task):
 
     @property
     def _testmode(self):
+        if os.environ.get('ENVIRONMENT') == 'test':
+            return True
         return getattr(self, '_test', False)
 
     def run(self):
