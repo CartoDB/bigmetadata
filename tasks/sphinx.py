@@ -54,8 +54,8 @@ class GenerateRST(Task):
         requirements = {
             'meta': OBSMetaToLocal()
         }
-        for section_subsection, _ in self.output().iteritems():
-            section_id, subsection_id = section_subsection
+        #for section_subsection, _ in self.output().iteritems():
+        #    section_id, subsection_id = section_subsection
 
             # this is much faster with a gin index on numer_tags
             #resp = session.execute('''
