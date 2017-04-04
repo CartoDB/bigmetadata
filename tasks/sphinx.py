@@ -15,6 +15,7 @@ from time import time
 from tasks.util import LOGGER
 
 import json
+import os
 
 ENV = Environment(loader=PackageLoader('catalog', 'templates'))
 
@@ -28,6 +29,7 @@ ENV.filters['strip_tag_id'] = strip_tag_id
 
 SECTION_TEMPLATE = ENV.get_template('section.html')
 SUBSECTION_TEMPLATE = ENV.get_template('subsection.html')
+COLUMN_TEMPLATE = ENV.get_template('column.html')
 LICENSES_TEMPLATE = ENV.get_template('licenses.html')
 SOURCES_TEMPLATE = ENV.get_template('sources.html')
 
@@ -42,9 +44,9 @@ class GenerateRST(Task):
         super(GenerateRST, self).__init__(*args, **kwargs)
         if self.force:
             shell('rm -rf catalog/source/*/*')
-        shell('cp -R catalog/img catalog/source/')
-        shell('mkdir -p catalog/img_thumb')
-        shell('cp -R catalog/img_thumb catalog/source/')
+        #shell('cp -R catalog/img catalog/source/')
+        #shell('mkdir -p catalog/img_thumb')
+        #shell('cp -R catalog/img_thumb catalog/source/')
 
     def requires(self):
         #session = current_session()
@@ -202,9 +204,9 @@ class GenerateRST(Task):
             else:
                 # Obtain top-level IDs for this section/subsection
                 parents_resp = session.execute('''
-                    WITH RECURSIVE children(parent_id, children, lvl) AS (
+                    WITH RECURSIVE children(parent_id, children, lvl, path) AS (
                         -- Select root children corresponding to certain tags
-                        SELECT numer_id parent_id, ARRAY[]::Text[] as children, 1 lvl
+                        SELECT numer_id parent_id, ARRAY[]::Text[] as children, 1 lvl, numer_id path
                         FROM observatory.obs_meta_numer children
                         WHERE numer_tags ? 'subsection/{subsection_id}'
                           AND numer_tags ? 'section/{section_id}'
@@ -212,7 +214,8 @@ class GenerateRST(Task):
                         UNION
                         SELECT DISTINCT parent.denom_id parent_id,
                                         ARRAY_APPEND(children, children.parent_id::Text) children,
-                                        lvl + 1 lvl
+                                        lvl + 1 lvl,
+                                        parent.denom_id || '/' || path
                         FROM observatory.obs_meta parent, children
                         WHERE parent.numer_id = children.parent_id
                     ) -- SELECT * FROM children;
@@ -221,17 +224,17 @@ class GenerateRST(Task):
                         SELECT UNNEST(children) child_id,
                           FIRST(parent_id ORDER BY lvl DESC) oldest_parent_id,
                           FIRST(parent_id ORDER BY lvl ASC) youngest_parent_id,
-                          max(lvl) lvl
+                          max(lvl) lvl,
+                          FIRST(path ORDER BY lvl DESC) path
                         FROM children
                         GROUP BY UNNEST(children)
                     )
                     -- We only want to return those parent IDs, along with any children who have no
                     -- parents (orphans)
-                    -- TODO handle cases where oldest_parent_id is null
                     , oldest_youngest AS (
                         SELECT Coalesce(oldest_parent_id, child_id) oldest_parent_id,
                                youngest_parent_id,
-                               ARRAY_AGG(child_id) children
+                               JSONB_OBJECT_AGG(child_id, path) children
                         FROM parents
                         GROUP BY Coalesce(oldest_parent_id, child_id), youngest_parent_id
                         ORDER BY Coalesce(oldest_parent_id, child_id), youngest_parent_id
@@ -246,6 +249,7 @@ class GenerateRST(Task):
                            subsection_id=subsection_id))
 
                 column_children_ids = parents_resp.fetchall()
+
                 # Obtain full column data for every column ID in this section/subsection
                 all_column_ids = set()
                 for parent_id, youngest_parents in column_children_ids:
@@ -253,7 +257,7 @@ class GenerateRST(Task):
                     if youngest_parents:
                         for subparent_id, children_ids in youngest_parents.iteritems():
                             all_column_ids.add(parent_id)
-                            all_column_ids.update(children_ids)
+                            all_column_ids.update(children_ids.keys())
 
                 all_columns_resp = session.execute('''
                     SELECT numer_id,
@@ -328,6 +332,42 @@ class GenerateRST(Task):
 
             fhandle.close()
 
+            os.makedirs('catalog/source/{section}/{subsection}/'.format(
+                section=strip_tag_id(section_id),
+                subsection=strip_tag_id(subsection_id)
+            ))
+
+            for column_id, children in column_children_ids:
+
+                with open('catalog/source/{section}/{subsection}/{column}.rst'.format(
+                    section=strip_tag_id(section_id),
+                    subsection=strip_tag_id(subsection_id),
+                    column=column_id
+                ), 'w') as column_fhandle:
+                    column_fhandle.write(COLUMN_TEMPLATE.render(
+                        col=all_columns[column_id], **self.template_globals()).encode('utf8'))
+
+                if not children:
+                    continue
+                for _, subchild_id_paths in children.iteritems():
+                    for subchild_id, subchild_path in subchild_id_paths.iteritems():
+
+                        dirpath = 'catalog/source/{section}/{subsection}/{dirpath}'.format(
+                            section=strip_tag_id(section_id),
+                            subsection=strip_tag_id(subsection_id),
+                            dirpath='/'.join(subchild_path.split('/')[0:-1])
+                        )
+                        if not os.path.exists(dirpath):
+                            os.makedirs(dirpath)
+
+                        with open('catalog/source/{section}/{subsection}/{path}.rst'.format(
+                            section=strip_tag_id(section_id),
+                            subsection=strip_tag_id(subsection_id),
+                            path=subchild_path
+                        ), 'w') as subcolumn_fhandle:
+                            subcolumn_fhandle.write(COLUMN_TEMPLATE.render(
+                                col=all_columns[subchild_id], **self.template_globals()).encode('utf8'))
+
 
 class Catalog(Task):
 
@@ -343,7 +383,8 @@ class Catalog(Task):
         return False
 
     def run(self):
-        shell('cd catalog && make {}'.format(self.format))
+        shell("SPHINXOPTS='-j 4' cd catalog && make {}".format(self.format))
+        #shell("cd catalog && make {}".format(self.format))
 
 
 class PDFCatalogToS3(Task):

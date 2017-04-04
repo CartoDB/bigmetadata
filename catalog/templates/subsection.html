@@ -1,5 +1,3 @@
-{% import 'macros.html' as macros %}
-
 .. {{ subsection.name }}:
 
 {{ subsection.name }}
@@ -7,12 +5,10 @@
 
 {{ subsection.description }}
 
-.. contents::
-   :local:
-   :depth: 10
+.. toctree::
+   :caption: Columns
+   :maxdepth: 2
+   :titlesonly:
+   :glob:
 
-{% for parent_id, children_ids in column_children_ids %}
-
-{{ macros.build_column(parent_id, children_ids, all_columns, subsection, IMAGE_PATH, format) }}
-
-{% endfor %}
+   {{ subsection.id|strip_tag_id }}/*
