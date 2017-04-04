@@ -29,4 +29,4 @@ deploy:
   on:
     repo: CartoDB/bigmetadata
     all_branches: true
-    condition: "$TEST_SUITE = travis-diff-catalog && $TRAVIS_EVENT_TYPE = pull_request"
+    condition: "$TEST_SUITE = travis-diff-catalog"
