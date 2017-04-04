@@ -13,9 +13,9 @@ install:
 - sudo apt-get install -y postgresql-9.5-postgis-2.3
 - sudo service postgresql restart
 env:
-- TEST_SUITE=etl-metadatatest
-- TEST_SUITE=etl-unittest
-- TEST_SUITE=diff-catalog
+- TEST_SUITE=travis-etl-metadatatest
+- TEST_SUITE=travis-etl-unittest
+- TEST_SUITE=travis-diff-catalog
 deploy:
   provider: s3
   access_key_id: AKIAIZ65Y5OIY7ADFQ2Q
