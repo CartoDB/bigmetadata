@@ -210,7 +210,7 @@ class Geometry(TableTask):
     def populate(self):
         session = current_session()
         query = 'INSERT INTO {output} ' \
-                'SELECT {geom_ref_colname}, geom_ref, rotulo, wkb_geometry the_geom ' \
+                'SELECT {geom_ref_colname} geom_ref, rotulo, wkb_geometry the_geom ' \
                 'FROM {input}'.format(
                     output=self.output().table,
                     input=self.input()['data'].table,
