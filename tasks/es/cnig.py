@@ -6,7 +6,7 @@ from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.meta import OBSColumn, GEOM_REF, OBSTag
+from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag
 
 from collections import OrderedDict
 import os
@@ -149,6 +149,26 @@ class GeomRefColumns(ColumnsTask):
             )
         return cols
 
+class GeomNameColumns(ColumnsTask):
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return GeometryColumns()
+
+    def columns(self):
+        cols = OrderedDict()
+        session = current_session()
+        for colname, coltarget in self.input().iteritems():
+            cols['name_' + colname] = OBSColumn(
+                type='Text',
+                name='Proper name of {}'.format(colname),
+                weight=1,
+                targets={coltarget: GEOM_NAME},
+            )
+        return cols
+
 
 class Geometry(TableTask):
 
@@ -162,6 +182,7 @@ class Geometry(TableTask):
         return {
             'geom_columns': GeometryColumns(),
             'geomref_columns': GeomRefColumns(),
+            'geomname_columns': GeomNameColumns(),
             'data': ImportGeometry(resolution=self.resolution,
                                    timestamp=self.timestamp)
         }
@@ -172,6 +193,7 @@ class Geometry(TableTask):
     def columns(self):
         return OrderedDict([
             ('geom_ref', self.input()['geomref_columns']['id_' + self.resolution]),
+            ('rotulo', self.input()['geomname_columns']['name_' + self.resolution]),
             ('the_geom', self.input()['geom_columns'][self.resolution])
         ])
 
@@ -188,7 +210,7 @@ class Geometry(TableTask):
     def populate(self):
         session = current_session()
         query = 'INSERT INTO {output} ' \
-                'SELECT {geom_ref_colname} geom_ref, wkb_geometry the_geom ' \
+                'SELECT {geom_ref_colname}, geom_ref, rotulo, wkb_geometry the_geom ' \
                 'FROM {input}'.format(
                     output=self.output().table,
                     input=self.input()['data'].table,
