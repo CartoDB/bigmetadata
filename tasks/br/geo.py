@@ -3,7 +3,7 @@ from luigi import Task, Parameter, WrapperTask
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from abc import ABCMeta
 from collections import OrderedDict
 
