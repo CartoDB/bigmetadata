@@ -138,6 +138,7 @@ class GeomRefColumns(ColumnsTask):
         return {
             'geom_cols':GeometryColumns(),
             'subsections': SubsectionTags(),
+            'sections': SectionTags(),
             }
 
     def columns(self):
@@ -148,7 +149,7 @@ class GeomRefColumns(ColumnsTask):
                 type='Text',
                 name='',
                 weight=0,
-                tags=[self.input()['subsections']['names']],
+                tags=[self.input()['subsections']['names'],self.input()['sections']['us']],
                 targets={coltarget: GEOM_REF},
             )
         return cols
