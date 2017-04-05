@@ -28,12 +28,6 @@ GEOGRAPHY_NAMES = {
     GEO_I: 'Census tracts',
 }
 
-GEOGRAPHY_NAME_SINGULAR = {
-    GEO_M: 'County',
-    GEO_D: 'District',
-    GEO_S: 'Subdistrict',
-}
-
 GEOGRAPHY_DESCS = {
     GEO_D: '',
     GEO_M: '',
@@ -190,7 +184,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return {
@@ -221,7 +215,7 @@ class GeographyColumns(ColumnsTask):
             targets={geom: GEOM_REF},
         )
 
-        if self.resolution is not GEO_I:
+        if self.resolution != 'setores_censitarios':
             geom_name = OBSColumn(
                 name="Name of the {}".format(GEOGRAPHY_NAMES[self.resolution]),
                 type='Text',
@@ -231,16 +225,6 @@ class GeographyColumns(ColumnsTask):
             )
             cols['geom_name'] = geom_name
         else:
-            for resolution in GEOGRAPHIES:
-                if resolution is not GEO_I:
-                    cols['{}_name'.format(resolution)] = OBSColumn(
-                        name="Name of the {}".format(GEOGRAPHY_NAME_SINGULAR[resolution]),
-                        type='Text',
-                        weight=1,
-                        tags=[sections['br'], subsections['names']],
-                        targets={geom: GEOM_NAME}
-
-                    )
             for region in GEOGRAPHY_PROPERNAMES[GEO_I]:
                 cols['{}'.format(region)] = OBSColumn(
                     id="Name of the {}".format(REGION_TYPE[region]),
@@ -249,8 +233,8 @@ class GeographyColumns(ColumnsTask):
                     tags=[sections['br'], subsections['names']],
                     targets={geom: GEOM_NAME}
                 )
-        cols['geom_id'] = geom_id
-        cols['the_geom'] = geom
+        cols['{}'.format(GEOGRAPHY_CODES[self.resolution])] = geom_id
+        cols['wkb_geometry'] = geom
 
         return cols
 
@@ -259,7 +243,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         import_data = {}
@@ -274,11 +258,7 @@ class Geography(TableTask):
         return 2010
 
     def columns(self):
-        cols = OrderedDict()
-        input_ = self.input()
-        for colname, coltarget in input_['columns'].iteritems():
-            cols[colname] = coltarget
-        return cols
+        return self.input()['columns']
 
     def populate(self):
         session = current_session()
@@ -293,9 +273,7 @@ class Geography(TableTask):
                             'FROM {input} '.format(
                                 output=self.output().table,
                                 out_colnames=', '.join(out_colnames),
-                                in_columns=in_columns,
-                                geo_codes=GEOGRAPHY_CODES[self.resolution],
-                                geo_prop_name=GEOGRAPHY_PROPERNAMES[self.resolution],
+                                in_columns=', '.join(in_columns),
                                 input=intable))
 
 
