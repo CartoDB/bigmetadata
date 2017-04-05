@@ -3,12 +3,7 @@ Util functions for tests
 '''
 
 import os
-import luigi
 from subprocess import check_output
-
-import importlib
-import inspect
-import os
 
 from time import time
 
@@ -111,51 +106,3 @@ def session_scope():
     except Exception as e:
         session_rollback(None, e)
         raise
-
-
-def collect_tasks(TaskClass):
-    '''
-    Returns a set of task classes whose parent is the passed `TaskClass`
-    '''
-    tasks = set()
-    test_module = os.environ.get('TEST_MODULE', '').replace('.', os.path.sep)
-    for dirpath, _, files in os.walk('tasks'):
-        for filename in files:
-            if not os.path.join(dirpath, filename).startswith(test_module):
-                continue
-            if filename.endswith('.py'):
-                modulename = '.'.join([
-                    dirpath.replace(os.path.sep, '.'),
-                    filename.replace('.py', '')
-                ])
-                module = importlib.import_module(modulename)
-                for _, obj in inspect.getmembers(module):
-                    if inspect.isclass(obj) and issubclass(obj, TaskClass) and obj != TaskClass:
-                        tasks.add((obj, ))
-    return tasks
-
-
-def cross(orig_list, b_name, b_list):
-    result = []
-    for orig_dict in orig_list:
-        for b_val in b_list:
-            new_dict = orig_dict.copy()
-            new_dict[b_name] = b_val
-            result.append(new_dict)
-    return result
-
-
-def collect_meta_wrappers():
-    from tasks.util import MetaWrapper
-
-    test_all = os.environ.get('TEST_ALL', '') != ''
-
-    tasks = collect_tasks(MetaWrapper)
-    for t, in tasks:
-        outparams = [{}]
-        for key, val in t.params.iteritems():
-            outparams = cross(outparams, key, val)
-        for params in outparams:
-            yield t, params
-            if not test_all:
-                break

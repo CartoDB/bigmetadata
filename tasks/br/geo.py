@@ -196,12 +196,14 @@ class GeographyColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
         sections = self.input()['sections']
         subsections = self.input()['subsections']
         cols = OrderedDict()
+        boundary_type = self.input()['boundary']
 
         geom = OBSColumn(
             id=self.resolution,
@@ -209,7 +211,8 @@ class GeographyColumns(ColumnsTask):
             name=GEOGRAPHY_NAMES[self.resolution],
             description=GEOGRAPHY_DESCS[self.resolution],
             weight=self.weights[self.resolution],
-            tags=[sections['br'], subsections['boundary']],
+            tags=[sections['br'], subsections['boundary'],boundary_type['interpolation_boundary'],
+                  boundary_type['cartographic_boundary']],
         )
         geom_id = OBSColumn(
             id=self.resolution + '_id',

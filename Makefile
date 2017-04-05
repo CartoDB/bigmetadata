@@ -217,19 +217,19 @@ etl-metadatatest:
 	    tests/test_metadata.py'
 
 travis-etl-unittest:
-	docker run \
-	  -v $$PWD:/bigmetadata \
-	  --net=host --env-file=.env.sample \
-	             -e PGHOST=localhost -e PYTHONPATH=/bigmetadata \
-	             -e PGDATABASE=test -e PGUSER=postgres \
-	             -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 \
-	             -e LUIGI_CONFIG_PATH=/bigmetadata/conf/luigi_client.cfg \
-	             -e TRAVIS=$$TRAVIS \
-	   recessionporn/bigmetadata /bin/bash -c \
-	   'nosetests -v \
+	./run-travis.sh \
+	  'nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
-	    tests/test_tabletasks.py && \
-	    nosetests -v tests/test_metadata.py'
+	    tests/test_tabletasks.py'
+
+travis-diff-catalog:
+	git fetch origin master
+	./run-travis.sh 'python -c "from tests.util import recreate_db; recreate_db()"'
+	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.util RunDiff --compare FETCH_HEAD'
+	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx Catalog'
+
+travis-etl-metadatatest:
+	./run-travis.sh 'nosetests -v tests/test_metadata.py'
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
