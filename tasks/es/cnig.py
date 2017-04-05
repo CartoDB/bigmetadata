@@ -135,16 +135,20 @@ class GeomRefColumns(ColumnsTask):
         return 1
 
     def requires(self):
-        return GeometryColumns()
+        return {
+            'geom_cols':GeometryColumns(),
+            'subsections': SubsectionTags(),
+            }
 
     def columns(self):
         cols = OrderedDict()
         session = current_session()
-        for colname, coltarget in self.input().iteritems():
+        for colname, coltarget in self.input()['geom_cols'].iteritems():
             cols['id_' + colname] = OBSColumn(
                 type='Text',
                 name='',
                 weight=0,
+                tags=[self.input()['subsections']['names']],
                 targets={coltarget: GEOM_REF},
             )
         return cols
