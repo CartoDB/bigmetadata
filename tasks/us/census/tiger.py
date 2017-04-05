@@ -262,18 +262,23 @@ class GeonameColumns(ColumnsTask):
     def requires(self):
         return {
             'raw': GeomColumns(),
-            'clipped': ClippedGeomColumns()
+            'clipped': ClippedGeomColumns(),
+            'subsections': SubsectionTags(),
+            'sections':SectionTags(),
         }
 
     def columns(self):
         cols = OrderedDict()
         clipped = self.input()['clipped']
+        subsection = self.input()['subsections']
+        sections = self.input()['sections']
         for colname, coltarget in self.input()['raw'].iteritems():
             col = coltarget._column
             cols[colname + '_geoname'] = OBSColumn(
                 type='Text',
                 name=col.name + ' Proper Name',
                 weight=0,
+                tags=[subsection['names'],sections['us']],
                 targets={
                     col: GEOM_NAME,
                     clipped[colname + '_clipped']._column: GEOM_NAME
