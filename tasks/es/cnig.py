@@ -149,7 +149,6 @@ class GeomRefColumns(ColumnsTask):
                 type='Text',
                 name='',
                 weight=0,
-                tags=[self.input()['subsections']['names'],self.input()['sections']['us']],
                 targets={coltarget: GEOM_REF},
             )
         return cols
@@ -169,6 +168,7 @@ class GeomNameColumns(ColumnsTask):
             cols['name_' + colname] = OBSColumn(
                 type='Text',
                 name='Proper name of {}'.format(colname),
+                tags=[self.input()['subsections']['names'],self.input()['sections']['spain']],
                 weight=1,
                 targets={coltarget: GEOM_NAME},
             )
