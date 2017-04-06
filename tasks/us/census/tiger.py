@@ -278,7 +278,7 @@ class GeonameColumns(ColumnsTask):
                 type='Text',
                 name=col.name + ' Proper Name',
                 weight=0,
-                tags=[subsection['names'],sections['us']],
+                tags=[subsection['names'],sections['united_states']],
                 targets={
                     col: GEOM_NAME,
                     clipped[colname + '_clipped']._column: GEOM_NAME
