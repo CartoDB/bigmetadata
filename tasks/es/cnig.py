@@ -159,12 +159,16 @@ class GeomNameColumns(ColumnsTask):
         return 1
 
     def requires(self):
-        return GeometryColumns()
+        return {
+                'geom_cols':GeometryColumns(),
+                'subsections':SubsectionTags(),
+                'sections':SectionTags(),
+            }
 
     def columns(self):
         cols = OrderedDict()
         session = current_session()
-        for colname, coltarget in self.input().iteritems():
+        for colname, coltarget in self.input()['geom_cols'].iteritems():
             cols['name_' + colname] = OBSColumn(
                 type='Text',
                 name='Proper name of {}'.format(colname),
