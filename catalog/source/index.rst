@@ -12,7 +12,6 @@ Gain better understanding of the patterns and trends in your world's data with
 the Data Observatory and CARTO.
 
 .. toctree::
-   :numbered:
    :maxdepth: 1
    :glob:
 
@@ -20,7 +19,6 @@ the Data Observatory and CARTO.
    licenses
 
    *
-
 
 Search
 ==================

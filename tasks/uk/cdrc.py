@@ -5,7 +5,7 @@ from luigi import Task, Parameter, LocalTarget
 from tasks.util import (TableTask, TagsTask, ColumnsTask, classpath, shell,
                         DownloadUnzipTask, Shp2TempTableTask, MetaWrapper)
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
-from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
 
 from collections import OrderedDict
 import os
@@ -59,20 +59,22 @@ class ImportOutputAreas(Shp2TempTableTask):
 class OutputAreaColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'source': SourceTags(),
-            'license': LicenseTags()
+            'license': LicenseTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
         input_ = self.input()
         license = input_['license']['uk_ogl']
         source = input_['source']['cdrc-source']
+        boundary_type = input_['boundary']
         geom = OBSColumn(
             type='Geometry',
             name='Census Output Areas',
@@ -89,7 +91,8 @@ class OutputAreaColumns(ColumnsTask):
                         'changed). -`Wikipedia <https://en.wikipedia.org/'
                         'wiki/ONS_coding_system#Geography_of_the_UK_Census>`_',
             weight=8,
-            tags=[input_['subsections']['boundary'], input_['sections']['uk'], source, license]
+            tags=[input_['subsections']['boundary'], input_['sections']['uk'], source, license,
+                  boundary_type['cartographic_boundary'], boundary_type['interpolation_boundary']]
         )
         geomref = OBSColumn(
             type='Text',
