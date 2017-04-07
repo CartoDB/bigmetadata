@@ -8,7 +8,7 @@ from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 import os
 from tasks.meta import OBSTable, OBSColumn, OBSTag
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 import csv
 import pandas as pd
 
@@ -255,10 +255,12 @@ class OutputAreaColumns(ColumnsTask):
         return {
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
+            'boundary_type': BoundaryTags()
         }
 
     def columns(self):
         input_ = self.input()
+
         geom = OBSColumn(
             type='Geometry',
             name='IRIS and Commune areas',
@@ -266,7 +268,10 @@ class OutputAreaColumns(ColumnsTask):
                         'of over 10000 inhabitants and most towns from 5000 to 10000. For areas in which '
                         'IRIS is not defined, the commune area is given instead. ',
             weight=5,
-            tags=[input_['subsections']['boundary'], input_['sections']['fr']]
+            tags=[input_['subsections']['boundary'], input_['sections']['fr'],
+                  input_['boundary_type']['interpolation_boundary'],
+                  input_['boundary_type']['cartographic_boundary'],
+                  ]
         )
         geomref = OBSColumn(
             type='Text',
@@ -332,7 +337,7 @@ class FranceCensus(TableTask):
     table_theme = Parameter()
 
     def version(self):
-        return 9
+        return 8
 
     def timespan(self):
         return '2012'
@@ -382,6 +387,7 @@ class AllGeomsThemesTables(WrapperTask):
         topics = ['population', 'housing', 'education', 'household', 'employment']
         for table_theme in topics:
             yield FranceCensus(table_theme=table_theme)
+
 
 class InseeMetaWrapper(MetaWrapper):
 
