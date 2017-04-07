@@ -3,7 +3,7 @@ from luigi import Parameter, WrapperTask
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
 from tasks.meta import GEOM_REF, OBSColumn, current_session
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
 
@@ -46,6 +46,15 @@ GEOGRAPHY_CODES = {
     GEO_CSD: 301,
     GEO_CMA: 201,
 }
+
+GEOGRAPHY_TAGS = {
+    GEO_CT: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_PR: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_CD: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_CSD: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_CMA: [],
+}
+
 
 
 # http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2011-eng.cfm
@@ -93,17 +102,19 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'boundary': BoundaryTags()
         }
 
     def columns(self):
         sections = self.input()['sections']
         subsections = self.input()['subsections']
+        boundary_type = self.input()['boundary']
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
@@ -117,6 +128,7 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
+        geom.tags.extend(boundary_type[i] for i in GEOGRAPHY_TAGS[self.resolution])
         return OrderedDict([
             ('geom_id', geom_id),   # cvegeo
             ('the_geom', geom),     # the_geom

@@ -1113,6 +1113,7 @@ GROUP BY numer_id;
         '''
 UPDATE {obs_meta} SET
 numer_name = obs_meta.numer_name,
+numer_description = obs_meta.numer_description,
 numer_tags = obs_meta.numer_tags,
 numer_weight = obs_meta.numer_weight,
 numer_extra = obs_meta.numer_extra,
@@ -1170,6 +1171,7 @@ ALTER TABLE {obs_meta} ADD PRIMARY KEY (denom_id);
         '''
 UPDATE {obs_meta} SET
 denom_name = obs_meta.denom_name,
+denom_description = obs_meta.denom_description,
 denom_tags = obs_meta.denom_tags,
 denom_weight = obs_meta.denom_weight,
 reltype = obs_meta.denom_reltype,
@@ -1225,6 +1227,7 @@ SELECT geom_id::TEXT,
         '''
 UPDATE {obs_meta} SET
 geom_name = obs_meta.geom_name,
+geom_description = obs_meta.geom_description,
 geom_tags = obs_meta.geom_tags,
 geom_weight = obs_meta.geom_weight,
 geom_extra = obs_meta.geom_extra,
@@ -1389,7 +1392,7 @@ class OBSMetaToLocal(OBSMeta):
                     dimension=dimension
                 ))
                 session.execute('''
-                    ALTER TABLE observatory.obs_meta_next_{dimension}
+                    ALTER TABLE IF EXISTS observatory.obs_meta_next_{dimension}
                     RENAME TO obs_meta_{dimension}'''.format(
                         dimension=dimension
                     ))
