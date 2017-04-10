@@ -6,7 +6,7 @@ from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag
 from tasks.util import (TagsTask, DownloadUnzipTask, Shp2TempTableTask, shell,
                         classpath, CSV2TempTableTask, TempTableTask,
                         ColumnsTask, TableTask)
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from collections import OrderedDict
 
 import os
@@ -205,24 +205,27 @@ class NUTSColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'source_license': SourceLicenseTags()
+            'source_license': SourceLicenseTags(),
+            'boundary': BoundaryTags()
         }
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         input_ = self.input()
         section = input_['sections']['eu']
         subsection = input_['subsections']['boundary']
         source_license = input_['source_license']
+        boundary_type = input_['boundary']
 
         nuts = OBSColumn(
             id='nuts{}'.format(self.level),
             type='Geometry',
             name='NUTS Level {}'.format(self.level),
             tags=[section, subsection, source_license['eurographics-license'],
-                  source_license['eurographics-source']],
+                  source_license['eurographics-source'], boundary_type['interpolation_boundary'],
+                  boundary_type['cartographic_boundary']],
             weight=self.level,
         )
 
