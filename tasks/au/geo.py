@@ -51,7 +51,7 @@ GEOGRAPHY = {
     GEO_SA4: {'name': 'Statistical Area Level 4', 'weight': 16, 'region_col': 'SA4_CODE', 'proper_name': 'SA4_NAME'},
     GEO_SA3: {'name': 'Statistical Area Level 3', 'weight': 15, 'region_col': 'SA3_CODE', 'proper_name': 'SA3_NAME'},
     GEO_SA2: {'name': 'Statistical Area Level 2', 'weight': 14, 'region_col': 'SA2_MAIN', 'proper_name': 'SA2_NAME'},
-    GEO_SA1: {'name': 'Statistical Area Level 1', 'weight': 13, 'region_col': 'SA1_7DIGIT', 'proper_name': 'SA1_NAME'},
+    GEO_SA1: {'name': 'Statistical Area Level 1', 'weight': 13, 'region_col': 'SA1_7DIGIT', 'proper_name': 'STATE_NAME'},
     GEO_GCCSA: {'name': 'Greater Capital City Statistical Areas', 'weight': 12, 'region_col': 'GCCSA_CODE', 'proper_name': 'GCCSA_NAME'},
     GEO_LGA: {'name': 'Local Government Areas', 'weight': 11, 'region_col': 'LGA_CODE', 'proper_name': 'LGA_NAME'},
     GEO_SLA: {'name': 'Statistical Local Areas', 'weight': 10, 'region_col': 'SLA_MAIN', 'proper_name': 'SLA_NAME'},
