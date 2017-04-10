@@ -1771,7 +1771,6 @@ class CreateGeomIndexes(Task):
             index_name = '{}_{}_idx'.format(tablename, colname)
             resp = session.execute("SELECT to_regclass('observatory.{}')".format(
                 index_name))
-            print index_name
             if not resp.fetchone()[0]:
                 session.execute('CREATE INDEX {index_name} ON observatory.{tablename} '
                                 'USING GIST ({colname})'.format(
@@ -2138,7 +2137,6 @@ def collect_meta_wrappers(test_module=None, test_all=True):
                 # too slow, just use the first one
                 if req_types is None:
                     req_types = set([type(r) for r in collect_requirements(t(**params))])
-                print 'checking {t} with {params}'.format(t=t, params=params)
                 if not affected_task_classes.intersection(req_types):
                     continue
             yield t, params
