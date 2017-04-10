@@ -217,17 +217,19 @@ class GeographyColumns(ColumnsTask):
 
         if self.resolution != 'setores_censitarios':
             geom_name = OBSColumn(
+                id = self.resolution + '_name',
                 name="Name of the {}".format(GEOGRAPHY_NAMES[self.resolution]),
                 type='Text',
                 weight=1,
                 tags=[sections['br'], subsections['names']],
                 targets={geom: GEOM_NAME}
             )
-            cols['geom_name'] = geom_name
+            cols['{}'.format(GEOGRAPHY_PROPERNAMES[self.resolution])] = geom_name
         else:
             for region in GEOGRAPHY_PROPERNAMES[GEO_I]:
                 cols['{}'.format(region)] = OBSColumn(
-                    id="Name of the {}".format(REGION_TYPE[region]),
+                    id=self.resolution + region + '_name',
+                    name="Name of the {}".format(REGION_TYPE[region]),
                     type='Text',
                     weight=1,
                     tags=[sections['br'], subsections['names']],
