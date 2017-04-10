@@ -11,6 +11,9 @@ import logging
 import sys
 import time
 import re
+import importlib
+import inspect
+
 from hashlib import sha1
 from itertools import izip_longest
 from datetime import date
@@ -1493,6 +1496,13 @@ class TableTask(Task):
     generate all relevant metadata for the table, and link it to the columns.
     '''
 
+    def _requires(self):
+        reqs = super(TableTask, self)._requires()
+        if self._testmode:
+            return [r for r in reqs if isinstance(r, (TagsTask, TableTask, ColumnsTask,))]
+        else:
+            return reqs
+
     def version(self):
         '''
         Must return a version control number, which is useful for forcing a
@@ -1591,6 +1601,8 @@ class TableTask(Task):
 
     @property
     def _testmode(self):
+        if os.environ.get('ENVIRONMENT') == 'test':
+            return True
         return getattr(self, '_test', False)
 
     def run(self):
@@ -1640,7 +1652,8 @@ class TableTask(Task):
                 index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
                 session.execute('CREATE {unique} INDEX IF NOT EXISTS {index_name} ON {table} '
                                 'USING {index_type} ({colname})'.format(
-                                    unique='UNIQUE' if index_type == 'btree' else '',
+                                    #unique='UNIQUE' if index_type == 'btree' else '',
+                                    unique='',
                                     index_type=index_type,
                                     index_name=index_name,
                                     table=tablename, colname=colname))
@@ -2036,3 +2049,68 @@ class MetaWrapper(WrapperTask):
         for t in self.tables():
             assert isinstance(t, TableTask)
             yield t
+
+
+def cross(orig_list, b_name, b_list):
+    result = []
+    for orig_dict in orig_list:
+        for b_val in b_list:
+            new_dict = orig_dict.copy()
+            new_dict[b_name] = b_val
+            result.append(new_dict)
+    return result
+
+
+class RunDiff(WrapperTask):
+    '''
+    Run MetaWrapper for all tasks that changed compared to master.
+    '''
+
+    compare = Parameter()
+
+    def requires(self):
+        resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
+            compare=self.compare
+        ))
+        for line in resp.split('\n'):
+            if not line:
+                continue
+            module = line.replace('.py', '')
+            LOGGER.info(module)
+            for task_klass, params in collect_meta_wrappers(test_module=module, test_all=True):
+                yield task_klass(**params)
+
+
+def collect_tasks(task_klass, test_module=None):
+    '''
+    Returns a set of task classes whose parent is the passed `TaskClass`.
+
+    Can limit to scope of tasks within module.
+    '''
+    tasks = set()
+    for dirpath, _, files in os.walk('tasks'):
+        for filename in files:
+            if test_module:
+                if not os.path.join(dirpath, filename).startswith(test_module):
+                    continue
+            if filename.endswith('.py'):
+                modulename = '.'.join([
+                    dirpath.replace(os.path.sep, '.'),
+                    filename.replace('.py', '')
+                ])
+                module = importlib.import_module(modulename)
+                for _, obj in inspect.getmembers(module):
+                    if inspect.isclass(obj) and issubclass(obj, task_klass) and obj != task_klass:
+                        tasks.add((obj, ))
+    return tasks
+
+
+def collect_meta_wrappers(test_module=None, test_all=True):
+    for t, in collect_tasks(MetaWrapper, test_module=test_module):
+        outparams = [{}]
+        for key, val in t.params.iteritems():
+            outparams = cross(outparams, key, val)
+        for params in outparams:
+            yield t, params
+            if not test_all:
+                break
