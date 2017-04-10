@@ -9,6 +9,8 @@ before_install:
 script: make $TEST_SUITE
 addons:
   postgresql: '9.5'
+before_script:
+  - psql -U postgres -c "create extension postgis"
 #install:
 #- sudo apt-get install -y postgresql-9.5-postgis-2.3
 #- sudo service postgresql restart
