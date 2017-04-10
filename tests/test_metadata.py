@@ -1,4 +1,4 @@
-from tests.util import runtask, setup, teardown, collect_tasks
+from tests.util import runtask, setup, teardown
 
 from tasks.util import TableTask
 
@@ -7,7 +7,7 @@ TableTask._test = True
 
 import tasks.carto
 from tasks.meta import current_session
-from tasks.util import MetaWrapper, TagsTask, ColumnsTask
+from tasks.util import TagsTask, ColumnsTask, collect_meta_wrappers
 
 from nose_parameterized import parameterized
 from nose.tools import assert_greater, with_setup
@@ -15,30 +15,11 @@ from nose.tools import assert_greater, with_setup
 import os
 
 
-def cross(orig_list, b_name, b_list):
-    result = []
-    for orig_dict in orig_list:
-        for b_val in b_list:
-            new_dict = orig_dict.copy()
-            new_dict[b_name] = b_val
-            result.append(new_dict)
-    return result
-
-
-def collect_meta_wrappers():
-    test_all = os.environ.get('TEST_ALL', '') != ''
-    for t, in collect_tasks(MetaWrapper):
-        outparams = [{}]
-        for key, val in t.params.iteritems():
-            outparams = cross(outparams, key, val)
-        for params in outparams:
-            yield t, params
-            if not test_all:
-                break
-
-
 @with_setup(setup, teardown)
-@parameterized(collect_meta_wrappers())
+@parameterized(collect_meta_wrappers(
+    test_module=os.environ.get('TEST_MODULE', '').replace('.', os.path.sep),
+    test_all=os.environ.get('TEST_ALL', '') != ''
+))
 def test_table_task(klass, params):
     '''
     Test {} task with {}.
