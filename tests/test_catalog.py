@@ -6,10 +6,11 @@ from tasks.util import TableTask
 TableTask._test = True
 
 from tasks.carto import OBSMetaToLocal
+from tasks.meta import current_session
 from tasks.util import TagsTask, ColumnsTask, collect_meta_wrappers
 from tasks.sphinx import Catalog
 
-from nose.tools import with_setup
+from nose.tools import with_setup, assert_greater
 
 import os
 
