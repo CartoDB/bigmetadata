@@ -312,3 +312,19 @@ class SubsectionTags(TagsTask):
                    type='subsection',
                    description=''),
         ]
+
+class BoundaryTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(id='interpolation_boundary',
+                   name='Interpolation Boundary',
+                   type='boundary_type',
+                   description='Boundary appropriate for interpolation calculation'),
+            OBSTag(id='cartographic_boundary',
+                   name='Cartographic Boundary',
+                   type='boundary_type',
+                   description='Boundary appropriate for cartographic use'),
+            ]
