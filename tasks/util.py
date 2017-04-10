@@ -2101,16 +2101,46 @@ def collect_tasks(task_klass, test_module=None):
                 module = importlib.import_module(modulename)
                 for _, obj in inspect.getmembers(module):
                     if inspect.isclass(obj) and issubclass(obj, task_klass) and obj != task_klass:
-                        tasks.add((obj, ))
+                        if test_module and obj.__module__ != modulename:
+                            continue
+                        else:
+                            tasks.add((obj, ))
     return tasks
 
 
+def collect_requirements(task):
+    requirements = task._requires()
+    for r in requirements:
+        requirements.extend(collect_requirements(r))
+    return requirements
+
+
 def collect_meta_wrappers(test_module=None, test_all=True):
-    for t, in collect_tasks(MetaWrapper, test_module=test_module):
+    '''
+    Yield MetaWrapper and associated params for every MetaWrapper that has been
+    touched by changes in test_module.
+
+    Does not collect meta wrappers that have been affected by a change in a
+    superclass.
+    '''
+    affected_task_classes = set([t[0] for t in collect_tasks(Task, test_module)])
+
+    for t, in collect_tasks(MetaWrapper):
         outparams = [{}]
         for key, val in t.params.iteritems():
             outparams = cross(outparams, key, val)
+        req_types = None
         for params in outparams:
+            # if the metawrapper itself is not affected, look at its requirements
+            if t not in affected_task_classes:
+
+                # generating requirements separately for each cross product is
+                # too slow, just use the first one
+                if req_types is None:
+                    req_types = set([type(r) for r in collect_requirements(t(**params))])
+                print 'checking {t} with {params}'.format(t=t, params=params)
+                if not affected_task_classes.intersection(req_types):
+                    continue
             yield t, params
             if not test_all:
                 break
