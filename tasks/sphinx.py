@@ -318,7 +318,6 @@ class GenerateRST(Task):
                     'geom_timespans': geom_timespans
                 }
 
-
             target.makedirs()
             fhandle = target.open('w')
 
@@ -338,10 +337,12 @@ class GenerateRST(Task):
 
             fhandle.close()
 
-            os.makedirs('catalog/source/{section}/{subsection}/'.format(
+            subsection_path = 'catalog/source/{section}/{subsection}/'.format(
                 section=strip_tag_id(section_id),
                 subsection=strip_tag_id(subsection_id)
-            ))
+            )
+            if not os.path.exists(subsection_path):
+                os.makedirs(subsection_path)
 
             for column_id, children in column_children_ids:
 
