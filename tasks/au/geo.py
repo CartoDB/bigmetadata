@@ -3,7 +3,8 @@ from luigi import Parameter, WrapperTask
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask, TagsTask)
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
+
 from collections import OrderedDict
 
 
@@ -132,14 +133,18 @@ class GeographyColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'source': SourceTags(),
-            'license': LicenseTags()
+            'license': LicenseTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
-        source = self.input()['source']['au-census']
-        license = self.input()['license']['au-datapacks-license']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        source = input_['source']['au-census']
+        license = input_['license']['au-datapacks-license']
+        boundary_type = input_['boundary']
+
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
@@ -164,12 +169,28 @@ class GeographyColumns(ColumnsTask):
             tags=[source, license, sections['au'], subsections['names']],
         )
 
-        return OrderedDict([
+
+        cartographic_boundaries = [GEO_LGA, GEO_POA, GEO_CED, GEO_SED, GEO_SSC,
+                                   GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4,
+                                   GEO_STE, GEO_GCCSA, GEO_UCL,
+                                   GEO_SOS, GEO_SOSR, GEO_SUA, GEO_RA]
+        interpolated_boundaries = [GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4,
+                                   GEO_STE, GEO_GCCSA, GEO_UCL,
+                                   GEO_SOS, GEO_SOSR, GEO_SUA, GEO_RA]
+
+
+        cols = OrderedDict([
             ('geom_name', geom_name),
             ('geom_id', geom_id),
             ('the_geom', geom),
         ])
 
+        for colname, col in cols.iteritems():
+            if col.id in interpolated_boundaries:
+                col.tags.append(boundary_type['interpolation_boundary'])
+            if col.id in cartographic_boundaries:
+                col.tags.append(boundary_type['cartographic_boundary'])
+        return cols
 
 class Geography(TableTask):
 

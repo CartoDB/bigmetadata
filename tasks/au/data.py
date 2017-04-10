@@ -240,7 +240,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
         cols = OrderedDict()
