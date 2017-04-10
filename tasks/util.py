@@ -2066,6 +2066,7 @@ class RunDiff(WrapperTask):
     '''
 
     compare = Parameter()
+    test_all = BooleanParameter(default=False)
 
     def requires(self):
         resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
@@ -2076,7 +2077,7 @@ class RunDiff(WrapperTask):
                 continue
             module = line.replace('.py', '')
             LOGGER.info(module)
-            for task_klass, params in collect_meta_wrappers(test_module=module, test_all=True):
+            for task_klass, params in collect_meta_wrappers(test_module=module, test_all=self.test_all):
                 yield task_klass(**params)
 
 
