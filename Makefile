@@ -265,7 +265,7 @@ releasetest: extension-fixtures extension-perftest-record extension-unittest ext
 test-catalog:
 	docker-compose run --rm bigmetadata /bin/bash -c \
 	  'while : ; do pg_isready -t 1 && break; done && \
-	  TEST_MODULE=tasks.$(MODULE) PGDATABASE=test nosetests -v \
+	  TEST_MODULE=tasks.$(MODULE) PGDATABASE=test nosetests -vs \
 	    tests/test_catalog.py'
 
 #restore:
