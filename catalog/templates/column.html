@@ -1,0 +1,196 @@
+.. _{{ col.id }}:
+
+{{ col.name }}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+{% if col.description %}{{ col.description }}{% endif %}
+
+{% if col.extra.categories %}
+  {% for catname, category in col.extra.categories.items() %}
+  * **{{ catname }}**: {{ category.description }}
+  {% endfor %}
+{% endif %}
+
+{% if col.is_cartographic %}
+.. note::
+
+   This boundary is suitable for cartography.
+{% endif %}
+
+{% if col.is_interpolation %}
+.. note::
+
+   This boundary is suitable for interpolating measurements.
+{% endif %}
+
+{#
+Code example
+#}
+
+{#
+    {% if col.type|lower == 'text' %}
+    Obtain category of "{{ col.name }}" at one point:
+    {% elif col.type|lower == 'numeric' %}
+    Measure "{{ col.name }}" {% if col.summable() %} density per sq. kilometer {% endif %} for one point:
+    {% elif col.type|lower == 'geometry' %}
+    Obtain "{{ col.name }}" geometry at one point:
+    {% endif %}
+
+    .. code-block:: postgresql
+
+    {% set point = 'CDB_LatLng(%s, %s)'|format(col.catalog_lonlat().0, col.catalog_lonlat().1) %}
+
+    {% if col.type|lower == 'text' %}
+
+      UPDATE {table_name}
+        SET {new_text_column} =
+          OBS_GetCategory(
+            {{ point }},
+            '{{ col.id }}'
+          );
+
+    {% elif col.type|lower == 'numeric' %}
+
+      UPDATE {table_name}
+        SET {new_numeric_column} =
+          OBS_GetMeasure(
+            {{ point }},
+            '{{ col.id }}'
+          );
+
+    {% elif col.type|lower == 'geometry' %}
+
+      INSERT INTO {tablename}(the_geom)
+        SELECT OBS_GetBoundary(
+          {{ point }},
+          '{{ col.id }}'
+        )
+
+    {% endif %}
+
+    {% if col.type|lower == 'text' %}
+    {% elif col.type|lower == 'numeric' %}
+    {% if col.summable() %}
+    Measure "{{ col.name }}" within an area:
+
+    .. code-block:: postgresql
+
+        UPDATE {table_name}
+          SET {new_numeric_column} =
+            OBS_GetMeasure(
+              ST_Buffer({{ point }}, 0.01),
+              '{{ col.id }}'
+            );
+
+    {% else %}
+
+    {{ col.name }} is only available for point lookups.
+    {% endif %}
+    {% elif col.type|lower == 'geometry' %}
+
+    Obtain all "{{ col.name }}" geometries within an area:
+
+    .. code-block:: postgresql
+
+      INSERT INTO {new_table_name} (the_geom, {geo_id_column})
+        SELECT *
+        FROM OBS_GetBoundariesByGeometry(
+          ST_Buffer({{ point }}, 0.01),
+          '{{ col.id }}'
+        )
+
+    {% endif %}
+
+    {% if col.has_denominators() %}
+    {% set denominator = col.denominators()[0] %}
+    Measure "{{ col.name }}" percent of "{{ denominator.name }}" at one point:
+
+    .. code-block:: postgresql
+
+      UPDATE {table_name}
+        SET {new_numeric_column} =
+          OBS_GetMeasure(
+            {{ point }},
+            '{{ col.id }}',
+            'denominator'
+          );
+
+    {% if col.summable() %}
+    Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
+
+    .. code-block:: postgresql
+
+      UPDATE {table_name}
+        SET {new_numeric_column} =
+          OBS_GetMeasure(
+            ST_Buffer({{ point }}, 0.01),
+            '{{ col.id }}',
+            'denominator'
+          );
+
+    {% endif %}
+    {% endif %}
+#}
+
+{% if col.geom_timespans|length > 0 %}
+
+.. raw:: html
+
+   <table border="1" class="docutils">
+   <thead valign="bottom">
+   <tr class="row-odd"><th class="head">Boundary</th>
+   <th class="head">Time (default is latest)</th>
+   </tr>
+   </thead>
+   <tbody valign="top">
+
+
+   {% for _, gt in col.geom_timespans.iteritems() %}
+.. raw:: html
+
+   <tr class="row-even"><td>
+
+:ref:`{{ gt.geom_id }}`
+
+.. raw:: html
+
+   </td>
+   <td>
+
+{{ gt.timespans|sort(True)|join(', ') }}
+
+.. raw:: html
+
+   </td>
+
+   {% endfor %}
+
+.. raw:: html
+
+   </tr>
+   </tbody>
+   </table>
+
+{% endif %}
+
+{% if col.denoms|length > 0 %}
+:Related columns:
+
+    {% for denom_id in col.denoms %}:ref:`{{ denom_id }}`{% endfor %}
+{% endif %}
+
+:Source:
+
+    {% for tag_id in col.sources %}:ref:`{{ tag_id }}`{% endfor %}
+
+:License:
+
+    {% for tag_id in col.licenses %}:ref:`{{ tag_id }}`{% endfor %}
+
+.. toctree::
+   :caption: Subcolumns
+   :maxdepth: 1
+   :titlesonly:
+   :glob:
+
+   {{ col.id }}/*
