@@ -213,7 +213,7 @@ etl-metadatatest:
 	docker-compose run --rm bigmetadata /bin/bash -c \
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  TEST_ALL=$(ALL) TEST_MODULE=tasks.$(MODULE) \
-	  PGDATABASE=test nosetests -vs --with-timer \
+	  PGDATABASE=test nosetests -v --with-timer \
 	    tests/test_metadata.py'
 
 travis-etl-unittest:

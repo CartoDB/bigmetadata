@@ -36,8 +36,8 @@ class AnuarioColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
-            'source': SourceTags(),
-            'license': LicenseTags(),
+            'source': LacaixaSourceTags(),
+            'license': LacaixaLicenseTags(),
         }
 
     def columns(self):
@@ -558,7 +558,7 @@ class AnuarioColumns(ColumnsTask):
             col.tags.append(license)
         return columns
 
-class SourceTags(TagsTask):
+class LacaixaSourceTags(TagsTask):
     def version(self):
         return 2
 
@@ -571,7 +571,7 @@ class SourceTags(TagsTask):
         ]
 
 
-class LicenseTags(TagsTask):
+class LacaixaLicenseTags(TagsTask):
     def version(self):
         return 1
 
