@@ -82,7 +82,7 @@ class ThaiDistricts(TableTask):
         }
 
     def version(self):
-        return 3
+        return 4
 
     def timespan(self):
         return '2010'
