@@ -359,13 +359,27 @@ class GenerateRST(Task):
                 for _, subchild_id_paths in children.iteritems():
                     for subchild_id, subchild_path in subchild_id_paths.iteritems():
 
+                        # Create each intermediate column in hierarchy
+                        subchild_path_split = subchild_path.split('/')
+
                         dirpath = 'catalog/source/{section}/{subsection}/{dirpath}'.format(
                             section=strip_tag_id(section_id),
                             subsection=strip_tag_id(subsection_id),
-                            dirpath='/'.join(subchild_path.split('/')[0:-1])
+                            dirpath='/'.join(subchild_path_split[0:-1])
                         )
                         if not os.path.exists(dirpath):
                             os.makedirs(dirpath)
+
+                        for i in xrange(1, len(subchild_path_split)):
+                            intermediate_id = subchild_path_split[i]
+                            with open('catalog/source/{section}/{subsection}/{intermediate_path}/{intermediate_id}.rst'.format(
+                                section=strip_tag_id(section_id),
+                                subsection=strip_tag_id(subsection_id),
+                                intermediate_path='/'.join(subchild_path_split[0:i]),
+                                intermediate_id=intermediate_id
+                            ), 'w') as subcolumn_fhandle:
+                                subcolumn_fhandle.write(COLUMN_TEMPLATE.render(
+                                    col=all_columns[intermediate_id], **self.template_globals()).encode('utf8'))
 
                         with open('catalog/source/{section}/{subsection}/{path}.rst'.format(
                             section=strip_tag_id(section_id),
