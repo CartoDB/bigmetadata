@@ -36,4 +36,4 @@ notifications:
     template:
       - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch} by %{author} %{result} in %{duration}"
       - "Build catalog: https://s3.amazonaws.com/data-observatory-catalog/catalogs/%{branch}/index.html"
-
+    on_success: always
