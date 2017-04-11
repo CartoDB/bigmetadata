@@ -1,7 +1,6 @@
 services:
 - docker
 - postgresql
-sudo: required
 before_install:
 - openssl aes-256-cbc -K $encrypted_d303290e7d32_key -iv $encrypted_d303290e7d32_iv
   -in keys/id_rsa_observatory_extension.key.enc -out keys/id_rsa_observatory_extension.key
@@ -9,9 +8,11 @@ before_install:
 script: make $TEST_SUITE
 addons:
   postgresql: '9.5'
-install:
-- sudo apt-get install -y postgresql-9.5-postgis-2.3
-- sudo service postgresql restart
+  apt:
+    packages:
+    - postgresql-9.5-postgis-2.3
+before_script:
+  - psql -U postgres -c "create extension postgis"
 env:
 - TEST_SUITE=travis-etl-metadatatest
 - TEST_SUITE=travis-etl-unittest
