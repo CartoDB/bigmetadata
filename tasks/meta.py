@@ -13,7 +13,8 @@ from luigi import Task, BooleanParameter, Target, Event
 
 from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric, cast,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
-                        ForeignKeyConstraint, Table, exc, func, UniqueConstraint)
+                        ForeignKeyConstraint, Table, exc, func, UniqueConstraint,
+                        Index)
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
@@ -435,9 +436,27 @@ class OBSColumn(Base):
         return self._index_type
 
     def children(self):
-        children = [col for col, reltype in self.sources.iteritems() if reltype == 'denominator']
+        children = [col for col, reltype in self.sources.iteritems() if reltype == DENOMINATOR]
         children.sort(key=lambda x: natural_sort_key(x.name))
         return children
+
+    def is_cartographic(self):
+        '''
+        Returns True if this column is a geometry that can be used for cartography.
+        '''
+        for tag in self.tags:
+            if 'cartographic_boundary' in tag.id:
+                return True
+        return False
+
+    def is_interpolation(self):
+        '''
+        Returns True if this column is a geometry that can be used for interpolation.
+        '''
+        for tag in self.tags:
+            if 'interpolation_boundary' in tag.id:
+                return True
+        return False
 
     def is_geomref(self):
         '''
@@ -455,7 +474,7 @@ class OBSColumn(Base):
         '''
         Returns True if this column has no denominator, False otherwise.
         '''
-        return 'denominator' in self.targets.values()
+        return DENOMINATOR in self.targets.values()
 
     def has_catalog_image(self):
         '''
@@ -469,7 +488,7 @@ class OBSColumn(Base):
         '''
         if not self.has_denominators():
             return []
-        return [k for k, v in self.targets.iteritems() if v == 'denominator']
+        return [k for k, v in self.targets.iteritems() if v == DENOMINATOR]
 
     def unit(self):
         '''
@@ -724,6 +743,25 @@ class OBSColumnTableTile(Base):
         ('obs_column_table.table_id', 'obs_column_table.column_id', ),
         ondelete='cascade'
     )
+
+
+class OBSColumnTableTileSimple(Base):
+    '''
+    This table contains column/table summary data using raster tiles.
+    '''
+    __tablename__ = 'obs_column_table_tile_simple'
+
+    table_id = Column(Text, primary_key=True)
+    column_id = Column(Text, primary_key=True)
+    tile_id = Column(Integer, primary_key=True)
+
+    tile = Column(Raster)
+
+    tct_constraint = UniqueConstraint(table_id, column_id, tile_id,
+                                      name='obs_column_table_tile_simple_tct')
+    cvxhull_restraint = Index('obs_column_table_simple_chtile',
+                              func.ST_ConvexHull(tile),
+                              postgresql_using='gist')
 
 
 class CurrentSession(object):

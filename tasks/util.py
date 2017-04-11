@@ -11,6 +11,9 @@ import logging
 import sys
 import time
 import re
+import importlib
+import inspect
+
 from hashlib import sha1
 from itertools import izip_longest
 from datetime import date
@@ -236,6 +239,14 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     Add entries to obs_column_table_tile for the given table and column.
     '''
     tablename_ns = tablename.split('.')[-1]
+
+    query = '''
+        DELETE FROM observatory.obs_column_table_tile_simple
+        WHERE table_id = '{table_id}'
+          AND column_id = '{column_id}';'''.format(
+              table_id=table_id, column_id=column_id)
+    resp = session.execute(query)
+
     query = '''
         DELETE FROM observatory.obs_column_table_tile
         WHERE table_id = '{table_id}'
@@ -248,33 +259,42 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
         CREATE TEMPORARY TABLE raster_empty_{tablename_ns} AS
         SELECT ROW_NUMBER() OVER () AS id, rast FROM (
           WITH tilesize AS (SELECT
-            CASE WHEN ST_Area(the_geom) > 5000 THEN 250
-                 ELSE 50 END AS tilesize
-            FROM observatory.obs_table
-            WHERE id = '{table_id}'
-          ) SELECT ST_Tile(ST_AsRaster(
-            the_geom,
-            (st_xmax(st_transform(the_geom, 3857))
-              - st_xmin(st_transform(the_geom, 3857)))::INT
-                              / (tilesize * 1000),
-            (st_ymax(st_transform(the_geom, 3857))
-              - st_ymin(st_transform(the_geom, 3857)))::INT
-                              / (tilesize * 1000),
-            0, 0, ARRAY['32BF', '32BF', '32BF'],
-            ARRAY[-1, -1, -1],
-            ARRAY[0, 0, 0]
-          ), ARRAY[1, 2, 3], 25, 25) rast
-          FROM observatory.obs_table, tilesize
-          WHERE id = '{table_id}'
+            CASE WHEN SUM(ST_Area({colname})) > 5000 THEN 2.5
+                 ELSE 0.5 END AS tilesize,
+            ST_SetSRID(ST_Extent({colname}), 4326) extent
+            FROM {tablename}
+          ), summaries AS (
+            SELECT ST_XMin(extent) xmin, ST_XMax(extent) xmax,
+                   ST_YMin(extent) ymin, ST_YMax(extent) ymax
+            FROM tilesize
+          ) SELECT
+              ST_Tile(ST_SetSRID(
+                ST_AddBand(
+                  ST_MakeEmptyRaster(
+                    ((xmax - xmin) / tilesize)::Integer + 1,
+                    ((ymax - ymin) / tilesize)::Integer + 1,
+                    ((xmin / tilesize)::Integer)::Numeric * tilesize,
+                    ((ymax / tilesize)::Integer)::Numeric * tilesize,
+                    tilesize
+                  ), ARRAY[
+                    (1, '32BF', -1, 0)::addbandarg,
+                    (2, '32BF', -1, 0)::addbandarg,
+                    (3, '32BF', -1, 0)::addbandarg
+                  ])
+              , 4326)
+          , ARRAY[1, 2, 3], 25, 25) rast
+          FROM summaries, tilesize
           ) foo;
-        '''.format(table_id=table_id, tablename_ns=tablename_ns)
+        '''.format(colname=colname,
+                   tablename=tablename,
+                   tablename_ns=tablename_ns)
     resp = session.execute(query)
     assert resp.rowcount > 0
 
     query = '''
       DROP TABLE IF EXISTS raster_pap_{tablename_ns};
       CREATE TEMPORARY TABLE raster_pap_{tablename_ns} As
-      SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
+      SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, False)).*
            FROM raster_empty_{tablename_ns} rast,
                 {tablename} vector
            WHERE rast.rast && vector.{colname}
@@ -299,7 +319,12 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     query = '''
       DROP TABLE IF EXISTS raster_vals_{tablename_ns};
       CREATE TEMPORARY TABLE raster_vals_{tablename_ns} AS
-      WITH vector AS (SELECT ST_SimplifyVW({colname}, 0.0005) the_geom
+      WITH vector AS (SELECT CASE
+                        WHEN ST_GeometryType({colname}) IN ('ST_Polygon', 'ST_MultiPolygon')
+                          THEN ST_CollectionExtract(ST_MakeValid(
+                                 ST_SimplifyVW({colname}, 0.0005)), 3)
+                          ELSE {colname}
+                        END the_geom
                       FROM {tablename} vector)
       SELECT id
              , (null::geometry, null::numeric)::geomval median
@@ -311,9 +336,9 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                    ST_Length({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                        ST_Length(vector.the_geom)
                  ELSE
-                   CASE WHEN geom @ vector.the_geom THEN
+                   CASE WHEN ST_Within(geom, vector.the_geom) THEN
                              ST_Area(geom) / ST_Area(vector.the_geom)
-                        WHEN vector.the_geom @ geom THEN 1
+                        WHEN ST_Within(vector.the_geom, geom) THEN 1
                         ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                              ST_Area(vector.the_geom)
                    END
@@ -378,22 +403,34 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
        ; '''.format(table_id=table_id, column_id=column_id,
                     colname=colname, tablename=tablename))
     resp = session.execute('''
-       DROP TABLE IF EXISTS observatory.obs_column_table_tile_simple;
-       CREATE TABLE observatory.obs_column_table_tile_simple AS
+       INSERT INTO observatory.obs_column_table_tile_simple
        SELECT table_id, column_id, tile_id, ST_Reclass(
          ST_Band(tile, ARRAY[2, 3]),
-         ROW(1, '[0-65535]::0-65535, [65536-4294967296::65535-65535', '16BUI', 0)::reclassarg,
          ROW(2, '[0-1]::0-255, (1-100]::255-255', '8BUI', 0)::reclassarg
        ) AS tile
-       FROM observatory.obs_column_table_tile ;
-
-       CREATE UNIQUE INDEX ON observatory.obs_column_table_tile_simple
-       (table_id, column_id, tile_id);
-
-       CREATE INDEX ON observatory.obs_column_table_tile_simple USING GIST
-       (ST_ConvexHull(tile));
+       FROM observatory.obs_column_table_tile
+       WHERE table_id='{table_id}'
+         AND column_id='{column_id}';
        '''.format(table_id=table_id, column_id=column_id,
                   colname=colname, tablename=tablename))
+
+    real_num_geoms = session.execute('''
+        SELECT COUNT({colname}) FROM {tablename}
+    '''.format(colname=colname,
+               tablename=tablename)).fetchone()[0]
+
+    est_num_geoms = session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
+        FROM observatory.obs_column_table_tile_simple
+        WHERE column_id = '{column_id}'
+          AND table_id = '{table_id}'
+    '''.format(column_id=column_id,
+               table_id=table_id)).fetchone()[0]
+
+    assert abs(real_num_geoms - est_num_geoms) / real_num_geoms < 0.05, \
+            "Estimate of {} total geoms more than 5% off real {} num geoms " \
+            "for column '{}' in table '{}' (tablename '{}')".format(
+                est_num_geoms, real_num_geoms, column_id, table_id, tablename)
 
 
 class PostgresTarget(Target):
@@ -878,6 +915,8 @@ class ColumnsTask(Task):
         # Otherwise, run `columns` (slow!) to generate output
         already_in_session = [obj for obj in session]
         output = OrderedDict()
+
+        input_ = self.input()
         for col_key, col in self.columns().iteritems():
             if not isinstance(col, OBSColumn):
                 raise RuntimeError(
@@ -886,6 +925,11 @@ class ColumnsTask(Task):
             if not col.version:
                 col.version = self.version()
             col.id = '.'.join([classpath(self), col.id or col_key])
+            tags = self.tags(input_, col_key, col)
+            if isinstance(tags, TagTarget):
+                col.tags.append(tags)
+            else:
+                col.tags.extend(tags)
 
             output[col_key] = ColumnTarget(col, self)
         now_in_session = [obj for obj in session]
@@ -928,6 +972,18 @@ class ColumnsTask(Task):
                     version=self.version()
                 )).fetchone()[0]
             return cnt == len(self.colids.values())
+
+    def tags(self, input_, col_key, col):
+        '''
+        Replace with an iterable of :class:`OBSColumn <tasks.meta.OBSColumn>`
+        that should be applied to each column
+
+        :param input_: A saved version of this class's :meth:`input <luigi.Task.input>`
+        :param col_key: The key of the column this will be applied to.
+        :param column: The :class:`OBSColumn <tasks.meta.OBSColumn>` these tags
+                       will be applied to.
+        '''
+        return []
 
 
 class TagsTask(Task):
@@ -1440,6 +1496,13 @@ class TableTask(Task):
     generate all relevant metadata for the table, and link it to the columns.
     '''
 
+    def _requires(self):
+        reqs = super(TableTask, self)._requires()
+        if self._testmode:
+            return [r for r in reqs if isinstance(r, (TagsTask, TableTask, ColumnsTask,))]
+        else:
+            return reqs
+
     def version(self):
         '''
         Must return a version control number, which is useful for forcing a
@@ -1538,6 +1601,8 @@ class TableTask(Task):
 
     @property
     def _testmode(self):
+        if os.environ.get('ENVIRONMENT') == 'test':
+            return True
         return getattr(self, '_test', False)
 
     def run(self):
@@ -1585,8 +1650,10 @@ class TableTask(Task):
             index_type = col.index_type
             if index_type:
                 index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
-                session.execute('CREATE INDEX {index_name} ON {table} '
+                session.execute('CREATE {unique} INDEX IF NOT EXISTS {index_name} ON {table} '
                                 'USING {index_type} ({colname})'.format(
+                                    #unique='UNIQUE' if index_type == 'btree' else '',
+                                    unique='',
                                     index_type=index_type,
                                     index_name=index_name,
                                     table=tablename, colname=colname))
@@ -1704,7 +1771,6 @@ class CreateGeomIndexes(Task):
             index_name = '{}_{}_idx'.format(tablename, colname)
             resp = session.execute("SELECT to_regclass('observatory.{}')".format(
                 index_name))
-            print index_name
             if not resp.fetchone()[0]:
                 session.execute('CREATE INDEX {index_name} ON observatory.{tablename} '
                                 'USING GIST ({colname})'.format(
@@ -1941,15 +2007,18 @@ class GenerateRasterTiles(Task):
             WHERE table_id = '{table_id}'
               AND column_id = '{column_id}'
         '''.format(table_id=self.table_id, column_id=self.column_id))
-        return resp.fetchone()[0] > 0
+        numrows = resp.fetchone()[0]
+        return numrows > 0
 
 
 class GenerateAllRasterTiles(WrapperTask):
 
+    force = BooleanParameter(default=False, significant=False)
+
     def requires(self):
         session = current_session()
         resp = session.execute('''
-            SELECT table_id, column_id
+            SELECT DISTINCT table_id, column_id
             FROM observatory.obs_table t,
                  observatory.obs_column_table ct,
                  observatory.obs_column c
@@ -1958,7 +2027,8 @@ class GenerateAllRasterTiles(WrapperTask):
               AND c.type ILIKE 'geometry%'
         ''')
         for table_id, column_id in resp:
-            yield GenerateRasterTiles(table_id=table_id, column_id=column_id)
+            yield GenerateRasterTiles(table_id=table_id, column_id=column_id,
+                                      force=self.force)
 
 
 class MetaWrapper(WrapperTask):
@@ -1978,3 +2048,98 @@ class MetaWrapper(WrapperTask):
         for t in self.tables():
             assert isinstance(t, TableTask)
             yield t
+
+
+def cross(orig_list, b_name, b_list):
+    result = []
+    for orig_dict in orig_list:
+        for b_val in b_list:
+            new_dict = orig_dict.copy()
+            new_dict[b_name] = b_val
+            result.append(new_dict)
+    return result
+
+
+class RunDiff(WrapperTask):
+    '''
+    Run MetaWrapper for all tasks that changed compared to master.
+    '''
+
+    compare = Parameter()
+    test_all = BooleanParameter(default=False)
+
+    def requires(self):
+        resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
+            compare=self.compare
+        ))
+        for line in resp.split('\n'):
+            if not line:
+                continue
+            module = line.replace('.py', '')
+            LOGGER.info(module)
+            for task_klass, params in collect_meta_wrappers(test_module=module, test_all=self.test_all):
+                yield task_klass(**params)
+
+
+def collect_tasks(task_klass, test_module=None):
+    '''
+    Returns a set of task classes whose parent is the passed `TaskClass`.
+
+    Can limit to scope of tasks within module.
+    '''
+    tasks = set()
+    for dirpath, _, files in os.walk('tasks'):
+        for filename in files:
+            if test_module:
+                if not os.path.join(dirpath, filename).startswith(test_module):
+                    continue
+            if filename.endswith('.py'):
+                modulename = '.'.join([
+                    dirpath.replace(os.path.sep, '.'),
+                    filename.replace('.py', '')
+                ])
+                module = importlib.import_module(modulename)
+                for _, obj in inspect.getmembers(module):
+                    if inspect.isclass(obj) and issubclass(obj, task_klass) and obj != task_klass:
+                        if test_module and obj.__module__ != modulename:
+                            continue
+                        else:
+                            tasks.add((obj, ))
+    return tasks
+
+
+def collect_requirements(task):
+    requirements = task._requires()
+    for r in requirements:
+        requirements.extend(collect_requirements(r))
+    return requirements
+
+
+def collect_meta_wrappers(test_module=None, test_all=True):
+    '''
+    Yield MetaWrapper and associated params for every MetaWrapper that has been
+    touched by changes in test_module.
+
+    Does not collect meta wrappers that have been affected by a change in a
+    superclass.
+    '''
+    affected_task_classes = set([t[0] for t in collect_tasks(Task, test_module)])
+
+    for t, in collect_tasks(MetaWrapper):
+        outparams = [{}]
+        for key, val in t.params.iteritems():
+            outparams = cross(outparams, key, val)
+        req_types = None
+        for params in outparams:
+            # if the metawrapper itself is not affected, look at its requirements
+            if t not in affected_task_classes:
+
+                # generating requirements separately for each cross product is
+                # too slow, just use the first one
+                if req_types is None:
+                    req_types = set([type(r) for r in collect_requirements(t(**params))])
+                if not affected_task_classes.intersection(req_types):
+                    continue
+            yield t, params
+            if not test_all:
+                break
