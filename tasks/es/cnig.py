@@ -42,7 +42,9 @@ class ImportGeometry(Shp2TempTableTask):
     def input_shp(self):
         path = os.path.join('SIANE_CARTO_BASE_S_3M', 'anual', self.timestamp,
                             'SE89_3_ADMIN_{resolution}_A_{aux}.shp'.format(
-                                resolution=self.resolution.upper(),aux=self.id_aux).lower())
+                                resolution=self.resolution,
+                                aux=self.id_aux).lower()
+                            )
         return os.path.join(self.input().path, path)
 
 
@@ -155,7 +157,6 @@ class Geometry(TableTask):
 
     resolution = Parameter()
     timestamp = Parameter(default='20150101')
-    id_aux = Parameter()
 
     def version(self):
         return 10
@@ -164,9 +165,12 @@ class Geometry(TableTask):
         return {
             'geom_columns': GeometryColumns(),
             'geomref_columns': GeomRefColumns(),
-            'data': ImportGeometry(resolution=self.resolution,
+            'peninsula_data': ImportGeometry(resolution=self.resolution,
                                    timestamp=self.timestamp,
-                                   id_aux=self.id_aux)
+                                   id_aux='x'),
+            'canary_data': ImportGeometry(resolution=self.resolution,
+                                   timestamp=self.timestamp,
+                                   id_aux='y')
         }
 
     def timespan(self):
@@ -190,18 +194,23 @@ class Geometry(TableTask):
 
     def populate(self):
         session = current_session()
-        query = 'INSERT INTO {output} ' \
+        peninsula_query = 'INSERT INTO {output} ' \
                 'SELECT {geom_ref_colname} geom_ref, wkb_geometry the_geom ' \
                 'FROM {input}'.format(
                     output=self.output().table,
-                    input=self.input()['data'].table,
+                    input=self.input()['peninsula_data'].table,
                     geom_ref_colname=self.geom_ref_colname())
-        session.execute(query)
-
+        canary_query = 'INSERT INTO {output} ' \
+                'SELECT {geom_ref_colname} geom_ref, wkb_geometry the_geom ' \
+                'FROM {input}'.format(
+                    output=self.output().table,
+                    input=self.input()['canary_data'].table,
+                    geom_ref_colname=self.geom_ref_colname())
+        session.execute(peninsula_query)
+        session.execute(canary_query)
 
 class AllGeometries(WrapperTask):
 
     def requires(self):
         for resolution in ('ccaa', 'muni', 'prov', ):
-            for id_aux in ['x','y']:
-                yield Geometry(resolution=resolution, id_aux=id_aux)
+                yield Geometry(resolution=resolution)
