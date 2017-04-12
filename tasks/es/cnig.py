@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-# #http://centrodedescargas.cnig.es/CentroDescargas/inicio.do
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
-from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, GEOM_REF, OBSTag
 
 from collections import OrderedDict
@@ -15,19 +14,25 @@ import os
 class DownloadGeometry(Task):
 
     seq = Parameter()
-
-    #http://centrodedescargas.cnig.es/CentroDescargas/downloadFile.do?seq=114023
-    URL = 'http://centrodedescargas.cnig.es/CentroDescargas/downloadFile.do?seq={seq}'
+    # request url: http://centrodedescargas.cnig.es/CentroDescargas/descargaDir
+    # arguments:
+    # secDescDirLA:114023
+    # pagActual:1
+    # numTotReg:5
+    # codSerieSel:CAANE
+    URL = 'http://centrodedescargas.cnig.es/CentroDescargas/descargaDir'
 
     def run(self):
         self.output().makedirs()
-        shell('wget -O {output}.zip {url}'.format(output=self.output().path,
-                                                  url=self.URL.format(seq=self.seq)))
+        shell('wget --post-data "secDescDirLA={seq}&pagActual=1&numTotReg=5&codSerieSel=CAANE" -O {output}.zip "{url}"'.format(
+            output=self.output().path,
+            url=self.URL,
+            seq=self.seq))
         os.makedirs(self.output().path)
         shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
 
     def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.seq))
+        return LocalTarget(os.path.join('tmp', classpath(self), self.seq).lower())
 
 
 class ImportGeometry(Shp2TempTableTask):
@@ -216,4 +221,4 @@ class AllGeometries(WrapperTask):
 
     def requires(self):
         for resolution in ('ccaa', 'muni', 'prov', ):
-                yield Geometry(resolution=resolution)
+            yield Geometry(resolution=resolution)
