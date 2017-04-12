@@ -277,7 +277,7 @@ class OutputAreaColumns(ColumnsTask):
             type='Text',
             name='DCOMIRIS',
             description='Full Code IRIS. Result of the concatenation of DEPCOM and IRIS attributes. ',
-            weight=1,
+            weight=0,
             targets={geom: GEOM_REF}
         )
         commune_name = OBSColumn(
@@ -297,7 +297,6 @@ class OutputAreaColumns(ColumnsTask):
             tags=[input_['subsections']['names'], input_['sections']['fr']],
             targets={geom: GEOM_NAME}
         )
-
         return OrderedDict([
             ('the_geom', geom),
             ('dcomiris', geomref),
