@@ -3,7 +3,7 @@
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath, MetaWrapper)
-from tasks.meta import current_session, DENOMINATOR, GEOM_REF, UNIVERSE
+from tasks.meta import current_session, DENOMINATOR, GEOM_REF, GEOM_NAME, UNIVERSE
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 import os
@@ -277,7 +277,7 @@ class OutputAreaColumns(ColumnsTask):
             type='Text',
             name='DCOMIRIS',
             description='Full Code IRIS. Result of the concatenation of DEPCOM and IRIS attributes. ',
-            weight=1,
+            weight=0,
             targets={geom: GEOM_REF}
         )
         commune_name = OBSColumn(
@@ -285,20 +285,23 @@ class OutputAreaColumns(ColumnsTask):
             name='Name of Commune',
             description='Name of the commune. ',
             weight=1,
+            tags=[input_['subsections']['names'], input_['sections']['fr']],
+            targets={geom: GEOM_NAME}
         )
         iris_name = OBSColumn(
             type='Text',
             name='Name of IRIS',
-            description='Name of the IRIS. This attribute may possibly be unfilled. For small undivided towns, the name of the IRIS is the name of the commune. ',
+            description='Name of the IRIS. This attribute may possibly be unfilled. '
+            'For small undivided towns, the name of the IRIS is the name of the commune. ',
             weight=1,
+            tags=[input_['subsections']['names'], input_['sections']['fr']],
+            targets={geom: GEOM_NAME}
         )
-
-
         return OrderedDict([
             ('the_geom', geom),
             ('dcomiris', geomref),
             ('nom_com', commune_name),
-            ('nom_iris', iris_name)
+            ('nom_iris', iris_name),
         ])
 
 
@@ -311,7 +314,7 @@ class OutputAreas(TableTask):
         }
 
     def version(self):
-        return 2
+        return 4
 
     def timespan(self):
         return 2013

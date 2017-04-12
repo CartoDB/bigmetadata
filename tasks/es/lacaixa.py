@@ -687,13 +687,11 @@ class AnuarioWrapper(MetaWrapper):
 
     resolution = Parameter()
     year = Parameter()
-    id_aux = Parameter()
     params = {
-        'resolution': ['ccaa', 'muni', 'prov'],
+        'resolution': ['muni', 'prov'],
         'year': ['2013'],
-        'id_aux':['x','y']
     }
 
     def tables(self):
         yield Anuario(resolution=self.resolution, year=self.year)
-        yield Geometry(resolution=self.resolution,id_aux=self.id_aux)
+        yield Geometry(resolution=self.resolution)
