@@ -175,7 +175,7 @@ class Geography(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT {name} as geom_name '
+                        'SELECT {name} as geom_name, '
                         '       {code}uid as geom_id, '
                         '       wkb_geometry as geom '
                         'FROM {input} '.format(
