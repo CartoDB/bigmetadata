@@ -688,7 +688,7 @@ class AnuarioWrapper(MetaWrapper):
     resolution = Parameter()
     year = Parameter()
     params = {
-        'resolution': ['ccaa', 'muni', 'prov'],
+        'resolution': ['muni', 'prov'],
         'year': ['2013'],
     }
 

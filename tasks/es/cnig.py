@@ -4,7 +4,7 @@ from luigi import Task, Parameter, LocalTarget, WrapperTask
 from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 from tasks.meta import OBSColumn, GEOM_REF, OBSTag
 
 from collections import OrderedDict
@@ -45,12 +45,16 @@ class ImportGeometry(Shp2TempTableTask):
         return DownloadGeometry(seq='114023')
 
     def input_shp(self):
-        path = os.path.join('SIANE_CARTO_BASE_S_3M', 'anual', self.timestamp,
-                            'SE89_3_ADMIN_{resolution}_A_{aux}.shp'.format(
-                                resolution=self.resolution,
-                                aux=self.id_aux).lower()
-                            )
-        return os.path.join(self.input().path, path)
+        '''
+        We don't know precise name of file inside zip archive beforehand, so
+        use find to track it down.
+        '''
+        return shell("find '{dirpath}' -iname *_{resolution}_*_{aux}.shp | grep {timestamp}".format(
+            dirpath=self.input().path,
+            timestamp=self.timestamp,
+            aux=self.id_aux,
+            resolution=self.resolution
+        )).strip()
 
 
 class LicenseTags(TagsTask):
