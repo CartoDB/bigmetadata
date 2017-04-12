@@ -316,7 +316,7 @@ class OutputAreas(TableTask):
         }
 
     def version(self):
-        return 2
+        return 4
 
     def timespan(self):
         return 2013
