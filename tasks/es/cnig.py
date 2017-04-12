@@ -173,6 +173,7 @@ class GeomNameColumns(ColumnsTask):
         session = current_session()
         for colname, coltarget in self.input()['geom_cols'].iteritems():
             cols['name_' + colname] = OBSColumn(
+                id='name_' + colname,
                 type='Text',
                 name='Proper name of {}'.format(colname),
                 tags=[self.input()['subsections']['names'],self.input()['sections']['spain']],
@@ -188,7 +189,7 @@ class Geometry(TableTask):
     timestamp = Parameter(default='20150101')
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
