@@ -5,9 +5,6 @@ from tests.util import recreate_db
 
 recreate_db('test')
 
-from tasks.util import TableTask
-
-
 def setup():
     '''
     Package-level setup (via nose)
