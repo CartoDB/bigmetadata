@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# #http://centrodedescargas.cnig.es/CentroDescargas/inicio.do
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
@@ -15,34 +14,47 @@ import os
 class DownloadGeometry(Task):
 
     seq = Parameter()
-
-    #http://centrodedescargas.cnig.es/CentroDescargas/downloadFile.do?seq=114023
-    URL = 'http://centrodedescargas.cnig.es/CentroDescargas/downloadFile.do?seq={seq}'
+    # request url: http://centrodedescargas.cnig.es/CentroDescargas/descargaDir
+    # arguments:
+    # secDescDirLA:114023
+    # pagActual:1
+    # numTotReg:5
+    # codSerieSel:CAANE
+    URL = 'http://centrodedescargas.cnig.es/CentroDescargas/descargaDir'
 
     def run(self):
         self.output().makedirs()
-        shell('wget -O {output}.zip {url}'.format(output=self.output().path,
-                                                  url=self.URL.format(seq=self.seq)))
+        shell('wget --post-data "secDescDirLA={seq}&pagActual=1&numTotReg=5&codSerieSel=CAANE" -O {output}.zip "{url}"'.format(
+            output=self.output().path,
+            url=self.URL,
+            seq=self.seq))
         os.makedirs(self.output().path)
         shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
 
     def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.seq))
+        return LocalTarget(os.path.join('tmp', classpath(self), self.seq).lower())
 
 
 class ImportGeometry(Shp2TempTableTask):
 
     resolution = Parameter()
     timestamp = Parameter()
+    id_aux = Parameter() #X for Peninsula and Balearic Islands, Y for Canary Islands
 
     def requires(self):
         return DownloadGeometry(seq='114023')
 
     def input_shp(self):
-        path = os.path.join('SIANE_CARTO_BASE_S_3M', 'anual', self.timestamp,
-                            'SE89_3_ADMIN_{resolution}_A_X.shp'.format(
-                                resolution=self.resolution.upper()))
-        return os.path.join(self.input().path, path)
+        '''
+        We don't know precise name of file inside zip archive beforehand, so
+        use find to track it down.
+        '''
+        return shell("find '{dirpath}' -iname *_{resolution}_*_{aux}.shp | grep {timestamp}".format(
+            dirpath=self.input().path,
+            timestamp=self.timestamp,
+            aux=self.id_aux,
+            resolution=self.resolution
+        )).strip()
 
 
 class LicenseTags(TagsTask):
@@ -159,14 +171,18 @@ class Geometry(TableTask):
     timestamp = Parameter(default='20150101')
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
             'geom_columns': GeometryColumns(),
             'geomref_columns': GeomRefColumns(),
-            'data': ImportGeometry(resolution=self.resolution,
-                                   timestamp=self.timestamp)
+            'peninsula_data': ImportGeometry(resolution=self.resolution,
+                                   timestamp=self.timestamp,
+                                   id_aux='x'),
+            'canary_data': ImportGeometry(resolution=self.resolution,
+                                   timestamp=self.timestamp,
+                                   id_aux='y')
         }
 
     def timespan(self):
@@ -190,14 +206,20 @@ class Geometry(TableTask):
 
     def populate(self):
         session = current_session()
-        query = 'INSERT INTO {output} ' \
+        peninsula_query = 'INSERT INTO {output} ' \
                 'SELECT {geom_ref_colname} geom_ref, wkb_geometry the_geom ' \
                 'FROM {input}'.format(
                     output=self.output().table,
-                    input=self.input()['data'].table,
+                    input=self.input()['peninsula_data'].table,
                     geom_ref_colname=self.geom_ref_colname())
-        session.execute(query)
-
+        canary_query = 'INSERT INTO {output} ' \
+                'SELECT {geom_ref_colname} geom_ref, wkb_geometry the_geom ' \
+                'FROM {input}'.format(
+                    output=self.output().table,
+                    input=self.input()['canary_data'].table,
+                    geom_ref_colname=self.geom_ref_colname())
+        session.execute(peninsula_query)
+        session.execute(canary_query)
 
 class AllGeometries(WrapperTask):
 

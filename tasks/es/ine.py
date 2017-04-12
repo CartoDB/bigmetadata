@@ -84,7 +84,6 @@ class GeometryColumns(ColumnsTask):
         cusec_id = OBSColumn(
             name=u"Secci\xf3n Censal",
             type="Text",
-            tags=[],
             targets={cusec_geom: GEOM_REF}
         )
         return OrderedDict([
