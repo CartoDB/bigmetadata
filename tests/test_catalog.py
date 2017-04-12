@@ -16,6 +16,7 @@ import os
 
 @with_setup(setup, teardown)
 def test_catalog():
+
     meta_wrappers = collect_meta_wrappers(
         test_module=os.environ.get('TEST_MODULE', '').replace('.', os.path.sep),
         test_all=os.environ.get('TEST_ALL', '') != ''
