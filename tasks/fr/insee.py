@@ -249,7 +249,7 @@ class ImportOutputAreas(Shp2TempTableTask):
 class OutputAreaColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -292,7 +292,8 @@ class OutputAreaColumns(ColumnsTask):
         iris_name = OBSColumn(
             type='Text',
             name='Name of IRIS',
-            description='Name of the IRIS. This attribute may possibly be unfilled. For small undivided towns, the name of the IRIS is the name of the commune. ',
+            description='Name of the IRIS. This attribute may possibly be unfilled. '
+            'For small undivided towns, the name of the IRIS is the name of the commune. ',
             weight=1,
             tags=[input_['subsections']['names'], input_['sections']['fr']],
             targets={geom: GEOM_NAME}
@@ -329,7 +330,7 @@ class OutputAreas(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT DISTINCT ST_MakeValid(wkb_geometry), DCOMIRIS '
+                        'SELECT DISTINCT ST_MakeValid(wkb_geometry), DCOMIRIS, NOM_COM, NOM_IRIS '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input()['data'].table,
