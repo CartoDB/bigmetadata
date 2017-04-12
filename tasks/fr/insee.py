@@ -280,7 +280,6 @@ class OutputAreaColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF}
         )
-
         commune_name = OBSColumn(
             type='Text',
             name='Name of Commune',
@@ -298,7 +297,6 @@ class OutputAreaColumns(ColumnsTask):
             tags=[input_['subsections']['names'], input_['sections']['fr']],
             targets={geom: GEOM_NAME}
         )
-
         return OrderedDict([
             ('the_geom', geom),
             ('dcomiris', geomref),
