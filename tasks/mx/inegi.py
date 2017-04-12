@@ -268,7 +268,7 @@ class Geography(TableTask):
         output_cols = ', '.join(column_targets.keys())
         input_cols = ','.join(['{}::{}'.format(colname, ct.get(session).type)
                                for colname, ct in column_targets.iteritems()])
-        session.execute('INSERT INTO {output} {output_cols} '
+        session.execute('INSERT INTO {output} ({output_cols}) '
                         'SELECT {input_cols} '
                         'FROM {input} '.format(
                             output=self.output().table,
