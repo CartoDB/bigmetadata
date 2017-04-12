@@ -3320,23 +3320,24 @@ class Extract(TableTask):
         colids = []
         colnames = []
         tableids = set()
-        inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
+        inputschema = 'acs{year}_{sample}yr'.format(year=self.year, sample=self.sample)
         for colname, coltarget in self.columns().iteritems():
             colid = coltarget.get(session).id
             tableid = colid.split('.')[-1][0:-3]
             if colid.endswith('geoid'):
                 colids.append('SUBSTR(geoid, 8)')
             else:
+                colid = coltarget._id.split('.')[-1]
                 resp = session.execute('SELECT COUNT(*) FROM information_schema.columns '
                                        "WHERE table_schema = '{inputschema}'  "
                                        "  AND table_name ILIKE '{inputtable}' "
                                        "  AND column_name ILIKE '{colid}' ".format(
                                            inputschema=inputschema,
                                            inputtable=tableid,
-                                           colid=coltarget.name))
+                                           colid=colid))
                 if int(resp.fetchone()[0]) == 0:
                     continue
-                colids.append(coltarget.name)
+                colids.append(colid)
                 tableids.add(tableid)
             colnames.append(colname)
 
@@ -3389,16 +3390,13 @@ class ACSMetaWrapper(MetaWrapper):
     sample = Parameter()
 
     params = {
-        'geography':['state'],
-        'year': ['2015'],
-        'sample': ['5']
-        # 'geography':['state', 'county', 'census_tract', 'block_group',
-        #                    'puma', 'zcta5', 'school_district_elementary',
-        #                    'congressional_district',
-        #                    'school_district_secondary',
-        #                    'school_district_unified', 'cbsa', 'place'],
-        # 'year': ['2015','2014','2010'],
-        # 'sample': ['5','1']
+        'geography':['state', 'county', 'census_tract', 'block_group',
+                           'puma', 'zcta5', 'school_district_elementary',
+                           'congressional_district',
+                           'school_district_secondary',
+                           'school_district_unified', 'cbsa', 'place'],
+        'year': ['2015','2014','2010'],
+        'sample': ['5','1']
     }
 
     def tables(self):
