@@ -203,7 +203,7 @@ class GeographyColumns(ColumnsTask):
         }
 
     def version(self):
-        return 8
+        return 9
 
     def columns(self):
         input_ = self.input()
@@ -249,7 +249,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
         return {
