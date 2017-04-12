@@ -59,7 +59,7 @@ class SimpleQCEW(TempTableTask):
                             qtr=self.qtr,
                         ))
 
-class SourceTags(TagsTask):
+class BLSSourceTags(TagsTask):
     def version(self):
         return 1
 
@@ -83,7 +83,7 @@ class QCEWColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
-            'source': SourceTags(),
+            'source': BLSSourceTags(),
             'license': LicenseTags(),
         }
         parent_code = get_parent_code(self.naics_code)

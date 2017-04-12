@@ -115,7 +115,7 @@ def hometype_measures():
             yield hometype, hometype_human, measure, measure_human, measure_unit
 
 
-class SourceTags(TagsTask):
+class ZillowSourceTags(TagsTask):
 
     def tags(self):
         return [OBSTag(id='zillow-source',
@@ -124,7 +124,7 @@ class SourceTags(TagsTask):
                        description='Zillow makes available data free for reuse `here <http://www.zillow.com/research/data/>`_.', )]
 
 
-class LicenseTags(TagsTask):
+class ZillowLicenseTags(TagsTask):
 
     def version(self):
         return 2
@@ -187,8 +187,8 @@ class ZillowValueColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
-            'source': SourceTags(),
-            'license': LicenseTags(),
+            'source': ZillowSourceTags(),
+            'license': ZillowLicenseTags(),
         }
 
     def version(self):

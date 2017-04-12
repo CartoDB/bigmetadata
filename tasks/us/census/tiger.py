@@ -17,7 +17,7 @@ from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
 from decimal import Decimal
 
-class SourceTags(TagsTask):
+class TigerSourceTags(TagsTask):
     def version(self):
         return 1
 
@@ -41,7 +41,7 @@ class ClippedGeomColumns(ColumnsTask):
             'geom_columns': GeomColumns(),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'source': SourceTags(),
+            'source': TigerSourceTags(),
             'license': LicenseTags(),
             'boundary':BoundaryTags(),
         }
@@ -100,7 +100,7 @@ class GeomColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'source': SourceTags(),
+            'source': TigerSourceTags(),
             'license': LicenseTags(),
             'boundary': BoundaryTags(),
         }
@@ -787,7 +787,7 @@ class SharedTigerColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'source': SourceTags(),
+            'source': TigerSourceTags(),
             'license': LicenseTags(),
         }
 
@@ -831,7 +831,7 @@ class PointLandmarkColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'source': SourceTags(),
+            'source': TigerSourceTags(),
             'license': LicenseTags(),
         }
 
@@ -908,7 +908,7 @@ class PriSecRoadsColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'source': SourceTags(),
+            'source': TigerSourceTags(),
             'license': LicenseTags(),
         }
 
