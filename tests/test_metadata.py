@@ -14,7 +14,6 @@ from nose.tools import assert_greater, with_setup
 
 import os
 
-
 @with_setup(setup, teardown)
 @parameterized(collect_meta_wrappers(
     test_module=os.environ.get('TEST_MODULE', '').replace('.', os.path.sep),
