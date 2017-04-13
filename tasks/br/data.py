@@ -19,6 +19,7 @@ from tasks.br.geo import (
     DATA_STATES,
     Geography,
     GeographyColumns,
+    GEOGRAPHY_CODES,
     GEO_I
 )
 
@@ -338,7 +339,7 @@ class Censos(TableTask):
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
-        cols['Cod_setor'] = input_['geometa']['geom_id']
+        cols['Cod_setor'] = input_['geometa']['{}'.format(GEOGRAPHY_CODES[self.resolution])]
         # For some reason, state 'go' is missing columns 843 through 860 in
         # Entorno05
         for colname, coltarget in input_['meta'].iteritems():
@@ -400,7 +401,8 @@ class CensosMetaWrapper(MetaWrapper):
     tablename = Parameter()
 
     params = {
-        'resolution': GEOGRAPHIES,
+        #'resolution': GEOGRAPHIES,
+        'resolution': [GEO_I], # data only for setores_censitarios
         'tablename': TABLES
     }
 
