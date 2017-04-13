@@ -6,12 +6,6 @@ Bigmetadata tasks
 tasks to download and create metadata
 '''
 
-#import requests
-#import datetime
-#import json
-import csv
-import json
-import os
 from collections import OrderedDict
 from sqlalchemy import Column, Numeric, Text
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
@@ -21,8 +15,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, MetaWrapper)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
-from tasks.us.census.tiger import (SUMLEVELS, load_sumlevels, GeoidColumns,
-                                   SUMLEVELS_BY_SLUG)
+from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, SUMLEVELS_BY_SLUG)
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
@@ -3197,7 +3190,7 @@ class QuantileColumns(ColumnsTask):
         }
 
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
         quantile_columns = OrderedDict()
@@ -3238,7 +3231,7 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 9
+        return 10
 
     def columns(self):
         input_ = self.input()
@@ -3287,7 +3280,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
@@ -3320,7 +3313,7 @@ class Extract(TableTask):
         colids = []
         colnames = []
         tableids = set()
-        inputschema = 'acs{year}_{sample}yr'.format(year=self.year, sample=self.sample)
+        inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
         for colname, coltarget in self.columns().iteritems():
             colid = coltarget.get(session).id
             tableid = colid.split('.')[-1][0:-3]
@@ -3395,9 +3388,17 @@ class ACSMetaWrapper(MetaWrapper):
                            'congressional_district',
                            'school_district_secondary',
                            'school_district_unified', 'cbsa', 'place'],
-        'year': ['2015','2014','2010'],
-        'sample': ['5','1']
+        'year': ['2015', '2010'],
+        'sample': ['5yr','1yr']
     }
 
     def tables(self):
-        yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
+        # no ZCTA for 2010
+        if self.year == '2010' and self.geography == 'zcta5':
+            pass
+        # 1yr sample doesn't have block group or census_tract
+        elif self.sample == '1yr' and self.geography in (
+            'census_tract', 'block_group', 'zcta5'):
+            pass
+        else:
+            yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
