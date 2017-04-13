@@ -3,7 +3,7 @@
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath, MetaWrapper)
-from tasks.meta import current_session, DENOMINATOR, GEOM_REF, UNIVERSE
+from tasks.meta import current_session, DENOMINATOR, GEOM_REF, GEOM_NAME, UNIVERSE
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 import os
@@ -249,7 +249,7 @@ class ImportOutputAreas(Shp2TempTableTask):
 class OutputAreaColumns(ColumnsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -280,10 +280,28 @@ class OutputAreaColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF}
         )
-
+        commune_name = OBSColumn(
+            type='Text',
+            name='Name of Commune',
+            description='Name of the commune. ',
+            weight=1,
+            tags=[input_['subsections']['names'], input_['sections']['fr']],
+            targets={geom: GEOM_NAME}
+        )
+        iris_name = OBSColumn(
+            type='Text',
+            name='Name of IRIS',
+            description='Name of the IRIS. This attribute may possibly be unfilled. '
+            'For small undivided towns, the name of the IRIS is the name of the commune. ',
+            weight=1,
+            tags=[input_['subsections']['names'], input_['sections']['fr']],
+            targets={geom: GEOM_NAME}
+        )
         return OrderedDict([
             ('the_geom', geom),
-            ('dcomiris', geomref)
+            ('dcomiris', geomref),
+            ('nom_com', commune_name),
+            ('nom_iris', iris_name),
         ])
 
 
@@ -296,7 +314,7 @@ class OutputAreas(TableTask):
         }
 
     def version(self):
-        return 2
+        return 4
 
     def timespan(self):
         return 2013
@@ -310,7 +328,7 @@ class OutputAreas(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT DISTINCT ST_MakeValid(wkb_geometry), DCOMIRIS '
+                        'SELECT DISTINCT ST_MakeValid(wkb_geometry), DCOMIRIS, NOM_COM, NOM_IRIS '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input()['data'].table,

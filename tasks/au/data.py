@@ -10,7 +10,7 @@ from tasks.util import (DownloadUnzipTask, shell, TableTask, TempTableTask,
                         MetaWrapper)
 from tasks.meta import current_session, OBSColumn, OBSTag
 from tasks.au.geo import (
-    GEO_STE,
+    GEO_STE, SourceTags, LicenseTags,
     GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
@@ -36,28 +36,6 @@ TABLES = ['B01','B02','B03','B04A','B04B','B05','B06','B07','B08A','B08B','B09',
 
 
 URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_{header}-header.zip'
-
-
-class SourceTags(TagsTask):
-
-    def tags(self):
-        return [
-            OBSTag(id='au-census',
-                   name='Australian Bureau of Statistics (ABS)',
-                   type='source',
-                   description=u'The `Australian Bureau of Statistics <http://abs.gov.au/websitedbs/censushome.nsf/home/datapacks>`')
-        ]
-
-
-class LicenseTags(TagsTask):
-
-    def tags(self):
-        return [
-            OBSTag(id='au-datapacks-license',
-                   name='Creative Commons Attribution 2.5 Australia licence',
-                   type='license',
-                   description=u'DataPacks is licenced under a `Creative Commons Attribution 2.5 Australia licence <https://creativecommons.org/licenses/by/2.5/au/>`_')
-        ]
 
 
 class DownloadData(DownloadUnzipTask):

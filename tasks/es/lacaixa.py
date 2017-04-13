@@ -687,10 +687,9 @@ class AnuarioWrapper(MetaWrapper):
 
     resolution = Parameter()
     year = Parameter()
-
     params = {
         'resolution': ['muni', 'prov'],
-        'year': ['2013']
+        'year': ['2013'],
     }
 
     def tables(self):
