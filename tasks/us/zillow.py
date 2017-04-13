@@ -358,7 +358,7 @@ class AllZillow(WrapperTask):
     def requires(self):
         now = datetime.now()
         for geography in ('Zip', ):
-            for year in xrange(2010, now.year + 1):
+            for year in xrange(2011, now.year + 1):
                 for month in xrange(1, 13):
                     if now.year == year and now.month <= month:
                         continue
@@ -378,4 +378,4 @@ class ZillowMetaWrapper(MetaWrapper):
     }
     def tables(self):
         yield Zillow(geography=self.geography, year=self.year, month=self.month)
-        yield SumLevel(year=str(self.year), geography='zcta5')
+        yield SumLevel(year=str(2015), geography='zcta5')

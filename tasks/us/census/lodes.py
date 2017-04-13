@@ -690,10 +690,11 @@ CREATE TABLE {tablename} (
                   r"WITH CSV HEADER'".format(input=infile.path, tablename=self.output().table)
             shell(cmd)
 
+
 class LODESMetaWrapper(MetaWrapper):
     geography = Parameter()
     year = IntParameter()
-    
+
     params = {
         'geography': ['block'],
         'year': [2013]
@@ -701,4 +702,4 @@ class LODESMetaWrapper(MetaWrapper):
 
     def tables(self):
         yield WorkplaceAreaCharacteristics()
-        yield SumLevel(geography = self.geography, year=str(self.year))
+        yield SumLevel(geography = self.geography, year=str(2015))
