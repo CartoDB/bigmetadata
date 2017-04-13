@@ -5,7 +5,6 @@ from tests.util import recreate_db
 
 recreate_db('test')
 
-
 def setup():
     '''
     Package-level setup (via nose)

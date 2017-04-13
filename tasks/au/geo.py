@@ -1,9 +1,10 @@
 from luigi import Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
-                        ColumnsTask, TableTask)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
+                        ColumnsTask, TableTask, TagsTask)
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
+
 from collections import OrderedDict
 
 
@@ -47,24 +48,45 @@ GEOGRAPHIES = (
 
 
 GEOGRAPHY = {
-    GEO_STE: {'name': 'State/Territory', 'weight': 17, 'region_col': 'STATE_CODE'},
-    GEO_SA4: {'name': 'Statistical Area Level 4', 'weight': 16, 'region_col': 'SA4_CODE'},
-    GEO_SA3: {'name': 'Statistical Area Level 3', 'weight': 15, 'region_col': 'SA3_CODE'},
-    GEO_SA2: {'name': 'Statistical Area Level 2', 'weight': 14, 'region_col': 'SA2_MAIN'},
-    GEO_SA1: {'name': 'Statistical Area Level 1', 'weight': 13, 'region_col': 'SA1_7DIGIT'},
-    GEO_GCCSA: {'name': 'Greater Capital City Statistical Areas', 'weight': 12, 'region_col': 'GCCSA_CODE'},
-    GEO_LGA: {'name': 'Local Government Areas', 'weight': 11, 'region_col': 'LGA_CODE'},
-    GEO_SLA: {'name': 'Statistical Local Areas', 'weight': 10, 'region_col': 'SLA_MAIN'},
-    GEO_SSC: {'name': 'State Suburbs', 'weight': 9, 'region_col': 'SSC_CODE'},
-    GEO_POA: {'name': 'Postal Areas', 'weight': 8, 'region_col': 'POA_CODE'},
-    GEO_CED: {'name': 'Commonwealth Electoral Divisions', 'weight': 7, 'region_col': 'CED_CODE'},
-    GEO_SED: {'name': 'State Electoral Divisions', 'weight': 6, 'region_col': 'SED_CODE'},
-    GEO_SOS: {'name': 'Section of State', 'weight': 5, 'region_col': 'SOS_CODE'},
-    GEO_SOSR: {'name': 'Section of State Ranges', 'weight': 4, 'region_col': 'SOSR_CODE'},
-    GEO_UCL: {'name': 'Urban Centres and Localities', 'weight': 3, 'region_col': 'UCL_CODE'},
-    GEO_SUA: {'name': 'Significant Urban Areas', 'weight': 2, 'region_col': 'SUA_CODE'},
-    GEO_RA: {'name': 'Remoteness Areas', 'weight': 1, 'region_col': 'RA_CODE'},
+    GEO_STE: {'name': 'State/Territory', 'weight': 17, 'region_col': 'STATE_CODE', 'proper_name': 'STATE_NAME'},
+    GEO_SA4: {'name': 'Statistical Area Level 4', 'weight': 16, 'region_col': 'SA4_CODE', 'proper_name': 'SA4_NAME'},
+    GEO_SA3: {'name': 'Statistical Area Level 3', 'weight': 15, 'region_col': 'SA3_CODE', 'proper_name': 'SA3_NAME'},
+    GEO_SA2: {'name': 'Statistical Area Level 2', 'weight': 14, 'region_col': 'SA2_MAIN', 'proper_name': 'SA2_NAME'},
+    GEO_SA1: {'name': 'Statistical Area Level 1', 'weight': 13, 'region_col': 'SA1_7DIGIT', 'proper_name': 'STATE_NAME'},
+    GEO_GCCSA: {'name': 'Greater Capital City Statistical Areas', 'weight': 12, 'region_col': 'GCCSA_CODE', 'proper_name': 'GCCSA_NAME'},
+    GEO_LGA: {'name': 'Local Government Areas', 'weight': 11, 'region_col': 'LGA_CODE', 'proper_name': 'LGA_NAME'},
+    GEO_SLA: {'name': 'Statistical Local Areas', 'weight': 10, 'region_col': 'SLA_MAIN', 'proper_name': 'SLA_NAME'},
+    GEO_SSC: {'name': 'State Suburbs', 'weight': 9, 'region_col': 'SSC_CODE', 'proper_name': 'SSC_NAME'},
+    GEO_POA: {'name': 'Postal Areas', 'weight': 8, 'region_col': 'POA_CODE', 'proper_name': 'POA_NAME'},
+    GEO_CED: {'name': 'Commonwealth Electoral Divisions', 'weight': 7, 'region_col': 'CED_CODE', 'proper_name': 'CED_NAME'},
+    GEO_SED: {'name': 'State Electoral Divisions', 'weight': 6, 'region_col': 'SED_CODE', 'proper_name': 'SED_NAME'},
+    GEO_SOS: {'name': 'Section of State', 'weight': 5, 'region_col': 'SOS_CODE', 'proper_name': 'SOS_NAME'},
+    GEO_SOSR: {'name': 'Section of State Ranges', 'weight': 4, 'region_col': 'SOSR_CODE', 'proper_name': 'SOSR_NAME'},
+    GEO_UCL: {'name': 'Urban Centres and Localities', 'weight': 3, 'region_col': 'UCL_CODE', 'proper_name': 'UCL_NAME'},
+    GEO_SUA: {'name': 'Significant Urban Areas', 'weight': 2, 'region_col': 'SUA_CODE', 'proper_name': 'SUA_NAME'},
+    GEO_RA: {'name': 'Remoteness Areas', 'weight': 1, 'region_col': 'RA_CODE', 'proper_name': 'RA_NAME'},
 }
+
+class SourceTags(TagsTask):
+
+    def tags(self):
+        return [
+            OBSTag(id='au-census',
+                   name='Australian Bureau of Statistics (ABS)',
+                   type='source',
+                   description=u'The `Australian Bureau of Statistics <http://abs.gov.au/websitedbs/censushome.nsf/home/datapacks>`')
+        ]
+
+
+class LicenseTags(TagsTask):
+
+    def tags(self):
+        return [
+            OBSTag(id='au-datapacks-license',
+                   name='Creative Commons Attribution 2.5 Australia licence',
+                   type='license',
+                   description=u'DataPacks is licenced under a `Creative Commons Attribution 2.5 Australia licence <https://creativecommons.org/licenses/by/2.5/au/>`_')
+        ]
 
 
 class DownloadGeography(DownloadUnzipTask):
@@ -110,13 +132,18 @@ class GeographyColumns(ColumnsTask):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
             'boundary': BoundaryTags(),
         }
 
     def columns(self):
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
-        boundary_type = self.input()['boundary']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        source = input_['source']['au-census']
+        license = input_['license']['au-datapacks-license']
+        boundary_type = input_['boundary']
 
         geom = OBSColumn(
             id=self.resolution,
@@ -124,7 +151,7 @@ class GeographyColumns(ColumnsTask):
             name=GEOGRAPHY[self.resolution]['name'],
             description='',
             weight=GEOGRAPHY[self.resolution]['weight'],
-            tags=[sections['au'], subsections['boundary']],
+            tags=[source, license, sections['au'], subsections['boundary']],
         )
         geom_id = OBSColumn(
             type='Text',
@@ -132,6 +159,16 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
+        geom_name = OBSColumn(
+            type='Text',
+            name= 'Proper name of {}'.format(GEOGRAPHY[self.resolution]['name']),
+            id=self.resolution + '_name',
+            description='',
+            weight=1,
+            targets={geom: GEOM_NAME},
+            tags=[source, license, sections['au'], subsections['names']],
+        )
+
 
         cartographic_boundaries = [GEO_LGA, GEO_POA, GEO_CED, GEO_SED, GEO_SSC,
                                    GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4,
@@ -142,7 +179,8 @@ class GeographyColumns(ColumnsTask):
                                    GEO_SOS, GEO_SOSR, GEO_SUA, GEO_RA]
 
 
-        cols =  OrderedDict([
+        cols = OrderedDict([
+            ('geom_name', geom_name),
             ('geom_id', geom_id),
             ('the_geom', geom),
         ])
@@ -160,7 +198,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
@@ -177,9 +215,11 @@ class Geography(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT {region_col} as geom_id, '
+                        'SELECT {geom_name} as geom_name, '
+                        '       {region_col} as geom_id, '
                         '       wkb_geometry as the_geom '
                         'FROM {input} '.format(
+                            geom_name=GEOGRAPHY[self.resolution]['proper_name'],
                             region_col=GEOGRAPHY[self.resolution]['region_col'],
                             output=self.output().table,
                             input=self.input()['data'].table))
