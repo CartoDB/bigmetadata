@@ -33,10 +33,7 @@ def test_table_task(klass, params):
 
     runtask(task, superclasses=[TagsTask, ColumnsTask, TableTask])
 
-    reload(tasks.carto)
-    obs_meta_to_local = tasks.carto.OBSMetaToLocal()
-
-    runtask(obs_meta_to_local)
+    tasks.carto.OBSMetaToLocal().run()
 
     session = current_session()
     assert_greater(session.execute('SELECT COUNT(*) FROM observatory.obs_meta').fetchone()[0], 0)
