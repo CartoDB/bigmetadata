@@ -11,7 +11,7 @@ from sqlalchemy import Column, Numeric, Text
 from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
 from psycopg2 import ProgrammingError
 
-from tasks.util import (LoadPostgresFromURL, classpath, shell,
+from tasks.util import (LoadPostgresFromURL, classpath, shell, grouper,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, MetaWrapper)
 from tasks.us.census.tiger import load_sumlevels, SumLevel
@@ -21,6 +21,7 @@ from tasks.us.census.segments import SegmentTags
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 
+from time import time
 LOGGER = get_logger(__name__)
 
 
@@ -3252,23 +3253,49 @@ class Quantiles(TableTask):
         quant_col_names = input_['columns'].keys()
         old_col_names = [name.split("_quantile")[0]
                          for name in quant_col_names]
-        selects = [" percent_rank() OVER (ORDER BY {old_col} ASC) ".format(old_col=name)
-                   for name in old_col_names]
 
-        insert_statment = ", ".join(quant_col_names)
-        select_statment = ", ".join(selects)
+        insert = True
+        for cols in grouper(zip(quant_col_names, old_col_names), 20):
+            selects = [" percent_rank() OVER (ORDER BY {old_col} ASC) as {old_col} ".format(old_col=c[1])
+                       for c in cols if c is not None]
 
-        connection.execute('''
-            INSERT INTO {table}
-            (geoid, {insert_statment})
-            SELECT geoid, {select_statment}
-            FROM {source_table}
-        '''.format(
-            table        = self.output().table,
-            insert_statment = insert_statment,
-            select_statment = select_statment,
-            source_table = input_['table'].table
-        ))
+            insert_statment = ", ".join([c[0] for c in cols if c is not None])
+            old_cols_statment = ", ".join([c[1] for c in cols if c is not None])
+            select_statment = ", ".join(selects)
+            before = time()
+            if insert:
+                stmt = '''
+                    INSERT INTO {table}
+                    (geoid, {insert_statment})
+                    SELECT geoid, {select_statment}
+                    FROM {source_table}
+                '''.format(
+                    table        = self.output().table,
+                    insert_statment = insert_statment,
+                    select_statment = select_statment,
+                    source_table = input_['table'].table
+                )
+                insert = False
+            else:
+                stmt = '''
+                    WITH data as (
+                        SELECT geoid, {select_statment}
+                        FROM {source_table}
+                    )
+                    UPDATE {table} SET ({insert_statment}) = ({old_cols_statment})
+                    FROM data
+                    WHERE data.geoid = {table}.geoid
+                '''.format(
+                    table        = self.output().table,
+                    insert_statment = insert_statment,
+                    select_statment = select_statment,
+                    old_cols_statment = old_cols_statment,
+                    source_table = input_['table'].table
+                )
+            connection.execute(stmt)
+            after = time()
+            LOGGER.info('quantile calculation time taken : %s', int(after - before))
+
 
 class Extract(TableTask):
     '''
