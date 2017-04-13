@@ -401,7 +401,8 @@ class CensosMetaWrapper(MetaWrapper):
     tablename = Parameter()
 
     params = {
-        'resolution': GEOGRAPHIES,
+        #'resolution': GEOGRAPHIES,
+        'resolution': [GEO_I], # data only for setores_censitarios
         'tablename': TABLES
     }
 
