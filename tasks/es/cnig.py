@@ -4,7 +4,7 @@ from luigi import Task, Parameter, LocalTarget, WrapperTask
 from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
                         Shp2TempTableTask, current_session)
 
-from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
+from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag
 
 from collections import OrderedDict
@@ -158,7 +158,6 @@ class GeomRefColumns(ColumnsTask):
 
     def columns(self):
         cols = OrderedDict()
-        session = current_session()
         for colname, coltarget in self.input()['geom_cols'].iteritems():
             cols['id_' + colname] = OBSColumn(
                 type='Text',
@@ -182,7 +181,6 @@ class GeomNameColumns(ColumnsTask):
 
     def columns(self):
         cols = OrderedDict()
-        session = current_session()
         for colname, coltarget in self.input()['geom_cols'].iteritems():
             cols['name_' + colname] = OBSColumn(
                 id='name_' + colname,
@@ -201,7 +199,7 @@ class Geometry(TableTask):
     timestamp = Parameter(default='20150101')
 
     def version(self):
-        return 10
+        return 11
 
     def requires(self):
         return {
