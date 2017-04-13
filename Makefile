@@ -229,7 +229,7 @@ travis-diff-catalog:
 	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx Catalog'
 
 travis-etl-metadatatest:
-	./run-travis.sh 'TEST_MODULE=tasks.us.census nosetests -v tests/test_metadata.py'
+	./run-travis.sh 'nosetests -v tests/test_metadata.py'
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
@@ -272,7 +272,7 @@ diff-catalog:
 	git fetch origin master
 	docker-compose run -e PGDATABASE=test -e ENVIRONMENT=test --rm bigmetadata /bin/bash -c \
 	  'python -c "from tests.util import recreate_db; recreate_db()" && \
-	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util RunDiff --compare FETCH_HEAD --test-all && \
+	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util RunDiff --compare FETCH_HEAD && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx Catalog --force'
 
 #restore:
