@@ -761,7 +761,6 @@ class Dump(Task):
     timestamp = DateParameter(default=date.today())
 
     def requires(self):
-        yield ConfirmTablesDescribedExist()
         yield OBSMetaToLocal()
 
     def run(self):
@@ -1334,6 +1333,9 @@ class DropRemoteOrphanTables(Task):
 
 
 class OBSMetaToLocal(OBSMeta):
+
+    def requires(self):
+        yield ConfirmTablesDescribedExist()
 
     def run(self):
         session = current_session()
