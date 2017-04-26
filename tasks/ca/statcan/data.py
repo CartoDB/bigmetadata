@@ -258,6 +258,7 @@ class AllCensusTopics(BaseParams, WrapperTask):
 
 
 class NHS(Survey):
+
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),

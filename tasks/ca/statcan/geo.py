@@ -3,7 +3,7 @@ from luigi import Parameter, WrapperTask
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
-from tasks.tags import SectionTags, SubsectionTags
+from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
 
@@ -110,7 +110,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 12
+        return 13
 
     def requires(self):
         return {
@@ -144,6 +144,7 @@ class GeographyColumns(ColumnsTask):
             targets={geom: GEOM_NAME},
             tags=[sections['ca'], subsections['names']]
         )
+        geom.tags.extend(boundary_type[i] for i in GEOGRAPHY_TAGS[self.resolution])
 
         return OrderedDict([
             ('geom_name', geom_name),
@@ -159,7 +160,7 @@ class Geography(TableTask):
     resolution = Parameter(default=GEO_PR)
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
