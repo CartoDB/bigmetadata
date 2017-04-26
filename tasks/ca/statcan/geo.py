@@ -140,6 +140,7 @@ class GeographyColumns(ColumnsTask):
         geom_name = OBSColumn(
             type='Text',
             weight=1,
+            name='Name of ' + GEOGRAPHY_NAMES[self.resolution],
             targets={geom: GEOM_NAME},
             tags=[sections['ca'], subsections['names']]
         )
