@@ -730,13 +730,15 @@ class SumLevel(TableTask):
         }
 
     def columns(self):
+        input_ = self.input()
         cols = OrderedDict([
-            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
-            ('the_geom', self.input()['geoms'][self.geography]),
-            ('aland', self.input()['attributes']['aland']),
-            ('awater', self.input()['attributes']['awater']),
-            ('geoname',self.input()['geonames'][self.geography + '_geoname'])
+            ('geoid', input_['geoids'][self.geography + '_geoid']),
+            ('the_geom', input_['geoms'][self.geography]),
+            ('aland', input_['attributes']['aland']),
+            ('awater', input_['attributes']['awater']),
         ])
+        if self.name:
+            cols['geoname'] = input_['geonames'][self.geography + '_geoname']
         return cols
 
     def timespan(self):

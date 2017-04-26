@@ -280,4 +280,4 @@ class QCEWMetaWrapper(MetaWrapper):
 
     def tables(self):
         yield QCEW(year=self.year, qtr=self.qtr)
-        yield SumLevel(year=str(self.year), geography=self.geography)
+        yield SumLevel(year='2015', geography=self.geography)
