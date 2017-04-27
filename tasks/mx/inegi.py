@@ -1,4 +1,5 @@
-from luigi import Task, Parameter, WrapperTask
+from collections import OrderedDict
+from luigi import Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask, MetaWrapper)
@@ -6,9 +7,6 @@ from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.mx.inegi_columns import SourceTags, LicenseTags
-
-from collections import OrderedDict
-
 
 RESOLUTIONS = (
     'ageb', 'entidad', 'localidad_urbana_y_rural_amanzanada', 'manzana',
@@ -54,16 +52,6 @@ RESTAGS = {
 
 SCINCE_DIRECTORY = 'scince_2010'
 
-#ags_cpv2010_municipal_mortalidad.dbf 'MOR'
-#ags_cpv2010_municipal_desarrollo_social.dbf
-
-#DEMOGRAPHIC_TABLES = (
-#    'caracteristicas_economicas', 'migracion', 'caracteristicas_educativas',
-#    'mortalidad', 'desarrollo_social', 'religion', 'discapacidad',
-#    'servicios_de_salud', 'fecundidad', 'situacion_conyugal',
-#    'hogares_censales', 'viviendas', 'lengua_indigena',
-#)
-
 DEMOGRAPHIC_TABLES = {
     'mig': 'migracion',
     'indi': 'lengua_indigena',
@@ -80,9 +68,11 @@ DEMOGRAPHIC_TABLES = {
 }
 
 
-# https://blog.diegovalle.net/2016/01/encuesta-intercensal-2015-shapefiles.html
-# 2015 Encuesta Intercensal AGEBs, Manzanas, Municipios, States, etc
 class DownloadGeographies(DownloadUnzipTask):
+    """
+        https://blog.diegovalle.net/2016/01/encuesta-intercensal-2015-shapefiles.html
+        2015 Encuesta Intercensal AGEBs, Manzanas, Municipios, States, etc
+    """
     URL = 'http://data.diegovalle.net/mapsmapas/encuesta_intercensal_2015.zip'
 
     def download(self):
@@ -91,9 +81,11 @@ class DownloadGeographies(DownloadUnzipTask):
         ))
 
 
-# https://blog.diegovalle.net/2013/06/shapefiles-of-mexico-agebs-manzanas-etc.html
-# 2010 Census AGEBs, Manzanas, Municipios, States, etc
 class DownloadDemographicData(DownloadUnzipTask):
+    """
+        https://blog.diegovalle.net/2013/06/shapefiles-of-mexico-agebs-manzanas-etc.html
+        2010 Census AGEBs, Manzanas, Municipios, States, etc
+    """
     URL = 'http://data.diegovalle.net/mapsmapas/agebsymas.zip'
 
     def download(self):
@@ -102,9 +94,11 @@ class DownloadDemographicData(DownloadUnzipTask):
         ))
 
 
-# http://blog.diegovalle.net/2013/02/download-shapefiles-of-mexico.html
-# Electoral shapefiles of Mexico (secciones and distritos)
 class DownloadElectoralDistricts(DownloadUnzipTask):
+    """
+        http://blog.diegovalle.net/2013/02/download-shapefiles-of-mexico.html
+        Electoral shapefiles of Mexico (secciones and distritos)
+    """
     URL = 'http://data.diegovalle.net/mapsmapas/eleccion_2010.zip'
 
     def download(self):
@@ -209,7 +203,7 @@ class GeographyColumns(ColumnsTask):
         input_ = self.input()
         sections = input_['sections']
         subsections = input_['subsections']
-        license = input_['license']['inegi-license']
+        license_data = input_['license']['inegi-license']
         source = input_['source']['inegi-source']
         boundary_type = input_['boundary']
         geom = OBSColumn(
@@ -218,7 +212,7 @@ class GeographyColumns(ColumnsTask):
             name=RESNAMES[self.resolution],
             description=RESDESCS[self.resolution],
             weight=self.weights[self.resolution],
-            tags=[sections['mx'], subsections['boundary'], license, source]
+            tags=[sections['mx'], subsections['boundary'], license_data, source]
         )
         geom_ref = OBSColumn(
             id=self.resolution + '_cvegeo',
@@ -228,23 +222,23 @@ class GeographyColumns(ColumnsTask):
         )
         cols = OrderedDict([('wkb_geometry', geom),
                             ('cvegeo', geom_ref)
-                        ])
+                           ])
 
         if self.resolution in RESPROPNAMES:
             cols['nomgeo'] = OBSColumn(
                 id=self.resolution + '_name',
                 type='Text',
                 weight=1,
-                name= 'Name of {}'.format(self.resolution),
-                tags=[sections['mx'],subsections['names'],license, source],
+                name='Name of {}'.format(RESNAMES[self.resolution]),
+                tags=[sections['mx'], subsections['names'], license_data, source],
                 targets={geom: GEOM_NAME}
             )
+
+        geom.tags.extend(boundary_type[i] for i in RESTAGS[self.resolution])
 
         return cols
 
 class Geography(TableTask):
-    '''
-    '''
 
     resolution = Parameter()
 
@@ -352,8 +346,8 @@ class AllCensus(WrapperTask):
         for resolution in RESOLUTIONS:
             if resolution == 'servicios_area':
                 continue
-            for table in DEMOGRAPHIC_TABLES.keys():
-                yield Census(resolution=resolution, table=table)
+            for key, _ in DEMOGRAPHIC_TABLES.iteritems():
+                yield Census(resolution=resolution, table=key)
 
 
 class CensusWrapper(MetaWrapper):
