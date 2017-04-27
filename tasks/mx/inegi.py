@@ -203,7 +203,7 @@ class GeographyColumns(ColumnsTask):
         }
 
     def version(self):
-        return 9
+        return 10
 
     def columns(self):
         input_ = self.input()
@@ -235,7 +235,7 @@ class GeographyColumns(ColumnsTask):
                 id=self.resolution + '_name',
                 type='Text',
                 weight=1,
-                name= 'Nombre de {}'.format(self.resolution),
+                name= 'Name of {}'.format(self.resolution),
                 tags=[sections['mx'],subsections['names'],license, source],
                 targets={geom: GEOM_NAME}
             )
@@ -249,7 +249,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
