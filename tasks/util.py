@@ -1846,6 +1846,8 @@ class Carto2TempTableTask(TempTableTask):
         resp = self._query(
             q='SELECT * FROM {table} LIMIT 0'.format(table=self.table)
         )
+        if resp.status_code != 200:
+            raise Exception('Non-200 code (%s): %s', resp.status_code, resp.text)
         coltypes = dict([
             (k, self.TYPE_MAP[v['type']]) for k, v in resp.json()['fields'].iteritems()
         ])
