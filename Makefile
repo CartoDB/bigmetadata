@@ -59,8 +59,7 @@ catalog-noimage:
 
 catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --force --images \
-	  --parallel-scheduling --workers=3
+	  --module tasks.sphinx Catalog --force --images
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
