@@ -1998,3 +1998,11 @@ class FiveYearPopulationMeta(MetaWrapper):
     def tables(self):
         yield FiveYearPopulation()
         yield Geometry()
+
+
+class PopulationHouseholdsHousingMeta(MetaWrapper):
+
+    def tables(self):
+        yield PopulationHouseholdsHousing()
+        yield Geometry()
+
