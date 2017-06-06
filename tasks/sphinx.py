@@ -12,7 +12,7 @@ from tasks.carto import OBSMetaToLocal
 
 from datetime import date
 from time import time
-from tasks.util import LOGGER
+from tasks.util import LOGGER, PostgresTarget
 
 import json
 import os
@@ -45,6 +45,15 @@ class GenerateRST(Task):
         }
 
         return requirements
+
+    def complete(self):
+        tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
+                  'obs_meta_geom', 'obs_meta_timespan']
+        # Only look into whether new denormalized tables would be different
+        # from the old ones if old ones exist!
+        if all([PostgresTarget('observatory', t).exists() for t in tables]):
+            return super(GenerateRST, self).complete()
+        return False
 
     def output(self):
         targets = {}
