@@ -1,6 +1,6 @@
 .. _{{ col.id }}:
 
-{{ col.name }}
+{{ col.name }}{% if numchildren > 1 %} ({{ numchildren }} subcolumns){% elif numchildren == 1 %} (1 subcolumn){% endif %}
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 {% if col.description %}{{ col.description }}{% endif %}
@@ -27,110 +27,220 @@
 Code example
 #}
 
+{% if col.type.lower() == 'geometry' %}
+
+.. tabs::
+
+   .. tab:: {"tab_name": "Boundaries within polygon"}
+
+      Obtain all {% if col.extra['stats'] %}{{ col.extra['stats']['count'] }}{% endif %} "{{ col.name }}" geometries:
+
+      .. code-block:: postgresql
+
+          SELECT ROW_NUMBER() OVER () AS cartodb_id,
+                 the_geom,
+                 geom_refs,
+                 ST_TRANSFORM(the_geom, 3857) the_geom_webmercator
+          FROM OBS_GetBoundariesByGeometry(
+            ST_GeomFromText('{{ col.envelope }}', 4326),
+            '{{ col.id }}'
+          )
+
+   .. tab:: {"tab_name": "Boundaries by identifier in another table"}
+
+      Obtain boundaries matched to another table's ID column.
+
+      .. code-block:: postgresql
+
+          WITH ids AS (
+          SELECT ARRAY_AGG(<id_col>) ids
+            FROM <table_with_ids>
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_MakeEnvelope(-179, 89, 179, -89, 4326),
+              '[{"geom_id": "{{ col.id }}"}]'
+            ) meta
+          )
+          SELECT ROW_NUMBER() OVER () AS cartodb_id,
+                 data->0->>'geomref' as geomref,
+                 (data->0->>'value')::Geometry as the_geom,
+                 ST_Transform((data->0->>'value')::Geometry, 3857) as the_geom_webmercator
+          FROM OBS_GetData((SELECT ids FROM ids), (SELECT meta FROM meta))
+
+{% else %}
+
+.. tabs::
+
+{% for denom_reltype, denom_id, denom_name in col.denoms %}
+
+   {% if denom_reltype == 'denominator' and col.aggregate|lower == 'sum' %}
+   .. tab:: {"tab_name": "Per {{ denom_name }}"}
+
+      Obtain an estimate of "{{ col.name }}" per {{ denom_name }} for a polygon
+      using a combination of weighting by area and {{ denom_name }}.
+
+      .. code-block:: postgresql
+
+          WITH data AS (
+            SELECT 1 as id,
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+               "denom_id": "{{ denom_id }}",
+               "normalization": "denominated"}]'
+            , 1, 1) meta
+          FROM data)
+          SELECT id, (data->0->>'value')::{{ col.type }} as rate_estimate
+          FROM OBS_GetData(
+                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                 (SELECT meta FROM meta))
+
+   {% elif col.aggregate in ('median', 'average') and denom_reltype == 'universe' %}
+   .. tab:: {"tab_name": "Weighted by {{ denom_name }} "}
+
+      Obtain an estimate of "{{ col.name }}" for a polygon
+      using a combination of weighting by area and {{ denom_name }}.
+
+      {% if col.aggregate == 'median' %}Although this measure is a median, the
+      estimate will be a weighted average of medians.{% endif %}
+
+      .. code-block:: postgresql
+
+          WITH data AS (
+            SELECT 1 as id,
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+               "denom_id": "{{ denom_id }}"}]'
+            , 1, 1) meta
+          FROM data)
+          SELECT id, (data->0->>'value')::{{ col.type }} as estimate
+          FROM OBS_GetData(
+                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                 (SELECT meta FROM meta))
+
+   {% elif denom_reltype == 'denominator' %}
+   .. tab:: {"tab_name": "Per {{ denom_name }}"}
+
+      Obtain value of "{{ col.name }}" per {{ denom_name}} for the
+      smallest available geometry at the selected point.
+
+      .. code-block:: postgresql
+
+          WITH data AS (
+            SELECT 1 as id,
+            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+               "denom_id": "{{ denom_id }}",
+               "normalization": "denominated"}]'
+            , 1, 1) meta
+          FROM data)
+          SELECT id, (data->0->>'value')::{{ col.type }} as val
+          FROM OBS_GetData(
+                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                 (SELECT meta FROM meta))
+
+   {% endif %}
+
+{% endfor %}
+
+{% if col.aggregate == 'sum' %}
+   .. tab:: {"tab_name": "Per sq km"}
+
+      Obtain an estimate of "{{ col.name }}" per square kilometer using area
+      weighted interpolation.
+
+      .. code-block:: postgresql
+
+          WITH data AS (
+            SELECT 1 as id,
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+               "normalization": "areaNormalized"}]'
+            , 1, 1) meta
+          FROM data)
+          SELECT id, (data->0->>'value')::{{ col.type }} as per_sq_km
+          FROM OBS_GetData(
+                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                 (SELECT meta FROM meta))
+
+   .. tab:: {"tab_name": "Raw count"}
+
+      Obtain an estimate of "{{ col.name }}" for a polygon using area-weighted
+      interpolation.
+
+      .. code-block:: postgresql
+
+
+          WITH data AS (
+            SELECT 1 as id,
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+               "normalization": "predenominated"}]'
+            , 1, 1) meta
+          FROM data)
+          SELECT id, (data->0->>'value')::{{ col.type }} as per_sq_km
+          FROM OBS_GetData(
+                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                 (SELECT meta FROM meta))
+
+
+{% else %}
+   .. tab:: {"tab_name": "Point"}
+
+      Obtain the value of "{{ col.name }}" for a point.  The value will be from
+      the densest bounday with this measure.
+
+      .. code-block:: postgresql
+
+          WITH data AS (
+            SELECT 1 as id,
+            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}"}]'
+            , 1, 1) meta
+          FROM data)
+          SELECT id, (data->0->>'value')::{{ col.type }} as val
+          FROM OBS_GetData(
+                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                 (SELECT meta FROM meta))
+
+{% endif %}
+
 {#
-    {% if col.type|lower == 'text' %}
-    Obtain category of "{{ col.name }}" at one point:
-    {% elif col.type|lower == 'numeric' %}
-    Measure "{{ col.name }}" {% if col.summable() %} density per sq. kilometer {% endif %} for one point:
-    {% elif col.type|lower == 'geometry' %}
-    Obtain "{{ col.name }}" geometry at one point:
-    {% endif %}
+   .. tab:: {"tab_name": "Boundaries within polygon "}
 
-    .. code-block:: postgresql
+      Obtain values of "{{ col.name }}" for boundaries within a polygon.
 
-    {% set point = 'CDB_LatLng(%s, %s)'|format(col.catalog_lonlat().0, col.catalog_lonlat().1) %}
+      .. code-block:: postgresql
 
-    {% if col.type|lower == 'text' %}
+          TODO
+          #}
 
-      UPDATE {table_name}
-        SET {new_text_column} =
-          OBS_GetCategory(
-            {{ point }},
-            '{{ col.id }}'
-          );
+{% endif %}
 
-    {% elif col.type|lower == 'numeric' %}
+.. toctree::
+   :caption: Subcolumns
+   :maxdepth: 1
+   :titlesonly:
+   :glob:
 
-      UPDATE {table_name}
-        SET {new_numeric_column} =
-          OBS_GetMeasure(
-            {{ point }},
-            '{{ col.id }}'
-          );
-
-    {% elif col.type|lower == 'geometry' %}
-
-      INSERT INTO {tablename}(the_geom)
-        SELECT OBS_GetBoundary(
-          {{ point }},
-          '{{ col.id }}'
-        )
-
-    {% endif %}
-
-    {% if col.type|lower == 'text' %}
-    {% elif col.type|lower == 'numeric' %}
-    {% if col.summable() %}
-    Measure "{{ col.name }}" within an area:
-
-    .. code-block:: postgresql
-
-        UPDATE {table_name}
-          SET {new_numeric_column} =
-            OBS_GetMeasure(
-              ST_Buffer({{ point }}, 0.01),
-              '{{ col.id }}'
-            );
-
-    {% else %}
-
-    {{ col.name }} is only available for point lookups.
-    {% endif %}
-    {% elif col.type|lower == 'geometry' %}
-
-    Obtain all "{{ col.name }}" geometries within an area:
-
-    .. code-block:: postgresql
-
-      INSERT INTO {new_table_name} (the_geom, {geo_id_column})
-        SELECT *
-        FROM OBS_GetBoundariesByGeometry(
-          ST_Buffer({{ point }}, 0.01),
-          '{{ col.id }}'
-        )
-
-    {% endif %}
-
-    {% if col.has_denominators() %}
-    {% set denominator = col.denominators()[0] %}
-    Measure "{{ col.name }}" percent of "{{ denominator.name }}" at one point:
-
-    .. code-block:: postgresql
-
-      UPDATE {table_name}
-        SET {new_numeric_column} =
-          OBS_GetMeasure(
-            {{ point }},
-            '{{ col.id }}',
-            'denominator'
-          );
-
-    {% if col.summable() %}
-    Measure "{{ col.name }}" percent of "{{ denominator.name }}" within an area:
-
-    .. code-block:: postgresql
-
-      UPDATE {table_name}
-        SET {new_numeric_column} =
-          OBS_GetMeasure(
-            ST_Buffer({{ point }}, 0.01),
-            '{{ col.id }}',
-            'denominator'
-          );
-
-    {% endif %}
-    {% endif %}
-#}
+   {{ col.id }}/*
 
 {% if col.geom_timespans|length > 0 %}
 
@@ -173,12 +283,6 @@ Code example
 
 {% endif %}
 
-{% if col.denoms|length > 0 %}
-:Related columns:
-
-    {% for denom_id in col.denoms %}:ref:`{{ denom_id }}`{% endfor %}
-{% endif %}
-
 :Source:
 
     {% for tag_id in col.sources %}:ref:`{{ tag_id }}`{% endfor %}
@@ -186,11 +290,3 @@ Code example
 :License:
 
     {% for tag_id in col.licenses %}:ref:`{{ tag_id }}`{% endfor %}
-
-.. toctree::
-   :caption: Subcolumns
-   :maxdepth: 1
-   :titlesonly:
-   :glob:
-
-   {{ col.id }}/*

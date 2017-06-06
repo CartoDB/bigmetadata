@@ -7,9 +7,8 @@ from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
                    DateParameter)
 from luigi.s3 import S3Target
 from tasks.util import shell
-from tasks.meta import current_session, OBSTag, OBSColumn
-from tasks.carto import (GenerateStaticImage, ImagesForMeasure, GenerateThumb,
-                         OBSMetaToLocal)
+from tasks.meta import current_session, OBSTag, OBSColumn, catalog_latlng
+from tasks.carto import OBSMetaToLocal
 
 from datetime import date
 from time import time
@@ -37,49 +36,15 @@ SOURCES_TEMPLATE = ENV.get_template('sources.html')
 
 class GenerateRST(Task):
 
-    force = BooleanParameter(default=False)
     format = Parameter()
-    images = BooleanParameter(default=False)
-
-    def __init__(self, *args, **kwargs):
-        super(GenerateRST, self).__init__(*args, **kwargs)
-        if self.force:
-            shell('rm -rf catalog/source/*/*')
-        #shell('cp -R catalog/img catalog/source/')
-        #shell('mkdir -p catalog/img_thumb')
-        #shell('cp -R catalog/img_thumb catalog/source/')
+    section = Parameter(default=None)
 
     def requires(self):
-        #session = current_session()
         requirements = {
             'meta': OBSMetaToLocal()
         }
-        #for section_subsection, _ in self.output().iteritems():
-        #    section_id, subsection_id = section_subsection
-
-            # this is much faster with a gin index on numer_tags
-            #resp = session.execute('''
-            #    SELECT DISTINCT numer_id
-            #    FROM observatory.obs_meta
-            #    WHERE numer_tags ? 'section/{section_id}'
-            #      AND numer_tags ? 'subsection/{subsection_id}'
-            #    ORDER BY numer_id
-            #'''.format(section_id=section_id,
-            #           subsection_id=subsection_id))
-            #if self.images:
-            #    for row in resp:
-            #        column_id = row[0]
-            #        if column_id.startswith('uk'):
-            #            if self.format == 'pdf':
-            #                img = GenerateThumb(measure=column_id, force=False)
-            #            else:
-            #                img = ImagesForMeasure(measure=column_id, force=False)
-            #            requirements[column_id] = img
 
         return requirements
-
-    def complete(self):
-        return getattr(self, '_complete', False)
 
     def output(self):
         targets = {}
@@ -104,8 +69,11 @@ class GenerateRST(Task):
           FROM subquery2
           WHERE section IS NOT NULL
             AND subsection IS NOT NULL
-                               ''')
+        ''')
         for section_id, subsection_id in resp:
+            if self.section:
+                if not section_id.startswith(self.section):
+                    continue
             targets[(section_id, subsection_id)] = LocalTarget(
                 'catalog/source/{section}/{subsection}.rst'.format(
                     section=strip_tag_id(section_id),
@@ -113,12 +81,11 @@ class GenerateRST(Task):
 
         targets[('licenses', None)] = LocalTarget('catalog/source/licenses.rst')
         targets[('sources', None)] = LocalTarget('catalog/source/sources.rst')
+
         return targets
 
     def template_globals(self):
-        image_path = '../img_thumb' if self.format == 'pdf' else '../img'
         return {
-            'IMAGE_PATH': image_path
         }
 
     def build_licenses(self, target):
@@ -194,17 +161,22 @@ class GenerateRST(Task):
                            FIRST(c.name),
                            FIRST(c.description),
                            FIRST(c.type),
-                           FIRST(c.extra),
+                           FIRST(ctab.extra),
                            FIRST(c.aggregate),
-                           JSONB_Object_Agg(t.id, t.name),
+                           JSONB_Object_Agg(t.type || '/' || t.id, t.name),
                            ARRAY[]::Text[] denoms,
-                           ARRAY[]::Text[]
+                           ARRAY[]::Text[],
+                           ST_AsText(ST_Envelope(FIRST(tab.the_geom))) envelope
                     FROM observatory.obs_column c,
                          observatory.obs_column_tag ct,
-                         observatory.obs_tag t
+                         observatory.obs_tag t,
+                         observatory.obs_column_table ctab,
+                         observatory.obs_table tab
                     WHERE c.id = ANY(ARRAY['{all_column_ids}'])
                       AND ct.column_id = c.id
                       AND ct.tag_id = t.id
+                      AND c.id = ctab.column_id
+                      AND tab.id = ctab.table_id
                     GROUP BY c.id
                 '''.format(all_column_ids="', '".join(all_column_ids)))
             else:
@@ -273,18 +245,19 @@ class GenerateRST(Task):
                            numer_extra,
                            numer_aggregate,
                            numer_tags,
-                           n.denoms,
                            ARRAY_AGG(DISTINCT ARRAY[
-                            geom_id, geom_name, timespan_id,
+                            denom_reltype,
+                            denom_id,
+                            denom_name
+                           ]) denoms,
+                           ARRAY_AGG(DISTINCT ARRAY[
+                            geom_id, geom_name, numer_timespan,
                             geom_tags::Text
-                           ])
-                    FROM observatory.obs_meta_numer n,
-                         observatory.obs_meta_geom g,
-                         observatory.obs_meta_timespan t
+                           ]) geom_timespans,
+                           FIRST(ST_AsText(ST_Envelope(the_geom))) envelope
+                    FROM observatory.obs_meta
                     WHERE numer_id = ANY (ARRAY['{all_column_ids}'])
-                      AND geom_id = ANY(n.geoms)
-                      AND timespan_id = ANY(n.timespans)
-                    GROUP BY numer_id
+                    GROUP BY 1, 2, 3, 4, 5, 6, 7;
                 '''.format(all_column_ids="', '".join(all_column_ids)))
 
             all_columns = {}
@@ -302,6 +275,7 @@ class GenerateRST(Task):
                         }
                 all_columns[col[0]] = {
                     'id': col[0],
+                    'latlng': catalog_latlng(col[0]),
                     'name': col[1],
                     'description': col[2],
                     'type': col[3],
@@ -315,18 +289,23 @@ class GenerateRST(Task):
                                 for tag_id, tag_name in col[6].iteritems()
                                 if tag_id.startswith('source/')],
                     'denoms': col[7],
-                    'geom_timespans': geom_timespans
+                    'geom_timespans': geom_timespans,
+                    'envelope': col[9]
                 }
 
-            target.makedirs()
-            fhandle = target.open('w')
-
-            # TODO aren't we duplicating this?
+            subsection_path = 'catalog/source/{section}/{subsection}/'.format(
+                section=strip_tag_id(section_id),
+                subsection=strip_tag_id(subsection_id)
+            )
+            if not os.path.exists(subsection_path):
+                os.makedirs(subsection_path)
             with open('catalog/source/{}.rst'.format(strip_tag_id(section_id)), 'w') \
                     as section_fhandle:
                 section_fhandle.write(SECTION_TEMPLATE.render(
                     section=section, **self.template_globals()))
 
+            target.makedirs()
+            fhandle = target.open('w')
             fhandle.write(SUBSECTION_TEMPLATE.render(
                 subsection=subsection,
                 column_children_ids=column_children_ids,
@@ -337,21 +316,21 @@ class GenerateRST(Task):
 
             fhandle.close()
 
-            subsection_path = 'catalog/source/{section}/{subsection}/'.format(
-                section=strip_tag_id(section_id),
-                subsection=strip_tag_id(subsection_id)
-            )
-            if not os.path.exists(subsection_path):
-                os.makedirs(subsection_path)
+            if not all_columns:
+                continue
 
             for column_id, children in column_children_ids:
-
                 with open('catalog/source/{section}/{subsection}/{column}.rst'.format(
                     section=strip_tag_id(section_id),
                     subsection=strip_tag_id(subsection_id),
                     column=column_id
                 ), 'w') as column_fhandle:
                     column_fhandle.write(COLUMN_TEMPLATE.render(
+                        intermediate_path='/'.join([
+                            strip_tag_id(section_id),
+                            strip_tag_id(subsection_id)
+                        ]),
+                        numchildren=sum([len(c[1]) for c in children.iteritems()]) if children else 0,
                         col=all_columns[column_id], **self.template_globals()).encode('utf8'))
 
                 if not children:
@@ -372,34 +351,40 @@ class GenerateRST(Task):
 
                         for i in xrange(1, len(subchild_path_split)):
                             intermediate_id = subchild_path_split[i]
+                            intermediate_path = '/'.join(subchild_path_split[0:i])
                             with open('catalog/source/{section}/{subsection}/{intermediate_path}/{intermediate_id}.rst'.format(
                                 section=strip_tag_id(section_id),
                                 subsection=strip_tag_id(subsection_id),
-                                intermediate_path='/'.join(subchild_path_split[0:i]),
+                                intermediate_path=intermediate_path,
                                 intermediate_id=intermediate_id
                             ), 'w') as subcolumn_fhandle:
                                 subcolumn_fhandle.write(COLUMN_TEMPLATE.render(
+                                    intermediate_path='/'.join([strip_tag_id(section_id),
+                                                            strip_tag_id(subsection_id),
+                                                            intermediate_path]),
+                                    numchildren=len(children.get(intermediate_id, [])),
                                     col=all_columns[intermediate_id], **self.template_globals()).encode('utf8'))
-
                         with open('catalog/source/{section}/{subsection}/{path}.rst'.format(
                             section=strip_tag_id(section_id),
                             subsection=strip_tag_id(subsection_id),
                             path=subchild_path
                         ), 'w') as subcolumn_fhandle:
                             subcolumn_fhandle.write(COLUMN_TEMPLATE.render(
+                                intermediate_path='/'.join([strip_tag_id(section_id),
+                                                            strip_tag_id(subsection_id),
+                                                            '/'.join(subchild_path.split('/')[0:-1])
+                                                           ]),
+                                numchildren=len(children.get(subchild_id, [])),
                                 col=all_columns[subchild_id], **self.template_globals()).encode('utf8'))
-        self._complete = True
 
 
 class Catalog(Task):
 
-    force = BooleanParameter(default=False)
     format = Parameter(default='html')
-    images = BooleanParameter(default=False)
+    section = Parameter(default=None)
 
     def requires(self):
-        return  GenerateRST(force=self.force, format=self.format,
-                               images=self.images)
+        return GenerateRST(format=self.format, section=self.section)
 
     def complete(self):
         return getattr(self, '_complete', False)

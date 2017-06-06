@@ -11,6 +11,7 @@ python-daemon==2.1.1
 python-slugify==1.2.0
 sqlalchemy==1.1.0b2
 Sphinx==1.4.5
+sphinx-tabs==0.2.2
 rst2pdf==0.93
 xlrd==1.0.0
 awscli==1.10.48
