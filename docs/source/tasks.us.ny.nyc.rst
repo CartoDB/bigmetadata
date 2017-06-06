@@ -4,13 +4,54 @@ tasks.us.ny.nyc package
 Submodules
 ----------
 
-.. toctree::
+tasks.us.ny.nyc.acris module
+----------------------------
 
-   tasks.us.ny.nyc.acris
-   tasks.us.ny.nyc.columns
-   tasks.us.ny.nyc.dcp
-   tasks.us.ny.nyc.dob
-   tasks.us.ny.nyc.package
+.. automodule:: tasks.us.ny.nyc.acris
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.us.ny.nyc.columns module
+------------------------------
+
+.. automodule:: tasks.us.ny.nyc.columns
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.us.ny.nyc.dcp module
+--------------------------
+
+.. automodule:: tasks.us.ny.nyc.dcp
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.us.ny.nyc.dob module
+--------------------------
+
+.. automodule:: tasks.us.ny.nyc.dob
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.us.ny.nyc.package module
+------------------------------
+
+.. automodule:: tasks.us.ny.nyc.package
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.us.ny.nyc.tags module
+---------------------------
+
+.. automodule:: tasks.us.ny.nyc.tags
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

@@ -1814,6 +1814,40 @@ WHERE table_name LIKE 'obs_%'
         session.commit()
 
 
+class CleanMetadata(Task):
+    '''
+    Remove all columns, tables, and tags that have no references to other
+    metadata entities.
+    '''
+
+    def run(self):
+        session = current_session()
+
+        clear_tables = '''
+            DELETE FROM observatory.obs_table
+            WHERE id NOT IN (SELECT DISTINCT table_id from observatory.obs_column_table)
+        '''
+
+        clear_columns = '''
+            DELETE FROM observatory.obs_column
+            WHERE id NOT IN (SELECT DISTINCT column_id from observatory.obs_column_table)
+        '''
+
+        clear_tags = '''
+            DELETE FROM observatory.obs_tag
+            WHERE id NOT IN (SELECT DISTINCT tag_id from observatory.obs_column_tag)
+        '''
+
+        for q in (clear_tables, clear_columns, clear_tags):
+            session.execute(q)
+        session.commit()
+
+        self._complete = True
+
+    def complete(self):
+        return getattr(self, '_complete', False)
+
+
 class Carto2TempTableTask(TempTableTask):
     '''
     Import a table from a CARTO account into a temporary table.
@@ -2060,6 +2094,20 @@ def cross(orig_list, b_name, b_list):
             new_dict[b_name] = b_val
             result.append(new_dict)
     return result
+
+
+class RunWrapper(WrapperTask):
+    '''
+    Run MetaWrapper for a specific module.
+    '''
+
+    wrapper = Parameter()
+
+    def requires(self):
+        module = 'tasks/' + self.wrapper.replace('.', '/')
+        for task_klass, params in collect_meta_wrappers(test_module=module,
+                                                        test_all=True):
+            yield task_klass(**params)
 
 
 class RunDiff(WrapperTask):

@@ -4,9 +4,14 @@ tasks.fr package
 Submodules
 ----------
 
-.. toctree::
+tasks.fr.insee module
+---------------------
 
-   tasks.fr.insee
+.. automodule:: tasks.fr.insee
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

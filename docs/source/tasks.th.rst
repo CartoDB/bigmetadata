@@ -4,9 +4,14 @@ tasks.th package
 Submodules
 ----------
 
-.. toctree::
+tasks.th.thaipop module
+-----------------------
 
-   tasks.th.thaipop
+.. automodule:: tasks.th.thaipop
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

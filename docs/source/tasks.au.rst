@@ -4,10 +4,22 @@ tasks.au package
 Submodules
 ----------
 
-.. toctree::
+tasks.au.data module
+--------------------
 
-   tasks.au.data
-   tasks.au.geo
+.. automodule:: tasks.au.data
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.au.geo module
+-------------------
+
+.. automodule:: tasks.au.geo
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

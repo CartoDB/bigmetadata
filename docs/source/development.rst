@@ -30,7 +30,7 @@ Abstract classes
 These are the building blocks of the ETL, and should almost always be
 subclassed from when writing a new process.
 
-.. autoclass:: tasks.util.TempTableTask
+.. autoclass:: tasks.util.TableTask
    :members:
    :show-inheritance:
 
@@ -47,6 +47,10 @@ Batteries included
 
 Data comes in many flavors, but sometimes it comes in the same flavor over and
 over again.  These tasks are meant to take care of the most repetitive aspects.
+
+.. autoclass:: tasks.util.TempTableTask
+   :members:
+   :show-inheritance:
 
 .. autoclass:: tasks.util.DownloadUnzipTask
    :members:

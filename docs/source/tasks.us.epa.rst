@@ -4,10 +4,22 @@ tasks.us.epa package
 Submodules
 ----------
 
-.. toctree::
+tasks.us.epa.enviroatlas module
+-------------------------------
 
-   tasks.us.epa.enviroatlas
-   tasks.us.epa.huc
+.. automodule:: tasks.us.epa.enviroatlas
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.us.epa.huc module
+-----------------------
+
+.. automodule:: tasks.us.epa.huc
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
