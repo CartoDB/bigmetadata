@@ -1,6 +1,6 @@
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 from tasks.util import ColumnsTask
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, PublicTags
 from tasks.ca.statcan.license import LicenseTags, SourceTags
 
 from collections import OrderedDict
@@ -15,6 +15,7 @@ class NHSColumns(ColumnsTask):
             'units': UnitTags(),
             'license': LicenseTags(),
             'source': SourceTags(),
+            'public': PublicTags()
         }
 
     def version(self):
@@ -26,6 +27,8 @@ class NHSColumns(ColumnsTask):
         source = input_['source']['statcan-nhs-2011']
 
         subsections = input_['subsections']
+
+        public = input_['public']['public']
 
         unit_people = input_['units']['people']
         unit_money = input_['units']['money']
@@ -719,7 +722,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            tags=[ca, unit_people, subsections['employment'], public],
             targets={},)
 
         t004c001_m = OBSColumn(
@@ -854,7 +857,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['employment'], subsections['education'], public],
             targets={},)
 
         t005c001_m = OBSColumn(
@@ -1124,7 +1127,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={},)
 
         t005c011_m = OBSColumn(
@@ -1151,7 +1154,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c011_t: DENOMINATOR },)
 
         t005c012_m = OBSColumn(
@@ -1178,7 +1181,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c011_t: DENOMINATOR },)
 
         t005c013_m = OBSColumn(
@@ -1205,7 +1208,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c011_t: DENOMINATOR },)
 
         t005c014_m = OBSColumn(
@@ -1232,7 +1235,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c014_t: DENOMINATOR },)
 
         t005c015_m = OBSColumn(
@@ -1259,7 +1262,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c014_t: DENOMINATOR },)
 
         t005c016_m = OBSColumn(
@@ -1286,7 +1289,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c014_t: DENOMINATOR },)
 
         t005c017_m = OBSColumn(
@@ -1313,7 +1316,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c014_t: DENOMINATOR },)
 
         t005c018_m = OBSColumn(
@@ -1340,7 +1343,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c018_t: DENOMINATOR },)
 
         t005c019_m = OBSColumn(
@@ -1367,7 +1370,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c018_t: DENOMINATOR },)
 
         t005c020_m = OBSColumn(
@@ -1394,7 +1397,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['education']],
+            tags=[ca, unit_people, subsections['education'], public],
             targets={ t005c001_t: DENOMINATOR },)
 
         t005c022_m = OBSColumn(
@@ -9206,7 +9209,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_household, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing'], public],
             targets={ t009c001_t: DENOMINATOR },)
 
         t009c003_t = OBSColumn(
@@ -9215,7 +9218,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_household, subsections['housing']],
+            tags=[ca, unit_household, subsections['housing'], public],
             targets={ t009c001_t: DENOMINATOR },)
 
         t009c004_t = OBSColumn(
@@ -11645,7 +11648,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='median',
-            tags=[ca, unit_money, subsections['income']],
+            tags=[ca, unit_money, subsections['income'], public],
             targets={ t012c001_t: UNIVERSE },)
 
         t012c031_t = OBSColumn(
@@ -14810,7 +14813,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            tags=[ca, unit_people, subsections['employment'], public],
             targets={ t005c001_t: DENOMINATOR },)
 
         t015c002_m = OBSColumn(
@@ -14837,7 +14840,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            tags=[ca, unit_people, subsections['employment'], public],
             targets={ t015c002_t: DENOMINATOR },)
 
         t015c003_m = OBSColumn(
@@ -14864,7 +14867,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            tags=[ca, unit_people, subsections['employment'], public],
             targets={ t015c002_t: DENOMINATOR },)
 
         t015c004_m = OBSColumn(
@@ -14891,7 +14894,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['employment']],
+            tags=[ca, unit_people, subsections['employment'], public],
             targets={ t005c001_t: DENOMINATOR },)
 
         t015c005_m = OBSColumn(
@@ -19724,7 +19727,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={},)
 
         t022c002_t = OBSColumn(
@@ -19751,7 +19754,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c006_t = OBSColumn(
@@ -19760,7 +19763,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c007_t = OBSColumn(
@@ -19769,7 +19772,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c008_t = OBSColumn(
@@ -19778,7 +19781,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c009_t = OBSColumn(
@@ -19787,7 +19790,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c010_t = OBSColumn(
@@ -19796,7 +19799,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c012_t = OBSColumn(
@@ -19805,7 +19808,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c013_t = OBSColumn(
@@ -19814,7 +19817,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c014_t = OBSColumn(
@@ -19823,7 +19826,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c015_t = OBSColumn(
@@ -19832,7 +19835,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c016_t = OBSColumn(
@@ -19841,7 +19844,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c017_t = OBSColumn(
@@ -19850,7 +19853,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='average',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={},)
 
         t022c019_t = OBSColumn(
@@ -19859,7 +19862,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c020_t = OBSColumn(
@@ -19868,7 +19871,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c021_t = OBSColumn(
@@ -19877,7 +19880,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t022c022_t = OBSColumn(
@@ -19886,7 +19889,7 @@ class NHSColumns(ColumnsTask):
             type='Numeric',
             weight=3,
             aggregate='sum',
-            tags=[ca, unit_people, subsections['housing']],
+            tags=[ca, unit_people, subsections['housing'], public],
             targets={ t022c001_t: DENOMINATOR },)
 
         t023c001_t = OBSColumn(
