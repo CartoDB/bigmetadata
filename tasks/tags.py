@@ -328,3 +328,14 @@ class BoundaryTags(TagsTask):
                    type='boundary_type',
                    description='Boundary appropriate for cartographic use'),
             ]
+
+class PublicTags(TagsTask):
+    def version(self):
+        return 1
+    def tags(self):
+        return [
+            OBSTag(id='public',
+                   name='Key variable',
+                   type='public_type',
+                   description='This tag is a flag for key variables')
+        ]
