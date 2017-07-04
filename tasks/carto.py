@@ -1255,6 +1255,17 @@ FROM union_geoms
 WHERE {obs_meta}.geom_id = ANY(union_geoms.geom_ids);
         '''
         ],
+        'geom_numer_timespan': [
+        '''
+CREATE TABLE {obs_meta} AS
+SELECT geom_id::TEXT,
+       numer_id::TEXT,
+       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans
+  FROM observatory.obs_meta_next
+  GROUP BY geom_id, numer_id;
+        ''',
+        ''' ALTER TABLE {obs_meta} ADD PRIMARY KEY (geom_id, numer_id); ''',
+        ],
         'timespan': ['''
 CREATE TABLE {obs_meta} AS
 SELECT numer_timespan::TEXT timespan_id,
@@ -1345,7 +1356,6 @@ class OBSMetaToLocal(OBSMeta):
             for i, q in enumerate(self.QUERIES):
                 before = time.time()
                 query = q.format(obs_meta='observatory.obs_meta_next')
-                #LOGGER.info(query)
                 session.execute(query)
                 after = time.time()
                 LOGGER.info('time taken for obs_meta:%s: %s', i, round(after - before, 2))
@@ -1366,18 +1376,14 @@ class OBSMetaToLocal(OBSMeta):
                 for i, q in enumerate(queries):
                     before = time.time()
                     query = q.format(obs_meta='observatory.obs_meta_next_{}'.format(dimension))
-                    #LOGGER.info(query)
                     session.execute(query)
                     session.flush()
                     after = time.time()
                     LOGGER.info('time taken for %s:%s: %s', dimension, i, round(after - before, 2))
-                #session.execute('CREATE TABLE observatory.obs_meta_next_{dimension} '
-                #                'AS {select}'.format(
-                #                    dimension=dimension,
-                #                    select=query
-                #                ))
-                session.execute('CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist '
-                                '(the_geom)'.format(dimension=dimension))
+                # geom_numer_timespan doesn't have geometries so no need to add geometry index for it
+                if dimension != 'geom_numer_timespan':
+                    session.execute('CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist '
+                                    '(the_geom)'.format(dimension=dimension))
                 after = time.time()
             session.commit()
         except:
@@ -1419,7 +1425,7 @@ class SyncMetadata(WrapperTask):
                       'obs_tag', 'obs_column_tag', 'obs_dump_version',
                       'obs_column_to_column', 'obs_meta', 'obs_meta_numer',
                       'obs_meta_denom', 'obs_meta_geom', 'obs_meta_timespan',
-                      'obs_column_table_tile',
+                      'obs_meta_geom_numer_timespan', 'obs_column_table_tile',
                      ):
             if table == 'obs_meta':
                 yield TableToCartoViaImportAPI(

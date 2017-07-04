@@ -25,6 +25,7 @@ def test_empty_obs_meta_to_local():
     assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta_denom').fetchone()[0], 0)
     assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta_geom').fetchone()[0], 0)
     assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta_timespan').fetchone()[0], 0)
+    assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta_geom_numer_timespan').fetchone()[0], 0)
 
 @with_setup(setup, teardown)
 def test_obs_meta_to_local_overwrites_changes():
@@ -45,6 +46,7 @@ def test_obs_meta_to_local_overwrites_changes():
     session.execute("INSERT INTO observatory.obs_meta_geom (geom_id) VALUES ('bar')")
     session.execute("INSERT INTO observatory.obs_meta_denom (denom_id) VALUES ('baz')")
     session.execute("INSERT INTO observatory.obs_meta_timespan (timespan_id) VALUES ('boo')")
+    session.execute("INSERT INTO observatory.obs_meta_geom_numer_timespan (geom_id, numer_id) VALUES ('bar', 'foo')")
     session.commit()
     assert_equals(session.execute(
         'SELECT COUNT(*) FROM observatory.obs_meta').fetchone()[0], 1)
@@ -56,6 +58,8 @@ def test_obs_meta_to_local_overwrites_changes():
         'SELECT COUNT(*) FROM observatory.obs_meta_geom').fetchone()[0], 1)
     assert_equals(session.execute(
         'SELECT COUNT(*) FROM observatory.obs_meta_timespan').fetchone()[0], 1)
+    assert_equals(session.execute(
+        'SELECT COUNT(*) FROM observatory.obs_meta_geom_numer_timespan').fetchone()[0], 1)
 
     reload(tasks.carto)
     task = tasks.carto.OBSMetaToLocal()
@@ -71,6 +75,8 @@ def test_obs_meta_to_local_overwrites_changes():
         'SELECT COUNT(*) FROM observatory.obs_meta_geom').fetchone()[0], 0)
     assert_equals(session.execute(
         'SELECT COUNT(*) FROM observatory.obs_meta_timespan').fetchone()[0], 0)
+    assert_equals(session.execute(
+        'SELECT COUNT(*) FROM observatory.obs_meta_geom_numer_timespan').fetchone()[0], 0)
 
 
 @with_setup(setup, teardown)
@@ -88,3 +94,4 @@ def test_obs_meta_to_local_works_twice():
     assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta_denom').fetchone()[0], 0)
     assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta_geom').fetchone()[0], 0)
     assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta_timespan').fetchone()[0], 0)
+    assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta_geom_numer_timespan').fetchone()[0], 0)
