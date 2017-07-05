@@ -2,7 +2,7 @@
 # https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
 {
   "postgres": {
-    "image": "recessionporn/bigmetadata_postgres",
+    "image": "carto/bigmetadata_postgres",
     "volumes": [
       "./postgres/postgresql.conf:/etc/postgresql/9.5/main/postgresql.conf",
       "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
@@ -39,7 +39,7 @@
   },
   "bigmetadata_daemon": {
     #"build": ".",
-    "image": "recessionporn/bigmetadata",
+    "image": "carto/bigmetadata",
     "links": [
       "postgres"
     ],
