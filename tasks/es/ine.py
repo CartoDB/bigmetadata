@@ -1742,7 +1742,7 @@ class PopulationHouseholdsHousing(TableTask):
         }
 
     def version(self):
-        return 1
+        return 3
 
     def timespan(self):
         return '2011'
