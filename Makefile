@@ -26,7 +26,7 @@ build:
 	docker-compose build
 
 build-postgres:
-	docker build -t recessionporn/bigmetadata_postgres:latest postgres
+	docker build -t carto/bigmetadata_postgres:latest postgres
 
 psql:
 	docker-compose run --rm bigmetadata psql

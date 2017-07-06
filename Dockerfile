@@ -1,4 +1,4 @@
-FROM recessionporn/debian-gdal2
+FROM carto/debian-gdal2
 
 COPY ./requirements.txt /bigmetadata/requirements.txt
 

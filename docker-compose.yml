@@ -64,7 +64,7 @@
     "command": "/bin/bash -c 'while : ; do pg_isready -t 1 && break; done && cron && crontab ./crontab && luigid'"
   },
   "bigmetadata": {
-    "image": "recessionporn/bigmetadata",
+    "image": "carto/bigmetadata",
     "links": [
       "postgres",
       "bigmetadata_daemon",
