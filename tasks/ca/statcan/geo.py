@@ -142,7 +142,7 @@ class Geography(TableTask):
     resolution = Parameter(default=GEO_PR)
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
