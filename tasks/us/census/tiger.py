@@ -122,91 +122,91 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='US Census Block Groups',
                 description=self._generate_desc("block_group"),
-                weight=10,
+                weight=7,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'block': OBSColumn(
                 type='Geometry',
                 name='US Census Blocks',
                 description=self._generate_desc("block"),
-                weight=0,
+                weight=6,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'census_tract': OBSColumn(
                 type='Geometry',
                 name='US Census Tracts',
                 description=self._generate_desc("census_tract"),
-                weight=9,
+                weight=5,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'congressional_district': OBSColumn(
                 type='Geometry',
                 name='US Congressional Districts',
                 description=self._generate_desc("congressional_district"),
-                weight=5.4,
+                weight=0,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'county': OBSColumn(
                 type='Geometry',
                 name='US County',
                 description=self._generate_desc("county"),
-                weight=7,
+                weight=3,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'puma': OBSColumn(
                 type='Geometry',
                 name='US Census Public Use Microdata Areas',
                 description=self._generate_desc("puma"),
-                weight=5.5,
+                weight=2,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'state': OBSColumn(
                 type='Geometry',
                 name='US States',
                 description=self._generate_desc("state"),
-                weight=8,
+                weight=1,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'zcta5': OBSColumn(
                 type='Geometry',
                 name='US Census Zip Code Tabulation Areas',
                 description=self._generate_desc('zcta5'),
-                weight=6,
+                weight=4,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_elementary': OBSColumn(
                 type='Geometry',
                 name='Elementary School District',
                 description=self._generate_desc('school_district_elementary'),
-                weight=2.8,
+                weight=0,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_secondary': OBSColumn(
                 type='Geometry',
                 name='Secondary School District',
                 description=self._generate_desc('school_district_secondary'),
-                weight=2.9,
+                weight=0,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_unified': OBSColumn(
                 type='Geometry',
                 name='Unified School District',
                 description=self._generate_desc('school_district_unified'),
-                weight=5,
+                weight=0,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'cbsa': OBSColumn(
                 type='Geometry',
                 name='Core Based Statistical Area (CBSA)',
                 description=self._generate_desc("cbsa"),
-                weight=1,
+                weight=0,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'place': OBSColumn(
                 type='Geometry',
                 name='Incorporated Places',
                 description=self._generate_desc("place"),
-                weight=1.1,
+                weight=0,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
         }
