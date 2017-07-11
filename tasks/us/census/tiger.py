@@ -77,7 +77,7 @@ class ClippedGeomColumns(ColumnsTask):
 
         interpolated_boundaries = ['block_clipped', 'block_group_clipped',
                                     'puma_clipped','census_tract_clipped',
-                                    'county_clipped','state_clipped']
+                                    'county_clipped','state_clipped', 'congressional_district_clipped']
         cartographic_boundaries = ['cbsa_clipped',
                                     'school_district_elementary_clipped',
                                     'place_clipped',
