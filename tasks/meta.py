@@ -436,7 +436,7 @@ class OBSColumn(Base):
         return self._index_type
 
     def children(self):
-        children = [col for col, reltype in self.sources.iteritems() if reltype == 'denominator']
+        children = [col for col, reltype in self.sources.iteritems() if reltype == DENOMINATOR]
         children.sort(key=lambda x: natural_sort_key(x.name))
         return children
 
@@ -474,7 +474,7 @@ class OBSColumn(Base):
         '''
         Returns True if this column has no denominator, False otherwise.
         '''
-        return 'denominator' in self.targets.values()
+        return DENOMINATOR in self.targets.values()
 
     def has_catalog_image(self):
         '''
@@ -488,7 +488,7 @@ class OBSColumn(Base):
         '''
         if not self.has_denominators():
             return []
-        return [k for k, v in self.targets.iteritems() if v == 'denominator']
+        return [k for k, v in self.targets.iteritems() if v == DENOMINATOR]
 
     def unit(self):
         '''

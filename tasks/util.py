@@ -1496,6 +1496,13 @@ class TableTask(Task):
     generate all relevant metadata for the table, and link it to the columns.
     '''
 
+    def _requires(self):
+        reqs = super(TableTask, self)._requires()
+        if self._testmode:
+            return [r for r in reqs if isinstance(r, (TagsTask, TableTask, ColumnsTask,))]
+        else:
+            return reqs
+
     def version(self):
         '''
         Must return a version control number, which is useful for forcing a
@@ -1594,6 +1601,8 @@ class TableTask(Task):
 
     @property
     def _testmode(self):
+        if os.environ.get('ENVIRONMENT') == 'test':
+            return True
         return getattr(self, '_test', False)
 
     def run(self):
@@ -1643,7 +1652,8 @@ class TableTask(Task):
                 index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
                 session.execute('CREATE {unique} INDEX IF NOT EXISTS {index_name} ON {table} '
                                 'USING {index_type} ({colname})'.format(
-                                    unique='UNIQUE' if index_type == 'btree' else '',
+                                    #unique='UNIQUE' if index_type == 'btree' else '',
+                                    unique='',
                                     index_type=index_type,
                                     index_name=index_name,
                                     table=tablename, colname=colname))
@@ -2051,13 +2061,17 @@ def cross(orig_list, b_name, b_list):
     return result
 
 
-class RunDiffToMaster(WrapperTask):
+class RunDiff(WrapperTask):
     '''
     Run MetaWrapper for all tasks that changed compared to master.
     '''
 
+    compare = Parameter()
+
     def requires(self):
-        resp = shell("git diff master --name-only | grep '^tasks'")
+        resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
+            compare=self.compare
+        ))
         for line in resp.split('\n'):
             if not line:
                 continue

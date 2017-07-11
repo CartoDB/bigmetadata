@@ -54,7 +54,7 @@ class WOFColumns(ColumnsTask):
     resolution = Parameter()
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {
@@ -143,8 +143,8 @@ class WOF(TableTask):
 
         session.execute('INSERT INTO {output} '
                         'SELECT "wof:id", '
-                        'CASE WHEN ST_Npoints(wkb_geometry) > 1000000 '
-                        '     THEN ST_Simplify(wkb_geometry, 0.0001) '
+                        'CASE WHEN ST_Npoints(wkb_geometry) > 100000 '
+                        '     THEN ST_MakeValid(ST_SimplifyVW(wkb_geometry, 0.0001)) '
                         '     ELSE wkb_geometry '
                         'END, '
                         '"wof:name" '
