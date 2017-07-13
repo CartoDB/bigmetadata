@@ -34,7 +34,7 @@ class TigerSourceTags(TagsTask):
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 13
+        return 14
 
     def requires(self):
         return {
@@ -96,7 +96,7 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 15
+        return 16
 
     def requires(self):
         return {
