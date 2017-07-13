@@ -666,10 +666,10 @@ class ShorelineClip(TableTask):
         session = current_session()
         stmt = ('INSERT INTO {output} '
                 'SELECT geoid, ST_Union(ST_MakePolygon(ST_ExteriorRing(the_geom))) AS the_geom, '
-                '       MAX(aland) AS aland, cdb_observatory.FIRST(name) AS name '
+                '       MAX(aland) AS aland '
                 'FROM ( '
                 '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
-                '           aland, name '
+                '           aland '
                 '    FROM {input} '
                 ") holes WHERE GeometryType(the_geom) = 'POLYGON' "
                 'GROUP BY geoid'.format(
