@@ -70,7 +70,6 @@ catalog: clean-catalog
 	  --module tasks.sphinx Catalog \
 	  $${SECTION/#/--section } \
 	  --local-scheduler
-	  #--parallel-scheduling --workers=3
 	docker-compose up -d nginx
 	echo Catalog accessible at http://$$(curl -s 'https://api.ipify.org')$$(docker-compose ps | grep nginx | grep -oE ':[0-9]+')/catalog/
 
