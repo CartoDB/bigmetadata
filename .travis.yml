@@ -12,19 +12,19 @@ addons:
     packages:
     - postgresql-9.5-postgis-2.3
 before_script:
-  - psql -U postgres -c "create extension postgis"
+- psql -U postgres -c "create extension postgis"
 env:
 - TEST_SUITE=travis-etl-metadatatest
 - TEST_SUITE=travis-etl-unittest
 - TEST_SUITE=travis-diff-catalog
 deploy:
   provider: s3
-  access_key_id: AKIAIZ65Y5OIY7ADFQ2Q
+  access_key_id: AKIAIFF5P3WO2RAOZTOQ
   secret_access_key:
-    secure: YI5WmRplKG/D+kk3dFD1amIUnGlYVEVpr+OrveU75NSajfro9Dn5W9Q14vZvBU+S7QK8SsmlDqUKHthvqXItTJGy9gyRkigH1jKEY2EdeLHZHD/vezaNNpOWH16VdFxx0fIKRkboEdh+rkocRQDaRgTPCbnx7yw+9sHGA4XaG+P/rh0S+Fp5z2Y8NLp/KORoiaIFiYbgaTs97GJjGBj9L2dm6vK7okPNZlEbGGoxolQbekTNfr6Q5gYzyS7lV0ZapLFm5rEGnbzOwJTFXQXj2edmGKALC9zbE1AcIa/P28Qlqj3hcffFkCZ5RjadgZxKrHYiRNC+SkhlL/F+ujbmS8x49ADq5AGd/v7L/rglhuGcNAs6mTBoZ3y7BUzOefVDfTRCZt2VRNlU4OW5lstnCogJlVXoiWM2IFnQhQnwhFYCfR8hJAq4ibDEiYUCOp4TdRm6Mz2tCSQbMdoOP5aS9ncGVajegn7Z/XJAVM4OfJBzW9aLzOcRNZ071MzcNePaHUSjcrci6v8LlPIIB5Y83xI8sZQGlXdeJY4muZCoXegmjhvPPTxbDvwQs38GIIgMjc8+azEXtpONnow05xrssyBd3NCbSshKUErHmvd0vd4nhLlCVdJmOfpi/fxCODlEmoxKnkwdQ2pFMwArVVpZm/EyY8sNJ3OhAvbIQMZPJl4=
+    secure: VhFCohvt1yBObEOWG+kvQJlHGcxYp8Q/9xKju4y7Jq+7TgG1ktjnf+2UdJbxyo7eqMcAcWvaA/qYpbW+qXMiKVJL2TTs5JbbPdWvv7g/kZk5r4Bt3pmNj81fLh5jcYrYXkJZq8tWABUgFJKutZssgaOhallUtaA1q21d3YKtXocOcjI0Tk8wePzriqfiDuJVwevdn4U8EJhuogyj7IT+7izc034ybp5DmGiO1Eit29K7VrZut4qalSQnDtJaS0ktG9SskzXTrHNoivAEFXSroeyFmR4vWVIDf+vL2NReFGjy+BVgfnbHQ/aa+AaRxdKalaya/ORT9R5ngcYSGlL7ZGk5f61gDLa8x3etZU+OOIbOm4qs6OvLVh5SkAWeTxVaNwcgpF9YNg4ERI56D1hcTBDh/BTAHJ8h2Oou9Ba6K0gdO2SpaTTDIAwosTn9qkxo+8dSM3lHRSPLnKlfTeS+mch64HnkaQ0hHPq9K9VrC3DvcyaV2Trb4KgFo7O8I+Ib2c1yiBzPFMJM1/KWubGcgxdjrde0En0Ep00uL7x/P6rkBCwfr1brxo+BRF+e3cBXLbvSz42jqfa5KuA7ZCQfyrxh/2MXnHnlXjy9toR7Rs0gDMEuk+rCGLv1bT+LaTziHplkq+I0w3U1fTd7o2nNkU/lQjpUJDjd3GcGEpVWq9s=
   bucket: data-observatory-catalog
   local-dir: catalog/build/html/
-  upload-dir: "catalogs/$TRAVIS_BRANCH"
+  upload-dir: catalogs/$TRAVIS_BRANCH
   acl: public_read
   skip_cleanup: true
   on:
