@@ -1,3 +1,5 @@
+SHELL = /bin/bash
+
 sh:
 	docker-compose run --rm bigmetadata /bin/bash
 
@@ -23,7 +25,7 @@ python:
 	docker-compose run --rm bigmetadata python
 
 build:
-	docker-compose build
+	docker build -t carto/bigmetadata:latest .
 
 build-postgres:
 	docker build -t carto/bigmetadata_postgres:latest postgres
@@ -34,12 +36,12 @@ psql:
 acs:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.us.census.acs ExtractAll \
-	  --year 2015 --sample 5yr
+	  --year 2015 --sample 5yr \
 	  --parallel-scheduling --workers=8
 
 tiger:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.census.tiger AllSumLevels --year 2015
+	  --module tasks.us.census.tiger AllSumLevels --year 2015 \
 	  --parallel-scheduling --workers=8
 
 au-data:
@@ -274,7 +276,3 @@ diff-catalog:
 	  'python -c "from tests.util import recreate_db; recreate_db()" && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util RunDiff --compare FETCH_HEAD && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx Catalog --force'
-
-#restore:
-#	docker exec -it bigmetadata_postgres_1 /bin/bash -c "export PGUSER=docker && export PGPASSWORD=docker && export PGHOST=localhost && pg_restore -j4 -O -d gis -x -e /bigmetadata/tmp/carto/Dump_2016_11_16_c14c5977ac.dump >/bigmetadata/tmp/restore.log 2>&1"
-
