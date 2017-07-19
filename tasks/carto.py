@@ -1234,7 +1234,7 @@ geom_extra = obs_meta.geom_extra,
 geom_type = obs_meta.geom_type,
 geom_aggregate = obs_meta.geom_aggregate
 FROM observatory.obs_meta_next obs_meta
-WHERE obs_meta.geom_id = {obs_meta}.geom_id;
+WHERE obs_meta.geom_id = {obs_meta}.geom_id
       AND geom_weight > 0
         ''',
         '''
