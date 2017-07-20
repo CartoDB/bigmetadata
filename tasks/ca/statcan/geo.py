@@ -52,7 +52,7 @@ GEOGRAPHY_TAGS = {
     GEO_PR: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CD: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CSD: ['cartographic_boundary', 'interpolation_boundary'],
-    GEO_CMA: [],
+    GEO_CMA: ['cartographic_boundary', 'interpolation_boundary']
 }
 
 
@@ -102,7 +102,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 8
+        return 11
 
     def requires(self):
         return {
@@ -124,6 +124,7 @@ class GeographyColumns(ColumnsTask):
             tags=[sections['ca'], subsections['boundary']],
         )
         geom_id = OBSColumn(
+            id=self.resolution + '_id',
             type='Text',
             weight=0,
             targets={geom: GEOM_REF},
@@ -142,7 +143,7 @@ class Geography(TableTask):
     resolution = Parameter(default=GEO_PR)
 
     def version(self):
-        return 2
+        return 6
 
     def requires(self):
         return {
