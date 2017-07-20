@@ -61,7 +61,7 @@ catalog-noimage:
 
 catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --force --images
+	  --module tasks.sphinx Catalog --force
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
@@ -69,7 +69,7 @@ pdf-catalog:
 
 md-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format markdown --force --images \
+	  --module tasks.sphinx Catalog --format markdown --force \
 	  --local-scheduler
 
 deploy-pdf-catalog:

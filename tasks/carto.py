@@ -1087,9 +1087,9 @@ SELECT numer_id ,
          NULL::JSONB numer_extra, --FIRST(numer_extra)::JSONB numer_extra,
          NULL::TEXT numer_type, --FIRST(numer_type)::TEXT numer_type,
          NULL::TEXT numer_aggregate, --FIRST(numer_aggregate)::TEXT numer_aggregate,
-         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-         ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_timespan)::TEXT[], NULL) timespans,
          NULL::Geometry(Geometry, 4326) the_geom -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta_next
 GROUP BY numer_id;
@@ -1142,9 +1142,9 @@ SELECT denom_id::TEXT,
          NULL::JSONB denom_extra, --FIRST(denom_extra)::JSONB denom_extra,
          NULL::TEXT denom_type, --FIRST(denom_type)::TEXT denom_type,
          NULL::TEXT denom_aggregate, --FIRST(denom_aggregate)::TEXT denom_aggregate,
-         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-         ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_timespan)::TEXT[], NULL) timespans,
          NULL::Geometry(Geometry, 4326) the_geom -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta_next
 WHERE denom_id IS NOT NULL
@@ -1202,9 +1202,9 @@ SELECT geom_id::TEXT,
          NULL::TEXT geom_type, --FIRST(geom_type)::TEXT geom_type,
          NULL::TEXT geom_aggregate, --FIRST(geom_aggregate)::TEXT geom_aggregate
          NULL::Geometry(Geometry, 4326) the_geom, --ST_SetSRID(FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
-         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-         ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_timespan)::TEXT[], NULL) timespans
   FROM observatory.obs_meta_next
   GROUP BY geom_id;
         ''',
@@ -1262,9 +1262,9 @@ SELECT numer_timespan::TEXT timespan_id,
        NULL::JSONB timespan_extra,
        NULL::TEXT timespan_type,
        NULL::TEXT timespan_aggregate,
-       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
        NULL::Geometry(Geometry, 4326) the_geom --, ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta_next
 GROUP BY numer_timespan;
@@ -1330,6 +1330,8 @@ class DropRemoteOrphanTables(Task):
 
 
 class OBSMetaToLocal(OBSMeta):
+
+    force = BooleanParameter(default=True)
 
     def requires(self):
         yield ConfirmTablesDescribedExist()
@@ -1399,7 +1401,17 @@ class OBSMetaToLocal(OBSMeta):
             raise
 
     def complete(self):
-        return getattr(self, '_complete', False)
+        if self.force:
+            return False
+        else:
+            tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
+                    'obs_meta_geom', 'obs_meta_timespan', 'obs_meta_geom_numer_timespan']
+            # Only look into whether new denormalized tables would be different
+            # from the old ones if old ones exist!
+            if all([PostgresTarget('observatory', t).exists() for t in tables]):
+                return True
+            else:
+                return getattr(self, '_complete', False)
 
 
 class SyncMetadata(WrapperTask):
