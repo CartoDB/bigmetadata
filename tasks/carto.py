@@ -747,7 +747,7 @@ class Dump(Task):
     timestamp = DateParameter(default=date.today())
 
     def requires(self):
-        yield OBSMetaToLocal()
+        yield OBSMetaToLocal(force=True)
 
     def run(self):
         session = current_session()
@@ -1400,19 +1400,19 @@ class OBSMetaToLocal(OBSMeta):
             session.commit()
             raise
 
-    def complete(self):
+    def output(self):
         if self.force:
-            return False
+            return []
         else:
             tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
-                    'obs_meta_geom', 'obs_meta_timespan', 'obs_meta_geom_numer_timespan']
+                      'obs_meta_geom', 'obs_meta_timespan',
+                      'obs_meta_geom_numer_timespan']
             # Only look into whether new denormalized tables would be different
             # from the old ones if old ones exist!
             if all([PostgresTarget('observatory', t).exists() for t in tables]):
-                return True
+                return [PostgresTarget('observatory', t) for t in tables]
             else:
-                return getattr(self, '_complete', False)
-
+                return []
 
 class SyncMetadata(WrapperTask):
 
