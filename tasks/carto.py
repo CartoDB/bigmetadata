@@ -391,11 +391,9 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                 "table_name": "\"\"."
             }
         })
-        #layers.append(self.LABELS)
         return {
             'layers': layers,
             'center': [lon, lat],
-            #'bounds': self.bounds,
             'zoom': zoom
         }
 
@@ -479,7 +477,6 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
         if measure is None:
             measure = self.measure
         return LocalTarget(os.path.join('catalog/img', measure + '.png'))
-        #return LocalTarget(os.path.join('catalog/build/html/_images', measure + '.png'))
 
 
 class GenerateStaticImage(Task):
@@ -487,13 +484,8 @@ class GenerateStaticImage(Task):
     BASEMAP = {
         "type": "http",
         "options": {
-            #"urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
-            #"subdomains": "1234",
-            # Dark Matter
             "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
             "subdomains": "abcd",
-            #"urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
-            #"subdomains": ["a", "b", "c"]
         }
     }
 
@@ -504,8 +496,6 @@ class GenerateStaticImage(Task):
             "subdomains": "abcd",
         }
     }
-
-    #57d9408e-0351-11e6-9c12-0e787de82d45
 
     viz = Parameter()
     VIZ_URL = '{cartodb_url}/api/v2/viz/{{viz}}/viz.json'.format(
@@ -667,16 +657,12 @@ class PurgeMetadataTables(Task):
                 kls = getattr(module, name)
                 if not isinstance(kls, Register):
                     continue
-                # this doesn't work because of underscore_slugify
-                #possible_kls = '_'.join(task_id.split('_')[0:-len(kls.get_params())-1])
                 if task_id.startswith(underscore_slugify(name)):
                     exists = True
             if exists is True:
                 LOGGER.info('{table} exists'.format(table=table))
             else:
                 # TODO drop table
-                import pdb
-                pdb.set_trace()
                 LOGGER.info(table)
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
