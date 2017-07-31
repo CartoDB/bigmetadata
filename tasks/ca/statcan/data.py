@@ -148,6 +148,9 @@ class Survey(BaseParams, TableTask):
 
     topic = Parameter(default='t001')
 
+    def version(self):
+        return 4
+
     def requires(self):
         '''
         Subclasses must override this.
@@ -203,9 +206,6 @@ class Survey(BaseParams, TableTask):
 
 
 class Census(Survey):
-
-    def version(self):
-        return 4
 
     def requires(self):
         return {

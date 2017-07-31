@@ -34,7 +34,7 @@ class TigerSourceTags(TagsTask):
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 13
+        return 14
 
     def requires(self):
         return {
@@ -71,18 +71,20 @@ class ClippedGeomColumns(ColumnsTask):
             )
 
         interpolated_boundaries = ['block_clipped', 'block_group_clipped',
-                                    'puma_clipped','census_tract_clipped',
-                                    'county_clipped','state_clipped']
+                                   'puma_clipped','census_tract_clipped',
+                                   'county_clipped','state_clipped',
+                                   'congressional_district_clipped',
+                                   'zcta5_clipped']
         cartographic_boundaries = ['cbsa_clipped',
-                                    'school_district_elementary_clipped',
-                                    'place_clipped',
-                                    'school_district_secondary_clipped',
-                                    'zcta5_clipped',
-                                    'congressional_district_clipped',
-                                    'school_district_unified_clipped',
-                                    'block_clipped', 'block_group_clipped',
-                                    'puma_clipped','census_tract_clipped',
-                                    'county_clipped','state_clipped']
+                                   'school_district_elementary_clipped',
+                                   'place_clipped',
+                                   'school_district_secondary_clipped',
+                                   'zcta5_clipped',
+                                   'congressional_district_clipped',
+                                   'school_district_unified_clipped',
+                                   'block_clipped', 'block_group_clipped',
+                                   'puma_clipped','census_tract_clipped',
+                                   'county_clipped','state_clipped']
         for colname, col in cols.iteritems():
             if colname in interpolated_boundaries:
                 col.tags.append(boundary_type['interpolation_boundary'])
@@ -94,7 +96,7 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 15
+        return 16
 
     def requires(self):
         return {
@@ -122,42 +124,42 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='US Census Block Groups',
                 description=self._generate_desc("block_group"),
-                weight=7,
+                weight=10,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'block': OBSColumn(
                 type='Geometry',
                 name='US Census Blocks',
                 description=self._generate_desc("block"),
-                weight=6,
+                weight=11,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'census_tract': OBSColumn(
                 type='Geometry',
                 name='US Census Tracts',
                 description=self._generate_desc("census_tract"),
-                weight=5,
+                weight=9,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'congressional_district': OBSColumn(
                 type='Geometry',
                 name='US Congressional Districts',
                 description=self._generate_desc("congressional_district"),
-                weight=0,
+                weight=2,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'county': OBSColumn(
                 type='Geometry',
                 name='US County',
                 description=self._generate_desc("county"),
-                weight=3,
+                weight=5,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'puma': OBSColumn(
                 type='Geometry',
                 name='US Census Public Use Microdata Areas',
                 description=self._generate_desc("puma"),
-                weight=2,
+                weight=4,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'state': OBSColumn(
@@ -171,42 +173,42 @@ class GeomColumns(ColumnsTask):
                 type='Geometry',
                 name='US Census Zip Code Tabulation Areas',
                 description=self._generate_desc('zcta5'),
-                weight=4,
+                weight=8,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_elementary': OBSColumn(
                 type='Geometry',
                 name='Elementary School District',
                 description=self._generate_desc('school_district_elementary'),
-                weight=0,
+                weight=6.2,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_secondary': OBSColumn(
                 type='Geometry',
                 name='Secondary School District',
                 description=self._generate_desc('school_district_secondary'),
-                weight=0,
+                weight=6.1,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'school_district_unified': OBSColumn(
                 type='Geometry',
                 name='Unified School District',
                 description=self._generate_desc('school_district_unified'),
-                weight=0,
+                weight=6,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'cbsa': OBSColumn(
                 type='Geometry',
                 name='Core Based Statistical Area (CBSA)',
                 description=self._generate_desc("cbsa"),
-                weight=0,
+                weight=3,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
             'place': OBSColumn(
                 type='Geometry',
                 name='Incorporated Places',
                 description=self._generate_desc("place"),
-                weight=0,
+                weight=7,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
         }
@@ -664,10 +666,10 @@ class ShorelineClip(TableTask):
         session = current_session()
         stmt = ('INSERT INTO {output} '
                 'SELECT geoid, ST_Union(ST_MakePolygon(ST_ExteriorRing(the_geom))) AS the_geom, '
-                '       MAX(aland) AS aland, cdb_observatory.FIRST(name) AS name '
+                '       MAX(aland) AS aland '
                 'FROM ( '
                 '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
-                '           aland, name '
+                '           aland '
                 '    FROM {input} '
                 ") holes WHERE GeometryType(the_geom) = 'POLYGON' "
                 'GROUP BY geoid'.format(

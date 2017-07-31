@@ -1220,7 +1220,6 @@ SELECT geom_id::TEXT,
          ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
          ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
   FROM observatory.obs_meta_next
-  WHERE geom_weight > 0
   GROUP BY geom_id;
         ''',
         ''' ALTER TABLE {obs_meta} ADD PRIMARY KEY (geom_id); ''',
@@ -1234,8 +1233,7 @@ geom_extra = obs_meta.geom_extra,
 geom_type = obs_meta.geom_type,
 geom_aggregate = obs_meta.geom_aggregate
 FROM observatory.obs_meta_next obs_meta
-WHERE obs_meta.geom_id = {obs_meta}.geom_id
-      AND geom_weight > 0
+WHERE obs_meta.geom_id = {obs_meta}.geom_id;
         ''',
         '''
 WITH geom_tids AS (
