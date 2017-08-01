@@ -1762,7 +1762,7 @@ class PopulationHouseholdsHousing(TableTask):
         session = current_session()
         with self.input()['data'].open() as infile:
             for fields in csv.reader(infile):
-                cusec = "'" + ''.join(fields[0:5]) + "'"
+                cusec = "'" + ''.join(fields[1:5]) + "'"
                 fields = [f.replace('"', '') for f in fields[5:]]
                 fields = [f or 'NULL' for f in fields]
                 fields.insert(0, cusec)
@@ -2005,4 +2005,3 @@ class PopulationHouseholdsHousingMeta(MetaWrapper):
     def tables(self):
         yield PopulationHouseholdsHousing()
         yield Geometry()
-
