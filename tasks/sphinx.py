@@ -196,7 +196,7 @@ class GenerateRST(Task):
                            FIRST(c.type),
                            FIRST(c.extra),
                            FIRST(c.aggregate),
-                           JSONB_Object_Agg(t.id, t.name),
+                           JSONB_Object_Agg(t.type || '/' || t.id, t.name),
                            ARRAY[]::Text[] denoms,
                            ARRAY[]::Text[]
                     FROM observatory.obs_column c,
