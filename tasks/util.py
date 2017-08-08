@@ -488,6 +488,12 @@ class PostgresTarget(Target):
         '''
         return self._existenceness() == 2
 
+    def exists_or_empty(self):
+        '''
+        Returns True if the table exists, even if it is empty.
+        '''
+        return self._existenceness >= 1
+
 
 class CartoDBTarget(Target):
     '''

@@ -950,7 +950,7 @@ class OBSMetaToLocal(OBSMeta):
                   'obs_meta_geom', 'obs_meta_timespan']
         # Only look into whether new denormalized tables would be different
         # from the old ones if old ones exist!
-        if all([PostgresTarget('observatory', t).exists() for t in tables]):
+        if all([PostgresTarget('observatory', t).exists_or_empty() for t in tables]):
             session = current_session()
 
             # identify tags that have appeared, changed or disappeared
