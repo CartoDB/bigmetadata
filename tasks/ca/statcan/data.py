@@ -4,7 +4,7 @@ import urllib
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
-from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, MetaWrapper
+from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, MetaWrapper, LOGGER
 from tasks.meta import current_session
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
@@ -53,6 +53,22 @@ class DownloadData(BaseParams, DownloadUnzipTask):
 
 
 class SplitAndTransposeData(BaseParams, Task):
+    INDIAN_RESERVES_SUFFIX = '-DQ'
+    DIVISION_COLUMN_NAMES = {
+        GEO_CT: None,
+        GEO_PR: None,
+        GEO_CD: None,
+        GEO_CSD: None,
+        GEO_CMA: 'cma_ca_name'
+    }
+    DIVISION_SUFFIX = {
+        GEO_CT: None,
+        GEO_PR: None,
+        GEO_CD: None,
+        GEO_CSD: None,
+        GEO_CMA: 'part)'
+    }
+
     def requires(self):
         return DownloadData(resolution=self.resolution, survey=self.survey)
 
@@ -62,9 +78,14 @@ class SplitAndTransposeData(BaseParams, Task):
             survey_code=SURVEY_CODES[self.survey],
             geo_code=GEOGRAPHY_CODES[self.resolution]
         ))
-        in_csv_files = infiles.strip().split('\n')
+        in_csv_files = []
+        for in_csv_file in infiles.strip().split('\n'):
+            if not os.path.splitext(in_csv_file)[0].endswith(self.INDIAN_RESERVES_SUFFIX):
+                in_csv_files.append(in_csv_file)
+            else:
+                LOGGER.warning('Ignoring file %s' % in_csv_file)
         os.makedirs(self.output().path)
-        StatCanParser().parse_csv_to_files(in_csv_files, self.output().path)
+        StatCanParser(self.DIVISION_COLUMN_NAMES[self.resolution], self.DIVISION_SUFFIX[self.resolution]).parse_csv_to_files(in_csv_files, self.output().path)
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))

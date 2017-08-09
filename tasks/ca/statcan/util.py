@@ -44,7 +44,13 @@ class StatCanParser(object):
         TRANSPOSE_COLUMN_PREFIX,
     ) + TRANSPOSE_COLUMNS
 
-    COLUMN_MATCH_PATTERNS = {c: re.compile(c, re.IGNORECASE) for c in COLUMNS}
+    def __init__(self, division_column, division_suffix):
+        self.division_suffix = division_suffix
+        self.division_column = division_column
+        if self.division_column is not None:
+            self.COLUMNS += (self.division_column,)
+
+        self.COLUMN_MATCH_PATTERNS = {c: re.compile(c, re.IGNORECASE) for c in self.COLUMNS}
 
     def shorten_col(self, text):
         text = text.lower()
@@ -210,12 +216,13 @@ class StatCanParser(object):
         Get row index (0-based) in csv and column index
         for each predefined column.
         '''
-
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+
         col_count = len(self.COLUMNS)
         for i, row in enumerate(reader):
             # index column locations in csv
             col_indices = {self._match_col(col): n for n, col in enumerate(row)}
+
             # Remove unmatched result
             col_indices.pop(None)
 
@@ -229,6 +236,7 @@ class StatCanParser(object):
             return
 
         record = sorted(record, key=itemgetter(self.PARSE_COLUMN))
+
         parse_col_val = record[0][self.PARSE_COLUMN]
         group = []
         for row in record:
@@ -259,16 +267,22 @@ class StatCanParser(object):
                     # Need to handle csv files where header row isn't row #1
                     header_row_index, self._header = self.get_header_row(csvfile)
                     if header_row_index == -1:
-                        raise ValueError('Invalid file')
+                        raise ValueError('Invalid file', csv_path)
 
                     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-
                     uid = None
                     record = []
                     for row in reader:
                         row = self._map_row(row)
                         if row is None:
                             continue
+
+                        # If the administrative division is splitted  we need to
+                        # ignore the row
+                        # (the non-part row holds the aggregated data)
+                        if self.division_column is not None and self.division_suffix is not None:
+                            if self.division_column in row and row[self.division_column].endswith(self.division_suffix):
+                                continue
 
                         # got a new Geo_Code
                         if uid != row[self.GEO_COLUMN]:
