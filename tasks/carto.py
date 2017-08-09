@@ -2,7 +2,7 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import (current_session, OBSTable, Base, OBSColumn,)
+from tasks.meta import (current_session, OBSTable, Base, OBSColumn, UpdatedMetaTarget)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, TempTableTask, LOGGER,
                         CartoDBTarget, import_api, TableToCartoViaImportAPI)
@@ -1406,137 +1406,7 @@ class OBSMetaToLocal(OBSMeta):
         # Only look into whether new denormalized tables would be different
         # from the old ones if old ones exist!
         if all([PostgresTarget('observatory', t).exists_or_empty() for t in tables]):
-            session = current_session()
-
-            # identify tags that have appeared, changed or disappeared
-            # version shifts won't crop up in and of themselves, but name changes will
-            changed_tags = '''
-            with tags as (
-              SELECT jsonb_each_text(numer_tags)
-              FROM observatory.obs_meta_numer
-              UNION ALL
-              SELECT jsonb_each_text(denom_tags)
-              FROM observatory.obs_meta_denom
-              UNION ALL
-              SELECT jsonb_each_text(geom_tags)
-              FROM observatory.obs_meta_geom
-            ),
-            distinct_tags as (
-              SELECT DISTINCT
-                SPLIT_PART((jsonb_each_text).key, '/', 1) AS type,
-                SPLIT_PART((jsonb_each_text).key, '/', 2) AS id,
-                ((jsonb_each_text).value)::TEXT AS name
-              FROM tags
-            ),
-            meta as (
-              SELECT distinct id, type, name
-              FROM observatory.obs_tag t, observatory.obs_column_tag ct
-              WHERE t.id = ct.tag_id
-            )
-            SELECT meta.id, meta.type, meta.name,
-                   distinct_tags.id, distinct_tags.type, distinct_tags.name
-            FROM distinct_tags FULL JOIN meta
-            ON meta.id = distinct_tags.id AND
-               meta.type = distinct_tags.type AND
-               meta.name = distinct_tags.name
-            WHERE meta.id IS NULL OR distinct_tags.id IS NULL
-            '''
-            resp = session.execute(changed_tags)
-            if resp.fetchone():
-                return False
-
-            # identify columns that have appeared, changed, or disappeared
-            changed_columns = '''
-            with columns as (
-              select distinct c.id, c.version
-              from observatory.obs_column c
-                   left join observatory.obs_column_to_column c2c on c.id = c2c.source_id,
-                   observatory.obs_column_tag ct,
-                   observatory.obs_tag t
-              where c.id = ct.column_id
-                and ct.tag_id = t.id
-                and c.type not ilike 'geometry%'
-                and c.weight > 0
-                and (c2c.reltype != 'geom_ref' or c2c.reltype is null)
-            ),
-            meta as (
-              select numer_id, numer_version from observatory.obs_meta_numer
-            )
-            select id, version, numer_id, numer_version
-            from columns full join meta
-            on id = numer_id and version = numer_version
-            where numer_id is null or id is null;
-            '''
-            resp = session.execute(changed_columns)
-            if resp.fetchone():
-                return False
-
-            # identify tables that have appeared, changed, or disappeared
-            changed_tables = '''
-            with numer_tables as (
-              select distinct tab.id, tab.version
-              from observatory.obs_table tab,
-                   observatory.obs_column_table ctab,
-                   observatory.obs_column c
-                     left join observatory.obs_column_to_column c2c on c.id = c2c.source_id,
-                   observatory.obs_column_tag ct,
-                   observatory.obs_tag t
-                   where c.id = ct.column_id
-                     and ct.tag_id = t.id
-                     and ctab.column_id = c.id
-                     and ctab.table_id = tab.id
-                     and c.type not ilike 'geometry%'
-                     and c.weight > 0
-                     and (c2c.reltype != 'geom_ref' or c2c.reltype is null)
-            ),
-            geom_tables as (
-              select tab.id, tab.version,
-                     rank() over (partition by c.id order by tab.timespan desc)
-              from observatory.obs_table tab,
-                   observatory.obs_column_table ctab,
-                   observatory.obs_column c,
-                   observatory.obs_column_to_column c2c,
-                   observatory.obs_column_tag ct,
-                   observatory.obs_tag t,
-                   observatory.obs_column c2,
-                   observatory.obs_column_table ctab2,
-                   numer_tables
-                   where c.id = ct.column_id
-                     and ct.tag_id = t.id
-                     and ctab.column_id = c.id
-                     and ctab.table_id = tab.id
-                     and c.type ilike 'geometry%'
-                     and c.weight > 0
-                     and c2c.reltype = 'geom_ref'
-                     and c.id = c2c.target_id
-                     and c2.id = c2c.source_id
-                     and c2.id = ctab2.column_id
-                     and numer_tables.id = ctab2.table_id
-              group by c.id, tab.id, tab.version
-            ),
-            numer_meta as (
-              select distinct numer_tid, numer_t_version
-              from observatory.obs_meta
-            ),
-            geom_meta as (
-              select distinct geom_tid, geom_t_version
-              from observatory.obs_meta
-            )
-            select distinct id, version, numer_tid, numer_t_version
-            from numer_tables full join numer_meta on
-              id = numer_tid and version = numer_t_version
-            where numer_tid is null or id is null
-            union all
-            select distinct id, version, geom_tid, geom_t_version
-            from geom_tables full join geom_meta on
-              id = geom_tid and version = geom_t_version
-            where rank = 1 and (geom_tid is null or id is null)
-            ;
-            '''
-            resp = session.execute(changed_tables)
-            if resp.fetchone():
-                return False
-            return True
+            return UpdatedMetaTarget().exists()
 
         return False
 
