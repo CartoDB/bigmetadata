@@ -6,7 +6,7 @@ from jinja2 import Environment, PackageLoader
 from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
                    DateParameter)
 from luigi.s3 import S3Target
-from tasks.util import shell
+from tasks.util import shell, PostgresTarget
 from tasks.meta import current_session, OBSTag, OBSColumn, catalog_lonlat
 from tasks.carto import (GenerateStaticImage, ImagesForMeasure, GenerateThumb,
                          OBSMetaToLocal)
@@ -52,6 +52,9 @@ class GenerateRST(Task):
         return requirements
 
     def output(self):
+        if not PostgresTarget('observatory', 'obs_meta_geom', non_empty=False).exists():
+            return []
+
         targets = {}
         session = current_session()
 

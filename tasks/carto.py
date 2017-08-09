@@ -1424,7 +1424,7 @@ class OBSMetaToLocal(OBSMeta):
         tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
                   'obs_meta_geom', 'obs_meta_timespan']
 
-        return [PostgresTarget('observatory', t) for t in tables] + [UpdatedMetaTarget()]
+        return [PostgresTarget('observatory', t, non_empty=False) for t in tables] + [UpdatedMetaTarget()]
 
 
 class SyncMetadata(WrapperTask):
