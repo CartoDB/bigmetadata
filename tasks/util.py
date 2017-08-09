@@ -431,9 +431,10 @@ class PostgresTarget(Target):
     PostgresTarget which by default uses command-line specified login.
     '''
 
-    def __init__(self, schema, tablename):
+    def __init__(self, schema, tablename, non_empty=True):
         self._schema = schema
         self._tablename = tablename
+        self._non_empty = non_empty
 
     @property
     def table(self):
@@ -479,13 +480,10 @@ class PostgresTarget(Target):
         '''
         Returns True if the table exists and has at least one row in it.
         '''
-        return self._existenceness() == 2
-
-    def exists_or_empty(self):
-        '''
-        Returns True if the table exists, even if it is empty.
-        '''
-        return self._existenceness() >= 1
+        if self._non_empty:
+            return self._existenceness() == 2
+        else:
+            return self._existenceness() >= 1
 
 
 class CartoDBTarget(Target):

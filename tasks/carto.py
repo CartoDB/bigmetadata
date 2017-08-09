@@ -1400,15 +1400,11 @@ class OBSMetaToLocal(OBSMeta):
             session.commit()
             raise
 
-    def complete(self):
+    def output(self):
         tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
                   'obs_meta_geom', 'obs_meta_timespan']
-        # Only look into whether new denormalized tables would be different
-        # from the old ones if old ones exist!
-        if all([PostgresTarget('observatory', t).exists_or_empty() for t in tables]):
-            return UpdatedMetaTarget().exists()
 
-        return False
+        return [PostgresTarget('observatory', t) for t in tables] + [UpdatedMetaTarget()]
 
 
 class SyncMetadata(WrapperTask):
