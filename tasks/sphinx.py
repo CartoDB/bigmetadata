@@ -52,7 +52,8 @@ class GenerateRST(Task):
         return requirements
 
     def output(self):
-        if not PostgresTarget('observatory', 'obs_meta_geom', non_empty=False).exists():
+        tables = ['obs_meta', 'obs_meta_geom']
+        if not all([PostgresTarget('observatory', t, non_empty=False).exists() for t in tables]):
             return []
 
         targets = {}
