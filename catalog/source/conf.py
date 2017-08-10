@@ -93,7 +93,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'observatory'
-copyright = u'2016, CARTO'
+copyright = u'2017, CARTO'
 author = u'CARTO'
 
 # The version info for the project you're documenting, acts as replacement for

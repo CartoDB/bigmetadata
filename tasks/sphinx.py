@@ -6,14 +6,14 @@ from jinja2 import Environment, PackageLoader
 from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
                    DateParameter)
 from luigi.s3 import S3Target
-from tasks.util import shell
-from tasks.meta import current_session, OBSTag, OBSColumn
+from tasks.util import shell, PostgresTarget
+from tasks.meta import current_session, OBSTag, OBSColumn, catalog_lonlat
 from tasks.carto import (GenerateStaticImage, ImagesForMeasure, GenerateThumb,
                          OBSMetaToLocal)
 
 from datetime import date
 from time import time
-from tasks.util import LOGGER
+from tasks.util import LOGGER, PostgresTarget
 
 import json
 import os
@@ -39,49 +39,23 @@ class GenerateRST(Task):
 
     force = BooleanParameter(default=False)
     format = Parameter()
-    images = BooleanParameter(default=False)
 
     def __init__(self, *args, **kwargs):
         super(GenerateRST, self).__init__(*args, **kwargs)
         if self.force:
             shell('rm -rf catalog/source/*/*')
-        #shell('cp -R catalog/img catalog/source/')
-        #shell('mkdir -p catalog/img_thumb')
-        #shell('cp -R catalog/img_thumb catalog/source/')
 
     def requires(self):
-        #session = current_session()
         requirements = {
-            'meta': OBSMetaToLocal()
+            'meta': OBSMetaToLocal(force=True)
         }
-        #for section_subsection, _ in self.output().iteritems():
-        #    section_id, subsection_id = section_subsection
-
-            # this is much faster with a gin index on numer_tags
-            #resp = session.execute('''
-            #    SELECT DISTINCT numer_id
-            #    FROM observatory.obs_meta
-            #    WHERE numer_tags ? 'section/{section_id}'
-            #      AND numer_tags ? 'subsection/{subsection_id}'
-            #    ORDER BY numer_id
-            #'''.format(section_id=section_id,
-            #           subsection_id=subsection_id))
-            #if self.images:
-            #    for row in resp:
-            #        column_id = row[0]
-            #        if column_id.startswith('uk'):
-            #            if self.format == 'pdf':
-            #                img = GenerateThumb(measure=column_id, force=False)
-            #            else:
-            #                img = ImagesForMeasure(measure=column_id, force=False)
-            #            requirements[column_id] = img
-
         return requirements
 
-    def complete(self):
-        return getattr(self, '_complete', False)
-
     def output(self):
+        tables = ['obs_meta', 'obs_meta_geom']
+        if not all([PostgresTarget('observatory', t, non_empty=False).exists() for t in tables]):
+            return []
+
         targets = {}
         session = current_session()
 
@@ -273,18 +247,19 @@ class GenerateRST(Task):
                            numer_extra,
                            numer_aggregate,
                            numer_tags,
-                           n.denoms,
                            ARRAY_AGG(DISTINCT ARRAY[
-                            geom_id, geom_name, timespan_id,
+                            denom_reltype,
+                            denom_id,
+                            denom_name
+                           ]) denoms,
+                           ARRAY_AGG(DISTINCT ARRAY[
+                            geom_id, geom_name, numer_timespan,
                             geom_tags::Text
-                           ])
-                    FROM observatory.obs_meta_numer n,
-                         observatory.obs_meta_geom g,
-                         observatory.obs_meta_timespan t
+                           ]) geom_timespans,
+                           FIRST(ST_AsText(ST_Envelope(the_geom))) envelope
+                    FROM observatory.obs_meta
                     WHERE numer_id = ANY (ARRAY['{all_column_ids}'])
-                      AND geom_id = ANY(n.geoms)
-                      AND timespan_id = ANY(n.timespans)
-                    GROUP BY numer_id
+                    GROUP BY 1, 2, 3, 4, 5, 6, 7
                 '''.format(all_column_ids="', '".join(all_column_ids)))
 
             all_columns = {}
@@ -302,6 +277,7 @@ class GenerateRST(Task):
                         }
                 all_columns[col[0]] = {
                     'id': col[0],
+                    'lonlat': catalog_lonlat(col[0]),
                     'name': col[1],
                     'description': col[2],
                     'type': col[3],
@@ -395,18 +371,16 @@ class Catalog(Task):
 
     force = BooleanParameter(default=False)
     format = Parameter(default='html')
-    images = BooleanParameter(default=False)
+    parallel_workers = Parameter(default=4)
 
     def requires(self):
-        return  GenerateRST(force=self.force, format=self.format,
-                               images=self.images)
+        return GenerateRST(force=self.force, format=self.format)
 
     def complete(self):
         return getattr(self, '_complete', False)
 
     def run(self):
-        shell("SPHINXOPTS='-j 4' cd catalog && make {}".format(self.format))
-        #shell("cd catalog && make {}".format(self.format))
+        shell("cd catalog && make SPHINXOPTS='-j {0}' {1}".format(self.parallel_workers, self.format))
         self._complete = True
 
 

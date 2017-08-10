@@ -2,7 +2,7 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import (current_session, OBSTable, Base, OBSColumn,)
+from tasks.meta import (current_session, OBSTable, Base, OBSColumn, UpdatedMetaTarget)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, TempTableTask, LOGGER,
                         CartoDBTarget, import_api, TableToCartoViaImportAPI)
@@ -391,11 +391,9 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
                 "table_name": "\"\"."
             }
         })
-        #layers.append(self.LABELS)
         return {
             'layers': layers,
             'center': [lon, lat],
-            #'bounds': self.bounds,
             'zoom': zoom
         }
 
@@ -479,7 +477,6 @@ ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
         if measure is None:
             measure = self.measure
         return LocalTarget(os.path.join('catalog/img', measure + '.png'))
-        #return LocalTarget(os.path.join('catalog/build/html/_images', measure + '.png'))
 
 
 class GenerateStaticImage(Task):
@@ -487,13 +484,8 @@ class GenerateStaticImage(Task):
     BASEMAP = {
         "type": "http",
         "options": {
-            #"urlTemplate": "https://{s}.maps.nlp.nokia.com/maptile/2.1/maptile/newest/satellite.day/{z}/{x}/{y}/256/jpg?lg=eng&token=A7tBPacePg9Mj_zghvKt9Q&app_id=KuYppsdXZznpffJsKT24",
-            #"subdomains": "1234",
-            # Dark Matter
             "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
             "subdomains": "abcd",
-            #"urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
-            #"subdomains": ["a", "b", "c"]
         }
     }
 
@@ -504,8 +496,6 @@ class GenerateStaticImage(Task):
             "subdomains": "abcd",
         }
     }
-
-    #57d9408e-0351-11e6-9c12-0e787de82d45
 
     viz = Parameter()
     VIZ_URL = '{cartodb_url}/api/v2/viz/{{viz}}/viz.json'.format(
@@ -667,16 +657,12 @@ class PurgeMetadataTables(Task):
                 kls = getattr(module, name)
                 if not isinstance(kls, Register):
                     continue
-                # this doesn't work because of underscore_slugify
-                #possible_kls = '_'.join(task_id.split('_')[0:-len(kls.get_params())-1])
                 if task_id.startswith(underscore_slugify(name)):
                     exists = True
             if exists is True:
                 LOGGER.info('{table} exists'.format(table=table))
             else:
                 # TODO drop table
-                import pdb
-                pdb.set_trace()
                 LOGGER.info(table)
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
@@ -761,7 +747,7 @@ class Dump(Task):
     timestamp = DateParameter(default=date.today())
 
     def requires(self):
-        yield OBSMetaToLocal()
+        yield OBSMetaToLocal(force=True)
 
     def run(self):
         session = current_session()
@@ -914,6 +900,12 @@ class OBSMeta(Task):
              null::varchar numer_colname,
              null::varchar denom_colname,
              null::varchar geom_colname,
+             null::integer numer_version,
+             null::integer denom_version,
+             null::integer geom_version,
+             null::integer numer_t_version,
+             null::integer denom_t_version,
+             null::integer geom_t_version,
              FIRST(numer_geomref_ct.colname) numer_geomref_colname,
              FIRST(denom_geomref_colname) denom_geomref_colname,
              FIRST(geom_geomref_ct.colname ORDER BY geom_t.timespan DESC) geom_geomref_colname,
@@ -983,12 +975,16 @@ class OBSMeta(Task):
       ''',
 
       '''CREATE UNIQUE INDEX ON {obs_meta} (numer_id, geom_id, numer_timespan, denom_id);''',
+      '''CREATE INDEX ON {obs_meta} (numer_tid, numer_t_version);''',
+      '''CREATE INDEX ON {obs_meta} (geom_tid, geom_t_version);''',
 
       '''-- update numer coltable info
       UPDATE {obs_meta} SET
         numer_name = name,
         numer_description = c.description,
         numer_t_description = t.description,
+        numer_version = c.version,
+        numer_t_version = t.version,
         numer_aggregate = aggregate,
         numer_type = type,
         numer_colname = colname,
@@ -1008,6 +1004,8 @@ class OBSMeta(Task):
         denom_name = name,
         denom_description = c.description,
         denom_t_description = t.description,
+        denom_version = c.version,
+        denom_t_version = t.version,
         denom_aggregate = aggregate,
         denom_type = type,
         denom_colname = colname,
@@ -1027,6 +1025,8 @@ class OBSMeta(Task):
        geom_name = name,
        geom_description = c.description,
        geom_t_description = t.description,
+       geom_version = c.version,
+       geom_t_version = t.version,
        geom_aggregate = aggregate,
        geom_type = type,
        geom_colname = colname,
@@ -1101,10 +1101,11 @@ SELECT numer_id ,
          NULL::JSONB numer_extra, --FIRST(numer_extra)::JSONB numer_extra,
          NULL::TEXT numer_type, --FIRST(numer_type)::TEXT numer_type,
          NULL::TEXT numer_aggregate, --FIRST(numer_aggregate)::TEXT numer_aggregate,
-         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-         ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
-         NULL::Geometry(Geometry, 4326) the_geom -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_timespan)::TEXT[], NULL) timespans,
+         NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+         NULL::Integer numer_version
 FROM observatory.obs_meta_next
 GROUP BY numer_id;
         ''',
@@ -1117,7 +1118,8 @@ numer_tags = obs_meta.numer_tags,
 numer_weight = obs_meta.numer_weight,
 numer_extra = obs_meta.numer_extra,
 numer_type = obs_meta.numer_type,
-numer_aggregate = obs_meta.numer_aggregate
+numer_aggregate = obs_meta.numer_aggregate,
+numer_version = obs_meta.numer_version
 FROM observatory.obs_meta_next obs_meta
 WHERE obs_meta.numer_id = {obs_meta}.numer_id;
         ''',
@@ -1156,10 +1158,11 @@ SELECT denom_id::TEXT,
          NULL::JSONB denom_extra, --FIRST(denom_extra)::JSONB denom_extra,
          NULL::TEXT denom_type, --FIRST(denom_type)::TEXT denom_type,
          NULL::TEXT denom_aggregate, --FIRST(denom_aggregate)::TEXT denom_aggregate,
-         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-         ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
-         NULL::Geometry(Geometry, 4326) the_geom -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_timespan)::TEXT[], NULL) timespans,
+         NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+         NULL::Integer denom_version
 FROM observatory.obs_meta_next
 WHERE denom_id IS NOT NULL
 GROUP BY denom_id;
@@ -1176,7 +1179,8 @@ denom_weight = obs_meta.denom_weight,
 reltype = obs_meta.denom_reltype,
 denom_extra = obs_meta.denom_extra,
 denom_type = obs_meta.denom_type,
-denom_aggregate = obs_meta.denom_aggregate
+denom_aggregate = obs_meta.denom_aggregate,
+denom_version = obs_meta.denom_version
 FROM observatory.obs_meta_next obs_meta
 WHERE obs_meta.denom_id = {obs_meta}.denom_id;
         ''',
@@ -1216,9 +1220,10 @@ SELECT geom_id::TEXT,
          NULL::TEXT geom_type, --FIRST(geom_type)::TEXT geom_type,
          NULL::TEXT geom_aggregate, --FIRST(geom_aggregate)::TEXT geom_aggregate
          NULL::Geometry(Geometry, 4326) the_geom, --ST_SetSRID(FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
-         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-         ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_timespan)::TEXT[], NULL) timespans,
+         NULL::Integer geom_version
   FROM observatory.obs_meta_next
   GROUP BY geom_id;
         ''',
@@ -1231,7 +1236,8 @@ geom_tags = obs_meta.geom_tags,
 geom_weight = obs_meta.geom_weight,
 geom_extra = obs_meta.geom_extra,
 geom_type = obs_meta.geom_type,
-geom_aggregate = obs_meta.geom_aggregate
+geom_aggregate = obs_meta.geom_aggregate,
+geom_version = obs_meta.geom_version
 FROM observatory.obs_meta_next obs_meta
 WHERE obs_meta.geom_id = {obs_meta}.geom_id;
         ''',
@@ -1276,9 +1282,9 @@ SELECT numer_timespan::TEXT timespan_id,
        NULL::JSONB timespan_extra,
        NULL::TEXT timespan_type,
        NULL::TEXT timespan_aggregate,
-       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
        NULL::Geometry(Geometry, 4326) the_geom --, ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
 FROM observatory.obs_meta_next
 GROUP BY numer_timespan;
@@ -1344,6 +1350,8 @@ class DropRemoteOrphanTables(Task):
 
 
 class OBSMetaToLocal(OBSMeta):
+
+    force = BooleanParameter(default=True)
 
     def requires(self):
         yield ConfirmTablesDescribedExist()
@@ -1412,8 +1420,11 @@ class OBSMetaToLocal(OBSMeta):
             session.commit()
             raise
 
-    def complete(self):
-        return getattr(self, '_complete', False)
+    def output(self):
+        tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
+                  'obs_meta_geom', 'obs_meta_timespan', 'obs_meta_geom_numer_timespan']
+
+        return [PostgresTarget('observatory', t, non_empty=False) for t in tables] + [UpdatedMetaTarget()]
 
 
 class SyncMetadata(WrapperTask):
