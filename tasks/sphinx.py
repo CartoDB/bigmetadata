@@ -6,7 +6,7 @@ from jinja2 import Environment, PackageLoader
 from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
                    DateParameter)
 from luigi.s3 import S3Target
-from tasks.util import shell
+from tasks.util import shell, PostgresTarget
 from tasks.meta import current_session, OBSTag, OBSColumn, catalog_latlng
 from tasks.carto import OBSMetaToLocal
 
@@ -36,20 +36,26 @@ SOURCES_TEMPLATE = ENV.get_template('sources.html')
 
 class GenerateRST(Task):
 
+    force = BooleanParameter(default=False)
     format = Parameter()
     section = Parameter(default=None)
 
+    def __init__(self, *args, **kwargs):
+        super(GenerateRST, self).__init__(*args, **kwargs)
+        if self.force:
+            shell('rm -rf catalog/source/*/*')
+
     def requires(self):
         requirements = {
-            'meta': OBSMetaToLocal()
+            'meta': OBSMetaToLocal(force=True)
         }
-
         return requirements
 
-    def complete(self):
-        return all([t.complete() for t in self.requires().values()]) and super(GenerateRST, self).complete()
-
     def output(self):
+        tables = ['obs_meta', 'obs_meta_geom']
+        if not all([PostgresTarget('observatory', t, non_empty=False).exists() for t in tables]):
+            return []
+
         targets = {}
         session = current_session()
 
@@ -260,7 +266,7 @@ class GenerateRST(Task):
                            FIRST(ST_AsText(ST_Envelope(the_geom))) envelope
                     FROM observatory.obs_meta
                     WHERE numer_id = ANY (ARRAY['{all_column_ids}'])
-                    GROUP BY 1, 2, 3, 4, 5, 6, 7;
+                    GROUP BY 1, 2, 3, 4, 5, 6, 7
                 '''.format(all_column_ids="', '".join(all_column_ids)))
 
             all_columns = {}
@@ -383,18 +389,18 @@ class GenerateRST(Task):
 
 class Catalog(Task):
 
+    force = BooleanParameter(default=False)
     format = Parameter(default='html')
-    section = Parameter(default=None)
+    parallel_workers = Parameter(default=4)
 
     def requires(self):
-        return GenerateRST(format=self.format, section=self.section)
+        return GenerateRST(force=self.force, format=self.format)
 
     def complete(self):
         return getattr(self, '_complete', False)
 
     def run(self):
-        shell("SPHINXOPTS='-j 4' cd catalog && make {}".format(self.format))
-        #shell("cd catalog && make {}".format(self.format))
+        shell("cd catalog && make SPHINXOPTS='-j {0}' {1}".format(self.parallel_workers, self.format))
         self._complete = True
 
 

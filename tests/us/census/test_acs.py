@@ -29,6 +29,3 @@ def test_acs_columns_run():
     assert_equals(True, task.complete())
     assert_equals(True, worker.run_succeeded)
     assert_equals(0, len(current_session().dirty))
-    #import pdb
-    #pdb.set_Trace()
-    #assert_equals(False, results.empty())

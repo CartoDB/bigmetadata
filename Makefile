@@ -237,7 +237,7 @@ travis-diff-catalog:
 	git fetch origin master
 	./run-travis.sh 'python -c "from tests.util import recreate_db; recreate_db()"'
 	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.util RunDiff --compare FETCH_HEAD'
-	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx Catalog'
+	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx Catalog --force'
 
 travis-etl-metadatatest:
 	./run-travis.sh 'nosetests -v tests/test_metadata.py'
@@ -269,7 +269,7 @@ up:
 
 meta:
 	docker-compose run --rm bigmetadata luigi\
-	  --module tasks.carto OBSMetaToLocal
+	  --module tasks.carto OBSMetaToLocal --force
 
 releasetest: extension-fixtures extension-perftest-record extension-unittest extension-autotest
 

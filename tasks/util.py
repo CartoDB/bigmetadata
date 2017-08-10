@@ -114,18 +114,11 @@ def query_cartodb(query, carto_url=None, api_key=None):
 
     :param query: The query to execute on CARTO.
     '''
-    #carto_url = 'https://{}/api/v2/sql'.format(os.environ['CARTODB_DOMAIN'])
     carto_url = (carto_url or os.environ['CARTODB_URL']) + '/api/v2/sql'
     resp = requests.post(carto_url, data={
         'api_key': api_key or os.environ['CARTODB_API_KEY'],
         'q': query
     })
-    #assert resp.status_code == 200
-    #if resp.status_code != 200:
-    #    import pdb
-    #    pdb.set_trace()
-    #    raise Exception(u'Non-200 response ({}) from carto: {}'.format(
-    #        resp.status_code, resp.text))
     return resp
 
 
@@ -438,9 +431,10 @@ class PostgresTarget(Target):
     PostgresTarget which by default uses command-line specified login.
     '''
 
-    def __init__(self, schema, tablename):
+    def __init__(self, schema, tablename, non_empty=True):
         self._schema = schema
         self._tablename = tablename
+        self._non_empty = non_empty
 
     @property
     def table(self):
@@ -486,7 +480,10 @@ class PostgresTarget(Target):
         '''
         Returns True if the table exists and has at least one row in it.
         '''
-        return self._existenceness() == 2
+        if self._non_empty:
+            return self._existenceness() == 2
+        else:
+            return self._existenceness() >= 1
 
     def exists_or_empty(self):
         '''
@@ -548,11 +545,6 @@ class CartoDBTarget(Target):
             pass
         query_cartodb('DROP TABLE IF EXISTS {tablename}'.format(tablename=self.tablename))
         assert not self.exists()
-        #resp = requests.get('{url}/dashboard/datasets'.format(
-        #    url=os.environ['CARTODB_URL']
-        #), cookies={
-        #    '_cartodb_session': os.environ['CARTODB_SESSION']
-        #}).content
 
 
 def grouper(iterable, n, fillvalue=None):

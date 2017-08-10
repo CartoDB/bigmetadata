@@ -25,5 +25,5 @@ def test_catalog():
         task = klass(**params)
         runtask(task, superclasses=[TagsTask, ColumnsTask, TableTask])
 
-    runtask(OBSMetaToLocal())
+    runtask(OBSMetaToLocal(force=True))
     runtask(Catalog(force=True))

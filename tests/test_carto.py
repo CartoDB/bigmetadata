@@ -62,7 +62,7 @@ def test_obs_meta_to_local_overwrites_changes():
         'SELECT COUNT(*) FROM observatory.obs_meta_geom_numer_timespan').fetchone()[0], 1)
 
     reload(tasks.carto)
-    task = tasks.carto.OBSMetaToLocal()
+    task = tasks.carto.OBSMetaToLocal(force=True)
     runtask(task)
     assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta').fetchone()[0], 0)
     assert_equals(session.execute(

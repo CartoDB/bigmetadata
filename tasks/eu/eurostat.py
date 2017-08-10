@@ -545,8 +545,6 @@ class TableEU(TableTask):
                            input=input_['data'].table
                        )
                 LOGGER.info(stmt)
-                # import pdb
-                # pdb.set_trace()
                 session.execute(stmt)
 
 

@@ -246,47 +246,50 @@ Code example
 
 .. raw:: html
 
-   <table border="1" class="docutils">
-   <thead valign="bottom">
-   <tr class="row-odd"><th class="head">Boundary</th>
-   <th class="head">Time (default is latest)</th>
-   </tr>
-   </thead>
-   <tbody valign="top">
+  <table border="1" class="docutils">
+  <thead valign="bottom">
+  <tr class="row-odd"><th class="head">Boundary</th>
+  <th class="head">Time (default is latest)</th>
+  </tr>
+  </thead>
+  <tbody valign="top">
 
 
-   {% for _, gt in col.geom_timespans.iteritems() %}
+  {% for _, gt in col.geom_timespans.iteritems() %}
 .. raw:: html
 
-   <tr class="row-even"><td>
+  <tr class="row-even"><td>
 
 :ref:`{{ gt.geom_id }}`
 
 .. raw:: html
 
-   </td>
-   <td>
+  </td>
+  <td>
 
 {{ gt.timespans|sort(True)|join(', ') }}
 
 .. raw:: html
 
-   </td>
+  </td>
 
-   {% endfor %}
+  {% endfor %}
 
 .. raw:: html
 
-   </tr>
-   </tbody>
-   </table>
+  </tr>
+  </tbody>
+  </table>
 
 {% endif %}
 
-:Source:
+{% if col.denoms|length > 0 %}
+:Related columns:
+    {% for denom_reltype, denom_id, denom_name in col.denoms %}:ref:`{{ denom_id }}`{% endfor %}
+{% endif %}
 
+:Source:
     {% for tag_id in col.sources %}:ref:`{{ tag_id }}`{% endfor %}
 
 :License:
-
     {% for tag_id in col.licenses %}:ref:`{{ tag_id }}`{% endfor %}

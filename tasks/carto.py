@@ -2,7 +2,7 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import current_session, OBSTable, OBSColumn
+from tasks.meta import (current_session, OBSTable, Base, OBSColumn, UpdatedMetaTarget)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, LOGGER,
                         CartoDBTarget, TableToCartoViaImportAPI)
@@ -181,16 +181,12 @@ class PurgeMetadataTables(Task):
                 kls = getattr(module, name)
                 if not isinstance(kls, Register):
                     continue
-                # this doesn't work because of underscore_slugify
-                #possible_kls = '_'.join(task_id.split('_')[0:-len(kls.get_params())-1])
                 if task_id.startswith(underscore_slugify(name)):
                     exists = True
             if exists is True:
                 LOGGER.info('{table} exists'.format(table=table))
             else:
                 # TODO drop table
-                import pdb
-                pdb.set_trace()
                 LOGGER.info(table)
             yield PostgresTarget(schema='observatory', tablename=table.tablename)
 
@@ -275,7 +271,7 @@ class Dump(Task):
     timestamp = DateParameter(default=date.today())
 
     def requires(self):
-        yield OBSMetaToLocal()
+        yield OBSMetaToLocal(force=True)
 
     def run(self):
         session = current_session()
@@ -628,9 +624,9 @@ SELECT numer_id ,
          NULL::JSONB numer_extra, --FIRST(numer_extra)::JSONB numer_extra,
          NULL::TEXT numer_type, --FIRST(numer_type)::TEXT numer_type,
          NULL::TEXT numer_aggregate, --FIRST(numer_aggregate)::TEXT numer_aggregate,
-         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-         ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_timespan)::TEXT[], NULL) timespans,
          NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
          NULL::Integer numer_version
 FROM observatory.obs_meta_next
@@ -685,9 +681,9 @@ SELECT denom_id::TEXT,
          NULL::JSONB denom_extra, --FIRST(denom_extra)::JSONB denom_extra,
          NULL::TEXT denom_type, --FIRST(denom_type)::TEXT denom_type,
          NULL::TEXT denom_aggregate, --FIRST(denom_aggregate)::TEXT denom_aggregate,
-         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-         ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-         ARRAY_AGG(DISTINCT denom_timespan)::TEXT[] timespans,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_timespan)::TEXT[], NULL) timespans,
          NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
          NULL::Integer denom_version
 FROM observatory.obs_meta_next
@@ -747,9 +743,9 @@ SELECT geom_id::TEXT,
          NULL::TEXT geom_type, --FIRST(geom_type)::TEXT geom_type,
          NULL::TEXT geom_aggregate, --FIRST(geom_aggregate)::TEXT geom_aggregate
          NULL::Geometry(Geometry, 4326) the_geom, --ST_SetSRID(FIRST(the_geom), 4326)::GEOMETRY(GEOMETRY, 4326) the_geom,
-         ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-         ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-         ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] timespans,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+         ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_timespan)::TEXT[], NULL) timespans,
          NULL::Integer geom_version
   FROM observatory.obs_meta_next
   GROUP BY geom_id;
@@ -809,10 +805,10 @@ SELECT numer_timespan::TEXT timespan_id,
        NULL::JSONB timespan_extra,
        NULL::TEXT timespan_type,
        NULL::TEXT timespan_aggregate,
-       ARRAY_AGG(DISTINCT numer_id)::TEXT[] numers,
-       ARRAY_AGG(DISTINCT denom_id)::TEXT[] denoms,
-       ARRAY_AGG(DISTINCT geom_id)::TEXT[] geoms,
-       NULL::Geometry(Geometry, 4326) the_geom, --, ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
+       ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
+       NULL::Geometry(Geometry, 4326) the_geom --, ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
        NULL::Integer timespan_version
 FROM observatory.obs_meta_next
 GROUP BY numer_timespan;
@@ -878,6 +874,8 @@ class DropRemoteOrphanTables(Task):
 
 
 class OBSMetaToLocal(OBSMeta):
+
+    force = BooleanParameter(default=True)
 
     def requires(self):
         yield ConfirmTablesDescribedExist()
@@ -945,145 +943,11 @@ class OBSMetaToLocal(OBSMeta):
             session.commit()
             raise
 
-    def complete(self):
+    def output(self):
         tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
-                  'obs_meta_geom', 'obs_meta_timespan']
-        # Only look into whether new denormalized tables would be different
-        # from the old ones if old ones exist!
-        if all([PostgresTarget('observatory', t).exists_or_empty() for t in tables]):
-            session = current_session()
+                  'obs_meta_geom', 'obs_meta_timespan', 'obs_meta_geom_numer_timespan']
 
-            # identify tags that have appeared, changed or disappeared
-            # version shifts won't crop up in and of themselves, but name changes will
-            changed_tags = '''
-            with tags as (
-              SELECT jsonb_each_text(numer_tags)
-              FROM observatory.obs_meta_numer
-              UNION ALL
-              SELECT jsonb_each_text(denom_tags)
-              FROM observatory.obs_meta_denom
-              UNION ALL
-              SELECT jsonb_each_text(geom_tags)
-              FROM observatory.obs_meta_geom
-            ),
-            distinct_tags as (
-              SELECT DISTINCT
-                SPLIT_PART((jsonb_each_text).key, '/', 1) AS type,
-                SPLIT_PART((jsonb_each_text).key, '/', 2) AS id,
-                ((jsonb_each_text).value)::TEXT AS name
-              FROM tags
-            ),
-            meta as (
-              SELECT distinct id, type, name
-              FROM observatory.obs_tag t, observatory.obs_column_tag ct
-              WHERE t.id = ct.tag_id
-            )
-            SELECT meta.id, meta.type, meta.name,
-                   distinct_tags.id, distinct_tags.type, distinct_tags.name
-            FROM distinct_tags FULL JOIN meta
-            ON meta.id = distinct_tags.id AND
-               meta.type = distinct_tags.type AND
-               meta.name = distinct_tags.name
-            WHERE meta.id IS NULL OR distinct_tags.id IS NULL
-            '''
-            resp = session.execute(changed_tags)
-            if resp.fetchone():
-                return False
-
-            # identify columns that have appeared, changed, or disappeared
-            changed_columns = '''
-            with columns as (
-              select distinct c.id, c.version
-              from observatory.obs_column c
-                   left join observatory.obs_column_to_column c2c on c.id = c2c.source_id,
-                   observatory.obs_column_tag ct,
-                   observatory.obs_tag t
-              where c.id = ct.column_id
-                and ct.tag_id = t.id
-                and c.type not ilike 'geometry%'
-                and c.weight > 0
-                and (c2c.reltype != 'geom_ref' or c2c.reltype is null)
-            ),
-            meta as (
-              select numer_id, numer_version from observatory.obs_meta_numer
-            )
-            select id, version, numer_id, numer_version
-            from columns full join meta
-            on id = numer_id and version = numer_version
-            where numer_id is null or id is null;
-            '''
-            resp = session.execute(changed_columns)
-            if resp.fetchone():
-                return False
-
-            # identify tables that have appeared, changed, or disappeared
-            changed_tables = '''
-            with numer_tables as (
-              select distinct tab.id, tab.version
-              from observatory.obs_table tab,
-                   observatory.obs_column_table ctab,
-                   observatory.obs_column c
-                     left join observatory.obs_column_to_column c2c on c.id = c2c.source_id,
-                   observatory.obs_column_tag ct,
-                   observatory.obs_tag t
-                   where c.id = ct.column_id
-                     and ct.tag_id = t.id
-                     and ctab.column_id = c.id
-                     and ctab.table_id = tab.id
-                     and c.type not ilike 'geometry%'
-                     and c.weight > 0
-                     and (c2c.reltype != 'geom_ref' or c2c.reltype is null)
-            ),
-            geom_tables as (
-              select tab.id, tab.version,
-                     rank() over (partition by c.id order by tab.timespan desc)
-              from observatory.obs_table tab,
-                   observatory.obs_column_table ctab,
-                   observatory.obs_column c,
-                   observatory.obs_column_to_column c2c,
-                   observatory.obs_column_tag ct,
-                   observatory.obs_tag t,
-                   observatory.obs_column c2,
-                   observatory.obs_column_table ctab2,
-                   numer_tables
-                   where c.id = ct.column_id
-                     and ct.tag_id = t.id
-                     and ctab.column_id = c.id
-                     and ctab.table_id = tab.id
-                     and c.type ilike 'geometry%'
-                     and c.weight > 0
-                     and c2c.reltype = 'geom_ref'
-                     and c.id = c2c.target_id
-                     and c2.id = c2c.source_id
-                     and c2.id = ctab2.column_id
-                     and numer_tables.id = ctab2.table_id
-              group by c.id, tab.id, tab.version
-            ),
-            numer_meta as (
-              select distinct numer_tid, numer_t_version
-              from observatory.obs_meta
-            ),
-            geom_meta as (
-              select distinct geom_tid, geom_t_version
-              from observatory.obs_meta
-            )
-            select distinct id, version, numer_tid, numer_t_version
-            from numer_tables full join numer_meta on
-              id = numer_tid and version = numer_t_version
-            where numer_tid is null or id is null
-            union all
-            select distinct id, version, geom_tid, geom_t_version
-            from geom_tables full join geom_meta on
-              id = geom_tid and version = geom_t_version
-            where rank = 1 and (geom_tid is null or id is null)
-            ;
-            '''
-            resp = session.execute(changed_tables)
-            if resp.fetchone():
-                return False
-            return True
-
-        return False
+        return [PostgresTarget('observatory', t, non_empty=False) for t in tables] + [UpdatedMetaTarget()]
 
 
 class SyncMetadata(WrapperTask):
