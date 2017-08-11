@@ -44,11 +44,15 @@ class StatCanParser(object):
         TRANSPOSE_COLUMN_PREFIX,
     ) + TRANSPOSE_COLUMNS
 
-    def __init__(self, division_column, division_suffix):
-        self.division_suffix = division_suffix
-        self.division_column = division_column
-        if self.division_column is not None:
-            self.COLUMNS += (self.division_column,)
+    division_column = None
+    division_pattern = None
+
+    def __init__(self, division_splitted):
+        if division_splitted is not None:
+            self.division_column = division_splitted[0]
+            self.division_pattern = division_splitted[1]
+            if self.division_column is not None:
+                self.COLUMNS += (self.division_column,)
 
         self.COLUMN_MATCH_PATTERNS = {c: re.compile(c, re.IGNORECASE) for c in self.COLUMNS}
 
@@ -249,6 +253,14 @@ class StatCanParser(object):
 
         self._write_group_to_csv(parse_col_val, group)
 
+    # If the administrative division is splitted  we need to ignore the row
+    # (the non-part row holds the aggregated data)
+    def _is_administrative_division_splitted(self, row):
+        if self.division_column is not None and self.division_pattern is not None:
+            if self.division_column in row and re.search(self.division_pattern, row[self.division_column]):
+                return True
+        return False
+
     def parse_csv_to_files(self, csv_paths, output_dir):
         self._file_handlers = {}
         self._output_dir = output_dir
@@ -277,12 +289,8 @@ class StatCanParser(object):
                         if row is None:
                             continue
 
-                        # If the administrative division is splitted  we need to
-                        # ignore the row
-                        # (the non-part row holds the aggregated data)
-                        if self.division_column is not None and self.division_suffix is not None:
-                            if self.division_column in row and row[self.division_column].endswith(self.division_suffix):
-                                continue
+                        if self._is_administrative_division_splitted(row):
+                            continue
 
                         # got a new Geo_Code
                         if uid != row[self.GEO_COLUMN]:

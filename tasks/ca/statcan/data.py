@@ -53,20 +53,13 @@ class DownloadData(BaseParams, DownloadUnzipTask):
 
 
 class SplitAndTransposeData(BaseParams, Task):
-    INDIAN_RESERVES_SUFFIX = '-DQ'
-    DIVISION_COLUMN_NAMES = {
+    DATA_QUALITY_SUFFIX = '-DQ'
+    DIVISION_SPLITTED = {
         GEO_CT: None,
         GEO_PR: None,
         GEO_CD: None,
         GEO_CSD: None,
-        GEO_CMA: 'cma_ca_name'
-    }
-    DIVISION_SUFFIX = {
-        GEO_CT: None,
-        GEO_PR: None,
-        GEO_CD: None,
-        GEO_CSD: None,
-        GEO_CMA: 'part)'
+        GEO_CMA: ('cma_ca_name', r'part\)$')
     }
 
     def requires(self):
@@ -80,12 +73,17 @@ class SplitAndTransposeData(BaseParams, Task):
         ))
         in_csv_files = []
         for in_csv_file in infiles.strip().split('\n'):
-            if not os.path.splitext(in_csv_file)[0].endswith(self.INDIAN_RESERVES_SUFFIX):
+            if not self._is_data_quality_file(in_csv_file):
                 in_csv_files.append(in_csv_file)
             else:
                 LOGGER.warning('Ignoring file %s' % in_csv_file)
         os.makedirs(self.output().path)
-        StatCanParser(self.DIVISION_COLUMN_NAMES[self.resolution], self.DIVISION_SUFFIX[self.resolution]).parse_csv_to_files(in_csv_files, self.output().path)
+        StatCanParser(self.DIVISION_SPLITTED[self.resolution]).parse_csv_to_files(in_csv_files, self.output().path)
+
+    def _is_data_quality_file(self, csv_file):
+        if os.path.splitext(csv_file)[0].endswith(self.DATA_QUALITY_SUFFIX):
+            return True
+        return False
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
