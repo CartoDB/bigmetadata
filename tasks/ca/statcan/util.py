@@ -257,8 +257,9 @@ class StatCanParser(object):
     # (the non-part row holds the aggregated data)
     def _is_administrative_division_splitted(self, row):
         if self.division_column is not None and self.division_pattern is not None:
-            if self.division_column in row and re.search(self.division_pattern, row[self.division_column]):
-                return True
+            for pattern in self.division_pattern:
+                if self.division_column in row and re.search(pattern, row[self.division_column]):
+                    return True
         return False
 
     def parse_csv_to_files(self, csv_paths, output_dir):

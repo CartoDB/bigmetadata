@@ -53,13 +53,13 @@ class DownloadData(BaseParams, DownloadUnzipTask):
 
 
 class SplitAndTransposeData(BaseParams, Task):
-    DATA_QUALITY_SUFFIX = '-DQ'
+    IGNORED_FILE_SUFFIXES = ('-DQ',)
     DIVISION_SPLITTED = {
         GEO_CT: None,
         GEO_PR: None,
         GEO_CD: None,
         GEO_CSD: None,
-        GEO_CMA: ('cma_ca_name', r'part\)$')
+        GEO_CMA: ('cma_ca_name', (r'part\)$',))
     }
 
     def requires(self):
@@ -73,15 +73,15 @@ class SplitAndTransposeData(BaseParams, Task):
         ))
         in_csv_files = []
         for in_csv_file in infiles.strip().split('\n'):
-            if not self._is_data_quality_file(in_csv_file):
+            if not self._is_ignored_suffix(in_csv_file):
                 in_csv_files.append(in_csv_file)
             else:
                 LOGGER.warning('Ignoring file %s' % in_csv_file)
         os.makedirs(self.output().path)
         StatCanParser(self.DIVISION_SPLITTED[self.resolution]).parse_csv_to_files(in_csv_files, self.output().path)
 
-    def _is_data_quality_file(self, csv_file):
-        if os.path.splitext(csv_file)[0].endswith(self.DATA_QUALITY_SUFFIX):
+    def _is_ignored_suffix(self, csv_file):
+        if os.path.splitext(csv_file)[0].endswith(self.IGNORED_FILE_SUFFIXES):
             return True
         return False
 
