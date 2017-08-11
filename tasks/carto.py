@@ -808,7 +808,7 @@ SELECT numer_timespan::TEXT timespan_id,
        ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
        ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
        ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
-       NULL::Geometry(Geometry, 4326) the_geom --, ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
        NULL::Integer timespan_version
 FROM observatory.obs_meta_next
 GROUP BY numer_timespan;
