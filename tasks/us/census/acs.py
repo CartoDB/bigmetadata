@@ -1045,8 +1045,12 @@ class Columns(ColumnsTask):
             id='B25024002',
             type='Numeric',
             name='Single-family (one unit) detached dwellings',
-            description='',
-            weight=0,
+            description='This is a 1-unit structure detached from any other house, that is, with '
+            'open space on all four sides. Such structures are considered detached even if they have an '
+            'adjoining shed or garage. A one-family house that contains a business is considered detached '
+            'as long as the building has open space on all four sides. Mobile homes to which one or more '
+            'permanent rooms have been added or built also are included.',
+            weight=8,
             aggregate='sum',
             targets={housing_units: 'denominator'},
             tags=[subsections['housing'], unit_housing]
@@ -1055,8 +1059,11 @@ class Columns(ColumnsTask):
             id='B25024003',
             type='Numeric',
             name='Single-family (one unit) attached dwellings',
-            description='',
-            weight=0,
+            description='This is a 1-unit structure that has one or more walls extending from '
+            'ground to roof separating it from adjoining structures. In row houses (sometimes called '
+            'townhouses), double houses, or houses attached to nonresidential structures, each house is a '
+            'separate, attached structure if the dividing or common wall goes from ground to roof.',
+            weight=8,
             aggregate='sum',
             targets={housing_units: 'denominator'},
             tags=[subsections['housing'], unit_housing]
@@ -2945,31 +2952,6 @@ class Columns(ColumnsTask):
             aggregate='median',
             targets={housing_units: 'universe'},
             tags=[subsections['housing'], unit_years])
-        detached_housing_units = OBSColumn(
-            id='B25024002',
-            type='Numeric',
-            name='1-Unit, Detached Housing Units',
-            description='This is a 1-unit structure detached from any other house, that is, with '
-            'open space on all four sides. Such structures are considered detached even if they have an '
-            'adjoining shed or garage. A one-family house that contains a business is considered detached '
-            'as long as the building has open space on all four sides. Mobile homes to which one or more '
-            'permanent rooms have been added or built also are included.',
-            weight=8,
-            aggregate='sum',
-            targets={housing_units: 'denominator'},
-            tags=[subsections['housing'], unit_housing])
-        attached_housing_units = OBSColumn(
-            id='B25024003',
-            type='Numeric',
-            name='1-Unit, Detached Housing Units',
-            description='This is a 1-unit structure that has one or more walls extending from '
-            'ground to roof separating it from adjoining structures. In row houses (sometimes called '
-            'townhouses), double houses, or houses attached to nonresidential structures, each house is a '
-            'separate, attached structure if the dividing or common wall goes from ground to roof.',
-            weight=8,
-            aggregate='sum',
-            targets={housing_units: 'denominator'},
-            tags=[subsections['housing'], unit_housing])
 
         columns = OrderedDict([
             ("sales_office_employed", sales_office_employed),
@@ -2979,8 +2961,6 @@ class Columns(ColumnsTask):
             ("nonfamily_households", nonfamily_households),
             ("family_households", family_households),
             ("median_year_structure_built", median_year_structure_built),
-            ("detached_housing_units", detached_housing_units),
-            ("attached_housing_units", attached_housing_units),
             ("rent_burden_not_computed", rent_burden_not_computed),
             ("rent_over_50_percent", rent_over_50_percent),
             ("rent_40_to_50_percent", rent_40_to_50_percent),
