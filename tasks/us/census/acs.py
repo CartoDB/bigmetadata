@@ -28,7 +28,7 @@ LOGGER = get_logger(__name__)
 class ACSTags(TagsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def tags(self):
         return [
