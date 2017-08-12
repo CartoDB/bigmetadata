@@ -2956,7 +2956,7 @@ class Columns(ColumnsTask):
         columns = OrderedDict([
             ("sales_office_employed", sales_office_employed),
             ("management_business_sci_arts_employed", management_business_sci_arts_employed),
-            ("pop_25_64 ", pop_25_64),
+            ("pop_25_64", pop_25_64),
             ("bachelors_degree_or_higher_25_64", bachelors_degree_or_higher_25_64),
             ("nonfamily_households", nonfamily_households),
             ("family_households", family_households),
