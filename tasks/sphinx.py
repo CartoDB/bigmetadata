@@ -136,133 +136,9 @@ class GenerateRST(Task):
             LOGGER.info('%s:', section_subsection)
 
             if subsection_id == 'tags.boundary':
-                parents_resp = session.execute('''
-                   SELECT DISTINCT c.id
-                    FROM observatory.obs_tag section_t,
-                         observatory.obs_column_tag section_ct,
-                         observatory.obs_tag subsection_t,
-                         observatory.obs_column_tag subsection_ct,
-                         observatory.obs_column c
-                    WHERE section_t.id = section_ct.tag_id
-                      AND subsection_t.id = subsection_ct.tag_id
-                      AND c.id = section_ct.column_id
-                      AND c.id = subsection_ct.column_id
-                      AND subsection_t.id = '{subsection_id}'
-                      AND section_t.id = '{section_id}'
-                      AND subsection_t.type = 'subsection'
-                      AND section_t.type = 'section'
-                    GROUP BY c.id
-                    ORDER BY c.id
-                '''.format(section_id=section_id,
-                           subsection_id=subsection_id))
-                column_children_ids = {row[0]: {} for row in parents_resp.fetchall()}
-
-                all_columns_resp = session.execute('''
-                    SELECT c.id,
-                           FIRST(c.name),
-                           FIRST(c.description),
-                           FIRST(c.type),
-                           FIRST(ctab.extra),
-                           FIRST(c.aggregate),
-                           JSONB_Object_Agg(t.type || '/' || t.id, t.name),
-                           ARRAY[]::Text[] denoms,
-                           ARRAY[]::Text[],
-                           ST_AsText(ST_Envelope(FIRST(tab.the_geom))) envelope
-                    FROM observatory.obs_column c,
-                         observatory.obs_column_tag ct,
-                         observatory.obs_tag t,
-                         observatory.obs_column_table ctab,
-                         observatory.obs_table tab
-                    WHERE c.id = ANY(ARRAY['{all_column_ids}'])
-                      AND ct.column_id = c.id
-                      AND ct.tag_id = t.id
-                      AND c.id = ctab.column_id
-                      AND tab.id = ctab.table_id
-                    GROUP BY c.id
-                '''.format(all_column_ids="', '".join(column_children_ids.keys())))
+                column_tree, all_columns = self._boundaries_tree(section_id, subsection_id)
             else:
-                # Obtain top-level IDs for this section/subsection
-                parents_resp = session.execute('''
-                    WITH RECURSIVE children(numer_id, path) AS (
-                        SELECT numer_id, ARRAY[]::Text[]
-                        FROM observatory.obs_meta_numer children
-                        WHERE numer_tags ? 'subsection/{subsection_id}'
-                          AND numer_tags ? 'section/{section_id}'
-                          AND numer_weight > 0
-                        UNION
-                        SELECT parent.denom_id,
-                            children.numer_id || children.path
-                        FROM observatory.obs_meta parent, children
-                        WHERE parent.numer_id = children.numer_id
-                        ) SELECT path from children WHERE numer_id IS NULL;
-                '''.format(section_id=section_id,
-                           subsection_id=subsection_id))
-
-                column_children_ids = {}
-                all_column_ids = set()
-                for row in parents_resp.fetchall():
-                    node = column_children_ids
-                    for mid in row[0]:
-                        all_column_ids.add(mid)
-                        if mid not in node:
-                            node[mid] = {}
-                        node = node[mid]
-
-                all_columns_resp = session.execute('''
-                    SELECT numer_id,
-                           numer_name,
-                           numer_description,
-                           numer_type,
-                           numer_extra,
-                           numer_aggregate,
-                           numer_tags,
-                           ARRAY_AGG(DISTINCT ARRAY[
-                            denom_reltype,
-                            denom_id,
-                            denom_name
-                           ]) denoms,
-                           ARRAY_AGG(DISTINCT ARRAY[
-                            geom_id, geom_name, numer_timespan,
-                            geom_tags::Text
-                           ]) geom_timespans,
-                           FIRST(ST_AsText(ST_Envelope(the_geom))) envelope
-                    FROM observatory.obs_meta
-                    WHERE numer_id = ANY (ARRAY['{all_column_ids}'])
-                    GROUP BY 1, 2, 3, 4, 5, 6, 7
-                '''.format(all_column_ids="', '".join(all_column_ids)))
-
-            all_columns = {}
-            for col in all_columns_resp:
-                geom_timespans = {}
-                for gt in col[8]:
-                    if gt[0] in geom_timespans:
-                        geom_timespans[gt[0]]['timespans'].append(gt[2])
-                    else:
-                        geom_timespans[gt[0]] = {
-                            'geom_id': gt[0],
-                            'geom_name': gt[1],
-                            'timespans': [gt[2]],
-                            'geom_tags': json.loads(gt[3])
-                        }
-                all_columns[col[0]] = {
-                    'id': col[0],
-                    'latlng': catalog_latlng(col[0]),
-                    'name': col[1],
-                    'description': col[2],
-                    'type': col[3],
-                    'extra': col[4],
-                    'aggregate': col[5],
-                    'tags': col[6],
-                    'licenses': [tag_id.split('/')[1]
-                                 for tag_id, tag_name in col[6].iteritems()
-                                 if tag_id.startswith('license/')],
-                    'sources': [tag_id.split('/')[1]
-                                for tag_id, tag_name in col[6].iteritems()
-                                if tag_id.startswith('source/')],
-                    'denoms': col[7],
-                    'geom_timespans': geom_timespans,
-                    'envelope': col[9]
-                }
+                column_tree, all_columns = self._numerators_tree(section_id, subsection_id)
 
             subsection_path = 'catalog/source/{section}/{subsection}/'.format(
                 section=strip_tag_id(section_id),
@@ -290,9 +166,140 @@ class GenerateRST(Task):
 
             self._write_column_tree(
                 [strip_tag_id(section_id), strip_tag_id(subsection_id)],
-                column_children_ids,
+                column_tree,
                 all_columns
             )
+
+    def _boundaries_tree(self, section_id, subsection_id):
+        boundaries_list_result = current_session().execute('''
+            SELECT DISTINCT c.id
+            FROM observatory.obs_tag section_t,
+                    observatory.obs_column_tag section_ct,
+                    observatory.obs_tag subsection_t,
+                    observatory.obs_column_tag subsection_ct,
+                    observatory.obs_column c
+            WHERE section_t.id = section_ct.tag_id
+                AND subsection_t.id = subsection_ct.tag_id
+                AND c.id = section_ct.column_id
+                AND c.id = subsection_ct.column_id
+                AND subsection_t.id = '{subsection_id}'
+                AND section_t.id = '{section_id}'
+                AND subsection_t.type = 'subsection'
+                AND section_t.type = 'section'
+            GROUP BY c.id
+            ORDER BY c.id
+        '''.format(section_id=section_id, subsection_id=subsection_id))
+        boundary_ids = [row[0] for row in boundaries_list_result.fetchall()]
+
+        boundaries_detail_result = current_session().execute('''
+            SELECT c.id,
+                    FIRST(c.name),
+                    FIRST(c.description),
+                    FIRST(c.type),
+                    FIRST(ctab.extra),
+                    FIRST(c.aggregate),
+                    JSONB_Object_Agg(t.type || '/' || t.id, t.name),
+                    ARRAY[]::Text[] denoms,
+                    ARRAY[]::Text[],
+                    ST_AsText(ST_Envelope(FIRST(tab.the_geom))) envelope
+            FROM observatory.obs_column c,
+                    observatory.obs_column_tag ct,
+                    observatory.obs_tag t,
+                    observatory.obs_column_table ctab,
+                    observatory.obs_table tab
+            WHERE c.id = ANY(ARRAY['{}'])
+                AND ct.column_id = c.id
+                AND ct.tag_id = t.id
+                AND c.id = ctab.column_id
+                AND tab.id = ctab.table_id
+            GROUP BY c.id
+        '''.format("', '".join(boundary_ids)))
+        return {k: {} for k in boundary_ids}, self._parse_columns(boundaries_detail_result)
+
+    def _numerators_tree(self, section_id, subsection_id):
+        numerator_paths_result = current_session().execute('''
+            WITH RECURSIVE children(numer_id, path) AS (
+                SELECT numer_id, ARRAY[]::Text[]
+                FROM observatory.obs_meta_numer children
+                WHERE numer_tags ? 'subsection/{subsection_id}'
+                    AND numer_tags ? 'section/{section_id}'
+                    AND numer_weight > 0
+                UNION
+                SELECT parent.denom_id,
+                    children.numer_id || children.path
+                FROM observatory.obs_meta parent, children
+                WHERE parent.numer_id = children.numer_id
+                ) SELECT path from children WHERE numer_id IS NULL;
+        '''.format(section_id=section_id, subsection_id=subsection_id))
+
+        numerator_tree = {}
+        numerator_ids = set()
+        for row in numerator_paths_result.fetchall():
+            node = numerator_tree
+            for mid in row[0]:
+                numerator_ids.add(mid)
+                if mid not in node:
+                    node[mid] = {}
+                node = node[mid]
+
+        numerator_details_result = current_session().execute('''
+            SELECT numer_id,
+                    numer_name,
+                    numer_description,
+                    numer_type,
+                    numer_extra,
+                    numer_aggregate,
+                    numer_tags,
+                    ARRAY_AGG(DISTINCT ARRAY[
+                    denom_reltype,
+                    denom_id,
+                    denom_name
+                    ]) denoms,
+                    ARRAY_AGG(DISTINCT ARRAY[
+                    geom_id, geom_name, numer_timespan,
+                    geom_tags::Text
+                    ]) geom_timespans,
+                    FIRST(ST_AsText(ST_Envelope(the_geom))) envelope
+            FROM observatory.obs_meta
+            WHERE numer_id = ANY (ARRAY['{}'])
+            GROUP BY 1, 2, 3, 4, 5, 6, 7
+        '''.format("', '".join(numerator_ids)))
+        return numerator_tree, self._parse_columns(numerator_details_result)
+
+    def _parse_columns(self, all_columns_result):
+        all_columns = {}
+        for col in all_columns_result:
+            geom_timespans = {}
+            for gt in col[8]:
+                if gt[0] in geom_timespans:
+                    geom_timespans[gt[0]]['timespans'].append(gt[2])
+                else:
+                    geom_timespans[gt[0]] = {
+                        'geom_id': gt[0],
+                        'geom_name': gt[1],
+                        'timespans': [gt[2]],
+                        'geom_tags': json.loads(gt[3])
+                    }
+            all_columns[col[0]] = {
+                'id': col[0],
+                'latlng': catalog_latlng(col[0]),
+                'name': col[1],
+                'description': col[2],
+                'type': col[3],
+                'extra': col[4],
+                'aggregate': col[5],
+                'tags': col[6],
+                'licenses': [tag_id.split('/')[1]
+                             for tag_id, tag_name in col[6].iteritems()
+                             if tag_id.startswith('license/')],
+                'sources': [tag_id.split('/')[1]
+                            for tag_id, tag_name in col[6].iteritems()
+                            if tag_id.startswith('source/')],
+                'denoms': col[7],
+                'geom_timespans': geom_timespans,
+                'envelope': col[9]
+            }
+        return all_columns
 
     def _write_column_tree(self, path, tree, all_columns):
         for column_id, subtree in tree.iteritems():
