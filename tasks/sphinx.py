@@ -328,19 +328,13 @@ class GenerateRST(Task):
             if not all_columns:
                 continue
 
+            subsection_path = [strip_tag_id(section_id), strip_tag_id(subsection_id)]
             for column_id, children in column_children_ids:
-                with open('catalog/source/{section}/{subsection}/{column}.rst'.format(
-                    section=strip_tag_id(section_id),
-                    subsection=strip_tag_id(subsection_id),
-                    column=column_id
-                ), 'w') as column_fhandle:
-                    column_fhandle.write(COLUMN_TEMPLATE.render(
-                        intermediate_path='/'.join([
-                            strip_tag_id(section_id),
-                            strip_tag_id(subsection_id)
-                        ]),
-                        numchildren=sum([len(c[1]) for c in children.iteritems()]) if children else 0,
-                        col=all_columns[column_id], **self.template_globals()).encode('utf8'))
+                self._write_column(
+                    subsection_path + [column_id],
+                    all_columns[column_id],
+                    sum([len(c[1]) for c in children.iteritems()]) if children else 0
+                )
 
                 if not children:
                     continue
@@ -360,32 +354,24 @@ class GenerateRST(Task):
 
                         for i in xrange(1, len(subchild_path_split)):
                             intermediate_id = subchild_path_split[i]
-                            intermediate_path = '/'.join(subchild_path_split[0:i])
-                            with open('catalog/source/{section}/{subsection}/{intermediate_path}/{intermediate_id}.rst'.format(
-                                section=strip_tag_id(section_id),
-                                subsection=strip_tag_id(subsection_id),
-                                intermediate_path=intermediate_path,
-                                intermediate_id=intermediate_id
-                            ), 'w') as subcolumn_fhandle:
-                                subcolumn_fhandle.write(COLUMN_TEMPLATE.render(
-                                    intermediate_path='/'.join([strip_tag_id(section_id),
-                                                            strip_tag_id(subsection_id),
-                                                            intermediate_path]),
-                                    numchildren=len(children.get(intermediate_id, [])),
-                                    col=all_columns[intermediate_id], **self.template_globals()).encode('utf8'))
-                        with open('catalog/source/{section}/{subsection}/{path}.rst'.format(
-                            section=strip_tag_id(section_id),
-                            subsection=strip_tag_id(subsection_id),
-                            path=subchild_path
-                        ), 'w') as subcolumn_fhandle:
-                            subcolumn_fhandle.write(COLUMN_TEMPLATE.render(
-                                intermediate_path='/'.join([strip_tag_id(section_id),
-                                                            strip_tag_id(subsection_id),
-                                                            '/'.join(subchild_path.split('/')[0:-1])
-                                                           ]),
-                                numchildren=len(children.get(subchild_id, [])),
-                                col=all_columns[subchild_id], **self.template_globals()).encode('utf8'))
+                            self._write_column(
+                                subsection_path + subchild_path_split[:i+1],
+                                all_columns[intermediate_id],
+                                len(children.get(intermediate_id, []))
+                            )
 
+                        self._write_column(
+                            subsection_path + subchild_path.split('/'),
+                            all_columns[subchild_id],
+                            len(children.get(subchild_id, []))
+                        )
+
+    def _write_column(self, path, column, numchildren):
+        with open('catalog/source/{path}.rst'.format(path='/'.join(path)), 'w') as column_file:
+            column_file.write(COLUMN_TEMPLATE.render(
+                intermediate_path='/'.join(path[:-1]),
+                numchildren=numchildren,
+                col=column, **self.template_globals()).encode('utf8'))
 
 class Catalog(Task):
 
