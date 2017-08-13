@@ -137,7 +137,7 @@ class GenerateRST(Task):
 
             if subsection_id == 'tags.boundary':
                 parents_resp = session.execute('''
-                   SELECT DISTINCT c.id, ARRAY[]::text[] as children
+                   SELECT DISTINCT c.id
                     FROM observatory.obs_tag section_t,
                          observatory.obs_column_tag section_ct,
                          observatory.obs_tag subsection_t,
@@ -155,15 +155,7 @@ class GenerateRST(Task):
                     ORDER BY c.id
                 '''.format(section_id=section_id,
                            subsection_id=subsection_id))
-                column_children_ids = parents_resp.fetchall()
-                # Obtain full column data for every column ID in this section/subsection
-                all_column_ids = set()
-                for parent_id, youngest_parents in column_children_ids:
-                    all_column_ids.add(parent_id)
-                    if youngest_parents:
-                        for subparent_id, children_ids in youngest_parents.iteritems():
-                            all_column_ids.add(parent_id)
-                            all_column_ids.update(children_ids)
+                column_children_ids = {row[0]: {} for row in parents_resp.fetchall()}
 
                 all_columns_resp = session.execute('''
                     SELECT c.id,
@@ -187,64 +179,34 @@ class GenerateRST(Task):
                       AND c.id = ctab.column_id
                       AND tab.id = ctab.table_id
                     GROUP BY c.id
-                '''.format(all_column_ids="', '".join(all_column_ids)))
+                '''.format(all_column_ids="', '".join(column_children_ids.keys())))
             else:
                 # Obtain top-level IDs for this section/subsection
                 parents_resp = session.execute('''
-                    WITH RECURSIVE children(parent_id, children, lvl, path) AS (
-                        -- Select root children corresponding to certain tags
-                        SELECT numer_id parent_id, ARRAY[]::Text[] as children, 1 lvl, numer_id path
+                    WITH RECURSIVE children(numer_id, path) AS (
+                        SELECT numer_id, ARRAY[]::Text[]
                         FROM observatory.obs_meta_numer children
                         WHERE numer_tags ? 'subsection/{subsection_id}'
                           AND numer_tags ? 'section/{section_id}'
                           AND numer_weight > 0
                         UNION
-                        SELECT DISTINCT parent.denom_id parent_id,
-                                        ARRAY_APPEND(children, children.parent_id::Text) children,
-                                        lvl + 1 lvl,
-                                        parent.denom_id || '/' || path
+                        SELECT parent.denom_id,
+                            children.numer_id || children.path
                         FROM observatory.obs_meta parent, children
-                        WHERE parent.numer_id = children.parent_id
-                    ) -- SELECT * FROM children;
-                    -- For each child, we want the parent with the maximum lvl
-                    , parents AS (
-                        SELECT UNNEST(children) child_id,
-                          FIRST(parent_id ORDER BY lvl DESC) oldest_parent_id,
-                          FIRST(parent_id ORDER BY lvl ASC) youngest_parent_id,
-                          max(lvl) lvl,
-                          FIRST(path ORDER BY lvl DESC) path
-                        FROM children
-                        GROUP BY UNNEST(children)
-                    )
-                    -- We only want to return those parent IDs, along with any children who have no
-                    -- parents (orphans)
-                    , oldest_youngest AS (
-                        SELECT Coalesce(oldest_parent_id, child_id) oldest_parent_id,
-                               youngest_parent_id,
-                               JSONB_OBJECT_AGG(child_id, path) children
-                        FROM parents
-                        GROUP BY Coalesce(oldest_parent_id, child_id), youngest_parent_id
-                        ORDER BY Coalesce(oldest_parent_id, child_id), youngest_parent_id
-                    )
-                    SELECT oldest_parent_id,
-                           JSONB_Object_Agg(youngest_parent_id, children)
-                               FILTER (WHERE youngest_parent_id IS NOT NULL) youngest_parents
-                    FROM oldest_youngest
-                    GROUP BY oldest_parent_id
-                    ORDER BY oldest_parent_id;
+                        WHERE parent.numer_id = children.numer_id
+                        ) SELECT path from children WHERE numer_id IS NULL;
                 '''.format(section_id=section_id,
                            subsection_id=subsection_id))
 
-                column_children_ids = parents_resp.fetchall()
-
-                # Obtain full column data for every column ID in this section/subsection
+                column_children_ids = {}
                 all_column_ids = set()
-                for parent_id, youngest_parents in column_children_ids:
-                    all_column_ids.add(parent_id)
-                    if youngest_parents:
-                        for subparent_id, children_ids in youngest_parents.iteritems():
-                            all_column_ids.add(parent_id)
-                            all_column_ids.update(children_ids.keys())
+                for row in parents_resp.fetchall():
+                    node = column_children_ids
+                    for mid in row[0]:
+                        all_column_ids.add(mid)
+                        if mid not in node:
+                            node[mid] = {}
+                        node = node[mid]
 
                 all_columns_resp = session.execute('''
                     SELECT numer_id,
@@ -317,8 +279,6 @@ class GenerateRST(Task):
             fhandle = target.open('w')
             fhandle.write(SUBSECTION_TEMPLATE.render(
                 subsection=subsection,
-                column_children_ids=column_children_ids,
-                all_columns=all_columns,
                 format=self.format,
                 **self.template_globals()
             ).encode('utf8'))
@@ -328,43 +288,23 @@ class GenerateRST(Task):
             if not all_columns:
                 continue
 
-            subsection_path = [strip_tag_id(section_id), strip_tag_id(subsection_id)]
-            for column_id, children in column_children_ids:
-                self._write_column(
-                    subsection_path + [column_id],
-                    all_columns[column_id],
-                    sum([len(c[1]) for c in children.iteritems()]) if children else 0
-                )
+            self._write_column_tree(
+                [strip_tag_id(section_id), strip_tag_id(subsection_id)],
+                column_children_ids,
+                all_columns
+            )
 
-                if not children:
-                    continue
-                for _, subchild_id_paths in children.iteritems():
-                    for subchild_id, subchild_path in subchild_id_paths.iteritems():
-
-                        # Create each intermediate column in hierarchy
-                        subchild_path_split = subchild_path.split('/')
-
-                        dirpath = 'catalog/source/{section}/{subsection}/{dirpath}'.format(
-                            section=strip_tag_id(section_id),
-                            subsection=strip_tag_id(subsection_id),
-                            dirpath='/'.join(subchild_path_split[0:-1])
-                        )
-                        if not os.path.exists(dirpath):
-                            os.makedirs(dirpath)
-
-                        for i in xrange(1, len(subchild_path_split)):
-                            intermediate_id = subchild_path_split[i]
-                            self._write_column(
-                                subsection_path + subchild_path_split[:i+1],
-                                all_columns[intermediate_id],
-                                len(children.get(intermediate_id, []))
-                            )
-
-                        self._write_column(
-                            subsection_path + subchild_path.split('/'),
-                            all_columns[subchild_id],
-                            len(children.get(subchild_id, []))
-                        )
+    def _write_column_tree(self, path, tree, all_columns):
+        for column_id, subtree in tree.iteritems():
+            column_path = path + [column_id]
+            self._write_column(
+                column_path,
+                all_columns[column_id],
+                len(subtree)
+            )
+            if subtree:
+                os.makedirs('catalog/source/' + '/'.join(column_path))
+                self._write_column_tree(column_path, subtree, all_columns)
 
     def _write_column(self, path, column, numchildren):
         with open('catalog/source/{path}.rst'.format(path='/'.join(path)), 'w') as column_file:
