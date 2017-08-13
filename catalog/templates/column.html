@@ -234,15 +234,24 @@ Code example
 
 {% endif %}
 
+{% if numchildren > 1 %}
+
+Subcolumns
+~~~~~~~~~~
+
 .. toctree::
-   :caption: Subcolumns
    :maxdepth: 1
    :titlesonly:
    :glob:
 
    {{ col.id }}/*
 
+{% endif %}
+
 {% if col.geom_timespans|length > 0 %}
+
+Boundaries
+~~~~~~~~~~
 
 .. raw:: html
 
@@ -284,12 +293,21 @@ Code example
 {% endif %}
 
 {% if col.denoms|length > 0 %}
-:Related columns:
-    {% for denom_reltype, denom_id, denom_name in col.denoms %}:ref:`{{ denom_id }}`{% endfor %}
+Related columns
+~~~~~~~~~~~~~~~
+    {% for denom_reltype, denom_id, denom_name in col.denoms %}
+      * :ref:`{{ denom_id }}`
+    {% endfor %}
 {% endif %}
 
-:Source:
-    {% for tag_id in col.sources %}:ref:`{{ tag_id }}`{% endfor %}
+Source
+~~~~~~
+    {% for tag_id in col.sources %}
+      * :ref:`{{ tag_id }}`
+    {% endfor %}
 
-:License:
-    {% for tag_id in col.licenses %}:ref:`{{ tag_id }}`{% endfor %}
+License
+~~~~~~~
+    {% for tag_id in col.licenses %}
+      * :ref:`{{ tag_id }}`
+    {% endfor %}
