@@ -94,11 +94,11 @@ class GeographyColumns(ColumnsTask):
     resolution = Parameter(default=GEO_PR)
 
     weights = {
+        GEO_PR: 1,
+        GEO_CD: 2,
+        GEO_CMA: 3,
+        GEO_CSD: 4,
         GEO_CT: 5,
-        GEO_PR: 4,
-        GEO_CD: 3,
-        GEO_CSD: 2,
-        GEO_CMA: 1,
     }
 
     def version(self):
