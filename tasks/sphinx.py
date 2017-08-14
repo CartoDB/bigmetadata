@@ -214,7 +214,8 @@ class GenerateRST(Task):
                 AND tab.id = ctab.table_id
             GROUP BY c.id
         '''.format("', '".join(boundary_ids)))
-        return {k: {} for k in boundary_ids}, self._parse_columns(boundaries_detail_result)
+        boundary_data = self._parse_columns(boundaries_detail_result)
+        return {k: {} for k in boundary_data.keys()}, boundary_data
 
     def _numerators_tree(self, section_id, subsection_id):
         numerator_paths_result = current_session().execute('''
