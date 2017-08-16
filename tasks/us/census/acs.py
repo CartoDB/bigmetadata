@@ -56,7 +56,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 18
+        return 19
 
     def columns(self):
         input_ = self.input()
@@ -3291,7 +3291,7 @@ class QuantileColumns(ColumnsTask):
         }
 
     def version(self):
-        return 7
+        return 8
 
     def columns(self):
         quantile_columns = OrderedDict()
@@ -3332,7 +3332,7 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 10
+        return 11
 
     def columns(self):
         input_ = self.input()
@@ -3407,7 +3407,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 10
+        return 11
 
     def requires(self):
         return {
