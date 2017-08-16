@@ -177,7 +177,7 @@ class Survey(BaseParams, TableTask):
     topic = Parameter(default='t001')
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         '''
