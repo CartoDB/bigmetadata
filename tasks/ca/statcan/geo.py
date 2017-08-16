@@ -102,7 +102,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 11
+        return 12
 
     def requires(self):
         return {
