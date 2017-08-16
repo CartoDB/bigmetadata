@@ -46,6 +46,7 @@ def get_logger(name):
     logger.addHandler(handler)
     return logger
 
+
 LOGGER = get_logger(__name__)
 
 
@@ -191,7 +192,8 @@ def import_api(request, json_column_names=None, api_key=None, carto_url=None):
 def sql_to_cartodb_table(outname, localname, json_column_names=None,
                          schema='observatory'):
     '''
-    Move a table to CARTO using the `import API <https://carto.com/docs/carto-engine/import-api/importing-geospatial-data/>`_
+    Move a table to CARTO using the
+    `import API <https://carto.com/docs/carto-engine/import-api/importing-geospatial-data/>`_
 
     :param outname: The destination name of the table.
     :param localname: The local name of the table, exclusive of schema.
@@ -313,9 +315,9 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
       DROP TABLE IF EXISTS raster_vals_{tablename_ns};
       CREATE TEMPORARY TABLE raster_vals_{tablename_ns} AS
       WITH vector AS (SELECT CASE
-                        WHEN ST_GeometryType({colname}) IN ('ST_Polygon', 'ST_MultiPolygon')
-                          THEN ST_CollectionExtract(ST_MakeValid(
-                                 ST_SimplifyVW({colname}, 0.0005)), 3)
+                        WHEN ST_GeometryType({colname}) IN ('ST_Polygon', 'ST_MultiPolygon') THEN
+                             ST_CollectionExtract(ST_MakeValid(
+                             ST_SimplifyVW({colname}, 0.0005)), 3)
                           ELSE {colname}
                         END the_geom
                       FROM {tablename} vector)
@@ -326,7 +328,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                Nullif(SUM(CASE ST_GeometryType(vector.the_geom)
                  WHEN 'ST_Point' THEN 1
                  WHEN 'ST_LineString' THEN
-                   ST_Length({st_clip}(vector.the_geom, ST_Envelope(geom))) /
+                       ST_Length({st_clip}(vector.the_geom, ST_Envelope(geom))) /
                        ST_Length(vector.the_geom)
                  ELSE
                    CASE WHEN ST_Within(geom, vector.the_geom) THEN
@@ -339,11 +341,11 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
               )::geomval cnt
              , (FIRST(geom),
                -- determine % pixel area filled with geoms
-               SUM(CASE WHEN geom @ vector.the_geom THEN 1
-                        WHEN vector.the_geom @ geom THEN
-                             ST_Area(vector.the_geom) / ST_Area(geom)
-                        ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
-                             ST_Area(geom)
+               SUM(CASE WHEN ST_Within(geom, vector.the_geom) THEN 1
+                    WHEN ST_Within(vector.the_geom, geom) THEN
+                         ST_Area(vector.the_geom) / ST_Area(geom)
+                    ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
+                         ST_Area(geom)
                END)
               )::geomval percent_fill
          FROM raster_pap_{tablename_ns}, vector
@@ -399,7 +401,9 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
        INSERT INTO observatory.obs_column_table_tile_simple
        SELECT table_id, column_id, tile_id, ST_Reclass(
          ST_Band(tile, ARRAY[2, 3]),
-         ROW(2, '[0-1]::0-255, (1-100]::255-255', '8BUI', 0)::reclassarg
+         -- regenerate band 2 setting 1 as the minimum value to include very small geometries
+         -- that would be considered spurious due to rounding
+         ROW(2, '[0-0]::0, (0-1]::1-255, (1-100]::255-255', '8BUI', 0)::reclassarg
        ) AS tile
        FROM observatory.obs_column_table_tile
        WHERE table_id='{table_id}'
@@ -421,9 +425,9 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                table_id=table_id)).fetchone()[0]
 
     assert abs(real_num_geoms - est_num_geoms) / real_num_geoms < 0.05, \
-            "Estimate of {} total geoms more than 5% off real {} num geoms " \
-            "for column '{}' in table '{}' (tablename '{}')".format(
-                est_num_geoms, real_num_geoms, column_id, table_id, tablename)
+        "Estimate of {} total geoms more than 5% off real {} num geoms " \
+        "for column '{}' in table '{}' (tablename '{}')".format(
+            est_num_geoms, real_num_geoms, column_id, table_id, tablename)
 
 
 class PostgresTarget(Target):
@@ -495,11 +499,11 @@ class CartoDBTarget(Target):
         self.tablename = tablename
         self.carto_url = carto_url
         self.api_key = api_key
-        #resp = requests.get('{url}/dashboard/datasets'.format(
+        # resp = requests.get('{url}/dashboard/datasets'.format(
         #    url=os.environ['CARTODB_URL']
-        #), cookies={
+        # ), cookies={
         #    '_cartodb_session': os.environ['CARTODB_SESSION']
-        #}).content
+        # }).content
 
     def __str__(self):
         return self.tablename
@@ -526,7 +530,8 @@ class CartoDBTarget(Target):
                     api_key=api_key
                 ))
                 viz_id = resp.json()['id']
-                # delete dataset by id DELETE https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c
+                # delete dataset by id DELETE
+                # https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c
                 try:
                     requests.delete('{url}/api/v1/viz/{viz_id}?api_key={api_key}'.format(
                         url=carto_url,
@@ -771,7 +776,8 @@ class TableTarget(Target):
                                       'max(st_area({colname}::geography)) col{i}_max, '
                                       'min(st_area({colname}::geography)) col{i}_min, '
                                       'avg(st_area({colname}::geography)) col{i}_avg, '
-                                      'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
+                                      'percentile_cont(0.5) within group '
+                                      '(order by st_area({colname}::geography)) col{i}_median, '
                                       'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
                                       'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
                                           i=i, colname=colname.lower()))
@@ -1522,7 +1528,7 @@ class TableTask(Task):
 
         '''
         raise NotImplementedError('Must implement columns method that returns '
-                                   'a dict of ColumnTargets')
+                                  'a dict of ColumnTargets')
 
     def populate(self):
         '''
@@ -1531,7 +1537,7 @@ class TableTask(Task):
         For example:
         '''
         raise NotImplementedError('Must implement populate method that '
-                                   'populates the table')
+                                  'populates the table')
 
     def fake_populate(self, output):
         '''
