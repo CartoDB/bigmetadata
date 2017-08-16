@@ -76,10 +76,10 @@ def runtask(task, superclasses=None):
             for klass in superclasses:
                 if isinstance(dep, klass):
                     runtask(dep, superclasses=superclasses)
-                    assert dep.complete() is True
+                    assert dep.complete() is True, 'dependency {} not complete for class {}'.format(dep, klass)
         else:
             runtask(dep)
-            assert dep.complete() is True
+            assert dep.complete() is True, 'dependency {} not complete'.format(dep)
     try:
         before = time()
         for klass, cb_dict in task._event_callbacks.iteritems():

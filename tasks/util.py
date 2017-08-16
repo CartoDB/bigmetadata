@@ -893,8 +893,6 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
-        #if self.deps() and not all([d.complete() for d in self.deps()]):
-        #    raise Exception('Must run prerequisites first')
         session = current_session()
 
         # Return columns from database if the task is already finished
@@ -952,7 +950,6 @@ class ColumnsTask(Task):
         if deps and not all([d.complete() for d in deps]):
             return False
         else:
-            #_complete = super(ColumnsTask, self).complete()
             # bulk check that all columns exist at proper version
             cnt = current_session().execute(
                 '''
