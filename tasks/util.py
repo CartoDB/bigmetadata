@@ -330,13 +330,13 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                Nullif(SUM(CASE ST_GeometryType(vector.the_geom)
                  WHEN 'ST_Point' THEN 1
                  WHEN 'ST_LineString' THEN
-                       ST_Length({st_clip}(vector.the_geom, ST_Envelope(geom))) /
+                       ST_Length(ST_MakeValid({st_clip}(vector.the_geom, ST_Envelope(geom)))) /
                        ST_Length(vector.the_geom)
                  ELSE
                    CASE WHEN ST_Within(geom, vector.the_geom) THEN
                              ST_Area(geom) / ST_Area(vector.the_geom)
                         WHEN ST_Within(vector.the_geom, geom) THEN 1
-                        ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
+                        ELSE ST_Area(ST_MakeValid({st_clip}(vector.the_geom, ST_Envelope(geom)))) /
                              ST_Area(vector.the_geom)
                    END
                 END), 0)
@@ -346,7 +346,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
                SUM(CASE WHEN ST_Within(geom, vector.the_geom) THEN 1
                     WHEN ST_Within(vector.the_geom, geom) THEN
                          ST_Area(vector.the_geom) / ST_Area(geom)
-                    ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
+                    ELSE ST_Area(ST_MakeValid({st_clip}(vector.the_geom, ST_Envelope(geom)))) /
                          ST_Area(geom)
                END)
               )::geomval percent_fill
