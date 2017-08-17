@@ -288,16 +288,21 @@ Related columns
     {% for denom_reltype, denom_id, denom_name in col.denoms %}
       * :ref:`{{ denom_id }}`
     {% endfor %}
+
 {% endif %}
 
 Source
 ~~~~~~
     {% for tag_id in col.sources %}
       * :ref:`{{ tag_id }}`
+    {% else %}
+      * Not available
     {% endfor %}
 
 License
 ~~~~~~~
     {% for tag_id in col.licenses %}
       * :ref:`{{ tag_id }}`
+    {% else %}
+      * Not available
     {% endfor %}
