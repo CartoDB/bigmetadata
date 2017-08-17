@@ -1,3 +1,5 @@
+201708170906
+
 '''
 Util functions for luigi bigmetadata tasks.
 '''
@@ -317,7 +319,7 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
       WITH vector AS (SELECT CASE
                         WHEN ST_GeometryType({colname}) IN ('ST_Polygon', 'ST_MultiPolygon') THEN
                              ST_CollectionExtract(ST_MakeValid(
-                             ST_SimplifyVW({colname}, 0.0005)), 3)
+                             ST_SimplifyVW({colname}, 0.00001)), 3)
                           ELSE {colname}
                         END the_geom
                       FROM {tablename} vector)
