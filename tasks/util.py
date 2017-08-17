@@ -1,5 +1,3 @@
-201708170906
-
 '''
 Util functions for luigi bigmetadata tasks.
 '''
