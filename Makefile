@@ -54,22 +54,32 @@ au-geo:
 	  --module tasks.au.geo AllGeographies --year 2011 \
 	  --parallel-scheduling --workers=8
 
-catalog-noimage:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --force \
-	  --parallel-scheduling --workers=3
+clean-catalog:
+	sudo rm -rf catalog/source/*/*
+	# Below code eliminates everything not removed by the command above.
+	# The trick here is that catalog/source is mostly ignored, but
+	# we don't want to delete catalog/source/conf.py and
+	# catalog/source/index.rst
+	sudo git status --porcelain --ignored -- catalog/source/* \
+	  | grep '^!!' \
+	  | cut -c 4-1000 \
+	  | xargs rm -f
 
-catalog:
+catalog: clean-catalog
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --force
+	  --module tasks.sphinx Catalog \
+	  $${SECTION/#/--section } \
+	  --local-scheduler
+	docker-compose up -d nginx
+	echo Catalog accessible at http://$$(curl -s 'https://api.ipify.org')$$(docker-compose ps | grep nginx | grep -oE ':[0-9]+')/catalog/
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format pdf --force
+	  --module tasks.sphinx Catalog --format pdf
 
 md-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format markdown --force \
+	  --module tasks.sphinx Catalog --format markdown \
 	  --local-scheduler
 
 deploy-pdf-catalog:
@@ -269,9 +279,9 @@ test-catalog:
 	  TEST_MODULE=tasks.$(MODULE) PGDATABASE=test nosetests -vs \
 	    tests/test_catalog.py'
 
-diff-catalog:
+diff-catalog: clean-catalog
 	git fetch origin master
 	docker-compose run -e PGDATABASE=test -e ENVIRONMENT=test --rm bigmetadata /bin/bash -c \
 	  'python -c "from tests.util import recreate_db; recreate_db()" && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util RunDiff --compare FETCH_HEAD && \
-	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx Catalog --force'
+	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx Catalog'

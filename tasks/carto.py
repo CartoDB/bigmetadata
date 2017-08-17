@@ -4,25 +4,17 @@ Tasks to sync data locally to CartoDB
 
 from tasks.meta import (current_session, OBSTable, Base, OBSColumn, UpdatedMetaTarget)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
-                        classpath, shell, PostgresTarget, TempTableTask, LOGGER,
-                        CartoDBTarget, import_api, TableToCartoViaImportAPI)
+                        classpath, shell, PostgresTarget, LOGGER,
+                        CartoDBTarget, TableToCartoViaImportAPI)
 
 from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
-                   DateParameter, IntParameter, FloatParameter)
+                   DateParameter, IntParameter)
 from luigi.task_register import Register
 from luigi.s3 import S3Target
 from datetime import date
-from decimal import Decimal
-from cStringIO import StringIO
-from PIL import Image, ImageOps
-from pprint import pprint
-
-import requests
 
 import time
 import os
-import json
-import requests
 
 
 META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_column',
@@ -113,474 +105,6 @@ class SyncAllData(WrapperTask):
             else:
                 force = self.force
             yield TableToCartoViaImportAPI(table=tablename, force=force)
-
-
-class ImagesForMeasure(Task):
-    '''
-    Generate a set of static images for a measure
-    '''
-
-    MAP_URL = '{cartodb_url}/api/v1/map'.format(
-        cartodb_url=os.environ['CARTODB_URL'])
-
-    BASEMAP = {
-        "type": "http",
-        "options": {
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
-            "subdomains": "abcd",
-        }
-    }
-
-    LABELS = {
-        "type": "http",
-        "options": {
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
-            "subdomains": "abcd",
-        }
-    }
-    CENTER_ZOOM_BOUNDS = {
-        'es': [
-            ((40.4139017, -3.7350414), 6, None,),
-            ((40.4139017, -3.7350414), 8, None, ),
-            ((40.4139017, -3.7350414), 11, None, ),
-            ((40.4139017, -3.7050414), 13, None, ),
-        ],
-        'mx': [
-            ((22.979, -101.777), 4, 'mx.inegi.entidad', ),
-            ((19.316, -99.152), 7, 'mx.inegi.municipio', ),
-            ((19.441989391028706, -99.14474487304688), 11, 'mx.inegi.ageb', ),
-            ((19.441989391028706, -99.14474487304688), 13, 'mx.inegi.manzana', ),
-        ],
-        'uk': [
-            ((52.51622086393074, -1.197509765625), 5, None, ), # All England
-            ((51.50190410761811, -0.120849609375), 9, None, ), # London
-            ((52.47274306920925, -3.982543945312), 7, None, ), # Wales
-            ((53.491313790532956, -2.9706787109375), 9, None, ), # Manchester
-        ],
-        'us': [
-            ((37.996162679728116, -97.6904296875), 3,
-             'us.census.tiger.state_clipped', ),
-            ((38.16911413556086, -114.884033203125), 5,
-             'us.census.tiger.county_clipped', ),
-            ((37.75225820732333, -122.11584777832031), 9,
-             'us.census.tiger.census_tract_clipped', ),
-            ((37.75225820732333, -122.44584777832031), 12,
-             'us.census.tiger.block_group_clipped', ),
-        ],
-    }
-
-    PALETTES = {
-        'tags.people': '''
-@5:#6c2167;
-@4:#a24186;
-@3:#ca699d;
-@2:#e498b4;
-@1:#f3cbd3;''',
-        'tags.money': '''
-@5:#1d4f60;
-@4:#2d7974;
-@3:#4da284;
-@2:#80c799;
-@1:#c4e6c3;''',
-        'tags.households': '''
-@5:#63589f;
-@4:#9178c4;
-@3:#b998dd;
-@2:#dbbaed;
-@1:#f3e0f7;''',
-        'tags.housing': '''
-@5:#2a5674;
-@4:#45829b;
-@3:#68abb8;
-@2:#96d0d1;
-@1:#d1eeea;''',
-        'tags.ratio': '''
-@5:#eb4a40;
-@4:#f17854;
-@3:#f59e72;
-@2:#f9c098;
-@1:#fde0c5;''',
-        'tags.segmentation': '''
-@1:#7F3C8D;
-@2:#11A579;
-@3:#3969AC;
-@4:#F2B701;
-@5:#E73F74;
-@6:#80BA5A;
-@7:#E68310;
-@8:#008695;
-@9:#CF1C90;
-@10:#f97b72;
-@11:#A5AA99;''',
-    }
-
-    measure = Parameter()
-    force = BooleanParameter(default=False)
-
-    def __init__(self, *args, **kwargs):
-        if kwargs.get('force'):
-            target_path = self.output(measure=kwargs['measure']).path
-            try:
-                os.unlink(target_path)
-            except OSError:
-                pass
-        super(ImagesForMeasure, self).__init__(*args, **kwargs)
-
-    def _generate_config(self, zoom, lon, lat, boundary=None):
-        layers = []
-        layers.append(self.BASEMAP)
-        session = current_session()
-        measure = session.query(OBSColumn).get(self.measure)
-        mainquery = '''
-SELECT numer_aggregate, numer_type,
-       numer_colname, numer_geomref_colname,
-       numer_tablename,
-       geom_geomref_colname,
-       geom_colname, geom_tablename,
-       denom_colname, denom_tablename, denom_geomref_colname
-FROM observatory.obs_meta
-WHERE numer_id = '{measure}' {boundary_clause}
-ORDER BY geom_weight DESC, numer_timespan DESC, geom_colname DESC;
-        '''
-        query = mainquery.format(
-            measure=self.measure,
-            boundary_clause="AND geom_id = '{}'".format(boundary) if boundary else '')
-
-        resp = session.execute(query)
-        results = resp.fetchone()
-
-        # how should we determine fallback resolution?
-        if results is None:
-            query = mainquery.format(measure=self.measure, boundary_clause="")
-            resp = session.execute(query)
-            results = resp.fetchone()
-
-        numer_aggregate, numer_type, numer_colname, numer_geomref_colname, \
-                numer_tablename, geom_geomref_colname, geom_colname, \
-                geom_tablename, denom_colname, \
-                denom_tablename, denom_geomref_colname = results
-
-        if denom_colname:
-            cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom_webmercator, " \
-                    "numer.{numer_colname} / NULLIF(denom.{denom_colname}, 0) measure " \
-                    "FROM {geom_tablename} as geom, {numer_tablename} as numer, " \
-                    "     {denom_tablename} as denom " \
-                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} " \
-                    "  AND numer.{numer_geomref_colname} = denom.{denom_geomref_colname} "
-            statssql = "SELECT  " \
-                    'CDB_HeadsTailsBins(array_agg(distinct( ' \
-                    '      (numer.{numer_colname} / ' \
-                    '      NULLIF(denom.{denom_colname}, 0))::NUMERIC)), 4) as "headtails" ' \
-                    "FROM {geom_tablename} as geom, " \
-                    "     {numer_tablename} as numer, " \
-                    "     {denom_tablename} as denom " \
-                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} " \
-                    "  AND numer.{numer_geomref_colname} = denom.{denom_geomref_colname} "
-        elif numer_aggregate == 'sum':
-            cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "geom.the_geom_webmercator, " \
-                    "numer.{numer_colname} / " \
-                    "  ST_Area(geom.the_geom) * 1000000.0 measure " \
-                    "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
-                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
-            statssql = "SELECT CDB_HeadsTailsBins(array_agg(distinct( " \
-                    '  (numer.{numer_colname} / ST_Area(geom.the_geom) ' \
-                    '      * 1000000.0)::NUMERIC)), 4) as "headtails" ' \
-                    "FROM {geom_tablename} as geom, " \
-                    "     {numer_tablename} as numer " \
-                    "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
-        else:
-            cartosql = "SELECT geom.cartodb_id, geom.{geom_colname} as the_geom, " \
-                    "  geom.the_geom_webmercator, " \
-                    "  numer.{numer_colname} measure " \
-                    "FROM {geom_tablename} as geom, {numer_tablename} as numer " \
-                    "  WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
-            if numer_type.lower() == 'numeric':
-                statssql = "SELECT " \
-                        'CDB_HeadsTailsBins(array_agg( ' \
-                        '  distinct(numer.{numer_colname}::NUMERIC)), 4) as "headtails" ' \
-                        "FROM {geom_tablename} as geom, " \
-                        "     {numer_tablename} as numer " \
-                        "WHERE geom.{geom_geomref_colname} = numer.{numer_geomref_colname} "
-            else:
-                statssql = '''
-                SELECT array_agg(category) categories FROM (
-                SELECT row_number() over () catname, {numer_colname} as category, COUNT(*) cnt
-                FROM {numer_tablename}
-                GROUP BY {numer_colname} ORDER BY COUNT(*) DESC
-                LIMIT 10
-                ) foo'''
-
-        cartosql = cartosql.format(geom_colname=geom_colname,
-                                   numer_colname=numer_colname,
-                                   geom_tablename=geom_tablename,
-                                   numer_tablename=numer_tablename,
-                                   geom_geomref_colname=geom_geomref_colname,
-                                   numer_geomref_colname=numer_geomref_colname,
-                                   denom_colname=denom_colname,
-                                   denom_tablename=denom_tablename,
-                                   denom_geomref_colname=denom_geomref_colname)
-        statssql = statssql.format(geom_colname=geom_colname,
-                                   numer_colname=numer_colname,
-                                   geom_tablename=geom_tablename,
-                                   numer_tablename=numer_tablename,
-                                   geom_geomref_colname=geom_geomref_colname,
-                                   numer_geomref_colname=numer_geomref_colname,
-                                   denom_colname=denom_colname,
-                                   denom_tablename=denom_tablename,
-                                   denom_geomref_colname=denom_geomref_colname)
-
-        resp = query_cartodb(statssql)
-        if resp.status_code != 200:
-            raise Exception("Unable to obtain statssql: {}".format(
-                resp.text))
-
-        if measure.unit():
-            ramp = self.PALETTES.get(measure.unit().id, self.PALETTES['tags.ratio'])
-        else:
-            ramp = self.PALETTES['tags.ratio']
-
-        bucket_css = u''
-        if numer_type.lower() == 'numeric':
-            buckets = resp.json()['rows'][0]['headtails']
-
-
-            for i, bucket in enumerate(buckets):
-                bucket_css = u'''
-    [measure <= {bucket}] {{
-       polygon-fill: @{i};
-    }}
-                '''.format(bucket=bucket, i=i+1) + bucket_css
-        else:
-            buckets = resp.json()['rows'][0]['categories']
-            for i, bucket in enumerate(buckets):
-                bucket_css = u'''
-    [measure = "{bucket}"] {{
-       polygon-fill: @{i};
-    }}
-                '''.format(bucket=bucket, i=i+1) + bucket_css
-
-        layers.append({
-            'type': 'mapnik',
-            'options': {
-                'layer_name': geom_tablename,
-                'cartocss': '''/** choropleth visualization */
-
-{ramp}
-
-#data {{
-  polygon-opacity: 0.9;
-  polygon-gamma: 0.5;
-  line-color: #000000;
-  line-width: 0.25;
-  line-opacity: 0.2;
-  line-comp-op: hard-light;
-  polygon-fill: @{bucketlen};
-
-  [measure=null]{{
-     polygon-fill: #cacdce;
-  }}
-  {bucket_css}
-}}'''.format(
-    ramp=ramp,
-    bucketlen=len(buckets) + 1,
-    bucket_css=bucket_css),
-                'cartocss_version': "2.1.1",
-                'sql': cartosql,
-                "table_name": "\"\"."
-            }
-        })
-        return {
-            'layers': layers,
-            'center': [lon, lat],
-            'zoom': zoom
-        }
-
-    def get_named_map(self, map_config):
-
-        config = {
-            "version": "1.3.0",
-            "layers": map_config
-        }
-        resp = requests.get(self.MAP_URL,
-                            headers={'content-type':'application/json'},
-                            params={'config': json.dumps(config)}).json()
-        if 'layergroupid' not in resp:
-            raise Exception('Named map returned no layergroupid: {}'.format(
-                pprint(resp)))
-        return resp
-
-    def run(self):
-        self.output().makedirs()
-
-        image_urls = []
-        country = self.measure.split('.')[0]
-        for center, zoom, boundary in self.CENTER_ZOOM_BOUNDS[country]:
-            lon, lat = center
-
-            if country == 'uk':
-                image_size = (300, 700, )
-            else:
-                image_size = (500, 500, )
-
-            config = self._generate_config(zoom, lon, lat, boundary)
-
-            named_map = self.get_named_map(config['layers'])
-            image_urls.append('{cartodb_url}/api/v1/map/static/center/' \
-                              '{layergroupid}/{zoom}/{center_lon}/{center_lat}/{x}/{y}.png'.format(
-                                  cartodb_url=os.environ['CARTODB_URL'],
-                                  layergroupid=named_map['layergroupid'],
-                                  zoom=zoom,
-                                  center_lon=lon,
-                                  center_lat=lat,
-                                  x=image_size[0],
-                                  y=image_size[1],
-                              ))
-
-        url1 = image_urls.pop(0)
-        LOGGER.info(url1)
-        file1 = StringIO(requests.get(url1, stream=True).content)
-        image1 = ImageOps.expand(Image.open(file1), border=10, fill='white')
-
-        for url2 in image_urls:
-            LOGGER.info(url2)
-            file2 = StringIO(requests.get(url2, stream=True).content)
-
-            image2 = ImageOps.expand(Image.open(file2), border=10, fill='white')
-
-            (width1, height1) = image1.size
-            (width2, height2) = image2.size
-
-            result_width = width1 + width2
-            result_height = max(height1, height2)
-
-            result = Image.new('RGB', (result_width, result_height))
-            result.paste(im=image1, box=(0, 0))
-            result.paste(im=image2, box=(width1, 0))
-
-            image1 = result
-        image1.save(self.output().path)
-
-    def complete(self):
-        '''
-        If we support this country,
-        '''
-        country = self.measure.split('.')[0]
-        if country in self.CENTER_ZOOM_BOUNDS:
-            return super(ImagesForMeasure, self).complete()
-        else:
-            LOGGER.warn('No info to create images for %s', self.measure)
-            return True
-
-    def output(self, measure=None):
-        if measure is None:
-            measure = self.measure
-        return LocalTarget(os.path.join('catalog/img', measure + '.png'))
-
-
-class GenerateStaticImage(Task):
-
-    BASEMAP = {
-        "type": "http",
-        "options": {
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png",
-            "subdomains": "abcd",
-        }
-    }
-
-    LABELS = {
-        "type": "http",
-        "options": {
-            "urlTemplate": "http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png",
-            "subdomains": "abcd",
-        }
-    }
-
-    viz = Parameter()
-    VIZ_URL = '{cartodb_url}/api/v2/viz/{{viz}}/viz.json'.format(
-        cartodb_url=os.environ['CARTODB_URL'])
-    MAP_URL = '{cartodb_url}/api/v1/map'.format(
-        cartodb_url=os.environ['CARTODB_URL'])
-
-    def viz_to_config(self):
-        resp = requests.get(self.VIZ_URL.format(viz=self.viz))
-
-        assert resp.status_code == 200
-        data = resp.json()
-        layers = []
-        layers.append(self.BASEMAP)
-        for data_layer in data['layers']:
-            if data_layer['type'] == 'layergroup':
-                for layer in data_layer['options']['layer_definition']['layers']:
-                    if layer['visible'] is True:
-                        layers.append({'type': 'mapnik', 'options': layer['options']})
-        layers.append(self.LABELS)
-        return {
-            'layers': layers,
-            'center': json.loads(data['center']),
-            'bounds': data['bounds'],
-            'zoom': data['zoom']
-        }
-
-    def get_named_map(self, map_config):
-
-        config = {
-            "version": "1.3.0",
-            "layers": map_config
-        }
-        resp = requests.get(self.MAP_URL,
-                            headers={'content-type':'application/json'},
-                            params={'config': json.dumps(config)}).json()
-        if 'layergroupid' not in resp:
-            raise Exception('Named map returned no layergroupid: {}'.format(
-                pprint(resp)))
-        return resp
-
-    def run(self):
-        self.output().makedirs()
-        config = self.viz_to_config()
-        named_map = self.get_named_map(config['layers'])
-        img_url = '{cartodb_url}/api/v1/map/static/center/' \
-                '{layergroupid}/{zoom}/{center_lon}/{center_lat}/800/500.png'.format(
-                    cartodb_url=os.environ['CARTODB_URL'],
-                    layergroupid=named_map['layergroupid'],
-                    zoom=config['zoom'],
-                    center_lon=config['center'][0],
-                    center_lat=config['center'][1]
-                )
-        LOGGER.info(img_url)
-        shell('curl "{img_url}" > {output}'.format(img_url=img_url,
-                                                   output=self.output().path))
-
-    def output(self):
-        return LocalTarget(os.path.join('catalog/source/img', self.task_id + '.png'))
-
-
-class GenerateThumb(Task):
-
-    measure = Parameter(default=None)
-    viz = Parameter(default=None)
-    force = Parameter(default=False, significant=False)
-
-    def requires(self):
-        if self.viz and self.measure:
-            raise Exception('Specify either viz or measure')
-        elif self.viz:
-            return GenerateStaticImage(viz=self.viz)  #TODO no force option for generatestaticimage
-        elif self.measure:
-            return ImagesForMeasure(measure=self.measure, force=self.force)
-        else:
-            raise Exception('Must specify viz or measure')
-
-    def run(self):
-        self.output().makedirs()
-        img = Image.open(self.input().path)
-        img.resize((img.size[0] / 2, img.size[1] / 2))
-        img.save(self.output().path, format='JPEG', quality=75, optimized=True)
-
-    def output(self):
-        return LocalTarget(self.input().path.replace('/img/', '/img_thumb/'))
 
 
 class PurgeMetadataTasks(Task):
@@ -810,7 +334,7 @@ class DumpS3(Task):
 
 class OBSMeta(Task):
 
-    force = BooleanParameter(default=True)
+    force = BooleanParameter(default=False)
 
     FIRST_AGGREGATE = '''
     CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
@@ -1090,7 +614,6 @@ class OBSMeta(Task):
     ]
 
     DIMENSIONS = {
-        # before took 206s
         'numer': ['''
 CREATE TABLE {obs_meta} AS
 SELECT numer_id ,
@@ -1285,7 +808,8 @@ SELECT numer_timespan::TEXT timespan_id,
        ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
        ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
        ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
-       NULL::Geometry(Geometry, 4326) the_geom --, ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       NULL::Integer timespan_version
 FROM observatory.obs_meta_next
 GROUP BY numer_timespan;
         ''',
@@ -1413,7 +937,6 @@ class OBSMetaToLocal(OBSMeta):
                         dimension=dimension
                     ))
             session.commit()
-            self._complete = True
         except:
             session.rollback()
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')

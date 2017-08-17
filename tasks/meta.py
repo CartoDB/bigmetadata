@@ -65,7 +65,7 @@ def get_engine(user=None, password=None, host=None, port=None,
     return engine
 
 
-def catalog_lonlat(column_id):
+def catalog_latlng(column_id):
     # TODO we should do this from metadata instead of hardcoding
     if column_id == 'whosonfirst.wof_disputed_geom':
         return (76.57, 33.78)
@@ -78,17 +78,17 @@ def catalog_lonlat(column_id):
         return (40.7025, -73.7067)
     elif column_id.startswith('uk'):
         if 'WA' in column_id:
-            return (51.46844551219723, -3.184833526611328)
+            return (51.468, -3.184)
         else:
-            return (51.51461834694225, -0.08883476257324219)
+            return (51.514, -0.0888)
     elif column_id.startswith('es'):
-        return (42.8226119029222, -2.51141249535454)
+        return (42.822, -2.511)
     elif column_id.startswith('us.zillow'):
-        return (28.3305906291771, -81.3544048197256)
+        return (28.330, -81.354)
     elif column_id.startswith('mx.'):
-        return (19.41347699386547, -99.17019367218018)
+        return (19.413, -99.170)
     elif column_id.startswith('th.'):
-        return (13.725377712079784, 100.49263000488281)
+        return (13.725, 100.492)
     # cols for French Guyana only
     elif column_id in ('fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
                        , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
@@ -102,11 +102,11 @@ def catalog_lonlat(column_id):
                        , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
                        , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
                        , 'fr.insee.P12_ACTOCC15P_ILT45D'):
-        return (4.938408371206558, -52.32908248901367)
+        return (4.938, -52.329)
     elif column_id.startswith('fr.'):
-        return (48.860875144709475, 2.3613739013671875)
+        return (48.860, 2.361)
     elif column_id.startswith('ca.'):
-        return (43.65594991256823, -79.37965393066406)
+        return (43.655, -79.379)
     elif column_id.startswith('us.census.'):
         return (40.7, -73.9)
     elif column_id.startswith('us.dma.'):
@@ -120,13 +120,13 @@ def catalog_lonlat(column_id):
     elif column_id.startswith('whosonfirst.'):
         return (40.7, -73.9)
     elif column_id.startswith('eu.'):
-        return (52.52207036136366, 13.40606689453125)
+        return (52.522, 13.406)
     elif column_id.startswith('us.epa.'):
         return (40.7, -73.9)
     elif column_id.startswith('br.'):
         return (-43.19, -22.9)
     elif column_id.startswith('au.'):
-        return (-33.8806, 151.2131)
+        return (-33.880, 151.213)
     else:
         raise Exception('No catalog point set for {}'.format(column_id))
 
