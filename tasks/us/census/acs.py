@@ -28,7 +28,7 @@ LOGGER = get_logger(__name__)
 class ACSTags(TagsTask):
 
     def version(self):
-        return 3
+        return 4
 
     def tags(self):
         return [
@@ -56,7 +56,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 18
+        return 19
 
     def columns(self):
         input_ = self.input()
@@ -70,6 +70,7 @@ class Columns(ColumnsTask):
         #segmenttags = input_['segmenttags']
         #tag_middle_aged_men = segmenttags['middle_aged_men']
         #tag_families_with_young_children = segmenttags['families_with_young_children']
+
         housing_units = OBSColumn(
             id='B25001001',
             type='Numeric',
@@ -1044,8 +1045,12 @@ class Columns(ColumnsTask):
             id='B25024002',
             type='Numeric',
             name='Single-family (one unit) detached dwellings',
-            description='',
-            weight=0,
+            description='This is a 1-unit structure detached from any other house, that is, with '
+            'open space on all four sides. Such structures are considered detached even if they have an '
+            'adjoining shed or garage. A one-family house that contains a business is considered detached '
+            'as long as the building has open space on all four sides. Mobile homes to which one or more '
+            'permanent rooms have been added or built also are included.',
+            weight=8,
             aggregate='sum',
             targets={housing_units: 'denominator'},
             tags=[subsections['housing'], unit_housing]
@@ -1054,8 +1059,11 @@ class Columns(ColumnsTask):
             id='B25024003',
             type='Numeric',
             name='Single-family (one unit) attached dwellings',
-            description='',
-            weight=0,
+            description='This is a 1-unit structure that has one or more walls extending from '
+            'ground to roof separating it from adjoining structures. In row houses (sometimes called '
+            'townhouses), double houses, or houses attached to nonresidential structures, each house is a '
+            'separate, attached structure if the dividing or common wall goes from ground to roof.',
+            weight=8,
             aggregate='sum',
             targets={housing_units: 'denominator'},
             tags=[subsections['housing'], unit_housing]
@@ -2859,8 +2867,100 @@ class Columns(ColumnsTask):
             targets={workers_16_and_over: 'denominator'},
             tags=[subsections['transportation'], unit_people],
         )
+        sales_office_employed = OBSColumn(
+            id='C24060004',
+            type='Numeric',
+            name='Civilian Employed Population in Sales and Office Occupations',
+            description='The number of employed civilians 16 years old and '
+            'over in each geography in the Sales and Office occupations. '
+            'Occupation codes are based on the Standard Occupational Classification (SOC), '
+            'published by the Executive Office of the President, Office of Management and Budget.',
+            weight=1,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            tags=[subsections['employment'], unit_people])
+        management_business_sci_arts_employed = OBSColumn(
+            id='C24060002',
+            type='Numeric',
+            name='Civilian Employed Population in Management, Business, Science, and Arts Occupations',
+            description='The number of employed civilians 16 years old and '
+            'over in each geography in the Management, Business, Science, and Arts occupations. '
+            'Occupation codes are based on the Standard Occupational Classification (SOC), '
+            'published by the Executive Office of the President, Office of Management and Budget.',
+            weight=1,
+            aggregate='sum',
+            targets={employed_pop: 'denominator'},
+            tags=[subsections['employment'], unit_people])
+        pop_25_64 = OBSColumn(
+            id='B23006001',
+            type='Numeric',
+            name='Population age 25 to 64',
+            description='The number of people in each geography who are between the ages '
+            'of 25 and 64. ',
+            weight=1,
+            aggregate='sum',
+            targets={total_pop: 'denominator'},
+            tags=[subsections['age_gender'], subsections['education'], unit_people])
+        bachelors_degree_or_higher_25_64 = OBSColumn(
+            id='B23006023',
+            type='Numeric',
+            name='Population with Bachelors Degree or Higher, Ages 25 to 64',
+            description='The number of people in each geography who are between the ages '
+            'of 25 and 64 who have attained a bachelors degree or higher. ',
+            weight=1,
+            aggregate='sum',
+            targets={pop_25_64: 'denominator'},
+            tags=[subsections['education'], unit_people])
+        nonfamily_households = OBSColumn(
+            id='B11001007',
+            type='Numeric',
+            name='Nonfamily Households',
+            description='A householder living alone or with nonrelatives only. Unmarried '
+            'couples households, whether opposite-sex or same-sex, with no relatives of the householder '
+            'present are tabulated in nonfamily households.',
+            weight=8,
+            aggregate='sum',
+            targets={households: 'denominator'},
+            tags=[subsections['housing'], unit_households])
+        family_households = OBSColumn(
+            id='B11001002',
+            type='Numeric',
+            name='Family Households',
+            description='A family consists of a householder and one or more other people '
+            'living in the same household who are related to the householder by birth, marriage, or '
+            'adoption. All people in a household who are related to the householder are regarded as '
+            'members of his or her family. A family household may contain people not related to the '
+            'householder, but those people are not included as part of the family of the householder in '
+            'tabulations. Thus, the number of family households is equal to the number of families, but '
+            'family households may include more members than do families. A household can contain '
+            'only one family for purposes of tabulations. Not all households contain families since a '
+            'household may be comprised of a group of unrelated people or of one person living alone -- '
+            'these are called nonfamily households. Families are classified by type as either a "married couple '
+            'family" or "other family" according to the sex of the householder and the presence of '
+            'relatives. The data on family type are based on answers to questions on sex and relationship '
+            'that were asked of all people.',
+            weight=8,
+            aggregate='sum',
+            targets={households: 'denominator'},
+            tags=[subsections['housing'], unit_households])
+        median_year_structure_built = OBSColumn(
+            id='B25035001',
+            type='Numeric',
+            name='Median Year Structure Built',
+            description='Median Year Structure Built',
+            weight=8,
+            aggregate='median',
+            targets={housing_units: 'universe'},
+            tags=[subsections['housing'], unit_years])
 
         columns = OrderedDict([
+            ("sales_office_employed", sales_office_employed),
+            ("management_business_sci_arts_employed", management_business_sci_arts_employed),
+            ("pop_25_64", pop_25_64),
+            ("bachelors_degree_or_higher_25_64", bachelors_degree_or_higher_25_64),
+            ("nonfamily_households", nonfamily_households),
+            ("family_households", family_households),
+            ("median_year_structure_built", median_year_structure_built),
             ("rent_burden_not_computed", rent_burden_not_computed),
             ("rent_over_50_percent", rent_over_50_percent),
             ("rent_40_to_50_percent", rent_40_to_50_percent),
@@ -3191,7 +3291,7 @@ class QuantileColumns(ColumnsTask):
         }
 
     def version(self):
-        return 7
+        return 8
 
     def columns(self):
         quantile_columns = OrderedDict()
@@ -3232,7 +3332,7 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 10
+        return 11
 
     def columns(self):
         input_ = self.input()
@@ -3307,7 +3407,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 10
+        return 11
 
     def requires(self):
         return {
@@ -3398,7 +3498,11 @@ class ExtractAll(WrapperTask):
                            'congressional_district',
                            'school_district_secondary',
                            'school_district_unified', 'cbsa', 'place'])
-        if self.year == '2010':
+        if self.sample == '1yr':
+            geographies.remove('zcta5')
+            geographies.remove('block_group')
+            geographies.remove('census_tract')
+        elif self.year == '2010':
             geographies.remove('zcta5')
         for geo in geographies:
             yield Quantiles(geography=geo, year=self.year, sample=self.sample)

@@ -906,9 +906,11 @@ class UpdatedMetaTarget(Target):
             FROM tags
         ),
         meta as (
-            SELECT distinct id, type, name
-            FROM observatory.obs_tag t, observatory.obs_column_tag ct
-            WHERE t.id = ct.tag_id
+            SELECT distinct t.id, t.type, t.name
+            FROM observatory.obs_tag t
+            JOIN observatory.obs_column_tag ct ON t.id = ct.tag_id
+            JOIN observatory.obs_column c ON ct.column_id = c.id
+            JOIN observatory.obs_column_table ctab ON c.id = ctab.column_id
         )
         SELECT meta.id, meta.type, meta.name,
                 distinct_tags.id, distinct_tags.type, distinct_tags.name
@@ -924,25 +926,27 @@ class UpdatedMetaTarget(Target):
 
         # identify columns that have appeared, changed, or disappeared
         changed_columns = '''
-        with columns as (
-            select distinct c.id, c.version
-            from observatory.obs_column c
-                left join observatory.obs_column_to_column c2c on c.id = c2c.source_id,
+        WITH columns AS (
+            SELECT DISTINCT c.id, c.version
+            FROM observatory.obs_column c
+                LEFT JOIN observatory.obs_column_to_column c2c ON c.id = c2c.source_id,
                 observatory.obs_column_tag ct,
-                observatory.obs_tag t
-            where c.id = ct.column_id
-            and ct.tag_id = t.id
-            and c.type not ilike 'geometry%'
-            and c.weight > 0
-            and (c2c.reltype != 'geom_ref' or c2c.reltype is null)
+                observatory.obs_tag t,
+                observatory.obs_column_table ctab
+            WHERE c.id = ct.column_id
+            AND ct.tag_id = t.id
+            AND c.type NOT ILIKE 'geometry%'
+            AND c.weight > 0
+            AND (c2c.reltype != 'geom_ref' OR c2c.reltype IS NULL)
+            AND c.id = ctab.column_id
         ),
-        meta as (
-            select numer_id, numer_version from observatory.obs_meta_numer
+        meta AS (
+            SELECT numer_id, numer_version FROM observatory.obs_meta_numer
         )
-        select id, version, numer_id, numer_version
-        from columns full join meta
-        on id = numer_id and version = numer_version
-        where numer_id is null or id is null;
+        SELECT id, version, numer_id, numer_version
+        FROM columns FULL JOIN meta
+        ON id = numer_id AND version = numer_version
+        WHERE numer_id IS NULL OR id IS NULL;
         '''
         resp = session.execute(changed_columns)
         if resp.fetchone():
