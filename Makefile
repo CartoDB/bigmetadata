@@ -141,6 +141,13 @@ ifeq (run-parallel,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
+ifeq (deps-tree,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "run"
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(RUN_ARGS):;@:)
+endif
+
 .PHONY: run run-parallel catalog docs carto restore dataservices-api
 
 run:
@@ -285,3 +292,6 @@ diff-catalog: clean-catalog
 	  'python -c "from tests.util import recreate_db; recreate_db()" && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util RunDiff --compare FETCH_HEAD && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx Catalog'
+
+deps-tree:
+	docker-compose run --rm bigmetadata luigi-deps-tree --module tasks.$(RUN_ARGS)
