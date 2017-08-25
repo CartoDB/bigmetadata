@@ -295,6 +295,8 @@ br-geo:
 		--parallel-scheduling --workers=8
 
 ### ca
+ca-all: ca-nhs-all ca-census-all
+
 ca-nhs-all:
 	docker-compose run --rm bigmetadata luigi \
 		--module tasks.ca.statcan.data AllNHSTopics \
