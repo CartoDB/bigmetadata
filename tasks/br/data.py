@@ -59,7 +59,6 @@ class LicenseTags(TagsTask):
         ]
 
 
-
 class DownloadData(DownloadUnzipTask):
 
     state = Parameter()
@@ -70,15 +69,17 @@ class DownloadData(DownloadUnzipTask):
         cmd += ' | '
         cmd += 'awk \'{print $9}\''
         cmd += ' | '
-        cmd += 'grep -i {state}_[0-9].*zip$'.format(state=self.state)
+        cmd += 'grep {state}_[A-Za-z_]*[0-9].*zip$'.format(state=self.state.upper())
 
         return shell(cmd)
 
     def download(self):
-        filename = self._get_filename()
-        shell('wget -O {output}.zip {url}{filename}'.format(
-            output=self.output().path, url=self.URL, filename=filename
-        ))
+        filenames = self._get_filename().splitlines()
+
+        for filename in filenames:
+            shell('wget -O {output}.zip {url}{filename}'.format(
+                output=self.output().path, url=self.URL, filename=filename
+            ))
 
 
 class ImportData(CSV2TempTableTask):
