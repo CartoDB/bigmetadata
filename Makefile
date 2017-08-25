@@ -33,27 +33,6 @@ build-postgres:
 psql:
 	docker-compose run --rm bigmetadata psql
 
-acs:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.census.acs ExtractAll \
-	  --year 2015 --sample 5yr \
-	  --parallel-scheduling --workers=8
-
-tiger:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.census.tiger AllSumLevels --year 2015 \
-	  --parallel-scheduling --workers=8
-
-au-data:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.au.data BCPAllGeographiesAllTables --year 2011 \
-	  --parallel-scheduling --workers=8
-
-au-geo:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.au.geo AllGeographies --year 2011 \
-	  --parallel-scheduling --workers=8
-
 clean-catalog:
 	sudo rm -rf catalog/source/*/*
 	# Below code eliminates everything not removed by the command above.
@@ -260,11 +239,6 @@ tiles:
 	  --module tasks.util GenerateAllRasterTiles \
 	  --parallel-scheduling --workers=5
 
-eurostat-data:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
-	  --parallel-scheduling --workers=2
-
 ps:
 	docker-compose ps
 
@@ -295,3 +269,45 @@ diff-catalog: clean-catalog
 
 deps-tree:
 	docker-compose run --rm bigmetadata luigi-deps-tree --module tasks.$(RUN_ARGS)
+
+###### Import tasks
+
+### au
+au-all:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.au.data BCPAllGeographiesAllTables --year 2011 \
+	  --parallel-scheduling --workers=8
+
+au-geo:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.au.geo AllGeographies --year 2011 \
+	  --parallel-scheduling --workers=8
+
+### br
+br-all:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.br.data CensosAllGeographiesAllTables \
+		--parallel-scheduling --workers=8
+
+br-geo:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.br.geo AllGeographies \
+		--parallel-scheduling --workers=8
+
+### eurostat
+eurostat-data:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
+	  --parallel-scheduling --workers=2
+
+### us
+acs:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.us.census.acs ExtractAll \
+	  --year 2015 --sample 5yr \
+	  --parallel-scheduling --workers=8
+
+tiger:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.us.census.tiger AllSumLevels --year 2015 \
+	  --parallel-scheduling --workers=8
