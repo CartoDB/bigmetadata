@@ -294,6 +294,22 @@ br-geo:
 		--module tasks.br.geo AllGeographies \
 		--parallel-scheduling --workers=8
 
+### ca
+ca-nhs-all:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.ca.statcan.data AllNHSTopics \
+		--parallel-scheduling --workers=8
+
+ca-census-all:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.ca.statcan.data AllCensusTopics \
+		--parallel-scheduling --workers=8
+
+ca-geo:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.ca.statcan.geo AllGeographies \
+		--parallel-scheduling --workers=8
+
 ### eurostat
 eurostat-data:
 	docker-compose run --rm bigmetadata luigi \
