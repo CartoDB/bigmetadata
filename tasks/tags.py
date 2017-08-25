@@ -215,7 +215,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 23
+        return 24
 
     def tags(self):
         return [
@@ -276,7 +276,7 @@ class SubsectionTags(TagsTask):
                    type='subsection',
                    description='Breakdowns of the population by health.'),
             OBSTag(id='commerce_economy',
-                   name='Commerce & Economy',
+                   name='Commerce and Economy',
                    type='subsection',
                    description='Broader measures of economic and commercial activity.'),
             OBSTag(id='business_demography',
