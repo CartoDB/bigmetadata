@@ -20,13 +20,13 @@ class DownloadAnuario(DownloadUnzipTask):
 
     year = Parameter()
 
-    URL = 'http://www.caixabankresearch.com/documents/10180/266550/AE{year2}' \
-            '_Datos_estadisticos_municipales-provinciales.zip'
+    URL = 'sources/es.lacaixa/AE{year2}_Datos_estadisticos_municipales-provinciales.zip'
 
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path,
-            url=self.URL.format(year2=self.year[-2:])
+        shell('aws s3 cp s3://{bucket}/{path} {output}.zip'.format(
+            bucket=os.environ['AWS_S3_BUCKET'],
+            path=self.URL.format(year2=self.year[-2:]),
+            output=self.output().path
         ))
 
 
