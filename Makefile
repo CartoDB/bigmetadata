@@ -348,6 +348,19 @@ fr-all:
 	docker-compose run --rm bigmetadata luigi \
 		--module tasks.fr.insee InseeAll \
 		--parallel-scheduling --workers=8
+    
+### mx
+mx-all: mx-geo mx-census
+
+mx-geo:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.mx.inegi AllGeographies \
+		--parallel-scheduling --workers=8
+
+mx-census:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.mx.inegi AllCensus \
+		--parallel-scheduling --workers=8
 
 ### us
 acs:
