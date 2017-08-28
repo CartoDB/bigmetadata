@@ -102,7 +102,8 @@ class ImportData(CSV2TempTableTask):
         else:
             state_code = self.state.upper()
 
-        filename = '{tablename}_{state_code}.[xX][lL][sS]'.format(
+        # All files are {tablename}_{state}.xls, except Basico-MG.xls
+        filename = '{tablename}[-_]{state_code}.xls'.format(
             tablename=self.tablename,
             state_code=state_code
         )
@@ -317,10 +318,7 @@ class Censos(TableTask):
         '''
         Exclude Basico/mg, which seems to be missing
         '''
-        if self.tablename == 'Basico':
-            return [s for s in DATA_STATES if s != 'mg']
-        else:
-            return DATA_STATES
+        return DATA_STATES
 
     def requires(self):
         import_data = {}
