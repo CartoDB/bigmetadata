@@ -284,7 +284,9 @@ au-geo:
 	  --parallel-scheduling --workers=8
 
 ### br
-br-all: br-geo
+br-all: br-geo br-census
+
+br-census:
 	docker-compose run --rm bigmetadata luigi \
 		--module tasks.br.data CensosAllGeographiesAllTables \
 		--parallel-scheduling --workers=8
