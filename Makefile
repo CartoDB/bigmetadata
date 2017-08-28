@@ -338,9 +338,16 @@ es-lacaixa:
 		--parallel-scheduling --workers=8
 
 ### eurostat
-eurostat-data:
+eu-all: eu-geo eu-data
+
+eu-geo:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
+	  --module tasks.eu.geo NUTSGeometries \
+	  --parallel-scheduling --workers=2
+
+eu-data:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.eu.eurostat EURegionalTables \
 	  --parallel-scheduling --workers=2
 
 ### fr
