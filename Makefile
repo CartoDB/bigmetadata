@@ -334,7 +334,7 @@ es-ine-fyp:
 
 es-lacaixa:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.es.lacaixa AnuarioWrapper \
+		--module tasks.es.lacaixa AnuarioAll \
 		--parallel-scheduling --workers=8
 
 ### eurostat
