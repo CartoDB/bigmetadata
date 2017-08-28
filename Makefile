@@ -318,6 +318,19 @@ eurostat-data:
 	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
 	  --parallel-scheduling --workers=2
 
+### mx
+mx-all: mx-geo mx-census
+
+mx-geo:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.mx.inegi AllGeographies \
+		--parallel-scheduling --workers=8
+
+mx-census:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.mx.inegi AllCensus \
+		--parallel-scheduling --workers=8
+
 ### us
 acs:
 	docker-compose run --rm bigmetadata luigi \
