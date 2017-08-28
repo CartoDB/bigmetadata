@@ -12,6 +12,10 @@ from xlrd import open_workbook
 from collections import OrderedDict
 import os
 
+RESOLUTIONS = ['muni', 'prov']
+YEARS = ['2013']
+
+
 class DownloadAnuario(DownloadUnzipTask):
 
     year = Parameter()
@@ -683,15 +687,24 @@ class Anuario(TableTask):
                     )
             session.execute(stmt)
 
+
 class AnuarioWrapper(MetaWrapper):
 
     resolution = Parameter()
     year = Parameter()
     params = {
-        'resolution': ['muni', 'prov'],
-        'year': ['2013'],
+        'resolution': RESOLUTIONS,
+        'year': YEARS,
     }
 
     def tables(self):
         yield Anuario(resolution=self.resolution, year=self.year)
         yield Geometry(resolution=self.resolution)
+
+
+class AnuarioAll(MetaWrapper):
+
+    def requires(self):
+        for year in YEARS:
+            for resolution in RESOLUTIONS:
+                yield AnuarioWrapper(resolution=resolution, year=year)

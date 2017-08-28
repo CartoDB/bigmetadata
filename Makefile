@@ -312,6 +312,31 @@ ca-geo:
 		--module tasks.ca.statcan.geo AllGeographies \
 		--parallel-scheduling --workers=8
 
+### es
+es-all: es-cnig es-ine es-lacaixa
+
+es-cnig:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.es.cnig AllGeometries \
+		--parallel-scheduling --workers=8
+
+es-ine: es-ine-phh es-ine-fyp
+
+es-ine-phh:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.es.ine PopulationHouseholdsHousingMeta \
+		--parallel-scheduling --workers=8
+
+es-ine-fyp:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.es.ine FiveYearPopulationMeta \
+		--parallel-scheduling --workers=8
+
+es-lacaixa:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.es.lacaixa AnuarioAll \
+		--parallel-scheduling --workers=8
+
 ### eurostat
 eurostat-data:
 	docker-compose run --rm bigmetadata luigi \
