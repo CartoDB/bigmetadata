@@ -315,9 +315,6 @@ class Censos(TableTask):
         return 5
 
     def states(self):
-        '''
-        Exclude Basico/mg, which seems to be missing
-        '''
         return DATA_STATES
 
     def requires(self):

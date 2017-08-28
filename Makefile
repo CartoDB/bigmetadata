@@ -284,7 +284,7 @@ au-geo:
 	  --parallel-scheduling --workers=8
 
 ### br
-br-all:
+br-all: br-geo
 	docker-compose run --rm bigmetadata luigi \
 		--module tasks.br.data CensosAllGeographiesAllTables \
 		--parallel-scheduling --workers=8
@@ -355,7 +355,7 @@ fr-all:
 	docker-compose run --rm bigmetadata luigi \
 		--module tasks.fr.insee InseeAll \
 		--parallel-scheduling --workers=8
-    
+
 ### mx
 mx-all: mx-geo mx-census
 
