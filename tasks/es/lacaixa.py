@@ -57,7 +57,9 @@ class AnuarioColumns(ColumnsTask):
             weight=2,
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['telephones']],
-            extra={'source': {'name': u'Tel\xe9fonos  fijos'}},
+            extra={'source': {
+                'name': [u'Tel\xe9fonos  fijos']
+            }},
         )
         motor_vehicles = OBSColumn(
             name='Number of motor vehicles',
@@ -66,7 +68,9 @@ class AnuarioColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['vehicles']],
-            extra={'source': {'name': u'Veh\xedculos de motor'}},
+            extra={'source': {
+                'name': [u'Veh\xedculos de motor']
+            }},
         )
         automobiles = OBSColumn(
             name='Number of automobiles',
@@ -75,7 +79,9 @@ class AnuarioColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['vehicles']],
-            extra={'source': {'name': u'Autom\xf3viles'}},
+            extra={'source': {
+                'name': [u'Autom\xf3viles']
+            }},
         )
         trucks_vans = OBSColumn(
             name='Number of trucks and vans',
@@ -84,7 +90,9 @@ class AnuarioColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['vehicles']],
-            extra={'source': {'name': u'Camiones y furgonetas'}},
+            extra={'source': {
+                'name': [u'Camiones y furgonetas']
+            }},
         )
         motorcycles = OBSColumn(
             name='Number of motorcycles',
@@ -93,7 +101,9 @@ class AnuarioColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['vehicles']],
-            extra={'source': {'name': u'Motocicletas'}},
+            extra={'source': {
+                'name': [u'Motocicletas']
+            }},
         )
         buses = OBSColumn(
             name='Number of Buses',
@@ -102,7 +112,9 @@ class AnuarioColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['vehicles']],
-            extra={'source': {'name': u'Autobuses'}},
+            extra={'source': {
+                'name': [u'Autobuses']
+            }},
         )
         industrial_tractors = OBSColumn(
             name='Number of Industrial Tractors',
@@ -111,7 +123,9 @@ class AnuarioColumns(ColumnsTask):
             weight=3,
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['vehicles']],
-            extra={'source': {'name': u'Tractores  industriales'}},
+            extra={'source': {
+                'name': [u'Tractores  industriales', u'Tractores']
+            }},
         )
         industrial_construction_businesses = OBSColumn(
             name='Industrial and construction businesses',
@@ -129,7 +143,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Actividades industriales (industria y construcci\xf3n)'
+                'name': [u'Actividades industriales (industria y construcci\xf3n)']
             }},
         )
         industrial_businesses = OBSColumn(
@@ -144,7 +158,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Actividades industriales: industria'
+                'name': [u'Actividades industriales: industria']
             }},
             targets={industrial_construction_businesses: DENOMINATOR},
         )
@@ -156,7 +170,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Energ\xeda y agua'
+                'name': [u'Energ\xeda y agua']
             }},
             targets={industrial_businesses: DENOMINATOR},
         )
@@ -168,7 +182,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Extracci\xf3n y transf. min.energ y deriv.; ind.qu\xedm'
+                'name': [u'Extracci\xf3n y transf. min.energ y deriv.; ind.qu\xedm']
             }},
             targets={industrial_businesses: DENOMINATOR},
         )
@@ -180,7 +194,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Industrias transf. de metales; mec. precisi\xf3n'
+                'name': [u'Industrias transf. de metales; mec. precisi\xf3n']
             }},
             targets={industrial_businesses: DENOMINATOR},
         )
@@ -192,7 +206,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Industrias manufactureras'
+                'name': [u'Industrias manufactureras']
             }},
             targets={industrial_businesses: DENOMINATOR},
         )
@@ -204,7 +218,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Actividades industriales: construcci\xf3n'
+                'name': [u'Actividades industriales: construcci\xf3n']
             }},
             targets={industrial_construction_businesses: DENOMINATOR},
         )
@@ -218,7 +232,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Actividades comerciales mayoristas'
+                'name': [u'Actividades comerciales mayoristas']
             }},
         )
         food_drink_tobacco_businesses = OBSColumn(
@@ -229,7 +243,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Materias primas agrarias; alim., bebidas y tabaco'
+                'name': [u'Materias primas agrarias; alim., bebidas y tabaco']
             }},
             targets={wholesale_businesses: DENOMINATOR},
         )
@@ -241,7 +255,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Textiles, confecci\xf3n, calzado y art\xedculos de cuero'
+                'name': [u'Textiles, confecci\xf3n, calzado y art\xedculos de cuero', u'Textiles, confec., calzado y art. cuero']
             }},
             targets={wholesale_businesses: DENOMINATOR},
         )
@@ -256,7 +270,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Productos farmac; perfum. y mant. hogar'
+                'name': [u'Productos farmac; perfum. y mant. hogar']
             }},
             targets={wholesale_businesses: DENOMINATOR},
         )
@@ -269,7 +283,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Comercio al por mayor de art. consumo duradero'
+                'name': [u'Comercio al por mayor de art. consumo duradero']
             }},
             targets={wholesale_businesses: DENOMINATOR},
         )
@@ -283,7 +297,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Comercio al por mayor interindustrial'
+                'name': [u'Comercio al por mayor interindustrial']
             }},
             targets={wholesale_businesses: DENOMINATOR},
         )
@@ -297,7 +311,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Otro comercio al por mayor interindustrial'
+                'name': [u'Otro comercio al por mayor interindustrial']
             }},
             targets={wholesale_businesses: DENOMINATOR},
         )
@@ -310,7 +324,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Otro comercio al por mayor no especificado'
+                'name': [u'Otro comercio al por mayor no especificado']
             }},
             targets={wholesale_businesses: DENOMINATOR},
         )
@@ -328,7 +342,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Actividades comerciales minoristas'
+                'name': [u'Actividades comerciales minoristas']
             }},
         )
         food_retail_businesses = OBSColumn(
@@ -339,7 +353,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. alimentaci\xf3n'
+                'name': [u'Act. com. alimentaci\xf3n']
             }},
             targets={retail_businesses: DENOMINATOR},
         )
@@ -354,7 +368,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. tradicional'
+                'name': [u'Act. com. tradicional']
             }},
             targets={food_retail_businesses: DENOMINATOR},
         )
@@ -370,7 +384,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. supermercados'
+                'name': [u'Act. com. supermercados']
             }},
             targets={food_retail_businesses: DENOMINATOR},
         )
@@ -382,7 +396,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. total no alimentaci\xf3n'
+                'name': [u'Act. com. total no alimentaci\xf3n']
             }},
             targets={retail_businesses: DENOMINATOR},
         )
@@ -396,7 +410,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com vestido y calzado'
+                'name': [u'Act. com vestido y calzado']
             }},
             targets={non_food_retail_businesses: DENOMINATOR},
         )
@@ -411,7 +425,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. hogar'
+                'name': [u'Act. com. hogar']
             }},
             targets={non_food_retail_businesses: DENOMINATOR},
         )
@@ -427,7 +441,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. resto no alimentaci\xf3n'
+                'name': [u'Act. com. resto no alimentaci\xf3n']
             }},
             targets={non_food_retail_businesses: DENOMINATOR},
         )
@@ -439,7 +453,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. c. mixto y otros'
+                'name': [u'Act. com. c. mixto y otros']
             }},
             targets={retail_businesses: DENOMINATOR},
         )
@@ -454,7 +468,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. grandes almacenes'
+                'name': [u'Act. com. grandes almacenes']
             }},
 
             targets={mixed_integrated_trade_businesses: DENOMINATOR},
@@ -474,7 +488,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. hipermercados'
+                'name': [u'Act. com. hipermercados']
             }},
             targets={mixed_integrated_trade_businesses: DENOMINATOR},
         )
@@ -491,7 +505,7 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Act. com. almacenes populares'
+                'name': [u'Act. com. almacenes populares']
             }},
             targets={mixed_integrated_trade_businesses: DENOMINATOR},
         )
@@ -511,11 +525,11 @@ class AnuarioColumns(ColumnsTask):
             aggregate='sum',
             tags=[subsections['commerce_economy'], spain, units['businesses']],
             extra={'source': {
-                'name': u'Centros comerciales'
+                'name': [u'Centros comerciales', u'Centros Comerciales']
             }},
         )
 
-        columns =  OrderedDict([
+        columns = OrderedDict([
             ('telephones', telephones),
             ('motor_vehicles', motor_vehicles),
             ('automobiles', automobiles),
@@ -642,16 +656,17 @@ class Anuario(TableTask):
             col = coltarget._column
             if not col.extra or 'source' not in col.extra or 'name' not in col.extra['source']:
                 continue
-            sourcename = coltarget._column.extra['source']['name']
-            colnum = headers.get(sourcename)
-            year = unicode(int(self.year) - 1)
+            for sourcename in coltarget._column.extra['source']['name']:
+                colnum = headers.get(sourcename)
+                year = unicode(int(self.year) - 1)
+                if not colnum:
+                    colnum = headers.get(sourcename + u'  ' + year)
+                if not colnum:
+                    colnum = headers.get(sourcename + u' ' + year)
+                if colnum:
+                    break
             if not colnum:
-                colnum = headers.get(sourcename + u'  ' + year)
-            if not colnum:
-                colnum = headers.get(sourcename + u' ' + year)
-            if not colnum:
-                raise Exception('Could not find column "{}" in Excel sheets'.format(
-                    sourcename))
+                raise Exception('Could not find column "{}" in Excel sheets'.format(sourcename))
             colnum2name[colnum] = out_colname
 
         # insert data
