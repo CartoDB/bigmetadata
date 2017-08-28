@@ -69,17 +69,16 @@ class DownloadData(DownloadUnzipTask):
         cmd += ' | '
         cmd += 'awk \'{print $9}\''
         cmd += ' | '
-        cmd += 'grep {state}_[A-Za-z_]*[0-9].*zip$'.format(state=self.state.upper())
+        cmd += 'grep -i ^{state}_[0-9]*\.zip$'.format(state=self.state)
 
         return shell(cmd)
 
     def download(self):
-        filenames = self._get_filename().splitlines()
+        filename = self._get_filename()
 
-        for filename in filenames:
-            shell('wget -O {output}.zip {url}{filename}'.format(
-                output=self.output().path, url=self.URL, filename=filename
-            ))
+        shell('wget -O {output}.zip {url}{filename}'.format(
+            output=self.output().path, url=self.URL, filename=filename
+        ))
 
 
 class ImportData(CSV2TempTableTask):
