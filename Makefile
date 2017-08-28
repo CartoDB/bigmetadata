@@ -318,6 +318,12 @@ eurostat-data:
 	  --module tasks.eu.eurostat_bulkdownload EURegionalTables \
 	  --parallel-scheduling --workers=2
 
+### fr
+fr-all:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.fr.insee InseeAll \
+		--parallel-scheduling --workers=8
+
 ### us
 acs:
 	docker-compose run --rm bigmetadata luigi \

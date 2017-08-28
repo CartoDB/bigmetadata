@@ -12,6 +12,9 @@ from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 import csv
 import pandas as pd
 
+TOPICS = ['population', 'housing', 'education', 'household', 'employment']
+
+
 class DownloadUnzipFR(DownloadUnzipTask):
 
     table_theme = Parameter()
@@ -397,9 +400,16 @@ class InseeMetaWrapper(MetaWrapper):
     topic = Parameter()
 
     params = {
-        'topic': ['population', 'housing', 'education', 'household', 'employment']
+        'topic': TOPICS,
     }
 
     def tables(self):
         yield OutputAreas()
         yield FranceCensus(table_theme=self.topic)
+
+
+class InseeAll(WrapperTask):
+
+    def requires(self):
+        for topic in TOPICS:
+            yield InseeMetaWrapper(topic=topic)
