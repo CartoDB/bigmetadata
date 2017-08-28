@@ -360,7 +360,7 @@ mx-geo:
 mx-census:
 	docker-compose run --rm bigmetadata luigi \
 		--module tasks.mx.inegi AllCensus \
-                --parallel-scheduling --workers=8
+		--parallel-scheduling --workers=8
 
 ### us
 acs:
