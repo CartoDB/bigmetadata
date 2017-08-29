@@ -25,11 +25,11 @@ from time import time
 LOGGER = get_logger(__name__)
 
 GEOGRAPHIES = ['state', 'county', 'census_tract', 'block_group',
-                        'puma', 'zcta5', 'school_district_elementary',
-                        'congressional_district',
-                        'school_district_secondary',
-                        'school_district_unified', 'cbsa', 'place']
-YEARS = ['2015', '2010']
+               'puma', 'zcta5', 'school_district_elementary',
+               'congressional_district',
+               'school_district_secondary',
+               'school_district_unified', 'cbsa', 'place']
+YEARS = ['2015', '2014', '2010']
 SAMPLES = ['5yr', '1yr']
 
 
@@ -3542,4 +3542,6 @@ class ACSAll(WrapperTask):
     def requires(self):
         for year in YEARS:
             for sample in SAMPLES:
+                if year == '2014' and sample == '5yr':
+                    continue
                 yield ExtractAll(year=year, sample=sample)
