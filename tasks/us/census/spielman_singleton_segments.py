@@ -1117,14 +1117,8 @@ class SpielmanSingletonColumns(ColumnsTask):
             ('X2', x2)
         ])
 
+
 class SpielmanSingletonMetaWrapper(MetaWrapper):
     def tables(self):
         yield SpielmanSingletonTable()
         yield SumLevel(year='2014', geography='census_tract')
-#
-# class LoadSpielmanSingletonToDB(self):
-#     def requires(self):
-#         reutrn
-#
-#     def run(self):
-#         session = current_session()
