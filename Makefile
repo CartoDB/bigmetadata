@@ -315,7 +315,7 @@ ca-geo:
 		--parallel-scheduling --workers=8
 
 ### es
-es-all: es-cnig es-ine es-lacaixa
+es-all: es-cnig es-ine
 
 es-cnig:
 	docker-compose run --rm bigmetadata luigi \
