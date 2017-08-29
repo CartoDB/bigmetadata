@@ -367,13 +367,54 @@ mx-census:
 		--parallel-scheduling --workers=8
 
 ### us
-acs:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.census.acs ExtractAll \
-	  --year 2015 --sample 5yr \
-	  --parallel-scheduling --workers=8
+us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-dcp us-dob us-zillow
 
-tiger:
+us-bls:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.us.bls AllQCEW \
+		--parallel-scheduling --workers=8
+
+us-acs:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.us.census.acs ACSAll \
+		--parallel-scheduling --workers=8
+
+us-lodes:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.us.census.lodes LODESMetaWrapper --geography block --year 2013 \
+		--parallel-scheduling --workers=8
+
+us-spielman:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.us.census.spielman_singleton_segments SpielmanSingletonMetaWrapper \
+		--parallel-scheduling --workers=8
+
+us-tiger:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.us.census.tiger AllSumLevels --year 2015 \
+	  --parallel-scheduling --workers=8
+
+us-enviroatlas:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.us.epa.enviroatlas AllTables \
+	  --parallel-scheduling --workers=8
+
+us-huc:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.us.epa.huc HUC \
+	  --parallel-scheduling --workers=8
+
+us-dcp:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.us.ny.nyc.dcp MapPLUTOAll \
+	  --parallel-scheduling --workers=8
+
+us-dob:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.us.ny.nyc.dob PermitIssuance \
+	  --parallel-scheduling --workers=8
+
+us-zillow:
+	docker-compose run --rm bigmetadata luigi \
+	  --module tasks.us.zillow AllZillow \
 	  --parallel-scheduling --workers=8

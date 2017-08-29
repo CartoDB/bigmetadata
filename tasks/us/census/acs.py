@@ -24,6 +24,14 @@ from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from time import time
 LOGGER = get_logger(__name__)
 
+GEOGRAPHIES = ['state', 'county', 'census_tract', 'block_group',
+               'puma', 'zcta5', 'school_district_elementary',
+               'congressional_district',
+               'school_district_secondary',
+               'school_district_unified', 'cbsa', 'place']
+YEARS = ['2015', '2014', '2010']
+SAMPLES = ['5yr', '1yr']
+
 
 class ACSTags(TagsTask):
 
@@ -3488,25 +3496,6 @@ class Extract(TableTask):
                         })
 
 
-class ExtractAll(WrapperTask):
-    year = Parameter()
-    sample = Parameter()
-
-    def requires(self):
-        geographies = set(['state', 'county', 'census_tract', 'block_group',
-                           'puma', 'zcta5', 'school_district_elementary',
-                           'congressional_district',
-                           'school_district_secondary',
-                           'school_district_unified', 'cbsa', 'place'])
-        if self.sample == '1yr':
-            geographies.remove('zcta5')
-            geographies.remove('block_group')
-            geographies.remove('census_tract')
-        elif self.year == '2010':
-            geographies.remove('zcta5')
-        for geo in geographies:
-            yield Quantiles(geography=geo, year=self.year, sample=self.sample)
-
 class ACSMetaWrapper(MetaWrapper):
 
     geography = Parameter()
@@ -3514,13 +3503,9 @@ class ACSMetaWrapper(MetaWrapper):
     sample = Parameter()
 
     params = {
-        'geography':['state', 'county', 'census_tract', 'block_group',
-                           'puma', 'zcta5', 'school_district_elementary',
-                           'congressional_district',
-                           'school_district_secondary',
-                           'school_district_unified', 'cbsa', 'place'],
-        'year': ['2015', '2010'],
-        'sample': ['5yr','1yr']
+        'geography': GEOGRAPHIES,
+        'year': YEARS,
+        'sample': SAMPLES
     }
 
     def tables(self):
@@ -3533,3 +3518,30 @@ class ACSMetaWrapper(MetaWrapper):
             pass
         else:
             yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
+
+
+class ExtractAll(WrapperTask):
+
+    year = Parameter()
+    sample = Parameter()
+
+    def requires(self):
+        geographies = set(GEOGRAPHIES)
+        if self.sample == '1yr':
+            geographies.remove('zcta5')
+            geographies.remove('block_group')
+            geographies.remove('census_tract')
+        elif self.year == '2010':
+            geographies.remove('zcta5')
+        for geo in geographies:
+            yield Quantiles(geography=geo, year=self.year, sample=self.sample)
+
+
+class ACSAll(WrapperTask):
+
+    def requires(self):
+        for year in YEARS:
+            for sample in SAMPLES:
+                if year == '2014' and sample == '5yr':
+                    continue
+                yield ExtractAll(year=year, sample=sample)
