@@ -334,11 +334,6 @@ es-ine-fyp:
 		--module tasks.es.ine FiveYearPopulationMeta \
 		--parallel-scheduling --workers=8
 
-es-lacaixa:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.es.lacaixa AnuarioAll \
-		--parallel-scheduling --workers=8
-
 ### eurostat
 eu-all: eu-geo eu-data
 
