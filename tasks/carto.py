@@ -319,7 +319,8 @@ class DumpS3(Task):
     def output(self):
         path = self.input().path.replace('tmp/carto/Dump_', 'do-release-')
         path = path.replace('.dump', '/obs.dump')
-        path = 's3://cartodb-observatory-data/{path}'.format(
+        path = 's3://{bucket}/{path}'.format(
+            bucket=os.environ['AWS_S3_BUCKET'],
             path=path
         )
         LOGGER.info(path)
