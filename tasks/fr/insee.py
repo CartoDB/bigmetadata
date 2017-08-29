@@ -19,24 +19,24 @@ class DownloadUnzipFR(DownloadUnzipTask):
 
     table_theme = Parameter()
 
-    URL_base = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/'
+    URL_base = 'https://www.insee.fr/fr/statistiques/fichier/'
 
     def download(self):
 
         themes = {
-            'population':'infra-population-12/',
-            'housing':'infra-logement-12/',
-            'education':'infra-formation-12/',
-            'household':'infra-famille-12/',
-            'employment':'infra-activite-resident-12/'
-                }
+            'population': '2028582/',
+            'housing': '2028267/',
+            'education': '2028265/',
+            'household': '2028569/',
+            'employment': '2028654/'
+        }
 
         iris = {
-            'population':'infra-population-2012.zip',
-            'housing':'infra-logement-2012.zip',
-            'education':'infra-formation-2012.zip',
-            'household':'infra-famille-2012.zip',
-            'employment':'infra-activite-resident-2012.zip'
+            'population': 'infra-population-2012.zip',
+            'housing': 'infra-logement-2012.zip',
+            'education': 'infra-formation-2012.zip',
+            'household': 'infra-famille-2012.zip',
+            'employment': 'infra-activite-resident-2012.zip'
         }
 
         URL = self.URL_base + themes.get(self.table_theme) + iris.get(self.table_theme)
@@ -46,29 +46,30 @@ class DownloadUnzipFR(DownloadUnzipTask):
            url=URL
         ))
 
+
 class DownloadFR(Task):
 
     table_theme = Parameter()
 
-    URL_base = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/'
+    URL_base = 'https://www.insee.fr/fr/statistiques/fichier/'
 
     def download(self):
 
         themes = {
-            'population':'infra-population-12/',
-            'housing':'infra-logement-12/',
-            'education':'infra-formation-12/',
-            'household':'infra-famille-12/',
-            'employment':'infra-activite-resident-12/'
-                }
+            'population': '2028582/',
+            'housing': '2028267/',
+            'education': '2028265/',
+            'household': '2028569/',
+            'employment': '2028654/'
+        }
 
         iris_overseas = {
-            'population':'base-ic-evol-struct-pop-2012-com.xls',
-            'housing':'base-ic-logement-2012-com.xls',
-            'education':'base-ic-diplomes-formation-2012-com.xls',
-            'household':'base-ic-couples-familles-menages-2012-com.xls',
-            'employment':'base-ic-activite-residents-2012-com.xls'
-                }
+            'population': 'base-ic-evol-struct-pop-2012-com.xls',
+            'housing': 'base-ic-logement-2012-com.xls',
+            'education': 'base-ic-diplomes-formation-2012-com.xls',
+            'household': 'base-ic-couples-familles-menages-2012-com.xls',
+            'employment': 'base-ic-activite-residents-2012-com.xls'
+        }
 
         URL = self.URL_base + themes.get(self.table_theme) + iris_overseas.get(self.table_theme)
 
@@ -368,7 +369,7 @@ class FranceCensus(TableTask):
 
         column_targets = self.columns()
         colnames = ', '.join(column_targets.keys())
-        colnames_typed = ','.join(['{}::{}'.format(colname, ct.get(session).type)
+        colnames_typed = ','.join(['"{}"::{}'.format(colname, ct.get(session).type)
                               for colname, ct in column_targets.iteritems()])
         session.execute('INSERT INTO {output} ({ids}) '
                         'SELECT {ids_typed} '
