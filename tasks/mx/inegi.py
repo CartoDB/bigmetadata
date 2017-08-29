@@ -47,6 +47,8 @@ RESTAGS = {
     'servicios_puntual': [],
 }
 
+SCINCE_DIRECTORY = 'scince_2010'
+
 #ags_cpv2010_municipal_mortalidad.dbf 'MOR'
 #ags_cpv2010_municipal_desarrollo_social.dbf
 
@@ -139,8 +141,9 @@ class ImportDemographicData(Shp2TempTableTask):
         return DownloadDemographicData()
 
     def input_shp(self):
-        cmd = 'ls {input}/scince/shps/'.format(
-            input=self.input().path
+        cmd = 'ls {input}/{scince}/shps/'.format(
+            input=self.input().path,
+            scince=SCINCE_DIRECTORY
         )
         # handle differeing file naming conventions between the geographies
         # and the census data
@@ -156,16 +159,18 @@ class ImportDemographicData(Shp2TempTableTask):
             if ent.lower() == 'national':
                 continue
             if self.table.lower().startswith('pob'):
-                path = 'ls {input}/scince/shps/{ent}/{ent}_{resolution}*.dbf'
+                path = 'ls {input}/{scince}/shps/{ent}/{ent}_{resolution}*.dbf'
             else:
-                path = 'ls {{input}}/scince/shps/{{ent}}/tablas/' \
+                path = 'ls {{input}}/{{scince}}/shps/{{ent}}/tablas/' \
                     '{{ent}}_cpv2010_{{resolution}}*_{table}.dbf'.format(
                         table=DEMOGRAPHIC_TABLES[self.table])
             cmd = path.format(
                 input=self.input().path,
                 ent=ent,
                 resolution=resolution,
+                scince=SCINCE_DIRECTORY,
             )
+
             for shp in shell(cmd).strip().split('\n'):
                 yield shp
 
