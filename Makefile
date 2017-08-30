@@ -418,3 +418,9 @@ us-zillow:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.us.zillow AllZillow \
 	  --parallel-scheduling --workers=8
+
+### who's on first
+wof-all:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.whosonfirst AllWOF \
+		--parallel-scheduling --workers=8
