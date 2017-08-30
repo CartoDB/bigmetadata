@@ -10,6 +10,7 @@ from tasks.tags import UnitTags, SectionTags, SubsectionTags, LicenseTags
 
 from collections import OrderedDict
 import os
+import shutil
 
 class SourceTags(TagsTask):
 
@@ -25,11 +26,21 @@ class SourceTags(TagsTask):
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
-    URL = 'http://data.statistics.gov.uk/Census/BulkLocalCharacteristicsoaandinfo310713.zip'
+    URL = 'https://www.nomisweb.co.uk/output/census/2011/release_4-1_bulk_all_tables.zip'
 
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(output=self.output().path,
-                                                  url=self.URL))
+        shell('wget -O {output}.zip {url}'.format(output=self.output().path, url=self.URL))
+
+    def run(self):
+        super(DownloadEnglandWalesLocal, self).run()
+        work_dir = self.output().path
+        try:
+            for filename in os.listdir(work_dir):
+                if filename.endswith('.zip'):
+                    shell('unzip -d {path} {path}/{zipfile}'.format(path=work_dir, zipfile=filename))
+        except Exception as err:
+            shutil.rmtree(work_dir)
+            raise
 
 
 class ImportEnglandWalesLocal(TempTableTask):
@@ -1119,9 +1130,15 @@ class ImportAllEnglandWalesLocal(Task):
         infiles = shell('ls {input}/LC*DATA.CSV'.format(
             input=self.input().path))
         fhandle = self.output().open('w')
+
+        tables = []
+
         for infile in infiles.strip().split('\n'):
-            table = os.path.split(infile)[-1].split('DATA.CSV')[0]
-            data = yield ImportEnglandWalesLocal(table=table)
+            tables.append(os.path.split(infile)[-1].split('DATA.CSV')[0])
+
+        datas = yield [ImportEnglandWalesLocal(table=table) for table in tables]
+
+        for data in datas:
             fhandle.write('{table}\n'.format(table=data.table))
         fhandle.close()
 
