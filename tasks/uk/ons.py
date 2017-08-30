@@ -4,7 +4,7 @@ from luigi import Task, Parameter, LocalTarget, WrapperTask
 
 from tasks.meta import OBSColumn, DENOMINATOR, current_session, OBSTag
 from tasks.util import (TableTask, ColumnsTask, classpath, shell,
-                        DownloadUnzipTask, TagsTask, TempTableTask, MetaWrapper)
+                        DownloadUnzipTask, TagsTask, TempTableTask, MetaWrapper, create_temp_schema)
 from tasks.uk.cdrc import OutputAreaColumns, OutputAreas
 from tasks.tags import UnitTags, SectionTags, SubsectionTags, LicenseTags
 
@@ -1127,6 +1127,9 @@ class ImportAllEnglandWalesLocal(Task):
         return DownloadEnglandWalesLocal()
 
     def run(self):
+        # Create schema in this wrapper task, avoid race conditions with the dependencies
+        create_temp_schema(self)
+
         infiles = shell('ls {input}/LC*DATA.CSV'.format(
             input=self.input().path))
 
