@@ -38,7 +38,7 @@ class DownloadEnglandWalesLocal(DownloadUnzipTask):
             for filename in os.listdir(work_dir):
                 if filename.endswith('.zip'):
                     shell('unzip -d {path} {path}/{zipfile}'.format(path=work_dir, zipfile=filename))
-        except Exception as err:
+        except:
             shutil.rmtree(work_dir)
             raise
 
@@ -1129,18 +1129,13 @@ class ImportAllEnglandWalesLocal(Task):
     def run(self):
         infiles = shell('ls {input}/LC*DATA.CSV'.format(
             input=self.input().path))
-        fhandle = self.output().open('w')
 
-        tables = []
+        tables = [os.path.split(infile)[-1].split('DATA.CSV')[0] for infile in infiles.strip().split('\n')]
+        task_results = yield [ImportEnglandWalesLocal(table=table) for table in tables]
 
-        for infile in infiles.strip().split('\n'):
-            tables.append(os.path.split(infile)[-1].split('DATA.CSV')[0])
-
-        datas = yield [ImportEnglandWalesLocal(table=table) for table in tables]
-
-        for data in datas:
-            fhandle.write('{table}\n'.format(table=data.table))
-        fhandle.close()
+        with self.output().open('w') as fhandle:
+            for result in task_results:
+                fhandle.write('{table}\n'.format(table=result.table))
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))

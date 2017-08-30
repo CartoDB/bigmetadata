@@ -785,7 +785,7 @@ class CurrentSession(object):
             self.begin()
         try:
             self._session.execute("SELECT 1")
-        except Exception as e:
+        except:
             self._session = None
             self.begin()
         return self._session
