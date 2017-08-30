@@ -12,7 +12,7 @@ import os
 
 class DownloadMetrics(DownloadUnzipTask):
 
-    URL = 'http://edg.epa.gov/data/Public/ORD/EnviroAtlas/National/National_metrics_July2015_CSV.zip'
+    URL = 'http://edg.epa.gov/data/Public/ORD/EnviroAtlas/National/ARCHIVE/National_metrics_July2015_CSV.zip'
 
     def download(self):
         shell('wget -O "{output}".zip "{url}"'.format(
@@ -50,14 +50,14 @@ class EnviroAtlasColumns(ColumnsTask):
 
     def solar_energy(self, usa, environmental, license_, source, units):
         return OrderedDict([
-            ('sole_area', OBSColumn(
+            ('SolE_Area', OBSColumn(
                 name='Area with solar energy potential',
                 tags=[usa, environmental, license_, source, units['km2']],
                 weight=5,
                 type='Numeric',
                 aggregate='sum',
             )),
-            ('sole_mean', OBSColumn(
+            ('SolE_Mean', OBSColumn(
                 name='Annual Average direct normal solar resources kWh/m2/day',
                 tags=[usa, environmental, license_, source, units['ratio']],
                 weight=5,
@@ -69,7 +69,7 @@ class EnviroAtlasColumns(ColumnsTask):
     def avgprecip(self, usa, environmental, license_, source, units):
         inches = units['inches']
         return OrderedDict([
-            ('meanprecip', OBSColumn(
+            ('MeanPrecip', OBSColumn(
                 name='Average annual precipitation',
                 description='Average annual precipitation in inches.',
                 aggregate='average',
@@ -130,13 +130,13 @@ class EnviroAtlasColumns(ColumnsTask):
             tags=[usa, environmental, license_, source, ratio],
         )
         return OrderedDict([
-            ('pfor', pfor),
-            ('pwetl', pwetl),
-            ('pagt', pagt),
-            ('pagp', pagp),
-            ('pagc', pagc),
-            ('pfor90', pfor90),
-            ('pwetl95', pwetl95),
+            ('PFOR', pfor),
+            ('PWETL', pwetl),
+            ('PAGT', pagt),
+            ('PAGP', pagp),
+            ('PAGC', pagc),
+            ('PFOR90', pfor90),
+            ('PWETL95', pwetl95),
         ])
 
     def columns(self):
@@ -173,23 +173,23 @@ class EnviroAtlas(TableTask):
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
-        cols['huc_12'] = input_['geom_cols']['huc_12']
+        cols['HUC_12'] = input_['geom_cols']['huc_12']
         cols.update(input_['data_cols'])
         return cols
 
     def populate(self):
         session = current_session()
         cols = self.columns()
-        cols.pop('huc_12')
+        cols.pop('HUC_12')
         colnames = cols.keys()
         session.execute('''
             INSERT INTO {output} (huc_12, {colnames})
-            SELECT huc_12, {typed_colnames}::Numeric
+            SELECT "HUC_12", {typed_colnames}::Numeric
             FROM {input}
         '''.format(input=self.input()['data'].table,
                    output=self.output().table,
                    colnames=', '.join(colnames),
-                   typed_colnames='::Numeric, '.join(colnames)))
+                   typed_colnames='::Numeric, '.join('"{}"'.format(colname) for colname in colnames)))
 
 
 class AllTables(WrapperTask):
