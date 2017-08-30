@@ -42,7 +42,7 @@ class DownloadOutputAreas(DownloadUnzipTask):
 
     def download(self):
         if 'CDRC_COOKIE' not in os.environ:
-            raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n' \
+            raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n'
                              'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
         shell('wget --header=\'Cookie: {cookie}\' -O {output}.zip {url}'.format(
             output=self.output().path,
