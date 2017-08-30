@@ -366,6 +366,19 @@ mx-census:
 		--module tasks.mx.inegi AllCensus \
 		--parallel-scheduling --workers=8
 
+### uk
+uk-all: uk-census uk-geo
+
+uk-geo:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.uk.cdrc CDRCMetaWrapper \
+		--parallel-scheduling --workers=8
+
+uk-census:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.uk.ons EnglandWalesMetaWrapper \
+		--parallel-scheduling --workers=8
+
 ### us
 us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-dcp us-dob us-zillow
 
