@@ -1294,14 +1294,17 @@ class TempTableTask(Task):
 
 @TempTableTask.event_handler(Event.START)
 def clear_temp_table(task):
+    create_temp_schema(task)
     target = task.output()
-    shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
-        schema=classpath(task)))
     if task.force or target.empty():
         session = current_session()
         session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
             schema=classpath(task), tablename=task.task_id))
         session.flush()
+
+
+def create_temp_schema(task):
+    shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(schema=classpath(task)))
 
 
 class GdbFeatureClass2TempTableTask(TempTableTask):

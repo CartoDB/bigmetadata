@@ -41,9 +41,13 @@ class DownloadOutputAreas(DownloadUnzipTask):
     URL = 'https://data.cdrc.ac.uk/dataset/68771b14-72aa-4ad7-99f3-0b8d1124cb1b/resource/8fff55da-6235-459c-b66d-017577b060d3/download/output-area-classification.zip'
 
     def download(self):
-        shell('wget --header=\'Cookie: auth_tkt="96a4778a0e3366127d4a47cf19a9c7d65751e5a9talos!userid_type:unicode"; auth_tkt="96a4778a0e3366127d4a47cf19a9c7d65751e5a9talos!userid_type:unicode";\' -O {output}.zip {url}'.format(
+        if 'CDRC_COOKIE' not in os.environ:
+            raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n'
+                             'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
+        shell('wget --header=\'Cookie: {cookie}\' -O {output}.zip {url}'.format(
             output=self.output().path,
-            url=self.URL))
+            url=self.URL,
+            cookie=os.environ['CDRC_COOKIE']))
 
 
 class ImportOutputAreas(Shp2TempTableTask):

@@ -783,6 +783,11 @@ class CurrentSession(object):
             print 'FORKED: {} not {}'.format(self._pid, os.getpid())
         if not self._session:
             self.begin()
+        try:
+            self._session.execute("SELECT 1")
+        except:
+            self._session = None
+            self.begin()
         return self._session
 
     def commit(self):
