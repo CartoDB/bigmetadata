@@ -23,38 +23,33 @@ class DownloadSpielmanSingletonFile(Task):
         return 'understanding-americas-neighborhoods-using-uncertain-data-from-the-american-community-survey-output-data.zip'
 
     def url(self):
-        return 'https://www.openicpsr.org/repoEntity/download'
+        return 'https://www.openicpsr.org/openicpsr/project/100235/version/V5/download/project?dirPath=/openicpsr/100235/fcr:versions/V5/Output-Data'
 
     def curl_request(self):
-        docid = 41528
-        email = 'slynn@cartodb.com'
-        return 'curl -L {url} --data "downloaderEmail={email}&agree=I Agree&id={docid}"'.format(
-            docid = docid,
-            email=email,
-            url= self.url());
+        return 'curl -L {url}'.format(url=self.url())
 
     def run(self):
         self.output().makedirs()
         try:
-            self.download();
+            self.download()
         except subprocess.CalledProcessError:
             shell('rm -f {target}'.format(target=self.output().path))
             raise
 
     def download(self):
         print('running ')
-        print('curl -L {url} -o {target}'.format(url=self.url(), target=self.output().path))
-        shell('{curl} -o {target}'.format(
-            curl=self.curl_request(),
-            target=self.output().path))
+        cmd = 'curl -L {url} -o {target}'.format(url=self.url(), target=self.output().path)
+        print(cmd)
+        shell(cmd)
 
     def output(self):
         return LocalTarget(path=os.path.join(classpath(self), self.filename()))
 
+
 class ProcessSpielmanSingletonFile(Task):
 
     def requires(self):
-        return {'downloaded_file' :DownloadSpielmanSingletonFile()}
+        return {'downloaded_file': DownloadSpielmanSingletonFile()}
 
     def run(self):
         try:
