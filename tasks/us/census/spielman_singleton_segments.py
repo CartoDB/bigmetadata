@@ -43,7 +43,7 @@ class DownloadSpielmanSingletonFile(Task):
         shell(cmd)
 
     def output(self):
-        return LocalTarget(path=os.path.join(classpath(self), self.filename()))
+        return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
 
 
 class ProcessSpielmanSingletonFile(Task):
@@ -94,10 +94,7 @@ class ProcessSpielmanSingletonFile(Task):
 
     def rename_files(self):
         rename = {
-            'ustractclustersnew-41530.bin' : 'US_tract_clusters_new.dbf',
-            'ustractclustersnew-41538.txt' : 'US_tract_clusters_new.prj',
-            'ustractclustersnew-41563.bin' : 'US_tract_clusters_new.shp',
-            'ustractclustersnew-41555.bin' : 'US_tract_clusters_new.shx'
+            'US_tract_clusters_new_20150720_427PM.shp': 'US_tract_clusters_new.shp',
         }
         for old_name, new_name in rename.iteritems():
             shell('mv {folder}/{old_name} {folder}/{new_name}'.format(
@@ -107,6 +104,7 @@ class ProcessSpielmanSingletonFile(Task):
 
     def output(self):
         return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
+
 
 class SpielmanSingletonTable(TableTask):
 
