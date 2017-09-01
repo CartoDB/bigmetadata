@@ -42,26 +42,6 @@ def get_engine(user=None, password=None, host=None, port=None,
         db=db or os.environ.get('PGDATABASE', 'postgres')
     ))
 
-    @event.listens_for(engine, 'begin')
-    def receive_begin(conn):
-        if readonly:
-            conn.execute('SET TRANSACTION READ ONLY')
-
-    @event.listens_for(engine, "connect")
-    def connect(dbapi_connection, connection_record):
-        connection_record.info['pid'] = os.getpid()
-
-    @event.listens_for(engine, "checkout")
-    def checkout(dbapi_connection, connection_record, connection_proxy):
-        pid = os.getpid()
-        if connection_record.info['pid'] != pid:
-            connection_record.connection = connection_proxy.connection = None
-            raise exc.DisconnectionError(
-                "Connection record belongs to pid %s, "
-                "attempting to check out in pid %s" %
-                (connection_record.info['pid'], pid)
-            )
-
     return engine
 
 
@@ -764,60 +744,18 @@ class OBSColumnTableTileSimple(Base):
                               postgresql_using='gist')
 
 
+SESSIONS = {}
+
+
 class CurrentSession(object):
-
-    def __init__(self):
-        self._session = None
-        self._pid = None
-
-    def begin(self):
-        if not self._session:
-            self._session = sessionmaker(bind=get_engine())()
-        self._pid = os.getpid()
-
     def get(self):
-        # If we forked, there would be a PID mismatch and we need a new
-        # connection
-        if self._pid != os.getpid():
-            self._session = None
-            print 'FORKED: {} not {}'.format(self._pid, os.getpid())
-        if not self._session:
-            self.begin()
-        try:
-            self._session.execute("SELECT 1")
-        except:
-            self._session = None
-            self.begin()
-        return self._session
+        global SESSIONS
 
-    def commit(self):
-        if self._pid != os.getpid():
-            raise Exception('cannot commit forked connection')
-        if not self._session:
-            return
-        try:
-            self._session.commit()
-        except:
-            self._session.rollback()
-            self._session.expunge_all()
-            raise
-        finally:
-            self._session.close()
-            self._session = None
+        pid = os.getpid()
+        if pid not in SESSIONS:
+            SESSIONS[pid] = sessionmaker(bind=get_engine())()
 
-    def rollback(self):
-        if self._pid != os.getpid():
-            raise Exception('cannot rollback forked connection')
-        if not self._session:
-            return
-        try:
-            self._session.rollback()
-        except:
-            raise
-        finally:
-            self._session.expunge_all()
-            self._session.close()
-            self._session = None
+        return SESSIONS[pid]
 
 
 _current_session = CurrentSession()
@@ -832,26 +770,24 @@ def current_session():
     return _current_session.get()
 
 
-#@luigi.Task.event_handler(Event.SUCCESS)
 def session_commit(task):
     '''
     commit the global session
     '''
     print 'commit {}'.format(task.task_id if task else '')
     try:
-        _current_session.commit()
+        _current_session.get().commit()
     except Exception as err:
         print err
         raise
 
 
-#@luigi.Task.event_handler(Event.FAILURE)
 def session_rollback(task, exception):
     '''
     rollback the global session
     '''
     print 'rollback {}: {}'.format(task.task_id if task else '', exception)
-    _current_session.rollback()
+    _current_session.get().rollback()
 
 
 def fromkeys(d, l):
