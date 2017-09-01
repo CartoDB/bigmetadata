@@ -1845,7 +1845,6 @@ class FiveYearPopulationParse(Task):
 
                         writer.writerow(values)
 
-
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), '0001.csv'))
 
@@ -1874,32 +1873,11 @@ class FiveYearPopulationColumns(ColumnsTask):
         source = input_['source']['ine-source']
         session = current_session()
         total_pop = input_['seccion_columns']['total_pop'].get(session)
+        total_pop_male = input_['seccion_columns']['male_pop'].get(session)
+        total_pop_female = input_['seccion_columns']['female_pop'].get(session)
         columns = OrderedDict()
 
         genders = [None, MALE, FEMALE]
-
-        total_pop_male = OBSColumn(
-            id='total_pop_male',
-            type='Numeric',
-            name='Total population (male)',
-            targets={total_pop: DENOMINATOR},
-            description='',
-            aggregate='sum',
-            weight=3,
-            tags=[spain, tags['age_gender'], units['people'], license, source]
-        )
-        columns['total_pop_male'] = total_pop_male
-        total_pop_female = OBSColumn(
-            id='total_pop_female',
-            type='Numeric',
-            name='Total population (female)',
-            targets={total_pop: DENOMINATOR},
-            description='',
-            aggregate='sum',
-            weight=3,
-            tags=[spain, tags['age_gender'], units['people'], license, source]
-        )
-        columns['total_pop_female'] = total_pop_female
 
         for gender in genders:
             for i in xrange(0, 20):
@@ -2025,6 +2003,8 @@ class FiveYearPopulation(TableTask):
         cols = OrderedDict()
         cols['cusec_id'] = self.input()['geometa']['cusec_id']
         cols['total_pop'] = self.input()['seccion_columns']['total_pop']
+        cols['male_pop'] = self.input()['seccion_columns']['male_pop']
+        cols['female_pop'] = self.input()['seccion_columns']['female_pop']
         for key, col in metacols.iteritems():
             cols[key] = col
 
@@ -2037,6 +2017,10 @@ class FiveYearPopulation(TableTask):
 
         if gender is None:
             cols['total_pop'] = self.input()['seccion_columns']['total_pop']
+        elif gender == MALE:
+            cols['male_pop'] = self.input()['seccion_columns']['male_pop']
+        elif gender == FEMALE:
+            cols['female_pop'] = self.input()['seccion_columns']['female_pop']
         for key, col in metacols.iteritems():
             if gender is None:
                 if not key.endswith('_male') and not key.endswith('_female'):
@@ -2058,6 +2042,7 @@ class FiveYearPopulation(TableTask):
         cols_all = self.columns_by_gender(None).keys()
         cols_male = self.columns_by_gender(MALE).keys()
         cols_female = self.columns_by_gender(FEMALE).keys()
+
         query = 'INSERT INTO {output} ({insert_cols}, {select_cols_male}, {select_cols_female})' + \
                 'SELECT {select_cols}, {select_cols_male}, {select_cols_female} from ' + \
                 '(SELECT {cols_all} from {input} WHERE gender = \'Ambos Sexos\') allgenders, ' + \
@@ -2074,8 +2059,8 @@ class FiveYearPopulation(TableTask):
             select_cols_male=', '.join([x for x in cols_male if x != 'cusec_id']),
             select_cols_female=', '.join([x for x in cols_female if x != 'cusec_id']),
             cols_all=', '.join(cols_all),
-            cols_male=', '.join([cols_all[x] + ' ' + cols_male[x] for x in range(len(cols_all))]),
-            cols_female=', '.join([cols_all[x] + ' ' + cols_female[x] for x in range(len(cols_all))])))
+            cols_male=', '.join([cols_all[x] + ' ' + cols_male[x] for x in range(len(cols_male))]),
+            cols_female=', '.join([cols_all[x] + ' ' + cols_female[x] for x in range(len(cols_female))])))
 
 
 class FiveYearPopulationMeta(MetaWrapper):
