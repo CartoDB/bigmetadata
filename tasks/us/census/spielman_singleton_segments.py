@@ -113,6 +113,7 @@ class ProcessSpielmanSingletonFile(Task):
     def output(self):
         return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
 
+
 class SpielmanSingletonTable(TableTask):
 
     def requires(self):
@@ -123,7 +124,7 @@ class SpielmanSingletonTable(TableTask):
         }
 
     def version(self):
-        return 8
+        return 9
 
     def timespan(self):
         return '2010 - 2014'
@@ -156,6 +157,7 @@ class SpielmanSingletonTable(TableTask):
         })
         columns.update(self.input()['columns'])
         return columns
+
 
 class SpielmanSingletonColumns(ColumnsTask):
 
@@ -1065,7 +1067,7 @@ class SpielmanSingletonColumns(ColumnsTask):
     ])
 
     def version(self):
-        return 12
+        return 13
 
     def requires(self):
         return {
