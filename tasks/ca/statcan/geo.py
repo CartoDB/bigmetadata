@@ -181,7 +181,7 @@ class Geography(TableTask):
                         '       {code}uid as geom_id, '
                         '       wkb_geometry as geom '
                         'FROM {input} '.format(
-                            name=GEOGRAPHY_PROPERNAMES[self.resolution()],
+                            name=GEOGRAPHY_PROPERNAMES[self.resolution],
                             output=self.output().table,
                             code=self.resolution.replace('_', ''),
                             input=self.input()['data'].table))
