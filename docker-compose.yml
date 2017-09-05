@@ -81,7 +81,9 @@
       "LANG": "C.UTF-8",
       "LUIGI_CONFIG_PATH": "/bigmetadata/conf/luigi_client.cfg",
     },
-    "env_file": ".env"
+    "env_file": ".env",
+    "stdin_open": true,
+    "tty": true
   },
   "ipython": {
     "build": "ipython",
