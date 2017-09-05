@@ -100,7 +100,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         input_ = self.input()
@@ -606,7 +606,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 0
+        return 1
 
     def requires(self):
         return {
