@@ -34,7 +34,13 @@ class RawQCEW(CSV2TempTableTask):
         return DownloadQCEW(year=self.year)
 
     def input_csv(self):
-        return os.path.join(self.input().path, '{}.q1-q4.singlefile.csv'.format(self.year))
+        # Depending on year of extract, file name changes -- assumption that q4 is present is too strict
+        # The below may not even work when only 1 quarter of year is present? 
+        for qtr_no_ in [1, 2, 3, 4]:
+            out_file_ = os.path.join(self.input().path, '{0}.q1-q{1}.singlefile.csv'.format(self.year, qtr_no_))
+            if os.path.isfile(out_file_):
+                return out_file_
+
 
 
 class SimpleQCEW(TempTableTask):
