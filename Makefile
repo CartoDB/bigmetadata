@@ -348,7 +348,7 @@ eu-data:
 	  --parallel-scheduling --workers=8
 
 ### fr
-fr-all: fr-insee fr_income
+fr-all: fr-insee fr-income
 
 fr-insee:
 	docker-compose run --rm bigmetadata luigi \
