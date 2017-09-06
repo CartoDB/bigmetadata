@@ -1,16 +1,20 @@
-from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
-                        DownloadUnzipTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath)
-from tasks.meta import current_session, DENOMINATOR, GEOM_REF, UNIVERSE
+from tasks.util import (TableTask, TagsTask, ColumnsTask, MetaWrapper, CSV2TempTableTask, shell, classpath)
+from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from collections import OrderedDict
-from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
+from luigi import Parameter, Task, LocalTarget
 import os
 import glob
-from tasks.meta import OBSTable, OBSColumn, OBSTag
+from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.fr.insee import OutputAreaColumns
 import csv
 import pandas as pd
+
+SUM_UNITS = ('households', 'people', 'tax_consumption_units')
+
+THEME_DEC_IRIS_2012 = 'BASE_TD_FILO_DEC_IRIS_2012'
+THEME_DISP_IRIS_2012 = 'BASE_TD_FILO_DISP_IRIS_2012'
+THEMES = [THEME_DEC_IRIS_2012, THEME_DISP_IRIS_2012]
 
 
 class DownloadFRIncomeIris(Task):
@@ -22,8 +26,8 @@ class DownloadFRIncomeIris(Task):
     def download(self):
 
         themes = {
-            'BASE_TD_FILO_DEC_IRIS_2012': 'BASE_TD_FILO_DEC_IRIS_2012.xls',
-            'BASE_TD_FILO_DISP_IRIS_2012': 'BASE_TD_FILO_DISP_IRIS_2012.xls',
+            THEME_DEC_IRIS_2012: 'BASE_TD_FILO_DEC_IRIS_2012.xls',
+            THEME_DISP_IRIS_2012: 'BASE_TD_FILO_DISP_IRIS_2012.xls',
         }
 
         URL = self.URL_base + themes.get(self.table_theme)
@@ -91,7 +95,6 @@ class IrisIncomeColumns(ColumnsTask):
             'sourcetag': SourceTags()
         }
 
-
     def version(self):
         return 1
 
@@ -105,49 +108,62 @@ class IrisIncomeColumns(ColumnsTask):
         insee_source = input_['sourcetag']['insee']
 
         filepath = "incomemetadata/Income Variables - {}.tsv".format(self.table_theme)
-        with open(os.path.join(os.path.dirname(__file__),filepath)) as tsvfile:
+        with open(os.path.join(os.path.dirname(__file__), filepath)) as tsvfile:
             tsvreader = csv.reader(tsvfile, delimiter="\t")
             # Skip first row (header)
             next(tsvreader, None)
             for line in tsvreader:
-                var_code, short_name, long_name, universe, var_unit, \
+                var_code, short_name, long_name, universes, var_unit, \
                     denominators, subsections = line
-                denominators = denominators.split(',')
-                targets_dict = {}
-                for x in denominators:
-                    x = x.strip()
-                    targets_dict[cols.get(x)] = 'denominator'
-                targets_dict.pop(None, None)
-                universes = universe.split(',')
-                for x in universes:
-                    x = x.strip()
-                    targets_dict[cols.get(x)] = 'universe'
-                targets_dict.pop(None, None)
+
+                targets = self.get_targets(cols, denominators, universes)
+
+                aggregate = ''
+                if var_unit in SUM_UNITS:
+                    aggregate = 'sum'
+
                 cols[var_code] = OBSColumn(
                     id=var_code,
                     type='Numeric',
                     name=long_name,
-                    description =long_name,
+                    description=long_name,
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
-                    aggregate='',
+                    aggregate=aggregate,
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
-                    tags=[france, unittags[var_unit]],
-                    targets= targets_dict
+                    tags=[france, unittags[var_unit], insee_source],
+                    targets=targets
                 )
                 subsections = subsections.split(',')
                 for s in subsections:
                     s = s.strip()
                     subsection_tag = subsectiontags[s]
                     cols[var_code].tags.append(subsection_tag)
-                if var_unit in ('households', 'people', 'tax_consumption_units'):
-                    cols[var_code].aggregate = 'sum'
 
-        for _,col in cols.iteritems():
-            col.tags.append(insee_source)
         return cols
+
+    def get_targets(self, cols, denominators, universes):
+        targets_dict = {}
+        if denominators:
+            targets_dict = self.get_relation_targets(cols, denominators, DENOMINATOR)
+        elif universes:
+            targets_dict = self.get_relation_targets(cols, denominators, UNIVERSE)
+
+        return targets_dict
+
+    def get_relation_targets(self, cols, relations, relation):
+        targets_dict = {}
+        if relations:
+            relations = relations.split(',')
+            for x in relations:
+                x = x.strip()
+                targets_dict[cols.get(x)] = relation
+            targets_dict.pop(None, None)
+
+        return targets_dict
+
 
 class FranceIncome(TableTask):
 
@@ -178,8 +194,8 @@ class FranceIncome(TableTask):
 
         column_targets = self.columns()
         colnames = ', '.join(column_targets.keys())
-        colnames_typed = ','.join(['{}::{}'.format(colname, ct.get(session).type)
-                              for colname, ct in column_targets.iteritems()])
+        colnames_typed = ','.join(['"{}"::{}'.format(colname, ct.get(session).type)
+                                   for colname, ct in column_targets.iteritems()])
         session.execute('INSERT INTO {output} ({ids}) '
                         'SELECT {ids_typed} '
                         'FROM {input} '.format(
@@ -190,8 +206,7 @@ class FranceIncome(TableTask):
                         ))
 
 
-class IRISIncomeTables(WrapperTask):
+class IRISIncomeTables(MetaWrapper):
     def requires(self):
-        topics = ['BASE_TD_FILO_DEC_IRIS_2012', 'BASE_TD_FILO_DISP_IRIS_2012']
-        for table_theme in topics:
+        for table_theme in THEMES:
             yield FranceIncome(table_theme=table_theme)
