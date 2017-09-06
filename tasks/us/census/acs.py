@@ -3542,6 +3542,4 @@ class ACSAll(WrapperTask):
     def requires(self):
         for year in YEARS:
             for sample in SAMPLES:
-                if year == '2014' and sample == '5yr':
-                    continue
                 yield ExtractAll(year=year, sample=sample)
