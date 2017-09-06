@@ -5,24 +5,26 @@ from tasks.meta import current_session, DENOMINATOR, GEOM_REF, UNIVERSE
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 import os
+import glob
 from tasks.meta import OBSTable, OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.fr.insee import OutputAreaColumns
 import csv
 import pandas as pd
 
+
 class DownloadFRIncomeIris(Task):
 
     table_theme = Parameter()
 
-    URL_base = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/filosofi/filosofi-2012/infra/'
+    URL_base = 'https://www.insee.fr/fr/statistiques/fichier/2507751/'
 
     def download(self):
 
         themes = {
-            'BASE_TD_FILO_DEC_IRIS_2012':'BASE_TD_FILO_DEC_IRIS_2012.xls',
-            'BASE_TD_FILO_DISP_IRIS_2012':'BASE_TD_FILO_DISP_IRIS_2012.xls',
-                }
+            'BASE_TD_FILO_DEC_IRIS_2012': 'BASE_TD_FILO_DEC_IRIS_2012.xls',
+            'BASE_TD_FILO_DISP_IRIS_2012': 'BASE_TD_FILO_DISP_IRIS_2012.xls',
+        }
 
         URL = self.URL_base + themes.get(self.table_theme)
 
@@ -38,6 +40,7 @@ class DownloadFRIncomeIris(Task):
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
+
 class RawIncomeIrisData(CSV2TempTableTask):
 
     table_theme = Parameter()
@@ -45,14 +48,22 @@ class RawIncomeIrisData(CSV2TempTableTask):
     def requires(self):
         return DownloadFRIncomeIris(table_theme=self.table_theme)
 
-    def input_csv(self):
+    def xls2csv(self):
         # Read in excel file, it should be the only file in self.input().path
-        xls = pd.ExcelFile(os.path.join(self.input().path,os.listdir(self.input().path)[0]))
+        # xls = pd.ExcelFile(os.path.join(self.input().path, os.listdir(self.input().path)[0]))
+        xls = pd.ExcelFile(glob.glob(os.path.join(self.input().path,
+                                                  '{table_theme}.xls'.format(table_theme=self.table_theme)))[0])
 
         # Remove header
-        df = xls.parse(skiprows=5,header=0)
-        df.to_csv(os.path.join(self.input().path,'{table_theme}.csv'.format(table_theme=self.table_theme)),index=False,encoding='utf8')
-        return os.path.join(self.input().path,'{table_theme}.csv'.format(table_theme=self.table_theme))
+        df = xls.parse(skiprows=5, header=0)
+        df.to_csv(os.path.join(self.input().path, '{table_theme}.csv'.format(table_theme=self.table_theme)),
+                  index=False, encoding='utf8')
+
+    def input_csv(self):
+        if not glob.glob(os.path.join(self.input().path, '{table_theme}.csv'.format(table_theme=self.table_theme))):
+            self.xls2csv()
+
+        return os.path.join(self.input().path, '{table_theme}.csv'.format(table_theme=self.table_theme))
 
 
 class SourceTags(TagsTask):
@@ -181,6 +192,6 @@ class FranceIncome(TableTask):
 
 class IRISIncomeTables(WrapperTask):
     def requires(self):
-        topics = ['BASE_TD_FILO_DEC_IRIS_2012','BASE_TD_FILO_DISP_IRIS_2012']
+        topics = ['BASE_TD_FILO_DEC_IRIS_2012', 'BASE_TD_FILO_DISP_IRIS_2012']
         for table_theme in topics:
             yield FranceIncome(table_theme=table_theme)
