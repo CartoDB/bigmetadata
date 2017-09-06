@@ -23,21 +23,7 @@ from catalog.markdown import setup as markdown_setup
 class env(nodes.literal):
     pass
 
-# Add custom CSS & JS files
-html_context = {
-    'css_files': [
-        '//libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css',
-        '_static/bigmetadata.css'
-    ],
-    'script_files': [
-        #'https://code.jquery.com/jquery-1.12.0.min.js',
-        '_static/jquery.js',
-        '_static/underscore.js',
-        '_static/doctools.js',
-        '_static/bigmetadata.js',
-        '//libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js'
-    ],
-}
+sys.setrecursionlimit(2500)
 
 # "Inline" extension to allow use of Sphinx-specific (vs docutils/ReST)
 # methods.
@@ -73,7 +59,7 @@ def setup(app):
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['rst2pdf.pdfbuilder']
+extensions = ['rst2pdf.pdfbuilder', 'sphinx_tabs.tabs']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -91,8 +77,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'observatory'
-copyright = u'2016, CartoDB'
-author = u'CartoDB'
+copyright = u'2017, CARTO'
+author = u'CARTO'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -118,7 +104,7 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+exclude_patterns = ['**/.git']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -157,7 +143,9 @@ html_theme = 'alabaster'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+    'show_related': True
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
@@ -181,7 +169,7 @@ html_theme = 'alabaster'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ['../_static']
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -267,7 +255,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   (master_doc, 'bigmetadata.tex', u'Observatory Catalog',
-   u'CartoDB', 'manual'),
+   u'CARTO', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -328,7 +316,7 @@ texinfo_documents = [
 #texinfo_no_detailmenu = False
 
 pdf_documents = [
-    ('index', u'observatory', u'The Data Observatory', u'CartoDB', {
+    ('index', u'observatory', u'The Data Observatory', u'CARTO', {
     }),
 ]
 

@@ -1,0 +1,155 @@
+001	Total number of holdings
+002	Total Agricultural area (AA)
+003	Total standard gross margin (ESU)
+004	Number of holdings in less favoured area
+005	Agricultural area in less favoured area
+006	Number of holdings in mountain area
+007	Agricultural area in mountain area
+008	Number of holdings with less than 5 ha AA
+009	Number of holdings with 5 to 10 ha AA
+010	Number of holdings with 10 to 20 ha AA
+011	Number of holdings with 20 to 30 ha AA
+012	Number of holdings with 30 to 50 ha AA
+013	Number of holdings with >=50 ha AA
+014	Total AA (in ha) of holdings with less than 5 ha AA
+015	Total AA (in ha) of holdings with 5 to 10 ha AA
+016	Total AA (in ha) of holdings with 10 to 20 ha AA
+017	Total AA (in ha) of holdings with 20 to 30 ha AA
+018	Total AA (in ha) of holdings with 30 to 50 ha AA
+019	Total AA (in ha) of holdings with >=50 ha AA
+020	Number of holdings with less than 2 ESU
+021	Number of holdings with 2 to 4 ESU
+022	Number of holdings with 4 to 8 ESU
+023	Number of holdings with 8 to 16 ESU
+024	Number of holdings with 16 to 40 ESU
+025	Number of holdings with 40 to 100 ESU
+026	Number of holdings with 100 ESU and over
+027	Total AA of holdings with less than 2 ESU
+028	Total AA of holdings with 2 to 4 ESU
+029	Total AA of holdings with 4 to 8 ESU
+030	Total AA of holdings with 8 to 16 ESU
+031	Total AA of holdings with 16 to 40 ESU
+032	Total AA of holdings with 40 to 100 ESU
+033	Total AA of holdings with 100 ESU and over
+034	AA owner farmed
+035	AA tenant farmed
+036	AA share farmed or in other modes of tenure
+037	Total area (D,E,F,G,H) in ha
+038	Number of holdings with arable land (D)
+039	Arable land (in ha)
+040	AA of holdings with arable land (in ha)
+041	Number of holdings with cereals (D/01-D/08)
+042	Cereals (D/01-D/08) (in ha)
+043	Number of holdings with common wheat and spelt (D/01)
+044	Common wheat and spelt (in ha)
+045	Number of holdings with durum wheat (D/02)
+046	Durum wheat (D/02) (in ha)
+047	Number of holdings with rye (D/03)
+048	Rye (D/03) (in ha)
+049	Number of holdings with barley (D/04)
+050	Barley (D/04) (in ha)
+051	Number of holdings with oats (D/05)
+052	Oats (D/05) (in ha)
+053	Number of holdings with grain maize (D/06)
+054	Grain maize (D/06) (in ha)
+055	Number of holdings with rice (D/07)
+056	Rice (D/07) (in ha)
+057	Number of holdings with other cereal (D/08)
+058	Other cereal (D/08) (in ha)
+059	Number of holdings with dried vegetables (D/09)
+060	Dried vegetables (D/09 (in ha)
+061	Number of holdings with root crops (D/10-D/12)
+062	Root crops (D/10-D/12) (in ha)
+063	Number of holdings with potatoes (D/10)
+064	Potatoes (D/10) (in ha)
+065	Number of holdings with sugar-beet (D/11)
+066	Sugar-beet (D/11) (in ha)
+067	Number of holdings with fodder roots and brassica (D/12)
+068	fodder roots and brassica (D/12) (in ha)
+069	Number of holdings with industrial plants (D/13)
+070	Industrial plants (D/13) (in ha)
+071	Number of holdings with fresh vegetables, melons and strawberries (D/14 + D/15)
+072	Fresh vegetables, melons and strawberries (D/14 + D/15) (in ha)
+073	Number of holdings with flowers and ornamental plants (D/16 + D/17)
+074	flowers and ornamental plants (D/16 + D/17) (in ha)
+075	Number of holdings with forage plants (D/18)
+076	Forage plants (D/18 (in ha)
+077	Number of holdings with permanent pasture and meadows (F)
+078	permanent pasture and meadows (F) (in ha)
+079	Number of holdings with permanent crops (G)
+080	Permanent crops (G) (in ha)
+081	Number of holdings with vineyards (G/04)
+082	Vineyards (G/04) (in ha)
+083	Number of holdings with woodland (H/02)
+084	Woodland (H/02) (in ha)
+085	Total number of holdings with livestock (J/01-J/19)
+086	Number of holdings with bovine animals (J/02-J/08)
+087	Bovine animals (J/02-J/08), number
+088	Number of holdings with bovine animals under 1 year old (J/02)
+089	Bovine animals under 1 year old (J/02), number
+090	Number of holdings with bovine animals 1 year or over but under 2 years, male (J/03)
+091	Bovine animals 1 year or over but under 2 years, male (J/03), number
+092	Number of holdings with bovine animals 1 year or over but under 2 years, female (J/04)
+093	Bovine animals 1 year or over but under 2 years, female (J/04), number
+094	Number of holdings with bovine animals 2 year old and over, male (J/05)
+095	Bovine animals 2 year old and over, male (J/05), number
+096	Number of holdings with bovine animals 2 year old and over, heifers (J/06)
+097	Bovine animals 2 year old and over, heifers (J/06)
+098	Number of holdings with dairy cows (J/07)
+099	Dairy cows (J/07), number
+100	Number of holdings with other cows (J/08)
+101	Other cows (J/08), number
+102	Number of holdings with sheep (J/09)
+103	Sheep (J/09), number
+104	Number of holdings with goats (J/10)
+105	Goats (J/10), number
+106	Number of holdings with pigs (J/11-J/13)
+107	Pigs (J/11-J/13), number
+108	Number of holdings with poultry (J/14-J/16)
+109	Poultry (J/14-J/16), number
+110	Total labour force (L/01-L/06) in AWU
+111	Labour force excluding non-family labour force employed on a non-regular basis (L/01-L/04) (persons)
+112	Labour force excluding non-family labour force employed on a non-regular basis (L/01-L/04), in AWU
+113	Total family labour force (L/01-L/03) (person)
+114	Total family labour force (L/01-L/03) in AWU
+115	Total family labour force full-time employed (L/01-L/03) (person)
+116	Holder's being a natural person (persons)
+117	Holder's being a natural person (AWU)
+118	Holder's being a natural person: age < 35 years (persons)
+119	Holder's being a natural person: age < 35 years (AWU)
+120	Holder's being a natural person: age 35 to 44 years (persons)
+121	Holder's being a natural person: age 35 to 44 years (AWU)
+122	Holder's being a natural person: age 45 to 54 years (persons)
+123	Holder's being a natural person: age 45 to 54 years (AWU)
+124	Holder's being a natural person: age 55 to 64 years (persons)
+125	Holder's being a natural person: age 55 to 64 years (AWU)
+126	Holder's being a natural person: age 65 years and over (persons)
+127	Holder's being a natural person: age 65 years and over(AWU)
+128	Holder's being a natural person: sex = male (persons)
+129	Holder's being a natural person: sex = female (persons)
+130	Holder's being a natural person: work time > 0 to < 25% (persons)
+131	Holder's being a natural person: work time > 0 to < 25% (AWU)
+132	Holder's being a natural person: work time > 25 to < 50% (persons)
+133	Holder's being a natural person: work time > 25 to < 50% (AWU)
+134	Holder's being a natural person: work time > 50 to < 75% (persons)
+135	Holder's being a natural person: work time > 50 to < 75% (AWU)
+136	Holder's being a natural person: work time > 75 to < 100% (persons)
+137	Holder's being a natural person: work time > 75 to < 100% (AWU)
+138	Holder's being a natural person: work time 100% (persons)
+139	Holder's being a natural person: work time 100% (AWU)
+140	Number of holdings with: Specialist field crops
+141	Number of holdings with: Specialist horticulture
+142	Number of holdings with: Specialist permanent crops
+143	Number of holdings with: Specialist grazing livestock
+144	Number of holdings with: Specialist granivores
+145	Number of holdings with: Mixed cropping
+146	Number of holdings with: Mixed livestock holdings
+147	Number of holdings with: Mixed crops - livestock
+148	Total AA of holdings with: Specialist field crops
+149	Total AA of holdings with: Specialist horticulture
+150	Total AA of holdings with: Specialist permanent crops
+151	Total AA of holdings with: Specialist grazing livestock
+152	Total AA of holdings with: Specialist granivores
+153	Total AA of holdings with: Mixed cropping
+154	Total AA of holdings with: Mixed livestock holdings
+155	Total AA of holdings with: Mixed crops - livestock

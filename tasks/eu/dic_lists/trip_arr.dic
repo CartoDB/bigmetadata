@@ -1,0 +1,9 @@
+TOTAL	Total 
+PACK	Package travel
+NPACK	Non-package travel 
+TRA_TO_TA	Booking of the main means of transport via tour operator or travel agency
+ACC_TO_TA	Booking of the main means of accommodation via tour operator or travel agency
+TRA_WEB	Internet booking of the main means of transport
+ACC_WEB	Internet booking of the main means of accommodation
+DIRECT	Booking of the trip independent: direct booking with the service provider
+NBOOK	Booking of the trip independent: no booking was needed

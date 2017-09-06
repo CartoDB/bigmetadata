@@ -1,0 +1,67 @@
+0000000	NS - Total
+1000000	Males
+2000000	Females
+0100000	0 - 14 years (not included in total)
+0200000	15 - 24 years
+0300000	25 - 44 years
+0400000	45 - 64 years
+0500000	65 years and over
+0900000	Age not specified
+0010000	1 to 3 nights
+0020000	4 or more consecutive nights
+0030000	From 4 to 7 nights
+0040000	From 8 to 14 nights
+0050000	From 15 to 28 nights
+0060000	From 29 to 91 nights
+0070000	From 92 to 365 nights
+0090000	Duration not specified
+0001000	Air
+0002000	Sea
+0003000	Land
+0004000	Railway
+0005000	Bus, Coach
+0006000	Private and hired vehicles
+0007000	Other
+0009000	Transport mode not specified
+0000100	Direct reservation with transport/accommodation operator
+0000200	Use of travel agent, tour operator
+0000300	Package travel
+0000400	No type of organisation
+0000900	Type of organisation not specified
+0000010	Hotels and similar establishments
+0000020	Other collective accommodation establishments
+0000030	Tourist campsites
+0000040	Holiday dwellings
+0000050	Other collective accommodation n.i.e.
+0000060	Specialised tourist accommodation
+0000070	Private tourist accommodation
+0000080	Rented accommodation
+0000090	Second homes
+0000011	Other types of private accommodation
+0000009	Type of accommodation not specified
+4000001	January
+4000002	February
+4000003	March
+4000004	April
+4000005	May
+4000006	June
+4000007	July
+4000008	August
+4000009	September
+4000010	October
+4000011	November
+4000012	December
+4000099	Month not specified
+4100001	January (of previous year)
+4100002	February (of previous year)
+4100003	March (of previous year)
+4100004	April (of previous year)
+4100005	May (of previous year)
+4100006	June (of previous year)
+4100007	July (of previous year)
+4100008	August (of previous year)
+4100009	September (of previous year)
+4100010	October (of previous year)
+4100011	November (of previous year)
+4100012	December (of previous year)
+4100099	Month not specified (of previous year)

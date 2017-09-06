@@ -2,23 +2,45 @@
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 
-from tasks.meta import OBSColumn, DENOMINATOR, current_session
+from tasks.meta import OBSColumn, DENOMINATOR, current_session, OBSTag
 from tasks.util import (TableTask, ColumnsTask, classpath, shell,
-                        DownloadUnzipTask, TempTableTask)
-from tasks.uk.cdrc import OutputAreaColumns
-from tasks.tags import UnitTags, SectionTags, SubsectionTags
+                        DownloadUnzipTask, TagsTask, TempTableTask, MetaWrapper, create_temp_schema)
+from tasks.uk.cdrc import OutputAreaColumns, OutputAreas
+from tasks.tags import UnitTags, SectionTags, SubsectionTags, LicenseTags
 
 from collections import OrderedDict
 import os
+import shutil
+
+class SourceTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='ons',
+                    name='Office for National Statistics (ONS)',
+                    type='source',
+                    description="The UK's largest independent producer of official statistics and the recognised national statistical institute of the UK (`ONS <https://www.ons.gov.uk/>`_)")]
 
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
-    URL = 'http://data.statistics.gov.uk/Census/BulkLocalCharacteristicsoaandinfo310713.zip'
+    URL = 'https://www.nomisweb.co.uk/output/census/2011/release_4-1_bulk_all_tables.zip'
 
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(output=self.output().path,
-                                                  url=self.URL))
+        shell('wget -O {output}.zip {url}'.format(output=self.output().path, url=self.URL))
+
+    def run(self):
+        super(DownloadEnglandWalesLocal, self).run()
+        work_dir = self.output().path
+        try:
+            for filename in os.listdir(work_dir):
+                if filename.endswith('.zip'):
+                    shell('unzip -d {path} {path}/{zipfile}'.format(path=work_dir, zipfile=filename))
+        except:
+            shutil.rmtree(work_dir)
+            raise
 
 
 class ImportEnglandWalesLocal(TempTableTask):
@@ -54,13 +76,17 @@ class CensusColumns(ColumnsTask):
             'units': UnitTags(),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
 
     def version(self):
-        return 2
+        return 4
 
     def columns(self):
         input_ = self.input()
+        source = input_['source']['ons']
+        license = input_['license']['uk_ogl']
         uk = input_['sections']['uk']
         subsections = input_['subsections']
         units = input_['units']
@@ -995,7 +1021,7 @@ class CensusColumns(ColumnsTask):
             tags=[uk, units['people'], subsections['employment'], ],
         )
 
-        return OrderedDict([
+        columns = OrderedDict([
             ('total_pop', total_pop),
             ('pop_0_to_24', pop_0_to_24),
             ('pop_25_to_49', pop_25_to_49),
@@ -1090,7 +1116,10 @@ class CensusColumns(ColumnsTask):
             ('never_worked', never_worked),
             ('long_term_unemployed', long_term_unemployed),
         ])
-
+        for _, col in columns.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+        return columns
 
 class ImportAllEnglandWalesLocal(Task):
 
@@ -1098,14 +1127,18 @@ class ImportAllEnglandWalesLocal(Task):
         return DownloadEnglandWalesLocal()
 
     def run(self):
+        # Create schema in this wrapper task, avoid race conditions with the dependencies
+        create_temp_schema(self)
+
         infiles = shell('ls {input}/LC*DATA.CSV'.format(
             input=self.input().path))
-        fhandle = self.output().open('w')
-        for infile in infiles.strip().split('\n'):
-            table = os.path.split(infile)[-1].split('DATA.CSV')[0]
-            data = yield ImportEnglandWalesLocal(table=table)
-            fhandle.write('{table}\n'.format(table=data.table))
-        fhandle.close()
+
+        tables = [os.path.split(infile)[-1].split('DATA.CSV')[0] for infile in infiles.strip().split('\n')]
+        task_results = yield [ImportEnglandWalesLocal(table=table) for table in tables]
+
+        with self.output().open('w') as fhandle:
+            for result in task_results:
+                fhandle.write('{table}\n'.format(table=result.table))
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
@@ -1170,3 +1203,8 @@ class EnglandWalesLocal(TableTask):
                             output=self.output().table,
                             input=intable)
                 session.execute(stmt)
+
+class EnglandWalesMetaWrapper(MetaWrapper):
+    def tables(self):
+        yield EnglandWalesLocal()
+        yield OutputAreas()

@@ -1,9 +1,11 @@
 from luigi import Task, Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
-                        ColumnsTask, TableTask)
+                        ColumnsTask, TableTask, MetaWrapper)
 from tasks.meta import GEOM_REF, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
+from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
+from tasks.mx.inegi_columns import SourceTags, LicenseTags
 
 from collections import OrderedDict
 
@@ -33,6 +35,19 @@ RESDESCS = {
     'servicios_area': '',
     'servicios_puntual': '',
 }
+
+RESTAGS = {
+    'ageb': ['cartographic_boundary', 'interpolation_boundary'],
+    'entidad': ['cartographic_boundary', 'interpolation_boundary'],
+    'localidad_rural_no_amanzanada': ['cartographic_boundary'],
+    'localidad_urbana_y_rural_amanzanada': ['cartographic_boundary'],
+    'manzana': ['cartographic_boundary', 'interpolation_boundary'],
+    'municipio': ['cartographic_boundary', 'interpolation_boundary'],
+    'servicios_area': [],
+    'servicios_puntual': [],
+}
+
+SCINCE_DIRECTORY = 'scince_2010'
 
 #ags_cpv2010_municipal_mortalidad.dbf 'MOR'
 #ags_cpv2010_municipal_desarrollo_social.dbf
@@ -126,8 +141,9 @@ class ImportDemographicData(Shp2TempTableTask):
         return DownloadDemographicData()
 
     def input_shp(self):
-        cmd = 'ls {input}/scince/shps/'.format(
-            input=self.input().path
+        cmd = 'ls {input}/{scince}/shps/'.format(
+            input=self.input().path,
+            scince=SCINCE_DIRECTORY
         )
         # handle differeing file naming conventions between the geographies
         # and the census data
@@ -143,16 +159,18 @@ class ImportDemographicData(Shp2TempTableTask):
             if ent.lower() == 'national':
                 continue
             if self.table.lower().startswith('pob'):
-                path = 'ls {input}/scince/shps/{ent}/{ent}_{resolution}*.dbf'
+                path = 'ls {input}/{scince}/shps/{ent}/{ent}_{resolution}*.dbf'
             else:
-                path = 'ls {{input}}/scince/shps/{{ent}}/tablas/' \
+                path = 'ls {{input}}/{{scince}}/shps/{{ent}}/tablas/' \
                     '{{ent}}_cpv2010_{{resolution}}*_{table}.dbf'.format(
                         table=DEMOGRAPHIC_TABLES[self.table])
             cmd = path.format(
                 input=self.input().path,
                 ent=ent,
                 resolution=resolution,
+                scince=SCINCE_DIRECTORY,
             )
+
             for shp in shell(cmd).strip().split('\n'):
                 yield shp
 
@@ -170,16 +188,32 @@ class GeographyColumns(ColumnsTask):
         'servicios_area': 3,
     }
 
+    def requires(self):
+        return {
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+            'boundary': BoundaryTags()
+        }
+
     def version(self):
-        return 6
+        return 8
 
     def columns(self):
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        license = input_['license']['inegi-license']
+        source = input_['source']['inegi-source']
+        boundary_type = input_['boundary']
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
             name=RESNAMES[self.resolution],
             description=RESDESCS[self.resolution],
             weight=self.weights[self.resolution],
+            tags=[sections['mx'], subsections['boundary'], license, source]
         )
         geom_ref = OBSColumn(
             id=self.resolution + '_cvegeo',
@@ -191,6 +225,9 @@ class GeographyColumns(ColumnsTask):
             type='Text',
             weight=0,
         )
+
+        geom.tags.extend(boundary_type[i] for i in RESTAGS[self.resolution])
+
         return OrderedDict([
             ('the_geom', geom),
             ('cvegeo', geom_ref),
@@ -305,3 +342,18 @@ class AllCensus(WrapperTask):
                 continue
             for table in DEMOGRAPHIC_TABLES.keys():
                 yield Census(resolution=resolution, table=table)
+
+
+class CensusWrapper(MetaWrapper):
+
+    resolution = Parameter()
+    table = Parameter()
+
+    params = {
+        'resolution': set(RESOLUTIONS) - set(['servicios_area']),
+        'table': DEMOGRAPHIC_TABLES.keys()
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield Census(resolution=self.resolution, table=self.table)

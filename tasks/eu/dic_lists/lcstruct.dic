@@ -1,0 +1,52 @@
+D	Total labour costs (total)
+D01	Total labour costs (excluding apprentices)
+D02	Total labour costs for apprentices
+D1_D4_MD5	Labour cost for LCI (compensation of employees plus taxes minus subsidies)
+D1_D4_MD5_XB	Labour cost for LCI excluding bonuses
+D1	Compensation of employees (total)
+D11	Wages and salaries (total)
+D111	Wages and salaries (excluding apprentices)
+D1111	Direct remuneration, bonuses and allowances
+D11111	Direct remuneration, bonuses and allowances paid in each pay period
+D11112	Direct remuneration, bonuses and allowances not paid in each pay period
+D1111A	Direct remuneration (LCS 2000)
+D1111B	Bonuses (LCS 2000)
+D111121	Bonuses paid at fixed period
+D1112	Payments to employees savings schemes
+D1113	Payments for days not worked
+D1114	Wages and salaries in kind
+D11141	Company products
+D11142	Staff housing
+D11143	Company cars
+D11144	Stock options and share purchase schemes
+D11144A	Other remuneration in kind (LCS 2000)
+D11145	Other
+D112	Wages and salaries of apprentices
+D12	Employers' social contributions (total)
+D121	Employers' actual social contributions
+D1211	Statutory social security contributions
+D1212	Collectively agreed, contractual and voluntary social security contributions
+D122	Employers' imputed social contributions
+D1221	Guaranteed remuneration in the event of sickness
+D1222	Employers' imputed social contributions for pensions and health
+D1222A	Guaranteed remuneration in event of short-time working (LCS 2000)
+D1222_00	Guaranteed remuneration in event of short-time working
+D1223	Payments to employees leaving the enterprise
+D1224	Other employers' imputed social benefits
+D1224A	Employers' imputed social benefits (LCS 2000)
+D1224_00	Employers' imputed social benefits
+D123	Employers' social contributions for apprentices
+D2-D4_MD5	Labour costs other than compensation of employees
+D12-D4_MD5	Employers' social contributions and other labour costs paid by employer
+D12_D4_MD5	Labour costs other than wages and salaries
+D2	Vocational training costs
+D3	Other expenditure
+D4	Taxes
+D5	Subsidies
+NREM	Net remuneration in nominal terms / real terms
+GREM	Gross remuneration in nominal terms / real terms
+TWAGSAL	Total wages and salaries
+DIREB	Direct remuneration and bonuses
+SS	Social security paid by employer
+OTHLC	Other labour costs
+SS_OTHLC	Social security and other labour costs paid by employer

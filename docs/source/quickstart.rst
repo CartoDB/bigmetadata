@@ -30,18 +30,11 @@ Once your prerequisites are set up, clone the repo:
 
   git clone https://github.com/cartodb/bigmetadata.git
   cd bigmetadata
+  touch .env
 
-You'll then need to configure ``CARTODB_API_KEY`` and ``CARTODB_URL`` in the
-``.env`` file in order to upload to Carto.  Replace the variable values in
-brackets and execute each line below.
-
-.. code:: shell
-
-  echo CARTODB_API_KEY=<YOUR_API_KEY> > .env
-  echo CARTODB_URL=<YOUR_CARTO_URL> >> .env
-
-The ``CARTODB_URL`` should be the one you use for the SQL API, generally of the
-format ``<USERNAME>.carto.com``.
+The last line sets up an empty conviguration.  If you want to upload to your
+CARTO account from the ETL, you'll then need to configure ``CARTODB_API_KEY``
+and ``CARTODB_URL`` in the ``.env`` file.
 
 If you're on Linux instead of Mac, you may want to give your existing user
 docker (which is equivalent to root) privileges:
@@ -52,45 +45,39 @@ docker (which is equivalent to root) privileges:
 
 Then log out, and log in.
 
-Build
+Start
 -----
 
-.. caution::
-
-   On Docker for Mac, it's not possible to link a local volume into Postgres.
-   You'll need to comment out the line
-   ``"./postgres/data:/var/lib/postgresql"`` in ``docker-compose.yml`` in
-   order to get the ``postgres`` container running.  However, this also means
-   you'll lose data if you rebuild the ``postgres`` container.
-
-Most of the requirements are available as images, but you will need
-to build the postgres and bigmetadata containers before getting started.
-
-.. code:: shell
-
-  docker-compose build
-
-If you're running into errors related to missing packages in the build, try
-building without the cache:
-
-.. code:: shell
-
-  docker-compose build --no-cache
-
-Run
----
-
-Then get all your containers running in the background:
+Before running tasks the first time, you'll need to download and start the
+containers.
 
 .. code:: shell
 
   docker-compose up -d
 
-Once everything is up and running, you should be able to run a task.
+Once the containers are up, you need to confirm that the Postgres container has
+started.
+
+.. code:: shell
+
+  make psql
+
+This will attempt to launch into an interactive session with the container
+Postgres.  If it doesn't work, wait a little bit and try again.  The database
+takes some time to get running initially.
+
+Run
+---
+
+You now should be able to run a task.
 
 .. code:: shell
 
   make -- run es.ine FiveYearPopulation
+
+.. note:: The first time you run it, that command will download a few Docker images.
+          Depending on the speed of your connection, it could take ten or fifteen
+          minutes.  Grab a coffee!
 
 That will run :class:`~.es.ine.FiveYearPopulation`.  This includes downloading
 all the source data files if they don't already exist locally, and generating

@@ -4,11 +4,30 @@ tasks.es package
 Submodules
 ----------
 
-.. toctree::
+tasks.es.cnig module
+--------------------
 
-   tasks.es.cnig
-   tasks.es.ine
-   tasks.es.lacaixa
+.. automodule:: tasks.es.cnig
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.es.ine module
+-------------------
+
+.. automodule:: tasks.es.ine
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.es.lacaixa module
+-----------------------
+
+.. automodule:: tasks.es.lacaixa
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

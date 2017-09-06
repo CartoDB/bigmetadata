@@ -4,10 +4,22 @@ tasks.mx package
 Submodules
 ----------
 
-.. toctree::
+tasks.mx.inegi module
+---------------------
 
-   tasks.mx.inegi
-   tasks.mx.inegi_columns
+.. automodule:: tasks.mx.inegi
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.mx.inegi_columns module
+-----------------------------
+
+.. automodule:: tasks.mx.inegi_columns
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

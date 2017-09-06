@@ -13,10 +13,10 @@ from luigi import (Task, IntParameter, LocalTarget, BooleanParameter, Parameter,
                    WrapperTask)
 from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
                         CartoDBTarget, sql_to_cartodb_table,
-                        TableTask, ColumnsTask, TagsTask, CSV2TempTableTask)
+                        TableTask, ColumnsTask, TagsTask, CSV2TempTableTask, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag
-from tasks.us.census.tiger import GeoidColumns
+from tasks.us.census.tiger import GeoidColumns, SumLevel
 from psycopg2 import ProgrammingError
 
 ## cherry-picked datasets
@@ -115,6 +115,27 @@ def hometype_measures():
             yield hometype, hometype_human, measure, measure_human, measure_unit
 
 
+class ZillowSourceTags(TagsTask):
+
+    def tags(self):
+        return [OBSTag(id='zillow-source',
+                       name='Zillow Data',
+                       type='source',
+                       description='Zillow makes available data free for reuse `here <http://www.zillow.com/research/data/>`_.', )]
+
+
+class ZillowLicenseTags(TagsTask):
+
+    def version(self):
+        return 2
+
+    def tags(self):
+        return [OBSTag(id='zillow-license',
+                       name='Zillow Terms of Use for "Aggregate Data"',
+                       type='license',
+                       description='May be used for non-personal uses, e.g., real estate market analysis. More information `here <http://www.zillow.com/corp/Terms.htm>`_', )]
+
+
 class ZillowTags(TagsTask):
 
     def version(self):
@@ -134,6 +155,8 @@ class DownloadZillow(Task):
     geography = Parameter()
     hometype = Parameter()
     measure = Parameter()
+    last_year = IntParameter()
+    last_month = IntParameter()
 
     URL = 'http://files.zillowstatic.com/research/public/{geography}/{geography}_{measure}_{hometype}.csv'
 
@@ -166,10 +189,12 @@ class ZillowValueColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'source': ZillowSourceTags(),
+            'license': ZillowLicenseTags(),
         }
 
     def version(self):
-        return 6
+        return 7
 
     def columns(self):
         input_ = self.input()
@@ -177,6 +202,8 @@ class ZillowValueColumns(ColumnsTask):
         united_states = input_['sections']['united_states']
         housing = input_['subsections']['housing']
         units = input_['units']
+        source = input_['source']['zillow-source']
+        license = input_['license']['zillow-license']
 
         columns = OrderedDict()
 
@@ -194,29 +221,10 @@ class ZillowValueColumns(ColumnsTask):
                                 measure_description=MEASURES_DESCRIPTION[measure],
                                 hometype_description=HOMETYPES_DESCRIPTION[hometype],
                                 ),
-                            tags=[tag, united_states, housing, units[measure_unit]])
+                            tags=[tag, united_states, housing, units[measure_unit], license, source])
             columns[col_id] = col
         return columns
 
-
-class ZillowTimeValueColumns(ColumnsTask):
-
-    def columns(self):
-        columns = OrderedDict()
-
-        # TODO generate value columns
-        for year in xrange(1996, 2017):
-            for month in xrange(1, 13):
-                yr_str = str(year).zfill(2)
-                mo_str = str(month).zfill(2)
-
-                columns['{yr}_{mo}'.format(
-                    yr=yr_str, mo=mo_str)] = OBSColumn(
-                        type='Numeric',
-                        name='',
-                        description='',
-                        weight=0)
-        return columns
 
 class ZillowGeoColumns(ColumnsTask):
 
@@ -271,7 +279,8 @@ class WideZillow(CSV2TempTableTask):
 
     def requires(self):
         return DownloadZillow(geography=self.geography, hometype=self.hometype,
-                               measure=self.measure)
+                               measure=self.measure, last_year=self.last_year,
+                               last_month = self.last_month)
 
     def input_csv(self):
         return self.input().path
@@ -356,4 +365,29 @@ class AllZillow(WrapperTask):
                 for month in xrange(1, 13):
                     if now.year == year and now.month <= month:
                         continue
+                    if year == 2010 and month <= 10:
+                        continue
                     yield Zillow(geography=geography, year=year, month=month)
+
+
+class ZillowMetaWrapper(MetaWrapper):
+    geography = Parameter()
+    year = IntParameter()
+    month = IntParameter()
+
+    now = datetime.now()
+
+    params = {
+        'geography': ['Zip'],
+        'year': range(2010, now.year + 1),
+        'month': range(1, 13)
+    }
+
+    def tables(self):
+        now = datetime.now()
+        if now.year == self.year and now.month <= self.month:
+            return
+        if self.year == 2010 and self.month <= 10:
+            return
+        yield Zillow(geography=self.geography, year=self.year, month=self.month)
+        yield SumLevel(year=str(2015), geography='zcta5')

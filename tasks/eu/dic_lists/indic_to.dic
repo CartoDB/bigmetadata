@@ -1,0 +1,22 @@
+A001	Number of establishments
+A002	Bedrooms
+A003	Number of bed-places
+B001	Arrivals of residents
+B002	Arrivals of non-residents
+B272	Arrivals of non-residents from EU-27
+B282	Arrivals of non-residents from EU-28
+B003	Arrivals, total
+B004	Total nights spent by residents
+B275	Total nights spent by non-residents from EU-27
+B285	Total nights spent by non-residents from EU-28
+B005	Total nights spent by non-residents
+B006	Nights spent, total
+D001	Departures of residents going abroad for all holidays and business (1 night or more)
+D271	Departures of residents with destination EU-27 countries for all holidays and business (1 night or more)
+D281	Departures of residents with destination EU-28 countries for all holidays and business (1 night or more)
+E001	Net occupancy rates of bed places
+E002	Use of bed-places gross
+E003	Net occupancy rate of bedrooms 
+J002	Arrivals of tourists at the border
+J272	Tourist arrivals at border from EU-27
+J282	Tourist arrivals at border from EU-28

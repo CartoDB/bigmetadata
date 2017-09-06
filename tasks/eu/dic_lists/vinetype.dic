@@ -1,0 +1,23 @@
+TOTAL	Total area under vines (in/not yet in production)
+WI	Vines for wine grapes - total 
+WI_PDO	Vines for grapes for PDO wines  
+WI_PGI	Vines for grapes for PGI wines
+WI_NP	Vines for grapes for wines with neither PDO nor PGI
+WI_DP	Vines for dual purpose grapes
+DRI	Vines for raisins
+IN	Vines in production - total 
+IN_WI	Vines in production - wine grapes - total
+IN_WI_PDO	Vines in production - grapes for PDO wines  
+IN_WI_PGI	Vines in production - grapes for PGI wines  
+IN_WI_NP	Vines in production - grapes for wines with neither PDO nor PGI 
+IN_WI_DP	Vines in production - dual purpose grapes  
+IN_DRI	Vines in production - raisins 
+NIN	Vines not yet in production - total  
+NIN_WI	Vines not yet in production - wine grapes - total 
+NIN_WI_PDO	Vines not yet in production - grapes for PDO wines  
+NIN_WI_PGI	Vines not yet in production - grapes for PGI wines  
+NIN_WI_NP	Vines not yet in production - grapes for wines with neither PDO nor PGI 
+NIN_WI_DP	Vines not yet in production - dual purpose grapes  
+NIN_DRI	Vines not yet in production - raisins 
+MAT_VP	Vines intended to produce material for the vegetative propagation of vines  
+OTH	Other vines n.e.c. 

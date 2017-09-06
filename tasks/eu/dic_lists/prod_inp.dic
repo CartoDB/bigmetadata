@@ -1,0 +1,68 @@
+20210000	Electicity - prices per 100 kwh
+20221000	Heating gas oil - prices per 100 litres
+20222000	Residual fuel oil (prices/100 kg) - prices per 100 kg
+20231000	Motor spirit - prices per 100 litres
+20232000	Diesel oil - prices per 100 litres
+20311100	Sulphate of ammonia - prices per 100 kg of nutritive substance
+20311201	Ammonium nitrate (26% N) (in sacks) - prices per 100 kg of nutritive substance
+20311202	Ammonium nitrate (26% N) (in bulk) - prices per 100 kg of nutritive substance
+20311301	Ammonium nitrate (33% N) (in sacks) - prices per 100 kg of nutritive substance
+20311400	Urea - prices per 100 kg of nutritive substance
+20312100	Superphosphate (18% P205) - prices per 100 kg of nutritive substance
+20312200	Triple Superphosphate (46% P205) - prices per 100 kg of nutritive substance
+20313100	Muriate of potash - prices per 100 kg of nutritive substance
+20313200	Sulphate of potash - prices per 100 kg of nutritive substance
+20321100	Binary fertilizers: 1 - 1 - 0 - prices per 100 kg merchandise
+20322100	Binary fertilizers: 0 - 1 - 1 - prices per 100 kg merchandise
+20322200	Binary fertilizers: 0 - 20 - 20 - prices per 100 kg merchandise
+20323100	Ternary fertilizers: 1 - 0;5 - 0;5 - prices per 100 kg merchandise
+20323600	Ternary fertilizers: 20 - 10 - 10 - prices per 100 kg merchandise
+20323201	Ternary fertilizers: 1 - 1 - 1 (in sacks) - prices per 100 kg merchandise
+20323301	Ternary Fertilizers: 17 - 17 - 17 (in sacks) - prices per 100 kg merchandise
+20323202	Ternary fertilizers: 1 - 1 - 1 (in bulk) - prices per 100 kg merchandise
+20323302	Ternary Fertilizers : 17 - 17 - 17 (in bulk) - prices per 100 kg merchandise
+20323700	Ternary fertilizers: 1 - 1 - 2 - prices per 100 kg merchandise
+20323800	Ternary fertilizers: 9 - 9 - 18 - prices per 100 kg merchandise
+20323400	Ternary fertilizers: 1 - 2 - 2 - prices per 100 kg merchandise
+20323500	Ternary fertilizers: 10 - 20 - 20 - prices per 100 kg merchandise
+20611100	Feedingstuffs: fodder wheat - prices per 100 kg
+20611200	Feedingstuffs: barley - prices per 100 kg
+20611300	Feedingstuffs: oats - prices per 100 kg
+20611400	Feedingstuffs: maize - prices per 100 kg
+20611500	Feedingstuffs: wheat bran - prices per 100 kg
+20611600	Feedingstuffs: ground barley - prices per 100 kg
+20611700	Feedingstuffs: ground maize - prices per 100 kg
+20612100	Linseed cake (expeller) - prices per 100 kg
+20612200	Toasted extracted soyabean meal - prices per 100 kg
+20613100	Animal meal - prices per 100 kg
+20613200	Fish meal - prices per 100 kg
+20619100	Dried sugar beet pulp - prices per 100 kg
+20619200	Meadow hay - prices per 100 kg
+20619300	Dried lucerne - prices per 100 kg
+20619400	Cereal straw - prices per 100 kg
+20621100	Complementary feed for rearing calves - prices per 100 kg
+20619901	Milk replacer for fattening calves (in sacks) - prices per 100 kg
+20619902	Milk replacer for fattening calves (in bulk) - prices per 100 kg
+20622910	Complementary feed for dairy cattle at grass - prices per 100 kg
+20622921	Complementary feed for dairy cattle (stall-fed) (in sacks) - prices per 100 kg
+20622922	Complementary feed for dairy cattle (stall-fed) (in bulk) - prices per 100 kg
+20622931	Protein-rich complementary feed for dairy cattle (stall-fed) (in sacks) - prices per 100 kg
+20622932	Protein-rich complementary feed for dairy cattle (stall-fed) (in bulk) - prices per 100 kg
+20622101	Complementary feed for cattle fattening (in sacks) - prices per 100 kg
+20622102	Complementary feed for cattle fattening (in bulk) - prices per 100 kg
+20622111	Protein-rich complementary feed for cattle fattening (in sacks) - prices per 100 kg
+20622112	Protein-rich complementary feed for cattle fattening (in bulk) - prices per 100 kg
+20623101	Complete feed for rearing pigs (in sacks) - prices per 100 kg
+20623102	Complete feed for rearing pigs (in bulk) - prices per 100 kg
+20623301	Complete feed for sows (in sacks) - prices per 100 kg
+20623302	Complete feed for sows (in bulk) - prices per 100 kg
+20623201	Complete feed for fattening pigs (in sacks) - prices per 100 kg
+20623202	Complete feed for fattening pigs (in bulk) - prices per 100 kg
+20624101	Baby chick feed (in sacks) - prices per 100 kg
+20624102	Baby chick feed (in bulk) - prices per 100 kg
+20624201	Complete feed for rearing pulle (in sacks) - prices per 100 kg
+20624202	Complete feed for rearing pulle (in bulk) - prices per 100 kg
+20624301	Complete feed for battery laying hens (in sacks) - prices per 100 kg
+20624302	Complete feed for battery laying hens (in bulk) - prices per 100 kg
+20624501	Complete feed for broiler production (in sacks) - prices per 100 kg
+20624502	Complete feed for broiler production (in bulk) - prices per 100 kg

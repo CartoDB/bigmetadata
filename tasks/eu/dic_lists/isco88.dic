@@ -1,0 +1,166 @@
+TOTAL	Total
+ISCO1-5	Non manual workers
+ISCO1-3	Managers, professionals, technicians and associate professionals
+ISCO1_2	Managers and professionals
+ISCO1	Legislators, senior officials and managers
+ISCO11	Legislators and senior officials
+ISCO111	Legislators
+ISCO112	Senior government officials
+ISCO113	Traditional chiefs and heads of villages
+ISCO114	Senior officials of special-interest organisations
+ISCO12	Corporate managers
+ISCO121	Directors and chief executives
+ISCO122	Production and operations department managers
+ISCO123	Other specialist managers
+ISCO13	General managers
+ISCO131	General managers
+ISCO2	Professionals
+ISCO21	Physical, mathematical and engineering science professionals
+ISCO211	Physicists, chemists and related professionals
+ISCO212	Mathematicians, statisticians and related professionals
+ISCO213	Computing professionals
+ISCO214	Architects, engineers and related professionals
+ISCO22	Life science and health professionals
+ISCO221	Life science professionals
+ISCO222	Health professionals (except nursing)
+ISCO223	Nursing and midwifery professionals
+ISCO23	Teaching professionals
+ISCO231	College, university and higher education teaching professionals
+ISCO232	Secondary education teaching professionals
+ISCO233	Primary and pre-primary education teaching professionals
+ISCO234	Special education teaching professionals
+ISCO235	Other teaching professionals
+ISCO24	Other professionals
+ISCO241	Business professionals
+ISCO242	Legal professionals
+ISCO243	Archivists, librarians and related information professionals
+ISCO244	Social science and related professionals
+ISCO245	Writers and creative or performing artists
+ISCO246	Religious professionals
+ISCO247	Scientific administration employees
+ISCO3	Technicians and associate professionals
+ISCO31	Physical and engineering science associate professionals
+ISCO311	Physical and engineering science technicians
+ISCO312	Computer associate professionals
+ISCO313	Optical and electronic equipment operators
+ISCO314	Ship and aircraft controllers and technicians
+ISCO315	Safety and quality inspectors
+ISCO32	Life science and health associate professionals
+ISCO321	Life science technicians and related associate professionals
+ISCO322	Health associate professionals (except nursing)
+ISCO323	Nursing and midwifery associate professionals
+ISCO324	Traditional medicine practitioners and faith healers
+ISCO33	Teaching associate professionals
+ISCO331	Primary education teaching associate professionals
+ISCO332	Pre-primary education teaching associate professionals
+ISCO333	Special education teaching associate professionals
+ISCO334	Other teaching associate professionals
+ISCO34	Other associate professionals
+ISCO341	Finance and sales associate professionals
+ISCO342	Business services agents and trade brokers
+ISCO343	Administrative associate professionals
+ISCO344	Customs, tax and related government associate professionals
+ISCO345	Police inspectors and detectives
+ISCO346	Social work associate professionals
+ISCO347	Artistic, entertainment and sports associate professionals
+ISCO348	Religious associate professionals
+ISCO4_5	Clerks and sales
+ISCO4	Clerks
+ISCO41	Office clerks
+ISCO411	Secretaries and keyboard-operating clerks
+ISCO412	Numerical clerks
+ISCO413	Material-recording and transport clerks
+ISCO414	Library, mail and related clerks
+ISCO419	Other office clerks
+ISCO42	Customer services clerks
+ISCO421	Cashiers, tellers and related clerks
+ISCO422	Client information clerks
+ISCO5	Service workers and shop and market sales workers
+ISCO51	Personal and protective services workers
+ISCO511	Travel attendants and related workers
+ISCO512	Housekeeping and restaurant services workers
+ISCO513	Personal care and related workers
+ISCO514	Other personal services workers
+ISCO515	Astrologers, fortune-tellers and related workers
+ISCO516	Protective services workers
+ISCO52	Models, salespersons and demonstrators
+ISCO521	Fashion and other models
+ISCO522	Shop, stall and market salespersons and demonstrators
+ISCO523	Stall and market salespersons
+ISCO6-8	Skilled manual workers
+ISCO6_7	Skilled agricultural and fishery workers, craft and related trades workers
+ISCO6	Skilled agricultural and fishery workers
+ISCO61	Market-oriented skilled agricultural and fishery workers
+ISCO611	Market gardeners and crop growers
+ISCO612	Market-oriented animal producers and related workers
+ISCO613	Market-oriented crop and animal producers
+ISCO614	Forestry and related workers
+ISCO615	Fishery workers, hunters and trappers
+ISCO62	Subsistence agricultural and fishery workers
+ISCO621	Subsistence agricultural and fishery workers
+ISCO7-9	Manual workers
+ISCO7	Craft and related trades workers
+ISCO71	Extraction and building trades workers
+ISCO711	Miners, shotfirers, stone cutters and carvers
+ISCO712	Building frame and related trades workers
+ISCO713	Building finishers and related trades workers
+ISCO714	Painters, building structure cleaners and related trades workers
+ISCO72	Metal, machinery and related trades workers
+ISCO721	Metal moulders, welders, sheet-metal workers, structural-metal preparers, and related trades workers
+ISCO722	Blacksmiths, tool-makers and related trades workers
+ISCO723	Machinery mechanics and fitters
+ISCO724	Electrical and electronic equipment mechanics and fitters
+ISCO73	Precision, handicraft, craft printing and related trades workers
+ISCO731	Precision workers in metal and related materials
+ISCO732	Potters, glass-makers and related trades workers
+ISCO733	Handicraft workers in wood, textile, leather and related materials
+ISCO734	Printing and related trades workers
+ISCO74	Other craft and related trades workers
+ISCO741	Food processing and related trades workers
+ISCO742	Wood treaters, cabinet-makers and related trades workers
+ISCO743	Textile, garment and related trades workers
+ISCO744	Pelt, leather and shoemaking trades workers
+ISCO8_9	Plant and machine operators and assemblers and elementary occupations
+ISCO8	Plant and machine operators and assemblers
+ISCO81	Stationary plant and related operators
+ISCO811	Mining and mineral-processing-plant operators
+ISCO812	Metal-processing plant operators
+ISCO813	Glass, ceramics and related plant operators
+ISCO814	Wood-processing- and papermaking-plant operators
+ISCO815	Chemical-processing-plant operators
+ISCO816	Power-production and related plant operators
+ISCO817	Automated-assembly-line and industrial-robot operators
+ISCO82	Machine operators and assemblers
+ISCO821	Metal- and mineral-products machine operators
+ISCO822	Chemical-products machine operators
+ISCO823	Rubber- and plastic-products machine operators
+ISCO824	Wood-products machine operators
+ISCO825	Printing-, binding- and paper-products machine operators
+ISCO826	Textile-, fur- and leather-products machine operators
+ISCO827	Food and related products machine operators
+ISCO828	Assemblers
+ISCO829	Other machine operators and assemblers
+ISCO83	Drivers and mobile plant operators
+ISCO831	Locomotive engine drivers and related workers
+ISCO832	Motor-vehicle drivers
+ISCO833	Agricultural and other mobile-plant operators
+ISCO834	Ships' deck crews and related workers
+ISCO9	Elementary occupations
+ISCO91	Sales and services elementary occupations
+ISCO911	Street vendors and related workers
+ISCO912	Shoe cleaning and other street services elementary occupations
+ISCO913	Domestic and related helpers, cleaners and launderers
+ISCO914	Building caretakers, window and related cleaners
+ISCO915	Messengers, porters, doorkeepers and related workers
+ISCO916	Garbage collectors and related labourers
+ISCO92	Agricultural, fishery and related labourers
+ISCO921	Agricultural, fishery and related labourers
+ISCO93	Labourers in mining, construction, manufacturing and transport
+ISCO931	Mining and construction labourers
+ISCO932	Manufacturing labourers
+ISCO933	Transport labourers and freight handlers
+ISCO0	Armed forces
+ISCO0_4-9	Not managers, professionals, technicians and associate professionals (ISCO1-3)
+OTH	Other occupations
+NRP	No response
+UNK	Unknown

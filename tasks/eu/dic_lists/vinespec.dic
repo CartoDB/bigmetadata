@@ -1,0 +1,11 @@
+TOTAL	Holdings with areas under vines - total 
+HLD_EWI	Holdings with areas under vines exclusively intended for wine production 
+HLD_EWI_P	Holdings with areas under vines exclusively intended for production of PDO and/or PGI wines 
+HLD_EWI_PDO	Holdings with areas under vines exclusively intended for production of PDO wines 
+HLD_EWI_PGI	Holdings with areas under vines exclusively intended for production of PGI wines 
+HLD_EWI_PDO_PGI	Holdings with areas under vines exclusively intended for production of PDO and PGI wines 
+HLD_EWI_NP	Holdings with areas under vines exclusively intended for production of wines with neither PDO nor PGI 
+HLD_EWI_SEV	Holdings with areas under vines intended for production of several types of wines 
+HLD_EDRI	Holdings with areas under vines exclusively intended for the production of raisins 
+HLD_OTH	Holdings with areas under vines intented exclusively for other purposes n.e.c 
+HLD_SEV	Holdings with areas under vines intended for several types of production 

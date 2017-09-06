@@ -1,0 +1,224 @@
+C1040	Cereals for the production of grain (including rice and seed)
+C1050	Cereals (excluding rice)
+C1100	Wheat (including spelt)
+C1120	Common wheat and spelt
+C1123	Common winter wheat
+C1124	Common spring wheat
+C1130	Durum wheat
+C1133	Winter durum wheat
+C1134	Spring durum wheat
+C1140	Rye and maslin
+C1150	Rye
+C1151	Winter rye
+C1152	Spring rye
+C1155	Maslin
+C1160	Barley
+C1163	Winter barley
+C1164	Spring barley
+C1170	Oats and mixed grain other than maslin
+C1180	Oats
+C1185	Mixed grain other than maslin
+C1201	Grain maize and corn-cob-mix
+C1200	Grain maize
+C1202	Corn-cob-mix
+C1211	Sorghum
+C1212	Triticale
+C1213	Winter triticale
+C1219	Millet, buckwheat, canary seed (other cereals)
+C1250	Rice
+C1251	Rice Indica
+C1252	Rice Japonica
+C1300	Dried pulses and protein crops for the production of grain (including seed and mixtures of cereals and pulses)
+C1320	Field peas
+C1335	Broad and field beans
+C1343	Sweet lupins
+C1345	Other dried pulses n.e.c.
+C1350	Root crops
+C1360	Potatoes (including early potatoes and seed potatoes)
+C1362	Early potatoes
+C1363	Other potatoes
+C1370	Sugar beet (excluding seed)
+C1380	Other root crops n.e.c.
+C1381	Fodder beet
+C1400	Industrial crops
+C1410	Oilseeds
+C1415	Main oil seed crops
+C1420	Rape and turnip rape
+C1430	Rape
+C1431	Winter rape
+C1432	Spring rape
+C1440	Turnip rape
+C1450	Sunflower seed
+C1460	Linseed (oil flax)
+C1470	Soya
+C1490	Cotton seed
+C1480	Other oil seed crops n.e.c.
+C1500	Fibre crops
+C1520	Fibre flax
+C1530	Hemp
+C1540	Cotton fibre
+C1510	Other fibre crops n.e.c.
+C1550	Tobacco
+C1560	Hops
+C1570	Other industrial crops
+C1571	Chicory
+C1572	Chicory for inulin
+C1580	Aromatic plants, medicinal and culinary plants
+C1582	Caraway
+C1589	Other industrial crops n.e.c.
+C2600	Fodder - Total
+C2610	Plants harvested green
+C2611	Annual plants harvested green
+C2625	Green maize
+C2626	Cereals harvested green
+C2612	Other annual plants harvested green n.e.c.
+C2670	Leguminous plants
+C2671	Clover and mixtures
+C2672	Lucerne
+C2673	Other leguminous plants n.e.c.
+C2680	Temporary grasses and grazing
+C2681	Temporary grasses
+C2682	Temporary grazings
+C0002	Permanent grassland (pastures and meadows)
+C2710	Permanent meadows
+C2720	Permanent pasture
+C2721	Grassland
+C2722	Common pasture, heathland, rough grazings
+C1590	Energy crops n.e.c.
+C1600	Vegetables, melons and strawberries (excluding  kitchen gardens)
+C1609	Vegetables - Total
+C1610	Brassicas
+C1620	Cauliflower and broccoli
+C1631	Brussels sprouts
+C1635	Cabbage (white)
+C1650	Kohlrabi
+C1655	Other brassicas n.e.c.
+C1660	Leafy or stalked vegetables (excluding brassicas)
+C1670	Celeriac and celery
+C1672	Celery
+C1675	Leeks
+C1680	Lettuces
+C1681	Lettuces under glass or high accessible cover
+C1685	Endives
+C1690	Spinach
+C1700	Asparagus
+C1710	Chicory
+C1720	Artichokes
+C1725	Other leafy or stalked vegetables n.e.c.
+C1740	Vegetables cultivated for fruit
+C1750	Tomatoes
+C1751	Tomatoes for fresh consumption
+C1752	Tomatoes for fresh consumption under glass or high accessible cover
+C1761	Cucumbers
+C1762	Cucumbers under glass or high accessible cover
+C1766	Gherkins
+C1780	Eggplants, gourds, marrows, courgettes, pumpkins
+C1781	Eggplants
+C1786	Gourds, marrows and pumpkins
+C1785	Gourds
+C1787	Courgettes
+C1790	Red pepper, capsicum
+C1791	Red pepper, capsicum under glass or high accessible cover
+C1799	Other vegetables cultivated for fruit n.e.c.
+C1800	Root and tuber vegetables
+C1810	Kohl-Rabi
+C1820	Turnips
+C1830	Carrots
+C1840	Garlic
+C1851	Onions
+C1855	Shallots
+C1860	Beetroot
+C1870	Salsify and scorzonera
+C1872	Celeriac
+C1877	Radishes
+C1884	Other root and tuber vegetables n.e.c
+C1885	Pulses
+C1890	Peas
+C1901	Beans
+C1905	Other pulses n.e.c.
+C1920	Other fresh vegetables n.e.c.
+C1771	Melons
+C1770	Melons and Strawberries
+C1777	Watermelons
+C2260	Strawberries
+C2261	Strawberries under glass or high accessible cover
+C1910	Cultivated mushrooms
+C2992	Vegetables from kitchen gardens
+C1601	Vegetables, melons and strawberries (including kitchen gardens)
+C2696	Fallow and green manures
+C2002	Fresh fruit (supply balance sheets)
+C2007	Permanent crops
+C2008	Dessert fruit (do not include olives, raisins, grapes for juice and wine , wild products, fruits from kitchen gardens and apples and pears for other uses than dessert)
+C2040	Fruit trees (excluding olives and citrus fruit)
+C2090	Apples
+C2110	Apples for fresh consumption
+C2112	Golden Delicious
+C2113	Other apples for fresh consumption
+C2095	Pears
+C2130	Pears for fresh consumption
+C2132	Summer pears
+C2170	Stone fruits
+C2180	Peaches
+C2221	Nectarines
+C2190	Apricots
+C2200	Cherries
+C2201	Sour cherries
+C2210	Plums
+C9000	Dates
+C2229	Other stone fruits n.e.c.
+C2270	Berries (exluding strawberries)
+C2271	Currants
+C2272	Black currants
+C2275	Red currants
+C2278	Raspberries
+C2281	Gooseberries
+C2290	Other berries n.e.c.
+C2230	Nuts
+C2231	Walnuts
+C2232	Hazelnuts
+C2233	Almonds
+C2236	Chestnuts
+C2240	Other nuts n.e.c.
+C2250	Other fruits from fruit trees
+C2251	Figs
+C2285	Kiwis
+C2253	Avocados
+C2254	Bananas
+C2252	Quinces
+C2259	Other fruits from fruit trees n.e.c.
+C2300	Citrus fruits
+C2380	Pomelos and grapefruit
+C2370	Lemons and acid limes
+C2371	Yellow lemons
+C2372	Limes
+C2321	Oranges with non-sanguin pulp, belonging to the Navel Group
+C2322	Oranges with non-sanguin pulp, other than Navel Group
+C2323	Blood and semi-blood and other sweet oranges
+C2324	Other sweet oranges
+C2320	Oranges
+C2340	Small citrus fruits
+C2350	Mandarins
+C2352	Satsumas
+C2360	Clementines
+C2390	Other citrus fruits n.e.c.
+C2410	Vineyards
+C2420	Vineyards for table grapes
+C2415	Fresh grapes
+C2416	Vineyards for raisins
+C2417	Table grapes (for fermentation)
+C2440	Vineyards for wine
+C2441	Vineyards for wines with protected designation of origin (PDO)
+C2442	Vineyards for wines with protected geographical indication (PGI)
+C2443	Vineyards for other wines
+C2445	Vineyards for other grape production n.e.c.
+C2447	Wine grapes (for table use)
+C2450	Olive trees
+C2460	Olive trees for table olives
+C2470	Olive trees for olive oil
+C2810	Nurseries
+C2960	Weaving plants : osier willows, bamboo, rush, rattan, Canada poplar
+C2480	Other permanent crops n.e.c.
+C2993	Fruits from kitchen gardens
+C2009	Permanent crops (including kitchen gardens)
+C3718	Wild products
+C3719	Wild products

@@ -1,0 +1,15 @@
+VTCTOT	Total
+VTC_L01	> 0 to < 0.10 ha of area under vines
+VTC01_02	0.10 to < 0.20 ha of area under vines
+VTC02_03	0.20 to < 0.30 ha of area under vines
+VTC03_05	0.30 to < 0.50 ha of area under vines
+VTC05_1	0.50 to < 1 ha of area under vines
+VTC1_2	1 to < 2 ha of area under vines
+VTC2_3	2 to < 3 ha of area under vines
+VTC3_5	3 to < 5 ha of area under vines
+VTC5_10	5 to < 10 ha of area under vines
+VTC10_20	10 to < 20 ha of area under vines
+VTC20_30	20 to < 30 ha of area under vines
+VTC_G30	>=30 ha of area under vines
+VTC_G10	>=10 ha of area under vines
+VTC_G05	>=5 ha of area under vines

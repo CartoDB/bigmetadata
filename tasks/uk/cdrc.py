@@ -2,23 +2,52 @@
 
 from luigi import Task, Parameter, LocalTarget
 
-from tasks.util import (TableTask, ColumnsTask, classpath, shell,
-                        DownloadUnzipTask, Shp2TempTableTask)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
-from tasks.tags import LicenseTags, SectionTags, SubsectionTags, UnitTags
+from tasks.util import (TableTask, TagsTask, ColumnsTask, classpath, shell,
+                        DownloadUnzipTask, Shp2TempTableTask, MetaWrapper)
+from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
 
 from collections import OrderedDict
 import os
 
+
+class OpenDemographicsLicenseTags(TagsTask):
+
+    def tags(self):
+        return [OBSTag(id='opengeodemographics-license',
+                       name='Open Geodemographics license',
+                       type='license',
+                       description='Free to download and reuse, even for '
+                                   'commercial sector applications.  More '
+                                   'information `here <http://www.opengeodemographics.com/index.php#why-section>`_'
+                      )]
+
+
+class SourceTags(TagsTask):
+
+    def version(self):
+        return 1
+
+    def tags(self):
+        return[
+            OBSTag(id='cdrc-source',
+                    name= 'Consumer Data Research Centre',
+                    type='source',
+                    description='The 2011 Area Classification for Output Areas (2011 OAC) is a UK geodemographic classification produced as a collaboration between the Office for National Statistics and University College London. For further information regarding the 2011 OAC please visit: http://www.ons.gov.uk/ons/guide-method/geography/products/area-classifications/ns-area-classifications/ns-2011-area-classifications/index.html or http://www.opengeodemographics.com. CDRC 2011 OAC Geodata Pack by the ESRC Consumer Data Research Centre; Contains National Statistics data Crown copyright and database right 2015; Contains Ordnance Survey data Crown copyright and database right 2015')
+                    ]
 
 class DownloadOutputAreas(DownloadUnzipTask):
 
     URL = 'https://data.cdrc.ac.uk/dataset/68771b14-72aa-4ad7-99f3-0b8d1124cb1b/resource/8fff55da-6235-459c-b66d-017577b060d3/download/output-area-classification.zip'
 
     def download(self):
-        shell('wget --header=\'Cookie: auth_tkt="96a4778a0e3366127d4a47cf19a9c7d65751e5a9talos!userid_type:unicode"; auth_tkt="96a4778a0e3366127d4a47cf19a9c7d65751e5a9talos!userid_type:unicode";\' -O {output}.zip {url}'.format(
+        if 'CDRC_COOKIE' not in os.environ:
+            raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n'
+                             'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
+        shell('wget --header=\'Cookie: {cookie}\' -O {output}.zip {url}'.format(
             output=self.output().path,
-            url=self.URL))
+            url=self.URL,
+            cookie=os.environ['CDRC_COOKIE']))
 
 
 class ImportOutputAreas(Shp2TempTableTask):
@@ -34,16 +63,22 @@ class ImportOutputAreas(Shp2TempTableTask):
 class OutputAreaColumns(ColumnsTask):
 
     def version(self):
-        return 2
+        return 4
 
     def requires(self):
         return {
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
         input_ = self.input()
+        license = input_['license']['uk_ogl']
+        source = input_['source']['cdrc-source']
+        boundary_type = input_['boundary']
         geom = OBSColumn(
             type='Geometry',
             name='Census Output Areas',
@@ -60,7 +95,8 @@ class OutputAreaColumns(ColumnsTask):
                         'changed). -`Wikipedia <https://en.wikipedia.org/'
                         'wiki/ONS_coding_system#Geography_of_the_UK_Census>`_',
             weight=8,
-            tags=[input_['subsections']['boundary'], input_['sections']['uk']]
+            tags=[input_['subsections']['boundary'], input_['sections']['uk'], source, license,
+                  boundary_type['cartographic_boundary'], boundary_type['interpolation_boundary']]
         )
         geomref = OBSColumn(
             type='Text',
@@ -73,7 +109,6 @@ class OutputAreaColumns(ColumnsTask):
             ('the_geom', geom),
             ('oa_sa', geomref)
         ])
-
 
 class OutputAreas(TableTask):
 
@@ -231,10 +266,12 @@ class OutputAreaClassificationColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'license': OpenDemographicsLicenseTags(),
+            'source': SourceTags(),
         }
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         input_ = self.input()
@@ -244,6 +281,8 @@ class OutputAreaClassificationColumns(ColumnsTask):
             (catname, {'description': '', 'details': {}}) for catname in d.keys()
         ])
         segmentation = input_['units']['segmentation']
+        license = input_['license']['opengeodemographics-license']
+        source = input_['source']['cdrc-source']
         return OrderedDict([
             ('sprgrp', OBSColumn(
                 type='Text',
@@ -259,7 +298,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.sprgrp_mapping)},
-                tags=[uk, segments, segmentation],
+                tags=[uk, segments, segmentation, license, source],
             )),
             ('grp', OBSColumn(
                 type='Text',
@@ -275,7 +314,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.grp_mapping)},
-                tags=[uk, segments, segmentation],
+                tags=[uk, segments, segmentation, license, source],
             )),
             ('subgrp', OBSColumn(
                 type='Text',
@@ -291,7 +330,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
                 '<http://www.opengeodemographics.com>`_ for further '
                 'information regarding the 2011 OAC. ',
                 extra={'categories': gen_cats(self.subgrp_mapping)},
-                tags=[uk, segments, segmentation],
+                tags=[uk, segments, segmentation, license, source],
             )),
         ])
 
@@ -339,3 +378,8 @@ class OutputAreaClassifications(TableTask):
                             grp_case=grp_case,
                             subgrp_case=subgrp_case,
                         ))
+
+class CDRCMetaWrapper(MetaWrapper):
+    def tables(self):
+        yield OutputAreaClassifications()
+        yield OutputAreas()

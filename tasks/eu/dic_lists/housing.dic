@@ -1,0 +1,21 @@
+TOTAL	Total housing
+H_CV	Conventional housing 
+DW	Conventional dwellings
+DW_OC	Occupied conventional dwellings
+DW_OWN	Conventional dwellings occupied by the owner
+DW_COOP	Conventional dwellings occupied by a member of the owning cooperative
+DW_RENT	Conventional dwellings occupied by a tenant
+DW_OTH	Conventional dwellings occupied under other type of ownership
+DW_NOC	Unoccupied conventional dwellings
+DW_SEC	Conventional dwellings reserved for seasonal or secondary use
+DW_VAC	Vacant conventional dwellings
+CLQ	Collective living quarters
+CLQ_PRISA	Adult prisons
+CLQ_PRISJ	Juvenile prisons
+H_NCV	Non conventional housing (incl. homelessness)
+H_OTH	Non conventional housing (excl. homelessness)
+HMLS	Homelessness
+HMLS1	Primary homelessness
+HMLS2	Secondary homelessness
+H_OC	Total occupied housing  (excl. homelessness)
+UNK	Unknown

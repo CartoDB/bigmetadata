@@ -8,11 +8,16 @@ from collections import OrderedDict
 from luigi import Task, LocalTarget
 from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSTag, current_session,
                         DENOMINATOR, GEOM_REF)
-from tasks.util import (LoadPostgresFromURL, classpath, shell,
+from tasks.util import (LoadPostgresFromURL, classpath, shell, LOGGER,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
-                        classpath, PostgresTarget)
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+                        classpath, PostgresTarget, MetaWrapper)
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
+from time import time
+
+
+MALE = 'male'
+FEMALE = 'female'
 
 
 class DownloadGeometry(Task):
@@ -53,28 +58,36 @@ class RawGeometry(TempTableTask):
 class GeometryColumns(ColumnsTask):
 
     def version(self):
-        return 6
+        return 8
 
     def requires(self):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
+            'source': SourceTags(),
+            'license': LicenseTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        license = input_['license']['ine-license']
+        source = input_['source']['ine-source']
+        boundary_type = input_['boundary']
         cusec_geom = OBSColumn(
             name=u'Secci\xf3n Censal',
             type="Geometry",
             weight=10,
             description='The smallest division of the Spanish Census.',
-            tags=[sections['spain'], subsections['boundary']],
+            tags=[sections['spain'], subsections['boundary'], source, license,
+                  boundary_type['interpolation_boundary'],
+                  boundary_type['cartographic_boundary']],
         )
         cusec_id = OBSColumn(
             name=u"Secci\xf3n Censal",
             type="Text",
-            tags=[],
             targets={cusec_geom: GEOM_REF}
         )
         return OrderedDict([
@@ -119,15 +132,20 @@ class SeccionColumns(ColumnsTask):
             'tags': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'license': LicenseTags(),
+            'source': SourceTags(),
         }
 
     def version(self):
-        return 39
+        return 40
 
     def columns(self):
-        spain = self.input()['sections']['spain']
-        tags = self.input()['tags']
-        units = self.input()['units']
+        input_ = self.input()
+        spain = input_['sections']['spain']
+        tags = input_['tags']
+        units = input_['units']
+        source = input_['source']['ine-source']
+        license = input_['license']['ine-license']
 
         total_pop = OBSColumn(
             id='t1_1',
@@ -1514,7 +1532,7 @@ class SeccionColumns(ColumnsTask):
             weight=5,
             tags=[tags['families'], units['households'], spain],
             targets={households: DENOMINATOR})
-        return OrderedDict([
+        columns = OrderedDict([
             ('total_pop', total_pop),
             ('male_pop', male_pop),
             ('female_pop', female_pop),
@@ -1664,7 +1682,39 @@ class SeccionColumns(ColumnsTask):
             ('households_4_people', households_4_people),
             ('households_5_people', households_5_people),
             ('households_6_more_people', households_6_more_people),
-        ])
+            ])
+
+        for _, col in columns.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+
+        return columns
+
+
+class LicenseTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='ine-license',
+                name='National Statistics Institute (INE)',
+                type='license',
+                description='`INE website <http://www.ine.es>`_')
+            ]
+
+
+class SourceTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [
+            OBSTag(
+                id='ine-source',
+                name='National Statistics Institute (INE) Legal Notice',
+                type='source',
+                description='More information `here <http://ine.es/ss/Satellite?L=1&c=Page&cid=1254735849170&p=1254735849170&pagename=Ayuda%2FINELayout#>`_')
+        ]
 
 
 class SeccionDataDownload(Task):
@@ -1697,7 +1747,7 @@ class PopulationHouseholdsHousing(TableTask):
         }
 
     def version(self):
-        return 1
+        return 3
 
     def timespan(self):
         return '2011'
@@ -1717,7 +1767,7 @@ class PopulationHouseholdsHousing(TableTask):
         session = current_session()
         with self.input()['data'].open() as infile:
             for fields in csv.reader(infile):
-                cusec = "'" + ''.join(fields[0:5]) + "'"
+                cusec = "'" + ''.join(fields[1:5]) + "'"
                 fields = [f.replace('"', '') for f in fields[5:]]
                 fields = [f or 'NULL' for f in fields]
                 fields.insert(0, cusec)
@@ -1795,7 +1845,6 @@ class FiveYearPopulationParse(Task):
 
                         writer.writerow(values)
 
-
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), '0001.csv'))
 
@@ -1803,7 +1852,7 @@ class FiveYearPopulationParse(Task):
 class FiveYearPopulationColumns(ColumnsTask):
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
@@ -1811,45 +1860,74 @@ class FiveYearPopulationColumns(ColumnsTask):
             'tags': SubsectionTags(),
             'sections': SectionTags(),
             'units': UnitTags(),
+            'license': LicenseTags(),
+            'source': SourceTags()
         }
 
     def columns(self):
-        spain = self.input()['sections']['spain']
-        tags = self.input()['tags']
-        units = self.input()['units']
+        input_ = self.input()
+        spain = input_['sections']['spain']
+        tags = input_['tags']
+        units = input_['units']
+        license = input_['license']['ine-license']
+        source = input_['source']['ine-source']
         session = current_session()
-        total_pop = self.input()['seccion_columns']['total_pop'].get(session)
-        columns = OrderedDict([
-            ('gender', OBSColumn(
-                type='Text',
-                name='Gender',
-                weight=0
-            ))
-        ])
-        for i in xrange(0, 20):
-            start = i * 5
-            end = start + 4
-            _id = 'pop_{start}_{end}'.format(start=start, end=end)
+        total_pop = input_['seccion_columns']['total_pop'].get(session)
+        total_pop_male = input_['seccion_columns']['male_pop'].get(session)
+        total_pop_female = input_['seccion_columns']['female_pop'].get(session)
+        columns = OrderedDict()
+
+        genders = [None, MALE, FEMALE]
+
+        for gender in genders:
+            for i in xrange(0, 20):
+                start = i * 5
+                end = start + 4
+
+                _id = 'pop_{start}_{end}'
+                _name = 'Population age {start} to {end}'
+                targets = {total_pop: DENOMINATOR}
+                if gender is not None:
+                    _id += '_{gender}'.format(gender=gender)
+                    _name += ' ({gender})'.format(gender=gender)
+                    if gender == MALE:
+                        targets[total_pop_male] = DENOMINATOR
+                    elif gender == FEMALE:
+                        targets[total_pop_female] = DENOMINATOR
+
+                columns[_id.format(start=start, end=end)] = OBSColumn(
+                    id=_id.format(start=start, end=end),
+                    type='Numeric',
+                    name=_name.format(
+                        start=start, end=end),
+                    targets=targets,
+                    description='',
+                    aggregate='sum',
+                    weight=3,
+                    tags=[spain, tags['age_gender'], units['people'], license, source]
+                )
+
+            _id = 'pop_100_more'
+            _name = 'Population age 100 or more'
+            targets = {total_pop: DENOMINATOR}
+            if gender is not None:
+                _id += '_{gender}'.format(gender=gender)
+                _name += ' ({gender})'.format(gender=gender)
+                if gender == MALE:
+                    targets[total_pop_male] = DENOMINATOR
+                elif gender == FEMALE:
+                    targets[total_pop_female] = DENOMINATOR
+
             columns[_id] = OBSColumn(
+                id=_id,
                 type='Numeric',
-                name='Population age {start} to {end}'.format(
-                    start=start, end=end),
-                targets={total_pop: DENOMINATOR},
+                name=_name,
+                targets=targets,
                 description='',
                 aggregate='sum',
                 weight=3,
-                tags=[spain, tags['age_gender'], units['people']]
+                tags=[tags['age_gender'], units['people'], spain, license, source]
             )
-        columns['pop_100_more'] = OBSColumn(
-            type='Numeric',
-            name='Population age 100 or more'.format(
-                start=start, end=end),
-            targets={total_pop: DENOMINATOR},
-            description='',
-            aggregate='sum',
-            weight=3,
-            tags=[tags['age_gender'], units['people'], spain]
-        )
 
         return columns
 
@@ -1871,19 +1949,24 @@ class RawFiveYearPopulation(TempTableTask):
         '''
         Add the geoid (cusec_id) column into the second position as expected
         '''
+        session = current_session()
         metacols = self.input()['meta']
+
         cols = OrderedDict()
-        cols['gender'] = metacols.pop('gender')
-        cols['cusec_id'] = self.input()['geometa']['cusec_id']
-        cols['total_pop'] = self.input()['seccion_columns']['total_pop']
+        cols['gender'] = 'Text'
+        cols['cusec_id'] = self.input()['geometa']['cusec_id'].get(session).type
+        cols['total_pop'] = self.input()['seccion_columns']['total_pop'].get(session).type
+
         for key, col in metacols.iteritems():
-            cols[key] = col
+            if not key.endswith('_male') and not key.endswith('_female'):
+                cols[key] = col.get(session).type
+
         return cols
 
     def run(self):
         session = current_session()
         cols = ['{colname} {coltype}'.format(colname=colname,
-                                             coltype=coltarget.get(session).type)
+                                             coltype=coltarget)
                 for colname, coltarget in self.columns().iteritems()]
         create_table = 'CREATE TABLE {output} ({cols})'.format(
             cols=', '.join(cols),
@@ -1900,9 +1983,6 @@ class RawFiveYearPopulation(TempTableTask):
 
 
 class FiveYearPopulation(TableTask):
-    '''
-    Keep only the "ambos sexos" entries
-    '''
 
     def requires(self):
         return {
@@ -1923,10 +2003,35 @@ class FiveYearPopulation(TableTask):
         cols = OrderedDict()
         cols['cusec_id'] = self.input()['geometa']['cusec_id']
         cols['total_pop'] = self.input()['seccion_columns']['total_pop']
+        cols['male_pop'] = self.input()['seccion_columns']['male_pop']
+        cols['female_pop'] = self.input()['seccion_columns']['female_pop']
         for key, col in metacols.iteritems():
-            if key == 'gender':
-                continue
             cols[key] = col
+
+        return cols
+
+    def columns_by_gender(self, gender):
+        metacols = self.input()['meta']
+        cols = OrderedDict()
+        cols['cusec_id'] = self.input()['geometa']['cusec_id']
+
+        if gender is None:
+            cols['total_pop'] = self.input()['seccion_columns']['total_pop']
+        elif gender == MALE:
+            cols['male_pop'] = self.input()['seccion_columns']['male_pop']
+        elif gender == FEMALE:
+            cols['female_pop'] = self.input()['seccion_columns']['female_pop']
+        for key, col in metacols.iteritems():
+            if gender is None:
+                if not key.endswith('_male') and not key.endswith('_female'):
+                    cols[key] = col
+            elif gender == MALE:
+                if key.endswith('_male'):
+                    cols[key] = col
+            elif gender == FEMALE:
+                if key.endswith('_female'):
+                    cols[key] = col
+
         return cols
 
     def timespan(self):
@@ -1934,10 +2039,39 @@ class FiveYearPopulation(TableTask):
 
     def populate(self):
         session = current_session()
-        session.execute('INSERT INTO {output} '
-                        'SELECT {cols} FROM {input} '
-                        "WHERE gender = 'Ambos Sexos'".format(
-                            cols=', '.join(self.columns().keys()),
-                            output=self.output().table,
-                            input=self.input()['data'].table
-                        ))
+        cols_all = self.columns_by_gender(None).keys()
+        cols_male = self.columns_by_gender(MALE).keys()
+        cols_female = self.columns_by_gender(FEMALE).keys()
+
+        query = 'INSERT INTO {output} ({insert_cols}, {select_cols_male}, {select_cols_female})' + \
+                'SELECT {select_cols}, {select_cols_male}, {select_cols_female} from ' + \
+                '(SELECT {cols_all} from {input} WHERE gender = \'Ambos Sexos\') allgenders, ' + \
+                '(SELECT {cols_male} from {input} WHERE gender = \'Hombres\') male, ' + \
+                '(SELECT {cols_female} from {input} WHERE gender = \'Mujeres\') female ' + \
+                'WHERE allgenders.cusec_id = male.cusec_id ' + \
+                'AND allgenders.cusec_id = female.cusec_id'
+
+        session.execute(query.format(
+            output=self.output().table,
+            input=self.input()['data'].table,
+            insert_cols=', '.join(cols_all),
+            select_cols=', '.join([x if x != 'cusec_id' else 'allgenders.cusec_id' for x in cols_all]),
+            select_cols_male=', '.join([x for x in cols_male if x != 'cusec_id']),
+            select_cols_female=', '.join([x for x in cols_female if x != 'cusec_id']),
+            cols_all=', '.join(cols_all),
+            cols_male=', '.join([cols_all[x] + ' ' + cols_male[x] for x in range(len(cols_male))]),
+            cols_female=', '.join([cols_all[x] + ' ' + cols_female[x] for x in range(len(cols_female))])))
+
+
+class FiveYearPopulationMeta(MetaWrapper):
+
+    def tables(self):
+        yield FiveYearPopulation()
+        yield Geometry()
+
+
+class PopulationHouseholdsHousingMeta(MetaWrapper):
+
+    def tables(self):
+        yield PopulationHouseholdsHousing()
+        yield Geometry()

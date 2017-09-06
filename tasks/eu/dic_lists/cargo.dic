@@ -1,0 +1,60 @@
+TOTAL	Total
+LBK	Liquid bulk goods
+LBK_LGAS	Liquid bulk - liquified gas
+LBK_COIL	Liquid bulk - crude oil
+LBK_ROIL	Liquid bulk - refined oil products
+LBK_OTH	Liquid bulk - other
+LBK_NSP	Liquid bulk - unspecified
+DBK	Dry bulk goods
+DBK_ORES	Dry bulk - ores
+DBK_COAL	Dry bulk - coal
+DBK_PAGR	Dry bulk - agricultural products
+DBK_OTH	Dry bulk - other
+DBK_NSP	Dry bulk - unspecified
+CNT_SWP	Containers and swap bodies
+LCNT	Large containers
+LCNT_20	Large containers - 20-ft freight units
+LCNT_40	Large containers - 40-ft freight units
+LCNT_21-39	Large containers - freight units over 20-ft and less than 40-ft
+LCNT_GT40	Large containers - freight units > 40-ft
+LCNT_LD	Large containers (excluded swap bodies) - loaded
+LCNT_EMP	Large containers (excluded swap bodies) - empty
+LCNT_NSP	Large containers - unspecified size
+CNT_OTH	Other containers
+PAL	Palletised goods
+PSLG	Pre-slung goods
+WRVEH	Railway wagons loaded with road vehicles
+MSP	Mobile self-propelled units
+RMSP	Road mobile self-propelled units
+WMSP	Mobile self-propelled units transported on railway wagons
+RVEH	Road vehicles (accompanied)
+RO_TOT	Ro-Ro - mobile self-propelled and non-self-propelled units
+RO_MSP	Ro-Ro - mobile self-propelled units
+RO_RVEH	Ro-Ro - road goods vehicles and accompanying trailers
+RO_CM	Ro-Ro - passenger cars, motorcycles and accompanying trailers/caravans
+RO_PBUS	Ro-Ro - passenger buses
+RO_TVEH	Ro-Ro - trade vehicles (incl. import/export motor vehicles)
+RO_LANI	Ro-Ro - live animals on the hoof
+RO_MSP_OTH	Ro-Ro - other mobile self-propelled units
+RO_MSP_NSP	Ro-Ro - unspecified mobile self-propelled units
+MNSP	Mobile non-self-propelled units
+RMNSP	Road mobile non-self-propelled units
+WMNSP	Mobile non-self-propelled units transported on railway wagons
+STRL	Semi-trailers (unaccompanied)
+RO_MNSP	Ro-Ro - mobile non-self-propelled units
+RO_TRL_STRL	Ro-Ro - unaccompanied road goods trailers and semi-trailers
+RO_CVAN_OTH	Ro-Ro - unaccompanied caravans and other road agricultural and industrial vehicles
+RO_RWS	Ro-Ro - rail wagons, shipborne port-to-port trailers, and shipborne barges engaged in goods transport
+RO_RW	Ro-Ro - rail wagons engaged in goods transport 
+RO_SPP	Ro-Ro - shipborne port-to-port trailers engaged in goods transport
+RO_SB	Ro-Ro - shipborne barges engaged in goods transport
+RO_MNSP_OTH	Ro-Ro - other mobile non-self-propelled units
+RO_MNSP_NSP	Ro-Ro - unspecified mobile non-self-propelled units
+RES	Reserved
+OTH	Other cargo not elsewhere specified
+OTH_FOR	Other cargo - forestry products
+OTH_IS	Other cargo - iron and steel products
+OTH_GN	Other cargo - other general cargo
+OTH_UNK	Other cargo - unknown
+UNK	Unknown
+NSP	Unspecified non unit-load

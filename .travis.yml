@@ -1,14 +1,33 @@
-{
-  "services": [
-    "docker",
-    "postgresql",
-  ],
-  "sudo": "required",
-  "before_install": [
-    "openssl aes-256-cbc -K $encrypted_d303290e7d32_key -iv $encrypted_d303290e7d32_iv -in keys/id_rsa_observatory_extension.key.enc -out keys/id_rsa_observatory_extension.key -d"
-  ],
-  "script": "make travis-etl-unittest",
-  "addons": {
-    "postgresql": "9.4",
-  },
-}
+services:
+- docker
+- postgresql
+before_install:
+- openssl aes-256-cbc -K $encrypted_d303290e7d32_key -iv $encrypted_d303290e7d32_iv
+  -in keys/id_rsa_observatory_extension.key.enc -out keys/id_rsa_observatory_extension.key
+  -d
+script: make $TEST_SUITE
+addons:
+  postgresql: '9.5'
+  apt:
+    packages:
+    - postgresql-9.5-postgis-2.3
+before_script:
+- psql -U postgres -c "create extension postgis"
+env:
+- TEST_SUITE=travis-etl-metadatatest
+- TEST_SUITE=travis-etl-unittest
+- TEST_SUITE=travis-diff-catalog
+deploy:
+  provider: s3
+  access_key_id: AKIAIFF5P3WO2RAOZTOQ
+  secret_access_key:
+    secure: VhFCohvt1yBObEOWG+kvQJlHGcxYp8Q/9xKju4y7Jq+7TgG1ktjnf+2UdJbxyo7eqMcAcWvaA/qYpbW+qXMiKVJL2TTs5JbbPdWvv7g/kZk5r4Bt3pmNj81fLh5jcYrYXkJZq8tWABUgFJKutZssgaOhallUtaA1q21d3YKtXocOcjI0Tk8wePzriqfiDuJVwevdn4U8EJhuogyj7IT+7izc034ybp5DmGiO1Eit29K7VrZut4qalSQnDtJaS0ktG9SskzXTrHNoivAEFXSroeyFmR4vWVIDf+vL2NReFGjy+BVgfnbHQ/aa+AaRxdKalaya/ORT9R5ngcYSGlL7ZGk5f61gDLa8x3etZU+OOIbOm4qs6OvLVh5SkAWeTxVaNwcgpF9YNg4ERI56D1hcTBDh/BTAHJ8h2Oou9Ba6K0gdO2SpaTTDIAwosTn9qkxo+8dSM3lHRSPLnKlfTeS+mch64HnkaQ0hHPq9K9VrC3DvcyaV2Trb4KgFo7O8I+Ib2c1yiBzPFMJM1/KWubGcgxdjrde0En0Ep00uL7x/P6rkBCwfr1brxo+BRF+e3cBXLbvSz42jqfa5KuA7ZCQfyrxh/2MXnHnlXjy9toR7Rs0gDMEuk+rCGLv1bT+LaTziHplkq+I0w3U1fTd7o2nNkU/lQjpUJDjd3GcGEpVWq9s=
+  bucket: data-observatory-catalog
+  local-dir: catalog/build/html/
+  upload-dir: catalogs/$TRAVIS_BRANCH
+  acl: public_read
+  skip_cleanup: true
+  on:
+    repo: CartoDB/bigmetadata
+    all_branches: true
+    condition: "$TEST_SUITE = travis-diff-catalog"

@@ -21,12 +21,12 @@ from tasks.tags import SectionTags, SubsectionTags
 class DownloadWOF(TempTableTask):
 
     resolution = Parameter()
-    URL = 'https://raw.githubusercontent.com/whosonfirst/whosonfirst-data/master/meta/wof-{resolution}-latest.csv'
+    URL = 'https://media.githubusercontent.com/media/whosonfirst-data/whosonfirst-data/master/meta/wof-{resolution}-latest.csv'
 
     def run(self):
         resp = requests.get(self.URL.format(resolution=self.resolution))
-        encoded = resp.text.encode(resp.headers['Content-Type'].split('charset=')[1])
-        reader = DictReader(encoded.split('\r\n'))
+        #encoded = resp.text.encode(resp.headers['Content-Type'].split('charset=')[1])
+        reader = DictReader(resp.text.encode('utf8').split('\r\n'))
 
         for i, line in enumerate(reader):
             # TODO would be much, much faster in parallel...
@@ -34,7 +34,7 @@ class DownloadWOF(TempTableTask):
             lfs_url = 'https://github.com/whosonfirst/whosonfirst-data/raw/master/data/{path}'.format(
                 path=line['path'])
             cmd = 'wget \'{url}\' -O - | ogr2ogr -{operation} ' \
-                    '-nlt MULTIPOLYGON -nln \'{table}\' ' \
+                    '-nlt Geometry -nln \'{table}\' ' \
                     '-f PostgreSQL PG:"dbname=$PGDATABASE ' \
                     'active_schema={schema}" /vsistdin/'.format(
                         url=url,
@@ -54,7 +54,7 @@ class WOFColumns(ColumnsTask):
     resolution = Parameter()
 
     def version(self):
-        return 4
+        return 6
 
     def requires(self):
         return {
@@ -104,7 +104,8 @@ class WOFColumns(ColumnsTask):
                 id='wof_' + self.resolution + '_name',
                 #name=name_names[self.resolution],
                 type="Text",
-                weight=0
+                weight=1,
+                tags=[glob]
                 #description=name_descriptions[self.resolution],
             )),
             #('placetype', OBSColumn(
@@ -121,7 +122,7 @@ class WOF(TableTask):
         return '2016'
 
     def version(self):
-        return 10
+        return 11
 
     def requires(self):
         requirements = {
@@ -142,8 +143,8 @@ class WOF(TableTask):
 
         session.execute('INSERT INTO {output} '
                         'SELECT "wof:id", '
-                        'CASE WHEN ST_Npoints(wkb_geometry) > 1000000 '
-                        '     THEN ST_Simplify(wkb_geometry, 0.0001) '
+                        'CASE WHEN ST_Npoints(wkb_geometry) > 100000 '
+                        '     THEN ST_MakeValid(ST_SimplifyVW(wkb_geometry, 0.0001)) '
                         '     ELSE wkb_geometry '
                         'END, '
                         '"wof:name" '

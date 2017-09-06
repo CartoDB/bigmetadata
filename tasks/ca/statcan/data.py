@@ -4,7 +4,7 @@ import urllib
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
-from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath
+from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, MetaWrapper, LOGGER
 from tasks.meta import current_session
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
@@ -53,6 +53,24 @@ class DownloadData(BaseParams, DownloadUnzipTask):
 
 
 class SplitAndTransposeData(BaseParams, Task):
+    IGNORED_FILE_SUFFIXES = ('-DQ',)
+    DIVISION_SPLITTED = {
+        SURVEY_CEN: {
+            GEO_CT: None,
+            GEO_PR: None,
+            GEO_CD: None,
+            GEO_CSD: None,
+            GEO_CMA: ('cmaca_name', (r'part\)$',))
+        },
+        SURVEY_NHS: {
+            GEO_CT: None,
+            GEO_PR: None,
+            GEO_CD: None,
+            GEO_CSD: None,
+            GEO_CMA: ('cma_ca_name', (r'part\)$',))
+        }
+    }
+
     def requires(self):
         return DownloadData(resolution=self.resolution, survey=self.survey)
 
@@ -62,9 +80,19 @@ class SplitAndTransposeData(BaseParams, Task):
             survey_code=SURVEY_CODES[self.survey],
             geo_code=GEOGRAPHY_CODES[self.resolution]
         ))
-        in_csv_files = infiles.strip().split('\n')
+        in_csv_files = []
+        for in_csv_file in infiles.strip().split('\n'):
+            if not self._is_ignored_suffix(in_csv_file):
+                in_csv_files.append(in_csv_file)
+            else:
+                LOGGER.warning('Ignoring file %s' % in_csv_file)
         os.makedirs(self.output().path)
-        StatCanParser().parse_csv_to_files(in_csv_files, self.output().path)
+        StatCanParser(self.DIVISION_SPLITTED[self.survey][self.resolution]).parse_csv_to_files(in_csv_files, self.output().path)
+
+    def _is_ignored_suffix(self, csv_file):
+        if os.path.splitext(csv_file)[0].endswith(self.IGNORED_FILE_SUFFIXES):
+            return True
+        return False
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
@@ -148,6 +176,9 @@ class Survey(BaseParams, TableTask):
 
     topic = Parameter(default='t001')
 
+    def version(self):
+        return 5
+
     def requires(self):
         '''
         Subclasses must override this.
@@ -203,6 +234,7 @@ class Survey(BaseParams, TableTask):
 
 
 class Census(Survey):
+
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
@@ -226,6 +258,7 @@ class AllCensusTopics(BaseParams, WrapperTask):
 
 
 class NHS(Survey):
+
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),
@@ -246,3 +279,30 @@ class AllNHSTopics(BaseParams, WrapperTask):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield NHS(resolution=resolution, survey=SURVEY_NHS, topic=topic)
+
+
+class CensusMetaWrapper(MetaWrapper):
+    resolution = Parameter()
+    topic = Parameter()
+
+    params = {
+        'topic': ['t{:03d}'.format(i) for i in range(1,11)],
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield Census(resolution=self.resolution, topic=self.topic, survey=SURVEY_CEN)
+
+class NHSMetaWrapper(MetaWrapper):
+    resolution = Parameter()
+    topic = Parameter()
+
+    params = {
+        'topic': ['t{:03d}'.format(i) for i in range(1,30)],
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)
+    }
+
+    def tables(self):
+        yield Geography(resolution=self.resolution)
+        yield NHS(resolution=self.resolution, topic=self.topic, survey=SURVEY_NHS)

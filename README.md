@@ -28,7 +28,7 @@ Docker is available.
   [tasks/meta.py](https://github.com/CartoDB/bigmetadata/blob/master/tasks/meta.py#L76).
   There are six related tables, `obs_table`, `obs_column_table`, `obs_column`,
   `obs_column_tag`, `obs_tag`, and `obs_column_to_column`.  An overarching
-  denomralized view can be found in `obs_meta`.
+  denormalized view can be found in `obs_meta`.
 
 * __Catalog__: a [static HTML guide](https://cartodb.github.io/bigmetadata) to
   data in the observatory generated from the metadata.  Docs are generated

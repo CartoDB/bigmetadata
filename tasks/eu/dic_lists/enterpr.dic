@@ -1,0 +1,27 @@
+TOTAL	Total
+LIFE	Life insurance enterprises
+NLIFE	Non-life insurance enterprises
+CMP	Composite insurance enterprises
+RINS	Specialist reinsurance enterprises
+CMP_LIFE	Life insurance business of composite insurance enterprises
+CMP_NLIFE	Non-life insurance business of composite insurance enterprises (including business accepted)
+AVIA	Aviation enterprises
+AIRP	Airport enterprises
+RL_OPER	Railway transport operator
+RL_INFR	Infrastructure manager
+RL_INTG	Integrated company
+DOM	Enterprises with domestic sourcing
+INTL	Enterprises with international sourcing
+NINTL_PL	Enterprises with no current international sourcing but with future plans to do so
+NINTL_NPL	Enterprises with no current international sourcing and no future plans to do so
+BACK	Enterprises with backsourcing in 2009-2011
+NBACK	Enterprises with no backsourcing in 2009-2011
+RLC	Enterprises that relocated activities in 2009-2011
+NRLC	Enterprises that did not relocate activities in 2009-2011
+CTRL	Enterprises that controlled foreign affiliates in 2009-2011
+NCTRL	Enterprises that did not control foreign affiliates in 2009-2011
+SPEC	Specialised enterprises
+NSPEC	Non-specialised enterprises
+HG	High-growth enterprises
+YHG	Young high-growth enterprises (gazelles)
+OTH	Other enterprises

@@ -1,0 +1,17 @@
+TOTALNOREROUTE	Total expenditure
+SPBENEFNOREROUTE	Social protection benefits
+SNONTARGETNOREROUTE	Non means-tested benefits
+STARGETNOREROUTE	Means-tested benefits
+ADMIN	Administration costs
+OTHER	Other expenditure
+SICK	Sickness/Health care
+DISA	Disability
+OLD	Old age
+SURVIV	Survivors
+FAM	Family/Children
+UNEMPLOY	Unemployment
+HOUSE	Housing
+EXCLU	Social exclusion n.e.c.
+SICKDISA	Sickness / healthcare and disability
+OLDSURVIV	Old age and survivors
+HOUSEEXCLU	Housing and Social exclusion n.e.c.

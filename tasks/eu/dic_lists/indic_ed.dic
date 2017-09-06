@@ -1,0 +1,394 @@
+D01_0D	Pupils and students (ISCED levels 1-6) (1 000)
+D01_2	Pupils at ISCED level 0 - as % of all pupils and students
+D01_2D	Pupils at ISCED level 0 (1 000)
+D01_3	Pupils at ISCED level 1 - as % of all pupils and students
+D01_3D	Pupils at ISCED level 1 (1 000)
+D01_4	Pupils at ISCED level 2 - as % of all pupils and students
+D01_4D	Pupils at ISCED level 2 (1 000)
+D01_5	Pupils and students at ISCED level 3 - as % of all pupils and students
+D01_5D	Pupils and students at ISCED level 3 (1 000)
+D01_6	Students at ISCED level 4 - as % of all pupils and students
+D01_6D	Students at ISCED level 4 (1 000)
+D01_7	Students at ISCED level 5-6 - as % of all pupils and students
+D01_7D	Students at ISCED level 5-6 (1 000)
+D01_8	Students at ISCED 5 as % of all pupils and students
+D01_8D	Students at ISCED level 5 (1 000)
+D01_9	Students at ISCED 6 as % of all pupils and students
+D01_9D	Students at ISCED level 6 (1 000)
+EM1_1	Proportion of school-leavers employed in the service sector having completed education level ISCED1-2 when leaving education for the first time
+EM1_2	Proportion of school-leavers employed in the service sector having completed education level ISCED3-4 when leaving education for the first time
+EM1_3	Proportion of school-leavers employed in the service sector having completed education level ISCED5-6 when leaving education for the first time
+EM1_4	Occupational status of recent school-leavers having completed education level ISCED1_2
+EM1_5	Occupational status of recent school-leavers having completed education level ISCED3-4
+EM1_6	Occupational status of recent school-levers having completed education level ISCED5-6
+ES1_1	Average age when leaving education for the first time
+ES1_2	Average age when leaving education for the first time having achieved education level ISCED1-2
+ES1_3	Average age when leaving education for the first time having achieved education level ISCED3-4
+ES1_4	Average age when leaving education for the first time having achieved education level ISCED5-6
+ES2_1	Percentage of young people having completed education level ISCED1-2 at the time of leaving continuous education
+ES2_2	Percentage of young people having completed education level ISCED3-4 at the time of leaving continuous education
+ES2_3	Percentage of young people having completed education level ISCED5-6 at the time of leaving continuous education
+ES3_1	Percentage of parents having completed  education level ISCED1-2
+ES3_2	Percentage of parents having completed  education level ISCED3-4
+ES3_3	Percentage of parents having completed  education level ISCED5-6
+ES4_1	Absolute rates of stability between male and female young people attainment and their parents educational attainment %
+ES4_2	Absolute rates of stability between male young people attainment and their parents educational attainment %
+ES4_3	Absolute rates of stability between female young people attainment and their parents educational attainment %
+ES4_4	Absolute rates of upward stability between male and female young people attainment and their parents educational attainment %
+ES4_5	Absolute rates of upward stability between male young people attainment and their parents educational attainment %
+ES4_6	Absolute rates of upward stability between female young people attainment and their parents educational attainment %
+ES4_7	Absolute rates of downward stability between male and female young people attainment and their parents educational attainment %
+ES4_8	Absolute rates of downward stability between male young people attainment and their parents educational attainment %
+ES4_9	Absolute rates of downward stability between female young people attainment and their parents educational attainment %
+ES5_1	Early school male and female leavers ISCED1-2 by parents' highest educational attainment %
+ES5_2	Early school male leavers ISCED1-2 by parent highest educational attainment %
+ES5_3	Early school female leavers ISCED1-2 by parent highest educational attainment %
+ES5_4	Early school male and female leavers ISCED3-4 by parent highest educational attainment %
+ES5_5	Early school male leavers ISCED3-4 by parent highest educational attainment %
+ES5_6	Early school female leavers ISCED3-4 by parent highest educational attainment %
+ES5_7	Early school male and female leavers ISCED5-6 by parent highest educational attainment %
+ES5_8	Early school males leavers ISCED5-6 by parent highest educational attainment %
+ES5_9	Early school females leavers ISCED5-6 by parent highest educational attainment %
+ET1_1	Activity rates by time (months) since leaving continuous education for the first time
+ET2_1	Proportion of self-employed by time (months) since leaving continuous education for the first time
+ET3_1	Proportion in precarious employment by time (months) since leaving continuous education ISCED1-2
+ET3_2	Proportion in precarious employment by time (months) since leaving continuous education ISCED3-4
+ET3_3	Proportion in precarious employment by time (months) since leaving continuous education ISCED5-6
+ET6_1	Unemployment rates by time (months) since leaving continuous education for the first time
+ET6_2	Unemployment rates by time (months) since leaving continuous education ISCED1-2 for the first time
+ET6_3	Unemployment rates by time (months) since leaving continuous education ISCED3-4 for the first time
+ET6_4	Unemployment rates by time (months) since leaving continuous education ICED5-6 for the first time
+FA01_1	Total public expenditure on education in millions PPS, for all levels of education combined
+FA01_2	Total public expenditure on education in millions PPS, at primary level of education (ISCED 1)
+FA01_3	Total public expenditure on education in millions PPS, at secondary level of education (ISCED 2-4)
+FA01_4	Total public expenditure on education in millions PPS, at tertiary level of education (ISCED 5-6)
+FC01_1	Index of total public expenditure on education in constant prices (2000 = 100), for all levels of education combined
+FD01_1	Financial aid to pupils and students as % of total public expenditure on education, for all levels of education combined
+FD01_2	Financial aid to pupils as % of total public expenditure on education, at primary and secondary level of education (ISCED 1-4)
+FD01_3	Financial aid to students as % of total public expenditure on education, at tertiary level of education (ISCED 56)
+FN01_1	Annual expenditure on public educational institutions per pupil/student in PPS, for all levels of education combined, based on full-time equivalents
+FN01_2	Annual expenditure on public educational institutions per pupil in PPS, at primary level of education (ISCED 1), based on full-time equivalents
+FN01_3	Annual expenditure on public educational institutions per pupil in PPS, at secondary level of education (ISCED 2-4), based on full-time equivalents
+FN01_4	Annual expenditure on public educational institutions per student in PPS, at tertiary level of education (ISCED 56), based on full-time equivalents
+FN02_1	Ratio of annual expenditure per student at the tertiary level of education to the annual expenditure per pupil at primary level, in public educational institutions, based on full-time equivalents
+FN03_1	Annual expenditure on public educational institutions per pupil/student compared to GDP per capita, for all levels of education combined, based on full-time equivalents
+FN03_2	Annual expenditure on public educational institutions per pupil compared to GDP per capita, at primary level of education (ISCED 1), based on full-time equivalents
+FN03_3	Annual expenditure on public educational institutions per pupil compared to GDP per capita, at secondary level of education (ISCED 2-4), based on full-time equivalents
+FN03_4	Annual expenditure on public educational institutions per student compared to GDP per capita, at tertiary level of education (ISCED 56), based on full-time equivalents
+FN04_1	Current expenditure as % of total expenditure in public educational institutions, for all levels of education combined
+FN04_2	Capital expenditure as % of total expenditure in public educational institutions, for all levels of education combined
+FN04_3	Personnel expenditure as % of current expenditure in public educational institutions, for all levels of education combined
+FN04_4	Other current expenditure as % of current expenditure in public educational institutions, for all levels of education combined
+FP01_1	Total public expenditure on education as % of GDP, for all levels of education combined
+FP02_1	Total public expenditure on education as % of GDP, at primary level of education (ISCED 1)
+FP02_2	Total public expenditure on education as % of GDP, at secondary level of education (ISCED 2-4)
+FP02_3	Total public expenditure on education as % of GDP, at tertiary level of education (ISCED 5-6)
+FP02_4	Total public expenditure on education as % of GDP, at pre-primary level of education (ISCED 0) and not allocated by level
+FP03_1	Expenditure on educational institutions from public sources as % of GDP, for all levels of government combined
+FP03_2	Public subsidies to the private sector as % of GDP, for all levels of education combined
+FP04_1	Total public expenditure on education as % of total public expenditure, for all levels of education combined
+FP04_2	Expenditure on educational institutions from public sources as % of total public expenditure, for all levels of education combined
+FP04_3	Public subsidies to the private sector as % of total public expenditure, for all levels of education combined
+FP05_1	Expenditure on educational institutions from private sources as % of GDP, for all levels of education combined
+FP06_1	Total public expenditure on education as % of gross national income, for all levels of education combined
+FS01_1	Initial funds provided by the central level of government as % of initial funds provided by all levels of government combined
+FS01_2	Initial funds provided by the regional level of government as % of initial funds provided by all levels of government combined
+FS01_3	Initial funds provided by the local level of government as % of initial funds provided by all levels of government combined
+FS02_1	Final funds provided by the central level of government as % of final funds provided by all levels of government combined
+FS02_2	Final funds provided by the regional level of government as % of final funds provided by all levels of government combined
+FS02_3	Final funds provided by the local level of government as % of final funds provided by all levels of government combined
+FS03_1	Expenditure of public sources of funds of educational institutions as % of expenditure of public and private sources of funds on educational institutions, for all levels of education combined
+FS03_2	Expenditure of private sources of funds of educational institutions as % of expenditure of public and private sources of funds on educational institutions, for all levels of education combined
+FT01_1	Annual expenditure on public and private educational institutions per pupil/student in PPS, for all levels of education combined, based on full-time equivalents
+FT01_2	Annual expenditure on public and private educational institutions per pupil in PPS, at primary level of education (ISCED 1), based on full-time equivalents
+FT01_3	Annual expenditure on public and private educational institutions per pupil in PPS, at secondary level of education (ISCED 2-4), based on full-time equivalents
+FT01_4	Annual expenditure on public and private educational institutions per student in PPS, at tertiary level of education (ISCED 5-6), based on full-time equivalents
+FT02_1	Annual expenditure on public and private educational institutions per pupil/student compared to GDP per capita, for all levels of education combined, based on full-time equivalents
+FT02_2	Annual expenditure on public and private educational institutions per pupil compared to GDP per capita, at primary level of education (ISCED 1), based on full-time equivalents
+FT02_3	Annual expenditure on public and private educational institutions per pupil compared to GDP per capita, at secondary level of education (ISCED 2-4), based on full-time equivalents
+FT02_4	Annual expenditure on public and private educational institutions per student compared to GDP per capita, at tertiary level of education (ISCED 5-6), based on full-time equivalents
+FT03_1	Annual expenditure on public and private educational institutions as percentage of GDP, for all levels of education combined
+FT03_2	Annual expenditure on public and private educational institutions as percentage of GDP, at primary level of education (ISCED 1)
+FT03_3	Annual expenditure on public and private educational institutions as percentage of GDP, at secondary level of education (ISCED 2-4)
+FT03_4	Annual expenditure on public and private educational institutions as percentage of GDP, at tertiary level of education (ISCED 5-6)
+G01_1	Population aged 0-9 - as % of the total population
+G01_1D	Population aged 0-9 (1 000)
+G01_2	Population aged 10-19 - as % of the total population
+G01_2D	Population aged 10-19 (1 000)
+G01_3	Population aged 20-29 - as % of the total population
+G01_3D	Population aged 20-29 (1 000)
+G01_4D	Population aged 0-29 (1 000)
+G01_5D	Total population (1 000)
+G02_1	School expectancy of pupils and students (ISCED 0-6)
+G02_2	Expected years of tertiary education (ISCED 5-6)
+G03_1	Pupils and students (ISCED 1-6) aged 0-29 - as % of population aged 0-29
+G03_1D	Pupils and students (ISCED 1-6) aged 0-29 (1 000)
+G03_2	Pupils and students (ISCED 1-6) aged 5-29 - as a % of population aged 5-29 years
+G03_2D	Pupils and students (ISCED 1-6) aged 5-29 years (1 000)
+G04_1	Students in post-compulsory education - as a % of the total population of post-compulsory school age
+G04_1D	Students in post-compulsory education (1 000)
+G04_2D	Population in post-compulsory school age (1 000)
+G05_1	Pupils and students (ISCED 1-3) - as % of total age population
+G05_1D	Pupils and students (ISCED 1-3) (1 000)
+G06_1	Active population - as % of total population
+G06_1D	Active population (1 000)
+G07_1	Participation rates in education for 18-years olds, ISCED 1-6
+L01_1	Pupils at ISCED level 1 learning 2 or more foreign languages
+L01_2	Pupils at ISCED level 1 learning 0 foreign languages
+L01_3	Pupils at ISCED level 1 learning 1 foreign language
+L01_4	Percentage of pupils at ISCED level 2 learning 2 or more foreign languages
+L01_6	Percentage of pupils at ISCED level 2 learning 1 foreign language
+L01_7	Percentage of pupils at ISCED level 3 (GEN) learning 2 or more foreign languages
+L01_9	Percentage of pupils at ISCED level 3 (GEN) learning 1 foreign language
+L01_13	Percentage of pupils at ISCED level 2 learning no foreign languages
+L01_14	Percentage of pupils at ISCED level 3 (GEN) learning no foreign languages
+L01_16	Percentage of pupils at ISCED level 3, prevocational and vocational, learning 2 or more foreign languages
+L01_18	Percentage of pupils at ISCED level 3, prevocational and vocational, learning 1 foreign language
+L01_19	Percentage of pupils at ISCED level 3, prevocational and vocational, learning no foreign languages
+L02_1	Average number of foreign languages learned per pupil at ISCED level 2
+L02_2	Average number of foreign languages learned per pupil at ISCED level 3
+L02_4	Average number of foreign languages learned per pupil at ISCED level 1
+L02_6	Average number of foreign languages learned per pupil at ISCED level 3 General
+L02_8	Average number of foreign languages learned per pupil at ISCED level 3, prevocational and vocational
+L03_1	Pupils learning English at ISCED level 2 - as % of the total pupils at this level
+L03_2	Pupils learning English at ISCED level 3 (GEN) - as % of the total pupils at this level
+L03_4	Pupils learning French at ISCED level 2 - as % of the total pupils at this level
+L03_5	Pupils learning French at ISCED level 3 (GEN) - as % of the total pupils at this level
+L03_7	Pupils learning German at ISCED level 2 - as % of the total pupils at this level
+L03_8	Pupils learning German at ISCED level 3 (GEN) - as % of the total pupils at this level
+L03_10	Pupils learning Spanish at ISCED level 2 - as % of the total pupils at this level
+L03_11	Pupils learning Spanish at ISCED level 3 (GEN) - as % of the total pupils at this level
+L03_13	Pupils learning Russian at ISCED level 2 - as % of the total pupils at this level
+L03_14	Pupils learning Russian at ISCED level 3 (GEN) - as % of the total pupils at this level
+L03_16	Pupils learning English at ISCED level 1 as % of the total pupils at this level
+L03_17	Pupils learning French at ISCED level 1 as % of the total pupils at this level
+L03_18	Pupils learning German at ISCED level 1 as % of the total pupils at this level
+MG01_1D	Foreign graduates in absolute numbers
+MG01_1P	Foreign graduates as percentage of all graduates in the host country (%)
+MG01_2D	Inward mobile graduates in absolute numbers
+MG01_2P	Inward mobile graduates as percentage of all graduates in the host country (%)
+MM1_1	Incidence of job mismatches by country (%)
+MM1_2	Incidence of job mismatches for females (%)
+MM1_3	Incidence of job mismatches for males (%)
+MM1_4	Incidence of job mismatches by level of education ISCED3-4 (%)
+MM1_5	Incidence of job mismatches by level of education ISCED5-6 (%)
+MM2_1	Incidence of job mismatches by field of education (%)
+MM2_2	Incidence of job mismatches by field of education Humanities, arts  (%)
+MM2_3	Incidence of job mismatches by field of education Social sciences, business, law  (%)
+MM2_4	Incidence of job mismatches by field of education Sciences  (%)
+MM2_5	Incidence of job mismatches by field of education Engineering, manufacturing, construction  (%)
+MM2_6	Incidence of job mismatches by field of education Agriculture  (%)
+MM2_7	Incidence of job mismatches by field of education Health, welfare  (%)
+MM2_8	Incidence of job mismatches by field of education Services (%)
+MM3_1	Occupational status attainment by job mismatch YES
+MM3_2	Occupational status attainment by job mismatch and country NO
+MM4_1	Temporary employment by job mismatch (%)
+MM4_2	Temporary employment by job match (%)
+MM5_1	Part-time employment by job mismatch  (%)
+MM5_2	Part-time employment by job match  (%)
+MM6_1	Job search activities by job mismatch  (%)
+MM6_2	Job search activities by job match  (%)
+MM7_1	Participation in continuing vocational training by job mismatch (%)
+MM7_2	Participation in continuing vocational training by job match (%)
+MM_NO	No mismatch (exact match)
+MM_VERT	Vertical mismatch
+MM_HOR	Horizontal mismatch
+MM_VERT_HOR	Vertical and horizontal mismatch
+MS01_1D	Foreign students in absolute numbers
+MS01_1P	Foreign students as percentage of student population in the host country (%)
+MS01_2D	Inward mobile students in absolute numbers
+MS01_2P	Inward mobile students as percentage of student population in the host country (%)
+MS02_1D	Nationals studying abroad in absolute numbers
+MS02_1P	Nationals studying abroad as percentage of students with the same nationality in countries of origin and destination (%)
+MS02_1Q	Nationals studying abroad as percentage of student population in the country of origin (%)
+MS02_2D	Outward mobile students in absolute numbers
+MS02_2P	Outward mobile students as percentage of students with the same origin in countries of origin and destination (%)
+MS02_2Q	Outward mobile students as percentage of student population in the country of origin (%)
+P01_1	Students in public institutions (ISCED 1 to 4) - as % of all students in public and private institutions
+P01_2	Students in private institutions (ISCED 1 to 4) - as % of all students in public and private institutions
+P01_3	Students in private dependent institutions (ISCED 1 to 4) - as % of all students in public and private institutions
+P01_4	Students in private independent institutions (ISCED 1 to 4) - as % of all students in public and private institutions
+P02_0	Participants in early education (aged between 4-years-old and the starting age of compulsory education) - as % of inhabitants of the corresponding age group
+P02_0M	Male participants in early education (aged between 4-years-old and the starting age of compulsory education) - as % of male inhabitants of the corresponding age group
+P02_0F	Female participants in early education (aged between 4-years-old and the starting age of compulsory education) - as % of female inhabitants of the corresponding age group
+P02_1	Participants at ISCED level 0 aged 3 years - as % of population aged 3
+P02_2	Participants at ISCED level 0 aged 4 years - as % of population aged 4
+P02_3	Participants at ISCED level 0 aged 5 years - as % of population aged 5
+P02_4	Participants at ISCED level 0 aged 6 years - as % of population aged 6
+P02_5	Participants at ISCED level 0 aged 7 years - as % of population aged 7
+P02_7	Participants at ISCED level 1 aged 4 years - as % of population aged 4
+P02_8	Participants at ISCED level 1 aged 5 years - as % of population aged 5
+P02_9	Participants at ISCED level 1 aged 6 years - as % of population aged 6
+P02_10	Participants at ISCED level 1 aged 7 years - as % of population aged 7
+P04_1	Participation rate of 4-years old in education at ISCED level 0-1
+PR1_1	Odds ratios of graduating from tertiary education/Young people with parent with ISCED 5-6/Young people with parents with ISCED 1-2
+PR1_2	Odds ratios of graduating from tertiary education/Young people with parent with ISCED 3-4/Young people with parents with ISCED 1-2
+PR2_1	Average time to enter first significant job by parent's education ISCED1-2
+PR2_2	Average time to enter first significant job by parent's education ISCED3-4
+PR2_3	Average time to enter first significant job by parent's education ISCED5-6
+PR3_1	Average occupational status of young people with parents with different educational attainment ISCED 1-2
+PR3_2	Average occupational status of young people with parents with different educational attainment ISCED 3-4
+PR3_3	Average occupational status of young people with parents with different educational attainment ISCED 5-6
+PR3_4	Total average occupational status of young people with parents with different educational attainment
+PS01_1	Students at ISCED level 3-GEN - as % of all students at ISCED level 3
+PS01_2	Students at ISCED level 3-VOC - as % of all students at ISCED level 3
+PS01_4	Students at ISCED level 4-VOC - as % of all students at ISCED level 4
+PS02_1	Students participation at the end of compulsory age (X-1) - as % of population aged (X-1)
+PS02_2	Students participation at the end of compulsory age (X) - as % of population aged X
+PS02_3	Students participation at the end of compulsory age (X+1) - as % of population aged (X+1)
+PS02_4	Students participation at the end of compulsory age (X+2) - as % of population aged (X+2)
+PS03_2	Students (ISCED 5-6) by sex aged 18 - as % of corresponding age population
+PS03_3	Students (ISCED 5-6) by sex aged 20 - as % of corresponding age population
+PS03_4	Students (ISCED 5-6) by sex aged 22 - as % of corresponding age population
+PS03_5	Students (ISCED 5-6) by sex aged 24 - as % of corresponding age population
+PS03_6	Students (ISCED 5-6) by sex aged 26 - as % of corresponding age population
+PS03_7	Students (ISCED 5-6) by sex aged 28 - as % of corresponding age population
+PS03_8	Students (ISCED 5-6) by sex aged 30-34 years - as % of corresponding age population
+PS03_9	Students (ISCED 5-6) by sex aged 35-39 - as % of corresponding age population
+PS03_10	Students (ISCED 5-6) by sex aged 20-24 - as % of corresponding age population
+PS03_13	Students (ISCED 5-6) all ages - as % of 20-24 years old in the population
+PS03_14	Students (ISCED 5-6) aged 19 years and below - as % of all students (ISCED 5-6)
+PS03_15	Students (ISCED 5-6) aged 20-24 years - as % of all students (ISCED 5-6)
+PS03_16	Students (ISCED 5-6) aged 25 years and above - as % of all students (ISCED 5-6)
+PS05_1	Students (ISCED 1_6) by sex aged 15-24 years - as % of corresponding age population
+PS05_2	Students (ISCED 1_6) by sex aged 30 years and over per 1 000 of corresponding age population
+PS05_3	Students (ISCED 1_6) by sex aged 30 years and over - as % of all pupils and students in ISCED 1_6
+PS05_4	Students (ISCED 1_6) by sex aged 18 years - as % of corresponding age population
+PS05_5	Students (ISCED 1_6) by sex aged 16-18 year - as % of corresponding age population
+PS05_6	Students (ISCED 1_6) by sex aged 20 years - as % of corresponding age population
+PS05_7	Students (ISCED 1_6) by sex aged 22 years - as % of corresponding age population
+PS05_8	Students (ISCED 1_6) by sex aged 24 years - as % of corresponding age population
+PS05_9	Students (ISCED 1_6) by sex aged 26 years - as % of corresponding age population
+PS06_1	Distribution of students (ISCED 5) by sex
+R02_1	Students at ISCED level 3 (GEN) - as % of all students at ISCED level 3 at regional level
+R03_1	Students at ISCED levels 5-6 - as % of all pupils and students at regional level
+R03_2	Students in tertiary education (ISCED 5-6) - as % of the population aged 20-24 years at regional level
+R04_1	Ratio of the proportion of students (ISCED 5-6) over the proportion of the population by NUTS 1 and NUTS 2 regions
+R04_2	Students (ISCED 5-6) at regional level - as % of total country level students (ISCED 5-6)
+R04_3	Students (all ISCED levels) aged 17 at regional level - as % of corresponding age population
+R04_4	Pupils and Students in all levels of education (ISCED 0-6) - as % of total population at regional level
+R05_1	Participation rates of 4-years-olds in education at regional level
+R05_2	Pupils and Students in upper secondary and post-secondary non-tertiary education (ISCED 3-4) - as % of the population aged 15-24 years at regional level
+R05_3	Pupils in primary and lower secondary education (ISCED 1-2) - as % of total population at regional level
+S01_1	Women headteachers in ISCED levels 1-3 - as % of total headteachers (ISCED 1-3)
+S01_2	Women headteachers in ISCED 1 - as % of total headteachers in ISCED 1
+S01_3	Women headteachers in ISCED levels 2-3 - as % of total headteachers in ISCED levels 2-3
+S01_4	Women headteachers in ISCED level 2 - as % of total headteachers in ISCED level 2
+S01_5	Women headteachers in ISCED level 3 - as % of total headteachers in ISCED level 3
+S02_1	Teachers working full time and part time at ISCED level 1-3 - as % of total active population
+S03_1	Teachers working part time in primary (ISCED 1) - as % of total full time and part time teachers in ISCED 1
+S03_2	Teachers working part time in lower secondary (ISCED 2) - as % of total full time and part time teachers in ISCED 2
+S03_3	Teachers working part time in upper secondary (ISCED 3) - as % of total full time and part time teachers at ISCED 3
+S04_1	Teachers aged < 30 teaching in public and private at ISCED level 1 - as % of total teachers teaching in ISCED level 1
+S04_2	Teachers aged 30-39 teaching in public and private at ISCED level 1 - as % of total teachers teaching in ISCED level 1
+S04_3	Teachers aged 40-49 teaching in public and private at ISCED level 1 - as % of total teachers teaching in ISCED level 1
+S04_4	Teachers aged >50 teaching in public and private at ISCED level 1 - as % of total teachers teaching in ISCED level 1
+S05_1	Teachers aged < 30 teaching in public and private at ISCED level 2-3 - as % of total teachers teaching in ISCED level 2-3
+S05_2	Teachers aged 30-39 teaching in public and private at ISCED levels 2-3 - as % of total teachers teaching in ISCED levels 2-3
+S05_3	Teachers aged 40-49 teaching in public and private at ISCED levels 2-3 - as % of total teachers teaching in ISCED levels 2-3
+S05_4	Teachers aged >50 teaching in public and private at ISCED levels 2-3 - as % of total teachers teaching in ISCED levels 2-3
+S06_1	Women teachers in ISCED levels 1-3 - as % of total teachers in ISCED levels 1-3
+S06_2	Women teachers in ISCED level 1 - as % of total teachers in ISCED level 1
+S06_3	Women teachers in ISCED level 2 - as % of total teachers in ISCED level 2
+S06_4	Women teachers in ISCED level 3 - as % of total teachers in ISCED level 3
+S07_1	Teachers/academic staff aged < 30 in ISCED level 5-6 - as % of all teachers/academic staff in ISCED level 5-6
+S07_2	Teachers/academic staff aged 30-39 in ISCED level 5-6 - as % of all teachers/academic staff in ISCED level 5-6
+S07_3	Teachers/academic staff aged 40-49 in ISCED level 5-6 - as % of all teachers/academic staff in ISCED level 5-6
+S07_4	Teachers/academic staff aged 50- in ISCED level 5-6 - as % of all teachers/academic staff in ISCED level 5-6
+S08_1	Women teachers/academic staff in ISCED level 5-6 - as % of all teachers/academic staff in ISCED level 5-6
+ST1_1	Ratio of Students to teachers (ISCED 1-3)
+ST1_2	Ratio of Students to teachers (ISCED 1)
+ST1_3	Ratio of Students to teachers (ISCED 2)
+ST1_4	Ratio of Students to teachers (ISCED 3)
+ST2_1	Average class size at ISCED 1
+ST2_2	Average class size at ISCED 2
+TC01_1	Women per 100 men graduating from ISCED levels 5-6
+TC02_1	Graduates (ISCED 5-6) in education and training field - as % of all fields
+TC02_2	Graduates (ISCED 5-6) in humanities and art field - as % of all fields
+TC02_3	Graduates (ISCED 5-6) in social science, business and law field - as % of all fields
+TC02_4	Graduates (ISCED 5-6) in science, mathematics and computing field - as % of all fields
+TC02_5	Graduates (ISCED 5-6) in engineering, manufacturing and construction field - as % of all fields
+TC02_6	Graduates (ISCED 5-6) in agriculture and veterinary field - as % of all fields
+TC02_7	Graduates (ISCED 5-6) in health and welfare field - as % of all fields
+TC02_8	Graduates (ISCED 5-6) in services field - as % of all fields
+TC02_9	Graduates (ISCED 5-6) in unknown field - as % of graduates in all known fields of education (100%)
+TC02_10	Graduates (ISCED 5-6) in mathematics, science and technology per 1 000 inhabitants aged 20-29
+TC02_10D	Graduates (ISCED 5-6) in mathematics, science and technology (1 000)
+TC02_12	Graduates (ISCED 5-6) in Maths, Science and Technology fields - as % of all fields
+TC03_1	Female graduates (ISCED 5-6) in education and training field - as % of males and females graduates
+TC03_2	Female graduates (ISCED 5-6) in humanities and art field - as % of males and females graduates
+TC03_3	Female graduates (ISCED 5-6) in social science, business and law field - as % of males and females graduates
+TC03_4	Female graduates (ISCED 5-6) in science, mathematics and computing field - as % of males and females graduates
+TC03_5	Female graduates (ISCED 5-6) in engineering, manufacturing and construction field - as % of males and females graduates
+TC03_6	Female graduates (ISCED 5-6) in agriculture and veterinary field - as % of males and females graduates
+TC03_7	Female graduates (ISCED 5-6) in health and welfare field - as % of males and females graduates
+TC03_8	Female graduates (ISCED 5-6) in services field - as % of males and females graduates
+TC03_9	Female graduates (ISCED 5-6) in mathematics, science and technology per 1 000 female inhabitants aged 20-29
+TC03_9D	Female graduates (ISCED 5-6) in mathematics, science and technology (1 000)
+TC03_10	Male graduates (ISCED 5-6) in mathematics, science and technology per 1 000 male inhabitants aged 20-29
+TC03_10D	Male graduates (ISCED 5-6) in mathematics, science and technology (1 000)
+TC03_11	Female graduates (ISCED 5-6) in Maths, Science and Technology fields - as % of total female graduates all fields
+TC03_12	Male graduates (ISCED 5-6) in Maths, Science and Technology fields - as % of total male graduates all fields
+TC03_13	Female graduates (ISCED 5-6) in unknown field - as % of males and females graduates in this field
+TC04_1	Total graduates (ISCED 5-6) per 1 000 of population aged 20-29
+TC05_1	Graduates (ISCED 5-6) aged 20-29 per 1 000 of the corresponding age population
+TC06_1	Graduates (ISCED 5-6) aged 30 years and over - as % of total graduates
+TC07_1	Graduates (ISCED 6) per 1 000 of the population aged 25-34
+TC07_2	Female Graduates (ISCED 6) per 1 000 of the female population aged 25-34
+TC07_3	Male Graduates (ISCED 6) per 1 000 of the male population aged 25-34
+TC08_1	Graduates (ISCED 6) aged 25-34 per 1 000 of the corresponding age population
+TC08_2	Female Graduates (ISCED 6) aged 25-34 per 1 000 of the female corresponding age population
+TC08_3	Male Graduates (ISCED 6) aged 25-34 per 1 000 of the male corresponding age population
+TC09_1	Graduates (ISCED 6) from science, mathematics, computing, engineering, manufacturing & construction fields - as % of total ISCED 6 graduates
+TC09_2	Female Graduates (ISCED 6) from science, mathematics, computing, engineering, manufacturing & construction fields - as % of total female ISCED 6 graduates
+TC09_3	Male Graduates (ISCED 6) from science, mathematics, computing, engineering, manufacturing & construction fields - as % of total male ISCED 6 graduates
+TC09_4	Graduates (ISCED 6) from science, mathematics, computing, engineering, manufacturing & construction fields per 1 000 of the population aged 25-34
+TC09_5	Female Graduates (ISCED 6) from science, mathematics, computing, engineering, manufacturing & construction fields per 1 000 of the female population aged 25-34
+TC09_6	Male Graduates (ISCED 6) from science, mathematics, computing, engineering, manufacturing & construction fields per 1 000 of the male population aged 25-34
+TP01_1D	Trends in the number of students (ISCED 5-6) (1 000)
+TP01_2	Women among students in ISCED 5-6 - as % of the total students at this level
+TP01_3	Female students per 100 males in tertiary education (ISCED5-6)
+TP02_1	Students at ISCED levels 5-6 enrolled in the following fields: science, mathematics, computing, engineering, manufacturing, construction - as % of all students
+TP02_2	Female students at ISCED levels 5-6 enrolled in the following fields: science, mathematics and computing; engineering, manufacturing and construction - as % of all female students
+TP02_3	Male students at ISCED levels 5-6 enrolled in the following fields: science, mathematics and computing; engineering, manufacturing and construction - as % of all male students
+TP03_1	Females students (ISCED 5-6) enrolled in education field - as % of male and female students in this field
+TP03_2	Female students (ISCED 5-6) enrolled in humanities and art field - as % of male and female students in these fields
+TP03_3	Female students (ISCED 5-6) enrolled in social science, business and law field - as % of male and female students in these fields
+TP03_4	Female students (ISCED 5-6) enrolled in science, mathematics and computing field - as % of male and female students in these fields
+TP03_5	Female students (ISCED 5-6) enrolled in engineering, manufacturing and construction field - as % of male and female students in these fields
+TP03_6	Female students (ISCED 5-6) enrolled in agriculture and veterinary field - as % of male and female students in these fields
+TP03_7	Female students (ISCED 5-6) enrolled in health and welfare field - as % of male and female students in these fields
+TP03_8	Female students (ISCED 5-6) enrolled in services field - as % of male and female students in this field
+TP03_9	Female students (ISCED 5-6) enrolled in unknown field - as % of male and female students in this field
+TP03_11	Students (ISCED 5-6) enrolled in education field - as % of all students
+TP03_12	Students (ISCED 5-6) enrolled in humanities and art field - as % of all students
+TP03_13	Students (ISCED 5-6) enrolled in social science, business and law field - as % of all students
+TP03_14	Students (ISCED 5-6) enrolled in science, mathematics and computing field - as % of all students
+TP03_15	Students (ISCED 5-6) enrolled in engineering, manufacturing and construction field - as % of all students
+TP03_16	Students (ISCED 5-6) enrolled in agriculture and veterinary field - as % of all students
+TP03_17	Students (ISCED 5-6) enrolled in health and welfare field - as % of all students
+TP03_18	Students (ISCED 5-6) enrolled in services field - as % of all students
+TP04_1	Students (ISCED 5-6) studying in another EU-27 - as % of all students
+TP04_1D	Students (ISCED 5-6) studying in another EU-27 (1 000)
+TP05_1	Students (ISCED 5-6) studying in another EU-27, EEA or Candidate country - as % of all students
+TP05_1D	Students (ISCED 5-6) studying in another EU-27, EEA or Candidate country (1 000)
+TP05_3	Inflow of students (ISCED 5-6) from EU-27, EEA and Candidate countries - as % of all students in the country
+TP05_3D	Inflow of students (ISCED 5-6) from EU-27, EEA and Candidate countries (1 000)
+TP06_1	Median age in tertiary education (ISCED 5-6)
+TP06_2	Centile 15 age in tertiary education (ISCED 5-6)
+TP06_3	Centile 85 age in tertiary education (ISCED 5-6)
+TP07_1	Entrants at theoretical starting age in ISCED level 5 as % of all persons of the corresponding age group
+TP07_2	Entrants at the theoretical starting age in ISCED level 5 as % of all entrants in ISCED level 5
+ENTRY_RT	Net entry rate
+GRAD_RT	Gross graduation rate
+COMPL_I5A5B	A 5a or 5b programme was successfully completed
+COMPL_GEI5A	At least a first 5A programme completed
+COMPL_I5B	5A not completed but re-oriented with success at 5B level
+ERASMUS_IN	Academic staff from abroad within the framework of the Erasmus programme
+ERASMUS_OUT	Academic staff abroad within the framework of the Erasmus programme
+TOT_TNG	Total
+TNG_IN	Domestically-trained (Stock)
+TNG_OUT	Foreign-trained (Stock)
+TNGO_NAT	Native-born but foreign-trained (Stock) 
+UNK_TNG	Unknown place of training
+TNGO_IF	Foreign-trained (annual inflow)

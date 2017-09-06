@@ -1,0 +1,77 @@
+TOTAL	All procedures covered by ICD-9-CM
+CM01-05	Operations on the nervous system
+CM0131_0139	Evacuation of subdural haematoma and intracranial haemorrhage
+CM014_015	Extirpation, excision and destruction of intracranial lesion
+CM06_07	Operations on the endocrine system
+CM062-066	Thyroidectomy
+CM08-16	Operations on the eye
+CM131-137	Cataract surgery
+CM131-138	Cataract surgery
+CM18-20	Operations on the ear
+CM2096-2098	Cochlear implantation
+CM21-29	Operations on the nose, mouth and pharynx
+CM282-284	Tonsillectomy
+CM30-34	Operations on the respiratory system
+CM323-325	Pulmectomy
+CM33_DIA	Diagnostic bronchoscopy with or without biopsy (33.21 to 33.24 and 33.27)
+CM35-39	Operations on the cardiovascular system
+CM36	Operations on vessels of heart
+CM36_TRS	Transluminal coronary angioplasty (36.01, 36.02 and 36.05)
+CM361	Bypass anastomosis for heart revascularization
+CM3721-3723	Cardiac catherisation
+CM3812	Carotid endarterectomy
+CM3929	Femoropopliteal bypass
+CM3971_3974	Infrarenal aortic aneurysm repair
+CM3995_556	Transplantation of kidney and haemodialysis
+CM3995	Haemodialysis
+CM40_41	Operations on the hemic and lymphatic system
+CM410	Stem cell transplantation
+CM42-54	Operations on the digestive system
+CM45_COL	Colonoscopy with or without biopsy (45.22 to 45.25, 45.42 and 45.43)
+CM457_458	Colectomy
+CM_LPC	Laparoscopic colectomy
+CM47	Operations on appendix
+CM470_471	Appendectomy
+CM4701_4711	Laparoscopic appendectomy
+CM512	Cholecystectomy
+CM5122_5123	Cholecystectomy
+CM5123	Laparoscopic cholescystectomy
+CM530-533	Inguinal and femoral hernia
+CM530_531	Repair of inguinal hernia
+CM_LPR	Laparoscopic repair of inguinal hernia
+CM55-59	Operations on the urinary system
+CM556	Transplantation of kidney
+CM5731-5733	Cystoscopy with or without biopsy
+CM60-64	Operations on the male genital organs
+CM602-606	Total prostatectomy
+CM602	Transurethral prostatectomy
+CM603-606	Open prostatectomy
+CM65-71	Operations on the female genital organs
+CM683-687_689	Hysterectomy
+CM68_LPH	Laparoscopic hysterectomy (68.31, 68.41, 68.51, 68.61 and 68.71)
+CM72-75	Obstetrical procedures
+CM740-744_7499	Caesarean sections
+CM74_CAE	Caesarean section (74.0 to 74.2, 74.4 and 74.99)
+CM76-84	Operations on the musculoskeletal system
+CM767_790-793	Reduction of fracture
+CM8026_806	Knee surgery (arthroscopy and excision of semilunar cartilage)
+CM80_MK	Arthroscopic excision of meniscus of knee
+CM80_DIS	Discectomy (80.50, 80.51 and 80.59)
+CM8151-8153	Hip replacement
+CM8151	Total hip replacement
+CM8153	Secondary hip replacement
+CM8154	Total knee replacement
+CM85_86	Operations on the integumentary system
+CM8520-8523	Partial excision of mammary gland
+CM85_MAS	Total mastectomy (85.33 to 85.36 and 85.4)
+CM854	Mastectomy
+CM87-99	Miscellaneous diagnostic and therapeutic procedures
+CM_CAT	Computerised axial tomography (87.03, 87.41, 87.71, 88.01, 88.38)
+CM884_885	Contrast arteriography and angiocardiography
+CM887	Diagnostic ultrasound
+CM939	Respiratory therapy
+CM00	Procedures and interventions not elsewhere classified
+SURG_IN	Surgical procedures performed at hospital in-patients 
+SURG_DAY	Surgical procedures performed at hospital day cases
+SURG_OUT	Surgical procedures performed at hospital out-patients
+CONS_OUT	Out-patient consultations (out-patients treated by hospital)

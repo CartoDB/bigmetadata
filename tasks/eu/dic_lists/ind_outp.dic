@@ -1,0 +1,82 @@
+0099	Total (excluding fruit and vegetables)
+0100	Total
+0999	Crop products (excluding fruit and vegetables)
+1000	Crop products
+1040	Cereals and rice
+1120	Soft wheat
+1130	Durum wheat
+1150	Rye
+1161	Malting barley
+1162	Feed barley
+1180	Oats
+1200	Grain-maize
+1210	Other cereals and rice
+1250	Paddy rice
+1300	Pulses
+1350	Root crops
+1360	Potatoes for consumption
+1362	Early potatoes
+1363	Main-crop potatoes
+1372	Sugar beet
+1380	Other root crops
+1410	Oilseeds
+1490	Cotton
+1550	Raw tobacco
+1600	Fresh vegetables
+1620	Cauliflowers
+1630	Cabbages
+1680	Lettuce
+1690	Spinach
+1750	Tomatoes
+1761	Cucumbers
+1799	Pepperplant
+1830	Carrots
+1851	Onions
+1890	Peas (green)
+1901	Beans (green)
+1980	Other fresh vegetables
+1985	Fresh fruit and vegetables
+2003	Fruit
+2010	Fresh fruit
+2110	Dessert apples
+2130	Dessert pears
+2160	Other fresh fruit
+2200	Cherries
+2210	Plums
+2230	Nuts
+2260	Strawberries
+2300	Citrus fruit
+2310	Oranges
+2340	Mandarins
+2370	Lemons
+2420	Dessert grapes
+2480	Olives and olive oil
+2510	Dried fruit
+2550	Nuts and dried fruit
+2800	Flowers, ornamental plants and tree-nursery products
+3300	Seeds
+3751	Hay (including clovers)
+3800	Wine must or wine
+3810	Wine must
+3820	Wine
+3830	Table wine
+3900	Quality wine
+3992	Other crop products
+3996	Other 'other crop products'
+4000	Animals and animal products
+4050	Animals (for slaughter and export)
+4100	Large animals
+4150	Calves
+4160	Cattle excluding calves
+4410	Pigs
+4720	Sheep and lambs
+4765	Other large animals
+4800	Poultry
+4810	Chickens
+4900	Other poultry
+5010	Other animals for slaughter
+5150	Milk
+5160	Cows' milk
+5190	Other milk
+5250	Eggs
+5600	Other animals and animal products

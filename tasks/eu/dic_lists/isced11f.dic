@@ -1,0 +1,108 @@
+TOTAL	All ISCED 2011 levels 
+ED0-4	Less than primary, primary, secondary and post-secondary non-tertiary education (levels 0-4)
+ED0-2	Less than primary, primary and lower secondary education (levels 0-2)
+ED0	Early childhood education
+ED01	Early childhood educational development
+ED02-8	All ISCED 2011 levels excluding early childhood educational development
+ED02	Pre-primary education
+ED1-4	Primary, lower secondary, upper secondary and post-secondary non-tertiary education (levels 1-4) 
+ED1-3	Primary and secondary education (levels 1-3)
+ED1_2	Primary and lower secondary education (levels 1 and 2)
+ED1	Primary education
+ED2-4	Lower secondary, upper secondary and post-secondary non-tertiary education (levels 2-4)
+ED2_3	Secondary education (levels 2 and 3)
+ED2	Lower secondary education
+ED24	Lower secondary education - general
+ED25_35_45	Lower secondary, upper secondary and post-secondary non-tertiary education - vocational (levels 25, 35 and 45) 
+ED25	Lower secondary education - vocational
+ED3-8	Upper secondary, post-secondary non-tertiary and tertiary education (levels 3-8)
+ED3_4	Upper secondary and post-secondary non-tertiary education (levels 3 and 4)
+ED3_4GEN	Upper secondary and post-secondary non-tertiary education (levels 3 and 4) - general
+ED3_4VOC	Upper secondary and post-secondary non-tertiary education (levels 3 and 4) - vocational
+ED3	Upper secondary education
+ED3SW	Upper secondary education - school and work-based vocational programmes
+ED34_44	Upper secondary and post-secondary non-tertiary education - general (levels 34 and 44)
+ED34	Upper secondary education - general
+ED341	Upper secondary education - general, insufficient for level completion or partial level completion, without direct access to tertiary education
+ED342_352	Upper secondary education - all programmes, sufficient for partial level completion, without direct access to tertiary education (levels 342 and 352)
+ED342	Upper secondary education - general, sufficient for partial level completion, without direct access to tertiary education
+ED343_353	Upper secondary education - all programmes, sufficient for level completion, without direct access to tertiary education (levels 343 and 353)
+ED343	Upper secondary education - general, sufficient for level completion, without direct access to tertiary education
+ED344_354	Upper secondary education - all programmes, sufficient for level completion, with direct access to tertiary education (levels 344 and 354)
+ED344	Upper secondary education - general, sufficient for level completion, with direct access to tertiary education
+ED35_45	Upper secondary and post-secondary non-tertiary education - vocational (levels 35 and 45)
+ED35	Upper secondary education - vocational
+ED351	Upper secondary education - vocational, insufficient for level completion or partial level completion, without direct access to tertiary education
+ED352	Upper secondary education - vocational, sufficient for partial level completion, without direct access to tertiary education
+ED353	Upper secondary education - vocational, sufficient for level completion, without direct access to tertiary education
+ED354	Upper secondary education - vocational, sufficient for level completion, with direct access to tertiary education
+ED4	Post-secondary non-tertiary education
+ED4SW	Post-secondary non-tertiary education - school and work-based vocational programmes
+ED44	Post-secondary non-tertiary education - general
+ED441	Post-secondary non-tertiary education - general, insufficient for level completion, without direct access to tertiary education
+ED443_453	Post-secondary non-tertiary education - all programmes, sufficient for level completion, without direct access to tertiary education (levels 443 and 453)
+ED443	Post-secondary non-tertiary education - general, sufficient for level completion, without direct access to tertiary education
+ED444_454	Post-secondary non-tertiary education - all programmes, sufficient for level completion, with direct access to tertiary education (levels 444 and 454)
+ED444	Post-secondary non-tertiary education - general, sufficient for level completion, with direct access to tertiary education
+ED45	Post-secondary non-tertiary education - vocational
+ED451	Post-secondary non-tertiary education - vocational, insufficient for level completion, without direct access to tertiary education
+ED453	Post-secondary non-tertiary education - vocational, sufficient for level completion, without direct access to tertiary education
+ED454	Post-secondary non-tertiary education - vocational, sufficient for level completion, with direct access to tertiary education
+ED5-8	Tertiary education (levels 5-8)
+ED5-7	Tertiary education excluding doctoral or equivalent level (levels 5-7)
+ED5_6	Short-cycle tertiary education and Bachelor's or equivalent level (levels 5 and 6)
+ED5	Short-cycle tertiary education
+ED5SW	Short-cycle tertiary education - school and work-based vocational programmes
+ED54	Short-cycle tertiary education - general/academic
+ED541	Short-cycle tertiary education - general/academic, insufficient for level completion
+ED544	Short-cycle tertiary education - general/academic, sufficient for level completion
+ED55	Short-cycle tertiary education - vocational/professional
+ED551	Short-cycle tertiary education - vocational/professional, insufficient for level completion
+ED554	Short-cycle tertiary education - vocational/professional, sufficient for level completion
+ED6-8	Tertiary education excluding short-cycle tertiary education (levels 6-8)
+ED6	Bachelor's or equivalent level
+ED64	Bachelor's or equivalent level - academic
+ED641_651_661	Bachelors's or equivalent level - all programmes, insufficient for level completion (levels 641, 651 and 661) 
+ED641	Bachelor's or equivalent level - academic, insufficient for level completion
+ED645_655_665	Bachelors's or equivalent level - all programmes, first degree (3-4 years) (levels 645, 655 and 665) 
+ED645	Bachelor's or equivalent level - academic, first degree (3-4 years)
+ED646_656_666	Bachelors's or equivalent level - all programmes, long first degree (more than 4 years) (levels 646, 656 and 666) 
+ED646	Bachelor's or equivalent level - academic, long first degree (more than 4 years)
+ED647_657_667	Bachelors's or equivalent level - all programmes, second or further degree (following a Bachelor's or equivalent programme) (levels 647, 657 and 667) 
+ED647	Bachelor's or equivalent level - academic, second or further degree (following a Bachelor's or equivalent programme)
+ED65	Bachelor's or equivalent level - professional
+ED651	Bachelor's or equivalent level - professional, insufficient for level completion
+ED655	Bachelor's or equivalent level - professional, first degree (3-4 years)
+ED656	Bachelor's or equivalent level - professional, long first degree (more than 4 years)
+ED657	Bachelor's or equivalent level - professional, second or further degree (following a Bachelor's or equivalent programme)
+ED66	Bachelor's or equivalent level - orientation unspecified
+ED661	Bachelor's or equivalent level - orientation unspecified, insufficient for level completion
+ED665	Bachelor's or equivalent level - orientation unspecified, first degree (3-4 years)
+ED666	Bachelor's or equivalent level - orientation unspecified, long first degree (more than 4 years)
+ED667	Bachelor's or equivalent level - orientation unspecified, second or further degree (following a Bachelor's or equivalent programme)
+ED7_8	Master's and Doctoral or equivalent level (levels 7 and 8)
+ED7	Master's or equivalent level
+ED74	Master's or equivalent level - academic
+ED741_751_761	Master's or equivalent level - all programmes, insufficient for level completion (levels 741, 751 and 761) 
+ED741	Master's or equivalent level - academic, insufficient for level completion
+ED746_756_766	Master's or equivalent level - all programmes, long first degree (at least 5 years) (levels 746, 756 and 766) 
+ED746	Master's or equivalent level - academic, long first degree (at least 5 years)
+ED747_757_767	Master's or equivalent level - all programmes, second or further degree (following a Bachelor's or equivalent programme) (levels 747, 757 and 767) 
+ED747	Master's or equivalent level - academic, second or further degree (following a Bachelor's or equivalent programme)
+ED748_758_768	Master's or equivalent level - all programmes, second or further degree (following a Master's or equivalent programme) (levels 748, 758 and 768) 
+ED748	Master's or equivalent level - academic, second or further degree (following a Master's or equivalent programme)
+ED75	Master's or equivalent level - professional
+ED751	Master's or equivalent level - professional, insufficient for level completion
+ED756	Master's or equivalent level - professional, long first degree (at least 5 years)
+ED757	Master's or equivalent level - professional, second or further degree (following a Bachelor's or equivalent programme)
+ED758	Master's or equivalent level - professional, second or further degree (following a Master's or equivalent programme)
+ED76	Master's or equivalent level - orientation unspecified
+ED761	Master's or equivalent level - orientation unspecified, insufficient for level completion
+ED766	Master's or equivalent level - orientation unspecified, long first degree (at least 5 years)
+ED767	Master's or equivalent level - orientation unspecified, second or further degree (following a Bachelor's or equivalent programme)
+ED768	Master's or equivalent level - orientation unspecified, second or further degree (following a Master's or equivalent programme)
+ED8	Doctoral or equivalent level
+ED9	Not elsewhere classified
+NAP	Not applicable
+NRP	No response
+UNK	Unknown

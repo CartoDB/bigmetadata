@@ -1,37 +1,42 @@
+# -*- coding: utf-8 -*-
+
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath)
-from tasks.meta import current_session, DENOMINATOR, GEOM_REF, UNIVERSE
+                        underscore_slugify, shell, classpath, MetaWrapper)
+from tasks.meta import current_session, DENOMINATOR, GEOM_REF, GEOM_NAME, UNIVERSE
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 import os
 from tasks.meta import OBSTable, OBSColumn, OBSTag
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 import csv
 import pandas as pd
+
+TOPICS = ['population', 'housing', 'education', 'household', 'employment']
+
 
 class DownloadUnzipFR(DownloadUnzipTask):
 
     table_theme = Parameter()
 
-    URL_base = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/'
+    URL_base = 'https://www.insee.fr/fr/statistiques/fichier/'
 
     def download(self):
 
         themes = {
-            'population':'infra-population-12/',
-            'housing':'infra-logement-12/',
-            'education':'infra-formation-12/',
-            'household':'infra-famille-12/',
-            'employment':'infra-activite-resident-12/'
-                }
+            'population': '2028582/',
+            'housing': '2028267/',
+            'education': '2028265/',
+            'household': '2028569/',
+            'employment': '2028654/'
+        }
 
         iris = {
-            'population':'infra-population-2012.zip',
-            'housing':'infra-logement-2012.zip',
-            'education':'infra-formation-2012.zip',
-            'household':'infra-famille-2012.zip',
-            'employment':'infra-activite-resident-2012.zip'
+            'population': 'infra-population-2012.zip',
+            'housing': 'infra-logement-2012.zip',
+            'education': 'infra-formation-2012.zip',
+            'household': 'infra-famille-2012.zip',
+            'employment': 'infra-activite-resident-2012.zip'
         }
 
         URL = self.URL_base + themes.get(self.table_theme) + iris.get(self.table_theme)
@@ -41,29 +46,30 @@ class DownloadUnzipFR(DownloadUnzipTask):
            url=URL
         ))
 
+
 class DownloadFR(Task):
 
     table_theme = Parameter()
 
-    URL_base = 'http://www.insee.fr/fr/ppp/bases-de-donnees/donnees-detaillees/rp2012/infracommunal/'
+    URL_base = 'https://www.insee.fr/fr/statistiques/fichier/'
 
     def download(self):
 
         themes = {
-            'population':'infra-population-12/',
-            'housing':'infra-logement-12/',
-            'education':'infra-formation-12/',
-            'household':'infra-famille-12/',
-            'employment':'infra-activite-resident-12/'
-                }
+            'population': '2028582/',
+            'housing': '2028267/',
+            'education': '2028265/',
+            'household': '2028569/',
+            'employment': '2028654/'
+        }
 
         iris_overseas = {
-            'population':'base-ic-evol-struct-pop-2012-com.xls',
-            'housing':'base-ic-logement-2012-com.xls',
-            'education':'base-ic-diplomes-formation-2012-com.xls',
-            'household':'base-ic-couples-familles-menages-2012-com.xls',
-            'employment':'base-ic-activite-residents-2012-com.xls'
-                }
+            'population': 'base-ic-evol-struct-pop-2012-com.xls',
+            'housing': 'base-ic-logement-2012-com.xls',
+            'education': 'base-ic-diplomes-formation-2012-com.xls',
+            'household': 'base-ic-couples-familles-menages-2012-com.xls',
+            'employment': 'base-ic-activite-residents-2012-com.xls'
+        }
 
         URL = self.URL_base + themes.get(self.table_theme) + iris_overseas.get(self.table_theme)
 
@@ -78,6 +84,7 @@ class DownloadFR(Task):
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
 
 class RawFRData(CSV2TempTableTask):
 
@@ -107,14 +114,28 @@ class RawFRData(CSV2TempTableTask):
 
 class SourceTags(TagsTask):
     def version(self):
-        return 1
+        return 2
 
     def tags(self):
         return [
             OBSTag(id='insee',
-                   name='INSEE',
+                   name='National Institute of Statistics and Economic Studies (INSEE)',
                    type='source',
-                   description='http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensement/resultats/2012/donnees-detaillees-recensement-2012.htm')
+                   description=u'The `Institut national de la statistique et '
+                   u'des études économiques <http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensement/resultats/2012/donnees-detaillees-recensement-2012.htm>`_.')
+        ]
+
+
+class LicenseTags(TagsTask):
+    def version(self):
+        return 4
+
+    def tags(self):
+        return [
+            OBSTag(id='insee-license',
+                   name='INSEE Copyright',
+                   type='license',
+                   description=u'Commercial reuse permissible, more details `here <http://www.insee.fr/en/service/default.asp?page=rediffusion/copyright.htm>`_.')
         ]
 
 
@@ -127,7 +148,8 @@ class FrenchColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'unittags': UnitTags(),
-            'sourcetag': SourceTags()
+            'source': SourceTags(),
+            'license': LicenseTags(),
         }
         if self.table_theme != 'population':
             requirements['population_vars'] = FrenchColumns(table_theme='population')
@@ -137,7 +159,7 @@ class FrenchColumns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 7
+        return 10
 
     def columns(self):
         cols = OrderedDict()
@@ -164,6 +186,11 @@ class FrenchColumns(ColumnsTask):
                 denominators = denominators.split(',')
                 universes = universe.split(',')
 
+                delete = ['en 2012', '(princ)','(compl)']
+
+                for i in delete:
+                    if i in short_name:
+                        short_name = short_name.replace(i,'').strip()
                 # slugified_lib = underscore_slugify('{}'.format(short_name))
                 targets_dict = {}
                 for x in denominators:
@@ -193,10 +220,13 @@ class FrenchColumns(ColumnsTask):
                     subsection_tag = subsectiontags[s]
                     cols[var_code].tags.append(subsection_tag)
 
-        insee_source = input_['sourcetag']['insee']
+        source = input_['source']['insee']
+        license = input_['license']['insee-license']
 
-        for _,col in cols.iteritems():
-            col.tags.append(insee_source)
+        for _, col in cols.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
+
         return cols
 
 
@@ -223,16 +253,18 @@ class ImportOutputAreas(Shp2TempTableTask):
 class OutputAreaColumns(ColumnsTask):
 
     def version(self):
-        return 2
+        return 4
 
     def requires(self):
         return {
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
+            'boundary_type': BoundaryTags()
         }
 
     def columns(self):
         input_ = self.input()
+
         geom = OBSColumn(
             type='Geometry',
             name='IRIS and Commune areas',
@@ -240,7 +272,10 @@ class OutputAreaColumns(ColumnsTask):
                         'of over 10000 inhabitants and most towns from 5000 to 10000. For areas in which '
                         'IRIS is not defined, the commune area is given instead. ',
             weight=5,
-            tags=[input_['subsections']['boundary'], input_['sections']['fr']]
+            tags=[input_['subsections']['boundary'], input_['sections']['fr'],
+                  input_['boundary_type']['interpolation_boundary'],
+                  input_['boundary_type']['cartographic_boundary'],
+                  ]
         )
         geomref = OBSColumn(
             type='Text',
@@ -249,10 +284,28 @@ class OutputAreaColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF}
         )
-
+        commune_name = OBSColumn(
+            type='Text',
+            name='Name of Commune',
+            description='Name of the commune. ',
+            weight=1,
+            tags=[input_['subsections']['names'], input_['sections']['fr']],
+            targets={geom: GEOM_NAME}
+        )
+        iris_name = OBSColumn(
+            type='Text',
+            name='Name of IRIS',
+            description='Name of the IRIS. This attribute may possibly be unfilled. '
+            'For small undivided towns, the name of the IRIS is the name of the commune. ',
+            weight=1,
+            tags=[input_['subsections']['names'], input_['sections']['fr']],
+            targets={geom: GEOM_NAME}
+        )
         return OrderedDict([
             ('the_geom', geom),
-            ('dcomiris', geomref)
+            ('dcomiris', geomref),
+            ('nom_com', commune_name),
+            ('nom_iris', iris_name),
         ])
 
 
@@ -265,7 +318,7 @@ class OutputAreas(TableTask):
         }
 
     def version(self):
-        return 2
+        return 4
 
     def timespan(self):
         return 2013
@@ -279,7 +332,7 @@ class OutputAreas(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT ST_MakeValid(wkb_geometry), DCOMIRIS '
+                        'SELECT DISTINCT ST_MakeValid(wkb_geometry), DCOMIRIS, NOM_COM, NOM_IRIS '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input()['data'].table,
@@ -316,7 +369,7 @@ class FranceCensus(TableTask):
 
         column_targets = self.columns()
         colnames = ', '.join(column_targets.keys())
-        colnames_typed = ','.join(['{}::{}'.format(colname, ct.get(session).type)
+        colnames_typed = ','.join(['"{}"::{}'.format(colname, ct.get(session).type)
                               for colname, ct in column_targets.iteritems()])
         session.execute('INSERT INTO {output} ({ids}) '
                         'SELECT {ids_typed} '
@@ -341,3 +394,23 @@ class AllGeomsThemesTables(WrapperTask):
         topics = ['population', 'housing', 'education', 'household', 'employment']
         for table_theme in topics:
             yield FranceCensus(table_theme=table_theme)
+
+
+class InseeMetaWrapper(MetaWrapper):
+
+    topic = Parameter()
+
+    params = {
+        'topic': TOPICS,
+    }
+
+    def tables(self):
+        yield OutputAreas()
+        yield FranceCensus(table_theme=self.topic)
+
+
+class InseeAll(WrapperTask):
+
+    def requires(self):
+        for topic in TOPICS:
+            yield InseeMetaWrapper(topic=topic)

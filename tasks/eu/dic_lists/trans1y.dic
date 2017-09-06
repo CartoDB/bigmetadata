@@ -1,0 +1,19 @@
+TOTAL	Total
+TO_FT	Transition to full-time work
+TO_PT	Transition to part-time work
+TO_EMP	Transition to employed person
+TO_NSAL	Transition to employed person except employee
+TO_UNE	Transition to unemployment
+TO_INAC	Transition to inactivity
+TO_PERM	Transition to employee with a permanent job
+TO_TEMP	Transition to employee with a temporary job
+TO_1UP	Transition to 1 income decile up
+TO_GT1UP	Transition to more than 1 income decile up
+TO_1DW	Transition to 1 income decile down
+TO_GT1DW	Transition to more than 1 income decile down
+TO_NONE	Transition to no income
+TO_GESEC	Transition to the same or higher employment security as previous year
+TO_LTSEC	Transition to less employment security than last year
+TO_GEQUA	Transition to the same or higher qualification level (employment status and pay) as previous year
+TO_LTQUA	Transition to lower qualification level (employment status and pay) than last year
+NO_CHG	No change

@@ -17,7 +17,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
-import subprocess
+from sphinx.apidoc import main
 import sys
 
 cur_dir = os.path.abspath(os.path.dirname(__file__))
@@ -57,8 +57,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Bigmetadata'
-copyright = u'2016, John Krauss'
-author = u'John Krauss'
+copyright = u'2017, CARTO'
+author = u'CARTO'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -268,7 +268,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'Bigmetadata.tex', u'Bigmetadata Documentation',
-     u'John Krauss', 'manual'),
+     u'CARTO', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -353,13 +353,14 @@ blockdiag_antialias = True
 # Cribbed from https://github.com/rtfd/readthedocs.org/issues/1139
 
 def run_apidoc(_):
-    cur_dir = os.path.abspath(os.path.dirname(__file__))
+    #cur_dir = os.path.abspath(os.path.dirname(__file__))
     module = os.path.join(cur_dir, '..', '..', 'tasks')
-    cmd_path = 'sphinx-apidoc'
-    if hasattr(sys, 'real_prefix'):  # Check to see if we are in a virtualenv
-        # If we are, assemble the path manually
-        cmd_path = os.path.abspath(os.path.join(sys.prefix, 'bin', 'sphinx-apidoc'))
-    subprocess.check_call([cmd_path, '-e', '-o', cur_dir, module, '--force'])
+    #cmd_path = 'sphinx-apidoc'
+    #if hasattr(sys, 'real_prefix'):  # Check to see if we are in a virtualenv
+    #    # If we are, assemble the path manually
+    #    cmd_path = os.path.abspath(os.path.join(sys.prefix, 'bin', 'sphinx-apidoc'))
+    main(['-e', '-o', cur_dir, module, '--force'])
+    #subprocess.check_call([cmd_path, '-e', '-o', cur_dir, module, '--force'])
 
 def setup(app):
     app.connect('builder-inited', run_apidoc)

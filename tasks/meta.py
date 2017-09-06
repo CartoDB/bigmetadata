@@ -13,7 +13,8 @@ from luigi import Task, BooleanParameter, Target, Event
 
 from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric, cast,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
-                        ForeignKeyConstraint, Table, exc, func, UniqueConstraint)
+                        ForeignKeyConstraint, Table, exc, func, UniqueConstraint,
+                        Index)
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
@@ -30,23 +31,27 @@ def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
             for text in re.split(_nsre, s)]
 
 
-_engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
-    user=os.environ.get('PGUSER', 'postgres'),
-    password=os.environ.get('PGPASSWORD', ''),
-    host=os.environ.get('PGHOST', 'localhost'),
-    port=os.environ.get('PGPORT', '5432'),
-    db=os.environ.get('PGDATABASE', 'postgres')
-))
+def get_engine(user=None, password=None, host=None, port=None,
+               db=None, readonly=False):
 
+    engine = create_engine('postgres://{user}:{password}@{host}:{port}/{db}'.format(
+        user=user or os.environ.get('PGUSER', 'postgres'),
+        password=password or os.environ.get('PGPASSWORD', ''),
+        host=host or os.environ.get('PGHOST', 'localhost'),
+        port=port or os.environ.get('PGPORT', '5432'),
+        db=db or os.environ.get('PGDATABASE', 'postgres')
+    ))
 
+    @event.listens_for(engine, 'begin')
+    def receive_begin(conn):
+        if readonly:
+            conn.execute('SET TRANSACTION READ ONLY')
 
-def get_engine():
-
-    @event.listens_for(_engine, "connect")
+    @event.listens_for(engine, "connect")
     def connect(dbapi_connection, connection_record):
         connection_record.info['pid'] = os.getpid()
 
-    @event.listens_for(_engine, "checkout")
+    @event.listens_for(engine, "checkout")
     def checkout(dbapi_connection, connection_record, connection_proxy):
         pid = os.getpid()
         if connection_record.info['pid'] != pid:
@@ -56,7 +61,74 @@ def get_engine():
                 "attempting to check out in pid %s" %
                 (connection_record.info['pid'], pid)
             )
-    return _engine
+
+    return engine
+
+
+def catalog_latlng(column_id):
+    # TODO we should do this from metadata instead of hardcoding
+    if column_id == 'whosonfirst.wof_disputed_geom':
+        return (76.57, 33.78)
+    elif column_id == 'whosonfirst.wof_marinearea_geom':
+        return (-68.47, 43.33)
+    elif column_id in ('us.census.tiger.school_district_elementary',
+                       'us.census.tiger.school_district_secondary',
+                       'us.census.tiger.school_district_elementary_clipped',
+                       'us.census.tiger.school_district_secondary_clipped'):
+        return (40.7025, -73.7067)
+    elif column_id.startswith('uk'):
+        if 'WA' in column_id:
+            return (51.468, -3.184)
+        else:
+            return (51.514, -0.0888)
+    elif column_id.startswith('es'):
+        return (42.822, -2.511)
+    elif column_id.startswith('us.zillow'):
+        return (28.330, -81.354)
+    elif column_id.startswith('mx.'):
+        return (19.413, -99.170)
+    elif column_id.startswith('th.'):
+        return (13.725, 100.492)
+    # cols for French Guyana only
+    elif column_id in ('fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
+                       , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
+                       , 'fr.insee.P12_RP_MIDUR', 'fr.insee.P12_RP_CLIM'
+                       , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
+                       , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
+                       , 'fr.insee.P12_ACTOCC15P_ILT45D'
+                       , 'fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
+                       , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
+                       , 'fr.insee.P12_RP_MIDUR', 'fr.insee.P12_RP_CLIM'
+                       , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
+                       , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
+                       , 'fr.insee.P12_ACTOCC15P_ILT45D'):
+        return (4.938, -52.329)
+    elif column_id.startswith('fr.'):
+        return (48.860, 2.361)
+    elif column_id.startswith('ca.'):
+        return (43.655, -79.379)
+    elif column_id.startswith('us.census.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.dma.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.ihme.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.bls.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('us.qcew.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('whosonfirst.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('eu.'):
+        return (52.522, 13.406)
+    elif column_id.startswith('us.epa.'):
+        return (40.7, -73.9)
+    elif column_id.startswith('br.'):
+        return (-43.19, -22.9)
+    elif column_id.startswith('au.'):
+        return (-33.880, 151.213)
+    else:
+        raise Exception('No catalog point set for {}'.format(column_id))
 
 
 class Raster(UserDefinedType):
@@ -83,8 +155,36 @@ class Geometry(UserDefinedType):
         return func.ST_AsText(col, type_=self)
 
 
-metadata = MetaData(bind=get_engine(), schema='observatory')
-Base = declarative_base(metadata=metadata)
+class Linestring(UserDefinedType):
+
+    def get_col_spec(self):
+        return "GEOMETRY (LINESTRING, 4326)"
+
+    def bind_expression(self, bindvalue):
+        return func.ST_GeomFromText(bindvalue, 4326, type_=self)
+
+    def column_expression(self, col):
+        return func.ST_AsText(col, type_=self)
+
+
+class Point(UserDefinedType):
+
+    def get_col_spec(self):
+        return "GEOMETRY (POINT, 4326)"
+
+    def bind_expression(self, bindvalue):
+        return func.ST_GeomFromText(bindvalue, 4326, type_=self)
+
+    def column_expression(self, col):
+        return func.ST_AsText(col, type_=self)
+
+
+if os.environ.get('READTHEDOCS') == 'True':
+    metadata = None
+    Base = declarative_base()
+else:
+    metadata = MetaData(bind=get_engine(), schema='observatory')
+    Base = declarative_base(metadata=metadata)
 
 
 # A connection between a table and a column
@@ -302,7 +402,7 @@ class OBSColumn(Base):
     description = Column(Text) # human-readable description to provide in
                                  # bigmetadata
 
-    weight = Column(Numeric, default=0)
+    weight = Column(Numeric, default=1)
     aggregate = Column(Text) # what aggregate operation to use when adding
                                # these together across geoms: AVG, SUM etc.
 
@@ -336,9 +436,33 @@ class OBSColumn(Base):
         return self._index_type
 
     def children(self):
-        children = [col for col, reltype in self.sources.iteritems() if reltype == 'denominator']
+        children = [col for col, reltype in self.sources.iteritems() if reltype == DENOMINATOR]
         children.sort(key=lambda x: natural_sort_key(x.name))
         return children
+
+    def is_cartographic(self):
+        '''
+        Returns True if this column is a geometry that can be used for cartography.
+        '''
+        for tag in self.tags:
+            if 'cartographic_boundary' in tag.id:
+                return True
+        return False
+
+    def is_interpolation(self):
+        '''
+        Returns True if this column is a geometry that can be used for interpolation.
+        '''
+        for tag in self.tags:
+            if 'interpolation_boundary' in tag.id:
+                return True
+        return False
+
+    def is_geomref(self):
+        '''
+        Returns True if the column is a geomref, else Null
+        '''
+        return GEOM_REF in self.targets.values()
 
     def has_children(self):
         '''
@@ -350,7 +474,7 @@ class OBSColumn(Base):
         '''
         Returns True if this column has no denominator, False otherwise.
         '''
-        return 'denominator' in self.targets.values()
+        return DENOMINATOR in self.targets.values()
 
     def has_catalog_image(self):
         '''
@@ -364,7 +488,7 @@ class OBSColumn(Base):
         '''
         if not self.has_denominators():
             return []
-        return [k for k, v in self.targets.iteritems() if v == 'denominator']
+        return [k for k, v in self.targets.iteritems() if v == DENOMINATOR]
 
     def unit(self):
         '''
@@ -380,6 +504,40 @@ class OBSColumn(Base):
         areas.
         '''
         return self.aggregate == 'sum'
+
+    def catalog_lonlat(self):
+        '''
+        Return tuple (longitude, latitude) for the catalog for this measurement.
+        '''
+        return catalog_lonlat(self.id)
+
+    def geom_timespans(self):
+        '''
+        Return a dict of geom columns and timespans that this measure is
+        available for.
+        '''
+        geom_timespans = {}
+        for table in self.tables:
+            table = table.table
+            geomref_column = table.geomref_column()
+            geom_column = [t for t, rt in geomref_column.targets.iteritems()
+                           if rt == GEOM_REF][0]
+            if geom_column not in geom_timespans:
+                geom_timespans[geom_column] = []
+            geom_timespans[geom_column].append(table.timespan)
+        return geom_timespans
+
+    def source_tags(self):
+        '''
+        Return source tags.
+        '''
+        return [tag for tag in self.tags if tag.type.lower() == 'source']
+
+    def license_tags(self):
+        '''
+        Return license tags.
+        '''
+        return [tag for tag in self.tags if tag.type.lower() == 'license']
 
 
 class OBSTable(Base):
@@ -438,6 +596,27 @@ class OBSTable(Base):
     description = Column(Text)
 
     version = Column(Numeric, default=0, nullable=False)
+
+    def geom_column(self):
+        '''
+        Return the column geometry column for this table, if it has one.
+
+        Returns None if there is none.
+        '''
+        for col in self.columns:
+            if lower(col.type) == 'geometry':
+                return col
+
+    def geomref_column(self):
+        '''
+        Return the geomref column for this table, if it has one.
+
+        Returns None if there is none.
+        '''
+        for col in self.columns:
+            col = col.column
+            if col.is_geomref():
+                return col
 
 
 class OBSTag(Base):
@@ -566,6 +745,25 @@ class OBSColumnTableTile(Base):
     )
 
 
+class OBSColumnTableTileSimple(Base):
+    '''
+    This table contains column/table summary data using raster tiles.
+    '''
+    __tablename__ = 'obs_column_table_tile_simple'
+
+    table_id = Column(Text, primary_key=True)
+    column_id = Column(Text, primary_key=True)
+    tile_id = Column(Integer, primary_key=True)
+
+    tile = Column(Raster)
+
+    tct_constraint = UniqueConstraint(table_id, column_id, tile_id,
+                                      name='obs_column_table_tile_simple_tct')
+    cvxhull_restraint = Index('obs_column_table_simple_chtile',
+                              func.ST_ConvexHull(tile),
+                              postgresql_using='gist')
+
+
 class CurrentSession(object):
 
     def __init__(self):
@@ -584,6 +782,11 @@ class CurrentSession(object):
             self._session = None
             print 'FORKED: {} not {}'.format(self._pid, os.getpid())
         if not self._session:
+            self.begin()
+        try:
+            self._session.execute("SELECT 1")
+        except:
+            self._session = None
             self.begin()
         return self._session
 
@@ -664,19 +867,159 @@ UNIVERSE = 'universe'
 GEOM_REF = 'geom_ref'
 GEOM_NAME = 'geom_name'
 
-_engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
-_engine.execute('''
-    CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
-    RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
-            SELECT $1;
-    $$;
+if not os.environ.get('READTHEDOCS') == 'True':
+    _engine = get_engine()
+    _engine.execute('CREATE SCHEMA IF NOT EXISTS observatory')
+    _engine.execute('''
+        CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
+        RETURNS anyelement LANGUAGE SQL IMMUTABLE STRICT AS $$
+                SELECT $1;
+        $$;
 
-    -- And then wrap an aggregate around it
-    DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
-    CREATE AGGREGATE public.FIRST (
-            sfunc    = public.first_agg,
-            basetype = anyelement,
-            stype    = anyelement
-    );
-''')
-Base.metadata.create_all()
+        -- And then wrap an aggregate around it
+        DROP AGGREGATE IF EXISTS public.FIRST (anyelement);
+        CREATE AGGREGATE public.FIRST (
+                sfunc    = public.first_agg,
+                basetype = anyelement,
+                stype    = anyelement
+        );
+    ''')
+    Base.metadata.create_all()
+
+class UpdatedMetaTarget(Target):
+    def exists(self):
+        session = current_session()
+
+        # identify tags that have appeared, changed or disappeared
+        # version shifts won't crop up in and of themselves, but name changes will
+        changed_tags = '''
+        with tags as (
+            SELECT jsonb_each_text(numer_tags)
+            FROM observatory.obs_meta_numer
+            UNION ALL
+            SELECT jsonb_each_text(denom_tags)
+            FROM observatory.obs_meta_denom
+            UNION ALL
+            SELECT jsonb_each_text(geom_tags)
+            FROM observatory.obs_meta_geom
+        ),
+        distinct_tags as (
+            SELECT DISTINCT
+            SPLIT_PART((jsonb_each_text).key, '/', 1) AS type,
+            SPLIT_PART((jsonb_each_text).key, '/', 2) AS id,
+            ((jsonb_each_text).value)::TEXT AS name
+            FROM tags
+        ),
+        meta as (
+            SELECT distinct t.id, t.type, t.name
+            FROM observatory.obs_tag t
+            JOIN observatory.obs_column_tag ct ON t.id = ct.tag_id
+            JOIN observatory.obs_column c ON ct.column_id = c.id
+            JOIN observatory.obs_column_table ctab ON c.id = ctab.column_id
+        )
+        SELECT meta.id, meta.type, meta.name,
+                distinct_tags.id, distinct_tags.type, distinct_tags.name
+        FROM distinct_tags FULL JOIN meta
+        ON meta.id = distinct_tags.id AND
+            meta.type = distinct_tags.type AND
+            meta.name = distinct_tags.name
+        WHERE meta.id IS NULL OR distinct_tags.id IS NULL
+        '''
+        resp = session.execute(changed_tags)
+        if resp.fetchone():
+            return False
+
+        # identify columns that have appeared, changed, or disappeared
+        changed_columns = '''
+        WITH columns AS (
+            SELECT DISTINCT c.id, c.version
+            FROM observatory.obs_column c
+                LEFT JOIN observatory.obs_column_to_column c2c ON c.id = c2c.source_id,
+                observatory.obs_column_tag ct,
+                observatory.obs_tag t,
+                observatory.obs_column_table ctab
+            WHERE c.id = ct.column_id
+            AND ct.tag_id = t.id
+            AND c.type NOT ILIKE 'geometry%'
+            AND c.weight > 0
+            AND (c2c.reltype != 'geom_ref' OR c2c.reltype IS NULL)
+            AND c.id = ctab.column_id
+        ),
+        meta AS (
+            SELECT numer_id, numer_version FROM observatory.obs_meta_numer
+        )
+        SELECT id, version, numer_id, numer_version
+        FROM columns FULL JOIN meta
+        ON id = numer_id AND version = numer_version
+        WHERE numer_id IS NULL OR id IS NULL;
+        '''
+        resp = session.execute(changed_columns)
+        if resp.fetchone():
+            return False
+
+        # identify tables that have appeared, changed, or disappeared
+        changed_tables = '''
+        with numer_tables as (
+            select distinct tab.id, tab.version
+            from observatory.obs_table tab,
+                observatory.obs_column_table ctab,
+                observatory.obs_column c
+                    left join observatory.obs_column_to_column c2c on c.id = c2c.source_id,
+                observatory.obs_column_tag ct,
+                observatory.obs_tag t
+                where c.id = ct.column_id
+                    and ct.tag_id = t.id
+                    and ctab.column_id = c.id
+                    and ctab.table_id = tab.id
+                    and c.type not ilike 'geometry%'
+                    and c.weight > 0
+                    and (c2c.reltype != 'geom_ref' or c2c.reltype is null)
+        ),
+        geom_tables as (
+            select tab.id, tab.version,
+                    rank() over (partition by c.id order by tab.timespan desc)
+            from observatory.obs_table tab,
+                observatory.obs_column_table ctab,
+                observatory.obs_column c,
+                observatory.obs_column_to_column c2c,
+                observatory.obs_column_tag ct,
+                observatory.obs_tag t,
+                observatory.obs_column c2,
+                observatory.obs_column_table ctab2,
+                numer_tables
+                where c.id = ct.column_id
+                    and ct.tag_id = t.id
+                    and ctab.column_id = c.id
+                    and ctab.table_id = tab.id
+                    and c.type ilike 'geometry%'
+                    and c.weight > 0
+                    and c2c.reltype = 'geom_ref'
+                    and c.id = c2c.target_id
+                    and c2.id = c2c.source_id
+                    and c2.id = ctab2.column_id
+                    and numer_tables.id = ctab2.table_id
+            group by c.id, tab.id, tab.version
+        ),
+        numer_meta as (
+            select distinct numer_tid, numer_t_version
+            from observatory.obs_meta
+        ),
+        geom_meta as (
+            select distinct geom_tid, geom_t_version
+            from observatory.obs_meta
+        )
+        select distinct id, version, numer_tid, numer_t_version
+        from numer_tables full join numer_meta on
+            id = numer_tid and version = numer_t_version
+        where numer_tid is null or id is null
+        union all
+        select distinct id, version, geom_tid, geom_t_version
+        from geom_tables full join geom_meta on
+            id = geom_tid and version = geom_t_version
+        where rank = 1 and (geom_tid is null or id is null)
+        ;
+        '''
+        resp = session.execute(changed_tables)
+        if resp.fetchone():
+            return False
+        return True

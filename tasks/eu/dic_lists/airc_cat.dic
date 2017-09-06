@@ -1,0 +1,16 @@
+TOTAL	Total
+PASS	Passenger aircrafts (total)
+PASS_LE_50	Passenger aircrafts with less than 50 seats
+PASS_51_150	Passenger aircrafts with 51 to 150 seats
+PASS_151_250	Passenger aircrafts with 151 to 250 seats
+PASS_GT_250	Passenger aircrafts with more than 250 seats
+CARGO	Cargo aircrafts
+FRT	Total number of civil freight aircraft in service
+FRT_LE100000	Number of civil freight / cargo aircraft with a payload capacity of less than 100,000lbs
+FRT_GT100000	Number of civil freight / cargo aircraft with a payload capacity of 100,000lbs and over
+AMB_BSN	Total number of civil special, ambulance and business aircraft in service
+AMB	Number of special purpose / ambulance aircraft
+BSN	Number of business / corporate / executive aircrafts
+COMBI	Combi aircrafts
+QUICK	Quick change aircrafts
+OTHER	Other aircrafts

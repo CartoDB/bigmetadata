@@ -1,0 +1,16 @@
+TOTAL	Total
+KITC	Separate kitchen in the housing unit
+WTR	Piped water in the housing unit
+NWTR	No piped water in the housing unit
+WTR_UNK	Piped water - unknown
+TOIL	Flush toilet in the housing unit
+NTOIL	No flush toilet in the housing unit
+TOIL_UNK	Flush toilet - unknown
+BATH	Fixed bath or shower in the housing unit
+NBATH	No fixed bath or shower in the housing unit
+BATH_UNK	Bath, shower in building - unknown
+HEAT	Central heating
+NHEAT	No central heating
+HEAT_UNK	Central heating - unknown
+UNK	Unknown
+OTH	Other

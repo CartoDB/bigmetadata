@@ -1,0 +1,23 @@
+TOTAL	Total
+MAT_0000	No material agent or no information
+MAT_0100	Buildings, structures, surfaces - at ground level (indoor or outdoor, fixed or mobile, temporary or not) - not specified
+MAT_0200	Buildings, structures, surfaces - above ground level (indoor or outdoor) - not specified
+MAT_0300	Buildings, structures, surfaces - below ground level (indoor or outdoor) - not specified
+MAT_0400	Systems for the supply and distribution of materials, pipe networks - not specified
+MAT_0500	Motors, systems for energy transmission and storage - not specified
+MAT_0600	Hand tools, not powered - not specified
+MAT_0700	Hand-held or hand-guided tools, mechanical - not specified
+MAT_0800	Hand tools - without specification of power source - not specified
+MAT_0900	Machines and equipment - portable or mobile - not specified
+MAT_1000	Machines and equipment - fixed - not specified
+MAT_1100	Conveying, transport and storage systems - not specified
+MAT_1200	Land vehicles - not specified
+MAT_1300	Other transport vehicles- not specified
+MAT_1400	Materials, objects, products, machine components, debris, dust - not specified
+MAT_1500	Chemical, explosive, radioactive, biological substances - not specified
+MAT_1600	Safety devices and equipment - not specified
+MAT_1700	Office equipment, personal equipment, sports equipment, weapons, domestic appliances - not specified
+MAT_1800	Living organisms and human-beings - not specified
+MAT_1900	Bulk waste - not specified
+MAT_2000	Physical phenomena and natural elements - not specified
+MAT_9900	Other material agents not listed in this classification

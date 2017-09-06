@@ -1,0 +1,36 @@
+HEIGHT	Height
+WEIGHT	Weight
+N_EODS_OBL	Number of cases, non-fatal, EODS obligatory list
+I_EODS_OBL	Incidence rate, non-fatal, EODS obligatory list
+EM0611	Index of the number of serious accidents at work per 100 thousand persons in employment (1998=100)
+EM0612	Index of the number of serious accidents at work for women per 100 thousand females in employment (1998=100)
+EM0613	Index of the number of serious accidents at work for men per 100 thousand males in employment (1998=100)
+EM062	Index of the number of fatal accidents at work per 100 thousand persons in employment (1998=100)
+F_0_DFLE	Healthy life years in absolute value at birth - females
+F_0_DFLEPC	Healthy life years at birth in percentage of the total life expectancy - females
+F_0_LE	Life expectancy in absolute value at birth - females
+M_0_DFLE	Healthy life years in absolute value at birth - males
+M_0_DFLEPC	Healthy life years at birth in percentage of the total life expectancy - males
+M_0_LE	Life expectancy in absolute value at birth - males
+F_50_DFLE	Healthy life years in absolute value at 50 - females
+F_50_DFLEPC	Healthy life years at 50 in percentage of the total life expectancy - females
+F_50_LE	Life expectancy in absolute value at 50 - females
+M_50_DFLE	Healthy life years in absolute value at 50 - males
+M_50_DFLEPC	Healthy life years at 50 in percentage of the total life expectancy - males
+M_50_LE	Life expectancy in absolute value at 50 - males
+F_65_DFLE	Healthy life years in absolute value at 65 - females
+F_65_DFLEPC	Healthy life years at 65 in percentage of the total life expectancy - females
+F_65_LE	Life expectancy in absolute value at 65 - females
+M_65_DFLE	Healthy life years in absolute value at 65 - males
+M_65_DFLEPC	Healthy life years at 65 in percentage of the total life expectancy - males
+M_65_LE	Life expectancy in absolute value at 65 - males
+HE_BIRTH	Health expectancy in absolute values at birth 
+HE_50	Health expectancy in absolute values at 50
+HE_65	Health expectancy in absolute values at 65
+DISCH	Discharges
+ALOS	In-patient average length of stay (in days)
+DAY_HOSP	Bed-days
+INPAT	in-patients (total number)
+ONE_DAY	Day cases (total number)
+AMEN	Amenable deaths
+PREVENT	Preventable deaths

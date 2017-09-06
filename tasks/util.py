@@ -11,6 +11,9 @@ import logging
 import sys
 import time
 import re
+import importlib
+import inspect
+
 from hashlib import sha1
 from itertools import izip_longest
 from datetime import date
@@ -20,15 +23,15 @@ from slugify import slugify
 import requests
 
 from luigi import (Task, Parameter, LocalTarget, Target, BooleanParameter,
-                   ListParameter, DateParameter, WrapperTask)
+                   ListParameter, DateParameter, WrapperTask, Event)
 from luigi.s3 import S3Target
 
 from sqlalchemy import Table, types, Column
 from sqlalchemy.dialects.postgresql import JSON
 
-from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry,
-                        OBSColumnTable, OBSTag, current_session,
-                        session_commit, session_rollback)
+from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
+                        Linestring, OBSColumnTable, OBSTag, current_session,
+                        session_commit, session_rollback, OBSColumnTag)
 
 
 def get_logger(name):
@@ -42,6 +45,7 @@ def get_logger(name):
     handler.setFormatter(logging.Formatter('%(asctime)-15s %(message)s'))
     logger.addHandler(handler)
     return logger
+
 
 LOGGER = get_logger(__name__)
 
@@ -101,7 +105,7 @@ def classpath(obj):
     return classpath_ if classpath_ else 'tmp'
 
 
-def query_cartodb(query):
+def query_cartodb(query, carto_url=None, api_key=None):
     '''
     Convenience function to query CARTO's SQL API with an arbitrary SQL string.
     The account connected via ``.env`` is queried.
@@ -111,37 +115,30 @@ def query_cartodb(query):
 
     :param query: The query to execute on CARTO.
     '''
-    #carto_url = 'https://{}/api/v2/sql'.format(os.environ['CARTODB_DOMAIN'])
-    carto_url = os.environ['CARTODB_URL'] + '/api/v2/sql'
+    carto_url = (carto_url or os.environ['CARTODB_URL']) + '/api/v2/sql'
     resp = requests.post(carto_url, data={
-        'api_key': os.environ['CARTODB_API_KEY'],
+        'api_key': api_key or os.environ['CARTODB_API_KEY'],
         'q': query
     })
-    #assert resp.status_code == 200
-    #if resp.status_code != 200:
-    #    import pdb
-    #    pdb.set_trace()
-    #    raise Exception(u'Non-200 response ({}) from carto: {}'.format(
-    #        resp.status_code, resp.text))
     return resp
 
 
-def upload_via_ogr2ogr(outname, localname, schema):
-    api_key = os.environ['CARTODB_API_KEY']
+def upload_via_ogr2ogr(outname, localname, schema, api_key=None):
+    api_key = api_key or os.environ['CARTODB_API_KEY']
     cmd = u'''
-ogr2ogr --config CARTODB_API_KEY $CARTODB_API_KEY \
+ogr2ogr --config CARTODB_API_KEY {api_key} \
         -f CartoDB "CartoDB:observatory" \
         -overwrite \
         -nlt GEOMETRY \
         -nln "{private_outname}" \
         PG:dbname=$PGDATABASE' active_schema={schema}' '{tablename}'
     '''.format(private_outname=outname, tablename=localname,
-               schema=schema)
+               schema=schema, api_key=api_key)
     print cmd
     shell(cmd)
 
 
-def import_api(request, json_column_names=None):
+def import_api(request, json_column_names=None, api_key=None, carto_url=None):
     '''
     Run CARTO's `import API <https://carto.com/docs/carto-engine/import-api/importing-geospatial-data/>`_
     The account connected via ``.env`` will be the target.
@@ -155,10 +152,11 @@ def import_api(request, json_column_names=None):
                                be converted to ``JSON`` type after the fact.
                                Otherwise those columns would be ``Text``.
     '''
-    api_key = os.environ['CARTODB_API_KEY']
+    carto_url = carto_url or os.environ['CARTODB_URL']
+    api_key = api_key or os.environ['CARTODB_API_KEY']
     json_column_names = json_column_names or []
     resp = requests.post('{url}/api/v1/imports/?api_key={api_key}'.format(
-        url=os.environ['CARTODB_URL'],
+        url=carto_url,
         api_key=api_key
     ), json=request)
     assert resp.status_code == 200
@@ -166,7 +164,7 @@ def import_api(request, json_column_names=None):
     import_id = resp.json()["item_queue_id"]
     while True:
         resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
-            url=os.environ['CARTODB_URL'],
+            url=carto_url,
             import_id=import_id,
             api_key=api_key
         ))
@@ -194,7 +192,8 @@ def import_api(request, json_column_names=None):
 def sql_to_cartodb_table(outname, localname, json_column_names=None,
                          schema='observatory'):
     '''
-    Move a table to CARTO using the `import API <https://carto.com/docs/carto-engine/import-api/importing-geospatial-data/>`_
+    Move a table to CARTO using the
+    `import API <https://carto.com/docs/carto-engine/import-api/importing-geospatial-data/>`_
 
     :param outname: The destination name of the table.
     :param localname: The local name of the table, exclusive of schema.
@@ -234,76 +233,201 @@ def generate_tile_summary(session, table_id, column_id, tablename, colname):
     '''
     Add entries to obs_column_table_tile for the given table and column.
     '''
+    tablename_ns = tablename.split('.')[-1]
+
+    query = '''
+        DELETE FROM observatory.obs_column_table_tile_simple
+        WHERE table_id = '{table_id}'
+          AND column_id = '{column_id}';'''.format(
+              table_id=table_id, column_id=column_id)
+    resp = session.execute(query)
+
     query = '''
         DELETE FROM observatory.obs_column_table_tile
         WHERE table_id = '{table_id}'
-          AND column_id = '{column_id}';
-        INSERT INTO observatory.obs_column_table_tile
-        WITH emptyraster as (
-          SELECT ROW_NUMBER() OVER () AS id, rast FROM (
-          SELECT ST_Tile(ST_AsRaster(
-            the_geom,
-            (st_xmax(st_transform(the_geom, 3857))
-              - st_xmin(st_transform(the_geom, 3857)))::INT
-            / (50000),
-            (st_ymax(st_transform(the_geom, 3857))
-              - st_ymin(st_transform(the_geom, 3857)))::INT
-            / (50000), 0, 0, ARRAY['32BF', '32BF', '32BF'],
-                             ARRAY[-1, -1, -1],
-                             ARRAY[0, 0, 0]
-          ), ARRAY[1, 2, 3], 50, 50) rast
-          FROM observatory.obs_table
-          WHERE id = '{table_id}'
-          ) foo
-        ),
-        pixelspertile AS (
-          SELECT id,
-                 ARRAY_AGG(median) medians,
-                 ARRAY_AGG(cnt) counts,
-                 ARRAY_AGG(percent_fill) percents FROM (
-          SELECT id, ROW(FIRST(geom),
-                        -- determine median area of tiger geometries
-                        Coalesce(Nullif(
-                          percentile_cont(0.5) within group (
-                          order by st_area(st_transform(tiger.{colname}, 3857)) / 1000000)
-                          , 0), null)
-                     )::geomval median,
-                     ROW(FIRST(geom),
-                      -- determine number of geoms, including fractions
-                      Coalesce(Nullif(SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom)) /
-                          ST_Area(tiger.{colname})), 0), null)
-                     )::geomval cnt,
-                     ROW(FIRST(geom),
-                      -- determine % pixel area filled with geoms
-                      SUM(ST_Area(ST_Intersection(tiger.{colname}, foo.geom))) /
-                          ST_Area(FIRST(geom))
-                     )::geomval percent_fill
-          FROM
-          (
-            SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, True)).*
-            FROM emptyraster,
-                 {tablename} tiger
-            WHERE emptyraster.rast && tiger.{colname}
-            GROUP BY id
-          ) foo,
-            {tablename} tiger
-            WHERE foo.geom && tiger.{colname}
-            GROUP BY id, x, y
-          ) bar
-          GROUP BY id
-        )
-        SELECT '{table_id}', '{column_id}', er.id,
-               ST_SetValues(ST_SetValues(ST_SetValues(er.rast,
-               1, medians),
-               2, counts),
-               3, percents) geom
-        FROM emptyraster er, pixelspertile ppt
-        WHERE er.id = ppt.id
-        ;
-    '''.format(table_id=table_id, column_id=column_id,
-               colname=colname, tablename=tablename)
+          AND column_id = '{column_id}';'''.format(
+              table_id=table_id, column_id=column_id)
+    resp = session.execute(query)
+
+    query = '''
+        DROP TABLE IF EXISTS raster_empty_{tablename_ns};
+        CREATE TEMPORARY TABLE raster_empty_{tablename_ns} AS
+        SELECT ROW_NUMBER() OVER () AS id, rast FROM (
+          WITH tilesize AS (SELECT
+            CASE WHEN SUM(ST_Area({colname})) > 5000 THEN 2.5
+                 ELSE 0.5 END AS tilesize,
+            ST_SetSRID(ST_Extent({colname}), 4326) extent
+            FROM {tablename}
+          ), summaries AS (
+            SELECT ST_XMin(extent) xmin, ST_XMax(extent) xmax,
+                   ST_YMin(extent) ymin, ST_YMax(extent) ymax
+            FROM tilesize
+          ) SELECT
+              ST_Tile(ST_SetSRID(
+                ST_AddBand(
+                  ST_MakeEmptyRaster(
+                    ((xmax - xmin) / tilesize)::Integer + 1,
+                    ((ymax - ymin) / tilesize)::Integer + 1,
+                    ((xmin / tilesize)::Integer)::Numeric * tilesize,
+                    ((ymax / tilesize)::Integer)::Numeric * tilesize,
+                    tilesize
+                  ), ARRAY[
+                    (1, '32BF', -1, 0)::addbandarg,
+                    (2, '32BF', -1, 0)::addbandarg,
+                    (3, '32BF', -1, 0)::addbandarg
+                  ])
+              , 4326)
+          , ARRAY[1, 2, 3], 25, 25) rast
+          FROM summaries, tilesize
+          ) foo;
+        '''.format(colname=colname,
+                   tablename=tablename,
+                   tablename_ns=tablename_ns)
     resp = session.execute(query)
     assert resp.rowcount > 0
+
+    query = '''
+      DROP TABLE IF EXISTS raster_pap_{tablename_ns};
+      CREATE TEMPORARY TABLE raster_pap_{tablename_ns} As
+      SELECT id, (ST_PixelAsPolygons(FIRST(rast), 1, False)).*
+           FROM raster_empty_{tablename_ns} rast,
+                {tablename} vector
+           WHERE rast.rast && vector.{colname}
+           GROUP BY id;
+    '''.format(tablename_ns=tablename_ns, tablename=tablename, colname=colname)
+    resp = session.execute(query)
+    assert resp.rowcount > 0
+
+    query = '''
+      CREATE UNIQUE INDEX ON raster_pap_{tablename_ns} (id, x, y);
+      CREATE INDEX ON raster_pap_{tablename_ns} using gist (geom);
+    '''.format(tablename_ns=tablename_ns, colname=colname)
+    resp = session.execute(query)
+
+    # Travis doesn't support ST_ClipByBox2D because of old GEOS version, but
+    # our Docker container supports this optimization
+    if os.environ.get('TRAVIS'):
+        st_clip = 'ST_Intersection'
+    else:
+        st_clip = 'ST_ClipByBox2D'
+
+    query = '''
+      DROP TABLE IF EXISTS raster_vals_{tablename_ns};
+      CREATE TEMPORARY TABLE raster_vals_{tablename_ns} AS
+      WITH vector AS (SELECT CASE
+                        WHEN ST_GeometryType({colname}) IN ('ST_Polygon', 'ST_MultiPolygon') THEN
+                             ST_CollectionExtract(ST_MakeValid(
+                             ST_SimplifyVW({colname}, 0.00001)), 3)
+                          ELSE {colname}
+                        END the_geom
+                      FROM {tablename} vector)
+      SELECT id
+             , (null::geometry, null::numeric)::geomval median
+             , (FIRST(geom),
+               -- determine number of geoms, including fractions
+               Nullif(SUM(CASE ST_GeometryType(vector.the_geom)
+                 WHEN 'ST_Point' THEN 1
+                 WHEN 'ST_LineString' THEN
+                       ST_Length({st_clip}(vector.the_geom, ST_Envelope(geom))) /
+                       ST_Length(vector.the_geom)
+                 ELSE
+                   CASE WHEN ST_Within(geom, vector.the_geom) THEN
+                             ST_Area(geom) / ST_Area(vector.the_geom)
+                        WHEN ST_Within(vector.the_geom, geom) THEN 1
+                        ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
+                             ST_Area(vector.the_geom)
+                   END
+                END), 0)
+              )::geomval cnt
+             , (FIRST(geom),
+               -- determine % pixel area filled with geoms
+               SUM(CASE WHEN ST_Within(geom, vector.the_geom) THEN 1
+                    WHEN ST_Within(vector.the_geom, geom) THEN
+                         ST_Area(vector.the_geom) / ST_Area(geom)
+                    ELSE ST_Area({st_clip}(vector.the_geom, ST_Envelope(geom))) /
+                         ST_Area(geom)
+               END)
+              )::geomval percent_fill
+         FROM raster_pap_{tablename_ns}, vector
+         WHERE geom && vector.the_geom
+         GROUP BY id, x, y;
+    '''.format(tablename_ns=tablename_ns, tablename=tablename, colname=colname,
+               st_clip=st_clip)
+    resp = session.execute(query)
+    assert resp.rowcount > 0
+
+    query = '''
+        INSERT INTO observatory.obs_column_table_tile
+        WITH pixelspertile AS (SELECT id,
+          ARRAY_AGG(median) medians,
+          ARRAY_AGG(cnt) counts,
+          ARRAY_AGG(percent_fill) percents
+        FROM raster_vals_{tablename_ns}
+        GROUP BY id)
+        SELECT '{table_id}', '{column_id}', er.id,
+                 ST_SetValues(ST_SetValues(ST_SetValues(er.rast,
+                 1, medians),
+                 2, counts),
+                 3, percents) geom
+          FROM raster_empty_{tablename_ns} er, pixelspertile ppt
+          WHERE er.id = ppt.id
+       '''.format(tablename_ns=tablename_ns, tablename=tablename,
+                  table_id=table_id, column_id=column_id)
+    resp = session.execute(query)
+    assert resp.rowcount > 0
+
+    resp = session.execute('''
+        UPDATE observatory.obs_column_table_tile
+        SET tile = st_setvalues(st_setvalues(st_setvalues(tile,
+                    1, geomvals, false),
+                    2, geomvals, false),
+                    3, geomvals, false)
+        FROM (
+            SELECT table_id, column_id, tile_id, array_agg(((geomval).geom, 0)::geomval) geomvals FROM (
+                SELECT table_id, column_id, tile_id, st_dumpaspolygons(tile, 2, false) geomval
+                FROM observatory.obs_column_table_tile
+                WHERE column_id = '{column_id}'
+                  AND table_id = '{table_id}'
+            ) bar
+            WHERE (geomval).val = -1
+            GROUP BY table_id, column_id, tile_id
+        ) foo
+          WHERE obs_column_table_tile.table_id = foo.table_id
+            AND obs_column_table_tile.column_id = foo.column_id
+            AND obs_column_table_tile.tile_id = foo.tile_id
+       ; '''.format(table_id=table_id, column_id=column_id,
+                    colname=colname, tablename=tablename))
+    resp = session.execute('''
+       INSERT INTO observatory.obs_column_table_tile_simple
+       SELECT table_id, column_id, tile_id, ST_Reclass(
+         ST_Band(tile, ARRAY[2, 3]),
+         -- regenerate band 2 setting 1 as the minimum value to include very small geometries
+         -- that would be considered spurious due to rounding
+         ROW(2, '[0-0]::0, (0-1]::1-255, (1-100]::255-255', '8BUI', 0)::reclassarg
+       ) AS tile
+       FROM observatory.obs_column_table_tile
+       WHERE table_id='{table_id}'
+         AND column_id='{column_id}';
+       '''.format(table_id=table_id, column_id=column_id,
+                  colname=colname, tablename=tablename))
+
+    real_num_geoms = session.execute('''
+        SELECT COUNT({colname}) FROM {tablename}
+    '''.format(colname=colname,
+               tablename=tablename)).fetchone()[0]
+
+    est_num_geoms = session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
+        FROM observatory.obs_column_table_tile_simple
+        WHERE column_id = '{column_id}'
+          AND table_id = '{table_id}'
+    '''.format(column_id=column_id,
+               table_id=table_id)).fetchone()[0]
+
+    assert abs(real_num_geoms - est_num_geoms) / real_num_geoms < 0.05, \
+        "Estimate of {} total geoms more than 5% off real {} num geoms " \
+        "for column '{}' in table '{}' (tablename '{}')".format(
+            est_num_geoms, real_num_geoms, column_id, table_id, tablename)
 
 
 class PostgresTarget(Target):
@@ -311,9 +435,10 @@ class PostgresTarget(Target):
     PostgresTarget which by default uses command-line specified login.
     '''
 
-    def __init__(self, schema, tablename):
+    def __init__(self, schema, tablename, non_empty=True):
         self._schema = schema
         self._tablename = tablename
+        self._non_empty = non_empty
 
     @property
     def table(self):
@@ -359,7 +484,16 @@ class PostgresTarget(Target):
         '''
         Returns True if the table exists and has at least one row in it.
         '''
-        return self._existenceness() == 2
+        if self._non_empty:
+            return self._existenceness() == 2
+        else:
+            return self._existenceness() >= 1
+
+    def exists_or_empty(self):
+        '''
+        Returns True if the table exists, even if it is empty.
+        '''
+        return self._existenceness() >= 1
 
 
 class CartoDBTarget(Target):
@@ -367,38 +501,41 @@ class CartoDBTarget(Target):
     Target which is a CartoDB table
     '''
 
-    def __init__(self, tablename):
+    def __init__(self, tablename, carto_url=None, api_key=None):
         self.tablename = tablename
-        resp = requests.get('{url}/dashboard/datasets'.format(
-            url=os.environ['CARTODB_URL']
-        ), cookies={
-            '_cartodb_session': os.environ['CARTODB_SESSION']
-        }).content
+        self.carto_url = carto_url
+        self.api_key = api_key
 
     def __str__(self):
         return self.tablename
 
     def exists(self):
-        resp = query_cartodb('SELECT row_number() over () FROM "{tablename}" LIMIT 0'.format(
-            tablename=self.tablename))
-        return resp.status_code == 200
+        resp = query_cartodb(
+            'SELECT row_number() over () FROM "{tablename}" LIMIT 1'.format(
+                tablename=self.tablename),
+            api_key=self.api_key,
+            carto_url=self.carto_url)
+        if resp.status_code != 200:
+            return False
+        return resp.json()['total_rows'] > 0
 
-    def remove(self):
-        api_key = os.environ['CARTODB_API_KEY']
-        url = os.environ['CARTODB_URL']
+    def remove(self, carto_url=None, api_key=None):
+        api_key = api_key or os.environ['CARTODB_API_KEY']
+        url = carto_url or os.environ['CARTODB_URL']
 
         try:
             while True:
                 resp = requests.get('{url}/api/v1/tables/{tablename}?api_key={api_key}'.format(
-                    url=os.environ['CARTODB_URL'],
+                    url=carto_url,
                     tablename=self.tablename,
                     api_key=api_key
                 ))
                 viz_id = resp.json()['id']
-                # delete dataset by id DELETE https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c?api_key=bf40056ab6e223c07a7aa7731861a7bda1043241
+                # delete dataset by id DELETE
+                # https://observatory.cartodb.com/api/v1/viz/ed483a0b-7842-4610-9f6c-8591273b8e5c
                 try:
                     requests.delete('{url}/api/v1/viz/{viz_id}?api_key={api_key}'.format(
-                        url=os.environ['CARTODB_URL'],
+                        url=carto_url,
                         viz_id=viz_id,
                         api_key=api_key
                     ), timeout=1)
@@ -408,11 +545,6 @@ class CartoDBTarget(Target):
             pass
         query_cartodb('DROP TABLE IF EXISTS {tablename}'.format(tablename=self.tablename))
         assert not self.exists()
-        resp = requests.get('{url}/dashboard/datasets'.format(
-            url=os.environ['CARTODB_URL']
-        ), cookies={
-            '_cartodb_session': os.environ['CARTODB_SESSION']
-        }).content
 
 
 def grouper(iterable, n, fillvalue=None):
@@ -426,12 +558,8 @@ class ColumnTarget(Target):
     '''
     '''
 
-    def __init__(self, schema, name, column, task):
-        self.schema = schema
-        self.name = name
-        self._id = '.'.join([schema, name])
-        column.id = self._id
-        #self._id = column.id
+    def __init__(self, column, task):
+        self._id = column.id
         self._task = task
         self._column = column
 
@@ -518,6 +646,7 @@ class TableTarget(Target):
         obs_table.id = self._id
         obs_table.tablename = 'obs_' + sha1(underscore_slugify(self._id)).hexdigest()
         self.table = 'observatory.' + obs_table.tablename
+        self._tablename = obs_table.tablename
         self._schema = schema
         self._name = name
         self._obs_table = obs_table
@@ -593,6 +722,10 @@ class TableTarget(Target):
             # Column info for sqlalchemy's internal metadata
             if col.type.lower() == 'geometry':
                 coltype = Geometry
+            elif col.type.lower().startswith('geometry(point'):
+                coltype = Point
+            elif col.type.lower().startswith('geometry(linestring'):
+                coltype = Linestring
 
             # For enum type, pull keys from extra["categories"]
             elif col.type.lower().startswith('enum'):
@@ -608,50 +741,53 @@ class TableTarget(Target):
             metadata.tables[obs_table.id].drop()
         self._table = Table(obs_table.tablename, metadata, *columns,
                             extend_existing=True, schema='observatory')
+        session.commit()
         self._table.drop(checkfirst=True)
         self._table.create()
 
-    def update_or_create_metadata(self):
+    def update_or_create_metadata(self, _testmode=False):
         session = current_session()
 
         colinfo = {}
 
-        postgres_max_cols = 1664
-        query_width = 7
-        maxsize = postgres_max_cols / query_width
-        for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
-            select = []
-            for i, colname_coltarget in enumerate(group):
-                if colname_coltarget is None:
-                    continue
-                colname, coltarget = colname_coltarget
-                col = coltarget.get(session)
-                coltype = col.type.lower()
-                i = i + (groupnum * maxsize)
-                if coltype == 'numeric':
-                    select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                                  'max({colname}) col{i}_max, '
-                                  'min({colname}) col{i}_min, '
-                                  'avg({colname}) col{i}_avg, '
-                                  'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
-                                  'mode() within group (order by {colname}) col{i}_mode, '
-                                  'stddev_pop({colname}) col{i}_stddev'.format(
-                                      i=i, colname=colname.lower()))
-                elif coltype == 'geometry':
-                    select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                                  'max(st_area({colname}::geography)) col{i}_max, '
-                                  'min(st_area({colname}::geography)) col{i}_min, '
-                                  'avg(st_area({colname}::geography)) col{i}_avg, '
-                                  'percentile_cont(0.5) within group (order by st_area({colname}::geography)) col{i}_median, '
-                                  'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
-                                  'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
-                                      i=i, colname=colname.lower()))
+        if not _testmode:
+            postgres_max_cols = 1664
+            query_width = 7
+            maxsize = postgres_max_cols / query_width
+            for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
+                select = []
+                for i, colname_coltarget in enumerate(group):
+                    if colname_coltarget is None:
+                        continue
+                    colname, coltarget = colname_coltarget
+                    col = coltarget.get(session)
+                    coltype = col.type.lower()
+                    i = i + (groupnum * maxsize)
+                    if coltype == 'numeric':
+                        select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                      'max({colname}) col{i}_max, '
+                                      'min({colname}) col{i}_min, '
+                                      'avg({colname}) col{i}_avg, '
+                                      'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
+                                      'mode() within group (order by {colname}) col{i}_mode, '
+                                      'stddev_pop({colname}) col{i}_stddev'.format(
+                                          i=i, colname=colname.lower()))
+                    elif coltype == 'geometry':
+                        select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
+                                      'max(st_area({colname}::geography)) col{i}_max, '
+                                      'min(st_area({colname}::geography)) col{i}_min, '
+                                      'avg(st_area({colname}::geography)) col{i}_avg, '
+                                      'percentile_cont(0.5) within group '
+                                      '(order by st_area({colname}::geography)) col{i}_median, '
+                                      'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
+                                      'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
+                                          i=i, colname=colname.lower()))
 
-            if select:
-                stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
-                    select=', '.join(select), output=self.table)
-                resp = session.execute(stmt)
-                colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
+                if select:
+                    stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
+                        select=', '.join(select), output=self.table)
+                    resp = session.execute(stmt)
+                    colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
 
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
@@ -662,48 +798,54 @@ class TableTarget(Target):
             colname = colname.lower()
             col = coltarget.get(session)
 
-            # Column info for obs metadata
-            coltable = session.query(OBSColumnTable).filter_by(
-                column_id=col.id, table_id=obs_table.id).first()
-            if coltable:
-                coltable_existed = True
-                coltable.colname = colname
+            if _testmode:
+                coltable = OBSColumnTable(colname=colname, table=obs_table,
+                                          column=col)
             else:
-                # catch the case where a column id has changed
+                # Column info for obs metadata
                 coltable = session.query(OBSColumnTable).filter_by(
-                    table_id=obs_table.id, colname=colname).first()
+                    column_id=col.id, table_id=obs_table.id).first()
                 if coltable:
                     coltable_existed = True
-                    coltable.column = col
+                    coltable.colname = colname
                 else:
-                    coltable_existed = False
-                    coltable = OBSColumnTable(colname=colname, table=obs_table,
-                                              column=col)
-            # include analysis
-            if col.type.lower() in ('numeric', 'geometry',):
-                # do not include linkage for any column that is 100% null
-                stats = {
-                    'count': colinfo.get('cnt'),
-                    'notnull': colinfo.get('col%s_notnull' % i),
-                    'max': colinfo.get('col%s_max' % i),
-                    'min': colinfo.get('col%s_min' % i),
-                    'avg': colinfo.get('col%s_avg' % i),
-                    'median': colinfo.get('col%s_median' % i),
-                    'mode': colinfo.get('col%s_mode' % i),
-                    'stddev': colinfo.get('col%s_stddev' % i),
-                }
-                if stats['notnull'] == 0:
-                    if coltable_existed:
-                        session.delete(coltable)
-                    elif coltable in session:
-                        session.expunge(coltable)
-                    continue
-                for k in stats.keys():
-                    if stats[k] is not None:
-                        stats[k] = float(stats[k])
-                coltable.extra = {
-                    'stats': stats
-                }
+                    # catch the case where a column id has changed
+                    coltable = session.query(OBSColumnTable).filter_by(
+                        table_id=obs_table.id, colname=colname).first()
+                    if coltable:
+                        coltable_existed = True
+                        coltable.column = col
+                    else:
+                        coltable_existed = False
+                        coltable = OBSColumnTable(colname=colname, table=obs_table,
+                                                  column=col)
+
+                # include analysis
+                if col.type.lower() in ('numeric', 'geometry',):
+                    # do not include linkage for any column that is 100% null
+                    # unless we are in test mode
+                    stats = {
+                        'count': colinfo.get('cnt'),
+                        'notnull': colinfo.get('col%s_notnull' % i),
+                        'max': colinfo.get('col%s_max' % i),
+                        'min': colinfo.get('col%s_min' % i),
+                        'avg': colinfo.get('col%s_avg' % i),
+                        'median': colinfo.get('col%s_median' % i),
+                        'mode': colinfo.get('col%s_mode' % i),
+                        'stddev': colinfo.get('col%s_stddev' % i),
+                    }
+                    if stats['notnull'] == 0:
+                        if coltable_existed:
+                            session.delete(coltable)
+                        elif coltable in session:
+                            session.expunge(coltable)
+                        continue
+                    for k in stats.keys():
+                        if stats[k] is not None:
+                            stats[k] = float(stats[k])
+                    coltable.extra = {
+                        'stats': stats
+                    }
             session.add(coltable)
 
 
@@ -758,11 +900,20 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
-        #if self.deps() and not all([d.complete() for d in self.deps()]):
-        #    raise Exception('Must run prerequisites first')
-        output = OrderedDict({})
         session = current_session()
+
+        # Return columns from database if the task is already finished
+        if hasattr(self, '_colids') and self.complete():
+            return OrderedDict([
+                (colkey, ColumnTarget(session.query(OBSColumn).get(cid), self))
+                for colkey, cid in self.colids.iteritems()
+            ])
+
+        # Otherwise, run `columns` (slow!) to generate output
         already_in_session = [obj for obj in session]
+        output = OrderedDict()
+
+        input_ = self.input()
         for col_key, col in self.columns().iteritems():
             if not isinstance(col, OBSColumn):
                 raise RuntimeError(
@@ -770,13 +921,31 @@ class ColumnsTask(Task):
                     '"{col}" is type {type}'.format(col=col_key, type=type(col)))
             if not col.version:
                 col.version = self.version()
-            output[col_key] = ColumnTarget(classpath(self), col.id or col_key, col, self)
+            col.id = '.'.join([classpath(self), col.id or col_key])
+            tags = self.tags(input_, col_key, col)
+            if isinstance(tags, TagTarget):
+                col.tags.append(tags)
+            else:
+                col.tags.extend(tags)
+
+            output[col_key] = ColumnTarget(col, self)
         now_in_session = [obj for obj in session]
         for obj in now_in_session:
             if obj not in already_in_session:
                 if obj in session:
                     session.expunge(obj)
         return output
+
+    @property
+    def colids(self):
+        '''
+        Return colids for the output columns, this can be cached
+        '''
+        if not hasattr(self, '_colids'):
+            self._colids = OrderedDict([
+                (colkey, ct._id) for colkey, ct in self.output().iteritems()
+            ])
+        return self._colids
 
     def complete(self):
         '''
@@ -788,19 +957,29 @@ class ColumnsTask(Task):
         if deps and not all([d.complete() for d in deps]):
             return False
         else:
-            #_complete = super(ColumnsTask, self).complete()
             # bulk check that all columns exist at proper version
-            colids = ["'{}'".format(ct._id) for ct in self.output().values()]
             cnt = current_session().execute(
                 '''
                 SELECT COUNT(*)
                 FROM observatory.obs_column
-                WHERE id IN ({ids}) AND version = '{version}'
+                WHERE id IN ('{ids}') AND version = '{version}'
                 '''.format(
-                    ids=','.join(colids),
+                    ids="', '".join(self.colids.values()),
                     version=self.version()
                 )).fetchone()[0]
-            return cnt == len(colids)
+            return cnt == len(self.colids.values())
+
+    def tags(self, input_, col_key, col):
+        '''
+        Replace with an iterable of :class:`OBSColumn <tasks.meta.OBSColumn>`
+        that should be applied to each column
+
+        :param input_: A saved version of this class's :meth:`input <luigi.Task.input>`
+        :param col_key: The key of the column this will be applied to.
+        :param column: The :class:`OBSColumn <tasks.meta.OBSColumn>` these tags
+                       will be applied to.
+        '''
+        return []
 
 
 class TagsTask(Task):
@@ -876,37 +1055,55 @@ class TableToCartoViaImportAPI(Task):
 
     force = BooleanParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
+    username = Parameter(default=None, significant=False)
+    api_key = Parameter(default=None, significant=False)
+    outname = Parameter(default=None, significant=False)
     table = Parameter()
+    columns = ListParameter(default=[])
 
     def run(self):
-        url = os.environ['CARTODB_URL']
-        api_key = os.environ['CARTODB_API_KEY']
+        carto_url = 'https://{}.carto.com'.format(self.username) if self.username else os.environ['CARTODB_URL']
+        api_key = self.api_key if self.api_key else os.environ['CARTODB_API_KEY']
         try:
             os.makedirs(os.path.join('tmp', classpath(self)))
         except OSError:
             pass
-        tmp_file_path = os.path.join('tmp', classpath(self), self.table + '.csv')
-        shell(r'''psql -c '\copy {schema}.{tablename} TO '"'"{tmp_file_path}"'"'
-              WITH CSV HEADER' '''.format(
-                  schema=self.schema,
-                  tablename=self.table,
-                  tmp_file_path=tmp_file_path,
-              ))
+        outname = self.outname or self.table
+        tmp_file_path = os.path.join('tmp', classpath(self), outname + '.csv')
+        if not self.columns:
+            shell(r'''psql -c '\copy "{schema}".{tablename} TO '"'"{tmp_file_path}"'"'
+                  WITH CSV HEADER' '''.format(
+                      schema=self.schema,
+                      tablename=self.table,
+                      tmp_file_path=tmp_file_path,
+                  ))
+        else:
+            shell(r'''psql -c '\copy (SELECT {columns} FROM "{schema}".{tablename}) TO '"'"{tmp_file_path}"'"'
+                  WITH CSV HEADER' '''.format(
+                      schema=self.schema,
+                      tablename=self.table,
+                      tmp_file_path=tmp_file_path,
+                      columns=', '.join(self.columns),
+                  ))
         curl_resp = shell(
             'curl -s -F privacy=public -F type_guessing=false '
             '  -F file=@{tmp_file_path} "{url}/api/v1/imports/?api_key={api_key}"'.format(
                 tmp_file_path=tmp_file_path,
-                url=url,
+                url=carto_url,
                 api_key=api_key
             ))
-        import_id = json.loads(curl_resp)["item_queue_id"]
+        try:
+            import_id = json.loads(curl_resp)["item_queue_id"]
+        except ValueError:
+            raise Exception(curl_resp)
         while True:
             resp = requests.get('{url}/api/v1/imports/{import_id}?api_key={api_key}'.format(
-                url=os.environ['CARTODB_URL'],
+                url=carto_url,
                 import_id=import_id,
                 api_key=api_key
             ))
             if resp.json()['state'] == 'complete':
+                LOGGER.info("Waiting for import %s for %s", import_id, outname)
                 break
             elif resp.json()['state'] == 'failure':
                 raise Exception('Import failed: {}'.format(resp.json()))
@@ -914,9 +1111,15 @@ class TableToCartoViaImportAPI(Task):
             print resp.json()['state']
             time.sleep(1)
 
-        # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
-        assert resp.json()['table_name'] == self.table # the copy should not have a
-                                                       # mutilated name (like '_1', '_2' etc)
+        # If CARTO still renames our table to _1, just force alter it
+        if resp.json()['table_name'] != outname:
+            query_cartodb('ALTER TABLE {oldname} RENAME TO {newname}'.format(
+                oldname=resp.json()['table_name'],
+                newname=outname,
+                carto_url=carto_url,
+                api_key=api_key,
+            ))
+            assert resp.status_code == 200
 
         # fix broken column data types -- alter everything that's not character
         # varying back to it
@@ -938,32 +1141,34 @@ class TableToCartoViaImportAPI(Task):
                                         AND table_name='{tablename}')
                   AND ns.nspname = '{schema}';
                 '''.format(schema=self.schema,
-                           tablename=self.table)).fetchall()
+                           tablename=self.table.lower())).fetchall()
             alter = ', '.join([
                 " ALTER COLUMN {colname} SET DATA TYPE {data_type} "
                 " USING NULLIF({colname}, '')::{data_type}".format(
                     colname=colname, data_type=data_type
                 ) for colname, data_type, _ in resp])
             if alter:
-                resp = query_cartodb(
-                    'ALTER TABLE {tablename} {alter}'.format(
-                        tablename=self.table,
-                        alter=alter)
-                )
+                alter_stmt = 'ALTER TABLE {tablename} {alter}'.format(
+                    tablename=outname,
+                    alter=alter)
+                LOGGER.info(alter_stmt)
+                resp = query_cartodb(alter_stmt, api_key=api_key, carto_url=carto_url)
                 if resp.status_code != 200:
                     raise Exception('could not alter columns for "{tablename}":'
-                                    '{err}'.format(tablename=self.table,
+                                    '{err}'.format(tablename=outname,
                                                    err=resp.text))
         except Exception as err:
             # in case of error, delete the uploaded but not-yet-properly typed
             # table
-            self.output().remove()
+            self.output().remove(carto_url=carto_url, api_key=api_key)
             raise err
 
     def output(self):
-        target = CartoDBTarget(self.table)
+        carto_url = 'https://{}.carto.com'.format(self.username) if self.username else os.environ['CARTODB_URL']
+        api_key = self.api_key if self.api_key else os.environ['CARTODB_API_KEY']
+        target = CartoDBTarget(self.outname or self.table, api_key=api_key, carto_url=carto_url)
         if self.force:
-            target.remove()
+            target.remove(carto_url=carto_url, api_key=api_key)
             self.force = False
         return target
 
@@ -1032,8 +1237,12 @@ class DownloadUnzipTask(Task):
 
     def run(self):
         os.makedirs(self.output().path)
-        self.download()
-        shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
+        try:
+            self.download()
+            shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
+        except Exception as err:
+            os.rmdir(self.output().path)
+            raise
 
     def output(self):
         '''
@@ -1080,15 +1289,47 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(
-            schema=classpath(self)))
-        target = PostgresTarget(classpath(self), self.task_id)
-        #if not getattr(self, 'wiped', False) and (self.force or target.empty()):
-        if getattr(self, 'first_time', True) and (self.force or target.empty()):
-            shell("psql -c 'DROP TABLE IF EXISTS \"{schema}\".{tablename}'".format(
-                schema=classpath(self), tablename=self.task_id))
-        self.first_time = False
-        return target
+        return PostgresTarget(classpath(self), self.task_id)
+
+
+@TempTableTask.event_handler(Event.START)
+def clear_temp_table(task):
+    create_temp_schema(task)
+    target = task.output()
+    if task.force or target.empty():
+        session = current_session()
+        session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
+            schema=classpath(task), tablename=task.task_id))
+        session.flush()
+
+
+def create_temp_schema(task):
+    shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(schema=classpath(task)))
+
+
+class GdbFeatureClass2TempTableTask(TempTableTask):
+    '''
+    A task that extracts one vector shape layer from a geodatabase to a
+    TempTableTask.
+    '''
+
+    feature_class = Parameter()
+
+    def input_gdb(self):
+        '''
+        This method must be implemented by subclasses.  Should return a path
+        to a GDB to convert to shapes.
+        '''
+        raise NotImplementedError("Must define `input_gdb` method")
+
+    def run(self):
+        shell('''
+              PG_USE_COPY=yes ogr2ogr -f "PostgreSQL" PG:"dbname=$PGDATABASE \
+              active_schema={schema}" -t_srs "EPSG:4326" -nlt MultiPolygon \
+              -nln {tablename} {infile}
+              '''.format(schema=self.output().schema,
+                         infile=self.input_gdb(),
+                         tablename=self.output().tablename))
 
 
 class Shp2TempTableTask(TempTableTask):
@@ -1096,6 +1337,8 @@ class Shp2TempTableTask(TempTableTask):
     A task that loads :meth:`~.util.Shp2TempTableTask.input_shp()` into a
     temporary Postgres table.  That method must be overriden.
     '''
+
+    encoding = Parameter(default='latin1', significant=False)
 
     def input_shp(self):
         '''
@@ -1115,11 +1358,12 @@ class Shp2TempTableTask(TempTableTask):
         operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no '.format(
             schema=schema)
         for shp in shps:
-            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
+            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING={encoding} ' \
                     'ogr2ogr -f PostgreSQL PG:"dbname=$PGDATABASE ' \
                     'active_schema={schema}" -t_srs "EPSG:4326" ' \
                     '-nlt MultiPolygon -nln {table} ' \
                     '{operation} \'{input}\' '.format(
+                        encoding=self.encoding,
                         schema=schema,
                         table=tablename,
                         input=shp,
@@ -1148,6 +1392,7 @@ class CSV2TempTableTask(TempTableTask):
 
     delimiter = Parameter(default=',', significant=False)
     has_header = BooleanParameter(default=True, significant=False)
+    encoding = Parameter(default='utf8', significant=False)
 
     def input_csv(self):
         '''
@@ -1174,8 +1419,11 @@ class CSV2TempTableTask(TempTableTask):
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell('head -n 1 {csv}'.format(csv=csv))
-        return [(h, 'Text') for h in header_row.split(self.delimiter)]
+        header_row = shell('head -n 1 "{csv}"'.format(csv=csv)).strip()
+        return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
+
+    def read_method(self, fname):
+        return 'cat "{input}"'.format(input=fname)
 
     def run(self):
         if isinstance(self.input_csv(), basestring):
@@ -1184,25 +1432,34 @@ class CSV2TempTableTask(TempTableTask):
             csvs = self.input_csv()
 
         session = current_session()
-        session.execute('CREATE TABLE {output} ({coldef})'.format(
+        session.execute(u'CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
-            coldef=', '.join(['{} {}'.format(*c) for c in self.coldef()])
+            coldef=u', '.join([u'"{}" {}'.format(c[0].decode(self.encoding), c[1]) for c in self.coldef()])
         ))
         session.commit()
-        options = ['''DELIMITER '"'{}'"' '''.format(self.delimiter)]
+        options = ['''
+           DELIMITER '"'{delimiter}'"' ENCODING '"'{encoding}'"'
+        '''.format(delimiter=self.delimiter,
+                   encoding=self.encoding)]
         if self.has_header:
             options.append('CSV HEADER')
         try:
             for csv in csvs:
-                shell(r'''psql -c '\copy {table} FROM '"'{input}'"' {options}' '''.format(
-                    input=csv,
+                shell(r'''{read_method} | psql -c '\copy {table} FROM STDIN {options}' '''.format(
+                    read_method=self.read_method(csv),
                     table=self.output().table,
                     options=' '.join(options)
                 ))
+            self.after_copy()
         except:
+            session.rollback()
             session.execute('DROP TABLE IF EXISTS {output}'.format(
                 output=self.output().table))
+            session.commit()
             raise
+
+    def after_copy(self):
+        pass
 
 
 class LoadPostgresFromURL(TempTableTask):
@@ -1238,6 +1495,13 @@ class TableTask(Task):
     generate all relevant metadata for the table, and link it to the columns.
     '''
 
+    def _requires(self):
+        reqs = super(TableTask, self)._requires()
+        if self._testmode:
+            return [r for r in reqs if isinstance(r, (TagsTask, TableTask, ColumnsTask,))]
+        else:
+            return reqs
+
     def version(self):
         '''
         Must return a version control number, which is useful for forcing a
@@ -1268,16 +1532,26 @@ class TableTask(Task):
 
         '''
         raise NotImplementedError('Must implement columns method that returns '
-                                   'a dict of ColumnTargets')
+                                  'a dict of ColumnTargets')
 
     def populate(self):
         '''
         This method must populate (most often via ``INSERT``) the output table.
 
-        For example: 
+        For example:
         '''
         raise NotImplementedError('Must implement populate method that '
-                                   'populates the table')
+                                  'populates the table')
+
+    def fake_populate(self, output):
+        '''
+        Put one empty row in the table
+        '''
+        session = current_session()
+        session.execute('INSERT INTO {output} ({col}) VALUES (NULL)'.format(
+            output=output.table,
+            col=self._columns.keys()[0]
+        ))
 
     def description(self):
         '''
@@ -1297,23 +1571,26 @@ class TableTask(Task):
     def the_geom(self, output, colname):
         session = current_session()
         return session.execute(
-            'SELECT ST_AsText('
-            '  ST_Multi( '
-            '    ST_CollectionExtract( '
-            '      ST_MakeValid( '
-            '        ST_SnapToGrid( '
-            '          ST_Buffer( '
-            '            ST_Union( '
-            '              ST_MakeValid( '
-            '                ST_Simplify( '
-            '                  ST_SnapToGrid({geom_colname}, 0.3) '
-            '                , 0) '
+            'SELECT ST_AsText( '
+            '  ST_Intersection( '
+            '    ST_MakeEnvelope(-179.999, -89.999, 179.999, 89.999, 4326), '
+            '    ST_Multi( '
+            '      ST_CollectionExtract( '
+            '        ST_MakeValid( '
+            '          ST_SnapToGrid( '
+            '            ST_Buffer( '
+            '              ST_Union( '
+            '                ST_MakeValid( '
+            '                  ST_Simplify( '
+            '                    ST_SnapToGrid({geom_colname}, 0.3) '
+            '                  , 0) '
+            '                ) '
             '              ) '
-            '            ) '
-            '          , 0.3, 2) '
-            '        , 0.3) '
-            '      ) '
-            '    , 3) '
+            '            , 0.3, 2) '
+            '          , 0.3) '
+            '        ) '
+            '      , 3) '
+            '    ) '
             '  ) '
             ') the_geom '
             'FROM {output}'.format(
@@ -1321,14 +1598,48 @@ class TableTask(Task):
                 output=output.table
             )).fetchone()['the_geom']
 
+    @property
+    def _testmode(self):
+        if os.environ.get('ENVIRONMENT') == 'test':
+            return True
+        return getattr(self, '_test', False)
+
     def run(self):
+        LOGGER.info('getting output()')
+        before = time.time()
         output = self.output()
+        after = time.time()
+        LOGGER.info('time: %s', after - before)
+
+        LOGGER.info('update_or_create_table')
+        before = time.time()
         output.update_or_create_table()
-        self.populate()
-        output.update_or_create_metadata()
-        self.create_indexes(output)
-        current_session().flush()
-        self.create_geom_summaries(output)
+        after = time.time()
+        LOGGER.info('time: %s', after - before)
+
+        if self._testmode:
+            LOGGER.info('fake_populate')
+            before = time.time()
+            self.fake_populate(output)
+            after = time.time()
+            LOGGER.info('time: %s', after - before)
+        else:
+            LOGGER.info('populate')
+            self.populate()
+
+        before = time.time()
+        LOGGER.info('update_or_create_metadata')
+        output.update_or_create_metadata(_testmode=self._testmode)
+        after = time.time()
+        LOGGER.info('time: %s', after - before)
+
+        if not self._testmode:
+            LOGGER.info('create_indexes')
+            self.create_indexes(output)
+            current_session().flush()
+
+            LOGGER.info('create_geom_summaries')
+            self.create_geom_summaries(output)
 
     def create_indexes(self, output):
         session = current_session()
@@ -1338,8 +1649,10 @@ class TableTask(Task):
             index_type = col.index_type
             if index_type:
                 index_name = '{}_{}_idx'.format(tablename.split('.')[-1], colname)
-                session.execute('CREATE INDEX {index_name} ON {table} '
+                session.execute('CREATE {unique} INDEX IF NOT EXISTS {index_name} ON {table} '
                                 'USING {index_type} ({colname})'.format(
+                                    #unique='UNIQUE' if index_type == 'btree' else '',
+                                    unique='',
                                     index_type=index_type,
                                     index_name=index_name,
                                     table=tablename, colname=colname))
@@ -1347,7 +1660,7 @@ class TableTask(Task):
     def create_geom_summaries(self, output):
         geometry_columns = [
             (colname, coltarget._id) for colname, coltarget in
-            self.columns().iteritems() if coltarget._column.type.lower() == 'geometry'
+            self.columns().iteritems() if coltarget._column.type.lower().startswith('geometry')
         ]
 
         if len(geometry_columns) == 0:
@@ -1373,19 +1686,21 @@ class TableTask(Task):
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
-        return TableTarget(classpath(self),
+        tt = TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
                            OBSTable(description=self.description(),
                                     version=self.version(),
                                     timespan=self.timespan()),
                            self._columns, self)
+        return tt
 
     def complete(self):
-        deps = self.deps()
-        if deps and not all([d.complete() for d in deps]):
-            return False
-        else:
-            return super(TableTask, self).complete()
+        return TableTarget(classpath(self),
+                           underscore_slugify(self.task_id),
+                           OBSTable(description=self.description(),
+                                    version=self.version(),
+                                    timespan=self.timespan()),
+                           [], self).exists()
 
 
 class RenameTables(Task):
@@ -1455,7 +1770,6 @@ class CreateGeomIndexes(Task):
             index_name = '{}_{}_idx'.format(tablename, colname)
             resp = session.execute("SELECT to_regclass('observatory.{}')".format(
                 index_name))
-            print index_name
             if not resp.fetchone()[0]:
                 session.execute('CREATE INDEX {index_name} ON observatory.{tablename} '
                                 'USING GIST ({colname})'.format(
@@ -1471,8 +1785,10 @@ class CreateGeomIndexes(Task):
 
 class DropOrphanTables(Task):
     '''
-    Remove tables that aren't documented anywhere in metadata.
+    Remove tables that aren't documented anywhere in metadata.  Cleaning.
     '''
+
+    force = BooleanParameter(default=False)
 
     def run(self):
         session = current_session()
@@ -1486,13 +1802,49 @@ WHERE table_name LIKE 'obs_%'
 ''')
         for row in resp:
             tablename = row[0]
-            cnt = session.execute(
-                'select count(*) from observatory.{}'.format(tablename)).fetchone()[0]
-            if cnt > 0:
-                raise Exception('not automatically dropping {}, it has {} rows'.format(
-                    tablename, cnt))
-            else:
-                session.execute('drop table observatory.{}'.format(tablename))
+            if not self.force:
+                cnt = session.execute(
+                    'select count(*) from observatory.{}'.format(tablename)).fetchone()[0]
+                if cnt > 0:
+                    LOGGER.warn('not automatically dropping {}, it has {} rows'.format(
+                        tablename, cnt))
+                    continue
+            session.execute('drop table observatory.{}'.format(tablename))
+        session.commit()
+
+
+class CleanMetadata(Task):
+    '''
+    Remove all columns, tables, and tags that have no references to other
+    metadata entities.
+    '''
+
+    def run(self):
+        session = current_session()
+
+        clear_tables = '''
+            DELETE FROM observatory.obs_table
+            WHERE id NOT IN (SELECT DISTINCT table_id from observatory.obs_column_table)
+        '''
+
+        clear_columns = '''
+            DELETE FROM observatory.obs_column
+            WHERE id NOT IN (SELECT DISTINCT column_id from observatory.obs_column_table)
+        '''
+
+        clear_tags = '''
+            DELETE FROM observatory.obs_tag
+            WHERE id NOT IN (SELECT DISTINCT tag_id from observatory.obs_column_tag)
+        '''
+
+        for q in (clear_tables, clear_columns, clear_tags):
+            session.execute(q)
+        session.commit()
+
+        self._complete = True
+
+    def complete(self):
+        return getattr(self, '_complete', False)
 
 
 class Carto2TempTableTask(TempTableTask):
@@ -1511,6 +1863,7 @@ class Carto2TempTableTask(TempTableTask):
         'string': 'TEXT',
         'number': 'NUMERIC',
         'geometry': 'GEOMETRY',
+        'date': 'TIMESTAMP',
     }
 
     @property
@@ -1526,6 +1879,8 @@ class Carto2TempTableTask(TempTableTask):
         resp = self._query(
             q='SELECT * FROM {table} LIMIT 0'.format(table=self.table)
         )
+        if resp.status_code != 200:
+            raise Exception('Non-200 code (%s): %s', resp.status_code, resp.text)
         coltypes = dict([
             (k, self.TYPE_MAP[v['type']]) for k, v in resp.json()['fields'].iteritems()
         ])
@@ -1659,7 +2014,7 @@ class GenerateRasterTiles(Task):
                                FROM observatory.obs_table t,
                                     observatory.obs_column_table ct,
                                     observatory.obs_column c
-                               WHERE c.type ILIKE 'geometry'
+                               WHERE c.type ILIKE 'geometry%'
                                  AND c.id = '{column_id}'
                                  AND t.id = '{table_id}'
                                  AND c.id = ct.column_id
@@ -1687,21 +2042,153 @@ class GenerateRasterTiles(Task):
             WHERE table_id = '{table_id}'
               AND column_id = '{column_id}'
         '''.format(table_id=self.table_id, column_id=self.column_id))
-        return resp.fetchone()[0] > 0
+        numrows = resp.fetchone()[0]
+        return numrows > 0
 
 
 class GenerateAllRasterTiles(WrapperTask):
 
+    force = BooleanParameter(default=False, significant=False)
+
     def requires(self):
         session = current_session()
         resp = session.execute('''
-            SELECT table_id, column_id
+            SELECT DISTINCT table_id, column_id
             FROM observatory.obs_table t,
                  observatory.obs_column_table ct,
                  observatory.obs_column c
             WHERE t.id = ct.table_id
               AND c.id = ct.column_id
-              AND c.type ILIKE 'geometry'
+              AND c.type ILIKE 'geometry%'
         ''')
         for table_id, column_id in resp:
-            yield GenerateRasterTiles(table_id=table_id, column_id=column_id)
+            yield GenerateRasterTiles(table_id=table_id, column_id=column_id,
+                                      force=self.force)
+
+
+class MetaWrapper(WrapperTask):
+    '''
+    End-product wrapper for a set of tasks that should yield entries into the
+    `obs_meta` table.
+    '''
+
+    params = {}
+
+    def tables(self):
+        raise NotImplementedError('''
+          Must override `tables` with a function that yields TableTasks
+                                  ''')
+
+    def requires(self):
+        for t in self.tables():
+            assert isinstance(t, TableTask)
+            yield t
+
+
+def cross(orig_list, b_name, b_list):
+    result = []
+    for orig_dict in orig_list:
+        for b_val in b_list:
+            new_dict = orig_dict.copy()
+            new_dict[b_name] = b_val
+            result.append(new_dict)
+    return result
+
+
+class RunWrapper(WrapperTask):
+    '''
+    Run MetaWrapper for a specific module.
+    '''
+
+    wrapper = Parameter()
+
+    def requires(self):
+        module = 'tasks/' + self.wrapper.replace('.', '/')
+        for task_klass, params in collect_meta_wrappers(test_module=module,
+                                                        test_all=True):
+            yield task_klass(**params)
+
+
+class RunDiff(WrapperTask):
+    '''
+    Run MetaWrapper for all tasks that changed compared to master.
+    '''
+
+    compare = Parameter()
+    test_all = BooleanParameter(default=False)
+
+    def requires(self):
+        resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
+            compare=self.compare
+        ))
+        for line in resp.split('\n'):
+            if not line:
+                continue
+            module = line.replace('.py', '')
+            LOGGER.info(module)
+            for task_klass, params in collect_meta_wrappers(test_module=module, test_all=self.test_all):
+                yield task_klass(**params)
+
+
+def collect_tasks(task_klass, test_module=None):
+    '''
+    Returns a set of task classes whose parent is the passed `TaskClass`.
+
+    Can limit to scope of tasks within module.
+    '''
+    tasks = set()
+    for dirpath, _, files in os.walk('tasks'):
+        for filename in files:
+            if test_module:
+                if not os.path.join(dirpath, filename).startswith(test_module):
+                    continue
+            if filename.endswith('.py'):
+                modulename = '.'.join([
+                    dirpath.replace(os.path.sep, '.'),
+                    filename.replace('.py', '')
+                ])
+                module = importlib.import_module(modulename)
+                for _, obj in inspect.getmembers(module):
+                    if inspect.isclass(obj) and issubclass(obj, task_klass) and obj != task_klass:
+                        if test_module and obj.__module__ != modulename:
+                            continue
+                        else:
+                            tasks.add((obj, ))
+    return tasks
+
+
+def collect_requirements(task):
+    requirements = task._requires()
+    for r in requirements:
+        requirements.extend(collect_requirements(r))
+    return requirements
+
+
+def collect_meta_wrappers(test_module=None, test_all=True):
+    '''
+    Yield MetaWrapper and associated params for every MetaWrapper that has been
+    touched by changes in test_module.
+
+    Does not collect meta wrappers that have been affected by a change in a
+    superclass.
+    '''
+    affected_task_classes = set([t[0] for t in collect_tasks(Task, test_module)])
+
+    for t, in collect_tasks(MetaWrapper):
+        outparams = [{}]
+        for key, val in t.params.iteritems():
+            outparams = cross(outparams, key, val)
+        req_types = None
+        for params in outparams:
+            # if the metawrapper itself is not affected, look at its requirements
+            if t not in affected_task_classes:
+
+                # generating requirements separately for each cross product is
+                # too slow, just use the first one
+                if req_types is None:
+                    req_types = set([type(r) for r in collect_requirements(t(**params))])
+                if not affected_task_classes.intersection(req_types):
+                    continue
+            yield t, params
+            if not test_all:
+                break

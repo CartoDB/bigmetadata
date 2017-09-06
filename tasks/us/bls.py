@@ -1,12 +1,12 @@
 from tasks.util import (TempTableTask, TableTask, ColumnsTask,
-                        DownloadUnzipTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath)
+                        DownloadUnzipTask, TagsTask, CSV2TempTableTask,
+                        underscore_slugify, shell, classpath, MetaWrapper)
 from tasks.meta import current_session, DENOMINATOR
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector,
                             get_parent_code)
 from tasks.meta import OBSTable, OBSColumn, OBSTag
-from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.us.census.tiger import GeoidColumns
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
+from tasks.us.census.tiger import GeoidColumns, SumLevel
 
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask
@@ -59,19 +59,32 @@ class SimpleQCEW(TempTableTask):
                             qtr=self.qtr,
                         ))
 
+class BLSSourceTags(TagsTask):
+    def version(self):
+        return 1
+
+    def tags(self):
+        return [OBSTag(id='qcew',
+                       name='Quartery Census of Employment and Wages (QCEW)',
+                       type='source',
+                       description='`Bureau of Labor Statistics QCEW <http://www.bls.gov/cew/home.htm>`_')]
+
+
 
 class QCEWColumns(ColumnsTask):
 
     naics_code = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         requirements = {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
+            'source': BLSSourceTags(),
+            'license': LicenseTags(),
         }
         parent_code = get_parent_code(self.naics_code)
         if parent_code:
@@ -169,10 +182,13 @@ class QCEWColumns(ColumnsTask):
             aggregate=None,
             tags=[units['ratio'], sections['united_states'], subsections['employment']],
         )
+
+        source = input_['source']['qcew']
+        license = input_['license']['no-restrictions']
+        for colname, col in cols.iteritems():
+            col.tags.append(source)
+            col.tags.append(license)
         return cols
-
-
-
 
 class QCEW(TableTask):
 
@@ -223,7 +239,8 @@ class QCEW(TableTask):
         columns = self.columns()
         colnames = columns.keys()
         select_colnames = []
-        for naics_code, naics_columns in self.input()['naics'].iteritems():
+        input_ = self.input()
+        for naics_code, naics_columns in input_['naics'].iteritems():
             for colname in naics_columns.keys():
                 select_colnames.append('''MAX(CASE
                     WHEN industry_code = '{naics_code}' THEN {colname} ELSE NULL
@@ -235,7 +252,7 @@ class QCEW(TableTask):
                     FROM {input}
                     GROUP BY area_fips '''.format(
                         output=self.output().table,
-                        input=self.input()['data'].table,
+                        input=input_['data'].table,
                         colnames=', '.join(colnames),
                         select_colnames=', '.join(select_colnames),
                     )
@@ -248,3 +265,19 @@ class AllQCEW(WrapperTask):
         for year in xrange(2012, 2016):
             for qtr in xrange(1, 5):
                 yield QCEW(year=year, qtr=qtr)
+
+class QCEWMetaWrapper(MetaWrapper):
+
+    year = IntParameter()
+    qtr = IntParameter()
+    geography = Parameter()
+
+    params = {
+        'year': range(2012,2016),
+        'qtr': range(1,5),
+        'geography': ['county']
+    }
+
+    def tables(self):
+        yield QCEW(year=self.year, qtr=self.qtr)
+        yield SumLevel(year='2015', geography=self.geography)

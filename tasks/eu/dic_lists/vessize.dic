@@ -1,0 +1,100 @@
+T00	Total all Tonnage Classes
+T21	Tonnage 0 - 24.9 GT
+T22	Tonnage 25 - 49.9 GT
+T23	Tonnage 50 - 99.9 GT
+T24	Tonnage 100 - 149.9 GT
+T25	Tonnage 150 - 249.9 GT
+T26	Tonnage 250 - 499.9 GT
+T27	Tonnage 500 - 999.9 GT
+T28	Tonnage 1000 - 1999.9 GT
+T29	Tonnage 2000 + GT
+T39	Tonnage unknown
+L00	Total all Lenght Classes
+L40	Length 0 - 5.9 metres
+L41	Length 6 - 11.9 metres
+L42	Length 12 - 17.9 metres
+L43	Length 18 - 23.9 metres
+L44	Length 24 - 29.9 metres
+L45	Length 30 - 35.9 metres
+L46	Length 36 - 41.9 metres
+L47	Length 42 + metres
+L48	Length 0 - 8.9 metres
+L49	Length 9 - 11.9 metres
+L50	Length 30 - 32.9 metres
+L51	Length 33 - 41.9 metres
+L59	Length unknown
+A00	Total all Age Classes
+A60	Age 0 - 4.9 years
+A61	Age 5 - 9.9 years
+A62	Age 10 - 14.9 years
+A63	Age 15 - 19.9 years
+A64	Age 20 - 24.9 years
+A65	Age 25 years and more
+A66	Age unknown
+P00	Total all Power Classes
+P70	Power 1 - 24.9 KW
+P71	Power 25 - 74.9 KW
+P72	Power 75 - 149.9 KW
+P73	Power 150 - 349.9 KW
+P74	Power 350 - 499.9 KW
+P75	Power 500 - 749.9 KW
+P76	Power 750 - 999.9 KW
+P77	Power 1000 - 1999.9 KW
+P78	Power 2000 - 2999.9 KW
+P79	Power 3000 - 3999.9 KW
+P80	Power 4000 + KW
+P89	Power unknown
+TC25	Tonnage 0 - 24.9 GT
+TC100	Tonnage 25 - 99.9 GT
+TC500	Tonnage 100 - 499.9 GT
+TCMORE	Tonnage 500 + GT
+TC25_PC	% Tonnage 0 - 24.9 GT / Total
+TC100_PC	% Tonnage 25 - 99.9 GT / Total
+TC500_PC	% Tonnage 100 - 499.9 GT / Total
+TCMORE_PC	% Tonnage 500 + GT / Total
+T00_PC	% Total all Tonnage Classes / Total
+T21_PC	% Tonnage 0 - 24.9 GT / Total
+T22_PC	% Tonnage 25 - 49.9 GT / Total
+T23_PC	% Tonnage 50 - 99.9 GT / Total
+T24_PC	% Tonnage 100 - 149.9 GT / Total
+T25_PC	% Tonnage 150 - 249.9 GT / Total
+T26_PC	% Tonnage 250 - 499.9 GT / Total
+T27_PC	% Tonnage 500 - 999.9 GT / Total
+T28_PC	% Tonnage 1000 - 1999.9 GT / Total
+T29_PC	% Tonnage 2000 + GT / Total
+T39_PC	% Tonnage unknown / Total
+L00_PC	% Total all Lenght Classes / Total
+L40_PC	% Length 0 - 5.9 metres / Total
+L41_PC	% Length 6 - 11.9 metres / Total
+L42_PC	% Length 12 - 17.9 metres / Total
+L43_PC	% Length 18 - 23.9 metres / Total
+L44_PC	% Length 24 - 29.9 metres / Total
+L45_PC	% Length 30 - 35.9 metres / Total
+L46_PC	% Length 36 - 41.9 metres / Total
+L47_PC	% Length 42 + metres / Total
+L48_PC	% Length 0 - 8.9 metres / Total
+L49_PC	% Length 9 - 11.9 metres / Total
+L50_PC	% Length 30 - 32.9 metres / Total
+L51_PC	% Length 33 - 41.9 metres / Total
+L59_PC	% Length unknown / Total
+A00_PC	% Total all Age Classes / Total
+A60_PC	% Age 0 - 4.9 years / Total
+A61_PC	% Age 5 - 9.9 years / Total
+A62_PC	% Age 10 - 14.9 years / Total
+A63_PC	% Age 15 - 19.9 years / Total
+A64_PC	% Age 20 - 24.9 years / Total
+A65_PC	% Age 25 years and more / Total
+A66_PC	% Age unknown / Total
+P00_PC	% Total all Power Classes / Total
+P70_PC	% Power 1 - 24.9 KW / Total
+P71_PC	% Power 25 - 74.9 KW / Total
+P72_PC	% Power 75 - 149.9 KW / Total
+P73_PC	% Power 150 - 349.9 KW / Total
+P74_PC	% Power 350 - 499.9 KW / Total
+P75_PC	% Power 500 - 749.9 KW / Total
+P76_PC	% Power 750 - 999.9 KW / Total
+P77_PC	% Power 1000 - 1999.9 KW / Total
+P78_PC	% Power 2000 - 2999.9 KW / Total
+P79_PC	% Power 3000 - 3999.9 KW / Total
+P80_PC	% Power 4000 + KW / Total
+P89_PC	% Power unknown / Total

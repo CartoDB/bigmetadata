@@ -1,0 +1,138 @@
+MF000	Total whole milk (availabilities = utilization)
+MF001	Cows' milk - Total
+MF002	Ewes' milk
+MF003	Goats' milk
+MF004	Buffalo milk
+MF008	Milk from non-dairy cows
+MF009	Dairy cows' milk
+COWYI	Milk yield per dairy cow (kg of milk per year)
+MF010	Total skimmed milk and buttermilk (availabilities = utilization)
+MF011	Skimmed milk and buttermilk returned by dairies
+MF012	Skimmed milk and buttermilk : Balance of cream deliveries
+MF013	Skimmed milk and buttermilk from butter and cream production
+MF030	Farm butter and cream
+MF110	Drinking milk - Total
+MF118	Drinking milk - Direct sales
+MF119	Drinking milk - Home consumption
+MF130	Farm cream
+MF131	Farm cream delivered to dairies
+MF230	Farm butter
+MF231	Farm butter delivered to dairies
+MF240	Farm cheese
+MF241	Farm cheese delivered to dairies
+MF290	Other products
+MF291	Other products delivered to dairies (products obtained)
+MF400	Delivered to dairies
+MF410	Milk delivered to dairies
+MF430	Cream delivered to dairies (in milk equivalent)
+MF490	Other products delivered to dairies (utilization)
+MF520	Feed
+MF600	Differences and losses
+MC000	Availabilities (total)
+MC001	Cows' milk collection
+MC002	Ewes' collection milk
+MC003	Goats' collection milk
+MC004	Buffalos' collection milk
+MC005	Cream collection (in milk equivalent)
+MC009	Other products collected from farm
+MC006	Skimmed milk and buttermilk
+MC010	Imports of whole milk (including raw milk)
+MC020	Imports (intra-EU) of whole milk (including raw milk)
+MC014	Imports of skimmed milk
+MC024	Imports (intra-EU) of skimmed milk
+MC015	Imports of cream (in milk equivalent)
+MC025	Imports (intra-EU) of cream (in milk equivalent)
+MC019	Imports of other products
+MC029	Imports (intra-EU) of other products
+MC100	Fresh products
+MC110	Drinking milk
+MC111	Raw milk
+MC112	Whole milk
+MC922	Whole milk pasteurised
+MC932	Whole milk sterilised
+MC942	Whole milk uperised
+MC113	Semi-skimmed milk
+MC923	Semi-skimmed milk pasteurised
+MC933	Semi-skimmed milk sterilised
+MC943	Semi-skimmed milk uperised
+MC114	Skimmed milk
+MC924	Skimmed milk pasteurised
+MC934	Skimmed milk sterilised
+MC944	Skimmed milk uperised
+MC120	Buttermilk
+MC130	Cream for direct consumption
+MC135	Cream of fat content by weight not exceeding 29 %
+MC136	Cream of fat content by weight over 29 %
+MC140	Acidified milk (yoghurts and other)
+MC141	Acidified milk with additives
+MC142	Acidified milk without additives
+MC150	Drinks with a milk base
+MC160	Other fresh products (milk jelly and others)
+MC200	Manufactured products
+MC210	Concentrated milk
+MC211	Concentrated milk not sweetened
+MC212	Concentrated milk sweetened
+MC220	Milk powder
+MC221	Cream milk powder
+MC222	Whole milk powder
+MC223	Partly skimmed milk powder
+MC226	Whole milk powder total (MC221+MC222+MC223)
+MC224	Skimmed milk powder
+MC225	Buttermilk powder
+MC229	Other powder products
+MC203	Butter and other yellow fat dairy products (MC230+MC239)
+MC230	Butter - Total (MC231+MC232)
+MC231	Butter
+MC2311	Traditional butter
+MC2312	Recombined butter
+MC2313	Whey butter
+MC232	Rendered butter and butteroil
+MC239	Other yellow fat dairy products
+MC2391	Reduced-fat butter
+MC2392	Other yellow fat dairy products (without Reduced-fat butter)
+MC240	Cheese =(MC241+MC242+MC243+MC249) or (MC291+MC292+MC293+MC294+MC295+MC296)
+MC241	Cheese from cows'milk (pure)
+MC242	Cheese from ewes milk (pure)
+MC243	Cheese from goats milk (pure)
+MC249	Others (cheese from buffalos'milk (pure) or mixed cheese)
+MC291	Soft cheese
+MC292	Medium soft cheese
+MC293	Medium hard cheese
+MC294	Hard cheese
+MC295	Extra hard cheese
+MC296	Fresh cheese
+MC250	Processed cheese
+MC260	Caseins and caseinates
+MC270	Whey
+MC271	Whey used in the liquid state
+MC272	Whey used in the concentrated state
+MC273	Whey in powder or in block
+MC274	Lactose (milk sugar)
+MC275	Lactalbumin
+MC280	Chocolate crumb
+MC310	Skimmed milk - remaining on the farm
+MC320	Skimmed milk - returned to the farm
+MC330	Skimmed milk - balance of cream imports
+MC340	Skimmed milk, buttermilk and whey: imports
+MC341	Skimmed milk, buttermilk and whey: imports intra-EU
+MC390	Skimmed milk, buttermilk and whey: other sources
+MC400	Skimmed milk, buttermilk and whey: exports
+MC410	Skimmed milk, buttermilk and whey: exports intra-EU
+MC500	Skimmed milk, buttermilk and whey: other uses
+MC510	Skimmed milk, buttermilk and whey: human consumption
+MC520	Skimmed milk, buttermilk and whey: feed
+MC600	Difference = availabilities - uses
+MM001	Cows' milk collected
+MM002	Cream from farms
+MM024	Stock of skimmed-milk powder
+MM030	Stock of butter
+MM110	Drinking milk
+MM130	Cream for direct consumption
+MM140	Acidified milk
+MM210	Concentrated milk
+MM224	Skimmed-milk powder
+MM225	Buttermilk powder
+MM226	Milk powder cream, whole milk powder and partly skimmed milk powder
+MM230	Butter
+MM241	Cheese
+MM260	Caseins and caseinates

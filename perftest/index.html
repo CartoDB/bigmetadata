@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<html>
+  <head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <style>
+
+    #colors .color_0 {
+      color: steelblue;
+    }
+    #colors .color_1 {
+      color: red;
+    }
+    #colors .color_2 {
+      color: green;
+    }
+    #colors .color_3 {
+      color: purple;
+    }
+    #colors .color_4 {
+      color: green;
+    }
+
+    .bar {
+      opacity: 0.5;
+    }
+    .bar.color_0 {
+      fill: steelblue;
+    }
+    .bar.color_1 {
+      fill: red;
+    }
+    .bar.color_2 {
+      fill: green;
+    }
+    .bar.color_3 {
+      fill: purple;
+    }
+    .bar.color_4 {
+      fill: green;
+    }
+
+    .bar:hover {
+      fill: brown;
+    }
+
+    .axis--x path {
+      display: none;
+    }
+
+    #tests {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .legend {
+      width: 200px;
+      font-family: Helvetica, sans-serif;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chart {
+      -webkit-flex: 1;
+              flex: 1;
+      border: 1px solid black;
+      margin: 0.5em;
+      padding: 0.5em;
+      display: inline-block;
+    }
+
+    #stmt {
+      font-family: Courier, monospace;
+      background: black;
+      color: #6f6;
+      padding: 4px;
+    }
+
+
+    </style>
+  </head>
+
+  <body>
+    <div id="colors">
+    </div>
+    <div id="filters">
+    </div>
+    <div id="stmt">
+    </div>
+    <div id="tests">
+    </div>
+  </body>
+  <script src="perftest.js"></script>
+</html>

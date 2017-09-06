@@ -1,0 +1,42 @@
+TOTAL	Total
+BP1	Head, not further specified                          
+BP11	Head (caput), brain and cranial nerves and vessels
+BP12	Facial area
+BP13	Eye(s)
+BP14	Ear(s)
+BP15	Teeth
+BP18	Head, multiple sites affected
+BP19	Head, other parts not mentioned above
+BP2	Neck, inclusive spine and vertebra in the neck       
+BP21	Neck, inclusive spine and vertebra in the neck
+BP29	Neck, other parts not mentioned above
+BP3	Back, including spine and vertebra in the back       
+BP31	Back, including spine and vertebra in the back
+BP39	Back, other parts not mentioned above
+BP4	Torso and organs, not further specified              
+BP41	Rib cage, ribs including joints and shoulder blades
+BP42	Chest area including organs
+BP43	Pelvic and abdominal area including organs
+BP48	Torso, multiple sites affected
+BP49	Torso, other parts not mentioned above
+BP5	Upper extremities, not further specified            
+BP51	Shoulder and shoulder joints
+BP52	Arm, including elbow
+BP53	Hand
+BP54	Finger(s)
+BP55	Wrist
+BP58	Upper extremities, multiple sites affected
+BP59	Upper extremities, other parts not mentioned above
+BP6	Lower extremities, not further specified             
+BP61	Hip and hip joint
+BP62	Leg, including knee
+BP63	Ankle
+BP64	Foot
+BP65	Toe(s)
+BP68	Lower extremities, multiple sites affected
+BP69	Lower extremities, other parts not mentioned above
+BP7	Whole body and multiple sites, not further specified 
+BP71	Whole body (systemic effects)
+BP78	Multiple sites of the body affected
+OTH	Other parts of body injured, not mentioned above    
+UNK	Part of body injured not specified                  

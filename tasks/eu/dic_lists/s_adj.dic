@@ -1,0 +1,6 @@
+NSA	Unadjusted data (i.e. neither seasonally adjusted nor calendar adjusted data)
+SA	Seasonally adjusted data, not calendar adjusted data
+CA	Calendar adjusted data, not seasonally adjusted data
+SCA	Seasonally and calendar adjusted data
+TC	Trend cycle data
+NAP	Not applicable

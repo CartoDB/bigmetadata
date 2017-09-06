@@ -56,6 +56,20 @@ utility class.
 
 We use a set of utility classes to avoid writing repetitive code.
 
+To get started, make sure you're running the IPython notebook container.
+
+.. code:: shell
+
+  docker-compose up -d ipython
+
+Then, get the port of the running IPython notebook container:
+
+.. code:: shell
+
+  make ps
+
+And navigate to it in your browser.
+
 1. Import libraries
 -------------------
 
@@ -632,20 +646,12 @@ been run before for this year & quarter combination.
 .. code:: python
 
     table_task = QCEW(year=2014, qtr=4)
+    runtask(table_task)
     table_task.complete()
-
-
-
 
 .. parsed-literal::
 
     True
-
-
-
-.. code:: python
-
-    runtask(table_task)
 
 The table should exist in metadata, as well as in data, with all
 relations well-defined.

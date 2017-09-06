@@ -1,0 +1,8 @@
+/* Automatic width for tabs, to avoid overflow */
+.ui.menu .item {
+    flex: 1 1 auto;
+}
+
+.ui.menu .item:last-child {
+    margin-right: -1px;
+}

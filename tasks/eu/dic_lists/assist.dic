@@ -1,0 +1,19 @@
+AS0010	Assistance with kind of work
+AS0020	Assistance with amount of work
+AS0030	Assistance with mobility to get to and from work
+AS0040	Assistance with mobility at work
+AS0050	Support and understanding by superiors and colleagues
+AS1010	Assistance used
+AS1015	Assistance needed
+AS1020	Personal assistance
+AS1021	Only personal assistance
+AS1030	Special equipment or workplace adaptations
+AS1031	Only specialised equipment
+AS1040	Special working arrangements
+AS1050	Both specialised equipment and personal assistance
+AS1060	No specialised equipment or personal assistance
+AS1090	No assistance used
+AS1095	No assistance needed
+NRP	No response
+OTH	Other
+TOTAL	Total

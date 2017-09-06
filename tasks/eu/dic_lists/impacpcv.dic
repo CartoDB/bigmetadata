@@ -1,0 +1,14 @@
+TOTAL	Total
+DECR_CONS	Considerable decrease
+DECR_MOD	Moderate decrease
+SAME	No change
+INCR_MOD	Moderate increase
+INCR_CONS	Considerable increase
+UNK	Not relevant - unknown
+NEI	Negative impact
+NOI	No impact
+POI	Positive impact
+NAPPLUNK	Not applicable/Do not know
+SOI	Some impact
+SUI	Substantial impact
+NAPPL	Not applicable

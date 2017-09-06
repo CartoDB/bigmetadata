@@ -1,0 +1,50 @@
+TOTAL	Total
+PRV	Person living in a private household
+FAM	Person in a family nucleus
+CPL	Person in a couple
+MAR	Person in a married couple
+MARO	Person in an opposite-sex married couple
+MARS	Person in an same-sex married couple
+REP	Persons in a registered partnership
+REPO	Person in an opposite-sex registered partnership
+REPS	Person in a same-sex registered partnership
+CSU	Person in a consensual union
+CSUO	Person in an opposite-sex consensual union
+CSUS	Person in a same-sex consensual union
+CPL_NCH18	Person in a couple with no children younger than 18 years old
+P_NCH18	Person with no children younger than 18 years old and living in his/her parents household
+OTH_NCH18	Person living in another household arrangement with no children younger than 18 years old
+CPL_CH6	Person in a couple with youngest child less than 6 years old
+CPL_CH7-17	Person in a couple with youngest child between 7 and 17 years old
+CPL45_NCH	Person less than 45 years old, in a couple, with no children younger than 18 years old
+CPL45-64_NCH	Person from 45 to 64 years old, in a couple, with no children younger than 18 years old
+P45-64OTH_NCH	Person from 45 to 64 years old, living in another household arrangement with no children younger than 18 years old
+CPL65_NCH	Person 65 years old or over, in a couple, with no children younger than 18 years old
+P25_NCH	Person less than 25 years old, with no children younger than 18 years old and living in his/her parents household
+P25-44_NCH	Person from 25 to 44 years old, with no children younger than 18 years old and living in his/her parents household
+P45OTH_NCH	Person less than 45 years old, in another household arrangement with no children younger than 18 years old
+P65OTH_NCH	Person 65 years old or over, living in another household arrangement with no children younger than 18 years old
+P1_CH18	Single parent with youngest child less than 18 years old
+PAR1	Lone parent living with at least one child
+CH_PAR	Child living with at least one parent
+CH_CPL	Child living with a parent in couple
+CH_PAR1	Child living with lone parent
+P_PAR	Person living with parents
+P_NPAR	Person not living with parents
+NFAM	Person not in a family nucleus
+P1	Person living alone
+MULTI	Person not in a family nucleus and not living alone
+MULTI_R	Person not in a family nucleus living in a household with relative(s)
+MULTI_NR	Person living in a household exclusively with non-relative(s)
+PRV_UNK	Person in a private household, but category unknown
+NPRV	Person not living in a private household
+IST	Person living in an institutional household
+IST_FAM	Person in a family nucleus living in an institutional household
+IST_CPL	Person in couple living in an institutional household
+IST_PAR1	Lone parent living in an institutional household
+IST_CH	Child living in an institutional household
+IST_NFAM	Person not in a family nucleus living in an institutional household
+HMLS1	Primary homeless person
+NPRV_UNK	Person not living in a private household, but category unknown
+NAP	Not applicable
+UNK	Unknown

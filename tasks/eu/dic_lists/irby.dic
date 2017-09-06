@@ -1,0 +1,10 @@
+BY1	Yield on ECU bonds: 1 year until maturity
+BY3	Yield on ECU bonds: 3 years until maturity
+BY5	Yield on ECU bonds: 5 years until maturity
+BY7	Yield on ECU bonds: 7 years until maturity
+BY10	Yield on ECU bonds: 10 years until maturity
+EMI	Operation rate of the EMI
+IRD1	Interest rate on ECU deposits: 1 month
+IRD12	Interest rate on ECU deposits: 12 months
+IRD3	Interest rate on ECU deposits: 3 months
+IRD6	Interest rate on ECU deposits: 6 months

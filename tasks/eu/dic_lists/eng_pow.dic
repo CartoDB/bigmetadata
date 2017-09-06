@@ -1,0 +1,13 @@
+TOTAL	Total
+KW_LT25	Less than 25 kW
+KW25-74	From 25 to 74 kW
+KW75-149	From 75 to 149 kW
+KW150-349	From 150 to 349 kW
+KW350-499	From 350 to 499 kW
+KW500-749	From 500 to 749 kW
+KW750-999	From 750 to 999 kW
+KW1000-1999	From 1 000 to 1 999 kW
+KW2000-2999	From 2 000 to 2 999 kW
+KW3000-3999	From 3 000 to 3 999 kW
+KW_GE4000	4 000 kW or over
+UNK	Unknown

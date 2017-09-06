@@ -1,0 +1,35 @@
+TOTAL	All providers of health care
+HP1	Hospitals
+HP11	General hospitals
+HP12	Mental health hospitals
+HP13	Specialised hospitals (other than mental health hospitals)
+HP2	Residential long-term care facilities
+HP21	Long-term nursing care facilities
+HP22	Mental health and substance abuse facilities
+HP29	Other residential long-term care facilities
+HP3	Providers of ambulatory health care
+HP31	Medical practices
+HP32	Dental practice
+HP33	Other health care practitioners
+HP34	Ambulatory health care centres
+HP35	Providers of home health care services
+HP4	Providers of ancillary services
+HP41	Providers of patient transportation and emergency rescue
+HP42	Medical and diagnostic laboratories
+HP49	Other providers of ancillary services
+HP5	Retailers and other providers of medical goods
+HP51	Pharmacies
+HP52	Retail sellers and other suppliers of durable medical goods and medical appliances
+HP59	All other miscellaneous sellers and other suppliers of pharmaceuticals and medical goods
+HP6	Providers of preventive care
+HP7	Providers of health care system administration and financing
+HP71	Government health administration agencies
+HP72	Social health insurance agencies
+HP73	Private health insurance administration agencies
+HP79	Other administration agencies
+HP8	Rest of economy
+HP81	Households as providers of home health care
+HP82	All other industries as secondary providers of health care
+HP89	Other industries n.e.c.
+HP9	Rest of the world
+HP_UNK	Providers unknown

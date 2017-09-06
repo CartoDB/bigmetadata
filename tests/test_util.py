@@ -1,11 +1,13 @@
 from collections import OrderedDict
 from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
-                        assert_is_none, assert_true, assert_false)
+                        assert_is_none, assert_true, assert_false,
+                        assert_almost_equals)
 from tests.util import runtask, session_scope, setup, teardown, FakeTask
 
 from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
-                        TableTarget, TagTarget, TagsTask, PostgresTarget)
+                        TableTarget, TagTarget, TagsTask, PostgresTarget,
+                        generate_tile_summary)
 from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
 
@@ -16,24 +18,10 @@ def test_underscore_slugify():
                   'path_to_schema_class_name_param1_100_param2_foobar'
                  )
 
-#def test_slug_column():
-#    assert_equals(slug_column('Population'), 'pop')
-#    assert_equals(slug_column('Population 5 Years and Over'), 'pop_5_years_and_over')
-#    assert_equals(slug_column('Workers 16 Years and Over'), 'workers_16_years_and_over')
-#    assert_equals(slug_column('Population for Whom Poverty Status Is Determined'),
-#                  'pop_poverty_status_determined')
-#    assert_equals(slug_column('Commuters by Car, truck, or van'), 'commuters_by_car_truck_or_van')
-#    assert_equals(slug_column('Aggregate travel time to work (in minutes)'),
-#                  'aggregate_travel_time_to_work_in_minutes')
-#    assert_equals(slug_column('Hispanic or Latino Population'),
-#                  'hispanic_or_latino_pop')
-#    assert_equals(slug_column('Median Household Income (In the past 12 Months)'),
-#                  'median_household_income')
-
-
 @with_setup(setup, teardown)
 def test_column_target_create_update():
-    col = ColumnTarget('tests', 'foobar', OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -53,7 +41,8 @@ def test_column_target_create_update():
         assert_equals(session.query(OBSColumn).count(), 1)
 
     # Can overwrite the existing column
-    col = ColumnTarget('tests', 'foobar', OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="foobar",
         description='foo-bar-baz',
@@ -76,7 +65,8 @@ def test_column_target_create_update():
 
 @with_setup(setup, teardown)
 def test_column_target_relations_create_update():
-    col = ColumnTarget("tests", "foobar", OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -120,7 +110,8 @@ def test_column_target_relations_create_update():
 
 @with_setup(setup, teardown)
 def test_column_target_many_inits():
-    col = ColumnTarget("tests", "foobar", OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -132,7 +123,8 @@ def test_column_target_many_inits():
         col.update_or_create()
         assert_equals(session.query(OBSColumn).count(), 1)
 
-    col = ColumnTarget("tests", "foobar", OBSColumn(
+    col = ColumnTarget(OBSColumn(
+        id='tests.foobar',
         type='Numeric',
         name="Total Population",
         description='The total number of all people living in a given geographic area.  This is a very useful catch-all denominator when calculating rates.',
@@ -147,13 +139,15 @@ def test_column_target_many_inits():
 
 @with_setup(setup, teardown)
 def test_table_target_many_inits():
-    pop_col = ColumnTarget("tests", "population", OBSColumn(
+    pop_col = ColumnTarget(OBSColumn(
+        id='tests.population',
         type='Numeric',
         name="Total Population",
         description='The total number of all',
         aggregate='sum',
         weight=10), FakeTask())
-    foo_col = ColumnTarget("tests", "foo", OBSColumn(
+    foo_col = ColumnTarget(OBSColumn(
+        id='tests.foo',
         type='Numeric',
         name="Foo Bar",
         description='moo boo foo',
@@ -250,6 +244,52 @@ def test_columns_task_creates_columns_only_when_run():
         assert_equals(session.query(OBSColumnTable).count(), 1)
 
 
+@with_setup(setup, teardown)
+def test_columns_task_with_tags_def_one_tag():
+
+    class TestColumnsTaskWithOneTag(TestColumnsTask):
+
+        def requires(self):
+            return {
+                'tags': TestTagsTask(),
+                'section': SectionTagsTask(),
+            }
+
+        def tags(self, input_, col_key, col):
+            return input_['section']['section']
+
+    task = TestColumnsTaskWithOneTag()
+    runtask(task)
+    output = task.output()
+    for coltarget in output.values():
+        assert_in('section', [t.name for t in coltarget._column.tags],
+                  'Section tag not added from tags method')
+
+
+@with_setup(setup, teardown)
+def test_columns_task_with_tags_def_two_tags():
+
+    class TestColumnsTaskWithTwoTags(TestColumnsTask):
+
+        def requires(self):
+            return {
+                'tags': TestTagsTask(),
+                'section': SectionTagsTask(),
+            }
+
+        def tags(self, input_, col_key, col):
+            return [input_['section']['section'],
+                    input_['section']['subsection']]
+
+    task = TestColumnsTaskWithTwoTags()
+    runtask(task)
+    output = task.output()
+    for coltarget in output.values():
+        assert_in('section', [t.name for t in coltarget._column.tags],
+                  'Section tag not added from tags method')
+        assert_in('subsection', [t.name for t in coltarget._column.tags],
+                  'Subsection tag not added from tags method')
+
 
 class TestTagsTask(TagsTask):
     def tags(self):
@@ -262,6 +302,20 @@ class TestTagsTask(TagsTask):
                    name='Population',
                    type='catalog',
                    description='')
+        ]
+
+
+class SectionTagsTask(TagsTask):
+    def tags(self):
+        return [
+            OBSTag(id='section',
+                   name='section',
+                   type='section',
+                   description=''),
+            OBSTag(id='subsection',
+                   name='subsection',
+                   type='subsection',
+                   description=''),
         ]
 
 
@@ -298,6 +352,31 @@ class TestColumnsTask(ColumnsTask):
                                 }
                                ),
         })
+
+
+class TestColumnsTaskWithTwoTags(TestColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': TestTagsTask(),
+            'section': SectionTagsTask(),
+        }
+
+    def tags(self, input_, col_key, col):
+        return [input_['section']['section'], input_['section']['subsection']]
+
+
+class TestColumnsTaskDependingOnCol(TestColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': TestTagsTask(),
+            'section': SectionTagsTask(),
+        }
+
+    def tags(self, input_, col_key, col):
+        if col_key == 'foobar':
+            return input_['section']['section']
 
 
 class TestTableTask(TableTask):
@@ -400,3 +479,64 @@ def test_postgres_target_existencess():
     assert_equals(target._existenceness(), 2)
     assert_equals(target.empty(), False)
     assert_equals(target.exists(), True)
+
+
+def fake_table_for_rasters(geometries):
+    session = current_session()
+    table_id = 'foo_table'
+    column_id = 'foo_column'
+    tablename = 'observatory.foo'
+    colname = 'the_geom'
+    session.execute('''
+        CREATE TABLE {tablename} ({colname} geometry(geometry, 4326))
+    '''.format(tablename=tablename, colname=colname))
+    session.execute('''
+        INSERT INTO {tablename} ({colname}) VALUES {geometries}
+    '''.format(tablename=tablename, colname=colname,
+               geometries=', '.join(["(ST_SetSRID('{}'::geometry, 4326))".format(g) for g in geometries])
+              ))
+    session.execute('''
+        INSERT INTO observatory.obs_table (id, tablename, version, the_geom)
+        SELECT '{table_id}', '{tablename}', 1,
+                (SELECT ST_SetSRID(ST_Extent({colname}), 4326) FROM {tablename})
+    '''.format(table_id=table_id, tablename=tablename, colname=colname))
+    generate_tile_summary(session, table_id, column_id, tablename, colname)
+    session.commit()
+
+
+@with_setup(setup, teardown)
+def test_generate_tile_summary_singlegeom():
+    '''
+    generate_tile_summary should handle a single geometry properly.
+    '''
+    fake_table_for_rasters([
+        'POLYGON((0 0, 10 0, 10 10, 0 10, 0 0))'
+    ])
+    session = current_session()
+    assert_almost_equals(session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 2, false)).sum
+        FROM observatory.obs_column_table_tile
+    ''').fetchone()[0], 1, 1)
+    assert_almost_equals(session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
+        FROM observatory.obs_column_table_tile_simple
+    ''').fetchone()[0], 1, 1)
+
+
+@with_setup(setup, teardown)
+def test_generate_tile_summary_thousandgeom():
+    '''
+    generate_tile_summary should handle 1000 geometries properly.
+    '''
+    fake_table_for_rasters(100 * [
+        'POLYGON((0 0, 10 0, 10 10, 0 10, 0 0))'
+    ])
+    session = current_session()
+    assert_almost_equals(session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 2, false)).sum
+        FROM observatory.obs_column_table_tile
+    ''').fetchone()[0], 100, 1)
+    assert_almost_equals(session.execute('''
+        SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
+        FROM observatory.obs_column_table_tile_simple
+    ''').fetchone()[0], 100, 1)

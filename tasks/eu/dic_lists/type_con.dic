@@ -1,0 +1,17 @@
+TOTAL	Total
+NRP	No information on permanent/temporary job
+PERM	Permanent job
+TEMP	Temporary job
+TEMP_PERM_NO_RE	No reason given
+TEMP_PERM_NOT_F	Could not find a permanent job
+TEMP_PERM_NOT_W	Did not want a permanent job
+TEMP_PERM_PROB	Probationary job
+TEMP_TRAINING	Period of training
+TRA_PROB	Training or probationary period
+SELF_FAM	Employers, self-employed and family workers
+INDEF	Indefinite duration
+FIX	Fixed term (except apprentice and trainee)
+APPR	Apprentice-trainee
+OTH	Other
+NAP	Not applicable
+UNK	Unknown
