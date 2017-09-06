@@ -41,4 +41,11 @@ deploy:
   on:
     repo: CartoDB/bigmetadata
     all_branches: true
-    condition: "$TEST_SUITE = travis-diff-catalog"
+    condition: $TEST_SUITE = travis-diff-catalog
+notifications:
+  slack:
+    secure: bVnmsbFhjevx+BCgGp29a54TSooTnUyJhyMhc/83UUVIso/nkTqzF1g8n+15sEymK4InMLFQu3p4kLLSf8fU1dTVngGk/ouyynwqHncQCuRPbHGikb+amS3JqP0qatR6j5YcED1ZhXno3FuJtMfwaVaY549NlQp3OpnZ4bZBBd8OuHKUbtTOEsuUONojoWtB85CmEw33sfxBJs7dyFJ5OswS8tu5WrQx55+TGB9S0MxmkgV60BvocgUWdFd3kmGd47G5YHCRa9kNw8sL1oDxdh21QJ3HgzbxL/NyR4sEpM5OBXT4XVrDeOnC9j1Y90YWpWPt0wGwN8mnm8H7RJx//B64TmogfrGWwjGCSmZR7jL4Gx3VYt9GtGUaZxv2S9GeCP78Dmgd+0nJ9mEJ0vZhMMibi1ZmIp5lmkVDbJbB6Cyco26TLeuPb2Gwm8r+ucL/ngUbU07obX2EkZR2r3hCT62FNig2U/+j7TUObfZcgKgPVqSSvBSFtbaNBfzT93ee/jTqmqui+nWdBDL2thmA0Agow9w6JhbSeVCujTUIyVNs0im1+8ynqzdUxLOeCbL5vEQsJdltgrYrGGo+q782ezK/HNm7/nIlGP22csWCOu2ydKhLYY+7zsu/u+6lzsS3mkjf7Mkz7zKk+tXY4oQcFGPaiZhh2gEfGtl61NYWiNU=
+    template:
+      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch} by %{author} %{result} in %{duration}"
+      - "Build catalog: https://s3.amazonaws.com/data-observatory-catalog/catalogs/%{branch}/index.html"
+    on_success: always
