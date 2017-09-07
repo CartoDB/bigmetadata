@@ -17,21 +17,6 @@ from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
 from decimal import Decimal
 
-GEO_DICT = {'BG': "block_group",
-            'TABBLOCK': "block",
-            'TRACT': "census_tract",
-            'CD': "congressional_district",
-            'COUNTY': "county",
-            'PUMA': "puma",
-            'STATE': "state",
-            'ZCTA5': 'zcta5',
-            'ELSD': 'school_district_elementary',
-            'SCSD': 'school_district_secondary',
-            'UNSD': 'school_district_unified',
-            'CBSA': "cbsa",
-            'PLACE': "place",
-            }
-
 
 class TigerSourceTags(TagsTask):
     def version(self):
@@ -85,11 +70,21 @@ class ClippedGeomColumns(ColumnsTask):
                       source, license]
             )
 
-        interpolated_boundaries = ['TABBLOCK_clipped', 'BG_clipped', 'PUMA_clipped', 'TRACT_clipped',
-                                   'COUNTY_clipped', 'STATE_clipped', 'CD_clipped', 'ZCTA5_clipped']
-        cartographic_boundaries = ['CBSA_clipped', 'ELSD_clipped', 'PLACE_clipped', 'SCSD_clipped',
-                                   'ZCTA5_clipped', 'CD_clipped', 'UNSD_clipped', 'TABBLOCK_clipped', 'BG_clipped',
-                                   'PUMA_clipped', 'TRACT_clipped', 'COUNTY_clipped', 'STATE_clipped']
+        interpolated_boundaries = ['block_clipped', 'block_group_clipped',
+                                   'puma_clipped', 'census_tract_clipped',
+                                   'county_clipped', 'state_clipped',
+                                   'congressional_district_clipped',
+                                   'zcta5_clipped']
+        cartographic_boundaries = ['cbsa_clipped',
+                                   'school_district_elementary_clipped',
+                                   'place_clipped',
+                                   'school_district_secondary_clipped',
+                                   'zcta5_clipped',
+                                   'congressional_district_clipped',
+                                   'school_district_unified_clipped',
+                                   'block_clipped', 'block_group_clipped',
+                                   'puma_clipped', 'census_tract_clipped',
+                                   'county_clipped', 'state_clipped']
         for colname, col in cols.iteritems():
             if colname in interpolated_boundaries:
                 col.tags.append(boundary_type['interpolation_boundary'])
@@ -125,91 +120,91 @@ class GeomColumns(ColumnsTask):
         source = input_['source']['tiger-source']
         license = input_['license']['no-restrictions']
         columns = {
-            'BG': OBSColumn(
+            'block_group': OBSColumn(
                 type='Geometry',
                 name='US Census Block Groups',
                 description=self._generate_desc("block_group"),
                 weight=10,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'TABBLOCK': OBSColumn(
+            'block': OBSColumn(
                 type='Geometry',
                 name='US Census Blocks',
                 description=self._generate_desc("block"),
                 weight=11,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'TRACT': OBSColumn(
+            'census_tract': OBSColumn(
                 type='Geometry',
                 name='US Census Tracts',
                 description=self._generate_desc("census_tract"),
                 weight=9,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'CD': OBSColumn(
+            'congressional_district': OBSColumn(
                 type='Geometry',
                 name='US Congressional Districts',
                 description=self._generate_desc("congressional_district"),
                 weight=2,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'COUNTY': OBSColumn(
+            'county': OBSColumn(
                 type='Geometry',
                 name='US County',
                 description=self._generate_desc("county"),
                 weight=5,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'PUMA': OBSColumn(
+            'puma': OBSColumn(
                 type='Geometry',
                 name='US Census Public Use Microdata Areas',
                 description=self._generate_desc("puma"),
                 weight=4,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'STATE': OBSColumn(
+            'state': OBSColumn(
                 type='Geometry',
                 name='US States',
                 description=self._generate_desc("state"),
                 weight=1,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'ZCTA5': OBSColumn(
+            'zcta5': OBSColumn(
                 type='Geometry',
                 name='US Census Zip Code Tabulation Areas',
                 description=self._generate_desc('zcta5'),
                 weight=8,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'ELSD': OBSColumn(
+            'school_district_elementary': OBSColumn(
                 type='Geometry',
                 name='Elementary School District',
                 description=self._generate_desc('school_district_elementary'),
                 weight=6.2,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'SCSD': OBSColumn(
+            'school_district_secondary': OBSColumn(
                 type='Geometry',
                 name='Secondary School District',
                 description=self._generate_desc('school_district_secondary'),
                 weight=6.1,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'UNSD': OBSColumn(
+            'school_district_unified': OBSColumn(
                 type='Geometry',
                 name='Unified School District',
                 description=self._generate_desc('school_district_unified'),
                 weight=6,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'CBSA': OBSColumn(
+            'cbsa': OBSColumn(
                 type='Geometry',
                 name='Core Based Statistical Area (CBSA)',
                 description=self._generate_desc("cbsa"),
                 weight=3,
                 tags=[sections['united_states'], subsections['boundary']]
             ),
-            'PLACE': OBSColumn(
+            'place': OBSColumn(
                 type='Geometry',
                 name='Incorporated Places',
                 description=self._generate_desc("place"),
@@ -688,7 +683,7 @@ class SumLevel(TableTask):
     year = Parameter()
 
     def has_10_suffix(self):
-        return self.geography.lower() in ('puma', 'zcta5', 'tabblock', )
+        return self.geography.lower() in ('puma', 'zcta5', 'block', )
 
     @property
     def geoid(self):
@@ -704,18 +699,21 @@ class SumLevel(TableTask):
 
     @property
     def name(self):
-        if self.geography in ('STATE', 'COUNTY', 'TRACT', 'PLACE', 'ELSD', 'CBSA', 'METDIV', 'SCSD', 'UNSD'):
+        if self.geography in ('state', 'county', 'census_tract', 'place',
+                              'school_district_elementary', 'cbsa', 'metdiv',
+                              'school_district_secondary',
+                              'school_district_unified'):
             return 'name'
-        elif self.geography in ('CD', 'BG'):
+        elif self.geography in ('congressional_district', 'block_group'):
             return 'namelsad'
-        elif self.geography in ('TABBLOCK'):
+        elif self.geography in ('block'):
             return 'name10'
-        elif self.geography in ('PUMA'):
+        elif self.geography in ('puma'):
             return 'namelsad10'
 
     @property
     def input_tablename(self):
-        return SUMLEVELS_BY_SLUG[GEO_DICT[self.geography]]['table']
+        return SUMLEVELS_BY_SLUG[self.geography]['table']
 
     def version(self):
         return 11
@@ -775,8 +773,10 @@ class AllSumLevels(WrapperTask):
     year = Parameter()
 
     def requires(self):
-        for geo in ('STATE', 'COUNTY', 'TRACT', 'BG', 'PLACE', 'PUMA', 'ZCTA5', 'ELSD', 'CBSA', 'SCSD', 'UNSD',
-                    'TABBLOCK', 'CD'):
+        for geo in ('state', 'county', 'census_tract', 'block_group', 'place',
+                    'puma', 'zcta5', 'school_district_elementary', 'cbsa',
+                    'school_district_secondary', 'school_district_unified',
+                    'block', 'congressional_district'):
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
 
