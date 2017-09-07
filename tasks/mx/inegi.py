@@ -24,8 +24,9 @@ RESNAMES = {
 }
 
 RESPROPNAMES = (
-    'entidad', 'localidad_urbana_y_rural_amanzanada',
-    'municipio', 'servicios_area'
+    'entidad',
+    'localidad_urbana_y_rural_amanzanada',
+    'municipio'
 )
 
 RESDESCS = {
@@ -220,19 +221,17 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
-        cols = OrderedDict([('wkb_geometry', geom),
-                            ('cvegeo', geom_ref)
-                           ])
-
-        if self.resolution in RESPROPNAMES:
-            cols['nomgeo'] = OBSColumn(
-                id=self.resolution + '_name',
-                type='Text',
-                weight=1,
-                name='Name of {}'.format(RESNAMES[self.resolution]),
-                tags=[sections['mx'], subsections['names'], license_data, source],
-                targets={geom: GEOM_NAME}
-            )
+        geom_name = OBSColumn(
+            id=self.resolution + '_name',
+            type='Text',
+            weight=1,
+            name='Name of {}'.format(RESNAMES[self.resolution]),
+            tags=[sections['mx'], subsections['names'], license_data, source],
+            targets={geom: GEOM_NAME}
+        )
+        cols = OrderedDict([('the_geom', geom),
+                            ('cvegeo', geom_ref),
+                            ('nomgeo', geom_name)])
 
         geom.tags.extend(boundary_type[i] for i in RESTAGS[self.resolution])
 
@@ -260,16 +259,19 @@ class Geography(TableTask):
     def populate(self):
         session = current_session()
         column_targets = self.columns()
-        output_cols = ', '.join(column_targets.keys())
-        input_cols = ','.join(['{}::{}'.format(colname, ct.get(session).type)
-                               for colname, ct in column_targets.iteritems()])
+        output_cols = column_targets.keys()
+        input_cols = ['ST_MakeValid(wkb_geometry)', 'cvegeo']
+        if self.resolution in RESPROPNAMES:
+            input_cols.append('nomgeo')
+        else:
+            input_cols.append('NULL')
         session.execute('INSERT INTO {output} ({output_cols}) '
                         'SELECT {input_cols} '
                         'FROM {input} '.format(
                             output=self.output().table,
                             input=self.input()['data'].table,
-                            output_cols=output_cols,
-                            input_cols=input_cols))
+                            output_cols=', '.join(output_cols),
+                            input_cols=', '.join(input_cols)))
 
 class Census(TableTask):
 
