@@ -6,7 +6,7 @@ import os
 import glob
 from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.fr.insee import OutputAreaColumns
+from tasks.fr.geo import OutputAreaColumns, OutputAreas
 import csv
 import pandas as pd
 
@@ -208,5 +208,6 @@ class FranceIncome(TableTask):
 
 class IRISIncomeTables(MetaWrapper):
     def requires(self):
+        yield OutputAreas()
         for table_theme in THEMES:
             yield FranceIncome(table_theme=table_theme)
