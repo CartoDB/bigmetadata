@@ -100,7 +100,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         input_ = self.input()
@@ -561,11 +561,6 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['employment'], tags['commerce_economy']]
             )),
-            ('createdate', OBSColumn(
-                type='Date',
-                name='Date on which data was created, formatted as YYYYMMDD ',
-                weight=0
-            )),
         ])
         for colname, col in cols.iteritems():
             col.tags.append(source)
@@ -611,7 +606,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 0
+        return 1
 
     def requires(self):
         return {
@@ -635,7 +630,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     def populate(self):
         for infile in self.input()['data']:
             # gunzip each CSV into the table
-            cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
+            cmd = r"gunzip -c '{input}' | cut -d',' -f-52 | psql -c '\copy {tablename} FROM STDIN " \
                   r"WITH CSV HEADER'".format(input=infile.path,
                                              tablename=self.output().table)
             print cmd

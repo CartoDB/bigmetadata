@@ -150,6 +150,7 @@ class SpielmanSingletonTable(TableTask):
         columns.update(self.input()['columns'])
         return columns
 
+
 class SpielmanSingletonColumns(ColumnsTask):
 
     x10_mapping = {
