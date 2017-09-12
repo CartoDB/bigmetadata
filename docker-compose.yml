@@ -4,7 +4,6 @@
   "postgres": {
     "image": "carto/bigmetadata_postgres",
     "volumes": [
-      "./postgres/postgresql.conf:/etc/postgresql/9.5/main/postgresql.conf",
       "./postgres/data:/var/lib/postgresql",
       "./observatory-extension:/observatory-extension",
       "./dataservices-api:/dataservices-api",
