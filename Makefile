@@ -348,9 +348,21 @@ eu-data:
 	  --parallel-scheduling --workers=8
 
 ### fr
-fr-all:
+fr-all: fr-geo fr-insee fr-income
+
+fr-geo:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.fr.geo AllGeo \
+		--parallel-scheduling --workers=8
+
+fr-insee:
 	docker-compose run --rm bigmetadata luigi \
 		--module tasks.fr.insee InseeAll \
+		--parallel-scheduling --workers=8
+
+fr-income:
+	docker-compose run --rm bigmetadata luigi \
+		--module tasks.fr.fr_income IRISIncomeTables \
 		--parallel-scheduling --workers=8
 
 ### mx

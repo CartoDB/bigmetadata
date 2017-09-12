@@ -151,6 +151,12 @@ class UnitTags(TagsTask):
                    name='Kilometers squared',
                    type='unit',
                    description=''),
+            OBSTag(id='tax_consumption_units',
+                   name='Tax Consumption Units',
+                   type='unit',
+                   description=' CU for the first adult in the household, '
+                               ' 0.5 CU for the other persons aged 14 years or older, '
+                               ' 0.3 CU for the children under 14 years. '),
         ]
 
 
