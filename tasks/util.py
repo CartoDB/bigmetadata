@@ -1355,23 +1355,42 @@ class Shp2TempTableTask(TempTableTask):
             shps = self.input_shp()
         schema = self.output().schema
         tablename = self.output().tablename
-        operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no '.format(
+        operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no'.format(
             schema=schema)
         for shp in shps:
-            cmd = 'PG_USE_COPY=yes PGCLIENTENCODING={encoding} ' \
-                    'ogr2ogr -f PostgreSQL PG:"dbname=$PGDATABASE ' \
-                    'active_schema={schema}" -t_srs "EPSG:4326" ' \
-                    '-nlt MultiPolygon -nln {table} ' \
-                    '{operation} \'{input}\' '.format(
-                        encoding=self.encoding,
-                        schema=schema,
-                        table=tablename,
-                        input=shp,
-                        operation=operation
-                    )
-            shell(cmd)
+            # First we  try to import using utf8 as encoding if not able we
+            # fallback to the encoding passed as parameter
+            cmd = self.build_ogr_command(encoding='utf-8',
+                                         schema=schema,
+                                         tablename=tablename,
+                                         shp=shp,
+                                         operation=operation)
+            output = shell(cmd)
+            if self.utf8_error(output):
+                cmd = self.build_ogr_command(encoding=self.encoding,
+                                             schema=schema,
+                                             tablename=tablename,
+                                             shp=shp,
+                                             operation=operation)
+                shell(cmd)
+            # We don't add lco (layer creation options) because in the append mode
+            # are ignored
             operation = '-append '.format(schema=schema)
 
+    def utf8_error(self, cmd_output):
+        regex = re.compile('invalid byte sequence for encoding \"UTF8\"', re.IGNORECASE)
+        return re.search(regex, cmd_output) is not None
+
+    def build_ogr_command(self, **args):
+        return 'PG_USE_COPY=yes PGCLIENTENCODING=UTF8 ' \
+               'ogr2ogr --config SHAPE_ENCODING {encoding} -f PostgreSQL PG:"dbname=$PGDATABASE ' \
+               'active_schema={schema}" -t_srs "EPSG:4326" ' \
+               '-nlt MultiPolygon -nln {table} ' \
+               '{operation} \'{input}\' '.format(encoding=args['encoding'],
+                                                 schema=args['schema'],
+                                                 table=args['tablename'],
+                                                 input=args['shp'],
+                                                 operation=args['operation'])
 
 class CSV2TempTableTask(TempTableTask):
     '''
