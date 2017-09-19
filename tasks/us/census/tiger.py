@@ -671,6 +671,7 @@ class ShorelineClip(TableTask):
                        SELECT ST_MakePolygon(ST_ExteriorRing(
                          (ST_Dump(the_geom)).geom
                        ))
+                       WHERE GeometryType(the_geom) = 'POLYGON'
                      )),
                      aland
                    FROM {input}'''.format(
