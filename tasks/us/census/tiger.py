@@ -17,6 +17,7 @@ from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
 from decimal import Decimal
 
+
 class TigerSourceTags(TagsTask):
     def version(self):
         return 1
@@ -28,7 +29,6 @@ class TigerSourceTags(TagsTask):
                    type='source',
                    description='`TIGER/Line Shapefiles <https://www.census.gov/geo/maps-data/data/tiger-line.html>`_')
         ]
-
 
 
 class ClippedGeomColumns(ColumnsTask):
@@ -71,8 +71,8 @@ class ClippedGeomColumns(ColumnsTask):
             )
 
         interpolated_boundaries = ['block_clipped', 'block_group_clipped',
-                                   'puma_clipped','census_tract_clipped',
-                                   'county_clipped','state_clipped',
+                                   'puma_clipped', 'census_tract_clipped',
+                                   'county_clipped', 'state_clipped',
                                    'congressional_district_clipped',
                                    'zcta5_clipped']
         cartographic_boundaries = ['cbsa_clipped',
@@ -83,8 +83,8 @@ class ClippedGeomColumns(ColumnsTask):
                                    'congressional_district_clipped',
                                    'school_district_unified_clipped',
                                    'block_clipped', 'block_group_clipped',
-                                   'puma_clipped','census_tract_clipped',
-                                   'county_clipped','state_clipped']
+                                   'puma_clipped', 'census_tract_clipped',
+                                   'county_clipped', 'state_clipped']
         for colname, col in cols.iteritems():
             if colname in interpolated_boundaries:
                 col.tags.append(boundary_type['interpolation_boundary'])
@@ -213,7 +213,7 @@ class GeomColumns(ColumnsTask):
             ),
         }
 
-        for _,col in columns.iteritems():
+        for _, col in columns.iteritems():
             col.tags.append(source)
             col.tags.append(license)
         return columns
@@ -432,7 +432,6 @@ class TigerGeographyShapefileToSQL(TempTableTask):
 
 
 class DownloadTiger(LoadPostgresFromURL):
-
     url_template = 'https://s3.amazonaws.com/census-backup/tiger/{year}/tiger{year}_backup.sql.gz'
     year = Parameter()
 
