@@ -663,15 +663,17 @@ class ShorelineClip(TableTask):
 
     def populate(self):
         session = current_session()
-        stmt = ('INSERT INTO {output} '
-                'SELECT geoid, ST_Union(ST_MakePolygon(ST_ExteriorRing(the_geom))) AS the_geom, '
-                '       MAX(aland) AS aland '
-                'FROM ( '
-                '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
-                '           aland '
-                '    FROM {input} '
-                ") holes WHERE GeometryType(the_geom) = 'POLYGON' "
-                'GROUP BY geoid'.format(
+
+        stmt = ('''INSERT INTO {output}
+                   SELECT
+                     geoid, aland,
+                     ST_Union(ARRAY(
+                       SELECT ST_MakePolygon(ST_ExteriorRing(
+                         (ST_Dump(the_geom)).geom
+                       ))
+                     )),
+                   FROM {input}
+                   WHERE GeometryType(the_geom) = 'MULTIPOLYGON';'''.format(
                     output=self.output().table,
                     input=self.input()['data'].table), )[0]
         session.execute(stmt)
