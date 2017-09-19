@@ -666,14 +666,14 @@ class ShorelineClip(TableTask):
 
         stmt = ('''INSERT INTO {output}
                    SELECT
-                     geoid, aland,
+                     geoid,
                      ST_Union(ARRAY(
                        SELECT ST_MakePolygon(ST_ExteriorRing(
                          (ST_Dump(the_geom)).geom
                        ))
                      )),
-                   FROM {input}
-                   WHERE GeometryType(the_geom) = 'MULTIPOLYGON';'''.format(
+                     aland
+                   FROM {input}'''.format(
                     output=self.output().table,
                     input=self.input()['data'].table), )[0]
         session.execute(stmt)
