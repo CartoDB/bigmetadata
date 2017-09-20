@@ -503,6 +503,9 @@ class SplitSumLevel(TempTableTask):
         session.execute('CREATE INDEX ON {output} USING GIST (the_geom)'.format(
             output=self.output().table))
 
+    def original_task(self):
+        self.requires()
+
 
 class JoinTigerWaterGeoms(TempTableTask):
     '''
@@ -603,6 +606,9 @@ class PreunionTigerWaterGeoms(TempTableTask):
         session.execute('CREATE INDEX ON {output} (geoid) '.format(
             output=self.output().table))
 
+    def original_task(self):
+        self.requires()['split'].original_task()
+
 
 class UnionTigerWaterGeoms(TempTableTask):
     '''
@@ -625,6 +631,8 @@ class UnionTigerWaterGeoms(TempTableTask):
                         'GROUP BY geoid'.format(
                             output=self.output().table,
                             input=self.input().table))
+    def original_task(self):
+        self.requires().original_task()
 
 
 class ShorelineClip(TableTask):
@@ -651,12 +659,13 @@ class ShorelineClip(TableTask):
         }
 
     def columns(self):
-        return OrderedDict([
+        cols = OrderedDict([
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
             ('aland', self.input()['attributes']['aland']),
-            ('name', self.input()['geonames'][self.geography + '_geoname']),
         ])
+        if self.name():
+            cols['name'] = self.input()['geonames'][self.geography + '_geoname']
 
     def timespan(self):
         return self.year
@@ -664,20 +673,37 @@ class ShorelineClip(TableTask):
     def populate(self):
         session = current_session()
 
-        stmt = ('''INSERT INTO {output}
-                   SELECT
-                     geoid,
-                     ST_Union(ARRAY(
-                       SELECT ST_MakePolygon(ST_ExteriorRing(
-                         (ST_Dump(the_geom)).geom
-                       ))
-                       WHERE GeometryType(the_geom) = 'POLYGON'
-                     )),
-                     aland
-                   FROM {input}'''.format(
-                    output=self.output().table,
-                    input=self.input()['data'].table), )[0]
+        if self.name():
+            additional_columns = ', name'
+            additional_input = 'LEFT JOIN {} USING geoid'.format(self.original_task().output().table)
+        else:
+            additional_columns = ''
+            additional_input = ''
+
+        stmt = '''INSERT INTO {output}
+                  SELECT
+                    {input}.geoid,
+                    ST_Union(ARRAY(
+                      SELECT ST_MakePolygon(ST_ExteriorRing(
+                        (ST_Dump({input}.the_geom)).geom
+                      ))
+                      WHERE GeometryType(the_geom) = 'POLYGON'
+                    )),
+                    {input}.aland
+                    {additional_columns}
+                  FROM {input} {additional_input}
+               '''.format(
+                   output=self.output().table,
+                   input=self.input()['data'].table,
+                   additional_columns=additional_columns,
+                   additional_input=additional_input)[0]
         session.execute(stmt)
+
+    def original_task(self):
+        return self.requires()['data'].original_task()
+
+    def name(self):
+        self.original_task().name()
 
 
 class SumLevel(TableTask):
