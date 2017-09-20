@@ -544,7 +544,6 @@ class TableEU(TableTask):
                            output=self.output().table,
                            input=input_['data'].table
                        )
-                LOGGER.info(stmt)
                 session.execute(stmt)
 
 
