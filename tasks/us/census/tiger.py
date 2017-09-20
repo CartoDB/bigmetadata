@@ -675,10 +675,8 @@ class ShorelineClip(TableTask):
 
         if self.name():
             additional_columns = ', geoname'
-            additional_input = 'LEFT JOIN {} USING (geoid)'.format(self.original_task().output().table)
         else:
             additional_columns = ''
-            additional_input = ''
 
         stmt = '''INSERT INTO {output}
                   SELECT
@@ -691,12 +689,13 @@ class ShorelineClip(TableTask):
                     )),
                     {input}.aland
                     {additional_columns}
-                  FROM {input} {additional_input}
+                  FROM {input}
+                  LEFT JOIN {original_table} USING (geoid)
                '''.format(
                    output=self.output().table,
                    input=self.input()['data'].table,
                    additional_columns=additional_columns,
-                   additional_input=additional_input)
+                   original_table=self.original_task().output().table)
         session.execute(stmt)
 
     def original_task(self):
