@@ -345,7 +345,7 @@ eu-geo:
 eu-data:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.eu.eurostat EURegionalTables \
-	  --parallel-scheduling --workers=8
+	  --workers=1
 
 ### fr
 fr-all: fr-geo fr-insee fr-income
