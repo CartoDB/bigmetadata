@@ -673,11 +673,7 @@ class ShorelineClip(TableTask):
     def populate(self):
         session = current_session()
 
-        if self.name():
-            additional_columns = ', geoname'
-        else:
-            additional_columns = ''
-
+        additional_columns = ', geoname' if self.name() else ''
         stmt = '''INSERT INTO {output}
                   SELECT
                     {input}.geoid,
