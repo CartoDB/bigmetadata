@@ -504,7 +504,7 @@ class SplitSumLevel(TempTableTask):
             output=self.output().table))
 
     def original_task(self):
-        self.requires()
+        return self.requires()
 
 
 class JoinTigerWaterGeoms(TempTableTask):
@@ -607,7 +607,7 @@ class PreunionTigerWaterGeoms(TempTableTask):
             output=self.output().table))
 
     def original_task(self):
-        self.requires()['split'].original_task()
+        return self.requires()['split'].original_task()
 
 
 class UnionTigerWaterGeoms(TempTableTask):
@@ -632,7 +632,7 @@ class UnionTigerWaterGeoms(TempTableTask):
                             output=self.output().table,
                             input=self.input().table))
     def original_task(self):
-        self.requires().original_task()
+        return self.requires().original_task()
 
 
 class ShorelineClip(TableTask):
@@ -665,7 +665,7 @@ class ShorelineClip(TableTask):
             ('aland', self.input()['attributes']['aland']),
         ])
         if self.name():
-            cols['name'] = self.input()['geonames'][self.geography + '_geoname']
+            cols['geoname'] = self.input()['geonames'][self.geography + '_geoname']
 
     def timespan(self):
         return self.year
@@ -674,8 +674,8 @@ class ShorelineClip(TableTask):
         session = current_session()
 
         if self.name():
-            additional_columns = ', name'
-            additional_input = 'LEFT JOIN {} USING geoid'.format(self.original_task().output().table)
+            additional_columns = ', geoname'
+            additional_input = 'LEFT JOIN {} USING (geoid)'.format(self.original_task().output().table)
         else:
             additional_columns = ''
             additional_input = ''
@@ -687,7 +687,7 @@ class ShorelineClip(TableTask):
                       SELECT ST_MakePolygon(ST_ExteriorRing(
                         (ST_Dump({input}.the_geom)).geom
                       ))
-                      WHERE GeometryType(the_geom) = 'POLYGON'
+                      WHERE GeometryType({input}.the_geom) = 'POLYGON'
                     )),
                     {input}.aland
                     {additional_columns}
@@ -696,14 +696,14 @@ class ShorelineClip(TableTask):
                    output=self.output().table,
                    input=self.input()['data'].table,
                    additional_columns=additional_columns,
-                   additional_input=additional_input)[0]
+                   additional_input=additional_input)
         session.execute(stmt)
 
     def original_task(self):
         return self.requires()['data'].original_task()
 
     def name(self):
-        self.original_task().name()
+        return self.original_task().name
 
 
 class SumLevel(TableTask):
