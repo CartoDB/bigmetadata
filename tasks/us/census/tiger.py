@@ -631,6 +631,7 @@ class UnionTigerWaterGeoms(TempTableTask):
                         'GROUP BY geoid'.format(
                             output=self.output().table,
                             input=self.input().table))
+
     def original_task(self):
         return self.requires().original_task()
 
