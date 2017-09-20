@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from luigi import LocalTarget, Task, IntParameter, WrapperTask
+from luigi import LocalTarget, Task, IntParameter
 
 from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag
 from tasks.util import (TagsTask, DownloadUnzipTask, Shp2TempTableTask, shell,
                         classpath, CSV2TempTableTask, TempTableTask,
-                        ColumnsTask, TableTask)
+                        ColumnsTask, TableTask, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from collections import OrderedDict
 
@@ -279,6 +279,6 @@ class NUTSGeometries(TableTask):
                         ))
 
 
-class AllNUTSGeometries(WrapperTask):
-    def requires(self):
+class AllNUTSGeometries(MetaWrapper):
+    def tables(self):
         return [NUTSGeometries(level=level) for level in (0, 2, 3)]
