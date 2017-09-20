@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from luigi import LocalTarget, Task, IntParameter
+from luigi import LocalTarget, Task, IntParameter, WrapperTask
 
 from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag
 from tasks.util import (TagsTask, DownloadUnzipTask, Shp2TempTableTask, shell,
