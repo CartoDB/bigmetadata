@@ -666,6 +666,7 @@ class ShorelineClip(TableTask):
         ])
         if self.name():
             cols['geoname'] = self.input()['geonames'][self.geography + '_geoname']
+        return cols
 
     def timespan(self):
         return self.year
