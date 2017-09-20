@@ -417,7 +417,7 @@ us-spielman:
 us-tiger:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.us.census.tiger AllSumLevels --year 2015 \
-	  --parallel-scheduling --workers=8
+	  --workers=8
 
 us-enviroatlas:
 	docker-compose run --rm bigmetadata luigi \
