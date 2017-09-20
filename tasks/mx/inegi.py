@@ -198,7 +198,7 @@ class GeographyColumns(ColumnsTask):
         }
 
     def version(self):
-        return 10
+        return 11
 
     def columns(self):
         input_ = self.input()
@@ -221,17 +221,18 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
-        geom_name = OBSColumn(
-            id=self.resolution + '_name',
-            type='Text',
-            weight=1,
-            name='Name of {}'.format(RESNAMES[self.resolution]),
-            tags=[sections['mx'], subsections['names'], license_data, source],
-            targets={geom: GEOM_NAME}
-        )
         cols = OrderedDict([('the_geom', geom),
-                            ('cvegeo', geom_ref),
-                            ('nomgeo', geom_name)])
+                            ('cvegeo', geom_ref)])
+
+        if self.resolution in RESPROPNAMES:
+            cols['nomgeo'] = OBSColumn(
+                id=self.resolution + '_name',
+                type='Text',
+                weight=1,
+                name='Name of {}'.format(RESNAMES[self.resolution]),
+                tags=[sections['mx'], subsections['names'], license_data, source],
+                targets={geom: GEOM_NAME}
+            )
 
         geom.tags.extend(boundary_type[i] for i in RESTAGS[self.resolution])
 
@@ -242,7 +243,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -263,8 +264,7 @@ class Geography(TableTask):
         input_cols = ['ST_MakeValid(wkb_geometry)', 'cvegeo']
         if self.resolution in RESPROPNAMES:
             input_cols.append('nomgeo')
-        else:
-            input_cols.append('NULL')
+
         session.execute('INSERT INTO {output} ({output_cols}) '
                         'SELECT {input_cols} '
                         'FROM {input} '.format(
