@@ -6,7 +6,6 @@ functions for persisting metadata about tables loaded via ETL
 
 import os
 import re
-import weakref
 
 import luigi
 from luigi import Task, BoolParameter, Target, Event
@@ -24,6 +23,11 @@ from sqlalchemy.orm.collections import attribute_mapped_collection
 from sqlalchemy.schema import ForeignKeyConstraint
 from sqlalchemy.sql import expression
 from sqlalchemy.types import UserDefinedType
+from sqlalchemy.pool import NullPool
+
+import logging
+
+LOGGER = logging.getLogger('luigi-interface')
 
 
 def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
@@ -40,13 +44,31 @@ def get_engine(user=None, password=None, host=None, port=None,
         host=host or os.environ.get('PGHOST', 'localhost'),
         port=port or os.environ.get('PGPORT', '5432'),
         db=db or os.environ.get('PGDATABASE', 'postgres')
-    ))
+    ), poolclass=NullPool)
+    # add_engine_pidguard(engine, readonly)
+    return engine
+
+def add_engine_pidguard(engine, readonly=False):
 
     @event.listens_for(engine, 'begin')
     def receive_begin(conn):
         if readonly:
             conn.execute('SET TRANSACTION READ ONLY')
 
+    # @event.listens_for(engine, "connect")
+    # def connect(dbapi_connection, connection_record):
+    #     connection_record.info['pid'] = os.getpid()
+
+    # @event.listens_for(engine, "checkout")
+    # def checkout(dbapi_connection, connection_record, connection_proxy):
+    #     pid = os.getpid()
+    #     if connection_record.info['pid'] != pid:
+    #         connection_record.connection = connection_proxy.connection = None
+    #         raise exc.DisconnectionError(
+    #             "Connection record belongs to pid %s, "
+    #             "attempting to check out in pid %s" %
+    #             (connection_record.info['pid'], pid)
+    #         )
     @event.listens_for(engine, "connect")
     def connect(dbapi_connection, connection_record):
         connection_record.info['pid'] = os.getpid()
@@ -55,14 +77,18 @@ def get_engine(user=None, password=None, host=None, port=None,
     def checkout(dbapi_connection, connection_record, connection_proxy):
         pid = os.getpid()
         if connection_record.info['pid'] != pid:
+            # substitute log.debug() or similar here as desired
+            print(
+                "Parent process %(orig)s forked (%(newproc)s) with an open "
+                "database connection, "
+                "which is being discarded and recreated." %
+                {"newproc": pid, "orig": connection_record.info['pid']})
             connection_record.connection = connection_proxy.connection = None
             raise exc.DisconnectionError(
                 "Connection record belongs to pid %s, "
                 "attempting to check out in pid %s" %
                 (connection_record.info['pid'], pid)
             )
-
-    return engine
 
 
 def catalog_latlng(column_id):
@@ -768,25 +794,26 @@ class CurrentSession(object):
 
     def __init__(self):
         self._session = None
+        self._engine = None
         self._pid = None
 
     def begin(self):
-        if not self._session:
-            self._session = sessionmaker(bind=get_engine())()
+        LOGGER.info('Creating session for PID {}'.format(os.getpid()))
+        self._engine = get_engine()
+        self._session = sessionmaker(bind=self._engine)()
+        LOGGER.info('Session data {}'.format(self._session))
+        LOGGER.info('Session connection id {}'.format(id(self._session.connection)))
         self._pid = os.getpid()
 
     def get(self):
         # If we forked, there would be a PID mismatch and we need a new
         # connection
-        if self._pid != os.getpid():
+        LOGGER.info('Parent pid {}'.format(os.getppid()))
+        if self._pid and os.getppid() != 1 and self._pid != os.getpid():
+            LOGGER.info('FORKED: {} not {}'.format(self._pid, os.getpid()))
+            self._engine.dispose()
             self._session = None
-            print 'FORKED: {} not {}'.format(self._pid, os.getpid())
         if not self._session:
-            self.begin()
-        try:
-            self._session.execute("SELECT 1")
-        except:
-            self._session = None
             self.begin()
         return self._session
 

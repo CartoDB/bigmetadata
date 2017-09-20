@@ -9,7 +9,7 @@ nose-timer==0.6.0
 mock==2.0.0
 python-daemon==2.1.1
 python-slugify==1.2.0
-sqlalchemy==1.1.0b2
+sqlalchemy==1.1.14
 Sphinx==1.4.5
 sphinx-tabs==0.2.2
 rst2pdf==0.93

@@ -587,6 +587,7 @@ class EUColumns(WrapperTask):
 class EURegionalTables(WrapperTask):
 
     def requires(self):
+        session = current_session()
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
             reader = csv.reader(wrappertables)
             for subsection, table_code, nuts, units in reader:
@@ -595,26 +596,3 @@ class EURegionalTables(WrapperTask):
                                       subsection=subsection,
                                       nuts_level=nuts,
                                       unit=units)
-
-# class EUMetaWrapper(MetaWrapper):
-#
-#     table_name = Parameter()
-#     subsection = Parameter()
-#     nuts_level = Parameter()
-#     unit = Parameter()
-#     year = Parameter()
-#
-#     params = {
-#         'table_name': ,
-#         'subsection': ,
-#         'nuts_level': ,
-#         'unit': ,
-#         'year': ,
-#     }
-#
-#     def tables(self):
-#         yield TableEU(table_name=self.table_name,
-#                       subsection=self.subsection,
-#                       nuts_level=self.nuts_level,
-#                       unit=self.unit,
-#                       year=self.year)

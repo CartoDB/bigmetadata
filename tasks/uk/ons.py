@@ -1133,12 +1133,19 @@ class ImportAllEnglandWalesLocal(Task):
         infiles = shell('ls {input}/LC*DATA.CSV'.format(
             input=self.input().path))
 
-        tables = [os.path.split(infile)[-1].split('DATA.CSV')[0] for infile in infiles.strip().split('\n')]
-        task_results = yield [ImportEnglandWalesLocal(table=table) for table in tables]
+        # tables = [os.path.split(infile)[-1].split('DATA.CSV')[0] for infile in infiles.strip().split('\n')]
+        # task_results = yield [ImportEnglandWalesLocal(table=table) for table in tables]
 
-        with self.output().open('w') as fhandle:
-            for result in task_results:
-                fhandle.write('{table}\n'.format(table=result.table))
+        # with self.output().open('w') as fhandle:
+        #     for result in task_results:
+        #         fhandle.write('{table}\n'.format(table=result.table))
+
+        fhandle = self.output().open('w')
+        for infile in infiles.strip().split('\n'):
+            table = os.path.split(infile)[-1].split('DATA.CSV')[0]
+            data = yield ImportEnglandWalesLocal(table=table)
+            fhandle.write('{table}\n'.format(table=data.table))
+        fhandle.close()
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))

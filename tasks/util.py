@@ -670,6 +670,9 @@ class TableTarget(Target):
         regenerate tabular data from scratch.
         '''
         session = current_session()
+        LOGGER.info('Exists session PID {}'.format(os.getpid()))
+        LOGGER.info('Exists session data {}'.format(session))
+        LOGGER.info('Exists session connection id {}'.format(id(session.connection)))
         existing = self.get(session)
         new_version = float(self._obs_table.version or 0.0)
         if existing:
