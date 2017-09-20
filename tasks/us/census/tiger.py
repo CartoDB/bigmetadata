@@ -647,7 +647,7 @@ class ShorelineClip(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
