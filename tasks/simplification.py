@@ -47,7 +47,8 @@ class SimplifyShapefile(Task):
         yield ExportShapefile(schema=self.schema, table=self.table, skipfailures=self.skipfailures)
 
     def run(self):
-        cmd = 'mapshaper {input} snap -simplify {factor}% keep-shapes -o {output}'.format(
+        cmd = 'node --max-old-space-size=8192 `which mapshaper` ' \
+              '{input} snap -simplify {factor}% keep-shapes -o {output}'.format(
                 input=os.path.join(tmp_directory(self.schema, self.table),
                                    shp_filename(self.schema, self.table)),
                 factor=self.factor,
