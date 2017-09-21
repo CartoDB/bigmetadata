@@ -6,6 +6,8 @@ TMP_DIRECTORY = 'tmp'
 SIMPLIFICATION_DIRECTORY = 'simplification'
 SIMPLIFIED_SUFFIX = '_simpl'
 RETAIN_PERCENTAGE = '50'  # [0-100] Percentage of removable vertices retained
+SKIPFAILURES_NO = 'no'  # Avoids https://trac.osgeo.org/gdal/ticket/6803
+SKIPFAILURES_YES = 'yes'
 
 
 def tmp_directory(schema, table):
@@ -20,12 +22,15 @@ def shp_filename(schema, table, suffix=''):
 class ExportShapefile(Task):
     schema = Parameter()
     table = Parameter()
+    skipfailures = Parameter(default=SKIPFAILURES_NO)
 
     def run(self):
         self.output().makedirs()
         cmd = 'ogr2ogr -f "ESRI Shapefile" {shapefile} ' \
+              '{skipfailures} ' \
               '"PG:dbname=$PGDATABASE active_schema={schema}" {table}'.format(
-                  shapefile=self.output().path, schema=self.schema, table=self.table)
+                  shapefile=self.output().path, schema=self.schema, table=self.table,
+                  skipfailures='-skipfailures' if self.skipfailures.lower() == SKIPFAILURES_YES else '')
         shell(cmd)
 
     def output(self):
@@ -36,12 +41,13 @@ class SimplifyShapefile(Task):
     schema = Parameter()
     table = Parameter()
     factor = Parameter(default=RETAIN_PERCENTAGE)
+    skipfailures = Parameter(default=SKIPFAILURES_NO)
 
     def requires(self):
-        yield ExportShapefile(schema=self.schema, table=self.table)
+        yield ExportShapefile(schema=self.schema, table=self.table, skipfailures=self.skipfailures)
 
     def run(self):
-        cmd = 'mapshaper {input} -simplify {factor}% -o {output}'.format(
+        cmd = 'mapshaper {input} snap -simplify {factor}% keep-shapes -o {output}'.format(
                 input=os.path.join(tmp_directory(self.schema, self.table),
                                    shp_filename(self.schema, self.table)),
                 factor=self.factor,
@@ -58,11 +64,13 @@ class ImportSimplifiedShapefile(Task):
     table = Parameter()
     outsuffix = Parameter(default='')
     factor = Parameter(default=RETAIN_PERCENTAGE)
+    skipfailures = Parameter(default=SKIPFAILURES_NO)
 
     executed = False
 
     def requires(self):
-        yield SimplifyShapefile(schema=self.schema, table=self.table, factor=self.factor)
+        yield SimplifyShapefile(schema=self.schema, table=self.table, factor=self.factor,
+                                skipfailures=self.skipfailures)
 
     def run(self):
         cmd = 'PG_USE_COPY=yes ' \
@@ -91,7 +99,8 @@ class SimplifyGeometries(WrapperTask):
     table = Parameter()
     outsuffix = Parameter(default='')
     factor = Parameter(default=RETAIN_PERCENTAGE)
+    skipfailures = Parameter(default=SKIPFAILURES_NO)
 
     def requires(self):
         yield ImportSimplifiedShapefile(schema=self.schema, table=self.table, outsuffix=self.outsuffix,
-                                        factor=self.factor)
+                                        factor=self.factor, skipfailures=self.skipfailures)
