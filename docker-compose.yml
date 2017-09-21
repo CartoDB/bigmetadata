@@ -21,7 +21,10 @@
     "links": [
       "redis:localhost"
     ],
-    "privileged": true
+    "privileged": true,
+    "ports": [
+      "5554:5432" 
+    ]
   },
   "nginx": {
     "image": "nginx:latest",
