@@ -30,8 +30,8 @@ from sqlalchemy import Table, types, Column
 from sqlalchemy.dialects.postgresql import JSON
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
-                        Linestring, OBSColumnTable, OBSTag, current_session,
-                        session_commit, session_rollback, OBSColumnTag)
+                        Linestring, OBSColumnTable, OBSTag, OBSColumnTag)
+from tasks.carto import DatabaseTask, DatabaseWrapperTask
 
 
 def get_logger(name):
@@ -435,10 +435,11 @@ class PostgresTarget(Target):
     PostgresTarget which by default uses command-line specified login.
     '''
 
-    def __init__(self, schema, tablename, non_empty=True):
+    def __init__(self, schema, tablename, session, non_empty=True):
         self._schema = schema
         self._tablename = tablename
         self._non_empty = non_empty
+        self._session = session
 
     @property
     def table(self):
@@ -458,15 +459,14 @@ class PostgresTarget(Target):
         Returns 0 if the table does not exist, 1 if it exists but has no
         rows (is empty), and 2 if it exists and has one or more rows.
         '''
-        session = current_session()
-        resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
+        resp = self._session.execute('SELECT COUNT(*) FROM information_schema.tables '
                                "WHERE table_schema ILIKE '{schema}'  "
                                "  AND table_name ILIKE '{tablename}' ".format(
                                    schema=self._schema,
                                    tablename=self._tablename))
         if int(resp.fetchone()[0]) == 0:
             return 0
-        resp = session.execute(
+        resp = self._session.execute(
             'SELECT row_number() over () FROM "{schema}".{tablename} LIMIT 1'.format(
                 schema=self._schema, tablename=self._tablename))
         if resp.fetchone() is None:
@@ -558,27 +558,28 @@ class ColumnTarget(Target):
     '''
     '''
 
-    def __init__(self, column, task):
+    def __init__(self, column, task, session):
         self._id = column.id
         self._task = task
         self._column = column
+        self._session = session
 
-    def get(self, session):
+    def get(self):
         '''
         Return a copy of the underlying OBSColumn in the specified session.
         '''
-        with session.no_autoflush:
-            return session.query(OBSColumn).get(self._id)
+        with self._session.no_autoflush:
+            return self._session.query(OBSColumn).get(self._id)
 
     def update_or_create(self):
-        self._column = current_session().merge(self._column)
+        self._column = self._session.merge(self._column)
 
     def exists(self):
-        existing = self.get(current_session())
+        existing = self.get(self._session())
         new_version = float(self._column.version or 0.0)
         if existing:
             existing_version = float(existing.version or 0.0)
-            current_session().expunge(existing)
+            self._session().expunge(existing)
         else:
             existing_version = 0.0
         if existing and existing_version == new_version:
@@ -598,28 +599,28 @@ class TagTarget(Target):
     '''
     '''
 
-    def __init__(self, tag, task):
+    def __init__(self, tag, task, session):
         self._id = tag.id
         self._tag = tag
         self._task = task
+        self._session = session
 
-    def get(self, session):
+    def get(self):
         '''
         Return a copy of the underlying OBSColumn in the specified session.
         '''
-        with session.no_autoflush:
-            return session.query(OBSTag).get(self._id)
+        with self._session.no_autoflush:
+            return self._session.query(OBSTag).get(self._id)
 
     def update_or_create(self):
-        self._tag = current_session().merge(self._tag)
+        self._tag = self._session().merge(self._tag)
 
     def exists(self):
-        session = current_session()
-        existing = self.get(session)
+        existing = self.get()
         new_version = float(self._tag.version or 0.0)
         if existing:
             existing_version = float(existing.version or 0.0)
-            current_session().expunge(existing)
+            self._session.expunge(existing)
         else:
             existing_version = 0.0
         if existing and existing_version == new_version:
@@ -637,7 +638,7 @@ class TagTarget(Target):
 
 class TableTarget(Target):
 
-    def __init__(self, schema, name, obs_table, columns, task):
+    def __init__(self, schema, name, obs_table, columns, task, session):
         '''
         columns: should be an ordereddict if you want to specify columns' order
         in the table
@@ -657,6 +658,7 @@ class TableTarget(Target):
             self._table = metadata.tables[obs_table.tablename]
         else:
             self._table = None
+        self._session = session
 
     def sync(self):
         '''
@@ -669,20 +671,16 @@ class TableTarget(Target):
         We always want to run this at least once, because we can always
         regenerate tabular data from scratch.
         '''
-        session = current_session()
-        LOGGER.info('Exists session PID {}'.format(os.getpid()))
-        LOGGER.info('Exists session data {}'.format(session))
-        LOGGER.info('Exists session connection id {}'.format(id(session.connection)))
-        existing = self.get(session)
+        existing = self.get()
         new_version = float(self._obs_table.version or 0.0)
         if existing:
             existing_version = float(existing.version or 0.0)
-            if existing in session:
-                session.expunge(existing)
+            if existing in self._session:
+                self._session.expunge(existing)
         else:
             existing_version = 0.0
         if existing and existing_version == new_version:
-            resp = session.execute(
+            resp = self._session.execute(
                 'SELECT COUNT(*) FROM information_schema.tables '
                 "WHERE table_schema = '{schema}'  "
                 "  AND table_name = '{tablename}' ".format(
@@ -690,7 +688,7 @@ class TableTarget(Target):
                     tablename=existing.tablename))
             if int(resp.fetchone()[0]) == 0:
                 return False
-            resp = session.execute(
+            resp = self._session.execute(
                 'SELECT row_number() over () '
                 'FROM "{schema}".{tablename} LIMIT 1 '.format(
                     schema='observatory',
@@ -706,21 +704,19 @@ class TableTarget(Target):
                                                db=existing_version))
         return False
 
-    def get(self, session):
+    def get(self):
         '''
         Return a copy of the underlying OBSTable in the specified session.
         '''
-        with session.no_autoflush:
-            return session.query(OBSTable).get(self._id)
+        with self._session.no_autoflush:
+            return self._session.query(OBSTable).get(self._id)
 
     def update_or_create_table(self):
-        session = current_session()
-
         # create new local data table
         columns = []
         for colname, coltarget in self._columns.items():
             colname = colname.lower()
-            col = coltarget.get(session)
+            col = coltarget.get()
 
             # Column info for sqlalchemy's internal metadata
             if col.type.lower() == 'geometry':
@@ -738,43 +734,41 @@ class TableTarget(Target):
                 coltype = getattr(types, col.type.capitalize())
             columns.append(Column(colname, coltype))
 
-        obs_table = self.get(session) or self._obs_table
+        obs_table = self.get() or self._obs_table
         # replace local data table
         if obs_table.id in metadata.tables:
             metadata.tables[obs_table.id].drop()
         self._table = Table(obs_table.tablename, metadata, *columns,
                             extend_existing=True, schema='observatory')
-        session.commit()
+        self._session.commit()
         self._table.drop(checkfirst=True)
         self._table.create()
 
     def update_or_create_metadata(self, _testmode=False):
-        session = current_session()
-
         colinfo = {}
 
         # replace metadata table
-        self._obs_table = session.merge(self._obs_table)
+        self._obs_table = self._session.merge(self._obs_table)
         obs_table = self._obs_table
 
         for i, colname_coltarget in enumerate(self._columns.iteritems()):
             colname, coltarget = colname_coltarget
             colname = colname.lower()
-            col = coltarget.get(session)
+            col = coltarget.get()
 
             if _testmode:
                 coltable = OBSColumnTable(colname=colname, table=obs_table,
                                           column=col)
             else:
                 # Column info for obs metadata
-                coltable = session.query(OBSColumnTable).filter_by(
+                coltable = self._session.query(OBSColumnTable).filter_by(
                     column_id=col.id, table_id=obs_table.id).first()
                 if coltable:
                     coltable_existed = True
                     coltable.colname = colname
                 else:
                     # catch the case where a column id has changed
-                    coltable = session.query(OBSColumnTable).filter_by(
+                    coltable = self._session.query(OBSColumnTable).filter_by(
                         table_id=obs_table.id, colname=colname).first()
                     if coltable:
                         coltable_existed = True
@@ -784,10 +778,10 @@ class TableTarget(Target):
                         coltable = OBSColumnTable(colname=colname, table=obs_table,
                                                   column=col)
 
-            session.add(coltable)
+            self._session.add(coltable)
 
 
-class ColumnsTask(Task):
+class ColumnsTask(DatabaseTask):
     '''
     The ColumnsTask provides a structure for generating metadata. The only
     required method is :meth:`~.ColumnsTask.columns`.
@@ -818,11 +812,11 @@ class ColumnsTask(Task):
         raise NotImplementedError('Must return iterable of OBSColumns')
 
     def on_failure(self, ex):
-        session_rollback(self, ex)
+        self.rollback(ex)
         super(ColumnsTask, self).on_failure(ex)
 
     def on_success(self):
-        session_commit(self)
+        self.commit()
 
     def run(self):
         for _, coltarget in self.output().iteritems():
@@ -838,7 +832,7 @@ class ColumnsTask(Task):
         return 0
 
     def output(self):
-        session = current_session()
+        session = self.current_session()
 
         # Return columns from database if the task is already finished
         if hasattr(self, '_colids') and self.complete():
@@ -896,7 +890,7 @@ class ColumnsTask(Task):
             return False
         else:
             # bulk check that all columns exist at proper version
-            cnt = current_session().execute(
+            cnt = self.current_session().execute(
                 '''
                 SELECT COUNT(*)
                 FROM observatory.obs_column
@@ -920,7 +914,7 @@ class ColumnsTask(Task):
         return []
 
 
-class TagsTask(Task):
+class TagsTask(DatabaseTask):
     '''
     This will update-or-create :class:`OBSTag <tasks.meta.OBSTag>` objects
     int the database when run.
@@ -940,11 +934,11 @@ class TagsTask(Task):
         raise NotImplementedError('Must return iterable of OBSTags')
 
     def on_failure(self, ex):
-        session_rollback(self, ex)
+        self.rollback(self, ex)
         super(TagsTask, self).on_failure(ex)
 
     def on_success(self):
-        session_commit(self)
+        self.commit(self)
 
     def run(self):
         for _, tagtarget in self.output().iteritems():
@@ -978,7 +972,7 @@ class TagsTask(Task):
             return super(TagsTask, self).complete()
 
 
-class TableToCartoViaImportAPI(Task):
+class TableToCartoViaImportAPI(DatabaseTask):
     '''
     This task wraps :func:`~.util.sql_to_cartodb_table` to upload a table to
     a CARTO account specified in the ``.env`` file quickly using the Import
@@ -1062,7 +1056,7 @@ class TableToCartoViaImportAPI(Task):
         # fix broken column data types -- alter everything that's not character
         # varying back to it
         try:
-            session = current_session()
+            session = self.current_session()
             resp = session.execute(
                 '''
                 SELECT att.attname,
@@ -1104,7 +1098,7 @@ class TableToCartoViaImportAPI(Task):
     def output(self):
         carto_url = 'https://{}.carto.com'.format(self.username) if self.username else os.environ['CARTODB_URL']
         api_key = self.api_key if self.api_key else os.environ['CARTODB_API_KEY']
-        target = CartoDBTarget(self.outname or self.table, api_key=api_key, carto_url=carto_url)
+        target = CartoDBTarget(self.outname or self.table, self.current_session(), api_key=api_key, carto_url=carto_url)
         if self.force:
             target.remove(carto_url=carto_url, api_key=api_key)
             self.force = False
@@ -1191,7 +1185,7 @@ class DownloadUnzipTask(Task):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 
-class TempTableTask(Task):
+class TempTableTask(DatabaseTask):
     '''
     A Task that generates a table that will not be referred to in metadata.
 
@@ -1205,11 +1199,11 @@ class TempTableTask(Task):
     force = BoolParameter(default=False, significant=False)
 
     def on_failure(self, ex):
-        session_rollback(self, ex)
+        self.rollback(self, ex)
         super(TempTableTask, self).on_failure(ex)
 
     def on_success(self):
-        session_commit(self)
+        self.commit(self)
 
     def run(self):
         '''
@@ -1227,7 +1221,7 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        return PostgresTarget(classpath(self), self.task_id)
+        return PostgresTarget(classpath(self), self.task_id, self.session)
 
 
 @TempTableTask.event_handler(Event.START)
@@ -1235,7 +1229,7 @@ def clear_temp_table(task):
     create_temp_schema(task)
     target = task.output()
     if task.force or target.empty():
-        session = current_session()
+        session = self.current_session()
         session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
             schema=classpath(task), tablename=task.task_id))
         session.flush()
@@ -1388,7 +1382,7 @@ class CSV2TempTableTask(TempTableTask):
         else:
             csvs = self.input_csv()
 
-        session = current_session()
+        session = self.current_session()
         session.execute(u'CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
             coldef=u', '.join([u'"{}" {}'.format(c[0].decode(self.encoding), c[1]) for c in self.coldef()])
@@ -1432,14 +1426,14 @@ class LoadPostgresFromURL(TempTableTask):
         self.mark_done()
 
     def mark_done(self):
-        session = current_session()
+        session = self.current_session()
         session.execute('DROP TABLE IF EXISTS {table}'.format(
             table=self.output().table))
         session.execute('CREATE TABLE {table} AS SELECT now() creation_time'.format(
             table=self.output().table))
 
 
-class TableTask(Task):
+class TableTask(DatabaseTask):
     '''
     This task creates a single output table defined by its name, path, and
     defined columns.
@@ -1468,11 +1462,11 @@ class TableTask(Task):
         return 0
 
     def on_failure(self, ex):
-        session_rollback(self, ex)
+        self.rollback(self, ex)
         super(TableTask, self).on_failure(ex)
 
     def on_success(self):
-        session_commit(self)
+        self.commit(self)
         super(TableTask, self).on_success()
 
     def columns(self):
@@ -1504,7 +1498,7 @@ class TableTask(Task):
         '''
         Put one empty row in the table
         '''
-        session = current_session()
+        session = self.current_session()
         session.execute('INSERT INTO {output} ({col}) VALUES (NULL)'.format(
             output=output.table,
             col=self._columns.keys()[0]
@@ -1526,7 +1520,7 @@ class TableTask(Task):
         raise NotImplementedError('Must define timespan for table')
 
     def the_geom(self, output, colname):
-        session = current_session()
+        session = self.current_session()
         return session.execute(
             'SELECT ST_AsText( '
             '  ST_Intersection( '
@@ -1593,13 +1587,13 @@ class TableTask(Task):
         if not self._testmode:
             LOGGER.info('create_indexes')
             self.create_indexes(output)
-            current_session().flush()
+            self.current_session().flush()
 
             LOGGER.info('create_geom_summaries')
             self.create_geom_summaries(output)
 
     def create_indexes(self, output):
-        session = current_session()
+        session = self.current_session()
         tablename = output.table
         for colname, coltarget in self._columns.iteritems():
             col = coltarget._column
@@ -1628,13 +1622,13 @@ class TableTask(Task):
         colname, colid = geometry_columns[0]
         # Use SQL directly instead of SQLAlchemy because we need the_geom set
         # on obs_table in this session
-        current_session().execute("UPDATE observatory.obs_table "
+        self.current_session().execute("UPDATE observatory.obs_table "
                                   "SET the_geom = ST_GeomFromText('{the_geom}', 4326) "
                                   "WHERE id = '{id}'".format(
                                       the_geom=self.the_geom(output, colname),
                                       id=output._id
                                   ))
-        generate_tile_summary(current_session(),
+        generate_tile_summary(self.current_session(),
                               output._id, colid, output.table, colname)
 
     def output(self):
@@ -1657,17 +1651,17 @@ class TableTask(Task):
                            OBSTable(description=self.description(),
                                     version=self.version(),
                                     timespan=self.timespan()),
-                           [], self).exists()
+                           [], self, self.current_session()).exists()
 
 
-class RenameTables(Task):
+class RenameTables(DatabaseTask):
     '''
     A one-time use task that renames all ID-instantiated data tables to their
     tablename.
     '''
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
         for table in session.query(OBSTable):
             table_id = table.id
             tablename = table.tablename
@@ -1714,13 +1708,13 @@ class RenameTables(Task):
         return hasattr(self, '_complete')
 
 
-class CreateGeomIndexes(Task):
+class CreateGeomIndexes(DatabaseTask):
     '''
     Make sure every table has a `the_geom` index.
     '''
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
         resp = session.execute('SELECT DISTINCT geom_colname, geom_tablename '
                                'FROM observatory.obs_meta ')
         for colname, tablename in resp:
@@ -1740,7 +1734,7 @@ class CreateGeomIndexes(Task):
         return getattr(self, '_complete', False)
 
 
-class DropOrphanTables(Task):
+class DropOrphanTables(DatabaseTask):
     '''
     Remove tables that aren't documented anywhere in metadata.  Cleaning.
     '''
@@ -1748,7 +1742,7 @@ class DropOrphanTables(Task):
     force = BoolParameter(default=False)
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
         resp = session.execute('''
 SELECT table_name
 FROM information_schema.tables
@@ -1770,14 +1764,14 @@ WHERE table_name LIKE 'obs_%'
         session.commit()
 
 
-class CleanMetadata(Task):
+class CleanMetadata(DatabaseTask):
     '''
     Remove all columns, tables, and tags that have no references to other
     metadata entities.
     '''
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
 
         clear_tables = '''
             DELETE FROM observatory.obs_table
@@ -1879,7 +1873,7 @@ class CustomTable(TempTableTask):
 
     def run(self):
 
-        session = current_session()
+        session = self.current_session()
         meta = '''
         SELECT numer_colname, numer_type, numer_geomref_colname, numer_tablename,
                geom_colname, geom_type, geom_geomref_colname, geom_tablename
@@ -1956,7 +1950,7 @@ class BackupIPython(Task):
         return S3Target(path)
 
 
-class GenerateRasterTiles(Task):
+class GenerateRasterTiles(DatabaseTask):
 
     table_id = Parameter()
     column_id = Parameter()
@@ -1965,7 +1959,7 @@ class GenerateRasterTiles(Task):
 
     def run(self):
         self._ran = True
-        session = current_session()
+        session = self.current_session()
         try:
             resp = session.execute('''SELECT tablename, colname
                                FROM observatory.obs_table t,
@@ -1992,7 +1986,7 @@ class GenerateRasterTiles(Task):
     def complete(self):
         if self.force and not hasattr(self, '_ran'):
             return False
-        session = current_session()
+        session = self.current_session()
         resp = session.execute('''
             SELECT COUNT(*)
             FROM observatory.obs_column_table_tile
@@ -2003,12 +1997,12 @@ class GenerateRasterTiles(Task):
         return numrows > 0
 
 
-class GenerateAllRasterTiles(WrapperTask):
+class GenerateAllRasterTiles(DatabaseWrapperTask):
 
     force = BoolParameter(default=False, significant=False)
 
     def requires(self):
-        session = current_session()
+        session = self.current_session()
         resp = session.execute('''
             SELECT DISTINCT table_id, column_id
             FROM observatory.obs_table t,

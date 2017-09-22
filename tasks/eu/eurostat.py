@@ -1,5 +1,5 @@
 from tasks.eu.geo import NUTSColumns
-from tasks.meta import (OBSTable, OBSColumn, OBSTag, current_session,
+from tasks.meta import (OBSTable, OBSColumn, OBSTag,
                         DENOMINATOR, GEOM_REF)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
@@ -135,7 +135,7 @@ class MetabaseTable(CSV2TempTableTask):
         return DownloadMetabase().output().path
 
     def after_copy(self):
-        session = current_session()
+        session = self.current_session()
         session.execute('CREATE UNIQUE INDEX ON {table} (table_code, dimension, value)'.format(
             table=self.output().table
         ))
@@ -326,7 +326,7 @@ class FlexEurostatColumns(ColumnsTask):
 
         cache = CACHE
 
-        session = current_session()
+        session = self.current_session()
         resp = session.execute('''
             SELECT ARRAY_AGG(DISTINCT dimension) FROM {table}
             WHERE dimension NOT IN ('geo', 'time') AND table_code = '{table_code}';
@@ -496,7 +496,7 @@ class TableEU(TableTask):
             if r"unit" in val:
                 unit = val
         # print header
-        session = current_session()
+        session = self.current_session()
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (nuts{level}_id)'.format(
             output=self.output().table,
             level=self.nuts_level))
@@ -505,7 +505,7 @@ class TableEU(TableTask):
         for colname, coltarget in column_targets.items():
             # print colname
             if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
-                col = coltarget.get(session)
+                col = coltarget.get()
                 extra = col.extra
                 multiple = ''
                 # if 'unit' in extra.keys():
@@ -584,10 +584,10 @@ class EUColumns(WrapperTask):
                                           table_name=table_code,
                                           units=units)
 
-class EURegionalTables(WrapperTask):
+class EURegionalTables(DatabaseWrapperTask):
 
     def requires(self):
-        session = current_session()
+        session = self.current_session()
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
             reader = csv.reader(wrappertables)
             for subsection, table_code, nuts, units in reader:

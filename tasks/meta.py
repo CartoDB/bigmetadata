@@ -44,8 +44,8 @@ def get_engine(user=None, password=None, host=None, port=None,
         host=host or os.environ.get('PGHOST', 'localhost'),
         port=port or os.environ.get('PGPORT', '5432'),
         db=db or os.environ.get('PGDATABASE', 'postgres')
-    ), poolclass=NullPool)
-    # add_engine_pidguard(engine, readonly)
+    ))
+    add_engine_pidguard(engine, readonly)
     return engine
 
 def add_engine_pidguard(engine, readonly=False):
@@ -55,20 +55,6 @@ def add_engine_pidguard(engine, readonly=False):
         if readonly:
             conn.execute('SET TRANSACTION READ ONLY')
 
-    # @event.listens_for(engine, "connect")
-    # def connect(dbapi_connection, connection_record):
-    #     connection_record.info['pid'] = os.getpid()
-
-    # @event.listens_for(engine, "checkout")
-    # def checkout(dbapi_connection, connection_record, connection_proxy):
-    #     pid = os.getpid()
-    #     if connection_record.info['pid'] != pid:
-    #         connection_record.connection = connection_proxy.connection = None
-    #         raise exc.DisconnectionError(
-    #             "Connection record belongs to pid %s, "
-    #             "attempting to check out in pid %s" %
-    #             (connection_record.info['pid'], pid)
-    #         )
     @event.listens_for(engine, "connect")
     def connect(dbapi_connection, connection_record):
         connection_record.info['pid'] = os.getpid()
@@ -790,95 +776,99 @@ class OBSColumnTableTileSimple(Base):
                               postgresql_using='gist')
 
 
-class CurrentSession(object):
+# class CurrentSession(object):
 
-    def __init__(self):
-        self._session = None
-        self._engine = None
-        self._pid = None
+#     def __init__(self):
+#         self._session = None
+#         self._engine = None
+#         self._pid = None
 
-    def begin(self):
-        LOGGER.info('Creating session for PID {}'.format(os.getpid()))
-        self._engine = get_engine()
-        self._session = sessionmaker(bind=self._engine)()
-        LOGGER.info('Session data {}'.format(self._session))
-        LOGGER.info('Session connection id {}'.format(id(self._session.connection)))
-        self._pid = os.getpid()
+#     def begin(self):
+#         LOGGER.info('Creating session for PID {}'.format(os.getpid()))
+#         self._engine = get_engine()
+#         self._session = sessionmaker(bind=self._engine)()
+#         LOGGER.info('Session data {}'.format(self._session))
+#         LOGGER.info('Session connection id {}'.format(id(self._session.connection)))
+#         self._pid = os.getpid()
 
-    def get(self):
-        # If we forked, there would be a PID mismatch and we need a new
-        # connection
-        LOGGER.info('Parent pid {}'.format(os.getppid()))
-        if self._pid and os.getppid() != 1 and self._pid != os.getpid():
-            LOGGER.info('FORKED: {} not {}'.format(self._pid, os.getpid()))
-            self._engine.dispose()
-            self._session = None
-        if not self._session:
-            self.begin()
-        return self._session
+#     def get(self):
+#         # If we forked, there would be a PID mismatch and we need a new
+#         # connection
+#         LOGGER.info('Parent pid {}'.format(os.getppid()))
+#         if self._pid and os.getppid() != 1 and self._pid != os.getpid():
+#             LOGGER.info('FORKED: {} not {}'.format(self._pid, os.getpid()))
+#             self._engine.dispose()
+#             self._session = None
+#         if not self._session:
+#             self.begin()
+#         return self._session
 
-    def commit(self):
-        if self._pid != os.getpid():
-            raise Exception('cannot commit forked connection')
-        if not self._session:
-            return
-        try:
-            self._session.commit()
-        except:
-            self._session.rollback()
-            self._session.expunge_all()
-            raise
-        finally:
-            self._session.close()
-            self._session = None
+#     def commit(self):
+#         if self._pid != os.getpid():
+#             raise Exception('cannot rollback forked connection')
+#         if not self._session:
+#             return
+#         if self._pid != os.getpid():
+#             raise Exception('cannot commit forked connection')
+#         if not self._session:
+#             return
+#         try:
+#             self._session.commit()
+#         except:
+#             self._session.rollback()
+#             self._session.expunge_all()
+#             raise
+#         finally:
+#             self._session.close()
+#             self._session = None
 
-    def rollback(self):
-        if self._pid != os.getpid():
-            raise Exception('cannot rollback forked connection')
-        if not self._session:
-            return
-        try:
-            self._session.rollback()
-        except:
-            raise
-        finally:
-            self._session.expunge_all()
-            self._session.close()
-            self._session = None
+#     def rollback(self):
+#         if self._pid != os.getpid():
+#             raise Exception('cannot rollback forked connection')
+#         if not self._session:
+#             return
+#         try:
+#             self._session.rollback()
+#         except:
+#             raise
+#         finally:
+#             self._session.expunge_all()
+#             self._session.close()
+#             self._session = None
 
 
-_current_session = CurrentSession()
+# _current_session = CurrentSession()
 
 
-def current_session():
-    '''
-    Returns the session relevant to the currently operating :class:`Task`, if
-    any.  Outside the context of a :class:`Task`, this can still be used for
-    manual session management.
-    '''
-    return _current_session.get()
+# def current_session():
+#     '''
+#     Returns the session relevant to the currently operating :class:`Task`, if
+#     any.  Outside the context of a :class:`Task`, this can still be used for
+#     manual session management.
+#     '''
+#     return _current_session.get()
 
 
 #@luigi.Task.event_handler(Event.SUCCESS)
-def session_commit(task):
-    '''
-    commit the global session
-    '''
-    print 'commit {}'.format(task.task_id if task else '')
-    try:
-        _current_session.commit()
-    except Exception as err:
-        print err
-        raise
+# def session_commit(task):
+#     '''
+#     commit the global session
+#     '''
+#     print 'commit {}'.format(task.task_id if task else '')
+#     try:
+#         _current_session.commit()
+#     except Exception as err:
+#         print err
+#         raise
 
 
-#@luigi.Task.event_handler(Event.FAILURE)
-def session_rollback(task, exception):
-    '''
-    rollback the global session
-    '''
-    print 'rollback {}: {}'.format(task.task_id if task else '', exception)
-    _current_session.rollback()
+# #@luigi.Task.event_handler(Event.FAILURE)
+# def session_rollback(task, exception):
+#     '''
+#     rollback the global session
+#     '''
+#     print 'rollback {}: {}'.format(task.task_id if task else '', exception)
+#     _current_session.rollback()
 
 
 def fromkeys(d, l):
@@ -913,8 +903,11 @@ if not os.environ.get('READTHEDOCS') == 'True':
     Base.metadata.create_all()
 
 class UpdatedMetaTarget(Target):
+
+    def __init__(self, session):
+        self._session = session
+
     def exists(self):
-        session = current_session()
 
         # identify tags that have appeared, changed or disappeared
         # version shifts won't crop up in and of themselves, but name changes will
@@ -951,7 +944,7 @@ class UpdatedMetaTarget(Target):
             meta.name = distinct_tags.name
         WHERE meta.id IS NULL OR distinct_tags.id IS NULL
         '''
-        resp = session.execute(changed_tags)
+        resp = self._session.execute(changed_tags)
         if resp.fetchone():
             return False
 
@@ -979,7 +972,7 @@ class UpdatedMetaTarget(Target):
         ON id = numer_id AND version = numer_version
         WHERE numer_id IS NULL OR id IS NULL;
         '''
-        resp = session.execute(changed_columns)
+        resp = self._session.execute(changed_columns)
         if resp.fetchone():
             return False
 
@@ -1045,7 +1038,7 @@ class UpdatedMetaTarget(Target):
         where rank = 1 and (geom_tid is null or id is null)
         ;
         '''
-        resp = session.execute(changed_tables)
+        resp = self._session.execute(changed_tables)
         if resp.fetchone():
             return False
         return True

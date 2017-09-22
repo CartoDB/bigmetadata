@@ -2,10 +2,11 @@
 Tasks to sync data locally to CartoDB
 '''
 
-from tasks.meta import (current_session, OBSTable, Base, OBSColumn, UpdatedMetaTarget)
+from tasks.meta import (OBSTable, Base, OBSColumn, UpdatedMetaTarget)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, LOGGER,
                         CartoDBTarget, TableToCartoViaImportAPI)
+from tasks.carto import DatabaseTask, DatabaseWrapperTask
 
 from luigi import (WrapperTask, BoolParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter)
@@ -22,14 +23,14 @@ META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_col
 
 
 
-class SyncColumn(WrapperTask):
+class SyncColumn(DatabaseWrapperTask):
     '''
     Upload tables relevant to updating a particular column by keyword.
     '''
     keywords = Parameter()
 
     def requires(self):
-        session = current_session()
+        session = self.current_session()
         cols = session.query(OBSColumn).filter(OBSColumn.id.ilike(
             '%' + self.keywords + '%'
         ))
@@ -51,7 +52,7 @@ class SyncColumn(WrapperTask):
                                 ))
 
 
-class SyncData(WrapperTask):
+class SyncData(DatabaseWrapperTask):
     '''
     Upload a single OBS table to cartodb by fuzzy ID
     '''
@@ -61,7 +62,7 @@ class SyncData(WrapperTask):
     tablename = Parameter(default=None)
 
     def requires(self):
-        session = current_session()
+        session = self.current_session()
         if self.exact_id:
             table = session.query(OBSTable).get(self.exact_id)
         elif self.tablename:
@@ -73,7 +74,7 @@ class SyncData(WrapperTask):
         return TableToCarto(table=table.tablename, force=self.force)
 
 
-class SyncAllData(WrapperTask):
+class SyncAllData(DatabaseWrapperTask):
     '''
     Sync all data to the linked CARTO account.
     '''
@@ -86,7 +87,7 @@ class SyncAllData(WrapperTask):
                 'SELECT * FROM obs_table'
             ).json()['rows']
         ])
-        tables = dict([(k, v) for k, v in current_session().execute(
+        tables = dict([(k, v) for k, v in self.current_session().execute(
             '''
             SELECT tablename, t.version
             FROM observatory.obs_table t,
@@ -121,13 +122,13 @@ class PurgeMetadataColumns(Task):
     pass
 
 
-class PurgeUndocumentedTables(Task):
+class PurgeUndocumentedTables(DatabaseTask):
     '''
     Purge tables that should be in metadata but are not.
     '''
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
         resp = session.execute('SELECT table_schema, table_name '
                                'FROM information_schema.tables '
                                "WHERE table_schema ILIKE 'observatory' ")
@@ -149,14 +150,14 @@ class PurgeUndocumentedTables(Task):
                                     "with data in it".format(tablename=tablename))
 
 
-class PurgeMetadataTables(Task):
+class PurgeMetadataTables(DatabaseTask):
     '''
     Purge local metadata tables that no longer have tasks linking to them,
     as well as entries in obs_table that do not link to any table.
     '''
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
         for _output in self.output():
             if not _output.exists():
                 resp = session.execute("SELECT id from observatory.obs_table "
@@ -170,7 +171,7 @@ class PurgeMetadataTables(Task):
                 session.commit()
 
     def output(self):
-        session = current_session()
+        session = self.current_session()
         for table in session.query(OBSTable):
             split = table.id.split('.')
             schema, task_id = split[0:-1], split[-1]
@@ -188,10 +189,10 @@ class PurgeMetadataTables(Task):
             else:
                 # TODO drop table
                 LOGGER.info(table)
-            yield PostgresTarget(schema='observatory', tablename=table.tablename)
+            yield PostgresTarget(schema='observatory', tablename=table.tablename, session=session)
 
 
-class ConfirmTableExists(Task):
+class ConfirmTableExists(DatabaseTask):
     '''
     Confirm a table exists
     '''
@@ -203,16 +204,16 @@ class ConfirmTableExists(Task):
         raise Exception('Table {} does not exist'.format(self.tablename))
 
     def output(self):
-        return PostgresTarget(self.schema, self.tablename)
+        return PostgresTarget(self.schema, self.tablename, self.current_session())
 
 
-class ConfirmTablesDescribedExist(WrapperTask):
+class ConfirmTablesDescribedExist(DatabaseWrapperTask):
     '''
     Confirm that all tables described in obs_table actually exist.
     '''
 
     def requires(self):
-        session = current_session()
+        session = self.current_session()
         for table in session.query(OBSTable):
             yield ConfirmTableExists(tablename=table.tablename)
 
@@ -257,7 +258,7 @@ class TestAllData(Task):
     pass
 
 
-class Dump(Task):
+class Dump(DatabaseTask):
     '''
     Dumps the entire ``observatory`` schema to a local file using the
     `binary <https://www.postgresql.org/docs/9.4/static/app-pgdump.html>`_
@@ -274,7 +275,7 @@ class Dump(Task):
         yield OBSMetaToLocal(force=True)
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
         try:
             self.output().makedirs()
             session.execute(
@@ -332,7 +333,7 @@ class DumpS3(Task):
         return target
 
 
-class OBSMeta(Task):
+class OBSMeta(DatabaseTask):
 
     force = BoolParameter(default=False)
 
@@ -881,7 +882,7 @@ class OBSMetaToLocal(OBSMeta):
         yield ConfirmTablesDescribedExist()
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
         try:
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
             session.execute(self.FIRST_AGGREGATE)
@@ -947,7 +948,7 @@ class OBSMetaToLocal(OBSMeta):
         tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
                   'obs_meta_geom', 'obs_meta_timespan', 'obs_meta_geom_numer_timespan']
 
-        return [PostgresTarget('observatory', t, non_empty=False) for t in tables] + [UpdatedMetaTarget()]
+        return [PostgresTarget('observatory', t, non_empty=False) for t in tables] + [UpdatedMetaTarget(self.current_session())]
 
 
 class SyncMetadata(WrapperTask):
