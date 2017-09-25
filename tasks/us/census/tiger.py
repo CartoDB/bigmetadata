@@ -111,7 +111,7 @@ class GeomColumns(ColumnsTask):
         '''
         Add figure to the description
         '''
-        return SUMLEVELS_BY_SLUG[sumlevel]['census_description']
+        return SUMLEVELS[sumlevel]['census_description']
 
     def columns(self):
         input_ = self.input()
@@ -716,7 +716,7 @@ class SumLevel(TableTask):
 
     @property
     def input_tablename(self):
-        return SUMLEVELS_BY_SLUG[self.geography]['table']
+        return SUMLEVELS[self.geography]['table']
 
     def version(self):
         return 11
@@ -818,7 +818,7 @@ class GeoNamesTable(TableTask):
         session = current_session()
         from_clause = '{inputschema}.{input_tablename}'.format(
             inputschema='tiger' + str(self.year),
-            input_tablename=SUMLEVELS_BY_SLUG[self.geography]['table'],
+            input_tablename=SUMLEVELS[self.geography]['table'],
         )
         in_colnames = [self.geoid, self.name]
 
@@ -1055,24 +1055,7 @@ def load_sumlevels():
     Load summary levels from JSON. Returns a dict by sumlevel number.
     '''
     with open(os.path.join(os.path.dirname(__file__), 'summary_levels.json')) as fhandle:
-        sumlevels_list = json.load(fhandle)
-    sumlevels = {}
-    for slevel in sumlevels_list:
-        # Replace pkey ancestors with paths to columns
-        # We subtract 1 from the pkey because it's 1-indexed, unlike python
-        fields = slevel['fields']
-        for i, ancestor in enumerate(fields['ancestors']):
-            colpath = os.path.join('columns', classpath(load_sumlevels),
-                                   sumlevels_list[ancestor - 1]['fields']['slug'])
-            fields['ancestors'][i] = colpath
-        if fields['parent']:
-            fields['parent'] = os.path.join(
-                'columns', classpath(load_sumlevels),
-                sumlevels_list[fields['parent'] - 1]['fields']['slug'])
-
-        sumlevels[fields['summary_level']] = fields
-    return sumlevels
+        return json.load(fhandle)
 
 
 SUMLEVELS = load_sumlevels()
-SUMLEVELS_BY_SLUG = dict([(v['slug'], v) for k, v in SUMLEVELS.iteritems()])
