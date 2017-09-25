@@ -845,6 +845,9 @@ class AllSumLevels(WrapperTask):
                     'block', 'congressional_district'):
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
+            geonames = GeoNamesTable(year=self.year, geography=geo)
+            if geonames.name:
+                yield geonames
 
 
 class SharedTigerColumns(ColumnsTask):
