@@ -59,7 +59,7 @@ class ClippedGeomColumns(ColumnsTask):
         for colname, coltarget in self.input()['geom_columns'].iteritems():
             col = coltarget.get(session)
 
-            level = SUMLEVELS['colname']
+            level = SUMLEVELS[colname]
             additional_tags = []
             if level['cartographic']:
                 additional_tags.append(boundary_type['cartographic_boundary'])
@@ -109,7 +109,7 @@ class GeomColumns(ColumnsTask):
         license = input_['license']['no-restrictions']
 
         columns = {}
-        for level in SUMLEVELS:
+        for level in SUMLEVELS.values():
             columns[level['slug']] = OBSColumn(
                 type='Geometry',
                 name=level['name'],
@@ -682,7 +682,6 @@ class GeoNamesTable(TableTask):
         return self.year
 
     def populate(self):
-        assert self.name, "Geonames are not available for {geog} geographies".format(geog=self.geography)
 
         session = current_session()
         from_clause = '{inputschema}.{input_tablename}'.format(
@@ -691,6 +690,7 @@ class GeoNamesTable(TableTask):
         )
 
         field_names = SUMLEVELS[self.geography]['fields']
+        assert field_names['name'], "Geonames are not available for {geog} geographies".format(geog=self.geography)
         in_colnames = [field_names['geoid'], field_names['name']]
 
         session.execute('INSERT INTO {output} (geoid, geoname) '
