@@ -585,34 +585,21 @@ class SumLevel(TableTask):
     geography = Parameter()
     year = Parameter()
 
-    def has_10_suffix(self):
-        return self.geography.lower() in ('puma', 'zcta5', 'block', )
-
     @property
     def geoid(self):
-        return 'geoid10' if self.has_10_suffix() else 'geoid'
+        return SUMLEVELS[self.geography]['fields']['geoid']
 
     @property
     def aland(self):
-        return 'aland10' if self.has_10_suffix() else 'aland'
+        return SUMLEVELS[self.geography]['fields']['aland']
 
     @property
     def awater(self):
-        return 'awater10' if self.has_10_suffix() else 'awater'
+        return SUMLEVELS[self.geography]['fields']['awater']
 
     @property
     def name(self):
-        if self.geography in ('state', 'county', 'census_tract', 'place',
-                              'school_district_elementary', 'cbsa', 'metdiv',
-                              'school_district_secondary',
-                              'school_district_unified'):
-            return 'name'
-        elif self.geography in ('congressional_district', 'block_group'):
-            return 'namelsad'
-        elif self.geography in ('block'):
-            return 'name10'
-        elif self.geography in ('puma'):
-            return 'namelsad10'
+        return SUMLEVELS[self.geography]['fields']['name']
 
     @property
     def input_tablename(self):
@@ -672,24 +659,6 @@ class GeoNamesTable(TableTask):
     geography = Parameter()
     year = Parameter()
 
-    @property
-    def name(self):
-        if self.geography in ('state', 'county', 'census_tract', 'place',
-                              'school_district_elementary', 'cbsa', 'metdiv',
-                              'school_district_secondary',
-                              'school_district_unified'):
-            return 'name'
-        elif self.geography in ('congressional_district', 'block_group'):
-            return 'namelsad'
-        elif self.geography in ('block'):
-            return 'name10'
-        elif self.geography in ('puma'):
-            return 'namelsad10'
-
-    @property
-    def geoid(self):
-        return 'geoid10' if self.geography.lower() in ('puma', 'zcta5', 'block') else 'geoid'
-
     def version(self):
         return 1
 
@@ -720,7 +689,9 @@ class GeoNamesTable(TableTask):
             inputschema='tiger' + str(self.year),
             input_tablename=SUMLEVELS[self.geography]['table'],
         )
-        in_colnames = [self.geoid, self.name]
+
+        field_names = SUMLEVELS[self.geography]['fields']
+        in_colnames = [field_names['geoid'], field_names['name']]
 
         session.execute('INSERT INTO {output} (geoid, geoname) '
                         'SELECT {in_colnames} '

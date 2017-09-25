@@ -13,7 +13,13 @@
         "name": "US Census Tracts",
         "cartographic": true,
         "interpolated": true,
-        "weight": 9
+        "weight": 9,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "name"
+        }
     },
     "county": {
         "plural_name": "counties",
@@ -29,7 +35,13 @@
         "name": "US County",
         "cartographic": true,
         "interpolated": true,
-        "weight": 5
+        "weight": 5,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "name"
+        }
     },
     "block_group": {
         "plural_name": "block groups",
@@ -45,7 +57,13 @@
         "name": "US Census Block Groups",
         "cartographic": true,
         "interpolated": true,
-        "weight": 10
+        "weight": 10,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "namelsad"
+        }
     },
     "congressional_district": {
         "description": "",
@@ -61,7 +79,13 @@
         "name": "US Congressional Districts",
         "cartographic": true,
         "interpolated": true,
-        "weight": 2
+        "weight": 2,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "namelsad"
+        }
     },
     "puma": {
         "plural_name": "PUMAs",
@@ -77,7 +101,13 @@
         "name": "US Census Public Use Microdata Areas",
         "cartographic": true,
         "interpolated": true,
-        "weight": 4
+        "weight": 4,
+        "fields": {
+            "geoid": "geoid10",
+            "aland": "aland10",
+            "awater": "awater10",
+            "name": "namelsad10"
+        }
     },
     "school_district_secondary": {
         "plural_name": "school districts (secondary)",
@@ -93,7 +123,13 @@
         "name": "Secondary School District",
         "cartographic": true,
         "interpolated": false,
-        "weight": 6.1
+        "weight": 6.1,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "name"
+        }
     },
     "state": {
         "plural_name": "states",
@@ -109,7 +145,13 @@
         "name": "US States",
         "cartographic": true,
         "interpolated": true,
-        "weight": 1
+        "weight": 1,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "name"
+        }
     },
     "school_district_unified": {
         "plural_name": "school districts (unified)",
@@ -125,7 +167,13 @@
         "name": "Unified School District",
         "cartographic": true,
         "interpolated": false,
-        "weight": 6
+        "weight": 6,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "name"
+        }
     },
     "cbsa": {
         "plural_name": "CBSAs",
@@ -141,7 +189,13 @@
         "name": "Core Based Statistical Area (CBSA)",
         "cartographic": true,
         "interpolated": false,
-        "weight": 3
+        "weight": 3,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "name"
+        }
     },
     "school_district_elementary": {
         "plural_name": "school districts (elementary)",
@@ -157,7 +211,13 @@
         "name": "Elementary School District",
         "cartographic": true,
         "interpolated": false,
-        "weight": 6.2
+        "weight": 6.2,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "name"
+        }
     },
     "place": {
         "plural_name": "places",
@@ -172,7 +232,13 @@
         "name": "Incorporated Places",
         "cartographic": true,
         "interpolated": false,
-        "weight": 7
+        "weight": 7,
+        "fields": {
+            "geoid": "geoid",
+            "aland": "aland",
+            "awater": "awater",
+            "name": "name"
+        }
     },
     "block": {
         "plural_name": "blocks",
@@ -188,7 +254,13 @@
         "name": "US Census Blocks",
         "cartographic": true,
         "interpolated": true,
-        "weight": 11
+        "weight": 11,
+        "fields": {
+            "geoid": "geoid10",
+            "aland": "aland10",
+            "awater": "awater10",
+            "name": "name10"
+        }
     },
     "zcta5": {
         "plural_name": "ZCTA5s",
@@ -204,6 +276,12 @@
         "name": "US Census Zip Code Tabulation Areas",
         "cartographic": true,
         "interpolated": true,
-        "weight": 8
+        "weight": 8,
+        "fields": {
+            "geoid": "geoid10",
+            "aland": "aland10",
+            "awater": "awater10",
+            "name": null
+        }
     }
 }
