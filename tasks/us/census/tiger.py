@@ -174,6 +174,7 @@ class GeoidColumns(ColumnsTask):
 
         return cols
 
+
 class GeonameColumns(ColumnsTask):
 
     def version(self):
@@ -300,13 +301,13 @@ class TigerGeographyShapefileToSQL(TempTableTask):
             nlt = ''
 
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
-                'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE active_schema={schema}" ' \
-                '-t_srs "EPSG:4326" {nlt} -nln {tablename} ' \
-                '-lco OVERWRITE=yes ' \
-                '-lco SCHEMA={schema} {shpfile_path} '.format(
-                    tablename=self.output().tablename,
-                    schema=self.output().schema, nlt=nlt,
-                    shpfile_path=shapefiles.pop())
+              'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE active_schema={schema}" ' \
+              '-t_srs "EPSG:4326" {nlt} -nln {tablename} ' \
+              '-lco OVERWRITE=yes ' \
+              '-lco SCHEMA={schema} {shpfile_path} '.format(
+                  tablename=self.output().tablename,
+                  schema=self.output().schema, nlt=nlt,
+                  shpfile_path=shapefiles.pop())
         shell(cmd)
 
         # chunk into 500 shapefiles at a time.
@@ -645,6 +646,7 @@ class SumLevel(TableTask):
                             from_clause=from_clause
                         ))
 
+
 class GeoNamesTable(TableTask):
 
     geography = Parameter()
@@ -825,6 +827,7 @@ class PointLandmark(TableTask):
             SELECT pointid, fullname, mtfcc, geom
             FROM {input}'''.format(output=self.output().table,
                                    input=self.input()['data'].table))
+
 
 class PriSecRoadsColumns(ColumnsTask):
     '''
