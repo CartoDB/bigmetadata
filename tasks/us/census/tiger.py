@@ -554,8 +554,7 @@ class ShorelineClip(TableTask):
         return OrderedDict([
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
-            ('aland', self.input()['attributes']['aland']),
-            ('name', self.input()['geonames'][self.geography + '_geoname']),
+            ('aland', self.input()['attributes']['aland'])
         ])
 
     def timespan(self):
@@ -598,10 +597,6 @@ class SumLevel(TableTask):
         return SUMLEVELS[self.geography]['fields']['awater']
 
     @property
-    def name(self):
-        return SUMLEVELS[self.geography]['fields']['name']
-
-    @property
     def input_tablename(self):
         return SUMLEVELS[self.geography]['table']
 
@@ -622,15 +617,12 @@ class SumLevel(TableTask):
 
     def columns(self):
         input_ = self.input()
-        cols = OrderedDict([
+        return OrderedDict([
             ('geoid', input_['geoids'][self.geography + '_geoid']),
             ('the_geom', input_['geoms'][self.geography]),
             ('aland', input_['attributes']['aland']),
             ('awater', input_['attributes']['awater']),
         ])
-        if self.name:
-            cols['geoname'] = input_['geonames'][self.geography + '_geoname']
-        return cols
 
     def timespan(self):
         return self.year
@@ -642,8 +634,7 @@ class SumLevel(TableTask):
             input_tablename=self.input_tablename,
         )
         in_colnames = [self.geoid, 'geom', self.aland, self.awater]
-        if self.name:
-            in_colnames.append(self.name)
+
         out_colnames = self.columns().keys()
         session.execute('INSERT INTO {output} ({out_colnames}) '
                         'SELECT {in_colnames} '
