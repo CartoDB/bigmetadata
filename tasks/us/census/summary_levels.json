@@ -10,7 +10,10 @@
         "census_notes": "",
         "table": "tract",
         "slug": "census_tract",
-        "name": "Census Tract"
+        "name": "US Census Tracts",
+        "cartographic": true,
+        "interpolated": true,
+        "weight": 9
     },
     "county": {
         "plural_name": "counties",
@@ -23,7 +26,10 @@
         "census_notes": "",
         "table": "county",
         "slug": "county",
-        "name": "County"
+        "name": "US County",
+        "cartographic": true,
+        "interpolated": true,
+        "weight": 5
     },
     "block_group": {
         "plural_name": "block groups",
@@ -36,7 +42,10 @@
         "census_notes": "",
         "table": "bg",
         "slug": "block_group",
-        "name": "Block Group"
+        "name": "US Census Block Groups",
+        "cartographic": true,
+        "interpolated": true,
+        "weight": 10
     },
     "congressional_district": {
         "description": "",
@@ -49,7 +58,10 @@
         "census_notes": "",
         "table": "cd",
         "slug": "congressional_district",
-        "name": "Congressional District"
+        "name": "US Congressional Districts",
+        "cartographic": true,
+        "interpolated": true,
+        "weight": 2
     },
     "puma": {
         "plural_name": "PUMAs",
@@ -62,7 +74,10 @@
         "census_notes": "",
         "table": "puma",
         "slug": "puma",
-        "name": "Public Use Microdata Sample Area (PUMA)"
+        "name": "US Census Public Use Microdata Areas",
+        "cartographic": true,
+        "interpolated": true,
+        "weight": 4
     },
     "school_district_secondary": {
         "plural_name": "school districts (secondary)",
@@ -75,7 +90,10 @@
         "census_notes": "",
         "table": "scsd",
         "slug": "school_district_secondary",
-        "name": "School District (Secondary)"
+        "name": "Secondary School District",
+        "cartographic": true,
+        "interpolated": false,
+        "weight": 6.1
     },
     "state": {
         "plural_name": "states",
@@ -88,7 +106,10 @@
         "census_notes": "",
         "table": "state",
         "slug": "state",
-        "name": "State"
+        "name": "US States",
+        "cartographic": true,
+        "interpolated": true,
+        "weight": 1
     },
     "school_district_unified": {
         "plural_name": "school districts (unified)",
@@ -101,7 +122,10 @@
         "census_notes": "",
         "table": "unsd",
         "slug": "school_district_unified",
-        "name": "School District (Unified)"
+        "name": "Unified School District",
+        "cartographic": true,
+        "interpolated": false,
+        "weight": 6
     },
     "cbsa": {
         "plural_name": "CBSAs",
@@ -114,7 +138,10 @@
         "census_notes": "Principal cities of a CBSA (or NECTA) include the largest incorporated place with a population of at least 10,000 in the CBSA, or if no incorporated place of at least 10,000 population is present in the CBSA, the largest incorporated place or census designated place (CDP) in the CBSA. Principal cities also include any additional incorporated place or CDP with a population of at least 250,000 or in which 100,000 or more persons work; any additional incorporated place or CDP with a population of at least 50,000 and in which the number of jobs meets or exceeds the number of employed residents; and any additional incorporated place or CDP with a population of at least 10,000 but less than 50,000 and at least one-third the population size of the largest place and in which the number of jobs meets or exceeds the number of employed residents. Note that there are some places designated as principal cities of NECTAs that are not principal cities of a CBSA.",
         "table": "cbsa",
         "slug": "cbsa",
-        "name": "Core Based Statistical Area (CBSA)"
+        "name": "Core Based Statistical Area (CBSA)",
+        "cartographic": true,
+        "interpolated": false,
+        "weight": 3
     },
     "school_district_elementary": {
         "plural_name": "school districts (elementary)",
@@ -127,7 +154,10 @@
         "census_notes": "",
         "table": "elsd",
         "slug": "school_district_elementary",
-        "name": "School District (Elementary)"
+        "name": "Elementary School District",
+        "cartographic": true,
+        "interpolated": false,
+        "weight": 6.2
     },
     "place": {
         "plural_name": "places",
@@ -139,7 +169,10 @@
         "census_notes": "Dependent and Independent Places refers to the relationship of places to the county subdivisions. Depending on the state, incorporated places are either dependent within, or independent of, county subdivisions, or there is a mixture of dependent and independent places in the state and in a county. Dependent places are part of the county subdivision; the county subdivision code of the place is the same as that of the underlying county subdivision(s) but is different from the place code. Independent places are not part of any minor civil division (MCD) and serve as primary county subdivisions. The independent place FIPS code usually is the same as that used for the MCD for the place. The only exception is if the place is independent of the MCDs in a state (Iowa, Louisiana, Maryland, Nebraska, North Carolina, and Virginia) in which the FIPS MCD codes are in the 90000 range. Then, the FIPS MCD and FIPS place codes will differ. CDPs always are dependent within county subdivisions and all places are dependent within statistical county subdivisions.\r\n\r\nConsolidated City (Balance) Portions refer to the areas of a consolidated city not included in another separately incorporated place. For example, Butte-Silver Bow, MT, is a consolidated city (former Butte city and Silver Bow County) that includes the separately incorporated municipality of Walkerville city. The area of the consolidated city that is not in Walkerville city is assigned to Butte-Silver Bow (balance). The name of the area of a consolidated city not specifically within a separately incorporated place always includes the \u201c(balance)\u201d identifier. Balance portions of consolidated cities are included with other places in Census Bureau products.",
         "table": "place",
         "slug": "place",
-        "name": "Place"
+        "name": "Incorporated Places",
+        "cartographic": true,
+        "interpolated": false,
+        "weight": 7
     },
     "block": {
         "plural_name": "blocks",
@@ -152,7 +185,10 @@
         "census_notes": "",
         "table": "tabblock",
         "slug": "block",
-        "name": "Block"
+        "name": "US Census Blocks",
+        "cartographic": true,
+        "interpolated": true,
+        "weight": 11
     },
     "zcta5": {
         "plural_name": "ZCTA5s",
@@ -165,6 +201,9 @@
         "census_notes": "",
         "table": "zcta5",
         "slug": "zcta5",
-        "name": "5-digit ZIP Code Tabulation Area (ZCTA5)"
+        "name": "US Census Zip Code Tabulation Areas",
+        "cartographic": true,
+        "interpolated": true,
+        "weight": 8
     }
 }
