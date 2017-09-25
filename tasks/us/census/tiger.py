@@ -43,7 +43,7 @@ class ClippedGeomColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'source': TigerSourceTags(),
             'license': LicenseTags(),
-            'boundary':BoundaryTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
@@ -184,7 +184,7 @@ class GeonameColumns(ColumnsTask):
             'raw': GeomColumns(),
             'clipped': ClippedGeomColumns(),
             'subsections': SubsectionTags(),
-            'sections':SectionTags(),
+            'sections': SectionTags(),
         }
 
     def columns(self):
@@ -198,7 +198,7 @@ class GeonameColumns(ColumnsTask):
                 type='Text',
                 name=col.name + ' Proper Name',
                 weight=1,
-                tags=[subsection['names'],sections['united_states']],
+                tags=[subsection['names'], sections['united_states']],
                 targets={
                     col: GEOM_NAME,
                     clipped[colname + '_clipped']._column: GEOM_NAME
@@ -259,7 +259,6 @@ class UnzipTigerGeography(Task):
         return os.path.join('tmp', classpath(self), str(self.year), self.geography)
 
     def run(self):
-        #for infile in self.input():
         cmd = "cd {path} && find -iname '*.zip' -print0 | xargs -0 -n1 unzip -n -q ".format(
             path=self.directory)
         shell(cmd)
@@ -460,7 +459,6 @@ class DiffTigerWaterGeoms(TempTableTask):
         stmt = ('CREATE TABLE {output} '
                 'AS SELECT geoid, id, ST_Difference( '
                 'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) the_geom '
-                #'pos_geom, neg_geom) the_geom '
                 'FROM {input}'.format(
                     output=self.output().table,
                     input=self.input().table), )[0]
