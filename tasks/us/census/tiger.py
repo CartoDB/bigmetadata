@@ -710,15 +710,11 @@ class AllSumLevels(WrapperTask):
     year = Parameter()
 
     def requires(self):
-        for geo in ('state', 'county', 'census_tract', 'block_group', 'place',
-                    'puma', 'zcta5', 'school_district_elementary', 'cbsa',
-                    'school_district_secondary', 'school_district_unified',
-                    'block', 'congressional_district'):
+        for geo, config in SUMLEVELS.items():
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
-            geonames = GeoNamesTable(year=self.year, geography=geo)
-            if geonames.name:
-                yield geonames
+            if config['fields']['name']:
+                yield GeoNamesTable(year=self.year, geography=geo)
 
 
 class SharedTigerColumns(ColumnsTask):
