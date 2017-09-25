@@ -767,6 +767,69 @@ class SumLevel(TableTask):
                             from_clause=from_clause
                         ))
 
+class GeoNamesTable(TableTask):
+
+    geography = Parameter()
+    year = Parameter()
+
+    @property
+    def name(self):
+        if self.geography in ('state', 'county', 'census_tract', 'place',
+                              'school_district_elementary', 'cbsa', 'metdiv',
+                              'school_district_secondary',
+                              'school_district_unified'):
+            return 'name'
+        elif self.geography in ('congressional_district', 'block_group'):
+            return 'namelsad'
+        elif self.geography in ('block'):
+            return 'name10'
+        elif self.geography in ('puma'):
+            return 'namelsad10'
+
+    @property
+    def geoid(self):
+        return 'geoid10' if self.geography.lower() in ('puma', 'zcta5', 'block') else 'geoid'
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        tiger = DownloadTiger(year=self.year)
+        return {
+            'data': tiger,
+            'geoids': GeoidColumns(),
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'geonames': GeonameColumns(),
+        }
+
+    def columns(self):
+        return OrderedDict([
+            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
+            ('geoname', self.input()['geonames'][self.geography + '_geoname'])
+        ])
+
+    def timespan(self):
+        return self.year
+
+    def populate(self):
+        assert self.name, "Geonames are not available for {geog} geographies".format(geog=self.geography)
+
+        session = current_session()
+        from_clause = '{inputschema}.{input_tablename}'.format(
+            inputschema='tiger' + str(self.year),
+            input_tablename=SUMLEVELS_BY_SLUG[self.geography]['table'],
+        )
+        in_colnames = [self.geoid, self.name]
+
+        session.execute('INSERT INTO {output} (geoid, geoname) '
+                        'SELECT {in_colnames} '
+                        'FROM {from_clause} '.format(
+                            output=self.output().table,
+                            in_colnames=', '.join(in_colnames),
+                            from_clause=from_clause
+                        ))
+
 
 class AllSumLevels(WrapperTask):
     '''
