@@ -34,7 +34,7 @@ class TigerSourceTags(TagsTask):
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 14
+        return 15
 
     def requires(self):
         return {
@@ -84,7 +84,7 @@ class ClippedGeomColumns(ColumnsTask):
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 16
+        return 17
 
     def requires(self):
         return {
@@ -602,7 +602,7 @@ class SumLevel(TableTask):
         return SUMLEVELS[self.geography]['table']
 
     def version(self):
-        return 11
+        return 12
 
     def requires(self):
         tiger = DownloadTiger(year=self.year)
