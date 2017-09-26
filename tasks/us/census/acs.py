@@ -14,8 +14,8 @@ from psycopg2 import ProgrammingError
 from tasks.util import (LoadPostgresFromURL, classpath, shell, grouper,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, MetaWrapper)
-from tasks.us.census.tiger import load_sumlevels, SumLevel
-from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, SUMLEVELS_BY_SLUG)
+from tasks.us.census.tiger import SumLevel
+from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, SUMLEVELS)
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
@@ -3422,7 +3422,7 @@ class Extract(TableTask):
             'acs': Columns(),
             'tiger': GeoidColumns(),
             'data': DownloadACS(year=self.year, sample=self.sample),
-            'tigerdata': SumLevel(geography=self.geography, year='2014')
+            'tigerdata': SumLevel(geography=self.geography, year='2015')
         }
 
     def timespan(self):
@@ -3444,7 +3444,7 @@ class Extract(TableTask):
         load relevant columns from underlying census tables
         '''
         session = current_session()
-        sumlevel = SUMLEVELS_BY_SLUG[self.geography]['summary_level']
+        sumlevel = SUMLEVELS[self.geography]['summary_level']
         colids = []
         colnames = []
         tableids = set()
