@@ -257,16 +257,12 @@ class Columns(ColumnsTask):
 
                 # parse targets
                 denominators = denominators.split('|')
-                # print(denominators)
-                # universes = universes.split('|')
 
                 targets_dict = {}
                 for x in denominators:
                     x = x.strip()
                     targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'denominator'
-                # for x in universes:
-                #     x = x.strip()
-                #     targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'universe'
+
                 targets_dict.pop(None, None)
 
                 col_id = self.tablename+'_'+col_id

@@ -863,7 +863,6 @@ def fromkeys(d, l):
     return dict((k, v) for k, v in d.iteritems() if v is not None)
 
 DENOMINATOR = 'denominator'
-UNIVERSE = 'universe'
 GEOM_REF = 'geom_ref'
 GEOM_NAME = 'geom_name'
 
