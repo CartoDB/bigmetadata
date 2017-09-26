@@ -22,9 +22,9 @@ from urllib import quote_plus
 from slugify import slugify
 import requests
 
-from luigi import (Task, Parameter, LocalTarget, Target, BooleanParameter,
+from luigi import (Task, Parameter, LocalTarget, Target, BoolParameter,
                    ListParameter, DateParameter, WrapperTask, Event)
-from luigi.s3 import S3Target
+from luigi.contrib.s3 import S3Target
 
 from sqlalchemy import Table, types, Column
 from sqlalchemy.dialects.postgresql import JSON
@@ -988,7 +988,7 @@ class TableToCartoViaImportAPI(Task):
                   table of the same name existing remotely will be overwritten.
     '''
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
     username = Parameter(default=None, significant=False)
     api_key = Parameter(default=None, significant=False)
@@ -1110,7 +1110,7 @@ class TableToCartoViaImportAPI(Task):
 
 class TableToCarto(Task):
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
     table = Parameter()
     outname = Parameter(default=None)
@@ -1199,7 +1199,7 @@ class TempTableTask(Task):
                   overwrite output table even if it exists already.
     '''
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
 
     def on_failure(self, ex):
         session_rollback(self, ex)
@@ -1345,7 +1345,7 @@ class CSV2TempTableTask(TempTableTask):
     '''
 
     delimiter = Parameter(default=',', significant=False)
-    has_header = BooleanParameter(default=True, significant=False)
+    has_header = BoolParameter(default=True, significant=False)
     encoding = Parameter(default='utf8', significant=False)
 
     def input_csv(self):
@@ -1742,7 +1742,7 @@ class DropOrphanTables(Task):
     Remove tables that aren't documented anywhere in metadata.  Cleaning.
     '''
 
-    force = BooleanParameter(default=False)
+    force = BoolParameter(default=False)
 
     def run(self):
         session = current_session()
@@ -1958,7 +1958,7 @@ class GenerateRasterTiles(Task):
     table_id = Parameter()
     column_id = Parameter()
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
 
     def run(self):
         self._ran = True
@@ -2002,7 +2002,7 @@ class GenerateRasterTiles(Task):
 
 class GenerateAllRasterTiles(WrapperTask):
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
 
     def requires(self):
         session = current_session()
@@ -2069,7 +2069,7 @@ class RunDiff(WrapperTask):
     '''
 
     compare = Parameter()
-    test_all = BooleanParameter(default=False)
+    test_all = BoolParameter(default=False)
 
     def requires(self):
         resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(

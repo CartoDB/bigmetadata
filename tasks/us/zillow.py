@@ -9,7 +9,7 @@ import requests
 
 from collections import OrderedDict
 from datetime import datetime
-from luigi import (Task, IntParameter, LocalTarget, BooleanParameter, Parameter,
+from luigi import (Task, IntParameter, LocalTarget, BoolParameter, Parameter,
                    WrapperTask)
 from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
                         CartoDBTarget, sql_to_cartodb_table,

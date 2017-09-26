@@ -14,7 +14,7 @@ from tasks.us.census.acs import ACSTags
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 
-from luigi import Task, Parameter, LocalTarget, BooleanParameter
+from luigi import Task, Parameter, LocalTarget, BoolParameter
 
 
 class DownloadSpielmanSingletonFile(Task):

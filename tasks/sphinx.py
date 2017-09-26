@@ -3,9 +3,9 @@ Sphinx functions for luigi bigmetadata tasks.
 '''
 
 from jinja2 import Environment, PackageLoader
-from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
+from luigi import (WrapperTask, Task, LocalTarget, BoolParameter, Parameter,
                    DateParameter)
-from luigi.s3 import S3Target
+from luigi.contrib.s3 import S3Target
 from tasks.util import shell, PostgresTarget
 from tasks.meta import current_session, OBSTag, OBSColumn, catalog_latlng
 from tasks.carto import OBSMetaToLocal
@@ -36,7 +36,7 @@ SOURCES_TEMPLATE = ENV.get_template('sources.html')
 
 class GenerateRST(Task):
 
-    force = BooleanParameter(default=False)
+    force = BoolParameter(default=False)
     format = Parameter()
     section = Parameter(default=None)
 
@@ -323,7 +323,7 @@ class GenerateRST(Task):
 
 class Catalog(Task):
 
-    force = BooleanParameter(default=False)
+    force = BoolParameter(default=False)
     format = Parameter(default='html')
     parallel_workers = Parameter(default=4)
 
@@ -341,7 +341,7 @@ class Catalog(Task):
 class PDFCatalogToS3(Task):
 
     timestamp = DateParameter(default=date.today())
-    force = BooleanParameter(significant=False)
+    force = BoolParameter(significant=False)
 
     def __init__(self, **kwargs):
         if kwargs.get('force'):

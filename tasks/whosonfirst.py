@@ -9,7 +9,7 @@ from csv import DictReader
 from collections import OrderedDict
 
 import requests
-from luigi import Task, Parameter, BooleanParameter, WrapperTask
+from luigi import Task, Parameter, BoolParameter, WrapperTask
 
 from tasks.meta import current_session, OBSColumn, OBSTag
 from tasks.util import (classpath, shell, TempTableTask, TableTask,

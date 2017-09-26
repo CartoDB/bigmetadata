@@ -7,10 +7,10 @@ from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, LOGGER,
                         CartoDBTarget, TableToCartoViaImportAPI)
 
-from luigi import (WrapperTask, BooleanParameter, Parameter, Task, LocalTarget,
+from luigi import (WrapperTask, BoolParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter)
 from luigi.task_register import Register
-from luigi.s3 import S3Target
+from luigi.contrib.s3 import S3Target
 from datetime import date
 
 import time
@@ -55,7 +55,7 @@ class SyncData(WrapperTask):
     '''
     Upload a single OBS table to cartodb by fuzzy ID
     '''
-    force = BooleanParameter(default=True, significant=False)
+    force = BoolParameter(default=True, significant=False)
     id = Parameter(default=None)
     exact_id = Parameter(default=None)
     tablename = Parameter(default=None)
@@ -78,7 +78,7 @@ class SyncAllData(WrapperTask):
     Sync all data to the linked CARTO account.
     '''
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
 
     def requires(self):
         existing_table_versions = dict([
@@ -305,7 +305,7 @@ class DumpS3(Task):
     :param timestamp: Optional date parameter, defaults to today.
     '''
     timestamp = DateParameter(default=date.today())
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
 
     def requires(self):
         return Dump(timestamp=self.timestamp)
@@ -334,7 +334,7 @@ class DumpS3(Task):
 
 class OBSMeta(Task):
 
-    force = BooleanParameter(default=False)
+    force = BoolParameter(default=False)
 
     FIRST_AGGREGATE = '''
     CREATE OR REPLACE FUNCTION public.first_agg ( anyelement, anyelement )
@@ -875,7 +875,7 @@ class DropRemoteOrphanTables(Task):
 
 class OBSMetaToLocal(OBSMeta):
 
-    force = BooleanParameter(default=True)
+    force = BoolParameter(default=True)
 
     def requires(self):
         yield ConfirmTablesDescribedExist()
@@ -952,7 +952,7 @@ class OBSMetaToLocal(OBSMeta):
 
 class SyncMetadata(WrapperTask):
 
-    no_force = BooleanParameter(default=False, significant=False)
+    no_force = BoolParameter(default=False, significant=False)
 
     def requires(self):
         for table in ('obs_table', 'obs_column', 'obs_column_table',

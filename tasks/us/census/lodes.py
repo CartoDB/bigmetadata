@@ -15,7 +15,7 @@ from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, SumLevel
 from tasks.us.census.acs import ACSTags
 
-from luigi import (Task, Parameter, LocalTarget, BooleanParameter, WrapperTask,
+from luigi import (Task, Parameter, LocalTarget, BoolParameter, WrapperTask,
                    IntParameter)
 
 
