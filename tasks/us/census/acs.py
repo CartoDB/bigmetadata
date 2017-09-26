@@ -15,7 +15,7 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell, grouper,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, MetaWrapper)
 from tasks.us.census.tiger import SumLevel
-from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, SUMLEVELS)
+from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns)
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
