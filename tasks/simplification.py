@@ -13,7 +13,7 @@ SKIPFAILURES_YES = 'yes'
 DEFAULT_M_RETAIN_PERCENTAGE = '50'  # [0-100] Percentage of removable vertices retained by mapshaper
 DEFAULT_P_RETAIN_FACTOR = '50'  # Retain factor used for PostGIS simplification (this is NOT a percentage) \
 # The higher the retain factor, the lower the simplification
-UNKNOWN_RETAIN_FACTOR = '?'
+DEFAULT_MAX_MEMORY = '8192'
 
 
 def tmp_directory(schema, table):
@@ -48,13 +48,15 @@ class SimplifyShapefile(Task):
     table = Parameter()
     retainpercentage = Parameter(default=DEFAULT_M_RETAIN_PERCENTAGE)
     skipfailures = Parameter(default=SKIPFAILURES_NO)
+    maxmemory = Parameter(default=DEFAULT_MAX_MEMORY)
 
     def requires(self):
-        yield ExportShapefile(schema=self.schema, table=self.table, skipfailures=self.skipfailures)
+        return ExportShapefile(schema=self.schema, table=self.table, skipfailures=self.skipfailures)
 
     def run(self):
-        cmd = 'node --max-old-space-size=8192 `which mapshaper` ' \
+        cmd = 'node --max-old-space-size={maxmemory} `which mapshaper` ' \
               '{input} snap -simplify {retainpercentage}% keep-shapes -o {output}'.format(
+                maxmemory=self.maxmemory,
                 input=os.path.join(tmp_directory(self.schema, self.table),
                                    shp_filename(self.schema, self.table)),
                 retainpercentage=self.retainpercentage,
@@ -71,12 +73,13 @@ class ImportSimplifiedShapefile(Task):
     table = Parameter()
     retainpercentage = Parameter(default=DEFAULT_M_RETAIN_PERCENTAGE)
     skipfailures = Parameter(default=SKIPFAILURES_NO)
+    maxmemory = Parameter(default=DEFAULT_MAX_MEMORY)
 
     executed = False
 
     def requires(self):
-        yield SimplifyShapefile(schema=self.schema, table=self.table, retainpercentage=self.retainpercentage,
-                                skipfailures=self.skipfailures)
+        return SimplifyShapefile(schema=self.schema, table=self.table, retainpercentage=self.retainpercentage,
+                                 skipfailures=self.skipfailures, maxmemory=self.maxmemory)
 
     def run(self):
         session = CurrentSession().get()
@@ -111,10 +114,11 @@ class SimplifyGeometriesMapshaper(WrapperTask):
     table = Parameter()
     retainpercentage = Parameter(default=DEFAULT_M_RETAIN_PERCENTAGE)
     skipfailures = Parameter(default=SKIPFAILURES_NO)
+    maxmemory = Parameter(default=DEFAULT_MAX_MEMORY)
 
     def requires(self):
-        yield ImportSimplifiedShapefile(schema=self.schema, table=self.table, retainpercentage=self.retainpercentage,
-                                        skipfailures=self.skipfailures)
+        return ImportSimplifiedShapefile(schema=self.schema, table=self.table, retainpercentage=self.retainpercentage,
+                                         skipfailures=self.skipfailures, maxmemory=self.maxmemory)
 
 
 def postgis_simplification_factor(schema, table, geomfield, divisor_power):
@@ -129,15 +133,12 @@ class SimplifyGeometriesPostGIS(Task):
     schema = Parameter()
     table = Parameter()
     geomfield = Parameter(default=DEFAULT_GEOMFIELD)
-    retainfactor = Parameter(default=UNKNOWN_RETAIN_FACTOR)
+    retainfactor = Parameter(default=DEFAULT_P_RETAIN_FACTOR)
 
     executed = False
 
     def run(self):
         session = CurrentSession().get()
-
-        if self.retainfactor == '?':
-            self.retainfactor = DEFAULT_P_RETAIN_FACTOR
 
         factor = postgis_simplification_factor(self.schema, self.table, self.geomfield, self.retainfactor)
 
@@ -158,13 +159,15 @@ class SimplifyGeometriesPostGIS(Task):
 
 
 class MapshaperSimplification():
-    def __init__(self, retainpercentage=DEFAULT_M_RETAIN_PERCENTAGE, skipfailures=SKIPFAILURES_NO):
+    def __init__(self, retainpercentage=DEFAULT_M_RETAIN_PERCENTAGE, skipfailures=SKIPFAILURES_NO,
+                 maxmemory=DEFAULT_MAX_MEMORY):
         self.retainpercentage = retainpercentage
         self.skipfailures = skipfailures
+        self.maxmemory = maxmemory
 
 
 class PostGISSimplification():
-    def __init__(self, geomfield=DEFAULT_GEOMFIELD, retainfactor=UNKNOWN_RETAIN_FACTOR):
+    def __init__(self, geomfield=DEFAULT_GEOMFIELD, retainfactor=DEFAULT_P_RETAIN_FACTOR):
         self.geomfield = geomfield
         self.retainfactor = retainfactor
 
@@ -178,7 +181,7 @@ class Simplify(Task):
     Example: dont_simplify = ['mytable1', 'mytable2']
     '''
 
-    override_defaults = None
+    override_defaults = []
     '''
     Array of Dict objects to override default simplification
     Example: [('mytable', PostGISSimplification(retainfactor=60))]
@@ -212,16 +215,16 @@ class Simplify(Task):
     def find_simplification(self, tableid, tablename):
         simplification = SimplifyGeometriesMapshaper(OBSERVATORY_SCHEMA, tablename)
 
-        if self.override_defaults is not None:
-            for _table, _simplification in self.override_defaults:
-                if tableid.startswith('{schema}.{table}'.format(schema=self.schema, table=_table)):
-                    if isinstance(_simplification, MapshaperSimplification):
-                        simplification = SimplifyGeometriesMapshaper(OBSERVATORY_SCHEMA, tablename,
-                                                                     _simplification.retainpercentage,
-                                                                     _simplification.skipfailures)
-                    elif isinstance(_simplification, PostGISSimplification):
-                        simplification = SimplifyGeometriesPostGIS(OBSERVATORY_SCHEMA, tablename,
-                                                                   _simplification.geomfield,
-                                                                   _simplification.retainfactor)
+        for _table, _simplification in self.override_defaults:
+            if tableid.startswith('{schema}.{table}'.format(schema=self.schema, table=_table)):
+                if isinstance(_simplification, MapshaperSimplification):
+                    simplification = SimplifyGeometriesMapshaper(OBSERVATORY_SCHEMA, tablename,
+                                                                 _simplification.retainpercentage,
+                                                                 _simplification.skipfailures,
+                                                                 _simplification.maxmemory)
+                elif isinstance(_simplification, PostGISSimplification):
+                    simplification = SimplifyGeometriesPostGIS(OBSERVATORY_SCHEMA, tablename,
+                                                               _simplification.geomfield,
+                                                               _simplification.retainfactor)
 
         return simplification
