@@ -222,7 +222,7 @@ class GeographyColumns(ColumnsTask):
             targets={geom: GEOM_REF},
         )
         cols = OrderedDict([('the_geom', geom),
-                    ('cvegeo', geom_ref)])
+                            ('cvegeo', geom_ref)])
 
         if self.resolution in RESPROPNAMES:
             cols['nomgeo'] = OBSColumn(
@@ -237,6 +237,7 @@ class GeographyColumns(ColumnsTask):
         geom.tags.extend(boundary_type[i] for i in RESTAGS[self.resolution])
 
         return cols
+
 
 class Geography(TableTask):
 
