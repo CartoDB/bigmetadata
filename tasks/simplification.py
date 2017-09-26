@@ -31,16 +31,17 @@ class ExportShapefile(Task):
     skipfailures = Parameter(default=SKIPFAILURES_NO)
 
     def run(self):
-        self.output().makedirs()
-        cmd = 'ogr2ogr -f "ESRI Shapefile" {shapefile} ' \
-              '{skipfailures} ' \
-              '"PG:dbname=$PGDATABASE active_schema={schema}" {table}'.format(
-                  shapefile=self.output().path, schema=self.schema, table=self.table,
-                  skipfailures='-skipfailures' if self.skipfailures.lower() == SKIPFAILURES_YES else '')
-        shell(cmd)
+        with self.output().temporary_path() as temp_output_path:
+            cmd = 'ogr2ogr -f "ESRI Shapefile" {shapefile} ' \
+                  '{skipfailures} ' \
+                  '"PG:dbname=$PGDATABASE active_schema={schema}" {table}'.format(
+                      shapefile=temp_output_path, schema=self.schema, table=self.table,
+                      skipfailures='-skipfailures' if self.skipfailures.lower() == SKIPFAILURES_YES else '')
+            shell(cmd)
 
     def output(self):
-        return LocalTarget(os.path.join(tmp_directory(self.schema, self.table), shp_filename(self.schema, self.table)))
+        return LocalTarget(os.path.join(tmp_directory(self.schema, self.table),
+                                        shp_filename(self.schema, self.table)))
 
 
 class SimplifyShapefile(Task):
@@ -54,14 +55,15 @@ class SimplifyShapefile(Task):
         return ExportShapefile(schema=self.schema, table=self.table, skipfailures=self.skipfailures)
 
     def run(self):
-        cmd = 'node --max-old-space-size={maxmemory} `which mapshaper` ' \
-              '{input} snap -simplify {retainpercentage}% keep-shapes -o {output}'.format(
-                maxmemory=self.maxmemory,
-                input=os.path.join(tmp_directory(self.schema, self.table),
-                                   shp_filename(self.schema, self.table)),
-                retainpercentage=self.retainpercentage,
-                output=self.output().path)
-        shell(cmd)
+        with self.output().temporary_path() as temp_output_path:
+            cmd = 'node --max-old-space-size={maxmemory} `which mapshaper` ' \
+                  '{input} snap -simplify {retainpercentage}% keep-shapes -o {output}'.format(
+                    maxmemory=self.maxmemory,
+                    input=os.path.join(tmp_directory(self.schema, self.table),
+                                       shp_filename(self.schema, self.table)),
+                    retainpercentage=self.retainpercentage,
+                    output=temp_output_path)
+            shell(cmd)
 
     def output(self):
         return LocalTarget(os.path.join(tmp_directory(self.schema, self.table),
@@ -191,8 +193,10 @@ class Simplify(Task):
     executed = False
 
     def requires(self):
+        tasks = []
         for _tableid, _tablename in self.find_tables(self.schema):
-            yield self.find_simplification(_tableid, _tablename)
+            tasks.append(self.find_simplification(_tableid, _tablename))
+        return tasks
 
     def run(self):
         self.executed = True
