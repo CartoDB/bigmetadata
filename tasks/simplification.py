@@ -31,17 +31,16 @@ class ExportShapefile(Task):
     skipfailures = Parameter(default=SKIPFAILURES_NO)
 
     def run(self):
-        with self.output().temporary_path() as temp_output_path:
+        with self.output().temporary_path() as tempfile:
             cmd = 'ogr2ogr -f "ESRI Shapefile" {shapefile} ' \
                   '{skipfailures} ' \
                   '"PG:dbname=$PGDATABASE active_schema={schema}" {table}'.format(
-                      shapefile=temp_output_path, schema=self.schema, table=self.table,
+                      shapefile=tempfile, schema=self.schema, table=self.table,
                       skipfailures='-skipfailures' if self.skipfailures.lower() == SKIPFAILURES_YES else '')
             shell(cmd)
 
     def output(self):
-        return LocalTarget(os.path.join(tmp_directory(self.schema, self.table),
-                                        shp_filename(self.schema, self.table)))
+        return LocalTarget(tmp_directory(self.schema, self.table))
 
 
 class SimplifyShapefile(Task):
