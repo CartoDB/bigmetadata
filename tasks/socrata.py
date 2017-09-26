@@ -5,17 +5,7 @@ Bigmetadata tasks
 
 tasks to download and create metadata
 '''
-
-#import requests
-#import datetime
-#import json
-#import csv
-import json
-import os
-from luigi import Parameter, BoolParameter, Task, WrapperTask, LocalTarget
-from tasks.util import (LoadPostgresFromURL, classpath)
-from psycopg2 import ProgrammingError
-
+from luigi import Parameter, Task
 
 
 class LoadSocrataCSV(Task):

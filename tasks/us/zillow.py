@@ -5,21 +5,18 @@ tasks to download and create metadata
 '''
 
 import os
-import requests
 
 from collections import OrderedDict
 from datetime import datetime
-from luigi import (Task, IntParameter, LocalTarget, BoolParameter, Parameter,
-                   WrapperTask)
-from tasks.util import (TableTarget, shell, classpath, underscore_slugify,
-                        CartoDBTarget, sql_to_cartodb_table,
-                        TableTask, ColumnsTask, TagsTask, CSV2TempTableTask, MetaWrapper)
+from luigi import (Task, IntParameter, LocalTarget, Parameter, WrapperTask)
+from tasks.util import (shell, classpath, underscore_slugify, TableTask, ColumnsTask, TagsTask, CSV2TempTableTask,
+                        MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.us.census.tiger import GeoidColumns, SumLevel
-from psycopg2 import ProgrammingError
 
-## cherry-picked datasets
+
+# cherry-picked datasets
 HOMETYPES = {
     'AllHomes': 'All homes',
     'SingleFamilyResidence': 'Single Family Homes',

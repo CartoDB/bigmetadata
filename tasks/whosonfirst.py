@@ -9,11 +9,10 @@ from csv import DictReader
 from collections import OrderedDict
 
 import requests
-from luigi import Task, Parameter, BoolParameter, WrapperTask
+from luigi import Parameter, WrapperTask
 
-from tasks.meta import current_session, OBSColumn, OBSTag
-from tasks.util import (classpath, shell, TempTableTask, TableTask,
-                        ColumnsTask)
+from tasks.meta import current_session, OBSColumn
+from tasks.util import (shell, TempTableTask, TableTask, ColumnsTask)
 from tasks.us.census.tiger import ShorelineClip, DownloadTiger
 from tasks.tags import SectionTags, SubsectionTags
 
