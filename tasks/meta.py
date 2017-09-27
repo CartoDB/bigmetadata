@@ -9,7 +9,7 @@ import re
 import weakref
 
 import luigi
-from luigi import Task, BooleanParameter, Target, Event
+from luigi import Task, BoolParameter, Target, Event
 
 from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric, cast,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,

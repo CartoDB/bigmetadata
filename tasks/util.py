@@ -756,45 +756,6 @@ class TableTarget(Target):
 
         colinfo = {}
 
-        if not _testmode:
-            postgres_max_cols = 1664
-            query_width = 7
-            maxsize = postgres_max_cols / query_width
-            for groupnum, group in enumerate(grouper(self._columns.iteritems(), maxsize)):
-                select = []
-                for i, colname_coltarget in enumerate(group):
-                    if colname_coltarget is None:
-                        continue
-                    colname, coltarget = colname_coltarget
-                    col = coltarget.get(session)
-                    coltype = col.type.lower()
-                    i = i + (groupnum * maxsize)
-                    if coltype == 'numeric':
-                        select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                                      'max({colname}) col{i}_max, '
-                                      'min({colname}) col{i}_min, '
-                                      'avg({colname}) col{i}_avg, '
-                                      'percentile_cont(0.5) within group (order by {colname}) col{i}_median, '
-                                      'mode() within group (order by {colname}) col{i}_mode, '
-                                      'stddev_pop({colname}) col{i}_stddev'.format(
-                                          i=i, colname=colname.lower()))
-                    elif coltype == 'geometry':
-                        select.append('sum(case when {colname} is not null then 1 else 0 end) col{i}_notnull, '
-                                      'max(st_area({colname}::geography)) col{i}_max, '
-                                      'min(st_area({colname}::geography)) col{i}_min, '
-                                      'avg(st_area({colname}::geography)) col{i}_avg, '
-                                      'percentile_cont(0.5) within group '
-                                      '(order by st_area({colname}::geography)) col{i}_median, '
-                                      'mode() within group (order by st_area({colname}::geography)) col{i}_mode, '
-                                      'stddev_pop(st_area({colname}::geography)) col{i}_stddev'.format(
-                                          i=i, colname=colname.lower()))
-
-                if select:
-                    stmt = 'SELECT COUNT(*) cnt, {select} FROM {output}'.format(
-                        select=', '.join(select), output=self.table)
-                    resp = session.execute(stmt)
-                    colinfo.update(dict(zip(resp.keys(), resp.fetchone())))
-
         # replace metadata table
         self._obs_table = session.merge(self._obs_table)
         obs_table = self._obs_table
@@ -826,32 +787,6 @@ class TableTarget(Target):
                         coltable = OBSColumnTable(colname=colname, table=obs_table,
                                                   column=col)
 
-                # include analysis
-                if col.type.lower() in ('numeric', 'geometry',):
-                    # do not include linkage for any column that is 100% null
-                    # unless we are in test mode
-                    stats = {
-                        'count': colinfo.get('cnt'),
-                        'notnull': colinfo.get('col%s_notnull' % i),
-                        'max': colinfo.get('col%s_max' % i),
-                        'min': colinfo.get('col%s_min' % i),
-                        'avg': colinfo.get('col%s_avg' % i),
-                        'median': colinfo.get('col%s_median' % i),
-                        'mode': colinfo.get('col%s_mode' % i),
-                        'stddev': colinfo.get('col%s_stddev' % i),
-                    }
-                    if stats['notnull'] == 0:
-                        if coltable_existed:
-                            session.delete(coltable)
-                        elif coltable in session:
-                            session.expunge(coltable)
-                        continue
-                    for k in stats.keys():
-                        if stats[k] is not None:
-                            stats[k] = float(stats[k])
-                    coltable.extra = {
-                        'stats': stats
-                    }
             session.add(coltable)
 
 

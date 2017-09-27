@@ -14,7 +14,7 @@ from tasks.us.census.acs import ACSTags
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 
-from luigi import Task, Parameter, LocalTarget, BooleanParameter
+from luigi import Task, Parameter, LocalTarget, BoolParameter
 
 
 class DownloadSpielmanSingletonFile(Task):
@@ -1115,4 +1115,4 @@ class SpielmanSingletonColumns(ColumnsTask):
 class SpielmanSingletonMetaWrapper(MetaWrapper):
     def tables(self):
         yield SpielmanSingletonTable()
-        yield SumLevel(year='2014', geography='census_tract')
+        yield SumLevel(year='2015', geography='census_tract')

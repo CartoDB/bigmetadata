@@ -34,7 +34,7 @@ class TigerSourceTags(TagsTask):
 class ClippedGeomColumns(ColumnsTask):
 
     def version(self):
-        return 14
+        return 15
 
     def requires(self):
         return {
@@ -43,7 +43,7 @@ class ClippedGeomColumns(ColumnsTask):
             'subsections': SubsectionTags(),
             'source': TigerSourceTags(),
             'license': LicenseTags(),
-            'boundary':BoundaryTags(),
+            'boundary': BoundaryTags(),
         }
 
     def columns(self):
@@ -58,6 +58,14 @@ class ClippedGeomColumns(ColumnsTask):
 
         for colname, coltarget in self.input()['geom_columns'].iteritems():
             col = coltarget.get(session)
+
+            level = SUMLEVELS[colname]
+            additional_tags = []
+            if level['cartographic']:
+                additional_tags.append(boundary_type['cartographic_boundary'])
+            if level['interpolated']:
+                additional_tags.append(boundary_type['interpolation_boundary'])
+
             cols[colname + '_clipped'] = OBSColumn(
                 type='Geometry',
                 name='Shoreline clipped ' + col.name,
@@ -67,36 +75,16 @@ class ClippedGeomColumns(ColumnsTask):
                 targets={col: 'cartography'},
                 tags=[sections['united_states'],
                       subsections['boundary'],
-                      source, license]
+                      source, license] + additional_tags
             )
 
-        interpolated_boundaries = ['block_clipped', 'block_group_clipped',
-                                   'puma_clipped', 'census_tract_clipped',
-                                   'county_clipped', 'state_clipped',
-                                   'congressional_district_clipped',
-                                   'zcta5_clipped']
-        cartographic_boundaries = ['cbsa_clipped',
-                                   'school_district_elementary_clipped',
-                                   'place_clipped',
-                                   'school_district_secondary_clipped',
-                                   'zcta5_clipped',
-                                   'congressional_district_clipped',
-                                   'school_district_unified_clipped',
-                                   'block_clipped', 'block_group_clipped',
-                                   'puma_clipped', 'census_tract_clipped',
-                                   'county_clipped', 'state_clipped']
-        for colname, col in cols.iteritems():
-            if colname in interpolated_boundaries:
-                col.tags.append(boundary_type['interpolation_boundary'])
-            if colname in cartographic_boundaries:
-                col.tags.append(boundary_type['cartographic_boundary'])
         return cols
 
 
 class GeomColumns(ColumnsTask):
 
     def version(self):
-        return 16
+        return 17
 
     def requires(self):
         return {
@@ -111,7 +99,7 @@ class GeomColumns(ColumnsTask):
         '''
         Add figure to the description
         '''
-        return SUMLEVELS_BY_SLUG[sumlevel]['census_description']
+        return SUMLEVELS[sumlevel]['census_description']
 
     def columns(self):
         input_ = self.input()
@@ -119,103 +107,17 @@ class GeomColumns(ColumnsTask):
         subsections = input_['subsections']
         source = input_['source']['tiger-source']
         license = input_['license']['no-restrictions']
-        columns = {
-            'block_group': OBSColumn(
-                type='Geometry',
-                name='US Census Block Groups',
-                description=self._generate_desc("block_group"),
-                weight=10,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'block': OBSColumn(
-                type='Geometry',
-                name='US Census Blocks',
-                description=self._generate_desc("block"),
-                weight=11,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'census_tract': OBSColumn(
-                type='Geometry',
-                name='US Census Tracts',
-                description=self._generate_desc("census_tract"),
-                weight=9,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'congressional_district': OBSColumn(
-                type='Geometry',
-                name='US Congressional Districts',
-                description=self._generate_desc("congressional_district"),
-                weight=2,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'county': OBSColumn(
-                type='Geometry',
-                name='US County',
-                description=self._generate_desc("county"),
-                weight=5,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'puma': OBSColumn(
-                type='Geometry',
-                name='US Census Public Use Microdata Areas',
-                description=self._generate_desc("puma"),
-                weight=4,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'state': OBSColumn(
-                type='Geometry',
-                name='US States',
-                description=self._generate_desc("state"),
-                weight=1,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'zcta5': OBSColumn(
-                type='Geometry',
-                name='US Census Zip Code Tabulation Areas',
-                description=self._generate_desc('zcta5'),
-                weight=8,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'school_district_elementary': OBSColumn(
-                type='Geometry',
-                name='Elementary School District',
-                description=self._generate_desc('school_district_elementary'),
-                weight=6.2,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'school_district_secondary': OBSColumn(
-                type='Geometry',
-                name='Secondary School District',
-                description=self._generate_desc('school_district_secondary'),
-                weight=6.1,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'school_district_unified': OBSColumn(
-                type='Geometry',
-                name='Unified School District',
-                description=self._generate_desc('school_district_unified'),
-                weight=6,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'cbsa': OBSColumn(
-                type='Geometry',
-                name='Core Based Statistical Area (CBSA)',
-                description=self._generate_desc("cbsa"),
-                weight=3,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-            'place': OBSColumn(
-                type='Geometry',
-                name='Incorporated Places',
-                description=self._generate_desc("place"),
-                weight=7,
-                tags=[sections['united_states'], subsections['boundary']]
-            ),
-        }
 
-        for _, col in columns.iteritems():
-            col.tags.append(source)
-            col.tags.append(license)
+        columns = {}
+        for level in SUMLEVELS.values():
+            columns[level['slug']] = OBSColumn(
+                type='Geometry',
+                name=level['name'],
+                description=level['census_description'],
+                weight=level['weight'],
+                tags=[sections['united_states'], subsections['boundary'], source, license]
+            )
+
         return columns
 
 
@@ -272,6 +174,7 @@ class GeoidColumns(ColumnsTask):
 
         return cols
 
+
 class GeonameColumns(ColumnsTask):
 
     def version(self):
@@ -282,7 +185,7 @@ class GeonameColumns(ColumnsTask):
             'raw': GeomColumns(),
             'clipped': ClippedGeomColumns(),
             'subsections': SubsectionTags(),
-            'sections':SectionTags(),
+            'sections': SectionTags(),
         }
 
     def columns(self):
@@ -296,7 +199,7 @@ class GeonameColumns(ColumnsTask):
                 type='Text',
                 name=col.name + ' Proper Name',
                 weight=1,
-                tags=[subsection['names'],sections['united_states']],
+                tags=[subsection['names'], sections['united_states']],
                 targets={
                     col: GEOM_NAME,
                     clipped[colname + '_clipped']._column: GEOM_NAME
@@ -357,7 +260,6 @@ class UnzipTigerGeography(Task):
         return os.path.join('tmp', classpath(self), str(self.year), self.geography)
 
     def run(self):
-        #for infile in self.input():
         cmd = "cd {path} && find -iname '*.zip' -print0 | xargs -0 -n1 unzip -n -q ".format(
             path=self.directory)
         shell(cmd)
@@ -399,13 +301,13 @@ class TigerGeographyShapefileToSQL(TempTableTask):
             nlt = ''
 
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
-                'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE active_schema={schema}" ' \
-                '-t_srs "EPSG:4326" {nlt} -nln {tablename} ' \
-                '-lco OVERWRITE=yes ' \
-                '-lco SCHEMA={schema} {shpfile_path} '.format(
-                    tablename=self.output().tablename,
-                    schema=self.output().schema, nlt=nlt,
-                    shpfile_path=shapefiles.pop())
+              'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE active_schema={schema}" ' \
+              '-t_srs "EPSG:4326" {nlt} -nln {tablename} ' \
+              '-lco OVERWRITE=yes ' \
+              '-lco SCHEMA={schema} {shpfile_path} '.format(
+                  tablename=self.output().tablename,
+                  schema=self.output().schema, nlt=nlt,
+                  shpfile_path=shapefiles.pop())
         shell(cmd)
 
         # chunk into 500 shapefiles at a time.
@@ -558,7 +460,6 @@ class DiffTigerWaterGeoms(TempTableTask):
         stmt = ('CREATE TABLE {output} '
                 'AS SELECT geoid, id, ST_Difference( '
                 'ST_MakeValid(pos_geom), ST_MakeValid(neg_geom)) the_geom '
-                #'pos_geom, neg_geom) the_geom '
                 'FROM {input}'.format(
                     output=self.output().table,
                     input=self.input().table), )[0]
@@ -654,8 +555,7 @@ class ShorelineClip(TableTask):
         return OrderedDict([
             ('geoid', self.input()['geoids'][self.geography + '_geoid']),
             ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
-            ('aland', self.input()['attributes']['aland']),
-            ('name', self.input()['geonames'][self.geography + '_geoname']),
+            ('aland', self.input()['attributes']['aland'])
         ])
 
     def timespan(self):
@@ -663,15 +563,18 @@ class ShorelineClip(TableTask):
 
     def populate(self):
         session = current_session()
-        stmt = ('INSERT INTO {output} '
-                'SELECT geoid, ST_Union(ST_MakePolygon(ST_ExteriorRing(the_geom))) AS the_geom, '
-                '       MAX(aland) AS aland '
-                'FROM ( '
-                '    SELECT geoid, (ST_Dump(the_geom)).geom AS the_geom, '
-                '           aland '
-                '    FROM {input} '
-                ") holes WHERE GeometryType(the_geom) = 'POLYGON' "
-                'GROUP BY geoid'.format(
+
+        stmt = ('''INSERT INTO {output}
+                   SELECT
+                     geoid,
+                     ST_Union(ARRAY(
+                       SELECT ST_MakePolygon(ST_ExteriorRing(
+                         (ST_Dump(the_geom)).geom
+                       ))
+                       WHERE GeometryType(the_geom) = 'POLYGON'
+                     )),
+                     aland
+                   FROM {input}'''.format(
                     output=self.output().table,
                     input=self.input()['data'].table), )[0]
         session.execute(stmt)
@@ -682,41 +585,24 @@ class SumLevel(TableTask):
     geography = Parameter()
     year = Parameter()
 
-    def has_10_suffix(self):
-        return self.geography.lower() in ('puma', 'zcta5', 'block', )
-
     @property
     def geoid(self):
-        return 'geoid10' if self.has_10_suffix() else 'geoid'
+        return SUMLEVELS[self.geography]['fields']['geoid']
 
     @property
     def aland(self):
-        return 'aland10' if self.has_10_suffix() else 'aland'
+        return SUMLEVELS[self.geography]['fields']['aland']
 
     @property
     def awater(self):
-        return 'awater10' if self.has_10_suffix() else 'awater'
-
-    @property
-    def name(self):
-        if self.geography in ('state', 'county', 'census_tract', 'place',
-                              'school_district_elementary', 'cbsa', 'metdiv',
-                              'school_district_secondary',
-                              'school_district_unified'):
-            return 'name'
-        elif self.geography in ('congressional_district', 'block_group'):
-            return 'namelsad'
-        elif self.geography in ('block'):
-            return 'name10'
-        elif self.geography in ('puma'):
-            return 'namelsad10'
+        return SUMLEVELS[self.geography]['fields']['awater']
 
     @property
     def input_tablename(self):
-        return SUMLEVELS_BY_SLUG[self.geography]['table']
+        return SUMLEVELS[self.geography]['table']
 
     def version(self):
-        return 11
+        return 12
 
     def requires(self):
         tiger = DownloadTiger(year=self.year)
@@ -732,15 +618,12 @@ class SumLevel(TableTask):
 
     def columns(self):
         input_ = self.input()
-        cols = OrderedDict([
+        return OrderedDict([
             ('geoid', input_['geoids'][self.geography + '_geoid']),
             ('the_geom', input_['geoms'][self.geography]),
             ('aland', input_['attributes']['aland']),
             ('awater', input_['attributes']['awater']),
         ])
-        if self.name:
-            cols['geoname'] = input_['geonames'][self.geography + '_geoname']
-        return cols
 
     def timespan(self):
         return self.year
@@ -752,8 +635,7 @@ class SumLevel(TableTask):
             input_tablename=self.input_tablename,
         )
         in_colnames = [self.geoid, 'geom', self.aland, self.awater]
-        if self.name:
-            in_colnames.append(self.name)
+
         out_colnames = self.columns().keys()
         session.execute('INSERT INTO {output} ({out_colnames}) '
                         'SELECT {in_colnames} '
@@ -761,6 +643,54 @@ class SumLevel(TableTask):
                             output=self.output().table,
                             in_colnames=', '.join(in_colnames),
                             out_colnames=', '.join(out_colnames),
+                            from_clause=from_clause
+                        ))
+
+
+class GeoNamesTable(TableTask):
+
+    geography = Parameter()
+    year = Parameter()
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        tiger = DownloadTiger(year=self.year)
+        return {
+            'data': tiger,
+            'geoids': GeoidColumns(),
+            'sections': SectionTags(),
+            'subsections': SubsectionTags(),
+            'geonames': GeonameColumns(),
+        }
+
+    def columns(self):
+        return OrderedDict([
+            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
+            ('geoname', self.input()['geonames'][self.geography + '_geoname'])
+        ])
+
+    def timespan(self):
+        return self.year
+
+    def populate(self):
+
+        session = current_session()
+        from_clause = '{inputschema}.{input_tablename}'.format(
+            inputschema='tiger' + str(self.year),
+            input_tablename=SUMLEVELS[self.geography]['table'],
+        )
+
+        field_names = SUMLEVELS[self.geography]['fields']
+        assert field_names['name'], "Geonames are not available for {geog} geographies".format(geog=self.geography)
+        in_colnames = [field_names['geoid'], field_names['name']]
+
+        session.execute('INSERT INTO {output} (geoid, geoname) '
+                        'SELECT {in_colnames} '
+                        'FROM {from_clause} '.format(
+                            output=self.output().table,
+                            in_colnames=', '.join(in_colnames),
                             from_clause=from_clause
                         ))
 
@@ -773,12 +703,11 @@ class AllSumLevels(WrapperTask):
     year = Parameter()
 
     def requires(self):
-        for geo in ('state', 'county', 'census_tract', 'block_group', 'place',
-                    'puma', 'zcta5', 'school_district_elementary', 'cbsa',
-                    'school_district_secondary', 'school_district_unified',
-                    'block', 'congressional_district'):
+        for geo, config in SUMLEVELS.items():
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
+            if config['fields']['name']:
+                yield GeoNamesTable(year=self.year, geography=geo)
 
 
 class SharedTigerColumns(ColumnsTask):
@@ -899,6 +828,7 @@ class PointLandmark(TableTask):
             FROM {input}'''.format(output=self.output().table,
                                    input=self.input()['data'].table))
 
+
 class PriSecRoadsColumns(ColumnsTask):
     '''
     Primary & secondary roads column definitions
@@ -986,24 +916,7 @@ def load_sumlevels():
     Load summary levels from JSON. Returns a dict by sumlevel number.
     '''
     with open(os.path.join(os.path.dirname(__file__), 'summary_levels.json')) as fhandle:
-        sumlevels_list = json.load(fhandle)
-    sumlevels = {}
-    for slevel in sumlevels_list:
-        # Replace pkey ancestors with paths to columns
-        # We subtract 1 from the pkey because it's 1-indexed, unlike python
-        fields = slevel['fields']
-        for i, ancestor in enumerate(fields['ancestors']):
-            colpath = os.path.join('columns', classpath(load_sumlevels),
-                                   sumlevels_list[ancestor - 1]['fields']['slug'])
-            fields['ancestors'][i] = colpath
-        if fields['parent']:
-            fields['parent'] = os.path.join(
-                'columns', classpath(load_sumlevels),
-                sumlevels_list[fields['parent'] - 1]['fields']['slug'])
-
-        sumlevels[fields['summary_level']] = fields
-    return sumlevels
+        return json.load(fhandle)
 
 
 SUMLEVELS = load_sumlevels()
-SUMLEVELS_BY_SLUG = dict([(v['slug'], v) for k, v in SUMLEVELS.iteritems()])
