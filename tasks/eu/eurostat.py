@@ -1,6 +1,6 @@
 from tasks.eu.geo import NUTSColumns
 from tasks.meta import (OBSTable, OBSColumn, OBSTag, current_session,
-                        DENOMINATOR, GEOM_REF, UNIVERSE)
+                        DENOMINATOR, GEOM_REF)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
