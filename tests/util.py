@@ -34,7 +34,6 @@ def recreate_db(dbname='test'):
 
 from contextlib import contextmanager
 from luigi.worker import Worker
-from luigi.scheduler import CentralPlannerScheduler
 
 
 def setup():

@@ -8,7 +8,7 @@ tasks to download and create metadata
 
 from collections import OrderedDict
 from sqlalchemy import Column, Numeric, Text
-from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
+from luigi import Parameter, BoolParameter, Task, WrapperTask, LocalTarget
 from psycopg2 import ProgrammingError
 
 from tasks.util import (LoadPostgresFromURL, classpath, shell, grouper,
