@@ -22,16 +22,19 @@ from urllib import quote_plus
 from slugify import slugify
 import requests
 
-from luigi import (Task, Parameter, LocalTarget, Target, BooleanParameter,
+from luigi import (Task, Parameter, LocalTarget, Target, BoolParameter,
                    ListParameter, DateParameter, WrapperTask, Event)
-from luigi.s3 import S3Target
+from luigi.contrib.s3 import S3Target
 
 from sqlalchemy import Table, types, Column
 from sqlalchemy.dialects.postgresql import JSON
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
                         Linestring, OBSColumnTable, OBSTag, current_session,
-                        session_commit, session_rollback, OBSColumnTag)
+                        session_commit, session_rollback)
+
+OBSERVATORY_PREFIX = 'obs_'
+OBSERVATORY_SCHEMA = 'observatory'
 
 
 def get_logger(name):
@@ -644,8 +647,9 @@ class TableTarget(Target):
         '''
         self._id = '.'.join([schema, name])
         obs_table.id = self._id
-        obs_table.tablename = 'obs_' + sha1(underscore_slugify(self._id)).hexdigest()
-        self.table = 'observatory.' + obs_table.tablename
+        obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX,
+                                                      name=sha1(underscore_slugify(self._id)).hexdigest())
+        self.table = '{schema}.{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
         self._tablename = obs_table.tablename
         self._schema = schema
         self._name = name
@@ -653,6 +657,8 @@ class TableTarget(Target):
         self._obs_dict = obs_table.__dict__.copy()
         self._columns = columns
         self._task = task
+        self.schema = OBSERVATORY_SCHEMA
+        self.tablename = obs_table.tablename
         if obs_table.tablename in metadata.tables:
             self._table = metadata.tables[obs_table.tablename]
         else:
@@ -1053,7 +1059,7 @@ class TableToCartoViaImportAPI(Task):
                   table of the same name existing remotely will be overwritten.
     '''
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
     username = Parameter(default=None, significant=False)
     api_key = Parameter(default=None, significant=False)
@@ -1175,7 +1181,7 @@ class TableToCartoViaImportAPI(Task):
 
 class TableToCarto(Task):
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
     schema = Parameter(default='observatory')
     table = Parameter()
     outname = Parameter(default=None)
@@ -1264,7 +1270,7 @@ class TempTableTask(Task):
                   overwrite output table even if it exists already.
     '''
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
 
     def on_failure(self, ex):
         session_rollback(self, ex)
@@ -1410,7 +1416,7 @@ class CSV2TempTableTask(TempTableTask):
     '''
 
     delimiter = Parameter(default=',', significant=False)
-    has_header = BooleanParameter(default=True, significant=False)
+    has_header = BoolParameter(default=True, significant=False)
     encoding = Parameter(default='utf8', significant=False)
 
     def input_csv(self):
@@ -1660,6 +1666,9 @@ class TableTask(Task):
             LOGGER.info('create_geom_summaries')
             self.create_geom_summaries(output)
 
+        LOGGER.info('yielding post tasks')
+        yield self.post_tasks()
+
     def create_indexes(self, output):
         session = current_session()
         tablename = output.table
@@ -1698,6 +1707,9 @@ class TableTask(Task):
                                   ))
         generate_tile_summary(current_session(),
                               output._id, colid, output.table, colname)
+
+    def post_tasks(self):
+        return []
 
     def output(self):
         #if self.deps() and not all([d.complete() for d in self.deps()]):
@@ -1807,7 +1819,7 @@ class DropOrphanTables(Task):
     Remove tables that aren't documented anywhere in metadata.  Cleaning.
     '''
 
-    force = BooleanParameter(default=False)
+    force = BoolParameter(default=False)
 
     def run(self):
         session = current_session()
@@ -2023,7 +2035,7 @@ class GenerateRasterTiles(Task):
     table_id = Parameter()
     column_id = Parameter()
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
 
     def run(self):
         self._ran = True
@@ -2067,7 +2079,7 @@ class GenerateRasterTiles(Task):
 
 class GenerateAllRasterTiles(WrapperTask):
 
-    force = BooleanParameter(default=False, significant=False)
+    force = BoolParameter(default=False, significant=False)
 
     def requires(self):
         session = current_session()
@@ -2134,7 +2146,7 @@ class RunDiff(WrapperTask):
     '''
 
     compare = Parameter()
-    test_all = BooleanParameter(default=False)
+    test_all = BoolParameter(default=False)
 
     def requires(self):
         resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(

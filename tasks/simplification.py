@@ -71,9 +71,9 @@ class SimplifyShapefile(Task):
 class ImportSimplifiedShapefile(Task):
     schema = Parameter()
     table = Parameter()
+    geomfield = Parameter(default=DEFAULT_GEOMFIELD)
     retainpercentage = Parameter(default=DEFAULT_M_RETAIN_PERCENTAGE)
     skipfailures = Parameter(default=SKIPFAILURES_NO)
-    geomname = Parameter(default=DEFAULT_GEOMFIELD)
     maxmemory = Parameter(default=DEFAULT_MAX_MEMORY)
 
     def requires(self):
@@ -84,11 +84,11 @@ class ImportSimplifiedShapefile(Task):
         cmd = 'PG_USE_COPY=yes ' \
               'ogr2ogr -f PostgreSQL "PG:dbname=$PGDATABASE active_schema={schema}" ' \
               '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
-              '-lco OVERWRITE=yes -lco PRECISION=no -lco GEOMETRY_NAME={geomname} ' \
+              '-lco OVERWRITE=yes -lco PRECISION=no -lco GEOMETRY_NAME={geomfield} ' \
               '-lco SCHEMA={schema} {shp_path} '.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
-                    geomname=self.geomname,
+                    geomfield=self.geomfield,
                     shp_path=os.path.join(tmp_directory(self.schema, self.table),
                                           shp_filename(self.table, SIMPLIFIED_SUFFIX)))
         shell(cmd)
@@ -100,14 +100,14 @@ class ImportSimplifiedShapefile(Task):
 class SimplifyGeometriesMapshaper(WrapperTask):
     schema = Parameter()
     table = Parameter()
+    geomfield = Parameter(default=DEFAULT_GEOMFIELD)
     retainpercentage = Parameter(default=DEFAULT_M_RETAIN_PERCENTAGE)
     skipfailures = Parameter(default=SKIPFAILURES_NO)
-    geomname = Parameter(default=DEFAULT_GEOMFIELD)
     maxmemory = Parameter(default=DEFAULT_MAX_MEMORY)
 
     def requires(self):
         return ImportSimplifiedShapefile(schema=self.schema, table=self.table, retainpercentage=self.retainpercentage,
-                                         skipfailures=self.skipfailures, geomname=self.geomname,
+                                         skipfailures=self.skipfailures, geomfield=self.geomfield,
                                          maxmemory=self.maxmemory)
 
 
