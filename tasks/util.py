@@ -657,8 +657,6 @@ class TableTarget(Target):
         self._obs_dict = obs_table.__dict__.copy()
         self._columns = columns
         self._task = task
-        self.schema = OBSERVATORY_SCHEMA
-        self.tablename = obs_table.tablename
         if obs_table.tablename in metadata.tables:
             self._table = metadata.tables[obs_table.tablename]
         else:
@@ -1601,9 +1599,6 @@ class TableTask(Task):
             LOGGER.info('create_geom_summaries')
             self.create_geom_summaries(output)
 
-        LOGGER.info('yielding post tasks')
-        yield self.post_tasks()
-
     def create_indexes(self, output):
         session = current_session()
         tablename = output.table
@@ -1642,9 +1637,6 @@ class TableTask(Task):
                                   ))
         generate_tile_summary(current_session(),
                               output._id, colid, output.table, colname)
-
-    def post_tasks(self):
-        return []
 
     def output(self):
         #if self.deps() and not all([d.complete() for d in self.deps()]):
