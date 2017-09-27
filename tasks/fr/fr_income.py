@@ -146,17 +146,8 @@ class IrisIncomeColumns(ColumnsTask):
     def get_targets(self, cols, denominators):
         targets_dict = {}
         if denominators:
-            targets_dict = self.get_relation_targets(cols, denominators, DENOMINATOR)
-
-        return targets_dict
-
-    def get_relation_targets(self, cols, relations, relation):
-        targets_dict = {}
-        if relations:
-            relations = relations.split(',')
-            for x in relations:
-                x = x.strip()
-                targets_dict[cols.get(x)] = relation
+            for x in denominators.split(','):
+                targets_dict[cols.get(x.strip())] = DENOMINATOR
             targets_dict.pop(None, None)
 
         return targets_dict
