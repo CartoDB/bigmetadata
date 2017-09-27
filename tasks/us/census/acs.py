@@ -8,14 +8,14 @@ tasks to download and create metadata
 
 from collections import OrderedDict
 from sqlalchemy import Column, Numeric, Text
-from luigi import Parameter, BooleanParameter, Task, WrapperTask, LocalTarget
+from luigi import Parameter, BoolParameter, Task, WrapperTask, LocalTarget
 from psycopg2 import ProgrammingError
 
 from tasks.util import (LoadPostgresFromURL, classpath, shell, grouper,
                         CartoDBTarget, get_logger, underscore_slugify, TableTask,
                         ColumnTarget, ColumnsTask, TagsTask, MetaWrapper)
 from tasks.us.census.tiger import SumLevel
-from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, SUMLEVELS)
+from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns)
 from tasks.us.census.segments import SegmentTags
 
 from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)

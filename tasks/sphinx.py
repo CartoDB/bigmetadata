@@ -3,21 +3,19 @@ Sphinx functions for luigi bigmetadata tasks.
 '''
 
 from jinja2 import Environment, PackageLoader
-from luigi import (WrapperTask, Task, LocalTarget, BooleanParameter, Parameter,
-                   DateParameter)
-from luigi.s3 import S3Target
-from tasks.util import shell, PostgresTarget
-from tasks.meta import current_session, OBSTag, OBSColumn, catalog_latlng
+from luigi import (Task, LocalTarget, BoolParameter, Parameter, DateParameter)
+from luigi.contrib.s3 import S3Target
+from tasks.util import shell, PostgresTarget, LOGGER
+from tasks.meta import current_session, OBSTag, catalog_latlng
 from tasks.carto import OBSMetaToLocal
 
 from datetime import date
-from time import time
-from tasks.util import LOGGER, PostgresTarget
 
 import json
 import os
 
 ENV = Environment(loader=PackageLoader('catalog', 'templates'))
+
 
 def strip_tag_id(tag_id):
     '''
@@ -36,7 +34,7 @@ SOURCES_TEMPLATE = ENV.get_template('sources.html')
 
 class GenerateRST(Task):
 
-    force = BooleanParameter(default=False)
+    force = BoolParameter(default=False)
     format = Parameter()
     section = Parameter(default=None)
 
@@ -323,7 +321,7 @@ class GenerateRST(Task):
 
 class Catalog(Task):
 
-    force = BooleanParameter(default=False)
+    force = BoolParameter(default=False)
     format = Parameter(default='html')
     parallel_workers = Parameter(default=4)
 
@@ -341,7 +339,7 @@ class Catalog(Task):
 class PDFCatalogToS3(Task):
 
     timestamp = DateParameter(default=date.today())
-    force = BooleanParameter(significant=False)
+    force = BoolParameter(significant=False)
 
     def __init__(self, **kwargs):
         if kwargs.get('force'):
