@@ -6,10 +6,11 @@ from tasks.meta import (OBSTable, Base, OBSColumn, UpdatedMetaTarget)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, LOGGER,
                         CartoDBTarget, TableToCartoViaImportAPI)
-from tasks.carto import DatabaseTask, DatabaseWrapperTask
+from tasks.database import DatabaseTask, DatabaseWrapperTask
 
 from luigi import (WrapperTask, BoolParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter)
+
 from luigi.task_register import Register
 from luigi.contrib.s3 import S3Target
 from datetime import date
@@ -948,7 +949,7 @@ class OBSMetaToLocal(OBSMeta):
         tables = ['obs_meta', 'obs_meta_numer', 'obs_meta_denom',
                   'obs_meta_geom', 'obs_meta_timespan', 'obs_meta_geom_numer_timespan']
 
-        return [PostgresTarget('observatory', t, non_empty=False) for t in tables] + [UpdatedMetaTarget(self.current_session())]
+        return [PostgresTarget('observatory', t, self.current_session(), non_empty=False) for t in tables] + [UpdatedMetaTarget(self.current_session())]
 
 
 class SyncMetadata(WrapperTask):

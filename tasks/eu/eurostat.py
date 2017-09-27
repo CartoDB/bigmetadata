@@ -5,6 +5,7 @@ from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
                         underscore_slugify, shell, classpath, LOGGER)
+from tasks.database import DatabaseWrapperTask
 
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget, ListParameter
 from collections import OrderedDict
@@ -14,6 +15,7 @@ import csv
 import os
 import re
 import itertools
+import logging
 
 #
 # dl_code_list = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=dic%2Fen%2F{code}.dic".format(code=code)
@@ -354,11 +356,6 @@ class FlexEurostatColumns(ColumnsTask):
 
         table_desc = tables[self.table_name]
         variable_name = table_desc.split('by')[0].strip()
-        # for possible_tablenames, table_description in cache.get('table_dic.dic')
-        #     if self.table_name.lower() == possible_tablenames.lower():
-                # table_desc = table_description
-                # variable_name = table_description.split('by')[0].strip()
-                # break
 
         for i in cross_prod:
             dimdefs = []
@@ -411,7 +408,7 @@ class FlexEurostatColumns(ColumnsTask):
                 targets={}, #???
                 tags=tags,
                 extra=i,
-                )
+            )
             columns[var_code + '_flag'] = OBSColumn(
                 id=var_code + '_flag',
                 name='',
@@ -426,7 +423,6 @@ class FlexEurostatColumns(ColumnsTask):
         for colname, col in columns.iteritems():
             col.tags.append(source)
             col.tags.append(license)
-
 
         targets_dict = {}
         for colname, col in columns.iteritems():

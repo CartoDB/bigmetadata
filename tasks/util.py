@@ -31,7 +31,7 @@ from sqlalchemy.dialects.postgresql import JSON
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
                         Linestring, OBSColumnTable, OBSTag, OBSColumnTag)
-from tasks.carto import DatabaseTask, DatabaseWrapperTask
+from tasks.database import DatabaseTask, DatabaseWrapperTask
 
 
 def get_logger(name):
@@ -459,11 +459,11 @@ class PostgresTarget(Target):
         Returns 0 if the table does not exist, 1 if it exists but has no
         rows (is empty), and 2 if it exists and has one or more rows.
         '''
-        resp = self._session.execute('SELECT COUNT(*) FROM information_schema.tables '
-                               "WHERE table_schema ILIKE '{schema}'  "
-                               "  AND table_name ILIKE '{tablename}' ".format(
-                                   schema=self._schema,
-                                   tablename=self._tablename))
+        resp = self._session.execute("SELECT COUNT(*) FROM information_schema.tables"
+                                     " WHERE table_schema ILIKE '{schema}'"
+                                     " AND table_name ILIKE '{tablename}'".format(
+                                        schema=self._schema,
+                                        tablename=self._tablename))
         if int(resp.fetchone()[0]) == 0:
             return 0
         resp = self._session.execute(
@@ -755,6 +755,7 @@ class TableTarget(Target):
             colname, coltarget = colname_coltarget
             colname = colname.lower()
             col = coltarget.get()
+            coltarget._session.expunge(col)
 
             if _testmode:
                 coltable = OBSColumnTable(colname=colname, table=obs_table,
@@ -837,7 +838,7 @@ class ColumnsTask(DatabaseTask):
         # Return columns from database if the task is already finished
         if hasattr(self, '_colids') and self.complete():
             return OrderedDict([
-                (colkey, ColumnTarget(session.query(OBSColumn).get(cid), self))
+                (colkey, ColumnTarget(session.query(OBSColumn).get(cid), self, session))
                 for colkey, cid in self.colids.iteritems()
             ])
 
@@ -860,7 +861,7 @@ class ColumnsTask(DatabaseTask):
             else:
                 col.tags.extend(tags)
 
-            output[col_key] = ColumnTarget(col, self)
+            output[col_key] = ColumnTarget(col, self, session)
         now_in_session = [obj for obj in session]
         for obj in now_in_session:
             if obj not in already_in_session:
@@ -934,11 +935,11 @@ class TagsTask(DatabaseTask):
         raise NotImplementedError('Must return iterable of OBSTags')
 
     def on_failure(self, ex):
-        self.rollback(self, ex)
+        self.rollback(ex)
         super(TagsTask, self).on_failure(ex)
 
     def on_success(self):
-        self.commit(self)
+        self.commit()
 
     def run(self):
         for _, tagtarget in self.output().iteritems():
@@ -948,15 +949,13 @@ class TagsTask(DatabaseTask):
         return 0
 
     def output(self):
-        #if self.deps() and not all([d.complete() for d in self.deps()]):
-        #    raise Exception('Must run prerequisites first')
         output = {}
         for tag in self.tags():
             orig_id = tag.id
             tag.id = '.'.join([classpath(self), orig_id])
             if not tag.version:
                 tag.version = self.version()
-            output[orig_id] = TagTarget(tag, self)
+            output[orig_id] = TagTarget(tag, self, self.current_session())
         return output
 
     def complete(self):
@@ -1145,8 +1144,6 @@ def camel_to_underscore(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
-
-
 class DownloadUnzipTask(Task):
     '''
     Download a zip file to location {output}.zip and unzip it to the folder
@@ -1199,11 +1196,11 @@ class TempTableTask(DatabaseTask):
     force = BoolParameter(default=False, significant=False)
 
     def on_failure(self, ex):
-        self.rollback(self, ex)
+        self.rollback(ex)
         super(TempTableTask, self).on_failure(ex)
 
     def on_success(self):
-        self.commit(self)
+        self.commit()
 
     def run(self):
         '''
@@ -1221,7 +1218,7 @@ class TempTableTask(DatabaseTask):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        return PostgresTarget(classpath(self), self.task_id, self.session)
+        return PostgresTarget(classpath(self), self.task_id, self.current_session())
 
 
 @TempTableTask.event_handler(Event.START)
@@ -1462,12 +1459,11 @@ class TableTask(DatabaseTask):
         return 0
 
     def on_failure(self, ex):
-        self.rollback(self, ex)
+        self.rollback(ex)
         super(TableTask, self).on_failure(ex)
 
     def on_success(self):
-        self.commit(self)
-        super(TableTask, self).on_success()
+        self.commit()
 
     def columns(self):
         '''
@@ -1632,17 +1628,15 @@ class TableTask(DatabaseTask):
                               output._id, colid, output.table, colname)
 
     def output(self):
-        #if self.deps() and not all([d.complete() for d in self.deps()]):
-        #    raise Exception('Must run prerequisites first')
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
         tt = TableTarget(classpath(self),
-                           underscore_slugify(self.task_id),
-                           OBSTable(description=self.description(),
-                                    version=self.version(),
-                                    timespan=self.timespan()),
-                           self._columns, self)
+                         underscore_slugify(self.task_id),
+                         OBSTable(description=self.description(),
+                                  version=self.version(),
+                                  timespan=self.timespan()),
+                         self._columns, self, self.current_session())
         return tt
 
     def complete(self):

@@ -48,7 +48,7 @@ class ClippedGeomColumns(ColumnsTask):
 
     def columns(self):
         cols = OrderedDict()
-        session = current_session()
+        session = self.current_session()
         input_ = self.input()
         sections = input_['sections']
         subsections = input_['subsections']

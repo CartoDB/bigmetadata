@@ -340,12 +340,12 @@ eu-all: eu-geo eu-data
 eu-geo:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.eu.geo AllNUTSGeometries \
-	  --parallel-scheduling --workers=8
+	  --workers=8
 
 eu-data:
 	docker-compose run --rm bigmetadata luigi \
 	  --module tasks.eu.eurostat EURegionalTables \
-	  --workers=1
+	  --workers=8
 
 ### fr
 fr-all: fr-geo fr-insee fr-income

@@ -248,9 +248,6 @@ class OBSColumnTable(Base):
     column = relationship("OBSColumn", back_populates="tables")
     table = relationship("OBSTable", back_populates="columns")
 
-    #tiles = relationship("OBSColumnTableTile", back_populates='column_table',
-    #                     cascade='all,delete')
-
     extra = Column(JSON)
 
     colname_constraint = UniqueConstraint(table_id, colname)
@@ -259,10 +256,14 @@ class OBSColumnTable(Base):
 def tag_creator(tagtarget):
     if tagtarget is None:
         raise Exception('None passed to tagtarget')
-    tag = tagtarget.get(current_session()) or tagtarget._tag
+    tag = tagtarget.get()
+    if not tag:
+        tag = tagtarget._tag
     coltag = OBSColumnTag(tag=tag, tag_id=tag.id)
-    if tag in current_session():
-        current_session().expunge(tag)
+    if coltag in tagtarget._session:
+        tagtarget._session.expunge(coltag)
+    if tag in tagtarget._session:
+        tagtarget._session.expunge(tag)
     return coltag
 
 
@@ -272,12 +273,12 @@ def targets_creator(coltarget_or_col, reltype):
     # they would violate constraints
     if coltarget_or_col is None:
         raise Exception('None passed to coltarget_or_col')
-    # internal to task
     elif isinstance(coltarget_or_col, OBSColumn):
+        # internal to task
         col = coltarget_or_col
-    # from required task
     else:
-        col = coltarget_or_col.get(current_session())
+        # from required task
+        col = coltarget_or_col.get()
     return OBSColumnToColumn(target=col, reltype=reltype)
 
 

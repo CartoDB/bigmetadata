@@ -2,7 +2,7 @@
 
 from luigi import LocalTarget, Task, IntParameter, WrapperTask
 
-from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag
+from tasks.meta import OBSColumn, GEOM_REF, OBSTag
 from tasks.util import (TagsTask, DownloadUnzipTask, Shp2TempTableTask, shell,
                         classpath, CSV2TempTableTask, TempTableTask,
                         ColumnsTask, TableTask)
@@ -115,7 +115,7 @@ class NUTSSHNCrosswalk(TempTableTask):
         }
 
     def run(self):
-        session = current_session()
+        session = self.current_session()
         session.execute(u'''
             CREATE TABLE {output} AS
             with nuts_unprocessed as (
@@ -258,7 +258,7 @@ class NUTSGeometries(TableTask):
         return self.input()['nuts_columns']
 
     def populate(self):
-        session = current_session()
+        session = self.current_session()
         session.execute('''
             INSERT INTO {output}
             SELECT SUBSTR(nuts3, 1, 2 + {level}) nuts_code,
