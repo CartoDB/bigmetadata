@@ -14,7 +14,6 @@ from tasks.util import (LoadPostgresFromURL, classpath, shell, LOGGER,
                         classpath, PostgresTarget, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 from time import time
-from tasks.simplification import SimplifyGeometriesMapshaper
 
 
 MALE = 'male'
@@ -122,9 +121,6 @@ class Geometry(TableTask):
                         'FROM {input} '.format(
                             output=self.output().table,
                             input=self.input()['data'].table))
-
-    def post_tasks(self):
-        return [SimplifyGeometriesMapshaper(schema=self.output().schema, table=self.output().tablename)]
 
 
 class SeccionColumns(ColumnsTask):
