@@ -1612,12 +1612,14 @@ class TableTask(DatabaseTask):
         return tt
 
     def complete(self):
+        table_model = OBSTable(description=self.description(),
+                               version=self.version(),
+                               timespan=self.timespan())
+        logging.info('Checking completion for table {}'.format(table_model.tablename))
         return TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
-                           OBSTable(description=self.description(),
-                                    version=self.version(),
-                                    timespan=self.timespan()),
-                           [], self, self.current_session()).exists()
+                           table_model, [], self,
+                           self.current_session()).exists()
 
 
 class RenameTables(DatabaseTask):

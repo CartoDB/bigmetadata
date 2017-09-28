@@ -491,7 +491,6 @@ class TableEU(TableTask):
                 geo = val
             if r"unit" in val:
                 unit = val
-        # print header
         session = self.current_session()
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (nuts{level}_id)'.format(
             output=self.output().table,
@@ -499,21 +498,10 @@ class TableEU(TableTask):
         session.flush()
         column_targets = self._columns
         for colname, coltarget in column_targets.items():
-            # print colname
             if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
                 col = coltarget.get()
                 extra = col.extra
                 multiple = ''
-                # if 'unit' in extra.keys():
-                #     multiplier = extra['unit']
-                #     if "THS" in multiplier or "1000" in multiplier or multiplier == 'KTOE':
-                #         multiple = '1000*'
-                #     if "MIO" in multiplier:
-                #         multiple = '1000000*'
-                #     else:
-                #         multiple = ''
-                # else:
-                #     multiple = ''
                 keys = extra.keys()
                 vals = [extra[k_] for k_ in keys]
                 # metabase unit does not correspond to headers due to lack of
@@ -559,36 +547,35 @@ class AllEUTableYears(Task):
             headers = csvfile.next().split(',')
 
         years = [h.strip() for h in headers if h.strip()[-4:].isdigit()]
-        for year in years:
-            yield TableEU(table_name=self.table_name,
-                          subsection=self.subsection,
-                          nuts_level=self.nuts_level,
-                          unit=self.unit,
-                          year=year
-            )
+        dependent_deps = [TableEU(table_name=self.table_name,
+                                  subsection=self.subsection,
+                                  nuts_level=self.nuts_level,
+                                  unit=self.unit,
+                                  year=year) for year in years]
+        yield dependent_deps
         self._complete = True
 
     def complete(self):
-        return getattr(self, '_complete', False)
+        is_complete = getattr(self, '_complete', False)
+        logging.info('Checking complete for ALLEUTableYars [{}/{}/{}/{}] is {}'.format(
+            self.table_name, self.subsection, self.nuts_level, self.unit, is_complete
+        ))
+        return is_complete
 
-class EUColumns(WrapperTask):
-    def requires(self):
-        with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
-            reader = csv.reader(wrappertables)
-            for subsection, table_code, nuts, units in reader:
-                yield FlexEurostatColumns(subsection=subsection,
-                                          table_name=table_code,
-                                          units=units)
+class EURegionalTables(Task):
 
-class EURegionalTables(DatabaseWrapperTask):
-
-    def requires(self):
-        session = self.current_session()
+    def run(self):
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
             reader = csv.reader(wrappertables)
             for subsection, table_code, nuts, units in reader:
                 nuts = int(nuts)
                 yield AllEUTableYears(table_name=table_code,
-                                      subsection=subsection,
-                                      nuts_level=nuts,
-                                      unit=units)
+                                            subsection=subsection,
+                                            nuts_level=nuts,
+                                            unit=units)
+
+        self._complete = True
+
+    def complete(self):
+        is_complete = getattr(self, '_complete', False)
+        return is_complete
