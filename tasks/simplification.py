@@ -31,17 +31,17 @@ class ExportShapefile(Task):
     skipfailures = Parameter(default=SKIPFAILURES_NO)
 
     def run(self):
-        self.output().makedirs()
-        cmd = 'ogr2ogr -f "ESRI Shapefile" {shapefile} ' \
-              '{skipfailures} ' \
-              '"PG:dbname=$PGDATABASE active_schema={schema}" {table} '.format(
-                  shapefile=self.output().path, schema=self.schema, table=self.table,
-                  skipfailures='-skipfailures' if self.skipfailures.lower() == SKIPFAILURES_YES else '')
-        shell(cmd)
+        with self.output().temporary_path() as temp_path:
+            self.output().fs.mkdir(temp_path)
+            cmd = 'ogr2ogr -f "ESRI Shapefile" {shapefile} ' \
+                '{skipfailures} ' \
+                '"PG:dbname=$PGDATABASE active_schema={schema}" {table} '.format(
+                    shapefile=os.path.join(temp_path, shp_filename(self.table)), schema=self.schema, table=self.table,
+                    skipfailures='-skipfailures' if self.skipfailures.lower() == SKIPFAILURES_YES else '')
+            shell(cmd)
 
     def output(self):
-        return LocalTarget(os.path.join(tmp_directory(self.schema, self.table),
-                                        shp_filename(self.table)))
+        return LocalTarget(tmp_directory(self.schema, self.table))
 
 
 class SimplifyShapefile(Task):
@@ -56,18 +56,18 @@ class SimplifyShapefile(Task):
         return ExportShapefile(schema=self.schema, table=self.table_input, skipfailures=self.skipfailures)
 
     def run(self):
-        cmd = 'node --max-old-space-size={maxmemory} `which mapshaper` ' \
-              '{input} snap -simplify {retainpercentage}% keep-shapes -o {output}'.format(
-                maxmemory=self.maxmemory,
-                input=os.path.join(tmp_directory(self.schema, self.table_input),
-                                   shp_filename(self.table_input)),
-                retainpercentage=self.retainpercentage,
-                output=self.output().path)
-        shell(cmd)
+        with self.output().temporary_path() as temp_path:
+            self.output().fs.mkdir(temp_path)
+            cmd = 'node --max-old-space-size={maxmemory} `which mapshaper` ' \
+                '{input} snap -simplify {retainpercentage}% keep-shapes -o {output}'.format(
+                    maxmemory=self.maxmemory,
+                    input=os.path.join(self.input().path, shp_filename(self.table_input)),
+                    retainpercentage=self.retainpercentage,
+                    output=os.path.join(temp_path, shp_filename(self.table_output)))
+            shell(cmd)
 
     def output(self):
-        return LocalTarget(os.path.join(tmp_directory(self.schema, self.table_input),
-                                        shp_filename(self.table_output)))
+        return LocalTarget(tmp_directory(self.schema, self.table_output))
 
 
 class SimplifyGeometriesMapshaper(Task):
@@ -93,8 +93,7 @@ class SimplifyGeometriesMapshaper(Task):
                     schema=self.output().schema,
                     table=self.output().tablename,
                     geomfield=self.geomfield,
-                    shp_path=os.path.join(tmp_directory(self.schema, self.table_input),
-                                          shp_filename(self.table_output)))
+                    shp_path=os.path.join(self.input().path, shp_filename(self.table_output)))
         shell(cmd)
 
     def output(self):
@@ -121,9 +120,9 @@ class SimplifyGeometriesPostGIS(Task):
 
         columns = session.execute("SELECT column_name "
                                   "FROM information_schema.columns "
-                                  "WHERE table_schema = '{schema}'"
+                                  "WHERE table_schema = '{schema}' "
                                   "AND table_name   = '{table}'".format(
-                                    schema=self.schema, table=self.table_input)).fetchall()
+                                    schema=self.schema, table=self.table_input.lower())).fetchall()
 
         factor = postgis_simplification_factor(self.schema, self.table_input, self.geomfield, self.retainfactor)
 
@@ -136,7 +135,7 @@ class SimplifyGeometriesPostGIS(Task):
                             schema=self.output().schema, table_in=self.table_input, table_out=self.output().tablename,
                             fields=', '.join([x[0] if x[0] != self.geomfield else simplified_geomfield
                                              for x in columns])))
-        session.execute('COMMIT')
+        session.commit()
 
     def output(self):
         return PostgresTarget(self.schema, self.table_output)
