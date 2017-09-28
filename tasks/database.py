@@ -27,6 +27,12 @@ class DatabaseTask(Task):
     def current_session(self):
         return self.session
 
+    def on_success(self):
+        self.commit()
+
+    def on_failure(self, exception):
+        self.rollback(exception)
+
     def commit(self):
         try:
             logging.info('commit {}'.format(self.task_id))
@@ -71,6 +77,12 @@ class DatabaseWrapperTask(WrapperTask):
 
     def current_session(self):
         return self.session
+
+    def on_success(self):
+        self.commit()
+
+    def on_failure(self, exception):
+        self.rollback(exception)
 
     def commit(self):
         try:

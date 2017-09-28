@@ -812,13 +812,6 @@ class ColumnsTask(DatabaseTask):
         '''
         raise NotImplementedError('Must return iterable of OBSColumns')
 
-    def on_failure(self, ex):
-        self.rollback(ex)
-        super(ColumnsTask, self).on_failure(ex)
-
-    def on_success(self):
-        self.commit()
-
     def run(self):
         for _, coltarget in self.output().iteritems():
             coltarget.update_or_create()
@@ -933,13 +926,6 @@ class TagsTask(DatabaseTask):
         :class:`OBSTag <tasks.meta.OBSTag>`.
         '''
         raise NotImplementedError('Must return iterable of OBSTags')
-
-    def on_failure(self, ex):
-        self.rollback(ex)
-        super(TagsTask, self).on_failure(ex)
-
-    def on_success(self):
-        self.commit()
 
     def run(self):
         for _, tagtarget in self.output().iteritems():
@@ -1194,13 +1180,6 @@ class TempTableTask(DatabaseTask):
     '''
 
     force = BoolParameter(default=False, significant=False)
-
-    def on_failure(self, ex):
-        self.rollback(ex)
-        super(TempTableTask, self).on_failure(ex)
-
-    def on_success(self):
-        self.commit()
 
     def run(self):
         '''
@@ -1457,13 +1436,6 @@ class TableTask(DatabaseTask):
         artifacts.
         '''
         return 0
-
-    def on_failure(self, ex):
-        self.rollback(ex)
-        super(TableTask, self).on_failure(ex)
-
-    def on_success(self):
-        self.commit()
 
     def columns(self):
         '''
