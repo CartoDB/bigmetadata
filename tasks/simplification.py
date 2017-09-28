@@ -14,6 +14,7 @@ DEFAULT_M_RETAIN_PERCENTAGE = '50'  # [0-100] Percentage of removable vertices r
 DEFAULT_P_RETAIN_FACTOR = '50'  # Retain factor used for PostGIS simplification (this is NOT a percentage) \
 # The higher the retain factor, the lower the simplification
 DEFAULT_MAX_MEMORY = '8192'
+SIMPL_SUFFIX = '_simpl'
 
 
 def tmp_directory(schema, table):
@@ -73,14 +74,21 @@ class SimplifyShapefile(Task):
 class SimplifyGeometriesMapshaper(Task):
     schema = Parameter()
     table_input = Parameter()
-    table_output = Parameter()
+    table_output = Parameter(default='')
     geomfield = Parameter(default=DEFAULT_GEOMFIELD)
     retainpercentage = Parameter(default=DEFAULT_M_RETAIN_PERCENTAGE)
     skipfailures = Parameter(default=SKIPFAILURES_NO)
     maxmemory = Parameter(default=DEFAULT_MAX_MEMORY)
 
+    def __init__(self, *args, **kwargs):
+        super(SimplifyGeometriesMapshaper, self).__init__(*args, **kwargs)
+
+        self.table_out = '{tablename}{suffix}'.format(tablename=self.table_input, suffix=SIMPL_SUFFIX)
+        if self.table_output:
+            self.table_out = self.table_output
+
     def requires(self):
-        return SimplifyShapefile(schema=self.schema, table_input=self.table_input, table_output=self.table_output,
+        return SimplifyShapefile(schema=self.schema, table_input=self.table_input, table_output=self.table_out,
                                  retainpercentage=self.retainpercentage, skipfailures=self.skipfailures,
                                  maxmemory=self.maxmemory)
 
@@ -93,11 +101,11 @@ class SimplifyGeometriesMapshaper(Task):
                     schema=self.output().schema,
                     table=self.output().tablename,
                     geomfield=self.geomfield,
-                    shp_path=os.path.join(self.input().path, shp_filename(self.table_output)))
+                    shp_path=os.path.join(self.input().path, shp_filename(self.table_out)))
         shell(cmd)
 
     def output(self):
-        return PostgresTarget(self.schema, self.table_output)
+        return PostgresTarget(self.schema, self.table_out)
 
 
 def postgis_simplification_factor(schema, table, geomfield, divisor_power):
@@ -111,9 +119,16 @@ def postgis_simplification_factor(schema, table, geomfield, divisor_power):
 class SimplifyGeometriesPostGIS(Task):
     schema = Parameter()
     table_input = Parameter()
-    table_output = Parameter()
+    table_output = Parameter(default='')
     geomfield = Parameter(default=DEFAULT_GEOMFIELD)
     retainfactor = Parameter(default=DEFAULT_P_RETAIN_FACTOR)
+
+    def __init__(self, *args, **kwargs):
+        super(SimplifyGeometriesPostGIS, self).__init__(*args, **kwargs)
+
+        self.table_out = '{tablename}{suffix}'.format(tablename=self.table_input, suffix=SIMPL_SUFFIX)
+        if self.table_output:
+            self.table_out = self.table_output
 
     def run(self):
         session = CurrentSession().get()
@@ -138,4 +153,4 @@ class SimplifyGeometriesPostGIS(Task):
         session.commit()
 
     def output(self):
-        return PostgresTarget(self.schema, self.table_output)
+        return PostgresTarget(self.schema, self.table_out)
