@@ -102,7 +102,22 @@ Code example
 
       .. code-block:: postgresql
 
-          WITH ...
+          WITH data AS (
+            SELECT 1 as id,
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+              "denom_id": "{{ denom_id }}",
+              "normalization": "denominated"}]'
+            , 1, 1) meta
+          FROM data)
+          UPDATE <table_with_ids> SET <field_to_update> = (data->0->>'value')::{{ col.type }}
+          FROM OBS_GetData(
+                (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                (SELECT meta FROM meta)) obs_data
+          WHERE <table_with_ids>.<id_col> = obs_data.id
 
    {% elif col.aggregate in ('median', 'average') and denom_reltype == 'universe' %}
    .. tab:: {"tab_name": "Weighted by {{ denom_name }} "}
@@ -132,7 +147,21 @@ Code example
 
       .. code-block:: postgresql
 
-          WITH ...
+          WITH data AS (
+            SELECT 1 as id,
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+              "denom_id": "{{ denom_id }}"}]'
+            , 1, 1) meta
+          FROM data)
+          UPDATE <table_with_ids> SET <field_to_update> = (data->0->>'value')::{{ col.type }}
+          FROM OBS_GetData(
+                (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                (SELECT meta FROM meta)) obs_data
+          WHERE <table_with_ids>.<id_col> = obs_data.id
 
       {% if col.aggregate == 'median' %}NOTE: Although this measure is a median, the
       estimate will be a weighted average of medians.{% endif %}
@@ -166,7 +195,22 @@ Code example
 
       .. code-block:: postgresql
 
-          WITH ...
+          WITH data AS (
+            SELECT 1 as id,
+            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+              "denom_id": "{{ denom_id }}",
+              "normalization": "denominated"}]'
+            , 1, 1) meta
+          FROM data)
+          UPDATE <table_with_ids> SET <field_to_update> = (data->0->>'value')::{{ col.type }}
+          FROM OBS_GetData(
+                (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                (SELECT meta FROM meta)) obs_data
+          WHERE <table_with_ids>.<id_col> = obs_data.id
 
    {% endif %}
 
@@ -200,7 +244,21 @@ Code example
 
       .. code-block:: postgresql
 
-          WITH ...
+          WITH data AS (
+            SELECT 1 as id,
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+              "normalization": "areaNormalized"}]'
+            , 1, 1) meta
+          FROM data)
+          UPDATE <table_with_ids> SET <field_to_update> = (data->0->>'value')::{{ col.type }}
+          FROM OBS_GetData(
+                (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                (SELECT meta FROM meta)) obs_data
+          WHERE <table_with_ids>.<id_col> = obs_data.id
 
    .. tab:: {"tab_name": "Raw count"}
 
@@ -208,7 +266,6 @@ Code example
       interpolation.
 
       .. code-block:: postgresql
-
 
           WITH data AS (
             SELECT 1 as id,
@@ -230,7 +287,21 @@ Code example
 
       .. code-block:: postgresql
 
-          WITH ...
+          WITH data AS (
+            SELECT 1 as id,
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+              "normalization": "predenominated"}]'
+            , 1, 1) meta
+          FROM data)
+          UPDATE <table_with_ids> SET <field_to_update> = (data->0->>'value')::{{ col.type }}
+          FROM OBS_GetData(
+                (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                (SELECT meta FROM meta)) obs_data
+          WHERE <table_with_ids>.<id_col> = obs_data.id
 
 {% else %}
    .. tab:: {"tab_name": "Point"}
@@ -259,7 +330,20 @@ Code example
 
       .. code-block:: postgresql
 
-          WITH ...
+          WITH data AS (
+            SELECT 1 as id,
+            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}"}]'
+            , 1, 1) meta
+          FROM data)
+          UPDATE <table_with_ids> SET <field_to_update> = (data->0->>'value')::{{ col.type }}
+          FROM OBS_GetData(
+                (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                (SELECT meta FROM meta)) obs_data
+          WHERE <table_with_ids>.<id_col> = obs_data.id
 
 {% endif %}
 
