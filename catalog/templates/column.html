@@ -76,27 +76,6 @@ Code example
    {% if denom_reltype == 'denominator' and col.aggregate|lower == 'sum' %}
    .. tab:: {"tab_name": "Per {{ denom_name }}"}
 
-      Obtain an estimate of "{{ col.name }}" per {{ denom_name }} for a polygon
-      using a combination of weighting by area and {{ denom_name }}.
-
-      .. code-block:: postgresql
-
-          WITH data AS (
-            SELECT 1 as id,
-            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
-          ),
-          meta AS (
-            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
-            '[{"numer_id": "{{ col.id }}",
-               "denom_id": "{{ denom_id }}",
-               "normalization": "denominated"}]'
-            , 1, 1) meta
-          FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as rate_estimate
-          FROM OBS_GetData(
-                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
-                 (SELECT meta FROM meta))
-
       Update a field of a table with an estimate of "{{ col.name }}" per {{ denom_name }} for a polygon
       using a combination of weighting by area and {{ denom_name }}.
 
@@ -119,10 +98,7 @@ Code example
                 (SELECT meta FROM meta)) obs_data
           WHERE <table_to_update>.<id_col> = obs_data.id
 
-   {% elif col.aggregate in ('median', 'average') and denom_reltype == 'universe' %}
-   .. tab:: {"tab_name": "Weighted by {{ denom_name }} "}
-
-      Obtain an estimate of "{{ col.name }}" for a polygon
+      Obtain an estimate of "{{ col.name }}" per {{ denom_name }} for a polygon
       using a combination of weighting by area and {{ denom_name }}.
 
       .. code-block:: postgresql
@@ -134,13 +110,17 @@ Code example
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
             '[{"numer_id": "{{ col.id }}",
-               "denom_id": "{{ denom_id }}"}]'
+               "denom_id": "{{ denom_id }}",
+               "normalization": "denominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as estimate
+          SELECT id, (data->0->>'value')::{{ col.type }} as rate_estimate
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
+
+   {% elif col.aggregate in ('median', 'average') and denom_reltype == 'universe' %}
+   .. tab:: {"tab_name": "Weighted by {{ denom_name }} "}
 
       Update a field of a table with an estimate of "{{ col.name }}" for a polygon
       using a combination of weighting by area and {{ denom_name }}.
@@ -163,32 +143,31 @@ Code example
                 (SELECT meta FROM meta)) obs_data
           WHERE <table_to_update>.<id_col> = obs_data.id
 
-      {% if col.aggregate == 'median' %}NOTE: Although this measure is a median, the
-      estimate will be a weighted average of medians.{% endif %}
-
-   {% elif denom_reltype == 'denominator' %}
-   .. tab:: {"tab_name": "Per {{ denom_name }}"}
-
-      Obtain value of "{{ col.name }}" per {{ denom_name}} for the
-      smallest available geometry at the selected point.
+      Obtain an estimate of "{{ col.name }}" for a polygon
+      using a combination of weighting by area and {{ denom_name }}.
 
       .. code-block:: postgresql
 
           WITH data AS (
             SELECT 1 as id,
-            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
             '[{"numer_id": "{{ col.id }}",
-               "denom_id": "{{ denom_id }}",
-               "normalization": "denominated"}]'
+               "denom_id": "{{ denom_id }}"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as val
+          SELECT id, (data->0->>'value')::{{ col.type }} as estimate
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
+
+      {% if col.aggregate == 'median' %}NOTE: Although this measure is a median, the
+      estimate will be a weighted average of medians.{% endif %}
+
+   {% elif denom_reltype == 'denominator' %}
+   .. tab:: {"tab_name": "Per {{ denom_name }}"}
 
       Update a field of a table with the value of "{{ col.name }}" per {{ denom_name}} for the
       smallest available geometry at the selected point.
@@ -212,32 +191,33 @@ Code example
                 (SELECT meta FROM meta)) obs_data
           WHERE <table_to_update>.<id_col> = obs_data.id
 
+      Obtain value of "{{ col.name }}" per {{ denom_name}} for the
+      smallest available geometry at the selected point.
+
+      .. code-block:: postgresql
+
+          WITH data AS (
+            SELECT 1 as id,
+            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}",
+               "denom_id": "{{ denom_id }}",
+               "normalization": "denominated"}]'
+            , 1, 1) meta
+          FROM data)
+          SELECT id, (data->0->>'value')::{{ col.type }} as val
+          FROM OBS_GetData(
+                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                 (SELECT meta FROM meta))
+
    {% endif %}
 
 {% endfor %}
 
 {% if col.aggregate == 'sum' %}
    .. tab:: {"tab_name": "Per sq km"}
-
-      Obtain an estimate of "{{ col.name }}" per square kilometer using area
-      weighted interpolation.
-
-      .. code-block:: postgresql
-
-          WITH data AS (
-            SELECT 1 as id,
-            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
-          ),
-          meta AS (
-            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
-            '[{"numer_id": "{{ col.id }}",
-               "normalization": "areaNormalized"}]'
-            , 1, 1) meta
-          FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as per_sq_km
-          FROM OBS_GetData(
-                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
-                 (SELECT meta FROM meta))
 
       Update a field of a table with an estimate of "{{ col.name }}" per square kilometer using area
       weighted interpolation.
@@ -260,10 +240,8 @@ Code example
                 (SELECT meta FROM meta)) obs_data
           WHERE <table_to_update>.<id_col> = obs_data.id
 
-   .. tab:: {"tab_name": "Raw count"}
-
-      Obtain an estimate of "{{ col.name }}" for a polygon using area-weighted
-      interpolation.
+      Obtain an estimate of "{{ col.name }}" per square kilometer using area
+      weighted interpolation.
 
       .. code-block:: postgresql
 
@@ -274,13 +252,15 @@ Code example
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
             '[{"numer_id": "{{ col.id }}",
-               "normalization": "predenominated"}]'
+               "normalization": "areaNormalized"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as raw_count
+          SELECT id, (data->0->>'value')::{{ col.type }} as per_sq_km
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
+
+   .. tab:: {"tab_name": "Raw count"}
 
       Update a field of a table with an estimate of "{{ col.name }}" for a polygon using area-weighted
       interpolation.
@@ -303,27 +283,28 @@ Code example
                 (SELECT meta FROM meta)) obs_data
           WHERE <table_to_update>.<id_col> = obs_data.id
 
-{% else %}
-   .. tab:: {"tab_name": "Point"}
-
-      Obtain the value of "{{ col.name }}" for a point. The value will be from
-      the densest bounday with this measure.
+      Obtain an estimate of "{{ col.name }}" for a polygon using area-weighted
+      interpolation.
 
       .. code-block:: postgresql
 
           WITH data AS (
             SELECT 1 as id,
-            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
-            '[{"numer_id": "{{ col.id }}"}]'
+            '[{"numer_id": "{{ col.id }}",
+               "normalization": "predenominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as val
+          SELECT id, (data->0->>'value')::{{ col.type }} as raw_count
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
+
+{% else %}
+   .. tab:: {"tab_name": "Point"}
 
       Update a field of a table with the value of "{{ col.name }}" for a point. The value will be from
       the densest bounday with this measure.
@@ -344,6 +325,25 @@ Code example
                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                 (SELECT meta FROM meta)) obs_data
           WHERE <table_to_update>.<id_col> = obs_data.id
+
+      Obtain the value of "{{ col.name }}" for a point. The value will be from
+      the densest bounday with this measure.
+
+      .. code-block:: postgresql
+
+          WITH data AS (
+            SELECT 1 as id,
+            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
+            '[{"numer_id": "{{ col.id }}"}]'
+            , 1, 1) meta
+          FROM data)
+          SELECT id, (data->0->>'value')::{{ col.type }} as val
+          FROM OBS_GetData(
+                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
+                 (SELECT meta FROM meta))
 
 {% endif %}
 
