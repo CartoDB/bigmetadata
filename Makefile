@@ -19,7 +19,7 @@ extension-perftest-record: extension
 extension-autotest: extension
 	docker-compose run --rm bigmetadata nosetests observatory-extension/src/python/test/autotest.py
 
-test: extension-perftest extension-autotest
+test: meta extension-perftest extension-autotest
 
 python:
 	docker-compose run --rm bigmetadata python
@@ -141,6 +141,10 @@ dump: test
 # update the observatory-extension in our DB container
 # Depends on having an observatory-extension folder linked
 extension:
+	cd observatory-extension
+	git checkout master
+	git pull
+	cd ..
 	docker exec $$(docker-compose ps -q postgres) sh -c 'cd observatory-extension && make install'
 	docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS observatory; CREATE EXTENSION observatory WITH VERSION 'dev';"
 
