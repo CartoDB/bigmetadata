@@ -2072,9 +2072,13 @@ class RunDiff(WrapperTask):
     test_all = BoolParameter(default=False)
 
     def requires(self):
-        resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
-            compare=self.compare
-        ))
+        try:
+            resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
+                compare=self.compare
+            ))
+        except CalledProcessError:
+            # No diffs
+            return
         for line in resp.split('\n'):
             if not line:
                 continue
