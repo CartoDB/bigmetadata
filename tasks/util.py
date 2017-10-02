@@ -1595,6 +1595,8 @@ class TableTask(Task):
             LOGGER.info('create_geom_summaries')
             self.create_geom_summaries(output)
 
+        self.check_null_columns()
+
     def create_indexes(self, output):
         session = current_session()
         tablename = output.table
@@ -1633,6 +1635,24 @@ class TableTask(Task):
                                   ))
         generate_tile_summary(current_session(),
                               output._id, colid, output.table, colname)
+
+    def check_null_columns(self):
+        session = current_session()
+        result = session.execute('SELECT {values} FROM {table}'.format(
+                            table=self.output().table,
+                            values=', '.join(['sum(case when {column} is null then 0 else 1 end) {column}'.format(
+                                column=x) for x, _ in self.columns().iteritems()])))
+        columns = result.keys()
+        row = result.fetchone()
+        empty_columns = []
+        for column in columns:
+            value = row[column]
+            if (value == 0):
+                empty_columns.append(column)
+
+        if empty_columns:
+            raise ValueError('The following columns of the table "{table}" contain only NULL values: {columns}'.format(
+                table=self.output().table, columns=', '.join(empty_columns)))
 
     def output(self):
         #if self.deps() and not all([d.complete() for d in self.deps()]):
