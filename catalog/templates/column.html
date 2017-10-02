@@ -54,7 +54,7 @@ Code example
 
           WITH ids AS (
           SELECT ARRAY_AGG(<id_col>) ids
-            FROM <table_to_update>
+            FROM <table_with_ids>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_MakeEnvelope(-179, 89, 179, -89, 4326),
@@ -95,7 +95,7 @@ Code example
           FROM OBS_GetData(
                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                 (SELECT meta FROM meta)) obs_data
-          WHERE <table_to_update>.<id_col> = obs_data.id
+          WHERE <table_to_update>.cartodb_id = obs_data.id
 
       Obtain an estimate of "{{ col.name }}" per {{ denom_name }} for a polygon
       using a combination of weighting by area and {{ denom_name }}.
@@ -139,7 +139,7 @@ Code example
           FROM OBS_GetData(
                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                 (SELECT meta FROM meta)) obs_data
-          WHERE <table_to_update>.<id_col> = obs_data.id
+          WHERE <table_to_update>.cartodb_id = obs_data.id
 
       Obtain an estimate of "{{ col.name }}" for a polygon
       using a combination of weighting by area and {{ denom_name }}.
@@ -186,7 +186,7 @@ Code example
           FROM OBS_GetData(
                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                 (SELECT meta FROM meta)) obs_data
-          WHERE <table_to_update>.<id_col> = obs_data.id
+          WHERE <table_to_update>.cartodb_id = obs_data.id
 
       Obtain value of "{{ col.name }}" per {{ denom_name}} for the
       smallest available geometry at the selected point.
@@ -234,7 +234,7 @@ Code example
           FROM OBS_GetData(
                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                 (SELECT meta FROM meta)) obs_data
-          WHERE <table_to_update>.<id_col> = obs_data.id
+          WHERE <table_to_update>.cartodb_id = obs_data.id
 
       Obtain an estimate of "{{ col.name }}" per square kilometer using area
       weighted interpolation.
@@ -276,7 +276,7 @@ Code example
           FROM OBS_GetData(
                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                 (SELECT meta FROM meta)) obs_data
-          WHERE <table_to_update>.<id_col> = obs_data.id
+          WHERE <table_to_update>.cartodb_id = obs_data.id
 
       Obtain an estimate of "{{ col.name }}" for a polygon using area-weighted
       interpolation.
@@ -318,7 +318,7 @@ Code example
           FROM OBS_GetData(
                 (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                 (SELECT meta FROM meta)) obs_data
-          WHERE <table_to_update>.<id_col> = obs_data.id
+          WHERE <table_to_update>.cartodb_id = obs_data.id
 
       Obtain the value of "{{ col.name }}" for a point. The value will be from
       the densest bounday with this measure.
