@@ -113,7 +113,7 @@ Code example
                "normalization": "denominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as rate_estimate
+          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_rate_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -156,7 +156,7 @@ Code example
                "denom_id": "{{ denom_id }}"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as estimate
+          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_estimate_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -204,7 +204,7 @@ Code example
                "normalization": "denominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as val
+          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -251,7 +251,7 @@ Code example
                "normalization": "areaNormalized"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as per_sq_km
+          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_per_sq_km_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -293,7 +293,7 @@ Code example
                "normalization": "predenominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}
+          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -334,7 +334,7 @@ Code example
             '[{"numer_id": "{{ col.id }}"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as val
+          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
