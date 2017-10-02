@@ -2472,6 +2472,7 @@ NAICS_CODES = dict([
     ('999999', "Unclassified"),
 ])
 
+
 def is_sector(code):
     '''
     Returns True if this is a NAICS sector, False otherwise
@@ -2482,11 +2483,18 @@ def is_sector(code):
         return True
     return False
 
+
 def is_supersector(code):
     '''
     Returns True if this is a NAICS supersector, False otherwise
     '''
     return len(code) == 4 and code[0:2] == '10'
+
+
+def is_public_administration(code):
+    if code in ('1028', '92'):
+        return True
+    return False
 
 
 def get_parent_code(code):
