@@ -82,8 +82,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
-            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+            SELECT cartodb_id as id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -128,8 +127,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
-            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+            SELECT cartodb_id as id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -175,8 +173,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
-            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+            SELECT cartodb_id as id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -225,8 +222,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
-            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+            SELECT cartodb_id as id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -268,8 +264,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
-            ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
+            SELECT cartodb_id as id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -312,8 +307,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
-            ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
+            SELECT cartodb_id as id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
