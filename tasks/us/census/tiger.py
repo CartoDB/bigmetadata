@@ -540,7 +540,7 @@ class ShorelineClip(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
@@ -569,9 +569,8 @@ class ShorelineClip(TableTask):
                      geoid,
                      ST_Union(ARRAY(
                        SELECT ST_MakePolygon(ST_ExteriorRing(
-                         (ST_Dump(the_geom)).geom
+                         (ST_Dump(ST_CollectionExtract(the_geom, 3))).geom
                        ))
-                       WHERE GeometryType(the_geom) = 'POLYGON'
                      )),
                      aland
                    FROM {input}'''.format(
